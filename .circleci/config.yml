@@ -87,8 +87,6 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
-      # Directory to store code exported between jobs.
-      DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
     docker:
       - image: drevops/ci-builder
         auth:
@@ -99,6 +97,8 @@ aliases:
           TZ: *timezone
           # Always answer 'y' to any confirmation questions.
           DREVOPS_AHOY_CONFIRM_RESPONSE: 'y'
+          # Directory to store code exported between jobs.
+          DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
           # Directory to store test results.
           DREVOPS_TEST_REPORTS_DIR: &drevops_test_reports_dir /tmp/tests
           # Directory to store test artifacts.
@@ -173,12 +173,51 @@ job-build: &job-build
         path: *drevops_test_reports_dir
     - store_artifacts:
         path: *drevops_test_artifact_dir
-    - run: mkdir -p /workspace/code && touch /workspace/.gitempty
     - persist_to_workspace:
         root: /workspace
         paths:
           - code
-          - code_tmp
+
+# Exactly as above, but no persisting of the code at the end of the build.
+# @see https://github.com/yaml/yaml/issues/35
+job-build-no-persist: &job-build-no-persist
+  steps:
+    - attach_workspace:
+        at: /workspace
+    - checkout
+    - *step_process_codebase
+    - *step_setup_remote_docker
+    - run:
+        name: Lint docs spelling
+        command: ./scripts/lint-spelling.sh
+    - run:
+        name: Build site
+        command: ahoy build
+        no_output_timeout: 30m
+    - run:
+        name: Lint code
+        command: ahoy lint
+    - run:
+        name: Lint theme config
+        command: ahoy lint config || true
+    - run:
+        name: Run tooling tests
+        command: ./scripts/test-tooling.sh
+    - run:
+        name: Run tests
+        command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export DREVOPS_TEST_BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
+    - run:
+        name: Process test logs and artifacts
+        command: |
+          [ -n "$(docker-compose ps -q cli)" ] && [ -n "$(docker ps -q --no-trunc | grep "$(docker-compose ps -q cli)")" ] && (
+            ahoy cli mkdir -p "${DREVOPS_TEST_REPORTS_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_REPORTS_DIR}" "${DREVOPS_TEST_REPORTS_DIR}"
+            ahoy cli mkdir -p "${DREVOPS_TEST_ARTIFACT_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_ARTIFACT_DIR}" "${DREVOPS_TEST_ARTIFACT_DIR}"
+          ) || true
+        when: always
+    - store_test_results:
+        path: *drevops_test_reports_dir
+    - store_artifacts:
+        path: *drevops_test_artifact_dir
 
 jobs:
   build-govcms:
@@ -190,8 +229,7 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
-      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp/build-minimal
-    <<: *job-build
+    <<: *job-build-no-persist
 
   # Drupal 10.
   build-minimal-drupal10:
@@ -199,8 +237,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_PROFILE: d10
-      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp/build-minimal-drupal10
-    <<: *job-build
+    <<: *job-build-no-persist
 
   # Subtheme is a sibling.
   build-govcms-sibling:
@@ -208,8 +245,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
-      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp/build-govcms-sibling
-    <<: *job-build
+    <<: *job-build-no-persist
 
   # No subtheme.
   build-govcms-no-subtheme:
@@ -217,8 +253,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp/build-govcms-no-subtheme
-    <<: *job-build
+    <<: *job-build-no-persist
 
   # Deploy primary branches.
   deploy: &job_deploy
