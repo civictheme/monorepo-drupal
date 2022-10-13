@@ -34,6 +34,16 @@
       function colorShade(color, number) {
         return colorMixer(color, '#ffffff' ,number);
       }
+
+      if( $("#edit-colors-use-brand-colors").length && $("#edit-colors-brand").length) {
+        if ($("#edit-colors-use-brand-colors").prop('checked', FALSE)) {
+          $("#edit-colors-brand").hide();
+        }
+        $("#edit-colors-use-brand-colors").on("click",function () {
+          $("#edit-colors-brand").toggle(this.checked);
+        });
+      }
+
       if( $("[id^='edit-colors-brand-']").length ) {
         if( $("#edit-colors-brand-light-brand2").length ) {
           $('fieldset.color-light').css('background-color', $("#edit-colors-brand-light-brand2").val());

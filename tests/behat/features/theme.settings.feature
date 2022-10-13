@@ -193,3 +193,15 @@ Feature: Check that components settings are available in theme settings
     When I fill in "Override external link domains" with "http//invaliddomain.com"
     And I press "Save configuration"
     Then I should not see the text "The configuration options have been saved."
+  
+  @api
+  Scenario: The CivicTheme theme color settings.
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+
+    And I should see an "input[name='colors[use_brand_colors]']" element
+    And I should see the text "Brand1"
+    And I uncheck the box "Use Brand colors"
+    
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
