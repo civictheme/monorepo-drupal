@@ -24,8 +24,13 @@ source:
   # are the source field names we want to populate (the names to be used as
   # sources in the process configuration below). For each field we're importing,
   # we provide a label (optional - this is for display in migration tools) and
-  # an xpath for retrieving that value. It's important to note that this xpath
-  # is relative to the elements retrieved by item_selector.
+  # an selector for retrieving that value.
+  # @code
+  #  $
+  #
+  # @endcode
+  # To see the code on how the selector is retrievd for the JSON data_parser_plugin:
+  # @see \Drupal\migrate_plus\Plugin\migrate_plus\data_parser\Json::getSourceData
   fields:
     - name: id
       label: "ID"

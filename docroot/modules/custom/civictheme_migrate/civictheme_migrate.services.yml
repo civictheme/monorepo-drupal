@@ -1,0 +1,4 @@
+services:
+  civictheme_migrate.validator:
+    class: \Drupal\civictheme_migrate\CivicThemeMigrateValidator
+    autowire: true

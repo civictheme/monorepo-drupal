@@ -289,16 +289,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('civictheme_migrate.settings');
     if ($this->isRetrieveFilesSubmit($form_state)) {
-      $urls = explode("\r\n", $form_state->getValue('endpoint'));
-      try {
-        $files = $this->retrieveFiles($urls);
-        $existing_files = $config->get('configuration_files') ?? [];
-        $config->set('configuration_files', array_merge($existing_files, $files));
-        $this->messenger()->addStatus($this->t('Merlin extracted content JSON files have been retrieved'));
-      }
-      catch (\Exception $exception) {
-        $this->messenger()->addError($exception->getMessage());
-      }
+      $this->retrieveRemoteFilesSubmit($form, $form_state);
     }
 
     if ($this->isSaveConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
@@ -319,6 +310,29 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       $this->generateMigrationConfigurationSubmit($form, $form_state);
     }
 
+  }
+  /**
+   * Handles submission to retrieve remote migration files.
+   *
+   * @param array $form
+   *   Form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Formstate object.
+   */
+
+  protected function retrieveRemoteFilesSubmit(array &$form, FormStateInterface $form_state) {
+    $urls = explode("\n",  str_replace("\r\n", "\n", $form_state->getValue('endpoint')));
+    $config = $this->config('civictheme_migrate.settings');
+    try {
+      $files = $this->retrieveFiles($urls, $form['configuration_files']['#upload_validators']);
+      $existing_files = $config->get('configuration_files') ?? [];
+      $config->set('configuration_files', array_merge($existing_files, $files));
+      $this->messenger()->addStatus($this->t('Merlin extracted content JSON files have been retrieved'));
+      $config->save();
+    }
+    catch (\Exception $exception) {
+      $this->messenger()->addError($exception->getMessage());
+    }
   }
 
   /**
@@ -412,36 +426,37 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    *
    * @param array $urls
    *   Array of remote migration files.
+   * @param array $validators
+   *   File upload validators.
    *
    * @return array
    *   Array of file ids.
    *
    * @throws \Exception
    */
-  protected function retrieveFiles(array $urls = []):array {
+  protected function retrieveFiles(array $urls = [], array $validators):array {
     $files = [];
     $auth_headers = $this->getAuthHeaders();
     foreach ($urls as $url) {
       $file = $this->httpClient->get($url, $auth_headers);
       $json = $file->getBody();
-      $json_validate = json_decode($json);
-      if ($json_validate === NULL) {
-        throw new \Exception(sprintf('JSON file is malformed - %s', $url));
-      }
-      else {
-        $filename = $this->generateFileName($url);
-        $directory = 'private://civictheme_migrate';
-        if ($this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY)) {
-          $uri = "$directory/$filename";
-          $path = $this->fileSystem->saveData($json, $uri);
-          $filename = basename($path);
-          $uri = "$directory/$filename";
-          /** @var \Drupal\file\FileInterface $file */
-          $file = $this->fileStorage->create(['uri' => $uri]);
-          $file->setPermanent();
-          $file->save();
-          $files[] = (int) $file->get('fid')->getString();
-        }
+      $filename = $this->generateFileName($url);
+      $directory = 'private://civictheme_migrate';
+      if ($this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY)) {
+        $uri = "$directory/$filename";
+        $path = $this->fileSystem->saveData($json, $uri);
+        $filename = basename($path);
+        $uri = "$directory/$filename";
+
+        /** @var \Drupal\file\FileInterface $file */
+        $file = $this->fileStorage->create(['uri' => $uri]);
+
+        // Carry out validation.
+        file_validate($file, $validators);
+
+        $file->setPermanent();
+        $file->save();
+        $files[] = (int) $file->get('fid')->getString();
       }
     }
 

@@ -20,6 +20,7 @@
         "drush/drush": "^11",
         "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
+        "opis/json-schema": "^2.3",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
     },
