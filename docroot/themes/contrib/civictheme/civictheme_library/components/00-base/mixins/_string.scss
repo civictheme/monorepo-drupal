@@ -47,6 +47,7 @@
   @if not ct-string-is-quoted($string) {
     $string: "#{$string#{''}}";
   }
+
   @return $string;
 }
 

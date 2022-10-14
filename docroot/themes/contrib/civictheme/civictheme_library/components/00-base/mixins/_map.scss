@@ -65,21 +65,23 @@
   $value: '';
 
   @if $lists and list.length($lists) > 0 {
-    @if nth($lists, 1) and list.length(list.nth($lists, 1)) > 0 {
-      $value: nth($lists, 1);
+    @if list.nth($lists, 1) and list.length(list.nth($lists, 1)) > 0 {
+      $value: list.nth($lists, 1);
     }
   }
 
   @for $i from 1 to list.length($lists) {
     @if $i == 1 {
       @if list.nth($lists, 1) and list.length(list.nth($lists, 1)) > 0 and list.nth($lists, $i + 1)
-          and list.length(list.nth($lists, $i + 1)) > 0 {
+        and list.length(list.nth($lists, $i + 1)) > 0 {
         $value: $value + $separator + list.nth($lists, $i + 1);
-      } @else if (not list.nth($lists, 1) or list.length(list.nth($lists, 1)) == 0)
-          and list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
-        $value: $value + nth($lists, $i + 1);
       }
-    } @else if list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
+      @else if (not list.nth($lists, 1) or list.length(list.nth($lists, 1)) == 0)
+        and list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
+        $value: $value + list.nth($lists, $i + 1);
+      }
+    }
+    @else if list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
       $value: $value + $separator + list.nth($lists, $i + 1);
     }
   }

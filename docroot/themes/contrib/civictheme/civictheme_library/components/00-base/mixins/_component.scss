@@ -16,14 +16,15 @@
 
 @mixin ct-component-property($args...) {
   $property: list.nth($args, list.length($args));
+
   #{$property}: ct-component-var($args...);
 }
 
 @function ct-component-var($args...) {
   $var-name: ();
 
-  @for $i from 0 to length($args) {
-    $part: nth($args, $i + 1);
+  @for $i from 0 to list.length($args) {
+    $part: list.nth($args, $i + 1);
     $part: ct-string($part);
     $part: ct-str-replace($part, '.');
     $part: ct-str-replace($part, '#');
