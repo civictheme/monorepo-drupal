@@ -135,14 +135,12 @@ environments:
         schedule: '*/15 * * * *'
         command: drush cron --root=/app
         service: cli
-    # Uncomment below to enable installing a custom SSL certificate.
-    # By default, Lagoon installs Let's Encrypt certificates for all environments.
-    # routes:
-    #   - nginx-php:
-    #       - www.civictheme.salsadigital.com.au:
-    #           tls-acme: 'false'
+
+    routes:
+      - nginx-php:
+          - default.civictheme.io
     monitoring_urls:
-      - www.civictheme.salsadigital.com.au
+      - default.civictheme.io
   # Branch name that represents development environment.
   develop:
     cronjobs:
@@ -150,14 +148,11 @@ environments:
         schedule: '*/15 * * * *'
         command: drush cron --root=/app
         service: cli
-    # Uncomment below to enable installing a custom SSL certificate.
-    # By default, Lagoon installs Let's Encrypt certificates for all environments.
-    # routes:
-    #   - nginx-php:
-    #       - dev.civictheme.salsadigital.com.au:
-    #           tls-acme: 'false'
+    routes:
+      - nginx-php:
+          - defaultdev.civictheme.io
     monitoring_urls:
-      - dev.civictheme.salsadigital.com.au
+      - defaultdev.civictheme.io
 
 routes:
   insecure: Redirect
