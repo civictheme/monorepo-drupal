@@ -48,6 +48,12 @@
     padding: ct-spacing(3) 0 ct-spacing(10);
   }
 
+  &__rows-header {
+    @include ct-typography('label-regular');
+
+    padding: ct-spacing(2) 0 ct-spacing(6);
+  }
+
   &__link-below {
     display: flex;
     justify-content: center;
@@ -73,7 +79,8 @@
 
   &.ct-theme-light {
     &#{$root}__content,
-    &#{$root}__header {
+    &#{$root}__header,
+    &#{$root}__rows-header, {
       color: $ct-list-light-color;
     }
 
@@ -91,7 +98,6 @@
 
     &#{$root}--with-background {
       background-color: $ct-list-dark-background-color;
-      color: $ct-list-dark-with-background-color;
 
       #{$root}__results-below {
         background-color: $ct-list-dark-background-color;

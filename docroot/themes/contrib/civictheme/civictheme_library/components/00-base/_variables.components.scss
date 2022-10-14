@@ -614,12 +614,12 @@ $ct-promo-card-image-width-mobile: auto !default;
 $ct-promo-card-light-background-color: ct-color-light('background-light') !default;
 $ct-promo-card-light-border-top-color: ct-color-light('highlight') !default;
 $ct-promo-card-light-heading-color: ct-color-light('heading') !default;
-$ct-promo-card-light-icon-arrow-color: inherit !default;
+$ct-promo-card-light-icon-arrow-color: ct-color-light('interaction-background') !default;
 $ct-promo-card-light-summary-color: ct-color-light('body') !default;
 $ct-promo-card-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-promo-card-dark-border-top-color: ct-color-dark('highlight') !default;
 $ct-promo-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-promo-card-dark-icon-arrow-color: inherit !default;
+$ct-promo-card-dark-icon-arrow-color: ct-color-dark('interaction-background') !default;
 $ct-promo-card-dark-summary-color: ct-color-dark('body') !default;
 
 //
