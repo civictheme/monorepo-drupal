@@ -17,7 +17,7 @@ use Drupal\Core\Utility\UpdateException;
  */
 function civictheme_content_default_post_update_set_homepage() {
   try {
-    Helper::setHomepageFromNode('Your department/agency tagline');
+    Helper::setHomepageFromNode("Your organisation's tagline");
   }
   catch (\Exception $e) {
     throw new UpdateException($e->getMessage());
