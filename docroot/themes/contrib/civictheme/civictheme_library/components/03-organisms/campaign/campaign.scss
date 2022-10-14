@@ -1,0 +1,111 @@
+//
+// Campaign component.
+//
+
+@use 'sass:map';
+
+.ct-campaign {
+  $root: &;
+
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:focus-within {
+    @include ct-outline();
+  }
+
+  &--image-position-right {
+    > .container > .row {
+      @include ct-breakpoint('m') {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  #{$root}__image-wrapper {
+    @include ct-image-fit();
+    @include ct-elevation();
+
+    position: relative;
+    overflow: hidden;
+    border-radius: $ct-campaign-image-border-radius;
+    height: $ct-campaign-image-height-mobile;
+    width: $ct-campaign-image-width-mobile;
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint('m') {
+      height: $ct-campaign-image-height-desktop;
+      width: $ct-campaign-image-width-desktop;
+      margin-bottom: 0;
+    }
+  }
+
+  #{$root}__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @include ct-breakpoint('m') {
+      height: 100%;
+      justify-content: center;
+    }
+  }
+
+  #{$root}__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .ct-tag {
+      margin-top: ct-spacing(0.5);
+      margin-right: ct-spacing(0.5);
+    }
+  }
+
+  #{$root}__date {
+    @include ct-typography('label-small');
+
+    padding-top: ct-spacing(0.5);
+    padding-bottom: ct-spacing(0.5);
+  }
+
+  #{$root}__summary {
+    @include ct-typography('text-regular');
+
+    margin-top: ct-spacing(-1);
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint('m') {
+      @include ct-typography('text-large');
+
+      margin-top: ct-spacing(-1);
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  &.ct-theme-light {
+    background-color: $ct-campaign-light-background-color;
+
+    &:focus {
+      @include ct-outline(false);
+    }
+
+    #{$root}__summary {
+      color: $ct-campaign-light-summary-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    background-color: $ct-campaign-dark-background-color;
+
+    &:focus {
+      @include ct-outline(true);
+    }
+
+    #{$root}__summary {
+      color: $ct-campaign-dark-summary-color;
+    }
+  }
+}
