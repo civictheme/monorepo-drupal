@@ -6,6 +6,7 @@
  */
 
 use Drupal\file\FileInterface;
+use Opis\JsonSchema\Errors\ErrorFormatter;
 
 /**
  * Checks that the file is recognized as a valid JSON file.
@@ -19,11 +20,24 @@ use Drupal\file\FileInterface;
  *
  * @see hook_file_validate()
  */
-function civictheme_migrate_validate_json(FileInterface $file) {
+function civictheme_migrate_validate_json(FileInterface $file, $schema_id) {
   $errors = [];
-  $is_valid_json = json_decode(file_get_contents($file->getFileUri()));
-  if ($is_valid_json === NULL) {
+  $json = json_decode(file_get_contents($file->getFileUri()));
+  if ($json === NULL) {
     $errors[] = t(':filename is not valid JSON', [':filename' => $file->getFilename()]);
+    return $errors;
   }
+
+  /** @var \Drupal\civictheme_migrate\CivicThemeMigrateValidator $schema_validator */
+  $schema_validator = \Drupal::service('civictheme_migrate.validator');
+  $validation_result = $schema_validator->validate($json, $schema_id);
+  if ($validation_result->hasError()) {
+    $formatter = new ErrorFormatter();
+    $messages = $formatter->format($validation_result->error());
+    foreach ($messages as $message_key => $message) {
+      $errors[] = $message_key . ': ' . $message;
+    }
+  }
+
   return $errors;
 }

@@ -11,12 +11,13 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use GuzzleHttp\ClientInterface;
+use PHPUnit\Util\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure CivicTheme Migrate from Merlin Migration JSON files.
  */
-class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
+class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
 
   /**
    * The HTTP client.
@@ -252,7 +253,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       '#upload_location' => 'private://civictheme_migrate/',
       '#upload_validators'  => [
         'file_validate_extensions' => ['json txt'],
-        'civictheme_migrate_validate_json' => [],
+        'civictheme_migrate_validate_json' => ['civictheme_page'],
       ],
     ];
 
@@ -311,6 +312,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
     }
 
   }
+
   /**
    * Handles submission to retrieve remote migration files.
    *
@@ -319,9 +321,8 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   Formstate object.
    */
-
   protected function retrieveRemoteFilesSubmit(array &$form, FormStateInterface $form_state) {
-    $urls = explode("\n",  str_replace("\r\n", "\n", $form_state->getValue('endpoint')));
+    $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue('endpoint')));
     $config = $this->config('civictheme_migrate.settings');
     try {
       $files = $this->retrieveFiles($urls, $form['configuration_files']['#upload_validators']);
@@ -434,7 +435,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    *
    * @throws \Exception
    */
-  protected function retrieveFiles(array $urls = [], array $validators):array {
+  protected function retrieveFiles(array $urls, array $validators):array {
     $files = [];
     $auth_headers = $this->getAuthHeaders();
     foreach ($urls as $url) {
@@ -452,8 +453,11 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
         $file = $this->fileStorage->create(['uri' => $uri]);
 
         // Carry out validation.
-        file_validate($file, $validators);
-
+        $errors = file_validate($file, $validators);
+        if (!empty($errors)) {
+          $error = array_pop($errors);
+          throw new Exception($error);
+        }
         $file->setPermanent();
         $file->save();
         $files[] = (int) $file->get('fid')->getString();

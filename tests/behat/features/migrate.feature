@@ -1,11 +1,11 @@
-@civictheme @civictheme_migrate
+@civictheme @civictheme_migrate @wip
 Feature: Tests the CivicTheme migration functionality
 
   @api @javascript
   Scenario: Migration configuration form should be setup correctly
     Given I am logged in as a user with the "administer migrations" permission
     When I go to "admin/config/civictheme-migrate"
-    Then I should see the text "Setup CivicTheme migration"
+    Then I should see the text "CivicTheme Migrate Settings"
     And I select the radio button "Local"
     And I should see the text "Upload Merlin extracted content JSON Files"
     And I should not see the text "Connect to remote Merlin UI API to retrieve extracted content JSON files"
@@ -26,28 +26,29 @@ Feature: Tests the CivicTheme migration functionality
   @api @javascript
   Scenario: Valid Extracted content JSON can be retrieved and retriever handles incorrect URLs
     Given managed file:
-      | filename                                 | uri                                               | path                                     |
-      | merlin_ui_extracted_content_invalid.json | public://merlin_ui_extracted_content_invalid.json | merlin_ui_extracted_content_invalid.json |
+      | filename                               | uri                                             | path                                   |
+      | civictheme_migrate.invalid_json_1.json | public://civictheme_migrate.invalid_json_1.json | civictheme_migrate.invalid_json_1.json |
     Given I am logged in as a user with the "administer migrations" permission
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/merlin_ui_extracted_content_invalid.json"
+    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     # Can't test error messages directly as admin theme is not adding the behat configured error class.
-    And I should see the message containing "JSON file is malformed - http://nginx:8080/sites/default/files/merlin_ui_extracted_content_invalid.json"
+    And I should see the text "civictheme_migrate.invalid_json_1.json is not valid JSON"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
+
   @api @javascript
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
     Given managed file:
-      | filename                          | uri                                        | path                              |
-      | merlin_ui_extracted_content.json  | public://merlin_ui_extracted_content.json  | merlin_ui_extracted_content.json  |
-      | merlin_ui_extracted_content2.json | public://merlin_ui_extracted_content2.json | merlin_ui_extracted_content2.json |
-    Given I am logged in as a user with the "administer migrations" permission
+      | filename                               | uri                                             | path                                   |
+      | civictheme_migrate.page_content_1.json | public://civictheme_migrate.page_content_1.json | civictheme_migrate.page_content_1.json |
+      | civictheme_migrate.page_content_2.json | public://civictheme_migrate.page_content_2.json | civictheme_migrate.page_content_2.json |
+    Given I am logged in as an administrator
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/merlin_ui_extracted_content2.json"
+    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
     And I press the "Retrieve files" button
     And I should see the message "Merlin extracted content JSON files have been retrieved"
     And I press the "Generate migration" button

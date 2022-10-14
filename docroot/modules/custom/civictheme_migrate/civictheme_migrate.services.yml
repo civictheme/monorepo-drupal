@@ -1,4 +1,9 @@
 services:
   civictheme_migrate.validator:
     class: \Drupal\civictheme_migrate\CivicThemeMigrateValidator
-    autowire: true
+    arguments:
+      - '@civictheme_migrate.json_schema_validator'
+      - '@extension.path.resolver'
+  civictheme_migrate.json_schema_validator:
+    class: '\Opis\JsonSchema\Validator'
+    public: false
