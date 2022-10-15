@@ -1,9 +1,9 @@
-@civictheme @civictheme_migrate @wip
+@civictheme @civictheme_migrate
 Feature: Tests the CivicTheme migration functionality
 
   @api @javascript
   Scenario: Migration configuration form should be setup correctly
-    Given I am logged in as a user with the "administer migrations" permission
+    Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/civictheme-migrate"
     Then I should see the text "CivicTheme Migrate Settings"
     And I select the radio button "Local"
@@ -28,13 +28,13 @@ Feature: Tests the CivicTheme migration functionality
     Given managed file:
       | filename                               | uri                                             | path                                   |
       | civictheme_migrate.invalid_json_1.json | public://civictheme_migrate.invalid_json_1.json | civictheme_migrate.invalid_json_1.json |
-    Given I am logged in as a user with the "administer migrations" permission
+    Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     # Can't test error messages directly as admin theme is not adding the behat configured error class.
-    And I should see the text "civictheme_migrate.invalid_json_1.json is not valid JSON"
+    And I should see the text "is not valid JSON"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
@@ -53,7 +53,7 @@ Feature: Tests the CivicTheme migration functionality
     And I should see the message "Merlin extracted content JSON files have been retrieved"
     And I press the "Generate migration" button
     And I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
-    And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migration/execute"
+    And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migrate/execute"
     And I press the "Execute" button
     # Arbituary wait while batch processes, extend wait time if it is failing.
     And I wait 10 seconds

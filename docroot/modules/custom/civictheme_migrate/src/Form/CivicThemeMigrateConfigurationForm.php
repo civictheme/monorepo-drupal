@@ -351,7 +351,7 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     foreach ($files as $file) {
       $file_stream_wrappers[] = $file->getFileUri();
     }
-    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrate_plus.migration.civictheme_page.yml';
+    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/migrate_plus.migration.civictheme_page.yml';
     $migration_config = file_get_contents($migration_config_file_name);
     $migration_config = $this->yaml->decode($migration_config);
     $migration_config['source']['urls'] = $file_stream_wrappers;
@@ -505,7 +505,7 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
    */
   protected function generateFileName($url):string {
     $url_parts = parse_url($url);
-    $filename = !empty($url_parts['path']) ? preg_replace('/\//', '-', $url_parts['path']) : 'configuration-file' . time();
+    $filename = !empty($url_parts['path']) ? preg_replace('/\//', '-', basename($url_parts['path'])) : 'configuration-file' . time();
     if (strpos($filename, '-') === 0) {
       $filename = substr($filename, 1);
     }
