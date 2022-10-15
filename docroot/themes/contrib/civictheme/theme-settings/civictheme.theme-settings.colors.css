@@ -1,0 +1,56 @@
+/**
+ * @file
+ * CivicTheme theme settings color styles.
+ */
+
+.form-type--color {
+  display: flex;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.form-type--color label {
+  align-self: center;
+  margin: 0 0 0 1em !important;
+  padding: 0 !important;
+  width: 100px;
+}
+
+.form-type--color label.js-color-updated {
+  font-style: italic;
+}
+
+.form-type--color label.js-color-updated:after {
+  content: ' inherited';
+  color: red;
+  vertical-align: super;
+  font-size: 0.6em;
+}
+
+.civictheme-input-color {
+  cursor: pointer;
+  width: 3rem;
+  padding: 0 !important;
+  text-indent: calc(0.75rem - 1px);
+}
+
+[class*=js-form-item-colors-brand-] {
+  margin-bottom: 2em !important;
+}
+
+.js-show-dependants-container {
+  position: absolute;
+  top: 120%;
+}
+
+.js-show-dependants-container label {
+  margin: 0 0 0 0.5em !important;
+  cursor: pointer;
+  font-size: 0.75em;
+  vertical-align: bottom;
+}
+
+.js-show-dependants-container input {
+  cursor: pointer;
+}
