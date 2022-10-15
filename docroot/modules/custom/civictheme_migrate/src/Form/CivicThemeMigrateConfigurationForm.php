@@ -288,11 +288,31 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $config = $this->config('civictheme_migrate.settings');
     if ($this->isRetrieveFilesSubmit($form_state)) {
       $this->retrieveRemoteFilesSubmit($form, $form_state);
     }
 
+    $this->saveConfig($form, $form_state);
+
+    if ($this->isGenerateMigrationSubmit($form_state)) {
+      $this->generateMigrationConfigurationSubmit($form, $form_state);
+    }
+
+  }
+
+  /**
+   * Helper to save migration file configuration.
+   *
+   * @param array $form
+   *   Form object.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   */
+  protected function saveConfig(array &$form, FormStateInterface $form_state) {
+    $config = $this->config('civictheme_migrate.settings');
+
+    // Saving migration configuration files whether uploaded locally or
+    // saved remotely.
     if ($this->isSaveConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
       $config->set('configuration_files', $form_state->getValue('configuration_files'));
     }
@@ -306,11 +326,6 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     ]);
     $config->save();
     $this->messenger()->addStatus($this->t('The configuration options have been saved.'));
-
-    if ($this->isGenerateMigrationSubmit($form_state)) {
-      $this->generateMigrationConfigurationSubmit($form, $form_state);
-    }
-
   }
 
   /**
