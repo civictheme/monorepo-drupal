@@ -5,6 +5,7 @@
     "type": "drupal-theme",
     "homepage": "https://github.com/salsadigitalauorg/civictheme",
     "support": {
+        "source": "https://github.com/salsadigitalauorg/civictheme_source",
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "license": "GPL-2.0-or-later",

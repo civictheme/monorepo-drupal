@@ -5,6 +5,8 @@
  * CivicTheme Search block type.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Implements template_preprocess_block().
  */
@@ -26,5 +28,5 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
     $variables['text'] = $link->get('title')->getString();
   }
 
-  $variables['theme'] = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+  $variables['theme'] = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
 }

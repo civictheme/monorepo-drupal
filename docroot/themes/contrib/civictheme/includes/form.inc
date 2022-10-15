@@ -5,6 +5,7 @@
  * Form alterations.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -372,21 +373,20 @@ function civictheme_element_info_alter(array &$types) {
  */
 function _civictheme_get_theme_from_attributes(&$variables) {
   // Setting theme for form element.
-  if (isset($variables['element']['#attributes']['#civictheme_theme'])
-    && in_array($variables['element']['#attributes']['#civictheme_theme'], [
-      CIVICTHEME_THEME_LIGHT,
-      CIVICTHEME_THEME_DARK,
-    ])) {
+  if (
+    isset($variables['element']['#attributes']['#civictheme_theme'])
+    && in_array($variables['element']['#attributes']['#civictheme_theme'], civictheme_theme_options(TRUE))
+  ) {
     $variables['theme'] = $variables['element']['#attributes']['#civictheme_theme'];
     unset($variables['element']['#attributes']['#civictheme_theme']);
+
     if (isset($variables['element']['label']['#attributes'])) {
       $variables['element']['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
     }
+
     if (isset($variables['label']['#attributes'])) {
       $variables['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
     }
-
-    return;
   }
 }
 
@@ -478,11 +478,11 @@ function _civictheme_form_alter_non_form_elements__link(&$element) {
  * Helper to get theme from the element.
  */
 function _civictheme_get_theme_from_element($element) {
-  $theme = CIVICTHEME_THEME_LIGHT;
+  $theme = CivicthemeConstants::THEME_LIGHT;
   if (isset($element['#attributes']['#civictheme_theme'])
     && in_array($element['#attributes']['#civictheme_theme'], [
-      CIVICTHEME_THEME_LIGHT,
-      CIVICTHEME_THEME_DARK,
+      CivicthemeConstants::THEME_LIGHT,
+      CivicthemeConstants::THEME_DARK,
     ])) {
     $theme = $element['#attributes']['#civictheme_theme'];
   }

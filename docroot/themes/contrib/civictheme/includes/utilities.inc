@@ -5,6 +5,7 @@
  * Theme utility functions.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
@@ -145,31 +146,6 @@ function civictheme_embed_svg($url, array $css_classes = []) {
   }
 
   return $content;
-}
-
-/**
- * Parse a string of attributes into an array.
- *
- * @param string $string
- *   String to parse.
- *
- * @return array
- *   Array of attributes.
- */
-function civictheme_parse_attributes($string) {
-  $attributes = [];
-
-  if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
-    for ($i = 0; $i < count($matches[0]); $i++) {
-      if ($matches[3][$i]) {
-        $attributes[$matches[3][$i]] = NULL;
-        continue;
-      }
-      $attributes[$matches[1][$i]] = $matches[2][$i];
-    }
-  }
-
-  return $attributes;
 }
 
 /**
@@ -412,12 +388,16 @@ function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $def
 
 /**
  * Theme options suitable for FormAPI.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_theme_options() {
-  return [
-    CIVICTHEME_THEME_LIGHT => CIVICTHEME_THEME_LIGHT_LABEL,
-    CIVICTHEME_THEME_DARK => CIVICTHEME_THEME_DARK_LABEL,
+function civictheme_theme_options($keys = FALSE) {
+  $map = [
+    CivicthemeConstants::THEME_LIGHT => CivicthemeConstants::THEME_LIGHT_LABEL,
+    CivicthemeConstants::THEME_DARK => CivicthemeConstants::THEME_DARK_LABEL,
   ];
+
+  return $keys ? array_keys($map) : $map;
 }
 
 /**
@@ -458,9 +438,7 @@ function civictheme_multiline_to_array($string) {
  *   String value of the array.
  */
 function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
-  $array = is_array($array) ? $array : [$array];
-
-  return implode($delimiter, array_filter($array));
+  return implode($delimiter, array_filter(is_array($array) ? $array : [$array]));
 }
 
 /**
@@ -492,49 +470,4 @@ function _civictheme_get_dom_document($content) {
   $doc->loadHTML($content);
 
   return $doc;
-}
-
-/**
- * Theme color mapping fields.
- */
-function civictheme_theme_color_mapping() {
-  return [
-    'brand' => [
-      'brand1',
-      'brand2',
-      'brand3',
-    ],
-    'palette' => [
-      'typography' => [
-        'heading',
-        'body',
-      ],
-      'background' => [
-        'background_light',
-        'background',
-        'background_dark',
-      ],
-      'border' => [
-        'border_light',
-        'border',
-        'border_dark',
-      ],
-      'interection' => [
-        'interaction_text',
-        'interaction_background',
-        'interaction_hover_text',
-        'interaction_hover_background',
-        'interaction_focus',
-      ],
-      'highlight' => [
-        'highlight',
-      ],
-      'status' => [
-        'information',
-        'warning',
-        'error',
-        'success',
-      ],
-    ],
-  ];
 }
