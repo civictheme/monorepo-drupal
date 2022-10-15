@@ -2,7 +2,7 @@ name: 'CivicTheme Migrate'
 type: module
 description: 'Create and configure a Merlin UI migration.'
 configure: civictheme_migrate.settings
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
   - drupal:migrate
