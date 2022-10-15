@@ -24,6 +24,8 @@
         "drupal/layout_builder_restrictions": "@dev",
         "drupal/linkit": "@dev",
         "drupal/menu_block": "dev-8.x-1.8",
+        "drupal/migrate_plus": "^6.0",
+        "drupal/migrate_tools": "^6.0",
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
         "drupal/redirect": "^1.8",
