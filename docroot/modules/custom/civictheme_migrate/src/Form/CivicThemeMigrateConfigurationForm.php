@@ -355,7 +355,7 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     $migration_config = file_get_contents($migration_config_file_name);
     $migration_config = $this->yaml->decode($migration_config);
     $migration_config['source']['urls'] = $file_stream_wrappers;
-    $existing_migration = $this->migrationStorage->load('civictheme_page_migration');
+    $existing_migration = $this->migrationStorage->load('civictheme_page_migrate');
     if ($existing_migration === NULL) {
       $migration = $this->migrationStorage->create($migration_config);
       $migration->save();
