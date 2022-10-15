@@ -84,7 +84,7 @@ function civictheme_dev_post_update_update_side_navigation_block() {
   $block->setVisibilityConfig('request_path', [
     'id' => 'request_path',
     'negate' => TRUE,
-    'pages' => "/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide/*",
+    'pages' => "/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*",
   ]);
   $block->save();
 }
