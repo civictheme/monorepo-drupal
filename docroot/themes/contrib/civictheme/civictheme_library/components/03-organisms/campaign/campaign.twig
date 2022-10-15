@@ -1,0 +1,118 @@
+{#
+/**
+ * @file
+ * Campaign component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot for bottom of Campaign.
+ * - image: [object] Image data.
+ * - image_position: [string] left, right.
+ * - title: [string] Campaign title.
+ * - summary: [string] Campaign summary.
+ * - date: [string] Date text.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class:[string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set image_position_class = 'ct-campaign--image-position-%s'|format(image_position|default('right')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, image_position_class, vertical_spacing_class, modifier_class|default('')) %}
+
+<div class="ct-campaign {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12 col-m-5 col-m-offset-1">
+        {% block image %}
+          {% if image.src is not empty %}
+            <div class="ct-campaign__image-wrapper">
+              {% include '@atoms/image/image.twig' with {
+                theme: theme,
+                src: image.src,
+                alt:  image.alt,
+              } only %}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+
+      <div class="col-xxs-12 col-m-5 col-m-offset-1">
+        {% block content %}
+          <div class="ct-campaign__content">
+            {% block content_top %}
+              {% if content_top is not empty %}
+                <div class="ct-campaign__content_top">
+                  {{ content_top }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% if tags is not empty or date is not empty %}
+              <div class="ct-campaign__tags">
+                {% block tags %}
+                  {% for tag in tags %}
+                    {% include '@atoms/tag/tag.twig' with {
+                      theme: theme,
+                      content: tag,
+                    } only %}
+                  {% endfor %}
+                {% endblock %}
+                {% block date %}
+                  {% if date is not empty %}
+                    {% include '@atoms/tag/tag.twig' with {
+                      theme: theme,
+                      type: 'tertiary',
+                      content: date,
+                      modifier_class: 'ct-campaign__date'
+                    } only %}
+                  {% endif %}
+                {% endblock %}
+              </div>
+            {% endif %}
+
+            {% block title %}
+              {% if title is not empty %}
+                <div class="ct-campaign__title">
+                  {% include '@atoms/heading/heading.twig' with {
+                    content: title,
+                    level: 3,
+                    theme: theme,
+                  } only %}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content_middle %}
+              {% if content_middle is not empty %}
+                <div class="ct-campaign__content-middle">
+                  {{ content_middle }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block summary %}
+              {% if summary is not empty %}
+                <div class="ct-campaign__summary">
+                  {{ summary|raw }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content_bottom %}
+              {% if content_bottom is not empty %}
+                <div class="ct-campaign__content-bottom">
+                  {{ content_bottom }}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
