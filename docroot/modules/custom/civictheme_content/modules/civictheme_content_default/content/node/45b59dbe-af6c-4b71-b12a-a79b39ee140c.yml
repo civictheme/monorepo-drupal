@@ -25,7 +25,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Your organisation's tagline'
+      value: "Your organisation's tagline"
   created:
     -
       value: 1637029497
