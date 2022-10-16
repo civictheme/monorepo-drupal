@@ -101,41 +101,22 @@
     display: inline-block;
   }
 
-  &.ct-theme-light {
-    background-color: $ct-slider-light-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     &.ct-slider--with-background {
-      background-color: $ct-slider-light-wrapper-background-color;
-      padding-left: $ct-slider-space-horizontal;
-      padding-right: $ct-slider-space-horizontal;
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, padding-left);
+      @include ct-component-property($root, $theme, padding-right);
     }
 
     #{$root}__title {
-      color: $ct-slider-light-title-color;
+      @include ct-component-property($root, $theme, title, color);
     }
 
     #{$root}__progress-indicator {
-      background-color: $ct-slider-light-progress-indicator-background-color;
-      color: $ct-slider-light-progress-indicator-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-slider-dark-background-color;
-
-    &.ct-slider--with-background {
-      background-color: $ct-slider-dark-wrapper-background-color;
-      padding-left: $ct-slider-space-horizontal;
-      padding-right: $ct-slider-space-horizontal;
-    }
-
-    #{$root}__title {
-      color: $ct-slider-dark-title-color;
-    }
-
-    #{$root}__progress-indicator {
-      background-color: $ct-slider-dark-progress-indicator-background-color;
-      color: $ct-slider-dark-progress-indicator-color;
+      @include ct-component-property($root, $theme, progress-indicator, background-color);
+      @include ct-component-property($root, $theme, progress-indicator, color);
     }
   }
 }

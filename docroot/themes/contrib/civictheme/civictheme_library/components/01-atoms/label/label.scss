@@ -30,22 +30,12 @@
     }
   }
 
-  &.ct-theme-light {
-    color: $ct-label-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
     #{$root}--required {
       &::after {
-        color: $ct-label-light-required-color;
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-label-dark-color;
-
-    #{$root}--required {
-      &::after {
-        color: $ct-label-dark-required-color;
+        @include ct-component-property($root, $theme, required, color);
       }
     }
   }

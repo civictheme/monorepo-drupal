@@ -112,14 +112,14 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-footer-light-background-color;
-    color: $ct-footer-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, color);
 
     #{$root}__top {
       .row {
         @include ct-breakpoint('m') {
-          border-color: $ct-footer-light-border-color;
+          @include ct-component-property($root, $theme, border-color);
         }
       }
     }
@@ -127,38 +127,9 @@
     #{$root}__middle {
       .row {
         @include ct-breakpoint('m') {
-          border-color: $ct-footer-light-border-color;
+          @include ct-component-property($root, $theme, border-color);
         }
       }
-    }
-
-    [data-collapsible='true'] {
-      border-top: solid ct-particle(0.125) $ct-footer-light-collapsible-border-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-footer-dark-background-color;
-    color: $ct-footer-dark-color;
-
-    #{$root}__top {
-      .row {
-        @include ct-breakpoint('m') {
-          border-color: $ct-footer-dark-border-color;
-        }
-      }
-    }
-
-    #{$root}__middle {
-      .row {
-        @include ct-breakpoint('m') {
-          border-color: $ct-footer-dark-border-color;
-        }
-      }
-    }
-
-    [data-collapsible='true'] {
-      border-top: solid ct-particle(0.125) $ct-footer-dark-collapsible-border-color;
     }
   }
 }
