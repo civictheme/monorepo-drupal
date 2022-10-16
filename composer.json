@@ -42,7 +42,10 @@
     "autoload": {
         "classmap": [
             "scripts/composer/"
-        ]
+        ],
+        "psr-4": {
+            "CivicTheme\\": "docroot/themes/contrib/civictheme/src"
+        }
     },
     "autoload-dev": {
         "classmap": [
