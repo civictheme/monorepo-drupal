@@ -5,6 +5,7 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Render\Element;
 
@@ -289,4 +290,13 @@ function civictheme_field_is_wysiwyg(string $field_name) {
   }
 
   return FALSE;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function civictheme_library_info_alter(&$libraries, $extension) {
+  /** @var \Drupal\civictheme\CivicthemeColorManager $color_manager */
+  $color_manager = \Drupal::classResolver(CivicthemeColorManager::class);
+  $color_manager->libraryInfoAlter($libraries, $extension);
 }

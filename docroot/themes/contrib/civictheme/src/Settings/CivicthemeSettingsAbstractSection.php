@@ -2,7 +2,6 @@
 
 namespace Drupal\civictheme\Settings;
 
-use Drupal\Core\Asset\LibraryDiscovery;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\File\FileSystem;
@@ -35,13 +34,6 @@ abstract class CivicthemeSettingsAbstractSection implements ContainerInjectionIn
   protected $themeExtensionList;
 
   /**
-   * The library discovery.
-   *
-   * @var \Drupal\Core\Asset\LibraryDiscovery
-   */
-  protected $libraryDiscovery;
-
-  /**
    * The file system.
    *
    * @var \Drupal\Core\File\FileSystem
@@ -55,15 +47,12 @@ abstract class CivicthemeSettingsAbstractSection implements ContainerInjectionIn
    *   Theme manager service.
    * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
    *   Theme extension list service.
-   * @param \Drupal\Core\Asset\LibraryDiscovery $library_discovery
-   *   Library discovery service.
    * @param \Drupal\Core\File\FileSystem $file_system
    *   File system service.
    */
-  public function __construct(ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, LibraryDiscovery $library_discovery, FileSystem $file_system) {
+  public function __construct(ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, FileSystem $file_system) {
     $this->themeManager = $theme_manager;
     $this->themeExtensionList = $theme_extension_list;
-    $this->libraryDiscovery = $library_discovery;
     $this->fileSystem = $file_system;
   }
 
@@ -74,7 +63,6 @@ abstract class CivicthemeSettingsAbstractSection implements ContainerInjectionIn
     return new static(
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
-      $container->get('library.discovery'),
       $container->get('file_system')
     );
   }
