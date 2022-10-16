@@ -65,17 +65,10 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__wrapper__inner {
-      background-color: $ct-banner-light-background-color;
-      color: $ct-banner-light-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__wrapper__inner {
-      background-color: $ct-banner-dark-background-color;
-      color: $ct-banner-dark-color;
+      @include ct-component-property($root, $theme, wrapper__inner, background-color);
+      @include ct-component-property($root, $theme, wrapper__inner, color);
     }
   }
 }
