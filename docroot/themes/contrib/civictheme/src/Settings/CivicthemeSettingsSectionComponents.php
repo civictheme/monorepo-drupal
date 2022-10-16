@@ -333,7 +333,7 @@ class CivicthemeSettingsSectionComponents extends CivicthemeSettingsAbstractSect
       'external_override_domains',
     ];
     $domains = $form_state->getValue($override_domain_field_name_keys, '');
-    $domains = $this->multilineToArray($domains);
+    $domains = CivicthemeUtility::multilineToArray($domains);
     $invalid_domains = [];
     foreach ($domains as $domain) {
       // Allow to enter 'example.com' instead of 'http://example.com'.
