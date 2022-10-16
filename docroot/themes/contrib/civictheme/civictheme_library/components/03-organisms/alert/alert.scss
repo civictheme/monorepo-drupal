@@ -74,10 +74,12 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     $types: ('information', 'warning', 'error', 'success');
+
     @each $type in $types {
       &#{$root}--#{$type} {
         @include ct-component-property($root, $theme, $type, background-color);
         @include ct-component-property($root, $theme, $type, color);
+
         border-color: ct-component-var($root, $theme, $type, divider, color);
 
         #{$root}__dismiss-button,
