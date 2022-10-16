@@ -42,6 +42,15 @@
   @return "#{$string#{''}}" != $string;
 }
 
+// Convert to string.
+@function ct-string($string) {
+  @if not ct-string-is-quoted($string) {
+    $string: "#{$string#{''}}";
+  }
+
+  @return $string;
+}
+
 @function ct-unquote($value) {
   @if type-of($value) != string {
     @return $value;
