@@ -469,4 +469,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top
