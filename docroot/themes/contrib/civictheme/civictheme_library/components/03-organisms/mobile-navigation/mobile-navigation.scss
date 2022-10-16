@@ -135,83 +135,46 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     [data-flyout-panel] {
-      background-color: $ct-mobile-navigation-light-panel-background-color;
+      @include ct-component-property($root, $theme, panel, background-color);
     }
 
     .ct-mobile-navigation__top-menu-wrapper {
-      background-color: $ct-mobile-navigation-light-top-menu-background-color;
+      @include ct-component-property($root, $theme, top-menu, background-color);
     }
 
     .ct-mobile-navigation__bottom-menu-wrapper {
-      background-color: $ct-mobile-navigation-light-bottom-menu-background-color;
+      @include ct-component-property($root, $theme, bottom-menu, background-color);
     }
 
     .ct-menu__item {
-      border-bottom-color: $ct-mobile-navigation-light-menu-divider-border-color;
+      border-bottom-color: ct-component-var($root, $theme, menu-divider, border-color);
 
       .ct-link {
-        @include ct-link-colors($ct-mobile-navigation-light-menu-item-color, $ct-mobile-navigation-light-menu-item-hover-color);
         @include ct-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+
+        @include ct-link-colors(
+            ct-component-var($root, $theme, menu-item, color),
+            ct-component-var($root, $theme, menu-item, hover-color)
+        );
       }
     }
 
     #{$root}__open-subsection-trigger {
-      border-left-color: $ct-mobile-navigation-light-menu-divider-border-color;
+      border-left-color: ct-component-var($root, $theme, menu-divider, border-color);
 
       .ct-icon {
-        background-color: $ct-mobile-navigation-light-subsection-trigger-color;
+        background-color: ct-component-var($root, $theme, subsection-trigger, color);
       }
     }
 
     #{$root}__close-trigger {
       [data-flyout-close-trigger] {
-        color: $ct-mobile-navigation-light-subsection-heading-color;
+        color: ct-component-var($root, $theme, subsection-heading, color);
 
         .ct-icon {
-          background-color: $ct-mobile-navigation-light-subsection-heading-icon-color;
-        }
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    [data-flyout-panel] {
-      background-color: $ct-mobile-navigation-dark-panel-background-color;
-    }
-
-    .ct-mobile-navigation__top-menu-wrapper {
-      background-color: $ct-mobile-navigation-dark-top-menu-background-color;
-    }
-
-    .ct-mobile-navigation__bottom-menu-wrapper {
-      background-color: $ct-mobile-navigation-dark-bottom-menu-background-color;
-    }
-
-    .ct-menu__item {
-      border-bottom-color: $ct-mobile-navigation-dark-menu-divider-border-color;
-
-      .ct-link {
-        @include ct-link-colors($ct-mobile-navigation-dark-menu-item-color, $ct-mobile-navigation-dark-menu-item-hover-color);
-        @include ct-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
-      }
-    }
-
-    #{$root}__open-subsection-trigger {
-      border-left-color: $ct-mobile-navigation-dark-menu-divider-border-color;
-
-      .ct-icon {
-        background-color: $ct-mobile-navigation-dark-subsection-trigger-color;
-      }
-    }
-
-    #{$root}__close-trigger {
-      [data-flyout-close-trigger] {
-        color: $ct-mobile-navigation-dark-subsection-heading-color;
-
-        .ct-icon {
-          background-color: $ct-mobile-navigation-dark-subsection-heading-icon-color;
+          background-color: ct-component-var($root, $theme, subsection-heading, icon-color);
         }
       }
     }
@@ -219,7 +182,9 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 }
 
 // Mobile navigation open trigger.
-.ct-mobile-navigation__trigger {
+.ct-mobile-navigation-trigger {
+  $root: &;
+
   @include ct-print-hide();
 
   background-color: transparent;
@@ -240,12 +205,8 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
     height: ct-icon-size-dimension('regular', 'xxs', 'height');
   }
 
-  &.ct-theme-light {
-    color: $ct-mobile-navigation-trigger-light-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-mobile-navigation-trigger-dark-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
   }
 }
 
