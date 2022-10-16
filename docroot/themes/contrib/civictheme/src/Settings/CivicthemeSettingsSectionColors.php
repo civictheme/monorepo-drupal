@@ -313,7 +313,7 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
    *   Loaded content or FALSE if the file is not readable.
    */
   protected function loadCssVariablesContent() {
-    $library = $this->libraryDiscovery->getLibraryByName('civictheme', 'theme-css-variables');
+    $library = $this->libraryDiscovery->getLibraryByName('civictheme', 'css-variables');
     if (!empty($library['css'][0]['data']) && file_exists($library['css'][0]['data'])) {
       return file_get_contents($library['css'][0]['data']);
     }
