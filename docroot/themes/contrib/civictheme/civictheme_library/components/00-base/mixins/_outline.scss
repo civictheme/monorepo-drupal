@@ -12,9 +12,16 @@
 
   @if $is_dark {
     outline-color: $ct-outline-dark;
-  }
-  @else {
+  } @else {
     outline-color: $ct-outline-light;
+  }
+}
+
+@mixin ct-outline-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-outline();
+  } @else {
+    @include ct-outline(true);
   }
 }
 
