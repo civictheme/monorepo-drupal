@@ -2,9 +2,11 @@
 
 namespace Drupal\civictheme\Settings;
 
+use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * CivicTheme settings section to display colors.
@@ -12,15 +14,34 @@ use Drupal\Core\Form\FormStateInterface;
 class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection {
 
   /**
-   * Defines CSS variables prefix.
+   * The color manager.
+   *
+   * @var \Drupal\civictheme\CivicthemeColorManager
    */
-  const CSS_VARIABLES_PREFIX = '--ct-color-';
+  protected $colorManager;
 
   /**
    * {@inheritdoc}
    */
   public function weight() {
     return 2;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $instance = parent::create($container);
+    $instance->setColorManager($container->get('class_resolver')->getInstanceFromDefinition(CivicthemeColorManager::class));
+
+    return $instance;
+  }
+
+  /**
+   * Set color manager service.
+   */
+  public function setColorManager(CivicthemeColorManager $color_manager) {
+    $this->colorManager = $color_manager;
   }
 
   /**
@@ -166,10 +187,14 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
           $old_key = ['colors', 'palette', $theme, $group];
           $new_key = ['colors', 'palette', $theme, $key];
           $form_state->setValue($new_key, $value);
-          $form_state->unsetValue($old_key);
+          if (!array_key_exists($group, $values)) {
+            $form_state->unsetValue($old_key);
+          }
         }
       }
     }
+
+    $this->colorManager->invalidateCache();
   }
 
   /**
@@ -179,8 +204,9 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
    * filter pipeline.
    *
    * @return array
-   *   Array of field map keyed by the group name with values as arrays with
-   *   color names as keys and color/filter mapping pipeline as values.
+   *   Array of field map keyed by the theme and group name with values as
+   *   arrays with color names as keys and color/filter mapping pipeline as
+   *   values.
    *   The values are piped through a pipeline of filters.
    *   The pipeline consists of elements divided by pipe (|):
    *   - color name (as it will appear on the form)
@@ -188,35 +214,69 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
    */
   protected function fieldMap() {
     return [
-      'typography' => [
-        'heading' => 'brand1|shade,60',
-        'body' => 'brand1|shade,80|tint,20',
+      'light' => [
+        'typography' => [
+          'heading' => 'brand1|shade,60',
+          'body' => 'brand1|shade,80|tint,20',
+        ],
+        'background' => [
+          'background-light' => 'brand2|tint,90',
+          'background' => 'brand2',
+          'background-dark' => 'brand2|shade,20',
+        ],
+        'border' => [
+          'border-light' => 'brand2|shade,25',
+          'border' => 'brand2|shade,60',
+          'border-dark' => 'brand2|shade,90',
+        ],
+        'interaction' => [
+          'interaction-text' => 'brand2|tint,80',
+          'interaction-background' => 'brand1',
+          'interaction-hover-text' => 'brand2|tint,80',
+          'interaction-hover-background' => 'brand1|shade,40',
+          'interaction-focus' => FALSE,
+        ],
+        'highlight' => [
+          'highlight' => 'brand3',
+        ],
+        'status' => [
+          'information' => FALSE,
+          'warning' => FALSE,
+          'error' => FALSE,
+          'success' => FALSE,
+        ],
       ],
-      'background' => [
-        'background-light' => 'brand2|tint,90',
-        'background' => 'brand2',
-        'background-dark' => 'brand2|shade,20',
-      ],
-      'border' => [
-        'border-light' => 'brand2|shade,25',
-        'border' => 'brand2|shade,60',
-        'border-dark' => 'brand2|shade,90',
-      ],
-      'interaction' => [
-        'interaction-text' => 'brand2|tint,80',
-        'interaction-background' => 'brand1',
-        'interaction-hover-text' => 'brand2|tint,80',
-        'interaction-hover-background' => 'brand1|shade,40',
-        'interaction-focus' => FALSE,
-      ],
-      'highlight' => [
-        'highlight' => 'brand3',
-      ],
-      'status' => [
-        'information' => FALSE,
-        'warning' => FALSE,
-        'error' => FALSE,
-        'success' => FALSE,
+      'dark' => [
+        'typography' => [
+          'heading' => 'brand1|tint,95',
+          'body' => 'brand1|tint,85',
+        ],
+        'background' => [
+          'background-light' => 'brand2|tint,5',
+          'background' => 'brand2',
+          'background-dark' => 'brand2|shade,30',
+        ],
+        'border' => [
+          'border-light' => 'brand2|tint,65',
+          'border' => 'brand2|tint,10',
+          'border-dark' => 'brand2|shade,30',
+        ],
+        'interaction' => [
+          'interaction-text' => 'brand2',
+          'interaction-background' => 'brand1',
+          'interaction-hover-text' => 'brand2|shade,30',
+          'interaction-hover-background' => 'brand1|tint,40',
+          'interaction-focus' => FALSE,
+        ],
+        'highlight' => [
+          'highlight' => 'brand3',
+        ],
+        'status' => [
+          'information' => FALSE,
+          'warning' => FALSE,
+          'error' => FALSE,
+          'success' => FALSE,
+        ],
       ],
     ];
   }
@@ -228,15 +288,17 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
    *   Map with theme, group and color parent keys and a value of:
    *   - value: (string) Color value.
    *   - formula: (string) Color calculation formula.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   protected function fieldValuesMap() {
     $color_map = [];
 
     $group_map = $this->fieldMap();
 
-    $colors = $this->getCssColors();
-    foreach (array_keys(civictheme_theme_options()) as $theme_name) {
-      foreach ($group_map as $group_name => $group) {
+    $colors = $this->colorManager->getCssColors();
+    foreach ($group_map as $theme_name => $group_theme_map) {
+      foreach ($group_theme_map as $group_name => $group) {
         foreach ($group as $group_color_name => $group_color_formula) {
           $group_color_name_field = str_replace('-', '_', $group_color_name);
 
@@ -250,93 +312,13 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
 
           $color_map[$theme_name][$group_name][$group_color_name_field] = [
             'value' => $color_value,
-            'formula' => static::processColorFormula($group_color_formula, $theme_name),
+            'formula' => CivicthemeColorManager::processColorFormula($group_color_formula, $theme_name),
           ];
         }
       }
     }
 
     return $color_map;
-  }
-
-  /**
-   * Process color formula.
-   */
-  protected static function processColorFormula($formula, $theme) {
-    $parts = explode('|', $formula);
-    $name = array_shift($parts);
-    $name = "colors[brand][$theme][$name]";
-    array_unshift($parts, $name);
-
-    return implode('|', $parts);
-  }
-
-  /**
-   * Get CSS colors from the file.
-   *
-   * @return array
-   *   Array of colors keyed by theme and name with values:
-   *   - value: (string) Value.
-   *   - original_name: (string) Original CSS variable name.
-   */
-  protected function getCssColors() {
-    $colors = [];
-
-    $content = $this->loadCssVariablesContent();
-    if ($content) {
-      $vars = static::parseCssVariables($content);
-
-      $vars = array_filter($vars, function ($key) {
-        return str_starts_with($key, self::CSS_VARIABLES_PREFIX);
-      }, ARRAY_FILTER_USE_KEY);
-
-      foreach ($vars as $name => $value) {
-        $name = str_replace(self::CSS_VARIABLES_PREFIX, '', $name);
-        $parts = explode('-', $name);
-        $theme = array_shift($parts);
-        $name = implode('-', $parts);
-
-        $colors[$theme][$name] = [
-          'value' => $value,
-          'original_name' => $name,
-        ];
-      }
-    }
-
-    return $colors;
-  }
-
-  /**
-   * Load content from CSS variables file.
-   *
-   * @return string
-   *   Loaded content or FALSE if the file is not readable.
-   */
-  protected function loadCssVariablesContent() {
-    $library = $this->libraryDiscovery->getLibraryByName('civictheme', 'css-variables');
-    if (!empty($library['css'][0]['data']) && file_exists($library['css'][0]['data'])) {
-      return file_get_contents($library['css'][0]['data']);
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * Parse CSS variables into an array.
-   */
-  protected static function parseCssVariables($content) {
-    $vars = [];
-
-    $matches = [];
-    preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
-
-    array_walk($matches, function ($value) use (&$vars) {
-      if (!empty($value[1])) {
-        $vars[trim($value[1])] = trim($value[2]) ?? NULL;
-      }
-    });
-
-    return $vars;
   }
 
 }
