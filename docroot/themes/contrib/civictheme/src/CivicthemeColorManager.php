@@ -268,7 +268,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    */
   protected function getColorsFromConfig() {
     // @todo Implement better config retrieval.
-    return theme_get_setting('colors.palette');
+    return theme_get_setting('colors.palette') ?? [];
   }
 
 }
