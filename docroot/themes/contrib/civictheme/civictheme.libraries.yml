@@ -12,7 +12,7 @@ global:
     - core/drupalSettings
 
 # CivicTheme library CSS variables.
-theme-css-variables:
+css-variables:
   css:
     theme:
       dist/civictheme.variables.css: {}
