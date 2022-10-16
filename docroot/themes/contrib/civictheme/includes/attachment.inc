@@ -74,7 +74,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/x-applix-word':
     case 'application/x-kword':
     case 'application/x-kword-crypt':
-      return 'fileandfolders_wordfile';
+      return 'word-file';
 
     // Spreadsheet document types.
     case 'application/vnd.ms-excel':
@@ -90,7 +90,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/x-gnumeric':
     case 'application/x-kspread':
     case 'application/x-kspread-crypt':
-      return 'fileandfolders_document';
+      return 'download-file';
 
     // Presentation document types.
     case 'application/vnd.ms-powerpoint':
@@ -102,7 +102,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/vnd.sun.xml.impress':
     case 'application/vnd.sun.xml.impress.template':
     case 'application/x-kpresenter':
-      return 'fileandfolders_clipboard_3';
+      return 'download-file';
 
     // Acrobat types.
     case 'application/pdf':
@@ -110,9 +110,9 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'applications/vnd.pdf':
     case 'text/pdf':
     case 'text/x-pdf':
-      return 'fileandfolders_pdffile';
+      return 'pdf-file';
 
     default:
-      return 'fileandfolders_document';
+      return 'download-file';
   }
 }
