@@ -51,27 +51,15 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-promo-light-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     #{$root}__title {
-      color: $ct-promo-light-heading-color;
+      @include ct-component-property($root, $theme, title, color);
     }
 
     #{$root}__content {
-      color: $ct-promo-light-body-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-promo-dark-background-color;
-
-    #{$root}__title {
-      color: $ct-promo-dark-heading-color;
-    }
-
-    #{$root}__content {
-      color: $ct-promo-dark-body-color;
+      @include ct-component-property($root, $theme, title, background-color);
     }
   }
 }

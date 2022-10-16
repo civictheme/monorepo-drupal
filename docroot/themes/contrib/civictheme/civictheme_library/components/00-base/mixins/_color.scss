@@ -22,6 +22,20 @@
 }
 
 //
+// Retrieve light theme color as a constant color value.
+//
+@function ct-color-constant-light($name) {
+  @return _ct-color($name, 'light', true);
+}
+
+//
+// Retrieve dark theme color as a constant color value.
+//
+@function ct-color-constant-dark($name) {
+  @return _ct-color($name, 'dark', true);
+}
+
+//
 // Color shade. Do not use on components directly - map to a color variant instead.
 //
 @function ct-color-shade($color, $number) {
@@ -69,7 +83,7 @@
 // Get a color from the pre-defined list of colors.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _ct-color($name, $theme) {
+@function _ct-color($name, $theme, $is-flat: false) {
   @if $theme != 'light' and $theme != 'dark' {
     @error '"#{$theme}" is not an available theme.';
   }
@@ -79,6 +93,10 @@
 
   @if $color == null {
     @error '"#{$name}" is not an available color.';
+  }
+
+  @if not $is-flat {
+    $color: ct-component-var(ct, color, $theme, $name);
   }
 
   @return $color;
