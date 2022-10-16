@@ -223,18 +223,21 @@
 
               &:hover {
                 @include ct-component-property($root, $theme, drawer-menu-item, hover, background-color);
+
                 border-bottom-color: ct-component-var($root, $theme, drawer-menu-item, hover, border-color);
               }
 
               &:active {
                 @include ct-component-property($root, $theme, drawer-menu-item, active, background-color);
+
                 border-bottom-color: ct-component-var($root, $theme, drawer-menu-item, active, border-color);
               }
 
               &[data-collapsible] {
                 @if $theme == 'light' {
                   @include ct-icon-collapsible($ct-navigation-light-drawer-color);
-                } @else {
+                }
+                @else {
                   @include ct-icon-collapsible($ct-navigation-dark-drawer-color);
                 }
 
@@ -243,16 +246,19 @@
                 &:hover {
                   @if $theme == 'light' {
                     @include ct-icon-collapsible($ct-navigation-light-drawer-hover-color);
-                  } @else {
+                  }
+                  @else {
                     @include ct-icon-collapsible($ct-navigation-dark-drawer-hover-color);
                   }
 
                   @include ct-component-property($root, $theme, drawer-menu-item, hover, background-color);
+
                   border-bottom-color: ct-component-var($root, $theme, drawer-menu-item, hover, border-color);
                 }
 
                 &:active {
                   @include ct-component-property($root, $theme, drawer-menu-item, active, background-color);
+
                   border-bottom-color: ct-component-var($root, $theme, drawer-menu-item, active, border-color);
                 }
               }
@@ -425,7 +431,8 @@
         #{$root}__has-dropdown {
           @if $theme == 'light' {
             @include ct-icon-collapsible($ct-link-light-color);
-          } @else {
+          }
+          @else {
             @include ct-icon-collapsible($ct-link-dark-color);
           }
 
@@ -433,7 +440,8 @@
             &:hover {
               @if $theme == 'light' {
                 @include ct-icon-collapsible($ct-link-light-hover-color, true);
-              } @else {
+              }
+              @else {
                 @include ct-icon-collapsible($ct-link-dark-hover-color, true);
               }
             }

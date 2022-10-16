@@ -153,10 +153,9 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 
       .ct-link {
         @include ct-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
-
         @include ct-link-colors(
-            ct-component-var($root, $theme, menu-item, color),
-            ct-component-var($root, $theme, menu-item, hover-color)
+          ct-component-var($root, $theme, menu-item, color),
+          ct-component-var($root, $theme, menu-item, hover-color)
         );
       }
     }

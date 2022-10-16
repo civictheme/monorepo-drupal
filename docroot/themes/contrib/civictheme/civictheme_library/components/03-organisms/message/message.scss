@@ -38,6 +38,7 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     $types: ('information', 'warning', 'error', 'success');
+
     @each $type in $types {
       &#{$root}--#{$type} {
         @include ct-component-property($root, $theme, $type, background-color);
