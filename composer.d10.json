@@ -36,6 +36,7 @@
         "drupal/webform": "dev-6.2.x",
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
+        "opis/json-schema": "^2.3",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
     },
