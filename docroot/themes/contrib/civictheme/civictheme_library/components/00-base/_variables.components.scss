@@ -707,13 +707,8 @@ $ct-form-element-dark-color: ct-color-dark('body') !default;
 $ct-group-filter-breakpoint: 'm' !default;
 $ct-group-filter-light-background-color: ct-color-light('background') !default;
 $ct-group-filter-light-border-color: ct-color-light('border') !default;
-$ct-group-filter-light-clear-all-background-color: transparent !default;
-$ct-group-filter-light-clear-all-color: ct-color-light('background') !default;
-$ct-group-filter-light-clear-all-icon-color: ct-color-light('error') !default;
 $ct-group-filter-light-dropdown-filter-border-color: ct-color-light('border') !default;
 $ct-group-filter-light-filters-legend-color: ct-color-light('body') !default;
-$ct-group-filter-light-mobile-clear-all-label-color: ct-color-light('background') !default;
-$ct-group-filter-light-mobile-clear-all-label-icon: ct-color-light('background') !default;
 $ct-group-filter-light-mobile-filter-title-color: ct-color-light('background') !default;
 $ct-group-filter-light-mobile-overlay-background-color: ct-color-light('background') !default;
 $ct-group-filter-light-mobile-toggle-background-color: ct-color-light('background') !default;
@@ -725,13 +720,8 @@ $ct-group-filter-light-selected-filters-border-color: ct-color-light('border-lig
 $ct-group-filter-light-selected-filters-title-color: ct-color-light('body') !default;
 $ct-group-filter-dark-background-color: ct-color-dark('background') !default;
 $ct-group-filter-dark-border-color: ct-color-dark('interaction-background') !default;
-$ct-group-filter-dark-clear-all-background-color: transparent !default;
-$ct-group-filter-dark-clear-all-color: ct-color-dark('background') !default;
-$ct-group-filter-dark-clear-all-icon-color: ct-color-dark('background') !default;
 $ct-group-filter-dark-dropdown-filter-border-color: ct-color-dark('interaction-background') !default;
 $ct-group-filter-dark-filters-legend-color: ct-color-dark('body') !default;
-$ct-group-filter-dark-mobile-clear-all-label-color: ct-color-dark('background') !default;
-$ct-group-filter-dark-mobile-clear-all-label-icon: ct-color-dark('background') !default;
 $ct-group-filter-dark-mobile-filter-title-color: ct-color-dark('body') !default;
 $ct-group-filter-dark-mobile-overlay-background-color: ct-color-dark('background') !default;
 $ct-group-filter-dark-mobile-toggle-background-color: ct-color-dark('background') !default;
@@ -990,7 +980,6 @@ $ct-list-light-background-color: ct-color-light('background') !default;
 $ct-list-light-color: ct-color-light('body') !default;
 $ct-list-dark-background-color: ct-color-dark('background') !default;
 $ct-list-dark-color: ct-color-dark('body') !default;
-$ct-list-dark-with-background-color: ct-color-dark('background') !default;
 
 //
 // Message.
