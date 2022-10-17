@@ -1,5 +1,5 @@
 @civictheme @civictheme_theme_settings
-Feature: Check that components settings are available in theme settings
+Feature: Check that Components settings are available in theme settings
 
   Background:
     Given managed file:

@@ -14,6 +14,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -718,7 +719,7 @@ function _civictheme_provision__blocks__search(array $block) {
 function _civictheme_provision__blocks__mobile_navigation(array $block) {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
-  $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+  $context_theme = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_top = "{$theme_name}_primary_navigation";

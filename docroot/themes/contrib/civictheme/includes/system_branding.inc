@@ -6,6 +6,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Url;
 
@@ -29,7 +30,7 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
     $is_footer_region = !empty($variables['elements']['#id']) && str_starts_with(Block::load($variables['elements']['#id'])->getRegion(), 'footer');
 
     $context_theme = $is_footer_region ? theme_get_setting('components.footer.theme') : theme_get_setting('components.header.theme');
-    $context_theme = $context_theme ?: CIVICTHEME_THEME_LIGHT;
+    $context_theme = $context_theme ?: CivicthemeConstants::THEME_LIGHT;
 
     // Primary logos.
     $primary_desktop_logo = theme_get_setting("components.logo.image_primary_{$context_theme}_desktop");

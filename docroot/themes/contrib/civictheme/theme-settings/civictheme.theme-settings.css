@@ -1,0 +1,71 @@
+/**
+ * @file
+ * CivicTheme theme settings generic styles.
+ */
+
+/* Layout. */
+.civictheme-layout-2col > div {
+  display: flex;
+  column-gap: 1em;
+  flex-direction: row;
+}
+
+.civictheme-layout-2col > div > * {
+  flex: 1;
+}
+
+.civictheme-layout-cols > div {
+  display: flex;
+  column-gap: 2em;
+  flex-flow: row wrap;
+  row-gap: 1em;
+}
+
+/* Resets. */
+.civictheme-reset-fieldset {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 1em !important;
+}
+
+fieldset:not(.fieldgroup) {
+  margin: 1em 0 !important;
+  padding: 30px 18px 18px !important;
+}
+
+fieldset:not(.fieldgroup) > legend {
+  position: static!important;
+  top: 0!important;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.fieldset-wrapper,
+.fieldset__wrapper {
+  margin: 1.5rem 1.5rem 1.75rem !important;
+}
+
+.fieldset-legend,
+.fieldset-label,
+.fieldset__label {
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+  display: block !important;
+  padding: 1rem !important;
+  line-height: 1rem !important;
+}
+
+.civictheme-reset-fieldset > *,
+.civictheme-reset-fieldset > * > fieldset {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.civictheme-reset-fieldset > legend > .fieldset__label {
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
