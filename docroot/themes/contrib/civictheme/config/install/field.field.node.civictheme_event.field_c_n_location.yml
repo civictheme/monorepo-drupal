@@ -45,9 +45,6 @@ settings:
       civictheme_promo_card_ref:
         weight: 21
         enabled: false
-      civictheme_task_card:
-        weight: 22
-        enabled: false
       civictheme_content:
         weight: 23
         enabled: false
