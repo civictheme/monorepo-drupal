@@ -17,12 +17,6 @@ css-variables:
     theme:
       dist/civictheme.variables.css: {}
 
-# Generic CivicTheme theme settings.
-theme-settings:
-  css:
-    theme:
-      theme-settings/civictheme.theme-settings.css: {}
-
 # Color-related CivicTheme theme settings.
 theme-settings.colors:
   css:
