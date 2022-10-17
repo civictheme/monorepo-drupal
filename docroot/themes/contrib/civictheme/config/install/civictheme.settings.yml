@@ -20,3 +20,49 @@ components:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+colors:
+  use_brand_colors: true
+  brand:
+    light:
+      brand1: '#00698f'
+      brand2: '#e6e9eb'
+      brand3: '#121313'
+    dark:
+      brand1: '#61daff'
+      brand2: '#003a4f'
+      brand3: '#00698f'
+  palette:
+    light:
+      heading: '#99c3d2'
+      body: '#a3b4ba'
+      background_light: '#171717'
+      background_dark: '#ebedef'
+      border_light: '#eceff0'
+      border_dark: '#fdfdfd'
+      interaction_text: '#2e2f2f'
+      interaction_background: '#00698f'
+      interaction_hover_text: '#2e2f2f'
+      interaction_hover_background: '#66a5bc'
+      interaction_focus: '#8b5cd7'
+      highlight: '#121313'
+      information: '#007cbf'
+      warning: '#c95100'
+      error: '#ce3836'
+      success: '#008482'
+    dark:
+      heading: '#050b0d'
+      body: '#0f2126'
+      background_light: '#00374b'
+      background_dark: '#4d7584'
+      border_light: '#00141c'
+      border_dark: '#4d7584'
+      interaction_text: '#003a4f'
+      interaction_background: '#61daff'
+      interaction_hover_text: '#4d7584'
+      interaction_hover_background: '#3a8399'
+      interaction_focus: '#8b5cd7'
+      highlight: '#00698f'
+      information: '#4cc4fc'
+      warning: '#e38444'
+      error: '#e85653'
+      success: '#12b0ae'

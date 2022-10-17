@@ -6,6 +6,7 @@ core_version_requirement: ^9 || ^10
 
 libraries:
   - 'civictheme/global'
+  - 'civictheme/css-variables'
 
 dependencies:
   - ckeditor:ckeditor

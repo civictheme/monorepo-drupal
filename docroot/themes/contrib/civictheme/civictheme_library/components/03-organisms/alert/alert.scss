@@ -72,79 +72,20 @@
     }
   }
 
-  // SASS does not allow variables interpolation, so we are creating a local
-  // map to easily generate rules.
-  &.ct-theme-light {
-    border-color: $ct-alert-light-divider-color;
-  }
+  @include ct-component-theme($root) using($root, $theme) {
+    $types: ('information', 'warning', 'error', 'success');
 
-  &.ct-theme-dark {
-    border-color: $ct-alert-dark-divider-color;
-  }
+    @each $type in $types {
+      &#{$root}--#{$type} {
+        @include ct-component-property($root, $theme, $type, background-color);
+        @include ct-component-property($root, $theme, $type, color);
 
-  $map: (
-    'information': (
-      'light': (
-        'color': $ct-alert-light-information-color,
-        'background-color': $ct-alert-light-information-background-color,
-        'icon-color': $ct-alert-light-information-icon-color,
-      ),
-      'dark': (
-        'color': $ct-alert-dark-information-color,
-        'background-color': $ct-alert-dark-information-background-color,
-        'icon-color': $ct-alert-dark-information-icon-color,
-      )
-    ),
-    'warning': (
-      'light': (
-        'color': $ct-alert-light-warning-color,
-        'background-color': $ct-alert-light-warning-background-color,
-        'icon-color': $ct-alert-light-warning-icon-color,
-      ),
-      'dark': (
-        'color': $ct-alert-dark-warning-color,
-        'background-color': $ct-alert-dark-warning-background-color,
-        'icon-color': $ct-alert-dark-warning-icon-color,
-      )
-    ),
-    'error': (
-      'light': (
-        'color': $ct-alert-light-error-color,
-        'background-color': $ct-alert-light-error-background-color,
-        'icon-color': $ct-alert-light-error-icon-color,
-      ),
-      'dark': (
-        'color': $ct-alert-dark-error-color,
-        'background-color': $ct-alert-dark-error-background-color,
-        'icon-color': $ct-alert-dark-error-icon-color,
-      )
-    ),
-    'success': (
-      'light': (
-        'color': $ct-alert-light-success-color,
-        'background-color': $ct-alert-light-success-background-color,
-        'icon-color': $ct-alert-light-success-icon-color,
-      ),
-      'dark': (
-        'color': $ct-alert-dark-success-color,
-        'background-color': $ct-alert-dark-success-background-color,
-        'icon-color': $ct-alert-dark-success-icon-color,
-      )
-    ),
-  );
+        border-color: ct-component-var($root, $theme, $type, divider, color);
 
-  @each $type, $type-map in $map {
-    &#{$root}--#{$type} {
-      @each $theme, $values in $type-map {
-        &.ct-theme-#{$theme} {
-          background-color: map.get($values, 'background-color');
-          color: map.get($values, 'color');
-
-          #{$root}__dismiss-button,
-          #{$root}__icon {
-            .ct-icon {
-              background-color: map.get($values, 'icon-color');
-            }
+        #{$root}__dismiss-button,
+        #{$root}__icon {
+          .ct-icon {
+            @include ct-component-property($root, $theme, $type, icon, color);
           }
         }
       }
