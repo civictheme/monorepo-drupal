@@ -40,7 +40,7 @@ function hook_civictheme_automated_list_view_info_alter(array &$info, Paragraph 
  */
 function hook_civictheme_automated_list_preprocess_view_alter(array &$settings, ViewExecutable &$view) {
   if ($view->id() === 'civictheme_view_examples') {
-    $settings['theme'] = CIVICTHEME_THEME_DARK;
+    $settings['theme'] = CivicthemeConstants::THEME_DARK;
     $settings['with_background'] = TRUE;
     $settings['vertical_spacing'] = 'both';
   }

@@ -61,9 +61,10 @@
                 {% for link in links %}
                   {% if link.text is not empty %}
                     <li class="ct-attachment__links--link">
-                      <span>
+                      <span class="ct-attachment__links--icon">
                         {% include '@base/icon/icon.twig' with {
                           symbol: link.icon ? link.icon : 'download-file',
+                          size: 'large',
                         } only %}
                       </span>
                       <div>

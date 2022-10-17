@@ -234,27 +234,15 @@
     font-weight: 600;
   }
 
-  &.ct-theme-light {
-    background-color: $ct-slide-light-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     #{$root}__title {
-      color: $ct-slide-light-title-color;
+      @include ct-component-property($root, $theme, title, color);
     }
 
     #{$root}__summary {
-      color: $ct-slide-light-summary-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-slide-dark-background-color;
-
-    #{$root}__title {
-      color: $ct-slide-dark-title-color;
-    }
-
-    #{$root}__summary {
-      color: $ct-slide-dark-summary-color;
+      @include ct-component-property($root, $theme, summary, color);
     }
   }
 }

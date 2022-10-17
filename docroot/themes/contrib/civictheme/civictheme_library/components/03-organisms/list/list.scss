@@ -1,5 +1,5 @@
 //
-// list component.
+// List component.
 //
 
 .ct-list {
@@ -48,6 +48,12 @@
     padding: ct-spacing(3) 0 ct-spacing(10);
   }
 
+  &__rows-header {
+    @include ct-typography('label-regular');
+
+    padding: ct-spacing(2) 0 ct-spacing(6);
+  }
+
   &__link-below {
     display: flex;
     justify-content: center;
@@ -71,30 +77,18 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &#{$root}__content,
-    &#{$root}__header {
-      color: $ct-list-light-color;
+    &#{$root}__header,
+    &#{$root}__rows-header {
+      @include ct-component-property($root, $theme, color);
     }
 
     &#{$root}--with-background {
-      background-color: $ct-list-light-background-color;
+      @include ct-component-property($root, $theme, background-color);
 
       #{$root}__results-below {
-        background-color: $ct-list-light-background-color;
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-list-dark-color;
-
-    &#{$root}--with-background {
-      background-color: $ct-list-dark-background-color;
-      color: $ct-list-dark-with-background-color;
-
-      #{$root}__results-below {
-        background-color: $ct-list-dark-background-color;
+        @include ct-component-property($root, $theme, background-color);
       }
     }
   }

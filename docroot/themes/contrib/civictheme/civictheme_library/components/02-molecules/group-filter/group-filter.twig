@@ -110,13 +110,16 @@
                 <div class="ct-group-filter__tags" aria-labelledby="ct-group-filter-tags-title" data-group-filter-tags></div>
               </div>
               <div class="ct-group-filter__clear-container" data-group-filter-clear-container>
-                <button class="ct-group-filter__clear-all" data-group-filter-clear>
-                  <span class="ct-group-filter__clear-all-label">{{ clear_text }}</span>
-                  {% include '@base/icon/icon.twig' with {
-                    symbol: 'userinterface_close_2',
-                    color: 'error',
-                  } only %}
-                </button>
+                {% include "@atoms/button/button.twig" with {
+                  theme: theme,
+                  text: clear_text,
+                  type: 'secondary',
+                  kind: 'button',
+                  icon: 'close-outline',
+                  size: 'small',
+                  modifier_class: 'ct-group-filter__clear-all',
+                  attributes: 'data-group-filter-clear'
+                } only %}
               </div>
             </div>
           </div>

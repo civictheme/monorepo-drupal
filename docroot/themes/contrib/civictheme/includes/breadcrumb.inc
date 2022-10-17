@@ -5,6 +5,7 @@
  * Breadcrumb-related functions.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Link;
 
 /**
@@ -14,7 +15,7 @@ use Drupal\Core\Link;
  */
 function _civictheme_preprocess_civictheme_breadcrumb(&$variables) {
   // Enforce active to never be a link.
-  $variables['theme'] = $variables['display_theme'] ?? CIVICTHEME_THEME_LIGHT;
+  $variables['theme'] = $variables['display_theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
   // Append the current page title to the breadcrumb, unless it is already
   // added.
