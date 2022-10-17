@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_topics
     - node.type.civictheme_event
   module:
-    - content_moderation
     - datetime
     - datetime_range
     - field_group

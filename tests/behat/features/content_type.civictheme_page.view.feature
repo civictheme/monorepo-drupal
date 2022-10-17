@@ -259,7 +259,7 @@ Feature: View of Page content type
     And I should see 1 "div.ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
 
-  @api @javascript @smoke
+  @api @javascript
   Scenario: CivicTheme page revisions can be viewed without error
 
     Given I am logged in as a user with the "Site Administrator" role
@@ -377,7 +377,7 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page with Site section"
     And I should see the text "[TEST] Page with Site section"
-    And I should see an "body.ct-site-section--test-site-section-1" element
+    And I should see an "body.ct-site-section---test-site-section-1" element
     And I should see an "div.ct-banner__section" element
     And I should see the text "[TEST] Site Section 1"
     When I visit "civictheme_page" "[TEST] Page without Site section"

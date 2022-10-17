@@ -49,8 +49,6 @@ Feature: Tests the Event Card paragraph
     And I should see an "div.field--name-field-c-p-image.field--widget-media-library-widget .js-media-library-widget.required" element
     And I should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]']" element
     And I should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
-    And should see "The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users." in the ".form-item-field-c-n-components-0-subform-field-c-p-list-items-0-subform-field-c-p-summary-0-value" element
-
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_date][0][value][date]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'].required" element

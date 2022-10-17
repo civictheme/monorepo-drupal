@@ -8,7 +8,7 @@
   {% for message in messages %}
     {% include '@organisms/message/message.twig' with {
       title: message,
-      type: type,
+      type: type == 'status' ? 'information' : type,
     } only %}
   {% endfor %}
 {% endfor %}

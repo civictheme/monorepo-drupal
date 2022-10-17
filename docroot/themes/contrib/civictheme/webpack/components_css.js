@@ -3,3 +3,4 @@
  */
 
 import '../components/style.scss';
+import '../components/style.css_variables.scss';

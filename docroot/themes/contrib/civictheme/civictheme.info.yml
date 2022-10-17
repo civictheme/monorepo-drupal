@@ -2,28 +2,35 @@ name: CivicTheme
 type: theme
 base theme: false
 description: CivicTheme is a Drupal 9 component-based theme.
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 
 libraries:
   - 'civictheme/global'
+  - 'civictheme/css-variables'
 
 dependencies:
+  - ckeditor:ckeditor
   - components:components
   - content_moderation:content_moderation
   - drupal:block_content
   - drupal:datetime_range
+  - drupal:help
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:media
   - drupal:media_library
+  - drupal:options
   - drupal:rest
+  - drupal:shortcut
+  - drupal:taxonomy
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - linkit:linkit
   - menu_block:menu_block
   - paragraphs:paragraphs
   - pathauto:pathauto
+  - redirect:redirect
   - webform:webform
 
 regions:

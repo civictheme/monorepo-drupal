@@ -113,3 +113,160 @@ civictheme.settings:
               type: sequence
               sequence:
                 type: string
+    colors:
+      type: mapping
+      label: 'Colors'
+      mapping:
+        use_brand_colors:
+          label: 'Use Brand colors'
+          type: boolean
+        brand:
+          type: mapping
+          label: 'Brand colors'
+          mapping:
+            light:
+              type: mapping
+              label: 'Light'
+              mapping:
+                brand1:
+                  label: 'Brand1'
+                  type: string
+                brand2:
+                  label: 'Brand2'
+                  type: string
+                brand3:
+                  label: 'Brand3'
+                  type: string
+            dark:
+              type: mapping
+              label: 'Dark'
+              mapping:
+                brand1:
+                  label: 'Brand1'
+                  type: string
+                brand2:
+                  label: 'Brand2'
+                  type: string
+                brand3:
+                  label: 'Brand3'
+                  type: string
+        palette:
+          type: mapping
+          label: 'Palette colors'
+          mapping:
+            light:
+              type: mapping
+              label: 'Light'
+              mapping:
+                heading:
+                  label: 'Heading'
+                  type: string
+                body:
+                  label: 'Body'
+                  type: string
+                background_light:
+                  label: 'Background light'
+                  type: string
+                background:
+                  label: 'Background'
+                  type: string
+                background_dark:
+                  label: 'Background dark'
+                  type: string
+                border_light:
+                  label: 'Border light'
+                  type: string
+                border:
+                  label: 'Border'
+                  type: string
+                border_dark:
+                  label: 'Border dark'
+                  type: string
+                interaction_text:
+                  label: 'Interaction text'
+                  type: string
+                interaction_background:
+                  label: 'Interaction background'
+                  type: string
+                interaction_hover_text:
+                  label: 'Interaction hover text'
+                  type: string
+                interaction_hover_background:
+                  label: 'Interaction hover background'
+                  type: string
+                interaction_focus:
+                  label: 'Interaction focus'
+                  type: string
+                highlight:
+                  label: 'Highlight'
+                  type: string
+                information:
+                  label: 'Information'
+                  type: string
+                warning:
+                  label: 'Warning'
+                  type: string
+                error:
+                  label: 'Error'
+                  type: string
+                success:
+                  label: 'Success'
+                  type: string
+            dark:
+              type: mapping
+              label: 'Dark'
+              mapping:
+                heading:
+                  label: 'Heading'
+                  type: string
+                body:
+                  label: 'Body'
+                  type: string
+                background_light:
+                  label: 'Background light'
+                  type: string
+                background:
+                  label: 'Background'
+                  type: string
+                background_dark:
+                  label: 'Background dark'
+                  type: string
+                border_light:
+                  label: 'Border light'
+                  type: string
+                border:
+                  label: 'Border'
+                  type: string
+                border_dark:
+                  label: 'Border dark'
+                  type: string
+                interaction_text:
+                  label: 'Interaction text'
+                  type: string
+                interaction_background:
+                  label: 'Interaction background'
+                  type: string
+                interaction_hover_text:
+                  label: 'Interaction hover text'
+                  type: string
+                interaction_hover_background:
+                  label: 'Interaction hover background'
+                  type: string
+                interaction_focus:
+                  label: 'Interaction focus'
+                  type: string
+                highlight:
+                  label: 'Highlight'
+                  type: string
+                information:
+                  label: 'Information'
+                  type: string
+                warning:
+                  label: 'Warning'
+                  type: string
+                error:
+                  label: 'Error'
+                  type: string
+                success:
+                  label: 'Success'
+                  type: string

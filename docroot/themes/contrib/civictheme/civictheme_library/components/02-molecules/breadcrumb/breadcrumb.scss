@@ -5,6 +5,10 @@
 .ct-breadcrumb {
   $root: &;
 
+  #{$root}__links__link--active {
+    pointer-events: none;
+  }
+
   &.ct-theme-light {
     #{$root}__links {
       &__link {
