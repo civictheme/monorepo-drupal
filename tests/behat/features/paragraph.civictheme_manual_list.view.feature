@@ -189,40 +189,6 @@ Feature: View of Page content type with manual list component
     And I should see the text "Service card title 2"
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with Tasks cards
-    Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Tasks cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title        | [TEST] Tasks manual list |
-      | field_c_p_column_count | 3                        |
-      | field_c_p_fill_width   | 0                        |
-    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Tasks manual list" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: '' - 1: https://example.com/card1 |
-      | field_c_p_title   | Card task title 1                    |
-      | field_c_p_summary | Summary text 1                       |
-    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Tasks manual list" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: '' - 1: https://example.com/card2                                                              |
-      | field_c_p_title   | Card task title 2                                                                                 |
-      | field_c_p_summary | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor accumsan tincidunt. |
-    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Tasks manual list" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: '' - 1: https://example.com/card3 |
-      | field_c_p_title   | Card task title 3                    |
-      | field_c_p_summary | Summary text 3                       |
-
-    When I visit "civictheme_page" "[TEST] Page Tasks cards test"
-    And I should see the text "[TEST] Tasks manual list"
-    And I should not see an "div.ct-list__link a" element
-    And I should see 1 "div.ct-list" elements
-    And I should see 3 "div.ct-navigation-card--small" elements
-    And I should see 3 "div.ct-navigation-card__content" elements
-    And I should see 3 "div.ct-navigation-card__title" elements
-    And I should see 3 "div.ct-navigation-card__summary" elements
-    And I should not see an "div.ct-subject-card" element
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.ct-navigation-card__title'
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.ct-navigation-card__title'
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.ct-navigation-card__title'
-    And save screenshot
-
-  @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Reference cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Reference cards test" has "civictheme_manual_list" paragraph:
