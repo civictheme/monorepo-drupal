@@ -1,6 +1,6 @@
 name: 'CivicTheme Migrate'
 type: module
-description: 'Create and configure a Merlin UI migration.'
+description: 'Create and configure local and remote migrations into CivicTheme.'
 configure: civictheme_migrate.settings
 core_version_requirement: ^9 || ^10
 package: CivicTheme
