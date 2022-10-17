@@ -1,6 +1,6 @@
 <?php
 
-namespace CivicTheme\Drush\Commands;
+namespace Drush\Commands;
 
 use Drupal\civictheme\CivicthemeColorManager;
 use Drush\Commands\DrushCommands;
@@ -21,7 +21,6 @@ class CivicthemeDrushCommands extends DrushCommands {
    */
   public function setBrandColors($light_brand1, $light_brand2, $light_brand3, $dark_brand1, $dark_brand2, $dark_brand3) {
     $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
-
     $this->colorManager->updateColors($light_brand1, $light_brand2, $light_brand3, $dark_brand1, $dark_brand2, $dark_brand3);
   }
 
