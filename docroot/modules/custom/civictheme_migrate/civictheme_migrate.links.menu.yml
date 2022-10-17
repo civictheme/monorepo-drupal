@@ -1,6 +1,6 @@
 civictheme_migrate.admin:
   title: 'CivicTheme Migrate'
-  description: 'Setup and import extracted content JSON from Merlin UI'
+  description: 'Create and configure local and remote migrations into CivicTheme'
   parent: system.admin_config_development
   route_name: civictheme_migrate.settings
   weight: 100
