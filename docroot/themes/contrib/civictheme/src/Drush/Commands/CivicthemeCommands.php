@@ -1,11 +1,10 @@
 <?php
 
-namespace CivicTheme\Drush\Commands;
+namespace Drush\Commands;
 
 use Drupal\civictheme\CivicthemeColorManager;
-use Drush\Commands\DrushCommands;
 
-class CivicthemeDrushCommands extends DrushCommands {
+class CivicthemeCommands extends DrushCommands {
 
   /**
    * Color manager.
@@ -13,6 +12,8 @@ class CivicthemeDrushCommands extends DrushCommands {
    * @var \Drupal\civictheme\CivicthemeColorManager
    */
   protected $colorManager;
+
+
 
   /**
    * Prints the current alias name and info.
