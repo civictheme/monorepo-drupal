@@ -48,6 +48,12 @@
     padding: ct-spacing(3) 0 ct-spacing(10);
   }
 
+  &__rows-header {
+    @include ct-typography('label-regular');
+
+    padding: ct-spacing(2) 0 ct-spacing(6);
+  }
+
   &__link-below {
     display: flex;
     justify-content: center;
@@ -73,7 +79,8 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     &#{$root}__content,
-    &#{$root}__header {
+    &#{$root}__header,
+    &#{$root}__rows-header {
       @include ct-component-property($root, $theme, color);
     }
 
