@@ -41,7 +41,6 @@ Feature: Tests the Listing paragraph
     And the "Service card" checkbox should be checked
     And the "Subject card" checkbox should be checked
     And the "Subject reference card" checkbox should be checked
-    And the "Task card" checkbox should be checked
     And the "Manual List" checkbox should not be checked
 
   @api @javascript

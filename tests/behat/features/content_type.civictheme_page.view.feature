@@ -23,7 +23,6 @@ Feature: View of Page content type
       | [TEST] Page Event cards test      | 1      |                        |
       | [TEST] Page Subject cards test    | 1      |                        |
       | [TEST] Page Service cards test    | 1      |                        |
-      | [TEST] Page Tasks cards test      | 1      |                        |
       | [TEST] Page Reference cards test  | 1      |                        |
       | [TEST] Page Revision test         | 1      |                        |
       | [TEST] Page with Site section     | 1      | [TEST] Site Section 1  |

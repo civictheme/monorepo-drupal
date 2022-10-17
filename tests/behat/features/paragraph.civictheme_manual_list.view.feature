@@ -20,7 +20,6 @@ Feature: View of Page content type with manual list component
       | [TEST] Page Event cards test      | 1      |
       | [TEST] Page Subject cards test    | 1      |
       | [TEST] Page Service cards test    | 1      |
-      | [TEST] Page Tasks cards test      | 1      |
       | [TEST] Page Reference cards test  | 1      |
 
     And "civictheme_event" content:
