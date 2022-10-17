@@ -85,27 +85,15 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-campaign-light-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-theme($theme);
     }
 
     #{$root}__summary {
-      color: $ct-campaign-light-summary-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-campaign-dark-background-color;
-
-    &:focus {
-      @include ct-outline(true);
-    }
-
-    #{$root}__summary {
-      color: $ct-campaign-dark-summary-color;
+      @include ct-component-property($root, $theme, summary,  color);
     }
   }
 }

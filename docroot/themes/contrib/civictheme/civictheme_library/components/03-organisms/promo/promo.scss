@@ -59,7 +59,7 @@
     }
 
     #{$root}__content {
-      @include ct-component-property($root, $theme, title, background-color);
+      @include ct-component-property($root, $theme, content, color);
     }
   }
 }
