@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_attachment
     - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_callout
+    - paragraphs.paragraphs_type.civictheme_campaign
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
@@ -43,6 +44,7 @@ settings:
       civictheme_quick_links: civictheme_quick_links
       civictheme_map: civictheme_map
       civictheme_promo: civictheme_promo
+      civictheme_campaign: civictheme_campaign
       civictheme_iframe: civictheme_iframe
       civictheme_automated_list: civictheme_automated_list
       civictheme_webform: civictheme_webform
@@ -62,6 +64,9 @@ settings:
         enabled: true
       civictheme_callout:
         weight: -21
+        enabled: true
+      civictheme_campaign:
+        weight: 36
         enabled: true
       civictheme_content:
         weight: -17
