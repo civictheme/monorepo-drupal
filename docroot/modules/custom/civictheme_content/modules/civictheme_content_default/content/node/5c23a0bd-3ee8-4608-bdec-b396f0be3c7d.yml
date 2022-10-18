@@ -98,7 +98,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 1'
+                      value: 'Promo card 1'
             -
               entity:
                 _meta:
@@ -125,7 +125,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 2'
+                      value: 'Promo card 2'
             -
               entity:
                 _meta:
@@ -152,7 +152,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 3'
+                      value: 'Promo card 3'
             -
               entity:
                 _meta:
@@ -179,7 +179,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 4'
+                      value: 'Promo card 4'
           field_c_p_column_count:
             -
               value: 4

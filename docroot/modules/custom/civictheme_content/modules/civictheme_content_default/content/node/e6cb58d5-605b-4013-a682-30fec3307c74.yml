@@ -989,7 +989,7 @@ default:
                       value: 'Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.'
                   field_c_p_title:
                     -
-                      value: 'Card task title 1'
+                      value: 'Promo card title 1'
             -
               entity:
                 _meta:
@@ -1021,7 +1021,7 @@ default:
                       value: "Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.\r\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem.\r\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem."
                   field_c_p_title:
                     -
-                      value: 'Card task title 2'
+                      value: 'Promo card title 2'
             -
               entity:
                 _meta:
@@ -1048,7 +1048,7 @@ default:
                       value: 'Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
                   field_c_p_title:
                     -
-                      value: 'Card task title 3'
+                      value: 'Promo card title 3'
             -
               entity:
                 _meta:
@@ -1084,7 +1084,7 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card task container'
+              value: 'Promo card container'
   field_c_n_hide_sidebar:
     -
       value: false
