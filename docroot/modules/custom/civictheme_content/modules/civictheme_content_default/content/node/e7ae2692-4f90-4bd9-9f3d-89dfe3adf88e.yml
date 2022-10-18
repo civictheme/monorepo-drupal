@@ -78,7 +78,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 4228659d-13c7-43a6-9c21-75cab19af6a5
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -105,7 +105,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: ce08d9cf-6499-4503-a18d-e9f5a495148a
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:

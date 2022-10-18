@@ -969,7 +969,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 9785b5d2-c548-4679-a8c9-8cd2ad60efc2
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -996,7 +996,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3685cbf6-e6d1-4a58-a776-d2947562549c
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1011,9 +1011,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
                   field_c_p_link:
                     -
                       uri: 'http://google.com'
@@ -1031,7 +1028,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 30c2efe2-fc7d-4e16-880c-4c9862c24cf8
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1058,7 +1055,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 9cd3ae0c-4632-4cf0-8d2c-1279a0203c62
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
