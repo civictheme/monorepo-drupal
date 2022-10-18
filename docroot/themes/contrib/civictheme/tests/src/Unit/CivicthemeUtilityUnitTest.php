@@ -129,4 +129,27 @@ class CivicthemeUtilityUnitTest extends CivicThemeUnitTestBase {
     ];
   }
 
+  /**
+   * Test for arrayMergeKeysValues().
+   *
+   * @dataProvider dataProviderArrayMergeKeysValues
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function testArrayMergeKeysValues(array $array, $separator, $expected) {
+    $actual = CivicthemeUtility::arrayMergeKeysValues($array, $separator);
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Data provider for testArrayMergeKeysValues().
+   */
+  public function dataProviderArrayMergeKeysValues() {
+    return [
+      [[], ' ', []],
+      [['a', 'b'], ' ', ['0 a', '1 b']],
+      [[1, 2, 3], ' ', ['0 1', '1 2', '2 3']],
+      [['a', 2, 'd'], ' ', ['0 a', '1 2', '2 d']],
+    ];
+  }
+
 }
