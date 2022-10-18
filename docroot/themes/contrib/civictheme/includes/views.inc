@@ -5,6 +5,7 @@
  * Views component alterations.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -33,11 +34,11 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_automated_list'];
     unset($variables['attributes']['civictheme_automated_list']);
-    $variables['theme'] = $variables['theme'] ?? CIVICTHEME_THEME_LIGHT;
+    $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
     _civictheme_propagate_component_theme_settings($variables['form'], $variables['theme']);
   }
 
-  $variables['theme'] = $variables['theme'] ?? CIVICTHEME_THEME_LIGHT;
+  $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 }
 
 /**
@@ -81,7 +82,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Retrieve theme from Automated list settings (if this is rendered in the
   // context of an automated list) or use default theme if this rendered as a
   // standalone view.
-  $theme = $view->civictheme_automated_list['theme'] ?? CIVICTHEME_AUTOMATED_LIST_DEFAULT_THEME;
+  $theme = $view->civictheme_automated_list['theme'] ?? CivicthemeConstants::AUTOMATED_LIST_DEFAULT_THEME;
 
   // Retrieve exposed filter settings.
   $listing_filters = NULL;

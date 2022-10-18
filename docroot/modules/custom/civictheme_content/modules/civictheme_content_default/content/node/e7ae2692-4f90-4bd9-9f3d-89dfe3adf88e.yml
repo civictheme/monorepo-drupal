@@ -78,7 +78,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 4228659d-13c7-43a6-9c21-75cab19af6a5
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -98,14 +98,14 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 1'
+                      value: 'Promo card 1'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: ce08d9cf-6499-4503-a18d-e9f5a495148a
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -125,7 +125,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 2'
+                      value: 'Promo card 2'
             -
               entity:
                 _meta:

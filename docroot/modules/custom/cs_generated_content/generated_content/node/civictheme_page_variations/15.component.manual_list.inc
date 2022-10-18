@@ -16,27 +16,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
 
   return [
     [
-      'title' => 'Demo Page, Manual List component, Task card',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_task_card',
-              'icon' => $helper->staticMediaItem('civictheme_icon'),
-              'title' => $helper::staticSentence(3),
-              'summary' => $helper::staticSentence(8),
-              'link' => [
-                'uri' => $helper::randomUrl(),
-                'title' => $helper::staticSentence(2),
-              ],
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
       'title' => 'Demo Page, Manual List component, Navigation card, Light',
       'components' => [
         [

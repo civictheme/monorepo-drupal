@@ -78,7 +78,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 88267847-9115-49c2-b316-000383c6bc0f
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -98,14 +98,14 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 1'
+                      value: 'Promo card 1'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8e2ba649-0ff9-4a1d-9ee9-64b818bba28c
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -120,22 +120,19 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 2'
+                      value: 'Promo card 2'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 40045185-d23c-466e-9e76-aedde86e470e
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -155,14 +152,14 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 3'
+                      value: 'Promo card 3'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 5f3377d1-f374-4b7b-806e-282c73b1829d
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -182,7 +179,7 @@ default:
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_c_p_title:
                     -
-                      value: 'Card task 4'
+                      value: 'Promo card 4'
           field_c_p_column_count:
             -
               value: 4

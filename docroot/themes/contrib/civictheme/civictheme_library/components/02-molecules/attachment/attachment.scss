@@ -79,6 +79,10 @@
       @include ct-typography('label-regular');
     }
 
+    &--icon {
+      margin-right: ct-spacing();
+    }
+
     &--last-updated {
       @include ct-typography('text-small');
     }
@@ -133,6 +137,10 @@
           }
         }
 
+        &--icon {
+          color: $ct-attachment-light-icon-color;
+        }
+
         &--last-updated {
           color: $ct-attachment-light-date-color;
         }
@@ -169,6 +177,10 @@
           svg {
             fill: $ct-attachment-dark-icon-color;
           }
+        }
+
+        &--icon {
+          color: $ct-attachment-dark-icon-color;
         }
       }
     }

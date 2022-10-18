@@ -2,30 +2,33 @@
 
 namespace Drupal\Tests\civictheme\Unit;
 
+use Drupal\civictheme\CivicthemeUtility;
+
 /**
- * Class CivicThemeUtilitiesUnitTest.
+ * Class CivicthemeUtilityUnitTest.
  *
  * Test cases for utility functions.
  *
  * @group CivicTheme
  */
-class CivicThemeUtilitiesUnitTest extends CivicThemeUnitTestBase {
+class CivicthemeUtilityUnitTest extends CivicThemeUnitTestBase {
 
   /**
-   * Test for civictheme_parse_attributes().
+   * Test for CivicthemeUtility::htmlAttributesToArray().
    *
-   * @dataProvider dataProviderParseAttributes
+   * @dataProvider dataProviderHtmlAttributesToArray
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testParseAttributes($string, $expected) {
-    $actual = civictheme_parse_attributes($string);
+  public function testHtmlAttributesToArray($string, $expected) {
+    $actual = CivicthemeUtility::htmlAttributesToArray($string);
 
     $this->assertEquals($expected, $actual);
   }
 
   /**
-   * Data provider for testParseAttributes().
+   * Data provider for testHtmlAttributesToArray().
    */
-  public function dataProviderParseAttributes() {
+  public function dataProviderHtmlAttributesToArray() {
     return [
       // Empty.
       ['', []],
@@ -50,12 +53,13 @@ class CivicThemeUtilitiesUnitTest extends CivicThemeUnitTestBase {
   }
 
   /**
-   * Test for civictheme_multiline_to_array().
+   * Test for CivicthemeUtility::multilineToArray().
    *
    * @dataProvider dataProviderMultilineToArray
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function testMultilineToArray($string, $expected) {
-    $actual = civictheme_multiline_to_array($string);
+    $actual = $actual = CivicthemeUtility::multilineToArray($string);
     $this->assertEquals($expected, $actual);
   }
 
@@ -93,12 +97,13 @@ class CivicThemeUtilitiesUnitTest extends CivicThemeUnitTestBase {
   }
 
   /**
-   * Test for civictheme_array_to_multiline().
+   * Test for CivicthemeUtility::arrayToMultiline().
    *
    * @dataProvider dataProviderArrayToMultiline
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function testArrayToMultiline($array, $expected) {
-    $actual = civictheme_array_to_multiline($array);
+    $actual = CivicthemeUtility::arrayToMultiline($array);
     $this->assertEquals($expected, $actual);
   }
 

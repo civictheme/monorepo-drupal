@@ -6,6 +6,7 @@ core_version_requirement: ^9 || ^10
 
 libraries:
   - 'civictheme/global'
+  - 'civictheme/css-variables'
 
 dependencies:
   - ckeditor:ckeditor
@@ -158,7 +159,6 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_social_icon.default
     - core.entity_form_display.paragraph.civictheme_subject_card.default
     - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
-    - core.entity_form_display.paragraph.civictheme_task_card.default
     - core.entity_form_display.paragraph.civictheme_webform.default
     - core.entity_form_display.taxonomy_term.civictheme_site_sections.default
     - core.entity_view_display.block_content.civictheme_banner.default
@@ -223,7 +223,6 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_social_icon.default
     - core.entity_view_display.paragraph.civictheme_subject_card.default
     - core.entity_view_display.paragraph.civictheme_subject_card_ref.default
-    - core.entity_view_display.paragraph.civictheme_task_card.default
     - core.entity_view_display.paragraph.civictheme_webform.default
     - core.entity_view_mode.media.component
     - core.entity_view_mode.media.embedded
@@ -353,8 +352,6 @@ config_devel:
     - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
     - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_theme
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_view_as
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -435,10 +432,6 @@ config_devel:
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_theme
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_topic
-    - field.field.paragraph.civictheme_task_card.field_c_p_icon
-    - field.field.paragraph.civictheme_task_card.field_c_p_link
-    - field.field.paragraph.civictheme_task_card.field_c_p_summary
-    - field.field.paragraph.civictheme_task_card.field_c_p_title
     - field.field.paragraph.civictheme_webform.field_c_p_background
     - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
@@ -585,7 +578,6 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_social_icon
     - paragraphs.paragraphs_type.civictheme_subject_card
     - paragraphs.paragraphs_type.civictheme_subject_card_ref
-    - paragraphs.paragraphs_type.civictheme_task_card
     - paragraphs.paragraphs_type.civictheme_webform
     - pathauto.pattern.civictheme_alert
     - pathauto.pattern.civictheme_event

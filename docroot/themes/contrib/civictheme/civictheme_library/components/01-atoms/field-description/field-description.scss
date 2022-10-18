@@ -10,11 +10,7 @@
 
   @include ct-typography('text-regular');
 
-  &.ct-theme-light {
-    color: $ct-field-description-light-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-field-description-dark-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
   }
 }

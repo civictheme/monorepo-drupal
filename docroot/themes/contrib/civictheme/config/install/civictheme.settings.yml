@@ -6,11 +6,11 @@ features:
   favicon: true
 components:
   logo:
+    image_alt: 'CivicTheme logo'
     image_light_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_desktop.png
     image_light_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_mobile.png
     image_dark_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_desktop.png
     image_dark_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_mobile.png
-    image_alt: 'CivicTheme logo'
   header:
     theme: light
   footer:
@@ -20,3 +20,53 @@ components:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+colors:
+  use_brand_colors: true
+  brand:
+    light:
+      brand1: '#00698f'
+      brand2: '#e6e9eb'
+      brand3: '#121313'
+    dark:
+      brand1: '#61daff'
+      brand2: '#003a4f'
+      brand3: '#00698f'
+  palette:
+    light:
+      heading: '#002a39'
+      body: '#334349'
+      background: '#e6e9eb'
+      border: '#5c5d5e'
+      highlight: '#121313'
+      information: '#cccccc'
+      warning: '#cccccc'
+      error: '#cccccc'
+      success: '#cccccc'
+      background-light: '#fcfcfd'
+      background-dark: '#b8babc'
+      border-light: '#acaeb0'
+      border-dark: '#161717'
+      interaction-text: '#fafafb'
+      interaction-background: '#00698f'
+      interaction-hover-text: '#fafafb'
+      interaction-hover-background: '#003f55'
+      interaction-focus: '#cccccc'
+    dark:
+      heading: '#f7fdff'
+      body: '#e7f9ff'
+      background: '#003a4f'
+      border: '#194d60'
+      highlight: '#00698f'
+      information: '#cccccc'
+      warning: '#cccccc'
+      error: '#cccccc'
+      success: '#cccccc'
+      background-light: '#0c4357'
+      background-dark: '#002837'
+      border-light: '#a5bac1'
+      border-dark: '#002837'
+      interaction-text: '#003a4f'
+      interaction-background: '#61daff'
+      interaction-hover-text: '#002837'
+      interaction-hover-background: '#a0e8ff'
+      interaction-focus: '#cccccc'

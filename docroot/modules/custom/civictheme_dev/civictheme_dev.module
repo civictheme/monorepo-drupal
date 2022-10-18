@@ -5,6 +5,8 @@
  * Core module for Cs.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeVersionManager;
 use Drupal\Core\Site\Settings;
 
 /**
@@ -23,41 +25,8 @@ function civictheme_dev_mail_alter(&$message) {
  * Implements hook_preprocess_html().
  */
 function civictheme_dev_preprocess_html(&$variables) {
-  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
-  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
-  $civictheme_theme_path = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.theme';
-  if (!file_exists($civictheme_theme_path)) {
-    return;
-  }
-
-  require_once $civictheme_theme_path;
-
-  $version = civictheme_get_version();
-
-  if ($version) {
-    $style = <<<HTML
-<style>
-.ct-footer__logo {
-  position: relative;
-}
-.ct-footer__logo::after {
-  content: 'Version $version';
-  bottom: 0;
-  display: block;
-  font-family: sans-serif;
-  font-size: x-small;
-  left: 50px;
-  position: absolute;
-}
-</style>
-HTML;
-
-    $variables['page_bottom']['civictheme_version'] = [
-      '#type' => 'inline_template',
-      '#template' => '{{ content|raw }}',
-      '#context' => [
-        'content' => $style,
-      ],
-    ];
-  }
+  /** @var \Drupal\civictheme\CivicthemeVersionManager $version_manager */
+  $version_manager = \Drupal::classResolver(CivicthemeVersionManager::class);
+  $color = (theme_get_setting('components.footer.theme') ?? CivicthemeConstants::FOOTER_THEME_DEFAULT) == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff';
+  $variables['page_bottom']['civictheme_version'] = $version_manager->render('.ct-footer__logo', $color);
 }

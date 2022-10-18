@@ -3,11 +3,9 @@
 //
 
 .ct-heading {
-  &.ct-theme-light {
-    color: $ct-heading-light-color;
-  }
+  $root: &;
 
-  &.ct-theme-dark {
-    color: $ct-heading-dark-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
   }
 }

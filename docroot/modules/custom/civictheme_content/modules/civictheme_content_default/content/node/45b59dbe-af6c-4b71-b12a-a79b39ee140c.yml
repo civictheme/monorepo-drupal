@@ -25,7 +25,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Your department/agency tagline'
+      value: "Your organisation's tagline"
   created:
     -
       value: 1637029497
@@ -101,7 +101,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 6a3b2057-5f5f-4ef0-9cad-31adafdf9a59
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -125,7 +125,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 4a61fc20-d744-47b4-bd45-5f37e5f0a2e4
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -149,7 +149,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 9d83914f-5acd-489a-91f9-3eaedb753e1f
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -173,7 +173,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 4e71f96e-87a9-49f5-b4e7-becdc3af0440
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -469,4 +469,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top

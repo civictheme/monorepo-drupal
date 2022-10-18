@@ -1,0 +1,221 @@
+<?php
+
+namespace Drupal\civictheme\Color;
+
+/**
+ * CivicTheme color.
+ *
+ * Representation of the color value and formulas to produce it.
+ */
+class CivicthemeColor {
+
+  /**
+   * The color name.
+   *
+   * @var string
+   */
+  protected $name;
+
+  /**
+   * The color value.
+   *
+   * @var string
+   */
+  protected $value;
+
+  /**
+   * The color formula.
+   *
+   * @var string
+   */
+  protected $formula;
+
+  /**
+   * The color source.
+   *
+   * Extracted from formula.
+   *
+   * @var string
+   */
+  protected $source;
+
+  /**
+   * The color filters.
+   *
+   * Extracted from formula.
+   *
+   * @var \Drupal\civictheme\Color\CivicthemeColorFilterBase[]
+   */
+  protected $filters = [];
+
+  /**
+   * Constructore.
+   *
+   * @param string $name
+   *   The color name.
+   * @param string $value
+   *   The color value.
+   * @param string $formula
+   *   Optional color formula. Defaults to NULL meaning that the color is not
+   *   produced from any other colors.
+   */
+  public function __construct($name, $value, $formula = NULL) {
+    $this->name = $name;
+    if ($formula) {
+      $this->setFormula($formula);
+    }
+    $this->setValue($value);
+  }
+
+  /**
+   * Set color value.
+   *
+   * @param string $value
+   *   The color value.
+   *
+   * @return $this
+   *   Instance of the current class.
+   *
+   * @throws \Exception
+   *   When value does not have a correct format and cannot be normalized.
+   *
+   * @SuppressWarnings(StaticAccess)
+   * @SuppressWarnings(MissingImport)
+   */
+  public function setValue($value) {
+    $value = CivicthemeColorUtility::normalizeHex($value);
+    $this->value = $this->applyFilters($value);
+
+    return $this;
+  }
+
+  /**
+   * Set color formula.
+   *
+   * The formula will be parsed into source and filters.
+   *
+   * @param string $formula
+   *   The color formula to produce the color.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function setFormula($formula) {
+    $parsed_formula = $this->parseFormula($formula);
+    $this->formula = $formula;
+    $this->source = $parsed_formula['source'];
+    $this->filters = $parsed_formula['filters'];
+
+    return $this;
+  }
+
+  /**
+   * Get color name.
+   *
+   * @return string
+   *   The color name.
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
+   * Get color value.
+   *
+   * @param bool $with_hash
+   *   Flag to include '#' symbol in front of the color value.
+   *
+   * @return string
+   *   The color value, optionally prefixed by '#'.
+   *
+   * @SuppressWarnings(BooleanArgumentFlag)
+   */
+  public function getValue($with_hash = TRUE) {
+    return ($with_hash ? '#' : '') . ltrim($this->value, '#');
+  }
+
+  /**
+   * Get color formula.
+   *
+   * @return string
+   *   The color formula.
+   */
+  public function getFormula() {
+    return $this->formula;
+  }
+
+  /**
+   * Get color source.
+   *
+   * @return string
+   *   The color source.
+   */
+  public function getSource() {
+    return $this->source;
+  }
+
+  /**
+   * Convert current class to string.
+   *
+   * @return string
+   *   The color value.
+   */
+  public function __toString() {
+    return $this->getValue();
+  }
+
+  /**
+   * Parse color formula into source and filters.
+   *
+   * @param string $value
+   *   The color value in the format (pipe '|' is used as a delimiter):
+   *   source|filter,arg1,arg2...|filter,arg1,arg2
+   *   - source - the name of the color
+   *   - filter - the name of the supported color filter (tint, shade etc.)
+   *   - arg1..argN - an argument to pass to the filter.
+   *   Value is "piped" through filters.
+   *
+   * @return array[]
+   *   Array with parsed formula with keys:
+   *   - source: (string) The name of the source color.
+   *   - filters: (array) Array of initialised color filter objects.
+   *
+   * @SuppressWarnings(StaticAccess)
+   */
+  protected function parseFormula($value) {
+    $formula = [
+      'filters' => [],
+    ];
+
+    $value = $value ?? '';
+
+    $formula_parts = explode('|', $value);
+    $formula['source'] = array_shift($formula_parts);
+
+    foreach ($formula_parts as $formula_part) {
+      $filter_parts = explode(',', $formula_part);
+      $filter_name = array_shift($filter_parts);
+      $formula['filters'][] = CivicthemeColorFilterBase::fromDefinition($filter_name, $filter_parts);
+    }
+
+    return $formula;
+  }
+
+  /**
+   * Apply color filters.
+   *
+   * @param string $value
+   *   Color value.
+   *
+   * @return string
+   *   Color value after all filters were applied.
+   */
+  protected function applyFilters($value) {
+    foreach ($this->filters as $filter) {
+      $value = $filter->filter($value);
+    }
+
+    return $value;
+  }
+
+}

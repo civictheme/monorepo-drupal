@@ -70,6 +70,13 @@
       }
     }
 
+    & > div:not(:last-child) {
+      @include ct-breakpoint($ct-group-filter-breakpoint) {
+        margin-right: ct-spacing(3);
+        max-width: ct-particle(30);
+      }
+    }
+
     .ct-dropdown-filter {
       border-bottom: ct-particle(0.125) solid transparent;
 
@@ -139,31 +146,12 @@
   }
 
   &__clear-all {
-    @include ct-typography('label-regular');
-
-    margin-top: ct-spacing(2);
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-
     #{$root}__mobile-clear-container & {
       position: absolute;
       top: 0;
       right: 0;
       margin: 0;
     }
-
-    &:focus {
-      @include ct-outline();
-    }
-  }
-
-  &__clear-all-label {
-    pointer-events: none;
-    margin-right: ct-spacing(0.5);
   }
 
   &.ct-theme-light {
@@ -213,25 +201,6 @@
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
         border-top: ct-particle(0.125) solid $ct-group-filter-light-selected-filters-border-color;
-      }
-    }
-
-    #{$root}__clear-all {
-      background-color: $ct-group-filter-light-clear-all-background-color;
-      color: $ct-group-filter-light-clear-all-color;
-
-      svg {
-        fill: $ct-group-filter-light-clear-all-icon-color;
-      }
-    }
-
-    #{$root}__mobile-clear-container {
-      #{$root}__clear-all-label {
-        color: $ct-group-filter-light-mobile-clear-all-label-color;
-      }
-
-      svg {
-        fill: $ct-group-filter-light-mobile-clear-all-label-icon;
       }
     }
 
@@ -287,25 +256,6 @@
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
         border-top: ct-particle(0.125) solid $ct-group-filter-dark-selected-filters-border-color;
-      }
-    }
-
-    #{$root}__clear-all {
-      background-color: $ct-group-filter-dark-clear-all-background-color;
-      color: $ct-group-filter-dark-clear-all-color;
-
-      svg {
-        fill: $ct-group-filter-dark-clear-all-icon-color;
-      }
-    }
-
-    #{$root}__mobile-clear-container {
-      #{$root}__clear-all-label {
-        color: $ct-group-filter-dark-mobile-clear-all-label-color;
-      }
-
-      svg {
-        fill: $ct-group-filter-dark-mobile-clear-all-label-icon;
       }
     }
 

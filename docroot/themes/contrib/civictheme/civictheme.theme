@@ -5,9 +5,10 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+use Drupal\civictheme\CivicthemeColorManager;
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Render\Element;
 
-require_once 'includes/constants.inc';
 require_once 'includes/utilities.inc';
 require_once 'includes/process.inc';
 require_once 'includes/accordion.inc';
@@ -22,7 +23,6 @@ require_once 'includes/manual_list.inc';
 require_once 'includes/navigation_card.inc';
 require_once 'includes/promo_card.inc';
 require_once 'includes/subject_card.inc';
-require_once 'includes/task_card.inc';
 require_once 'includes/cards.inc';
 require_once 'includes/filter.inc';
 require_once 'includes/form.inc';
@@ -56,36 +56,6 @@ require_once 'includes/table.inc';
 require_once 'includes/views.inc';
 
 /**
- * Return CivicTheme version.
- */
-function civictheme_get_version() {
-  $version = NULL;
-
-  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
-  $theme_extension_list = \Drupal::service('extension.list.theme');
-  $civictheme_theme = $theme_extension_list->get('civictheme');
-
-  // Discover from the .info file set by the Drupal.org's publishing script.
-  if (!empty($civictheme_theme->info['version'])) {
-    return $civictheme_theme->info['version'];
-  }
-
-  // Fallback to the version specified in CivicTheme's README.md.
-  $theme_path = $civictheme_theme->getPath();
-  $readme_file = $theme_path . DIRECTORY_SEPARATOR . 'README.md';
-
-  if (file_exists($readme_file)) {
-    $contents = file_get_contents($readme_file);
-    preg_match('/Version: `([0-9]+(?:\.[0-9]+)+(?:-rc[0-9]+)?)`/', $contents, $matches);
-    if (!empty($matches[1])) {
-      $version = $matches[1];
-    }
-  }
-
-  return $version;
-}
-
-/**
  * Implements hook_theme().
  */
 function civictheme_theme() {
@@ -109,7 +79,7 @@ function civictheme_theme() {
     ],
     'civictheme_slider_slide_links' => [
       'variables' => [
-        'component_theme' => CIVICTHEME_THEME_LIGHT,
+        'component_theme' => CivicthemeConstants::THEME_LIGHT,
         'links' => [],
       ],
       'template' => 'misc/slider-slide-links',
@@ -122,7 +92,7 @@ function civictheme_theme() {
     ],
     'civictheme_basic_content' => [
       'variables' => [
-        'component_theme' => CIVICTHEME_THEME_LIGHT,
+        'component_theme' => CivicthemeConstants::THEME_LIGHT,
         'content' => '',
       ],
       'template' => 'misc/basic-content',
@@ -319,4 +289,39 @@ function civictheme_field_is_wysiwyg(string $field_name) {
   }
 
   return FALSE;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function civictheme_library_info_alter(&$libraries, $extension) {
+  // Inject a stylesheet with dynamically generated styles.
+  //
+  // Filter for the current theme.
+  $themes = \Drupal::service('theme_handler')->listInfo();
+  if (array_key_exists($extension, $themes)) {
+    // A theme should opt-in to have the dynamic stylesheet injected by
+    // defining 'css-variables' library.
+    // @todo Consider a different opt-in mechanism based on usage in consumer
+    // themes.
+    if (!empty($libraries['css-variables'])) {
+      /** @var \Drupal\civictheme\CivicthemeColorManager $color_manager */
+      $color_manager = \Drupal::classResolver(CivicthemeColorManager::class);
+
+      // Read current CSS variables stylesheet to use the variables as initial
+      // values within color manager (only if there are no stored values in
+      // the config).
+      // If not provided - a fallback default value
+      // CivicthemeColorManager::COLOR_DEFAULT will be used.
+      if (!empty($libraries['css-variables']['css']['theme'])) {
+        $color_manager->setCssColorsFilePath($themes[$extension]->getPath() . DIRECTORY_SEPARATOR . key($libraries['css-variables']['css']['theme']));
+      }
+
+      // Replace existing stylesheet with dynamically generated styles providing
+      // extension name for context.
+      $libraries['css-variables']['css']['theme'] = [
+        $color_manager->stylesheet($extension) => [],
+      ];
+    }
+  }
 }

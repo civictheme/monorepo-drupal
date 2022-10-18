@@ -3,6 +3,8 @@
 //
 
 .ct-social-links {
+  $root: &;
+
   display: flex;
 
   &__item {
@@ -39,15 +41,15 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     .ct-button--link {
-      @include ct-link-colors($ct-social-links-light-color, $ct-social-links-light-hover-color, $ct-social-links-light-visited-color, $ct-social-links-light-active-color, $ct-social-links-light-focus-color);
-    }
-  }
-
-  &.ct-theme-dark {
-    .ct-button--link {
-      @include ct-link-colors($ct-social-links-dark-color, $ct-social-links-dark-hover-color, $ct-social-links-dark-visited-color, $ct-social-links-dark-active-color, $ct-social-links-dark-focus-color);
+      @include ct-link-colors(
+        ct-component-var($root, $theme, color),
+        ct-component-var($root, $theme, hover-color),
+        ct-component-var($root, $theme, visited-color),
+        ct-component-var($root, $theme, active-color),
+        ct-component-var($root, $theme, focus-color)
+      );
     }
   }
 }

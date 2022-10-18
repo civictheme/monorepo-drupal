@@ -157,7 +157,6 @@ function _civictheme_get_card_types() {
     'civictheme_subject_card_ref',
     'civictheme_subject_card',
     'civictheme_service_card',
-    'civictheme_task_card',
   ];
 }
 

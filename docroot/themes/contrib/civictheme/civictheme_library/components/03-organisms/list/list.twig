@@ -51,14 +51,16 @@
           {% block link_above %}
             {% if link_above %}
               <div class="ct-list__header-link-above">
-                {% include '@atoms/link/link.twig' with {
+                {% include '@atoms/button/button.twig' with {
                   theme: theme,
+                  type: 'secondary',
+                  kind: 'link',
+                  size: 'large',
                   text: link_above.text,
                   url: link_above.url,
-                  title: link_above.title,
                   is_new_window: link_above.is_external,
-                  is_external: link_above.is_external,
-                } %}
+                  is_external: link_above.is_external
+                } only %}
               </div>
             {% endif %}
           {% endblock %}
@@ -148,7 +150,7 @@
           <div class="ct-list__link-below">
             {% include '@atoms/button/button.twig' with {
               theme: theme,
-              type: 'primary',
+              type: 'secondary',
               kind: 'link',
               size: 'large',
               text: link_below.text,
