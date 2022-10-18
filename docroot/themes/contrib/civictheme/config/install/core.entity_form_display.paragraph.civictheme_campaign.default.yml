@@ -30,13 +30,13 @@ content:
     third_party_settings: {  }
   field_c_p_date:
     type: datetime_default
-    weight: 2
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_p_image:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -46,7 +46,7 @@ content:
     third_party_settings: {  }
   field_c_p_image_position:
     type: options_select
-    weight: 7
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -66,7 +66,7 @@ content:
     third_party_settings: {  }
   field_c_p_title:
     type: string_textfield
-    weight: 1
+    weight: 0
     region: content
     settings:
       size: 60
@@ -74,7 +74,7 @@ content:
     third_party_settings: {  }
   field_c_p_topic:
     type: entity_reference_autocomplete
-    weight: 0
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS
@@ -84,7 +84,7 @@ content:
     third_party_settings: {  }
   field_c_p_vertical_spacing:
     type: options_select
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
