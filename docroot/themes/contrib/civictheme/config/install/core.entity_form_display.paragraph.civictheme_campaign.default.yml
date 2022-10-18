@@ -14,6 +14,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_campaign
   module:
     - datetime
+    - media_library
     - text
 id: paragraph.civictheme_campaign.default
 targetEntityType: paragraph
@@ -35,14 +36,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_c_p_image:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 2
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_c_p_image_position:
     type: options_select
