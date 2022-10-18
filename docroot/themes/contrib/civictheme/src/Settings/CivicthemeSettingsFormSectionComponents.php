@@ -14,7 +14,7 @@ use Drupal\Core\StreamWrapper\StreamWrapperManager;
 /**
  * CivicTheme settings section to display components.
  */
-class CivicthemeSettingsSectionComponents extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSectionBase {
 
   /**
    * {@inheritdoc}

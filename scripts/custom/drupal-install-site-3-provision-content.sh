@@ -24,6 +24,9 @@ else
   $drush -y pm-enable civictheme_admin
 fi
 
+echo "  > Set default colors."
+$drush -y --include=/app/docroot/themes/contrib/civictheme/src/Drush civictheme:set-brand-colors "#00698f" "#e6e9eb" "#121313" "#61daff" "#003a4f" "#00698f"
+
 echo "  > Provision default content."
 $drush -y pm-enable civictheme_content
 

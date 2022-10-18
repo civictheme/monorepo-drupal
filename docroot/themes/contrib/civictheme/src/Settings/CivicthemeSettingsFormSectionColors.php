@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CivicTheme settings section to display colors.
  */
-class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionBase {
 
   /**
    * The color manager.
@@ -198,90 +198,6 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
   }
 
   /**
-   * Field map with filters grouped by type.
-   *
-   * Used to generate color input with dependencies between colors and
-   * filter pipeline.
-   *
-   * @return array
-   *   Array of field map keyed by the theme and group name with values as
-   *   arrays with color names as keys and color/filter mapping pipeline as
-   *   values.
-   *   The values are piped through a pipeline of filters.
-   *   The pipeline consists of elements divided by pipe (|):
-   *   - color name (as it will appear on the form)
-   *   - filter name and 0 or more comma-delimited list of filter arguments.
-   */
-  protected function fieldMap() {
-    return [
-      'light' => [
-        'typography' => [
-          'heading' => 'brand1|shade,60',
-          'body' => 'brand1|shade,80|tint,20',
-        ],
-        'background' => [
-          'background-light' => 'brand2|tint,90',
-          'background' => 'brand2',
-          'background-dark' => 'brand2|shade,20',
-        ],
-        'border' => [
-          'border-light' => 'brand2|shade,25',
-          'border' => 'brand2|shade,60',
-          'border-dark' => 'brand2|shade,90',
-        ],
-        'interaction' => [
-          'interaction-text' => 'brand2|tint,80',
-          'interaction-background' => 'brand1',
-          'interaction-hover-text' => 'brand2|tint,80',
-          'interaction-hover-background' => 'brand1|shade,40',
-          'interaction-focus' => FALSE,
-        ],
-        'highlight' => [
-          'highlight' => 'brand3',
-        ],
-        'status' => [
-          'information' => FALSE,
-          'warning' => FALSE,
-          'error' => FALSE,
-          'success' => FALSE,
-        ],
-      ],
-      'dark' => [
-        'typography' => [
-          'heading' => 'brand1|tint,95',
-          'body' => 'brand1|tint,85',
-        ],
-        'background' => [
-          'background-light' => 'brand2|tint,5',
-          'background' => 'brand2',
-          'background-dark' => 'brand2|shade,30',
-        ],
-        'border' => [
-          'border-light' => 'brand2|tint,65',
-          'border' => 'brand2|tint,10',
-          'border-dark' => 'brand2|shade,30',
-        ],
-        'interaction' => [
-          'interaction-text' => 'brand2',
-          'interaction-background' => 'brand1',
-          'interaction-hover-text' => 'brand2|shade,30',
-          'interaction-hover-background' => 'brand1|tint,40',
-          'interaction-focus' => FALSE,
-        ],
-        'highlight' => [
-          'highlight' => 'brand3',
-        ],
-        'status' => [
-          'information' => FALSE,
-          'warning' => FALSE,
-          'error' => FALSE,
-          'success' => FALSE,
-        ],
-      ],
-    ];
-  }
-
-  /**
    * A map of field values based on the field map and discovered CSS colors.
    *
    * @return array
@@ -292,33 +208,39 @@ class CivicthemeSettingsSectionColors extends CivicthemeSettingsAbstractSection 
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   protected function fieldValuesMap() {
-    $color_map = [];
+    $field_values = [];
 
-    $group_map = $this->fieldMap();
-
-    $colors = $this->colorManager->getCssColors();
-    foreach ($group_map as $theme_name => $group_theme_map) {
+    $formula_map = CivicthemeColorManager::colorPaletteMap();
+    $colors = $this->colorManager->getColors(CivicthemeColorManager::COLOR_TYPE_PALETTE);
+    foreach ($formula_map as $theme_name => $group_theme_map) {
       foreach ($group_theme_map as $group_name => $group) {
-        foreach ($group as $group_color_name => $group_color_formula) {
+        foreach (array_keys($group) as $group_color_name) {
           $group_color_name_field = str_replace('-', '_', $group_color_name);
 
-          // Default value.
-          $color_value = $theme_name == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff';
+          /** @var \Drupal\civictheme\Color\CivicthemeColor $color */
+          $color = $colors[$theme_name][$group_color_name] ?? FALSE;
 
-          // Value from provided colors.
-          if (!empty($colors[$theme_name]) && array_key_exists($group_color_name, $colors[$theme_name])) {
-            $color_value = $colors[$theme_name][$group_color_name]['value'];
-          }
-
-          $color_map[$theme_name][$group_name][$group_color_name_field] = [
-            'value' => $color_value,
-            'formula' => CivicthemeColorManager::processColorFormula($group_color_formula, $theme_name),
+          $field_values[$theme_name][$group_name][$group_color_name_field] = [
+            'value' => $color ? $color->getValue() : CivicthemeColorManager::COLOR_DEFAULT,
+            'formula' => $color && $color->getFormula() ? self::processColorFormula($color->getFormula(), $theme_name) : NULL,
           ];
         }
       }
     }
 
-    return $color_map;
+    return $field_values;
+  }
+
+  /**
+   * Process color formula.
+   */
+  protected static function processColorFormula($formula, $theme) {
+    $parts = explode('|', $formula);
+    $name = array_shift($parts);
+    $name = "colors[brand][$theme][$name]";
+    array_unshift($parts, $name);
+
+    return implode('|', $parts);
   }
 
 }

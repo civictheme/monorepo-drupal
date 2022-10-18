@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * Allows to split large setting forms into smaller sections.
  */
-abstract class CivicthemeSettingsAbstractSection implements ContainerInjectionInterface {
+abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionInterface {
 
   use StringTranslationTrait;
 

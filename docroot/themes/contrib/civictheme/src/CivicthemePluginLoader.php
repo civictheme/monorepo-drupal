@@ -51,15 +51,18 @@ class CivicthemePluginLoader implements ContainerInjectionInterface {
    * @return array
    *   Array of loaded class instances.
    */
-  public function load($path, $parent_class) {
+  public function load($path, $parent_class = NULL) {
     foreach (glob($path . '/*.php') as $filename) {
       require_once $filename;
     }
 
     $children = [];
-    foreach (get_declared_classes() as $class) {
-      if (is_subclass_of($class, $parent_class)) {
-        $children[] = $this->classResolver->getInstanceFromDefinition($class);
+
+    if ($parent_class) {
+      foreach (get_declared_classes() as $class) {
+        if (is_subclass_of($class, $parent_class)) {
+          $children[] = $this->classResolver->getInstanceFromDefinition($class);
+        }
       }
     }
 

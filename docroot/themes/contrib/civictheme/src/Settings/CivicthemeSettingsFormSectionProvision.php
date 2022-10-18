@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * CivicTheme settings section to display colors.
  */
-class CivicthemeSettingsSectionProvision extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionProvision extends CivicthemeSettingsFormSectionBase {
 
   /**
    * {@inheritdoc}

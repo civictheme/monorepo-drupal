@@ -2,74 +2,93 @@
 
 namespace Drupal\civictheme;
 
-use Drupal\Core\Asset\LibraryDiscovery;
+use Drupal\civictheme\Color\CivicthemeColor;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Extension\ThemeExtensionList;
-use Drupal\Core\Extension\ThemeHandler;
-use Drupal\Core\File\FileSystem;
-use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * CivicTheme settings manager.
+ * CivicTheme color manager.
+ *
+ * Responsible for all operations with colors.
+ *
+ * @SuppressWarnings(ExcessiveClassComplexity)
  */
 class CivicthemeColorManager implements ContainerInjectionInterface {
 
   /**
-   * Defines CSS variables library name in info file.
+   * Defines color type 'brand'.
    */
-  const CSS_VARIABLES_LIBRARY = 'css-variables';
+  const COLOR_TYPE_BRAND = 'brand';
 
   /**
-   * Defines CSS variables prefix.
+   * Defines color type 'palette'.
    */
-  const CSS_VARIABLES_PREFIX = '--ct-color-';
+  const COLOR_TYPE_PALETTE = 'palette';
 
   /**
-   * Theme extension list.
+   * Defines default color for cases when the color value is not set.
+   */
+  const COLOR_DEFAULT = '#CCCCCC';
+
+  /**
+   * Defines CSS variable prefix used when working with stylesheets.
+   */
+  const CSS_VARIABLES_PREFIX = 'ct-color';
+
+  /**
+   * The color matrix.
    *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
+   * Using 'matrix' instead of 'colors' to avoid confusion between a structure
+   * of colors and the color values.
+   *
+   * @var array
    */
-  protected $themeExtensionList;
+  protected $matrix;
 
   /**
-   * Theme handler service.
+   * The path to the CSS file.
    *
-   * @var \Drupal\Core\Extension\ThemeHandler
+   * @var string
    */
-  protected $themeHandler;
+  protected $cssColorsFilePath;
 
   /**
-   * File system service.
+   * The plugin manager.
    *
-   * @var \Drupal\Core\File\FileSystem
+   * @var \Drupal\civictheme\CivicthemePluginLoader
    */
-  protected $fileSystem;
+  protected $pluginLoader;
 
   /**
-   * Library discovery service.
+   * The config manager.
    *
-   * @var \Drupal\Core\Asset\LibraryDiscovery
+   * @var \Drupal\civictheme\CivicthemeConfigManager
    */
-  protected $libraryDiscovery;
+  protected $configManager;
+
+  /**
+   * The stylesheet parser.
+   *
+   * @var \Drupal\civictheme\CivicthemeStylesheetParser
+   */
+  protected $stylesheetParser;
+
+  /**
+   * The stylesheet generator.
+   *
+   * @var \Drupal\civictheme\CivicthemeStylesheetGenerator
+   */
+  protected $stylesheetGenerator;
 
   /**
    * Constructor.
-   *
-   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
-   *   Theme extension list service.
-   * @param \Drupal\Core\Extension\ThemeHandler $theme_handler
-   *   Theme handler service.
-   * @param \Drupal\Core\File\FileSystem $file_system
-   *   File system discovery service.
-   * @param \Drupal\Core\Asset\LibraryDiscovery $library_discovery
-   *   Library discovery service.
    */
-  public function __construct(ThemeExtensionList $theme_extension_list, ThemeHandler $theme_handler, FileSystem $file_system, LibraryDiscovery $library_discovery) {
-    $this->themeExtensionList = $theme_extension_list;
-    $this->themeHandler = $theme_handler;
-    $this->fileSystem = $file_system;
-    $this->libraryDiscovery = $library_discovery;
+  public function __construct(CivicthemePluginLoader $plugin_loader, CivicthemeConfigManager $config_manager, CivicthemeStylesheetParser $stylesheet_parser, CivicthemeStylesheetGenerator $stylesheet_generator) {
+    $this->pluginLoader = $plugin_loader;
+    $this->configManager = $config_manager;
+    $this->stylesheetParser = $stylesheet_parser;
+    $this->stylesheetGenerator = $stylesheet_generator;
+    $this->pluginLoader->load(__DIR__ . '/Color');
   }
 
   /**
@@ -77,143 +96,276 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('extension.list.theme'),
-      $container->get('theme_handler'),
-      $container->get('file_system'),
-      $container->get('library.discovery'),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemePluginLoader::class),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetParser::class),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetGenerator::class)
     );
   }
 
   /**
-   * Implements hook_library_info_alter().
+   * A map of the Palette colors.
+   *
+   * @param bool $flatten_groups
+   *   Flag to flatten color croups.
+   *
+   * @return array|array[]
+   *   Array of colors divided in groups. The values are color formulas or FALSE
+   *   if the color does not depend on any other colors.
+   *
+   * @SuppressWarnings(BooleanArgumentFlag)
    */
-  public function libraryInfoAlter(&$libraries, $extension) {
-    $themes = array_keys($this->themeHandler->listInfo());
-    if (in_array($extension, $themes)) {
-      $libraries['css-variables']['css']['theme'][$this->stylesheet()] = [];
+  public static function colorPaletteMap($flatten_groups = FALSE) {
+    $map = [
+      CivicthemeConstants::THEME_LIGHT => [
+        'typography' => [
+          'heading' => 'brand1|shade,60',
+          'body' => 'brand1|shade,80|tint,20',
+        ],
+        'background' => [
+          'background-light' => 'brand2|tint,90',
+          'background' => 'brand2',
+          'background-dark' => 'brand2|shade,20',
+        ],
+        'border' => [
+          'border-light' => 'brand2|shade,25',
+          'border' => 'brand2|shade,60',
+          'border-dark' => 'brand2|shade,90',
+        ],
+        'interaction' => [
+          'interaction-text' => 'brand2|tint,80',
+          'interaction-background' => 'brand1',
+          'interaction-hover-text' => 'brand2|tint,80',
+          'interaction-hover-background' => 'brand1|shade,40',
+          'interaction-focus' => FALSE,
+        ],
+        'highlight' => [
+          'highlight' => 'brand3',
+        ],
+        'status' => [
+          'information' => FALSE,
+          'warning' => FALSE,
+          'error' => FALSE,
+          'success' => FALSE,
+        ],
+      ],
+      CivicthemeConstants::THEME_DARK => [
+        'typography' => [
+          'heading' => 'brand1|tint,95',
+          'body' => 'brand1|tint,85',
+        ],
+        'background' => [
+          'background-light' => 'brand2|tint,5',
+          'background' => 'brand2',
+          'background-dark' => 'brand2|shade,30',
+        ],
+        'border' => [
+          'border-light' => 'brand2|tint,65',
+          'border' => 'brand2|tint,10',
+          'border-dark' => 'brand2|shade,30',
+        ],
+        'interaction' => [
+          'interaction-text' => 'brand2',
+          'interaction-background' => 'brand1',
+          'interaction-hover-text' => 'brand2|shade,30',
+          'interaction-hover-background' => 'brand1|tint,40',
+          'interaction-focus' => FALSE,
+        ],
+        'highlight' => [
+          'highlight' => 'brand3',
+        ],
+        'status' => [
+          'information' => FALSE,
+          'warning' => FALSE,
+          'error' => FALSE,
+          'success' => FALSE,
+        ],
+      ],
+    ];
+
+    if ($flatten_groups) {
+      $new_map = [];
+      foreach ($map as $theme => $group) {
+        foreach ($group as $value) {
+          foreach ($value as $k => $v) {
+            $new_map[$theme][$k] = $v;
+          }
+        }
+      }
+      $map = $new_map;
     }
+
+    return $map;
   }
 
   /**
-   * Invalidate cache.
+   * Get colors, optionally filtered by type and theme.
+   *
+   * @param string $type
+   *   Optional color type.
+   * @param string $theme
+   *   Optional color theme.
+   *
+   * @return array|array[]|\array[][]|mixed
+   *   If $type and $theme not provided - returns color matrix keyed by type and
+   *   theme with CivicthemeColor objects as values.
+   *   If only $type is provided - returns the color matrix for that type.
+   *   If $type and $theme as provided - returns the color matrix for that type
+   *   and theme.
    */
-  public function invalidateCache() {
-    $this->fileSystem->delete(self::stylesheetUri());
-    // @todo Implement only libraries cache invalidation.
-    drupal_flush_all_caches();
+  public function getColors($type = NULL, $theme = NULL) {
+    if (empty($this->matrix)) {
+      $this->initMatrix();
+    }
+
+    if ($type) {
+      self::validateType($type);
+    }
+    if ($theme) {
+      self::validateTheme($theme);
+    }
+
+    return $type ? ($theme ? $this->matrix[$type][$theme] ?? [] : $this->matrix[$type] ?? self::defaultMatrix()[$type]) : $this->matrix ?? self::defaultMatrix();
+  }
+
+  /**
+   * Get color as strings.
+   *
+   * @return array
+   *   Color matrix keyed by type and theme with colors as values.
+   */
+  public function getColorsStrings() {
+    $result = [];
+
+    foreach ($this->getColors() as $type => $theme) {
+      foreach ($theme as $theme_name => $colors) {
+        foreach ($colors as $color_name => $color) {
+          $result[$type][$theme_name][$color_name] = (string) $color;
+        }
+      }
+    }
+
+    return $result;
+  }
+
+  /**
+   * Set colors from the provided matrix.
+   *
+   * @param array $color_matrix
+   *   The color matrix in the expected format.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function setColors(array $color_matrix) {
+    self::validateMatrixStructure($color_matrix);
+
+    foreach ($color_matrix as $type => $theme_color) {
+      foreach ($theme_color as $theme => $color) {
+        foreach ($color as $name => $value) {
+          $this->setMatrixColor($type, $theme, $name, $value);
+        }
+      }
+    }
+
+    return $this;
   }
 
   /**
    * Return existing or generate a new stylesheet.
    *
+   * @param string $file_suffix
+   *   Optional file suffix for the generated stylesheet. Defaults to 'default'.
+   *   Usually provided to separate stylesheets produced in multiple contexts.
+   *
    * @return string
    *   URI of the stylesheet file.
    */
-  protected function stylesheet() {
-    $filepath = self::stylesheetUri();
-    if (file_exists($filepath)) {
-      return $filepath;
+  public function stylesheet($file_suffix = 'default') {
+    return $this->stylesheetGenerator
+      ->setStylesheetUriSuffix($file_suffix)
+      ->generate($this->getColors(self::COLOR_TYPE_PALETTE), ['html'], self::CSS_VARIABLES_PREFIX);
+  }
+
+  /**
+   * Set the file path of the existing CSS file.
+   *
+   * @param string $path
+   *   The file path.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function setCssColorsFilePath($path) {
+    if (is_readable($path)) {
+      $this->cssColorsFilePath = $path;
     }
 
-    return $this->generateStylesheet($this->getColorsFromConfig());
+    return $this;
   }
 
   /**
-   * Generate stylesheet using colors.
+   * Save color matrix.
    *
-   * @param array $colors
-   *   Array of colors.
+   * @param bool $invalidate_caches
+   *   Optional flag to invalidate caches after save. Defaults to FALSE.
    *
-   * @return string
-   *   URI to a stylesheet file.
+   * @return $this
+   *   Instance of the current class.
+   *
+   * @SuppressWarnings(BooleanArgumentFlag)
    */
-  protected function generateStylesheet(array $colors) {
-    $content = $this->colorsToCss($colors, 'html');
+  public function save($invalidate_caches = FALSE) {
+    $this->saveMatrixToConfig();
 
-    return $this->saveStylesheet($content);
+    if ($invalidate_caches) {
+      $this->invalidateCache();
+    }
+
+    return $this;
   }
 
   /**
-   * Save data into a stylesheet.
+   * Invalidate cache.
    *
-   * @param string $data
-   *   Stylesheet data to save.
-   *
-   * @return string
-   *   Path to stylesheet.
+   * @return $this
+   *   Instance of the current class.
    */
-  protected function saveStylesheet($data) {
-    $filepath = self::stylesheetUri();
-    $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->chmod($filepath);
+  public function invalidateCache() {
+    $this->stylesheetGenerator->purge();
 
-    return $filepath;
+    drupal_flush_all_caches();
+
+    return $this;
   }
 
   /**
-   * Get stylesheet URI.
+   * Load color matrix from the CSS file.
+   *
+   * @return array|\array[][]
+   *   The color matrix.
    */
-  protected static function stylesheetUri() {
-    return 'public://civictheme-css-variables.css';
-  }
+  protected function matrixFromCss() {
+    $variables = $this->stylesheetParser
+      ->setCssVariablePrefix(self::CSS_VARIABLES_PREFIX)
+      ->setContent($this->loadCssVariablesContent())
+      ->variables();
 
-  /**
-   * Convert colors to CSS content.
-   *
-   * @param array $colors
-   *   Array of colors.
-   * @param string $selector
-   *   Optional selector to place CSS content into. Defaults to 'html'.
-   *
-   * @return string
-   *   CSS content suitable for output into a file.
-   */
-  protected function colorsToCss(array $colors, $selector = 'html') {
-    $vars = [];
-    foreach ($colors as $theme => $theme_colors) {
-      foreach ($theme_colors as $color => $value) {
-        $color = str_replace('_', '-', $color);
-        $vars[] = self::CSS_VARIABLES_PREFIX . "$theme-$color: $value;";
+    $colors = self::defaultMatrix();
+    foreach ($variables as $key => $value) {
+      $key = str_replace('--' . self::CSS_VARIABLES_PREFIX . CivicthemeStylesheetParser::CSS_VARIABLES_SEPARATOR, '', $key);
+      $parts = explode(CivicthemeStylesheetParser::CSS_VARIABLES_SEPARATOR, $key);
+      $theme = array_shift($parts);
+      try {
+        self::validateTheme($theme);
       }
-    }
-    $content = implode('', $vars);
-
-    $content = "$selector { $content }";
-
-    return $content;
-  }
-
-  /**
-   * Get CSS colors from the CSS Variables library file.
-   *
-   * @return array
-   *   Array of colors keyed by theme and name with values:
-   *   - value: (string) Value.
-   *   - original_name: (string) Original CSS variable name.
-   */
-  public function getCssColors() {
-    $colors = [];
-
-    $content = $this->loadCssVariablesContent();
-    if ($content) {
-      $vars = static::parseCssVariables($content);
-
-      $vars = array_filter($vars, function ($key) {
-        return str_starts_with($key, self::CSS_VARIABLES_PREFIX);
-      }, ARRAY_FILTER_USE_KEY);
-
-      foreach ($vars as $name => $value) {
-        $name = str_replace(self::CSS_VARIABLES_PREFIX, '', $name);
-        $parts = explode('-', $name);
-        $theme = array_shift($parts);
-        $name = implode('-', $parts);
-
-        $colors[$theme][$name] = [
-          'value' => $value,
-          'original_name' => $name,
-        ];
+      catch (\Exception $exception) {
+        continue;
       }
+      $colors[self::COLOR_TYPE_PALETTE][$theme][implode(CivicthemeStylesheetParser::CSS_VARIABLES_SEPARATOR, $parts)] = $value;
     }
+
+    self::validateMatrixStructure($colors);
 
     return $colors;
   }
@@ -225,50 +377,197 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *   Loaded content or FALSE if the file is not readable.
    */
   protected function loadCssVariablesContent() {
-    $library = $this->libraryDiscovery->getLibraryByName('civictheme', self::CSS_VARIABLES_LIBRARY);
-    if (!empty($library['css'][0]['data']) && file_exists($library['css'][0]['data'])) {
-      return file_get_contents($library['css'][0]['data']);
+    if (!empty($this->cssColorsFilePath) && is_readable($this->cssColorsFilePath)) {
+      return file_get_contents($this->cssColorsFilePath);
     }
 
     return FALSE;
   }
 
   /**
-   * Parse CSS variables into an array.
+   * Initialise color matrix.
+   *
+   * @return $this
+   *   Instance of the current class.
    */
-  protected static function parseCssVariables($content) {
-    $vars = [];
-
-    $matches = [];
-    preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
-
-    array_walk($matches, function ($value) use (&$vars) {
-      if (!empty($value[1])) {
-        $vars[trim($value[1])] = trim($value[2]) ?? NULL;
+  protected function initMatrix() {
+    $palette_matrix = [self::COLOR_TYPE_PALETTE => self::colorPaletteMap(TRUE)] + self::defaultMatrix();
+    $config_matrix = $this->loadMatrixFromConfig();
+    $styles_matrix = $this->matrixFromCss();
+    foreach ($palette_matrix as $type => $theme_colors) {
+      foreach ($theme_colors as $theme => $color) {
+        foreach ($color as $name => $formula) {
+          $this->matrix[$type][$theme][$name] = new CivicthemeColor(
+            $name,
+            // Config or styles or default color.
+            $config_matrix[$type][$theme][$name] ?? $styles_matrix[$type][$theme][$name] ?? self::COLOR_DEFAULT,
+            $formula
+          );
+        }
       }
-    });
+    }
 
-    return $vars;
+    return $this;
   }
 
   /**
-   * Process color formula.
+   * Populate matrix with a single color value.
+   *
+   * @param string $type
+   *   The color type.
+   * @param string $theme
+   *   The color theme.
+   * @param string $name
+   *   The color name.
+   * @param string $value
+   *   The color value.
+   *
+   * @return $this
+   *   Instance of the current class.
    */
-  public static function processColorFormula($formula, $theme) {
-    $parts = explode('|', $formula);
-    $name = array_shift($parts);
-    $name = "colors[brand][$theme][$name]";
-    array_unshift($parts, $name);
+  protected function setMatrixColor($type, $theme, $name, $value) {
+    self::validateType($type);
+    self::validateTheme($theme);
 
-    return implode('|', $parts);
+    if ($type == self::COLOR_TYPE_BRAND) {
+      $dependents = $this->getColorDependencies($theme, $name);
+      foreach ($dependents as $dependent) {
+        $dependent->setValue($value);
+      }
+    }
+
+    $this->matrix[$type][$theme][$name] = $this->matrix[$type][$theme][$name] ?? new CivicthemeColor($name, $value ?? self::COLOR_DEFAULT);
+    $this->matrix[$type][$theme][$name]->setValue($value);
+
+    return $this;
   }
 
   /**
-   * Proxy to get colors from config.
+   * Get an array of the color dependecies.
+   *
+   * @return \Drupal\civictheme\Color\CivicthemeColor[]
+   *   Array of color dependencies.
    */
-  protected function getColorsFromConfig() {
-    // @todo Implement better config retrieval.
-    return theme_get_setting('colors.palette') ?? [];
+  protected function getColorDependencies($theme, $name) {
+    $dependencies = [];
+    /** @var \Drupal\civictheme\Color\CivicthemeColor $color */
+    foreach ($this->getColors(self::COLOR_TYPE_PALETTE, $theme) as $color) {
+      if ($color->getSource() == $name) {
+        $dependencies[] = $color;
+      }
+    }
+
+    return $dependencies;
+  }
+
+  /**
+   * Load matrix from the config.
+   *
+   * @return array|\array[][]|mixed
+   *   The color matrix in the expected format.
+   */
+  protected function loadMatrixFromConfig() {
+    $colors = $this->configManager->load('colors') ?? self::defaultMatrix();
+    unset($colors['use_brand_colors']);
+    self::validateMatrixStructure($colors);
+
+    return $colors;
+  }
+
+  /**
+   * Save matrix to the config.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  protected function saveMatrixToConfig() {
+    $matrix = $this->getColorsStrings();
+
+    $use_brand_colors = FALSE;
+    if (
+      !empty($matrix[self::COLOR_TYPE_BRAND][CivicthemeConstants::THEME_LIGHT]) &&
+      !empty($matrix[self::COLOR_TYPE_BRAND][CivicthemeConstants::THEME_DARK])
+    ) {
+      $use_brand_colors = TRUE;
+    }
+
+    $this->configManager->save('colors', ['use_brand_colors' => $use_brand_colors] + $matrix);
+
+    return $this;
+  }
+
+  /**
+   * Validate color matrix structure.
+   *
+   * @param array $matrix
+   *   The matrix.
+   *
+   * @throws \Exception
+   *   When provided matrix structure does not have an expected structure.
+   *
+   * @SuppressWarnings(MissingImport)
+   */
+  protected static function validateMatrixStructure(array $matrix) {
+    if (!is_array($matrix) || count($matrix) != 2) {
+      throw new \Exception(sprintf('Invalid color matrix structure: should be an array with exactly 2 elements keyed by "%s" and "%s"', self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE));
+    }
+
+    if (!array_key_exists(self::COLOR_TYPE_BRAND, $matrix) || !array_key_exists(self::COLOR_TYPE_PALETTE, $matrix)) {
+      throw new \Exception(sprintf('Invalid color matrix structure: top-level keys should be "%s" or "%s"', self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE));
+    }
+  }
+
+  /**
+   * Validate color type.
+   *
+   * @param string $type
+   *   The color type.
+   *
+   * @throws \Exception
+   *   When provided color type is not one of the expected types.
+   *
+   * @SuppressWarnings(MissingImport)
+   */
+  protected static function validateType($type) {
+    if (!\in_array($type, [self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE])) {
+      throw new \Exception('Invalid color type');
+    }
+  }
+
+  /**
+   * Validate color theme.
+   *
+   * @param string $theme
+   *   The color theme.
+   *
+   * @throws \Exception
+   *   When provided color theme is not one of the expected themes.
+   *
+   * @SuppressWarnings(MissingImport)
+   */
+  protected static function validateTheme($theme) {
+    if (!in_array($theme, [
+      CivicthemeConstants::THEME_LIGHT,
+      CivicthemeConstants::THEME_DARK,
+    ])) {
+      throw new \Exception('Invalid color theme');
+    }
+  }
+
+  /**
+   * Default matrix structure.
+   */
+  protected static function defaultMatrix() {
+    return [
+      static::COLOR_TYPE_BRAND => [
+        CivicthemeConstants::THEME_LIGHT => [],
+        CivicthemeConstants::THEME_DARK => [],
+      ],
+      static::COLOR_TYPE_PALETTE => [
+        CivicthemeConstants::THEME_LIGHT => [],
+        CivicthemeConstants::THEME_DARK => [],
+      ],
+    ];
   }
 
 }

@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * CivicTheme settings section to provide Storybook.
  */
-class CivicthemeSettingsSectionStorybook extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSectionBase {
 
   /**
    * {@inheritdoc}

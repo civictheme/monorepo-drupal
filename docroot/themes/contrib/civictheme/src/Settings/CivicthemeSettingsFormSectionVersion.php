@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CivicTheme settings section to display a version.
  */
-class CivicthemeSettingsSectionVersion extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSectionBase {
 
   /**
    * Version manager.

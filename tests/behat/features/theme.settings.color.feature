@@ -144,3 +144,22 @@ Feature: Check that Color settings are available in theme settings
 
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
+
+  # Drush driver does not support passing '--include', this test is skipped until patch provided.
+  @drush @skipped
+  Scenario: The CivicTheme theme color settings can be set through a Drush command
+    Given I run drush 'civictheme:set-brand-colors' '--include=docroot/themes/contrib/civictheme/src/Drush "#ff0000" "#ff0000" "#ff0000" "#ff0000" "#ff0000" "#ff0000"'
+    When I go to the homepage
+    Then save screenshot
+
+    Given I run drush 'civictheme:set-brand-colors' '--include=docroot/themes/contrib/civictheme/src/Drush "#00ff00" "#00ff00" "#00ff00" "#00ff00" "#00ff00" "#00ff00"'
+    When I go to the homepage
+    Then save screenshot
+
+    Given I run drush 'civictheme:set-brand-colors' '--include=docroot/themes/contrib/civictheme/src/Drush "#0000ff" "#0000ff" "#0000ff" "#0000ff" "#0000ff" "#0000ff"'
+    When I go to the homepage
+    Then save screenshot
+
+    Given I run drush 'civictheme:set-brand-colors' '--include=docroot/themes/contrib/civictheme/src/Drush "#00698f" "#e6e9eb" "#121313" "#61daff" "#003a4f" "#00698f"'
+    When I go to the homepage
+    Then save screenshot
