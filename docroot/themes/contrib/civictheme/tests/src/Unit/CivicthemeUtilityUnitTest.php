@@ -152,4 +152,28 @@ class CivicthemeUtilityUnitTest extends CivicThemeUnitTestBase {
     ];
   }
 
+  /**
+   * Test for toLabel().
+   *
+   * @dataProvider dataProviderToLabel
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function testToLabel($string, $expected) {
+    $actual = CivicthemeUtility::toLabel($string);
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Data provider for testToLabel().
+   */
+  public function dataProviderToLabel() {
+    return [
+      ['', ''],
+      ['hello', 'Hello'],
+      ['hello_world', 'Hello world'],
+      ['Hello earth', 'Hello earth'],
+      ['Hello-world', 'Hello-world'],
+    ];
+  }
+
 }
