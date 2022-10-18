@@ -59,4 +59,47 @@ class CivicthemeColorUtilityUnitTest extends CivicThemeUnitTestBase {
     ];
   }
 
+  /**
+   * Test for hexToRgb().
+   *
+   * @dataProvider dataProviderHexToRgb
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function testHexToRgb($hex, $expected) {
+    $actual = CivicthemeColorUtility::hexToRgb($hex);
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Data provider for testHexToRgb().
+   */
+  public function dataProviderHexToRgb() {
+    return [
+      ['#00698f', [0, 105, 143]],
+      ['e6e9eb', [230, 233, 235]],
+    ];
+  }
+
+  /**
+   * Test for intToHex().
+   *
+   * @dataProvider dataProviderIntToHex
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function testIntToHex($value, $expected) {
+    $actual = CivicthemeColorUtility::intToHex($value);
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Data provider for testIntToHex().
+   */
+  public function dataProviderIntToHex() {
+    return [
+      [124, '7c'],
+      [250, 'fa'],
+      [0, 00],
+    ];
+  }
+
 }
