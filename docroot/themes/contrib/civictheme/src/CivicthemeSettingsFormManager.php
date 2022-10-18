@@ -2,16 +2,16 @@
 
 namespace Drupal\civictheme;
 
-use Drupal\civictheme\Settings\CivicthemeSettingsAbstractSection;
+use Drupal\civictheme\Settings\CivicthemeSettingsFormSectionBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * CivicTheme settings manager.
+ * CivicTheme settings form manager.
  */
-class CivicthemeSettingsManager implements ContainerInjectionInterface {
+class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
 
   /**
    * Plugin loader.
@@ -51,7 +51,7 @@ class CivicthemeSettingsManager implements ContainerInjectionInterface {
   public function form(&$form, FormStateInterface &$form_state) {
     $sections = $this->pluginLoader->load(
       $this->themeExtensionList->get('civictheme')->getPath() . '/src/Settings',
-      CivicthemeSettingsAbstractSection::class
+      CivicthemeSettingsFormSectionBase::class
     );
 
     // Sort by weight.

@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * CivicTheme settings section to attach global elements.
  */
-class CivicthemeSettingsSectionAttached extends CivicthemeSettingsAbstractSection {
+class CivicthemeSettingsFormSectionAttached extends CivicthemeSettingsFormSectionBase {
 
   /**
    * {@inheritdoc}

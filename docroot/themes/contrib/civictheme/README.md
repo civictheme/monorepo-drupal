@@ -34,6 +34,21 @@ Run the following command from within `civictheme` theme directory:
 This will generate a sub-theme in 'path/to/theme_machine_name' theme directory
 with everything ready to be installed and compiled.
 
+## Setting Brand colors via Drush command
+
+Brand colors can be set using a Drush command
+
+    ./vendor/bin/drush --include=path/to/civictheme/src/Drush civictheme:set-brand-colors light_brand1 light_brand2 light_brand3 dark_brand1 dark_brand2 dark_brand3
+
+Example
+
+    ./vendor/bin/drush --include=docroot/themes/contrib/civictheme/src/Drush civictheme:set-brand-colors "#00698f" "#e6e9eb" "#121313" "#61daff" "#003a4f" "#00698f"
+
+Dynamic assets can be purged:
+
+    ./vendor/bin/drush --include=docroot/themes/contrib/civictheme/src/Drush civictheme:clear-cache
+
+
 ## Compiling sub-theme assets
 
 Run the following command from within your sub-theme directory:

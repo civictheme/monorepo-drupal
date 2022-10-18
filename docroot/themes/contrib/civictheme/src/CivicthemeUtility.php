@@ -92,4 +92,60 @@ final class CivicthemeUtility {
     return ucfirst(str_replace('_', ' ', $string));
   }
 
+  /**
+   * Flatten an array using a separator for keys.
+   *
+   * @param array $array
+   *   The array to flatten.
+   * @param string $separator
+   *   The key separator.
+   * @param string $prefix
+   *   Key from the previous call. Internal.
+   *
+   * @return array
+   *   Flattened one-dimensional array with keys from other arrays.
+   *
+   * @SuppressWarnings(ElseExpression)
+   */
+  public static function flattenArray(array $array, $separator = '.', $prefix = '') {
+    $result = [];
+
+    foreach ($array as $key => $value) {
+      if (is_array($value)) {
+        $result = $result + self::flattenArray($value, $separator, $prefix . $key . $separator);
+      }
+      else {
+        $result[$prefix . $key] = $value;
+      }
+    }
+
+    return $result;
+  }
+
+  /**
+   * Merge array keys and values using a separator.
+   *
+   * Limited only to scalar values.
+   *
+   * @param array $array
+   *   Array to merge.
+   * @param string $separator
+   *   Optional separator. Defaults to a single space ' '.
+   *
+   * @return array
+   *   Array with merged keys and values.
+   */
+  public static function arrayMergeKeysValues(array $array, $separator = ' ') {
+    $result = [];
+
+    foreach ($array as $k => $v) {
+      if (!is_scalar($v)) {
+        continue;
+      }
+      $result[] = $k . $separator . $v;
+    }
+
+    return $result;
+  }
+
 }

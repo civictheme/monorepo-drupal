@@ -67,8 +67,8 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     #{$root}__wrapper__inner {
-      @include ct-component-property($root, $theme, wrapper__inner, background-color);
-      @include ct-component-property($root, $theme, wrapper__inner, color);
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, color);
     }
   }
 }
