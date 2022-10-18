@@ -53,5 +53,5 @@ Feature: Tests the Campaign paragraph
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-image-position select.required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_date][0][value][date]']" element
     And I should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform" element
-    And should see an "input[name='field_c_n_components[0][subform][field_c_p_topics][0][target_id]']" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_topic][0][target_id]']" element
     And the option "Light" from select "Theme" is selected
