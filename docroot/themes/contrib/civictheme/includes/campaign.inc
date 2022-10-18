@@ -11,7 +11,6 @@
 function civictheme_preprocess_paragraph__civictheme_campaign(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_field_theme_value($paragraph, $variables['theme'] ?? NULL);
 
   _civictheme_preprocess_paragraph__card__image($variables);
 
