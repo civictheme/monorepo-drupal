@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civictheme_task_card
-label: 'Task card'
-icon_uuid: null
-icon_default: null
-description: ''
-behavior_plugins: {  }

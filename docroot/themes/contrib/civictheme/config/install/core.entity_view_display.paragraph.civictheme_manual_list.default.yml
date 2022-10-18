@@ -6,8 +6,6 @@ dependencies:
     - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
     - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_theme
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_view_as
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -58,20 +56,6 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 18
-    region: content
-  field_c_p_list_item_theme:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_c_p_list_item_view_as:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
     region: content
   field_c_p_list_items:
     type: entity_reference_revisions_entity_view

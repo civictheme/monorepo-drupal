@@ -300,17 +300,17 @@
   $sizes: ('large', 'regular', 'small');
 
   @if $size == 'large' {
-    @include ct-typography('label-extra-large');
+    @include ct-typography('label-large');
 
     @if $with-padding {
-      padding: ct-spacing(2) ct-spacing(5);
+      padding: ct-spacing(2) ct-spacing(6);
     }
   }
   @else if $size == 'regular' {
     @include ct-typography('label-regular');
 
     @if $with-padding {
-      padding: ct-spacing(2) ct-spacing(5);
+      padding: ct-spacing(1.75) ct-spacing(5);
     }
   }
   @else if $size == 'small' {
@@ -319,7 +319,7 @@
     border-width: math.div($ct-button-border-width, 2);
 
     @if $with-padding {
-      padding: ct-spacing() ct-spacing(3);
+      padding: ct-spacing() ct-spacing(4);
     }
   }
   @else {
