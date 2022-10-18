@@ -9,12 +9,6 @@
 
   position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &:focus-within {
-    @include ct-outline();
-  }
 
   &--image-position-right {
     > .container > .row {
@@ -93,7 +87,13 @@
     }
 
     #{$root}__summary {
-      @include ct-component-property($root, $theme, summary,  color);
+      @include ct-component-property($root, $theme, summary, color);
+    }
+
+    #{$root}__content-top,
+    #{$root}__content-middle,
+    #{$root}__content-bottom {
+      @include ct-component-property($root, $theme, content, color);
     }
   }
 }
