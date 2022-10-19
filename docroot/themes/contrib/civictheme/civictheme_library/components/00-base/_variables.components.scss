@@ -120,7 +120,7 @@ $ct-button-light-secondary-border-color: ct-color-light('interaction-background'
 $ct-button-light-secondary-color: $ct-button-light-secondary-border-color !default;
 $ct-button-light-secondary-hover-background-color: $ct-button-light-secondary-background-color !default;
 $ct-button-light-secondary-hover-border-color: ct-color-light('interaction-hover-background') !default;
-$ct-button-light-secondary-hover-color: $ct-button-light-secondary-hover-border-color;
+$ct-button-light-secondary-hover-color: $ct-button-light-secondary-hover-border-color !default;
 $ct-button-light-secondary-visited-background-color: $ct-button-light-secondary-background-color !default;
 $ct-button-light-secondary-visited-border-color: $ct-button-light-secondary-border-color !default;
 $ct-button-light-secondary-visited-color: $ct-button-light-secondary-color !default;
@@ -136,7 +136,7 @@ $ct-button-dark-secondary-border-color: ct-color-dark('interaction-background') 
 $ct-button-dark-secondary-color: $ct-button-dark-secondary-border-color !default;
 $ct-button-dark-secondary-hover-background-color: $ct-button-dark-secondary-background-color !default;
 $ct-button-dark-secondary-hover-border-color: ct-color-dark('interaction-hover-background') !default;
-$ct-button-dark-secondary-hover-color: $ct-button-dark-secondary-hover-border-color;
+$ct-button-dark-secondary-hover-color: $ct-button-dark-secondary-hover-border-color !default;
 $ct-button-dark-secondary-visited-background-color: $ct-button-dark-secondary-background-color !default;
 $ct-button-dark-secondary-visited-border-color: $ct-button-dark-secondary-border-color !default;
 $ct-button-dark-secondary-visited-color: $ct-button-dark-secondary-color !default;
@@ -154,7 +154,7 @@ $ct-button-light-tertiary-border-color: $ct-button-light-tertiary-background-col
 $ct-button-light-tertiary-color: ct-color-light('interaction-background') !default;
 $ct-button-light-tertiary-hover-background-color: $ct-button-light-tertiary-background-color !default;
 $ct-button-light-tertiary-hover-border-color: $ct-button-light-tertiary-border-color !default;
-$ct-button-light-tertiary-hover-color: ct-color-light('interaction-hover-background');
+$ct-button-light-tertiary-hover-color: ct-color-light('interaction-hover-background') !default;
 $ct-button-light-tertiary-visited-background-color: $ct-button-light-tertiary-background-color !default;
 $ct-button-light-tertiary-visited-border-color: $ct-button-light-tertiary-border-color !default;
 $ct-button-light-tertiary-visited-color: $ct-button-light-tertiary-color !default;
@@ -170,7 +170,7 @@ $ct-button-dark-tertiary-border-color: $ct-button-dark-tertiary-background-color
 $ct-button-dark-tertiary-color: ct-color-dark('interaction-background') !default;
 $ct-button-dark-tertiary-hover-background-color: $ct-button-dark-tertiary-background-color !default;
 $ct-button-dark-tertiary-hover-border-color: $ct-button-dark-tertiary-border-color !default;
-$ct-button-dark-tertiary-hover-color: ct-color-dark('interaction-hover-background');
+$ct-button-dark-tertiary-hover-color: ct-color-dark('interaction-hover-background') !default;
 $ct-button-dark-tertiary-visited-background-color: $ct-button-dark-tertiary-background-color !default;
 $ct-button-dark-tertiary-visited-border-color: $ct-button-dark-tertiary-border-color !default;
 $ct-button-dark-tertiary-visited-color: $ct-button-dark-tertiary-color !default;
@@ -364,7 +364,7 @@ $ct-content-link-dark-visited-hover-border-color: ct-color-dark('interaction-foc
 //
 // Link.
 //
-$ct-link-icon-external: url('#{$ct-assets-directory}icons/Arrows/Upper Right Arrow.svg');
+$ct-link-icon-external: url('#{$ct-assets-directory}icons/Arrows/Upper Right Arrow.svg') !default;
 $ct-link-light-color: ct-color-light('interaction-background') !default;
 $ct-link-light-hover-color: ct-color-light('interaction-hover-background') !default;
 $ct-link-light-visited-color: $ct-link-light-color !default;
@@ -524,7 +524,7 @@ $ct-basic-content-dark-wrapper-background-color: ct-color-dark('background') !de
 // Callout.
 //
 $ct-callout-border-radius: $ct-border-radius !default;
-$ct-callout-stripe-width: ct-particle(0.75);
+$ct-callout-stripe-width: ct-particle(0.75) !default;
 $ct-callout-light-background-color: ct-color-light('background') !default;
 $ct-callout-light-heading-color: ct-color-light('heading') !default;
 $ct-callout-light-summary-color: ct-color-light('body') !default;
@@ -673,10 +673,10 @@ $ct-service-card-dark-heading-color: ct-color-dark('heading') !default;
 // Cards/Subject card.
 //
 $ct-subject-card-border-radius: $ct-border-radius !default;
-$ct-subject-card-image-height-desktop: ct-particle(28);
-$ct-subject-card-image-height-mobile: ct-particle(20);
-$ct-subject-card-image-width-desktop: auto;
-$ct-subject-card-image-width-mobile: auto;
+$ct-subject-card-image-height-desktop: ct-particle(28) !default;
+$ct-subject-card-image-height-mobile: ct-particle(20) !default;
+$ct-subject-card-image-width-desktop: auto !default;
+$ct-subject-card-image-width-mobile: auto !default;
 $ct-subject-card-light-active-color: ct-color-light('body') !default;
 $ct-subject-card-light-color: ct-color-light('interaction-background') !default;
 $ct-subject-card-light-hover-color: ct-color-light('interaction-hover-background') !default;
@@ -737,7 +737,7 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 //
 // Logo.
 //
-$ct-logo-breakpoint: 'm';
+$ct-logo-breakpoint: 'm' !default;
 $ct-logo-image-width-min-mobile: ct-particle(25) !default;
 $ct-logo-image-width-max-mobile: ct-particle(30) !default;
 $ct-logo-image-width-min-desktop: ct-particle(25) !default;
@@ -819,14 +819,14 @@ $ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
 // Tabs.
 //
 $ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
-$ct-tabs-light-links-stripe-border-color: ct-color-light('border-light');
+$ct-tabs-light-links-stripe-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-links-background-color: ct-color-light('background') !default;
 $ct-tabs-light-links-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-links-active-background-color: ct-color-light('background-light') !default;
 $ct-tabs-light-links-active-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-panel-background-color: ct-color-light('background') !default;
 $ct-tabs-light-panel-border-color: ct-color-light('border') !default;
-$ct-tabs-dark-links-stripe-border-color: ct-color-dark('border-light');
+$ct-tabs-dark-links-stripe-border-color: ct-color-dark('border-light') !default;
 $ct-tabs-dark-links-background-color: ct-color-dark('background') !default;
 $ct-tabs-dark-links-border-color: ct-color-dark('border-light') !default;
 $ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !default;
@@ -866,7 +866,7 @@ $ct-tooltip-dark-icon-color: ct-color-dark('interaction-background') !default;
 $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
-$ct-accordion-stripe-width: ct-particle(0.75);
+$ct-accordion-stripe-width: ct-particle(0.75) !default;
 $ct-accordion-space-horizontal: ct-spacing(7) !default;
 $ct-accordion-light-background-color: ct-color-light('background-light') !default;
 $ct-accordion-light-border-color: ct-color-light('border-light') !default;
