@@ -3,7 +3,7 @@
 namespace Drupal\civictheme_migrate;
 
 use Drupal\Core\Extension\ExtensionPathResolver;
-use JakubOnderka\PhpParallelLint\ErrorFormatter;
+use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\JsonSchema\Validator;
 
 /**
@@ -55,7 +55,9 @@ class CivicThemeMigrateValidator {
   }
 
   /**
-   * Validate the JSON data against specified schema.
+   * Validate JSON data against specified schema and generate list of errors.
+   *
+   * If the array is empty then the JSON is valid against the schema.
    *
    * @param mixed $data
    *   Data to validate against.
@@ -75,7 +77,8 @@ class CivicThemeMigrateValidator {
     $validation_result = $this->validator->validate($data, $this->getSchemeUrl($scheme_id));
     if ($validation_result->hasError()) {
       $formatter = new ErrorFormatter();
-      $errors = [$formatter->format($validation_result->error())];
+      $formatted_errors = $formatter->formatFlat($validation_result->error());
+      $errors = $formatted_errors;
     }
     return $errors;
   }

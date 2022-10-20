@@ -1,4 +1,14 @@
 services:
+  civictheme_migrate.migrate_manager:
+    class: \Drupal\civictheme_migrate\CivicThemeMigrateManager
+    arguments:
+      - '@config.factory'
+      - '@http_client'
+      - '@file_system'
+      - '@serialization.yaml'
+      - '@extension.path.resolver'
+      - '@messenger'
+      - '@entity_type.manager'
   civictheme_migrate.validator:
     class: \Drupal\civictheme_migrate\CivicThemeMigrateValidator
     arguments:

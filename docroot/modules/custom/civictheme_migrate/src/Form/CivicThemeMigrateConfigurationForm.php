@@ -2,16 +2,11 @@
 
 namespace Drupal\civictheme_migrate\Form;
 
-use Drupal\Component\Serialization\Yaml;
+use Drupal\civictheme_migrate\CivicThemeMigrateManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Config\ConfigImporter;
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Extension\ExtensionPathResolver;
-use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use GuzzleHttp\ClientInterface;
-use PHPUnit\Util\Exception;
+use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,80 +15,36 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
 
   /**
-   * The HTTP client.
+   * CivicTheme Migration Manager instance.
    *
-   * @var \GuzzleHttp\Client
+   * @var \Drupal\civictheme_migrate\CivicThemeMigrateManager
    */
-  protected $httpClient;
+  protected $migrationManager;
 
   /**
-   * The file system.
+   * Messenger interface.
    *
-   * @var \Drupal\Core\File\FileSystemInterface
+   * @var \Drupal\Core\Messenger\MessengerInterface
    */
-  protected $fileSystem;
-
-  /**
-   * The file storage service.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $fileStorage;
-
-  /**
-   * Yaml serializer.
-   *
-   * @var \Drupal\Component\Serialization\Yaml
-   */
-  protected Yaml $yaml;
-
-  /**
-   * Extemnsion Path resolver.
-   *
-   * @var \Drupal\civictheme_migrate\Form\ExtensionPathResolver
-   */
-  protected ExtensionPathResolver $extensionPathResolver;
-
-  /**
-   * Config Importer.
-   *
-   * @var \Drupal\Core\Config\ConfigImporter
-   */
-  protected ConfigImporter $configImporter;
-
-  /**
-   * Migration Entity Storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected EntityStorageInterface $migrationStorage;
+  protected $messenger;
 
   /**
    * Constructor.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, ClientInterface $client, FileSystemInterface $file_system, EntityStorageInterface $file_storage, Yaml $yaml_serializer, ExtensionPathResolver $extension_path_resolver, EntityStorageInterface $migration_storage) {
+  public function __construct(ConfigFactoryInterface $config_factory, CivicThemeMigrateManager $migration_manager, MessengerInterface $messenger) {
     parent::__construct($config_factory);
-    $this->httpClient = $client;
-    $this->fileSystem = $file_system;
-    $this->fileStorage = $file_storage;
-    $this->yaml = $yaml_serializer;
-    $this->extensionPathResolver = $extension_path_resolver;
-    $this->migrationStorage = $migration_storage;
+    $this->migrationManager = $migration_manager;
+    $this->messenger = $messenger;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $entity_type_manager = $container->get('entity_type.manager');
     return new static(
       $container->get('config.factory'),
-      $container->get('http_client'),
-      $container->get('file_system'),
-      $entity_type_manager->getStorage('file'),
-      $container->get('serialization.yaml'),
-      $container->get('extension.path.resolver'),
-      $entity_type_manager->getStorage('migration'),
+      $container->get('civictheme_migrate.migrate_manager'),
+      $container->get('messenger')
     );
   }
 
@@ -226,7 +177,7 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['remote']['endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Merlin extracted content JSON URL endpoints'),
+      '#title' => $this->t('Migration source content JSON URL endpoints'),
       '#description' => $this->t('One URL each line'),
       '#default_value' => $config->get('remote')['endpoint'] ?? NULL,
       '#states' => [
@@ -295,7 +246,11 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     $this->saveConfig($form, $form_state);
 
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $this->generateMigrationConfigurationSubmit($form, $form_state);
+      $file_ids = $form_state->getValue('configuration_files');
+      $this->migrationManager->generateMigration($file_ids);
+      $form_state->setRedirect('entity.migration.list', [
+        'migration_group' => 'civictheme_migrate',
+      ]);
     }
 
   }
@@ -340,53 +295,15 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue('endpoint')));
     $config = $this->config('civictheme_migrate.settings');
     try {
-      $files = $this->retrieveFiles($urls, $form['configuration_files']['#upload_validators']);
+      $files = $this->migrationManager->retrieveRemoteFiles($urls, $form['configuration_files']['#upload_validators']);
       $existing_files = $config->get('configuration_files') ?? [];
       $config->set('configuration_files', array_merge($existing_files, $files));
-      $this->messenger()->addStatus($this->t('Merlin extracted content JSON files have been retrieved'));
+      $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
       $config->save();
     }
     catch (\Exception $exception) {
       $this->messenger()->addError($exception->getMessage());
     }
-  }
-
-  /**
-   * Handles submission to generate and import migration configuration.
-   *
-   * @param array $form
-   *   Form array.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   Formstate object.
-   */
-  protected function generateMigrationConfigurationSubmit(array &$form, FormStateInterface $form_state) {
-    $file_ids = $form_state->getValue('configuration_files');
-    $files = $this->fileStorage->loadMultiple($file_ids);
-    $file_stream_wrappers = [];
-    foreach ($files as $file) {
-      $file_stream_wrappers[] = $file->getFileUri();
-    }
-    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/migrate_plus.migration.civictheme_page.yml';
-    $migration_config = file_get_contents($migration_config_file_name);
-    $migration_config = $this->yaml->decode($migration_config);
-    $migration_config['source']['urls'] = $file_stream_wrappers;
-    $existing_migration = $this->migrationStorage->load('civictheme_page_migrate');
-    if ($existing_migration === NULL) {
-      $migration = $this->migrationStorage->create($migration_config);
-      $migration->save();
-      $this->messenger()->addStatus($this->t('Migration has been generated.'));
-    }
-    else {
-      // Adding all keys in case we update the asset migration template.
-      $existing_migration->set('process', $migration_config['process']);
-      $existing_migration->set('source', $migration_config['source']);
-      $existing_migration->set('destination', $migration_config['destination']);
-      $existing_migration->save();
-      $this->messenger()->addStatus($this->t('Migration has been updated.'));
-    }
-    $form_state->setRedirect('entity.migration.list', [
-      'migration_group' => 'civictheme_migrate',
-    ]);
   }
 
   /**
@@ -435,100 +352,6 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
     $button_title = $form_state->getTriggeringElement()['#value'] ?? '';
 
     return (string) $button_title === (string) $button_label;
-  }
-
-  /**
-   * Retrieve a remote migration JSON configuration file and store locally.
-   *
-   * @param array $urls
-   *   Array of remote migration files.
-   * @param array $validators
-   *   File upload validators.
-   *
-   * @return array
-   *   Array of file ids.
-   *
-   * @throws \Exception
-   */
-  protected function retrieveFiles(array $urls, array $validators):array {
-    $files = [];
-    $auth_headers = $this->getAuthHeaders();
-    foreach ($urls as $url) {
-      $file = $this->httpClient->get($url, $auth_headers);
-      $json = $file->getBody();
-      $filename = $this->generateFileName($url);
-      $directory = 'private://civictheme_migrate';
-      if ($this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY)) {
-        $uri = "$directory/$filename";
-        $path = $this->fileSystem->saveData($json, $uri);
-        $filename = basename($path);
-        $uri = "$directory/$filename";
-
-        /** @var \Drupal\file\FileInterface $file */
-        $file = $this->fileStorage->create(['uri' => $uri]);
-
-        // Carry out validation.
-        $errors = file_validate($file, $validators);
-        if (!empty($errors)) {
-          $error = array_pop($errors);
-          throw new Exception($error);
-        }
-        $file->setPermanent();
-        $file->save();
-        $files[] = (int) $file->get('fid')->getString();
-      }
-    }
-
-    return $files;
-  }
-
-  /**
-   * Gets the authentication headers and other options for retrieving files.
-   *
-   * @return array
-   *   Authentication header options.
-   */
-  protected function getAuthHeaders():array {
-    $config = $this->config('civictheme_migrate.settings');
-    $auth_type = $config->get('auth_type');
-    if (empty($auth_type)) {
-      return [];
-    }
-    switch ($auth_type) {
-      case 'basic':
-        return [
-          'auth' => [
-            $config->get('auth_username'),
-            $config->get('auth_password'),
-          ],
-        ];
-
-      // @todo implement other authentication methods as required.
-      default:
-        return [];
-    }
-  }
-
-  /**
-   * Generates a filename from a url JSON endpoint.
-   *
-   * @param string $url
-   *   Endpoint url.
-   *
-   * @return string
-   *   Generated file name.
-   */
-  protected function generateFileName($url):string {
-    $url_parts = parse_url($url);
-    $filename = !empty($url_parts['path']) ? preg_replace('/\//', '-', basename($url_parts['path'])) : 'configuration-file' . time();
-    if (strpos($filename, '-') === 0) {
-      $filename = substr($filename, 1);
-    }
-    if (strpos($filename, '.json') === FALSE && strpos($filename, '.txt') === FALSE) {
-      $filename .= '.json';
-    }
-
-    return $filename;
   }
 
 }

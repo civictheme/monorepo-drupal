@@ -48,7 +48,7 @@ class CivicThemeMigrateValidatorTest extends KernelTestBase {
     $json = json_decode(file_get_contents(__DIR__ .
       '/../../fixtures/migration_source_json/' . $file_path));
     $validation_result = $this->validator->validate($json, $schema_id);
-    $this->assertEquals($expected, $validation_result->isValid());
+    $this->assertEquals($expected, $validation_result);
   }
 
   /**
@@ -56,11 +56,32 @@ class CivicThemeMigrateValidatorTest extends KernelTestBase {
    */
   public function dataProviderJsonIsValid() {
     return [
-      ['invalid_no_id_key.json', 'civictheme_page', FALSE],
-      ['invalid_no_title_key.json', 'civictheme_page', FALSE],
-      ['invalid_not_array_of_objects.json', 'civictheme_page', FALSE],
-      ['valid_multiple_element.json', 'civictheme_page', TRUE],
-      ['valid_single_element.json', 'civictheme_page', TRUE],
+      [
+        'invalid_no_id_key.json',
+        'civictheme_page',
+        [
+          'All array items must match schema',
+          'The required properties (id) are missing',
+        ],
+      ],
+      [
+        'invalid_no_title_key.json',
+        'civictheme_page',
+        [
+          'All array items must match schema',
+          'The required properties (title) are missing',
+        ],
+      ],
+      [
+        'invalid_not_array_of_objects.json',
+        'civictheme_page',
+        [
+          'All array items must match schema',
+          'The data (integer) must match the type: object',
+        ],
+      ],
+      ['valid_multiple_element.json', 'civictheme_page', []],
+      ['valid_single_element.json', 'civictheme_page', []],
     ];
   }
 

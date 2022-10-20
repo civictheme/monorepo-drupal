@@ -12,7 +12,7 @@ Feature: Tests the CivicTheme migration functionality
     And I should not see a visible "textarea[name='endpoint'][required='required']" element
     And I select the radio button "Remote"
     And I should see the text "Connect to remote Merlin UI API to retrieve extracted content JSON files"
-    And I see the text "Merlin extracted content JSON URL endpoints"
+    And I see the text "Migration source content JSON URL endpoints"
     And I should see a visible "textarea[name='endpoint'][required='required']" element
     And I should not see a visible "input[name='auth_username'][required='required']" element
     And I should not see a visible "input[name='auth_password'][required='required']" element
@@ -31,11 +31,11 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
+    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     # Can't test error messages directly as admin theme is not adding the behat configured error class.
     And I should see the text "JSON is malformed / invalid"
-    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
+    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
 
@@ -48,9 +48,9 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as an administrator
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
+    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
     And I press the "Retrieve files" button
-    And I should see the message "Merlin extracted content JSON files have been retrieved"
+    And I should see the message "Migration content files have been retrieved"
     And I press the "Generate migration" button
     And I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
     And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migrate/execute"
