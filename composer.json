@@ -21,7 +21,8 @@
         "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
-        "webflo/drupal-finder": "^1.2"
+        "webflo/drupal-finder": "^1.2",
+        "salsadigitalauorg/civictheme_migrate": "^0.1"
     },
     "require-dev": {
         "behat/behat": "^3.7",
@@ -91,6 +92,19 @@
                     "url": "https://github.com/dropzone/dropzone/archive/refs/tags/v5.7.2.zip"
                 }
             }
+        },
+        "salsadigitalauorg/civictheme_migrate": {
+            "type": "package",
+            "package": {
+                "name": "civictheme_migrate",
+                "version": "0.1",
+                "type": "drupal-custom-module",
+                "dist": {
+                    "type": "path",
+                    "url": "docroot/modules/custom/civictheme_migrate"
+                }
+            }
+
         }
     },
     "scripts": {
@@ -155,6 +169,9 @@
             ],
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
+            ],
+            "docroot/modules/custom/{$name}": [
+                "type:drupal-custom-module"
             ],
             "docroot/profiles/contrib/{$name}": [
                 "type:drupal-profile"

@@ -3,7 +3,7 @@
 namespace Drupal\civictheme_migrate;
 
 use Drupal\Core\Extension\ExtensionPathResolver;
-use Opis\JsonSchema\ValidationResult;
+use JakubOnderka\PhpParallelLint\ErrorFormatter;
 use Opis\JsonSchema\Validator;
 
 /**
@@ -50,7 +50,7 @@ class CivicThemeMigrateValidator {
     $files = glob($schema_directory);
     foreach ($files as $file) {
       $schema_id = str_replace('.json', '', basename($file));
-      $this->validator->resolver()->registerFile($this->getSchemeId($schema_id), DRUPAL_ROOT . '/' . $file);
+      $this->validator->resolver()->registerFile($this->getSchemeUrl($schema_id), DRUPAL_ROOT . '/' . $file);
     }
   }
 
@@ -62,11 +62,21 @@ class CivicThemeMigrateValidator {
    * @param string $scheme_id
    *   Scheme id to validate data against.
    *
-   * @return \Opis\JsonSchema\ValidationResult
-   *   Result from validation.
+   * @return array
+   *   Array of error messages from validation.
    */
-  public function validate($data, $scheme_id):ValidationResult {
-    return $this->validator->validate($data, $this->getSchemeId($scheme_id));
+  public function validate($data, $scheme_id):array {
+    $errors = [];
+
+    if ($data === NULL) {
+      return ['JSON is malformed / invalid.'];
+    }
+
+    $validation_result = $this->validator->validate($data, $this->getSchemeUrl($scheme_id));
+    $formatter = new ErrorFormatter();
+    $errors = [$formatter->format($validation_result->error())];
+
+    return $errors;
   }
 
   /**
@@ -80,7 +90,7 @@ class CivicThemeMigrateValidator {
    * @return string
    *   URI scheme id.
    */
-  protected function getSchemeId(string $schema_id):string {
+  protected function getSchemeUrl(string $schema_id):string {
     return 'https://civictheme.io/api/migration/' . $schema_id;
   }
 

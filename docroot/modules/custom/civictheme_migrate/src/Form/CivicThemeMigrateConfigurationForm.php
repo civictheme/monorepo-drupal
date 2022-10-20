@@ -15,7 +15,7 @@ use PHPUnit\Util\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Configure CivicTheme Migrate from Merlin Migration JSON files.
+ * Configure CivicTheme Migrate.
  */
 class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
 
