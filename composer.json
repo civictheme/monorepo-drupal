@@ -94,17 +94,8 @@
             }
         },
         "salsadigitalauorg/civictheme_migrate": {
-            "type": "package",
-            "package": {
-                "name": "civictheme_migrate",
-                "version": "0.1",
-                "type": "drupal-custom-module",
-                "dist": {
-                    "type": "path",
-                    "url": "docroot/modules/custom/civictheme_migrate"
-                }
-            }
-
+            "type": "path",
+            "url": "docroot/modules/custom/civictheme_migrate"
         }
     },
     "scripts": {

@@ -1,5 +1,6 @@
 {
   "name": "salsadigitalauorg/civictheme_migrate",
+  "version": "0.1",
   "description": "Create and configure local and remote migrations into CivicTheme.",
   "type": "drupal-module",
   "license": "proprietary",
