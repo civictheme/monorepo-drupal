@@ -95,7 +95,7 @@
         },
         "salsadigitalauorg/civictheme_migrate": {
             "type": "path",
-            "url": "docroot/modules/custom/civictheme_migrate"
+            "url": "/app/docroot/modules/custom/civictheme_migrate"
         }
     },
     "scripts": {
