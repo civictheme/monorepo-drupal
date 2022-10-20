@@ -34,7 +34,7 @@ Feature: Tests the CivicTheme migration functionality
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     # Can't test error messages directly as admin theme is not adding the behat configured error class.
-    And I should see the text "is not valid JSON"
+    And I should see the text "JSON is malformed / invalid"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"

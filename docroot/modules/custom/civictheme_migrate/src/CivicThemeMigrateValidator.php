@@ -73,9 +73,10 @@ class CivicThemeMigrateValidator {
     }
 
     $validation_result = $this->validator->validate($data, $this->getSchemeUrl($scheme_id));
-    $formatter = new ErrorFormatter();
-    $errors = [$formatter->format($validation_result->error())];
-
+    if ($validation_result->hasError()) {
+      $formatter = new ErrorFormatter();
+      $errors = [$formatter->format($validation_result->error())];
+    }
     return $errors;
   }
 
