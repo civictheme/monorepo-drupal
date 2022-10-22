@@ -2,7 +2,7 @@
 
 namespace Drupal\civictheme_migrate\Form;
 
-use Drupal\civictheme_migrate\CivicThemeMigrateManager;
+use Drupal\civictheme_migrate\CivicthemeMigrateManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -12,12 +12,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Configure CivicTheme Migrate.
  */
-class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
+class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
   /**
    * CivicTheme Migration Manager instance.
    *
-   * @var \Drupal\civictheme_migrate\CivicThemeMigrateManager
+   * @var \Drupal\civictheme_migrate\CivicthemeMigrateManager
    */
   protected $migrationManager;
 
@@ -31,7 +31,7 @@ class CivicThemeMigrateConfigurationForm extends ConfigFormBase {
   /**
    * Constructor.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, CivicThemeMigrateManager $migration_manager, MessengerInterface $messenger) {
+  public function __construct(ConfigFactoryInterface $config_factory, CivicthemeMigrateManager $migration_manager, MessengerInterface $messenger) {
     parent::__construct($config_factory);
     $this->migrationManager = $migration_manager;
     $this->messenger = $messenger;

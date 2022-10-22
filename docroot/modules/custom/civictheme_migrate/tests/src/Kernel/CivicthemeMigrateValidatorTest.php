@@ -3,18 +3,18 @@
 // phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
 namespace Drupal\Tests\civictheme_migrate\Kernel;
 
-use Drupal\civictheme_migrate\CivicThemeMigrateValidator;
+use Drupal\civictheme_migrate\CivicthemeMigrateValidator;
 use Drupal\KernelTests\KernelTestBase;
 use Opis\JsonSchema\Validator;
 
 /**
- * Class CivicThemeMigrateValidatorTest.
+ * Class CivicthemeMigrateValidatorTest.
  *
  * Test cases for processing validating JSON migration source files.
  *
  * @group CivicTheme
  */
-class CivicThemeMigrateValidatorTest extends KernelTestBase {
+class CivicthemeMigrateValidatorTest extends KernelTestBase {
 
   /**
    * {@inheritdoc}
@@ -24,7 +24,7 @@ class CivicThemeMigrateValidatorTest extends KernelTestBase {
   /**
    * Validator instance.
    *
-   * @var \Drupal\civictheme_migrate\CivicThemeMigrateValidator
+   * @var \Drupal\civictheme_migrate\CivicthemeMigrateValidator
    */
   protected $validator;
 
@@ -33,7 +33,7 @@ class CivicThemeMigrateValidatorTest extends KernelTestBase {
    */
   protected function setUp():void {
     parent::setUp();
-    $this->validator = new CivicThemeMigrateValidator(
+    $this->validator = new CivicthemeMigrateValidator(
       new Validator(),
       $this->container->get('extension.path.resolver')
     );

@@ -9,7 +9,7 @@ use Opis\JsonSchema\Validator;
 /**
  * Validates uploaded migration source JSON files to confirm with schema.
  */
-class CivicThemeMigrateValidator {
+class CivicthemeMigrateValidator {
   /**
    * Extension path resolver instance.
    *

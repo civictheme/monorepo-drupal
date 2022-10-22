@@ -20,7 +20,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 /**
  * Manage and configure CivicTheme Migrations.
  */
-class CivicThemeMigrateManager implements ContainerInjectionInterface {
+class CivicthemeMigrateManager implements ContainerInjectionInterface {
 
   use StringTranslationTrait;
   use MessengerTrait;

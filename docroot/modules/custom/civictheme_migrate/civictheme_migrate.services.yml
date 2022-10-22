@@ -1,6 +1,6 @@
 services:
   civictheme_migrate.migrate_manager:
-    class: \Drupal\civictheme_migrate\CivicThemeMigrateManager
+    class: \Drupal\civictheme_migrate\CivicthemeMigrateManager
     arguments:
       - '@config.factory'
       - '@http_client'
@@ -10,7 +10,7 @@ services:
       - '@messenger'
       - '@entity_type.manager'
   civictheme_migrate.validator:
-    class: \Drupal\civictheme_migrate\CivicThemeMigrateValidator
+    class: \Drupal\civictheme_migrate\CivicthemeMigrateValidator
     arguments:
       - '@civictheme_migrate.json_schema_validator'
       - '@extension.path.resolver'
