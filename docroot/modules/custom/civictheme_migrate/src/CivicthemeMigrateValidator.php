@@ -15,7 +15,7 @@ class CivicthemeMigrateValidator {
    *
    * @var \Drupal\Core\Extension\ExtensionPathResolver
    */
-  protected ExtensionPathResolver $extensionPathResolver;
+  protected $extensionPathResolver;
 
 
   /**
@@ -23,18 +23,18 @@ class CivicthemeMigrateValidator {
    *
    * @var \Opis\JsonSchema\Validator
    */
-  protected Validator $validator;
+  protected $jsonValidator;
 
   /**
    * Constructor.
    *
-   * @param \Opis\JsonSchema\Validator $validator
+   * @param \Opis\JsonSchema\Validator $json_validator
    *   JSON Schema Validator.
    * @param \Drupal\Core\Extension\ExtensionPathResolver $extension_path_resolver
    *   Service to resolve extension paths.
    */
-  public function __construct(Validator $validator, ExtensionPathResolver $extension_path_resolver) {
-    $this->validator = $validator;
+  public function __construct(Validator $json_validator, ExtensionPathResolver $extension_path_resolver) {
+    $this->jsonValidator = $json_validator;
     $this->extensionPathResolver = $extension_path_resolver;
     $this->registerSchemas();
   }
@@ -46,11 +46,11 @@ class CivicthemeMigrateValidator {
    * file extension is the identifier for the schema being registered.
    */
   protected function registerSchemas() {
-    $schema_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/schema/*.json';
-    $files = glob($schema_directory);
+    $schema_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/schema/';
+    $files = glob($schema_directory . '*.json');
     foreach ($files as $file) {
-      $schema_id = str_replace('.json', '', basename($file));
-      $this->validator->resolver()->registerFile($this->getSchemeUrl($schema_id), DRUPAL_ROOT . '/' . $file);
+      $schema_id = basename($file, '.json');
+      $this->jsonValidator->resolver()->registerFile($this->getSchemeUrl($schema_id), DRUPAL_ROOT . '/' . $file);
     }
   }
 
@@ -74,7 +74,7 @@ class CivicthemeMigrateValidator {
       return ['JSON is malformed / invalid.'];
     }
 
-    $validation_result = $this->validator->validate($data, $this->getSchemeUrl($scheme_id));
+    $validation_result = $this->jsonValidator->validate($data, $this->getSchemeUrl($scheme_id));
     if ($validation_result->hasError()) {
       $formatter = new ErrorFormatter();
       $formatted_errors = $formatter->formatFlat($validation_result->error());

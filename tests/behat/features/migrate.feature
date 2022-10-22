@@ -1,6 +1,20 @@
 @civictheme @civictheme_migrate
 Feature: Tests the CivicTheme migration functionality
 
+  @api
+  Scenario Outline: Only administrator can access the CivicTheme migration configuration form
+
+    Given I am logged in as a user with the "<role>" role
+    When I go to "admin/config/civictheme-migrate"
+    Then the response status code should be <code>
+
+    Examples:
+      | role                          | code |
+      | civictheme_content_author     | 403  |
+      | civictheme_content_approver   | 403  |
+      | civictheme_site_administrator | 403  |
+      | administrator                 | 200  |
+
   @api @javascript
   Scenario: Migration configuration form should be setup correctly
     Given I am logged in as a user with the "administrator" role
@@ -59,18 +73,3 @@ Feature: Tests the CivicTheme migration functionality
     And I wait 10 seconds
     And I visit "[TEST] Migrated Content 3"
     And I visit "[TEST] Migrated Content 10"
-
-  @api
-  Scenario Outline: Only administrator can access the CivicTheme migration configuration form
-
-    Given I am logged in as a user with the "<role>" role
-    When I go to "admin/config/civictheme-migrate"
-    Then the response status code should be <code>
-
-    Examples:
-      | role                          | code |
-      | civictheme_content_author     | 403  |
-      | civictheme_content_approver   | 403  |
-      | civictheme_site_administrator | 403  |
-      | administrator                 | 200  |
-
