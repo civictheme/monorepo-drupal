@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14655a4e48d36ae71e46a6a1513abe9b",
+    "content-hash": "a20719ca907fc4947ce42e6a2f03511d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5296,10 +5296,6 @@
             ],
             "authors": [
                 {
-                    "name": "eleonel",
-                    "homepage": "https://www.drupal.org/user/440810"
-                },
-                {
                     "name": "kyberman",
                     "homepage": "https://www.drupal.org/user/402924"
                 },
@@ -5741,10 +5737,6 @@
                     "name": "Alexander Ross (bleen)",
                     "homepage": "https://www.drupal.org/u/bleen",
                     "role": "Maintainer"
-                },
-                {
-                    "name": "Rajeshreeputra",
-                    "homepage": "https://www.drupal.org/user/3418561"
                 }
             ],
             "description": "Focal Point allows content creators to mark the most important part of an image for easier cropping.",
@@ -13196,29 +13188,6 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
-        },
-        {
-            "name": "salsadigitalauorg/civictheme_migrate",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "/app/docroot/modules/custom/civictheme_migrate",
-                "reference": "5c3c0f75f2ea38c5e3559dd3584bac1dfcdfe964"
-            },
-            "require": {
-                "drupal/migrate_plus": "^6.0",
-                "drupal/migrate_tools": "^6.0",
-                "opis/json-schema": "^2.3",
-                "php": ">=8.0"
-            },
-            "type": "drupal-module",
-            "license": [
-                "proprietary"
-            ],
-            "description": "Create and configure local and remote migrations into CivicTheme.",
-            "transport-options": {
-                "relative": false
-            }
         },
         {
             "name": "solarium/solarium",

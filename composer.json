@@ -20,9 +20,9 @@
         "drush/drush": "^11",
         "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
+        "opis/json-schema": "^2.3",
         "vlucas/phpdotenv": "^5.1",
-        "webflo/drupal-finder": "^1.2",
-        "salsadigitalauorg/civictheme_migrate": "^0.1"
+        "webflo/drupal-finder": "^1.2"
     },
     "require-dev": {
         "behat/behat": "^3.7",
@@ -92,10 +92,6 @@
                     "url": "https://github.com/dropzone/dropzone/archive/refs/tags/v5.7.2.zip"
                 }
             }
-        },
-        "salsadigitalauorg/civictheme_migrate": {
-            "type": "path",
-            "url": "/app/docroot/modules/custom/civictheme_migrate"
         }
     },
     "scripts": {
@@ -123,12 +119,12 @@
         },
         "patches": {
             "drupal/core": {
-                "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch",
-                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
+              "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch",
+              "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
+              "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
             },
             "drupal/webform": {
-                "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
+              "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
             }
         },
         "drupal-scaffold": {
@@ -160,9 +156,6 @@
             ],
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
-            ],
-            "docroot/modules/custom/{$name}": [
-                "type:drupal-custom-module"
             ],
             "docroot/profiles/contrib/{$name}": [
                 "type:drupal-profile"

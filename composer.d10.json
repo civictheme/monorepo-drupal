@@ -24,6 +24,8 @@
         "drupal/layout_builder_restrictions": "@dev",
         "drupal/linkit": "@dev",
         "drupal/menu_block": "dev-8.x-1.8",
+        "drupal/migrate_plus": "^6.0",
+        "drupal/migrate_tools": "^6.0",
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
         "drupal/redirect": "^1.8",
@@ -34,6 +36,7 @@
         "drupal/webform": "dev-6.2.x",
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
+        "opis/json-schema": "^2.3",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
     },
@@ -177,7 +180,7 @@
                 }
             }
         },
-        "drupal/styleguide":  {
+      "drupal/styleguide":  {
             "type": "package",
             "package": {
                 "name": "drupal/styleguide",
