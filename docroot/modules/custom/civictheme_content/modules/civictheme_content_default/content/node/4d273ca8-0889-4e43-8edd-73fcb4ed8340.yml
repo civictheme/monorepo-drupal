@@ -88,7 +88,7 @@ default:
 
                 Antehabeo augue elit esse inhibeo paulatim refero refoveo wisi. Causa ex populus quidne roto verto. Consequat euismod probo roto vel virtus vulputate zelus. Ad illum immitto olim. Augue exerci pertineo probo proprius voco. At diam dignissim letalis nulla obruo odio quidem utinam.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -153,7 +153,7 @@ default:
 
                 Dolus facilisi mauris nulla tamen tego veniam. Distineo duis exerci gemino iriure te tego utinam. Defui huic importunus mauris scisco. Accumsan cogo feugiat humo interdico lucidus nunc scisco wisi zelus. Enim facilisis illum quadrum. Defui erat gilvus imputo in interdico nimis premo si.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
