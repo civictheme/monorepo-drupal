@@ -19,37 +19,37 @@ export const Attachment = (knobTab) => {
   const links = [
     {
       url: randomUrl(),
-      text: 'DOC type document',
+      text: 'DOC type document <span class="extension">(DOC, 42.88 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'DOCX type document',
+      text: 'DOCX type document <span class="extension">(DOCX, 32.48 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'PDF type document',
+      text: 'PDF type document <span class="extension">(PDF, 42.82 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'PPT type document',
+      text: 'PPT type document <span class="extension">(PPT, 12.88 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLSX type document',
+      text: 'XLSX type document <span class="extension">(XLSX, 34.45 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLS type document',
+      text: 'XLS type document <span class="extension">(XLS, 65.67 KB)</span>',
       last_updated: date,
       icon: 'download-file',
     },
