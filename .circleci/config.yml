@@ -52,6 +52,9 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_admin.
   - &deploy_ssh_fingerprint5 "a8:ac:6a:dc:6c:af:fd:a3:82:3d:12:06:20:ec:5a:f9"
 
+  # SSH key fingerprint to deploy code to civictheme_migrate.
+  - &deploy_ssh_fingerprint6 "58:a5:e8:af:8c:3f:c8:5d:f8:a0:58:03:07:81:73:cf"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -87,6 +90,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
+      DEPLOY_SSH_FINGERPRINT6: *deploy_ssh_fingerprint6
     docker:
       - image: drevops/ci-builder
         auth:
@@ -299,6 +303,7 @@ jobs:
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
             - *deploy_ssh_fingerprint5
+            - *deploy_ssh_fingerprint6
       - checkout
       - *step_process_codebase
       - run:
@@ -348,6 +353,16 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
+      - run:
+          name: Deploy release to CivicTheme Migrate repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT6 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_migrate.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_migrate" \
             DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
