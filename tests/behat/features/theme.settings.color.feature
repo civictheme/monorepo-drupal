@@ -165,6 +165,32 @@ Feature: Check that Color settings are available in theme settings
     When I go to the homepage
     Then save screenshot
 
+  @api @javascript
+  Scenario: The CivicTheme theme produced colors have values produced from selected brand colors.
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
+    And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
+    And I press "Save configuration"
+    And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
+    And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
+    And I scroll to an element with id "edit-colors-palette-light-background"
+    Then save screenshot
+  
+  @api @javascript
+  Scenario: The CivicTheme theme produced colors can have overriden colors.
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
+    And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
+    And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
+    And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
+    And I fill color in "#edit-colors-palette-light-background-background-light" with "#000000"
+    And I press "Save configuration"
+    And I scroll to an element with id "edit-colors-palette-light-background"
+    Then save screenshot
+    Then I should see an "#edit-colors-palette-light-background-background-light[value='#000000']" element
+
   @api
   Scenario: To check that generating a color file has different suffix per theme.
     Given I am logged in as a user with the "Site Administrator" role
