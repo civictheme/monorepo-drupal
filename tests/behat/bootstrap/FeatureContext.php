@@ -261,4 +261,22 @@ class FeatureContext extends DrupalContext {
     }
   }
 
+  /**
+   * Fills in form color field with specified id|name|label|value.
+   *
+   * Example: When I fill color in "#colorpickerHolder" with: "#ffffff"
+   *
+   * @When /^(?:|I )fill color in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+   * @When /^(?:|I )fill color in "(?P<field>(?:[^"]|\\")*)" with:$/
+   * @When /^(?:|I )fill color in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
+   */
+  public function fillColorField($field, $value) {
+    $js = sprintf(
+      'jQuery("%s").val("%s").change();',
+      $field,
+      $value
+    );
+    return $this->getSession()->evaluateScript($js);
+  }
+
 }
