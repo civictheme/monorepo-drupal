@@ -137,6 +137,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_attachment.default
     - core.entity_form_display.paragraph.civictheme_automated_list.default
     - core.entity_form_display.paragraph.civictheme_callout.default
+    - core.entity_form_display.paragraph.civictheme_campaign.default
     - core.entity_form_display.paragraph.civictheme_content.default
     - core.entity_form_display.paragraph.civictheme_event_card.default
     - core.entity_form_display.paragraph.civictheme_event_card_ref.default
@@ -201,6 +202,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_attachment.default
     - core.entity_view_display.paragraph.civictheme_automated_list.default
     - core.entity_view_display.paragraph.civictheme_callout.default
+    - core.entity_view_display.paragraph.civictheme_campaign.default
     - core.entity_view_display.paragraph.civictheme_content.default
     - core.entity_view_display.paragraph.civictheme_event_card.default
     - core.entity_view_display.paragraph.civictheme_event_card_ref.default
@@ -327,6 +329,15 @@ config_devel:
     - field.field.paragraph.civictheme_callout.field_c_p_theme
     - field.field.paragraph.civictheme_callout.field_c_p_title
     - field.field.paragraph.civictheme_callout.field_c_p_vertical_spacing
+    - field.field.paragraph.civictheme_campaign.field_c_p_content
+    - field.field.paragraph.civictheme_campaign.field_c_p_date
+    - field.field.paragraph.civictheme_campaign.field_c_p_image
+    - field.field.paragraph.civictheme_campaign.field_c_p_image_position
+    - field.field.paragraph.civictheme_campaign.field_c_p_summary
+    - field.field.paragraph.civictheme_campaign.field_c_p_theme
+    - field.field.paragraph.civictheme_campaign.field_c_p_title
+    - field.field.paragraph.civictheme_campaign.field_c_p_topic
+    - field.field.paragraph.civictheme_campaign.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_content.field_c_p_background
     - field.field.paragraph.civictheme_content.field_c_p_content
     - field.field.paragraph.civictheme_content.field_c_p_theme
