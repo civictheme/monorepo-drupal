@@ -46,6 +46,7 @@ class CivicthemeGovcmsManager {
       'user_roles' => [static::class, 'removeGovcmsUserRoles'],
       'menus' => [static::class, 'removeGovcmsMenus'],
       'pathauto_patterns' => [static::class, 'removeGovcmsPathautoPatterns'],
+      'workflows' => [static::class, 'removeGovcmsWorkflows'],
     ];
   }
 
@@ -270,6 +271,22 @@ class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('pathauto_pattern')->load($name);
+      if ($entity) {
+        $entity->delete();
+      }
+    }
+  }
+
+  /**
+   * Removes GovCMS Workflows patterns.
+   */
+  protected function removeGovcmsWorkflows() {
+    $names = [
+      'editorial',
+    ];
+
+    foreach ($names as $name) {
+      $entity = $this->entityTypeManager->getStorage('workflow')->load($name);
       if ($entity) {
         $entity->delete();
       }
