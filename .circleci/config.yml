@@ -154,7 +154,7 @@ job-build: &job-build
         command: ahoy lint
     - run:
         name: Lint theme config
-        command: ahoy lint config || true
+        command: ahoy lint config
     - run:
         name: Run tooling tests
         command: ./scripts/test-tooling.sh
