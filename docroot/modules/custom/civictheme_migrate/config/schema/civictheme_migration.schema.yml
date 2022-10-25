@@ -1,0 +1,42 @@
+# Schema for the configuration files of CivicTheme Migrate.
+
+civictheme_migrate.settings:
+  type: config_object
+  label: 'CivicTheme Migrate settings'
+  mapping:
+    migration_type:
+      label: 'Migration type'
+      type: string
+      nullable: true
+    remote:
+      label: 'Remote migration settings'
+      type: mapping
+      mapping:
+        auth_type:
+          label: 'Remote files authentication type'
+          type: string
+          nullable: true
+        auth_username:
+          label: 'Username'
+          type: string
+          nullable: true
+        auth_password:
+          label: 'Password'
+          type: string
+          nullable: true
+        auth_token:
+          label: 'API token'
+          type: string
+          nullable: true
+        endpoint:
+          label: 'Merlin Generated JSON Endpoints'
+          type: string
+          nullable: true
+    configuration_files:
+      label: 'List of configuration files'
+      type: 'sequence'
+      nullable: true
+      sequence:
+        label: 'Migration file url'
+        type: 'string'
+

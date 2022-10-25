@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * CivicTheme Migrate module.
+ */
+
+use Drupal\file\FileInterface;
+
+/**
+ * Checks that the file is recognized as a valid JSON file.
+ *
+ * @param \Drupal\file\FileInterface $file
+ *   A file entity.
+ * @param string $schema_id
+ *   Schema ID to validate the JSON file against.
+ *
+ * @return array
+ *   An empty array if the file is a valid JSON file or an array containing
+ *   an error message if it's not.
+ *
+ * @see hook_file_validate()
+ */
+function civictheme_migrate_validate_json(FileInterface $file, $schema_id) {
+  $json = json_decode(file_get_contents($file->getFileUri()));
+
+  /** @var \Drupal\civictheme_migrate\CivicthemeMigrateValidator $schema_validator */
+  $schema_validator = \Drupal::service('civictheme_migrate.validator');
+
+  return $schema_validator->validate($json, $schema_id);
+}

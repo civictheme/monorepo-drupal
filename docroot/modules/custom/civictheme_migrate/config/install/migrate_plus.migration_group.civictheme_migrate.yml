@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_migrate
+label: 'CivicTheme Migrate'
+description: 'CivicTheme Merlin UI Migration'
+source_type: 'Merlin UI'
+module: null
+shared_configuration: null
