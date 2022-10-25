@@ -100,8 +100,8 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     $config = $this->config("civictheme_migrate.settings");
 
     $form['migration_type'] = [
-      '#title' => $this->t('Where are your Merlin extracted content JSON files?'),
-      '#description' => $this->t('Upload Merlin extracted content json files or connect to a remote URLS to retrieve'),
+      '#title' => $this->t('Content files location'),
+      '#description' => $this->t('Upload extracted content JSON files or connect to a remote URLS to retrieve'),
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => [
@@ -113,7 +113,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['remote'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Connect to remote Merlin UI API to retrieve extracted content JSON files'),
+      '#title' => $this->t('Connect to remote API to retrieve extracted content JSON files'),
       '#states' => [
         'visible' => [
           ':input[name="migration_type"]' => ['value' => 'remote'],
@@ -196,7 +196,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['configuration_files'] = [
       '#type' => 'managed_file',
-      '#title' => $this->t('Upload Merlin extracted content JSON Files'),
+      '#title' => $this->t('Upload extracted content JSON Files'),
       '#default_value' => $config->get('configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',

@@ -29,7 +29,7 @@ civictheme_migrate.settings:
           type: string
           nullable: true
         endpoint:
-          label: 'Merlin Generated JSON Endpoints'
+          label: 'Remote content JSON Endpoints'
           type: string
           nullable: true
     configuration_files:
