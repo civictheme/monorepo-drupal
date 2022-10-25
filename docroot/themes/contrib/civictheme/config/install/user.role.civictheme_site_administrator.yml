@@ -16,7 +16,6 @@ dependencies:
     - taxonomy.vocabulary.civictheme_topics
   module:
     - block
-    - content_moderation
     - contextual
     - file
     - filter
