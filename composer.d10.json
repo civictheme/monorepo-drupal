@@ -35,7 +35,8 @@
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
-        "webflo/drupal-finder": "^1.2"
+        "webflo/drupal-finder": "^1.2",
+        "wikimedia/composer-merge-plugin": "^2.0"
     },
     "require-dev": {
         "behat/behat": "^3.7",
@@ -79,7 +80,8 @@
             "oomphinc/composer-installers-extender": true,
             "pyrech/composer-changelogs": true,
             "zaporylie/composer-drupal-optimizations": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "conflict": {
@@ -177,7 +179,7 @@
                 }
             }
         },
-      "drupal/styleguide":  {
+        "drupal/styleguide":  {
             "type": "package",
             "package": {
                 "name": "drupal/styleguide",
@@ -307,6 +309,19 @@
             "bower-asset",
             "npm-asset"
         ],
+        "merge-plugin": {
+            "include": [
+                "docroot/modules/custom/*/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-replace": true,
+            "merge-scripts": false
+        },
         "preserve-paths": [
             "docroot/modules/custom",
             "docroot/themes/custom",

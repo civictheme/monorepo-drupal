@@ -5,7 +5,7 @@
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
-        "govcms/govcms": "^2"
+        "govcms/govcms": "^2.18"
     },
     "extra": {
         "drush": {

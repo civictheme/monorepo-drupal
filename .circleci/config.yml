@@ -67,7 +67,7 @@ aliases:
   # @see https://circleci.com/docs/2.0/docker-layer-caching/
   # Change to 'true' (without single quotes) to enable. Requires lodging a
   # support request with CircleCI to enable this feature.
-  - &docker_layer_caching false
+  - &docker_layer_caching true
 
 
   # The branch to run RenovateBot on.
