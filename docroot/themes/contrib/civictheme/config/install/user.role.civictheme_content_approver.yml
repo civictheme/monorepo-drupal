@@ -5,7 +5,6 @@ dependencies:
     - filter.format.civictheme_plain_text
     - filter.format.civictheme_rich_text
   module:
-    - content_moderation
     - contextual
     - file
     - filter
