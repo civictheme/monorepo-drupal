@@ -1,4 +1,4 @@
-@civictheme @civictheme_theme_settings
+@civictheme @civictheme_theme_settings @civictheme_theme_color_settings
 Feature: Check that Color settings are available in theme settings
 
   @api
@@ -143,6 +143,7 @@ Feature: Check that Color settings are available in theme settings
     And I should see an "input[name='colors[palette][dark][status][success]']" element
 
     And I press "Save configuration"
+    Then save screenshot
     Then I should see the text "The configuration options have been saved."
 
   # Drush driver does not support passing '--include', this test is skipped until patch provided.
@@ -163,3 +164,20 @@ Feature: Check that Color settings are available in theme settings
     Given I run drush 'civictheme:set-brand-colors' '--include=docroot/themes/contrib/civictheme/src/Drush "#00698f" "#e6e9eb" "#121313" "#61daff" "#003a4f" "#00698f"'
     When I go to the homepage
     Then save screenshot
+
+  @api
+  Scenario: To check that generating a color file has different suffix per theme.
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance"
+    And I click on "a[title='Set CivicTheme as default theme']" element
+    Then I go to the homepage
+    And I should see the 'link[href^="/sites/default/files/css-variables.civictheme.css"]' element with the "rel" attribute set to 'stylesheet'
+    And I visit "/admin/appearance"
+    And I click on "a[title='Set CivicTheme Demo as default theme']" element
+    Then I go to the homepage
+    And I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
+
+  @api
+  Scenario: The css-variables library CSS file is always included separately on the page.
+    Given I go to the homepage
+    And I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
