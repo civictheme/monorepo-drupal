@@ -1,6 +1,6 @@
 {
-    "name": "salsadigitalauorg/civictheme_content",
-    "description": "Default content for CivicTheme theme.",
+    "name": "salsadigitalauorg/civictheme_admin",
+    "description": "Administration experience adjustments for CivicTheme Drupal theme.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "support": {
@@ -8,7 +8,6 @@
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "require": {
-        "php": ">=8",
-        "drupal/default_content": "^2.0@alpha"
+        "php": ">=8"
     }
 }

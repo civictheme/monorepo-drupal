@@ -20,6 +20,8 @@ content:
     settings:
       image_style: civictheme_medium
       image_link: ''
+      image_loading:
+        attribute: lazy
     weight: 0
     third_party_settings: {  }
     region: content

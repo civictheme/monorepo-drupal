@@ -6,19 +6,10 @@
         "php": "8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
-        "drupal/coffee": "^1",
-        "drupal/config_devel": "^1.8",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
-        "drupal/default_content": "^2.0@alpha",
-        "drupal/generated_content": "^1.2",
-        "drupal/permissions_filter": "^1.1",
-        "drupal/redirect": "^1.6",
-        "drupal/styleguide": "^2@beta",
-        "drupal/testmode": "^2.1",
         "drush/drush": "^11",
-        "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
@@ -199,6 +190,26 @@
             "docroot/sites/default/files",
             "docroot/robots.txt",
             "docroot/.htaccess"
-        ]
+        ],
+        "merge-plugin": {
+            "require": [
+                "docroot/themes/contrib/civictheme/composer.json",
+                "docroot/modules/custom/civictheme_govcms/composer.json",
+                "docroot/modules/custom/civictheme_admin/composer.json",
+                "docroot/modules/custom/civictheme_migrate/composer.json",
+                "docroot/modules/custom/civictheme_content/composer.json",
+                "docroot/modules/custom/civictheme_dev/composer.json",
+                "docroot/modules/custom/civictheme_styleguide/composer.json",
+                "docroot/modules/custom/cs_generated_content/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-replace": true,
+            "merge-scripts": false
+        }
     }
 }
