@@ -1,6 +1,6 @@
 {
-    "name": "salsadigitalauorg/civictheme_content",
-    "description": "Default content for CivicTheme theme.",
+    "name": "salsadigitalauorg/civictheme_styleguide",
+    "description": "Style guide module integration with CivicTheme Drupal theme.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "support": {
@@ -9,6 +9,6 @@
     },
     "require": {
         "php": ">=8",
-        "drupal/default_content": "^2.0@alpha"
+        "drupal/styleguide": "^2@beta"
     }
 }
