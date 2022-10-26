@@ -54,6 +54,10 @@
     @include ct-breakpoint(m) {
       position: relative;
     }
+
+    * {
+      margin: 0;
+    }
   }
 
   #{$root}__dismiss-button {
