@@ -13,8 +13,21 @@ components:
     image_dark_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_mobile.png
   header:
     theme: light
+    logo_type: default
+  navigation:
+    primary_navigation:
+      dropdown: drawer
+      dropdown_columns: false
+      dropdown_columns_fill: false
+      is_animated: false
+    secondary_navigation:
+      dropdown: dropdown
+      dropdown_columns: false
+      dropdown_columns_fill: false
+      is_animated: false
   footer:
     theme: dark
+    logo_type: default
     background_image: ''
   link:
     new_window: false
@@ -30,43 +43,43 @@ colors:
     dark:
       brand1: '#61daff'
       brand2: '#003a4f'
-      brand3: '#00698f'
+      brand3: '#006a8e'
   palette:
     light:
       heading: '#002a39'
       body: '#334349'
+      background_light: '#fcfcfd'
       background: '#e6e9eb'
+      background_dark: '#b8babc'
+      border_light: '#acaeb0'
       border: '#5c5d5e'
+      border_dark: '#161717'
+      interaction_text: '#fafafb'
+      interaction_background: '#00698f'
+      interaction_hover_text: '#fafafb'
+      interaction_hover_background: '#003f55'
+      interaction_focus: '#855cd7'
       highlight: '#121313'
-      information: '#cccccc'
-      warning: '#cccccc'
-      error: '#cccccc'
-      success: '#cccccc'
-      background-light: '#fcfcfd'
-      background-dark: '#b8babc'
-      border-light: '#acaeb0'
-      border-dark: '#161717'
-      interaction-text: '#fafafb'
-      interaction-background: '#00698f'
-      interaction-hover-text: '#fafafb'
-      interaction-hover-background: '#003f55'
-      interaction-focus: '#cccccc'
+      information: '#007ebd'
+      warning: '#c95100'
+      error: '#ce3936'
+      success: '#008482'
     dark:
       heading: '#f7fdff'
       body: '#e7f9ff'
+      background_light: '#184c5f'
       background: '#003a4f'
+      background_dark: '#001c26'
+      border_light: '#dfe6e9'
       border: '#194d60'
-      highlight: '#00698f'
-      information: '#cccccc'
-      warning: '#cccccc'
-      error: '#cccccc'
-      success: '#cccccc'
-      background-light: '#0c4357'
-      background-dark: '#002837'
-      border-light: '#a5bac1'
-      border-dark: '#002837'
-      interaction-text: '#003a4f'
-      interaction-background: '#61daff'
-      interaction-hover-text: '#002837'
-      interaction-hover-background: '#a0e8ff'
-      interaction-focus: '#cccccc'
+      border_dark: '#001c26'
+      interaction_text: '#003a4f'
+      interaction_background: '#61daff'
+      interaction_hover_text: '#001c26'
+      interaction_hover_background: '#c6f1ff'
+      interaction_focus: '#8a5cd7'
+      highlight: '#006a8e'
+      information: '#4dc4fd'
+      warning: '#e38444'
+      error: '#e85653'
+      success: '#14b0ae'

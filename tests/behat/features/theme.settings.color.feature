@@ -176,7 +176,7 @@ Feature: Check that Color settings are available in theme settings
     And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
     And I scroll to an element with id "edit-colors-palette-light-background"
     Then save screenshot
-  
+
   @api @javascript
   Scenario: The CivicTheme theme produced colors can have overriden colors.
     Given I am logged in as a user with the "Site Administrator" role
