@@ -52,6 +52,15 @@ RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 COPY patches /app/patches
 COPY scripts /app/scripts
 
+RUN mkdir -p docroot/themes/contrib/civictheme \
+    && mkdir -p docroot/themes/contrib/civictheme \
+    && mkdir -p docroot/modules/custom/civictheme_govcms \
+    && mkdir -p docroot/modules/custom/civictheme_admin \
+    && mkdir -p docroot/modules/custom/civictheme_content \
+    && mkdir -p docroot/modules/custom/civictheme_dev \
+    && mkdir -p docroot/modules/custom/civictheme_styleguide \
+    && mkdir -p docroot/modules/custom/cs_generated_content
+
 # Copy files required for PHP dependencies resolution.
 # Note that composer.lock is not explicitly copied, allowing to run the stack
 # without existing lock file (this is not advisable, but allows to build
@@ -60,6 +69,14 @@ COPY scripts /app/scripts
 # File .env (and other environment files) is copied into image as it may be
 # required by composer scripts to get some additions variables.
 COPY composer.json composer.* .env* auth* /app/
+
+COPY docroot/themes/contrib/civictheme/composer.json /app/docroot/themes/contrib/civictheme/
+COPY docroot/modules/custom/civictheme_govcms/composer.json docroot/modules/custom/civictheme_govcms/
+COPY docroot/modules/custom/civictheme_admin/composer.json docroot/modules/custom/civictheme_admin/
+COPY docroot/modules/custom/civictheme_content/composer.json docroot/modules/custom/civictheme_content/
+COPY docroot/modules/custom/civictheme_dev/composer.json docroot/modules/custom/civictheme_dev/
+COPY docroot/modules/custom/civictheme_styleguide/composer.json docroot/modules/custom/civictheme_styleguide/
+COPY docroot/modules/custom/cs_generated_content/composer.json docroot/modules/custom/cs_generated_content/
 
 # Install PHP dependencies, but without development dependencies. This is very
 # important, because we do not want potential security issues to be exposed to
