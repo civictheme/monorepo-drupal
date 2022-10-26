@@ -15,7 +15,7 @@ global:
 css-variables:
   css:
     theme:
-      dist/civictheme.variables.css: {}
+      dist/civictheme.variables.css: {preprocess: false}
 
 # Color-related CivicTheme theme settings.
 theme-settings.colors:

@@ -320,8 +320,11 @@ function civictheme_library_info_alter(&$libraries, $extension) {
 
       // Replace existing stylesheet with dynamically generated styles providing
       // extension name for context.
+      $default_theme = \Drupal::config('system.theme')->get('default');
       $libraries['css-variables']['css']['theme'] = [
-        $color_manager->stylesheet($extension) => [],
+        $color_manager->stylesheet($default_theme) => [
+          'preprocess' => FALSE,
+        ],
       ];
     }
   }
