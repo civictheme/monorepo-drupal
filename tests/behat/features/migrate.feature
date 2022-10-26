@@ -21,11 +21,11 @@ Feature: Tests the CivicTheme migration functionality
     When I go to "admin/config/civictheme-migrate"
     Then I should see the text "CivicTheme Migrate Settings"
     And I select the radio button "Local"
-    And I should see the text "Upload Merlin extracted content JSON Files"
-    And I should not see the text "Connect to remote Merlin UI API to retrieve extracted content JSON files"
+    And I should see the text "Upload extracted content JSON Files"
+    And I should not see the text "Connect to remote API to retrieve extracted content JSON files"
     And I should not see a visible "textarea[name='endpoint'][required='required']" element
     And I select the radio button "Remote"
-    And I should see the text "Connect to remote Merlin UI API to retrieve extracted content JSON files"
+    And I should see the text "Connect to remote API to retrieve extracted content JSON files"
     And I see the text "Migration source content JSON URL endpoints"
     And I should see a visible "textarea[name='endpoint'][required='required']" element
     And I should not see a visible "input[name='auth_username'][required='required']" element
