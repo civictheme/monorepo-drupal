@@ -116,9 +116,6 @@ default:
           field_c_p_list_multi_select:
             -
               value: false
-          field_c_p_list_show_filters:
-            -
-              value: true
           field_c_p_theme:
             -
               value: light

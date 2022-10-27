@@ -87,10 +87,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Retrieve exposed filter settings.
   $listing_filters = NULL;
   if (!empty($view->civictheme_automated_list_entity)) {
-    $listing_show_filters = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_show_filters');
-    if ($listing_show_filters) {
-      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, ''));
-    }
+    $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, ''));
   }
 
   // Determine whether to use a large filter based on the number of exposed
@@ -318,7 +315,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
       'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
-      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_list_show_filters') ?? FALSE,
+      'show_filters' => !empty(explode(', ', civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', FALSE, ''))),
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];

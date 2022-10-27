@@ -25,7 +25,6 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_list_limit_type" in the "Limit type" row
     And I should see the text "field_c_p_list_link_above" in the "Link above" row
     And I should see the text "field_c_p_list_link_below" in the "Link below" row
-    And I should see the text "field_c_p_list_show_filters" in the "Show filters" row
     And I should see the text "field_c_p_list_site_sections" in the "Site sections" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
@@ -79,11 +78,6 @@ Feature: Tests the Listing paragraph
 
     And I click on "[data-drupal-selector=edit-field-c-n-components-widget-0-subform-group-filters] summary" element
     And I wait 1 second
-
-    And I see the text "Show filters"
-    And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_show_filters][value]']" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_show_filters][value]'].required" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_show_filters][value]'][disabled]" element
 
     And I see the text "Exposed filters"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_filters_exp][type]']" element
