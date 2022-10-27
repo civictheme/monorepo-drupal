@@ -9,10 +9,10 @@ default:
       target_id: 0
   filename:
     -
-      value: civictheme_demo_background_1.png
+      value: demo_banner-background.png
   uri:
     -
-      value: 'public://civictheme_demo_background_1.png'
+      value: 'public://demo_banner-background.png'
   filemime:
     -
       value: image/png
