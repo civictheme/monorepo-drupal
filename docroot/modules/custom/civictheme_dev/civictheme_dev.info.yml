@@ -1,6 +1,6 @@
 name: 'CivicTheme Development'
 type: module
-description: 'Development-related helpers.'
+description: 'Development-related helpers for CivicTheme Drupal theme.'
 core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
