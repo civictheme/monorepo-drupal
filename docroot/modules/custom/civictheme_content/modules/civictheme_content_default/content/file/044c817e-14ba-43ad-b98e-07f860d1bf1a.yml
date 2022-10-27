@@ -3,10 +3,12 @@ _meta:
   entity_type: file
   uuid: 044c817e-14ba-43ad-b98e-07f860d1bf1a
   default_langcode: en
+  depends:
+    3fb4e517-2703-4815-9364-9c42cc39e0d5: user
 default:
   uid:
     -
-      target_id: 3
+      entity: 3fb4e517-2703-4815-9364-9c42cc39e0d5
   filename:
     -
       value: 'Do it yourself - The DIY approach.png'

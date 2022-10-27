@@ -3,10 +3,12 @@ _meta:
   entity_type: file
   uuid: a7807b15-8d13-4d42-9615-d7756db3a11d
   default_langcode: en
+  depends:
+    3fb4e517-2703-4815-9364-9c42cc39e0d5: user
 default:
   uid:
     -
-      target_id: 3
+      entity: 3fb4e517-2703-4815-9364-9c42cc39e0d5
   filename:
     -
       value: 'Tried and tested components.png'

@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -221,9 +224,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
+  field_c_n_vertical_spacing:
+    -
+      value: both
