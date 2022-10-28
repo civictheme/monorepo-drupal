@@ -1,14 +1,36 @@
 [
   {
     "title": "[TEST] Title 1",
-    "id": "1"
+    "id": "1",
+    "alias": "/test-title1"
   },
   {
     "title": "[TEST] Title 2",
-    "id": "2"
+    "id": "2",
+    "alias": "/test-title2"
   },
   {
     "title": "[TEST] Title 3",
-    "id": "3"
+    "id": "3",
+    "alias": "/test-title3",
+    "vertical_spacing": "top"
+  },
+  {
+    "title": "[TEST] Title 4",
+    "id": "4",
+    "alias": "/test-title4",
+    "vertical_spacing": "bottom"
+  },
+  {
+    "title": "[TEST] Title 4",
+    "id": "4",
+    "alias": "/test-title4",
+    "vertical_spacing": "both"
+  },
+  {
+    "title": "[TEST] Title 4",
+    "id": "4",
+    "alias": "/test-title4",
+    "vertical_spacing": "none"
   }
 ]

@@ -1,8 +1,10 @@
 [
   {
-    "title": "[TEST] Title1"
+    "title": "[TEST] Title1",
+    "alias": "/test-title1"
   },
   {
-    "title": "[TEST] Title 2"
+    "title": "[TEST] Title 2",
+    "alias": "/test-title2"
   }
 ]

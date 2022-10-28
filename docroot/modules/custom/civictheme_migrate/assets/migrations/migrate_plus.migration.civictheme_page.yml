@@ -47,13 +47,29 @@ source:
 process:
   title:
     -
-      plugin: skip_on_empty
-      source: title
-      method: row
-      message: 'Title is empty'
-    -
       plugin: substr
       length: 255
+  field_c_n_summary: summary
+  field_c_n_vertical_space: vertical_spacing
+  field_c_n_hide_sidebar: hide_sidebar
+  field_c_n_show_last_updated: show_last_updated_date
+  field_c_n_banner_title: banner/title
+  field_c_n_banner_type: banner/banner_type
+  field_c_n_blend_mode: banner/blend_mode
+  field_c_n_custom_last_updated: last_updated_date
+  'path/pathauto':
+    plugin: default_value
+    default_value: 0
+  'path/alias': alias
+
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
+
+
+
+#       - plugin: get
+#         source: ''
+#       -
+#         plugin: default_value
+#         default_value: ''

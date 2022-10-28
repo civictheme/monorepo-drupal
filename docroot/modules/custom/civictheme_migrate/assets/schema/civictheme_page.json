@@ -5,12 +5,85 @@
     "type": "object",
     "properties": {
       "id": {
-        "type": "string"
+        "type": "string",
+        "description": "Unique ID for the node"
       },
       "title": {
-        "type": "string"
+        "type": "string",
+        "description": "Page title"
+      },
+      "alias": {
+        "type": "string",
+        "description": "Page url alias, validation ensures backslash at start of url alias",
+        "pattern": "^\\/[\\S]+$"
+      },
+      "summary": {
+        "type": "string",
+        "description": "Page summary"
+      },
+      "topics": {
+        "type": "array",
+        "description": "Page topics",
+        "items": {
+          "type": "string",
+          "description": "A page topic"
+        }
+      },
+      "thumbnail": {
+        "type": "string",
+        "description": "Image thumbnail url"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "pattern": "top|bottom|both|none",
+        "description": "Page level vertical spacing"
+      },
+      "hide_sidebar": {
+        "type": "boolean",
+        "description": "Whether to hide sidebar"
+      },
+      "show_last_updated_date": {
+        "type": "boolean",
+        "description": "Determines if last updated date is visible or not"
+      },
+      "last_updated_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Last updated date in `YYYY-MM-DD`format"
+      },
+      "banner": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "Banner theme",
+            "pattern": "light|dark"
+          },
+          "title": {
+            "type": "string",
+            "description": "Banner title"
+          },
+          "banner_type": {
+            "type": "string",
+            "description": "Type of banner",
+            "pattern": "default|large"
+          },
+          "background": {
+            "type": "string",
+            "description": "Banner background image url"
+          },
+          "blend_mode": {
+            "type": "string",
+            "description": "Banner blend mode",
+            "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light",
+          },
+          "featured_image": {
+            "type": "string",
+            "description": "Banner Feature image url"
+          }
+        }
       }
     },
-    "required": ["id", "title"]
+    "required": ["id", "title", "alias", "hide_sidebar", "show_last_updated_date"]
   }
 }

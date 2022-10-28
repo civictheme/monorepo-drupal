@@ -18,3 +18,29 @@ The schema used in validating the imported JSON files are located at
 For an understanding of the structure of JSON Schema files [see JSON schema documentation](https://opis.io/json-schema/2.x/).
 
 Validation is carried out using [opis/json-schema](https://github.com/opis/json-schema).
+
+
+
+## Example valid JSON file
+
+```json
+
+[
+  {
+    "title": "[TEST] Title 1",
+    "id": "1",
+    "alias": "/test-title1"
+  },
+  {
+    "title": "[TEST] Title 2",
+    "id": "2",
+    "alias": "/test-title2"
+  },
+  {
+    "title": "[TEST] Title 3",
+    "id": "3",
+    "alias": "/test-title3"
+  }
+]
+
+```
