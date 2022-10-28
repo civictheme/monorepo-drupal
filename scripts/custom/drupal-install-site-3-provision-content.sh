@@ -36,13 +36,15 @@ $drush php:eval -v "require_once '/app/docroot/themes/contrib/civictheme/theme-s
 echo "  > Enable development module."
 $drush -y pm-enable civictheme_dev
 
-echo "  > Enable migration modules."
-$drush -y pm-enable civictheme_migrate
+if [ "${SKIP_GENERATED_CONTENT_CREATE}" != "1" ]; then
+  echo "  > Enable migration modules."
+  $drush -y pm-enable civictheme_migrate
 
-echo "  > Generate test content."
-GENERATED_CONTENT_CREATE=1 $drush -y pm-enable cs_generated_content
+  echo "  > Generate test content."
+  GENERATED_CONTENT_CREATE=1 $drush -y pm-enable cs_generated_content
 
-if $drush pm-list --status=enabled | grep -q simple_sitemap; then
-  echo "  > Generate sitemap."
-  $drush simple-sitemap:generate
+  if $drush pm-list --status=enabled | grep -q simple_sitemap; then
+    echo "  > Generate sitemap."
+    $drush simple-sitemap:generate
+  fi
 fi

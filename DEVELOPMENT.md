@@ -87,6 +87,10 @@ Note that wildcards are supported.
 
 ## Demo content export
 
+    CONTENT_TYPE=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CONTENT_TYPE=default ahoy export-content
+
+OR
+
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
 
     # Example 1: export a single node with all dependencies

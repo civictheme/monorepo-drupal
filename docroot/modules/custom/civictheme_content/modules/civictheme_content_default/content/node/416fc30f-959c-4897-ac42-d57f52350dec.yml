@@ -49,6 +49,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -72,6 +75,12 @@ default:
             -
               value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -183,18 +192,12 @@ default:
                   field_c_p_theme:
                     -
                       value: light
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_list_link_below:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_list_link_above:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
@@ -214,9 +217,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

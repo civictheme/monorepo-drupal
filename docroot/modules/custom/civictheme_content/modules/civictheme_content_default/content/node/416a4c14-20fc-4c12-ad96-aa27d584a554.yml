@@ -48,6 +48,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -105,6 +108,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -130,6 +139,9 @@ default:
                   field_c_p_image:
                     -
                       entity: 2b8021df-e474-4b3a-8b91-62844aefe844
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"
@@ -163,6 +175,9 @@ default:
                   field_c_p_image:
                     -
                       entity: 209291bc-81be-41c7-912c-70d695e9376c
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"
@@ -196,6 +211,9 @@ default:
                   field_c_p_image:
                     -
                       entity: faa70cfa-88f0-49e7-81ed-9523560bb0d5
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"
@@ -205,12 +223,6 @@ default:
                   field_c_p_title:
                     -
                       value: CivicTheme
-          field_c_p_column_count:
-            -
-              value: 3
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
