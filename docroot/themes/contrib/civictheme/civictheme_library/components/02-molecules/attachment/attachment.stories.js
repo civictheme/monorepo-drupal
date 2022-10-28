@@ -65,6 +65,26 @@ export const Attachment = (knobTab) => {
       last_updated: date,
       icon: 'download-file',
     },
+    {
+      url: randomUrl(),
+      text: 'XLS type document',
+      size: '65.67 KB',
+      last_updated: date,
+      icon: 'download-file',
+    },
+    {
+      url: randomUrl(),
+      text: 'XLS type document',
+      ext: 'XLS',
+      last_updated: date,
+      icon: 'download-file',
+    },
+    {
+      url: randomUrl(),
+      text: 'XLS type document',
+      last_updated: date,
+      icon: 'download-file',
+    },
   ];
 
   const generalKnobs = {
