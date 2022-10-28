@@ -75,7 +75,7 @@
           "blend_mode": {
             "type": "string",
             "description": "Banner blend mode",
-            "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light",
+            "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
           },
           "featured_image": {
             "type": "string",

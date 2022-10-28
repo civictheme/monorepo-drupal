@@ -38,6 +38,31 @@ source:
     - name: title
       label: "Title"
       selector: title
+    - name: alias
+      label: "Path alias"
+      selector: alias
+    - name: summary
+      label: "Summary"
+      selector: summary
+    - name: vertical_spacing
+      label: "Vertical Spacing"
+      selector: vertical_spacing
+    - name: hide_sidebar
+      label: "Hide sidebar"
+      selector: hide_sidebar
+    - name: show_last_updated_date
+      label: "Show last updated date"
+      selector: show_last_updated_date
+    - name: banner_title
+      label: "Banner title"
+      selector: banner/title
+    - name: banner_type
+      label: "Banner type"
+      selector: banner/banner_type
+    - name: banner_blend_mode
+      label: "Vertical Spacing"
+      selector:  banner/blend_mode
+
   # Under 'ids', we identify source fields populated above which will uniquely
   # identify each imported item. The 'type' makes sure the migration map table
   # uses the proper schema type for stored the IDs.
@@ -46,6 +71,10 @@ source:
       type: string
 process:
   title:
+    - plugin: skip_on_empty
+      source: title
+      method: row
+      message: 'Title is empty'
     -
       plugin: substr
       length: 255
@@ -53,9 +82,9 @@ process:
   field_c_n_vertical_space: vertical_spacing
   field_c_n_hide_sidebar: hide_sidebar
   field_c_n_show_last_updated: show_last_updated_date
-  field_c_n_banner_title: banner/title
-  field_c_n_banner_type: banner/banner_type
-  field_c_n_blend_mode: banner/blend_mode
+  field_c_n_banner_title: banner_title
+  field_c_n_banner_type: banner_type
+  field_c_n_blend_mode: banner_blend_mode
   field_c_n_custom_last_updated: last_updated_date
   'path/pathauto':
     plugin: default_value

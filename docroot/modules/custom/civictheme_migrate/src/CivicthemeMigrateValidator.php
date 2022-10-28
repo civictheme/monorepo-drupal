@@ -69,7 +69,7 @@ class CivicthemeMigrateValidator {
    */
   public function validate($data, $scheme_id):array {
     $errors = [];
-
+//https://civictheme.io/api/migration/civictheme_page
     if ($data === NULL) {
       return ['JSON is malformed / invalid.'];
     }
