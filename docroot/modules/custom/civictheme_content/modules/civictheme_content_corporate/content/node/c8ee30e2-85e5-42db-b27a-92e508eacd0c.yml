@@ -82,6 +82,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -123,9 +126,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_summary:
     -
       value: "As temperatures rise, the ice melts, which results in rising sea levels. In addition, because the ice on Earth helps to keep Earth cooler, less ice means hotter temperatures.\_"
@@ -135,3 +135,6 @@ default:
   field_c_n_topics:
     -
       entity: d95f5188-650c-4dea-abcb-df8ea008919b
+  field_c_n_vertical_spacing:
+    -
+      value: both

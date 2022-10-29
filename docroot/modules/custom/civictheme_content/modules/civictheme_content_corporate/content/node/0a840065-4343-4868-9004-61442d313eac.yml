@@ -46,6 +46,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -87,9 +90,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_summary:
     -
       value: 'We recently released our updated Great Barrier Reef Strategy. The strategy outlines all the steps we’re taking to protect The Great Barrier Reef for future generations.'
@@ -99,3 +99,6 @@ default:
   field_c_n_topics:
     -
       entity: d95f5188-650c-4dea-abcb-df8ea008919b
+  field_c_n_vertical_spacing:
+    -
+      value: both
