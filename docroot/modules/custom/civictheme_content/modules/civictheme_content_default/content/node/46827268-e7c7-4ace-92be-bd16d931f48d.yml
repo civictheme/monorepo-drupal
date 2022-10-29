@@ -92,6 +92,9 @@ default:
           field_c_p_list_limit_type:
             -
               value: unlimited
+          field_c_p_list_show_filters:
+            -
+              value: true
           field_c_p_list_type:
             -
               value: civictheme_automated_list__block1

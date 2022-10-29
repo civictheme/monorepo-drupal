@@ -68,9 +68,14 @@
                         } only %}
                       </span>
                       <div>
+                        {% if (link.ext is not empty) and (link.size is not empty) %}
+                          {% set extension = ' <span class="extension">(%s, %s)</span>'|format(link.ext, link.size) %}
+                        {% elseif (link.ext is not empty) or (link.size is not empty) %}
+                          {% set extension = ' <span class="extension">(%s)</span>'|format(link.ext ?? link.size) %}
+                        {% endif %}
                         {% include '@atoms/content-link/content-link.twig' with {
                           theme: theme,
-                          text: link.text,
+                          text: link.text ~ extension,
                           title: 'Download %s'|format(link.url|split('.')|last),
                           url: link.url,
                           modifier_class: 'ct-link--attachment'

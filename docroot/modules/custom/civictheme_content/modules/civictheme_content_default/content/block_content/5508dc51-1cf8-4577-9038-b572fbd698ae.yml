@@ -23,7 +23,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 94efcaf0-a30a-4128-83ac-ec58c21c0e0f
+          uuid: 3edc3e8e-bb42-48a2-a07d-df46a5ccdca6
           bundle: civictheme_promo
           default_langcode: en
         default:
@@ -32,7 +32,7 @@ default:
               value: true
           created:
             -
-              value: 1666844612
+              value: 1666998811
           behavior_settings:
             -
               value: {  }

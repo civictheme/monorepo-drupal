@@ -80,6 +80,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -109,7 +112,16 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -131,11 +143,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'Report litter and pollution'
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Report litter and pollution'
@@ -157,11 +175,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ce6b14c7-f782-40c6-884d-47724566ec60
                       title: 'Register for a solar rebate'
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Register for a solar rebate'
@@ -183,11 +207,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ef661701-2c8e-4ea4-b927-2d2ecad7617e
                       title: 'Check the air quality in your postcode'
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Check the air quality in your postcode'
@@ -209,20 +239,20 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 7a35464b-da5b-4edb-a490-6bcd54339f29
                       title: Volunteer
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: Volunteer
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -235,6 +265,9 @@ default:
   field_c_n_banner_type:
     -
       value: large
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -260,30 +293,39 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_list_item_theme:
+          field_c_p_column_count:
             -
-              value: light
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_content_type:
             -
               value: civictheme_page
-          field_c_p_list_limit_type:
-            -
-              value: limited
-          field_c_p_list_limit:
-            -
-              value: 3
-          field_c_p_list_multi_select:
-            -
-              value: false
-          field_c_p_theme:
+          field_c_p_list_item_theme:
             -
               value: light
-          field_c_p_list_topics:
-            -
-              entity: d95f5188-650c-4dea-abcb-df8ea008919b
           field_c_p_list_item_view_as:
             -
               value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 3
+          field_c_p_list_limit_type:
+            -
+              value: limited
+          field_c_p_list_show_filters:
+            -
+              value: false
+          field_c_p_list_topics:
+            -
+              entity: d95f5188-650c-4dea-abcb-df8ea008919b
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
+          field_c_p_theme:
+            -
+              value: light
     -
       entity:
         _meta:
@@ -302,7 +344,16 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -324,6 +375,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -356,6 +410,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 6ce72705-bab7-4dce-9ca5-4a3ae097faa3
@@ -388,6 +445,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
@@ -420,6 +480,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: f06a9e48-e4bc-4e1d-9646-047d984c36ca
@@ -434,21 +497,15 @@ default:
                   field_c_p_title:
                     -
                       value: 'Bushfire recovery'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_vertical_spacing:
-            -
-              value: bottom
           field_c_p_theme:
             -
               value: dark
           field_c_p_title:
             -
               value: 'Popular topics'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -467,6 +524,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -489,6 +549,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>This year, 15 Australian scientists have been honoured in the 2022 Bright Ideas in Science Awards. Find out about the 5 environmental scientists honoured.&nbsp;</p>\r\n"
@@ -528,6 +591,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>New modelling shows that Antarctica's Pine Island Glacier is melting faster, with a 12% increase from 2016 to 2020.</p>\r\n"
@@ -549,12 +615,12 @@ default:
                   field_c_p_title:
                     -
                       value: 'Glacial movement and climate change'
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -573,7 +639,16 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -595,6 +670,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-04-20'
@@ -636,6 +714,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '0022-05-05'
@@ -674,6 +755,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-06-20'
@@ -694,12 +778,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Event 3 title'
-          field_c_p_column_count:
-            -
-              value: 3
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: dark
@@ -715,9 +793,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: top
   field_c_n_summary:
     -
       value: 'Helping to protect Australia’s environment through policy, services, legislation and environmental research.'
+  field_c_n_vertical_spacing:
+    -
+      value: top

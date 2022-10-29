@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: e5c0b1c2-b993-40e6-a760-5a0f5565fe10
+  uuid: 846a6a20-2767-4b7f-9f92-4bbe7ad15ac2
   bundle: civictheme_icon
   default_langcode: en
   depends:
-    01a0a6a5-a850-41d8-92aa-ae9a8d74c246: file
+    bff45f89-9d22-4558-ae6e-81570c708bb6: file
 default:
   status:
     -
@@ -15,10 +15,10 @@ default:
       target_id: 1
   name:
     -
-      value: twitter.svg
+      value: Twitter.svg
   created:
     -
-      value: 1657021662
+      value: 1666996274
   revision_translation_affected:
     -
       value: true
@@ -29,6 +29,6 @@ default:
       pathauto: 1
   field_c_m_icon:
     -
-      entity: 01a0a6a5-a850-41d8-92aa-ae9a8d74c246
+      entity: bff45f89-9d22-4558-ae6e-81570c708bb6
       display: false
       description: ''
