@@ -86,6 +86,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -142,6 +145,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 1
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -172,6 +181,9 @@ default:
                       uri: 'internal:/'
                       title: 'Find out more about grants'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'The DE is committed to helping Australian scientists and researchers advance environmental research. You can apply now for one of our grants. We offer grants of various sizes and durations.'
@@ -181,12 +193,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Apply for a 2023 grant'
-          field_c_p_column_count:
-            -
-              value: 1
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -212,6 +218,12 @@ default:
             -
               value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -390,12 +402,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Coastal erosion'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light

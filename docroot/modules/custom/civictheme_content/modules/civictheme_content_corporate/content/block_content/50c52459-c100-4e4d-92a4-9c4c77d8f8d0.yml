@@ -5,7 +5,7 @@ _meta:
   bundle: civictheme_banner
   default_langcode: en
   depends:
-    0eb512d0-d116-48f7-83bb-ae07c3eb2c91: media
+    26820d38-aabc-4c1d-a6df-09fa62a3fe8a: media
 default:
   status:
     -
@@ -21,7 +21,10 @@ default:
       value: true
   field_c_b_background_image:
     -
-      entity: 0eb512d0-d116-48f7-83bb-ae07c3eb2c91
+      entity: 26820d38-aabc-4c1d-a6df-09fa62a3fe8a
+  field_c_b_blend_mode:
+    -
+      value: soft-light
   field_c_b_theme:
     -
       value: dark

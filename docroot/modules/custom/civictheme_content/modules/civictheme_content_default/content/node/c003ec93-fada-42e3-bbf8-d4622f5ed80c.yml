@@ -48,6 +48,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -151,9 +154,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_summary:
     -
       value: 'Demo Page is used to demonstrate typography and wysiwyg components.'
+  field_c_n_vertical_spacing:
+    -
+      value: both

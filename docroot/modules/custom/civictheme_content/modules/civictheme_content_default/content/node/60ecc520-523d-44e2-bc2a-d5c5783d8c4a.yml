@@ -118,6 +118,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -145,6 +151,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Optional summary in the breakdown of tasks.'
@@ -180,6 +189,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Optional summary in the breakdown of tasks.'
@@ -215,6 +227,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Optional summary in the breakdown of tasks.'
@@ -250,6 +265,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Optional summary in the breakdown of tasks.'
@@ -259,12 +277,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Register for a workshop'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -280,6 +292,9 @@ default:
   field_c_n_banner_type:
     -
       value: large
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -608,9 +623,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both
