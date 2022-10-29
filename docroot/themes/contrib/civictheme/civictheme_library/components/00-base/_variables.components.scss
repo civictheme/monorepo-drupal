@@ -875,7 +875,7 @@ $ct-accordion-light-button-background-color: ct-color-light('background-light') 
 $ct-accordion-light-button-color: ct-color-light('heading') !default;
 $ct-accordion-light-icon-color: ct-color-light('interaction-background') !default;
 $ct-accordion-light-stripe-border-color: ct-color-light('highlight') !default;
-$ct-accordion-light-wrapper-background-color: ct-color-light('highlight') !default;
+$ct-accordion-light-wrapper-background-color: ct-color-light('background-light') !default;
 $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
@@ -886,7 +886,7 @@ $ct-accordion-dark-button-background-color: ct-color-dark('background-light') !d
 $ct-accordion-dark-button-color: ct-color-dark('heading') !default;
 $ct-accordion-dark-icon-color: ct-color-dark('interaction-background') !default;
 $ct-accordion-dark-stripe-border-color: ct-color-dark('highlight') !default;
-$ct-accordion-dark-wrapper-background-color: ct-color-dark('highlight') !default;
+$ct-accordion-dark-wrapper-background-color: ct-color-dark('background-dark') !default;
 
 //
 // Alert.
