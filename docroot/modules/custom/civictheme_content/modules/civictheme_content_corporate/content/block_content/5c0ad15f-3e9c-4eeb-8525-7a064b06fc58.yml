@@ -27,7 +27,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 9362cc4b-b221-4c02-ac1e-e211714637dd
+          uuid: 77986f79-cc74-4a6b-b2c3-6840612aa8b4
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -36,7 +36,7 @@ default:
               value: true
           created:
             -
-              value: 1667006922
+              value: 1667026058
           behavior_settings:
             -
               value: {  }
@@ -56,7 +56,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: d92fc2ec-990d-48dc-816c-4969744c1022
+          uuid: d016acb6-7231-4d9d-8dc0-a38cafad968a
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -65,7 +65,7 @@ default:
               value: true
           created:
             -
-              value: 1667006922
+              value: 1667026058
           behavior_settings:
             -
               value: {  }
@@ -85,7 +85,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 15abff21-b9a2-4ead-b826-90cf06cab11c
+          uuid: 2353132e-bdaf-4873-8aa0-71a660818e87
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -94,7 +94,7 @@ default:
               value: true
           created:
             -
-              value: 1667006922
+              value: 1667026058
           behavior_settings:
             -
               value: {  }

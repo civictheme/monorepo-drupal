@@ -314,9 +314,6 @@ default:
           field_c_p_list_limit_type:
             -
               value: limited
-          field_c_p_list_show_filters:
-            -
-              value: false
           field_c_p_list_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b

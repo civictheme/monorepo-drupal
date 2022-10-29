@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    3fb4e517-2703-4815-9364-9c42cc39e0d5: user
     044c817e-14ba-43ad-b98e-07f860d1bf1a: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 3fb4e517-2703-4815-9364-9c42cc39e0d5
+      target_id: 3
   name:
     -
       value: 'Do it yourself - The DIY approach.png'
