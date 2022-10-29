@@ -215,13 +215,6 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-  field_c_p_list_show_filters:
-    type: boolean_checkbox
-    weight: 43
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_c_p_list_site_sections:
     type: entity_reference_autocomplete
     weight: 8

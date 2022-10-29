@@ -54,7 +54,6 @@ Feature: View of Page content with Listing component
       | field_c_p_list_site_section |                                              |
       | field_c_p_list_limit_type   | unlimited                                    |
       | field_c_p_list_limit        | 0                                            |
-      | field_c_p_list_show_filters | 0                                            |
       | field_c_p_list_filters_exp  | 0                                            |
       # Fields.
       | field_c_p_title             | [TEST] Listing component title               |
@@ -142,25 +141,11 @@ Feature: View of Page content with Listing component
     And I should see 6 ".ct-item-grid__item" elements
     And I should not see an ".ct-list__results-below .ct-pager" element
 
-  @api @testmode
-  Scenario: Listing, exposed filters
-    Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
-      # Selection.
-      | field_c_p_list_show_filters | 1 |
-    When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".ct-list .ct-item-grid__items" element
-    And I should see 12 ".ct-item-grid__item" elements
-    And I should see an ".ct-list__results-below .ct-pager" element
-
-    And I should see an ".ct-list__filters .views-exposed-form" element
-
   @api @javascript @skipped
   Scenario: Listing, exposed filters, filtering
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
-      | field_c_p_list_show_filters | 1                  |
       | field_c_p_list_filters_exp  | type, topic, title |
 
     When I visit "civictheme_page" "Page Automated list component"
@@ -194,7 +179,6 @@ Feature: View of Page content with Listing component
       # Selection.
       | field_c_p_list_limit_type   | unlimited |
       | field_c_p_list_limit        | 6         |
-      | field_c_p_list_show_filters | 1         |
       | field_c_p_list_filters_exp  | title     |
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
@@ -230,7 +214,6 @@ Feature: View of Page content with Listing component
   Scenario: CivicTheme listing page with pagination works as expected
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
-      | field_c_p_list_show_filters | 0         |
       | field_c_p_list_limit_type   | unlimited |
       | field_c_p_list_limit        | 2         |
     When I visit "civictheme_page" "Page Automated list component"
