@@ -9,11 +9,11 @@
 set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
 
-CONTENT_TYPE="${CONTENT_TYPE:-default}"
+CIVICTHEME_CONTENT_TYPES="${CIVICTHEME_CONTENT_TYPES:-default}"
 
 #-------------------------------------------------------------------------------
 
-echo "==> Started updating content in ${CONTENT_TYPE} content profile."
+echo "==> Started updating content in ${CIVICTHEME_CONTENT_TYPES} content profile."
 
 echo "  > Removing generated content."
 drush pm-uninstall -y generated_content || true
@@ -22,9 +22,9 @@ echo "  > Removing users."
 drush entity:delete user
 
 echo "  > Exporting content."
-drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CONTENT_TYPE}/content" taxonomy_term
-drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CONTENT_TYPE}/content" node
-drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CONTENT_TYPE}/content" block_content
-drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CONTENT_TYPE}/content" menu_link_content
+drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_TYPES}/content" taxonomy_term
+drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_TYPES}/content" node
+drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_TYPES}/content" block_content
+drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_TYPES}/content" menu_link_content
 
-echo "==> Finished updating content in ${CONTENT_TYPE} content profile."
+echo "==> Finished updating content in ${CIVICTHEME_CONTENT_TYPES} content profile."
