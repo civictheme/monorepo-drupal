@@ -22,6 +22,10 @@
     margin-bottom: ct-spacing(2);
 
     @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__header {

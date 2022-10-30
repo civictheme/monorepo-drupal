@@ -157,7 +157,7 @@ function _civictheme_automated_list_view_alter($view) {
   $listing_limit_type = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit_type');
   $listing_limit = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit');
   $listing_items_per_page = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit');
-  $listing_show_filters = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_show_filters');
+  $listing_show_filters = !empty(explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, '')));
 
   $view_args = [];
   // First view argument - content types.

@@ -199,3 +199,5 @@ webform.settings
 webform.webform.contact
 webform.webform_options*
 workflows.workflow.editorial
+civictheme_migrate.settings
+migrate_plus.migration_group.civictheme_migrate

@@ -28,7 +28,7 @@ function _civictheme_preprocess_page__views(&$variables) {
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
-  $variables['group_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
+  $variables['group_filter'] = $variables['form']['#is_group_filter'] ?? FALSE;
 
   $is_view_component = isset($variables['attributes']['civictheme_automated_list']);
   if ($is_view_component) {
@@ -73,6 +73,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
   $view = $form_state->get('view');
@@ -87,10 +88,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Retrieve exposed filter settings.
   $listing_filters = NULL;
   if (!empty($view->civictheme_automated_list_entity)) {
-    $listing_show_filters = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_show_filters');
-    if ($listing_show_filters) {
-      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, ''));
-    }
+    $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, ''));
   }
 
   // Determine whether to use a large filter based on the number of exposed
@@ -100,6 +98,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Convert exposed form elements to the format expected by the filter
   // components.
   $form_element_keys = Element::children($form);
+  $hidden_fields_count = 0;
   foreach ($form_element_keys as $form_element_key) {
     // Hide Automated list filter if it is not in a list of selected filters.
     if (
@@ -108,11 +107,19 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
       && !in_array($form_element_key, $listing_filters)
     ) {
       $form[$form_element_key]['#access'] = FALSE;
+      $hidden_fields_count++;
       continue;
     }
 
     $form[$form_element_key]['#attributes']['#civictheme_theme'] = $theme;
     _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
+  }
+
+  // If all fields were hidden - hide the whole form.
+  if ($hidden_fields_count == count($filter_form_keys)) {
+    $form['#access'] = FALSE;
+
+    return;
   }
 
   $form['#attributes']['data-ct-filter'] = '';
@@ -121,7 +128,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
 
   // Made preprocessors know that we are using a large filter.
   // @todo Revisit this as we should not be passing custom values like this.
-  $form['#is_large_filter'] = $listing_use_large_filter;
+  $form['#is_group_filter'] = $listing_use_large_filter;
 
   $form['actions']['submit']['#attributes']['class'] = [
     'ct-button--secondary',
@@ -178,7 +185,7 @@ function _civictheme_get_views_exposed_form_elements_keys($form) {
 /**
  * Alter form elements to work within Large and Basic filters.
  */
-function _civictheme_filter_views_exposed_form_alter__process_elements(&$element, $form, $is_large_filter) {
+function _civictheme_filter_views_exposed_form_alter__process_elements(&$element, $form, $is_group_filter) {
   $valid_process_element_types = ['select', 'radios', 'checkboxes'];
   if (isset($element['#type']) && in_array($element['#type'], $valid_process_element_types)) {
     // Convert select to either radio buttons or checkboxes.
@@ -194,7 +201,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
     }
 
     // Only radio buttons and checkboxes work with filter chips.
-    $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
+    $filter_key = !$is_group_filter && in_array($element['#type'] ?? NULL, [
       'radios',
       'checkboxes',
     ]) ? '#ct-single-filter' : '#ct-group-filter';
@@ -318,7 +325,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
       'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
-      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_list_show_filters') ?? FALSE,
+      'show_filters' => !empty(explode(', ', civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', FALSE, ''))),
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];
