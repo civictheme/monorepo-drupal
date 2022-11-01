@@ -86,7 +86,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
         [
           'All array items must match schema',
           'The properties must match schema: alias',
-          'The string should match pattern: ^\/[\S]+$'
+          'The string should match pattern: ^\/[\S]+$',
         ],
       ],
       [
@@ -95,7 +95,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
         [
           'All array items must match schema',
           'The properties must match schema: vertical_spacing',
-          'The string should match pattern: top|bottom|both|none'
+          'The string should match pattern: top|bottom|both|none',
         ],
       ],
       [
@@ -104,7 +104,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
         [
           'All array items must match schema',
           'The properties must match schema: topics',
-          'The data (string) must match the type: array'
+          'The data (string) must match the type: array',
         ],
       ],
       ['valid_multiple_element.json', 'civictheme_page', []],

@@ -30,8 +30,23 @@
         }
       },
       "thumbnail": {
-        "type": "string",
-        "description": "Image thumbnail url"
+        "type": "object",
+        "description": "Image thumbnail object - name and url",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "UUID for image"
+          },
+          "name": {
+            "type": "string",
+            "description": "Media image entity name (could be alt tag for image)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Image thumbnail url"
+          }
+        },
+        "required": ["id", "name", "url"]
       },
       "vertical_spacing": {
         "type": "string",
@@ -68,18 +83,44 @@
             "description": "Type of banner",
             "pattern": "default|large"
           },
-          "background": {
-            "type": "string",
-            "description": "Banner background image url"
-          },
           "blend_mode": {
             "type": "string",
             "description": "Banner blend mode",
             "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
           },
           "featured_image": {
-            "type": "string",
-            "description": "Banner Feature image url"
+            "type": "object",
+            "description": "Banner featured image",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "UUID for image"
+              },
+              "name": {
+                "type": "string",
+                "description": "Media image entity name (could be alt tag for image)"
+              },
+              "url": {
+                "type": "string",
+                "description": "Banner featured image url"
+              }
+            },
+            "required": ["id", "name", "url"]
+          },
+          "background": {
+            "type": "object",
+            "description": "Banner background image",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "UUID for image"
+              },
+              "url": {
+                "type": "string",
+                "description": "Banner background image url"
+              }
+            },
+            "required": ["id", "url"]
           }
         }
       }

@@ -7274,7 +7274,7 @@
             "extra": {
                 "drupal": {
                     "version": "3.1.0",
-                    "datestamp": "1644379755",
+                    "datestamp": "1644380245",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7287,16 +7287,16 @@
             ],
             "authors": [
                 {
-                    "name": "Jason Guo",
+                    "name": "courdo",
+                    "homepage": "https://www.drupal.org/user/3162961"
+                },
+                {
+                    "name": "Dr Jason Guo",
                     "homepage": "https://www.drupal.org/user/471664"
                 },
                 {
                     "name": "Mingsong",
                     "homepage": "https://www.drupal.org/user/2986445"
-                },
-                {
-                    "name": "courdo",
-                    "homepage": "https://www.drupal.org/user/3162961"
                 },
                 {
                     "name": "pandaski",

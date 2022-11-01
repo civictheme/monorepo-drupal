@@ -16,21 +16,9 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: json
-  # Under 'urls' filled in on configuration form subission
-  # This contains the streamwrappers of the locally hosted files.
+  # URLs are the uploaded or remote files fetched during migration generation.
+  # This contains the stream wrappers of the locally hosted files.
   #  urls:
-
-  # Under 'fields', we list the data items to be imported. The first level keys
-  # are the source field names we want to populate (the names to be used as
-  # sources in the process configuration below). For each field we're importing,
-  # we provide a label (optional - this is for display in migration tools) and
-  # an selector for retrieving that value.
-  # @code
-  #  $
-  #
-  # @endcode
-  # To see the code on how the selector is retrievd for the JSON data_parser_plugin:
-  # @see \Drupal\migrate_plus\Plugin\migrate_plus\data_parser\Json::getSourceData
   fields:
     - name: id
       label: "ID"
@@ -47,6 +35,15 @@ source:
     - name: vertical_spacing
       label: "Vertical Spacing"
       selector: vertical_spacing
+    - name: thumbnail_id
+      label: "Thumbnail id"
+      selector: thumbnail/id
+    - name: featured_image_id
+      label: "Featured image id"
+      selector: banner/featured_image/id
+    - name: banner_background_id
+      label: "Banner background image id"
+      selector: banner/background/id
     - name: hide_sidebar
       label: "Hide sidebar"
       selector: hide_sidebar
@@ -62,10 +59,6 @@ source:
     - name: banner_blend_mode
       label: "Vertical Spacing"
       selector:  banner/blend_mode
-
-  # Under 'ids', we identify source fields populated above which will uniquely
-  # identify each imported item. The 'type' makes sure the migration map table
-  # uses the proper schema type for stored the IDs.
   ids:
     id:
       type: string
@@ -81,11 +74,23 @@ process:
   field_c_n_summary: summary
   field_c_n_vertical_space: vertical_spacing
   field_c_n_hide_sidebar: hide_sidebar
+  field_c_n_thumbnail:
+    plugin: migration_lookup
+    migration: civictheme_media_image__thumbnail
+    source: thumbnail_id
   field_c_n_show_last_updated: show_last_updated_date
   field_c_n_banner_title: banner_title
   field_c_n_banner_type: banner_type
   field_c_n_blend_mode: banner_blend_mode
   field_c_n_custom_last_updated: last_updated_date
+  field_c_n_banner_featured_image:
+    plugin: migration_lookup
+    migration: civictheme_media_image__featured_image
+    source: featured_image_id
+  field_c_n_banner_background:
+    plugin: migration_lookup
+    migration: civictheme_media_image__banner_background
+    source: banner_background_id
   'path/pathauto':
     plugin: default_value
     default_value: 0
@@ -94,11 +99,8 @@ process:
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
-
-
-
-#       - plugin: get
-#         source: ''
-#       -
-#         plugin: default_value
-#         default_value: ''
+migration_dependencies:
+  required:
+    - civictheme_media_image__thumbnail
+    - civictheme_media_image__featured_image
+    - civictheme_media_image__banner_background
