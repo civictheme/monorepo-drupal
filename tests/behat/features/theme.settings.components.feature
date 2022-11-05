@@ -200,10 +200,18 @@ Feature: Check that Components settings are available in theme settings
 
   @api
   Scenario: The CivicTheme theme setting `Expose Migration metadata` exposes meta data in DOM
+    Given managed file:
+      | filename       | uri                                     | path           |
+      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
+    And "civictheme_image" media:
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
     Given "civictheme_page" content:
-      | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated    |
-      | [TEST] Page 1 | 1      | top                        | 1                  | 1                           | 0                      | 2022-07-01 |
-      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01 |
+      | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_background | field_c_n_blend_mode | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
+      | [TEST] Page 1 | 1      | top                        | 1                  | 1                           | 0                      | 2022-07-01                    | [TEST] CivicTheme Image     | luminosity           | default               | light                  | 1                                |
+    Given "civictheme_page" content:
+      | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
+      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01                    | large                 | dark                   | 0                              |
     When I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
     And I check the box "Expose Migration metadata"
@@ -215,6 +223,11 @@ Feature: Check that Components settings are available in theme settings
     And should see a "section[data-ct-migrate-show-last-updated='1']" element
     And should see a "section[data-ct-migrate-hide-sidebar='0']" element
     And should see a "section[data-ct-migrate-last-updated='1 Jul 2022']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-blend-mode='luminosity']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-background-image]" element
+    And should see a ".ct-banner[data-ct-migrate-banner-type='default']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-theme='light']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb='1']" element
 
     And I visit "civictheme_page" "[TEST] Page 2"
     Then should see a "section[data-ct-migrate-vertical-spacing='bottom']" element
@@ -222,6 +235,12 @@ Feature: Check that Components settings are available in theme settings
     And should see a "section[data-ct-migrate-show-last-updated='0']" element
     And should see a "section[data-ct-migrate-hide-sidebar='1']" element
     And should not see a "section[data-ct-migrate-last-updated]" element
+    # CivicTheme has default background image for banner.
+    And should see a ".ct-banner[data-ct-migrate-banner-blend-mode='soft-light']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-background-image]" element
+    And should see a ".ct-banner[data-ct-migrate-banner-type='large']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-theme='dark']" element
+    And should see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb='0']" element
 
     And I visit "/admin/appearance/settings/civictheme_demo"
     And I uncheck the box "Expose Migration metadata"
@@ -233,3 +252,8 @@ Feature: Check that Components settings are available in theme settings
     And should not see a "section[data-ct-migrate-show-last-updated]" element
     And should not see a "section[data-ct-migrate-hide-sidebar]" element
     And should not see a "section[data-ct-migrate-last-updated]" element
+    And should not see a ".ct-banner[data-ct-migrate-banner-blend-mode]" element
+    And should not see a ".ct-banner[data-ct-migrate-banner-background-image]" element
+    And should not see a ".ct-banner[data-ct-migrate-banner-type]" element
+    And should not see a ".ct-banner[data-ct-migrate-banner-theme]" element
+    And should not see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb]" element

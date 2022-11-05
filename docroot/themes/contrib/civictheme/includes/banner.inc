@@ -48,6 +48,12 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
     }
   }
 
+  // Combining Drupal block classes with banner.
+  if (!empty($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+
   _civictheme_preprocess_civictheme_banner_title($variables);
   _civictheme_preprocess_civictheme_banner_node($variables);
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);

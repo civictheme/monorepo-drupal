@@ -42,10 +42,15 @@ function civictheme_expose_migration_metadata__page(&$variables) {
  * Exposes civictheme migration banner metadata.
  */
 function civictheme_expose_migration_metadata__banner(&$variables) {
-  $variables['attributes']['data-ct-blend-mode'] = $variables['background_image_blend_mode'];
-  $variables['attributes']['data-ct-banner-type'] = $variables['type'];
-  $variables['attributes']['data-ct-banner-theme'] = $variables['theme'];
-  $variables['attributes']['data-ct-show-breadcrumb'] = (int) !empty($variables['breadcrumb']);
+  if (civictheme_migrate_metadata_enabled()) {
+    $variables['attributes']['data-ct-migrate-banner-type'] = $variables['type'];
+    $variables['attributes']['data-ct-migrate-banner-theme'] = $variables['theme'];
+    $variables['attributes']['data-ct-migrate-banner-hide-breadcrumb'] = (int) empty($variables['breadcrumb']);
+    if (isset($variables['background_image'])) {
+      $variables['attributes']['data-ct-migrate-banner-blend-mode'] = $variables['background_image_blend_mode'];
+      $variables['attributes']['data-ct-migrate-banner-background-image'] = $variables['background_image'];
+    }
+  }
 }
 
 /**
