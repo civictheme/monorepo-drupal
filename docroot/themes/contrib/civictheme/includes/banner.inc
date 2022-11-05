@@ -53,6 +53,8 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
   _civictheme_preprocess_civictheme_banner_section($variables);
 
+  civictheme_expose_migration_metadata__banner($variables);
+
   if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
   }

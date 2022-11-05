@@ -285,6 +285,18 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#rows' => 4,
     ];
 
+    $form['components']['migrate'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Migration'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+    $form['components']['migrate']['expose_migration_metadata'] = [
+      '#type' => 'checkbox',
+      '#title' => 'Expose Migration metadata',
+      '#default_value' => $this->getSetting('components.migrate.expose_migration_metadata') ?? FALSE,
+    ];
+
     foreach (array_keys($form['components']) as $component_name) {
       $validate = CivicthemeUtility::camelise("validate_$component_name");
       if (is_callable([$this, $validate])) {

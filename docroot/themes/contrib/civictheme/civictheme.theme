@@ -38,6 +38,7 @@ require_once 'includes/media.inc';
 require_once 'includes/menu.inc';
 require_once 'includes/mobile_navigation.inc';
 require_once 'includes/next_step.inc';
+require_once 'includes/migrate.inc';
 require_once 'includes/node.inc';
 require_once 'includes/page.inc';
 require_once 'includes/pager.inc';
@@ -158,6 +159,9 @@ function civictheme_preprocess_page(&$variables) {
 
   // Pre-process page to support alerts.
   _civictheme_preprocess_page__civictheme_alert($variables);
+
+  // Preprocess page to expose migrate metadata.
+  civictheme_expose_migration_metadata__page($variables);
 
   // Do not add anything below this line or components will not be able
   // to discover variables.

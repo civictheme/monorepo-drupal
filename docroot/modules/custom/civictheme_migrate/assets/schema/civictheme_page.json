@@ -33,17 +33,21 @@
         "type": "object",
         "description": "Image thumbnail object - name and url",
         "properties": {
-          "id": {
+          "name": {
+            "type": "string",
+            "description": "Media image entity name (default to filename)"
+          },
+          "file": {
+            "type": "string",
+            "description": "Banner featured image url"
+          },
+          "uuid": {
             "type": "string",
             "description": "UUID for image"
           },
-          "name": {
+          "alt": {
             "type": "string",
-            "description": "Media image entity name (could be alt tag for image)"
-          },
-          "url": {
-            "type": "string",
-            "description": "Image thumbnail url"
+            "description": "Alt tag"
           }
         },
         "required": ["id", "name", "url"]
@@ -69,58 +73,84 @@
       "banner": {
         "type": "object",
         "properties": {
-          "theme": {
+          "type": {
             "type": "string",
-            "description": "Banner theme",
-            "pattern": "light|dark"
+            "description": "Hardcoded Merlin UI Output",
+            "pattern": "container"
           },
-          "title": {
-            "type": "string",
-            "description": "Banner title"
-          },
-          "banner_type": {
-            "type": "string",
-            "description": "Type of banner",
-            "pattern": "default|large"
-          },
-          "blend_mode": {
-            "type": "string",
-            "description": "Banner blend mode",
-            "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
-          },
-          "featured_image": {
-            "type": "object",
-            "description": "Banner featured image",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "UUID for image"
-              },
-              "name": {
-                "type": "string",
-                "description": "Media image entity name (could be alt tag for image)"
-              },
-              "url": {
-                "type": "string",
-                "description": "Banner featured image url"
+          "children": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Banner theme",
+                  "pattern": "light|dark"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Banner title"
+                },
+                "banner_type": {
+                  "type": "string",
+                  "description": "Type of banner",
+                  "pattern": "default|large"
+                },
+                "blend_mode": {
+                  "type": "string",
+                  "description": "Banner blend mode",
+                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
+                },
+                "featured_image": {
+                  "type": "object",
+                  "description": "Banner featured image",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Media image entity name (default to filename)"
+                    },
+                    "file": {
+                      "type": "string",
+                      "description": "Banner featured image url"
+                    },
+                    "uuid": {
+                      "type": "string",
+                      "description": "UUID for image"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alt tag"
+                    }
+                  }
+                },
+                "background": {
+                  "type": "array",
+                  "contains": {
+                    "type": "object",
+                    "description": "Banner background image",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Media image entity name (default to filename)"
+                      },
+                      "file": {
+                        "type": "string",
+                        "description": "Banner featured image url"
+                      },
+                      "uuid": {
+                        "type": "string",
+                        "description": "UUID for image"
+                      },
+                      "alt": {
+                        "type": "string",
+                        "description": "Alt tag"
+                      }
+                    }
+                  }
+                }
               }
-            },
-            "required": ["id", "name", "url"]
-          },
-          "background": {
-            "type": "object",
-            "description": "Banner background image",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "UUID for image"
-              },
-              "url": {
-                "type": "string",
-                "description": "Banner background image url"
-              }
-            },
-            "required": ["id", "url"]
+            }
           }
         }
       }

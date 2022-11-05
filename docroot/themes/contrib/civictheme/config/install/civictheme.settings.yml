@@ -33,6 +33,8 @@ components:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+  migrate:
+    expose_migration_metadata: false
 colors:
   use_brand_colors: true
   brand:
