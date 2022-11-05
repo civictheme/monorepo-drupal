@@ -112,6 +112,10 @@ Feature: Check that Components settings are available in theme settings
     And should see an "textarea#edit-components-link-external-override-domains" element
     And should not see an "textarea#edit-components-link-external-override-domains.required" element
 
+    And I see field "Expose Migration metadata"
+    And should see an "input[name='components[migrate][expose_migration_metadata]']" element
+    And should not see an "input[name='components[migrate][expose_migration_metadata]'].required" element
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
@@ -193,3 +197,39 @@ Feature: Check that Components settings are available in theme settings
     When I fill in "Override external link domains" with "http//invaliddomain.com"
     And I press "Save configuration"
     Then I should not see the text "The configuration options have been saved."
+
+  @api
+  Scenario: The CivicTheme theme setting `Expose Migration metadata` exposes meta data in DOM
+    Given "civictheme_page" content:
+      | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated    |
+      | [TEST] Page 1 | 1      | top                        | 1                  | 1                           | 0                      | 2022-07-01 |
+      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01 |
+    When I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I check the box "Expose Migration metadata"
+    And I press "Save configuration"
+
+    And I visit "civictheme_page" "[TEST] Page 1"
+    Then should see a "section[data-ct-migrate-vertical-spacing='top']" element
+    And should see a "section[data-ct-migrate-show-toc='1']" element
+    And should see a "section[data-ct-migrate-show-last-updated='1']" element
+    And should see a "section[data-ct-migrate-hide-sidebar='0']" element
+    And should see a "section[data-ct-migrate-last-updated='1 Jul 2022']" element
+
+    And I visit "civictheme_page" "[TEST] Page 2"
+    Then should see a "section[data-ct-migrate-vertical-spacing='bottom']" element
+    And should see a "section[data-ct-migrate-show-toc='0']" element
+    And should see a "section[data-ct-migrate-show-last-updated='0']" element
+    And should see a "section[data-ct-migrate-hide-sidebar='1']" element
+    And should not see a "section[data-ct-migrate-last-updated]" element
+
+    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I uncheck the box "Expose Migration metadata"
+    And I press "Save configuration"
+
+    And I visit "civictheme_page" "[TEST] Page 1"
+    Then should not see a "section[data-ct-migrate-vertical-spacing]" element
+    And should not see a "section[data-ct-migrate-show-toc]" element
+    And should not see a "section[data-ct-migrate-show-last-updated]" element
+    And should not see a "section[data-ct-migrate-hide-sidebar]" element
+    And should not see a "section[data-ct-migrate-last-updated]" element

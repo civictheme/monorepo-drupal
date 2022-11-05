@@ -184,8 +184,25 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
  * Preprocess banner last updated date.
  */
 function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $node) {
+  $final_date = _civictheme_preprocess_civictheme_banner_get_last_updated($node);
+
+  if (isset($final_date)) {
+    $variables['content_middle'][] = [
+      '#theme' => 'civictheme_basic_content',
+      '#component_theme' => $variables['theme'] ?? NULL,
+      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '<p>',
+    ];
+  }
+}
+
+/**
+ * Helper to determine last updated date for a page.
+ */
+function _civictheme_preprocess_civictheme_banner_get_last_updated($node) {
   $last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
   $custom_updated = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
+
+  $final_date = NULL;
 
   if ($last_updated && $custom_updated) {
     $final_date = civictheme_format_short_date($custom_updated->get('value')->getDateTime());
@@ -195,13 +212,7 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
     $final_date = \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date');
   }
 
-  if (isset($final_date)) {
-    $variables['content_middle'][] = [
-      '#theme' => 'civictheme_basic_content',
-      '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '<p>',
-    ];
-  }
+  return $final_date;
 }
 
 /**
