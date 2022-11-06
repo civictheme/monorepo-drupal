@@ -26,34 +26,36 @@
         "description": "Comma delimited page topics"
       },
       "thumbnail": {
-        "type": "object",
-        "description": "Image thumbnail object - name and url",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Media image entity name (default to filename)"
-          },
-          "file": {
-            "type": "string",
-            "description": "Banner featured image url"
-          },
-          "uuid": {
-            "type": "string",
-            "description": "UUID for image"
-          },
-          "alt": {
-            "type": "string",
-            "description": "Alt tag"
+        "type": "array",
+        "contains": {
+          "type": "object",
+          "description": "Image thumbnail object - name and url",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Media image entity name (default to filename)"
+            },
+            "file": {
+              "type": "string",
+              "description": "Banner featured image url"
+            },
+            "uuid": {
+              "type": "string",
+              "description": "UUID for image"
+            },
+            "alt": {
+              "type": "string",
+              "description": "Alt tag"
+            }
           }
-        },
-        "required": ["id", "name", "url"]
+        }
       },
       "vertical_spacing": {
         "type": "string",
         "pattern": "top|bottom|both",
         "description": "Page level vertical spacing"
       },
-      "hide_toc": {
+      "show_toc": {
         "type": "boolean",
         "description": "Whether to hide table of contents"
       },
@@ -102,24 +104,27 @@
                   "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
                 },
                 "featured_image": {
-                  "type": "object",
-                  "description": "Banner featured image",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "Media image entity name (default to filename)"
-                    },
-                    "file": {
-                      "type": "string",
-                      "description": "Banner featured image url"
-                    },
-                    "uuid": {
-                      "type": "string",
-                      "description": "UUID for image"
-                    },
-                    "alt": {
-                      "type": "string",
-                      "description": "Alt tag"
+                  "type": "array",
+                  "contains": {
+                    "type": "object",
+                    "description": "Banner featured image",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Media image entity name (default to filename)"
+                      },
+                      "file": {
+                        "type": "string",
+                        "description": "Banner featured image url"
+                      },
+                      "uuid": {
+                        "type": "string",
+                        "description": "UUID for image"
+                      },
+                      "alt": {
+                        "type": "string",
+                        "description": "Alt tag"
+                      }
                     }
                   }
                 },
@@ -147,6 +152,10 @@
                       }
                     }
                   }
+                },
+                "hide_breadcrumb": {
+                  "type": "boolean",
+                  "description": "Whether to hide breadcrumb in banner"
                 }
               }
             }

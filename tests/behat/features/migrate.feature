@@ -53,7 +53,7 @@ Feature: Tests the CivicTheme migration functionality
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
 
-  @api @javascript
+  @api @javascript @wip
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
     Given managed file:
       | filename                               | uri                                             | path                                   |
@@ -70,6 +70,18 @@ Feature: Tests the CivicTheme migration functionality
     And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migrate/execute"
     And I press the "Execute" button
     # Arbituary wait while batch processes, extend wait time if it is failing.
-    And I wait 10 seconds
-    And I visit "[TEST] Migrated Content 3"
-    And I visit "[TEST] Migrated Content 10"
+    And I wait 20 seconds
+
+    And I visit "[TEST] Migrated Content 1"
+    And I should see "[TEST] Banner title - Migrated Content 1" in the ".ct-banner__title h1" element
+    And I should see "Last updated: 8 Oct 2022"
+    And I should see an ".ct-layout.ct-vertical-spacing--top" element
+    And I should see an ".ct-banner.ct-theme-dark.ct-banner--decorative" element
+    And I should see an ".ct-banner__wrapper__inner.ct-background--darken" element
+    And I visit "[TEST] Migrated Content 6"
+    And I should see "[TEST] Banner title - Migrated Content 6" in the ".ct-banner__title h1" element
+    And I should see "Last updated: 1 Oct 2022"
+    And I should see an ".ct-layout.ct-vertical-spacing--top" element
+    And I should not see an ".ct-banner.ct-theme-light.ct-banner--decorative" element
+    And I should see an ".ct-banner.ct-theme-light" element
+    And I should see an ".ct-banner__wrapper__inner.ct-background--soft-light" element

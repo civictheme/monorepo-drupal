@@ -18,17 +18,18 @@ source:
   data_fetcher_plugin: file
   data_parser_plugin: json
   ids:
-    id:
+    uuid:
       type: string
   fields:
-    -
-      name: url
+    - name: url
       label: 'File URL'
-      selector: banner/background/url
-    -
-      name: id
-      label: 'Unique identifier'
-      selector: banner/background/id
+      selector: banner/children/0/background/0/file
+    - name: name
+      label: 'Entity Name'
+      selector: banner/children/0/background/0/name
+    - name: uuid
+      label: 'Entity ID'
+      selector: banner/children/0/background/0/uuid
 process:
   name: name
   field_c_m_image:

@@ -21,44 +21,56 @@ source:
   #  urls:
   fields:
     - name: id
-      label: "ID"
+      label: 'ID'
       selector: id
     - name: title
-      label: "Title"
+      label: 'Title'
       selector: title
     - name: alias
-      label: "Path alias"
+      label: 'Path alias'
       selector: alias
     - name: summary
-      label: "Summary"
+      label: 'Summary'
       selector: summary
+    - name: topics
+      label: 'Topic tags'
+      selector: topics
     - name: vertical_spacing
-      label: "Vertical Spacing"
+      label: 'Vertical Spacing'
       selector: vertical_spacing
     - name: thumbnail_id
-      label: "Thumbnail id"
-      selector: thumbnail/id
+      label: 'Thumbnail id'
+      selector: thumbnail/0/uuid
     - name: featured_image_id
-      label: "Featured image id"
-      selector: banner/featured_image/id
+      label: 'Featured image id'
+      selector: banner/children/0/featured_image/0/uuid
     - name: banner_background_id
-      label: "Banner background image id"
-      selector: banner/background/id
+      label: 'Banner background image id'
+      selector: banner/children/0/background/0/uuid
     - name: hide_sidebar
-      label: "Hide sidebar"
+      label: 'Hide sidebar'
       selector: hide_sidebar
+    - name: show_toc
+      label: 'Show table of contents'
+      selector: show_toc
+    - name: hide_breadcrumb
+      label: 'Hide breadcrumb in banner'
+      selector: 'banner/children/0/hide_breadcrumb'
     - name: show_last_updated_date
-      label: "Show last updated date"
+      label: 'Show last updated date'
       selector: show_last_updated_date
     - name: banner_title
-      label: "Banner title"
-      selector: banner/title
+      label: 'Banner title'
+      selector: banner/children/0/title
     - name: banner_type
-      label: "Banner type"
-      selector: banner/banner_type
+      label: 'Banner type'
+      selector: banner/children/0/banner_type
     - name: banner_blend_mode
-      label: "Vertical Spacing"
-      selector:  banner/blend_mode
+      label: 'Vertical Spacing'
+      selector:  banner/children/0/blend_mode
+    - name: banner_theme
+      label: 'Banner theme'
+      selector:  banner/children/0/theme
   ids:
     id:
       type: string
@@ -68,21 +80,66 @@ process:
       source: title
       method: row
       message: 'Title is empty'
-    -
-      plugin: substr
+    - plugin: substr
       length: 255
   field_c_n_summary: summary
-  field_c_n_vertical_space: vertical_spacing
-  field_c_n_hide_sidebar: hide_sidebar
+  field_c_n_topics:
+    - plugin: explode
+      delimiter: ','
+      source: topics
+    - plugin: entity_generate
+      value_key: name
+      ignore_case: true
+      operator: STARTS_WITH
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: 'civictheme_topics'
+  field_c_n_vertical_space:
+    - plugin: get
+      source: vertical_spacing
+    - plugin: default_value
+      default_value: ''
+  field_c_n_hide_sidebar:
+    - plugin: get
+      source: hide_sidebar
+    - plugin: default_value
+      default_value: 0
   field_c_n_thumbnail:
     plugin: migration_lookup
     migration: civictheme_media_image__thumbnail
     source: thumbnail_id
-  field_c_n_show_last_updated: show_last_updated_date
+  field_c_n_show_last_updated:
+    - plugin: get
+      source: show_last_updated_date
+    - plugin: default_value
+      default_value: 0
+  field_c_n_banner_theme:
+    - plugin: get
+      source: banner_theme
+    - plugin: default_value
+      default_value: 'dark'
   field_c_n_banner_title: banner_title
-  field_c_n_banner_type: banner_type
-  field_c_n_blend_mode: banner_blend_mode
+  field_c_n_banner_type:
+    - plugin: get
+      source: banner_type
+    - plugin: default_value
+      default_value: 'default'
+  field_c_n_blend_mode:
+    - plugin: get
+      source: banner_blend_mode
+    - plugin: default_value
+      default_value: 'color'
   field_c_n_custom_last_updated: last_updated_date
+  field_c_n_show_toc:
+    - plugin: get
+      source: show_toc
+    - plugin: default_value
+      default_value: 0
+  field_c_n_banner_hide_breadcrumb:
+    - plugin: get
+      source: hide_breadcrumb
+    - plugin: default_value
+      default_value: 0
   field_c_n_banner_featured_image:
     plugin: migration_lookup
     migration: civictheme_media_image__featured_image
