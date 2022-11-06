@@ -62,14 +62,14 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as an administrator
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
+    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
     And I press the "Retrieve files" button
     And I should see the message "Migration content files have been retrieved"
     And I press the "Generate migration" button
     And I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
     And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migrate/execute"
     And I press the "Execute" button
-    # Arbituary wait while batch processes, extend wait time if it is failing.
+    # Arbitrary wait while batch processes, extend wait time if it is failing.
     And I wait 20 seconds
 
     And I visit "[TEST] Migrated Content 1"
