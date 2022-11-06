@@ -22,12 +22,8 @@
         "description": "Page summary"
       },
       "topics": {
-        "type": "array",
-        "description": "Page topics",
-        "items": {
-          "type": "string",
-          "description": "A page topic"
-        }
+        "type": "string",
+        "description": "Comma delimited page topics"
       },
       "thumbnail": {
         "type": "object",
@@ -54,8 +50,12 @@
       },
       "vertical_spacing": {
         "type": "string",
-        "pattern": "top|bottom|both|none",
+        "pattern": "top|bottom|both",
         "description": "Page level vertical spacing"
+      },
+      "hide_toc": {
+        "type": "boolean",
+        "description": "Whether to hide table of contents"
       },
       "hide_sidebar": {
         "type": "boolean",
@@ -67,8 +67,7 @@
       },
       "last_updated_date": {
         "type": "string",
-        "format": "date",
-        "description": "Last updated date in `YYYY-MM-DD`format"
+        "description": "Last updated date in `D MMM YYYY`format"
       },
       "banner": {
         "type": "object",
@@ -155,6 +154,6 @@
         }
       }
     },
-    "required": ["id", "title", "alias", "hide_sidebar", "show_last_updated_date"]
+    "required": ["id", "title", "alias", "show_toc","hide_sidebar", "show_last_updated_date"]
   }
 }

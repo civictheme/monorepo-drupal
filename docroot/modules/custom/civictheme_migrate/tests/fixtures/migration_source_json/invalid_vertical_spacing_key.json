@@ -3,6 +3,9 @@
     "title": "[TEST] Title",
     "id": "1",
     "alias": "/test-title",
-    "vertical_spacing": "Invalid option"
+    "vertical_spacing": "Invalid option",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   }
 ]

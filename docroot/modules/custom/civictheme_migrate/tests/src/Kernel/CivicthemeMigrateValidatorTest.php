@@ -95,16 +95,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
         [
           'All array items must match schema',
           'The properties must match schema: vertical_spacing',
-          'The string should match pattern: top|bottom|both|none',
-        ],
-      ],
-      [
-        'invalid_topics.json',
-        'civictheme_page',
-        [
-          'All array items must match schema',
-          'The properties must match schema: topics',
-          'The data (string) must match the type: array',
+          'The string should match pattern: top|bottom|both',
         ],
       ],
       ['valid_multiple_element.json', 'civictheme_page', []],

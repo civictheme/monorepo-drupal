@@ -2,35 +2,53 @@
   {
     "title": "[TEST] Title 1",
     "id": "1",
-    "alias": "/test-title1"
+    "alias": "/test-title1",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   },
   {
     "title": "[TEST] Title 2",
     "id": "2",
-    "alias": "/test-title2"
+    "alias": "/test-title2",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   },
   {
     "title": "[TEST] Title 3",
     "id": "3",
     "alias": "/test-title3",
-    "vertical_spacing": "top"
+    "vertical_spacing": "top",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   },
   {
     "title": "[TEST] Title 4",
     "id": "4",
     "alias": "/test-title4",
-    "vertical_spacing": "bottom"
+    "vertical_spacing": "bottom",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   },
   {
     "title": "[TEST] Title 4",
     "id": "4",
     "alias": "/test-title4",
-    "vertical_spacing": "both"
+    "vertical_spacing": "both",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   },
   {
     "title": "[TEST] Title 4",
     "id": "4",
     "alias": "/test-title4",
-    "vertical_spacing": "none"
+    "vertical_spacing": "top",
+    "show_toc": true,
+    "hide_sidebar": false,
+    "show_last_updated_date": true
   }
 ]

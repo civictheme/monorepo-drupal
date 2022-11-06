@@ -270,3 +270,4 @@ Feature: Check that Components settings are available in theme settings
     And should not see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb]" element
     And should not see a "section[data-ct-migrate-summary]" element
     And should not see a "section[data-ct-migrate-thumbnail]" element
+    And should not see a "section[data-ct-migrate-topics]" element
