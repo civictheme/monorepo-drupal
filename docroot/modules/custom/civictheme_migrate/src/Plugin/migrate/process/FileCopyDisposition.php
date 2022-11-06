@@ -82,7 +82,9 @@ class FileCopyDisposition extends FileImport {
     $filename = "temporary://{$filename}";
 
     file_put_contents($filename, (string) $data);
-    return parent::transform($filename, $migrate_executable, $row, $destination_property);
+    $file_path = $this->fileSystem->realpath($filename);
+
+    return parent::transform($file_path, $migrate_executable, $row, $destination_property);
   }
 
 }
