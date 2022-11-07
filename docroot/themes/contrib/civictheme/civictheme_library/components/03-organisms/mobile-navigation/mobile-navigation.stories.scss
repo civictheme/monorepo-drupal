@@ -12,7 +12,7 @@
       }
     }
 
-    .ct-mobile-navigation__trigger {
+    .ct-mobile-navigation-trigger {
       @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
         display: inline;
       }

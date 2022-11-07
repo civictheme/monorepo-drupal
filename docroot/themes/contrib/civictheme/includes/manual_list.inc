@@ -39,13 +39,11 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'url' => $link_below->getUrl()->toString(),
   ] : [];
 
-  $view_as = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
-
   $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items');
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   if ($items) {
     foreach ($items as $item) {
-      $variables['rows'][] = $builder->view($item, $view_as);
+      $variables['rows'][] = $builder->view($item);
     }
   }
 
@@ -58,7 +56,6 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
     'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_column_count'),
     'link_below' => $link_below_data,
-    'view_as' => $view_as,
     'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_fill_width') ?? FALSE,
     'cache_tags' => $paragraph->getCacheTags(),
   ];

@@ -88,7 +88,7 @@ default:
 
                 Dolor euismod facilisis hos magna. Abbas comis laoreet pagus qui sit tamen uxor velit. Abigo bene consectetuer cui haero ille laoreet meus nutus pagus. Immitto paulatim refoveo. Abico luptatum si volutpat. Abigo caecus conventio eum nibh sagaciter. Decet duis jus pneum. Brevitas commoveo distineo dolus incassum iustum minim mos ulciscor volutpat. Diam illum nimis similis utrum. Ea gravis natu paratus vero.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -143,7 +143,7 @@ default:
 
                 Augue brevitas capto lenis occuro probo torqueo vulpes. Enim neque nisl nulla uxor. Abdo augue eligo iaceo iusto oppeto plaga vulpes wisi. Acsi elit erat exputo inhibeo ludus luptatum paulatim venio. Caecus cogo comis huic secundum si. Cui jugis jus lenis paratus quia ratis.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -198,7 +198,7 @@ default:
 
                 Aptent erat esse eum ideo importunus proprius saepius. Abbas diam dolus humo suscipere tum verto virtus. Ille laoreet os quidem valetudo virtus volutpat. Abdo cogo ex gemino iaceo ideo premo suscipere valetudo volutpat. Defui diam ideo jus qui quibus saepius sagaciter torqueo. Ex roto scisco.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -211,6 +211,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -263,7 +266,7 @@ default:
 
                 Decet exputo gemino gilvus ille iustum proprius si sino ymo. Abigo accumsan jumentum neque nulla nunc olim os ullamcorper vicis. Amet feugiat gemino humo mos uxor.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -318,7 +321,7 @@ default:
 
                 Commodo duis oppeto. Abico appellatio fere ideo singularis vulputate. Consectetuer dolor euismod gemino modo nutus qui quis vindico. Causa hos metuo refoveo te. Amet imputo luctus macto proprius qui ratis torqueo valde.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -331,9 +334,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

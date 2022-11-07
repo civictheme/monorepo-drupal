@@ -57,8 +57,6 @@ settings:
     drupallink:
       linkit_enabled: true
       linkit_profile: civictheme
-    language:
-      language_list: un
     stylescombo:
       styles: "a.ct-button.ct-theme-light.ct-button--primary.ct-button--regular|Button - primary regular\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--regular|Button - secondary regular\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--large|Button - primary large\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--large|Button - secondary large\r\np.ct-text-large|Lead paragraph\r\np.ct-text-small|Small\r\ntable.ct-theme-light.ct-table|Table\r\ntable.ct-theme-light.ct-table.ct-table--striped|Table striped rows"
 image_upload:

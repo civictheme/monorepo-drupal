@@ -45,9 +45,7 @@ x-environment: &default-environment
   # Pass-through $CI variable used to identify the CI environment.
   CI: ${CI:-}
   # Uncomment below if emails are not being received by Mailhog locally.
-  # SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
-  # Uncomment below if emails are not being received by Mailhog locally.
-  # SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
+  SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
   # Drupal Shield credentials.
   DRUPAL_SHIELD_USER: ${DRUPAL_SHIELD_USER:-}
   DRUPAL_SHIELD_PASS: ${DRUPAL_SHIELD_PASS:-}
@@ -55,6 +53,8 @@ x-environment: &default-environment
   LAGOON_PROJECT: ${LAGOON_PROJECT:-example_site}
   # Lagoon environment type.
   LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
+  GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+  COMPOSER: ${COMPOSER:-}
 
 # ------------------------------------------------------------------------------
 # Services.
@@ -66,6 +66,9 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile.cli
+      args:
+        GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
+        COMPOSER: "${COMPOSER:-}"
     image: &cli-image ${DREVOPS_PROJECT:-example_site}-cli
     <<: *default-volumes
     user: root
@@ -150,7 +153,7 @@ services:
 
   # Chrome container, used for browser testing.
   chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome:4.5.2-20221021
     shm_size: '1gb' # Increase '/dev/shm' partition size to avoid browser crashing.
     <<: *default-volumes # Use default volumes to provide access to test fixtures.
     environment:

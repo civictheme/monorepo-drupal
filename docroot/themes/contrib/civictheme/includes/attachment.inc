@@ -30,11 +30,11 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
       $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
       $links[] = [
         'url' => $url,
-        'text' => t('@name <span class="extension">(@ext, @size)</span>', [
+        'text' => t('@name', [
           '@name' => $file->label(),
-          '@ext' => strtoupper($file_extension),
-          '@size' => strtoupper($file_size),
         ]),
+        'ext' => $file_extension ?? '',
+        'size' => $file_size ?? '',
         'icon' => $icon,
         'last_updated' => \Drupal::service('date.formatter')->format($attachment->getChangedTime(), 'civictheme_short_date'),
       ];
@@ -74,7 +74,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/x-applix-word':
     case 'application/x-kword':
     case 'application/x-kword-crypt':
-      return 'fileandfolders_wordfile';
+      return 'word-file';
 
     // Spreadsheet document types.
     case 'application/vnd.ms-excel':
@@ -90,7 +90,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/x-gnumeric':
     case 'application/x-kspread':
     case 'application/x-kspread-crypt':
-      return 'fileandfolders_document';
+      return 'download-file';
 
     // Presentation document types.
     case 'application/vnd.ms-powerpoint':
@@ -102,7 +102,7 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'application/vnd.sun.xml.impress':
     case 'application/vnd.sun.xml.impress.template':
     case 'application/x-kpresenter':
-      return 'fileandfolders_clipboard_3';
+      return 'download-file';
 
     // Acrobat types.
     case 'application/pdf':
@@ -110,9 +110,9 @@ function _civictheme_attachment_file_icon_map($mime_type) {
     case 'applications/vnd.pdf':
     case 'text/pdf':
     case 'text/x-pdf':
-      return 'fileandfolders_pdffile';
+      return 'pdf-file';
 
     default:
-      return 'fileandfolders_document';
+      return 'download-file';
   }
 }

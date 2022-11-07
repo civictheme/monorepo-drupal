@@ -43,7 +43,7 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 ## Build process
 
 1. Builds fresh site from GovCMS Drupal profile. Use `ahoy install-site` to rebuild.
-2. Enables additional modules required for development by installing `cs_core` module.
+2. Enables additional modules required for development by installing `civictheme_dev` module.
 3. Enables `civictheme` theme and imports its configuration.
 4. Creates `civictheme_demo` sub-theme using provided scaffolding script and sets it as a default theme.
 5. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.

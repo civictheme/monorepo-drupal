@@ -5,9 +5,9 @@ _meta:
   bundle: civictheme_social_links
   default_langcode: en
   depends:
-    128cf256-533b-4a10-bedb-e878deada4a5: media
-    f7f391de-797d-4345-90c4-46d1f01c468e: media
-    930bbaa2-e37b-403a-86e6-c16d1aa79ad9: media
+    35a65b40-b6a0-428d-bce3-3bd7c918f84b: media
+    81cd5226-50b8-4d4b-ab47-7b9a783cce85: media
+    846a6a20-2767-4b7f-9f92-4bbe7ad15ac2: media
 default:
   status:
     -
@@ -27,7 +27,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 1b79d942-5437-45b2-b6da-d320d5ada850
+          uuid: f58fbd26-d52e-4ec2-a5b9-9dbf2b45cf3f
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -36,7 +36,7 @@ default:
               value: true
           created:
             -
-              value: 1635056707
+              value: 1667017477
           behavior_settings:
             -
               value: {  }
@@ -45,7 +45,7 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: 128cf256-533b-4a10-bedb-e878deada4a5
+              entity: 35a65b40-b6a0-428d-bce3-3bd7c918f84b
           field_c_p_link:
             -
               uri: 'https://www.facebook.com/'
@@ -56,7 +56,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 8e16aba6-d2da-41a1-9bf7-1d02bea7c1a9
+          uuid: f8e342de-5627-4b37-936f-d241998fe072
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -65,7 +65,7 @@ default:
               value: true
           created:
             -
-              value: 1635056922
+              value: 1667017477
           behavior_settings:
             -
               value: {  }
@@ -74,7 +74,7 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: f7f391de-797d-4345-90c4-46d1f01c468e
+              entity: 81cd5226-50b8-4d4b-ab47-7b9a783cce85
           field_c_p_link:
             -
               uri: 'https://www.linkedin.com/'
@@ -85,7 +85,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 4cb05b4c-1ee2-4c22-b876-c14a73557817
+          uuid: 267baf3a-ba09-41a3-a128-36e68e1ec82d
           bundle: civictheme_social_icon
           default_langcode: en
         default:
@@ -94,7 +94,7 @@ default:
               value: true
           created:
             -
-              value: 1635056944
+              value: 1667017477
           behavior_settings:
             -
               value: {  }
@@ -103,10 +103,10 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: 930bbaa2-e37b-403a-86e6-c16d1aa79ad9
+              entity: 846a6a20-2767-4b7f-9f92-4bbe7ad15ac2
           field_c_p_link:
             -
-              uri: 'https://twitter.com/'
+              uri: 'https://www.twitter.com/'
               title: Twitter
               options: {  }
   field_c_b_theme:

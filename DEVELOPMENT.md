@@ -68,7 +68,7 @@ all new, updated or deleted configuration was captured
     ahoy export-config
 
 Configuration is captured using Config Devel module for:
-- development modules into `cs_core` module's `config/install` and `config/optional` directories.
+- development modules into `civictheme_dev` module's `config/install` and `config/optional` directories.
 - theme into CivicTheme Drupal theme's `config/install` and `config/optional` directories.
 
 To add new configuration to the export, add configuration name to `civictheme.info.yml`.
@@ -86,6 +86,12 @@ by adding records to [theme_excluded_configs.txt](./scripts/theme_excluded_confi
 Note that wildcards are supported.
 
 ## Demo content export
+
+    CIVICTHEME_CONTENT_TYPES=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=default ahoy export-content
+
+    CIVICTHEME_CONTENT_TYPES=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=corporate ahoy export-content
+
+OR
 
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
 

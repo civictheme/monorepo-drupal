@@ -88,7 +88,7 @@ default:
 
                 Consequat gilvus mauris oppeto sed suscipere utrum. Huic immitto molior nunc quibus si tego turpis. Elit esca euismod huic iusto nostrud si sudo verto zelus. Aliquip facilisi immitto jus oppeto. Letalis modo nulla praemitto proprius. Genitus importunus quis turpis. Aliquam enim zelus. Augue huic magna pagus sagaciter vicis virtus. Abico adipiscing causa iustum meus os validus volutpat wisi zelus.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -153,7 +156,7 @@ default:
 
                 Genitus odio pagus saepius. Cogo gilvus mauris modo olim. Exputo pneum turpis. Defui eum hos humo melior obruo tation voco zelus. Ullamcorper utrum valde vicis. Dignissim haero ibidem os pala te tego voco. Comis decet diam et laoreet sino utrum.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -208,7 +211,7 @@ default:
 
                 Causa inhibeo iriure nibh sagaciter usitas. Gravis illum neque nobis quis suscipere vindico. Blandit commoveo consectetuer euismod eum haero laoreet sit sudo. Antehabeo cogo lucidus validus. Brevitas iriure nunc. Adipiscing at dolor fere humo interdico quis ratis vero wisi.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -263,7 +266,7 @@ default:
 
                 Distineo genitus lenis letalis nunc pneum quia ulciscor. Duis immitto pala quae. Incassum paulatim sed. Loquor lucidus nulla quadrum. At obruo si tamen. Caecus camur cui iustum melior natu secundum tego. Abico exerci importunus iusto jus nunc patria utinam vicis vulpes.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -276,9 +279,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+  field_c_n_vertical_spacing:
+    -
+      value: both

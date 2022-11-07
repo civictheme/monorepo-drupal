@@ -16,9 +16,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_background" in the "Background" row
     And I should see the text "field_c_p_column_count" in the "Column count" row
     And I should see the text "field_c_p_content" in the "Content" row
-    And I should see the text "field_c_p_list_item_view_as" in the "Display items as" row
     And I should see the text "field_c_p_fill_width" in the "Fill width in the last row" row
-    And I should see the text "field_c_p_list_item_theme" in the "Item theme" row
     And I should see the text "field_c_p_list_link_above" in the "Link above" row
     And I should see the text "field_c_p_list_link_below" in the "Link below" row
     And I should see the text "field_c_p_theme" in the "Theme" row
@@ -43,7 +41,6 @@ Feature: Tests the Listing paragraph
     And the "Service card" checkbox should be checked
     And the "Subject card" checkbox should be checked
     And the "Subject reference card" checkbox should be checked
-    And the "Task card" checkbox should be checked
     And the "Manual List" checkbox should not be checked
 
   @api @javascript
@@ -124,13 +121,3 @@ Feature: Tests the Listing paragraph
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]'][disabled]" element
-
-    And I see the text "Display items as"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_view_as]']" element
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_view_as]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_view_as]'][disabled]" element
-
-    And I see the text "Item theme"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]']" element
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]'][disabled]" element

@@ -88,7 +88,7 @@ default:
 
                 Causa conventio defui erat lobortis proprius ut. Accumsan antehabeo eros eum immitto incassum magna nibh quae. Neo occuro typicus veniam. Defui ea gemino quia tincidunt verto. Ea eros eu euismod nutus refero usitas. At dolus et gilvus humo iustum occuro refero secundum vel. Aliquam blandit dolor metuo veniam.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -153,7 +156,7 @@ default:
 
                 Illum immitto importunus lenis loquor pneum quibus si vero volutpat. Accumsan eum in ratis valetudo. Abluo quadrum suscipit. Importunus nostrud quia tation. Antehabeo cui dolore refoveo velit. Hendrerit humo macto magna saepius. Dolus ea metuo nisl quadrum quia. Appellatio ea interdico persto saluto valde venio. Amet consequat jumentum. Appellatio bene commodo ex quis turpis vulputate.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -208,7 +211,7 @@ default:
 
                 Autem gemino hos lucidus nostrud populus singularis ullamcorper. Haero patria paulatim quia. Cui et lobortis patria praemitto praesent ratis sino suscipit. Conventio olim quia singularis sudo. Ex pertineo ratis typicus validus vel.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -221,9 +224,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -36,79 +36,18 @@
     margin-top: ct-spacing();
   }
 
-  // SASS does not allow variables interpolation, so we are creating a local
-  // map to easily generate rules.
-  $map: (
-    'information': (
-      'light': (
-        'color': $ct-message-light-information-color,
-        'background-color': $ct-message-light-information-background-color,
-        'border-color': $ct-message-light-information-border-color,
-        'icon-color': $ct-message-light-information-icon-color,
-      ),
-      'dark': (
-        'color': $ct-message-dark-information-color,
-        'background-color': $ct-message-dark-information-background-color,
-        'border-color': $ct-message-dark-information-border-color,
-        'icon-color': $ct-message-dark-information-icon-color,
-      )
-    ),
-    'warning': (
-      'light': (
-        'color': $ct-message-light-warning-color,
-        'background-color': $ct-message-light-warning-background-color,
-        'border-color': $ct-message-light-warning-border-color,
-        'icon-color': $ct-message-light-warning-icon-color,
-      ),
-      'dark': (
-        'color': $ct-message-dark-warning-color,
-        'background-color': $ct-message-dark-warning-background-color,
-        'border-color': $ct-message-dark-warning-border-color,
-        'icon-color': $ct-message-dark-warning-icon-color,
-      )
-    ),
-    'error': (
-      'light': (
-        'color': $ct-message-light-error-color,
-        'background-color': $ct-message-light-error-background-color,
-        'border-color': $ct-message-light-error-border-color,
-        'icon-color': $ct-message-light-error-icon-color,
-      ),
-      'dark': (
-        'color': $ct-message-dark-error-color,
-        'background-color': $ct-message-dark-error-background-color,
-        'border-color': $ct-message-dark-error-border-color,
-        'icon-color': $ct-message-dark-error-icon-color,
-      )
-    ),
-    'success': (
-      'light': (
-        'color': $ct-message-light-success-color,
-        'background-color': $ct-message-light-success-background-color,
-        'border-color': $ct-message-light-success-border-color,
-        'icon-color': $ct-message-light-success-icon-color,
-      ),
-      'dark': (
-        'color': $ct-message-dark-success-color,
-        'background-color': $ct-message-dark-success-background-color,
-        'border-color': $ct-message-dark-success-border-color,
-        'icon-color': $ct-message-dark-success-icon-color,
-      )
-    ),
-  );
+  @include ct-component-theme($root) using($root, $theme) {
+    $types: ('information', 'warning', 'error', 'success');
 
-  @each $type, $type-map in $map {
-    &#{$root}--#{$type} {
-      @each $theme, $values in $type-map {
-        &.ct-theme-#{$theme} {
-          background-color: map.get($values, 'background-color');
-          color: map.get($values, 'color');
-          border-color: map.get($values, 'border-color');
+    @each $type in $types {
+      &#{$root}--#{$type} {
+        @include ct-component-property($root, $theme, $type, background-color);
+        @include ct-component-property($root, $theme, $type, color);
+        @include ct-component-property($root, $theme, $type, border-color);
 
-          #{$root}__icon {
-            .ct-icon {
-              background-color: map.get($values, 'icon-color');
-            }
+        #{$root}__icon {
+          .ct-icon {
+            @include ct-component-property($root, $theme, $type, icon, color);
           }
         }
       }

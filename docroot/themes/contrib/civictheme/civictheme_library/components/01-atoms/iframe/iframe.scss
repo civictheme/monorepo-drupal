@@ -15,19 +15,11 @@
     height: 100%;
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &.ct-iframe--with-background {
-      background-color: $ct-iframe-light-background-color;
-      padding-left: $ct-iframe-space-horizontal;
-      padding-right: $ct-iframe-space-horizontal;
-    }
-  }
-
-  &.ct-theme-dark {
-    &.ct-iframe--with-background {
-      background-color: $ct-iframe-dark-background-color;
-      padding-left: $ct-iframe-space-horizontal;
-      padding-right: $ct-iframe-space-horizontal;
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, padding-left);
+      @include ct-component-property($root, $theme, padding-right);
     }
   }
 }

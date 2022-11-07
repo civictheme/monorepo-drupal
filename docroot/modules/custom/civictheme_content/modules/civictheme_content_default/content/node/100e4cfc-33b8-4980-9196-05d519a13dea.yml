@@ -48,6 +48,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -104,6 +107,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -143,12 +152,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'CivicTheme in 60 second series'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -161,12 +164,12 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: 209291bc-81be-41c7-912c-70d695e9376c
   field_c_n_topics:
     -
       entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+  field_c_n_vertical_spacing:
+    -
+      value: both

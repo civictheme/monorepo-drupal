@@ -11,11 +11,7 @@
     padding: ct-spacing();
   }
 
-  &.ct-theme-light {
-    background-color: $ct-skip-link-light-background-color;
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-skip-link-dark-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
   }
 }

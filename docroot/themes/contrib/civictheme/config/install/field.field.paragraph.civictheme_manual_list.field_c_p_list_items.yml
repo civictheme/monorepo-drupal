@@ -14,7 +14,6 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_service_card
     - paragraphs.paragraphs_type.civictheme_subject_card
     - paragraphs.paragraphs_type.civictheme_subject_card_ref
-    - paragraphs.paragraphs_type.civictheme_task_card
   module:
     - entity_reference_revisions
 id: paragraph.civictheme_manual_list.field_c_p_list_items
@@ -41,7 +40,6 @@ settings:
       civictheme_service_card: civictheme_service_card
       civictheme_subject_card: civictheme_subject_card
       civictheme_subject_card_ref: civictheme_subject_card_ref
-      civictheme_task_card: civictheme_task_card
     negate: 0
     target_bundles_drag_drop:
       civictheme_accordion:
@@ -124,9 +122,6 @@ settings:
         enabled: true
       civictheme_subject_card_ref:
         weight: 58
-        enabled: true
-      civictheme_task_card:
-        weight: 59
         enabled: true
       civictheme_webform:
         weight: 60

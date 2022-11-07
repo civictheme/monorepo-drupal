@@ -27,11 +27,11 @@
     {% for key, link in links %}
       {% set link_item %}
         {% set link = {
+          text: link.text,
+          url: link.url,
           theme: theme,
           attributes: (loop.index == links_count) ? 'aria-current="location"' : '',
           modifier_class: (loop.index == links_count) ? 'ct-breadcrumb__links__link ct-breadcrumb__links__link--active' : 'ct-breadcrumb__links__link',
-          text: link.text,
-          url: link.url,
         } %}
 
         {% if not active_is_link and (loop.index == links_count) %}
@@ -55,11 +55,11 @@
 
       {% if loop.index == links_count - 1 %}
         {% set parent = {
+          text: link.text,
+          url: link.url,
           theme: theme,
           icon: 'left-arrow',
           icon_placement: 'before',
-          text: link.text,
-          url: link.url,
         } %}
       {% endif %}
     {% endfor %}

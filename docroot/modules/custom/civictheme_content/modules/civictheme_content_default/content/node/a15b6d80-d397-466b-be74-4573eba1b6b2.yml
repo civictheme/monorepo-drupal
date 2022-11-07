@@ -6,7 +6,6 @@ _meta:
   default_langcode: en
   depends:
     2cf05e2f-5d05-4e88-ae27-7248a11978c4: media
-    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
     e07cdb41-1bd4-463f-9e7c-126302b24740: media
 default:
   revision_uid:
@@ -47,6 +46,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -138,12 +140,12 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Light 2'
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -420,12 +422,12 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Dark 2'
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -639,12 +641,6 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -654,6 +650,9 @@ default:
           field_c_p_title:
             -
               value: 'Attachment Light - with bg & spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -681,9 +680,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -720,9 +716,6 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -759,12 +752,6 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -774,6 +761,9 @@ default:
           field_c_p_title:
             -
               value: 'Attachment Dark - with bg & spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -801,9 +791,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -840,9 +827,6 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -878,9 +862,6 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.\r\n\r\nCapitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
@@ -890,6 +871,9 @@ default:
           field_c_p_title:
             -
               value: 'Callout Light - with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -951,9 +935,6 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.\r\n\r\nCapitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
@@ -963,6 +944,9 @@ default:
           field_c_p_title:
             -
               value: 'Callout Dark - with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -1022,6 +1006,12 @@ default:
           field_c_p_background:
             -
               value: true
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1029,7 +1019,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3dc33851-57b7-4c25-8188-d8932f4f86cc
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1049,6 +1039,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1058,7 +1051,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 519f0107-3675-420a-b67a-654cc89b7dcc
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1078,24 +1071,21 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'Manual List Light- with bg & spacing '
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -1120,6 +1110,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1127,7 +1123,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 368a03a2-a1ae-4cdd-b154-0b908198d86e
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1147,6 +1143,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1156,7 +1155,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8e9e00f1-72f7-40bb-875a-b1f9fc705691
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1176,15 +1175,12 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -1215,6 +1211,12 @@ default:
           field_c_p_background:
             -
               value: true
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1222,7 +1224,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: ba10843d-f110-4f59-ab96-9ec22d156be0
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1242,6 +1244,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1251,7 +1256,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3603785c-869f-4723-bbe7-e140d15a0c34
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1271,15 +1276,12 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -1310,6 +1312,12 @@ default:
           field_c_p_background:
             -
               value: true
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1317,7 +1325,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 0e9a2d57-7994-465b-a92e-3297d7e0dec8
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1337,6 +1345,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1346,7 +1357,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 120c52e6-8006-4f7a-9a40-98b615386c58
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1366,24 +1377,21 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
           field_c_p_title:
             -
               value: 'Manual List Dark - with bg & spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -1408,6 +1416,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1415,7 +1429,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: eda7a0a6-ac40-404f-a380-3f4dabbf7c68
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1435,6 +1449,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1444,7 +1461,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 7aa938fb-a33c-4fce-87d2-1c669ff94908
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1464,15 +1481,12 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: dark
@@ -1503,6 +1517,12 @@ default:
           field_c_p_background:
             -
               value: true
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -1510,7 +1530,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 9bc73fc4-0421-4df2-866f-445559a9dab2
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1530,6 +1550,9 @@ default:
                       uri: 'http://example.com'
                       title: Twitter
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
@@ -1539,7 +1562,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 411835a4-6244-420e-91ea-4bf21eeafc01
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -1559,15 +1582,12 @@ default:
                       uri: 'http://example.com'
                       title: Youtube
                       options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Demo Card'
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: dark
@@ -1602,12 +1622,12 @@ default:
             -
               value: "<p><strong>Content With Spacing&nbsp;</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -1667,12 +1687,12 @@ default:
             -
               value: "<p>&nbsp;</p>\r\n\r\n<p><strong>Content With Spacing</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -1736,12 +1756,12 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
           field_c_p_view_link:
             -
               uri: 'http://example.com'
@@ -1859,12 +1879,12 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
           field_c_p_view_link:
             -
               uri: 'http://example.com'
@@ -1971,9 +1991,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -1983,6 +2000,9 @@ default:
           field_c_p_title:
             -
               value: 'Next Step Light with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -2034,9 +2054,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -2046,6 +2063,9 @@ default:
           field_c_p_title:
             -
               value: 'Next Step Dark with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -2102,9 +2122,6 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -2114,6 +2131,9 @@ default:
           field_c_p_title:
             -
               value: 'Promo Light with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -2175,9 +2195,6 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -2187,6 +2204,9 @@ default:
           field_c_p_title:
             -
               value: 'Promo Dark with spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -2284,15 +2304,15 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'Slider Light - with bg & spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -2491,15 +2511,15 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
           field_c_p_title:
             -
               value: 'Slider Dark - with bg & spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:

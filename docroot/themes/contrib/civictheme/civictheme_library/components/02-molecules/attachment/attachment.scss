@@ -79,6 +79,10 @@
       @include ct-typography('label-regular');
     }
 
+    &--icon {
+      margin-right: ct-spacing();
+    }
+
     &--last-updated {
       @include ct-typography('text-small');
     }
@@ -104,6 +108,10 @@
     }
 
     font-weight: 600;
+
+    .extension {
+      text-transform: uppercase;
+    }
   }
 
   &.ct-theme-light {
@@ -131,6 +139,10 @@
           svg {
             fill: $ct-attachment-light-icon-color;
           }
+        }
+
+        &--icon {
+          color: $ct-attachment-light-icon-color;
         }
 
         &--last-updated {
@@ -169,6 +181,10 @@
           svg {
             fill: $ct-attachment-dark-icon-color;
           }
+        }
+
+        &--icon {
+          color: $ct-attachment-dark-icon-color;
         }
       }
     }

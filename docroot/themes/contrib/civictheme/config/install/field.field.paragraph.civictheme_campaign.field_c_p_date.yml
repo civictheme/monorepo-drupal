@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_date
+    - paragraphs.paragraphs_type.civictheme_campaign
+  module:
+    - datetime
+id: paragraph.civictheme_campaign.field_c_p_date
+field_name: field_c_p_date
+entity_type: paragraph
+bundle: civictheme_campaign
+label: Date
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

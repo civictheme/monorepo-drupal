@@ -24,6 +24,12 @@ DREVOPS_DEBUG="${DREVOPS_DEBUG:-}"
 # Print debug information from Docker build.
 DREVOPS_DOCKER_VERBOSE="${DREVOPS_DOCKER_VERBOSE:-}"
 
+# Drupal version custom adjustments.
+if [ "${DREVOPS_DRUPAL_VERSION}" = "10" ]; then
+  export COMPOSER=composer.d10.json
+  export DREVOPS_COMPOSER_VALIDATE_LOCK=0
+fi
+
 echo "==> Building project."
 
 # Suppress any confirmation dialogs in descendant calls.
@@ -36,6 +42,9 @@ export DREVOPS_DOCTOR_CHECK_PREFLIGHT=1 && ./scripts/drevops/doctor.sh
 # shellcheck disable=SC2015
 docker network prune -f > /dev/null 2>&1 && docker network inspect amazeeio-network > /dev/null 2>&1 || docker network create amazeeio-network > /dev/null 2>&1 || true
 
+# Validate Docker Compose configuration.
+docker-compose config -q
+
 # Validate Composer configuration if Composer is installed.
 if command -v composer > /dev/null; then
   if [ "$DREVOPS_COMPOSER_VALIDATE_LOCK" = "1" ]; then
@@ -43,12 +52,15 @@ if command -v composer > /dev/null; then
     composer validate --ansi --strict --no-check-all
   else
     echo "  > Validating composer configuration."
-    composer validate --ansi --strict --no-check-all --no-check-lock
+    composer validate --ansi --no-check-all --no-check-lock
   fi
 fi
 
 echo "==> Removing project containers and packages available since the previous run."
 ahoy clean
+
+echo "  > Creating GitHub authentication token if provided."
+[ -n "$GITHUB_TOKEN" ] && echo "{\"github-oauth\": {\"github.com\": \"$GITHUB_TOKEN\"}}" > ./auth.json
 
 echo "==> Building images, recreating and starting containers."
 

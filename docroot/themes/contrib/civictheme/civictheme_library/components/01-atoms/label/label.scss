@@ -36,26 +36,12 @@
     }
   }
 
-  &.ct-theme-light {
-    color: $ct-label-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
-    &#{$root}--required {
+    #{$root}--required {
       #{$root}__last-word {
-        &::after {
-          color: $ct-label-light-required-color;
-        }
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-label-dark-color;
-
-    &#{$root}--required {
-      #{$root}__last-word {
-        &::after {
-          color: $ct-label-dark-required-color;
-        }
+        @include ct-component-property($root, $theme, required, color);
       }
     }
   }

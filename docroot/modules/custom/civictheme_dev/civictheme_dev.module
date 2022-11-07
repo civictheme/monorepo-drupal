@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Core module for Cs.
+ */
+
+use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeVersionManager;
+use Drupal\Core\Site\Settings;
+
+/**
+ * Implements hook_mail_alter().
+ */
+function civictheme_dev_mail_alter(&$message) {
+  // Allow to stop any mail send out through settings. Note if email
+  // functionality needs to be tested, this code should be removed and
+  // replaced with a dev mail system.
+  if (Settings::get('suspend_mail_send')) {
+    $message['send'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function civictheme_dev_preprocess_html(&$variables) {
+  /** @var \Drupal\civictheme\CivicthemeVersionManager $version_manager */
+  $version_manager = \Drupal::classResolver(CivicthemeVersionManager::class);
+  $color = (theme_get_setting('components.footer.theme') ?? CivicthemeConstants::FOOTER_THEME_DEFAULT) == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff';
+  $variables['page_bottom']['civictheme_version'] = $version_manager->render('.ct-footer__logo', $color);
+}

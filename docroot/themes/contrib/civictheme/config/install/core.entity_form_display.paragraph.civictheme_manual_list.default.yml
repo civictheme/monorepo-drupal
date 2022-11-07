@@ -6,8 +6,6 @@ dependencies:
     - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
     - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_theme
-    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_view_as
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -170,18 +168,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_c_p_list_item_theme:
-    type: options_select
-    weight: 29
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_c_p_list_item_view_as:
-    type: options_select
-    weight: 28
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_c_p_list_items:
     type: paragraphs
     weight: 14
@@ -228,13 +214,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_c_p_list_show_filters:
-    type: boolean_checkbox
-    weight: 43
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   field_c_p_list_site_sections:
     type: entity_reference_autocomplete

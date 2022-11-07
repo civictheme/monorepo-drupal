@@ -51,3 +51,15 @@ blockquote {
     border-radius: $ct-basic-content-blockquote-border-radius;
   }
 }
+
+ol {
+  list-style-type: decimal;
+
+  ol {
+    list-style-type: lower-alpha;
+
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+}

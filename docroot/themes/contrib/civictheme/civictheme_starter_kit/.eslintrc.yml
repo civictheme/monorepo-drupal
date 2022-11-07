@@ -20,6 +20,7 @@ rules:
   guard-for-in: 0
   max-len: [ 2, { "code": 1024, "comments": 120, "tabWidth": 4, "ignoreUrls": true } ]
   no-continue: 0
+  no-ignore-lines: 0
   no-nested-ternary: 0
   no-new: 0
   no-param-reassign: 0

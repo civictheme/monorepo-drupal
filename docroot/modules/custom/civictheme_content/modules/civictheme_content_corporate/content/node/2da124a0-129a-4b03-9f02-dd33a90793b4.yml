@@ -78,6 +78,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -119,9 +122,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_summary:
     -
       value: 'Today the Honourable Jane Smith was sworn in as the new Minister for the Environment. '
@@ -131,3 +131,6 @@ default:
   field_c_n_topics:
     -
       entity: d95f5188-650c-4dea-abcb-df8ea008919b
+  field_c_n_vertical_spacing:
+    -
+      value: both

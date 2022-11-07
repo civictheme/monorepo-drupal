@@ -8,14 +8,14 @@ label: Alert
 type: 'canonical_entities:node'
 pattern: 'alerts/[node:title]'
 selection_criteria:
-  548c1440-3ea1-4b0e-a3c7-f8ac61a1a96a:
-    id: node_type
-    bundles:
-      civictheme_alert: civictheme_alert
+  47608ecb-ac88-4819-b6e1-9a517f094bd8:
+    id: 'entity_bundle:node'
     negate: false
+    uuid: 47608ecb-ac88-4819-b6e1-9a517f094bd8
     context_mapping:
       node: node
-    uuid: 548c1440-3ea1-4b0e-a3c7-f8ac61a1a96a
+    bundles:
+      civictheme_alert: civictheme_alert
 selection_logic: and
 weight: -5
 relationships: {  }

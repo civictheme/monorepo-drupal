@@ -46,34 +46,22 @@
     }
   }
 
-  .ct-mobile-navigation__trigger {
+  .ct-mobile-navigation-trigger {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 0;
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__top {
-      background-color: $ct-header-light-top-background-color;
-      color: $ct-header-light-top-color;
+      @include ct-component-property($root, $theme, top, background-color);
+      @include ct-component-property($root, $theme, top, color);
     }
 
     #{$root}__middle {
-      background-color: $ct-header-light-middle-background-color;
-      border-color: $ct-header-light-middle-border-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__top {
-      background-color: $ct-header-dark-top-background-color;
-      color: $ct-header-dark-top-color;
-    }
-
-    #{$root}__middle {
-      background-color: $ct-header-dark-middle-background-color;
-      border-color: $ct-header-dark-middle-border-color;
+      @include ct-component-property($root, $theme, middle, background-color);
+      @include ct-component-property($root, $theme, middle, color);
     }
   }
 }

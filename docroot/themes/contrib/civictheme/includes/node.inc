@@ -5,6 +5,7 @@
  * Node related functions.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -81,7 +82,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $variables['description'] = civictheme_process_html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
     // Force dark theme to make sure that text colour has enough contrast with
     // a background.
-    'theme' => CIVICTHEME_THEME_DARK,
+    'theme' => CivicthemeConstants::THEME_DARK,
   ]);
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }

@@ -3,3 +3,4 @@
  */
 
 import '../components_combined/style.stories.scss';
+import '../components_combined/style.css_variables.scss';

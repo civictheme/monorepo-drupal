@@ -1,7 +1,7 @@
 name: 'CivicTheme Default Corporate Content'
 type: module
 description: 'Provides default Corporate content CivicTheme theme.'
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
   - default_content:default_content

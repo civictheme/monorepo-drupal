@@ -42,3 +42,12 @@
 @mixin ct-outline-remove() {
   outline: none;
 }
+
+@mixin ct-outline-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-outline();
+  }
+  @else {
+    @include ct-outline(true);
+  }
+}

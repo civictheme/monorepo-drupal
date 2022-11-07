@@ -34,6 +34,8 @@ node_modules
 !auth.json
 !composer.json
 !composer.lock
+!composer.d10.json
+!composer.d10.lock
 !Gruntfile.js
 !package.json
 !package-lock.json

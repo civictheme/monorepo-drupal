@@ -88,7 +88,7 @@ default:
 
                 Immitto jumentum macto melior premo scisco venio wisi. Diam ea loquor magna nutus. Acsi dolor erat esca ludus neque nostrud probo quidne. Aliquip bene neo occuro oppeto refoveo singularis velit vulputate. Abigo ad enim esca persto vel. Enim eum ex inhibeo lenis neo neque os tincidunt.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -153,7 +156,7 @@ default:
 
                 Abdo mauris obruo os probo quia vero. Aliquip enim praesent usitas valde. Immitto modo turpis. Accumsan dolor exputo facilisis imputo lucidus quidem zelus. Antehabeo dolus laoreet nunc nutus paulatim pertineo quae quidne quis. Abdo huic iriure jugis lobortis rusticus tation. Augue exerci feugiat imputo incassum nimis os quadrum quidem secundum.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -208,7 +211,7 @@ default:
 
                 Abico aliquam causa facilisis genitus huic mos plaga refoveo uxor. Dolor exputo metuo sino vero zelus. Abico abigo erat iriure olim paulatim. Adipiscing aliquip diam ea facilisis nunc nutus vulpes. Iriure jus metuo minim nimis obruo.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -221,9 +224,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
+  field_c_n_vertical_spacing:
+    -
+      value: both

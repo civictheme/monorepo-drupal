@@ -1,0 +1,19 @@
+services:
+  civictheme_migrate.migrate_manager:
+    class: \Drupal\civictheme_migrate\CivicthemeMigrateManager
+    arguments:
+      - '@config.factory'
+      - '@http_client'
+      - '@file_system'
+      - '@serialization.yaml'
+      - '@extension.path.resolver'
+      - '@messenger'
+      - '@entity_type.manager'
+  civictheme_migrate.validator:
+    class: \Drupal\civictheme_migrate\CivicthemeMigrateValidator
+    arguments:
+      - '@civictheme_migrate.json_schema_validator'
+      - '@extension.path.resolver'
+  civictheme_migrate.json_schema_validator:
+    class: '\Opis\JsonSchema\Validator'
+    public: false

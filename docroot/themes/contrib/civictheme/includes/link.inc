@@ -110,7 +110,7 @@ function civictheme_url_is_external($url, $base_url, array $override_domains = [
   if (UrlHelper::isExternal($url)) {
     $override_domains[] = $base_url;
     foreach ($override_domains as $override_domain) {
-      $override_domain = _civictheme_external_link_normalise_domain($override_domain);
+      $override_domain = _civictheme_external_link_normalize_domain($override_domain);
 
       if (!UrlHelper::isValid($override_domain, TRUE)) {
         continue;
@@ -130,7 +130,7 @@ function civictheme_url_is_external($url, $base_url, array $override_domains = [
 /**
  * Normalise domain.
  */
-function _civictheme_external_link_normalise_domain($domain) {
+function _civictheme_external_link_normalize_domain($domain) {
   // Check that the part of the domain before first dot has protocol and
   // add one if it does not.
   if (!str_contains(substr($domain, 0, strpos($domain, '.')), ':')) {

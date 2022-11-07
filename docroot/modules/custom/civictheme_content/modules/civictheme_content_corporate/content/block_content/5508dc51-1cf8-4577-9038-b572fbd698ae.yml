@@ -23,7 +23,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 23cac57b-fa53-4263-ba14-0f51956c9d6b
+          uuid: ab2d43e2-1a13-4bd1-8bc5-6ad52b9f83a8
           bundle: civictheme_promo
           default_langcode: en
         default:
@@ -32,7 +32,7 @@ default:
               value: true
           created:
             -
-              value: 1648536611
+              value: 1667026058
           behavior_settings:
             -
               value: {  }
@@ -41,15 +41,18 @@ default:
               value: true
           field_c_p_link:
             -
-              uri: 'internal:/enquiry'
-              title: 'Sign up for news '
+              uri: 'internal:/subscribe'
+              title: 'Sign up'
               options: {  }
-          field_c_p_vertical_spacing:
+          field_c_p_summary:
             -
-              value: top
+              value: 'Sign up for news and updates from our agency.'
           field_c_p_theme:
             -
               value: dark
           field_c_p_title:
             -
-              value: 'Keep up to date with environmental news'
+              value: 'Sign up'
+          field_c_p_vertical_spacing:
+            -
+              value: top

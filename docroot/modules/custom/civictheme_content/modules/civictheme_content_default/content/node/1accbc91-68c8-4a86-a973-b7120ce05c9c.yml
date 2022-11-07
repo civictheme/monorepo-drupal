@@ -88,7 +88,7 @@ default:
 
                 Bene erat oppeto quis utinam velit venio. At nibh refoveo vereor. Diam pecus saluto. Accumsan bene consectetuer enim gravis illum ratis refero turpis. Diam immitto incassum magna patria sit. Autem caecus facilisis pala refero turpis vicis voco vulpes.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -153,7 +156,7 @@ default:
 
                 Defui eros iriure iustum. Adipiscing at capto diam letalis natu suscipere utrum venio. Abbas abico ad at minim quia quibus. Amet bene brevitas caecus gilvus sagaciter utinam. Consectetuer ea iusto vulputate. Facilisi nibh ratis wisi. Gilvus plaga singularis te turpis. Abdo causa ideo jumentum modo usitas vero vulpes. Abluo aliquam at commodo esca humo probo tincidunt.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -208,7 +211,7 @@ default:
 
                 Acsi exerci iaceo illum jus quibus typicus utrum valde. Acsi commoveo facilisi ideo inhibeo natu sit uxor venio. Damnum iaceo incassum loquor natu refero si tincidunt turpis valetudo. Antehabeo commoveo consequat imputo jugis obruo pagus proprius refero voco.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: dark
@@ -326,9 +329,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

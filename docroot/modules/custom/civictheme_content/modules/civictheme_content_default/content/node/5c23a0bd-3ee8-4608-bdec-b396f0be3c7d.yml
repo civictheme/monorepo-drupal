@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -46,6 +45,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -71,6 +73,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -78,7 +86,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 88267847-9115-49c2-b316-000383c6bc0f
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -96,16 +104,19 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
-                      value: 'Card task 1'
+                      value: 'Promo card 1'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8e2ba649-0ff9-4a1d-9ee9-64b818bba28c
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -120,22 +131,22 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
-                      value: 'Card task 2'
+                      value: 'Promo card 2'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 40045185-d23c-466e-9e76-aedde86e470e
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -153,16 +164,19 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
-                      value: 'Card task 3'
+                      value: 'Promo card 3'
             -
               entity:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 5f3377d1-f374-4b7b-806e-282c73b1829d
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -180,21 +194,18 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
-                      value: 'Card task 4'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_list_link_below:
+                      value: 'Promo card 4'
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_list_link_above:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
@@ -214,9 +225,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

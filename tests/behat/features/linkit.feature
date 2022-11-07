@@ -1,4 +1,4 @@
-@civictheme @civictheme_linkit
+@civictheme @civictheme_linkit @d9
 Feature: Check that content linkit feature works correctly
 
   Ensure that LinkIt in WYSIWYG has access to Content pages and Document Media.
@@ -33,7 +33,7 @@ Feature: Check that content linkit feature works correctly
     And I wait 2 seconds
     And I fill in the following:
       | attributes[href] | TEST Page Linkit |
-    Then I press the "up" key on ".form-item-attributes-href input"
+    Then I press the "up" key on "[name='attributes[href]']"
     And I wait 2 seconds
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ui-dialog-buttonpane .js-form-submit" element
@@ -57,7 +57,7 @@ Feature: Check that content linkit feature works correctly
     And I wait 2 seconds
     And I fill in the following:
       | attributes[href] | TEST Event Linkit |
-    Then I press the "up" key on ".form-item-attributes-href input"
+    Then I press the "up" key on "[name='attributes[href]']"
     And I wait 2 seconds
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ui-dialog-buttonpane .js-form-submit" element
@@ -82,7 +82,7 @@ Feature: Check that content linkit feature works correctly
     And I wait 2 seconds
     And I fill in the following:
       | attributes[href] | TEST CivicTheme PDF |
-    Then I press the "up" key on ".form-item-attributes-href input"
+    Then I press the "up" key on "[name='attributes[href]']"
     And I wait 2 seconds
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ui-dialog-buttonpane .js-form-submit" element

@@ -5,6 +5,8 @@
  * Menu related functions.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Preprocess for footer menu block.
  */
@@ -16,7 +18,7 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
   if ($menu_name == 'civictheme_footer') {
     // Set menu theme as per footer theme.
-    $variables['theme'] = theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT;
+    $variables['theme'] = theme_get_setting('components.footer.theme') ?? CivicthemeConstants::FOOTER_THEME_DEFAULT;
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
@@ -53,9 +55,9 @@ function _civictheme_preprocess_block__navigation(&$variables) {
   if ($menu_name == 'civictheme_primary_navigation' || $menu_name == 'civictheme_secondary_navigation') {
     $key = substr($menu_name, strlen('civictheme_'));
     // Set menu theme as per footer theme.
-    $variables['theme'] = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+    $variables['theme'] = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
     $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['dropdown'] = theme_get_setting("components.navigation.$key.dropdown") ?? ($menu_name == 'civictheme_primary_navigation' ? CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER : CIVICTHEME_NAVIGATION_DROPDOWN_DROPDOWN);
+    $variables['dropdown'] = theme_get_setting("components.navigation.$key.dropdown") ?? ($menu_name == 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
     $variables['dropdown_columns'] = theme_get_setting("components.navigation.$key.dropdown_columns") ?? 4;
     $variables['dropdown_columns_fill'] = theme_get_setting("components.navigation.$key.dropdown_columns_fill") ?? FALSE;
     $variables['is_animated'] = theme_get_setting("components.navigation.$key.is_animated") ?? FALSE;

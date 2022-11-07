@@ -43,6 +43,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -96,6 +99,12 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
           field_c_p_webform:
             -
               target_id: contact

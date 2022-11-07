@@ -78,6 +78,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 1
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -85,7 +91,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 602a7496-df54-495f-9224-991e219b7257
-                  bundle: civictheme_task_card
+                  bundle: civictheme_promo_card
                   default_langcode: en
                 default:
                   status:
@@ -103,15 +109,12 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Taking seamless key performance indicators offline to maximise the long tail.'
-          field_c_p_column_count:
-            -
-              value: 1
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light

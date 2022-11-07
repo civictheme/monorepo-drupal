@@ -5,12 +5,14 @@
  * Local tasks related functions.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Pre-process for local tasks.
  */
 function _civictheme_preprocess_menu_local_tasks(&$variables) {
   $local_task_types = ['primary', 'secondary'];
-  $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+  $context_theme = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
 
   foreach ($local_task_types as $local_task_type) {
     $variables['links'][$local_task_type] = [];

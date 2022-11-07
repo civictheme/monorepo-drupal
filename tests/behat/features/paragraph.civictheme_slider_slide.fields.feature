@@ -42,4 +42,4 @@ Feature: Tests the Slider Slide paragraph
     And I should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform-field_c_p_slides-0-subform" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-link-0-uri" element
-    And I should see an "div.form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-topic-0-target-id" element
+    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_topic][0][target_id]']" element

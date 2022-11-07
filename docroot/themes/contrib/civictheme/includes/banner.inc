@@ -5,6 +5,7 @@
  * Banner component alterations.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
 use Drupal\node\NodeInterface;
 
@@ -35,7 +36,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
 
-  $variables['type'] = CIVICTHEME_BANNER_TYPE_DEFAULT;
+  $variables['type'] = CivicthemeConstants::BANNER_TYPE_DEFAULT;
 
   $variables['theme'] = civictheme_get_field_theme_value($entity);
 
@@ -52,7 +53,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
   _civictheme_preprocess_civictheme_banner_section($variables);
 
-  if ($variables['type'] == CIVICTHEME_BANNER_TYPE_LARGE) {
+  if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
   }
 

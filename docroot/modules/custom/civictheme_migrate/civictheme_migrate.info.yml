@@ -1,0 +1,10 @@
+name: 'CivicTheme Migrate'
+type: module
+description: 'Create and configure local and remote migrations into CivicTheme.'
+configure: civictheme_migrate.settings
+core_version_requirement: ^9 || ^10
+package: CivicTheme
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools

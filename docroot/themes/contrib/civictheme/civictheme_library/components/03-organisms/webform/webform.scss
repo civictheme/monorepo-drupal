@@ -5,31 +5,17 @@
 .ct-webform {
   $root: &;
 
-  &.ct-theme-light {
-    color: $ct-webform-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
     &#{$root}--with-background {
-      background-color: $ct-webform-light-wrapper-background-color;
-      padding-left: $ct-webform-space-horizontal;
-      padding-right: $ct-webform-space-horizontal;
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, padding-left);
+      @include ct-component-property($root, $theme, padding-right);
     }
 
     &#{$root}--with-spacing {
-      background-color: $ct-webform-light-background-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-webform-dark-color;
-
-    &#{$root}--with-background {
-      background-color: $ct-webform-dark-wrapper-background-color;
-      padding-left: $ct-webform-space-horizontal;
-      padding-right: $ct-webform-space-horizontal;
-    }
-
-    &#{$root}--with-spacing {
-      background-color: $ct-webform-dark-background-color;
+      @include ct-component-property($root, $theme, background-color);
     }
   }
 }

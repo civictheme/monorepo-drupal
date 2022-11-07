@@ -23,7 +23,7 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: dcb598f5-d525-4106-8d59-fd9ac6d543de
+          uuid: e2d0386e-34f4-43f6-81f2-8eb4eefb757e
           bundle: civictheme_promo
           default_langcode: en
         default:
@@ -32,7 +32,7 @@ default:
               value: true
           created:
             -
-              value: 1648197343
+              value: 1667017477
           behavior_settings:
             -
               value: {  }
@@ -44,9 +44,6 @@ default:
               uri: 'internal:/subscribe'
               title: 'Sign up'
               options: {  }
-          field_c_p_vertical_spacing:
-            -
-              value: top
           field_c_p_summary:
             -
               value: 'Sign up for news and updates from our agency.'
@@ -56,3 +53,6 @@ default:
           field_c_p_title:
             -
               value: 'Sign up'
+          field_c_p_vertical_spacing:
+            -
+              value: top

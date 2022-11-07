@@ -88,7 +88,7 @@ default:
 
                 Abico antehabeo bene duis lobortis nibh pagus praesent valde. Camur diam pertineo tamen te. Decet in minim nostrud quidne voco ymo. Aptent euismod huic luctus odio paulatim populus praemitto sino. Ex meus praemitto praesent premo. Bene quia veniam. Causa facilisis ille jus nutus pecus plaga vulputate. Fere hendrerit molior neque praesent. Gilvus macto saluto. Esse nostrud sit tamen tum vindico voco.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -101,6 +101,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -153,7 +156,7 @@ default:
 
                 Abbas autem bene cui damnum gravis jumentum neo wisi. Brevitas ea iustum jumentum refero valetudo. Autem brevitas facilisis incassum iusto letalis molior valde. Dolore lucidus magna. Accumsan appellatio at autem luptatum tation zelus.
 
-              format: plain_text
+              format: civictheme_plain_text
           field_c_p_theme:
             -
               value: light
@@ -166,9 +169,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both
