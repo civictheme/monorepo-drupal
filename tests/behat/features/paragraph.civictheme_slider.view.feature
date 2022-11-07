@@ -52,7 +52,6 @@ Feature: View of Page content with slider component
     And I should see an "div.ct-slider.ct-vertical-spacing-inset--both" element
     And I should not see an "div.ct-slider.ct-theme-dark" element
     And I should see an "div.ct-slider__container" element
-    Then I should see the link "[TEST] slider link" with "https://example.com/sliderlink1" in 'div.ct-slider__link'
     And I should see an "div.ct-slider__slides" element
     Then I should see the text "[TEST] slide 1"
     And I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.ct-slide__links'

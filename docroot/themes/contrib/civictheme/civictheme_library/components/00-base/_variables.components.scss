@@ -1213,8 +1213,8 @@ $ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
 //
 // Slide.
 //
-$ct-slide-desktop-height: ct-particle(70) !default;
-$ct-slide-mobile-height: ct-particle(35) !default;
+$ct-slide-desktop-min-height: ct-particle(70) !default;
+$ct-slide-mobile-min-height: ct-particle(35) !default;
 $ct-slide-light-background-color: ct-color-light('background') !default;
 $ct-slide-light-summary-color: ct-color-light('body') !default;
 $ct-slide-light-title-color: ct-color-light('heading') !default;
