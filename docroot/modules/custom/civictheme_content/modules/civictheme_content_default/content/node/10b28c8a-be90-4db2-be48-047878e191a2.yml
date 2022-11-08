@@ -81,6 +81,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -106,6 +109,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -197,18 +206,12 @@ default:
                   field_c_p_topic:
                     -
                       entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: true
-          field_c_p_list_link_below:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_list_link_above:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
@@ -228,12 +231,12 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_summary:
     -
       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both

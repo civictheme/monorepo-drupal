@@ -14,7 +14,6 @@ dependencies:
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_limit_type
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_below
-    - field.field.paragraph.civictheme_automated_list.field_c_p_list_show_filters
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_site_sections
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_topics
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_type
@@ -79,7 +78,6 @@ third_party_settings:
         required_fields: true
     group_filters:
       children:
-        - field_c_p_list_show_filters
         - field_c_p_list_filters_exp
       label: Filters
       region: content
@@ -263,13 +261,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_c_p_list_show_filters:
-    type: boolean_checkbox
-    weight: 43
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   field_c_p_list_site_sections:
     type: entity_reference_autocomplete

@@ -54,6 +54,12 @@
     @include ct-breakpoint(m) {
       position: relative;
     }
+
+    p {
+      &:nth-last-child(-n+2) {
+        margin-bottom: 0;
+      }
+    }
   }
 
   #{$root}__dismiss-button {
@@ -66,9 +72,10 @@
     padding: 0;
 
     @include ct-breakpoint(m) {
-      position: static;
       align-self: center;
       margin-left: auto;
+      top: 50%;
+      bottom: 50%;
     }
   }
 

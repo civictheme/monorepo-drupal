@@ -7,7 +7,6 @@ _meta:
   depends:
     f9278a83-d921-4890-ad30-e0d3050ef74a: media
     cde35fb7-b01d-4074-ba94-bb62303e27d9: media
-    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
     2283dfc9-d10f-40d6-8cf5-4a3a2d2ef158: media
     e7ab9bae-edec-4639-b196-9dece305235d: media
     f06a9e48-e4bc-4e1d-9646-047d984c36ca: media
@@ -67,6 +66,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -126,12 +128,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_vertical_spacing:
-            -
-              value: bottom
           field_c_p_summary:
             -
               value: 'Our 10-year strategy focuses on how we''re going to achieve our vision. '
@@ -141,6 +137,9 @@ default:
           field_c_p_title:
             -
               value: 'Our 10-year strategy'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -163,6 +162,12 @@ default:
             -
               value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -446,12 +451,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Waste and recycling'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -508,6 +507,12 @@ default:
             -
               value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -686,12 +691,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Coastal erosion'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
           field_c_p_theme:
             -
               value: light
@@ -719,6 +718,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 1
+          field_c_p_fill_width:
+            -
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -746,6 +751,9 @@ default:
                       uri: 'https://google.com.au/'
                       title: 'View open positions'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
@@ -755,18 +763,12 @@ default:
                   field_c_p_title:
                     -
                       value: 'Work for us'
-          field_c_p_column_count:
-            -
-              value: 1
-          field_c_p_fill_width:
-            -
-              value: true
-          field_c_p_vertical_spacing:
-            -
-              value: both
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
     -
       entity:
         _meta:
@@ -826,6 +828,12 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_items:
             -
               entity:
@@ -856,6 +864,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View open position'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'The DE has positions available in our main Canberra office and at key outposts around Australia. '
@@ -894,6 +905,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'Register as a volunteer'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Volunteers are important to help protect the Australian environment. Find out about projects in your area and join us as a volunteer. '
@@ -932,6 +946,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View all news'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'Read our latest news, including media releases.'
@@ -970,6 +987,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View contact us page'
                       options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
                   field_c_p_summary:
                     -
                       value: 'There are many reasons you may like to contact us.'
@@ -979,21 +999,15 @@ default:
                   field_c_p_title:
                     -
                       value: 'Contact us '
-          field_c_p_column_count:
-            -
-              value: 2
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_vertical_spacing:
-            -
-              value: top
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'More about us'
+          field_c_p_vertical_spacing:
+            -
+              value: top
   field_c_n_hide_sidebar:
     -
       value: false

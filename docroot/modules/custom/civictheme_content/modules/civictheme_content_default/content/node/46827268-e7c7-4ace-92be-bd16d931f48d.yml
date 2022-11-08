@@ -43,6 +43,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -68,33 +71,36 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_list_item_theme:
+          field_c_p_column_count:
             -
-              value: light
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
           field_c_p_list_content_type:
             -
               value: civictheme_page
-          field_c_p_list_limit_type:
+          field_c_p_list_item_theme:
             -
-              value: unlimited
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
           field_c_p_list_limit:
             -
               value: 9
-          field_c_p_list_multi_select:
+          field_c_p_list_limit_type:
             -
-              value: false
-          field_c_p_list_show_filters:
+              value: unlimited
+          field_c_p_list_type:
             -
-              value: true
+              value: civictheme_automated_list__block1
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'listing title'
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
   field_c_n_hide_sidebar:
     -
       value: false

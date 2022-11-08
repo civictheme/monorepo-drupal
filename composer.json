@@ -6,19 +6,10 @@
         "php": "8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
-        "drupal/coffee": "^1",
-        "drupal/config_devel": "^1.8",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
-        "drupal/default_content": "^2.0@alpha",
-        "drupal/generated_content": "^1.2",
-        "drupal/permissions_filter": "^1.1",
-        "drupal/redirect": "^1.6",
-        "drupal/styleguide": "^2@beta",
-        "drupal/testmode": "^2.1",
         "drush/drush": "^11",
-        "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
@@ -120,12 +111,12 @@
         },
         "patches": {
             "drupal/core": {
-              "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch",
-              "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
-              "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
+                "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch",
+                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
             },
             "drupal/webform": {
-              "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
+                "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
             }
         },
         "drupal-scaffold": {
@@ -172,19 +163,6 @@
             "bower-asset",
             "npm-asset"
         ],
-        "merge-plugin": {
-            "include": [
-                "docroot/modules/custom/*/composer.json"
-            ],
-            "recurse": true,
-            "replace": false,
-            "ignore-duplicates": false,
-            "merge-dev": true,
-            "merge-extra": false,
-            "merge-extra-deep": false,
-            "merge-replace": true,
-            "merge-scripts": false
-        },
         "preserve-paths": [
             "docroot/modules/custom",
             "docroot/themes/custom",
@@ -199,6 +177,26 @@
             "docroot/sites/default/files",
             "docroot/robots.txt",
             "docroot/.htaccess"
-        ]
+        ],
+        "merge-plugin": {
+            "require": [
+                "docroot/themes/contrib/civictheme/composer.json",
+                "docroot/modules/custom/civictheme_govcms/composer.json",
+                "docroot/modules/custom/civictheme_admin/composer.json",
+                "docroot/modules/custom/civictheme_migrate/composer.json",
+                "docroot/modules/custom/civictheme_content/composer.json",
+                "docroot/modules/custom/civictheme_dev/composer.json",
+                "docroot/modules/custom/civictheme_styleguide/composer.json",
+                "docroot/modules/custom/cs_generated_content/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-replace": true,
+            "merge-scripts": false
+        }
     }
 }
