@@ -56,14 +56,14 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *
    * @param string $key
    *   The configuration key.
+   * @param mixed $default
+   *   Default value to return if the $key is not set. Defaults to NULL.
    *
-   * @return mixed
+   * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
    */
-  public function load($key) {
-    $theme_name = $this->themeManager->getActiveTheme()->getName();
-
-    return theme_get_setting($key, $theme_name);
+  public function load($key, $default = NULL) {
+    return theme_get_setting($key, $this->themeManager->getActiveTheme()->getName()) ?? $default;
   }
 
   /**
