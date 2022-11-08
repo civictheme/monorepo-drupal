@@ -68,7 +68,7 @@ export const Field = (knobTab, controlKnobTab, returnHtml = true, idx = null) =>
     description: text('Description', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     is_required: boolean('Required', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
-    is_invalid: boolean('Is invalid', false, generalKnobTab),
+    is_invalid: boolean('Invalid', false, generalKnobTab),
     message: text('Message', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
