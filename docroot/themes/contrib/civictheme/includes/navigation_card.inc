@@ -20,4 +20,6 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables
 
   // Navigation card size.
   $variables['size'] = civictheme_get_field_value($paragraph, 'field_c_p_size');
+  // Show image as icon.
+  $variables['image_as_icon'] = civictheme_get_field_value($paragraph, 'field_c_p_show_image_as_icon') ?? FALSE;
 }
