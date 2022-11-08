@@ -83,6 +83,7 @@ class CivicthemeColor {
    * @SuppressWarnings(MissingImport)
    */
   public function setValue($value) {
+    $value = CivicthemeColorUtility::keywordToHex($value);
     $value = CivicthemeColorUtility::normalizeHex($value);
     $this->value = $this->applyFilters($value);
 
