@@ -53,7 +53,7 @@ Feature: Tests the CivicTheme migration functionality
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
 
-  @api @javascript @wip
+  @api @javascript @skipped
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
     Given managed file:
       | filename                               | uri                                             | path                                   |
