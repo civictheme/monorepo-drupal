@@ -84,24 +84,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
-          fa10bfa1-4f41-4951-bf07-72432b951f87:
-            uuid: fa10bfa1-4f41-4951-bf07-72432b951f87
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_show_last_updated'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: boolean
-                label: above
-                settings:
-                  format: default
-                  format_custom_false: ''
-                  format_custom_true: ''
-                third_party_settings: {  }
-            weight: 4
-            additional: {  }
           79ee9199-c580-42db-9ff6-f76d86f6b88b:
             uuid: 79ee9199-c580-42db-9ff6-f76d86f6b88b
             region: content
@@ -126,9 +108,9 @@ third_party_settings:
       allowed_layouts:
         - civictheme_one_column
         - civictheme_one_column_contained
+      restricted_categories: {  }
       blacklisted_blocks: {  }
       whitelisted_blocks: {  }
-      restricted_categories: {  }
 id: node.civictheme_event.default
 targetEntityType: node
 bundle: civictheme_event
