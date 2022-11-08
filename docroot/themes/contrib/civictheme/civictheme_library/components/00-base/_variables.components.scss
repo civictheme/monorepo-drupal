@@ -777,7 +777,6 @@ $ct-table-of-contents-link-active-border-radius: math.div($ct-border-radius, 2) 
 $ct-table-of-contents-max-width: 50% !default;
 $ct-table-of-contents-min-width: 50% !default;
 $ct-table-of-contents-light-link-background-color: ct-color-light('background-light') !default;
-$ct-table-of-contents-light-link-border-color: ct-color-light('border-light') !default;
 $ct-table-of-contents-light-link-color: ct-color-light('heading') !default;
 $ct-table-of-contents-light-link-hover-background-color: ct-color-light('background') !default;
 $ct-table-of-contents-light-link-hover-border-color: ct-color-light('border-light') !default;
@@ -786,7 +785,6 @@ $ct-table-of-contents-light-link-stripe-background-color: ct-color-light('border
 $ct-table-of-contents-light-link-hover-stripe-background-color: ct-color-light('highlight') !default;
 $ct-table-of-contents-light-title-color: ct-color-light('heading') !default;
 $ct-table-of-contents-dark-link-background-color: ct-color-dark('background-light') !default;
-$ct-table-of-contents-dark-link-border-color: ct-color-dark('border-light') !default;
 $ct-table-of-contents-dark-link-color: ct-color-dark('heading') !default;
 $ct-table-of-contents-dark-link-hover-background-color: ct-color-dark('background') !default;
 $ct-table-of-contents-dark-link-hover-border-color: ct-color-dark('border-light') !default;
@@ -1191,8 +1189,8 @@ $ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
 //
 // Slide.
 //
-$ct-slide-desktop-height: ct-particle(70) !default;
-$ct-slide-mobile-height: ct-particle(35) !default;
+$ct-slide-desktop-min-height: ct-particle(70) !default;
+$ct-slide-mobile-min-height: ct-particle(35) !default;
 $ct-slide-light-background-color: ct-color-light('background') !default;
 $ct-slide-light-summary-color: ct-color-light('body') !default;
 $ct-slide-light-title-color: ct-color-light('heading') !default;

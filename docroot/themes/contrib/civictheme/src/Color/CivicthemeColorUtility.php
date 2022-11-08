@@ -10,6 +10,43 @@ namespace Drupal\civictheme\Color;
 class CivicthemeColorUtility {
 
   /**
+   * Defines CSS color keywords.
+   *
+   * @see https://www.w3.org/TR/css-color-3/
+   */
+  const KEYWORDS = [
+    'black' => '#000000',
+    'silver' => '#C0C0C0',
+    'gray' => '#808080',
+    'white' => '#FFFFFF',
+    'maroon' => '#800000',
+    'red' => '#FF0000',
+    'purple' => '#800080',
+    'fuchsia' => '#FF00FF',
+    'green' => '#008000',
+    'lime' => '#00FF00',
+    'olive' => '#808000',
+    'yellow' => '#FFFF00',
+    'navy' => '#000080',
+    'blue' => '#0000FF',
+    'teal' => '#008080',
+    'aqua' => '#00FFFF',
+  ];
+
+  /**
+   * Convert color keyword to hex value.
+   *
+   * @param string $value
+   *   The value (keyword) to convert.
+   *
+   * @return string
+   *   Converted value if such keyword exists or original value otherwise.
+   */
+  public static function keywordToHex($value) {
+    return self::KEYWORDS[$value] ?? $value;
+  }
+
+  /**
    * Mix color with another color within a specified percentage range.
    *
    * @param string $color

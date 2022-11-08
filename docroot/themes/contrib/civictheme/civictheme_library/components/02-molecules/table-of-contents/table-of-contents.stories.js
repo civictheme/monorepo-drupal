@@ -64,7 +64,7 @@ export const TableOfContents = (knobTab) => {
 
   const htmlSelector = text(
     'Selector',
-    'h3',
+    'h2',
     contentKnobTab,
   );
 
