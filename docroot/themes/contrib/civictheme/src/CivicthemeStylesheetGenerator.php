@@ -147,8 +147,8 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    *   Optional prefix to add to every generated variables.
    *   Should not include '--' (the CSS variable prefix).
    *
-   * @return string
-   *   URI to a stylesheet file.
+   * @return string|bool
+   *   URI to a stylesheet file or FALSE if stylesheet cannot be generated.
    *
    * @SuppressWarnings(StaticAccess)
    */
@@ -158,6 +158,10 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
     foreach ($variables as $name => $value) {
       $variables['--' . $prefix . self::CSS_VARIABLES_SEPARATOR . $name] = (string) $value;
       unset($variables[$name]);
+    }
+
+    if (empty($variables)) {
+      return FALSE;
     }
 
     $content = implode(';', CivicthemeUtility::arrayMergeKeysValues($variables, ':')) . ';';
@@ -175,13 +179,20 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    * @param string $data
    *   Stylesheet data to save.
    *
-   * @return string
-   *   Path to stylesheet.
+   * @return string|bool
+   *   Path to saved stylesheet or FALSE if unable to save.
    */
   protected function saveStylesheet($data) {
     $filepath = $this->getStylesheetUri();
-    $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->chmod($filepath);
+    try {
+      $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
+      $this->fileSystem->chmod($filepath);
+    }
+    catch (\Exception $exception) {
+      // Drupal\Core\File\FileSystem handles logging, so simply handle the
+      // exception and assign FALSE.
+      $filepath = FALSE;
+    }
 
     return $filepath;
   }
