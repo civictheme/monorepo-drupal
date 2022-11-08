@@ -46,8 +46,7 @@
     display: block;
     position: relative;
     padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
-    border-top-width: ct-particle(0.125);
-    border-bottom-width: 0;
+    border: 0;
     border-style: solid;
     text-decoration: none;
 
@@ -71,14 +70,6 @@
     }
   }
 
-  &__link-item {
-    &:last-child {
-      #{$root}__link {
-        border-bottom-width: ct-particle(0.125);
-      }
-    }
-  }
-
   &.ct-theme-light {
     #{$root}__title {
       color: $ct-table-of-contents-light-title-color;
@@ -86,7 +77,6 @@
 
     #{$root}__link {
       color: $ct-table-of-contents-light-link-color;
-      border-color: $ct-table-of-contents-light-link-border-color;
       background-color: $ct-table-of-contents-light-link-background-color;
 
       &::before {
@@ -97,12 +87,17 @@
       &:focus,
       &:active {
         background-color: $ct-table-of-contents-light-link-hover-background-color;
-        border-color: $ct-table-of-contents-light-link-hover-border-color;
         color: $ct-table-of-contents-light-link-hover-color;
 
         &::before {
           background-color: $ct-table-of-contents-light-link-hover-stripe-background-color;
         }
+      }
+
+      &:active {
+        border-color: $ct-table-of-contents-light-link-hover-border-color;
+        border-top-width: ct-particle(0.125);
+        border-bottom-width: 0;
       }
 
       &:focus {
@@ -118,7 +113,6 @@
 
     #{$root}__link {
       color: $ct-table-of-contents-dark-link-color;
-      border-color: $ct-table-of-contents-dark-link-border-color;
       background-color: $ct-table-of-contents-dark-link-background-color;
 
       &::before {
@@ -129,12 +123,17 @@
       &:focus,
       &:active {
         background-color: $ct-table-of-contents-dark-link-hover-background-color;
-        border-color: $ct-table-of-contents-dark-link-hover-border-color;
         color: $ct-table-of-contents-dark-link-hover-color;
 
         &::before {
           background-color: $ct-table-of-contents-dark-link-hover-stripe-background-color;
         }
+      }
+
+      &:active {
+        border-color: $ct-table-of-contents-dark-link-hover-border-color;
+        border-top-width: ct-particle(0.125);
+        border-bottom-width: 0;
       }
 
       &:focus {
