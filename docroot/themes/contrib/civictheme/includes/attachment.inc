@@ -30,11 +30,11 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
       $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
       $links[] = [
         'url' => $url,
-        'text' => t('@name <span class="extension">(@ext, @size)</span>', [
+        'text' => t('@name', [
           '@name' => $file->label(),
-          '@ext' => strtoupper($file_extension),
-          '@size' => strtoupper($file_size),
         ]),
+        'ext' => $file_extension ?? '',
+        'size' => $file_size ?? '',
         'icon' => $icon,
         'last_updated' => \Drupal::service('date.formatter')->format($attachment->getChangedTime(), 'civictheme_short_date'),
       ];

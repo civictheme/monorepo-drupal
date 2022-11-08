@@ -387,6 +387,11 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * Initialise color matrix.
    *
+   * Values are set in the order (top one wins, if set):
+   * - From configuration
+   * - From CSS file
+   * - Default value (self::COLOR_DEFAULT)
+   *
    * @return $this
    *   Instance of the current class.
    */
@@ -468,7 +473,10 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    */
   protected function loadMatrixFromConfig() {
     $colors = $this->configManager->load('colors') ?? self::defaultMatrix();
-    unset($colors['use_brand_colors']);
+    $colors = array_intersect_key($colors, array_flip([
+      self::COLOR_TYPE_BRAND,
+      self::COLOR_TYPE_PALETTE,
+    ]));
     self::validateMatrixStructure($colors);
 
     return $colors;

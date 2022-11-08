@@ -101,7 +101,7 @@
     {% block summary %}
       {% if summary %}
         <div class="ct-event-card__summary">
-          {{ summary }}
+          {{ summary|raw }}
         </div>
       {% endif %}
     {% endblock %}

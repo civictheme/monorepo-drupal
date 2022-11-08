@@ -317,7 +317,6 @@ config_devel:
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_limit_type
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_below
-    - field.field.paragraph.civictheme_automated_list.field_c_p_list_show_filters
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_site_sections
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_topics
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_type
@@ -378,6 +377,7 @@ config_devel:
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_size
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
     - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
     - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
@@ -525,13 +525,13 @@ config_devel:
     - field.storage.paragraph.field_c_p_list_limit_type
     - field.storage.paragraph.field_c_p_list_link_above
     - field.storage.paragraph.field_c_p_list_link_below
-    - field.storage.paragraph.field_c_p_list_show_filters
     - field.storage.paragraph.field_c_p_list_site_sections
     - field.storage.paragraph.field_c_p_list_topics
     - field.storage.paragraph.field_c_p_list_type
     - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference
+    - field.storage.paragraph.field_c_p_show_image_as_icon
     - field.storage.paragraph.field_c_p_size
     - field.storage.paragraph.field_c_p_slides
     - field.storage.paragraph.field_c_p_summary

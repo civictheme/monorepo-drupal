@@ -36,6 +36,7 @@ components:
   migrate:
     expose_migration_metadata: false
 colors:
+  use_color_selector: true
   use_brand_colors: true
   brand:
     light:

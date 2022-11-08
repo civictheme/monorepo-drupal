@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_event
   default_langcode: en
   depends:
-    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
     0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
 default:
   revision_uid:
@@ -45,9 +44,6 @@ default:
     -
       value: '2021-10-15T02:27:55'
       end_value: '2021-10-27T00:29:57'
-  field_c_n_image:
-    -
-      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
   field_c_n_location:
     -
       entity:
@@ -89,12 +85,12 @@ default:
               uri: 'https://maps.google.com/maps?ll=-37.149534,142.458762&z=16&t=m&hl=en&gl=AU&mapclient=embed&cid=5596505233813528700'
               title: ''
               options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: false
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_tagline:
-    -
-      value: 'Its Happening!'
   field_c_n_topics:
     -
       entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c

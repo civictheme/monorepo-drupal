@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -46,6 +45,9 @@ default:
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -69,6 +71,12 @@ default:
             -
               value: true
           field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -96,6 +104,9 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Promo card 1'
@@ -123,6 +134,9 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Promo card 2'
@@ -150,6 +164,9 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Promo card 3'
@@ -177,21 +194,18 @@ default:
                   field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_theme:
+                    -
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Promo card 4'
-          field_c_p_column_count:
-            -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
-          field_c_p_list_link_below:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_list_link_above:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
@@ -211,9 +225,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_vertical_spacing:
+    -
+      value: both
