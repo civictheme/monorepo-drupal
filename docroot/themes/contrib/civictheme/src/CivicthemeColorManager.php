@@ -479,6 +479,15 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
     ]));
     self::validateMatrixStructure($colors);
 
+    foreach ($colors as $type => $set) {
+      foreach ($set as $theme => $set_theme) {
+        foreach ($set_theme as $name => $value) {
+          unset($colors[$type][$theme][$name]);
+          $colors[$type][$theme][str_replace('_', '-', $name)] = $value;
+        }
+      }
+    }
+
     return $colors;
   }
 
