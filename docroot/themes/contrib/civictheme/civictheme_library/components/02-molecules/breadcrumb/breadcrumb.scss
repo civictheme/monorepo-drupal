@@ -5,37 +5,17 @@
 .ct-breadcrumb {
   $root: &;
 
-  #{$root}__links__link--active {
-    pointer-events: none;
-  }
+  @include ct-typography('label-regular');
 
-  &.ct-theme-light {
-    #{$root}__links {
-      &__link {
-        &--active {
-          @include ct-typography('label-regular');
-
-          color: $ct-breadcrumb-light-color;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
+  @include ct-component-theme($root) using($root, $theme) {
+    .ct-icon {
+      background-color: ct-component-var($root, $theme, color);
     }
-  }
 
-  &.ct-theme-dark {
     #{$root}__links {
       &__link {
         &--active {
-          @include ct-typography('label-regular');
-
-          color: $ct-breadcrumb-dark-color;
-
-          &:hover {
-            text-decoration: underline;
-          }
+          @include ct-component-property($root, $theme, active, color);
         }
       }
     }
