@@ -44,49 +44,28 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__links {
-      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+      border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
     }
 
     .ct-link {
-      background-color: $ct-tabs-light-links-background-color;
-      border-color: $ct-tabs-light-links-border-color;
-      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+      @include ct-component-property($root, $theme, links, background-color);
+      @include ct-component-property($root, $theme, links, border-color);
+
+      border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
 
       &#{$root}__tab--selected {
-        background-color: $ct-tabs-light-links-active-background-color;
-        border-color: $ct-tabs-light-links-active-border-color;
-        border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+        @include ct-component-property($root, $theme, links, active, background-color);
+        @include ct-component-property($root, $theme, links, active, border-color);
+
+        border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
       }
     }
 
     #{$root}__panels {
-      background-color: $ct-tabs-light-panel-background-color;
-      border-color: $ct-tabs-light-panel-border-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__links {
-      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
-    }
-
-    .ct-link {
-      background-color: $ct-tabs-dark-links-background-color;
-      border-color: $ct-tabs-dark-links-border-color;
-      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
-
-      &#{$root}__tab--selected {
-        background-color: $ct-tabs-dark-links-active-background-color;
-        border-color: $ct-tabs-dark-links-active-border-color;
-        border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
-      }
-    }
-
-    #{$root}__panels {
-      background-color: $ct-tabs-dark-panel-background-color;
-      border-color: $ct-tabs-dark-panel-border-color;
+      @include ct-component-property($root, $theme, panel, background-color);
+      @include ct-component-property($root, $theme, panel, border-color);
     }
   }
 }
