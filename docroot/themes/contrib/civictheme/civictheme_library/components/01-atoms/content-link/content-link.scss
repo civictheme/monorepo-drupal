@@ -53,6 +53,8 @@
 }
 
 @mixin ct-content-link-visited() {
+  $root: &;
+
   @include ct-component-theme($root) using($root, $theme) {
     color: ct-component-var($root, $theme, visited, color);
 
