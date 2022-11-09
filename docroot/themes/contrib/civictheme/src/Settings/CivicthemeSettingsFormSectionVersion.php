@@ -43,12 +43,12 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function form(&$form, FormStateInterface &$form_state) {
-    $message = $this->t('<div class="messages messages--info">CivicTheme version: @version</div>', [
+    $message = $this->t('<div class="messages messages--info">Your CivicTheme version: @version</div>', [
       '@version' => Link::fromTextAndUrl('dev', Url::fromUri($this->versionManager->source() . '/tree/develop'))->toString(),
     ]);
 
     if ($this->versionManager->version()) {
-      $message = $this->t('<div class="messages messages--info">CivicTheme version: @version</div>', [
+      $message = $this->t('<div class="messages messages--info">Your CivicTheme version: @version</div>', [
         '@version' => Link::fromTextAndUrl($this->versionManager->version(), Url::fromUri($this->versionManager->homepage() . '/releases/tag/' . $this->versionManager->version()))->toString(),
       ]);
     }
