@@ -31,44 +31,26 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     > .ct-link {
-      background-color: $ct-navigation-light-drawer-menu-item-background-color;
-      border-bottom-color: $ct-navigation-light-drawer-menu-item-border-color;
-      color: $ct-navigation-light-drawer-color;
+      @include ct-component-property(ct-navigation, $theme, drawer, menu-item, background-color);
+      @include ct-component-property(ct-navigation, $theme, drawer, color);
+
+      border-bottom-color: ct-component-var(ct-navigation, $theme, drawer, menu-item, border-color);
 
       &:hover {
-        background-color: $ct-navigation-light-drawer-menu-item-hover-background-color;
-        border-bottom-color: $ct-navigation-light-drawer-menu-item-hover-border-color;
-        color: $ct-navigation-light-drawer-hover-color;
+        @include ct-component-property(ct-navigation, $theme, drawer, menu-item, hover, background-color);
+        @include ct-component-property(ct-navigation, $theme, drawer, hover, color);
+
+        border-bottom-color: ct-component-var(ct-navigation, $theme, drawer, menu-item, hover, border-color);
       }
 
       &[aria-expanded='true'],
       &:active {
-        background-color: $ct-navigation-light-drawer-menu-item-active-background-color;
-        border-bottom-color: $ct-navigation-light-drawer-menu-item-active-border-color;
-        color: $ct-navigation-light-drawer-active-color;
-      }
-    }
-  }
+        @include ct-component-property(ct-navigation, $theme, drawer, menu-item, active, background-color);
+        @include ct-component-property(ct-navigation, $theme, drawer, active, color);
 
-  &.ct-theme-dark {
-    > .ct-link {
-      background-color: $ct-navigation-dark-drawer-menu-item-background-color;
-      border-bottom-color: $ct-navigation-dark-drawer-menu-item-border-color;
-      color: $ct-navigation-dark-drawer-color;
-
-      &:hover {
-        background-color: $ct-navigation-dark-drawer-menu-item-hover-background-color;
-        border-bottom-color: $ct-navigation-dark-drawer-menu-item-hover-border-color;
-        color: $ct-navigation-dark-drawer-hover-color;
-      }
-
-      &[aria-expanded='true'],
-      &:active {
-        background-color: $ct-navigation-dark-drawer-menu-item-active-background-color;
-        border-bottom-color: $ct-navigation-dark-drawer-menu-item-active-border-color;
-        color: $ct-navigation-dark-drawer-active-color;
+        border-bottom-color: ct-component-var(ct-navigation, $theme, drawer, menu-item, active, border-color);
       }
     }
   }
