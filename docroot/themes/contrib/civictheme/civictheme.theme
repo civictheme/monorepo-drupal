@@ -297,9 +297,10 @@ function civictheme_field_is_wysiwyg(string $field_name) {
  * Implements hook_library_info_alter().
  */
 function civictheme_library_info_alter(&$libraries, $extension) {
-  // Override current CSS-variables file with a dynamically generated styles.
+  // Override current CSS-variables file with a dynamically generated styles
+  // or remove the file altogether if Color Selector is not used in config.
   //
-  // This hook runs in a context of the extension that provides a library.
+  // This hook runs in a context of the extension that provides the library.
   // For themes, this means that a parent theme may provide a library used by
   // a sub-theme.
   //
@@ -310,6 +311,8 @@ function civictheme_library_info_alter(&$libraries, $extension) {
   // a sub-theme of a theme that declares libraries).
   $themes = \Drupal::service('theme_handler')->listInfo();
   if (array_key_exists($extension, $themes)) {
+    // If there is no declaration of our library - there is nothing for us to do
+    // so we exit early.
     if (empty($libraries['css-variables'])) {
       return;
     }
@@ -321,7 +324,6 @@ function civictheme_library_info_alter(&$libraries, $extension) {
     $color_manager = \Drupal::classResolver(CivicthemeColorManager::class);
 
     $use_color_selector = $theme_config_manager->load('colors.use_color_selector', FALSE);
-    $use_color_selector = TRUE;
 
     // Only apply if Color Selector was explicitly enabled in configuration.
     if ($use_color_selector) {
@@ -353,6 +355,12 @@ function civictheme_library_info_alter(&$libraries, $extension) {
             'preprocess' => FALSE,
           ],
         ];
+      }
+    }
+    else {
+      // Disable inclusion of the stylesheet.
+      foreach (array_keys($libraries['css-variables']['css']['theme']) as $path) {
+        $libraries['css-variables']['css']['theme'][$path] = FALSE;
       }
     }
   }
