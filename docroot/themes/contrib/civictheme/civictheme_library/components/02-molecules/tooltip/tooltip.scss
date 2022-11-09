@@ -10,20 +10,16 @@
   display: inline-block;
   position: relative;
 
-  &__button {
+  #{$root}__button {
     appearance: none;
     border: 0;
     cursor: pointer;
     position: relative;
     background-color: transparent;
     padding: 0;
-
-    &:focus {
-      @include ct-outline(true);
-    }
   }
 
-  &__description {
+  #{$root}__description {
     @include ct-typography('label-small');
     @include ct-elevation(2);
 
@@ -97,8 +93,22 @@
     }
   }
 
+  &:not([data-tooltip-visible]) {
+    #{$root}__description {
+      @include ct-visually-hidden();
+    }
+
+    #{$root}__arrow {
+      @include ct-visually-hidden();
+    }
+  }
+
+  #{$root}__description__inner {
+    padding: ct-spacing(3);
+  }
+
   // Triangle.
-  &__arrow {
+  #{$root}__arrow {
     width: $ct-tooltip-triangle-width;
     height: $ct-tooltip-triangle-height;
     display: inline-block;
@@ -116,85 +126,40 @@
     }
   }
 
-  &:not([data-tooltip-visible]) {
-    #{$root}__description {
-      @include ct-visually-hidden();
-    }
-
-    #{$root}__arrow {
-      @include ct-visually-hidden();
-    }
-  }
-
-  &__description__inner {
-    padding: ct-spacing(3);
-  }
-
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__button {
-      color: $ct-tooltip-light-icon-color;
+      @include ct-component-property($root, $theme, icon, color);
+
+      &:focus {
+        @include ct-outline-theme($theme);
+      }
     }
 
     #{$root}__description {
-      color: $ct-tooltip-light-description-color;
-      background-color: $ct-tooltip-light-description-background-color;
+      @include ct-component-property($root, $theme, description, color);
+      @include ct-component-property($root, $theme, description, background-color);
 
       &[data-popper-placement^='top'] > [data-tooltip-arrow] {
         &::before {
-          border-top-color: $ct-tooltip-light-description-background-color;
+          border-top-color: ct-component-var($root, $theme, description, background-color);
         }
       }
 
       &[data-popper-placement^='bottom'] > [data-tooltip-arrow] {
         &::before {
-          border-bottom-color: $ct-tooltip-light-description-background-color;
+          border-bottom-color: ct-component-var($root, $theme, description, background-color);
         }
       }
 
       &[data-popper-placement^='left'] > [data-tooltip-arrow] {
         &::before {
-          border-left-color: $ct-tooltip-light-description-background-color;
+          border-left-color: ct-component-var($root, $theme, description, background-color);
         }
       }
 
       &[data-popper-placement^='right'] > [data-tooltip-arrow] {
         &::before {
-          border-right-color: $ct-tooltip-light-description-background-color;
-        }
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__button {
-      color: $ct-tooltip-dark-icon-color;
-    }
-
-    #{$root}__description {
-      color: $ct-tooltip-dark-description-color;
-      background-color: $ct-tooltip-dark-description-background-color;
-
-      &[data-popper-placement^='top'] > [data-tooltip-arrow] {
-        &::before {
-          border-top-color: $ct-tooltip-dark-description-background-color;
-        }
-      }
-
-      &[data-popper-placement^='bottom'] > [data-tooltip-arrow] {
-        &::before {
-          border-bottom-color: $ct-tooltip-dark-description-background-color;
-        }
-      }
-
-      &[data-popper-placement^='left'] > [data-tooltip-arrow] {
-        &::before {
-          border-left-color: $ct-tooltip-dark-description-background-color;
-        }
-      }
-
-      &[data-popper-placement^='right'] > [data-tooltip-arrow] {
-        &::before {
-          border-right-color: $ct-tooltip-dark-description-background-color;
+          border-right-color: ct-component-var($root, $theme, description, background-color);
         }
       }
     }
