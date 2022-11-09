@@ -113,6 +113,13 @@ civictheme.settings:
               type: sequence
               sequence:
                 type: string
+        skip_link:
+          type: mapping
+          label: 'Skip Link settings'
+          mapping:
+            theme:
+              label: 'Theme'
+              type: string
     colors:
       type: mapping
       label: 'Colors'
