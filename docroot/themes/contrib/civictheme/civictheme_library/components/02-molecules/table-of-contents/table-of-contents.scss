@@ -97,8 +97,8 @@
       &:active {
         @include ct-component-property($root, $theme, link, hover, border-color);
 
-        border-top-width: ct-particle(0.125);
-        border-bottom-width: 0;
+        border-width: ct-particle(0.125);
+        border-left-width: 0;
       }
 
       &:focus {
