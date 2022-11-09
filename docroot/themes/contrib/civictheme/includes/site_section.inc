@@ -2,18 +2,18 @@
 
 /**
  * @file
- * HTML preprocess.
+ * Site section.
  */
 
 use Drupal\node\NodeInterface;
 use Drupal\Component\Utility\Html;
 
 /**
- * Generic HTML pre-process.
+ * HTML pre-process for a site section.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_html(&$variables) {
+function _civictheme_preprocess_html__site_section(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface) {
