@@ -16,6 +16,7 @@ Given a version number X.Y.Z:
 * Y = Minor Release version. No leading zeroes.
 * Z = Hotfix/patch version. No leading zeroes.
 
+
 Examples:
 * Correct: `0.1.0`, `1.0.0` , `1.0.1` , `1.0.10`
 * Incorrect: `0.1` , `1` , `1.0` , `1.0.01` , `1.0.010`
