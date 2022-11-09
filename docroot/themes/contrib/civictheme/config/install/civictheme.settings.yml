@@ -34,7 +34,7 @@ components:
     external_new_window: true
     external_override_domains: {  }
   migrate:
-    expose_migration_metadata: false
+    expose_migration_metadata: true
 colors:
   use_color_selector: true
   use_brand_colors: true

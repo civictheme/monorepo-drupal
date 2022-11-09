@@ -47,7 +47,8 @@
               "type": "string",
               "description": "Alt tag"
             }
-          }
+          },
+          "required": ["file", "uuid"]
         }
       },
       "vertical_spacing": {
@@ -125,7 +126,8 @@
                         "type": "string",
                         "description": "Alt tag"
                       }
-                    }
+                    },
+                    "required": ["file", "uuid"]
                   }
                 },
                 "background": {
@@ -150,7 +152,8 @@
                         "type": "string",
                         "description": "Alt tag"
                       }
-                    }
+                    },
+                    "required": ["file", "uuid"]
                   }
                 },
                 "hide_breadcrumb": {
