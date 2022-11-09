@@ -65,7 +65,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>Find our latest news and events below.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -109,7 +109,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>Find our latest news and events below.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_fill_width:
             -
               value: false

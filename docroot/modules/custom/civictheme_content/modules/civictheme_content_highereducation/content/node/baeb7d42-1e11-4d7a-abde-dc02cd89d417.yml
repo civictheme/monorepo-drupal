@@ -70,7 +70,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>Expand your study options with a double degree.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -114,7 +114,7 @@ default:
           field_c_p_content:
             -
               value: '<p dir="ltr"><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you. Alternatively, you can pursue one main path, but also have a ‘backup’ option available.&nbsp;</span></p><p dir="ltr"><span>Our double degrees cover:</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light

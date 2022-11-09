@@ -81,7 +81,7 @@ default:
           field_c_p_content:
             -
               value: '<p dir="ltr"><span>My University’s Strategic Plan 2022-2032 is now available.&nbsp;</span></p><p dir="ltr"><span>Our Strategic Plan highlights current areas we’re focusing on, including:&nbsp;</span></p><ul><li dir="ltr"><span>Expanding existing campus</span></li><li dir="ltr"><span>Opening 2 campuses in Europe</span></li><li dir="ltr"><span>Continuing to rank in the top 50 universities globally, with the goal to consistently rank in the top 30 by 2032</span></li><li dir="ltr"><span>Expansion of our emerging technologies and emerging science area</span></li><li dir="ltr"><span>More scholarships for postgraduate students</span></li></ul>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light

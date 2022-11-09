@@ -41,7 +41,7 @@ default:
   field_c_n_body:
     -
       value: '<p><span>Mental health day</span></p>'
-      format: basic_html
+      format: civictheme_rich_text
   field_c_n_date:
     -
       value: '2022-07-10T10:00:00'

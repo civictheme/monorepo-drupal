@@ -78,7 +78,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>My University partners with a variety of corporate and not-for-profit organisations. Together, we work on many different research projects.</span></p><p><span>We also work with corporate organisations to bring products and innovative solutions to the market.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark

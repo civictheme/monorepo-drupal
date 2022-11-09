@@ -63,7 +63,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>Search our undergraduate courses by keyword or school/department.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -104,7 +104,7 @@ default:
           field_c_p_content:
             -
               value: '<h2><span>Featured undergraduate courses</span></h2><p><span>Search our undergraduate courses by keyword or school/department.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light

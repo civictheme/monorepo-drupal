@@ -42,7 +42,7 @@ default:
   field_c_n_body:
     -
       value: '<p>Brought to you by My University''s School of Law</p>'
-      format: basic_html
+      format: civictheme_rich_text
   field_c_n_date:
     -
       value: '2022-08-05T17:00:00'

@@ -68,7 +68,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>We offer a variety of scholarships to help make your university education more affordable. In addition, the government offers research scholarships for masters (by research rather than coursework) and doctorate programs.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark

@@ -73,7 +73,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>My University has world-leading researchers across all disciplines. We pride ourselves on the work done by our researchers, from professors to honors students.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -114,7 +114,7 @@ default:
           field_c_p_content:
             -
               value: '<h2><span>Our research areas</span></h2><p><span>Find an area of research that interests you below.&nbsp;</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
@@ -595,7 +595,7 @@ default:
           field_c_p_content:
             -
               value: '<p><a href="/about-this-template-website">More research news</a></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light

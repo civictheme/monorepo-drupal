@@ -535,7 +535,7 @@ default:
                   field_c_p_content:
                     -
                       value: '<p><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you.</span></p>'
-                      format: basic_html
+                      format: civictheme_rich_text
                   field_c_p_image:
                     -
                       entity: 205adb84-4add-4e30-92b8-e5c052aa0bc3

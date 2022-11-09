@@ -71,7 +71,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>My University’s researchers are leaders in their fields. As well as being widely published in academic journals, their discoveries also often make the news.&nbsp;</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark

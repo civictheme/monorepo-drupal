@@ -69,7 +69,7 @@ default:
           field_c_p_content:
             -
               value: '<p><span>My University is a hive of academic excellence and energy. We have students from all over the world, ensuring the university’s multicultural vibe.&nbsp; Whether you’re in our library, walking around the main square or being part of a smaller community through one of our clubs, My University has something to offer everyone.</span></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -110,7 +110,7 @@ default:
           field_c_p_content:
             -
               value: '<h2>Entertainment</h2><p>We hold regular entertainment options on campus and close to campus. Some of these are university-run events and others are organised by departments, clubs or others associated with the university.</p><p><a href="/news-and-events">View our calendar of events</a></p><h2>Clubs</h2><p>The university has a thriving clubs and societies scene. Whether it’s chess, AI, or chocolate…we’ve got a club that will interest you!</p><p><a href="/about-this-template-website">View all our clubs</a></p><h2>Our library</h2><p>Our library boasts large work spaces, private rooms and a vast collection of books across all areas.</p><img data-entity-uuid="4a11ae55-c1d3-4a9e-b186-fcda29a2f4f9" data-entity-type="file" src="/sites/default/files/inline-images/My%20University%20library.png" alt="My University library" data-caption="My University library"><p><a href="/about-this-template-website">Search library catalogue</a></p>'
-              format: basic_html
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
