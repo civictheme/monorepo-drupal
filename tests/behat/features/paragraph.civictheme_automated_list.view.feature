@@ -221,7 +221,7 @@ Feature: View of Page content with Listing component
     And I should see 2 ".ct-item-grid__item" elements
     And I should see an ".ct-list__results-below .ct-pager" element
     And I should not see "First" in the ".ct-list__results-below .ct-pager" element
-    And I should see "Previous" in the ".ct-list__results-below .ct-pager .ct-input--disabled.ct-pager__link" element
+    And I should see "Previous" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element
     And I should see "Last" in the ".ct-list__results-below .ct-pager" element
     And I click "2"
     And I should see "Last" in the ".ct-list__results-below .ct-pager" element
@@ -229,4 +229,4 @@ Feature: View of Page content with Listing component
     And I click "Last"
     And I should not see "Last" in the ".ct-list__results-below .ct-pager" element
     And I should see "First" in the ".ct-list__results-below .ct-pager" element
-    And I should see "Next" in the ".ct-list__results-below .ct-pager .ct-input--disabled.ct-pager__link" element
+    And I should see "Next" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element

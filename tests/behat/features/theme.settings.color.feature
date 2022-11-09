@@ -178,7 +178,7 @@ Feature: Check that Color settings are available in theme settings
     Then save screenshot
 
   @api @javascript
-  Scenario: The CivicTheme theme produced colors can have overriden colors.
+  Scenario: The CivicTheme theme produced colors can have overridden colors.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
     And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
@@ -191,19 +191,52 @@ Feature: Check that Color settings are available in theme settings
     Then save screenshot
     Then I should see an "#edit-colors-palette-light-background-background-light[value='#000000']" element
 
-  @api
-  Scenario: To check that generating a color file has different suffix per theme.
-    Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance"
-    And I click on "a[title='Set CivicTheme as default theme']" element
-    Then I go to the homepage
-    And I should see the 'link[href^="/sites/default/files/css-variables.civictheme.css"]' element with the "rel" attribute set to 'stylesheet'
-    And I visit "/admin/appearance"
-    And I click on "a[title='Set CivicTheme Demo as default theme']" element
-    Then I go to the homepage
-    And I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
+  @api @drush
+  Scenario: The css-variables library CSS file is included on the page when Color Selector is used.
+    Given I run drush "config-set civictheme_demo.settings colors.use_color_selector 0"
+    And the cache has been cleared
+    When I go to the homepage
+    Then the response should not contain "/sites/default/files/css-variables.civictheme_demo.css"
+
+    Given I run drush "config-set civictheme_demo.settings colors.use_color_selector 1"
+    And the cache has been cleared
+    When I go to the homepage
+    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
 
   @api
-  Scenario: The css-variables library CSS file is always included separately on the page.
-    Given I go to the homepage
+  Scenario: Assert that generating a CSS variable file has different suffix per theme.
+    Given I am logged in as a user with the "Site Administrator" role
+
+    When I visit "/admin/appearance"
+    And I click on "a[title='Set CivicTheme as default theme']" element
+
+    When I visit "/admin/appearance/settings/civictheme"
+    And I uncheck the box "Use Color Selector"
+    And I press "Save configuration"
+    And I go to the homepage
+    Then the response should not contain "/sites/default/files/css-variables.civictheme.css"
+    And the response should not contain "/sites/default/files/css-variables.civictheme_demo.css"
+
+    When I visit "/admin/appearance/settings/civictheme"
+    And I check the box "Use Color Selector"
+    And I press "Save configuration"
+    And I go to the homepage
+    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme.css"]' element with the "rel" attribute set to 'stylesheet'
+    And the response should not contain "/sites/default/files/css-variables.civictheme_demo.css"
+
+    When I visit "/admin/appearance"
+    And I click on "a[title='Set CivicTheme Demo as default theme']" element
+
+    When I visit "/admin/appearance/settings/civictheme_demo"
+    And I uncheck the box "Use Color Selector"
+    And I press "Save configuration"
+    And I go to the homepage
+    Then the response should not contain "/sites/default/files/css-variables.civictheme.css"
+    And the response should not contain "/sites/default/files/css-variables.civictheme_demo.css"
+
+    When I visit "/admin/appearance/settings/civictheme_demo"
+    And I check the box "Use Color Selector"
+    And I press "Save configuration"
+    And I go to the homepage
+    Then the response should not contain "/sites/default/files/css-variables.civictheme.css"
     And I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'

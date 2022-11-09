@@ -33,6 +33,8 @@ components:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+  skip_link:
+    theme: light
 colors:
   use_color_selector: true
   use_brand_colors: true
