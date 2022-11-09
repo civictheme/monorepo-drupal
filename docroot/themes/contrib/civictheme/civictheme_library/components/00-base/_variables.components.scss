@@ -836,7 +836,9 @@ $ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
 // Breadcrumb.
 //
 $ct-breadcrumb-light-color: ct-color-light('body') !default;
+$ct-breadcrumb-light-active-color: $ct-breadcrumb-light-color !default;
 $ct-breadcrumb-dark-color: ct-color-dark('body') !default;
+$ct-breadcrumb-dark-active-color: $ct-breadcrumb-dark-color !default;
 
 //
 // Tooltip.
