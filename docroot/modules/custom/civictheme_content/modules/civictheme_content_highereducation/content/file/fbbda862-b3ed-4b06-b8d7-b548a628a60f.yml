@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: fbbda862-b3ed-4b06-b8d7-b548a628a60f
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: 'Smithsonian Institute.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Smithsonian Institute.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 89893
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666104124

@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 519c4e0c-acd5-4233-9628-8335ee7ce51f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    7d218cdd-73aa-4253-8e46-59c94197a943: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: '_Iconschool of english and creative writing.svg'
+  created:
+    -
+      value: 1667535261
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 7d218cdd-73aa-4253-8e46-59c94197a943
+      alt: 'Icon School of English and Creative Writing'
+      title: ''
+      width: 0
+      height: 0

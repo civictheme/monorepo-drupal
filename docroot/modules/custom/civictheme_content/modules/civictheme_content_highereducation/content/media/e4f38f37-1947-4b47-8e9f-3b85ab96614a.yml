@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e4f38f37-1947-4b47-8e9f-3b85ab96614a
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    a9cc17a6-a67a-4785-9ac4-0dbd1ac184f6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: '_Icondept of chem engineering.svg'
+  created:
+    -
+      value: 1667535916
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: a9cc17a6-a67a-4785-9ac4-0dbd1ac184f6
+      alt: 'Icon Department of Chemical Engineering'
+      title: ''
+      width: 0
+      height: 0

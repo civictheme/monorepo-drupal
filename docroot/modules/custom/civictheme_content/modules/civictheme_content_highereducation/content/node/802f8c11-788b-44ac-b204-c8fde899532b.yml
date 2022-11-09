@@ -1,0 +1,63 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 802f8c11-788b-44ac-b204-c8fde899532b
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    a139973f-f02a-4838-bcb4-3a7e0e0c1556: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  title:
+    -
+      value: 'My University sport'
+  created:
+    -
+      value: 1666109310
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /events/my-university-sport
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: '<p><span>Men’s tennis finals. Including rankings, news and championship brackets.</span></p>'
+      format: basic_html
+  field_c_n_date:
+    -
+      value: '2022-08-04T15:00:00'
+      end_value: '2022-08-06T19:00:00'
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Men’s tennis finals. Including rankings, news and championship brackets.'
+  field_c_n_thumbnail:
+    -
+      entity: a139973f-f02a-4838-bcb4-3a7e0e0c1556
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196

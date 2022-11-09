@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 06649f54-e0ba-4cb3-a291-d07abecdf0f1
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: '_Icondept of emerging technologies.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of emerging technologies.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1739
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536158

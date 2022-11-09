@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d1a149ce-4422-4767-aef1-1a22ae4e2193
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    e897e660-3b34-41ef-98f9-1160f2528a89: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: 'United Nations.png'
+  created:
+    -
+      value: 1666104041
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: e897e660-3b34-41ef-98f9-1160f2528a89
+      alt: 'United Nations'
+      title: ''
+      width: 1000
+      height: 669

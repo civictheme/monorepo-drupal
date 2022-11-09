@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 2293c43c-5b29-45f6-9b58-51344002758a
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    d838ac0c-5320-4e95-93e7-b1c8d1a7a0b2: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: 'Red Cross.png'
+  created:
+    -
+      value: 1666104080
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: d838ac0c-5320-4e95-93e7-b1c8d1a7a0b2
+      alt: 'Red Cross'
+      title: ''
+      width: 1000
+      height: 669

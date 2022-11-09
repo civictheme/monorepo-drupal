@@ -1,0 +1,264 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: ee025f20-7976-47b2-aa62-a00b84b149de
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
+default:
+  revision_uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  title:
+    -
+      value: 'Postgraduate courses'
+  created:
+    -
+      value: 1666094517
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  path:
+    -
+      alias: /courses/postgraduate-courses
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4105ad4d-1603-4e3c-b44a-511570cb0c4f
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666101218
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Search our postgraduate courses by keyword or school/department.</span></p>'
+              format: basic_html
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: abade735-f66a-4904-b0b2-e30315743be4
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666101233
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<h2><span>Featured postgraduate courses</span></h2><p><span>Search our postgraduate courses by keyword or school/department.</span></p>'
+              format: basic_html
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cfbb43ca-4009-4d28-85d7-441315e5631a
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666101252
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 1
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d4056cf5-982c-41a4-a5c3-734310e032c8
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666101263
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Master in Artificial Intelligence'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'Be at the forefront of this emerging technology and drive digital transformation in our world.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Master in Artificial Intelligence'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2268a181-7a12-47b0-a40b-b5048a05a6c0
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666101281
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Doctorate in Neuroscience'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'Transform our understanding of the human brain.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Doctorate in Neuroscience'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 396ef179-ddd1-486a-affe-0f1e8fa3867c
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666101304
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Doctorate in Engineering'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'Dive into engineering challenges and lead the way in the engineering speciality of your choice.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Doctorate in Engineering'
+          field_c_p_list_item_theme:
+            -
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

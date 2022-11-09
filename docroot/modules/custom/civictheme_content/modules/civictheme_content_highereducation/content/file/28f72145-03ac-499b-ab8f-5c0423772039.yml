@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 28f72145-03ac-499b-ab8f-5c0423772039
+  default_langcode: en
+  depends:
+    12f1cedf-7373-46a7-84cf-d29ffb4e3c55: user
+default:
+  uid:
+    -
+      entity: 12f1cedf-7373-46a7-84cf-d29ffb4e3c55
+  filename:
+    -
+      value: logo_header.png
+  uri:
+    -
+      value: 'public://images/2022-10/logo_header.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 4955
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666132877

@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5aae0577-f184-421f-9818-36c4c91f7268
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: 'dose-media-bU6JyhSI6zo-unsplash 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/dose-media-bU6JyhSI6zo-unsplash 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 109427
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666109145

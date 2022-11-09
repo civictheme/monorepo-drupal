@@ -1,0 +1,43 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  name:
+    -
+      value: nathania
+  pass:
+    -
+      value: $S$EaxkhnD2Rb3LOVirdyoNa1CHv5KrYwaOwGRqyIDiWleaCOpZ3Aag
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: nathania@salsadigital.com.au
+  timezone:
+    -
+      value: UTC
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666090206
+  access:
+    -
+      value: 1667967409
+  login:
+    -
+      value: 1667966771
+  roles:
+    -
+      target_id: civictheme_site_administrator
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

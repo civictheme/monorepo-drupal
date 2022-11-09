@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  preferred_admin_langcode:
+    -
+      value: en
+  name:
+    -
+      value: phillipa
+  pass:
+    -
+      value: $S$E9UbuEfigbLeDz52PqaEfM.VBnASodJQBQPhufVdqN.T/WQ.zxY6
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: phillipa.martin@salsadigital.com.au
+  timezone:
+    -
+      value: UTC
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666111343
+  access:
+    -
+      value: 1667967681
+  login:
+    -
+      value: 1667198568
+  init:
+    -
+      value: phillipa.martin@salsadigital.com.au
+  roles:
+    -
+      target_id: administrator
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

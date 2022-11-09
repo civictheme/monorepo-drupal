@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: b3c62b56-71eb-478b-86dd-d9f1a7edb0bc
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    35bf9ba8-6121-41cf-a82a-3d212bad614c: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: embedded-map.png
+  created:
+    -
+      value: 1643433226
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 35bf9ba8-6121-41cf-a82a-3d212bad614c
+      alt: 'Embedded map'
+      title: ''
+      width: 830
+      height: 555

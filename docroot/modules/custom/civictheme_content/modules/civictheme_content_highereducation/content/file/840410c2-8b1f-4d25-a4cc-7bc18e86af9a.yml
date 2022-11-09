@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 840410c2-8b1f-4d25-a4cc-7bc18e86af9a
+  default_langcode: en
+  depends:
+    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
+default:
+  uid:
+    -
+      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+  filename:
+    -
+      value: 'Undergraduate hat.jpg'
+  uri:
+    -
+      value: 'public://images/2022-11/Undergraduate hat.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 4410
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667779265

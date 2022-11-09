@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: cce349fa-a106-47b0-936a-1d2ebe48ef1b
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: 'Device=Desktop, Type=Inline, Dark Theme=False.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Device=Desktop, Type=Inline, Dark Theme=False.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 5963
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666093854

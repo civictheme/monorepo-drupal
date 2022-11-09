@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1a1cbd4b-36f6-45ca-b71f-89bccb5d2e83
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    894ac492-60e6-4596-b171-4e3c03331076: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: '_Iconschool of media and journalism.svg'
+  created:
+    -
+      value: 1667535289
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 894ac492-60e6-4596-b171-4e3c03331076
+      alt: 'Icon School of Media and Journalism'
+      title: ''
+      width: 0
+      height: 0

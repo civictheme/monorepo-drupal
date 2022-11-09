@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 71884454-94a4-4b31-b549-72457937caae
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: '_Iconschool of med.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of med.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2314
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536226

@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b934d372-e59b-4e7d-a0f1-d5c818ea4cef
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: '_Icondept of political science.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of political science.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2127
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535840

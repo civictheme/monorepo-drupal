@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: 5b5780b7-9c12-409f-b35c-e4113cfe9c1a
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  preferred_admin_langcode:
+    -
+      value: en
+  name:
+    -
+      value: akhil
+  pass:
+    -
+      value: $S$EbOrWeT.kVd6GHtHbD4LrWQARh4BrNklZ4xd9xnEpdzedhCNlF6j
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: akhil.bhandari@salsadigital.com.au
+  timezone:
+    -
+      value: UTC
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666111296
+  access:
+    -
+      value: 1667959893
+  login:
+    -
+      value: 1667780855
+  init:
+    -
+      value: akhil.bhandari@salsadigital.com.au
+  roles:
+    -
+      target_id: administrator
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

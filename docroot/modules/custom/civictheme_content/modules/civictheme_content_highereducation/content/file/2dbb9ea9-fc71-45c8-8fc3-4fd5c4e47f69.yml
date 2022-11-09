@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2dbb9ea9-fc71-45c8-8fc3-4fd5c4e47f69
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: '_Iconschool of languages.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of languages.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2083
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535314

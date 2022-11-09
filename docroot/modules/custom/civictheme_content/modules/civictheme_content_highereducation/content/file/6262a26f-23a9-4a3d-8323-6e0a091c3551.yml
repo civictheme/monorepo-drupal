@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 6262a26f-23a9-4a3d-8323-6e0a091c3551
+  default_langcode: en
+  depends:
+    12f1cedf-7373-46a7-84cf-d29ffb4e3c55: user
+default:
+  uid:
+    -
+      entity: 12f1cedf-7373-46a7-84cf-d29ffb4e3c55
+  filename:
+    -
+      value: logo_dark.png
+  uri:
+    -
+      value: 'public://images/2022-10/logo_dark.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 5506
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666132173

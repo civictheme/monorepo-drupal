@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d838ac0c-5320-4e95-93e7-b1c8d1a7a0b2
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+default:
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  filename:
+    -
+      value: 'Red Cross.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Red Cross.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 4409
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666104080

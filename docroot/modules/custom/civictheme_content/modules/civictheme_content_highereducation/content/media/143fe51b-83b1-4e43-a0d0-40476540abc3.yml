@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 143fe51b-83b1-4e43-a0d0-40476540abc3
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    f1d15bb3-6018-497d-a9bc-79ec0656793e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: '_Icondept of cyber security.svg'
+  created:
+    -
+      value: 1667536121
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: f1d15bb3-6018-497d-a9bc-79ec0656793e
+      alt: 'Icon Department of Cyber Security'
+      title: ''
+      width: 0
+      height: 0

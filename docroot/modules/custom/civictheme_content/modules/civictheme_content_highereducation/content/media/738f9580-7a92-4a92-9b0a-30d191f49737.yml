@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 738f9580-7a92-4a92-9b0a-30d191f49737
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    e3080d9e-143f-458b-aed6-cf5fe97f3861: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  name:
+    -
+      value: BCG.png
+  created:
+    -
+      value: 1666103829
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: e3080d9e-143f-458b-aed6-cf5fe97f3861
+      alt: BCG
+      title: ''
+      width: 1000
+      height: 669

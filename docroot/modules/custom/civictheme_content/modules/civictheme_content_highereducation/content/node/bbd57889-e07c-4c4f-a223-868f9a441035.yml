@@ -1,0 +1,439 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bbd57889-e07c-4c4f-a223-868f9a441035
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
+    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+default:
+  revision_uid:
+    -
+      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+  title:
+    -
+      value: Campuses
+  created:
+    -
+      value: 1666104406
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /campuses
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b0460f3a-bf81-4b1c-87a5-a32fdd468fe0
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104434
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University was established in 1912 in Melbourne, Australia. It now has 10 campuses around the world, making it one of the first truly global universities.</span></p>'
+              format: basic_html
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c5899f9f-66fe-48e0-95d8-276b475c661d
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104447
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Our campuses are based in:</span></p>'
+              format: basic_html
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3a322518-0514-4261-8d43-af3f0ddecc42
+          bundle: civictheme_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104455
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 59cf5f58-5a17-4794-9d40-d98fdbdacf59
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p><span>Just 10 minutes from Melbourne’s city centre, the Melbourne campus is My University’s largest campus by number of students.</span></p><p><span><strong>Address and contact</strong></span></p><p><span>123 Melbourne Highway, Melbourne, Victoria 3001</span>&nbsp;&nbsp;<br><span>Phone: (03) 9123 1234</span>&nbsp;&nbsp;<br><span>Email: </span><a href="mailto:contact@mumelbourne.vic.edu.au"><span>contact@mumelbourne.vic.edu.au</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Melbourne campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Library</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Student services</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Parking</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Security</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Shopping and food</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Childcare</span></a>&nbsp;<br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Melbourne campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p><img src="/sites/default/files/inline-images/weyne-yew-iFdPrhOPI_E-unsplash%201.png" data-entity-uuid="cb4a199a-a41a-490a-9e04-cfaf43c327c6" data-entity-type="file">'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Melbourne, Australia'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c695fb44-85e2-49aa-bef8-81352fc0bf00
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Perth Highway, Perth, WA 3001</span>&nbsp;<br><span>Phone: (08) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muperth.wa.edu.au"><span>contact@muperth.wa.edu.au</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Perth campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Perth campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Perth, Australia'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8e787023-b7fc-49a4-963f-f7731d80426e
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, London, England</span>&nbsp;<br><span>Phone: (020) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mulondon.edu"><span>contact@mulondon.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the London campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Perth campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'London, England'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 716fc4b9-19ee-4f0c-a137-2e5b1fcc5e32
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, New York, England</span>&nbsp;<br><span>Phone: 1 (212) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@munewyork.edu"><span>contact@munewyork.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the New York campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the New York campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'New York, US'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f9147db4-1f35-4d50-9260-3e82b8ae90e2
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Seoul, South Korea</span>&nbsp;<br><span>Phone: (82) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@museoul.edu.kr"><span>contact@museoul.edu.kr</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Seoul campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Seoul campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Seoul, South Korea'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: aab73933-dc86-4d6d-935a-4e2d856f6c50
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Bern, Switzerland</span>&nbsp;<br><span>Phone: (41) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mubern.edu"><span>contact@mubern.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Bern campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Bern campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Bern, Switzerland'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1eaf3646-3d1e-4f14-a57c-e218c791a624
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Auckland, New Zealand</span>&nbsp;<br><span>Phone: (64) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muauckland.edu"><span>contact@muauckland.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Auckland campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Auckland campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Auckland, New Zealand'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9198d591-674b-458d-af63-5a37d3c7a331
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Singapore</span>&nbsp;<br><span>Phone: (65) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@musingapore.edu"><span>contact@musingapore.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Singapore campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Singapore campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Singapore
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e68807b5-48d0-4623-9eb4-5a5affaacd9c
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Hong Kong</span>&nbsp;<br><span>Phone: (852) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muhongkong.edu"><span>contact@muhongkong.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Hong Kong campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Hong Kong campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Hong Kong'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7eec8710-31b7-455a-92e9-5b1fdbcd9fc0
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_content:
+                    -
+                      value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Kuala Lumpur, Malaysia</span>&nbsp;<br><span>Phone: (60) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mukualalumpur.edu"><span>contact@mukualalumpur.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Kuala Lumpur campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Kuala Lumpur campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
+                      format: basic_html
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Kuala Lumpur, Malaysia'
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both
