@@ -70,74 +70,39 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__title {
-      color: $ct-table-of-contents-light-title-color;
+      @include ct-component-property($root, $theme, title, color);
     }
 
     #{$root}__link {
-      color: $ct-table-of-contents-light-link-color;
-      background-color: $ct-table-of-contents-light-link-background-color;
+      @include ct-component-property($root, $theme, link, color);
+      @include ct-component-property($root, $theme, link, background-color);
 
       &::before {
-        background-color: $ct-table-of-contents-light-link-stripe-background-color;
+        @include ct-component-property($root, $theme, link, stripe, background-color);
       }
 
       &:hover,
       &:focus,
       &:active {
-        background-color: $ct-table-of-contents-light-link-hover-background-color;
-        color: $ct-table-of-contents-light-link-hover-color;
+        @include ct-component-property($root, $theme, link, hover, background-color);
+        @include ct-component-property($root, $theme, link, hover, color);
 
         &::before {
-          background-color: $ct-table-of-contents-light-link-hover-stripe-background-color;
+          @include ct-component-property($root, $theme, link, hover, stripe, background-color);
         }
       }
 
       &:active {
-        border-color: $ct-table-of-contents-light-link-hover-border-color;
+        @include ct-component-property($root, $theme, link, hover, border-color);
+
         border-top-width: ct-particle(0.125);
         border-bottom-width: 0;
       }
 
       &:focus {
-        @include ct-outline();
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__title {
-      color: $ct-table-of-contents-dark-title-color;
-    }
-
-    #{$root}__link {
-      color: $ct-table-of-contents-dark-link-color;
-      background-color: $ct-table-of-contents-dark-link-background-color;
-
-      &::before {
-        background-color: $ct-table-of-contents-dark-link-stripe-background-color;
-      }
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: $ct-table-of-contents-dark-link-hover-background-color;
-        color: $ct-table-of-contents-dark-link-hover-color;
-
-        &::before {
-          background-color: $ct-table-of-contents-dark-link-hover-stripe-background-color;
-        }
-      }
-
-      &:active {
-        border-color: $ct-table-of-contents-dark-link-hover-border-color;
-        border-top-width: ct-particle(0.125);
-        border-bottom-width: 0;
-      }
-
-      &:focus {
-        @include ct-outline();
+        @include ct-outline-theme($theme);
       }
     }
   }
