@@ -96,8 +96,8 @@
 
       &:active {
         border-color: $ct-table-of-contents-light-link-hover-border-color;
-        border-top-width: ct-particle(0.125);
-        border-bottom-width: 0;
+        border-width: ct-particle(0.125);
+        border-left-width: 0;
       }
 
       &:focus {
@@ -132,8 +132,8 @@
 
       &:active {
         border-color: $ct-table-of-contents-dark-link-hover-border-color;
-        border-top-width: ct-particle(0.125);
-        border-bottom-width: 0;
+        border-width: ct-particle(0.125);
+        border-left-width: 0;
       }
 
       &:focus {
