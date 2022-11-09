@@ -321,7 +321,6 @@ function civictheme_library_info_alter(&$libraries, $extension) {
     $color_manager = \Drupal::classResolver(CivicthemeColorManager::class);
 
     $use_color_selector = $theme_config_manager->load('colors.use_color_selector', FALSE);
-    $use_color_selector = TRUE;
 
     // Only apply if Color Selector was explicitly enabled in configuration.
     if ($use_color_selector) {
