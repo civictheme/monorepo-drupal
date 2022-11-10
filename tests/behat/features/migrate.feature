@@ -53,7 +53,7 @@ Feature: Tests the CivicTheme migration functionality
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
 
-  @api @javascript @wip
+  @api @javascript
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
     Given managed file:
       | filename                               | uri                                             | path                                   |
@@ -63,6 +63,8 @@ Feature: Tests the CivicTheme migration functionality
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
     And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
+    And I press the "Retrieve files" button
+    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
     And I press the "Retrieve files" button
     And I should see the message "Migration content files have been retrieved"
     And I press the "Generate migration" button
