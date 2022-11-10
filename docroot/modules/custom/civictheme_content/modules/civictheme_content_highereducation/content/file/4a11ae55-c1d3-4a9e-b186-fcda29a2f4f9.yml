@@ -4,11 +4,10 @@ _meta:
   uuid: 4a11ae55-c1d3-4a9e-b186-fcda29a2f4f9
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'My University library.png'

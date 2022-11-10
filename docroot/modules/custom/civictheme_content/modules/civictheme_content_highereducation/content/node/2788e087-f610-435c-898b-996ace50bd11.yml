@@ -5,19 +5,18 @@ _meta:
   bundle: civictheme_event
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     e5120032-950d-422c-9d6e-3d562e633858: media
     abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
 default:
   revision_uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   status:
     -
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   title:
     -
       value: 'Mental health day'

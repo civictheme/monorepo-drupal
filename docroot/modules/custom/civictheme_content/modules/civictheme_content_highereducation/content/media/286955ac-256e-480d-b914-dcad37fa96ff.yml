@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     2280ddcf-ec73-49ae-8a02-3d6c69579504: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   name:
     -
       value: '_Icondept of structural engineering.svg'

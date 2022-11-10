@@ -4,11 +4,10 @@ _meta:
   uuid: 3e2f531a-7aa3-4f8c-92bb-4d2dfe886dac
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: strategicplan.png

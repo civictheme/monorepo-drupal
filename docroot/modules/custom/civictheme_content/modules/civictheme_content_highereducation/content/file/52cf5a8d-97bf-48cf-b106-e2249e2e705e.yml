@@ -4,11 +4,10 @@ _meta:
   uuid: 52cf5a8d-97bf-48cf-b106-e2249e2e705e
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'The Pine Island Glacier 1.png'

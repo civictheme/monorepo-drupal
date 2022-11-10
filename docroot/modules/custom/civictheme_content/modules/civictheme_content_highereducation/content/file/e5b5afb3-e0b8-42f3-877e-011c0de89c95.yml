@@ -4,11 +4,10 @@ _meta:
   uuid: e5b5afb3-e0b8-42f3-877e-011c0de89c95
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'clay-banks-Hf8n0RUk7g0-unsplash 1.png'

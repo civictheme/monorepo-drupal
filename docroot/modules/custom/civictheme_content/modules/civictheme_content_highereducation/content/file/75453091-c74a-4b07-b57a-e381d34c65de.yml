@@ -4,11 +4,10 @@ _meta:
   uuid: 75453091-c74a-4b07-b57a-e381d34c65de
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: Pfizer.png

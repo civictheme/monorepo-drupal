@@ -4,11 +4,10 @@ _meta:
   uuid: 26c337ee-6ff6-4a2f-bc5c-8a2716b64f3c
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: '_Icondept of software engineering.svg'

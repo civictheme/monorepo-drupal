@@ -4,11 +4,10 @@ _meta:
   uuid: c0575282-5985-4204-84cf-b2ade1e71435
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: janesmith.png

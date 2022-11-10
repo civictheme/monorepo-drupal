@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     52c7c546-4010-44c0-aa09-7b1295255df8: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   name:
     -
       value: 'helena-lopes-UZe35tk5UoA-unsplash 1.png'

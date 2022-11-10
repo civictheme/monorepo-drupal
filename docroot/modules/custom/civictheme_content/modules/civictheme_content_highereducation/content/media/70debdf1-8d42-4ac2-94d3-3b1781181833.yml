@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     eb8db1e8-1ccc-4c99-9a85-75b29eae4de6: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   name:
     -
       value: 'AI and open data for COVID 1.png'

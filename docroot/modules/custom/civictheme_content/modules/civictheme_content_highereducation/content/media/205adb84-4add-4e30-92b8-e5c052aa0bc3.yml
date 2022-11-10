@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     8b42af88-5ca5-4272-8b4d-d9588778a92d: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   name:
     -
       value: doubledegreesslider1.png

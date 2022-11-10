@@ -4,11 +4,10 @@ _meta:
   uuid: 6262a26f-23a9-4a3d-8323-6e0a091c3551
   default_langcode: en
   depends:
-    12f1cedf-7373-46a7-84cf-d29ffb4e3c55: user
 default:
   uid:
     -
-      entity: 12f1cedf-7373-46a7-84cf-d29ffb4e3c55
+      target_id: 1
   filename:
     -
       value: logo_dark.png

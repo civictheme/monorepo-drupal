@@ -4,11 +4,10 @@ _meta:
   uuid: 2803908c-77d8-460b-b084-3185c392797e
   default_langcode: en
   depends:
-    5b5780b7-9c12-409f-b35c-e4113cfe9c1a: user
 default:
   uid:
     -
-      entity: 5b5780b7-9c12-409f-b35c-e4113cfe9c1a
+      target_id: 1
   filename:
     -
       value: 'Adopt the DIY approach.png'

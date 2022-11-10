@@ -4,11 +4,10 @@ _meta:
   uuid: cb4a199a-a41a-490a-9e04-cfaf43c327c6
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'weyne-yew-iFdPrhOPI_E-unsplash 1.png'

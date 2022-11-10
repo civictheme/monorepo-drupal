@@ -4,11 +4,10 @@ _meta:
   uuid: 1323fd43-3c73-4129-b388-6700e97d1096
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'Device=Desktop, Type=Inline, Dark Theme=True.png'

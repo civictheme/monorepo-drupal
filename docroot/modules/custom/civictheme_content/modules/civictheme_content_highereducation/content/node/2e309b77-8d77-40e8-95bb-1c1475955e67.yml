@@ -5,21 +5,19 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
     b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
     61e15cff-4f8f-4480-9c0a-8f11669c4374: media
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
 default:
   revision_uid:
     -
-      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+      target_id: 1
   status:
     -
       value: true
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   title:
     -
       value: 'New chemotherapy breakthrough'

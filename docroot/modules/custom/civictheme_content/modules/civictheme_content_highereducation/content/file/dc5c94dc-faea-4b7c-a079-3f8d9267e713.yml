@@ -4,11 +4,10 @@ _meta:
   uuid: dc5c94dc-faea-4b7c-a079-3f8d9267e713
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: '_Icondept of architecture.svg'

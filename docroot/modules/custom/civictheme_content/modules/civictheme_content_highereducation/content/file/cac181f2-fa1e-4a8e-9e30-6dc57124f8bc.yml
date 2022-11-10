@@ -4,11 +4,10 @@ _meta:
   uuid: cac181f2-fa1e-4a8e-9e30-6dc57124f8bc
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: 'Alzheimer’s Association.png'

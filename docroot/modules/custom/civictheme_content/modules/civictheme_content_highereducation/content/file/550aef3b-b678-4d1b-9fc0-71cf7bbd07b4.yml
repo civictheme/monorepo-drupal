@@ -4,11 +4,10 @@ _meta:
   uuid: 550aef3b-b678-4d1b-9fc0-71cf7bbd07b4
   default_langcode: en
   depends:
-    12f1cedf-7373-46a7-84cf-d29ffb4e3c55: user
 default:
   uid:
     -
-      entity: 12f1cedf-7373-46a7-84cf-d29ffb4e3c55
+      target_id: 1
   filename:
     -
       value: logo_light.png

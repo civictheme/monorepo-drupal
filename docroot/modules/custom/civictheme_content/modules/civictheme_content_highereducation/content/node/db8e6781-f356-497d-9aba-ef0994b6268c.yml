@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
     b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
     11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
@@ -13,7 +12,7 @@ _meta:
 default:
   revision_uid:
     -
-      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+      target_id: 1
   status:
     -
       value: true

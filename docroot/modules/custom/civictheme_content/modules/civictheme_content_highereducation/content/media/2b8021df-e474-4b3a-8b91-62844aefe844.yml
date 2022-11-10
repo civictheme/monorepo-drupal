@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_image
   default_langcode: en
   depends:
-    5b5780b7-9c12-409f-b35c-e4113cfe9c1a: user
     a7807b15-8d13-4d42-9615-d7756db3a11d: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 5b5780b7-9c12-409f-b35c-e4113cfe9c1a
+      target_id: 1
   name:
     -
       value: 'Tried and tested components.png'

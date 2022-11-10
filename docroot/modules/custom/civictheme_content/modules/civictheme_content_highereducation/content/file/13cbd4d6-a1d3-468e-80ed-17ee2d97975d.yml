@@ -4,11 +4,10 @@ _meta:
   uuid: 13cbd4d6-a1d3-468e-80ed-17ee2d97975d
   default_langcode: en
   depends:
-    1c408e78-234e-4917-a0c6-ee1e38600b8f: user
 default:
   uid:
     -
-      entity: 1c408e78-234e-4917-a0c6-ee1e38600b8f
+      target_id: 1
   filename:
     -
       value: '_Icondept of economics.svg'

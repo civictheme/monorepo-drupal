@@ -4,11 +4,10 @@ _meta:
   uuid: 3f92aa22-2a37-4dd4-b733-bb4d01cab082
   default_langcode: en
   depends:
-    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
 default:
   uid:
     -
-      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+      target_id: 1
   filename:
     -
       value: Undergraduate.svg.svg

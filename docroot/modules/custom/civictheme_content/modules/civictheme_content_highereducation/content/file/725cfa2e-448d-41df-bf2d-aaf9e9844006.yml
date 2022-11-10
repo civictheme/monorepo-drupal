@@ -4,11 +4,10 @@ _meta:
   uuid: 725cfa2e-448d-41df-bf2d-aaf9e9844006
   default_langcode: en
   depends:
-    0f8a30e2-eace-4b17-8ad3-3662b50881ac: user
 default:
   uid:
     -
-      entity: 0f8a30e2-eace-4b17-8ad3-3662b50881ac
+      target_id: 1
   filename:
     -
       value: Newbreakthrough.png
