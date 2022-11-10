@@ -33,8 +33,13 @@ source:
 process:
   name: name
   field_c_m_image:
-    plugin: file_copy_disposition
-    source: url
+    - plugin: skip_on_empty
+      method: row
+      source: url
+    - plugin: file_copy_disposition
+      skip_on_missing_source: true
+      skip_on_error: true
+      file_exist: 'use existing'
 destination:
   plugin: 'entity:media'
   default_bundle: civictheme_image
