@@ -360,7 +360,7 @@ function civictheme_library_info_alter(&$libraries, $extension) {
     else {
       // Disable inclusion of the stylesheet.
       foreach (array_keys($libraries['css-variables']['css']['theme']) as $path) {
-        $libraries['css-variables']['css']['theme'][$path] = FALSE;
+        unset($libraries['css-variables']['css']['theme'][$path]);
       }
     }
   }
