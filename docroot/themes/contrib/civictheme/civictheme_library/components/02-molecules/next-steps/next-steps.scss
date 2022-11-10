@@ -43,102 +43,53 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__content {
-      color: $ct-next-steps-light-color;
-      background-color: $ct-next-steps-light-background-color;
-      border-color: $ct-next-steps-light-border-color;
-
-      @include ct-highlight-stripe-color($ct-next-steps-light-stripe-color);
+      @include ct-component-property($root, $theme, color);
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, color));
     }
 
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-theme($theme);
     }
 
     &:hover {
       #{$root}__title {
-        color: $ct-next-steps-light-hover-color;
+        @include ct-component-property($root, $theme, hover, color);
+
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .ct-icon {
-          fill: $ct-next-steps-light-hover-color;
+          fill: ct-component-var($root, $theme, hover, color);
         }
       }
     }
 
     &:active {
       .ct-next-steps__title {
-        color: $ct-next-steps-light-active-color;
+        @include ct-component-property($root, $theme, active, color);
+
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .ct-icon {
-          fill: $ct-next-steps-light-active-color;
+          fill: ct-component-var($root, $theme, active, color);
         }
       }
     }
 
     #{$root}__title {
-      color: $ct-next-steps-light-heading-color;
+      @include ct-component-property($root, $theme, heading, color);
     }
 
     #{$root}__read-more {
       .ct-icon {
-        fill: $ct-next-steps-light-icon-color;
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__content {
-      color: $ct-next-steps-dark-color;
-      background-color: $ct-next-steps-dark-background-color;
-      border-color: $ct-next-steps-dark-border-color;
-
-      @include ct-highlight-stripe-color($ct-next-steps-dark-stripe-color);
-    }
-
-    &:focus {
-      @include ct-outline(true);
-    }
-
-    &:hover {
-      #{$root}__title {
-        color: $ct-next-steps-dark-hover-color;
-        text-decoration: underline;
-      }
-
-      #{$root}__read-more {
-        .ct-icon {
-          fill: $ct-next-steps-dark-hover-color;
-        }
-      }
-    }
-
-    &:active {
-      #{$root}__title {
-        color: $ct-next-steps-dark-active-color;
-        text-decoration: underline;
-      }
-
-      #{$root}__read-more {
-        .ct-icon {
-          fill: $ct-next-steps-dark-active-color;
-        }
-      }
-    }
-
-    #{$root}__title {
-      color: $ct-next-steps-dark-heading-color;
-    }
-
-    #{$root}__read-more {
-      .ct-icon {
-        fill: $ct-next-steps-dark-icon-color;
+        fill: ct-component-var($root, $theme, icon, color);
       }
     }
   }
