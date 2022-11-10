@@ -117,14 +117,30 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
   }
 
   /**
+   * Generates CivicTheme migrations.
+   *
+   * @param array $migration_files
+   *   List of source migration file ids grouped by migration type.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function generateMigrations(array $migration_files) {
+    foreach ($migration_files as $migration_type => $file_ids) {
+      $this->generateMigration($file_ids, $migration_type);
+    }
+  }
+
+  /**
    * Generates or updates an existing migration for CivicTheme.
    *
    * @param array $file_ids
    *   List of source migration file ids to add to migration.
+   * @param string $migration_type
+   *   The type of migration, determines what urls are added.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function generateMigration(array $file_ids) {
+  protected function generateMigration(array $file_ids, string $migration_type) {
     $files = $this->fileStorage->loadMultiple($file_ids);
     if (empty($files)) {
       $this->messenger()->addStatus($this->t('Require files to generate a migration'));
@@ -133,8 +149,8 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
     foreach ($files as $file) {
       $file_stream_wrappers[] = $file->getFileUri();
     }
-    $migration_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/';
-    $migration_config_files = glob($migration_directory . '*.yml');
+    $migration_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/' . $migration_type;
+    $migration_config_files = glob($migration_directory . '/*.yml');
     foreach ($migration_config_files as $migration_config_file) {
       $migration_config = file_get_contents($migration_config_file);
       $migration_config = $this->yaml->decode($migration_config);

@@ -3,38 +3,14 @@
 // phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
 namespace Drupal\Tests\civictheme_migrate\Kernel;
 
-use Drupal\civictheme_migrate\CivicthemeMigrateValidator;
-use Drupal\KernelTests\KernelTestBase;
-use Opis\JsonSchema\Validator;
-
 /**
- * Class CivicthemeMigrateValidatorTest.
+ * Class CivicthemePageMigrateValidatorTest.
  *
- * Test cases for processing validating JSON migration source files.
+ * Test cases for processing validating CT page JSON migration source files.
  *
  * @group CivicTheme
  */
-class CivicthemeMigrateValidatorTest extends KernelTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = ['civictheme_migrate'];
-
-  /**
-   * Validator instance.
-   *
-   * @var \Drupal\civictheme_migrate\CivicthemeMigrateValidator
-   */
-  protected $validator;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->validator = new CivicthemeMigrateValidator(new Validator(), $this->container->get('extension.path.resolver'));
-  }
+class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase {
 
   /**
    * Test page JSON fields.
@@ -42,28 +18,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
    * @dataProvider dataProviderJsonPageFields
    */
   public function testJsonPageFields(mixed $data, $expected, $message = NULL): void {
-    $this->testJsonValidity($data, $expected, $message);
-  }
-
-  /**
-   * Test banner JSON fields.
-   *
-   * @dataProvider dataProviderBannerFields
-   */
-  public function testJsonBannerFields(mixed $data, $expected, $message = NULL) {
-    $this->testJsonValidity($data, $expected, $message);
-  }
-
-  /**
-   * Helper to test validator.
-   */
-  protected function testJsonValidity(mixed $data, $expected, $message = NULL) {
-    $validation_result = $this->validator->validate($data, 'civictheme_page');
-    if ($message !== NULL) {
-      $this->assertEquals($expected, $validation_result, $message);
-      return;
-    }
-    $this->assertEquals($expected, $validation_result);
+    $this->testJsonValidity($data, 'civictheme_page', $expected, $message);
   }
 
   /**
@@ -179,93 +134,6 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
       ],
       [
         $this->getTestDataStructure(function ($data) {
-          unset($data[0]->thumbnail[0]->file);
-          unset($data[0]->thumbnail[0]->uuid);
-          return $data;
-        }),
-        [
-          'All array items must match schema',
-          'The properties must match schema: thumbnail',
-          'At least one array item must match schema',
-          'The required properties (file) are missing',
-        ],
-        'Thumbnail requires file and uuid field',
-      ],
-    ];
-  }
-
-  /**
-   * Data provider for testJsonBannerFields().
-   */
-  public function dataProviderBannerFields() {
-    return [
-      [
-        $this->getTestDataStructure(function ($data) {
-          unset($data[0]->banner->children[0]->featured_image[0]->file);
-          unset($data[0]->banner->children[0]->featured_image[0]->uuid);
-          return $data;
-        }),
-        [
-          'All array items must match schema',
-          'The properties must match schema: banner',
-          'The properties must match schema: children',
-          'At least one array item must match schema',
-          'The properties must match schema: featured_image',
-          'At least one array item must match schema',
-          'The required properties (file) are missing',
-        ],
-        'Thumbnail requires file field',
-      ],
-      [
-        $this->getTestDataStructure(function ($data) {
-          unset($data[0]->banner->children[0]->featured_image[0]->uuid);
-          return $data;
-        }),
-        [
-          'All array items must match schema',
-          'The properties must match schema: banner',
-          'The properties must match schema: children',
-          'At least one array item must match schema',
-          'The properties must match schema: featured_image',
-          'At least one array item must match schema',
-          'The required properties (uuid) are missing',
-        ],
-        'Thumbnail requires uuid field',
-      ],
-      [
-        $this->getTestDataStructure(function ($data) {
-          unset($data[0]->banner->children[0]->background[0]->file);
-          return $data;
-        }),
-        [
-          'All array items must match schema',
-          'The properties must match schema: banner',
-          'The properties must match schema: children',
-          'At least one array item must match schema',
-          'The properties must match schema: background',
-          'At least one array item must match schema',
-          'The required properties (file) are missing',
-        ],
-        'Background requires file field',
-      ],
-      [
-        $this->getTestDataStructure(function ($data) {
-          unset($data[0]->banner->children[0]->background[0]->uuid);
-          return $data;
-        }),
-        [
-          'All array items must match schema',
-          'The properties must match schema: banner',
-          'The properties must match schema: children',
-          'At least one array item must match schema',
-          'The properties must match schema: background',
-          'At least one array item must match schema',
-          'The required properties (uuid) are missing',
-        ],
-        'Background requires uuid field',
-      ],
-      [
-        $this->getTestDataStructure(function ($data) {
           $data[0]->banner->children[0]->blend_mode = 'invalid_value';
           return $data;
         }),
@@ -286,37 +154,16 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
    * Helper to generate test data for tests.
    */
   protected function getTestDataStructure($callback = NULL) {
-    $thumbnail = (object) [
-      "uuid" => "f352fb5f-5319-4a09-a039-6b7080b31443",
-      "name" => "D10 launch.png",
-      "file" => "https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png",
-      "alt" => "Test alt text for thumbnail",
-    ];
-
-    $featured_image = (object) [
-      "uuid" => "f352fb5f-5319-4a09-a039-6b7080b31443",
-      "name" => "D10 launch.png",
-      "file" => "https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png",
-      "alt" => "Test alt text for thumbnail",
-    ];
-
-    $background = (object) [
-      "uuid" => "427186ad-c561-4441-9951-28399d8a4923",
-      "name" => "demo_banner-background.png",
-      "file" => "https://www.civictheme.io/sites/default/files/demo_banner-background.png",
-      "alt" => "",
-    ];
-
     $banner_children = (object) [
       "theme" => "dark",
       "title" => "[TEST] Banner title - Migrated Content 1",
       "banner_type" => "large",
       "blend_mode" => "darken",
       "featured_image" => [
-        $featured_image,
+        "f352fb5f-5319-4a09-a039-6b7080b31443",
       ],
       "background" => [
-        $background,
+        "427186ad-c561-4441-9951-28399d8a4923",
       ],
       "hide_breadcrumb" => TRUE,
     ];
@@ -335,7 +182,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
       "summary" => "Summary for [TEST] Migrated Content 1",
       "topics" => "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
       "thumbnail" => [
-        $thumbnail,
+        "f352fb5f-5319-4a09-a039-6b7080b31443",
       ],
       "vertical_spacing" => "top",
       "hide_sidebar" => TRUE,

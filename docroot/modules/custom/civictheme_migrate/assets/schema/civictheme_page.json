@@ -27,28 +27,9 @@
       },
       "thumbnail": {
         "type": "array",
-        "contains": {
-          "type": "object",
-          "description": "Image thumbnail object - name and url",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Media image entity name (default to filename)"
-            },
-            "file": {
-              "type": "string",
-              "description": "Banner featured image url"
-            },
-            "uuid": {
-              "type": "string",
-              "description": "UUID for image"
-            },
-            "alt": {
-              "type": "string",
-              "description": "Alt tag"
-            }
-          },
-          "required": ["file", "uuid"]
+        "items": {
+          "type": "string",
+          "description": "Media uuid"
         }
       },
       "vertical_spacing": {
@@ -106,54 +87,16 @@
                 },
                 "featured_image": {
                   "type": "array",
-                  "contains": {
-                    "type": "object",
-                    "description": "Banner featured image",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Media image entity name (default to filename)"
-                      },
-                      "file": {
-                        "type": "string",
-                        "description": "Banner featured image url"
-                      },
-                      "uuid": {
-                        "type": "string",
-                        "description": "UUID for image"
-                      },
-                      "alt": {
-                        "type": "string",
-                        "description": "Alt tag"
-                      }
-                    },
-                    "required": ["file", "uuid"]
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
                   }
                 },
                 "background": {
                   "type": "array",
-                  "contains": {
-                    "type": "object",
-                    "description": "Banner background image",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Media image entity name (default to filename)"
-                      },
-                      "file": {
-                        "type": "string",
-                        "description": "Banner featured image url"
-                      },
-                      "uuid": {
-                        "type": "string",
-                        "description": "UUID for image"
-                      },
-                      "alt": {
-                        "type": "string",
-                        "description": "Alt tag"
-                      }
-                    },
-                    "required": ["file", "uuid"]
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
                   }
                 },
                 "hide_breadcrumb": {

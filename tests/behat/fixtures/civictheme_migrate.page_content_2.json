@@ -6,12 +6,7 @@
     "summary": "Summary for [TEST] Migrated Content 6",
     "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 6, [TEST] Topic 7",
     "thumbnail": [
-      {
-        "uuid": "c97a9b08-f3b0-477b-97f7-8b61f9d4a527",
-        "name": "test.png",
-        "file": "https://www.civictheme.io/sites/default/files/images/2022-05/Your%20preferred%20agency%20-%20Get%20your%20agency%20to%20adopt%20it.png",
-        "alt": "Test alt text for thumbnail"
-      }
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
     ],
     "vertical_spacing": "top",
     "hide_sidebar": true,
@@ -27,20 +22,10 @@
           "banner_type": "default",
           "blend_mode": "soft-light",
           "featured_image": [
-            {
-              "uuid": "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4",
-              "name": "test2.png",
-              "file": "https://www.civictheme.io/sites/default/files/images/2022-05/Adapt%20-%20Modify%20and%20create.png",
-              "alt": "Test alt text for thumbnail"
-            }
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
           ],
           "background": [
-            {
-              "uuid": "7966cf0a-598d-4da2-8443-837fccd46109",
-              "name": "test3.png",
-              "file": "https://www.civictheme.io/sites/default/files/images/2022-05/salsa-campaign.png",
-              "alt": ""
-            }
+            "427186ad-c561-4441-9951-28399d8a4923"
           ],
           "hide_breadcrumb": true
         }

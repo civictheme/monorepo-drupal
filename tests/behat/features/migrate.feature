@@ -59,12 +59,16 @@ Feature: Tests the CivicTheme migration functionality
       | filename                               | uri                                             | path                                   |
       | civictheme_migrate.page_content_1.json | public://civictheme_migrate.page_content_1.json | civictheme_migrate.page_content_1.json |
       | civictheme_migrate.page_content_2.json | public://civictheme_migrate.page_content_2.json | civictheme_migrate.page_content_2.json |
+      | civictheme_migrate.media_content_1.json | public://civictheme_migrate.media_content_1.json | civictheme_migrate.media_content_1.json |
+      | civictheme_migrate.media_content_2.json | public://civictheme_migrate.media_content_2.json | civictheme_migrate.media_content_2.json |
     Given I am logged in as an administrator
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
+    And I fill in "Migration source page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
+    And I fill in "Migration source media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
     And I press the "Retrieve files" button
-    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
+    And I fill in "Migration source page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
+    And I fill in "Migration source media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_2.json"
     And I press the "Retrieve files" button
     And I should see the message "Migration content files have been retrieved"
     And I press the "Generate migration" button
@@ -77,5 +81,6 @@ Feature: Tests the CivicTheme migration functionality
     And I should see an ".ct-layout.ct-vertical-spacing--both" element
     And I should see an ".ct-banner.ct-theme-dark.ct-banner--decorative" element
     And I should see an ".ct-banner__wrapper__inner.ct-background--darken" element
-    And I run drush "mr --group=civictheme_migrate"
-    And I run drush "cset civictheme_migrate.settings configuration_files [] -y"
+#    And I run drush "mr --group=civictheme_migrate"
+#    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
+#    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"

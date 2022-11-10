@@ -4,7 +4,7 @@ dependencies:
   enforced:
     module:
       - civictheme_migrate
-id: civictheme_media_image__featured_image
+id: civictheme_media_image
 class: null
 field_plugin_method: null
 cck_plugin_method: null
@@ -12,7 +12,7 @@ migration_tags:
   - civictheme_migrate
   - civictheme_media_migration
 migration_group: civictheme_migrate
-label: 'CivicTheme media featured images'
+label: 'CivicTheme image media'
 source:
   plugin: url
   data_fetcher_plugin: file
@@ -23,16 +23,19 @@ source:
   fields:
     - name: url
       label: 'File URL'
-      selector: banner/children/0/featured_image/0/file
+      selector: file
     - name: name
       label: 'Entity Name'
-      selector: banner/children/0/featured_image/0/name
+      selector: name
     - name: uuid
       label: 'Entity ID'
-      selector: banner/children/0/featured_image/0/uuid
+      selector: uuid
+    - name: alt
+      label: 'Alternative text'
+      selector: alt
 process:
   name: name
-  field_c_m_image:
+  field_c_m_image/target_id:
     - plugin: skip_on_empty
       method: row
       source: url
@@ -40,6 +43,8 @@ process:
       skip_on_missing_source: true
       skip_on_error: true
       file_exist: 'use existing'
+      id_only: true
+  field_c_m_image/alt: alt
 destination:
   plugin: 'entity:media'
   default_bundle: civictheme_image

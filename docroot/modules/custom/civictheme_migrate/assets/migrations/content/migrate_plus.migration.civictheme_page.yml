@@ -40,13 +40,13 @@ source:
       selector: vertical_spacing
     - name: thumbnail_id
       label: 'Thumbnail id'
-      selector: thumbnail/0/uuid
+      selector: thumbnail/0
     - name: featured_image_id
       label: 'Featured image id'
-      selector: banner/children/0/featured_image/0/uuid
+      selector: banner/children/0/featured_image/0
     - name: banner_background_id
       label: 'Banner background image id'
-      selector: banner/children/0/background/0/uuid
+      selector: banner/children/0/background/0
     - name: hide_sidebar
       label: 'Hide sidebar'
       selector: hide_sidebar
@@ -109,7 +109,7 @@ process:
       default_value: 0
   field_c_n_thumbnail:
     plugin: migration_lookup
-    migration: civictheme_media_image__thumbnail
+    migration: civictheme_media_image
     source: thumbnail_id
   field_c_n_show_last_updated:
     - plugin: get
@@ -153,11 +153,11 @@ process:
       default_value: 0
   field_c_n_banner_featured_image:
     plugin: migration_lookup
-    migration: civictheme_media_image__featured_image
+    migration: civictheme_media_image
     source: featured_image_id
   field_c_n_banner_background:
     plugin: migration_lookup
-    migration: civictheme_media_image__banner_background
+    migration: civictheme_media_image
     source: banner_background_id
   'path/pathauto':
     plugin: default_value
@@ -169,6 +169,4 @@ destination:
   default_bundle: civictheme_page
 migration_dependencies:
   required:
-    - civictheme_media_image__thumbnail
-    - civictheme_media_image__featured_image
-    - civictheme_media_image__banner_background
+    - civictheme_media_image
