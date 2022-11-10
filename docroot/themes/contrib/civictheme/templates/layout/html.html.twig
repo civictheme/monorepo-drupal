@@ -42,7 +42,8 @@
   <body{{ attributes.addClass(body_classes) }}>
 
     {% include '@organisms/skip-link/skip-link.twig' with {
-      url: '#main-content' ,
+      url: '#main-content',
+      theme: skip_link_theme,
     } only %}
 
     {{ page_top }}

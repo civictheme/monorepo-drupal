@@ -35,6 +35,8 @@ components:
     external_override_domains: {  }
   migrate:
     expose_migration_metadata: true
+  skip_link:
+    theme: light
 colors:
   use_color_selector: true
   use_brand_colors: true

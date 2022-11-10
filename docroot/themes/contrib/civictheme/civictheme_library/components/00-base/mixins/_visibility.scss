@@ -20,8 +20,8 @@
       position: static !important;
       overflow: visible;
       clip: auto;
-      width: auto;
-      height: auto;
+      width: auto !important;
+      height: auto !important;
     }
   }
 }

@@ -116,6 +116,10 @@ Feature: Check that Components settings are available in theme settings
     And should see an "input[name='components[migrate][expose_migration_metadata]']" element
     And should not see an "input[name='components[migrate][expose_migration_metadata]'].required" element
 
+    And I should see the text "Theme"
+    And I should see an "input[name='components[skip_link][theme]']" element
+    And I should see an "#edit-components-skip-link-theme--wrapper.required" element
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
@@ -271,3 +275,21 @@ Feature: Check that Components settings are available in theme settings
     And should not see a "section[data-ct-migrate-summary]" element
     And should not see a "section[data-ct-migrate-thumbnail]" element
     And should not see a "section[data-ct-migrate-topics]" element
+
+  @api
+  Scenario: The CivicTheme theme settings Skip Link works.
+    Given I am logged in as a user with the "Site Administrator" role
+
+    When I visit "/admin/appearance/settings/civictheme_demo"
+    And  I select the radio button "Light" with the id "edit-components-skip-link-theme-light"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+    And I go to the homepage
+    And I should see a ".ct-skip-link.ct-theme-light" element
+
+    When I visit "/admin/appearance/settings/civictheme_demo"
+    And I select the radio button "Dark" with the id "edit-components-skip-link-theme-dark"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+    And I go to the homepage
+    And I should see a ".ct-skip-link.ct-theme-dark" element

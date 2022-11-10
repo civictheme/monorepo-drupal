@@ -285,6 +285,22 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#rows' => 4,
     ];
 
+    $form['components']['skip_link'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Skip Link'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['skip_link']['theme'] = [
+      '#title' => $this->t('Theme'),
+      '#description' => $this->t('Set the Skip Link color theme.'),
+      '#type' => 'radios',
+      '#required' => TRUE,
+      '#options' => civictheme_theme_options(),
+      '#default_value' => $this->getSetting('components.skip_link.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT,
+    ];
+
     $form['components']['migrate'] = [
       '#type' => 'details',
       '#title' => $this->t('Migration'),

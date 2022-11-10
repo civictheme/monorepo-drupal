@@ -61,7 +61,7 @@
 
     #{$root}__middle {
       @include ct-component-property($root, $theme, middle, background-color);
-      @include ct-component-property($root, $theme, middle, color);
+      @include ct-component-property($root, $theme, middle, border-color);
     }
   }
 }

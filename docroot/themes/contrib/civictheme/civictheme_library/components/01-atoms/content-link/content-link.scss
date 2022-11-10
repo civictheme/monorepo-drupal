@@ -53,21 +53,14 @@
 }
 
 @mixin ct-content-link-visited() {
-  &.ct-theme-light {
-    color: $ct-content-link-light-visited-color;
+  $root: &;
+
+  @include ct-component-theme($root) using($root, $theme) {
+    color: ct-component-var($root, $theme, visited, color);
 
     &:hover {
-      border-color: $ct-content-link-light-visited-hover-border-color;
-      color: $ct-content-link-light-visited-hover-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-content-link-dark-visited-color;
-
-    &:hover {
-      border-color: $ct-content-link-dark-visited-hover-border-color;
-      color: $ct-content-link-dark-visited-hover-color;
+      @include ct-component-property($root, $theme, visited, hover, border-color);
+      @include ct-component-property($root, $theme, visited, hover, color);
     }
   }
 }
