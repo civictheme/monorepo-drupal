@@ -17,15 +17,9 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}__inner {
-      background: $ct-layout-light-background-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}__inner {
-      background: $ct-layout-dark-background-color;
+      background: ct-component-var($root, $theme, background-color);
     }
   }
 }

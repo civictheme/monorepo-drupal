@@ -6,6 +6,8 @@
 @use 'sass:map';
 
 [data-collapsible] {
+  $root: ct-collapsible;
+
   [data-collapsible-trigger] {
     cursor: pointer;
   }
@@ -69,19 +71,11 @@
     }
   }
 
-  &.ct-theme-light {
-    color: $ct-collapsible-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
     &:not([data-collapsible-trigger-no-icon]) {
-      @include ct-icon-collapsible($ct-collapsible-light-icon-color);
-    }
-  }
-
-  &.ct-theme-dark {
-    color: $ct-collapsible-dark-color;
-
-    &:not([data-collapsible-trigger-no-icon]) {
-      @include ct-icon-collapsible($ct-collapsible-dark-icon-color);
+      @include ct-icon-collapsible(ct-component-var($root, $theme, icon, color));
     }
   }
 }
