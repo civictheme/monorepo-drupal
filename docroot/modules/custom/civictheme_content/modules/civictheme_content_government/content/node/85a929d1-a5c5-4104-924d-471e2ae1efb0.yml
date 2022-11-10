@@ -1,0 +1,460 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 85a929d1-a5c5-4104-924d-471e2ae1efb0
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+    e0c710e3-6eeb-4ea5-b656-0fa728b389b8: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Sub section Providing visually engaging digital experiences'
+  created:
+    -
+      value: 1666888629
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /sub-section-providing-visually-engaging-digital-experiences
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3dc320ec-cc3a-48bb-b6c5-0dfb45069314
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666888676
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_banner_components_bott:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 25e1a97f-5e54-4aa4-9c57-77fb72df13ba
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666888873
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c5131fd8-2e53-4d79-ad7a-5bf230b9255c
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888879
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Register for a workshop'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two or three lines'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3b0d5c44-22c7-4724-87a9-c1f83dee78f6
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888879
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Register for a workshop'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two or three lines'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4b78cfb3-850c-4209-8447-2d0c2ba331f3
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888879
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Register for a workshop'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two or three lines'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2f2e0be2-7e34-4565-ab36-82b39bbdcfe1
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888879
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Register for a workshop'
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two or three lines'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: light
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: overlay
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 04a2d739-8eff-46e0-9878-d8f1160c4d52
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666888949
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6389a80c-f961-48ee-b76c-ee1a11e742ce
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888965
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: Link
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two ir three lines '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Navigation card heading which runs across two or three lines'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 90bc0c20-544e-419a-8052-4bc3d87f260c
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888965
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: Link
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two ir three lines '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Navigation card heading which runs across two or three lines'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 374e7090-837e-4a6c-a7ec-0d6e8364564d
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888965
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: Link
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two ir three lines '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Navigation card heading which runs across two or three lines'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 091b76c6-9bc2-4202-bba6-a84aa79d803a
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666888965
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: Link
+                      options: {  }
+                  field_c_p_size:
+                    -
+                      value: large
+                  field_c_p_summary:
+                    -
+                      value: 'Recommend keeping the card summary short over two ir three lines '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Navigation card heading which runs across two or three lines'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Container title'
+  field_c_n_custom_last_updated:
+    -
+      value: '2022-10-28'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    0db708be-ca52-44f6-a9d9-ff5a24b0867d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Australian citizenship ceremony 2022.  All you need to know..png'
+  created:
+    -
+      value: 1666918744
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 0db708be-ca52-44f6-a9d9-ff5a24b0867d
+      alt: 'Australian citizenship ceremony 2022.  All you need to know.'
+      title: ''
+      width: 476
+      height: 520

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 33ec0e62-3317-435d-b1cb-1e42e42e3260
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: demo_image_ricardo-esquivel.jpg
+  uri:
+    -
+      value: 'public://demo_image_ricardo-esquivel.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 754013
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637031388

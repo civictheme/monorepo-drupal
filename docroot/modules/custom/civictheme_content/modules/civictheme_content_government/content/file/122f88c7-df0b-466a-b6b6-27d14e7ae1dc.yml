@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 122f88c7-df0b-466a-b6b6-27d14e7ae1dc
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: no-thumbnail.png
+  uri:
+    -
+      value: 'public://media-icons/generic/no-thumbnail.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 7318
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666864245

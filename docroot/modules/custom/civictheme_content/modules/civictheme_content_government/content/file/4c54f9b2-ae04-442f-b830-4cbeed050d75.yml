@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4c54f9b2-ae04-442f-b830-4cbeed050d75
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Facebook.svg
+  uri:
+    -
+      value: 'public://icons/Facebook.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 323
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1647509753

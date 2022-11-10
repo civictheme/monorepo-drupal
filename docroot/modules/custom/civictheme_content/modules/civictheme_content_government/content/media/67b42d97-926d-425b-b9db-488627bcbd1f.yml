@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 67b42d97-926d-425b-b9db-488627bcbd1f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    448d08b2-d9b1-4a67-ac21-36afe67f77d7: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Light banner background image'
+  created:
+    -
+      value: 1634049718
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 448d08b2-d9b1-4a67-ac21-36afe67f77d7
+      alt: 'Light banner background image'
+      title: ''
+      width: 2352
+      height: 1569

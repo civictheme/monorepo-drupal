@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8d25b126-f29a-4c6c-b082-e9530dda7818
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Translation service.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Translation service.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 241488
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666868329

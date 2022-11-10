@@ -1,0 +1,140 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6f588571-e649-47dc-9911-c1723cb07e71
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+    1a2711fb-ca12-4835-9e1e-a8a63bd82ad0: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Three tips for driving greener to save money and support a more sustainable environment'
+  created:
+    -
+      value: 1666877106
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /news-and-events/three-tips-driving-greener-save-money-and-support-more-sustainable-environment
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0ca2a96a-9e32-496f-986d-9d3c11f5a324
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666877176
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><strong>Department of Citizens</strong><span> – Infrastructure &amp; transport</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: light
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: overlay
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7c8ca17e-eeff-483a-99de-8f51440ca11c
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666877196
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>With the cost of living and fuel prices rising, the Department of Citizens has provided information on how to reduce the impact on our living world. Driving greener will lessen your car’s emissions and support a more sustainable environment while helping you to save money.</p>\r\n\r\n<p>Here are our top three green driving tips to protect the environment:</p>\r\n\r\n<p>1. &nbsp; &nbsp; &nbsp;&nbsp;<strong>Keep up with regular maintenance</strong></p>\r\n\r\n<p>To save money and reduce carbon emissions long term, keep up with regular maintenance and servicing of your car. It’s also important to check your tyre pressure regularly. If your tyres aren’t at the correct pressure, it can cause drag and emit more pollutants into the air. A well-maintained vehicle will run smoother and improve fuel-efficiency.</p>\r\n\r\n<p>2. &nbsp; &nbsp; &nbsp;&nbsp;<strong>Drive smarter and monitor speed</strong></p>\r\n\r\n<p>To improve your fuel-efficiency and emit fewer greenhouse gases, maintain an appropriate distance from the car in front of you to avoid unnecessary acceleration and hard braking. If you drive a manual vehicle, we recommend changing gears to reach the highest possible gear suited to the speed limit as quickly as possible.&nbsp;&nbsp;</p>\r\n\r\n<p>3. &nbsp; &nbsp; &nbsp;&nbsp;<strong>Carpool, walk, cycle and take public transport</strong></p>\r\n\r\n<p>Give your car a rest to reduce fuel consumption. Consider more eco-friendly alternatives, such as public transport, carpooling, walking or cycling. Even if you travel by one of these methods just once or twice a week, you’ll significantly reduce your personal greenhouse gas emissions and save money on fuel.</p>\r\n\r\n<p>Another way to drive greener is to look at a newer, more fuel-efficient car or a hybrid electric or battery electric vehicle. However, this is not always an appropriate option for many.</p>\r\n\r\n<p>In the meantime, following the above three points will help you to limit your environmental impact when you drive and help you to save money in the long run.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_thumbnail:
+    -
+      entity: 1a2711fb-ca12-4835-9e1e-a8a63bd82ad0
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+    -
+      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
+  field_c_n_vertical_spacing:
+    -
+      value: both

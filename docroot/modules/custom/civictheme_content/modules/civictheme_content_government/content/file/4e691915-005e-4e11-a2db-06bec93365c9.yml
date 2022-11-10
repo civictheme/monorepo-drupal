@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4e691915-005e-4e11-a2db-06bec93365c9
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: twitter.svg
+  uri:
+    -
+      value: 'public://twitter.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1319
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666864215

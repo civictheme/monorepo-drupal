@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 23cbd0d9-90e1-47d1-9d55-810266e09f80
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'The Hon John Smith MP SC - small 2.png'
+  uri:
+    -
+      value: 'public://images/2022-10/The Hon John Smith MP SC - small 2.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 157896
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666874156

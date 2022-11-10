@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f74130f5-c33d-4e92-b668-2d6c84576f44
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    9fa21079-f4fd-43b5-a957-44616b28c20f: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Citizenship ceremony 2022.png'
+  created:
+    -
+      value: 1666918562
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 9fa21079-f4fd-43b5-a957-44616b28c20f
+      alt: 'Citizenship ceremony 2022'
+      title: ''
+      width: 376
+      height: 240

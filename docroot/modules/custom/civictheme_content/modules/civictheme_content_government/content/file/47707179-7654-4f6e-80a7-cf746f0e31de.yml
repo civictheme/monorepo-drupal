@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 47707179-7654-4f6e-80a7-cf746f0e31de
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Citizenship ceremony 2022 (1).png'
+  uri:
+    -
+      value: 'public://images/2022-10/Citizenship ceremony 2022 (1).png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 457150
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666869402

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 017cb0fe-d894-451a-aa9f-651a2f35cc0e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: DepartmentofCitizens_LogoDark.png
+  uri:
+    -
+      value: 'public://images/2022-10/DepartmentofCitizens_LogoDark.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 19473
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666880286

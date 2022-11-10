@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c9665856-56e1-480c-80e8-545fb5ce92e0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: SABZ3ZO3yXTsFzwePVOwCj4oJK0M2_QWAk3CDTZXbI4.jpg
+  uri:
+    -
+      value: 'public://oembed_thumbnails/SABZ3ZO3yXTsFzwePVOwCj4oJK0M2_QWAk3CDTZXbI4.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 8256
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666864245

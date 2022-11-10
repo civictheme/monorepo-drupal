@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 39296e62-d345-4c8d-883a-af0c6f66de21
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: image.gif
+  uri:
+    -
+      value: 'public://inline-images/image.gif'
+  filemime:
+    -
+      value: image/gif
+  filesize:
+    -
+      value: 43
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666874550
