@@ -81,6 +81,6 @@ Feature: Tests the CivicTheme migration functionality
     And I should see an ".ct-layout.ct-vertical-spacing--both" element
     And I should see an ".ct-banner.ct-theme-dark.ct-banner--decorative" element
     And I should see an ".ct-banner__wrapper__inner.ct-background--darken" element
-#    And I run drush "mr --group=civictheme_migrate"
-#    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
-#    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
+    And I run drush "mr --group=civictheme_migrate"
+    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
+    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
