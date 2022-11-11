@@ -23,15 +23,19 @@ Feature: Tests the CivicTheme migration functionality
     And I select the radio button "Local"
     And I should see the text "Upload extracted content JSON Files"
     And I should not see the text "Connect to remote API to retrieve extracted content JSON files"
-    And I should not see a visible "textarea[name='endpoint'][required='required']" element
+    And I should not see a visible "textarea[name='content_endpoint'][required='required']" element
+    And I should not see a visible "textarea[name='media_endpoint'][required='required']" element
     And I select the radio button "Remote"
     And I should see the text "Connect to remote API to retrieve extracted content JSON files"
-    And I see the text "Migration source content JSON URL endpoints"
-    And I should see a visible "textarea[name='endpoint'][required='required']" element
+    And I see the text "Migration source page content JSON URL endpoints"
+    And I see the text "Migration source media JSON URL endpoints"
+    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
+    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
     And I should not see a visible "input[name='auth_username'][required='required']" element
     And I should not see a visible "input[name='auth_password'][required='required']" element
     And I select the radio button "Basic authentication"
-    And I should see a visible "textarea[name='endpoint'][required='required']" element
+    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
+    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
     And I should see a visible "input[name='auth_username'][required='required']" element
     And I should see a visible "input[name='auth_password'][required='required']" element
     And I should see the button "Retrieve files"
@@ -45,11 +49,15 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
-    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
+    And I fill in "Migration source page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     # Can't test error messages directly as admin theme is not adding the behat configured error class.
     And I should see the text "JSON is malformed / invalid"
-    And I fill in "Migration source content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
+    And I fill in "Migration source media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
+    And I press the "Retrieve files" button
+    # Can't test error messages directly as admin theme is not adding the behat configured error class.
+    And I should see the text "JSON is malformed / invalid"
+    And I fill in "Migration source page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
     And I should see the message containing "Client error"
 
