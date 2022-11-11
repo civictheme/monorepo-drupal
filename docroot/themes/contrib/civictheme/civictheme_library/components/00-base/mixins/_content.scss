@@ -290,3 +290,12 @@
     @include ct-table-dark();
   }
 }
+
+@mixin ct-content-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-content-light();
+  }
+  @else {
+    @include ct-content-dark();
+  }
+}
