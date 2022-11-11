@@ -29,59 +29,32 @@
     vertical-align: text-bottom;
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &#{$root}--primary {
-      background-color: $ct-tag-light-primary-background-color;
-      border-color: $ct-tag-light-primary-border-color;
-      color: $ct-tag-light-primary-color;
+      @include ct-component-property($root, $theme, primary, background-color);
+      @include ct-component-property($root, $theme, primary, border-color);
+      @include ct-component-property($root, $theme, primary, color);
+
       padding: ct-spacing(0.5) ct-spacing();
 
-      @include ct-icon-fill-color($ct-tag-light-primary-color);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, primary, color));
     }
 
     &#{$root}--secondary {
-      background-color: $ct-tag-light-secondary-background-color;
-      border-color: $ct-tag-light-secondary-border-color;
-      color: $ct-tag-light-secondary-color;
+      @include ct-component-property($root, $theme, secondary, background-color);
+      @include ct-component-property($root, $theme, secondary, border-color);
+      @include ct-component-property($root, $theme, secondary, color);
+
       padding: ct-spacing(0.5) ct-spacing();
 
-      @include ct-icon-fill-color($ct-tag-light-secondary-color);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, secondary, color));
     }
 
     &#{$root}--tertiary {
-      background-color: $ct-tag-light-tertiary-background-color;
-      border-color: $ct-tag-light-tertiary-border-color;
-      color: $ct-tag-light-tertiary-color;
-
-      @include ct-icon-fill-color($ct-tag-light-tertiary-color);
-    }
-  }
-
-  &.ct-theme-dark {
-    &#{$root}--primary {
-      background-color: $ct-tag-dark-primary-background-color;
-      border-color: $ct-tag-dark-primary-border-color;
-      color: $ct-tag-dark-primary-color;
-      padding: ct-spacing(0.5) ct-spacing();
-
-      @include ct-icon-fill-color($ct-tag-dark-primary-color);
-    }
-
-    &#{$root}--secondary {
-      background-color: $ct-tag-dark-secondary-background-color;
-      border-color: $ct-tag-dark-secondary-border-color;
-      color: $ct-tag-dark-secondary-color;
-      padding: ct-spacing(0.5) ct-spacing();
-
-      @include ct-icon-fill-color($ct-tag-dark-secondary-color);
-    }
-
-    &#{$root}--tertiary {
-      background-color: $ct-tag-dark-tertiary-background-color;
-      border-color: $ct-tag-dark-tertiary-border-color;
-      color: $ct-tag-dark-tertiary-color;
-
-      @include ct-icon-fill-color($ct-tag-dark-tertiary-color);
+      @include ct-component-property($root, $theme, tertiary, background-color);
+      @include ct-component-property($root, $theme, tertiary, border-color);
+      @include ct-component-property($root, $theme, tertiary, color);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, tertiary, color));
     }
   }
 }
