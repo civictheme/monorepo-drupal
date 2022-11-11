@@ -226,3 +226,12 @@
     }
   }
 }
+
+@mixin ct-table-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-table-light();
+  }
+  @else {
+    @include ct-table-dark();
+  }
+}
