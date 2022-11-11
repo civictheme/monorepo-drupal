@@ -28,25 +28,13 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-quote-light-background-color;
-    color: $ct-quote-light-body-color;
-
-    @include ct-highlight-stripe-color($ct-quote-light-border-color);
-
-    #{$root}__author {
-      color: $ct-quote-light-author-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-quote-dark-background-color;
-    color: $ct-quote-dark-body-color;
-
-    @include ct-highlight-stripe-color($ct-quote-dark-border-color);
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, body, color);
+    @include ct-highlight-stripe-color(ct-component-var($root, $theme, border, color));
 
     #{$root}__author {
-      color: $ct-quote-dark-author-color;
+      @include ct-component-property($root, $theme, author, color);
     }
   }
 }
