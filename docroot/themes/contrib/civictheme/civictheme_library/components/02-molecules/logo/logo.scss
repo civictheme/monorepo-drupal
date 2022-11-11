@@ -81,15 +81,9 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &#{$root}--stacked {
-      border-top-color: $ct-logo-light-stripe-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    &#{$root}--stacked {
-      border-top-color: $ct-logo-dark-stripe-color;
+      border-top-color: ct-component-var($root, $theme, stripe, color);
     }
   }
 }
