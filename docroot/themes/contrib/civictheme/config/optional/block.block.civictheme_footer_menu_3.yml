@@ -7,24 +7,24 @@ dependencies:
     - menu_block
   theme:
     - civictheme
-id: civictheme_footer_menu_2
+id: civictheme_footer_menu_3
 theme: civictheme
-region: footer_middle_2
+region: footer_middle_3
 weight: 0
 provider: null
 plugin: 'menu_block:civictheme-footer'
 settings:
   id: 'menu_block:civictheme-footer'
-  label: 'Footer menu 2'
+  label: 'Footer menu 3'
   label_display: visible
   provider: menu_block
   follow: false
   follow_parent: child
-  label_link: false
-  label_type: fixed
   level: 1
   depth: 1
   expand_all_items: false
-  parent: 'civictheme-footer:menu_link_content:8973fd39-dcfd-4607-a356-f9869a231804'
+  parent: 'civictheme-footer:menu_link_content:49fb8cd6-a1cd-4a47-9b9a-db4685a5f9cd'
   suggestion: civictheme_footer
+  label_type: fixed
+  label_link: false
 visibility: {  }
