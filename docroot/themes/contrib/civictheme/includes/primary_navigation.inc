@@ -14,7 +14,7 @@ use Drupal\civictheme\CivicthemeConstants;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(&$variables) {
-  $variables['theme'] = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
+  $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
   $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
