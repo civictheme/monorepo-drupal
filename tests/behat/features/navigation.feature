@@ -1,7 +1,5 @@
-@civictheme @menu
-Feature: Open external links in a new tab
-
-  Ensure that external menu links open in a new tab.
+@civictheme @navigation
+Feature: Navigation
 
   Background:
     Given "civictheme_page" content:
@@ -37,7 +35,7 @@ Feature: Open external links in a new tab
     And I should see the '#block-testnewmenu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
 
   @api
-  Scenario: Mobile navigation blocks are provisioned
+  Scenario: Mobile navigation blocks are provisioned.
     Given I am an anonymous user
     When I go to homepage
     Then I should see an ".ct-mobile-navigation__top-menu-wrapper" element

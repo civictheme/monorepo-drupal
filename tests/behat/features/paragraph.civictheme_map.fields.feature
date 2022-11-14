@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_map
-Feature: Tests the Map paragraph
-
-  Ensure that Map paragraphs exists and has the expected fields.
+@civictheme @civictheme_map
+Feature: Map fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_campaign
-Feature: View of Page content with Campaign component
-
-  Ensure that Page content can be viewed correctly with Campaign component.
+@civictheme @civictheme_campaign
+Feature: Campaign render
 
   Background:
     Given managed file:

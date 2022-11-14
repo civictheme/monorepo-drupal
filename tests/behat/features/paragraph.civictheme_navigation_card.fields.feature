@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_navigation_card
-Feature: Tests the Manual List paragraph
-
-  Ensure that Manual List paragraph exists and has the expected fields.
+@civictheme @civictheme_navigation_card
+Feature: Navigation card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

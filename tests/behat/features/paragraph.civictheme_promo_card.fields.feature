@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_promo_card
-Feature: Tests the Promo card
-
-  Ensure that Promo card paragraph exists and has the expected fields.
+@civictheme @civictheme_promo_card
+Feature: Promo card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

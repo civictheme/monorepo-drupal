@@ -1,5 +1,5 @@
 @civictheme @civictheme_links
-Feature: Check that content links have the correct classes.
+Feature: Content links processing
 
   @api
   Scenario: Links in content have correct classes assigned.

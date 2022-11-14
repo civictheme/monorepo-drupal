@@ -1,7 +1,5 @@
-@civictheme @civictheme_page @civictheme_accordion
-Feature: View of Page content with Accordion component
-
-  Ensure that Page content can be viewed correctly with Accordion component.
+@civictheme @civictheme_accordion
+Feature: Accordion render
 
   Background:
     Given managed file:
@@ -19,7 +17,7 @@ Feature: View of Page content with Accordion component
       | [TEST] Page accordion test | 1      |
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with accordion light without background
+  Scenario: Accordion light without background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
       | field_c_p_theme      | light |
@@ -48,7 +46,7 @@ Feature: View of Page content with Accordion component
     And I should not see an "[data-collapsible-trigger][aria-expanded='true']" element
 
   @api @javascript
-  Scenario: CivicTheme page content type page can be viewed by anonymous with accordion dark with background
+  Scenario: Accordion dark with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
       | field_c_p_theme      | dark |

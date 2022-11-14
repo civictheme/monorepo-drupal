@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_map @skipped
-Feature: View of Page content with map component
-
-  Ensure that Page content can be viewed correctly with map component.
+@civictheme @civictheme_map
+Feature: Map render
 
   Background:
     Given "civictheme_page" content:
@@ -9,7 +7,7 @@ Feature: View of Page content with map component
       | [TEST] Page map test | 1      |
 
   @api @javascript
-  Scenario: CivicTheme page content type page can be viewed by anonymous with map light without background
+  Scenario: Map light without background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page map test" has "civictheme_map" paragraph:
       | field_c_p_address          | Australia                                                                                         |
@@ -17,6 +15,7 @@ Feature: View of Page content with map component
       | field_c_p_vertical_spacing | both                                                                                              |
       | field_c_p_background       | 0                                                                                                 |
       | field_c_p_embed_url        | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed |
+      | field_c_p_view_link        | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia                                    |
 
     When I visit "civictheme_page" "[TEST] Page map test"
     And I wait 10 seconds
@@ -33,7 +32,7 @@ Feature: View of Page content with map component
     Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
 
   @api @javascript
-  Scenario: CivicTheme page content type page can be viewed by anonymous with map dark with background
+  Scenario: Map dark with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page map test" has "civictheme_map" paragraph:
       | field_c_p_address    | Australia                                                                                         |

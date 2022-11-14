@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_iframe
-Feature: Tests the IFrame paragraph
-
-  Ensure that IFrame paragraphs exists and has the expected fields.
+@civictheme @civictheme_iframe
+Feature: IFrame fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

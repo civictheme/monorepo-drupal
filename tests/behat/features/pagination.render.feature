@@ -1,7 +1,5 @@
 @civictheme @civictheme_pagination @testmode
-Feature: Tests the pagination element
-
-  Ensure that Pagination is rendering correctly.
+Feature: Pagination
 
   Background:
     Given civictheme_page content:

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_navigation_card_ref
-Feature: Tests the Navigation reference card paragraph
-
-  Ensure that Navigation reference card paragraph exists and has the expected fields.
+@civictheme @civictheme_navigation_card_ref
+Feature: Navigation reference card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

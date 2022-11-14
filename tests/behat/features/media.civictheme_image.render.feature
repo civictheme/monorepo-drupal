@@ -1,7 +1,5 @@
 @civictheme @media @civictheme_image
-Feature: Tests the media civictheme image
-
-  Ensure that image is rendered correctly when embedded into WYSIWYG.
+Feature: CivicTheme image
 
   @api @javascript
   Scenario: Ensure that a Image renders correctly when added to WYSIWYG.

@@ -1,7 +1,5 @@
 @civictheme @media @civictheme_remote_video
-Feature: Tests the media types civictheme remote video
-
-  Ensure that remote video is rendered correctly when embedded into WYSIWYG.
+Feature: CivicTheme remote video
 
   Background:
     Given no civictheme_remote_video media:

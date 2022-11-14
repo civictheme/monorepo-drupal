@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_slider
-Feature: View of Page content with slider component
-
-  Ensure that Page content can be viewed correctly with slider component.
+@civictheme @civictheme_slider
+Feature: Slider render
 
   Background:
     Given "civictheme_image" media:

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_webform
-Feature: Tests the webform paragraph
-
-  Ensure that Webform paragraphs exists and has the expected fields.
+@civictheme @civictheme_webform
+Feature: Webform fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_event_card
-Feature: Tests the Event Card paragraph
-
-  Ensure that Event Card paragraph renders correctly.
+@civictheme @civictheme_event_card
+Feature: Event Card render
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with event cards

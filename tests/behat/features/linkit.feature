@@ -1,7 +1,5 @@
 @civictheme @civictheme_linkit @d9
-Feature: Check that content linkit feature works correctly
-
-  Ensure that LinkIt in WYSIWYG has access to Content pages and Document Media.
+Feature: Linkit works correctly on pages
 
   Background:
     Given managed file:
@@ -21,7 +19,7 @@ Feature: Check that content linkit feature works correctly
       | TEST Event Linkit | 1      |
 
   @api @javascript
-  Scenario: Check if linkit can lookup for Page Content.
+  Scenario: Check if Linkit can lookup for Page Content.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Page linkit render"
@@ -45,7 +43,7 @@ Feature: Check that content linkit feature works correctly
     And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-link" element
 
   @api @javascript
-  Scenario: Check if linkit can lookup for Event Content.
+  Scenario: Check if Linkit can lookup for Event Content.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Event linkit render"
@@ -68,9 +66,8 @@ Feature: Check that content linkit feature works correctly
     When I visit "civictheme_page" "TEST Event linkit render"
     And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-link" element
 
-
   @api @javascript
-  Scenario: Check if linkit can lookup for Document Media.
+  Scenario: Check if Linkit can lookup for Document Media.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Document Media linkit render"
