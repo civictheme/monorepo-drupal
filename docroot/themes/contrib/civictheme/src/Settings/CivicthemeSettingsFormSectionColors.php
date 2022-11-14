@@ -76,13 +76,13 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
     $form['colors']['use_color_selector'] = [
       '#title' => $this->t('Use Color Selector'),
       '#type' => 'checkbox',
-      '#default_value' => theme_get_setting('colors.use_color_selector') ?? FALSE,
+      '#default_value' => $this->themeConfigManager->load('colors.use_color_selector', FALSE),
     ];
 
     $form['colors']['use_brand_colors'] = [
       '#title' => $this->t('Use Brand colors'),
       '#type' => 'checkbox',
-      '#default_value' => theme_get_setting('colors.use_brand_colors') ?? TRUE,
+      '#default_value' => $this->themeConfigManager->load('colors.use_brand_colors', TRUE),
       '#states' => [
         'visible' => [
           'input[name="colors[use_color_selector]"' => ['checked' => TRUE],
@@ -146,7 +146,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
           '#type' => 'color',
           '#title_display' => 'after',
           '#title' => CivicthemeUtility::toLabel($name),
-          '#default_value' => theme_get_setting($setting_name) ?? ($theme == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff'),
+          '#default_value' => $this->themeConfigManager->load($setting_name, $theme == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff'),
           '#attributes' => [
             'class' => ['civictheme-input-color'],
           ],
@@ -180,7 +180,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
             '#type' => 'color',
             '#title_display' => 'after',
             '#title' => CivicthemeUtility::toLabel($name),
-            '#default_value' => theme_get_setting($setting_name) ?? $value['value'],
+            '#default_value' => $this->themeConfigManager->load($setting_name, $value['value']),
             '#tree' => TRUE,
             '#attributes' => [
               'class' => ['civictheme-input-color'],

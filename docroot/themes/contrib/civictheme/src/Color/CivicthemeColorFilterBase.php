@@ -80,6 +80,7 @@ abstract class CivicthemeColorFilterBase {
         return new $class($arguments);
       }
     }
+
     return NULL;
   }
 
