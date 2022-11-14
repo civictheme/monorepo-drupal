@@ -21,7 +21,7 @@ function civictheme_process_html_content($html, $options = []) {
   $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
 
   // Process links.
-  $link_settings = theme_get_setting('components.link') ?? [];
+  $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $html = _civictheme_process_html_content_links(
     $html,
     $base_url,
