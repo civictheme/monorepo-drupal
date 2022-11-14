@@ -200,9 +200,9 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#default_value' => $config->get('configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
-      '#progress_message'   => $this->t('Uploading files...'),
+      '#progress_message' => $this->t('Uploading files...'),
       '#upload_location' => 'private://civictheme_migrate/',
-      '#upload_validators'  => [
+      '#upload_validators' => [
         'file_validate_extensions' => ['json txt'],
         'civictheme_migrate_validate_json' => ['civictheme_page'],
       ],
