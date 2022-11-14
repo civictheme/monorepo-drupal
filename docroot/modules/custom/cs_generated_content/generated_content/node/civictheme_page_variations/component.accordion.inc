@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Accordion component',
+      'title' => 'Accordion component',
       'components' => [
         [
           'type' => 'accordion',
@@ -30,7 +30,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, 2 panels',
+      'title' => 'Accordion component, 2 panels',
       'components' => [
         [
           'type' => 'accordion',
@@ -48,7 +48,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, 2 panels, all expanded',
+      'title' => 'Accordion component, 2 panels, all expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -67,7 +67,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, 2 panels, only first expanded',
+      'title' => 'Accordion component, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -86,7 +86,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, 2 panels, first and all expanded',
+      'title' => 'Accordion component, 2 panels, first and all expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -107,7 +107,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Accordion component, Light, 2 panels, only first expanded',
+      'title' => 'Accordion component, Light, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -127,7 +127,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Light, BG, 2 panels, only first expanded',
+      'title' => 'Accordion component, Light, BG, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -148,7 +148,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Light, BG, Both spaces, 2 panels, only first expanded',
+      'title' => 'Accordion component, Light, BG, Both spaces, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -170,7 +170,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Light, No BG, Both spaces, 2 panels, only first expanded',
+      'title' => 'Accordion component, Light, No BG, Both spaces, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -193,7 +193,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Accordion component, Dark, 2 panels, only first expanded',
+      'title' => 'Accordion component, Dark, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -213,7 +213,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Dark, BG, 2 panels, only first expanded',
+      'title' => 'Accordion component, Dark, BG, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -234,7 +234,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Dark, BG, Both spaces, 2 panels, only first expanded',
+      'title' => 'Accordion component, Dark, BG, Both spaces, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',
@@ -256,7 +256,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Accordion component, Dark, No BG, Both spaces, 2 panels, only first expanded',
+      'title' => 'Accordion component, Dark, No BG, Both spaces, 2 panels, only first expanded',
       'components' => [
         [
           'type' => 'accordion',

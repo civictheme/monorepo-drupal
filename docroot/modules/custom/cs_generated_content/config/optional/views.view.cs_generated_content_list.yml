@@ -132,7 +132,7 @@ display:
           entity_field: title
           plugin_id: string
           operator: starts
-          value: 'Demo Page,'
+          value: 'Generated Page,'
           group: 1
           exposed: false
           expose:

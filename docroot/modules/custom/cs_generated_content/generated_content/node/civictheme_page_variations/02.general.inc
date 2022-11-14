@@ -16,39 +16,39 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
 
   $variations = [
     [
-      'title' => 'Demo Page, default values',
+      'title' => 'Default values',
     ],
     [
-      'title' => 'Demo Page, Summary',
+      'title' => 'Summary',
       'summary' => $helper::staticPlainParagraph(),
     ],
     [
-      'title' => 'Demo Page, Summary, Content',
+      'title' => 'Summary, Content',
       'summary' => $helper::staticPlainParagraph(),
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Both spaces, Content',
+      'title' => 'Summary, Both spaces, Content',
       'summary' => $helper::staticPlainParagraph(),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (1), Both spaces, Content',
+      'title' => 'Summary, Topics (1), Both spaces, Content',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (3), Both spaces, Content',
+      'title' => 'Summary, Topics (3), Both spaces, Content',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 3),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (1), Thumbnail, Both spaces, Content',
+      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Content',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -56,7 +56,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (1), Thumbnail, Both spaces, Content, Show Last Updated Date, Not Custom Date',
+      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Content, Show Last Updated Date, Not Custom Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -66,7 +66,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (1), Thumbnail, Both spaces, Content, Show Last Updated Date',
+      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Content, Show Last Updated Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -75,7 +75,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
     [
-      'title' => 'Demo Page, Summary, Topics (1), Thumbnail, Both spaces, Content, Uncheck Last Updated Date, Shows Custom Date',
+      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Content, Uncheck Last Updated Date, Shows Custom Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),

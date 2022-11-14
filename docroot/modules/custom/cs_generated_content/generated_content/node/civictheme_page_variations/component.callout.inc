@@ -16,21 +16,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Callout component',
+      'title' => 'Callout component',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, 2 links',
+      'title' => 'Callout component, 2 links',
       'components' => [
         [
           'type' => 'callout',
@@ -38,11 +38,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'links' => [
             [
-              'uri' => $helper::randomUrl(),
+              'uri' => $helper::staticUrl(),
               'title' => $helper::staticSentence(2),
             ],
             [
-              'uri' => $helper::randomUrl(),
+              'uri' => $helper::staticUrl(),
               'title' => $helper::staticSentence(2),
             ],
           ],
@@ -50,7 +50,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, 3 links',
+      'title' => 'Callout component, 3 links',
       'components' => [
         [
           'type' => 'callout',
@@ -58,15 +58,15 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'links' => [
             [
-              'uri' => $helper::randomUrl(),
+              'uri' => $helper::staticUrl(),
               'title' => $helper::staticSentence(2),
             ],
             [
-              'uri' => $helper::randomUrl(),
+              'uri' => $helper::staticUrl(),
               'title' => $helper::staticSentence(2),
             ],
             [
-              'uri' => $helper::randomUrl(),
+              'uri' => $helper::staticUrl(),
               'title' => $helper::staticSentence(2),
             ],
           ],
@@ -74,36 +74,27 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, No link text',
+      'title' => 'Callout component, No link text',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, 3 on page',
+      'title' => 'Callout component, 3 on page',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-        ],
-        [
-          'type' => 'callout',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
@@ -112,7 +103,16 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
+            'title' => $helper::staticSentence(2),
+          ],
+        ],
+        [
+          'type' => 'callout',
+          'title' => $helper::staticSentence(3),
+          'summary' => $helper::staticSentence(8),
+          'links' => [
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
@@ -120,14 +120,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Callout component, Dark',
+      'title' => 'Callout component, Dark',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -135,14 +135,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Light, Both spaces',
+      'title' => 'Callout component, Light, Both spaces',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -151,14 +151,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Dark, Both spaces',
+      'title' => 'Callout component, Dark, Both spaces',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -167,14 +167,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Light, Top space',
+      'title' => 'Callout component, Light, Top space',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -183,14 +183,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Dark, Top space',
+      'title' => 'Callout component, Dark, Top space',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -199,14 +199,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Light, Bottom space',
+      'title' => 'Callout component, Light, Bottom space',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -215,14 +215,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Dark, Bottom space',
+      'title' => 'Callout component, Dark, Bottom space',
       'components' => [
         [
           'type' => 'callout',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'links' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),

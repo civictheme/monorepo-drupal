@@ -16,56 +16,56 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Map component',
+      'title' => 'Map component',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, 3 on page, View link',
+      'title' => 'Map component, 3 on page, View link',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
-          'view_link' => $helper::randomUrl(),
+          'view_link' => $helper::staticUrl(),
         ],
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
-          'view_link' => $helper::randomUrl(),
+          'view_link' => $helper::staticUrl(),
         ],
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
-          'view_link' => $helper::randomUrl(),
+          'view_link' => $helper::staticUrl(),
         ],
       ],
     ],
 
     [
-      'title' => 'Demo Page, Map component, Dark',
+      'title' => 'Map component, Dark',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeDark(),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Light, BG',
+      'title' => 'Map component, Light, BG',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -73,11 +73,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Dark, BG',
+      'title' => 'Map component, Dark, BG',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -85,11 +85,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Light, No BG, Both spaces',
+      'title' => 'Map component, Light, No BG, Both spaces',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -98,11 +98,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Dark, No BG, Both spaces',
+      'title' => 'Map component, Dark, No BG, Both spaces',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -111,11 +111,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Light, BG, Both spaces',
+      'title' => 'Map component, Light, BG, Both spaces',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -124,11 +124,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, Dark, BG, Both spaces',
+      'title' => 'Map component, Dark, BG, Both spaces',
       'components' => [
         [
           'type' => 'map',
-          'embed_url' => $helper::randomUrl(),
+          'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,

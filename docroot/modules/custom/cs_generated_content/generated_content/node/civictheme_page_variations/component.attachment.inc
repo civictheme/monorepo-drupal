@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Content attachment',
+      'title' => 'Content attachment',
       'components' => [
         [
           'type' => 'attachment',
@@ -27,7 +27,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachments(3)',
+      'title' => 'Content attachments(3)',
       'components' => [
         [
           'type' => 'attachment',
@@ -42,7 +42,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, 3 on page',
+      'title' => 'Content attachment, 3 on page',
       'components' => [
         [
           'type' => 'attachment',
@@ -66,7 +66,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Content attachment, Light, No BG, Both spaces',
+      'title' => 'Content attachment, Light, No BG, Both spaces',
       'components' => [
         [
           'type' => 'attachment',
@@ -80,7 +80,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, Dark, No BG, Both spaces',
+      'title' => 'Content attachment, Dark, No BG, Both spaces',
       'components' => [
         [
           'type' => 'attachment',
@@ -94,7 +94,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, Light, BG, Both spaces',
+      'title' => 'Content attachment, Light, BG, Both spaces',
       'components' => [
         [
           'type' => 'attachment',
@@ -108,7 +108,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, Dark, BG, Both spaces',
+      'title' => 'Content attachment, Dark, BG, Both spaces',
       'components' => [
         [
           'type' => 'attachment',

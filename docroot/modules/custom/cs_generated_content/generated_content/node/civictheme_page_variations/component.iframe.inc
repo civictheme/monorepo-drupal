@@ -16,42 +16,42 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Iframe component',
+      'title' => 'Iframe component',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Attribute - referrerpolicy',
+      'title' => 'Iframe component, Attribute - referrerpolicy',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'attributes' => 'referrerpolicy="no-referrer"',
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, 3 on page, Height 100 & 50 & 30, Width 100 & 50 & 30',
+      'title' => 'Iframe component, 3 on page, Height 100 & 50 & 30, Width 100 & 50 & 30',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'height' => '100%',
           'width' => '100%',
         ],
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'height' => '50%',
           'width' => '50%',
         ],
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'height' => '30%',
           'width' => '30%',
         ],
@@ -59,43 +59,43 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Iframe component, Dark',
+      'title' => 'Iframe component, Dark',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Light, BG',
+      'title' => 'Iframe component, Light, BG',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Dark, BG',
+      'title' => 'Iframe component, Dark, BG',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Light, No BG, Both spaces',
+      'title' => 'Iframe component, Light, No BG, Both spaces',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -103,11 +103,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Dark, No BG, Both spaces',
+      'title' => 'Iframe component, Dark, No BG, Both spaces',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -115,11 +115,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Light, BG, Both spaces',
+      'title' => 'Iframe component, Light, BG, Both spaces',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -127,11 +127,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Iframe component, Dark, BG, Both spaces',
+      'title' => 'Iframe component, Dark, BG, Both spaces',
       'components' => [
         [
           'type' => 'iframe',
-          'url' => $helper::randomUrl(),
+          'url' => $helper::staticUrl(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
