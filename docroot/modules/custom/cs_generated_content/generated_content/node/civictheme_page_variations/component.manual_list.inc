@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
 
   return [
     [
-      'title' => 'Demo Page, Manual List component, Navigation card, Light',
+      'title' => 'Manual List component, Navigation card, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -28,7 +28,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeLight(),
@@ -38,7 +38,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Navigation card, Dark',
+      'title' => 'Manual List component, Navigation card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -50,7 +50,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
@@ -60,7 +60,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Service card, Dark, Link',
+      'title' => 'Manual List component, Service card, Dark, Link',
       'components' => [
         [
           'type' => 'manual_list',
@@ -70,7 +70,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'type' => 'civictheme_service_card',
               'title' => $helper::staticSentence(3),
               'links' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
@@ -80,7 +80,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Service card, Light, 2 Links',
+      'title' => 'Manual List component, Service card, Light, 2 Links',
       'components' => [
         [
           'type' => 'manual_list',
@@ -91,11 +91,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'links' => [
                 [
-                  'uri' => $helper::randomUrl(),
+                  'uri' => $helper::staticUrl(),
                   'title' => $helper::staticSentence(2),
                 ],
                 [
-                  'uri' => $helper::randomUrl(),
+                  'uri' => $helper::staticUrl(),
                   'title' => $helper::staticSentence(2),
                 ],
               ],
@@ -106,7 +106,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Reference promo card, Page, Light',
+      'title' => 'Manual List component, Reference promo card, Page, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -114,7 +114,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
           'cards' => [
             [
               'type' => 'civictheme_promo_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+              'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
               'theme' => $helper::civicthemeThemeLight(),
             ],
           ],
@@ -122,64 +122,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Reference promo card, Event, Light',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_promo_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemeEventContentType())->id(),
-              'theme' => $helper::civicthemeThemeDark(),
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Event reference card, Dark',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_event_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemeEventContentType())->id(),
-              'theme' => $helper::civicthemeThemeDark(),
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Event card, Dark',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_event_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
-              'title' => $helper::staticSentence(3),
-              'summary' => $helper::staticSentence(8),
-              'link' => [
-                'uri' => $helper::randomUrl(),
-                'title' => $helper::staticSentence(2),
-              ],
-              'theme' => $helper::civicthemeThemeDark(),
-              'location' => $helper::staticSentence(3),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
-              'date' => $helper::randomDate(),
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Navigation reference card, Event, Dark',
+      'title' => 'Manual List component, Navigation reference card, Page, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -187,23 +130,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
           'cards' => [
             [
               'type' => 'civictheme_navigation_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemeEventContentType())->id(),
-              'theme' => $helper::civicthemeThemeDark(),
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Navigation reference card, Page, Light',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_navigation_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+              'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
               'theme' => $helper::civicthemeThemeLight(),
             ],
           ],
@@ -211,7 +138,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Promo card, Dark',
+      'title' => 'Manual List component, Promo card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -223,19 +150,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => $helper::randomDate(),
+              'date' => '2022-11-14',
             ],
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Subject card, Dark',
+      'title' => 'Manual List component, Subject card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -246,7 +173,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => $helper::staticSentence(3),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
@@ -256,7 +183,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Subject reference card, Page, Dark',
+      'title' => 'Manual List component, Subject reference card, Page, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -264,33 +191,16 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
           'cards' => [
             [
               'type' => 'civictheme_subject_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+              'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
               'theme' => $helper::civicthemeThemeDark(),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
+              'topic' => $helper::staticTerm('civictheme_topics')->id(),
             ],
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Subject reference card, Event, Light',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'column_count' => rand(1, 4),
-          'cards' => [
-            [
-              'type' => 'civictheme_subject_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemeEventContentType())->id(),
-              'theme' => $helper::civicthemeThemeLight(),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
-            ],
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Publication card, Image, Light, Small',
+      'title' => 'Manual List component, Publication card, Image, Light, Small',
       'components' => [
         [
           'type' => 'manual_list',
@@ -310,7 +220,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Publication card, No Image, Dark, Large',
+      'title' => 'Manual List component, Publication card, No Image, Dark, Large',
       'components' => [
         [
           'type' => 'manual_list',
@@ -329,7 +239,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Full width',
+      'title' => 'Manual List component, Full width',
       'components' => [
         [
           'type' => 'manual_list',
@@ -338,16 +248,16 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
           'cards' => [
             [
               'type' => 'civictheme_subject_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+              'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
               'theme' => $helper::civicthemeThemeDark(),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
+              'topic' => $helper::staticTerm('civictheme_topics')->id(),
             ],
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Column count 2',
+      'title' => 'Manual List component, Column count 2',
       'components' => [
         [
           'type' => 'manual_list',
@@ -359,18 +269,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => $helper::randomDate(),
+              'date' => '2022-11-14',
             ],
             [
               'type' => 'civictheme_subject_card_ref',
-              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+              'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
               'theme' => $helper::civicthemeThemeDark(),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
+              'topic' => $helper::staticTerm('civictheme_topics')->id(),
             ],
             [
               'type' => 'civictheme_promo_card',
@@ -378,54 +288,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => $helper::randomDate(),
+              'date' => '2022-11-14',
             ],
           ],
         ],
       ],
     ],
-
     [
-      'title' => 'Demo Page, Manual List component, Dark, Link above, Link below',
-      'components' => [
-        [
-          'type' => 'manual_list',
-          'cards' => [
-            [
-              'type' => 'civictheme_event_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
-              'title' => $helper::staticSentence(3),
-              'summary' => $helper::staticSentence(8),
-              'link' => [
-                'uri' => $helper::randomUrl(),
-                'title' => $helper::staticSentence(2),
-              ],
-              'theme' => $helper::civicthemeThemeDark(),
-              'location' => $helper::staticSentence(3),
-              'topic' => $helper::randomRealTerm('civictheme_topics')->id(),
-              'date' => $helper::randomDate(),
-            ],
-          ],
-          'column_count' => rand(1, 4),
-          'theme' => $helper::civicthemeThemeDark(),
-          'list_link_below' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'list_link_above' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Manual List component, Light, BG, Title, Description',
+      'title' => 'Manual List component, Light, BG, Title, Description',
       'components' => [
         [
           'type' => 'manual_list',
@@ -435,11 +310,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'links' => [
                 [
-                  'uri' => $helper::randomUrl(),
+                  'uri' => $helper::staticUrl(),
                   'title' => $helper::staticSentence(2),
                 ],
                 [
-                  'uri' => $helper::randomUrl(),
+                  'uri' => $helper::staticUrl(),
                   'title' => $helper::staticSentence(2),
                 ],
               ],
@@ -455,7 +330,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Demo Page, Manual List component, Dark, BG, Title, Description',
+      'title' => 'Manual List component, Dark, BG, Title, Description',
       'components' => [
         [
           'type' => 'manual_list',
@@ -466,7 +341,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'link' => [
-                'uri' => $helper::randomUrl(),
+                'uri' => $helper::staticUrl(),
                 'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeLight(),

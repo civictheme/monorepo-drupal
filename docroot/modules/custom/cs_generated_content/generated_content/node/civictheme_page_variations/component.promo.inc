@@ -16,65 +16,65 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Promo component',
+      'title' => 'Promo component',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, No link text',
+      'title' => 'Promo component, No link text',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Summary',
+      'title' => 'Promo component, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, No link text, Summary',
+      'title' => 'Promo component, No link text, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, 2 on page, Link text & No link text',
+      'title' => 'Promo component, 2 on page, Link text & No link text',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
@@ -82,19 +82,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Dark',
+      'title' => 'Promo component, Dark',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -102,13 +102,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Light',
+      'title' => 'Promo component, Light',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -116,13 +116,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Light, Both spaces',
+      'title' => 'Promo component, Light, Both spaces',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -131,13 +131,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Dark, Both spaces',
+      'title' => 'Promo component, Dark, Both spaces',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -146,13 +146,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Dark, Summary',
+      'title' => 'Promo component, Dark, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -161,13 +161,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Light, Summary',
+      'title' => 'Promo component, Light, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -176,13 +176,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Light, Both spaces, Summary',
+      'title' => 'Promo component, Light, Both spaces, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -192,13 +192,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Promo component, Dark, Both spaces, Summary',
+      'title' => 'Promo component, Dark, Both spaces, Summary',
       'components' => [
         [
           'type' => 'promo',
           'title' => $helper::staticSentence(3),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),

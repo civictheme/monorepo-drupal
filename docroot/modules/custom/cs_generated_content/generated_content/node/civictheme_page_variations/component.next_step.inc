@@ -16,41 +16,41 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Demo Page, Next Step component',
+      'title' => 'Next Step component',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, No link text',
+      'title' => 'Next Step component, No link text',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, 2 on page, Link text & No link text',
+      'title' => 'Next Step component, 2 on page, Link text & No link text',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
         ],
@@ -59,21 +59,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
           ],
         ],
       ],
     ],
 
     [
-      'title' => 'Demo Page, Next Step component, Dark',
+      'title' => 'Next Step component, Dark',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -81,14 +81,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, Light',
+      'title' => 'Next Step component, Light',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -96,14 +96,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, Light, Both spaces',
+      'title' => 'Next Step component, Light, Both spaces',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -112,14 +112,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, Dark, Both spaces',
+      'title' => 'Next Step component, Dark, Both spaces',
       'components' => [
         [
           'type' => 'next_step',
           'title' => $helper::staticSentence(3),
           'summary' => $helper::staticSentence(8),
           'link' => [
-            'uri' => $helper::randomUrl(),
+            'uri' => $helper::staticUrl(),
             'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),

@@ -8,78 +8,73 @@
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
- * Page, Components - Content.
+ * Page, Components - Webform.
  */
-function _cs_generated_content_create_node_civictheme_page__variations__component_content() {
+function _cs_generated_content_create_node_civictheme_page__variations__component_webform() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   return [
     [
-      'title' => 'Demo Page, Content component',
+      'title' => 'Webform component',
       'components' => [
         [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'type' => 'webform',
+          'webform' => $helper::randomRealWebform(),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, 3 on page',
+      'title' => 'Webform component, 2 on page',
       'components' => [
         [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'type' => 'webform',
+          'webform' => $helper::randomRealWebform(),
         ],
         [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-        ],
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'type' => 'webform',
+          'webform' => $helper::randomRealWebform(),
         ],
       ],
     ],
-
     [
-      'title' => 'Demo Page, Content component, Dark',
+      'title' => 'Webform component, Dark',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Light, BG',
+      'title' => 'Webform component, Light, BG',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Dark, BG',
+      'title' => 'Webform component, Dark, BG',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Light, No BG, Both spaces',
+      'title' => 'Webform component, Light, No BG, Both spaces',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -87,11 +82,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Dark, No BG, Both spaces',
+      'title' => 'Webform component, Dark, No BG, Both spaces',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -99,11 +94,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Light, BG, Both spaces',
+      'title' => 'Webform component, Light, BG, Both spaces',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -111,11 +106,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Dark, BG, Both spaces',
+      'title' => 'Webform component, Dark, BG, Both spaces',
       'components' => [
         [
           'type' => 'content',
-          'content' => $helper::staticRichText(3),
+          'webform' => $helper::randomRealWebform(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
