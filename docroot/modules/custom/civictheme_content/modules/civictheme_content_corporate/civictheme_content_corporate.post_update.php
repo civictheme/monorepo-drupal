@@ -46,9 +46,11 @@ function civictheme_content_corporate_post_update_provision_footer_links() {
           $block_settings = $block->get('settings');
           $block_settings['parent'] = 'civictheme-footer:menu_link_content:' . $map[$block->id()]->uuid();
           $block->set('settings', $block_settings);
+
           return TRUE;
         }
       }
+
       return FALSE;
     });
 }

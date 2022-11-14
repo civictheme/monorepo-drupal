@@ -87,9 +87,9 @@ Note that wildcards are supported.
 
 ## Demo content export
 
-    CIVICTHEME_CONTENT_TYPES=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=default ahoy export-content
+    CIVICTHEME_CONTENT_PROFILE=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
 
-    CIVICTHEME_CONTENT_TYPES=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=corporate ahoy export-content
+    CIVICTHEME_CONTENT_PROFILE=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=corporate ahoy export-content
 
 OR
 
