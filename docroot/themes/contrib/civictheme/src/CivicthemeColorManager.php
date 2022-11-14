@@ -508,7 +508,12 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       $use_brand_colors = TRUE;
     }
 
-    $this->configManager->save('colors', ['use_brand_colors' => $use_brand_colors] + $matrix);
+    $values = $matrix + [
+      'use_color_selector' => TRUE,
+      'use_brand_colors' => $use_brand_colors,
+    ];
+
+    $this->configManager->save('colors', $values);
 
     return $this;
   }
