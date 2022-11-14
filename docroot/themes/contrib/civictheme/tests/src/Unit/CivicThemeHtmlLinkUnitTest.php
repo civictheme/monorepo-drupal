@@ -10,7 +10,7 @@ namespace Drupal\Tests\civictheme\Unit;
  *
  * @group CivicTheme
  */
-class CivicThemeHtmlLinkUnitTest extends CivicThemeUnitTestBase {
+class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
 
   /**
    * Test for civictheme_link_is_external().

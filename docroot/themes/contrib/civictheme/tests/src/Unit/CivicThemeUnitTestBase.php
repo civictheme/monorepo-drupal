@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\civictheme\Unit;
 
-use Drupal\Tests\civictheme\Traits\CivicThemeTestHelperTrait;
+use Drupal\Tests\civictheme\Traits\CivicthemeTestHelperTrait;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -10,9 +10,9 @@ use Drupal\Tests\UnitTestCase;
  *
  * Base class for all unit test cases.
  */
-abstract class CivicThemeUnitTestBase extends UnitTestCase {
+abstract class CivicthemeUnitTestBase extends UnitTestCase {
 
-  use CivicThemeTestHelperTrait;
+  use CivicthemeTestHelperTrait;
 
   /**
    * {@inheritdoc}

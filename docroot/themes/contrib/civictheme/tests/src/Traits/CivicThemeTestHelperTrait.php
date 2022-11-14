@@ -3,13 +3,13 @@
 namespace Drupal\Tests\civictheme\Traits;
 
 /**
- * Trait CivicThemeTestHelperTrait.
+ * Trait CivicthemeTestHelperTrait.
  *
  * Helper trait for tests.
  *
  * @package Drupal\civictheme\Tests
  */
-trait CivicThemeTestHelperTrait {
+trait CivicthemeTestHelperTrait {
 
   /**
    * Call protected methods on the class.
