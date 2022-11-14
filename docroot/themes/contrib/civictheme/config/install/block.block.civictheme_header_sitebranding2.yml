@@ -7,7 +7,7 @@ dependencies:
     - civictheme
 id: civictheme_header_sitebranding2
 theme: civictheme
-region: header_middle_2
+region: header_top_2
 weight: -7
 provider: null
 plugin: system_branding_block
@@ -16,7 +16,7 @@ settings:
   label: 'Header site branding - slogan'
   label_display: '0'
   provider: system
-  use_site_logo: true
+  use_site_logo: false
   use_site_name: false
-  use_site_slogan: false
+  use_site_slogan: true
 visibility: {  }
