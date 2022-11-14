@@ -1,7 +1,5 @@
 @civictheme @civictheme_table @testmode
-Feature: Tests the Table
-
-  Ensure that Table is rendering correctly.
+Feature: Table render
 
   @api @d9
   Scenario: Styleguide page should show table with correct markup.

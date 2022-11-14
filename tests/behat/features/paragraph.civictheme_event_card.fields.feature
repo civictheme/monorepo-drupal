@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_event_card
-Feature: Tests the Event Card paragraph
-
-  Ensure that Event Card paragraph exists and has the expected fields.
+@civictheme @civictheme_event_card
+Feature: Event Card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

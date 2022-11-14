@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_webform
-Feature: View of Page content with webform component
-
-  Ensure that Page content can be viewed correctly with Webform component.
+@civictheme @civictheme_webform
+Feature: Webform render
 
   Background:
     Given "civictheme_page" content:

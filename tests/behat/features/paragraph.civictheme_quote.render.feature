@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_quote
-Feature: View of Page content with Quote component
-
-  Ensure that Page content can be viewed correctly with quote component.
+@civictheme @civictheme_quote
+Feature: Quote render
 
   Background:
     Given "civictheme_page" content:

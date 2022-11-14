@@ -1,7 +1,5 @@
 @civictheme @breadcrumb
-Feature: Tests the CivicTheme breadcrumb
-
-  Ensure that the breadcrumb are displayed correctly.
+Feature: Breadcrumb render
 
   Background:
     Given civictheme_page content:

@@ -1,7 +1,5 @@
-@civictheme @civictheme_page @civictheme_content
-Feature: View of Page content
-
-  Ensure that Page content can be viewed correctly with contnet component.
+@civictheme @civictheme_content
+Feature: Content render
 
   Background:
     Given "civictheme_page" content:

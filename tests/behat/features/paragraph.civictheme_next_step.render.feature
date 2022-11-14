@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_next_step
-Feature: View of Page content with Next steps component
-
-  Ensure that Page content can be viewed correctly with Next steps component.
+@civictheme @civictheme_next_step
+Feature: Next step render
 
   Background:
     Given "civictheme_page" content:

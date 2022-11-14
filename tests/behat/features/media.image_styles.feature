@@ -1,10 +1,8 @@
 @civictheme @media @image_styles
-Feature: Tests the civictheme image styles
-
-  Ensure that civictheme image styles exist and have the expected fields.
+Feature: Image styles
 
   @api
-  Scenario Outline: Image styles exist with fields.
+  Scenario Outline: Image styles exist with settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/config/media/image-styles/manage/<machine_name>"
     And the "Image style name" field should contain "<style>"

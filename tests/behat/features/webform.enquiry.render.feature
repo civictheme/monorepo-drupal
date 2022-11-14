@@ -1,5 +1,5 @@
 @civictheme @webform
-Feature: Tests the CivicTheme form integration with webform
+Feature: Webform render
 
   @api
   Scenario: Form inputs are correctly validated

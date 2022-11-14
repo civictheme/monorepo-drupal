@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_manual_list
-Feature: Tests the Listing paragraph
-
-  Ensure that Listing paragraph exists and has the expected fields.
+@civictheme @civictheme_manual_list
+Feature: Manual list fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

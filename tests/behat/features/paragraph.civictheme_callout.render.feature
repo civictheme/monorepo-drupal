@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_callout
-Feature: View of Page content with Callout component
-
-  Ensure that Page content can be viewed correctly with callout component.
+@civictheme @civictheme_callout
+Feature: Callout render
 
   Background:
     Given "civictheme_page" content:

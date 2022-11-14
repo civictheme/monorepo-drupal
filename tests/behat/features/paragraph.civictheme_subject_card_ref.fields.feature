@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_subject_card_ref
-Feature: Tests the Subject reference card paragraph
-
-  Ensure that Subject reference card paragraph exists and has the expected fields.
+@civictheme @civictheme_subject_card_ref
+Feature: Subject reference card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

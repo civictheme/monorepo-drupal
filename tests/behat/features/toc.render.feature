@@ -1,7 +1,5 @@
 @civictheme @civictheme_toc
-Feature: Tests the Table Of Contents
-
-  Ensure that Table Of Contents works correctly.
+Feature: Table Of Contents render
 
   @api @javascript
   Scenario: Render TOC for the relevant data on the page if it is enabled or do not render it at all.

@@ -1,7 +1,5 @@
-@civictheme @civictheme_page @civictheme_attachment
-Feature: View of Page content
-
-  Ensure that Page content can be viewed correctly with attachment component.
+@civictheme @civictheme_attachment
+Feature: Attachment render
 
   Background:
     Given managed file:
@@ -19,7 +17,7 @@ Feature: View of Page content
       | [TEST] Page attachment test | 1      |
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with attachment light without background
+  Scenario: Attachment light without background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
       | field_c_p_title       | [TEST] attachment     |
@@ -42,7 +40,7 @@ Feature: View of Page content
     And I should see the text "Summary text"
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with attachment dark with background
+  Scenario: Attachment dark with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
       | field_c_p_title       | [TEST] attachment     |

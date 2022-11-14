@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_callout
-Feature: Tests the Callout
-
-  Ensure that Callout paragraph exists and has the expected fields.
+@civictheme @civictheme_callout
+Feature: Callout fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

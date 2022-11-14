@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_service_card
-Feature: Tests the Service card paragraph
-
-  Ensure that Service card paragraph exists and has the expected fields.
+@civictheme @civictheme_service_card
+Feature: Service card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
