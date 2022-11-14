@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:civictheme_mobile_navigation:b7f36176-620f-4178-aadd-9b448c610986'
-  module:
-    - block_content
   theme:
     - civictheme
 id: civictheme_mobile_navigation

@@ -1,13 +1,9 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:civictheme_component_block:d7098a8c-3ba3-48f7-bc0c-5787ebaa0427'
-  module:
-    - block_content
   theme:
     - civictheme
-id: civictheme_footer__copyright
+id: civictheme_footer_copyright
 theme: civictheme
 region: footer_bottom_2
 weight: 0
