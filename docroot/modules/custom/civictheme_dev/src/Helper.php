@@ -21,7 +21,7 @@ use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
 use Drush\Drush;
-use Drush\Log\LogLevel;
+use Psr\Log\LogLevel;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -382,6 +382,7 @@ class Helper {
         return !empty($leaf->subtree);
       }
     }
+
     return NULL;
   }
 
@@ -608,7 +609,7 @@ class Helper {
     if (class_exists('\Drush\Drush')) {
       /** @var \Drush\Log\Logger $logger */
       $logger = Drush::getContainer()->get('logger');
-      $logger->log(LogLevel::SUCCESS, str_pad(((string) $prefix) . html_entity_decode($message), $indent, ' ', STR_PAD_LEFT));
+      $logger->log(LogLevel::INFO, str_pad(((string) $prefix) . html_entity_decode($message), $indent, ' ', STR_PAD_LEFT));
     }
     elseif (PHP_SAPI === 'cli') {
       print str_pad(((string) $prefix) . html_entity_decode($message), $indent, ' ', STR_PAD_LEFT) . PHP_EOL;
@@ -782,7 +783,7 @@ class Helper {
     }
     catch (\Exception $exception) {
       foreach ($config_importer->getErrors() as $error) {
-        \Drupal::logger('osp')->error($error);
+        \Drupal::logger('civictheme_dev')->error($error);
         \Drupal::messenger()->addError($error);
       }
       throw $exception;
@@ -900,6 +901,7 @@ class Helper {
    */
   public static function aliasToSource($alias) {
     $path = \Drupal::service('path.alias_manager')->getPathByAlias($alias);
+
     return $path != $alias ? 'internal:' . $path : NULL;
   }
 
@@ -1177,6 +1179,7 @@ class Helper {
 
       if ($media_entity) {
         $media_entity->save();
+
         return $media_entity;
       }
       else {
