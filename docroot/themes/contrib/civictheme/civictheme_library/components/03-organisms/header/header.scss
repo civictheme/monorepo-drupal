@@ -11,20 +11,8 @@
     margin-bottom: ct-spacing();
   }
 
-  &__content-top2 {
-    @include ct-typography('text-regular');
-  }
-
-  &__top {
-    @include ct-print-hide();
-  }
-
   &__middle {
     border-bottom: solid ct-particle(0.125);
-  }
-
-  &__content-middle1 {
-    @include ct-print-hide();
   }
 
   &__content-middle2 {

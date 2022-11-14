@@ -96,12 +96,12 @@ config_devel:
   install:
     - block.block.civictheme_content
     - block.block.civictheme_footer_sitebranding
+    - block.block.civictheme_header_sitebranding
+    - block.block.civictheme_header_sitebranding2
     - block.block.civictheme_help
     - block.block.civictheme_messages
     - block.block.civictheme_primaryadminactions
-    - block.block.civictheme_sitebranding
     - block.block.civictheme_tabs
-    - block.block.sitebranding_2
     - block_content.type.civictheme_banner
     - block_content.type.civictheme_component_block
     - block_content.type.civictheme_mobile_navigation
@@ -376,8 +376,8 @@ config_devel:
     - field.field.paragraph.civictheme_map.field_c_p_view_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_size
     - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_size
     - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
     - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
