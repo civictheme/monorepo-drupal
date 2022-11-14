@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: 'Demo Block - Map'
+      value: Map
   reusable:
     -
       value: true

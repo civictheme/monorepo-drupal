@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 63fe1090-3a57-411c-adbf-40098e87fb02
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    35be8705-b50e-4506-9a61-568ef0986318: menu_link_content
+    9c4229fe-7dd7-4a10-a389-3868d27ae469: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For businesses'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 9c4229fe-7dd7-4a10-a389-3868d27ae469
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -50
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:35be8705-b50e-4506-9a61-568ef0986318'
+  revision_translation_affected:
+    -
+      value: true

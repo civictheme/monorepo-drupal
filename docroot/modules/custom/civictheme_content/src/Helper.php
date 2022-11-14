@@ -2,6 +2,11 @@
 
 namespace Drupal\civictheme_content;
 
+use Drupal\Component\Serialization\Json;
+use Drupal\config\StorageReplaceDataWrapper;
+use Drupal\Core\Config\ConfigImporter;
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\StorageComparer;
 use Drupal\Core\Url;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
@@ -30,13 +35,34 @@ class Helper {
   public static function log($message) {
     if (class_exists('\Drush\Drush')) {
       Drush::getContainer()->get('logger')->log(LogLevel::INFO, strip_tags(html_entity_decode($message)));
+
       return;
     }
     elseif (PHP_SAPI === 'cli') {
       print strip_tags(html_entity_decode($message)) . PHP_EOL;
+
       return;
     }
     \Drupal::messenger()->addMessage($message);
+  }
+
+  /**
+   * Clear all items in the menu.
+   *
+   * @param string $menu_name
+   *   String machine menu name.
+   */
+  public static function clearMenu($menu_name) {
+    /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
+    $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+
+    $menu_items = $storage->loadByProperties([
+      'menu_name' => $menu_name,
+    ]);
+
+    foreach ($menu_items as $menu_item) {
+      $menu_item->delete();
+    }
   }
 
   /**
@@ -213,6 +239,167 @@ class Helper {
 
     $config = \Drupal::service('config.factory')->getEditable('system.site');
     $config->set('page.front', '/node/' . $node->id())->save();
+  }
+
+  /**
+   * Check if a theme is a sub-theme of the specified theme.
+   *
+   * @param string $theme
+   *   Theme name to check.
+   * @param string $parent_theme
+   *   Parent theme name.
+   *
+   * @return bool
+   *   TRUE if a theme is a sub-theme of the specified parent theme,
+   *   FALSE otherwise.
+   */
+  public static function themeIsSubtheme($theme, $parent_theme) {
+    $current = \Drupal::service('theme.initialization')->getActiveThemeByName($theme);
+
+    return array_key_exists($parent_theme, $current->getBaseThemeExtensions());
+  }
+
+  /**
+   * Discover and import all configs within specified locations.
+   *
+   * @param string|array $locations
+   *   A single or an array of locations to discover configs.
+   * @param array $tokens
+   *   Array of tokens to replace within configs while they are importing.
+   */
+  public static function importConfigs($locations = [], array $tokens = []) {
+    $locations = is_array($locations) ? $locations : [$locations];
+
+    foreach ($locations as $location) {
+      foreach (glob($location . '/*') as $file) {
+        $src = basename($file, '.yml');
+        $dst = self::replaceTokens($src, $tokens);
+        self::importSingleConfig($src, $locations, $dst, $tokens);
+      }
+    }
+  }
+
+  /**
+   * Import a single config item.
+   *
+   * Can also be used to import into config with a different name.
+   *
+   * @param string $src_name
+   *   Source config name to import.
+   * @param string|array $locations
+   *   Location or an array of locations to search for configuration files.
+   * @param string $dst_name
+   *   Destination config name to import. If not provided - defaults
+   *   to $src_name.
+   * @param array $tokens
+   *   Optional array of tokens to replace while importing configuration.
+   */
+  public static function importSingleConfig($src_name, $locations, $dst_name = NULL, array $tokens = []) {
+    $dst_name = $dst_name ?? $src_name;
+
+    $locations = is_array($locations) ? $locations : [$locations];
+
+    $config_data = self::readConfig($src_name, $locations);
+    $config_data = self::replaceTokens($config_data, $tokens);
+
+    unset($config_data['uuid']);
+
+    $config_storage = \Drupal::service('config.storage');
+
+    $source_storage = new StorageReplaceDataWrapper($config_storage);
+    $source_storage->replaceData($dst_name, $config_data);
+
+    $storage_comparer = new StorageComparer($source_storage, $config_storage);
+    $storage_comparer->createChangelist();
+
+    $config_importer = new ConfigImporter(
+      $storage_comparer,
+      \Drupal::service('event_dispatcher'),
+      \Drupal::service('config.manager'),
+      \Drupal::service('lock.persistent'),
+      \Drupal::service('config.typed'),
+      \Drupal::service('module_handler'),
+      \Drupal::service('module_installer'),
+      \Drupal::service('theme_handler'),
+      \Drupal::service('string_translation'),
+      \Drupal::service('extension.list.module')
+    );
+
+    try {
+      $config_importer->import();
+      \Drupal::cache('config')->delete($dst_name);
+    }
+    catch (\Exception $exception) {
+      foreach ($config_importer->getErrors() as $error) {
+        \Drupal::logger('helper')->error($error);
+        \Drupal::messenger()->addError($error);
+      }
+      throw $exception;
+    }
+  }
+
+  /**
+   * Read configuration from provided locations.
+   *
+   * @param string $id
+   *   Configuration id.
+   * @param array $locations
+   *   Array of paths to lookup configuration files.
+   *
+   * @return mixed
+   *   Configuration value.
+   *
+   * @throws \Exception
+   *   If configuration file was not found in any specified location.
+   */
+  public static function readConfig($id, array $locations) {
+    static $storages;
+
+    foreach ($locations as $path) {
+      if (file_exists($path . DIRECTORY_SEPARATOR . $id . '.yml')) {
+        $storages[$path] = new FileStorage($path);
+        break;
+      }
+    }
+
+    if (!isset($storages[$path])) {
+      throw new \Exception('Configuration does not exist in any provided locations');
+    }
+
+    return $storages[$path]->read($id);
+  }
+
+  /**
+   * Replace tokens within data keys and values.
+   *
+   * @param mixed $data
+   *   Date to replace tokens in.
+   * @param array $tokens
+   *   Array of tokens to replace the data. Tokens with values of FALSE will be
+   *   preserved.
+   *
+   * @return mixed
+   *   Data with replaced tokens.
+   */
+  protected static function replaceTokens($data, array $tokens = []) {
+    $replace = array_filter($tokens);
+    // Retrieve tokens that should be preserved.
+    $preserve = array_diff_key($tokens, $replace);
+
+    $preserve_in = [];
+    $preserve_out = [];
+    foreach (array_keys($preserve) as $k => $name) {
+      $preserve_in[$name] = 'PRESERVE_BEGIN' . $k . 'PRESERVE_END';
+      $preserve_out['PRESERVE_BEGIN' . $k . 'PRESERVE_END'] = $name;
+    }
+
+    $encoded = Json::encode($data);
+
+    $encoded = strtr($encoded, $preserve_in);
+    $encoded = strtr($encoded, $replace);
+    $encoded = strtr($encoded, $preserve_out);
+
+    return Json::decode($encoded);
   }
 
 }

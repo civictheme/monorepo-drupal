@@ -5,9 +5,7 @@
  * Post update hooks for CivicTheme Default Demo Content.
  */
 
-use Drupal\block\BlockInterface;
 use Drupal\civictheme_content\Helper;
-use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\Core\Utility\UpdateException;
 
 /**
@@ -25,31 +23,12 @@ function civictheme_content_default_post_update_set_homepage() {
 }
 
 /**
- * Provisions links in footer and updates menu block configurations.
+ * Sets site slogan.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_content_default_post_update_provision_footer_links() {
-  $theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
-
-  $map = [
-    $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civictheme-footer', 'General'),
-    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civictheme-footer', 'Help'),
-    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civictheme-footer', 'About us'),
-    $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civictheme-footer', 'Services'),
-  ];
-
-  $sandbox = [];
-  \Drupal::classResolver(ConfigEntityUpdater::class)
-    ->update($sandbox, 'block', function (BlockInterface $block) use ($map) {
-      if (strpos($block->getPluginId(), 'menu_block:') === 0) {
-        if (!empty($map[$block->id()])) {
-          $block_settings = $block->get('settings');
-          $block_settings['parent'] = 'civictheme-footer:menu_link_content:' . $map[$block->id()]->uuid();
-          $block->set('settings', $block_settings);
-          return TRUE;
-        }
-      }
-      return FALSE;
-    });
+function civictheme_content_default_post_update_set_site_slogan() {
+  \Drupal::service('config.factory')->getEditable('system.site')
+    ->set('slogan', 'A design system by Salsa Digital')
+    ->save();
 }

@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.civictheme-footer
+  module:
+    - menu_block
+  theme:
+    - civictheme
+id: civictheme_footer_menu_4
+theme: civictheme
+region: footer_middle_4
+weight: 0
+provider: null
+plugin: 'menu_block:civictheme-footer'
+settings:
+  id: 'menu_block:civictheme-footer'
+  label: 'Footer menu 4'
+  label_display: visible
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: fixed
+  level: 1
+  depth: 1
+  expand_all_items: false
+  parent: 'civictheme-footer:menu_link_content:35be8705-b50e-4506-9a61-568ef0986318'
+  suggestion: civictheme_footer
+visibility: {  }
