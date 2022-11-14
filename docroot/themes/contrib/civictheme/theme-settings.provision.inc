@@ -14,6 +14,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -719,7 +720,7 @@ function _civictheme_provision__blocks__search(array $block) {
 function _civictheme_provision__blocks__mobile_navigation(array $block) {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
-  $context_theme = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
+  $context_theme = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_top = "{$theme_name}_primary_navigation";
@@ -873,7 +874,7 @@ function civictheme_provision__theme_settings() {
   foreach ($themes as $theme) {
     foreach ($logo_types as $logo_type) {
       foreach ($breakpoints as $breakpoint) {
-        $components['logo']["image_{$logo_type}_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
+        $components['logo'][$logo_type][$theme][$breakpoint]['path'] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
       }
     }
   }
@@ -934,31 +935,6 @@ function civictheme_provision__permissions() {
     }
     $role->save();
   }
-}
-
-/**
- * Provision simple sitemap.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function civictheme_provision__simple_sitemap() {
-  if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
-    \Drupal::service('module_installer')->install(['simple_sitemap']);
-  }
-
-  $settings = [
-    'index' => TRUE,
-    'priority' => 0.5,
-    'changefreq' => 'hourly',
-    'include_images' => FALSE,
-  ];
-
-  $bundles = ['civictheme_page', 'civictheme_event'];
-  foreach ($bundles as $bundle) {
-    \Drupal::service('simple_sitemap.generator')->entityManager()->setBundleSettings('node', $bundle, $settings);
-  }
-
-  \Drupal::service('simple_sitemap.generator')->customLinkManager()->add('/', $settings);
 }
 
 /**
@@ -1110,7 +1086,7 @@ function _civictheme_get_theme_block() {
         'builder' => '_civictheme_provision__blocks__signup',
         'type' => 'civictheme_component_block',
       ],
-    'civictheme_social_links' =>
+    'civictheme_footer_social_links' =>
       [
         'name' => 'Social links',
         'region' => 'footer_top_2',
