@@ -368,6 +368,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('promo_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
     ];
 
+    $form['#process'][] = [$this, 'processForm'];
+
     // Auto-discover per-component validation and submit handlers.
     foreach (array_keys($form['components']) as $component_name) {
       $validate = CivicthemeUtility::camelise("validate_$component_name");
@@ -380,6 +382,18 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         $form['#submit'][] = [$this, $submit];
       }
     }
+  }
+
+  /**
+   * Form process callback.
+   */
+  public function processForm(&$element, FormStateInterface $form_state, &$complete_form) {
+    // Vertical tabs do not work correctly with a form element with
+    // '#tree' = TRUE. The active tab is set to the element children by JS,
+    // so we have to explicitly add it to the values that should be cleaned.
+    $form_state->addCleanValueKey(['components', 'components__active_tab']);
+
+    return $element;
   }
 
   /**
