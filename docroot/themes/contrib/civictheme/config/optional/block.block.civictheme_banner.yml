@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - civictheme
+id: civictheme_banner
+theme: civictheme
+region: banner
+weight: 0
+provider: null
+plugin: 'block_content:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
+settings:
+  id: 'block_content:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
+  label: Banner
+  label_display: ''
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

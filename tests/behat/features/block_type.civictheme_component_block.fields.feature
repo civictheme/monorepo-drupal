@@ -1,5 +1,5 @@
 @civictheme @block_type @block_civictheme_component
-Feature: Tests the CivicTheme Component block
+Feature: Component block fields
 
   @api
   Scenario: Custom Block type appears in Block Type listing

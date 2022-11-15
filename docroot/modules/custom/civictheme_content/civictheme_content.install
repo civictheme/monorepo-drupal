@@ -4,102 +4,108 @@
  * @file
  * Install file for civictheme_content.
  *
- * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is not
+ * When enabled and CIVICTHEME_CONTENT_PROFILE environment variable is not
  * available, civictheme_content_default module will be installed and content
  * provided with the module will be provisioned.
  *
- * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is
+ * When enabled and CIVICTHEME_CONTENT_PROFILE environment variable is
  * available as a comma-separated list of types, then a corresponding
  * civictheme_content_<type> module will be installed and content provided
  * with each of the modules will be provisioned.
  *
  * To enable this module without provisioning any content, set the value
- * of CIVICTHEME_CONTENT_TYPES to 'none'.
+ * of CIVICTHEME_CONTENT_PROFILE to 'none'.
  */
 
+use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Installer\Exception\InstallerException;
 
 /**
  * Implements hook_install().
+ *
+ * Enable sub-modules based on the value of CIVICTHEME_CONTENT_PROFILE
+ * environment variable.
+ *
+ * If 'none' is specified - none of the sub-modules will be enabled.
  */
 function civictheme_content_install() {
-  if (!empty(trim(getenv('CIVICTHEME_CONTENT_TYPES')))) {
-    $types = array_map('strtolower', array_map('trim', explode(',', trim(getenv('CIVICTHEME_CONTENT_TYPES')))));
-  }
-  else {
-    $types = ['default'];
+  $content_profile = 'default';
+  if (!empty(trim(getenv('CIVICTHEME_CONTENT_PROFILE')))) {
+    $content_profile = strtolower(trim(getenv('CIVICTHEME_CONTENT_PROFILE')));
+    $content_profile = preg_replace('/[^a-z0-9_]/', '', $content_profile);
   }
 
-  if (in_array('none', $types)) {
+  if ($content_profile == 'none') {
     Helper::log(t('Skipping enabling of content modules.'));
+
     return;
   }
 
-  $existing = array_map(function ($value) {
+  $existing_content_profiles = array_map(function ($value) {
     return substr($value, strlen('civictheme_content_'));
   }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules'), ['..', '.']));
 
-  $unsupported = array_diff($types, $existing);
-  if (!empty($unsupported)) {
+  if (!in_array($content_profile, $existing_content_profiles)) {
     // Show as a warning message, but do not fail the installation.
-    Helper::log(t('Unsupported type(s) provided: %list.', [
-      '%list' => implode(', ', $unsupported),
+    Helper::log(t('Unsupported content profile provided: %name.', [
+      '%name' => $content_profile,
     ]));
   }
 
-  $supported = array_intersect($types, $existing);
+  $module = 'civictheme_content_' . $content_profile;
 
-  if (empty($supported)) {
-    // Show as a warning message, but do not fail the installation.
-    Helper::log(t('No supported types were provided. Supported types: %list.', [
-      '%list' => implode(', ', $supported),
+  if (\Drupal::service('module_installer')->install([$module])) {
+    Helper::log(t('Successfully enabled: %name.', [
+      '%name' => $module,
     ]));
+    _civictheme_content_install_submodule($module);
+  }
+  else {
+    // Fail installation as a module with a correct name should have been
+    // enabled.
+    throw new InstallerException('Unable to enable: ' . $module);
+  }
+}
+
+/**
+ * Install submodule of this module.
+ */
+function _civictheme_content_install_submodule($module) {
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  // Only proceed if current theme is CivicTheme, or it's sub-theme so that
+  // content could be applied only to expected configurations.
+  if (!array_key_exists('civictheme', $active_theme->getBaseThemeExtensions())) {
     return;
   }
 
-  $modules = array_map(function ($value) {
-    return 'civictheme_content_' . $value;
-  }, $supported);
+  $config_importer = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class);
+  // Import config from the 'config/optional' directory of the submodule being
+  // installed.
+  $config_importer->importConfigs(
+    \Drupal::moduleHandler()->getModule($module)->getPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'optional',
+    [
+      'civictheme-' => FALSE,
+      'civictheme_content' => FALSE,
+      'civictheme' => $active_theme->getName(),
+    ]
+  );
+}
 
-  // Programmatically provision content.
-  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
-  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
-  if (file_exists($provision_file)) {
+/**
+ * Common updates to be run by all content modules.
+ */
+function civictheme_content_post_update_common() {
+  // Site site slogan.
+  \Drupal::service('config.factory')->getEditable('system.site')
+    ->set('slogan', 'A design system by Salsa Digital')
+    ->save();
+
+  // Provision content using provision file, if it exists.
+  $provision_file = \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
+  if (is_file($provision_file)) {
     require_once $provision_file;
-    $theme_block_list = _civictheme_get_theme_block();
-    // Blocks with existing name will be removed and re-created.
-    foreach ($theme_block_list as $info) {
-      /** @var \Drupal\block_content\Entity\BlockContent $block */
-      $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
-        'info' => $info['name'],
-      ]);
-
-      if (!empty($blocks)) {
-        foreach ($blocks as $block) {
-          $block->delete();
-        }
-      }
-    }
-  }
-  $assign_region = FALSE;
-  foreach ($modules as $module) {
-    if (\Drupal::service('module_installer')->install([$module])) {
-      Helper::log(t('Successfully enabled: %name.', [
-        '%name' => $module,
-      ]));
-      $assign_region = TRUE;
-    }
-    else {
-      // Fail installation as a module with a correct name should have been
-      // enabled.
-      throw new InstallerException('Unable to enable: ' . $module);
-    }
-  }
-  if ($assign_region && !empty($theme_block_list)) {
-    // Assign blocks to region.
-    foreach ($theme_block_list as $info) {
-      civictheme_provision_place_block($info['name'], $info['region'], $info['uuid']);
-    }
+    // Provision user permissions.
+    civictheme_provision__permissions();
   }
 }

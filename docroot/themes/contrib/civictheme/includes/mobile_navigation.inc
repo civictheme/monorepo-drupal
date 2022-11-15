@@ -6,8 +6,8 @@
  */
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Menu\MenuTreeParameters;
 
 /**
  * Pre-process for Mobile Navigation block.
@@ -69,6 +69,6 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   $variables['trigger_text'] = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
   $variables['theme'] = civictheme_get_field_theme_value($entity);
 
-  $context_theme = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
+  $context_theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
   $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
 }

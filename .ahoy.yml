@@ -25,7 +25,6 @@ commands:
       docker-compose exec \
         -e COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-${PWD##*/}} \
         -e DREVOPS_HOST_DB_PORT=$(docker port $(docker-compose ps -q mariadb 2>/dev/null) 3306 2>/dev/null | cut -d : -f 2) \
-        -e DREVOPS_HOST_SOLR_PORT=$(docker port $(docker-compose ps -q solr 2>/dev/null) 8983 2>/dev/null | cut -d : -f 2) \
         -e DREVOPS_DRUPAL_SHOW_LOGIN_LINK=${DREVOPS_DRUPAL_SHOW_LOGIN_LINK} \
         cli ./scripts/drevops/info.sh "$@"
 
@@ -119,7 +118,7 @@ commands:
       -e CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION:-0} \
       -e CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION:-0} \
       -e DREVOPS_DRUPAL_VERSION=${DREVOPS_DRUPAL_VERSION:-} \
-      -e CIVICTHEME_CONTENT_TYPES=${CIVICTHEME_CONTENT_TYPES:-} \
+      -e CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-} \
       -e SKIP_SUBTHEME_FE=${SKIP_SUBTHEME_FE:-} \
       -e SKIP_GENERATED_CONTENT_CREATE=${SKIP_GENERATED_CONTENT_CREATE:-} \
       -T cli ./scripts/drevops/drupal-install-site.sh
@@ -210,10 +209,10 @@ commands:
       ahoy drush cde civictheme_dev
 
   export-content:
-    usage: Export content (run with CIVICTHEME_CONTENT_TYPES=corporate ahoy install-site) .
+    usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
     cmd: |
       ahoy confirm "This will uninstall several modules and users. Proceed?" \
-      && ahoy cli "CIVICTHEME_CONTENT_TYPES=${CIVICTHEME_CONTENT_TYPES:-default} ./scripts/update-default-content.sh" || echo "The operation was canceled."
+      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update-default-content.sh" || echo "The operation was canceled."
 
   deploy:
     usage: Run remote deployment procedures.

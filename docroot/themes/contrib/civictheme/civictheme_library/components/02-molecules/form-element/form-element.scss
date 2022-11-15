@@ -3,6 +3,8 @@
 //
 
 .ct-form-element {
+  $root: &;
+
   @include ct-typography('text-regular');
 
   margin-bottom: ct-spacing(2);
@@ -78,11 +80,7 @@
     @include ct-typography('text-small');
   }
 
-  &.ct-theme-light {
-    color: $ct-form-element-light-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-form-element-dark-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
   }
 }

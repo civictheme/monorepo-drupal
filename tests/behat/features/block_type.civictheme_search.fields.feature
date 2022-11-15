@@ -1,7 +1,5 @@
 @civictheme @block_type @block_civictheme_search
-Feature: Tests the CivicTheme Search block Type
-
-  Ensure that CivicTheme Search block fields have been setup correctly.
+Feature: Search block fields
 
   @api
   Scenario: Custom Block type appears in Block Type listing

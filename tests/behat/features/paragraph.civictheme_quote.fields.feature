@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_quote
-Feature: Tests the Quote paragraph
-
-  Ensure that Quote paragraphs exists and has the expected fields.
+@civictheme @civictheme_quote
+Feature: Quote fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

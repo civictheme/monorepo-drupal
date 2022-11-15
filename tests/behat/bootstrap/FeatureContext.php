@@ -27,6 +27,7 @@ use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use DrevOps\BehatSteps\WysiwygTrait;
+use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\DrupalExtension\Context\DrupalContext;
 
 /**
@@ -276,7 +277,42 @@ class FeatureContext extends DrupalContext {
       $field,
       $value
     );
+
     return $this->getSession()->evaluateScript($js);
+  }
+
+  /**
+   * Inastall a theme with provided name.
+   *
+   * @When I install :name theme
+   */
+  public function installTheme($name) {
+    \Drupal::service('theme_installer')->install([$name]);
+  }
+
+  /**
+   * Uninstall a theme with provided name.
+   *
+   * @When I uninstall :name theme
+   */
+  public function uninstallTheme($name) {
+    try {
+      \Drupal::service('theme_installer')->uninstall([$name]);
+    }
+    catch (UnknownExtensionException $exception) {
+      print sprintf('The "%s" theme is not installed.', $name);
+    }
+  }
+
+  /**
+   * Set theme as default.
+   *
+   * @When I set :name theme as default
+   */
+  public function setThemAsDefault($name) {
+    \Drupal::service('config.factory')->getEditable('system.theme')
+      ->set('default', $name)
+      ->save();
   }
 
 }

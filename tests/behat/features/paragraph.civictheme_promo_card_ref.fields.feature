@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_promo_card_ref
-Feature: Tests the Promo reference card paragraph
-
-  Ensure that Promo reference card paragraph exists and has the expected fields.
+@civictheme @civictheme_promo_card_ref
+Feature: Promo reference card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

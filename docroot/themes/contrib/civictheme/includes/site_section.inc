@@ -5,8 +5,8 @@
  * Site section.
  */
 
-use Drupal\node\NodeInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\node\NodeInterface;
 
 /**
  * HTML pre-process for a site section.

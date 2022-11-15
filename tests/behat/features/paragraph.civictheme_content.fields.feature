@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_content
-Feature: Tests the Content paragraph
-
-  Ensure that Content paragraphs exists and has the expected fields.
+@civictheme @civictheme_content
+Feature: Content fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

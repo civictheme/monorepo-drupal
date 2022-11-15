@@ -45,7 +45,7 @@ function civictheme_styleguide_preprocess_page(&$variables) {
  * Implements hook_preprocess().
  */
 function civictheme_styleguide_preprocess(&$variables, $hook, &$info) {
-  if ($hook === 'styleguide_header' || $hook === 'styleguide_item' ||  $hook === 'styleguide_links') {
+  if ($hook === 'styleguide_header' || $hook === 'styleguide_item' || $hook === 'styleguide_links') {
     $path = \Drupal::service('extension.path.resolver')->getPath('module', 'civictheme_styleguide');
     $info['theme path'] = $path;
     $info['path'] = $path . '/templates';

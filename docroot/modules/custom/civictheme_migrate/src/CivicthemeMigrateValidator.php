@@ -10,6 +10,7 @@ use Opis\JsonSchema\Validator;
  * Validates uploaded migration source JSON files to confirm with schema.
  */
 class CivicthemeMigrateValidator {
+
   /**
    * Extension path resolver instance.
    *
@@ -67,7 +68,7 @@ class CivicthemeMigrateValidator {
    * @return array
    *   Array of error messages from validation.
    */
-  public function validate($data, $scheme_id):array {
+  public function validate($data, $scheme_id): array {
     $errors = [];
     if ($data === NULL) {
       return ['JSON is malformed / invalid.'];
@@ -79,6 +80,7 @@ class CivicthemeMigrateValidator {
       $formatted_errors = $formatter->formatFlat($validation_result->error());
       $errors = $formatted_errors;
     }
+
     return $errors;
   }
 
@@ -93,7 +95,7 @@ class CivicthemeMigrateValidator {
    * @return string
    *   URI scheme id.
    */
-  protected function getSchemeUrl(string $schema_id):string {
+  protected function getSchemeUrl(string $schema_id): string {
     return 'https://civictheme.io/api/migration/' . $schema_id;
   }
 

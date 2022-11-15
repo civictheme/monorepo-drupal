@@ -62,38 +62,19 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     #{$root}--wrapper {
-      @include ct-highlight-stripe-color($ct-callout-light-stripe-border-color);
-
-      background-color: $ct-callout-light-background-color;
+      @include ct-highlight-stripe-color(ct-component-var(ct-navigation, $theme, stripe, border-color));
+      @include ct-component-property($root, $theme, background-color);
     }
 
     .ct-callout {
       &__title {
-        color: $ct-callout-light-heading-color;
+        @include ct-component-property($root, $theme, heading, color);
       }
 
       &__summary {
-        color: $ct-callout-light-summary-color;
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    #{$root}--wrapper {
-      @include ct-highlight-stripe-color($ct-callout-dark-stripe-border-color);
-
-      background-color: $ct-callout-dark-background-color;
-    }
-
-    .ct-callout {
-      &__title {
-        color: $ct-callout-dark-heading-color;
-      }
-
-      &__summary {
-        color: $ct-callout-dark-summary-color;
+        @include ct-component-property($root, $theme, summary, color);
       }
     }
   }

@@ -151,6 +151,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -189,6 +192,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -227,6 +233,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -265,6 +274,9 @@ default:
                       uri: 'http://example.com'
                       title: 'http://example.com'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large

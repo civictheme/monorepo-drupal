@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.civictheme-primary-navigation
+  module:
+    - menu_block
+  theme:
+    - civictheme
+id: civictheme_side_navigation
+theme: civictheme
+region: sidebar
+weight: 0
+provider: null
+plugin: 'menu_block:civictheme-primary-navigation'
+settings:
+  id: 'menu_block:civictheme-primary-navigation'
+  label: 'Side Navigation'
+  label_display: ''
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  level: 1
+  depth: 3
+  expand_all_items: false
+  parent: 'civictheme-primary-navigation:'
+  suggestion: civictheme_primary_navigation
+  label_type: block
+  label_link: false
+visibility: {  }

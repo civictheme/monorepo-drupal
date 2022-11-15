@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_quick_links
-Feature: Tests the Quick links paragraph type and fields.
-
-  Ensure that Quick links paragraph exists and has the expected fields.
+@civictheme @civictheme_quick_links
+Feature: Quick links fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

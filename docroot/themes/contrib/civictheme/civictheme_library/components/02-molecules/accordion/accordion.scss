@@ -105,57 +105,32 @@
     }
   }
 
-  &.ct-theme-light {
-    color: $ct-accordion-light-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
     &.ct-accordion--with-background {
-      background-color: $ct-accordion-light-wrapper-background-color;
+      @include ct-component-property($root, $theme, wrapper, background-color);
+
       padding-left: $ct-accordion-space-horizontal;
       padding-right: $ct-accordion-space-horizontal;
     }
 
     #{$root}__header__button {
-      background-color: $ct-accordion-light-button-background-color;
-      color: $ct-accordion-light-button-color;
+      @include ct-component-property($root, $theme, button, background-color);
+      @include ct-component-property($root, $theme, button, color);
 
       svg {
-        fill: $ct-accordion-light-icon-color;
+        fill: ct-component-var($root, $theme, icon, color);
       }
     }
 
     #{$root}__list-item {
-      border-color: $ct-accordion-light-border-color;
-      border-left-color: $ct-accordion-light-stripe-border-color;
-      background-color: $ct-accordion-light-background-color;
+      @include ct-component-property($root, $theme, border-color);
 
-      @include ct-highlight-stripe-color($ct-accordion-light-stripe-border-color);
-    }
-  }
+      border-left-color: ct-component-var($root, $theme, stripe, border, color);
 
-  &.ct-theme-dark {
-    color: $ct-accordion-dark-color;
-
-    &.ct-accordion--with-background {
-      background-color: $ct-accordion-dark-wrapper-background-color;
-      padding-left: $ct-accordion-space-horizontal;
-      padding-right: $ct-accordion-space-horizontal;
-    }
-
-    #{$root}__header__button {
-      background-color: $ct-accordion-dark-button-background-color;
-      color: $ct-accordion-dark-button-color;
-
-      svg {
-        fill: $ct-accordion-dark-icon-color;
-      }
-    }
-
-    #{$root}__list-item {
-      border-color: $ct-accordion-dark-border-color;
-      border-left-color: $ct-accordion-dark-stripe-border-color;
-      background-color: $ct-accordion-dark-background-color;
-
-      @include ct-highlight-stripe-color($ct-accordion-dark-stripe-border-color);
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, border, color));
     }
   }
 }

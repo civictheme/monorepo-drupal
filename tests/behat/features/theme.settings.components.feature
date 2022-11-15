@@ -1,5 +1,5 @@
 @civictheme @civictheme_theme_settings
-Feature: Check that Components settings are available in theme settings
+Feature: Components settings are available in the theme settings
 
   Background:
     Given managed file:
@@ -20,41 +20,41 @@ Feature: Check that Components settings are available in theme settings
     And I should not see an "input#edit-toggle-comment-user-verification" element
     And I should see an "input#edit-toggle-favicon" element
 
-    And I see field "Logo image for primary in Light theme for desktop"
-    And I should see an "input#edit-components-logo-primary-light-image-primary-light-desktop" element
-    And I should not see an "input#edit-components-logo-primary-light-image-primary-light-desktop.required" element
+    And I see field "Image path for Primary Light logo for Desktop"
+    And I should see an "input#edit-components-logo-primary-light-desktop-path" element
+    And I should not see an "input#edit-components-logo-primary-light-desktop-path.required" element
 
-    And I see field "Logo image for primary in Light theme for mobile"
-    And I should see an "input#edit-components-logo-primary-light-image-primary-light-mobile" element
-    And I should not see an "input#edit-components-logo-primary-light-image-primary-light-mobile.required" element
+    And I see field "Image path for Primary Light logo for Mobile"
+    And I should see an "input#edit-components-logo-primary-light-mobile-path" element
+    And I should not see an "input#edit-components-logo-primary-light-mobile-path.required" element
 
-    And I see field "Logo image for primary in Dark theme for desktop"
-    And I should see an "input#edit-components-logo-primary-dark-image-primary-dark-desktop" element
-    And I should not see an "input#edit-components-logo-primary-dark-image-primary-dark-desktop.required" element
+    And I see field "Image path for Primary Dark logo for Desktop"
+    And I should see an "input#edit-components-logo-primary-dark-desktop-path" element
+    And I should not see an "input#edit-components-logo-primary-dark-desktop-path.required" element
 
-    And I see field "Logo image for primary in Dark theme for mobile"
-    And I should see an "input#edit-components-logo-primary-dark-image-primary-dark-mobile" element
-    And I should not see an "input#edit-components-logo-primary-dark-image-primary-dark-mobile.required" element
+    And I see field "Image path for Primary Dark logo for Mobile"
+    And I should see an "input#edit-components-logo-primary-dark-mobile-path" element
+    And I should not see an "input#edit-components-logo-primary-dark-mobile-path.required" element
 
-    And I see field "Logo image for secondary in Light theme for desktop"
-    And I should see an "input#edit-components-logo-secondary-light-image-secondary-light-desktop" element
-    And I should not see an "input#edit-components-logo-secondary-light-image-secondary-light-desktop.required" element
+    And I see field "Image path for Secondary Light logo for Desktop"
+    And I should see an "input#edit-components-logo-secondary-light-desktop-path" element
+    And I should not see an "input#edit-components-logo-secondary-light-desktop-path.required" element
 
-    And I see field "Logo image for secondary in Light theme for mobile"
-    And I should see an "input#edit-components-logo-secondary-light-image-secondary-light-mobile" element
-    And I should not see an "input#edit-components-logo-secondary-light-image-secondary-light-mobile.required" element
+    And I see field "Image path for Secondary Light logo for Mobile"
+    And I should see an "input#edit-components-logo-secondary-light-mobile-path" element
+    And I should not see an "input#edit-components-logo-secondary-light-mobile-path.required" element
 
-    And I see field "Logo image for secondary in Dark theme for desktop"
-    And I should see an "input#edit-components-logo-secondary-dark-image-secondary-dark-desktop" element
-    And I should not see an "input#edit-components-logo-secondary-dark-image-secondary-dark-desktop.required" element
+    And I see field "Image path for Secondary Dark logo for Desktop"
+    And I should see an "input#edit-components-logo-secondary-dark-desktop-path" element
+    And I should not see an "input#edit-components-logo-secondary-dark-desktop-path.required" element
 
-    And I see field "Logo image for secondary in Dark theme for mobile"
-    And I should see an "input#edit-components-logo-secondary-dark-image-secondary-dark-mobile" element
-    And I should not see an "input#edit-components-logo-secondary-dark-image-secondary-dark-mobile.required" element
+    And I see field "Image path for Secondary Dark logo for Mobile"
+    And I should see an "input#edit-components-logo-secondary-dark-mobile-path" element
+    And I should not see an "input#edit-components-logo-secondary-dark-mobile-path.required" element
 
     And I see field 'Logo image "alt" text'
     And I should see an "input[name='components[logo][image_alt]']" element
-    And I should not see an "edit-components-logo-image-alt.required" element
+    And I should not see an "edit-components-logo-alt.required" element
 
     And I should see the text "Theme"
     And I should see an "input[name='components[header][theme]']" element
@@ -65,8 +65,8 @@ Feature: Check that Components settings are available in theme settings
     And I should see an "#edit-components-footer-theme--wrapper.required" element
 
     And I see field "Footer background image path"
-    And should see an "input#edit-components-footer-background-image" element
-    And should not see an "input#edit-components-footer-background-image.required" element
+    And should see an "input#edit-components-footer-background-image-path" element
+    And should not see an "input#edit-components-footer-background-image-path.required" element
 
     And I should see the text "Primary navigation"
     And I should see an "select[name='components[navigation][primary_navigation][dropdown]']" element
@@ -124,10 +124,10 @@ Feature: Check that Components settings are available in theme settings
   Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
-    When I fill in "Logo image for primary in Light theme for desktop" with "public://civictheme_test/logo_light_desktop.jpg"
-    And I fill in "Logo image for primary in Light theme for mobile" with "public://civictheme_test/logo_light_mobile.jpg"
-    And I fill in "Logo image for primary in Dark theme for desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
-    And I fill in "Logo image for primary in Dark theme for mobile" with "public://civictheme_test/logo_dark_mobile.jpg"
+    When I fill in "Image path for Primary Light logo for Desktop" with "public://civictheme_test/logo_light_desktop.jpg"
+    And I fill in "Image path for Primary Light logo for Mobile" with "public://civictheme_test/logo_light_mobile.jpg"
+    And I fill in "Image path for Primary Dark logo for Desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
+    And I fill in "Image path for Primary Dark logo for Mobile" with "public://civictheme_test/logo_dark_mobile.jpg"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
     And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
@@ -145,10 +145,10 @@ Feature: Check that Components settings are available in theme settings
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
-    When I fill in "Logo image for primary in Light theme for desktop" with "sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I fill in "Logo image for primary in Light theme for mobile" with "sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I fill in "Logo image for primary in Dark theme for desktop" with "sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I fill in "Logo image for primary in Dark theme for mobile" with "sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    When I fill in "Image path for Primary Light logo for Desktop" with "sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I fill in "Image path for Primary Light logo for Mobile" with "sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I fill in "Image path for Primary Dark logo for Desktop" with "sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I fill in "Image path for Primary Dark logo for Mobile" with "sites/default/files/civictheme_test/logo_dark_mobile.jpg"
     And I fill in "Footer background image path" with "sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
@@ -158,36 +158,41 @@ Feature: Check that Components settings are available in theme settings
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
-  @api
-  Scenario: The CivicTheme theme settings verify failed custom logo configuration with static assets
+    # Assert with static assets prefixed with '/'.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
-    When I fill in "Logo image for primary in Light theme for desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I fill in "Logo image for primary in Light theme for mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I fill in "Logo image for primary in Dark theme for desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I fill in "Logo image for primary in Dark theme for mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
-    And I fill in "Logo image for secondary in Light theme for desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I fill in "Logo image for secondary in Light theme for mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I fill in "Logo image for secondary in Dark theme for desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I fill in "Logo image for secondary in Dark theme for mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    When I fill in "Image path for Primary Light logo for Desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I fill in "Image path for Primary Light logo for Mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I fill in "Image path for Primary Dark logo for Desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I fill in "Image path for Primary Dark logo for Mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I fill in "Image path for Secondary Light logo for Desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I fill in "Image path for Secondary Light logo for Mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I fill in "Image path for Secondary Dark logo for Desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I fill in "Image path for Secondary Dark logo for Mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
     And I fill in "Footer background image path" with "/sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
-    Then I should see the text "9 errors have been found"
+    Then I should see the text "The configuration options have been saved."
+    And I go to the homepage
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
-    When I attach the file "test_image_logo_light_desktop.jpg" to "Upload logo image for primary in Light theme for desktop"
-    And I attach the file "test_image_logo_light_mobile.jpg" to "Upload logo image for primary in Light theme for mobile"
-    And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload logo image for primary in Dark theme for desktop"
-    And I attach the file "test_image_logo_dark_mobile.jpg" to "Upload logo image for primary in Dark theme for mobile"
+    When I attach the file "test_image_logo_light_desktop.jpg" to "Upload Primary Light logo for Desktop"
+    And I attach the file "test_image_logo_light_mobile.jpg" to "Upload Primary Light logo for Mobile"
+    And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload Primary Dark logo for Desktop"
+    And I attach the file "test_image_logo_dark_mobile.jpg" to "Upload Primary Dark logo for Mobile"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
     And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
     And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
+    And save screenshot
 
   @api
   Scenario: The CivicTheme theme settings External Links component validation works.
