@@ -15,6 +15,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CivicthemeConfigManager implements ContainerInjectionInterface {
 
   /**
+   * Current active theme.
+   *
+   * @var \Drupal\Core\Theme\ActiveTheme
+   */
+  protected $theme;
+
+  /**
    * The config factory.
    *
    * @var \Drupal\Core\Config\ConfigFactory
@@ -39,6 +46,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   public function __construct(ConfigFactory $config_factory, ThemeManager $theme_manager) {
     $this->configFactory = $config_factory;
     $this->themeManager = $theme_manager;
+    $this->setTheme($this->themeManager->getActiveTheme());
   }
 
   /**
@@ -63,7 +71,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The value of the requested setting, NULL if the setting does not exist.
    */
   public function load($key, $default = NULL) {
-    return theme_get_setting($key, $this->themeManager->getActiveTheme()->getName()) ?? $default;
+    return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
   /**
@@ -78,9 +86,24 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   Instance of the current class.
    */
   public function save($key, $value) {
-    $theme_name = $this->themeManager->getActiveTheme()->getName();
+    $theme_name = $this->theme->getName();
     $config = $this->configFactory->getEditable("$theme_name.settings");
     $config->set($key, $value)->save();
+
+    return $this;
+  }
+
+  /**
+   * Set active theme.
+   *
+   * @param \Drupal\Core\Theme\ActiveTheme $theme
+   *   Active theme instance.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function setTheme($theme) {
+    $this->theme = $theme;
 
     return $this;
   }
