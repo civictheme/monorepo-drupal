@@ -76,6 +76,23 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   }
 
   /**
+   * Load configuration for a component with a provided key.
+   *
+   * @param string $name
+   *   Component name.
+   * @param string $key
+   *   The configuration key.
+   * @param mixed $default
+   *   Default value to return if the $key is not set. Defaults to NULL.
+   *
+   * @return mixed|null
+   *   The value of the requested setting, NULL if the setting does not exist.
+   */
+  public function loadForComponent($name, $key, $default = NULL) {
+    return $this->load("components.{$name}.{$key}", $default);
+  }
+
+  /**
    * Save configuration with provided key and a value.
    *
    * @param string $key
