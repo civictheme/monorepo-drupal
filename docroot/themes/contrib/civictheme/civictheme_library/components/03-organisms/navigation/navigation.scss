@@ -66,8 +66,6 @@
         &.ct-menu--level-0 {
           // First-level items to be displayed inline.
           display: flex;
-          padding-top: $ct-navigation-drawer-top-offset;
-          padding-bottom: $ct-navigation-drawer-top-offset;
         }
 
         .ct-menu__item {

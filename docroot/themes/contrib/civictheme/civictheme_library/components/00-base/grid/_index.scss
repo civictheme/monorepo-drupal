@@ -7,6 +7,10 @@
 .row {
   @include ct-row($ct-grid-gutters);
 
+  &--no-wrap {
+    flex-wrap: nowrap;
+  }
+
   &.reverse {
     @include ct-row-reverse();
   }
@@ -33,6 +37,10 @@
 
   &.reverse {
     @include ct-col-reverse();
+  }
+
+  &--no-grow {
+    flex-grow: initial;
   }
 }
 
