@@ -4,6 +4,7 @@ namespace Drupal\civictheme;
 
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -102,7 +103,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function setTheme($theme) {
+  public function setTheme(ActiveTheme $theme) {
     $this->theme = $theme;
 
     return $this;
