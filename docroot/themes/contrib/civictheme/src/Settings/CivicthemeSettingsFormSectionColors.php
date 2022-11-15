@@ -5,6 +5,7 @@ namespace Drupal\civictheme\Settings;
 use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -201,6 +202,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * Submit callback for theme settings form of colors.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function submitColors(array &$form, FormStateInterface $form_state) {
     // Remove grouping of Palette color values.
@@ -218,7 +220,11 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
       }
     }
 
-    $this->colorManager->invalidateCache();
+    // Invalidate caches only if changes were made.
+    if (Json::encode($form_state->getValue('colors')) != Json::encode($this->themeConfigManager->load('colors'))) {
+      $this->colorManager->invalidateCache();
+      $this->messenger->addMessage('Color selector cache was reset.');
+    }
   }
 
   /**

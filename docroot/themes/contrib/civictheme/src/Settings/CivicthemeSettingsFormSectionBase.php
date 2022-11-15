@@ -11,6 +11,7 @@ use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Theme\ThemeManager;
@@ -54,6 +55,13 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
   protected $fileUrlgenerator;
 
   /**
+   * The messenger.
+   *
+   * @var \Drupal\Core\Messenger\Messenger
+   */
+  protected $messenger;
+
+  /**
    * The config manager.
    *
    * @var \Drupal\Core\Config\ConfigManager
@@ -78,16 +86,19 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *   File system service.
    * @param \Drupal\Core\File\FileUrlGenerator $file_url_generator
    *   File URL generator.
+   * @param \Drupal\Core\Messenger\Messenger $messenger
+   *   Messenger.
    * @param \Drupal\Core\Config\ConfigManager $config_manager
    *   Config manager.
    * @param \Drupal\civictheme\CivicthemeConfigManager $civictheme_config_manager
    *   Theme config manager.
    */
-  public function __construct(ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, FileSystem $file_system, FileUrlGenerator $file_url_generator, ConfigManager $config_manager, CivicthemeConfigManager $civictheme_config_manager) {
+  public function __construct(ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, FileSystem $file_system, FileUrlGenerator $file_url_generator, Messenger $messenger, ConfigManager $config_manager, CivicthemeConfigManager $civictheme_config_manager) {
     $this->themeManager = $theme_manager;
     $this->themeExtensionList = $theme_extension_list;
     $this->fileSystem = $file_system;
     $this->fileUrlgenerator = $file_url_generator;
+    $this->messenger = $messenger;
     $this->configManager = $config_manager;
     $this->themeConfigManager = $civictheme_config_manager;
   }
@@ -101,6 +112,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
       $container->get('extension.list.theme'),
       $container->get('file_system'),
       $container->get('file_url_generator'),
+      $container->get('messenger'),
       $container->get('config.manager'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)
     );
