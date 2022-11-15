@@ -387,7 +387,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Form process callback.
    */
-  public function processForm(&$element, FormStateInterface $form_state, &$complete_form) {
+  public function processForm(&$element, FormStateInterface $form_state) {
     // Vertical tabs do not work correctly with a form element with
     // '#tree' = TRUE. The active tab is set to the element children by JS,
     // so we have to explicitly add it to the values that should be cleaned.
