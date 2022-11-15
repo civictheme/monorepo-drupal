@@ -320,6 +320,54 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.skip_link.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
+    $form['components']['navigation_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Navigation card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['navigation_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('navigation_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['publication_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Publication card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['publication_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['promo_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Promo card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['promo_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('promo_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
     // Auto-discover per-component validation and submit handlers.
     foreach (array_keys($form['components']) as $component_name) {
       $validate = CivicthemeUtility::camelise("validate_$component_name");

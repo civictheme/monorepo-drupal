@@ -1,9 +1,9 @@
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: themes/contrib/civictheme/dist/assets/favicon.ico
-  use_default: 0
+  use_default: false
 features:
-  favicon: 1
+  favicon: true
 components:
   logo:
     primary:
@@ -31,31 +31,38 @@ components:
     image_alt: 'Logo image'
   header:
     theme: light
-    logo_type: default
-  footer:
-    theme: dark
-    logo_type: default
-    background_image: ''
+    logo_type: inline
   navigation:
     primary_navigation:
       dropdown: drawer
-      dropdown_columns: ''
-      dropdown_columns_fill: 0
-      is_animated: 0
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
     secondary_navigation:
       dropdown: dropdown
-      dropdown_columns: ''
-      dropdown_columns_fill: 0
-      is_animated: 0
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
+  footer:
+    theme: dark
+    logo_type: stacked
+    background_image:
+      path: ''
   link:
-    new_window: 0
-    external_new_window: 1
+    new_window: false
+    external_new_window: true
     external_override_domains: {  }
   skip_link:
     theme: light
+  navigation_card:
+    summary_length: 160
+  promo_card:
+    summary_length: 160
+  publication_card:
+    summary_length: 160
 colors:
-  use_color_selector: 1
-  use_brand_colors: 1
+  use_color_selector: true
+  use_brand_colors: true
   brand:
     light:
       brand1: '#00698f'
@@ -66,6 +73,25 @@ colors:
       brand2: '#003a4f'
       brand3: '#006a8e'
   palette:
+    dark:
+      heading: '#f7fdff'
+      body: '#e7f9ff'
+      background_light: '#184c5f'
+      background: '#003a4f'
+      background_dark: '#001c26'
+      border_light: '#dfe6e9'
+      border: '#194d60'
+      border_dark: '#001c26'
+      interaction_text: '#003a4f'
+      interaction_background: '#61daff'
+      interaction_hover_text: '#001c26'
+      interaction_hover_background: '#c6f1ff'
+      interaction_focus: '#8a5cd7'
+      highlight: '#006a8e'
+      information: '#4dc4fd'
+      warning: '#e38444'
+      error: '#e85653'
+      success: '#14b0ae'
     light:
       background: '#e6e9eb'
       border: '#5c5d5e'
@@ -85,22 +111,3 @@ colors:
       warning: '#c95100'
       error: '#ce3936'
       success: '#008482'
-    dark:
-      background: '#003a4f'
-      border: '#194d60'
-      highlight: '#006a8e'
-      heading: '#f7fdff'
-      body: '#e7f9ff'
-      background_light: '#184c5f'
-      background_dark: '#001c26'
-      border_light: '#dfe6e9'
-      border_dark: '#001c26'
-      interaction_text: '#003a4f'
-      interaction_background: '#61daff'
-      interaction_hover_text: '#001c26'
-      interaction_hover_background: '#c6f1ff'
-      interaction_focus: '#8a5cd7'
-      information: '#4dc4fd'
-      warning: '#e38444'
-      error: '#e85653'
-      success: '#14b0ae'

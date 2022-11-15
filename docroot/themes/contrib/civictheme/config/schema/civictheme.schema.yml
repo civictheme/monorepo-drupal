@@ -115,7 +115,7 @@ civictheme.settings:
                   type: string
                 dropdown_columns:
                   label: 'Number of columns in dropdown'
-                  type: boolean
+                  type: integer
                 dropdown_columns_fill:
                   label: 'Fill width of the last dropdown row'
                   type: boolean
@@ -131,7 +131,7 @@ civictheme.settings:
                   type: string
                 dropdown_columns:
                   label: 'Number of columns in dropdown'
-                  type: boolean
+                  type: integer
                 dropdown_columns_fill:
                   label: 'Fill width of the last dropdown row'
                   type: boolean
@@ -177,6 +177,27 @@ civictheme.settings:
             theme:
               label: Theme
               type: string
+        navigation_card:
+          type: mapping
+          label: 'Navigation card settings'
+          mapping:
+            summary_length:
+              label: 'Summary length'
+              type: integer
+        promo_card:
+          type: mapping
+          label: 'Promo card settings'
+          mapping:
+            summary_length:
+              label: 'Summary length'
+              type: integer
+        publication_card:
+          type: mapping
+          label: 'Publication card settings'
+          mapping:
+            summary_length:
+              label: 'Summary length'
+              type: integer
     colors:
       type: mapping
       label: Colors
