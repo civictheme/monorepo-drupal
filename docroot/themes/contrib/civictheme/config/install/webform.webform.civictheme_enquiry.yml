@@ -53,7 +53,7 @@ elements: |-
     '#title': 'Subscribe to list'
     '#options':
       update: Updates
-      marketing: marketing
+      marketing: Marketing
       promotion: Promotion
     '#options_all': true
     '#options_all_text': All
