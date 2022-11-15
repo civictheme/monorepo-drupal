@@ -17,13 +17,14 @@
  * of CIVICTHEME_CONTENT_PROFILE to 'none'.
  */
 
+use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Installer\Exception\InstallerException;
 
 /**
  * Implements hook_install().
  *
- * Enable sub-modules baased on the value of CIVICTHEME_CONTENT_PROFILE
+ * Enable sub-modules based on the value of CIVICTHEME_CONTENT_PROFILE
  * environment variable.
  *
  * If 'none' is specified - none of the sub-modules will be enabled.
@@ -45,7 +46,7 @@ function civictheme_content_install() {
     return substr($value, strlen('civictheme_content_'));
   }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules'), ['..', '.']));
 
-  if (in_array($content_profile, $existing_content_profiles)) {
+  if (!in_array($content_profile, $existing_content_profiles)) {
     // Show as a warning message, but do not fail the installation.
     Helper::log(t('Unsupported content profile provided: %name.', [
       '%name' => $content_profile,
@@ -68,24 +69,25 @@ function civictheme_content_install() {
 }
 
 /**
- * Install sub-module of this module.
+ * Install submodule of this module.
  */
 function _civictheme_content_install_submodule($module) {
   $active_theme = \Drupal::theme()->getActiveTheme();
-  $active_theme_name = $active_theme->getName();
-
   // Only proceed if current theme is CivicTheme, or it's sub-theme so that
   // content could be applied only to expected configurations.
-  if (!Helper::themeIsSubtheme($active_theme->getName(), 'civictheme')) {
+  if (!array_key_exists('civictheme', $active_theme->getBaseThemeExtensions())) {
     return;
   }
 
-  Helper::importConfigs(
+  $config_importer = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class);
+  // Import config from the 'config/optional' directory of the submodule being
+  // installed.
+  $config_importer->importConfigs(
     \Drupal::moduleHandler()->getModule($module)->getPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'optional',
     [
       'civictheme-' => FALSE,
       'civictheme_content' => FALSE,
-      'civictheme' => $active_theme_name,
+      'civictheme' => $active_theme->getName(),
     ]
   );
 }
