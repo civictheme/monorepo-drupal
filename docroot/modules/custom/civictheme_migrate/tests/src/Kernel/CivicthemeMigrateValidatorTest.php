@@ -31,7 +31,7 @@ class CivicthemeMigrateValidatorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp():void {
+  protected function setUp(): void {
     parent::setUp();
     $this->validator = new CivicthemeMigrateValidator(
       new Validator(),

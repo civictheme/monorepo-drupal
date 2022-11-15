@@ -4,4 +4,5 @@ description: 'Default content for CivicTheme theme. One of the sub-modules needs
 core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
+  - drupal:config
   - default_content:default_content

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_publication_card
-Feature: Tests the CivicTheme publication card
-
-  Ensure that CivicTheme publication card paragraph exists and has the expected fields.
+@civictheme @civictheme_publication_card
+Feature: Publication card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

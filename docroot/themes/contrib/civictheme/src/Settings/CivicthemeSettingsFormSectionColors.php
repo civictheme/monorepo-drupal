@@ -5,6 +5,7 @@ namespace Drupal\civictheme\Settings;
 use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -76,13 +77,13 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
     $form['colors']['use_color_selector'] = [
       '#title' => $this->t('Use Color Selector'),
       '#type' => 'checkbox',
-      '#default_value' => theme_get_setting('colors.use_color_selector') ?? FALSE,
+      '#default_value' => $this->themeConfigManager->load('colors.use_color_selector', FALSE),
     ];
 
     $form['colors']['use_brand_colors'] = [
       '#title' => $this->t('Use Brand colors'),
       '#type' => 'checkbox',
-      '#default_value' => theme_get_setting('colors.use_brand_colors') ?? TRUE,
+      '#default_value' => $this->themeConfigManager->load('colors.use_brand_colors', TRUE),
       '#states' => [
         'visible' => [
           'input[name="colors[use_color_selector]"' => ['checked' => TRUE],
@@ -146,7 +147,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
           '#type' => 'color',
           '#title_display' => 'after',
           '#title' => CivicthemeUtility::toLabel($name),
-          '#default_value' => theme_get_setting($setting_name) ?? ($theme == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff'),
+          '#default_value' => $this->themeConfigManager->load($setting_name, $theme == CivicthemeConstants::THEME_LIGHT ? '#000000' : '#ffffff'),
           '#attributes' => [
             'class' => ['civictheme-input-color'],
           ],
@@ -180,7 +181,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
             '#type' => 'color',
             '#title_display' => 'after',
             '#title' => CivicthemeUtility::toLabel($name),
-            '#default_value' => theme_get_setting($setting_name) ?? $value['value'],
+            '#default_value' => $this->themeConfigManager->load($setting_name, $value['value']),
             '#tree' => TRUE,
             '#attributes' => [
               'class' => ['civictheme-input-color'],
@@ -201,6 +202,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * Submit callback for theme settings form of colors.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function submitColors(array &$form, FormStateInterface $form_state) {
     // Remove grouping of Palette color values.
@@ -218,7 +220,11 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
       }
     }
 
-    $this->colorManager->invalidateCache();
+    // Invalidate caches only if changes were made.
+    if (Json::encode($form_state->getValue('colors')) != Json::encode($this->themeConfigManager->load('colors'))) {
+      $this->colorManager->invalidateCache();
+      $this->messenger->addMessage('Color selector cache was reset.');
+    }
   }
 
   /**

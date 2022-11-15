@@ -3,6 +3,8 @@
 //
 
 .ct-map {
+  $root: &;
+
   &__canvas {
     position: relative;
     height: 0;
@@ -32,21 +34,12 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-map-light-background-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     &.ct-map--with-background {
-      background-color: $ct-map-light-wrapper-background-color;
-      padding-left: $ct-map-space-horizontal;
-      padding-right: $ct-map-space-horizontal;
-    }
-  }
+      @include ct-component-property($root, $theme, wrapper, background-color);
 
-  &.ct-theme-dark {
-    background-color: $ct-map-dark-background-color;
-
-    &.ct-map--with-background {
-      background-color: $ct-map-dark-wrapper-background-color;
       padding-left: $ct-map-space-horizontal;
       padding-right: $ct-map-space-horizontal;
     }

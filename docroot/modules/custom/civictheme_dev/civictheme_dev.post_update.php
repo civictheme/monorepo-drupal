@@ -101,9 +101,27 @@ function civictheme_dev_post_update_update_testmode_settings() {
 }
 
 /**
- * Updates Simple Sitemap configuration to include views.
+ * Updates Simple Sitemap configuration to include nodes and views.
  */
 function civictheme_dev_post_update_update_simplesitemap() {
+  if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    \Drupal::service('module_installer')->install(['simple_sitemap']);
+  }
+
+  $settings = [
+    'index' => TRUE,
+    'priority' => 0.5,
+    'changefreq' => 'hourly',
+    'include_images' => FALSE,
+  ];
+
+  $bundles = ['civictheme_page', 'civictheme_event'];
+  foreach ($bundles as $bundle) {
+    \Drupal::service('simple_sitemap.generator')->entityManager()->setBundleSettings('node', $bundle, $settings);
+  }
+
+  \Drupal::service('simple_sitemap.generator')->customLinkManager()->add('/', $settings);
+
   /** @var \Drupal\simple_sitemap\Entity\SimpleSitemapTypeStorage $type_storage */
   $type_storage = \Drupal::entityTypeManager()->getStorage('simple_sitemap_type');
   $type = $type_storage->load('default_hreflang');

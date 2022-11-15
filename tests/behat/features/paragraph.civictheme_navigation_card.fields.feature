@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_navigation_card
-Feature: Tests the Manual List paragraph
-
-  Ensure that Manual List paragraph exists and has the expected fields.
+@civictheme @civictheme_navigation_card
+Feature: Navigation card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -57,5 +55,6 @@ Feature: Tests the Manual List paragraph
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_show_image_as_icon][value]']" element
     And I should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]']" element
+    And I should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][title]']" element

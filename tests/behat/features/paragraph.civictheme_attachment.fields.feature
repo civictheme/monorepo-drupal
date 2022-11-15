@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_attachment
-Feature: Tests the Attachment
-
-  Ensure that Attachment paragraph exists and has the expected fields.
+@civictheme @civictheme_attachment
+Feature: Attachment fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

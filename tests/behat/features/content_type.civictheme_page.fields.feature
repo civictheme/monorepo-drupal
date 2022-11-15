@@ -1,7 +1,5 @@
 @civictheme @content_type @civictheme_page
-Feature: Fields on CivicTheme Event content type
-
-  Ensure that fields have been setup correctly.
+Feature: CivicTheme Page content type fields
 
   @api
   Scenario: CivicTheme Page content type exists with fields

@@ -30,10 +30,18 @@
   {% endif %}
 
   {% if show_site_name and site_name %}
-    <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: site_name,
+      url: path('<front>'),
+      attributes: 'rel="home"'
+    } only %}
   {% endif %}
 
   {% if show_site_slogan and site_slogan %}
-    {{ site_slogan }}
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: site_slogan
+    } only %}
   {% endif %}
 {% endblock %}

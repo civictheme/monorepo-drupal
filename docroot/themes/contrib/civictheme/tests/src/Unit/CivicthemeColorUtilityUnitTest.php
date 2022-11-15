@@ -11,7 +11,7 @@ use Drupal\civictheme\Color\CivicthemeColorUtility;
  *
  * @group CivicTheme
  */
-class CivicthemeColorUtilityUnitTest extends CivicThemeUnitTestBase {
+class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
 
   /**
    * Test for normalizeHex().

@@ -5,6 +5,8 @@
  * Paragraph theme alterations.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
@@ -71,7 +73,11 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
-    $variables['summary'] = text_summary(civictheme_get_field_value($paragraph, 'field_c_p_summary'), NULL, 100);
+    $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_summary');
+    $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $paragraph->bundle()), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+    if ($length) {
+      $variables['summary'] = text_summary($variables['summary'], NULL, $length);
+    }
   }
 }
 

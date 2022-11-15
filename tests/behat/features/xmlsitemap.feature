@@ -1,8 +1,6 @@
 @civictheme @xmlsitemap
 Feature: XML Sitemap
 
-  Ensure that the XML Sitemap exists.
-
   @api
   Scenario: XML Sitemap is accessible
 

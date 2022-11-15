@@ -9,7 +9,10 @@
 
 {% if show_content_top2 %}
   {% set content_top2 %}
-    Visually engaging digital experiences
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: 'A design system by Salsa Digital'
+    } only %}
   {% endset %}
 {% endif %}
 

@@ -27,4 +27,23 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
     return count($entities) > 0 ? reset($entities) : NULL;
   }
 
+  /**
+   * Generate a pre-defined static external URL.
+   *
+   * @param string|bool $domain
+   *   (optional) Domain name. Defaults to 'www.example.com'.
+   *
+   * @return string
+   *   URL with a path.
+   */
+  public static function staticUrl($domain = FALSE) {
+    $parts = [];
+    $parts[] = 'https://';
+    $parts[] = $domain ? rtrim($domain, '/') : 'www.example.com';
+    $parts[] = '/';
+    $parts[] = str_replace(' ', '-', static::staticSentence());
+
+    return implode('', $parts);
+  }
+
 }

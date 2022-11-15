@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - civictheme
+id: civictheme_search
+theme: civictheme
+region: header_middle_3
+weight: 0
+provider: null
+plugin: 'block_content:286ff750-a9a9-423a-8a4e-515f79fc0a8f'
+settings:
+  id: 'block_content:286ff750-a9a9-423a-8a4e-515f79fc0a8f'
+  label: Search
+  label_display: ''
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

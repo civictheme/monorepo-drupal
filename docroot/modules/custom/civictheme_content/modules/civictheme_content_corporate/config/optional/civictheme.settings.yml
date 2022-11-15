@@ -1,0 +1,106 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/favicon.ico
+  use_default: 1
+features:
+  favicon: 1
+components:
+  logo:
+    primary:
+      light:
+        desktop:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_primary_light_desktop.png
+        mobile:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_primary_light_mobile.png
+      dark:
+        desktop:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_primary_dark_desktop.png
+        mobile:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_primary_dark_mobile.png
+    secondary:
+      light:
+        desktop:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_secondary_light_desktop.png
+        mobile:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_secondary_light_mobile.png
+      dark:
+        desktop:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_secondary_dark_desktop.png
+        mobile:
+          path: modules/custom/civictheme_content/modules/civictheme_content_corporate/assets/logos/logo_secondary_dark_mobile.png
+    image_alt: 'Logo image'
+  header:
+    theme: light
+    logo_type: default
+  footer:
+    theme: dark
+    logo_type: default
+    background_image: ''
+  navigation:
+    primary_navigation:
+      dropdown: drawer
+      dropdown_columns: ''
+      dropdown_columns_fill: 0
+      is_animated: 0
+    secondary_navigation:
+      dropdown: dropdown
+      dropdown_columns: ''
+      dropdown_columns_fill: 0
+      is_animated: 0
+  link:
+    new_window: 0
+    external_new_window: 1
+    external_override_domains: {  }
+  skip_link:
+    theme: light
+colors:
+  use_color_selector: 1
+  use_brand_colors: 1
+  brand:
+    light:
+      brand1: '#00698f'
+      brand2: '#e6e9eb'
+      brand3: '#121313'
+    dark:
+      brand1: '#61daff'
+      brand2: '#003a4f'
+      brand3: '#006a8e'
+  palette:
+    light:
+      background: '#e6e9eb'
+      border: '#5c5d5e'
+      highlight: '#121313'
+      heading: '#002a39'
+      body: '#334349'
+      background_light: '#fcfcfd'
+      background_dark: '#b8babc'
+      border_light: '#acaeb0'
+      border_dark: '#161717'
+      interaction_text: '#fafafb'
+      interaction_background: '#00698f'
+      interaction_hover_text: '#fafafb'
+      interaction_hover_background: '#003f55'
+      interaction_focus: '#855cd7'
+      information: '#007ebd'
+      warning: '#c95100'
+      error: '#ce3936'
+      success: '#008482'
+    dark:
+      background: '#003a4f'
+      border: '#194d60'
+      highlight: '#006a8e'
+      heading: '#f7fdff'
+      body: '#e7f9ff'
+      background_light: '#184c5f'
+      background_dark: '#001c26'
+      border_light: '#dfe6e9'
+      border_dark: '#001c26'
+      interaction_text: '#003a4f'
+      interaction_background: '#61daff'
+      interaction_hover_text: '#001c26'
+      interaction_hover_background: '#c6f1ff'
+      interaction_focus: '#8a5cd7'
+      information: '#4dc4fd'
+      warning: '#e38444'
+      error: '#e85653'
+      success: '#14b0ae'

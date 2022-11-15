@@ -1,5 +1,5 @@
 @civictheme @block_type @block_civictheme_mobile_navigation
-Feature: Tests the CivicTheme Mobile Navigation
+Feature: Mobile Navigation block fields
 
   @api
   Scenario: Custom Block type appears in Block Type listing

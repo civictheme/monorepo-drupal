@@ -1,7 +1,5 @@
-@civictheme @civictheme_page
-Feature: View of Page content type
-
-  Ensure that Page content can be viewed correctly.
+@civictheme @content_type @civictheme_page
+Feature: CivicTheme Page content type access
 
   Background:
     Given civictheme_page content:

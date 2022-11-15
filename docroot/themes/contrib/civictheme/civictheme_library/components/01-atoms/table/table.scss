@@ -7,11 +7,7 @@
 
   @include ct-table();
 
-  &.ct-theme-light {
-    @include ct-table-light();
-  }
-
-  &.ct-theme-dark {
-    @include ct-table-dark();
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-table-theme($theme);
   }
 }

@@ -10,7 +10,7 @@ entity_type: paragraph
 bundle: civictheme_publication_card
 label: Summary
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''

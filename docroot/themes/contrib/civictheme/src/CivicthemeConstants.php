@@ -121,4 +121,9 @@ final class CivicthemeConstants {
    */
   const NAVIGATION_DROPDOWN_DRAWER = 'drawer';
 
+  /**
+   * Defines card summary length.
+   */
+  const CARD_SUMMARY_DEFAULT_LENGTH = 160;
+
 }

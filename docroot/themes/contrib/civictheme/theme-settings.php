@@ -14,6 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state) {
+  /** @var \Drupal\civictheme\CivicthemeSettingsFormManager $settings */
   $settings = \Drupal::classResolver(CivicthemeSettingsFormManager::class);
   $settings->form($form, $form_state);
 }
