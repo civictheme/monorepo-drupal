@@ -12,6 +12,7 @@ dependencies:
   - ckeditor:ckeditor
   - components:components
   - drupal:block_content
+  - drupal:config
   - drupal:content_moderation
   - drupal:datetime_range
   - drupal:help
