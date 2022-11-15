@@ -28,7 +28,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   public function form(&$form, FormStateInterface &$form_state) {
     $form['components'] = [
       '#type' => 'vertical_tabs',
-      '#title' => $this->t('CivicTheme components'),
+      '#title' => $this->t('Components'),
       '#weight' => 50,
       '#tree' => TRUE,
     ];

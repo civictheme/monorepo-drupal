@@ -327,6 +327,13 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   protected function replaceTokens($data, array $tokens = []) {
+    foreach ($tokens as $k => $v) {
+      $key = str_replace('/', '\/', $k);
+      $value = $v ? str_replace('/', '\/', $v) : $v;
+      unset($tokens[$k]);
+      $tokens[$key] = $value;
+    }
+
     $replace = array_filter($tokens);
     // Retrieve tokens that should be preserved.
     $preserve = array_diff_key($tokens, $replace);
@@ -339,7 +346,6 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
     }
 
     $encoded = Json::encode($data);
-
     $encoded = strtr($encoded, $preserve_in);
     $encoded = strtr($encoded, $replace);
     $encoded = strtr($encoded, $preserve_out);
