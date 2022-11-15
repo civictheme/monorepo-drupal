@@ -14,6 +14,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\File\FileSystemInterface;
@@ -37,7 +38,7 @@ use Drush\Drush;
 function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStateInterface $form_state) {
   $form['provision_content'] = [
     '#type' => 'details',
-    '#title' => t('CivicTheme content provisioning'),
+    '#title' => t('Content provisioning'),
     // @todo Improve content creation by allowing to skip overwriting of the
     // existing items.
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
@@ -84,6 +85,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
 function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
   $form_state->addCleanValueKey('provision_types');
   $form_state->addCleanValueKey('provision_clear_cache');
+
   return $element;
 }
 
@@ -129,7 +131,7 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
           continue;
         }
 
-        \Drupal::messenger()->addError(t('Unable to provision @type: @message.', [
+        \Drupal::messenger()->addError(t('Unable to provision @type: @message', [
           '@type' => $type,
           '@message' => $result ?: t('Unknown reason'),
         ]));
@@ -394,7 +396,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid) {
 function civictheme_provision_place_block($label, $region, $uuid = NULL, array $settings = [], $block_type = 'block_content') {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
 
-  $label_machine_name = preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
+  $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
   $id = $theme_name . '_' . $label_machine_name;
   $base_theme_id = 'civictheme_' . $label_machine_name;
   $settings += [
@@ -629,7 +631,7 @@ function civictheme_provision__menu_links() {
  */
 function civictheme_provision__blocks() {
   _civictheme_provision__blocks__menu_blocks();
-  $blocks = _civictheme_get_theme_block();
+  $blocks = _civictheme_get_theme_blocks();
   foreach ($blocks as $block) {
     call_user_func($block['builder'], $block);
   }
@@ -801,7 +803,9 @@ function _civictheme_provision__blocks__social_links(array $block) {
   $block_content->field_c_b_theme = 'dark';
   $block_content->field_c_b_with_border = TRUE;
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+    'label_machine_name' => 'footer_social_links',
+  ]);
 }
 
 /**
@@ -824,7 +828,9 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block) 
   $paragraph->field_c_p_theme = 'dark';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+    'label_machine_name' => 'footer_acknowledgment_of_country',
+  ]);
 }
 
 /**
@@ -841,13 +847,15 @@ function _civictheme_provision__blocks__copyright(array $block) {
     'type' => 'civictheme_content',
   ]);
   $paragraph->field_c_p_content = [
-    'value' => "<p>© Commonwealth of Australia</p>\r\n",
+    'value' => "<p class=\"text-align-right\">©2022 Commonwealth of Australia</p>\r\n",
     'format' => 'civictheme_rich_text',
   ];
   $paragraph->field_c_p_theme = 'dark';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+    'label_machine_name' => 'footer_copyright',
+  ]);
 }
 
 /**
@@ -859,52 +867,19 @@ function civictheme_provision__theme_settings() {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
-  $components = [];
-
-  $components['logo'] = [];
-
-  // Do not use constants as they may be not available when provisioning
-  // through CLI.
-  $themes = [
-    'light',
-    'dark',
-  ];
-  $breakpoints = ['desktop', 'mobile'];
-  $logo_types = ['primary', 'secondary'];
-  foreach ($themes as $theme) {
-    foreach ($logo_types as $logo_type) {
-      foreach ($breakpoints as $breakpoint) {
-        $components['logo'][$logo_type][$theme][$breakpoint]['path'] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
-      }
-    }
-  }
-  $components['logo']['image_alt'] = 'CivicTheme demo logo';
-  $components['header']['theme'] = 'light';
-  $components['header']['logo_type'] = 'default';
-  $components['footer']['theme'] = 'dark';
-  $components['footer']['logo_type'] = 'default';
-
-  $components['navigation']['primary_navigation']['dropdown'] = 'drawer';
-  $components['navigation']['primary_navigation']['dropdown_columns'] = 4;
-  $components['navigation']['primary_navigation']['dropdown_columns_fill'] = FALSE;
-  $components['navigation']['primary_navigation']['is_animated'] = FALSE;
-
-  $components['navigation']['secondary_navigation']['dropdown'] = 'dropdown';
-  $components['navigation']['secondary_navigation']['dropdown_columns'] = 4;
-  $components['navigation']['secondary_navigation']['dropdown_columns_fill'] = FALSE;
-  $components['navigation']['secondary_navigation']['is_animated'] = FALSE;
-
-  $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
-
-  $config->set('components', $components);
-
-  $config->set('favicon', [
-    'use_default' => FALSE,
-    'path' => "$theme_path/dist/assets/favicon.ico",
-    'mimetype' => 'image/vnd.microsoft.icon',
-  ]);
-
-  $config->save();
+  /** @var \Drupal\civictheme\CivicthemeConfigImporter $config_importer */
+  $config_importer = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class);
+  // Import config from the 'config/optional' directory of the submodule being
+  // installed.
+  $config_importer->importSingleConfig(
+    'civictheme.settings',
+    \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'install',
+    "$theme_name.settings",
+    [
+      'themes/contrib/civictheme' => $theme_path,
+      'civictheme' => $theme_name,
+    ]
+  );
 }
 
 /**
@@ -1052,7 +1027,7 @@ function civictheme_enable_modules() {
 /**
  * Map of blocks to be created.
  */
-function _civictheme_get_theme_block() {
+function _civictheme_get_theme_blocks() {
   $blocks = [
     'civictheme_banner' =>
       [
