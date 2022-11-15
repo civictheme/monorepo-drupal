@@ -91,3 +91,21 @@ function _civictheme_content_install_submodule($module) {
     ]
   );
 }
+
+/**
+ * Common updates to be run by all content modules.
+ */
+function civictheme_content_post_update_common() {
+  // Site site slogan.
+  \Drupal::service('config.factory')->getEditable('system.site')
+    ->set('slogan', 'A design system by Salsa Digital')
+    ->save();
+
+  // Provision content using provision file, if it exists.
+  $provision_file = \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
+  if (is_file($provision_file)) {
+    require_once $provision_file;
+    // Provision user permissions.
+    civictheme_provision__permissions();
+  }
+}
