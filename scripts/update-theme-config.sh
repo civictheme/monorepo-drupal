@@ -5,6 +5,9 @@
 # Usage:
 # ./scripts/update-theme-config.sh
 #
+# Caveat: configs in 'optional' section should be added to
+# the $EXCLUDED_CONFIGS_FILE file.
+#
 
 set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
@@ -32,7 +35,7 @@ echo "==> Updating theme config"
 [ ! -f "${THEME_INFO}" ] && "ERROR: ${THEME_INFO} does not exist"
 
 # Remove temp directories that may exist from the previous run.
-#rm -Rf "${TMP_DIR_EXPORTED:?}" > /dev/null || true
+rm -Rf "${TMP_DIR_EXPORTED:?}" > /dev/null || true
 rm -Rf "${TMP_FILE:?}" > /dev/null || true
 
 # Create temp dirs.
