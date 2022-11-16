@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 101f26af-f514-4dd3-b851-24210d0e7bcc
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    09b61f99-900d-4250-acc6-37afa20bdb43: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: icon2.svg
+  created:
+    -
+      value: 1668590317
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 09b61f99-900d-4250-acc6-37afa20bdb43
+      alt: 'Person icon'
+      title: ''
+      width: 0
+      height: 0

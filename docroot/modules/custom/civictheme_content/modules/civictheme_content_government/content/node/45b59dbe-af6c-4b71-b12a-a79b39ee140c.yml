@@ -6,7 +6,11 @@ _meta:
   default_langcode: en
   depends:
     af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+    46e3b9fa-8570-4bf0-99e9-81a2a6b83740: media
     d7bf9d16-d499-459b-8199-ef3590fe807f: node
+    101f26af-f514-4dd3-b851-24210d0e7bcc: media
+    1e467ce6-d7e1-4db7-85b6-1be40b734e1a: media
+    5c8f6cba-a08f-4e2b-ab7c-9c3c1736dc4c: media
     e0c710e3-6eeb-4ea5-b656-0fa728b389b8: media
     9a81d79d-79da-4bc4-8584-27c411248d3e: media
     e7acc411-519a-4735-80a6-c0bc7dfb61f3: media
@@ -74,9 +78,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -137,9 +138,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
+                  field_c_p_image:
                     -
-                      value: true
+                      entity: 46e3b9fa-8570-4bf0-99e9-81a2a6b83740
                   field_c_p_link:
                     -
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
@@ -156,7 +157,7 @@ default:
                       value: 'Creating opportunities and driving better outcomes through access to education and learning.'
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Employment and education'
@@ -181,6 +182,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_image:
+                    -
+                      entity: 101f26af-f514-4dd3-b851-24210d0e7bcc
                   field_c_p_link:
                     -
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
@@ -197,7 +201,7 @@ default:
                       value: 'See how we administer the immigration and citizenship program and our migration levels.'
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Immigration and citizenship'
@@ -222,6 +226,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_image:
+                    -
+                      entity: 1e467ce6-d7e1-4db7-85b6-1be40b734e1a
                   field_c_p_link:
                     -
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
@@ -238,7 +245,7 @@ default:
                       value: 'We aim to provide services in a non-discriminatory, equitable and efficient manner.'
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Health and disability'
@@ -263,6 +270,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_image:
+                    -
+                      entity: 5c8f6cba-a08f-4e2b-ab7c-9c3c1736dc4c
                   field_c_p_link:
                     -
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
@@ -279,13 +289,13 @@ default:
                       value: 'Delivered to help address basic needs in times of crises such as financial distress or hardship.'
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Emergency relief services'
           field_c_p_theme:
             -
-              value: light
+              value: dark
   field_c_n_banner_featured_image:
     -
       entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
@@ -320,9 +330,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -351,9 +358,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9a81d79d-79da-4bc4-8584-27c411248d3e
@@ -395,9 +399,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
@@ -439,9 +440,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
@@ -497,9 +495,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -528,9 +523,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-12'
@@ -574,9 +566,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-01'
@@ -620,9 +609,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-21'
@@ -677,9 +663,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content:
             -
               value: "<p>A citizenship ceremony is where you make the pledge of commitment, this is the final step in the journey to becoming an Australian.</p>\r\n\r\n<p><a class=\"ct-button ct-theme-light ct-button--primary ct-button--regular\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"

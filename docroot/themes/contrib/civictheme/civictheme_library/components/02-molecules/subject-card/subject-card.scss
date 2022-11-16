@@ -7,6 +7,8 @@
 
   width: 100%;
 
+  @include ct-elevation-interaction();
+
   &__image-wrapper {
     position: relative;
     border-radius: $ct-subject-card-border-radius;
@@ -18,12 +20,6 @@
     min-height: $ct-subject-card-image-height-mobile;
     min-width: $ct-subject-card-image-width-mobile;
     width: 100%;
-
-    @include ct-elevation(3);
-
-    &:focus-within {
-      @include ct-outline();
-    }
 
     @include ct-breakpoint('m') {
       padding: ct-spacing(3);
