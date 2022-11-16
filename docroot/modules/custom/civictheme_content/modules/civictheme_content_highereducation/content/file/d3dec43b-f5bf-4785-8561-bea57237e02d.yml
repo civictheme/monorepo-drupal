@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d3dec43b-f5bf-4785-8561-bea57237e02d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Placeholder.png
+  uri:
+    -
+      value: 'public://images/2022-10/Placeholder.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 4238
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666102116

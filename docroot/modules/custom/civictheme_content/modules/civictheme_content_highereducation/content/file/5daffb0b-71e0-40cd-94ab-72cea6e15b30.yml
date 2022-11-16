@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5daffb0b-71e0-40cd-94ab-72cea6e15b30
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: universityranked.png
+  uri:
+    -
+      value: 'public://images/2022-10/universityranked.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 235088
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666097499

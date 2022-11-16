@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: cac181f2-fa1e-4a8e-9e30-6dc57124f8bc
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Alzheimer’s Association.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Alzheimer’s Association.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 56132
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666104163

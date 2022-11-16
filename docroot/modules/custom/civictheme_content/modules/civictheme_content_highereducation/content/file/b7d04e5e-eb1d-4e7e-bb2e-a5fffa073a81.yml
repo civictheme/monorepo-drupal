@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b7d04e5e-eb1d-4e7e-bb2e-a5fffa073a81
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'frankie-lopez-lXy07zu3NN4-unsplash 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/frankie-lopez-lXy07zu3NN4-unsplash 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 196605
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666109519

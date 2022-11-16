@@ -1,0 +1,605 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 43d8c204-e1e5-436c-b23a-861a2f2f743a
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+    aadedf42-c600-4397-9e6b-5b85e20f1d6a: media
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
+    afe262f2-18fb-4dd9-b4e2-4f4482766cde: media
+    ece7dd42-dc11-4d3d-becf-1b0bfad61fb2: media
+    ba25bcb8-b010-4d47-8765-1f9f2b1309a0: media
+    738f9580-7a92-4a92-9b0a-30d191f49737: media
+    20b3c516-3834-4eff-b24f-d67d17464c9c: media
+    7b02f9f8-0b74-475b-98cb-efb080b09929: media
+    23bc48fc-9abc-4e61-be57-f73be8ec5328: media
+    d1a149ce-4422-4767-aef1-1a22ae4e2193: media
+    2293c43c-5b29-45f6-9b58-51344002758a: media
+    052ab323-9e65-4c7b-8c5c-e16277731a30: media
+    c4254aad-8fe9-4e9d-abba-1aab19dcec78: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Partnerships
+  created:
+    -
+      value: 1666102822
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /partnerships
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8d729d92-2c70-4832-a59d-46611988d290
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666102848
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University partners with a variety of corporate and not-for-profit organisations. Together, we work on many different research projects.</span></p><p><span>We also work with corporate organisations to bring products and innovative solutions to the market.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: normal
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bbafcb70-bb6f-4a9c-ae24-3aba31231cf8
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666102879
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e826601b-df32-41e9-bca0-2cd8e31a9653
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666102886
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: aadedf42-c600-4397-9e6b-5b85e20f1d6a
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Johnson & Johnson'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Johnson & Johnson'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 27330aa5-598f-4fbe-b9a1-4e06a928430c
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103658
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: afe262f2-18fb-4dd9-b4e2-4f4482766cde
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: Pfizer
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: Pfizer
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4a742f8e-9237-48c8-9839-cce45f7fb1e7
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103702
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: ece7dd42-dc11-4d3d-becf-1b0bfad61fb2
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: Deloitte
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: Deloitte
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 39979371-e159-4b8f-8af1-155248ec6be4
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103754
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: ba25bcb8-b010-4d47-8765-1f9f2b1309a0
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: Aecom
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: Aecom
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d9739ad9-2294-4313-8423-b9f4036ac8c4
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103812
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 738f9580-7a92-4a92-9b0a-30d191f49737
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: BCG
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: BCG
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 82734206-fa4b-4563-9e1e-46d3bf25df42
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103847
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 20b3c516-3834-4eff-b24f-d67d17464c9c
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Baker McKenzie'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Baker McKenzie'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Corporate partners'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a4f937cb-5884-4fad-b618-321e03e5d3f1
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666103923
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: dc14a86e-2219-40e7-8e62-83976f929d82
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103948
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 7b02f9f8-0b74-475b-98cb-efb080b09929
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'World Health Organization'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'World Health Organization'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 981f8a5b-bf89-4752-80b0-79c997f185cc
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666103982
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 23bc48fc-9abc-4e61-be57-f73be8ec5328
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'World Vision'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'World Vision'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 871d38ad-6a66-443b-8666-e59afb308f0d
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104025
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d1a149ce-4422-4767-aef1-1a22ae4e2193
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'United Nations'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'United Nations'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 76acceeb-87a7-4da6-9617-692442f2561e
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104063
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 2293c43c-5b29-45f6-9b58-51344002758a
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Red Cross'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Red Cross'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d8a9a45c-8065-41f2-81ae-7e38f31250d3
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104107
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 052ab323-9e65-4c7b-8c5c-e16277731a30
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Smithsonian Institute'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Smithsonian Institute'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 193729a8-5e91-4c35-9383-f7d6cc714292
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104143
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: c4254aad-8fe9-4e9d-abba-1aab19dcec78
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Alzheimer’s Association'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Alzheimer’s Association'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Not-for-profit partners'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

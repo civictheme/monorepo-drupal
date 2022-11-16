@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: dc5c94dc-faea-4b7c-a079-3f8d9267e713
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of architecture.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of architecture.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1656
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535207
