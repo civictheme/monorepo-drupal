@@ -73,7 +73,7 @@
       {% include '@base/item-list/item-list.twig' with {
         direction: 'horizontal',
         items: [parent_link_item],
-        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-m',
+        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-l',
       } only %}
     {% endif %}
 
@@ -81,7 +81,7 @@
       direction: 'horizontal',
       items: link_items,
       no_gutter: true,
-      modifier_class: 'ct-breadcrumb__links hide-xxs show-m',
+      modifier_class: 'ct-breadcrumb__links hide-xxs show-l',
     } only %}
   </nav>
 {% endif %}
