@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5772c7bd-f9b8-4fea-9aab-ea23653e7bf5
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'afif-ramdhasuma-lPjeFCIFJwk-unsplash 2.png'
+  uri:
+    -
+      value: 'public://images/2022-10/afif-ramdhasuma-lPjeFCIFJwk-unsplash 2.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 86263
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666102567

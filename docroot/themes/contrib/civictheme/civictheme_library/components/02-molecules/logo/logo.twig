@@ -5,7 +5,13 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - type: [string] Type: default, inline, stacked.
+ * - type: [string] Type:
+     - default: Display a Primary logo.
+     - stacked: Display both Primary and Secondary logos stacked vertically.
+     - inline: Display both primary and secondary logos inline horizontally.
+       On mobile, Secondary logo will be hidden.
+     - inline-stacked: Display both primary and secondary logos inline horizontally.
+       On mobile, this will automatically converts to 'stacked'.
  * - logos: [object] Object with 'primary' and 'secondary' keys:
  *    - breakpoint: [object] Object with 'mobile' and 'desktop' keys:
  *       - src: [string] URL for the logo.
@@ -17,24 +23,10 @@
  */
 #}
 
-{% set type = type in ['default', 'inline', 'stacked'] ? type : 'default' %}
+{% set type = type in ['default', 'inline', 'stacked', 'inline-stacked'] ? type : 'default' %}
 {% set type_class = 'ct-logo--%s'|format(type|default('default')) %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class,  modifier_class|default('')) %}
-
-{# {% if logos is not empty %} #}
-{#  {% set processed_logos = {} %} #}
-{#  {% for logo_type, logo_values in logos|reverse %} #}
-{#    {% for visibility_type, logo in logo_values %} #}
-{#      {% if visibility_type in processed_logos|keys %} #}
-{#        {% set processed_logos = processed_logos|merge({(visibility_type): processed_logos[(visibility_type)]|merge({(logo_type): logo})}) %} #}
-{#      {% else %} #}
-{#        {% set processed_logos = processed_logos|merge({(visibility_type): {(logo_type): logo}}) %} #}
-{#      {% endif %} #}
-{#    {% endfor %} #}
-{#  {% endfor %} #}
-{#  {% set logos = processed_logos %} #}
-{# {% endif %} #}
 
 {% if logos is not empty %}
   {% if url is not empty %}
@@ -45,12 +37,15 @@
 
   {% for logo_type, logo in logos %}
     {% if (type == 'default' and logo_type == 'primary') or type != 'default' %}
+      {% if logo_type == 'secondary' %}
+        <span class="ct-logo__stripe {{ type == 'inline' ? 'hide-xxs show-l' : '' }}"></span>
+      {% endif %}
       {% for breakpoint, img in logo %}
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: img.src,
           alt: img.alt,
-          modifier_class: 'ct-logo--' ~ logo_type ~ ' ct-logo--' ~ breakpoint,
+          modifier_class: 'ct-logo__image ct-logo__image--' ~ breakpoint ~ ' ' ~ (breakpoint == 'mobile' ? (type == 'inline' and logo_type == 'secondary' ? 'hide-xxs' : 'hide-l') : 'hide-xxs show-l'),
         } only %}
       {% endfor %}
     {% endif %}

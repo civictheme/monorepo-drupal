@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_promo_card
-Feature: Tests the Promo card
-
-  Ensure that Promo card paragraph exists and has the expected fields.
+@civictheme @civictheme_promo_card
+Feature: Promo card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -42,7 +40,7 @@ Feature: Tests the Promo card
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And should see an "div.field--name-field-c-p-image #field_c_p_image-media-library-wrapper-field_c_n_banner_components-0-subform-field_c_p_list_items-0-subform" element
     And should see an "textarea[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]']" element
-    And should see an "textarea[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
+    And should not see an "textarea[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_date][0][value][date]']" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'].required" element
@@ -67,7 +65,7 @@ Feature: Tests the Promo card
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And should see an "div.field--name-field-c-p-image #field_c_p_image-media-library-wrapper-field_c_n_components-0-subform-field_c_p_list_items-0-subform" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]']" element
-    And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
+    And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_date][0][value][date]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'].required" element

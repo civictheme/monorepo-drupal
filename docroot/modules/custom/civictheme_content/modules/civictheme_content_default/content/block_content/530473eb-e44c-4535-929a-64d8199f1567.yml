@@ -12,7 +12,7 @@ default:
       value: true
   info:
     -
-      value: 'Demo Block - Attachment'
+      value: Attachment
   reusable:
     -
       value: true

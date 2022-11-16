@@ -1,7 +1,5 @@
 @civictheme @content_type @civictheme_alert
-Feature: Fields on CivicTheme Alert content type
-
-  Ensure that fields have been setup correctly.
+Feature: CivicTheme Alert content type fields
 
   @api
   Scenario: CivicTheme Alert content type exists with fields

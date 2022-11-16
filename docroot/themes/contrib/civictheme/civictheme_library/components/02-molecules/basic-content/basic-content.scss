@@ -3,23 +3,16 @@
 //
 
 .ct-basic-content {
+  $root: &;
+
   @include ct-content();
 
-  &.ct-theme-light {
-    @include ct-content-light();
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-content-theme($theme);
 
     &.ct-content--with-background {
-      background-color: $ct-basic-content-light-wrapper-background-color;
-      padding-left: $ct-basic-content-space-horizontal;
-      padding-right: $ct-basic-content-space-horizontal;
-    }
-  }
+      @include ct-component-property($root, $theme, wrapper, background-color);
 
-  &.ct-theme-dark {
-    @include ct-content-dark();
-
-    &.ct-content--with-background {
-      background-color: $ct-basic-content-dark-wrapper-background-color;
       padding-left: $ct-basic-content-space-horizontal;
       padding-right: $ct-basic-content-space-horizontal;
     }

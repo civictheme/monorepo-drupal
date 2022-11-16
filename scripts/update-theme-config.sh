@@ -5,6 +5,9 @@
 # Usage:
 # ./scripts/update-theme-config.sh
 #
+# Caveat: configs in 'optional' section should be added to
+# the $EXCLUDED_CONFIGS_FILE file.
+#
 
 set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
@@ -27,12 +30,18 @@ TMP_FILE="${TMP_DIR}/config_exported_file.txt"
 #-------------------------------------------------------------------------------
 
 echo "==> Updating theme config"
+echo "==> "
+echo "==> !!! IMPORTANT !!!"
+echo "==> "
+echo "==> Make sure that CivicTheme theme configuration is captured."
+echo "==> Navigate to Appearance -> CivicTheme and save the form."
+echo "==> "
 
 [ ! -f "${EXCLUDED_CONFIGS_FILE}" ] && "ERROR: ${EXCLUDED_CONFIGS_FILE} does not exist"
 [ ! -f "${THEME_INFO}" ] && "ERROR: ${THEME_INFO} does not exist"
 
 # Remove temp directories that may exist from the previous run.
-#rm -Rf "${TMP_DIR_EXPORTED:?}" > /dev/null || true
+rm -Rf "${TMP_DIR_EXPORTED:?}" > /dev/null || true
 rm -Rf "${TMP_FILE:?}" > /dev/null || true
 
 # Create temp dirs.

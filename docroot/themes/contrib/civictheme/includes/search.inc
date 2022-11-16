@@ -28,5 +28,5 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
     $variables['text'] = $link->get('title')->getString();
   }
 
-  $variables['theme'] = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
+  $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 }

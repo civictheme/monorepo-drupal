@@ -3,6 +3,7 @@
 namespace Drupal\civictheme;
 
 use Drupal\civictheme\Color\CivicthemeColor;
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -81,14 +82,22 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   protected $stylesheetGenerator;
 
   /**
+   * The cache tags invalidator.
+   *
+   * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
+   */
+  protected $cacheTagsInvalidator;
+
+  /**
    * Constructor.
    */
-  public function __construct(CivicthemePluginLoader $plugin_loader, CivicthemeConfigManager $config_manager, CivicthemeStylesheetParser $stylesheet_parser, CivicthemeStylesheetGenerator $stylesheet_generator) {
+  public function __construct(CivicthemePluginLoader $plugin_loader, CivicthemeConfigManager $config_manager, CivicthemeStylesheetParser $stylesheet_parser, CivicthemeStylesheetGenerator $stylesheet_generator, CacheTagsInvalidatorInterface $cache_tags_invalidator) {
     $this->pluginLoader = $plugin_loader;
     $this->configManager = $config_manager;
     $this->stylesheetParser = $stylesheet_parser;
     $this->stylesheetGenerator = $stylesheet_generator;
     $this->pluginLoader->load(__DIR__ . '/Color');
+    $this->cacheTagsInvalidator = $cache_tags_invalidator;
   }
 
   /**
@@ -99,7 +108,8 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemePluginLoader::class),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetParser::class),
-      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetGenerator::class)
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetGenerator::class),
+      $container->get('cache_tags.invalidator')
     );
   }
 
@@ -334,7 +344,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   public function invalidateCache() {
     $this->stylesheetGenerator->purge();
 
-    drupal_flush_all_caches();
+    $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
     return $this;
   }
@@ -508,7 +518,12 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       $use_brand_colors = TRUE;
     }
 
-    $this->configManager->save('colors', ['use_brand_colors' => $use_brand_colors] + $matrix);
+    $values = $matrix + [
+      'use_color_selector' => TRUE,
+      'use_brand_colors' => $use_brand_colors,
+    ];
+
+    $this->configManager->save('colors', $values);
 
     return $this;
   }

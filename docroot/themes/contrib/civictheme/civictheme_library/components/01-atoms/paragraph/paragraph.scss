@@ -21,11 +21,7 @@
     }
   }
 
-  &.ct-theme-light {
-    @include ct-content-light();
-  }
-
-  &.ct-theme-dark {
-    @include ct-content-dark();
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-content-theme($theme);
   }
 }

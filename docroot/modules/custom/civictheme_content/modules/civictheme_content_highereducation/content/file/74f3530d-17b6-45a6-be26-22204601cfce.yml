@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 74f3530d-17b6-45a6-be26-22204601cfce
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: doubledegrees.png
+  uri:
+    -
+      value: 'public://images/2022-10/doubledegrees.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 168260
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666096580

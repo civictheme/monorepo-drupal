@@ -737,13 +737,11 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 //
 // Logo.
 //
-$ct-logo-breakpoint: 'm' !default;
-$ct-logo-image-width-min-mobile: ct-particle(25) !default;
-$ct-logo-image-width-max-mobile: ct-particle(30) !default;
-$ct-logo-image-width-min-desktop: ct-particle(25) !default;
-$ct-logo-image-width-max-desktop: ct-particle(30) !default;
+$ct-logo-breakpoint: 'l' !default;
+$ct-logo-image-height-max-desktop: ct-particle(5) !default;
+$ct-logo-image-height-max-mobile: ct-particle(5) !default;
 $ct-logo-light-stripe-color: ct-color-light('border-dark') !default;
-$ct-logo-dark-stripe-color: ct-color-light('border-light') !default;
+$ct-logo-dark-stripe-color: ct-color-dark('border-light') !default;
 
 //
 // Map.

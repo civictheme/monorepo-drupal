@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_next_step
-Feature: Test the Next step paragraph
-
-  Ensure that Next step paragraph exists and has the expected fields.
+@civictheme @civictheme_next_step
+Feature: Next step fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
