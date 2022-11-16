@@ -5,9 +5,7 @@
  * Post update hooks for CivicTheme Government Content.
  */
 
-use Drupal\block\BlockInterface;
 use Drupal\civictheme_content\Helper;
-use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\Core\Utility\UpdateException;
 
 /**
