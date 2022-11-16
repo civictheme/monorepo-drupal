@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 77dbc92c-a2e9-44c5-b17c-381b9370555b
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    b7759fda-e55d-4a37-b6e6-fb1816e75365: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Careers
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: b7759fda-e55d-4a37-b6e6-fb1816e75365
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -64
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

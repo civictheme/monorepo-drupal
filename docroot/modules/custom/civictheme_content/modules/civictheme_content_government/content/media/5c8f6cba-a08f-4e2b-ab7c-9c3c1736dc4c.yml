@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 5c8f6cba-a08f-4e2b-ab7c-9c3c1736dc4c
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    3f380782-9a00-4709-8231-d7c599af5a0a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: icon4.svg
+  created:
+    -
+      value: 1668590351
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 3f380782-9a00-4709-8231-d7c599af5a0a
+      alt: 'Warning icon'
+      title: ''
+      width: 0
+      height: 0

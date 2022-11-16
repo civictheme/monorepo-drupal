@@ -11,7 +11,7 @@
   text-align: center;
   width: 100%;
 
-  @include ct-elevation(3);
+  @include ct-elevation-interaction();
 
   #{$root}__content {
     padding: ct-spacing(3) 0 ct-spacing(3) 0;

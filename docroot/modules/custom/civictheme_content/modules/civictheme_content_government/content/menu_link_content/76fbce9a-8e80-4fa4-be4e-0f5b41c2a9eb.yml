@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 76fbce9a-8e80-4fa4-be4e-0f5b41c2a9eb
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    45b59dbe-af6c-4b71-b12a-a79b39ee140c: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Department of Citizens'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 45b59dbe-af6c-4b71-b12a-a79b39ee140c
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -50
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

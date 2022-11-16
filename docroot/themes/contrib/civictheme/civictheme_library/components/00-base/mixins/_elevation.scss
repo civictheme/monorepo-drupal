@@ -21,3 +21,15 @@
 
   box-shadow: $box-shadow;
 }
+
+@mixin ct-elevation-interaction() {
+  @include ct-elevation(2);
+
+  &:hover {
+    @include ct-elevation(3);
+  }
+
+  &:active {
+    @include ct-elevation(1);
+  }
+}

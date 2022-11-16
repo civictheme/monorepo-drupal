@@ -21,6 +21,9 @@ drush pm-uninstall -y generated_content || true
 echo "  > Removing users."
 drush entity:delete user
 
+echo "  > Removing existing content files."
+rm -Rf "docroot/modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content/*" || true
+
 echo "  > Exporting content."
 drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content" taxonomy_term
 drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content" node

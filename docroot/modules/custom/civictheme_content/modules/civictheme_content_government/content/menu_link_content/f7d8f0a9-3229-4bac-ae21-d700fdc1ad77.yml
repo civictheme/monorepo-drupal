@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: f7d8f0a9-3229-4bac-ae21-d700fdc1ad77
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    6d2fbfa0-5402-461e-9357-9eb7efb850f5: node
+default:
+  enabled:
+    -
+      value: false
+  title:
+    -
+      value: 'For government'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 6d2fbfa0-5402-461e-9357-9eb7efb850f5
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -60
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

@@ -1,0 +1,329 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: a8daebd6-b413-4a70-b131-a85e0e122a30
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Content Providing visually engaging digital experiences'
+  created:
+    -
+      value: 1666889388
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /content-providing-visually-engaging-digital-experiences
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7969288b-885f-43d2-9913-6f1420eb3c27
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889430
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines summary using body copy which can run across multiple lines. Recomment limiting this summary to three or four lines.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: light
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_blend_mode:
+    -
+      value: overlay
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7f6d7ef0-9a0c-42b2-96ca-1dcea767f2d5
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889441
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Section Heading 1</h2>\r\n\r\n<p>Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n<h2>Section Heading 2</h2>\r\n\r\n<table>\r\n\t<caption>Table caption</caption>\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th>Unique title ID</th>\r\n\t\t\t<th>Description/th&gt;</th>\r\n\t\t\t<th>Date</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on odd row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on even row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on odd row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on even row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on odd row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"/\">Unique title ID</a></td>\r\n\t\t\t<td>Description summary on even row</td>\r\n\t\t\t<td>1 Jul 2020</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3c69c3ac-d4e8-4554-91a9-4613a27ee788
+          bundle: civictheme_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889800
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 92716ff8-7cdb-4b28-9218-7ca42ca1db55
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666889800
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p><span>Accordion answer lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</span></p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Desktop heading with dual call to action'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 095c3ab0-aa9f-4e3e-b369-d01463263ef4
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666889800
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p><span>Accordion answer lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</span></p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Desktop heading with dual call to action'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8cf7b2e4-ca52-40af-beb1-dcd3678f71ce
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889830
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n<blockquote>\r\n<p>Quote copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n<p>- Mr. John Civic</p>\r\n</blockquote>\r\n\r\n<p>Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n<ul>\r\n\t<li>Unordered list lorem ipsum dolor sit amet</li>\r\n\t<li>Unordered list lorem ipsum dolor sit amet</li>\r\n\t<li>Unordered list lorem ipsum dolor sit amet</li>\r\n</ul>\r\n\r\n<p>Body copy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>Section Heading 3</h2>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a42fe046-9abe-409d-bd00-c567dd2208d0
+          bundle: civictheme_next_step
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889941
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_link:
+            -
+              uri: 'internal:/'
+              title: ''
+              options: {  }
+          field_c_p_summary:
+            -
+              value: 'Short summary explaining why this action is relevant and what to expect.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Next steps page heading'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ca78097c-c803-4579-9ddd-c4ed93f9e79a
+          bundle: civictheme_next_step
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666889941
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_link:
+            -
+              uri: 'internal:/'
+              title: ''
+              options: {  }
+          field_c_p_summary:
+            -
+              value: 'Short summary explaining why this action is relevant and what to expect.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Next steps page heading'
+  field_c_n_custom_last_updated:
+    -
+      value: '2022-10-28'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

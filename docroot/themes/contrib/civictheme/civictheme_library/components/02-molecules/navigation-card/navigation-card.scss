@@ -14,11 +14,7 @@
   overflow: hidden;
   width: 100%;
 
-  @include ct-elevation(3);
-
-  &:focus-within {
-    @include ct-outline();
-  }
+  @include ct-elevation-interaction();
 
   #{$root}__image-wrapper {
     position: relative;
@@ -103,11 +99,7 @@
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property(ct-navigation, $theme, background-color);
-
-    &:focus {
-      @include ct-outline-theme($theme);
-    }
+    @include ct-component-property($root, $theme, background-color);
 
     #{$root}__title {
       @include ct-component-property($root, $theme, heading, color);
