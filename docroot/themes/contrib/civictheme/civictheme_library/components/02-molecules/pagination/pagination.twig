@@ -56,7 +56,7 @@
     <ul class="ct-pager__items {{ pager_items_modifier_class }}">
       {# Print first item if we are not on the first page. #}
       {% if items.first is not empty %}
-        <li class="ct-pager__item ct-pager__item--first hide-xxs show-l">
+        <li class="ct-pager__item ct-pager__item--first hide-xxs show-m">
           {% set attributes = 'title="Go to last page"' %}
           {% include '@atoms/link/link.twig' with {
             theme: theme,
@@ -100,7 +100,7 @@
             </li>
           {% endif %}
         {% endif %}
-        <li class="ct-pager__item {{ current == key ? ' ct-pager__item--active' : 'hide-xxs show-l' }}">
+        <li class="ct-pager__item {{ current == key ? ' ct-pager__item--active' : 'hide-xxs show-m' }}">
           {% if current == key %}
             {% set attributes = 'title="Current page"' %}
           {% else %}
@@ -151,7 +151,7 @@
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
         {% set attributes = 'title="Go to last page"' %}
-        <li class="ct-pager__item ct-pager__item--last hide-xxs show-l">
+        <li class="ct-pager__item ct-pager__item--last hide-xxs show-m">
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: items.last.text|default('Last'),

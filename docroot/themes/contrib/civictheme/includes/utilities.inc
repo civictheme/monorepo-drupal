@@ -427,8 +427,9 @@ function civictheme_theme_options($keys = FALSE) {
 function civictheme_type_options() {
   return [
     'default' => 'Default',
-    'inline' => 'Inline',
     'stacked' => 'Stacked',
+    'inline' => 'Inline',
+    'inline_stacked' => 'Inline Stacked',
   ];
 }
 

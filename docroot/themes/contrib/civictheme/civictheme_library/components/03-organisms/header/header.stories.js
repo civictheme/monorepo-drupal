@@ -38,10 +38,6 @@ export const Header = (knobTab) => {
 
   generalKnobs.logo = boolean('Show logo', true, generalKnobTab) ? Logo('Logo', false) : null;
 
-  if (generalKnobs.show_content_top3) {
-    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
-  }
-
   if (generalKnobs.show_content_middle3) {
     generalKnobs.primary_navigation_items = getMenuLinks(primaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
     generalKnobs.primary_navigation_dropdown_columns = number(
@@ -56,10 +52,14 @@ export const Header = (knobTab) => {
       primaryNavigationKnobTab,
     );
     generalKnobs.primary_navigation_dropdown_columns_fill = boolean('Fill width for missing columns', false, primaryNavigationKnobTab);
-    generalKnobs.with_search = boolean('With Search', true, primaryNavigationKnobTab) ? {
+    generalKnobs.with_search = boolean('With Search', true, generalKnobTab) ? {
       text: text('Text', 'Search', searchLinkKnobTab),
       url: text('Url', '/search', searchLinkKnobTab),
     } : null;
+  }
+
+  if (generalKnobs.show_content_top3) {
+    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
   }
 
   return CivicThemeHeaderExample({
