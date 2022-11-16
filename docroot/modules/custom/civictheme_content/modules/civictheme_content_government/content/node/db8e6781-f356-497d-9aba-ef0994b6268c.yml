@@ -107,6 +107,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -135,6 +138,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -159,9 +165,6 @@ default:
           field_c_p_list_limit_type:
             -
               value: limited
-          field_c_p_list_show_filters:
-            -
-              value: true
           field_c_p_list_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b
@@ -195,6 +198,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -223,6 +229,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-03-21'
@@ -264,6 +273,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-11-05'
@@ -305,6 +317,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-10-16'

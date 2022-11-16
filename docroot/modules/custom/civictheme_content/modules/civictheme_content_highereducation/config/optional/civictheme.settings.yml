@@ -65,13 +65,13 @@ colors:
   use_brand_colors: true
   brand:
     light:
-      brand1: '#00698f'
-      brand2: '#e6e9eb'
-      brand3: '#121313'
+      brand1: '#0a8184'
+      brand2: '#eeeeee'
+      brand3: '#1da593'
     dark:
-      brand1: '#61daff'
-      brand2: '#003a4f'
-      brand3: '#006a8e'
+      brand1: '#12ceb5'
+      brand2: '#004b51'
+      brand3: '#29ccff'
   palette:
     dark:
       heading: '#fefefe'

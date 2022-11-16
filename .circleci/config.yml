@@ -263,6 +263,15 @@ jobs:
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
+  # Drupal 9, minimal profile, 'government' content profile.
+  build-drupal9-minimal-government:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: government
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
   # Drupal 9, GovCMS profile, subtheme is a sibling.
   build-drupal9-govcms-sibling:
     <<: *container_config
@@ -452,6 +461,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-drupal9-minimal-government:
+          filters:
+            tags:
+              only: /.*/
       - build-drupal9-govcms-sibling:
           filters:
             tags:
@@ -471,6 +484,7 @@ workflows:
             - build-drupal9-minimal-default
             - build-drupal9-minimal-corporate
             - build-drupal9-minimal-highereducation
+            - build-drupal9-minimal-government
             - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
             - build-drupal10-minimal
@@ -492,6 +506,7 @@ workflows:
             - build-drupal9-minimal-default
             - build-drupal9-minimal-corporate
             - build-drupal9-minimal-highereducation
+            - build-drupal9-minimal-government
             - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
             - build-drupal10-minimal

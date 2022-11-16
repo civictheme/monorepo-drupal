@@ -44,9 +44,6 @@ default:
               uri: 'internal:/subscribe'
               title: 'Sign up'
               options: {  }
-          field_c_p_summary:
-            -
-              value: 'Some text content'
           field_c_p_theme:
             -
               value: dark

@@ -74,6 +74,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -103,6 +106,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -131,7 +137,7 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_show_image_as_icon:
+                  revision_translation_affected:
                     -
                       value: true
                   field_c_p_link:
@@ -139,6 +145,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'About this template website'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: large
@@ -169,7 +178,7 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_show_image_as_icon:
+                  revision_translation_affected:
                     -
                       value: true
                   field_c_p_link:
@@ -177,6 +186,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'About this template website'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: large
@@ -207,7 +219,7 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_show_image_as_icon:
+                  revision_translation_affected:
                     -
                       value: true
                   field_c_p_link:
@@ -215,6 +227,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'About this template website'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: large
@@ -245,7 +260,7 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_show_image_as_icon:
+                  revision_translation_affected:
                     -
                       value: true
                   field_c_p_link:
@@ -253,6 +268,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'About this template website'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: large
@@ -344,6 +362,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'Health and aged card home support services'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -374,6 +395,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
@@ -382,6 +406,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: '24 hour translation service'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -412,6 +439,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
@@ -420,6 +450,9 @@ default:
                       target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
                       title: 'Employment assistance services'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -464,6 +497,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -492,6 +528,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-12'
@@ -535,6 +574,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-01'
@@ -578,6 +620,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-21'
@@ -632,6 +677,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content:
             -
               value: "<p>A citizenship ceremony is where you make the pledge of commitment, this is the final step in the journey to becoming an Australian.</p>\r\n\r\n<p><a class=\"ct-button ct-theme-light ct-button--primary ct-button--regular\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"
