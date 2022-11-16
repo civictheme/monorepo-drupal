@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8b15713a-ca0a-458a-a841-86e667f7e913
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'open book.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/open book.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2763
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667967227

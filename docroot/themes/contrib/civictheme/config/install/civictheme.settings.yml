@@ -45,7 +45,7 @@ components:
       is_animated: true
   footer:
     theme: dark
-    logo_type: stacked
+    logo_type: inline_stacked
     background_image:
       path: ''
   link:

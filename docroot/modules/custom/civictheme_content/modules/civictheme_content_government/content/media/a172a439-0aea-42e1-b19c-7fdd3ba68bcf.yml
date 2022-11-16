@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: a172a439-0aea-42e1-b19c-7fdd3ba68bcf
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    212c79c5-e1b2-48f6-b0de-608799a2f5b0: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Changes to citizenship fees.png'
+  created:
+    -
+      value: 1666876991
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 212c79c5-e1b2-48f6-b0de-608799a2f5b0
+      alt: 'Changes to citizenship fees'
+      title: ''
+      width: 1000
+      height: 669

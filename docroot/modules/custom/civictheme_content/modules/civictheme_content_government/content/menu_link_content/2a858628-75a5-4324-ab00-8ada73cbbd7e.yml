@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 2a858628-75a5-4324-ab00-8ada73cbbd7e
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    0b87a335-c3d0-404e-b40c-6f44c6f20939: menu_link_content
+    d7bf9d16-d499-459b-8199-ef3590fe807f: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: FAQs
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: d7bf9d16-d499-459b-8199-ef3590fe807f
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -49
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:0b87a335-c3d0-404e-b40c-6f44c6f20939'
+  revision_translation_affected:
+    -
+      value: true

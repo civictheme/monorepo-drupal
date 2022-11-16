@@ -87,6 +87,7 @@ function _civictheme_content_install_submodule($module) {
     [
       'civictheme-' => FALSE,
       'civictheme_content' => FALSE,
+      'themes/contrib/civictheme' => $active_theme->getPath(),
       'civictheme' => $active_theme->getName(),
     ]
   );

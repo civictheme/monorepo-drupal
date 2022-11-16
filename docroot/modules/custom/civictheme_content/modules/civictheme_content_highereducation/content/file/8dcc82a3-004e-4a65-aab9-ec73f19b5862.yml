@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8dcc82a3-004e-4a65-aab9-ec73f19b5862
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of banking.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of banking.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1866
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535340

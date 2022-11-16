@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: e6ce2b2a-7948-466d-a57c-a619641c6356
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    100e4cfc-33b8-4980-9196-05d519a13dea: node
+default:
+  enabled:
+    -
+      value: false
+  title:
+    -
+      value: 'For individuals'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 100e4cfc-33b8-4980-9196-05d519a13dea
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -62
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c8f91624-eda5-4e38-9091-a6728b4bd2d7
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: generic.png
+  uri:
+    -
+      value: 'public://media-icons/generic/generic.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 3900
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668578849

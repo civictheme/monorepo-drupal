@@ -11,7 +11,7 @@ use Drupal\Core\Utility\UpdateException;
 /**
  * Common updates.
  */
-function civictheme_content_default_post_update_common() {
+function civictheme_content_corporate_post_update_common() {
   civictheme_content_post_update_common();
 }
 

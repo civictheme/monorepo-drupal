@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e897e660-3b34-41ef-98f9-1160f2528a89
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'United Nations.png'
+  uri:
+    -
+      value: 'public://images/2022-10/United Nations.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 42053
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666104041

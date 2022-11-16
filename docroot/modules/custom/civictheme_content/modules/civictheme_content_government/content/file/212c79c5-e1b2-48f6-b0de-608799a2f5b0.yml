@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 212c79c5-e1b2-48f6-b0de-608799a2f5b0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Changes to citizenship fees.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Changes to citizenship fees.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 157736
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666876991

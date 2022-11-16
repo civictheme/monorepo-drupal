@@ -12,11 +12,7 @@
   overflow: hidden;
   width: 100%;
 
-  @include ct-elevation(3);
-
-  &:focus-within {
-    @include ct-outline();
-  }
+  @include ct-elevation-interaction();
 
   #{$root}__image-wrapper {
     position: relative;
@@ -112,10 +108,6 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
-
-    &:focus {
-      @include ct-outline-theme($theme);
-    }
 
     #{$root}__icon--download {
       @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color));
