@@ -400,12 +400,6 @@ default:
                   field_c_p_title:
                     -
                       value: Law
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: dark
@@ -427,9 +421,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -466,6 +457,9 @@ default:
                       target_uuid: 0900bcaa-2670-4ffa-b22e-f9fa667c45d0
                       title: 'AI and open data for COVID'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -496,9 +490,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
@@ -507,6 +498,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'The Pine Island Glacier'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -545,6 +539,9 @@ default:
                       target_uuid: 2e309b77-8d77-40e8-95bb-1c1475955e67
                       title: 'New chemotherapy breakthrough'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -557,12 +554,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'New chemotherapy breakthrough'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -587,16 +578,22 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
           field_c_p_content:
             -
-              value: '<p><a href="/about-this-template-website">More research news</a></p>'
+              value: "<p><a href=\"/about-this-template-website\">More research news</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

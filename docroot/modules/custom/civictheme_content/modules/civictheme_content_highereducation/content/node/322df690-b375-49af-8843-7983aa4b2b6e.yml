@@ -31,7 +31,7 @@ default:
       value: true
   path:
     -
-      alias: /civictheme-60-second-series
+      alias: /civictheme-60-second-series-0
       langcode: en
       pathauto: 1
   field_c_n_banner_hide_breadcrumb:

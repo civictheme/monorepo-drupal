@@ -86,6 +86,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -152,14 +155,14 @@ default:
                   field_c_p_image:
                     -
                       entity: 807435c6-a632-4c5c-bf66-2ffdc9ab609f
-                  field_c_p_show_image_as_icon:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 35b75cc7-cf94-462f-9ee6-6bb69e895d8a
                       title: 'Undergraduate courses'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -196,14 +199,14 @@ default:
                   field_c_p_image:
                     -
                       entity: 8d96e514-518d-46fb-aa93-d0fb629035ee
-                  field_c_p_show_image_as_icon:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ee025f20-7976-47b2-aa62-a00b84b149de
                       title: 'Postgraduate courses'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -240,14 +243,14 @@ default:
                   field_c_p_image:
                     -
                       entity: e8ab5ef1-2f45-4937-8f0a-f63c22f52df9
-                  field_c_p_show_image_as_icon:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 8f45163f-252f-46e3-b3d3-7930b1d9b6c7
                       title: Research
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -284,14 +287,14 @@ default:
                   field_c_p_image:
                     -
                       entity: ac4255ad-ec69-47e9-9617-86b2e51872b8
-                  field_c_p_show_image_as_icon:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 570c4f75-363e-4cdc-980d-b0cc5172469e
                       title: 'Our departments'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -304,12 +307,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Our departments'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -347,6 +344,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: true
@@ -375,6 +375,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: eac50bb1-3e95-4be4-80cb-7c768fef1c09
@@ -413,6 +416,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 7d8c80cb-6e45-4ba2-aad6-8e9bc132f88f
@@ -451,6 +457,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 12d28525-2e6c-4d9a-9bca-1e8758d0b706
@@ -471,12 +480,6 @@ default:
                   field_c_p_topics:
                     -
                       entity: 96d87429-9acf-4c03-9da6-3e8ba9cc3fab
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_list_link_above:
             -
               target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -509,6 +512,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -531,6 +537,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you.</span></p>'
@@ -579,6 +588,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: true
@@ -607,6 +619,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-12'
@@ -648,6 +663,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-01'
@@ -689,6 +707,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-20'
@@ -712,12 +733,6 @@ default:
                   field_c_p_topic:
                     -
                       entity: d95f5188-650c-4dea-abcb-df8ea008919b
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_list_link_above:
             -
               target_uuid: db8e6781-f356-497d-9aba-ef0994b6268c
@@ -729,6 +744,9 @@ default:
           field_c_p_title:
             -
               value: 'Latest news'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: true

@@ -60,6 +60,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -101,6 +104,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -129,6 +135,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
@@ -161,6 +170,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
@@ -175,12 +187,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Government-funded scholarships'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

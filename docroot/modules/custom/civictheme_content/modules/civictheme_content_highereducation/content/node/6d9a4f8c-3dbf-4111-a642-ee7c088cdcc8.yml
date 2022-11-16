@@ -28,6 +28,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: /about-us
@@ -55,6 +58,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -96,6 +102,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -124,6 +133,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -149,6 +161,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -177,6 +192,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -205,6 +223,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -233,6 +254,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -261,6 +285,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -289,6 +316,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -323,6 +353,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -342,3 +375,6 @@ default:
   field_c_n_show_toc:
     -
       value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

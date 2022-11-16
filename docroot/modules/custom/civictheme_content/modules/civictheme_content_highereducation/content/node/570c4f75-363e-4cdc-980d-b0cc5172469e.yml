@@ -80,6 +80,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -121,6 +124,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -180,6 +186,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b1142872-23be-4b62-a4a8-37cdcd453bb6
@@ -188,6 +197,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Art'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -218,6 +230,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 33025cb8-4e76-4122-8e56-48c04cb12c8f
@@ -226,6 +241,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Architecture'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -256,6 +274,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 7a47a1a3-d8c3-40e6-bb92-9fdea76de772
@@ -264,6 +285,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'School of Social Sciences'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -294,6 +318,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 519c4e0c-acd5-4233-9628-8335ee7ce51f
@@ -302,6 +329,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'School of English and Creative Writing'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -332,6 +362,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 1a1cbd4b-36f6-45ca-b71f-89bccb5d2e83
@@ -340,6 +373,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: ' School of Media and Journalism'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -370,6 +406,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 405e6f34-e721-473c-b3da-49d618e92105
@@ -378,6 +417,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: ' School of Languages'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -408,6 +450,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b2960675-19ac-4689-8fca-fd717c4b8163
@@ -416,6 +461,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Banking, Finance and Accounting'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -446,6 +494,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 6e092085-4a97-4bd5-9711-ef0005ecdf4a
@@ -454,6 +505,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Marketing'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -484,6 +538,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e71dbfa0-a672-4c84-a4b7-3b7863e6268c
@@ -492,6 +549,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Economics'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -522,6 +582,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: fd86cf0a-1055-4ae7-8358-0bf198723fe2
@@ -530,6 +593,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Political Science'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -560,6 +626,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d40603f6-cf19-40da-812d-fbee32d8696d
@@ -568,6 +637,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Education'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -598,6 +670,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e4f38f37-1947-4b47-8e9f-3b85ab96614a
@@ -606,6 +681,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Chemical Engineering'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -636,6 +714,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 02c5cb96-7bf6-4362-ad5a-0a562e996632
@@ -644,6 +725,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Mechanical Engineering'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -674,6 +758,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 286955ac-256e-480d-b914-dcad37fa96ff
@@ -682,6 +769,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Structural Engineering'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -712,6 +802,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 2e4ffce7-2f27-4196-9def-763b2657d951
@@ -720,6 +813,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Civil Engineering'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -750,6 +846,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b7711963-ecc5-41b8-923f-692f4416f7d2
@@ -758,6 +857,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Software Systems'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -788,6 +890,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 143fe51b-83b1-4e43-a0d0-40476540abc3
@@ -796,6 +901,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Cyber Security'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -826,6 +934,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4a661a2b-f6cc-480c-99ed-1f9911b5d405
@@ -834,6 +945,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Department of Emerging Technologies'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -864,6 +978,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: ff9dd1cc-ab2e-468c-9b71-174b04ff3707
@@ -872,6 +989,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'School of Law'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -902,6 +1022,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d6d58799-0fe0-47c8-8bda-153a48694b1b
@@ -910,6 +1033,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'School of Medicine'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -940,6 +1066,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 3a518ae8-054c-4b58-b673-3771f897dbd9
@@ -948,6 +1077,9 @@ default:
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'School of Biomedical Sciences'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -960,12 +1092,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'School of Biomedical Sciences'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

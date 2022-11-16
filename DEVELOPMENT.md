@@ -87,6 +87,12 @@ Note that wildcards are supported.
 
 ## Demo content export
 
+Prepare content with a clean installation:
+
+    CIVICTHEME_CONTENT_PROFILE=highereducation SKIP_GENERATED_CONTENT_CREATE=1 SKIP_SUBTHEME_FE=1 DREVOPS_DRUPAL_PROFILE=minimal ahoy install-site
+
+Export content:
+
     CIVICTHEME_CONTENT_PROFILE=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
 
     CIVICTHEME_CONTENT_PROFILE=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=corporate ahoy export-content

@@ -58,6 +58,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -99,6 +102,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -186,6 +192,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Perth Highway, Perth, WA 3001</span>&nbsp;<br><span>Phone: (08) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muperth.wa.edu.au"><span>contact@muperth.wa.edu.au</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Perth campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Perth campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -214,6 +223,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, London, England</span>&nbsp;<br><span>Phone: (020) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mulondon.edu"><span>contact@mulondon.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the London campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Perth campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -242,6 +254,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, New York, England</span>&nbsp;<br><span>Phone: 1 (212) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@munewyork.edu"><span>contact@munewyork.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the New York campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the New York campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -270,6 +285,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Seoul, South Korea</span>&nbsp;<br><span>Phone: (82) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@museoul.edu.kr"><span>contact@museoul.edu.kr</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Seoul campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Seoul campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -298,6 +316,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Bern, Switzerland</span>&nbsp;<br><span>Phone: (41) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mubern.edu"><span>contact@mubern.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Bern campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Bern campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -326,6 +347,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Auckland, New Zealand</span>&nbsp;<br><span>Phone: (64) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muauckland.edu"><span>contact@muauckland.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Auckland campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Auckland campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -354,6 +378,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Singapore</span>&nbsp;<br><span>Phone: (65) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@musingapore.edu"><span>contact@musingapore.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Singapore campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Singapore campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -382,6 +409,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Hong Kong</span>&nbsp;<br><span>Phone: (852) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@muhongkong.edu"><span>contact@muhongkong.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Hong Kong campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Hong Kong campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'
@@ -410,6 +440,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: '<p><span><strong>Address and contact</strong></span></p><p><span>123 Main St, Kuala Lumpur, Malaysia</span>&nbsp;<br><span>Phone: (60) 9123 1234</span>&nbsp;<br><span>Email: </span><a href="mailto:contact@mukualalumpur.edu"><span>contact@mukualalumpur.edu</span></a></p><p><span><strong>Facilities</strong></span></p><p><span>Explore the facilities at the Kuala Lumpur campus</span></p><p><a href="/about-this-template-website"><span>Accommodation</span></a><br><a href="/about-this-template-website"><span>Library</span></a><br><a href="/about-this-template-website"><span>Student services</span></a><br><a href="/about-this-template-website"><span>Parking</span></a><br><a href="/about-this-template-website"><span>Security</span></a><br><a href="/about-this-template-website"><span>Shopping and food</span></a><br><a href="/about-this-template-website"><span>Childcare</span></a><br><a href="/about-this-template-website"><span>Health and wellbeing</span></a></p><p><a href="/about-this-template-website"><span>Explore the Kuala Lumpur campus</span></a></p><p><a href="/about-this-template-website"><span>View campus map</span></a></p>'

@@ -152,12 +152,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'CivicTheme in 60 second series'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

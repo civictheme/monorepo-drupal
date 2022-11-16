@@ -29,6 +29,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: /courses/undergraduate-courses
@@ -56,6 +59,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -97,6 +103,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -125,6 +134,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -153,11 +165,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Bachelor of Business'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -188,11 +206,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Bachelor of Biomedical Science'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -223,11 +247,17 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: 'Bachelor of Music'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: small
@@ -240,12 +270,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Bachelor of Music'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

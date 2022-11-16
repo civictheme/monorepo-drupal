@@ -3,7 +3,6 @@ _meta:
   entity_type: file
   uuid: 894ac492-60e6-4596-b171-4e3c03331076
   default_langcode: en
-  depends:
 default:
   uid:
     -

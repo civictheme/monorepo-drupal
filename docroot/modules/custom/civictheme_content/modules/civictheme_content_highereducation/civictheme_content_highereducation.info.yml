@@ -1,4 +1,4 @@
-name: 'CivicTheme Default Higher education Content'
+name: 'CivicTheme Higher Education Content'
 type: module
 description: 'Provides default Higher education content CivicTheme theme.'
 core_version_requirement: ^9 || ^10

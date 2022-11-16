@@ -31,6 +31,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: /news-and-events
@@ -58,6 +61,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -99,6 +105,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -137,9 +146,6 @@ default:
               target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
               title: 'View all'
               options: {  }
-          field_c_p_list_show_filters:
-            -
-              value: true
           field_c_p_list_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b

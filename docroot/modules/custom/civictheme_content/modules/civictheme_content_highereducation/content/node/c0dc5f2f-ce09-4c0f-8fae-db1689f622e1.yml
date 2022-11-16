@@ -136,6 +136,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -169,6 +172,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -202,6 +208,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -214,12 +223,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Bachelor of Music '
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -278,6 +281,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -311,6 +317,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -344,6 +353,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -356,12 +368,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Doctorate in Engineering'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

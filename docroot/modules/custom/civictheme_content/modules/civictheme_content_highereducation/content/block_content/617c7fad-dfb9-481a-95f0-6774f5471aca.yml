@@ -48,12 +48,6 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -121,12 +115,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Taking seamless key performance indicators offline to maximise the long tail.'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light

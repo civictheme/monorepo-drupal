@@ -123,12 +123,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Publication or white-paper main title'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -205,12 +199,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Publication or white-paper main title'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: dark
@@ -326,12 +314,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Publication or white-paper main title'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: light
@@ -447,12 +429,6 @@ default:
                   field_c_p_title:
                     -
                       value: 'Publication or white-paper main title'
-          field_c_p_list_item_theme:
-            -
-              value: light
-          field_c_p_list_item_view_as:
-            -
-              value: civictheme_promo_card
           field_c_p_theme:
             -
               value: dark
