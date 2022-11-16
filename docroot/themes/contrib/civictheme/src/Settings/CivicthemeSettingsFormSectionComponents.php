@@ -380,7 +380,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $form['components']['migrate']['expose_migration_metadata'] = [
       '#type' => 'checkbox',
       '#title' => 'Expose Migration metadata',
-      '#default_value' => $this->getSetting('components.migrate.expose_migration_metadata') ?? FALSE,
+      '#default_value' => $this->themeConfigManager->loadForComponent('components', 'migrate.expose_migration_metadata') ?? FALSE,
     ];
 
     foreach (array_keys($form['components']) as $component_name) {
