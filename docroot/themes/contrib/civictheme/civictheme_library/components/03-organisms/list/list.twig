@@ -59,7 +59,8 @@
                   text: link_above.text,
                   url: link_above.url,
                   is_new_window: link_above.is_external,
-                  is_external: link_above.is_external
+                  is_external: link_above.is_external,
+                  icon: link_above.is_external ? '' : 'right-arrow-2',
                 } only %}
               </div>
             {% endif %}
@@ -156,7 +157,8 @@
               text: link_below.text,
               url: link_below.url,
               is_new_window: link_below.is_external,
-              is_external: link_below.is_external
+              is_external: link_below.is_external,
+              icon: link_below.is_external ? '' : 'right-arrow-2',
             } only %}
           </div>
         {% endif %}
