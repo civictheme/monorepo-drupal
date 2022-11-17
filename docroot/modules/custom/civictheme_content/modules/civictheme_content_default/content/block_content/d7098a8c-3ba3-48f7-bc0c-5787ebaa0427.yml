@@ -44,7 +44,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p class=\"text-align-right\">©2022 Commonwealth of Australia</p>\r\n"
+              value: "<p class=\"text-align-right ct-text-small\">©2022 Commonwealth of Australia</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
