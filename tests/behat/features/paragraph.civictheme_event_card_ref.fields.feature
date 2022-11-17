@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_event_card_ref
-Feature: Tests the Event reference card paragraph
-
-  Ensure that Event reference card paragraph exists and has the expected fields.
+@civictheme @civictheme_event_card_ref
+Feature: Event reference card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

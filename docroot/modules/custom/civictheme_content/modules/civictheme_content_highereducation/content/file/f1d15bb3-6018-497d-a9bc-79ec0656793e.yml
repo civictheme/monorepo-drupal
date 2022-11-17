@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f1d15bb3-6018-497d-a9bc-79ec0656793e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of cyber security.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of cyber security.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1582
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536121

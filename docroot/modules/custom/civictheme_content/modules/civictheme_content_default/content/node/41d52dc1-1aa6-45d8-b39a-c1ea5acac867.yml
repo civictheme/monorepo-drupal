@@ -105,6 +105,9 @@ default:
                   field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -138,6 +141,9 @@ default:
                   revision_translation_affected:
                     -
                       value: true
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large
@@ -176,6 +182,9 @@ default:
                       uri: 'http://google.com'
                       title: 'Read more'
                       options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
                   field_c_p_size:
                     -
                       value: large

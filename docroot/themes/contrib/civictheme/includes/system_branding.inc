@@ -22,62 +22,37 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
   $variables['show_site_name'] = !empty($variables['elements']['#configuration']['use_site_name']);
   $variables['show_site_slogan'] = !empty($variables['elements']['#configuration']['use_site_slogan']);
 
+  $is_footer_region = !empty($variables['elements']['#id']) && str_starts_with(Block::load($variables['elements']['#id'])->getRegion(), 'footer');
+
+  $theme = $is_footer_region
+    ? civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT)
+    : civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+
+  $variables['theme'] = $theme;
+
   if ($variables['show_site_logo']) {
     $variables['url'] = Url::fromRoute('<front>')->setAbsolute()->toString();
     $variables['title'] = Xss::filterAdmin($variables['elements']['content']['site_slogan']['#markup'] ?? '');
 
-    // Make logo switch based on which region it is used in.
-    $is_footer_region = !empty($variables['elements']['#id']) && str_starts_with(Block::load($variables['elements']['#id'])->getRegion(), 'footer');
-
-    $context_theme = $is_footer_region ? theme_get_setting('components.footer.theme') : theme_get_setting('components.header.theme');
-    $context_theme = $context_theme ?: CivicthemeConstants::THEME_LIGHT;
-
-    // Primary logos.
-    $primary_desktop_logo = theme_get_setting("components.logo.image_primary_{$context_theme}_desktop");
-    $primary_desktop_logo = $primary_desktop_logo ?? '';
-    $primary_mobile_logo = theme_get_setting("components.logo.image_primary_{$context_theme}_mobile");
-    $primary_mobile_logo = $primary_mobile_logo ?? '';
-
-    // Secondary logos.
-    $secondary_desktop_logo = theme_get_setting("components.logo.image_secondary_{$context_theme}_desktop");
-    $secondary_desktop_logo = $secondary_desktop_logo ?? '';
-    $secondary_mobile_logo = theme_get_setting("components.logo.image_secondary_{$context_theme}_mobile");
-    $secondary_mobile_logo = $secondary_mobile_logo ?? '';
-
-    // Logo type.
-    $logo_type = $is_footer_region ? theme_get_setting('components.footer.logo_type') : theme_get_setting('components.header.logo_type');
-    $variables['type'] = $logo_type ?? 'default';
-
+    $logo_type = $is_footer_region ? civictheme_get_theme_config_manager()->load('components.footer.logo_type') : civictheme_get_theme_config_manager()->load('components.header.logo_type');
+    $variables['type'] = str_replace('_', '-', $logo_type) ?? CivicthemeConstants::LOGO_TYPE_DEFAULT;
     $variables['modifier_class'] = $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo';
+    $logo_alt = civictheme_get_theme_config_manager()->load('components.logo.image_alt') ?? '';
 
-    $alt = theme_get_setting('components.logo.image_alt') ?? '';
-
-    if (!empty($primary_desktop_logo)) {
-      $variables['logos']['primary']['desktop'] = [
-        'src' => '/' . ltrim($primary_desktop_logo, '/'),
-        'alt' => $alt,
-      ];
+    foreach (['primary', 'secondary'] as $type) {
+      foreach (['desktop', 'mobile'] as $breakpoint) {
+        $logo_image = civictheme_get_theme_config_manager()->load("components.logo.{$type}.{$theme}.{$breakpoint}.path", '');
+        if (!empty($logo_image)) {
+          $variables['logos'][$type][$breakpoint] = [
+            'src' => '/' . ltrim($logo_image, '/'),
+            'alt' => $logo_alt,
+          ];
+        }
+      }
     }
+  }
 
-    if (!empty($primary_mobile_logo)) {
-      $variables['logos']['primary']['mobile'] = [
-        'src' => '/' . ltrim($primary_mobile_logo, '/'),
-        'alt' => $alt,
-      ];
-    }
-
-    if (!empty($secondary_desktop_logo)) {
-      $variables['logos']['secondary']['desktop'] = [
-        'src' => '/' . ltrim($secondary_desktop_logo, '/'),
-        'alt' => $alt,
-      ];
-    }
-
-    if (!empty($secondary_mobile_logo)) {
-      $variables['logos']['secondary']['mobile'] = [
-        'src' => '/' . ltrim($secondary_mobile_logo, '/'),
-        'alt' => $alt,
-      ];
-    }
+  if ($variables['show_site_slogan']) {
+    $variables['site_slogan'] = Xss::filterAdmin($variables['elements']['content']['site_slogan']['#markup'] ?? '');
   }
 }

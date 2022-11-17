@@ -1,8 +1,8 @@
 @civictheme @webform @permissions
-Feature: Tests the webform permissions for Site Administrator
+Feature: Webform permissions
 
   @api
-  Scenario Outline: Validate access for Site Administrator across various webfrom configurations.
+  Scenario Outline: Check access for Site Administrator across various Webfrom configurations.
     Given I am logged in as a user with the "civictheme_site_administrator" role
     When I visit "<link>"
     Then I should get a "<response>" HTTP response

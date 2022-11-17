@@ -43,17 +43,10 @@
       @include ct-visually-hidden();
     }
 
-    &.ct-theme-light {
+    @include ct-component-theme($root) using($root, $theme) {
       &[data-popover-content] {
-        background-color: $ct-popover-light-content-background-color;
-        border-color: $ct-popover-light-content-border-color;
-      }
-    }
-
-    &.ct-theme-dark {
-      &[data-popover-content] {
-        background-color: $ct-popover-dark-content-background-color;
-        border-color: $ct-popover-dark-content-border-color;
+        @include ct-component-property(ct-popover, $theme, content, background-color);
+        @include ct-component-property(ct-popover, $theme, content, border-color);
       }
     }
   }

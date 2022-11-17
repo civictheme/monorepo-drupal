@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_accordion
-Feature: Tests the Accordion
-
-  Ensure that Accordion paragraph exists and has the expected fields.
+@civictheme @civictheme_accordion
+Feature: Accordion fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

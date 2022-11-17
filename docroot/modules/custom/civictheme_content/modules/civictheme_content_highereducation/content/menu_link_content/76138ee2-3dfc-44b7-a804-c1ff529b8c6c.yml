@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 76138ee2-3dfc-44b7-a804-c1ff529b8c6c
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    bbd57889-e07c-4c4f-a223-868f9a441035: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Campuses
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: bbd57889-e07c-4c4f-a223-868f9a441035
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -63
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

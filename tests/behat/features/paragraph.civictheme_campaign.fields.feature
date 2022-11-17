@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_campaign
-Feature: Tests the Campaign paragraph
-
-  Ensure that the Campaign paragraph exists and has the expected fields.
+@civictheme @civictheme_campaign
+Feature: Campaign fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

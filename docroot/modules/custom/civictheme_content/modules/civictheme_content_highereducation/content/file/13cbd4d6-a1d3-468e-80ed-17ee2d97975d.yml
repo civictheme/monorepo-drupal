@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 13cbd4d6-a1d3-468e-80ed-17ee2d97975d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of economics.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of economics.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1840
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535803

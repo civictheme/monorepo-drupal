@@ -11,7 +11,7 @@
   text-align: center;
   width: 100%;
 
-  @include ct-elevation(3);
+  @include ct-elevation-interaction();
 
   #{$root}__content {
     padding: ct-spacing(3) 0 ct-spacing(3) 0;
@@ -44,21 +44,12 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-service-card-light-background-color;
-    border-top-color: $ct-service-card-light-border-top-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, border-top-color);
 
     #{$root}__title {
-      color: $ct-service-card-light-heading-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-service-card-dark-background-color;
-    border-top-color: $ct-service-card-dark-border-top-color;
-
-    #{$root}__title {
-      color: $ct-service-card-dark-heading-color;
+      @include ct-component-property($root, $theme, heading, color);
     }
   }
 }

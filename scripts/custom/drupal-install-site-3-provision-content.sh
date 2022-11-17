@@ -24,14 +24,13 @@ else
   $drush -y pm-enable civictheme_admin
 fi
 
-echo "  > Set default colors."
-$drush -y --include=/app/docroot/themes/contrib/civictheme/src/Drush civictheme:set-brand-colors "#00698f" "#e6e9eb" "#121313" "#61daff" "#003a4f" "#00698f"
-
-echo "  > Provision default content."
-$drush -y pm-enable civictheme_content
-
-echo "  > Provision content."
-$drush php:eval -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
+if [ -n "${CIVICTHEME_CONTENT_PROFILE}" ]; then
+  echo "  > Provisioning content from \"${CIVICTHEME_CONTENT_PROFILE}\" content profile."
+  $drush -y pm-enable civictheme_content
+else
+  echo "  > Provisioning content from theme defaults."
+  $drush php:eval -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
+fi
 
 echo "  > Enable development module."
 $drush -y pm-enable civictheme_dev

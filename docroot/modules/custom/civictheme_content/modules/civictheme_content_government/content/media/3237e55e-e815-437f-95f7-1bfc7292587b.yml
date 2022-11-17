@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 3237e55e-e815-437f-95f7-1bfc7292587b
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    93dc3590-6e6e-4134-9097-f1c0c95a4bd6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'image 1.png'
+  created:
+    -
+      value: 1666915050
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 93dc3590-6e6e-4134-9097-f1c0c95a4bd6
+      alt: 'clinical trials'
+      title: ''
+      width: 376
+      height: 240

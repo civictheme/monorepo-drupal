@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 7042a6d6-3694-4529-bb30-56e2f0e9a3f0
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    439d44bc-bb57-44ac-b1b6-1fbcb0f7668c: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Uni life'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 439d44bc-bb57-44ac-b1b6-1fbcb0f7668c
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -66
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

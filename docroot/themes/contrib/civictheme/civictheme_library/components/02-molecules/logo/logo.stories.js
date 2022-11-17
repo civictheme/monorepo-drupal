@@ -20,8 +20,9 @@ export const Logo = (knobTab, doRender = true) => {
     }, 'light', generalKnobTab),
     type: radios('Type', {
       Default: 'default',
-      Inline: 'inline',
       Stacked: 'stacked',
+      Inline: 'inline',
+      'Inline-Stacked': 'inline-stacked',
     }, 'default', generalKnobTab),
     with_secondary_image: boolean('With secondary image', false, generalKnobTab),
     logos: {},
@@ -39,13 +40,13 @@ export const Logo = (knobTab, doRender = true) => {
       },
       desktop: {
         src: LOGOS[generalKnobs.theme].primary.desktop,
-        alt: 'Primary logo mobile alt text',
+        alt: 'Primary logo desktop alt text',
       },
     },
     secondary: {
       mobile: {
         src: LOGOS[generalKnobs.theme].secondary.mobile,
-        alt: 'Secondary logo desktop alt text',
+        alt: 'Secondary logo mobile alt text',
       },
       desktop: {
         src: LOGOS[generalKnobs.theme].secondary.desktop,

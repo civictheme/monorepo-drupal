@@ -12,10 +12,10 @@ use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Util\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Manage and configure CivicTheme Migrations.
@@ -45,6 +45,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @var \Drupal\Core\File\FileSystemInterface
    */
   protected $fileSystem;
+
   /**
    * The file storage service.
    *
@@ -166,7 +167,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    *
    * @throws \Exception
    */
-  public function retrieveRemoteFiles(array $urls, array $validators):array {
+  public function retrieveRemoteFiles(array $urls, array $validators): array {
     $files = [];
     $auth_headers = $this->getAuthHeaders();
     foreach ($urls as $url) {
@@ -204,7 +205,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @return array
    *   Authentication header options.
    */
-  protected function getAuthHeaders():array {
+  protected function getAuthHeaders(): array {
     $auth_type = $this->config->get('auth_type');
     if (empty($auth_type)) {
       return [];
@@ -233,7 +234,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @return string
    *   Generated file name.
    */
-  protected function generateFileName($url):string {
+  protected function generateFileName($url): string {
     $url_parts = parse_url($url);
     $filename = !empty($url_parts['path']) ? preg_replace('/\//', '-', basename($url_parts['path'])) : 'configuration-file' . time();
     if (strpos($filename, '-') === 0) {

@@ -12,7 +12,7 @@ use Drupal\civictheme\CivicthemeConstants;
  */
 function _civictheme_preprocess_menu_local_tasks(&$variables) {
   $local_task_types = ['primary', 'secondary'];
-  $context_theme = theme_get_setting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT;
+  $context_theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
   foreach ($local_task_types as $local_task_type) {
     $variables['links'][$local_task_type] = [];

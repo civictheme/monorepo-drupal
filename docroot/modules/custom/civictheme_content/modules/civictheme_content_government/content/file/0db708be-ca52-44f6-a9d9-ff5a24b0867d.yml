@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0db708be-ca52-44f6-a9d9-ff5a24b0867d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Australian citizenship ceremony 2022.  All you need to know..png'
+  uri:
+    -
+      value: 'public://images/2022-10/Australian citizenship ceremony 2022.  All you need to know..png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 381540
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666918744

@@ -137,20 +137,6 @@ services:
     labels:
       lagoon.type: mariadb # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
 
-  solr:
-    build:
-      context: .
-      dockerfile: .docker/Dockerfile.solr
-      args:
-        CLI_IMAGE: *cli-image
-    <<: *default-user
-    environment:
-      <<: *default-environment
-    ports:
-      - "8983" # Solr port in container. Find port on host with `ahoy info` or `docker-compose port solr 8983`.
-    labels:
-      lagoon.type: solr # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
-
   # Chrome container, used for browser testing.
   chrome:
     image: selenium/standalone-chrome:4.5.2-20221021

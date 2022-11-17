@@ -3,6 +3,8 @@
 //
 
 .ct-attachment {
+  $root: &;
+
   display: flex;
   flex-wrap: wrap;
   flex: none;
@@ -114,77 +116,41 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &.ct-attachment--with-background {
-      background-color: $ct-attachment-light-wrapper-background-color;
+      @include ct-component-property($root, $theme, wrapper, background-color);
+
       padding-left: $ct-attachment-space-horizontal;
       padding-right: $ct-attachment-space-horizontal;
     }
 
     .ct-attachment {
       &__content {
-        color: $ct-attachment-light-color;
-        background-color: $ct-attachment-light-background-color;
-        border: solid ct-particle(0.125) $ct-attachment-light-border-color;
+        @include ct-component-property($root, $theme, color);
+        @include ct-component-property($root, $theme, background-color);
+
+        border: solid ct-particle(0.125) ct-component-var($root, $theme, border, color);
       }
 
       &__title {
-        color: $ct-attachment-light-title-color;
+        @include ct-component-property($root, $theme, title, color);
       }
 
       &__links {
         &--link {
-          color: $ct-attachment-light-heading-color;
+          @include ct-component-property($root, $theme, heading, color);
 
           svg {
-            fill: $ct-attachment-light-icon-color;
+            fill: ct-component-var($root, $theme, icon, color);
           }
         }
 
         &--icon {
-          color: $ct-attachment-light-icon-color;
+          @include ct-component-property($root, $theme, icon, color);
         }
 
         &--last-updated {
-          color: $ct-attachment-light-date-color;
-        }
-      }
-    }
-  }
-
-  &.ct-theme-dark {
-    &.ct-attachment--with-background {
-      background-color: $ct-attachment-dark-wrapper-background-color;
-      padding-left: $ct-attachment-space-horizontal;
-      padding-right: $ct-attachment-space-horizontal;
-    }
-
-    .ct-attachment {
-      &__content {
-        color: $ct-attachment-dark-color;
-        background-color: $ct-attachment-dark-background-color;
-        border: solid ct-particle(0.125) $ct-attachment-dark-border-color;
-      }
-
-      &__title {
-        color: $ct-attachment-dark-title-color;
-      }
-
-      &__links {
-        &--last-updated {
-          color: $ct-attachment-dark-date-color;
-        }
-
-        &--link {
-          color: $ct-attachment-dark-heading-color;
-
-          svg {
-            fill: $ct-attachment-dark-icon-color;
-          }
-        }
-
-        &--icon {
-          color: $ct-attachment-dark-icon-color;
+          @include ct-component-property($root, $theme, date, color);
         }
       }
     }

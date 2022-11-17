@@ -11,7 +11,7 @@ use Drupal\civictheme\CivicthemeUtility;
  *
  * @group CivicTheme
  */
-class CivicthemeUtilityUnitTest extends CivicThemeUnitTestBase {
+class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
 
   /**
    * Test for CivicthemeUtility::htmlAttributesToArray().

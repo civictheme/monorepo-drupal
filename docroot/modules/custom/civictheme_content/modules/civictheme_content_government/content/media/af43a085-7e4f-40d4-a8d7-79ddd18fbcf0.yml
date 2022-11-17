@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    5d20173e-6b13-4ada-9621-28dd1c65bcc3: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: uluru-336476.png
+  created:
+    -
+      value: 1666866989
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 5d20173e-6b13-4ada-9621-28dd1c65bcc3
+      alt: 'Homepage banner image'
+      title: ''
+      width: 1440
+      height: 750
