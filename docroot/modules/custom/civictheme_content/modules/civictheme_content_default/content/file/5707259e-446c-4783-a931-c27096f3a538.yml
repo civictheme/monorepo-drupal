@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 7dea2844-77b7-4f1a-bb77-5d61c9d0be28
+  uuid: 5707259e-446c-4783-a931-c27096f3a538
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: demo_lorem-ipsum.pdf
+      value: generic.png
   uri:
     -
-      value: 'public://demo_lorem-ipsum.pdf'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: application/pdf
+      value: image/png
   filesize:
     -
-      value: 77123
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1631856401
+      value: 1668665659
