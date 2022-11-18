@@ -320,6 +320,22 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.skip_link.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
+    $form['components']['event_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Event card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['event_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('event_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
     $form['components']['navigation_card'] = [
       '#type' => 'details',
       '#title' => $this->t('Navigation card'),

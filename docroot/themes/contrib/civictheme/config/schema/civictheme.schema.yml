@@ -177,6 +177,13 @@ civictheme.settings:
             theme:
               label: Theme
               type: string
+        event_card:
+          type: mapping
+          label: 'Event card settings'
+          mapping:
+            summary_length:
+              label: 'Summary length'
+              type: integer
         navigation_card:
           type: mapping
           label: 'Navigation card settings'
