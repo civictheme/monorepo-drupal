@@ -5,7 +5,7 @@ Feature: Manual list fields
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Manual List" in the "civictheme_manual_list" row
+    Then I should see the text "Manual list" in the "civictheme_manual_list" row
 
   @api
   Scenario: Listing paragraph exists with fields.
@@ -23,7 +23,7 @@ Feature: Manual list fields
     And I should see the text "field_c_p_list_items" in the "List items" row
 
   @api
-  Scenario: Manual List paragraph field_c_p_list_items fields settings.
+  Scenario: Manual list paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
     And the "Label" field should contain "List items"
@@ -39,10 +39,10 @@ Feature: Manual list fields
     And the "Service card" checkbox should be checked
     And the "Subject card" checkbox should be checked
     And the "Subject reference card" checkbox should be checked
-    And the "Manual List" checkbox should not be checked
+    And the "Manual list" checkbox should not be checked
 
   @api @javascript
-  Scenario: Manual List paragraph fields
+  Scenario: Manual list paragraph fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
 
