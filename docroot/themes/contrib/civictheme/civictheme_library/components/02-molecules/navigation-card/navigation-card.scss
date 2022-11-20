@@ -67,6 +67,10 @@
       }
     }
 
+    #{$root}__content {
+      flex-grow: 1;
+    }
+
     #{$root}__title {
       @include ct-typography('heading-4');
     }
