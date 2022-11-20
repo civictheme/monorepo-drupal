@@ -11,6 +11,9 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: inherit
+      label: Inherit
+    -
       value: default
       label: Default
     -
