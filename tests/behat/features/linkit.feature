@@ -40,7 +40,7 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Page linkit render"
-    And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-content-link" element
 
   @api @javascript
   Scenario: Check if Linkit can lookup for Event Content.
@@ -64,7 +64,7 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Event linkit render"
-    And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-content-link" element
 
   @api @javascript
   Scenario: Check if Linkit can lookup for Document Media.
@@ -88,4 +88,4 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Document Media linkit render"
-    And I should see an ".ct-basic-content a[title='TEST CivicTheme PDF'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST CivicTheme PDF'].ct-content-link" element
