@@ -7,6 +7,9 @@ _meta:
   depends:
     212c79c5-e1b2-48f6-b0de-608799a2f5b0: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'Changes to citizenship fees.png'
+      value: 'Large Australian flag on a pole'
   created:
     -
       value: 1666876991
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: 212c79c5-e1b2-48f6-b0de-608799a2f5b0
-      alt: 'Changes to citizenship fees'
+      alt: 'Large Australian flag on a pole'
       title: ''
       width: 1000
       height: 669

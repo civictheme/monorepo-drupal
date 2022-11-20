@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Health and aged.png'
+      value: aged-man-hugs-aged-woman.png
   uri:
     -
-      value: 'public://images/2022-10/Health and aged.png'
+      value: 'public://images/2022-10/aged-man-hugs-aged-woman.png'
   filemime:
     -
       value: image/png
