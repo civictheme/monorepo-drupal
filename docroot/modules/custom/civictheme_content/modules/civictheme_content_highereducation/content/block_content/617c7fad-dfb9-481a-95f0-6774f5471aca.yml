@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: 'Demo Block - Manual List'
+      value: 'Demo Block - Manual list'
   reusable:
     -
       value: true

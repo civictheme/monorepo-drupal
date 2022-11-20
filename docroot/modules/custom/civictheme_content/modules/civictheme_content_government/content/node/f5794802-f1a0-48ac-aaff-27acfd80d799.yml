@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
     37c33114-06dc-43a2-a6d0-6b6befc11fa2: media
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
     75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
@@ -39,9 +38,6 @@ default:
       alias: /news-and-events/department-citizens-invest-23-million-clinical-trials-brain-cancer
       langcode: en
       pathauto: 0
-  field_c_n_banner_background:
-    -
-      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
   field_c_n_banner_components:
     -
       entity:
@@ -69,23 +65,23 @@ default:
               value: false
           field_c_p_content:
             -
-              value: '<p><strong>Department of Citizens</strong><span> – Health &amp; ageing</span></p>'
+              value: "<p>The Department of Citizens is investing $23 million into clinical trials for brain cancer. We’re inviting Australia’s best researchers to apply for grant opportunities. The funding is to improve early detection and develop new treatment options to improve the quality of life for brain cancer patients.</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
-              value: light
+              value: dark
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
   field_c_n_banner_theme:
     -
-      value: light
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
-      value: overlay
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -123,7 +119,7 @@ default:
       value: false
   field_c_n_show_last_updated:
     -
-      value: false
+      value: true
   field_c_n_show_toc:
     -
       value: false

@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Australian citizenship ceremony 2022.  All you need to know..png'
+      value: australian-flag-on-pole.png
   uri:
     -
-      value: 'public://images/2022-10/Australian citizenship ceremony 2022.  All you need to know..png'
+      value: 'public://images/2022-10/australian-flag-on-pole.png'
   filemime:
     -
       value: image/png

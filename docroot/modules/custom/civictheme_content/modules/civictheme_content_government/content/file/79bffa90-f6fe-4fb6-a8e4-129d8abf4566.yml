@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'female-customer-service-executive-talking-on-headset-in-a-modern-office-4457189 1.png'
+      value: female-customer-service-executive-talking-on-headset-in-a-modern-office.png
   uri:
     -
-      value: 'public://images/2022-10/female-customer-service-executive-talking-on-headset-in-a-modern-office-4457189 1.png'
+      value: 'public://images/2022-10/female-customer-service-executive-talking-on-headset-in-a-modern-office.png'
   filemime:
     -
       value: image/png

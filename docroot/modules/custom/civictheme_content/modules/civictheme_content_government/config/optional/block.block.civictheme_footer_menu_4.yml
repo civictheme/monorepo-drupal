@@ -16,15 +16,15 @@ plugin: 'menu_block:civictheme-footer'
 settings:
   id: 'menu_block:civictheme-footer'
   label: 'Footer menu 4'
-  label_display: visible
+  label_display: '0'
   provider: menu_block
   follow: false
   follow_parent: child
+  label_link: false
+  label_type: fixed
   level: 1
   depth: 1
   expand_all_items: false
-  parent: 'civictheme-footer:menu_link_content:1a84050a-4755-4a36-8d83-f3514947f247'
+  parent: 'civictheme-footer:menu_link_content:5affe220-42a6-4bab-86ce-c64cd9490cf7'
   suggestion: civictheme_footer
-  label_type: fixed
-  label_link: false
 visibility: {  }
