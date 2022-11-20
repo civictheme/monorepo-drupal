@@ -57,9 +57,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -109,7 +106,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: '<p>The Department of Citizens is investing $23 million into clinical trials for brain cancer. There are over 40 major types of brain cancer, grouped into benign and malignant categories, with a five-year survival rate of 22%.</p><p>We’re inviting Australia’s best researchers to apply for grant opportunities. The funding is to improve early detection and develop new treatment options to improve the quality of life for brain cancer patients.</p><p>The funding will also address significant gaps in current research or knowledge in brain cancer in the hope that a national screening program for brain cancer can become available in Australia.</p><p>Over 40,000 cases of rare cancer forms are diagnosed in Australia each year. It’s estimated that 1,946 new cases of brain cancer will be diagnosed in Australia in 2023.</p><p>For further information on how to apply for the grant round, go to <a href="https://government.civictheme.io/about-template-website"><strong>CitizenGrant</strong></a>.</p><p>The Department of Citizens continually invests in the health of Australians and supports medical research for a sustainable health system.</p>'
+              value: "<p>The Department of Citizens is investing $23 million into clinical trials for brain cancer. There are over 40 major types of brain cancer, grouped into benign and malignant categories, with a five-year survival rate of 22%.</p>\r\n\r\n<p>We’re inviting Australia’s best researchers to apply for grant opportunities. The funding is to improve early detection and develop new treatment options to improve the quality of life for brain cancer patients.</p>\r\n\r\n<p>The funding will also address significant gaps in current research or knowledge in brain cancer in the hope that a national screening program for brain cancer can become available in Australia.</p>\r\n\r\n<p>Over 40,000 cases of rare cancer forms are diagnosed in Australia each year. It’s estimated that 1,946 new cases of brain cancer will be diagnosed in Australia in 2023.</p>\r\n\r\n<p>For further information on how to apply for the grant round, go to <a href=\"https://government.civictheme.io/about-template-website\"><strong>CitizenGrant</strong></a>.</p>\r\n\r\n<p>The Department of Citizens continually invests in the health of Australians and supports medical research for a sustainable health system.</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"37c33114-06dc-43a2-a6d0-6b6befc11fa2\" data-view-mode=\"\"></drupal-media>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
@@ -123,6 +120,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_summary:
+    -
+      value: 'The Department of Citizens is investing $23 million into clinical trials for brain cancer.'
   field_c_n_thumbnail:
     -
       entity: 37c33114-06dc-43a2-a6d0-6b6befc11fa2
