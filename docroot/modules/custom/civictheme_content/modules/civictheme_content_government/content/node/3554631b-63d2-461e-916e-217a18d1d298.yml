@@ -53,6 +53,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -128,6 +131,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -153,6 +159,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>123 Citizens Street Canberra ACT 2600<br />\r\nPhone: +61 2 6333 4444<br />\r\nEmail: citizens@doc.gov.au</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCCanberra</p>\r\n\r\n<p>Twitter @DOCCanberra</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -181,6 +190,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>Level 56, 212 State Avenue<br />\r\nSydney NSW 2000<br />\r\n+61 2 9888 7777</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCSydney</p>\r\n\r\n<p>Twitter @DOCSydney</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -209,6 +221,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>272 City&nbsp; Street<br />\r\nMelboune Vic 3000<br />\r\n+61 3 5444 3333</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCMelbourne</p>\r\n\r\n<p>Twitter @DOCMelbourne</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -237,6 +252,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>12 Flag Way<br />\r\nBrisbane QLD 4000<br />\r\n+61 7 3222 5555</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCBrisbane</p>\r\n\r\n<p>Twitter @DOCBrisbane</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -265,6 +283,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>456 Citizens Drive<br />\r\nAdelaide SA 5000<br />\r\n+61 8 8111 4444</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCAdelaide</p>\r\n\r\n<p>Twitter @DOCAdelaide</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -293,6 +314,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>222 Star Street<br />\r\nPerth WA 6000<br />\r\n+61 8 8666 2222</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCPerth</p>\r\n\r\n<p>Twitter @DOCPerth</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -321,6 +345,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>2456 Salamanca Way<br />\r\nHobart TAS 3000<br />\r\n+61 3 3000 1111</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance service</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCTas</p>\r\n\r\n<p>Twitter @DOCTas</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"
@@ -349,6 +376,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>Level 2, 56 Red Lane<br />\r\nDarwin NT 0800<br />\r\n+61 2 8930 1222</p>\r\n\r\n<h2>Services</h2>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h2>Social</h2>\r\n\r\n<p>Facebook /DOCDarwin</p>\r\n\r\n<p>Twitter @DOCDarwin</p>\r\n\r\n<h2>Website feedback</h2>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p>Leave your feedback</p>\r\n"

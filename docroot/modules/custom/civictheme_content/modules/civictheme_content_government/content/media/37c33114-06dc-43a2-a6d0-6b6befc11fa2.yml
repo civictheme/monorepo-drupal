@@ -30,6 +30,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Department of Citizens, Medical Research'
   field_c_m_image:
     -
       entity: 6a16b860-5aac-40a4-a5e7-13d8bc051448
