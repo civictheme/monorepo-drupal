@@ -404,7 +404,7 @@ function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $def
       break;
   }
 
-  return $field_name ? civictheme_get_field_value($entity, $field_name) : $default;
+  return $field_name ? civictheme_get_field_value($entity, $field_name, TRUE, $default) : $default;
 }
 
 /**
