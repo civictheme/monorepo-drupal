@@ -100,9 +100,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -131,9 +128,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4df3f04c-7529-4335-a9d2-0d48cc074376
@@ -175,9 +169,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: ccd6cc0e-c403-45a3-949d-216804250433
@@ -219,9 +210,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 3e31f933-303c-4fd1-bac7-4faab8100c1d
@@ -263,9 +251,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e343a613-0b38-49f4-a4b5-f000b171b10d
@@ -556,10 +541,16 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content:
             -
               value: "<p>A citizenship ceremony is the final step in the journey to becoming an Australian. During the ceremony you pledge your commitment to Australia.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"
               format: civictheme_rich_text
+          field_c_p_date:
+            -
+              value: '2022-11-24'
           field_c_p_image:
             -
               entity: fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b
