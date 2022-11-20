@@ -10,9 +10,9 @@ id: node.civictheme_page.field_c_n_blend_mode
 field_name: field_c_n_blend_mode
 entity_type: node
 bundle: civictheme_page
-label: 'Blend mode'
+label: 'Banner background blend  mode'
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -
