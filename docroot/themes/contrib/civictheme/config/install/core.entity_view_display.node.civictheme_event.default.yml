@@ -29,6 +29,34 @@ third_party_settings:
       -
         layout_id: civictheme_one_column
         layout_settings:
+          label: Details
+          context_mapping: {  }
+        components:
+          ce2824ba-a315-4d0c-973f-2a65a57dd1b8:
+            uuid: ce2824ba-a315-4d0c-973f-2a65a57dd1b8
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_date'
+              label: Date
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: daterange_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: civictheme_one_column
+        layout_settings:
           label: Uncontained
           context_mapping: {  }
         components:
