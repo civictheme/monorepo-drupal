@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
 
   return [
     [
-      'title' => 'Manual List component, Navigation card, Light',
+      'title' => 'Manual list component, Navigation card, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -38,7 +38,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Navigation card, Dark',
+      'title' => 'Manual list component, Navigation card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -60,7 +60,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Service card, Dark, Link',
+      'title' => 'Manual list component, Service card, Dark, Link',
       'components' => [
         [
           'type' => 'manual_list',
@@ -80,7 +80,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Service card, Light, 2 Links',
+      'title' => 'Manual list component, Service card, Light, 2 Links',
       'components' => [
         [
           'type' => 'manual_list',
@@ -106,7 +106,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Reference promo card, Page, Light',
+      'title' => 'Manual list component, Reference promo card, Page, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -122,7 +122,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Navigation reference card, Page, Light',
+      'title' => 'Manual list component, Navigation reference card, Page, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -138,7 +138,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Promo card, Dark',
+      'title' => 'Manual list component, Promo card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -162,7 +162,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Subject card, Dark',
+      'title' => 'Manual list component, Subject card, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -183,7 +183,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Subject reference card, Page, Dark',
+      'title' => 'Manual list component, Subject reference card, Page, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -200,7 +200,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Publication card, Image, Light, Small',
+      'title' => 'Manual list component, Publication card, Image, Light, Small',
       'components' => [
         [
           'type' => 'manual_list',
@@ -220,7 +220,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Publication card, No Image, Dark, Large',
+      'title' => 'Manual list component, Publication card, No Image, Dark, Large',
       'components' => [
         [
           'type' => 'manual_list',
@@ -239,7 +239,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Full width',
+      'title' => 'Manual list component, Full width',
       'components' => [
         [
           'type' => 'manual_list',
@@ -257,7 +257,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Column count 2',
+      'title' => 'Manual list component, Column count 2',
       'components' => [
         [
           'type' => 'manual_list',
@@ -300,7 +300,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Light, BG, Title, Description',
+      'title' => 'Manual list component, Light, BG, Title, Description',
       'components' => [
         [
           'type' => 'manual_list',
@@ -330,7 +330,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual List component, Dark, BG, Title, Description',
+      'title' => 'Manual list component, Dark, BG, Title, Description',
       'components' => [
         [
           'type' => 'manual_list',
