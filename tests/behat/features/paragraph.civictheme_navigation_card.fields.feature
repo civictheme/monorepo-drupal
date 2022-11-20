@@ -8,7 +8,7 @@ Feature: Navigation card fields
     Then I should see the text "Navigation card" in the "civictheme_navigation_card" row
 
   @api
-  Scenario: Manual List paragraph exists with fields.
+  Scenario: Manual list paragraph exists with fields.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_navigation_card/fields"
     And I should see the text "field_c_p_theme" in the "Theme" row
@@ -20,7 +20,7 @@ Feature: Navigation card fields
     And I should see the text "field_c_p_summary" in the "Summary" row
 
   @api
-  Scenario: Manual List paragraph field_c_p_list_items fields settings.
+  Scenario: Manual list paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
     And the "Label" field should contain "List items"
