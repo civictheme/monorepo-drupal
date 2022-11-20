@@ -87,49 +87,14 @@ Note that wildcards are supported.
 
 ## Demo content export
 
-Prepare content with a clean installation:
+1. Prepare content with a clean installation:
 
-    CIVICTHEME_CONTENT_PROFILE=highereducation SKIP_GENERATED_CONTENT_CREATE=1 SKIP_SUBTHEME_FE=1 DREVOPS_DRUPAL_PROFILE=minimal ahoy install-site
+    CIVICTHEME_CONTENT_PROFILE=default DREVOPS_DRUPAL_PROFILE=minimal SKIP_SUBTHEME_ACTIVATION=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
 
-Export content:
+2. Export content:
 
     CIVICTHEME_CONTENT_PROFILE=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
 
-    CIVICTHEME_CONTENT_PROFILE=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=corporate ahoy export-content
+3. Export config:
 
-    CIVICTHEME_CONTENT_TYPES=highereducation SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=highereducation ahoy export-content
-
-    CIVICTHEME_CONTENT_TYPES=government SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=highereducation ahoy export-content
-
-OR
-
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
-
-    # Example 1: export a single node with all dependencies
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node 50
-
-    # Example 2: export all terms, nodes and blocks and menu links for Default content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content menu_link_content
-
-    # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content menu_link_content
-
-    # Example 4: export all terms, nodes, blocks, files and menu links for Higher Education content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_highereducation/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_highereducation/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_highereducation/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_highereducation/content menu_link_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_highereducation/content file
-
-    # Example 5: export all terms, nodes, blocks, files and menu links for Government content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_government/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_government/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_government/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_government/content menu_link_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_government/content file
+    ahoy drush cde civictheme_content_default
