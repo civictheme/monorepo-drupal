@@ -287,7 +287,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
       DREVOPS_TEST_BEHAT_TAGS: smoke
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_SUBTHEME_ACTIVATION: 1
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile.
