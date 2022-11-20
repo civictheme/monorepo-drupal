@@ -2,7 +2,7 @@ name: CivicTheme Generated Content
 type: module
 description: Generated content for CivicTheme Drupal theme.
 core_version_requirement: ^9 || ^10
-package: civictheme
+package: CivicTheme
 dependencies:
   - drupal:views
   - generated_content:generated_content
