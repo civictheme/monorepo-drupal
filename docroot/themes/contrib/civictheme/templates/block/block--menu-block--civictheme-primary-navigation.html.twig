@@ -2,12 +2,16 @@
 /**
  * @file
  * Override theme implementation for a Primary Navigation menu block.
+ *
+ * Note that when primary navigation menu is shown as a side navigation
+ * component, the theme is hardcoded to the theme of the page (light) rather
+ * than the theme of the primary navigation.
  */
 #}
 
 {% if in_sidebar %}
   {% include '@organisms/side-navigation/side-navigation.twig' with {
-    theme,
+    theme: 'light',
     items,
     modifier_class: 'ct-primary-navigation',
   } only %}
