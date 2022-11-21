@@ -6,9 +6,13 @@ _meta:
   default_langcode: en
   depends:
     af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+    4df3f04c-7529-4335-a9d2-0d48cc074376: media
+    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
+    ccd6cc0e-c403-45a3-949d-216804250433: media
+    3e31f933-303c-4fd1-bac7-4faab8100c1d: media
+    e343a613-0b38-49f4-a4b5-f000b171b10d: media
     e0c710e3-6eeb-4ea5-b656-0fa728b389b8: media
     9a81d79d-79da-4bc4-8584-27c411248d3e: media
-    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
     e7acc411-519a-4735-80a6-c0bc7dfb61f3: media
     9e389925-f1f6-4d1c-8aee-03e4a91f6eb4: media
     0d96ff66-61ff-44fc-a9e4-a8b174f6da95: node
@@ -67,9 +71,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -77,6 +78,202 @@ default:
             -
               value: "<p>We manage national affairs for Australian citizens and immigrants. We deliver programs, services and funding that benefit our community.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-dark\" href=\"/about-this-template-website\">More about the Department of Citizens</a></p>\r\n"
               format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_components_bott:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3e266ff5-d968-4c91-a632-34c54004173e
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668986062
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a943c0c8-a1d9-4e9f-ab9f-c03f4c45099a
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986075
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 4df3f04c-7529-4335-a9d2-0d48cc074376
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'We can help you find and keep a job through employment training services. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Employment and education'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a7887f4c-df42-4a6f-a890-1499f72d8fe7
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986188
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: ccd6cc0e-c403-45a3-949d-216804250433
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'We help immigrants settle in Australia and run the citizenship process and ceremonies. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Immigration and citizenship'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8d63babf-7c4c-4469-bf6f-badca2a3ae4a
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986217
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 3e31f933-303c-4fd1-bac7-4faab8100c1d
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'We offer support to people with disabilities and older Australians who need a little bit of help. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Health and disability'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4b0416b6-d180-4cef-89d5-33de5dd13aed
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986242
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e343a613-0b38-49f4-a4b5-f000b171b10d
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_size:
+                    -
+                      value: small
+                  field_c_p_summary:
+                    -
+                      value: 'We manage emergency situations and can also help you with funding during natural disasters.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Emergency relief services'
           field_c_p_theme:
             -
               value: dark
@@ -117,9 +314,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: true
@@ -148,9 +342,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9a81d79d-79da-4bc4-8584-27c411248d3e
@@ -192,9 +383,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
@@ -236,9 +424,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
@@ -294,9 +479,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: true
@@ -366,6 +548,9 @@ default:
             -
               value: "<p>A citizenship ceremony is the final step in the journey to becoming an Australian. During the ceremony you pledge your commitment to Australia.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"
               format: civictheme_rich_text
+          field_c_p_date:
+            -
+              value: '2022-11-24'
           field_c_p_image:
             -
               entity: fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b

@@ -64,9 +64,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -79,7 +76,7 @@ default:
               value: light
   field_c_n_show_last_updated:
     -
-      value: false
+      value: true
   field_c_n_show_toc:
     -
       value: false

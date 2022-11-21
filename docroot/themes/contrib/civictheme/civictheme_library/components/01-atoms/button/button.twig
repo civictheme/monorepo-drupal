@@ -37,12 +37,11 @@
 
 {% set button_icon %}
   {% if icon %}
-    <span class="ct-button__icon">
-		  {% include '@base/icon/icon.twig' with {
-        symbol: icon,
-        size: icon_size,
-      } only %}
-		</span>
+    {% include '@base/icon/icon.twig' with {
+      symbol: icon,
+      size: icon_size,
+      modifier_class: 'ct-button__icon'
+    } only %}
   {% endif %}
 {% endset %}
 
