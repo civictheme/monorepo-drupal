@@ -50,3 +50,6 @@ default:
           field_c_p_title:
             -
               value: 'Subscribe and keep up to date with My University’s news'
+          field_c_p_vertical_spacing:
+            -
+              value: top
