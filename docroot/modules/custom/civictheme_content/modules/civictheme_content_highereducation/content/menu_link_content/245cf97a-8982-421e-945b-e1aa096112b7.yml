@@ -5,7 +5,7 @@ _meta:
   bundle: menu_link_content
   default_langcode: en
   depends:
-    ce9669b2-ec36-46fe-98c9-c6f981b5dd34: menu_link_content
+    fbf13c94-e50b-4966-a1ad-8d580dfeccff: menu_link_content
 default:
   enabled:
     -
@@ -35,7 +35,7 @@ default:
       value: false
   parent:
     -
-      value: 'menu_link_content:ce9669b2-ec36-46fe-98c9-c6f981b5dd34'
+      value: 'menu_link_content:fbf13c94-e50b-4966-a1ad-8d580dfeccff'
   revision_translation_affected:
     -
       value: true
