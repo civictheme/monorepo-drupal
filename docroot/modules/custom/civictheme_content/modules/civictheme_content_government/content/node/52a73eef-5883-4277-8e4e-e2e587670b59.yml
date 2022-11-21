@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
     a172a439-0aea-42e1-b19c-7fdd3ba68bcf: media
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
     7f02fd6d-bda1-47a0-b463-f7cd975e026d: taxonomy_term
@@ -39,53 +38,18 @@ default:
       alias: /news-and-events/citizenship-application-fees-change-effective-1-july-2022
       langcode: en
       pathauto: 0
-  field_c_n_banner_background:
-    -
-      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
-  field_c_n_banner_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: ea644b64-aedc-456c-b4fd-dea48e69f20e
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666877034
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: '<p><strong>Department of Citizens</strong><span> – Citizenship &amp; immigration</span></p>'
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
   field_c_n_banner_theme:
     -
-      value: light
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
-      value: overlay
+      value: normal
   field_c_n_components:
     -
       entity:

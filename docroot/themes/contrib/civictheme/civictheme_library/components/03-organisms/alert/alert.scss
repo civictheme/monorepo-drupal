@@ -72,6 +72,9 @@
     padding: 0;
 
     @include ct-breakpoint(m) {
+      @include ct-typography('heading-6');
+
+      position: unset;
       align-self: center;
       margin-left: auto;
       top: 50%;
@@ -93,6 +96,10 @@
         #{$root}__icon {
           .ct-icon {
             @include ct-component-property($root, $theme, $type, icon, color);
+
+            @include ct-breakpoint-upto(s) {
+              vertical-align: middle;
+            }
           }
         }
       }

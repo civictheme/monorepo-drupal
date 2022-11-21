@@ -44,7 +44,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n"
+              value: "<p class=\"ct-text-small\">We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -

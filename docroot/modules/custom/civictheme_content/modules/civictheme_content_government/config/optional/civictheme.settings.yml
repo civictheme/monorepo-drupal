@@ -30,7 +30,7 @@ components:
           path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_dark_mobile.png
     image_alt: 'Logo image'
   header:
-    theme: light
+    theme: dark
     logo_type: inline
   navigation:
     primary_navigation:
@@ -51,9 +51,11 @@ components:
   link:
     new_window: false
     external_new_window: true
-    external_override_domains: {}
+    external_override_domains: {  }
   skip_link:
     theme: light
+  event_card:
+    summary_length: 160
   navigation_card:
     summary_length: 160
   promo_card:
@@ -65,26 +67,26 @@ colors:
   use_brand_colors: true
   brand:
     light:
-      brand1: '#0966b8'
+      brand1: '#0b66b8'
       brand2: '#f2f2f2'
       brand3: '#024d8f'
     dark:
       brand1: '#39aee2'
-      brand2: '#0e305a'
+      brand2: '#0f305a'
       brand3: '#e38444'
   palette:
     dark:
       heading: '#fefefe'
       body: '#fafdfe'
-      background_light: '#194d60'
+      background_light: '#1b3a62'
       background: '#0f305a'
-      background_dark: '#001c26'
-      border_light: '#dfe6e9'
-      border: '#3c5678'
-      border_dark: '#001c26'
-      interaction_text: '#003a4f'
+      background_dark: '#0a213e'
+      border_light: '#abb6c5'
+      border: '#27446a'
+      border_dark: '#0a213e'
+      interaction_text: '#0f305a'
       interaction_background: '#61daff'
-      interaction_hover_text: '#001c26'
+      interaction_hover_text: '#0a213e'
       interaction_hover_background: '#c6f1ff'
       interaction_focus: '#8b5cd7'
       highlight: '#e28444'
@@ -93,21 +95,21 @@ colors:
       error: '#e85653'
       success: '#14b0ae'
     light:
-      heading: '#01101d'
-      body: '#3a3d3f'
-      background_light: '#fefefe'
       background: '#f2f2f2'
+      border: '#262626'
+      highlight: '#024e8f'
+      heading: '#042849'
+      body: '#34434f'
+      background_light: '#fefefe'
       background_dark: '#939496'
       border_light: '#818384'
-      border: '#262626'
       border_dark: '#020202'
       interaction_text: '#fefefe'
-      interaction_background: '#00698f'
+      interaction_background: '#0b66b8'
       interaction_hover_text: '#fefefe'
-      interaction_hover_background: '#002533'
+      interaction_hover_background: '#063d6e'
       interaction_focus: '#8b5cd7'
-      highlight: '#024e8f'
-      information: '#007ebd'
-      warning: '#c95100'
+      information: '#007cbf'
+      warning: '#c95000'
       error: '#ce3936'
       success: '#008482'

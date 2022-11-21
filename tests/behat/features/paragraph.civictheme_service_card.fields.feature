@@ -16,7 +16,7 @@ Feature: Service card fields
     And I should see the text "field_c_p_links" in the "Links" row
 
   @api
-  Scenario: Manual List paragraph field_c_p_list_items fields settings.
+  Scenario: Manual list paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
     And the "Label" field should contain "List items"

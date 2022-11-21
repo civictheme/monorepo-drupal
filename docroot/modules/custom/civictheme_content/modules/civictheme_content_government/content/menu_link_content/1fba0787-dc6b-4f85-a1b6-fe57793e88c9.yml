@@ -5,7 +5,8 @@ _meta:
   bundle: menu_link_content
   default_langcode: en
   depends:
-    0b87a335-c3d0-404e-b40c-6f44c6f20939: menu_link_content
+    4b1d211b-63ab-41c6-82f9-d124d52417a3: menu_link_content
+    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
 default:
   enabled:
     -
@@ -18,7 +19,7 @@ default:
       value: civictheme-footer
   link:
     -
-      uri: 'internal:/'
+      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
       title: ''
       options: {  }
   external:
@@ -26,16 +27,16 @@ default:
       value: false
   rediscover:
     -
-      value: true
+      value: false
   weight:
     -
-      value: 0
+      value: -48
   expanded:
     -
       value: false
   parent:
     -
-      value: 'menu_link_content:0b87a335-c3d0-404e-b40c-6f44c6f20939'
+      value: 'menu_link_content:4b1d211b-63ab-41c6-82f9-d124d52417a3'
   revision_translation_affected:
     -
       value: true

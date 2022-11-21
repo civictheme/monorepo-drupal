@@ -29,6 +29,34 @@ third_party_settings:
       -
         layout_id: civictheme_one_column
         layout_settings:
+          label: Details
+          context_mapping: {  }
+        components:
+          ce2824ba-a315-4d0c-973f-2a65a57dd1b8:
+            uuid: ce2824ba-a315-4d0c-973f-2a65a57dd1b8
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_date'
+              label: Date
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: daterange_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: civictheme_one_column
+        layout_settings:
           label: Uncontained
           context_mapping: {  }
         components:
@@ -68,21 +96,6 @@ third_party_settings:
                   view_mode: default
                 third_party_settings: {  }
             weight: 2
-            additional: {  }
-          5c9134f5-9e32-4607-a2f5-ca388ebd50e8:
-            uuid: 5c9134f5-9e32-4607-a2f5-ca388ebd50e8
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_summary'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: basic_string
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 3
             additional: {  }
           79ee9199-c580-42db-9ff6-f76d86f6b88b:
             uuid: 79ee9199-c580-42db-9ff6-f76d86f6b88b
@@ -154,6 +167,7 @@ hidden:
   field_c_n_date: true
   field_c_n_location: true
   field_c_n_show_toc: true
+  field_c_n_summary: true
   field_c_n_thumbnail: true
   field_c_n_topics: true
   links: true

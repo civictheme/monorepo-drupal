@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Changes to citizenship fees.png'
+      value: large-australian-flag-on-pole.png
   uri:
     -
-      value: 'public://images/2022-10/Changes to citizenship fees.png'
+      value: 'public://images/2022-10/large-australian-flag-on-pole.png'
   filemime:
     -
       value: image/png

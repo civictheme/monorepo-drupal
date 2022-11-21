@@ -23,7 +23,11 @@ function civictheme_dev_post_update_provision_users() {
     'govind@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
     'joshua.fernandes@salsadigital.com.au',
+    'nathania.sudirman@salsadigital.com.au',
+    'nathania@salsadigital.com.au',
     'nick.georgiou@salsadigital.com.au',
+    'nicolas.haase@salsadigital.com.au',
+    'phillipa.martin@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
     'sonam.chaturvedi@salsadigital.com.au',
   ];
@@ -84,7 +88,7 @@ function civictheme_dev_post_update_update_side_navigation_block() {
   $block->setVisibilityConfig('request_path', [
     'id' => 'request_path',
     'negate' => TRUE,
-    'pages' => "/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*",
+    'pages' => "/news-and-events\n\r/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*",
   ]);
   $block->save();
 }

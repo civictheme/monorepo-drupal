@@ -58,43 +58,43 @@ Feature: Content links processing
     When I visit "civictheme_page" "[TEST] Page 1"
 
     # Light.
-    Then I should see an ".ct-basic-content a[href='/internal-relative-light-link'].ct-link" element
+    Then I should see an ".ct-basic-content a[href='/internal-relative-light-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='/internal-relative-light-link'].ct-theme-light" element
-    And I should see an ".ct-basic-content a[href='/internal-relative-light-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='/internal-relative-light-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='/internal-relative-light-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='/internal-relative-light-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'].ct-theme-light" element
-    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-light-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'].ct-theme-light" element
-    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'][target='_blank'].ct-link" element
-    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'][target='_blank'].ct-content-link" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-light-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-theme-light" element
-    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-content-link.ct-content-link--external" element
 
     # Dark.
-    Then I should see an ".ct-basic-content a[href='/internal-relative-dark-link'].ct-link" element
+    Then I should see an ".ct-basic-content a[href='/internal-relative-dark-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='/internal-relative-dark-link'].ct-theme-dark" element
-    And I should see an ".ct-basic-content a[href='/internal-relative-dark-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='/internal-relative-dark-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='/internal-relative-dark-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='/internal-relative-dark-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'].ct-theme-dark" element
-    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='http://nginx:8080/internal-absolute-dark-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'].ct-theme-dark" element
-    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'][target='_blank'].ct-link" element
-    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'][target='_blank'].ct-content-link" element
+    And I should see an ".ct-basic-content a[href='http://example.com/external-dark-link'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-link" element
+    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-theme-dark" element
-    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'][target='_blank'].ct-link" element
-    And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-link.ct-link--external" element
+    And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'][target='_blank'].ct-content-link" element
+    And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-content-link.ct-content-link--external" element

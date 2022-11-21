@@ -10,7 +10,6 @@ dependencies:
     - field.field.paragraph.civictheme_map.field_c_p_view_link
     - paragraphs.paragraphs_type.civictheme_map
   module:
-    - link
     - options
 id: paragraph.civictheme_map.default
 targetEntityType: paragraph
@@ -25,28 +24,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_c_p_background:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_c_p_embed_url:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 6
-    region: content
   field_c_p_theme:
     type: list_default
     label: hidden
@@ -54,23 +31,8 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_c_p_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
-    region: content
-  field_c_p_view_link:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 3
-    region: content
-hidden: {  }
+hidden:
+  field_c_p_background: true
+  field_c_p_embed_url: true
+  field_c_p_vertical_spacing: true
+  field_c_p_view_link: true
