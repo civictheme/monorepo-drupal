@@ -6,7 +6,6 @@ _meta:
   default_langcode: en
   depends:
     b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
-    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
     abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
 default:
@@ -114,21 +113,12 @@ default:
           field_c_p_column_count:
             -
               value: 3
-          field_c_p_content:
-            -
-              value: '<p><span>Find our latest news and events below.</span></p>'
-              format: civictheme_rich_text
           field_c_p_fill_width:
             -
               value: false
           field_c_p_list_content_type:
             -
               value: all
-          field_c_p_list_filters_exp:
-            -
-              value: type
-            -
-              value: topic
           field_c_p_list_item_theme:
             -
               value: light
@@ -141,11 +131,6 @@ default:
           field_c_p_list_limit_type:
             -
               value: unlimited
-          field_c_p_list_link_above:
-            -
-              target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
-              title: 'View all'
-              options: {  }
           field_c_p_list_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b
@@ -157,9 +142,6 @@ default:
           field_c_p_theme:
             -
               value: light
-          field_c_p_title:
-            -
-              value: 'News and events'
   field_c_n_hide_sidebar:
     -
       value: false
@@ -171,4 +153,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top

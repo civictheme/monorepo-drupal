@@ -22,7 +22,7 @@ function civictheme_content_highereducation_post_update_common() {
  */
 function civictheme_content_highereducation_post_update_set_homepage() {
   try {
-    Helper::setHomepageFromNode('My University. Helping you make a difference');
+    Helper::setHomepageFromNode('Home');
   }
   catch (\Exception $e) {
     throw new UpdateException($e->getMessage());

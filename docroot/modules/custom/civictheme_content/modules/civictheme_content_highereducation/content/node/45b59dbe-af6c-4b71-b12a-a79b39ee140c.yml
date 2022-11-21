@@ -46,7 +46,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'My University. Helping you make a difference'
+      value: Home
   created:
     -
       value: 1637029497
@@ -319,6 +319,9 @@ default:
   field_c_n_banner_theme:
     -
       value: dark
+  field_c_n_banner_title:
+    -
+      value: 'My University. Helping you make a difference'
   field_c_n_banner_type:
     -
       value: large
