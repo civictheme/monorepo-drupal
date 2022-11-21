@@ -1,5 +1,6 @@
 // phpcs:ignoreFile
 import {
+  boolean,
   number, radios, text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
@@ -52,6 +53,7 @@ export const Slider = () => {
   const generalKnobs = {
     theme,
     title: text('Title', 'Slider title', generalKnobTab),
+    with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',
       {

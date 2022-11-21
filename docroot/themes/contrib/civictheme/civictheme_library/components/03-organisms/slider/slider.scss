@@ -101,7 +101,9 @@
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, background-color);
+    &--with-background {
+      @include ct-component-property($root, $theme, background-color);
+    }
 
     &.ct-slider--with-background {
       @include ct-component-property($root, $theme, background-color);
