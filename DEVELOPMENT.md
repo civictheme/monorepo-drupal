@@ -93,7 +93,7 @@ Note that wildcards are supported.
 
 2. Export content:
 
-    CIVICTHEME_CONTENT_PROFILE=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
+    CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
 
 3. Export config:
 
