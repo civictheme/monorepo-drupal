@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
     807435c6-a632-4c5c-bf66-2ffdc9ab609f: media
     35b75cc7-cf94-462f-9ee6-6bb69e895d8a: node
     8d96e514-518d-46fb-aa93-d0fb629035ee: media
@@ -64,9 +63,6 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_c_n_banner_background:
-    -
-      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
   field_c_n_banner_components:
     -
       entity:
@@ -309,7 +305,7 @@ default:
       value: large
   field_c_n_blend_mode:
     -
-      value: normal
+      value: overlay
   field_c_n_components:
     -
       entity:
@@ -555,9 +551,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false

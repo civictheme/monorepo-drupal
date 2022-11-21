@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 262c3484-7a1b-4c87-8b62-b4ed2aa6fdff
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'My University library.png'
+  uri:
+    -
+      value: 'public://images/2022-11/My University library.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 796447
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1669028655
