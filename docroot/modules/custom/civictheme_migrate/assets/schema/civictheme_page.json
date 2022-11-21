@@ -5,12 +5,110 @@
     "type": "object",
     "properties": {
       "id": {
-        "type": "string"
+        "type": "string",
+        "description": "Unique ID for the node"
       },
       "title": {
-        "type": "string"
+        "type": "string",
+        "description": "Page title"
+      },
+      "alias": {
+        "type": "string",
+        "description": "Page url alias, validation ensures backslash at start of url alias",
+        "pattern": "^\\/[\\S]+$"
+      },
+      "summary": {
+        "type": "string",
+        "description": "Page summary"
+      },
+      "topics": {
+        "type": "string",
+        "description": "Comma delimited page topics"
+      },
+      "thumbnail": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Media uuid"
+        }
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "pattern": "top|bottom|both",
+        "description": "Page level vertical spacing"
+      },
+      "show_toc": {
+        "type": "boolean",
+        "description": "Whether to hide table of contents"
+      },
+      "hide_sidebar": {
+        "type": "boolean",
+        "description": "Whether to hide sidebar"
+      },
+      "show_last_updated_date": {
+        "type": "boolean",
+        "description": "Determines if last updated date is visible or not"
+      },
+      "last_updated_date": {
+        "type": "string",
+        "description": "Last updated date in `D MMM YYYY`format"
+      },
+      "banner": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Hardcoded Merlin UI Output",
+            "pattern": "container"
+          },
+          "children": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Banner theme",
+                  "pattern": "light|dark"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Banner title"
+                },
+                "banner_type": {
+                  "type": "string",
+                  "description": "Type of banner",
+                  "pattern": "default|large"
+                },
+                "blend_mode": {
+                  "type": "string",
+                  "description": "Banner blend mode",
+                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
+                },
+                "featured_image": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
+                  }
+                },
+                "background": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
+                  }
+                },
+                "hide_breadcrumb": {
+                  "type": "boolean",
+                  "description": "Whether to hide breadcrumb in banner"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "required": ["id", "title"]
+    "required": ["id", "title", "alias", "show_toc","hide_sidebar", "show_last_updated_date"]
   }
 }

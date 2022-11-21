@@ -58,9 +58,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -102,9 +99,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -115,6 +109,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -133,9 +130,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -161,9 +155,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -192,9 +183,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -223,9 +211,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -254,9 +239,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -285,9 +267,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -316,9 +295,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -361,7 +337,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: '<h2 dir="ltr"><span>President and Vice-Chancellor</span></h2><p dir="ltr"><span>My University’s President and Vice Chancellor is Jane Smith. Jane has 20 years of experience in academia. She started her academic career as a professor in medicine. She became head of the Department of Medicine in 2012 and Dean of the Faculty of Medicine and Health Sciences in 2015. In 2020, she was appointed President and Vice Chancellor of My University.&nbsp;</span></p><img src="/sites/default/files/inline-images/janesmith.png" data-entity-uuid="c0575282-5985-4204-84cf-b2ade1e71435" data-entity-type="file" alt="Jane Smith" data-caption="Jane Smith, President and Vice Chancellor"><p><a href="/about-this-template-website"><span>More about our structure</span></a></p>'
+              value: "<h2 dir=\"ltr\">President and Vice-Chancellor</h2>\r\n\r\n<p dir=\"ltr\">My University’s President and Vice Chancellor is Jane Smith. Jane has 20 years of experience in academia. She started her academic career as a professor in medicine. She became head of the Department of Medicine in 2012 and Dean of the Faculty of Medicine and Health Sciences in 2015. In 2020, she was appointed President and Vice Chancellor of My University.&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"29410ad3-295b-450e-bba4-c58d5a7e83ad\" data-view-mode=\"\"></drupal-media>\r\n\r\n<p><a href=\"/about-this-template-website\">More about our structure</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -

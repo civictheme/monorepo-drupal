@@ -39,12 +39,44 @@ default:
       pathauto: 0
   field_c_n_body:
     -
-      value: '<p><span>Men’s tennis finals. Including rankings, news and championship brackets.</span></p>'
+      value: "<p>Men’s tennis finals. Including rankings, news and championship brackets.</p>\r\n"
       format: civictheme_rich_text
   field_c_n_date:
     -
       value: '2022-08-04T15:00:00'
       end_value: '2022-08-06T19:00:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: feacf1fb-1fb8-426c-9cad-cc426d868800
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1669029103
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Online event</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
   field_c_n_show_last_updated:
     -
       value: false

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create demo documents.
+ * Create generated documents.
  */
 
 use Drupal\Core\Link;
@@ -40,7 +40,7 @@ function cs_generated_content_generated_content_create_media_civictheme_document
     ]);
 
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_PDF);
-    $name = sprintf('Demo static Document media %s %s', $i + 1, $helper::staticSentence(2));
+    $name = sprintf('Generated static Document media %s %s', $i + 1, $helper::staticSentence(2));
 
     if (!$file) {
       continue;

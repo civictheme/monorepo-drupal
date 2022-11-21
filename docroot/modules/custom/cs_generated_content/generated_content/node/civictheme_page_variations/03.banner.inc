@@ -43,7 +43,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner, Dark, no breadcrumb, Manual List component, Callout component below banner',
+      'title' => 'Banner, Dark, no breadcrumb, Manual list component, Callout component below banner',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
@@ -90,7 +90,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner, Light, Background, Featured image, iFrame component, Manual List component below banner',
+      'title' => 'Banner, Light, Background, Featured image, iFrame component, Manual list component below banner',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),

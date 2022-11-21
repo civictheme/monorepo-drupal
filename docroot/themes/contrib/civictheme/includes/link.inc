@@ -32,8 +32,8 @@ use Drupal\Component\Utility\UrlHelper;
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
   $class_prefix = 'ct-';
-  $link_class = 'ct-link ct-theme-light';
-  $link_external_class = 'ct-link--external';
+  $link_class = 'ct-content-link ct-theme-light';
+  $link_external_class = 'ct-content-link--external';
 
   $dom = Html::load($html);
 

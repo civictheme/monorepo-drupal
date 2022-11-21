@@ -7,6 +7,9 @@ _meta:
   depends:
     f1180d16-b221-4efc-8815-7c2323410d09: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'michael-dPb5qrbsWtA-unsplash 1.png'
+      value: 'Parliament building in the evening'
   created:
     -
       value: 1666866935
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: f1180d16-b221-4efc-8815-7c2323410d09
-      alt: 'Homepage featured image'
+      alt: 'Parliament building in the evening'
       title: ''
       width: 608
       height: 580

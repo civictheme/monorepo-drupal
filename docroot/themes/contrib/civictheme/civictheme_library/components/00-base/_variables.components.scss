@@ -920,7 +920,7 @@ $ct-alert-dark-warning-icon-color: $ct-alert-dark-warning-color !default;
 // Back to top.
 //
 $ct-back-to-top-space-bottom: ct-spacing(8) !default;
-$ct-back-to-top-space-right: ct-spacing(1) !default;
+$ct-back-to-top-space-right: ct-spacing(2) !default;
 $ct-back-to-top-background-color: ct-color-light('interaction-background') !default;
 $ct-back-to-top-color: ct-color-light('interaction-text') !default;
 $ct-back-to-top-outline-color: transparent !default;
@@ -953,7 +953,7 @@ $ct-fieldset-required-color: ct-color-light('error') !default;
 $ct-footer-light-background-color: ct-color-light('background') !default;
 $ct-footer-light-border-color: ct-color-light('border-light') !default;
 $ct-footer-light-color: ct-color-light('body') !default;
-$ct-footer-dark-background-color: ct-color-dark('background') !default;
+$ct-footer-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-footer-dark-border-color: ct-color-dark('border') !default;
 $ct-footer-dark-color: ct-color-dark('body') !default;
 
@@ -966,7 +966,7 @@ $ct-header-light-middle-border-color: ct-color-light('border-light') !default;
 $ct-header-light-top-background-color: ct-color-light('background') !default;
 $ct-header-light-top-color: ct-color-light('body') !default;
 $ct-header-dark-middle-background-color: ct-color-dark('background') !default;
-$ct-header-dark-middle-border-color: ct-color-dark('border-light') !default;
+$ct-header-dark-middle-border-color: ct-color-dark('border') !default;
 $ct-header-dark-top-background-color: ct-color-dark('background-dark') !default;
 $ct-header-dark-top-color: ct-color-dark('body') !default;
 
@@ -1163,7 +1163,7 @@ $ct-mobile-navigation-light-menu-divider-border-color: ct-color-light('border') 
 $ct-mobile-navigation-light-subsection-heading-color: ct-color-light('heading') !default;
 $ct-mobile-navigation-light-subsection-heading-icon-color: $ct-mobile-navigation-light-subsection-heading-color !default;
 $ct-mobile-navigation-light-subsection-trigger-color: ct-color-light('interaction-background') !default;
-$ct-mobile-navigation-trigger-light-color: ct-color-dark('background') !default;
+$ct-mobile-navigation-trigger-light-color: ct-color-light('interaction-background') !default;
 $ct-mobile-navigation-dark-panel-background-color: ct-color-dark('background') !default;
 $ct-mobile-navigation-dark-top-menu-background-color: $ct-mobile-navigation-dark-panel-background-color !default;
 $ct-mobile-navigation-dark-bottom-menu-background-color: ct-color-dark('background-dark') !default;
@@ -1173,7 +1173,7 @@ $ct-mobile-navigation-dark-menu-divider-border-color: ct-color-dark('border') !d
 $ct-mobile-navigation-dark-subsection-heading-color: ct-color-dark('heading') !default;
 $ct-mobile-navigation-dark-subsection-heading-icon-color: $ct-mobile-navigation-dark-subsection-heading-color !default;
 $ct-mobile-navigation-dark-subsection-trigger-color: ct-color-dark('interaction-background') !default;
-$ct-mobile-navigation-trigger-dark-color: ct-color-dark('background') !default;
+$ct-mobile-navigation-trigger-dark-color: ct-color-dark('interaction-background') !default;
 
 //
 // Promo.
@@ -1181,7 +1181,7 @@ $ct-mobile-navigation-trigger-dark-color: ct-color-dark('background') !default;
 $ct-promo-light-background-color: ct-color-light('background-light') !default;
 $ct-promo-light-content-color: ct-color-light('body') !default;
 $ct-promo-light-title-color: ct-color-light('heading') !default;
-$ct-promo-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-promo-dark-background-color: ct-color-dark('background') !default;
 $ct-promo-dark-content-color: ct-color-dark('body') !default;
 $ct-promo-dark-title-color: ct-color-dark('heading') !default;
 

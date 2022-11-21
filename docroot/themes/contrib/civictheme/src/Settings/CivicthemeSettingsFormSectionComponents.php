@@ -320,6 +320,22 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.skip_link.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
+    $form['components']['event_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Event card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['event_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('event_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
     $form['components']['navigation_card'] = [
       '#type' => 'details',
       '#title' => $this->t('Navigation card'),
@@ -371,6 +387,18 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $form['#process'][] = [$this, 'processForm'];
 
     // Auto-discover per-component validation and submit handlers.
+    $form['components']['migrate'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Migration'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+    $form['components']['migrate']['expose_migration_metadata'] = [
+      '#type' => 'checkbox',
+      '#title' => 'Expose Migration metadata',
+      '#default_value' => $this->themeConfigManager->loadForComponent('components', 'migrate.expose_migration_metadata') ?? FALSE,
+    ];
+
     foreach (array_keys($form['components']) as $component_name) {
       $validate = CivicthemeUtility::camelise("validate_$component_name");
       if (is_callable([$this, $validate])) {

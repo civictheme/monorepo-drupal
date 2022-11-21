@@ -7,6 +7,9 @@ _meta:
   depends:
     b0fd58d9-6ee5-4d72-8736-986cce424b88: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'Health and aged.png'
+      value: 'Aged man hugs aged woman'
   created:
     -
       value: 1666918298
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: b0fd58d9-6ee5-4d72-8736-986cce424b88
-      alt: 'Health and aged card home support services'
+      alt: 'Aged man hugs aged woman'
       title: ''
       width: 304
       height: 172

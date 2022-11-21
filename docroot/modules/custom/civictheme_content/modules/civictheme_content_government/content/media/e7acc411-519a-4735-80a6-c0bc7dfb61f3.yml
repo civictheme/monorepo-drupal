@@ -7,6 +7,9 @@ _meta:
   depends:
     79bffa90-f6fe-4fb6-a8e4-129d8abf4566: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'female-customer-service-executive-talking-on-headset-in-a-modern-office-4457189 1.png'
+      value: 'Female customer service executive talking on headset in a modern office'
   created:
     -
       value: 1666914814
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: 79bffa90-f6fe-4fb6-a8e4-129d8abf4566
-      alt: CS
+      alt: 'Female customer service executive talking on headset in a modern office'
       title: ''
       width: 304
       height: 172

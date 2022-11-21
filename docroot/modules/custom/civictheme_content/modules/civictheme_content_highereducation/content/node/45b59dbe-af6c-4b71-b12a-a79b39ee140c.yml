@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
     807435c6-a632-4c5c-bf66-2ffdc9ab609f: media
     35b75cc7-cf94-462f-9ee6-6bb69e895d8a: node
     8d96e514-518d-46fb-aa93-d0fb629035ee: media
@@ -46,7 +45,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'My University. Helping you make a difference'
+      value: Home
   created:
     -
       value: 1637029497
@@ -64,9 +63,6 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_c_n_banner_background:
-    -
-      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
   field_c_n_banner_components:
     -
       entity:
@@ -86,9 +82,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -118,9 +111,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -149,9 +139,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 807435c6-a632-4c5c-bf66-2ffdc9ab609f
@@ -193,9 +180,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 8d96e514-518d-46fb-aa93-d0fb629035ee
@@ -237,9 +221,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e8ab5ef1-2f45-4937-8f0a-f63c22f52df9
@@ -281,9 +262,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: ac4255ad-ec69-47e9-9617-86b2e51872b8
@@ -319,12 +297,15 @@ default:
   field_c_n_banner_theme:
     -
       value: dark
+  field_c_n_banner_title:
+    -
+      value: 'My University. Helping you make a difference'
   field_c_n_banner_type:
     -
       value: large
   field_c_n_blend_mode:
     -
-      value: normal
+      value: overlay
   field_c_n_components:
     -
       entity:
@@ -344,9 +325,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: true
@@ -375,9 +353,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: eac50bb1-3e95-4be4-80cb-7c768fef1c09
@@ -416,9 +391,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 7d8c80cb-6e45-4ba2-aad6-8e9bc132f88f
@@ -457,9 +429,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 12d28525-2e6c-4d9a-9bca-1e8758d0b706
@@ -512,9 +481,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -537,12 +503,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
-                      value: '<p><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you.</span></p>'
+                      value: "<p>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you.</p>\r\n"
                       format: civictheme_rich_text
                   field_c_p_image:
                     -
@@ -569,7 +532,7 @@ default:
               value: light
           field_c_p_vertical_spacing:
             -
-              value: bottom
+              value: both
     -
       entity:
         _meta:
@@ -588,12 +551,9 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
-              value: true
+              value: false
           field_c_p_column_count:
             -
               value: 3
@@ -619,9 +579,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-12'
@@ -663,9 +620,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-09-01'
@@ -707,9 +661,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-08-20'

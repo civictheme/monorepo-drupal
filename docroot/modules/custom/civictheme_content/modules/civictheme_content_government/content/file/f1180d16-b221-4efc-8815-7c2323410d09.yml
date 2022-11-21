@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'michael-dPb5qrbsWtA-unsplash 1.png'
+      value: parliament-building-in-the-evening.png
   uri:
     -
-      value: 'public://images/2022-10/michael-dPb5qrbsWtA-unsplash 1.png'
+      value: 'public://images/2022-10/parliament-building-in-the-evening.png'
   filemime:
     -
       value: image/png

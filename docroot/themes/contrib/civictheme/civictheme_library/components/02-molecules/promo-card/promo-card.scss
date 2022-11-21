@@ -93,10 +93,10 @@
       margin-top: ct-spacing(0.5);
       margin-right: ct-spacing(0.5);
     }
+  }
 
-    #{$root}__icon-wrapper {
-      align-self: flex-end;
-    }
+  #{$root}__icon-wrapper {
+    align-self: flex-end;
   }
 
   @include ct-component-theme($root) using($root, $theme) {

@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: uluru-336476.png
+      value: bottom-of-uluru-mountain.png
   uri:
     -
-      value: 'public://images/2022-10/uluru-336476.png'
+      value: 'public://images/2022-10/bottom-of-uluru-mountain.png'
   filemime:
     -
       value: image/png

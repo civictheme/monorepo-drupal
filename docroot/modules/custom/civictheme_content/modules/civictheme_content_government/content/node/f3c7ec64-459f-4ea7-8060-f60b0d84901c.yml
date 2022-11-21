@@ -4,8 +4,6 @@ _meta:
   uuid: f3c7ec64-459f-4ea7-8060-f60b0d84901c
   bundle: civictheme_page
   default_langcode: en
-  depends:
-    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
 default:
   revision_uid:
     -
@@ -36,9 +34,6 @@ default:
       alias: /policy-and-forms
       langcode: en
       pathauto: 1
-  field_c_n_banner_background:
-    -
-      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
   field_c_n_banner_components:
     -
       entity:
@@ -76,13 +71,13 @@ default:
       value: false
   field_c_n_banner_theme:
     -
-      value: dark
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
-      value: overlay
+      value: normal
   field_c_n_components:
     -
       entity:
@@ -110,7 +105,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<h2>Policies and procedures</h2>\r\n\r\n<p>The Department of Citizens holds policy and procedure documents in our National Online Database. Our policies document all responsibilities and services performed across all areas within the Department of Citizens.</p>\r\n\r\n<p><strong>Our most commonly viewed policy and procedure documents:</strong></p>\r\n\r\n<ul>\r\n\t<li>Ministerial code of conduct</li>\r\n\t<li>Ministers’ handbook&nbsp;</li>\r\n\t<li>Employment and education policies</li>\r\n\t<li>Immigration and citizenship procedures</li>\r\n\t<li>Aged care policies</li>\r\n\t<li>Environmental emergency procedures</li>\r\n\t<li>Complaint handling policy</li>\r\n\t<li>Department of Citizens manual</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all available Department of Citizen policy and procedure documents</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>Online forms</h2>\r\n\r\n<p><strong>Search for an online application form.</strong></p>\r\n\r\n<p>We deliver programs and services for the public and businesses across the following sectors:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Immigration and citizenship</a>&nbsp;</li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Employment and education</a></li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Health and disability</a></li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Aged care</a></li>\r\n\t<li>\r\n\t<p><a href=\"/about-this-template-website\" title=\"About this template website\">Grant application</a></p>\r\n\t</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all available online application forms</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>All Department of Citizen employee forms can be found at&nbsp;<a href=\"/about-this-template-website\" title=\"About this template website\">CitizenForms</a>.</p>\r\n\r\n<p>If you can’t locate the policy document or form that you’re looking for, please contact our Policy and Procedure Department on&nbsp;<a href=\"/about-this-template-website\" title=\"About this template website\">+61 2 6333 4434</a>.</p>\r\n\r\n<p>You can access the translation service by calling 1300 000 000 for the cost of a local phone call.</p>\r\n"
+              value: "<h2>Policies and procedures</h2>\r\n\r\n<p>The Department of Citizens holds policy and procedure documents in our National Online Database. Our policies document all responsibilities and services performed across all areas within the Department of Citizens.</p>\r\n\r\n<p><strong>Our most commonly viewed policy and procedure documents:</strong></p>\r\n\r\n<ul>\r\n\t<li>Ministerial code of conduct</li>\r\n\t<li>Ministers’ handbook&nbsp;</li>\r\n\t<li>Employment and education policies</li>\r\n\t<li>Immigration and citizenship procedures</li>\r\n\t<li>Aged care policies</li>\r\n\t<li>Environmental emergency procedures</li>\r\n\t<li>Complaint handling policy</li>\r\n\t<li>Department of Citizens manual</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all policy and procedure documents</a></p>\r\n\r\n<h2>Online forms</h2>\r\n\r\n<p><strong>Search for an online application form.</strong></p>\r\n\r\n<p>We deliver programs and services for the public and businesses across the following sectors:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Immigration and citizenship</a>&nbsp;</li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Employment and education</a></li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Health and disability</a></li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Aged care</a></li>\r\n\t<li>\r\n\t<p><a href=\"/about-this-template-website\" title=\"About this template website\">Grant application</a></p>\r\n\t</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all online application forms</a></p>\r\n\r\n<p>All Department of Citizen employee forms can be found at&nbsp;<a href=\"/about-this-template-website\" title=\"About this template website\">CitizenForms</a>.</p>\r\n\r\n<p>If you can’t locate the policy document or form that you’re looking for, please contact our Policy and Procedure Department on&nbsp;<a href=\"/about-this-template-website\" title=\"About this template website\">+61 2 6333 4434</a>.</p>\r\n\r\n<p>You can access the translation service by calling 1300 000 000 for the cost of a local phone call.</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -

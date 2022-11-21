@@ -22,7 +22,7 @@ function civictheme_content_government_post_update_common() {
  */
 function civictheme_content_government_post_update_set_homepage() {
   try {
-    Helper::setHomepageFromNode('Department of Citizens. Making Australia a safe place to live.');
+    Helper::setHomepageFromNode('Home');
   }
   catch (\Exception $e) {
     throw new UpdateException($e->getMessage());

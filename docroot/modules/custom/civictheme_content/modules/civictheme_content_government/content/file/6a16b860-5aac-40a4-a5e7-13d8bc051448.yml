@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Brain cancer research.png'
+      value: man-with-microscope.png
   uri:
     -
-      value: 'public://images/2022-10/Brain cancer research.png'
+      value: 'public://images/2022-10/man-with-microscope.png'
   filemime:
     -
       value: image/png

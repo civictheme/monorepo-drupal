@@ -46,4 +46,6 @@ if [ "${SKIP_GENERATED_CONTENT_CREATE}" != "1" ]; then
     echo "  > Generate sitemap."
     $drush simple-sitemap:generate
   fi
+else
+  echo "  > Skipped creation of generated content."
 fi

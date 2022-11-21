@@ -2779,6 +2779,35 @@
             "type": "drupal-module"
         },
         {
+            "name": "drupal/migrate_file",
+            "version": "dev-feature/d10-compatibility",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/richardgaunt/migrate_file.git",
+                "reference": "47be2b407cf486d9bf4ed41f5438180eed7f97b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/richardgaunt/migrate_file/zipball/47be2b407cf486d9bf4ed41f5438180eed7f97b4",
+                "reference": "47be2b407cf486d9bf4ed41f5438180eed7f97b4",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Additional support for migrating files including downloading remote files and using remote uris (without download)",
+            "homepage": "https://www.drupal.org/project/migrate_file",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/migrate_file",
+                "source": "http://cgit.drupalcode.org/migrate_file"
+            },
+            "time": "2022-11-10T00:15:53+00:00"
+        },
+        {
             "name": "drupal/migrate_plus",
             "version": "6.0.0",
             "source": {
@@ -13247,6 +13276,7 @@
         "drupal/core-dev": 10,
         "drupal/drupal-extension": 20,
         "drupal/linkit": 10,
+        "drupal/migrate_file": 20,
         "drupal/default_content": 15,
         "drupal/styleguide": 10
     },

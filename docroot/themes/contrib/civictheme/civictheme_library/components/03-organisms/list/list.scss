@@ -30,6 +30,10 @@
     }
   }
 
+  &__content {
+    margin-bottom: ct-spacing(3);
+  }
+
   &__filters {
     margin-bottom: ct-spacing(5);
   }

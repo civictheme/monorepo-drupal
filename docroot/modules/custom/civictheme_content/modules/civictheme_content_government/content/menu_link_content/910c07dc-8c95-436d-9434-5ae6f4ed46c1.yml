@@ -5,7 +5,7 @@ _meta:
   bundle: menu_link_content
   default_langcode: en
   depends:
-    1a84050a-4755-4a36-8d83-f3514947f247: menu_link_content
+    5affe220-42a6-4bab-86ce-c64cd9490cf7: menu_link_content
 default:
   enabled:
     -
@@ -18,7 +18,7 @@ default:
       value: civictheme-footer
   link:
     -
-      uri: 'internal:/'
+      uri: 'https://civictheme.io'
       title: ''
       options: {  }
   external:
@@ -26,7 +26,7 @@ default:
       value: false
   rediscover:
     -
-      value: true
+      value: false
   weight:
     -
       value: -49
@@ -35,7 +35,7 @@ default:
       value: false
   parent:
     -
-      value: 'menu_link_content:1a84050a-4755-4a36-8d83-f3514947f247'
+      value: 'menu_link_content:5affe220-42a6-4bab-86ce-c64cd9490cf7'
   revision_translation_affected:
     -
       value: true

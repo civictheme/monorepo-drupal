@@ -7,6 +7,8 @@ namespace Drupal\civictheme;
  */
 final class CivicthemeConstants {
 
+  const INHERIT = 'inherit';
+
   /**
    * Defines 'light' theme machine name.
    */
@@ -75,6 +77,11 @@ final class CivicthemeConstants {
    * Defines 'large' banner style.
    */
   const BANNER_TYPE_LARGE = 'large';
+
+  /**
+   * Defines default banner theme.
+   */
+  const BANNER_THEME_DEFAULT = self::THEME_LIGHT;
 
   /**
    * Defines Automated list default view name.

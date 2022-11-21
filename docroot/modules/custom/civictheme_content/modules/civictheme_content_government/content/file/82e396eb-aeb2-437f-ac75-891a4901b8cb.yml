@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 82e396eb-aeb2-437f-ac75-891a4901b8cb
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: four-young-people-looking-at-laptop-screen.png
+  uri:
+    -
+      value: 'public://images/2022-11/four-young-people-looking-at-laptop-screen.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 150015
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668750675

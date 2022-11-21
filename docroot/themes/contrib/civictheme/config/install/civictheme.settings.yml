@@ -52,8 +52,12 @@ components:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+  migrate:
+    expose_migration_metadata: true
   skip_link:
     theme: light
+  event_card:
+    summary_length: 160
   navigation_card:
     summary_length: 160
   promo_card:

@@ -70,7 +70,6 @@ class CivicthemeMigrateValidator {
    */
   public function validate($data, $scheme_id): array {
     $errors = [];
-
     if ($data === NULL) {
       return ['JSON is malformed / invalid.'];
     }

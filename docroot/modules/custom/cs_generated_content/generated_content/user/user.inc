@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create demo users.
+ * Create generated users.
  */
 
 use Drupal\Core\Link;

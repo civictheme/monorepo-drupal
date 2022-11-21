@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Driving greener.png'
+      value: small-car-moving-fast.png
   uri:
     -
-      value: 'public://images/2022-10/Driving greener.png'
+      value: 'public://images/2022-10/small-car-moving-fast.png'
   filemime:
     -
       value: image/png
