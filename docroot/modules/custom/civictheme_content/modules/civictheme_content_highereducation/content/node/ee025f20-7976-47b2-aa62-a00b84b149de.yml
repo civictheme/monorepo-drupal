@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
     11575ae4-d804-4b68-a9e2-528dde78ca5e: node
 default:
   revision_uid:
@@ -37,9 +36,6 @@ default:
       alias: /courses/postgraduate-courses
       langcode: en
       pathauto: 0
-  field_c_n_banner_background:
-    -
-      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
   field_c_n_banner_components:
     -
       entity:
@@ -59,9 +55,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -77,45 +70,14 @@ default:
       value: false
   field_c_n_banner_theme:
     -
-      value: dark
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
       value: normal
   field_c_n_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: abade735-f66a-4904-b0b2-e30315743be4
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666101233
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: '<h2><span>Featured postgraduate courses</span></h2><p><span>Search our postgraduate courses by keyword or school/department.</span></p>'
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
     -
       entity:
         _meta:
@@ -143,6 +105,10 @@ default:
           field_c_p_column_count:
             -
               value: 1
+          field_c_p_content:
+            -
+              value: "<p>Search our postgraduate courses by keyword or school/department.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_fill_width:
             -
               value: false
@@ -165,9 +131,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -206,9 +169,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -247,9 +207,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e

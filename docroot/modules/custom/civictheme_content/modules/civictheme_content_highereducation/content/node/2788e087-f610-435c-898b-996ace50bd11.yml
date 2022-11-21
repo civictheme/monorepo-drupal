@@ -39,15 +39,47 @@ default:
       pathauto: 1
   field_c_n_body:
     -
-      value: '<p><span>Mental health day</span></p>'
+      value: "<p>Mental health day</p>\r\n"
       format: civictheme_rich_text
   field_c_n_date:
     -
       value: '2022-07-10T10:00:00'
       end_value: '2022-07-10T17:00:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: db5a8deb-bf76-4798-b7ef-f33f04438df1
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1669029062
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Online event</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
   field_c_n_show_last_updated:
     -
-      value: false
+      value: true
   field_c_n_show_toc:
     -
       value: false

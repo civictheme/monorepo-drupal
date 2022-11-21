@@ -4,8 +4,6 @@ _meta:
   uuid: 439d44bc-bb57-44ac-b1b6-1fbcb0f7668c
   bundle: civictheme_page
   default_langcode: en
-  depends:
-    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
 default:
   revision_uid:
     -
@@ -36,9 +34,6 @@ default:
       alias: /uni-life
       langcode: en
       pathauto: 1
-  field_c_n_banner_background:
-    -
-      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
   field_c_n_banner_components:
     -
       entity:
@@ -58,9 +53,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -76,10 +68,10 @@ default:
       value: false
   field_c_n_banner_theme:
     -
-      value: dark
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
       value: normal
@@ -110,7 +102,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: '<h2>Entertainment</h2><p>We hold regular entertainment options on campus and close to campus. Some of these are university-run events and others are organised by departments, clubs or others associated with the university.</p><p><a href="/news-and-events">View our calendar of events</a></p><h2>Clubs</h2><p>The university has a thriving clubs and societies scene. Whether it’s chess, AI, or chocolate…we’ve got a club that will interest you!</p><p><a href="/about-this-template-website">View all our clubs</a></p><h2>Our library</h2><p>Our library boasts large work spaces, private rooms and a vast collection of books across all areas.</p><img data-entity-uuid="4a11ae55-c1d3-4a9e-b186-fcda29a2f4f9" data-entity-type="file" src="/sites/default/files/inline-images/My%20University%20library.png" alt="My University library" data-caption="My University library"><p><a href="/about-this-template-website">Search library catalogue</a></p>'
+              value: "<h2>Entertainment</h2>\r\n\r\n<p>We hold regular entertainment options on campus and close to campus. Some of these are university-run events and others are organised by departments, clubs or others associated with the university.</p>\r\n\r\n<p><a href=\"/news-and-events\">View our calendar of events</a></p>\r\n\r\n<h2>Clubs</h2>\r\n\r\n<p>The university has a thriving clubs and societies scene. Whether it’s chess, AI, or chocolate…we’ve got a club that will interest you!</p>\r\n\r\n<p><a href=\"/about-this-template-website\">View all our clubs</a></p>\r\n\r\n<h2>Our library</h2>\r\n\r\n<p>Our library boasts large work spaces, private rooms and a vast collection of books across all areas.</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"707c016d-26af-43c0-a999-c892e651917a\"></drupal-media>\r\n\r\n<p><a href=\"/about-this-template-website\">Search library catalogue</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -

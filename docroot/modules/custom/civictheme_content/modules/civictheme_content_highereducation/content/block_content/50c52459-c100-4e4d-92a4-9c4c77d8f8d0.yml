@@ -4,6 +4,8 @@ _meta:
   uuid: 50c52459-c100-4e4d-92a4-9c4c77d8f8d0
   bundle: civictheme_banner
   default_langcode: en
+  depends:
+    f8695f84-8fbb-4e7e-97b9-423efe719cda: media
 default:
   status:
     -
@@ -17,9 +19,12 @@ default:
   revision_translation_affected:
     -
       value: true
+  field_c_b_background_image:
+    -
+      entity: f8695f84-8fbb-4e7e-97b9-423efe719cda
   field_c_b_blend_mode:
     -
-      value: normal
+      value: overlay
   field_c_b_theme:
     -
       value: dark
