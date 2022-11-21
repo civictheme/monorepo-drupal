@@ -1,22 +1,35 @@
 [
   {
     "id": "4593761e-8a5d-4564-8c0e-2126fb4f3334",
-    "title": "[TEST] Migrated Content 6"
-  },
-  {
-    "id": "9ba51c5e-319c-47dd-8209-2029ed7525f3",
-    "title": "[TEST] Migrated Content 7"
-  },
-  {
-    "id": "5735eb9a-0b68-4f67-984a-b3699a0459c1",
-    "title": "[TEST] Migrated Content 8"
-  },
-  {
-    "id": "13e63503-94ca-4c83-8499-bae665d5a0a1",
-    "title": "[TEST] Migrated Content 9"
-  },
-  {
-    "id":  "3792689b-529a-4b13-a36c-e97ac0b0f7f5",
-    "title": "[TEST] Migrated Content 10"
+    "title": "[TEST] Migrated Content 6",
+    "alias": "/test/migrated-content-6",
+    "summary": "Summary for [TEST] Migrated Content 6",
+    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 6, [TEST] Topic 7",
+    "thumbnail": [
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+    ],
+    "vertical_spacing": "top",
+    "hide_sidebar": true,
+    "show_last_updated_date": false,
+    "last_updated_date": "1 Oct 2022",
+    "show_toc": true,
+    "banner": {
+      "type": "container",
+      "children" : [
+        {
+          "theme": "light",
+          "title": "[TEST] Banner title - Migrated Content 6",
+          "banner_type": "default",
+          "blend_mode": "soft-light",
+          "featured_image": [
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+          ],
+          "background": [
+            "427186ad-c561-4441-9951-28399d8a4923"
+          ],
+          "hide_breadcrumb": true
+        }
+      ]
+    }
   }
 ]

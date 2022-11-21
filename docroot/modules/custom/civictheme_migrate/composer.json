@@ -6,8 +6,34 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
+        "cweagans/composer-patches": "^1.7",
         "opis/json-schema": "^2.3",
         "drupal/migrate_plus": "^6.0",
-        "drupal/migrate_tools": "^6.0"
+        "drupal/migrate_tools": "^6.0",
+        "drupal/migrate_file": "dev-feature/d10-compatibility"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "process-timeout": 0,
+        "sort-packages": true,
+        "allow-plugins": {
+            "cweagans/composer-patches": true
+        }
+    },
+    "extra": {
+        "enable-patching": true
+    },
+    "patches": {
+        "drupal/migrate_file": {
+            "Drupal 10 rector compatibility fixes - https://www.drupal.org/project/migrate_file/issues/3288621": "https://www.drupal.org/files/issues/2022-08-22/migrate_file.2.1.1.rector.patch"
+        }
+    },
+    "repositories": {
+        "drupal/migrate_file": {
+            "type": "vcs",
+            "url": "https://github.com/richardgaunt/migrate_file"
+        }
     }
 }
