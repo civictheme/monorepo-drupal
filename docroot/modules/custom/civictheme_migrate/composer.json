@@ -10,7 +10,7 @@
         "opis/json-schema": "^2.3",
         "drupal/migrate_plus": "^6.0",
         "drupal/migrate_tools": "^6.0",
-        "drupal/migrate_file": "dev-feature/d10-compatibility"
+        "drupal/migrate_file": "^2.1.1"
     },
     "config": {
         "platform": {
@@ -25,15 +25,19 @@
     "extra": {
         "enable-patching": true
     },
-    "patches": {
-        "drupal/migrate_file": {
-            "Drupal 10 rector compatibility fixes - https://www.drupal.org/project/migrate_file/issues/3288621": "https://www.drupal.org/files/issues/2022-08-22/migrate_file.2.1.1.rector.patch"
-        }
-    },
     "repositories": {
         "drupal/migrate_file": {
-            "type": "vcs",
-            "url": "https://github.com/richardgaunt/migrate_file"
+            "type": "package",
+            "package": {
+                "name": "drupal/migrate_file",
+                "type": "drupal-module",
+                "version": "2.1.1",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/migrate_file-3288621.git",
+                    "reference": "9b971e83cc54acc84166bee794a82b577a161804"
+                }
+            }
         }
     }
 }
