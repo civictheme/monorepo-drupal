@@ -13,11 +13,6 @@
   min-width: ct-particle(38);
   height: ct-particle(6);
   padding: 0.5em 3.5em 0.5em 1em;
-  // stylelint-disable-next-line property-no-vendor-prefix
-  -webkit-appearance: none;
-  // stylelint-disable-next-line property-no-vendor-prefix
-  -moz-appearance: none;
-  appearance: none;
   background-position: calc(100% - 0.5rem), 100% 0;
   background-size: 1.5em 1.5em;
   background-repeat: no-repeat;
