@@ -462,7 +462,7 @@ default:
               value: 'Find out more about...'
           field_c_p_vertical_spacing:
             -
-              value: bottom
+              value: both
     -
       entity:
         _meta:
