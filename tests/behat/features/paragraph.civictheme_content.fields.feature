@@ -29,12 +29,10 @@ Feature: Content fields
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-background-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-vertical-spacing" element
-    And I should see an ".js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme .required" element
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_banner_components[0][subform][field_c_p_theme]" field should contain "light"
 
     And I press the "field_c_n_banner_components_bott_civictheme_content_add_more" button
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-background-value" element
-    And I should see an ".js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-theme .required" element

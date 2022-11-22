@@ -216,16 +216,16 @@ Feature: Components settings are available in the theme settings
       | name                    | field_c_m_image |
       | [TEST] CivicTheme Image | test_image.jpg  |
     And "civictheme_topics" terms:
-    | name |
-    | [TEST] Topic 1 |
-    | [TEST] Topic 2 |
-    | [TEST] Topic 3 |
+      | name           |
+      | [TEST] Topic 1 |
+      | [TEST] Topic 2 |
+      | [TEST] Topic 3 |
     Given "civictheme_page" content:
-      | title         | status | field_c_n_summary | field_c_n_topics | field_c_n_thumbnail | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_background | field_c_n_blend_mode | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
+      | title         | status | field_c_n_summary | field_c_n_topics                               | field_c_n_thumbnail     | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_background | field_c_n_blend_mode | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
       | [TEST] Page 1 | 1      | [TEST] Summary    | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | [TEST] CivicTheme Image | top                        | 1                  | 1                           | 0                      | 2022-07-01                    | [TEST] CivicTheme Image     | luminosity           | default               | light                  | 1                                |
     Given "civictheme_page" content:
       | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
-      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01                    | large                 | dark                   | 0                              |
+      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01                    | large                 | dark                   | 0                                |
     When I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
     And I check the box "Expose Migration metadata"

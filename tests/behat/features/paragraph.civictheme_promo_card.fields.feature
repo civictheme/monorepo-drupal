@@ -33,9 +33,8 @@ Feature: Promo card fields
     And I wait for AJAX to finish
     And I press the "field_c_n_banner_components_0_subform_field_c_p_list_items_civictheme_promo_card_add_more" button
     And I wait for AJAX to finish
-    And should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]'].required" element
-    And the option "Light" from select "Theme" is selected
+    And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]']" element
+    And the "field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]" field should contain "light"
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And should see an "div.field--name-field-c-p-image #field_c_p_image-media-library-wrapper-field_c_n_banner_components-0-subform-field_c_p_list_items-0-subform" element
@@ -50,7 +49,6 @@ Feature: Promo card fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
@@ -59,8 +57,7 @@ Feature: Promo card fields
     And I wait for AJAX to finish
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_promo_card_add_more" button
     And I wait for AJAX to finish
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]'].required" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And should see an "div.field--name-field-c-p-image #field_c_p_image-media-library-wrapper-field_c_n_components-0-subform-field_c_p_list_items-0-subform" element

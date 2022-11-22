@@ -22,7 +22,7 @@ content:
       display_label: true
     third_party_settings: {  }
   field_c_p_theme:
-    type: options_select
+    type: options_buttons
     weight: 1
     region: content
     settings: {  }

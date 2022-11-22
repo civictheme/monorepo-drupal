@@ -270,9 +270,11 @@ config_devel:
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
+    - field.field.node.civictheme_event.field_c_n_site_section
     - field.field.node.civictheme_event.field_c_n_summary
     - field.field.node.civictheme_event.field_c_n_thumbnail
     - field.field.node.civictheme_event.field_c_n_topics
+    - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - field.field.node.civictheme_page.field_c_n_banner_background
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_vertical_spacing
+    - node.type.civictheme_event
+  module:
+    - options
+id: node.civictheme_event.field_c_n_vertical_spacing
+field_name: field_c_n_vertical_spacing
+entity_type: node
+bundle: civictheme_event
+label: 'Vertical spacing'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

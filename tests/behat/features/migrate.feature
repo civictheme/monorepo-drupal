@@ -64,9 +64,9 @@ Feature: Tests the CivicTheme migration functionality
   @api @javascript
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
     Given managed file:
-      | filename                               | uri                                             | path                                   |
-      | civictheme_migrate.page_content_1.json | public://civictheme_migrate.page_content_1.json | civictheme_migrate.page_content_1.json |
-      | civictheme_migrate.page_content_2.json | public://civictheme_migrate.page_content_2.json | civictheme_migrate.page_content_2.json |
+      | filename                                | uri                                              | path                                    |
+      | civictheme_migrate.page_content_1.json  | public://civictheme_migrate.page_content_1.json  | civictheme_migrate.page_content_1.json  |
+      | civictheme_migrate.page_content_2.json  | public://civictheme_migrate.page_content_2.json  | civictheme_migrate.page_content_2.json  |
       | civictheme_migrate.media_content_1.json | public://civictheme_migrate.media_content_1.json | civictheme_migrate.media_content_1.json |
       | civictheme_migrate.media_content_2.json | public://civictheme_migrate.media_content_2.json | civictheme_migrate.media_content_2.json |
     Given I am logged in as an administrator
