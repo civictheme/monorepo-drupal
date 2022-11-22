@@ -10,6 +10,8 @@ use Drupal\Core\Template\Attribute;
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_iframe(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
