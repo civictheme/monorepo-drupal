@@ -9,15 +9,18 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
+    - field.field.node.civictheme_event.field_c_n_site_section
     - field.field.node.civictheme_event.field_c_n_summary
     - field.field.node.civictheme_event.field_c_n_thumbnail
     - field.field.node.civictheme_event.field_c_n_topics
+    - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - node.type.civictheme_event
   module:
     - datetime_range
     - entity_reference_revisions
     - layout_builder
     - layout_builder_restrictions
+    - options
     - text
     - user
 third_party_settings:
@@ -28,9 +31,9 @@ third_party_settings:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
       allowed_layouts: {  }
+      restricted_categories: {  }
       blacklisted_blocks: {  }
       whitelisted_blocks: {  }
-      restricted_categories: {  }
 id: node.civictheme_event.default
 targetEntityType: node
 bundle: civictheme_event
@@ -61,6 +64,21 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_c_n_site_section:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_c_n_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
 hidden:
   field_c_n_attachments: true

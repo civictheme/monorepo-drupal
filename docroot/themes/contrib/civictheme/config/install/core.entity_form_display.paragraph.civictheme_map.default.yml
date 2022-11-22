@@ -40,7 +40,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
   field_c_p_theme:
-    type: options_select
+    type: options_buttons
     weight: 3
     region: content
     settings: {  }
