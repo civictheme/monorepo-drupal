@@ -33,7 +33,6 @@ Feature: Navigation card fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
@@ -47,8 +46,8 @@ Feature: Navigation card fields
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_navigation_card_add_more" button
     And I wait for AJAX to finish
-    Then select "field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]" should have an option "light"
-    And the option "Light" from select "Theme" is selected
+    Then the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
     Then select "field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_size]" should have an option "Large"
     And the option "Large" from select "Size" is selected
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]']" element

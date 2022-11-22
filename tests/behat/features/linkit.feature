@@ -23,8 +23,7 @@ Feature: Linkit works correctly on pages
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Page linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element
@@ -47,8 +46,7 @@ Feature: Linkit works correctly on pages
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Event linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element
@@ -71,8 +69,7 @@ Feature: Linkit works correctly on pages
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Document Media linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element

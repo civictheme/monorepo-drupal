@@ -35,13 +35,11 @@ Feature: Campaign fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I click on "div.field--name-field-c-n-components .add-more-button-civictheme-campaign.dropbutton-action" element
     And I wait for AJAX to finish
     And I see field "field_c_n_components[0][subform][field_c_p_theme]"
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_content][0][value]']" element
@@ -52,4 +50,4 @@ Feature: Campaign fields
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_date][0][value][date]']" element
     And I should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_topic][0][target_id]']" element
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"

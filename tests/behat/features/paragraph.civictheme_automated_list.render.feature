@@ -144,7 +144,7 @@ Feature: Automated list render
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
-      | field_c_p_list_filters_exp  | type, topic, title |
+      | field_c_p_list_filters_exp | type, topic, title |
 
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
@@ -175,9 +175,9 @@ Feature: Automated list render
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
-      | field_c_p_list_limit_type   | unlimited |
-      | field_c_p_list_limit        | 6         |
-      | field_c_p_list_filters_exp  | title     |
+      | field_c_p_list_limit_type  | unlimited |
+      | field_c_p_list_limit       | 6         |
+      | field_c_p_list_filters_exp | title     |
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 6 ".ct-item-grid__item" elements
@@ -212,8 +212,8 @@ Feature: Automated list render
   Scenario: CivicTheme listing page with pagination works as expected
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
-      | field_c_p_list_limit_type   | unlimited |
-      | field_c_p_list_limit        | 2         |
+      | field_c_p_list_limit_type | unlimited |
+      | field_c_p_list_limit      | 2         |
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 2 ".ct-item-grid__item" elements

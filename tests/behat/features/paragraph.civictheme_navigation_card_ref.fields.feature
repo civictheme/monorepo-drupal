@@ -38,7 +38,6 @@ Feature: Navigation reference card fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
@@ -49,9 +48,8 @@ Feature: Navigation reference card fields
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
     Then I click on "div.field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_navigation_card_ref_add_more" button
     And I wait for AJAX to finish
-    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_reference][0][target_id]'].required" element
