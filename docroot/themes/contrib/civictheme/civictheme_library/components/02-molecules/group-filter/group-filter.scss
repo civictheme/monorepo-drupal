@@ -214,7 +214,7 @@
 
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
-        border-top-color: ct-component-var($root, $theme, dropdown, filter, border-color);
+        border-top-color: ct-component-var($root, $theme, selected, filters, border-color);
       }
     }
 

@@ -91,6 +91,7 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
+
     border-top-color: ct-component-var($root, $theme, border-color);
     border-bottom-color: ct-component-var($root, $theme, border-color);
   }
