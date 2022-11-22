@@ -5,6 +5,7 @@
  * CivicTheme iFrame paragraph component.
  */
 
+use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -18,6 +19,6 @@ function civictheme_preprocess_paragraph__civictheme_iframe(&$variables) {
   $variables['height'] = civictheme_get_field_value($paragraph, 'field_c_p_height');
   $attributes = civictheme_get_field_value($paragraph, 'field_c_p_attributes');
   if ($attributes) {
-    $variables['attributes'] = new Attribute(civictheme_parse_attributes($attributes));
+    $variables['attributes'] = new Attribute(CivicthemeUtility::htmlAttributesToArray($attributes));
   }
 }

@@ -7,6 +7,9 @@ namespace Drupal\civictheme;
  */
 final class CivicthemeConstants {
 
+  /**
+   * Defines a value 'inherit'.
+   */
   const INHERIT = 'inherit';
 
   /**
