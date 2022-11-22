@@ -3,13 +3,14 @@ status: true
 dependencies:
   module:
     - node
-label: CivicTheme
 id: civictheme
+label: CivicTheme
 description: 'A CivicTheme Linkit profile'
 matchers:
   d6e543f1-e25c-410e-a212-00001f0439e2:
-    id: 'entity:node'
     uuid: d6e543f1-e25c-410e-a212-00001f0439e2
+    id: 'entity:node'
+    weight: 0
     settings:
       metadata: '[node:title]'
       bundles:
@@ -19,10 +20,10 @@ matchers:
       substitution_type: canonical
       limit: 100
       include_unpublished: false
-    weight: 0
   730031d7-3db3-4e9b-b283-1662a1ebe8c4:
-    id: 'entity:media'
     uuid: 730031d7-3db3-4e9b-b283-1662a1ebe8c4
+    id: 'entity:media'
+    weight: 0
     settings:
       metadata: '[media:name]'
       bundles:
@@ -30,4 +31,3 @@ matchers:
       group_by_bundle: false
       substitution_type: media
       limit: 100
-    weight: 0
