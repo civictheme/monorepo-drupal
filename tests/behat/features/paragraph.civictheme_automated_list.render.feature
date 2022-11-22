@@ -66,7 +66,7 @@ Feature: Automated list render
 
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see the text "[TEST] Listing component title"
-    And I should see the link "Link above" with "https://example.com/above" in ".ct-list__header-link-above"
+    And I should see the link "Link above" with "https://example.com/above" in ".ct-list__link-above"
     And I should see the link "Link below" with "https://example.com/below" in ".ct-list__link-below"
 
     And I should see an ".ct-list" element
