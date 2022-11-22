@@ -7,6 +7,8 @@
 
   width: 100%;
 
+  @include ct-elevation-interaction();
+
   &__image-wrapper {
     position: relative;
     border-radius: $ct-subject-card-border-radius;
@@ -18,12 +20,6 @@
     min-height: $ct-subject-card-image-height-mobile;
     min-width: $ct-subject-card-image-width-mobile;
     width: 100%;
-
-    @include ct-elevation(3);
-
-    &:focus-within {
-      @include ct-outline();
-    }
 
     @include ct-breakpoint('m') {
       padding: ct-spacing(3);
@@ -70,63 +66,62 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-theme($theme);
     }
 
     #{$root}__image-wrapper {
-      background-color: $ct-subject-card-dark-image-background-color;
+      @include ct-component-property($root, $theme, image, background-color);
     }
 
     #{$root}__title {
-      color: $ct-subject-card-dark-color;
+      @include ct-component-property($root, $theme, color);
     }
 
     #{$root}__title-link {
-      @include ct-link-colors($ct-subject-card-dark-color, $ct-subject-card-dark-hover-color, $active: $ct-subject-card-light-active-color);
+      @include ct-component-property($root, $theme, color);
+
+      &:hover,
+      &:visited:hover {
+        @include ct-component-property($root, $theme, hover, color);
+      }
+
+      &--active,
+      &:active {
+        @include ct-component-property($root, $theme, active, color);
+      }
     }
 
     &#{$root}--no-image {
       #{$root}__image-wrapper {
-        background-color: $ct-subject-card-light-image-background-color;
+        @include ct-component-property($root, $theme, image, background-color);
       }
 
       #{$root}__title {
-        color: $ct-subject-card-light-color;
+        @include ct-component-property($root, $theme, image, color);
       }
 
       #{$root}__title-link {
-        @include ct-link-colors($ct-subject-card-light-color, $ct-subject-card-light-hover-color, $active: $ct-subject-card-light-active-color);
+        #{$root}__title-link {
+          @include ct-component-property($root, $theme, color);
+
+          &:hover,
+          &:visited:hover {
+            @include ct-component-property($root, $theme, hover, color);
+          }
+
+          &--active,
+          &:active {
+            @include ct-component-property($root, $theme, active, color);
+          }
+        }
       }
     }
 
     #{$root}__icon--arrow,
     #{$root}__icon--external {
       @include ct-icon-fill-color($ct-subject-card-light-icon-color, true);
-    }
-  }
-
-  &.ct-theme-dark {
-    &:focus {
-      @include ct-outline(true);
-    }
-
-    #{$root}__image-wrapper {
-      background-color: $ct-subject-card-dark-image-background-color;
-    }
-
-    #{$root}__title {
-      color: $ct-subject-card-dark-color;
-    }
-
-    #{$root}__title-link {
-      @include ct-link-colors($ct-subject-card-dark-color, $ct-subject-card-dark-hover-color, $active: $ct-subject-card-dark-active-color);
-    }
-
-    #{$root}__icon--arrow,
-    #{$root}__icon--external {
-      @include ct-icon-fill-color($ct-subject-card-dark-icon-color, true);
     }
   }
 }

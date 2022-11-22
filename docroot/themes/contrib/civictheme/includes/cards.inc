@@ -124,7 +124,7 @@ function _civictheme_preprocess_node__thumbnail(&$variables, $image_style = NULL
 function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  $summary = civictheme_get_field_value($node, 'field_c_n_summary');
+  $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
   if ($summary) {
     $variables['summary'] = text_summary($summary, NULL, 100);
   }
@@ -136,7 +136,8 @@ function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
 function _civictheme_preprocess_node__civictheme_event__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if (civictheme_field_has_value($node, 'field_c_n_body')) {
-    $variables['summary'] = text_summary($node->get('field_c_n_body')->getString(), NULL, 100);
+  $summary = civictheme_get_field_value($node, 'field_c_n_body', TRUE);
+  if ($summary) {
+    $variables['summary'] = text_summary($summary, NULL, 100);
   }
 }

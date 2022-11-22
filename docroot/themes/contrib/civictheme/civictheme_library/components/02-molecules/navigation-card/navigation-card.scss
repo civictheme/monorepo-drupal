@@ -14,11 +14,7 @@
   overflow: hidden;
   width: 100%;
 
-  @include ct-elevation(3);
-
-  &:focus-within {
-    @include ct-outline();
-  }
+  @include ct-elevation-interaction();
 
   #{$root}__image-wrapper {
     position: relative;
@@ -71,6 +67,10 @@
       }
     }
 
+    #{$root}__content {
+      flex-grow: 1;
+    }
+
     #{$root}__title {
       @include ct-typography('heading-4');
     }
@@ -102,69 +102,42 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-navigation-card-light-background-color;
-
-    &:focus {
-      @include ct-outline(false);
-    }
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     #{$root}__title {
-      color: $ct-navigation-card-light-heading-color;
+      @include ct-component-property($root, $theme, heading, color);
     }
 
     #{$root}__title-link {
-      @include ct-link-colors($ct-navigation-card-light-heading-color, $ct-navigation-card-light-heading-hover-color, $active: $ct-navigation-card-light-heading-active-color);
+      @include ct-component-property($root, $theme, heading, color);
+
+      &:hover,
+      &:visited:hover {
+        @include ct-component-property($root, $theme, heading, hover, color);
+      }
+
+      &--active,
+      &:active {
+        @include ct-component-property($root, $theme, heading, active, color);
+      }
     }
 
     #{$root}__summary {
-      color: $ct-navigation-card-light-color;
+      @include ct-component-property($root, $theme, color);
     }
 
     #{$root}__icon-wrapper {
-      color: $ct-navigation-card-light-icon-color;
+      @include ct-component-property($root, $theme, icon, color);
     }
 
     #{$root}__icon {
-      @include ct-icon-fill-color($ct-navigation-card-light-icon-color, true);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color), true);
     }
 
     #{$root}__icon--arrow,
     #{$root}__icon--external {
-      @include ct-icon-fill-color($ct-navigation-card-light-icon-arrow-color, true);
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-navigation-card-dark-background-color;
-
-    &:focus {
-      @include ct-outline(true);
-    }
-
-    #{$root}__title {
-      color: $ct-navigation-card-dark-heading-color;
-    }
-
-    #{$root}__title-link {
-      @include ct-link-colors($ct-navigation-card-dark-heading-color, $ct-navigation-card-dark-heading-hover-color, $active: $ct-navigation-card-dark-heading-active-color);
-    }
-
-    #{$root}__summary {
-      color: $ct-navigation-card-dark-color;
-    }
-
-    #{$root}__icon-wrapper {
-      color: $ct-navigation-card-dark-icon-color;
-    }
-
-    #{$root}__icon {
-      @include ct-icon-fill-color($ct-navigation-card-dark-icon-color, true);
-    }
-
-    #{$root}__icon--arrow,
-    #{$root}__icon--external {
-      @include ct-icon-fill-color($ct-navigation-card-dark-icon-arrow-color, true);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, arrow, color), true);
     }
   }
 }

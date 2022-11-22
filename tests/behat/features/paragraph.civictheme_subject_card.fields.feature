@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_subject_card
-Feature: Tests the Subject card paragraph
-
-  Ensure that Subject card paragraph exists and has the expected fields.
+@civictheme @civictheme_subject_card
+Feature: Subject card fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -32,12 +30,11 @@ Feature: Tests the Subject card paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-list-link-above-0-uri" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
@@ -47,7 +44,7 @@ Feature: Tests the Subject card paragraph
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_subject_card_add_more" button
     And I wait for AJAX to finish
-    Then select "field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]" should have an option "light"
+    Then the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_title][0][value]'].required" element
     And I should see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform-field_c_p_list_items-0-subform']" element

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_accordion
-Feature: Tests the Accordion
-
-  Ensure that Accordion paragraph exists and has the expected fields.
+@civictheme @civictheme_accordion
+Feature: Accordion fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -24,13 +22,11 @@ Feature: Tests the Accordion
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civictheme_accordion_add_more" button
     And I wait for AJAX to finish
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_expand][value]']" element
@@ -40,7 +36,7 @@ Feature: Tests the Accordion
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_content][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_expand][value]']" element
     And should not see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_expand][value]'].required" element
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
 
   @api
   Scenario: Paragraph type appears in the paragraph types page

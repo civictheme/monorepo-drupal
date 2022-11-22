@@ -360,23 +360,23 @@ $ct-icon-sizes: () !default;
 $ct-icon-sizes-default: (
   'extra-large': (
     'xxs': (ct-particle-px(6), ct-particle-px(6)),
-    'm': (ct-particle-px(8), ct-particle-px(8)),
+    'm': (ct-particle-px(6), ct-particle-px(6)),
   ),
   'large': (
     'xxs': (ct-particle-px(5), ct-particle-px(5)),
-    'm': (ct-particle-px(6), ct-particle-px(6)),
+    'm': (ct-particle-px(5), ct-particle-px(5)),
   ),
   'regular': (
     'xxs': (ct-particle-px(2.5), ct-particle-px(2.5)),
-    'm': (ct-particle-px(3), ct-particle-px(3)),
+    'm': (ct-particle-px(2.5), ct-particle-px(2.5)),
   ),
   'small': (
     'xxs': (ct-particle-px(2), ct-particle-px(2)),
-    'm': (ct-particle-px(2.5), ct-particle-px(2.5)),
+    'm': (ct-particle-px(2), ct-particle-px(2)),
   ),
   'extra-small': (
     'xxs': (ct-particle-px(1.75), ct-particle-px(1.75)),
-    'm': (ct-particle-px(2), ct-particle-px(2)),
+    'm': (ct-particle-px(1.75), ct-particle-px(1.75)),
   )
 );
 
@@ -438,9 +438,9 @@ $ct-icon-symbols-default: (
 // Elevations.
 //
 $ct-elevations: (
-  0 ct-particle(0.25) ct-particle(1) rgba(0, 0, 0, 20%),
+  0 ct-particle(0.25) ct-particle(1) rgba(0, 0, 0, 25%),
   0 ct-particle(0.5) ct-particle(2) rgba(0, 0, 0, 20%),
-  0 ct-particle(1) ct-particle(4) rgba(0, 0, 0, 20%),
+  0 ct-particle(1) ct-particle(3) rgba(0, 0, 0, 20%),
   0 ct-particle(2) ct-particle(8) rgba(0, 0, 0, 20%),
 ) !default;
 

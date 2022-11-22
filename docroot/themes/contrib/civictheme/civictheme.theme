@@ -28,7 +28,6 @@ require_once 'includes/subject_card.inc';
 require_once 'includes/cards.inc';
 require_once 'includes/filter.inc';
 require_once 'includes/form.inc';
-require_once 'includes/html.inc';
 require_once 'includes/iframe.inc';
 require_once 'includes/image.inc';
 require_once 'includes/link.inc';
@@ -39,6 +38,7 @@ require_once 'includes/media.inc';
 require_once 'includes/menu.inc';
 require_once 'includes/mobile_navigation.inc';
 require_once 'includes/next_step.inc';
+require_once 'includes/migrate.inc';
 require_once 'includes/node.inc';
 require_once 'includes/page.inc';
 require_once 'includes/pager.inc';
@@ -51,6 +51,8 @@ require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
 require_once 'includes/service_card.inc';
+require_once 'includes/site_section.inc';
+require_once 'includes/skip_link.inc';
 require_once 'includes/slider.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
@@ -141,7 +143,8 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_html(&$variables) {
-  _civictheme_preprocess_html($variables);
+  _civictheme_preprocess_html__skip_link($variables);
+  _civictheme_preprocess_html__site_section($variables);
 }
 
 /**
@@ -159,6 +162,9 @@ function civictheme_preprocess_page(&$variables) {
 
   // Pre-process page to support alerts.
   _civictheme_preprocess_page__civictheme_alert($variables);
+
+  // Preprocess page to expose migrate metadata.
+  civictheme_expose_migration_metadata__page($variables);
 
   // Do not add anything below this line or components will not be able
   // to discover variables.

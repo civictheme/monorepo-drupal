@@ -70,11 +70,7 @@ aliases:
   # @see https://circleci.com/docs/2.0/docker-layer-caching/
   # Change to 'true' (without single quotes) to enable. Requires lodging a
   # support request with CircleCI to enable this feature.
-  - &docker_layer_caching true
-
-
-  # The branch to run RenovateBot on.
-  - &nightly_renovatebot_branch develop
+  - &docker_layer_caching false
 
   #-----------------------------------------------------------------------------
 
@@ -224,39 +220,79 @@ job-build-no-persist: &job-build-no-persist
         path: *drevops_test_artifact_dir
 
 jobs:
-  build-govcms:
+  build-drupal9-govcms:
     <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
     <<: *job-build
 
-  # Minimal profile.
-  build-minimal:
+  # Drupal 9, minimal profile.
+  build-drupal9-minimal:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
     <<: *job-build-no-persist
 
-  # Drupal 10.
-  build-minimal-drupal10:
+  # Drupal 9, minimal profile, 'default' content profile.
+  build-drupal9-minimal-default:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
-      DREVOPS_TEST_BEHAT_PROFILE: d10
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: default
     <<: *job-build-no-persist
 
-  # Subtheme is a sibling.
-  build-govcms-sibling:
+  # Drupal 9, minimal profile, 'corporate' content profile.
+  build-drupal9-minimal-corporate:
     <<: *container_config
     environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: corporate
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 9, minimal profile, 'highereducation' content profile.
+  build-drupal9-minimal-highereducation:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: highereducation
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 9, minimal profile, 'government' content profile.
+  build-drupal9-minimal-government:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: government
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 9, GovCMS profile, subtheme is a sibling.
+  build-drupal9-govcms-sibling:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
     <<: *job-build-no-persist
 
-  # No subtheme.
-  build-govcms-no-subtheme:
+  # Drupal 9, GovCMS profile, no subtheme.
+  build-drupal9-govcms-no-subtheme:
     <<: *container_config
     environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
       DREVOPS_TEST_BEHAT_TAGS: smoke
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_SUBTHEME_ACTIVATION: 1
+    <<: *job-build-no-persist
+
+  # Drupal 10, minimal profile.
+  build-drupal10-minimal:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      DREVOPS_DRUPAL_VERSION: 10
+      DREVOPS_TEST_BEHAT_PROFILE: d10
     <<: *job-build-no-persist
 
   # Deploy primary branches.
@@ -369,29 +405,6 @@ jobs:
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
-  # Self-hosted RenovateBot.
-  # Add RENOVATE_TOKEN as an environment variable with GitHub access token in UI.
-  renovatebot_self_hosted:
-    docker:
-      - image: renovate/renovate:latest
-        environment:
-          RENOVATE_PLATFORM: 'github'
-          RENOVATE_AUTODISCOVER: false
-          RENOVATE_DEPENDENCY_DASHBOARD: true
-          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
-          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@salsadigital.com.au>'
-          # Make sure that correct repository is specified or bot will go
-          # through all repositories that a RENOVATE_TOKEN token has access to.
-          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme_source'
-          # Set to 'false' once setup is complete and at bot ran at least once without errors.
-          RENOVATE_DRY_RUN: false
-          LOG_LEVEL: debug
-    steps:
-      - checkout
-      - run: renovate-config-validator
-      - run: renovate
-
-
 ################################################################################
 # WORKFLOWS
 ################################################################################
@@ -401,33 +414,53 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build-govcms:
+      - build-drupal9-govcms:
           filters:
             tags:
               only: /.*/
-      - build-govcms-sibling:
+      - build-drupal9-minimal:
           filters:
             tags:
               only: /.*/
-      - build-govcms-no-subtheme:
+      - build-drupal9-minimal-default:
           filters:
             tags:
               only: /.*/
-      - build-minimal:
+      - build-drupal9-minimal-corporate:
           filters:
             tags:
               only: /.*/
-      - build-minimal-drupal10:
+      - build-drupal9-minimal-highereducation:
+          filters:
+            tags:
+              only: /.*/
+      - build-drupal9-minimal-government:
+          filters:
+            tags:
+              only: /.*/
+      - build-drupal9-govcms-sibling:
+          filters:
+            tags:
+              only: /.*/
+      - build-drupal9-govcms-no-subtheme:
+          filters:
+            tags:
+              only: /.*/
+      - build-drupal10-minimal:
           filters:
             tags:
               only: /.*/
       - deploy:
           requires:
-            - build-govcms
-            - build-govcms-sibling
-            - build-govcms-no-subtheme
-            - build-minimal
-            - build-minimal-drupal10
+            - build-drupal9-govcms
+            - build-drupal9-minimal
+            - build-drupal9-minimal-default
+            - build-drupal9-minimal-corporate
+            - build-drupal9-minimal-highereducation
+            - build-drupal9-minimal-government
+            - build-drupal9-govcms-sibling
+            - build-drupal9-govcms-no-subtheme
+            - build-drupal10-minimal
           filters:
             branches:
               # Allowed branches:
@@ -441,25 +474,18 @@ workflows:
               ignore: /.*/
       - deploy_tags:
           requires:
-            - build-govcms
-            - build-govcms-sibling
-            - build-govcms-no-subtheme
-            - build-minimal
-            - build-minimal-drupal10
+            - build-drupal9-govcms
+            - build-drupal9-minimal
+            - build-drupal9-minimal-default
+            - build-drupal9-minimal-corporate
+            - build-drupal9-minimal-highereducation
+            - build-drupal9-minimal-government
+            - build-drupal9-govcms-sibling
+            - build-drupal9-govcms-no-subtheme
+            - build-drupal10-minimal
           filters:
             branches:
               ignore: /.*/
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
-
-  renovatebot_self_hosted:
-    triggers:
-      - schedule:
-          cron: "5 11,23 * * *"
-          filters:
-            branches:
-              only:
-                - *nightly_renovatebot_branch
-    jobs:
-      - renovatebot_self_hosted

@@ -3,8 +3,11 @@
 /**
  * @file
  * Theme utility functions.
+ *
+ * @todo Move all functions to CivicthemeUtility class.
  */
 
+use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -14,6 +17,24 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
+
+/**
+ * Get a theme config manager.
+ *
+ * We are using our own theme config manager as a facade for Drupal's
+ * theme_get_setting() in order to provide more robust functionality and error
+ * handling.
+ *
+ * This function should be used everywhere in CivicTheme code until all
+ * procedural theme code is refactored into services. Then, it will be removed
+ * and theme config manager will be used directly via DI.
+ *
+ * @return \Drupal\civictheme\CivicthemeConfigManager
+ *   The theme config manager.
+ */
+function civictheme_get_theme_config_manager() {
+  return \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class);
+}
 
 /**
  * Load node or the node revision if the route is a node revision.
@@ -383,7 +404,7 @@ function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $def
       break;
   }
 
-  return $field_name ? civictheme_get_field_value($entity, $field_name) : $default;
+  return $field_name ? civictheme_get_field_value($entity, $field_name, TRUE, $default) : $default;
 }
 
 /**
@@ -406,39 +427,10 @@ function civictheme_theme_options($keys = FALSE) {
 function civictheme_type_options() {
   return [
     'default' => 'Default',
-    'inline' => 'Inline',
     'stacked' => 'Stacked',
+    'inline' => 'Inline',
+    'inline_stacked' => 'Inline Stacked',
   ];
-}
-
-/**
- * Convert multi-line strings to a list of strings.
- *
- * @param string $string
- *   The string to be processed.
- *
- * @return array
- *   A list of strings.
- */
-function civictheme_multiline_to_array($string) {
-  $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
-
-  return array_values(array_filter(array_map('trim', $lines)));
-}
-
-/**
- * Convert an array to multi-line string value.
- *
- * @param string|array $array
- *   Array to convert.
- * @param string $delimiter
- *   Delimiter to use for multiline. Defaults to PHP_EOL.
- *
- * @return string
- *   String value of the array.
- */
-function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
-  return implode($delimiter, array_filter(is_array($array) ? $array : [$array]));
 }
 
 /**

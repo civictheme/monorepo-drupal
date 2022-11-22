@@ -48,16 +48,24 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
     }
   }
 
+  // Combining Drupal block classes with banner.
+  if (!empty($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+
   _civictheme_preprocess_civictheme_banner_title($variables);
   _civictheme_preprocess_civictheme_banner_node($variables);
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
   _civictheme_preprocess_civictheme_banner_section($variables);
 
+  civictheme_expose_migration_metadata__banner($variables);
+
   if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
   }
 
-  // Explicitly defined variable to allow additional preprocessing.
+  // Explicitly defined variables to allow additional preprocessing.
   $variables['content_top1'] = NULL;
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
@@ -87,9 +95,14 @@ function _civictheme_preprocess_civictheme_banner_section(&$variables) {
  */
 function _civictheme_preprocess_civictheme_banner_title(&$variables) {
   // Banner title.
+  /** @var \Symfony\Component\HttpFoundation\Request $request */
   $request = \Drupal::request();
+  /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
   $route_match = \Drupal::routeMatch();
-  $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  /** @var \Drupal\Core\Controller\TitleResolverInterface $title_resolver */
+  $title_resolver = \Drupal::service('title_resolver');
+
+  $page_title = $title_resolver->getTitle($request, $route_match->getRouteObject());
 
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
@@ -166,8 +179,11 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
     return;
   }
 
-  $variables['type'] = civictheme_get_field_value($node, 'field_c_n_banner_type');
-  $variables['theme'] = civictheme_get_field_theme_value($node);
+  $type = civictheme_get_field_value($node, 'field_c_n_banner_type', TRUE, CivicthemeConstants::INHERIT);
+  $variables['type'] = $type == CivicthemeConstants::INHERIT ? ($variables['type'] ?? CivicthemeConstants::BANNER_TYPE_DEFAULT) : $type;
+
+  $theme = civictheme_get_field_value($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
+  $variables['theme'] = $theme == CivicthemeConstants::INHERIT ? ($variables['theme'] ?? CivicthemeConstants::BANNER_THEME_DEFAULT) : $theme;
 
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;
@@ -182,8 +198,25 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
  * Preprocess banner last updated date.
  */
 function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $node) {
+  $final_date = _civictheme_preprocess_civictheme_banner_get_last_updated($node);
+
+  if (isset($final_date)) {
+    $variables['content_middle'][] = [
+      '#theme' => 'civictheme_basic_content',
+      '#component_theme' => $variables['theme'] ?? NULL,
+      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '<p>',
+    ];
+  }
+}
+
+/**
+ * Helper to determine last updated date for a page.
+ */
+function _civictheme_preprocess_civictheme_banner_get_last_updated($node) {
   $last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
   $custom_updated = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
+
+  $final_date = NULL;
 
   if ($last_updated && $custom_updated) {
     $final_date = civictheme_format_short_date($custom_updated->get('value')->getDateTime());
@@ -193,13 +226,7 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
     $final_date = \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date');
   }
 
-  if (isset($final_date)) {
-    $variables['content_middle'][] = [
-      '#theme' => 'civictheme_basic_content',
-      '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '<p>',
-    ];
-  }
+  return $final_date;
 }
 
 /**

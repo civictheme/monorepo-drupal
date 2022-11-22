@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create demo page nodes.
+ * Create generated page nodes.
  */
 
 use Drupal\Core\Link;
@@ -31,29 +31,58 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $variations = $helper::variationFetchAll(
-    '_cs_generated_content_create_node_civictheme_page__variations__',
-    __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations'
-  );
+  // Some components require to reference existing nodes. Since variation
+  // evaluation happens before such nodes created, we need to pre-create them
+  // in a previous pass.
+  for ($pass = 0; $pass < 2; $pass++) {
+    // First pass - provide variations from the generated content pages.
+    if ($pass === 0) {
+      require_once __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations/01.helpers.inc';
+      for ($i = 0; $i < 20; $i++) {
+        $variations[] = [
+          'title' => sprintf('%s %s', ($i + 1), $helper::staticSentence(3)),
+          'components' => [
+            [
+              'type' => 'content',
+              'content' => $helper::staticRichText(3),
+              'topic' => $helper::staticTerm('civictheme_topics')->id(),
+            ],
+          ],
+        ];
+      }
+      $variations = _cs_generated_content_create_node_civictheme_page__variations__post_process($variations);
+    }
+    else {
+      // Second pass - provide variations from the variation callbacks.
+      $variations = $helper::variationFetchAll(
+        '_cs_generated_content_create_node_civictheme_page__variations__',
+        __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations',
+      );
+    }
 
-  foreach ($variations as $i => $variation) {
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = $helper::variationCreateNode('civictheme_page', $variation, $i, '_cs_generated_content_create_node_civictheme_page__variation_to_fields');
+    foreach ($variations as $i => $variation) {
+      /** @var \Drupal\node\Entity\Node $node */
+      $node = $helper::variationCreateNode('civictheme_page', $variation, $i, '_cs_generated_content_create_node_civictheme_page__variation_to_fields');
 
-    $variation_info = $helper::variationFormatInfo($variation);
-    $node->revision_log = $variation_info;
+      $variation_info = $helper::variationFormatInfo($variation);
+      $node->revision_log = $variation_info;
 
-    $node->save();
+      $node->save();
 
-    $helper::log(
-      'Created "%s" node "%s" [ID: %s] %s',
-      $node->bundle(),
-      $node->toLink()->toString(),
-      $node->id(),
-      Link::createFromRoute('Edit', 'entity.node.edit_form', ['node' => $node->id()])->toString()
-    );
+      $helper::log(
+        'Created "%s" node "%s" [ID: %s] %s',
+        $node->bundle(),
+        $node->toLink()->toString(),
+        $node->id(),
+        Link::createFromRoute('Edit', 'entity.node.edit_form', ['node' => $node->id()])->toString()
+      );
 
-    $nodes[] = $node;
+      $nodes[] = $node;
+    }
+
+    // Add created nodes to the repository to make them available within the
+    // next pass.
+    $helper::addToRepository($nodes);
   }
 
   return $nodes;

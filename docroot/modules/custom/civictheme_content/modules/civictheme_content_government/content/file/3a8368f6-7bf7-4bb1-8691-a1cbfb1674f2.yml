@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3a8368f6-7bf7-4bb1-8691-a1cbfb1674f2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: small-car-moving-fast.png
+  uri:
+    -
+      value: 'public://images/2022-10/small-car-moving-fast.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 132581
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666877132

@@ -17,12 +17,8 @@
     object-fit: contain;
   }
 
-  &.ct-theme-light {
-    color: $ct-figure-light-caption-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-figure-dark-caption-color;
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, caption, color);
   }
 
   &__caption {

@@ -19,7 +19,7 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   }
 
   $items = [];
-  /** @var \Drupal\paragraphs\Entity\Paragraph[] $paragraphs|null */
+  /** @var \Drupal\paragraphs\Entity\Paragraph[] $paragraphs |null */
   $social_link_paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons') ?? [];
   foreach ($social_link_paragraphs as $social_link_paragraph) {
     $item = [];

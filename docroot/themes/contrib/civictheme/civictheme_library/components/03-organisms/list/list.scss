@@ -6,28 +6,30 @@
   $root: &;
 
   &__header {
-    display: flex;
-    flex-direction: column;
     margin-bottom: ct-spacing(3);
-
-    @include ct-breakpoint('m') {
-      flex-direction: row;
-    }
   }
 
   &__header-title {
+    .ct-heading {
+      margin: 0;
+    }
+
     @include ct-breakpoint('m') {
       margin-right: auto;
     }
   }
 
-  &__header-link-above {
-    @include ct-typography('label-regular');
-
+  &__link-above {
     @include ct-breakpoint('m') {
+      display: flex;
+      justify-content: flex-end;
       align-self: center;
       margin-left: auto;
     }
+  }
+
+  &__content {
+    margin-bottom: ct-spacing(3);
   }
 
   &__filters {
@@ -44,10 +46,6 @@
     padding: ct-spacing(6) 0;
   }
 
-  &__results-below {
-    padding: ct-spacing(3) 0 ct-spacing(10);
-  }
-
   &__rows-header {
     @include ct-typography('label-regular');
 
@@ -57,23 +55,20 @@
   &__link-below {
     display: flex;
     justify-content: center;
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(2);
+  }
+
+  &__results-below {
+    margin-top: ct-spacing(3);
   }
 
   &__empty-results,
   &__feed_icons {
     @include ct-content();
 
-    padding: ct-spacing(6) 0;
-  }
-
-  &--with-background {
-    #{$root}__header,
-    #{$root}__filters,
-    #{$root}__pager,
-    #{$root}__empty-results,
-    #{$root}__results-below {
-      padding-left: $ct-list-space-horizontal;
-      padding-right: $ct-list-space-horizontal;
+    @include ct-breakpoint('m') {
+      padding: ct-spacing(6) 0;
     }
   }
 

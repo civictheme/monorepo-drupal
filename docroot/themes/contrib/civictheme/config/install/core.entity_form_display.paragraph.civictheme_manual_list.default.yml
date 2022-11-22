@@ -72,9 +72,7 @@ third_party_settings:
         description: ''
         required_fields: true
     group_items:
-      children:
-        - field_c_p_list_item_view_as
-        - field_c_p_list_item_theme
+      children: {  }
       label: Items
       region: content
       parent_name: group_appearance
@@ -89,12 +87,7 @@ third_party_settings:
         required_fields: true
     group_content:
       children:
-        - field_c_p_list_type
-        - field_c_p_list_content_type
         - field_c_p_list_items
-        - group_metadata
-        - group_limit
-        - group_filters
       label: Content
       region: content
       parent_name: group_tabs
@@ -242,7 +235,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_c_p_theme:
-    type: options_select
+    type: options_buttons
     weight: 46
     region: content
     settings: {  }

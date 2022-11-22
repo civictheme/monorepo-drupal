@@ -33,9 +33,8 @@ third_party_settings:
   field_group:
     group_civictheme_tabs:
       children:
-        - group_civictheme_general
-        - group_civictheme_banner
         - group_civictheme_content
+        - group_civictheme_banner
       label: Tabs
       region: content
       parent_name: ''
@@ -49,17 +48,16 @@ third_party_settings:
       children:
         - field_c_n_banner_type
         - field_c_n_banner_theme
-        - field_c_n_banner_hide_breadcrumb
         - field_c_n_banner_title
-        - field_c_n_banner_background
-        - field_c_n_blend_mode
-        - field_c_n_banner_featured_image
+        - field_c_n_banner_hide_breadcrumb
+        - group_banner_background
+        - group_banner_featured_image
         - field_c_n_banner_components
         - field_c_n_banner_components_bott
       label: Banner
       region: content
       parent_name: group_civictheme_tabs
-      weight: 10
+      weight: 14
       format_type: tab
       format_settings:
         classes: ''
@@ -69,32 +67,16 @@ third_party_settings:
         required_fields: true
     group_civictheme_content:
       children:
+        - title
+        - field_c_n_summary
+        - group_metadata
         - field_c_n_show_toc
         - field_c_n_components
+        - group_appearance
       label: Content
       region: content
       parent_name: group_civictheme_tabs
-      weight: 12
-      format_type: tab
-      format_settings:
-        classes: ''
-        id: ''
-        formatter: closed
-        description: ''
-        required_fields: true
-    group_civictheme_general:
-      children:
-        - title
-        - field_c_n_summary
-        - field_c_n_site_section
-        - field_c_n_topics
-        - field_c_n_thumbnail
-        - field_c_n_vertical_spacing
-        - field_c_n_hide_sidebar
-      label: General
-      region: content
-      parent_name: group_civictheme_tabs
-      weight: 9
+      weight: 10
       format_type: tab
       format_settings:
         classes: ''
@@ -119,6 +101,71 @@ third_party_settings:
         description: ''
         required_fields: true
         weight: 0
+    group_banner_background:
+      children:
+        - field_c_n_banner_background
+        - field_c_n_blend_mode
+      label: Background
+      region: content
+      parent_name: group_civictheme_banner
+      weight: 22
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_banner_featured_image:
+      children:
+        - field_c_n_banner_featured_image
+      label: 'Featured image'
+      region: content
+      parent_name: group_civictheme_banner
+      weight: 23
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_appearance:
+      children:
+        - field_c_n_thumbnail
+        - field_c_n_vertical_spacing
+        - field_c_n_hide_sidebar
+      label: Appearance
+      region: content
+      parent_name: group_civictheme_content
+      weight: 16
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+        formatter: closed
+    group_metadata:
+      children:
+        - field_c_n_topics
+        - field_c_n_site_section
+      label: Metadata
+      region: content
+      parent_name: group_civictheme_content
+      weight: 13
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
 id: node.civictheme_page.default
 targetEntityType: node
 bundle: civictheme_page
@@ -139,7 +186,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_components:
     type: paragraphs
-    weight: 17
+    weight: 24
     region: content
     settings:
       title: Paragraph
@@ -158,7 +205,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_components_bott:
     type: paragraphs
-    weight: 18
+    weight: 25
     region: content
     settings:
       title: Paragraph
@@ -177,27 +224,27 @@ content:
     third_party_settings: {  }
   field_c_n_banner_featured_image:
     type: media_library_widget
-    weight: 16
+    weight: 14
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_c_n_banner_hide_breadcrumb:
     type: boolean_checkbox
-    weight: 12
+    weight: 21
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_n_banner_theme:
     type: options_buttons
-    weight: 11
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_banner_title:
     type: string_textfield
-    weight: 13
+    weight: 19
     region: content
     settings:
       size: 60
@@ -205,7 +252,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_type:
     type: options_buttons
-    weight: 10
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -217,7 +264,7 @@ content:
     third_party_settings: {  }
   field_c_n_components:
     type: paragraphs
-    weight: 54
+    weight: 15
     region: content
     settings:
       title: Paragraph
@@ -236,55 +283,55 @@ content:
     third_party_settings: {  }
   field_c_n_custom_last_updated:
     type: datetime_default
-    weight: 10
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_hide_sidebar:
     type: boolean_checkbox
-    weight: 8
+    weight: 18
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_n_show_last_updated:
     type: boolean_checkbox
-    weight: 9
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_n_show_toc:
     type: boolean_checkbox
-    weight: 53
+    weight: 14
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_n_site_section:
     type: options_select
-    weight: 4
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_summary:
     type: string_textarea
-    weight: 3
+    weight: 12
     region: content
     settings:
-      rows: 5
+      rows: 3
       placeholder: ''
     third_party_settings: {  }
   field_c_n_thumbnail:
     type: media_library_widget
-    weight: 6
+    weight: 16
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_c_n_topics:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
@@ -294,7 +341,7 @@ content:
     third_party_settings: {  }
   field_c_n_vertical_spacing:
     type: options_select
-    weight: 7
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -338,7 +385,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 2
+    weight: 11
     region: content
     settings:
       size: 60

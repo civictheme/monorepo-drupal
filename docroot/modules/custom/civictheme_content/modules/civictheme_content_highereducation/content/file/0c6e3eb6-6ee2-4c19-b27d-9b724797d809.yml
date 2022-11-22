@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0c6e3eb6-6ee2-4c19-b27d-9b724797d809
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Johnson Johnson.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Johnson Johnson.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 116254
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666103637

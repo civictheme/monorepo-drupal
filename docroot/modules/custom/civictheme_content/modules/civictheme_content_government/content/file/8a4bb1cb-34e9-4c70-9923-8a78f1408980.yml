@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8a4bb1cb-34e9-4c70-9923-8a78f1408980
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: photo-of-hon-john-smith-mp.png
+  uri:
+    -
+      value: 'public://images/2022-11/photo-of-hon-john-smith-mp.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1909799
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668772881

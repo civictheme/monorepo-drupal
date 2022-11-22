@@ -11,12 +11,12 @@ field_name: field_c_n_banner_theme
 entity_type: node
 bundle: civictheme_page
 label: 'Banner theme'
-description: ''
+description: 'Use <code>Inherit</code> type to inherit this value from the site-wide banner block.'
 required: true
 translatable: false
 default_value:
   -
-    value: dark
+    value: inherit
 default_value_callback: ''
 settings: {  }
 field_type: list_string

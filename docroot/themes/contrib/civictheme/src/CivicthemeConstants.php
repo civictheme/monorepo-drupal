@@ -8,6 +8,11 @@ namespace Drupal\civictheme;
 final class CivicthemeConstants {
 
   /**
+   * Defines a value 'inherit'.
+   */
+  const INHERIT = 'inherit';
+
+  /**
    * Defines 'light' theme machine name.
    */
   const THEME_LIGHT = 'light';
@@ -77,6 +82,11 @@ final class CivicthemeConstants {
   const BANNER_TYPE_LARGE = 'large';
 
   /**
+   * Defines default banner theme.
+   */
+  const BANNER_THEME_DEFAULT = self::THEME_LIGHT;
+
+  /**
    * Defines Automated list default view name.
    */
   const AUTOMATED_LIST_DEFAULT_VIEW_NAME = 'automated_list';
@@ -120,5 +130,10 @@ final class CivicthemeConstants {
    * Defines Navigation "drawer" dropdown type.
    */
   const NAVIGATION_DROPDOWN_DRAWER = 'drawer';
+
+  /**
+   * Defines card summary length.
+   */
+  const CARD_SUMMARY_DEFAULT_LENGTH = 160;
 
 }

@@ -2,100 +2,55 @@
 // Link component.
 //
 
-//
-// Mixins.
-//
+.ct-link {
+  $root: &;
 
-@mixin ct-icon-inline($content) {
-  content: $content;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: ct-particle(3);
-  height: ct-particle(3);
-  fill: currentcolor;
-  vertical-align: -webkit-baseline-middle;
-}
-
-@mixin ct-link-base() {
-  @include ct-link-decoration(false, false, true, false);
   @include ct-typography('label-regular');
+  @include ct-link-decoration(false, false, true, false);
+  @include ct-disabled();
 
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
   text-decoration-thickness: ct-particle(0.125);
   text-underline-offset: ct-spacing(0.375);
-  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
 
-  &[disabled] {
-    pointer-events: none;
-    opacity: 50%;
+  &:focus {
+    @include ct-outline();
+    @include ct-outline-border();
   }
 
-  .ct-link__link-icon {
-    margin-right: ct-particle(0.5);
-  }
-
-  &.ct-link--external {
+  &#{$root}--external {
     position: relative;
     padding-right: ct-icon-size-dimension('regular', 'm', 'width');
 
     &::after {
-      @include ct-icon-inline($ct-link-icon-external);
-
+      content: $ct-link-icon-external;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      width: ct-particle(3);
+      height: ct-particle(3);
+      fill: currentcolor;
+      vertical-align: -webkit-baseline-middle;
       position: absolute;
       right: 0;
       top: 0;
     }
   }
 
-  &,
-  &.ct-theme-light {
-    @include ct-link-colors(
-      $ct-link-light-color,
-      $ct-link-light-hover-color,
-      $ct-link-light-visited-color,
-      $ct-link-light-active-color,
-    );
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
 
-    &.ct-link--active {
-      color: $ct-link-light-active-color;
+    &:hover,
+    &:visited:hover {
+      @include ct-component-property($root, $theme, hover, color);
     }
 
-    &:focus {
-      @include ct-outline();
-      @include ct-outline-border();
+    &:visited {
+      @include ct-component-property($root, $theme, visited, color);
     }
 
-    .ct-link__external-icon {
-      vertical-align: middle;
+    &#{$root}--active,
+    &:active {
+      @include ct-component-property($root, $theme, active, color);
     }
   }
-
-  &.ct-theme-dark {
-    @include ct-link-colors(
-      $ct-link-dark-color,
-      $ct-link-dark-hover-color,
-      $ct-link-dark-visited-color,
-      $ct-link-dark-active-color,
-    );
-
-    &.ct-link--active {
-      color: $ct-link-dark-active-color;
-    }
-
-    &:focus {
-      @include ct-outline();
-      @include ct-outline-border();
-    }
-
-    .ct-link__external-icon {
-      vertical-align: middle;
-    }
-  }
-}
-
-//
-// Classes.
-//
-
-.ct-link {
-  @include ct-link-base();
 }

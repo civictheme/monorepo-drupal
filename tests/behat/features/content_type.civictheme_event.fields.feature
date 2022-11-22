@@ -1,5 +1,5 @@
 @civictheme @content_type @civictheme_event
-Feature: Fields on CivicTheme Event content type
+Feature: CivicTheme Event content type fields
 
   Ensure that fields have been setup correctly.
 

@@ -1,0 +1,19 @@
+name: 'CivicTheme Government Content'
+type: module
+description: 'Provides default Government content CivicTheme theme.'
+core_version_requirement: ^9 || ^10
+package: CivicTheme
+dependencies:
+  - default_content:default_content
+  - civictheme_content:civictheme_content
+
+#;< DEVELOPMENT
+config_devel:
+  optional:
+    - block.block.civictheme_footer_menu_1
+    - block.block.civictheme_footer_menu_2
+    - block.block.civictheme_footer_menu_3
+    - block.block.civictheme_footer_menu_4
+    - block.block.civictheme_side_navigation
+    - civictheme.settings
+#;> DEVELOPMENT

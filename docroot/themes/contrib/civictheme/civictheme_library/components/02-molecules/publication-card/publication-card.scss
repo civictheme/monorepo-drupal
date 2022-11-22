@@ -12,11 +12,7 @@
   overflow: hidden;
   width: 100%;
 
-  @include ct-elevation(3);
-
-  &:focus-within {
-    @include ct-outline();
-  }
+  @include ct-elevation-interaction();
 
   #{$root}__image-wrapper {
     position: relative;
@@ -110,51 +106,23 @@
     }
   }
 
-  &.ct-theme-light {
-    background-color: $ct-publication-card-light-background-color;
-
-    &:focus {
-      @include ct-outline(false);
-    }
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
 
     #{$root}__icon--download {
-      @include ct-icon-fill-color($ct-publication-card-light-icon-color);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color));
     }
 
     #{$root}__title {
-      color: $ct-publication-card-light-heading-color;
+      @include ct-component-property($root, $theme, heading, color);
     }
 
     #{$root}__icon-wrapper {
-      color: $ct-publication-card-light-attachment-icon-color;
+      @include ct-component-property($root, $theme, attachment, icon, color);
     }
 
     #{$root}__summary {
-      color: $ct-publication-card-light-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    background-color: $ct-publication-card-dark-background-color;
-
-    &:focus {
-      @include ct-outline(true);
-    }
-
-    #{$root}__icon--download {
-      @include ct-icon-fill-color($ct-publication-card-dark-icon-color);
-    }
-
-    #{$root}__title {
-      color: $ct-publication-card-dark-heading-color;
-    }
-
-    #{$root}__icon-wrapper {
-      color: $ct-publication-card-dark-attachment-icon-color;
-    }
-
-    #{$root}__summary {
-      color: $ct-publication-card-dark-color;
+      @include ct-component-property($root, $theme, color);
     }
   }
 }

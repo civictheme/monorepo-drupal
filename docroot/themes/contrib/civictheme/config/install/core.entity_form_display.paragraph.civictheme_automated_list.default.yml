@@ -222,7 +222,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_c_p_list_item_theme:
-    type: options_select
+    type: options_buttons
     weight: 29
     region: content
     settings: {  }
@@ -289,7 +289,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_c_p_theme:
-    type: options_select
+    type: options_buttons
     weight: 1
     region: content
     settings: {  }

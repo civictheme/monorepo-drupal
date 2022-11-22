@@ -11,20 +11,10 @@
     margin-bottom: ct-spacing();
   }
 
-  &__content-top2 {
-    @include ct-typography('text-regular');
-  }
-
-  &__top {
-    @include ct-print-hide();
-  }
-
   &__middle {
     border-bottom: solid ct-particle(0.125);
-  }
-
-  &__content-middle1 {
-    @include ct-print-hide();
+    padding-top: ct-particle(2);
+    padding-bottom: ct-particle(2);
   }
 
   &__content-middle2 {
@@ -61,7 +51,7 @@
 
     #{$root}__middle {
       @include ct-component-property($root, $theme, middle, background-color);
-      @include ct-component-property($root, $theme, middle, color);
+      @include ct-component-property($root, $theme, middle, border-color);
     }
   }
 }

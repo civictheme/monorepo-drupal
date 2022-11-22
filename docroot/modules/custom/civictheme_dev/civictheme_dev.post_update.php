@@ -23,7 +23,11 @@ function civictheme_dev_post_update_provision_users() {
     'govind@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
     'joshua.fernandes@salsadigital.com.au',
+    'nathania.sudirman@salsadigital.com.au',
+    'nathania@salsadigital.com.au',
     'nick.georgiou@salsadigital.com.au',
+    'nicolas.haase@salsadigital.com.au',
+    'phillipa.martin@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
     'sonam.chaturvedi@salsadigital.com.au',
   ];
@@ -84,7 +88,7 @@ function civictheme_dev_post_update_update_side_navigation_block() {
   $block->setVisibilityConfig('request_path', [
     'id' => 'request_path',
     'negate' => TRUE,
-    'pages' => "/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*",
+    'pages' => "/news-and-events\n\r/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*",
   ]);
   $block->save();
 }
@@ -101,9 +105,27 @@ function civictheme_dev_post_update_update_testmode_settings() {
 }
 
 /**
- * Updates Simple Sitemap configuration to include views.
+ * Updates Simple Sitemap configuration to include nodes and views.
  */
 function civictheme_dev_post_update_update_simplesitemap() {
+  if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    \Drupal::service('module_installer')->install(['simple_sitemap']);
+  }
+
+  $settings = [
+    'index' => TRUE,
+    'priority' => 0.5,
+    'changefreq' => 'hourly',
+    'include_images' => FALSE,
+  ];
+
+  $bundles = ['civictheme_page', 'civictheme_event'];
+  foreach ($bundles as $bundle) {
+    \Drupal::service('simple_sitemap.generator')->entityManager()->setBundleSettings('node', $bundle, $settings);
+  }
+
+  \Drupal::service('simple_sitemap.generator')->customLinkManager()->add('/', $settings);
+
   /** @var \Drupal\simple_sitemap\Entity\SimpleSitemapTypeStorage $type_storage */
   $type_storage = \Drupal::entityTypeManager()->getStorage('simple_sitemap_type');
   $type = $type_storage->load('default_hreflang');

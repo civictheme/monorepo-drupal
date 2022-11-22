@@ -4,6 +4,7 @@ namespace Drupal\civictheme;
 
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -13,6 +14,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Proxy to deal with any kind of theme configuration.
  */
 class CivicthemeConfigManager implements ContainerInjectionInterface {
+
+  /**
+   * Current active theme.
+   *
+   * @var \Drupal\Core\Theme\ActiveTheme
+   */
+  protected $theme;
 
   /**
    * The config factory.
@@ -39,6 +47,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   public function __construct(ConfigFactory $config_factory, ThemeManager $theme_manager) {
     $this->configFactory = $config_factory;
     $this->themeManager = $theme_manager;
+    $this->setTheme($this->themeManager->getActiveTheme());
   }
 
   /**
@@ -63,7 +72,24 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The value of the requested setting, NULL if the setting does not exist.
    */
   public function load($key, $default = NULL) {
-    return theme_get_setting($key, $this->themeManager->getActiveTheme()->getName()) ?? $default;
+    return theme_get_setting($key, $this->theme->getName()) ?? $default;
+  }
+
+  /**
+   * Load configuration for a component with a provided key.
+   *
+   * @param string $name
+   *   Component name.
+   * @param string $key
+   *   The configuration key.
+   * @param mixed $default
+   *   Default value to return if the $key is not set. Defaults to NULL.
+   *
+   * @return mixed|null
+   *   The value of the requested setting, NULL if the setting does not exist.
+   */
+  public function loadForComponent($name, $key, $default = NULL) {
+    return $this->load("components.{$name}.{$key}", $default);
   }
 
   /**
@@ -78,9 +104,24 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   Instance of the current class.
    */
   public function save($key, $value) {
-    $theme_name = $this->themeManager->getActiveTheme()->getName();
+    $theme_name = $this->theme->getName();
     $config = $this->configFactory->getEditable("$theme_name.settings");
     $config->set($key, $value)->save();
+
+    return $this;
+  }
+
+  /**
+   * Set active theme.
+   *
+   * @param \Drupal\Core\Theme\ActiveTheme $theme
+   *   Active theme instance.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function setTheme(ActiveTheme $theme) {
+    $this->theme = $theme;
 
     return $this;
   }

@@ -65,6 +65,19 @@
         "drupal/drupal": "*"
     },
     "repositories": {
+        "drupal/migrate_file": {
+            "type": "package",
+            "package": {
+                "name": "drupal/migrate_file",
+                "type": "drupal-module",
+                "version": "2.1.1",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/migrate_file-3288621.git",
+                    "reference": "9b971e83cc54acc84166bee794a82b577a161804"
+                }
+            }
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"

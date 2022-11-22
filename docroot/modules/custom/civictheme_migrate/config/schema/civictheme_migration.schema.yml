@@ -28,15 +28,26 @@ civictheme_migrate.settings:
           label: 'API token'
           type: string
           nullable: true
-        endpoint:
-          label: 'Remote content JSON Endpoints'
+        content_endpoint:
+          label: 'Remote Page JSON Endpoints'
           type: string
           nullable: true
-    configuration_files:
-      label: 'List of configuration files'
+        media_endpoint:
+          label: 'Remote Media JSON Endpoints'
+          type: string
+          nullable: true
+    content_configuration_files:
+      label: 'List of page content JSON files'
       type: 'sequence'
       nullable: true
       sequence:
-        label: 'Migration file url'
+        label: 'Migration file ids'
+        type: 'string'
+    media_configuration_files:
+      label: 'List of media content JSON files'
+      type: 'sequence'
+      nullable: true
+      sequence:
+        label: 'Migration file ids'
         type: 'string'
 

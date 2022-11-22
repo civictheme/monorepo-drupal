@@ -9,126 +9,31 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
+    - field.field.node.civictheme_event.field_c_n_site_section
     - field.field.node.civictheme_event.field_c_n_summary
     - field.field.node.civictheme_event.field_c_n_thumbnail
     - field.field.node.civictheme_event.field_c_n_topics
+    - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - node.type.civictheme_event
   module:
-    - datetime
+    - datetime_range
+    - entity_reference_revisions
     - layout_builder
     - layout_builder_restrictions
+    - options
     - text
     - user
-  theme:
-    - civictheme
 third_party_settings:
   layout_builder:
-    enabled: true
+    enabled: false
     allow_custom: false
-    sections:
-      -
-        layout_id: civictheme_one_column
-        layout_settings:
-          label: Uncontained
-          context_mapping: {  }
-        components:
-          1710fe96-7126-4ac7-9b59-284f7c693ca9:
-            uuid: 1710fe96-7126-4ac7-9b59-284f7c693ca9
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_body'
-              label: Body
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: text_default
-                label: hidden
-                settings: {  }
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          448b41d5-2738-47e2-a892-145443a96200:
-            uuid: 448b41d5-2738-47e2-a892-145443a96200
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_location'
-              label: Location
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_revisions_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          5c9134f5-9e32-4607-a2f5-ca388ebd50e8:
-            uuid: 5c9134f5-9e32-4607-a2f5-ca388ebd50e8
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_summary'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: basic_string
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 3
-            additional: {  }
-          fa10bfa1-4f41-4951-bf07-72432b951f87:
-            uuid: fa10bfa1-4f41-4951-bf07-72432b951f87
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_show_last_updated'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: boolean
-                label: above
-                settings:
-                  format: default
-                  format_custom_false: ''
-                  format_custom_true: ''
-                third_party_settings: {  }
-            weight: 4
-            additional: {  }
-          79ee9199-c580-42db-9ff6-f76d86f6b88b:
-            uuid: 79ee9199-c580-42db-9ff6-f76d86f6b88b
-            region: content
-            configuration:
-              id: 'field_block:node:civictheme_event:field_c_n_custom_last_updated'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: datetime_default
-                label: above
-                settings:
-                  timezone_override: ''
-                  format_type: medium
-                third_party_settings: {  }
-            weight: 5
-            additional: {  }
-        third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
-      allowed_layouts:
-        - civictheme_one_column
-        - civictheme_one_column_contained
+      allowed_layouts: {  }
+      restricted_categories: {  }
       blacklisted_blocks: {  }
       whitelisted_blocks: {  }
-      restricted_categories: {  }
 id: node.civictheme_event.default
 targetEntityType: node
 bundle: civictheme_event
@@ -139,39 +44,48 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-  field_c_n_custom_last_updated:
-    type: datetime_default
+  field_c_n_date:
+    type: daterange_default
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: short
+      separator: '-'
     third_party_settings: {  }
-    weight: 3
+    weight: 0
     region: content
-  field_c_n_show_last_updated:
-    type: boolean
+  field_c_n_location:
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     weight: 2
     region: content
-  field_c_n_summary:
-    type: basic_string
+  field_c_n_site_section:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_c_n_vertical_spacing:
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 4
     region: content
 hidden:
   field_c_n_attachments: true
-  field_c_n_date: true
-  field_c_n_location: true
+  field_c_n_custom_last_updated: true
+  field_c_n_show_last_updated: true
   field_c_n_show_toc: true
+  field_c_n_summary: true
   field_c_n_thumbnail: true
   field_c_n_topics: true
   links: true

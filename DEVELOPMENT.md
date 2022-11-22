@@ -87,25 +87,14 @@ Note that wildcards are supported.
 
 ## Demo content export
 
-    CIVICTHEME_CONTENT_TYPES=default SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=default ahoy export-content
+1. Prepare content with a clean installation:
 
-    CIVICTHEME_CONTENT_TYPES=corporate SKIP_SUBTHEME_FE=1 SKIP_GENERATED_CONTENT_CREATE=1 a install-site && CIVICTHEME_CONTENT_TYPES=corporate ahoy export-content
+    CIVICTHEME_CONTENT_PROFILE=default DREVOPS_DRUPAL_PROFILE=minimal SKIP_SUBTHEME_ACTIVATION=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
 
-OR
+2. Export content:
 
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
+    CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
 
-    # Example 1: export a single node with all dependencies
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node 50
+3. Export config:
 
-    # Example 2: export all terms, nodes and blocks and menu links for Default content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content menu_link_content
-
-    # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content menu_link_content
+    ahoy drush cde civictheme_content_default

@@ -40,7 +40,6 @@
   }
 
   &__slides-inner {
-    position: absolute;
     display: flex;
     flex-wrap: nowrap;
     left: 0%;
@@ -102,7 +101,9 @@
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, background-color);
+    &--with-background {
+      @include ct-component-property($root, $theme, background-color);
+    }
 
     &.ct-slider--with-background {
       @include ct-component-property($root, $theme, background-color);
@@ -124,11 +125,10 @@
 .ct-slide {
   $root: &;
 
-  position: absolute;
-  height: $ct-slide-mobile-height;
+  min-height: $ct-slide-mobile-min-height;
 
   @include ct-breakpoint('l') {
-    height: $ct-slide-desktop-height;
+    min-height: $ct-slide-desktop-min-height;
   }
 
   @include ct-breakpoint('l') {

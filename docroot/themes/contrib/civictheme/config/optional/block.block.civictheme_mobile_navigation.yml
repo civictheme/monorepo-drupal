@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - civictheme
+id: civictheme_mobile_navigation
+theme: civictheme
+region: header_middle_3
+weight: 0
+provider: null
+plugin: 'block_content:b7f36176-620f-4178-aadd-9b448c610986'
+settings:
+  id: 'block_content:b7f36176-620f-4178-aadd-9b448c610986'
+  label: 'Mobile Navigation'
+  label_display: ''
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

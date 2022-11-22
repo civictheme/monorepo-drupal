@@ -12,10 +12,10 @@ use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Util\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Manage and configure CivicTheme Migrations.
@@ -45,6 +45,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @var \Drupal\Core\File\FileSystemInterface
    */
   protected $fileSystem;
+
   /**
    * The file storage service.
    *
@@ -117,14 +118,30 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
   }
 
   /**
+   * Generates CivicTheme migrations.
+   *
+   * @param array $migration_files
+   *   List of source migration file ids grouped by migration type.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function generateMigrations(array $migration_files) {
+    foreach ($migration_files as $migration_type => $file_ids) {
+      $this->generateMigration($file_ids, $migration_type);
+    }
+  }
+
+  /**
    * Generates or updates an existing migration for CivicTheme.
    *
    * @param array $file_ids
    *   List of source migration file ids to add to migration.
+   * @param string $migration_type
+   *   The type of migration, determines what urls are added.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function generateMigration(array $file_ids) {
+  protected function generateMigration(array $file_ids, string $migration_type) {
     $files = $this->fileStorage->loadMultiple($file_ids);
     if (empty($files)) {
       $this->messenger()->addStatus($this->t('Require files to generate a migration'));
@@ -133,24 +150,30 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
     foreach ($files as $file) {
       $file_stream_wrappers[] = $file->getFileUri();
     }
-    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/migrate_plus.migration.civictheme_page.yml';
-    $migration_config = file_get_contents($migration_config_file_name);
-    $migration_config = $this->yaml->decode($migration_config);
-    $migration_config['source']['urls'] = $file_stream_wrappers;
-    $existing_migration = $this->migrationStorage->load('civictheme_page_migrate');
-    if ($existing_migration === NULL) {
-      $migration = $this->migrationStorage->create($migration_config);
-      $migration->save();
-      $this->messenger()->addStatus($this->t('Migration has been generated.'));
+    $migration_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations/' . $migration_type;
+    $migration_config_files = glob($migration_directory . '/*.yml');
+    foreach ($migration_config_files as $migration_config_file) {
+      $migration_config = file_get_contents($migration_config_file);
+      $migration_config = $this->yaml->decode($migration_config);
+      // @todo add module hook to change migration properties.
+      $migration_config['source']['urls'] = $file_stream_wrappers;
+      $migration_id = $migration_config['id'];
+      $existing_migration = $this->migrationStorage->load($migration_id);
+      if ($existing_migration === NULL) {
+        $migration = $this->migrationStorage->create($migration_config);
+        $migration->save();
+        $this->messenger()->addStatus($this->t('Migration: :migration_id has been generated.', [':migration_id' => $migration_id]));
+      }
+      else {
+        // Adding all keys in case we update the asset migration template.
+        $existing_migration->set('process', $migration_config['process']);
+        $existing_migration->set('source', $migration_config['source']);
+        $existing_migration->set('destination', $migration_config['destination']);
+        $existing_migration->save();
+        $this->messenger()->addStatus($this->t('Migration: :migration_id has been updated.', [':migration_id' => $migration_id]));
+      }
     }
-    else {
-      // Adding all keys in case we update the asset migration template.
-      $existing_migration->set('process', $migration_config['process']);
-      $existing_migration->set('source', $migration_config['source']);
-      $existing_migration->set('destination', $migration_config['destination']);
-      $existing_migration->save();
-      $this->messenger()->addStatus($this->t('Migration has been updated.'));
-    }
+
   }
 
   /**
@@ -166,7 +189,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    *
    * @throws \Exception
    */
-  public function retrieveRemoteFiles(array $urls, array $validators):array {
+  public function retrieveRemoteFiles(array $urls, array $validators): array {
     $files = [];
     $auth_headers = $this->getAuthHeaders();
     foreach ($urls as $url) {
@@ -204,7 +227,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @return array
    *   Authentication header options.
    */
-  protected function getAuthHeaders():array {
+  protected function getAuthHeaders(): array {
     $auth_type = $this->config->get('auth_type');
     if (empty($auth_type)) {
       return [];
@@ -233,7 +256,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @return string
    *   Generated file name.
    */
-  protected function generateFileName($url):string {
+  protected function generateFileName($url): string {
     $url_parts = parse_url($url);
     $filename = !empty($url_parts['path']) ? preg_replace('/\//', '-', basename($url_parts['path'])) : 'configuration-file' . time();
     if (strpos($filename, '-') === 0) {

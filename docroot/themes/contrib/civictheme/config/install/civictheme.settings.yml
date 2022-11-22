@@ -6,33 +6,64 @@ features:
   favicon: true
 components:
   logo:
-    image_alt: 'CivicTheme logo'
-    image_light_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_desktop.png
-    image_light_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_mobile.png
-    image_dark_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_desktop.png
-    image_dark_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_mobile.png
+    primary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_desktop.png
+        mobile:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_mobile.png
+      dark:
+        desktop:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_desktop.png
+        mobile:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_mobile.png
+    secondary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_light_desktop.png
+        mobile:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_light_mobile.png
+      dark:
+        desktop:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_dark_desktop.png
+        mobile:
+          path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_dark_mobile.png
+    image_alt: 'Logo image'
   header:
     theme: light
-    logo_type: default
+    logo_type: inline
   navigation:
     primary_navigation:
       dropdown: drawer
-      dropdown_columns: false
+      dropdown_columns: 4
       dropdown_columns_fill: false
-      is_animated: false
+      is_animated: true
     secondary_navigation:
       dropdown: dropdown
-      dropdown_columns: false
+      dropdown_columns: 4
       dropdown_columns_fill: false
-      is_animated: false
+      is_animated: true
   footer:
     theme: dark
-    logo_type: default
-    background_image: ''
+    logo_type: inline_stacked
+    background_image:
+      path: ''
   link:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+  skip_link:
+    theme: light
+  event_card:
+    summary_length: 160
+  navigation_card:
+    summary_length: 160
+  promo_card:
+    summary_length: 160
+  publication_card:
+    summary_length: 160
+  migrate:
+    expose_migration_metadata: true
 colors:
   use_color_selector: true
   use_brand_colors: true
@@ -46,25 +77,6 @@ colors:
       brand2: '#003a4f'
       brand3: '#006a8e'
   palette:
-    light:
-      heading: '#002a39'
-      body: '#334349'
-      background_light: '#fcfcfd'
-      background: '#e6e9eb'
-      background_dark: '#b8babc'
-      border_light: '#acaeb0'
-      border: '#5c5d5e'
-      border_dark: '#161717'
-      interaction_text: '#fafafb'
-      interaction_background: '#00698f'
-      interaction_hover_text: '#fafafb'
-      interaction_hover_background: '#003f55'
-      interaction_focus: '#855cd7'
-      highlight: '#121313'
-      information: '#007ebd'
-      warning: '#c95100'
-      error: '#ce3936'
-      success: '#008482'
     dark:
       heading: '#f7fdff'
       body: '#e7f9ff'
@@ -84,3 +96,22 @@ colors:
       warning: '#e38444'
       error: '#e85653'
       success: '#14b0ae'
+    light:
+      background: '#e6e9eb'
+      border: '#5c5d5e'
+      highlight: '#121313'
+      heading: '#002a39'
+      body: '#334349'
+      background_light: '#fcfcfd'
+      background_dark: '#b8babc'
+      border_light: '#acaeb0'
+      border_dark: '#161717'
+      interaction_text: '#fafafb'
+      interaction_background: '#00698f'
+      interaction_hover_text: '#fafafb'
+      interaction_hover_background: '#003f55'
+      interaction_focus: '#855cd7'
+      information: '#007ebd'
+      warning: '#c95100'
+      error: '#ce3936'
+      success: '#008482'

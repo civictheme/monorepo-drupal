@@ -6,8 +6,7 @@ import {
 import {
   demoImage,
   randomDropdownFilter,
-  randomFormElement,
-  randomText,
+  randomFormElement, randomSentence,
   randomUrl,
 } from '../../00-base/base.stories';
 
@@ -34,6 +33,9 @@ export default {
 
 export const List = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  const filtersKnobTab = 'Filters';
+  const cardsKnobTab = 'Cards';
+
   const theme = radios(
     'Theme',
     {
@@ -46,104 +48,25 @@ export const List = (knobTab) => {
 
   const generalKnobs = {
     theme,
-    title: text('Title', '', generalKnobTab),
+    title: text('Title', 'List title', generalKnobTab),
   };
 
-  const showFilters = boolean('Show filters', true, generalKnobTab);
-
-  const filterType = radios(
-    'Filter type',
-    {
-      Group: 'group',
-      Single: 'single',
-    },
-    'group',
-    generalKnobTab,
-  );
-
-  // Show cards as promo card or navigation card.
-  const viewItemAs = radios(
-    'Card type',
-    {
-      'Promo card': 'promo',
-      'Navigation card': 'navigation',
-    },
-    'promo',
-    generalKnobTab,
-  );
-
-  const itemsPerPage = number(
-    'Items per page',
-    6,
-    {
-      range: true,
-      min: 6,
-      max: 48,
-      step: 6,
-    },
-    generalKnobTab,
-  );
-
-  const resultNumber = number(
-    'Number of results',
-    6,
-    {
-      range: true,
-      min: 0,
-      max: 48,
-      step: 6,
-    },
-    generalKnobTab,
-  );
-
-  const showPager = boolean('Show pager', true, generalKnobTab);
-
-  // Create empty markup.
-  if (resultNumber === 0) {
-    generalKnobs.empty = '<p>No results found</p>';
-  }
-
-  const withLinkAbove = boolean('With link above', false, generalKnobTab);
-  const withLinkBelow = boolean('With link below', false, generalKnobTab);
-
-  if (withLinkAbove) {
-    generalKnobs.link_above = {
-      text: 'View more results',
-      url: 'http://www.example.com',
-      title: 'View more results',
-      is_new_window: false,
-      is_external: false,
-    };
-  }
-
-  if (withLinkBelow) {
-    generalKnobs.link_below = {
-      text: 'View more results',
-      url: 'http://www.example.com',
-      title: 'View more results',
-      is_new_window: false,
-      is_external: false,
-    };
-  }
-
-  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomText() : null;
-
-  let filterCount;
-  if (showFilters) {
-    filterCount = number(
-      'Number of filters',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 5,
-        step: 1,
-      },
-      generalKnobTab,
-    );
-  }
-
-  const verticalSpace = radios(
+  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomSentence() : null;
+  generalKnobs.link_above = boolean('With link above', false, generalKnobTab) ? {
+    text: 'View more',
+    url: 'http://www.example.com',
+    title: 'View more',
+    is_new_window: false,
+    is_external: false,
+  } : null;
+  generalKnobs.link_below = boolean('With link below', false, generalKnobTab) ? {
+    text: 'View more',
+    url: 'http://www.example.com',
+    title: 'View more',
+    is_new_window: false,
+    is_external: false,
+  } : null;
+  generalKnobs.vertical_spacing = radios(
     'Vertical spacing',
     {
       None: 'none',
@@ -154,15 +77,39 @@ export const List = (knobTab) => {
     'none',
     generalKnobTab,
   );
-
-  const withBackground = boolean('With background', false, generalKnobTab);
-
-  generalKnobs.with_background = withBackground;
-  generalKnobs.vertical_spacing = verticalSpace;
+  generalKnobs.with_background = boolean('With background', false, generalKnobTab);
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+
+  const showFilters = boolean('Show filters', true, generalKnobTab);
+  const showCards = boolean('Show cards', true, generalKnobTab);
+  const showPager = boolean('Show pager', true, generalKnobTab);
+
+  let filtersCount = 0;
 
   // Build filters.
   if (showFilters) {
+    const filterType = radios(
+      'Filter type',
+      {
+        Group: 'group',
+        Single: 'single',
+      },
+      'group',
+      filtersKnobTab,
+    );
+
+    filtersCount = number(
+      'Number of filters',
+      3,
+      {
+        range: true,
+        min: 0,
+        max: 5,
+        step: 1,
+      },
+      filtersKnobTab,
+    );
+
     let count = 0;
     const filters = [];
     const basicFilterTitles = [
@@ -171,8 +118,8 @@ export const List = (knobTab) => {
       'Highlights',
     ];
 
-    if (filterCount > 0) {
-      for (let i = 0; i < filterCount; i++) {
+    if (filtersCount > 0) {
+      for (let i = 0; i < filtersCount; i++) {
         if (filterType === 'group') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
           filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
@@ -191,7 +138,7 @@ export const List = (knobTab) => {
         tags_title: 'Selected filters:',
         clear_text: 'Clear all',
         filters: filters.join(''),
-        with_background: withBackground,
+        with_background: generalKnobs.with_background,
       });
     } else {
       generalKnobs.filters = CivicThemeSingleFilter({
@@ -200,18 +147,18 @@ export const List = (knobTab) => {
         items: filters,
       });
     }
-  }
 
-  const children = [];
-  for (let i = 6; i <= 48; i += 6) {
-    const options = {
-      title: i,
-      required: false,
-      description: false,
-      attributes: 'name="test"',
-      form_element_attributes: 'data-dropdown-filter-item',
-    };
-    children.push(randomFormElement('radio', options, theme, false, i));
+    const childrenFilters = [];
+    for (let i = 6; i <= 48; i += 6) {
+      const options = {
+        title: i,
+        required: false,
+        description: false,
+        attributes: 'name="test"',
+        form_element_attributes: 'data-dropdown-filter-item',
+      };
+      childrenFilters.push(randomFormElement('radio', options, theme, false, i));
+    }
   }
 
   // Build pagination.
@@ -256,49 +203,89 @@ export const List = (knobTab) => {
     });
   }
 
-  // Build results / rows.
-  if (resultNumber > 0) {
-    const cardsKnobTab = 'Cards';
-    const cardsProps = {
-      theme: radios(
-        'Theme',
-        {
-          Light: 'light',
-          Dark: 'dark',
-        },
-        'light',
-        cardsKnobTab,
-      ),
-      title: text('Title', 'Event name which runs across two or three lines', cardsKnobTab),
-      date: date('Date', new Date(), cardsKnobTab),
-      summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
-      url: text('Link URL', 'http://example.com', cardsKnobTab),
-      image: boolean('With image', true, cardsKnobTab) ? {
-        src: demoImage(),
-        alt: 'Image alt text',
-      } : false,
-      size: 'large',
-    };
+  if (showCards) {
+    const resultNumber = number(
+      'Number of results',
+      6,
+      {
+        range: true,
+        min: 0,
+        max: 48,
+        step: 6,
+      },
+      cardsKnobTab,
+    );
 
-    cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-    const cards = [];
-    const cardsCount = itemsPerPage > resultNumber ? resultNumber : itemsPerPage;
-    const Card = viewItemAs === 'promo' ? PromoCard : NavigationCard;
-    for (let itr = 0; itr < cardsCount; itr += 1) {
-      cards.push(Card(cardsProps));
+    // Create empty markup.
+    if (resultNumber === 0) {
+      generalKnobs.empty = '<p>No results found</p>';
     }
 
-    generalKnobs.rows = CivicThemeItemGrid({
-      theme,
-      items: cards,
-      column_count: viewItemAs === 'promo' ? 3 : 2,
-      fill_width: false,
-      with_background: withBackground,
-    });
+    const viewItemAs = radios(
+      'Card type',
+      {
+        'Promo card': 'promo',
+        'Navigation card': 'navigation',
+      },
+      'promo',
+      cardsKnobTab,
+    );
+
+    const itemsPerPage = number(
+      'Items per page',
+      6,
+      {
+        range: true,
+        min: 6,
+        max: 48,
+        step: 6,
+      },
+      cardsKnobTab,
+    );
+
+    // Build results / rows.
+    if (resultNumber > 0) {
+      const cardsProps = {
+        theme: radios(
+          'Theme',
+          {
+            Light: 'light',
+            Dark: 'dark',
+          },
+          'light',
+          cardsKnobTab,
+        ),
+        title: text('Title', 'Event name which runs across two or three lines', cardsKnobTab),
+        date: date('Date', new Date(), cardsKnobTab),
+        summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
+        url: text('Link URL', 'http://example.com', cardsKnobTab),
+        image: boolean('With image', true, cardsKnobTab) ? {
+          src: demoImage(),
+          alt: 'Image alt text',
+        } : false,
+        size: 'large',
+      };
+
+      cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+      const cards = [];
+      const cardsCount = itemsPerPage > resultNumber ? resultNumber : itemsPerPage;
+      const Card = viewItemAs === 'promo' ? PromoCard : NavigationCard;
+      for (let itr = 0; itr < cardsCount; itr += 1) {
+        cards.push(Card(cardsProps));
+      }
+
+      generalKnobs.rows = CivicThemeItemGrid({
+        theme,
+        items: cards,
+        column_count: viewItemAs === 'promo' ? 3 : 2,
+        fill_width: false,
+        with_background: generalKnobs.with_background,
+      });
+    }
   }
 
   return CivicThemeList({

@@ -1,7 +1,5 @@
-@civictheme @paragraph @civictheme_promo
-Feature: Tests the Promo paragraph
-
-  Ensure that Promo paragraphs exists and has the expected fields.
+@civictheme @civictheme_promo
+Feature: Promo fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -24,16 +22,14 @@ Feature: Tests the Promo paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civictheme_promo_add_more" button
     And I wait for AJAX to finish
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
     And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element

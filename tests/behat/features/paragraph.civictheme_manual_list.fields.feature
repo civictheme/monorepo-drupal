@@ -1,13 +1,11 @@
-@civictheme @paragraph @civictheme_manual_list
-Feature: Tests the Listing paragraph
-
-  Ensure that Listing paragraph exists and has the expected fields.
+@civictheme @civictheme_manual_list
+Feature: Manual list fields
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Manual List" in the "civictheme_manual_list" row
+    Then I should see the text "Manual list" in the "civictheme_manual_list" row
 
   @api
   Scenario: Listing paragraph exists with fields.
@@ -25,7 +23,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_list_items" in the "List items" row
 
   @api
-  Scenario: Manual List paragraph field_c_p_list_items fields settings.
+  Scenario: Manual list paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
     And the "Label" field should contain "List items"
@@ -41,14 +39,13 @@ Feature: Tests the Listing paragraph
     And the "Service card" checkbox should be checked
     And the "Subject card" checkbox should be checked
     And the "Subject reference card" checkbox should be checked
-    And the "Manual List" checkbox should not be checked
+    And the "Manual list" checkbox should not be checked
 
   @api @javascript
-  Scenario: Manual List paragraph fields
+  Scenario: Manual list paragraph fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
 
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
@@ -76,8 +73,6 @@ Feature: Tests the Listing paragraph
 
     And I see the text "Link above"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]']" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'].required" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'][disabled]" element
 
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]'].required" element
@@ -98,9 +93,7 @@ Feature: Tests the Listing paragraph
     And I wait 1 second
 
     And I see the text "Theme"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'][disabled]" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_theme]']" element
 
     And I see the text "Vertical spacing"
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element

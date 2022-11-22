@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 64a4df06-0829-4e3e-89ba-0f8dcf296cd3
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Newbreakthrough.png
+  uri:
+    -
+      value: 'public://images/2022-10/Newbreakthrough.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 104717
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666096985

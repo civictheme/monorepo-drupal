@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0eb831f5-9400-4563-9c0a-7fe15e48359b
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Iconschool of law.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of law.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1866
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536193

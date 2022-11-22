@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 6a16b860-5aac-40a4-a5e7-13d8bc051448
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: man-with-microscope.png
+  uri:
+    -
+      value: 'public://images/2022-10/man-with-microscope.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 162764
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666868592

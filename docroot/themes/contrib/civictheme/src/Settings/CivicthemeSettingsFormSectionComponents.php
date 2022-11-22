@@ -5,11 +5,7 @@ namespace Drupal\civictheme\Settings;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\File\Exception\FileException;
-use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\StreamWrapper\PublicStream;
-use Drupal\Core\StreamWrapper\StreamWrapperManager;
 
 /**
  * CivicTheme settings section to display components.
@@ -32,7 +28,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   public function form(&$form, FormStateInterface &$form_state) {
     $form['components'] = [
       '#type' => 'vertical_tabs',
-      '#title' => $this->t('CivicTheme components'),
+      '#title' => $this->t('Components'),
       '#weight' => 50,
       '#tree' => TRUE,
     ];
@@ -45,56 +41,59 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#tree' => TRUE,
     ];
 
+    $form['components']['logo']['information'] = [
+      '#type' => 'markup',
+      '#markup' => '<p>Site logo may consist of mandatory Primary and optional Secondary logos.</p><p><img width="430" src="' . $this->getCivicthemeThemeSettingsAssetUri('logo.png') . '"/></p>',
+    ];
+
     $breakpoints = ['desktop', 'mobile'];
     $logo_types = ['primary', 'secondary'];
 
-    foreach (civictheme_theme_options() as $theme => $theme_label) {
-      foreach ($logo_types as $logo_type) {
-        $form['components']['logo'][$logo_type][$theme] = [
-          '#type' => 'details',
-          '#title' => $this->t('Logo @logo_type @theme', [
-            '@theme' => $theme_label,
-            '@logo_type' => $logo_type,
-          ]),
-          '#tree' => TRUE,
-        ];
+    foreach ($logo_types as $logo_type) {
+      $form['components']['logo'][$logo_type] = [
+        '#type' => 'details',
+        '#title' => $this->t('@logo_type logo', [
+          '@logo_type' => ucfirst($logo_type),
+        ]),
+      ];
+      foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
-          $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"] = [
+          $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
-            '#title' => $this->t('Logo @logo_type @theme @breakpoint', [
+            '#title' => $this->t('@logo_type logo @theme @breakpoint', [
               '@theme' => $theme_label,
-              '@breakpoint' => $breakpoint,
-              '@logo_type' => $logo_type,
+              '@breakpoint' => ucfirst($breakpoint),
+              '@logo_type' => ucfirst($logo_type),
             ]),
-            '#tree' => FALSE,
+            '#description' => $this->t('Provide a path to an existing file or upload a new file.'),
+            '#description_display' => 'before',
           ];
 
-          $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}"] = [
+          $form['components']['logo'][$logo_type][$theme][$breakpoint]['path'] = [
             '#type' => 'textfield',
-            '#title' => $this->t('Logo image for @logo_type in @theme theme for @breakpoint', [
+            '#title' => $this->t('Image path for @logo_type @theme logo for @breakpoint', [
               '@theme' => $theme_label,
-              '@breakpoint' => $breakpoint,
-              '@logo_type' => $logo_type,
+              '@breakpoint' => ucfirst($breakpoint),
+              '@logo_type' => ucfirst($logo_type),
             ]),
-            '#description' => $this->getPathFieldDescription($this->getSetting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}"), "logo-{$logo_type}-{$theme}-{$breakpoint}.svg"),
-            '#default_value' => $this->getPathFieldFriendlyPath($this->getSetting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}")),
-            '#group' => "image_{$logo_type}_{$theme}_{$breakpoint}_group",
+            '#description' => $this->getPathFieldDescription("logo-{$logo_type}-{$theme}-{$breakpoint}.svg"),
+            '#default_value' => $this->themeConfigManager->load("components.logo.{$logo_type}.{$theme}.{$breakpoint}.path"),
           ];
 
-          $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"] = [
+          $form['components']['logo'][$logo_type][$theme][$breakpoint]['upload'] = [
             '#type' => 'file',
-            '#title' => $this->t('Upload logo image for @logo_type in @theme theme for @breakpoint', [
+            '#title' => $this->t('Upload @logo_type @theme logo for @breakpoint', [
               '@theme' => $theme_label,
-              '@breakpoint' => $breakpoint,
-              '@logo_type' => $logo_type,
+              '@breakpoint' => ucfirst($breakpoint),
+              '@logo_type' => ucfirst($logo_type),
             ]),
-            '#maxlength' => 40,
-            '#description' => $this->t("If you don't have direct file access to the server, use this field to upload your logo."),
+            '#name' => "files[components_logo_{$logo_type}_{$theme}_{$breakpoint}_upload]",
+            '#description' => $this->t("Uploading a file will replace the image path above. File will be uploaded into <code>@public</code> directory and will replace an existing file with the same name.", [
+              '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
+            ]),
             '#upload_validators' => [
               'file_validate_is_image' => [],
             ],
-            '#tree' => FALSE,
-            '#weight' => 1,
           ];
         }
       }
@@ -104,7 +103,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'textfield',
       '#title' => $this->t('Logo image "alt" text'),
       '#description' => $this->t('Text for the <code>alt</code> attribute of the site logo image.'),
-      '#default_value' => $this->getSetting('components.logo.image_alt'),
+      '#default_value' => $this->themeConfigManager->load('components.logo.image_alt'),
     ];
 
     $form['components']['header'] = [
@@ -120,7 +119,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => civictheme_theme_options(),
-      '#default_value' => $this->getSetting('components.header.theme') ?? CivicthemeConstants::HEADER_THEME_DEFAULT,
+      '#default_value' => $this->themeConfigManager->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
     $form['components']['header']['logo_type'] = [
@@ -129,7 +128,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => civictheme_type_options(),
-      '#default_value' => $this->getSetting('components.header.logo_type') ?? CivicthemeConstants::LOGO_TYPE_DEFAULT,
+      '#default_value' => $this->themeConfigManager->load('components.header.logo_type', CivicthemeConstants::LOGO_TYPE_DEFAULT),
     ];
 
     $form['components']['footer'] = [
@@ -145,7 +144,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => civictheme_theme_options(),
-      '#default_value' => $this->getSetting('components.footer.theme') ?? CivicthemeConstants::FOOTER_THEME_DEFAULT,
+      '#default_value' => $this->themeConfigManager->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT),
     ];
 
     $form['components']['footer']['logo_type'] = [
@@ -154,14 +153,34 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => civictheme_type_options(),
-      '#default_value' => $this->getSetting('components.footer.logo_type') ?? CivicthemeConstants::LOGO_TYPE_DEFAULT,
+      '#default_value' => $this->themeConfigManager->load('components.footer.logo_type', CivicthemeConstants::LOGO_TYPE_DEFAULT),
     ];
 
     $form['components']['footer']['background_image'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Footer background image'),
+      '#description' => $this->t('Provide a path to an existing file or upload a new file.'),
+      '#description_display' => 'before',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['footer']['background_image']['path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Footer background image path'),
-      '#description' => $this->getPathFieldDescription($this->getSetting('components.footer.background_image'), 'footer-background.png'),
-      '#default_value' => $this->getPathFieldFriendlyPath($this->getSetting('components.footer.background_image')),
+      '#description' => $this->getPathFieldDescription('footer-background.png'),
+      '#default_value' => $this->themeConfigManager->load('components.footer.background_image.path'),
+    ];
+
+    $form['components']['footer']['background_image']['upload'] = [
+      '#type' => 'file',
+      '#title' => $this->t('Upload footer background image'),
+      '#name' => "files[components_footer_background_image_upload]",
+      '#description' => $this->t("Uploading a file will replace the image path above. File will be uploaded into <code>@public</code> directory and will replace an existing file with the same name.", [
+        '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
+      ]),
+      '#upload_validators' => [
+        'file_validate_is_image' => [],
+      ],
     ];
 
     $form['components']['navigation'] = [
@@ -206,7 +225,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
           'dropdown' => $this->t('Dropdown'),
           'drawer' => $this->t('Drawer'),
         ],
-        '#default_value' => $this->getSetting("components.navigation.$navigation_name.dropdown") ?? $navigation_defaults['dropdown'],
+        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown", $navigation_defaults['dropdown']),
       ];
 
       $form['components']['navigation'][$navigation_name]['dropdown_columns'] = [
@@ -215,7 +234,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#type' => 'number',
         '#min' => 1,
         '#max' => 4,
-        '#default_value' => $this->getSetting("components.navigation.$navigation_name.dropdown_columns") ?? $navigation_defaults['dropdown_columns'],
+        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown_columns", $navigation_defaults['dropdown_columns']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER],
@@ -227,7 +246,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#title' => $this->t('Fill width of the last drawer column'),
         '#description' => $this->t('Fill the width of the last column in the drawer. Useful for large menus.'),
         '#type' => 'checkbox',
-        '#default_value' => $this->getSetting("components.navigation.$navigation_name.dropdown_columns_fill") ?? $navigation_defaults['dropdown_columns_fill'],
+        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown_columns_fill", $navigation_defaults['dropdown_columns_fill']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER],
@@ -239,7 +258,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#title' => $this->t('Animate'),
         '#description' => $this->t('Animate transitions.'),
         '#type' => 'checkbox',
-        '#default_value' => $this->getSetting("components.navigation.$navigation_name.is_animated") ?? $navigation_defaults['is_animated'],
+        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.is_animated", $navigation_defaults['is_animated']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => [
@@ -262,14 +281,14 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'checkbox',
       '#title' => $this->t('Open links in a new window'),
       '#description' => $this->t('Open internal and external links in a new browser window.'),
-      '#default_value' => $this->getSetting('components.link.new_window'),
+      '#default_value' => $this->themeConfigManager->load('components.link.new_window'),
     ];
 
     $form['components']['link']['external_new_window'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Open external links in a new window'),
       '#description' => $this->t('Open all external links in a new browser window.'),
-      '#default_value' => $this->getSetting('components.link.external_new_window'),
+      '#default_value' => $this->themeConfigManager->load('components.link.external_new_window'),
       '#states' => [
         'visible' => [
           ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
@@ -281,8 +300,103 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'textarea',
       '#title' => $this->t('Override external link domains'),
       '#description' => $this->t('A list of domains that should be considered as internal. External links matching these domains will not be displayed as external.<br/>One domain per line.<br/>Do not include trailing slash (/).<br/>Protocol is optional.'),
-      '#default_value' => CivicthemeUtility::arrayToMultiline($this->getSetting('components.link.external_override_domains')),
+      '#default_value' => CivicthemeUtility::arrayToMultiline($this->themeConfigManager->load('components.link.external_override_domains', [])),
       '#rows' => 4,
+    ];
+
+    $form['components']['skip_link'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Skip Link'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['skip_link']['theme'] = [
+      '#title' => $this->t('Theme'),
+      '#description' => $this->t('Set the Skip Link color theme.'),
+      '#type' => 'radios',
+      '#required' => TRUE,
+      '#options' => civictheme_theme_options(),
+      '#default_value' => $this->themeConfigManager->load('components.skip_link.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
+    ];
+
+    $form['components']['event_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Event card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['event_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('event_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['navigation_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Navigation card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['navigation_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('navigation_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['publication_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Publication card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['publication_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['promo_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Promo card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['promo_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('promo_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['#process'][] = [$this, 'processForm'];
+
+    // Auto-discover per-component validation and submit handlers.
+    $form['components']['migrate'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Migration'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+    $form['components']['migrate']['expose_migration_metadata'] = [
+      '#type' => 'checkbox',
+      '#title' => 'Expose Migration metadata',
+      '#default_value' => $this->themeConfigManager->loadForComponent('components', 'migrate.expose_migration_metadata') ?? FALSE,
     ];
 
     foreach (array_keys($form['components']) as $component_name) {
@@ -299,25 +413,48 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   }
 
   /**
+   * Form process callback.
+   */
+  public function processForm(&$element, FormStateInterface $form_state) {
+    // Vertical tabs do not work correctly with a form element with
+    // '#tree' = TRUE. The active tab is set to the element children by JS,
+    // so we have to explicitly add it to the values that should be cleaned.
+    $form_state->addCleanValueKey(['components', 'components__active_tab']);
+
+    return $element;
+  }
+
+  /**
+   * Validate callback for theme settings form of Logo component.
+   */
+  public function validateLogo(array &$form, FormStateInterface $form_state) {
+    foreach (['primary', 'secondary'] as $logo_type) {
+      foreach (civictheme_theme_options(TRUE) as $theme) {
+        foreach (['desktop', 'mobile'] as $breakpoint) {
+          $this->validateFileUpload(
+            $form,
+            $form_state,
+            ['components', 'logo', $logo_type, $theme, $breakpoint, 'upload'],
+            ['components', 'logo', $logo_type, $theme, $breakpoint, 'path']
+          );
+        }
+      }
+    }
+  }
+
+  /**
    * Validate callback for theme settings form to check footer settings.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.ElseExpression)
    */
   public function validateFooter(array $form, FormStateInterface &$form_state) {
-    $field_name_key = ['components', 'footer', 'background_image'];
-    $path = $form_state->getValue($field_name_key);
-
-    if (!empty($path)) {
-      $path = $this->normalizePath($path);
-      if ($path) {
-        $path = \Drupal::service('file_url_generator')->generateString($path);
-        $form_state->setValue($field_name_key, ltrim($path, '/'));
-      }
-      else {
-        $form_state->setErrorByName(implode('][', $field_name_key), $this->t('The image path is invalid.'));
-      }
-    }
+    $this->validateFileUpload(
+      $form,
+      $form_state,
+      ['components', 'footer', 'background_image', 'upload'],
+      ['components', 'footer', 'background_image', 'path']
+    );
   }
 
   /**
@@ -362,159 +499,58 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   }
 
   /**
-   * Validate callback for theme settings form of Logo component.
-   */
-  public function validateLogo(array &$form, FormStateInterface $form_state) {
-    $breakpoints = ['desktop', 'mobile'];
-    $logo_types = ['primary', 'secondary'];
-
-    foreach (array_keys(civictheme_theme_options()) as $theme) {
-      foreach ($logo_types as $logo_type) {
-        foreach ($breakpoints as $breakpoint) {
-          $field_name_key = [
-            'components',
-            'logo',
-            $logo_type,
-            $theme,
-            "image_{$logo_type}_{$theme}_{$breakpoint}",
-          ];
-
-          $path = $form_state->getValue($field_name_key);
-
-          $field_name_processed_key = [
-            'components',
-            'logo',
-            "image_{$logo_type}_{$theme}_{$breakpoint}",
-          ];
-
-          // Check for a new uploaded logo.
-          if (isset($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"])) {
-            $file = _file_save_upload_from_form($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
-            if ($file) {
-              // Put the temp file in form_values so we can save it on submit.
-              $form_state->setValue("image_{$logo_type}_{$theme}_{$breakpoint}_upload", $file);
-            }
-          }
-
-          if (!empty($path)) {
-            $path = $this->normalizePath($path);
-            if ($path) {
-              $path = \Drupal::service('file_url_generator')->generateString($path);
-              $form_state->setValue($field_name_processed_key, ltrim($path, '/'));
-              continue;
-            }
-            $form_state->setErrorByName(implode('][', $field_name_key), $this->t('The image path is invalid.'));
-          }
-        }
-      }
-    }
-  }
-
-  /**
    * Submit callback for theme settings form of Logo component.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
   public function submitLogo(array &$form, FormStateInterface $form_state) {
-    $breakpoints = ['desktop', 'mobile'];
-    $logo_types = ['primary', 'secondary'];
-
-    $values = $form_state->getValues();
-
-    foreach (array_keys(civictheme_theme_options()) as $theme) {
-      foreach ($logo_types as $logo_type) {
-        foreach ($breakpoints as $breakpoint) {
-          $logo_field_name_key = [
-            'components',
-            'logo',
-            "image_{$logo_type}_{$theme}_{$breakpoint}",
-          ];
-          $field_name_key = "image_{$logo_type}_{$theme}_{$breakpoint}_upload";
-
-          // If the user uploaded a new logo - save it to a permanent location
-          // and use it in place of the provided path.
-          $default_scheme = \Drupal::config('system.file')->get('default_scheme');
-
-          try {
-            if (!empty($values[$field_name_key])) {
-              $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
-              if (!empty($filename)) {
-                $path = $this->normalizePath($filename);
-                if ($path) {
-                  $path = \Drupal::service('file_url_generator')->generateString($path);
-                  $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
-                }
-              }
-            }
-          }
-          catch (FileException $e) {
-            // Ignore.
-          }
-
-          $form_state->unsetValue($field_name_key);
+    foreach (['primary', 'secondary'] as $logo_type) {
+      foreach (civictheme_theme_options(TRUE) as $theme) {
+        foreach (['desktop', 'mobile'] as $breakpoint) {
+          $this->submitFileUpload(
+            $form,
+            $form_state,
+            ['components', 'logo', $logo_type, $theme, $breakpoint, 'upload'],
+            ['components', 'logo', $logo_type, $theme, $breakpoint, 'path']
+          );
         }
       }
     }
   }
 
   /**
+   * Submit callback for theme settings form of Footer component.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   */
+  public function submitFooter(array &$form, FormStateInterface $form_state) {
+    $this->submitFileUpload(
+      $form,
+      $form_state,
+      ['components', 'footer', 'background_image', 'upload'],
+      ['components', 'footer', 'background_image', 'path']
+    );
+  }
+
+  /**
    * Provide a description for a path field.
    *
-   * @param string $original_path
+   * @param string $filename
    *   The original path from the current field value.
-   * @param string $fallback_path
-   *   Fallback file name.
    *
    * @return string
    *   Description string.
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function getPathFieldDescription($original_path, $fallback_path) {
-    $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
-    /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
-    $theme_handler = \Drupal::getContainer()->get('theme_handler');
+  protected function getPathFieldDescription($filename) {
+    $relative_file = $this->themeManager->getActiveTheme()->getPath() . '/' . $filename;
+    $uploaded_file = $this->toFriendlyFilePath($this->getDefaultFileScheme() . '://' . $filename);
 
-    $friendly_path = $this->getPathFieldFriendlyPath($original_path);
-
-    $local_file = \Drupal::theme()->getActiveTheme()->getPath() . '/' . $fallback_path;
-
-    // Prepare local file path for description.
-    if ($original_path && !empty($friendly_path)) {
-      $local_file = strtr($original_path, ['public:/' => PublicStream::basePath()]);
-    }
-    elseif ($theme_name) {
-      $local_file = $theme_handler->getTheme($theme_name)->getPath() . '/' . $fallback_path;
-    }
-
-    return $this->t('Examples:<br/><code>@implicit-public-file</code> (for a file in the public filesystem)<br/><code>@explicit-file</code><br/><code>@local-file</code>.', [
-      '@implicit-public-file' => $friendly_path ?? $fallback_path,
-      '@explicit-file' => StreamWrapperManager::getScheme($original_path ?? '') !== FALSE ? $original_path : 'public://' . $fallback_path,
-      '@local-file' => $local_file,
+    return $this->t('Relative to Drupal web root: <code>@relative-file</code> or <code>@uploaded-file</code>', [
+      '@relative-file' => $relative_file,
+      '@uploaded-file' => $uploaded_file,
     ]);
-  }
-
-  /**
-   * Convert path to a human-friendly path.
-   *
-   * @param string $original_path
-   *   The original path.
-   *
-   * @return string
-   *   Friendly path or original path if an invalid stream wrapper was provided.
-   *
-   * @SuppressWarnings(PHPMD.StaticAccess)
-   */
-  protected function getPathFieldFriendlyPath($original_path) {
-    // If path is a public:// URI, display the path relative to the 'files'
-    // directory; stream wrappers are not end-user friendly.
-    $friendly_path = NULL;
-
-    if ($original_path && StreamWrapperManager::getScheme($original_path) == 'public') {
-      $friendly_path = StreamWrapperManager::getTarget($original_path);
-    }
-
-    return $friendly_path ?? $original_path;
   }
 
   /**
@@ -522,42 +558,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    */
   protected function externalLinkNormalizeDomain($domain) {
     return _civictheme_external_link_normalize_domain($domain);
-  }
-
-  /**
-   * Normalize file path.
-   *
-   * @param string $path
-   *   A path relative to the Drupal root or to the public files directory, or
-   *   a stream wrapper URI.
-   *
-   * @return mixed
-   *   A valid path that can be displayed through the theme system, or FALSE if
-   *   the path could not be validated.
-   *
-   * @SuppressWarnings(PHPMD.StaticAccess)
-   */
-  protected function normalizePath($path) {
-    // Absolute local file paths are invalid.
-    if ($this->fileSystem->realpath($path) == $path) {
-      return FALSE;
-    }
-
-    // A path relative to the Drupal root or a fully qualified URI is valid.
-    if (is_file($path)) {
-      return $path;
-    }
-
-    // Prepend 'public://' for relative file paths within public filesystem.
-    if (StreamWrapperManager::getScheme($path) === FALSE) {
-      $path = 'public://' . $path;
-    }
-
-    if (is_file($path)) {
-      return $path;
-    }
-
-    return FALSE;
   }
 
 }

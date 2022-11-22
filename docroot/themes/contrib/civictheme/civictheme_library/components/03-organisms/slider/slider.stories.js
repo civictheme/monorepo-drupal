@@ -1,8 +1,9 @@
 // phpcs:ignoreFile
 import {
-  boolean, number, radios, text,
+  boolean,
+  number, radios, text,
 } from '@storybook/addon-knobs';
-import { getSlots, randomUrl } from '../../00-base/base.stories';
+import { getSlots } from '../../00-base/base.stories';
 import { randomSlidesComponent } from './slider.utils';
 import CivicThemeSlider from './slider.twig';
 
@@ -52,11 +53,7 @@ export const Slider = () => {
   const generalKnobs = {
     theme,
     title: text('Title', 'Slider title', generalKnobTab),
-    link: boolean('Show link', true, generalKnobTab) ? {
-      type: 'secondary',
-      text: 'Slider link',
-      url: randomUrl(),
-    } : null,
+    with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',
       {

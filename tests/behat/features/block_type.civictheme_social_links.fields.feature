@@ -1,5 +1,5 @@
 @civictheme @block_type @block_civictheme_social_links
-Feature: Tests the CivicTheme Social Links block Type
+Feature: Social Links block fields
 
   Ensure that CivicTheme Social Links block fields have been setup correctly.
 
