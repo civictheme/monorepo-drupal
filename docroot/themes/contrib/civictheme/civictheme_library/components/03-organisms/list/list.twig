@@ -29,42 +29,43 @@
 
     {% block header %}
       {% if title is not empty or link_above is not empty %}
-        <div class="ct-list__header container">
-
-          {% block title %}
-            {% if title -%}
-              <div class="ct-list__header-title">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xxs-12">
+        <div class="ct-list__header">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12 col-m-9">
+                {% block title %}
+                  {% if title -%}
+                    <div class="ct-list__header-title">
                       {% include '@atoms/heading/heading.twig' with {
                         content: title,
                         level: 2,
                         theme: theme,
                       } only %}
                     </div>
-                  </div>
-                </div>
+                  {% endif %}
+                {% endblock %}
               </div>
-            {% endif %}
-          {% endblock %}
-
-          {% block link_above %}
-            {% if link_above %}
-              <div class="ct-list__header-link-above">
-                {% include '@atoms/button/button.twig' with {
-                  theme: theme,
-                  type: 'secondary',
-                  kind: 'link',
-                  size: 'large',
-                  text: link_above.text,
-                  url: link_above.url,
-                  is_new_window: link_above.is_external,
-                  is_external: link_above.is_external
-                } only %}
+              <div class="col-xxs-12 col-m-3">
+                {% block link_above %}
+                  {% if link_above %}
+                    <div class="ct-list__link-above">
+                      {% include '@atoms/button/button.twig' with {
+                        theme: theme,
+                        type: 'secondary',
+                        kind: 'link',
+                        size: 'large',
+                        text: link_above.text,
+                        url: link_above.url,
+                        is_new_window: link_above.is_external,
+                        is_external: link_above.is_external,
+                        icon: link_above.is_external ? '' : 'right-arrow-2',
+                      } only %}
+                    </div>
+                  {% endif %}
+                {% endblock %}
               </div>
-            {% endif %}
-          {% endblock %}
+            </div>
+          </div>
         </div>
       {% endif %}
     {% endblock %}
@@ -91,7 +92,13 @@
       {% block filters %}
         {% if filters -%}
           <div class="ct-list__filters">
-            {{ filters }}
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  {{ filters }}
+                </div>
+              </div>
+            </div>
           </div>
         {% endif %}
       {% endblock %}
@@ -119,7 +126,7 @@
       {% endblock %}
 
       {% block empty %}
-        {% if rows is not defined or rows is empty -%}
+        {% if empty is defined and (rows is not defined or rows is empty) -%}
           <div class="ct-list__empty-results">
             <div class="container">
               <div class="row">
@@ -133,19 +140,6 @@
       {% endblock %}
 
       {% block rows_below %}
-        {% if pager is defined and pager is not empty %}
-          <div class="ct-list__results-below">
-            <div class="container">
-              <div class="row">
-                {% block pager %}
-                  <div class="ct-list__pager">
-                    {{ pager }}
-                  </div>
-                {% endblock %}
-              </div>
-            </div>
-          </div>
-        {% endif %}
 
         {% if link_below %}
           <div class="ct-list__link-below">
@@ -157,10 +151,28 @@
               text: link_below.text,
               url: link_below.url,
               is_new_window: link_below.is_external,
-              is_external: link_below.is_external
+              is_external: link_below.is_external,
+              icon: link_below.is_external ? '' : 'right-arrow-2',
             } only %}
           </div>
         {% endif %}
+
+        {% if pager is defined and pager is not empty %}
+          <div class="ct-list__results-below">
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  {% block pager %}
+                    <div class="ct-list__pager">
+                      {{ pager }}
+                    </div>
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
       {% endblock %}
 
       {% block footer %}

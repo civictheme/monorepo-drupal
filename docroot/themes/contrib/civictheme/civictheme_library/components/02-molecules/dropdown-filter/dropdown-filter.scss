@@ -40,7 +40,8 @@
       border-style: solid;
       border-width: ct-particle(0.125);
       max-height: ct-spacing() * 35;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   }
 

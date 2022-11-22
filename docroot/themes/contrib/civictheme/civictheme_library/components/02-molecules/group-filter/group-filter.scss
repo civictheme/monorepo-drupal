@@ -1,6 +1,15 @@
 .ct-group-filter {
   $root: &;
 
+  @include ct-breakpoint($ct-group-filter-breakpoint) {
+    border-top-style: solid;
+    border-top-width: ct-particle(0.125);
+    border-bottom-style: solid;
+    border-bottom-width: ct-particle(0.125);
+    padding-left: ct-spacing(4);
+    padding-right: ct-spacing(4);
+  }
+
   &__mobile-toggle {
     width: 100%;
     border: ct-particle(0.125) solid transparent;
@@ -104,10 +113,18 @@
       flex-wrap: nowrap;
       padding: ct-spacing(3) 0;
       width: 100%;
+      border-top-style: solid;
+      border-top-width: ct-particle(0.125);
     }
 
     &--hidden {
       display: none;
+    }
+  }
+
+  #{$root}__selected-filters {
+    @include ct-breakpoint($ct-group-filter-breakpoint) {
+      border-top: ct-particle(0.125) solid $ct-group-filter-light-selected-filters-border-color;
     }
   }
 
@@ -154,113 +171,55 @@
     }
   }
 
-  &.ct-theme-light {
+  @include ct-component-theme($root) using($root, $theme) {
+    border-top-color: ct-component-var($root, $theme, border-color);
+    border-bottom-color: ct-component-var($root, $theme, border-color);
 
     #{$root}--with-background {
-      background-color: $ct-group-filter-light-background-color;
-    }
-
-    @include ct-breakpoint($ct-group-filter-breakpoint) {
-      border-top: ct-particle(0.125) solid $ct-group-filter-light-border-color;
-      border-bottom: ct-particle(0.125) solid $ct-group-filter-light-border-color;
+      @include ct-component-property($root, $theme, background-color);
     }
 
     #{$root}__mobile-toggle {
-      color: $ct-group-filter-light-mobile-toggle-color;
-      background-color: $ct-group-filter-light-mobile-toggle-background-color;
-      border-color: $ct-group-filter-light-mobile-toggle-border-color;
+      @include ct-component-property($root, $theme, mobile, toggle, color);
+      @include ct-component-property($root, $theme, mobile, toggle, background-color);
+      @include ct-component-property($root, $theme, mobile, toggle, border-color);
     }
 
     #{$root}__mobile-toggle-display {
-      color: $ct-group-filter-light-mobile-toggle-display-color;
-      border-color: $ct-group-filter-light-mobile-toggle-display-border-color;
+      @include ct-component-property($root, $theme, mobile, toggle, display, color);
+      @include ct-component-property($root, $theme, mobile, toggle, display, border-color);
     }
 
     #{$root}__mobile-overlay {
-      background-color: $ct-group-filter-light-mobile-overlay-background-color;
+      @include ct-component-property($root, $theme, mobile, overlay, background-color);
     }
 
     #{$root}__mobile-filter-title {
-      color: $ct-group-filter-light-mobile-filter-title-color;
+      @include ct-component-property($root, $theme, mobile, filter, title, color);
     }
 
     #{$root}__filters {
       & > legend {
-        color: $ct-group-filter-light-filters-legend-color;
+        @include ct-component-property($root, $theme, filters, legend, color);
       }
 
       .ct-dropdown-filter {
-        border-bottom-color: $ct-group-filter-light-dropdown-filter-border-color;
+        border-bottom-color: ct-component-var($root, $theme, dropdown, filter, border-color);
 
         &:first-of-type {
-          border-top-color: $ct-group-filter-light-dropdown-filter-border-color;
+          border-top-color: ct-component-var($root, $theme, dropdown, filter, border-color);
         }
       }
     }
 
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
-        border-top: ct-particle(0.125) solid $ct-group-filter-light-selected-filters-border-color;
+        border-top-color: ct-component-var($root, $theme, selected, filters, border-color);
       }
     }
 
     #{$root}__selected-filters-title {
-      color: $ct-group-filter-light-selected-filters-title-color;
-    }
-  }
-
-  &.ct-theme-dark {
-
-    #{$root}--with-background {
-      background-color: $ct-group-filter-dark-background-color;
-    }
-
-    @include ct-breakpoint($ct-group-filter-breakpoint) {
-      border-top: ct-particle(0.125) solid $ct-group-filter-dark-border-color;
-      border-bottom: ct-particle(0.125) solid $ct-group-filter-dark-border-color;
-    }
-
-    #{$root}__mobile-toggle {
-      color: $ct-group-filter-dark-mobile-toggle-color;
-      background-color: $ct-group-filter-dark-mobile-toggle-background-color;
-      border-color: $ct-group-filter-dark-mobile-toggle-border-color;
-    }
-
-    #{$root}__mobile-toggle-display {
-      color: $ct-group-filter-dark-mobile-toggle-display-color;
-      border-color: $ct-group-filter-dark-mobile-toggle-display-border-color;
-    }
-
-    #{$root}__mobile-overlay {
-      background-color: $ct-group-filter-dark-mobile-overlay-background-color;
-    }
-
-    #{$root}__mobile-filter-title {
-      color: $ct-group-filter-dark-mobile-filter-title-color;
-    }
-
-    #{$root}__filters {
-      & > legend {
-        color: $ct-group-filter-dark-filters-legend-color;
-      }
-
-      .ct-dropdown-filter {
-        border-bottom-color: $ct-group-filter-dark-dropdown-filter-border-color;
-
-        &:first-of-type {
-          border-top-color: $ct-group-filter-dark-dropdown-filter-border-color;
-        }
-      }
-    }
-
-    #{$root}__selected-filters {
-      @include ct-breakpoint($ct-group-filter-breakpoint) {
-        border-top: ct-particle(0.125) solid $ct-group-filter-dark-selected-filters-border-color;
-      }
-    }
-
-    #{$root}__selected-filters-title {
-      color: $ct-group-filter-dark-selected-filters-title-color;
+      @include ct-component-property($root, $theme, selected, filters, title, color);
     }
   }
 }
