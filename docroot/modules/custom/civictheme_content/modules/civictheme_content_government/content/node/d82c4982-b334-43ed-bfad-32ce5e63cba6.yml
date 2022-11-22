@@ -460,7 +460,7 @@ default:
               value: 'Our services'
           field_c_p_vertical_spacing:
             -
-              value: bottom
+              value: both
     -
       entity:
         _meta:
@@ -578,6 +578,3 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_vertical_spacing:
-    -
-      value: top
