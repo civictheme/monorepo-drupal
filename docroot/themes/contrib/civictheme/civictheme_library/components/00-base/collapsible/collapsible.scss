@@ -22,7 +22,7 @@
 
         content: $ct-collapsible-icon;
         position: absolute;
-        right: 0;
+        right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width');
         transform: rotate(-180deg);
         line-height: 0;
       }
