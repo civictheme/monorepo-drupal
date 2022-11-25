@@ -38,15 +38,12 @@
             {% for fold in panels %}
               {% if fold.title is not empty or fold.content is not empty %}
                 {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
-                <li class="ct-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250" data-collapsible-trigger-no-icon>
+                <li class="ct-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250">
                   <div class="ct-accordion__header">
                     <button class="ct-accordion__header__button" data-collapsible-trigger="" aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
                       {% if fold.title is not empty %}
                         <span>{{ fold.title }}</span>
                       {% endif %}
-                      {% include '@base/icon/icon.twig' with {
-                        symbol: 'arrows_downarrow_1'
-                      } only %}
                     </button>
                   </div>
 
