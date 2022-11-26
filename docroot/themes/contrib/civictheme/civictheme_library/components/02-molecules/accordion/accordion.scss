@@ -23,6 +23,10 @@
 
     @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
 
+    &::before {
+      z-index: 1;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
