@@ -45,11 +45,8 @@ function CivicThemeCollapsible(el) {
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
   this.trigger.addEventListener('focusout', this.focusoutEvent.bind(this));
   this.panel.addEventListener('click', (e) => e.stopPropagation());
-  // @todo - These lines have been disabled as they break the
-  // CivicThemeLargeFilter
-  // dropdowns.
-  // this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
-  // this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
+  this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
+  this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
 
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {
@@ -260,7 +257,7 @@ CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
   }
 
   if (evt && evt.target) {
-    if (evt.target !== t.el) {
+    if (evt.currentTarget !== t.el) {
       return;
     }
   }
@@ -343,6 +340,7 @@ CivicThemeCollapsible.prototype.expand = function (animate) {
 
     // Set progress state.
     t.el.setAttribute('data-collapsible-collapsing', '');
+    t.panel.style.display = '';
     requestAnimationFrame(() => {
       // Prepare for animation by setting initial values.
       t.panel.style.transition = t.panel.style.transition || `height ${t.duration}ms ease-out`;
