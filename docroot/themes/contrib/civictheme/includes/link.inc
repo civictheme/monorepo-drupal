@@ -139,3 +139,82 @@ function _civictheme_external_link_normalize_domain($domain) {
 
   return $domain;
 }
+
+/**
+ * Process HTML emails within an HTML content string.
+ *
+ * @param string $html
+ *   The string to be processed.
+ *
+ * @return string
+ *   The processed HTML string.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ */
+function _civictheme_process_html_content_emails($html) {
+  // Tags to skip and not recurse into.
+  $ignore_tags = 'a|script|style|code|pre';
+  // Match email addresses.
+  // Mail domains differ from the generic domain pattern, specifically:
+  // A . character must be present in the string that follows the @ character.
+  $email_domain = '(?:[\p{L}\p{M}\p{N}._+-]+\.)+[\p{L}\p{M}]{2,64}\b';
+  $url_pattern = "[\p{L}\p{M}\p{N}._+-]{1,254}@(?:$email_domain)";
+  $pattern = "`($url_pattern)`u";
+
+  // HTML comments need to be handled separately, as they may contain HTML
+  // markup, especially a '>'. Therefore, remove all comment contents and add
+  // them back later.
+  _filter_url_escape_comments('', TRUE);
+  $html = preg_replace_callback('`<!--(.*?)-->`s', '_filter_url_escape_comments', $html);
+
+  // Split at all tags; ensures that no tags or attributes are processed.
+  $chunks = preg_split('/(<.+?>)/is', $html, -1, PREG_SPLIT_DELIM_CAPTURE);
+  // PHP ensures that the array consists of alternating delimiters and
+  // literals, and begins and ends with a literal (inserting NULL as
+  // required). Therefore, the first chunk is always text:
+  $chunk_type = 'text';
+  // If a tag of $ignore_tags is found, it is stored in $open_tag and only
+  // removed when the closing tag is found. Until the closing tag is found,
+  // no replacements are made.
+  $open_tag = '';
+
+  for ($i = 0; $i < count($chunks); $i++) {
+    if ($chunk_type == 'text') {
+      // Only process this text if there are no unclosed $ignore_tags.
+      if ($open_tag == '') {
+        // If there is a match, inject a link into this chunk via the callback
+        // function contained in $task.
+        $chunks[$i] = preg_replace_callback($pattern, '_filter_url_parse_email_links', $chunks[$i]);
+      }
+      // Text chunk is done, so next chunk must be a tag.
+      $chunk_type = 'tag';
+    }
+    else {
+      // Only process this tag if there are no unclosed $ignore_tags.
+      if ($open_tag == '') {
+        // Check whether this tag is contained in $ignore_tags.
+        if (preg_match("`<($ignore_tags)(?:\s|>)`i", $chunks[$i], $matches)) {
+          $open_tag = $matches[1];
+        }
+      }
+      // Otherwise, check whether this is the closing tag for $open_tag.
+      else {
+        if (preg_match("`<\/$open_tag>`i", $chunks[$i], $matches)) {
+          $open_tag = '';
+        }
+      }
+      // Tag chunk is done, so next chunk must be text.
+      $chunk_type = 'text';
+    }
+  }
+
+  $html = implode($chunks);
+  // Revert to the original comment contents.
+  _filter_url_escape_comments('', FALSE);
+  $html = preg_replace_callback('`<!--(.*?)-->`', '_filter_url_escape_comments', $html);
+
+  return $html;
+}
