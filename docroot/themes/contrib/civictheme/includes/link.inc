@@ -153,6 +153,7 @@ function _civictheme_external_link_normalize_domain($domain) {
  * @SuppressWarnings(PHPMD.NPathComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_process_html_content_emails($html) {
   // Tags to skip and not recurse into.
