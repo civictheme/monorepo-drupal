@@ -1,4 +1,4 @@
-@civictheme @civictheme_promo_card
+@p0 @civictheme @civictheme_promo_card
 Feature: Promo card fields
 
   @api

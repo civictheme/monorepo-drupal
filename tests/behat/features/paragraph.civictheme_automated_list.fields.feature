@@ -1,4 +1,4 @@
-@civictheme @civictheme_automated_list
+@p0 @civictheme @civictheme_automated_list
 Feature: Automated list fields
 
   @api

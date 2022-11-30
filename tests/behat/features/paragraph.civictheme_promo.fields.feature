@@ -1,4 +1,4 @@
-@civictheme @civictheme_promo
+@p1 @civictheme @civictheme_promo
 Feature: Promo fields
 
   @api

@@ -1,4 +1,4 @@
-@civictheme @civictheme_map
+@p1 @civictheme @civictheme_map
 Feature: Map fields
 
   @api

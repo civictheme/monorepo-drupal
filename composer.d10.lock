@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f95de0a38d250a4b9f08bc9edef8cddc",
+    "content-hash": "d0dc8c7088c230dafd7a87292176bab5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -805,16 +805,16 @@
         },
         {
             "name": "consolidation/annotated-command",
-            "version": "4.6.1",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/annotated-command.git",
-                "reference": "76835d35fcb0b879170129e82adfa1536b72921f"
+                "reference": "423715c6c5156d007e6d3357f7793d9dad510cd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/76835d35fcb0b879170129e82adfa1536b72921f",
-                "reference": "76835d35fcb0b879170129e82adfa1536b72921f",
+                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/423715c6c5156d007e6d3357f7793d9dad510cd4",
+                "reference": "423715c6c5156d007e6d3357f7793d9dad510cd4",
                 "shasum": ""
             },
             "require": {
@@ -855,9 +855,9 @@
             "description": "Initialize Symfony Console commands from annotated command class methods.",
             "support": {
                 "issues": "https://github.com/consolidation/annotated-command/issues",
-                "source": "https://github.com/consolidation/annotated-command/tree/4.6.1"
+                "source": "https://github.com/consolidation/annotated-command/tree/4.7.0"
             },
-            "time": "2022-11-09T18:31:17+00:00"
+            "time": "2022-11-22T21:28:39+00:00"
         },
         {
             "name": "consolidation/config",
@@ -2341,12 +2341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drevops/DrupalDriver.git",
-                "reference": "282ff13a16a7edefa681f6e1ac5278c062aa4b0f"
+                "reference": "03ae7c9ea5a0071ea6d49a8868f5ad5ae0163bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drevops/DrupalDriver/zipball/282ff13a16a7edefa681f6e1ac5278c062aa4b0f",
-                "reference": "282ff13a16a7edefa681f6e1ac5278c062aa4b0f",
+                "url": "https://api.github.com/repos/drevops/DrupalDriver/zipball/03ae7c9ea5a0071ea6d49a8868f5ad5ae0163bb6",
+                "reference": "03ae7c9ea5a0071ea6d49a8868f5ad5ae0163bb6",
                 "shasum": ""
             },
             "require": {
@@ -2371,7 +2371,8 @@
                 "palantirnet/drupal-rector": "^0.13",
                 "php-parallel-lint/php-parallel-lint": "^1.0",
                 "phpspec/phpspec": "~2.0 || ~4.0 || ~6.1 || dev-main",
-                "phpunit/phpunit": "~6.0 || ~7.0 || ^9"
+                "phpunit/phpunit": "~6.0 || ~7.0 || ^9",
+                "symfony/phpunit-bridge": "^6.1"
             },
             "type": "library",
             "extra": {
@@ -2436,7 +2437,7 @@
                     "url": "https://github.com/jhedstrom"
                 }
             ],
-            "time": "2022-10-24T23:26:24+00:00"
+            "time": "2022-11-23T06:48:32+00:00"
         },
         {
             "name": "drupal/drupal-extension",
@@ -2764,8 +2765,8 @@
             "version": "6.0.0-beta3",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/issue/linkit-3288339.git",
-                "reference": "b5f739cbfe2cb02d5f008fc9bebd07419907b85d"
+                "url": "https://git.drupalcode.org/project/linkit.git",
+                "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
             },
             "type": "drupal-module"
         },
@@ -13336,9 +13337,9 @@
         "drupal/jquery_ui": 20,
         "drupal/jquery_ui_autocomplete": 20,
         "drupal/jquery_ui_menu": 20,
+        "drupal/linkit": 10,
         "drupal/core-dev": 10,
         "drupal/drupal-extension": 20,
-        "drupal/linkit": 10,
         "drupal/default_content": 15,
         "drupal/styleguide": 10
     },

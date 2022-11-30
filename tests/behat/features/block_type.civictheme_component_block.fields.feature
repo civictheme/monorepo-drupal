@@ -1,4 +1,4 @@
-@civictheme @block_type @block_civictheme_component
+@p1 @civictheme @block_type @block_civictheme_component
 Feature: Component block fields
 
   @api

@@ -1,4 +1,4 @@
-@civictheme @civictheme_content
+@p0 @civictheme @civictheme_content
 Feature: Content fields
 
   @api

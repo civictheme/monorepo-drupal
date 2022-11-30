@@ -1,4 +1,4 @@
-@civictheme @civictheme_attachment
+@p1 @civictheme @civictheme_attachment
 Feature: Attachment render
 
   Background:

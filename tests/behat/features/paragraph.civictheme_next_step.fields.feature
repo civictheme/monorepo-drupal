@@ -1,4 +1,4 @@
-@civictheme @civictheme_next_step
+@p1 @civictheme @civictheme_next_step
 Feature: Next step fields
 
   @api

@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_event
+@p0 @civictheme @content_type @civictheme_event
 Feature: CivicTheme Event content type fields
 
   Ensure that fields have been setup correctly.

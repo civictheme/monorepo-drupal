@@ -1,4 +1,4 @@
-@civictheme @civictheme_manual_list
+@p0 @civictheme @civictheme_manual_list
 Feature: Manual list render
 
   Background:

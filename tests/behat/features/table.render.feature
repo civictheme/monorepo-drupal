@@ -1,7 +1,7 @@
-@civictheme @civictheme_table @testmode
+@p0 @civictheme @civictheme_table @testmode
 Feature: Table render
 
-  @api @d9
+  @api @d9only
   Scenario: Styleguide page should show table with correct markup.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/appearance/styleguide/civictheme#table"

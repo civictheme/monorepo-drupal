@@ -1,4 +1,4 @@
-@civictheme @civictheme_theme_settings
+@p0 @civictheme @civictheme_theme_settings
 Feature: Components settings are available in the theme settings
 
   Background:
@@ -13,7 +13,7 @@ Feature: Components settings are available in the theme settings
   @api
   Scenario: The CivicTheme theme settings form has Component fields
     Given I am logged in as a user with the "Site Administrator" role
-    When I visit "/admin/appearance/settings/civictheme_demo"
+    When I visit "/admin/appearance/settings/civictheme"
 
     And I should not see an "input#edit-toggle-node-user-picture" element
     And I should not see an "input#edit-toggle-comment-user-picture" element
@@ -120,10 +120,10 @@ Feature: Components settings are available in the theme settings
     And I should see an "input[name='components[skip_link][theme]']" element
     And I should see an "#edit-components-skip-link-theme--wrapper.required" element
 
-  @api
+  @api @basetheme
   Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     When I fill in "Image path for Primary Light logo for Desktop" with "public://civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "public://civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
@@ -141,10 +141,10 @@ Feature: Components settings are available in the theme settings
     And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
-  @api
+  @api @basetheme
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     When I fill in "Image path for Primary Light logo for Desktop" with "sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "sites/default/files/civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "sites/default/files/civictheme_test/logo_dark_desktop.jpg"
@@ -160,7 +160,7 @@ Feature: Components settings are available in the theme settings
 
     # Assert with static assets prefixed with '/'.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     When I fill in "Image path for Primary Light logo for Desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
@@ -181,7 +181,7 @@ Feature: Components settings are available in the theme settings
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     When I attach the file "test_image_logo_light_desktop.jpg" to "Upload Primary Light logo for Desktop"
     And I attach the file "test_image_logo_light_mobile.jpg" to "Upload Primary Light logo for Mobile"
     And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload Primary Dark logo for Desktop"
@@ -197,7 +197,7 @@ Feature: Components settings are available in the theme settings
   @api
   Scenario: The CivicTheme theme settings External Links component validation works.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
 
     When I fill in "Override external link domains" with "http://exampleoverridden.com"
     And I press "Save configuration"
@@ -207,92 +207,18 @@ Feature: Components settings are available in the theme settings
     And I press "Save configuration"
     Then I should not see the text "The configuration options have been saved."
 
-  @api
-  Scenario: The CivicTheme theme setting `Expose Migration metadata` exposes meta data in DOM
-    Given managed file:
-      | filename       | uri                                     | path           |
-      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
-    And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
-    And "civictheme_topics" terms:
-      | name           |
-      | [TEST] Topic 1 |
-      | [TEST] Topic 2 |
-      | [TEST] Topic 3 |
-    Given "civictheme_page" content:
-      | title         | status | field_c_n_summary | field_c_n_topics                               | field_c_n_thumbnail     | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_background | field_c_n_blend_mode | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
-      | [TEST] Page 1 | 1      | [TEST] Summary    | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | [TEST] CivicTheme Image | top                        | 1                  | 1                           | 0                      | 2022-07-01                    | [TEST] CivicTheme Image     | luminosity           | default               | light                  | 1                                |
-    Given "civictheme_page" content:
-      | title         | status | field_c_n_vertical_spacing | field_c_n_show_toc | field_c_n_show_last_updated | field_c_n_hide_sidebar | field_c_n_custom_last_updated | field_c_n_banner_type | field_c_n_banner_theme | field_c_n_banner_hide_breadcrumb |
-      | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01                    | large                 | dark                   | 0                                |
-    When I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
-    And I check the box "Expose Migration metadata"
-    And I press "Save configuration"
-
-    And I visit "civictheme_page" "[TEST] Page 1"
-    Then should see a "section[data-ct-migrate-vertical-spacing='top']" element
-    And should see a "section[data-ct-migrate-show-toc='1']" element
-    And should see a "section[data-ct-migrate-summary='[TEST] Summary']" element
-    And should see a "section[data-ct-migrate-thumbnail]" element
-    And should see a "section[data-ct-migrate-topics='[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3']" element
-    And should see a "section[data-ct-migrate-show-last-updated='1']" element
-    And should see a "section[data-ct-migrate-hide-sidebar='0']" element
-    And should see a "section[data-ct-migrate-last-updated='1 Jul 2022']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-blend-mode='luminosity']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-background-image]" element
-    And should see a ".ct-banner[data-ct-migrate-banner-type='default']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-theme='light']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb='1']" element
-
-    And I visit "civictheme_page" "[TEST] Page 2"
-    Then should see a "section[data-ct-migrate-vertical-spacing='bottom']" element
-    And should not see a "section[data-ct-migrate-summary]" element
-    And should not see a "section[data-ct-migrate-thumbnail]" element
-    And should not see a "section[data-ct-migrate-topics]" element
-    And should see a "section[data-ct-migrate-show-toc='0']" element
-    And should see a "section[data-ct-migrate-show-last-updated='0']" element
-    And should see a "section[data-ct-migrate-hide-sidebar='1']" element
-    And should not see a "section[data-ct-migrate-last-updated]" element
-    # CivicTheme has default background image for banner.
-    And should see a ".ct-banner[data-ct-migrate-banner-blend-mode='soft-light']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-background-image]" element
-    And should see a ".ct-banner[data-ct-migrate-banner-type='large']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-theme='dark']" element
-    And should see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb='0']" element
-
-    And I visit "/admin/appearance/settings/civictheme_demo"
-    And I uncheck the box "Expose Migration metadata"
-    And I press "Save configuration"
-
-    And I visit "civictheme_page" "[TEST] Page 1"
-    Then should not see a "section[data-ct-migrate-vertical-spacing]" element
-    And should not see a "section[data-ct-migrate-show-toc]" element
-    And should not see a "section[data-ct-migrate-show-last-updated]" element
-    And should not see a "section[data-ct-migrate-hide-sidebar]" element
-    And should not see a "section[data-ct-migrate-last-updated]" element
-    And should not see a ".ct-banner[data-ct-migrate-banner-blend-mode]" element
-    And should not see a ".ct-banner[data-ct-migrate-banner-background-image]" element
-    And should not see a ".ct-banner[data-ct-migrate-banner-type]" element
-    And should not see a ".ct-banner[data-ct-migrate-banner-theme]" element
-    And should not see a ".ct-banner[data-ct-migrate-banner-hide-breadcrumb]" element
-    And should not see a "section[data-ct-migrate-summary]" element
-    And should not see a "section[data-ct-migrate-thumbnail]" element
-    And should not see a "section[data-ct-migrate-topics]" element
-
-  @api
+  @api @basetheme
   Scenario: The CivicTheme theme settings Skip Link works.
     Given I am logged in as a user with the "Site Administrator" role
 
-    When I visit "/admin/appearance/settings/civictheme_demo"
+    When I visit "/admin/appearance/settings/civictheme"
     And  I select the radio button "Light" with the id "edit-components-skip-link-theme-light"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see a ".ct-skip-link.ct-theme-light" element
 
-    When I visit "/admin/appearance/settings/civictheme_demo"
+    When I visit "/admin/appearance/settings/civictheme"
     And I select the radio button "Dark" with the id "edit-components-skip-link-theme-dark"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."

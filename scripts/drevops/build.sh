@@ -120,8 +120,7 @@ ahoy cli "COMPOSER_MEMORY_LIMIT=-1 composer install -n --ansi --prefer-dist"
 if [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
   # Install all npm dependencies and compile FE assets.
   # Note that this will create package-lock.json file if it does not exist.
-  [ -z "${CI}" ] && ahoy fei
-  [ -z "${CI}" ] && ahoy fe
+  [ -z "${CI}" ] && ahoy fei && ahoy fe
 fi
 
 # Install site (from existing DB or fresh install).

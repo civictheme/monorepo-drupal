@@ -1,4 +1,4 @@
-@civictheme @block_type @block_civictheme_search
+@p1 @civictheme @block_type @block_civictheme_search
 Feature: Search block fields
 
   @api

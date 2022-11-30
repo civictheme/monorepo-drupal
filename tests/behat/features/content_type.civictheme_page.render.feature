@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_page
+@p1 @civictheme @content_type @civictheme_page
 Feature: CivicTheme Page content type render
 
   Ensure that Page content can be viewed correctly.

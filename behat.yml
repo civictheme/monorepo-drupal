@@ -4,8 +4,9 @@ default:
     # Disable caching during development. It is enabled for profiles below.
     cache: ~
     filters:
-      # Allow skipping tests by tagging them with "@skipped"
-      tags: '~@skipped'
+      # By default, run tests shared between D9 and D10 (not specific to only
+      # D9 or D10), not requiring a Drupal sub-theme and not being skipped.
+      tags: '~@d9only&&~@d10only&&~@subtheme&&~@skipped'
   suites:
     default:
       paths: [ '%paths.base%/tests/behat/features' ]
@@ -47,18 +48,24 @@ default:
     # Show explicit fail information and continue the test run.
     DrevOps\BehatFormatProgressFail\FormatExtension: ~
 
-p0:
+# Default profile for parallel run with index 0.
+default0:
   gherkin:
-    cache: '/tmp/behat_gherkin_cache'
     filters:
-      tags: "~@p1&&~@skipped"
-p1:
+      tags: '~@d9only&&~@d10only&&~@subtheme&&~@skipped&&~@p1'
+# Default profile for parallel run with index 1.
+default1:
   gherkin:
-    cache: '/tmp/behat_gherkin_cache'
     filters:
-      tags: "@p1&&~@skipped"
-d10:
+      tags: '~@d9only&&~@d10only&&~@subtheme&&~@skipped&&@p1'
+
+# Drupal 9 sub-theme profile for parallel run with index 0.
+subtheme0:
   gherkin:
-    cache: '/tmp/behat_gherkin_cache'
     filters:
-      tags: "~d9&&~@skipped"
+      tags: '~@d10only&&~@basetheme&&~@skipped&&~@p1'
+# Drupal 9 sub-theme profile for parallel run with index 1.
+subtheme1:
+  gherkin:
+    filters:
+      tags: '~@d10only&&~@basetheme&&~@skipped&&@p1'
