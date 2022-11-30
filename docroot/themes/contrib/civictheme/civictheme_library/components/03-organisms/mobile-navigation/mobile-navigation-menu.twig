@@ -77,7 +77,7 @@ Copied as-is from '@base/menu/menu.twig'.
         {% endif %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, item) }}
         {% endif %}
 
       </li>
@@ -95,7 +95,7 @@ Copied as-is from '@base/menu/menu.twig'.
 {#
 Overrides for generation of child links.
 #}
-{% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, parent_item) %}
 
   {% include '@atoms/button/button.twig' with {
     theme: theme,
@@ -122,10 +122,10 @@ Overrides for generation of child links.
         } only %}
       </div>
 
-      {{ menus.menu_links(items, menu_level, modifier_class) }}
+      {{ menus.menu_links(items, menu_level, modifier_class, theme) }}
     </div>
   </div>
 
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class) }}
+{{ menus.menu_links(items, 0, modifier_class, theme) }}

@@ -30,6 +30,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Department of Citizens, Head Office, Canberra, Australia.'
   field_c_m_image:
     -
       entity: f1180d16-b221-4efc-8815-7c2323410d09

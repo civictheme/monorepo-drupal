@@ -55,6 +55,9 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_migrate.
   - &deploy_ssh_fingerprint6 "58:a5:e8:af:8c:3f:c8:5d:f8:a0:58:03:07:81:73:cf"
 
+  # SSH key fingerprint to mirror code.
+  - &git_mirror_ssh_fingerprint "75:84:c7:7a:3a:f8:39:5b:af:ef:d8:48:7d:65:6a:fa"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -87,6 +90,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
       DEPLOY_SSH_FINGERPRINT6: *deploy_ssh_fingerprint6
+      GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
       - image: drevops/ci-builder
         auth:
@@ -219,6 +223,34 @@ job-build-no-persist: &job-build-no-persist
     - store_artifacts:
         path: *drevops_test_artifact_dir
 
+job-mirror: &job-mirror
+  steps:
+    - attach_workspace:
+        at: /workspace
+    - add_ssh_keys:
+        fingerprints:
+          - *deploy_ssh_fingerprint
+          - *git_mirror_ssh_fingerprint
+    - checkout
+    - *step_process_codebase
+    - checkout
+    - run:
+        name: Re-deploy environment.
+        command: |
+          set -x
+          profiles=()
+          profiles+=(content/corporate)
+          profiles+=(content/government)
+          profiles+=(content/highereducation)
+          if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
+            for profile in "${profiles[@]}"
+            do
+              GIT_MIRROR_BRANCH_DST="${profile}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
+              sleep 5
+              DREVOPS_DEPLOY_LAGOON_BRANCH="${profile}" DEPLOY_ACTION=deploy_override_db ahoy deploy
+            done
+          fi
+
 jobs:
   build-drupal9-govcms:
     <<: *container_config
@@ -294,6 +326,11 @@ jobs:
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_PROFILE: d10
     <<: *job-build-no-persist
+
+  # Mirror and redeploy content profiles.
+  mirror-content:
+    <<: *container_config
+    <<: *job-mirror
 
   # Deploy primary branches.
   deploy: &job_deploy
@@ -416,38 +453,56 @@ workflows:
     jobs:
       - build-drupal9-govcms:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-default:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-corporate:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-highereducation:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-government:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-sibling:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-no-subtheme:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal10-minimal:
           filters:
+            branches:
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - deploy:
@@ -489,3 +544,19 @@ workflows:
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
+      - mirror-content:
+          requires:
+            - build-drupal9-govcms
+            - build-drupal9-minimal
+            - build-drupal9-minimal-default
+            - build-drupal9-minimal-corporate
+            - build-drupal9-minimal-highereducation
+            - build-drupal9-minimal-government
+            - build-drupal9-govcms-sibling
+            - build-drupal9-govcms-no-subtheme
+            - build-drupal10-minimal
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /.*/

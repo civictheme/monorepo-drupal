@@ -120,7 +120,7 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
       document.body.style.overflow = null;
     }, duration);
   });
-  document.querySelectorAll('[data-flyout-trigger]').forEach((trigger) => {
+  document.querySelectorAll('[data-flyout-open-trigger]').forEach((trigger) => {
     trigger.setAttribute('aria-expanded', false);
   });
 };

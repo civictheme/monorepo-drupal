@@ -26,6 +26,10 @@
       align-self: center;
       margin-left: auto;
     }
+
+    @include ct-breakpoint-upto('m') {
+      margin-top: ct-spacing(3);
+    }
   }
 
   &__content {

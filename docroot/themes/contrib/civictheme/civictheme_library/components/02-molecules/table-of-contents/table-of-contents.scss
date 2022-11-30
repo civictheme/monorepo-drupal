@@ -11,6 +11,14 @@
     margin-top: ct-spacing(3);
   }
 
+  @include ct-breakpoint-upto('m') {
+    margin-left: ct-spacing(2);
+  }
+
+  @include ct-breakpoint-upto('s') {
+    margin-left: ct-spacing(1);
+  }
+
   @include ct-breakpoint('l') {
     width: max-content;
     max-width: $ct-table-of-contents-max-width;
