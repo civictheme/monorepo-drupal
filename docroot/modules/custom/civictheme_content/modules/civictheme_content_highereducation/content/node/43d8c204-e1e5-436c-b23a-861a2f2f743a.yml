@@ -146,7 +146,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Johnson & Johnson'
@@ -178,7 +178,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: Pfizer
@@ -210,7 +210,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: Deloitte
@@ -242,7 +242,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: Aecom
@@ -274,7 +274,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: BCG
@@ -306,7 +306,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Baker McKenzie'
@@ -372,7 +372,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'World Health Organization'
@@ -404,7 +404,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'World Vision'
@@ -436,7 +436,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'United Nations'
@@ -468,7 +468,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Red Cross'
@@ -500,7 +500,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Smithsonian Institute'
@@ -532,7 +532,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: light
+                      value: dark
                   field_c_p_title:
                     -
                       value: 'Alzheimer’s Association'
