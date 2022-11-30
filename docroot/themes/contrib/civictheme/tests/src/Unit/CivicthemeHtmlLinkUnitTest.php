@@ -236,7 +236,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
         '<p>Word1 <a href="http://example2.com">Link</a> word2</p>' .
         '<p>Word3 <a href="http://example2.com/path">Link</a> word4</p>' .
         '<p>Word5 <a href="http://example2.com" class="someclass">Link</a> word6</p>' .
-        '<p>Word7 <a href="http://example2.com/path" class="someclass">Link</a> word8</p>'.
+        '<p>Word7 <a href="http://example2.com/path" class="someclass">Link</a> word8</p>' .
         '<p>Word9 <a href="mailto:example@example.com" class="someclass">example@example.com</a> word10</p>',
         'example2.com',
         FALSE,
@@ -249,7 +249,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
         '<p>Word1 <a href="http://example2.com" class="ct-content-link ct-theme-light">Link</a> word2</p>' .
         '<p>Word3 <a href="http://example2.com/path" class="ct-content-link ct-theme-light">Link</a> word4</p>' .
         '<p>Word5 <a href="http://example2.com" class="someclass ct-content-link ct-theme-light">Link</a> word6</p>' .
-        '<p>Word7 <a href="http://example2.com/path" class="someclass ct-content-link ct-theme-light">Link</a> word8</p>'.
+        '<p>Word7 <a href="http://example2.com/path" class="someclass ct-content-link ct-theme-light">Link</a> word8</p>' .
         '<p>Word9 <a href="mailto:example@example.com" class="someclass ct-content-link ct-theme-light">example@example.com</a> word10</p>',
       ],
 
