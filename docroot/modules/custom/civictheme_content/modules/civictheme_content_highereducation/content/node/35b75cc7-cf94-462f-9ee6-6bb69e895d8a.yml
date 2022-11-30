@@ -112,6 +112,9 @@ default:
           field_c_p_fill_width:
             -
               value: false
+          field_c_p_title:
+            -
+              value: 'Featured undergraduate courses'
           field_c_p_list_items:
             -
               entity:

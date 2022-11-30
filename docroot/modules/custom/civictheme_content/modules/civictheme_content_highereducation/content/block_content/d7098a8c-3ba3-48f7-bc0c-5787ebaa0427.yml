@@ -44,7 +44,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p class=\"text-align-right ct-text-small\">© Commonwealth of Australia</p>\r\n"
+              value: "<p class=\"text-align-right ct-text-small\">© My University | Higher Education</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
