@@ -1,4 +1,4 @@
-@civictheme @civictheme_next_step
+@p0 @civictheme @civictheme_next_step
 Feature: Next step render
 
   Background:

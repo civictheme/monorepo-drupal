@@ -1,4 +1,4 @@
-@development
+@p0 @development
 Feature: Generated Content list
 
   @api

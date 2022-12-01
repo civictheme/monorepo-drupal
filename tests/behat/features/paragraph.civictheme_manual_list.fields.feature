@@ -1,4 +1,4 @@
-@civictheme @civictheme_manual_list
+@p1 @civictheme @civictheme_manual_list
 Feature: Manual list fields
 
   @api

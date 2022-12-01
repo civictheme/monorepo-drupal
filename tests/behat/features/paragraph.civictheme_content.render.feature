@@ -1,4 +1,4 @@
-@civictheme @civictheme_content
+@p1 @civictheme @civictheme_content
 Feature: Content render
 
   Background:

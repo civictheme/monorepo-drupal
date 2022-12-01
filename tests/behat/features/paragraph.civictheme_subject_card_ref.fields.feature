@@ -1,4 +1,4 @@
-@civictheme @civictheme_subject_card_ref
+@p0 @civictheme @civictheme_subject_card_ref
 Feature: Subject reference card fields
 
   @api

@@ -1,4 +1,4 @@
-@civictheme @civictheme_pagination @testmode
+@p1 @civictheme @civictheme_pagination @testmode
 Feature: Pagination
 
   Background:
@@ -30,7 +30,7 @@ Feature: Pagination
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api @d9
+  @api @d9only
   Scenario: Styleguide page should show table with correct markup.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/appearance/styleguide/civictheme#pagination-heading"

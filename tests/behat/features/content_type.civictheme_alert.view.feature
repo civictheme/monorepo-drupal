@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_alert
+@p1 @civictheme @content_type @civictheme_alert
 Feature: CivicTheme Alert content type render
 
   Background:

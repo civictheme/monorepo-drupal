@@ -1,4 +1,4 @@
-@civictheme @civictheme_quick_links
+@p1 @civictheme @civictheme_quick_links
 Feature: Quick links fields
 
   @api

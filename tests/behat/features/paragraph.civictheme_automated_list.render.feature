@@ -1,4 +1,4 @@
-@civictheme @civictheme_automated_list
+@p1 @civictheme @civictheme_automated_list
 Feature: Automated list render
 
   Background:

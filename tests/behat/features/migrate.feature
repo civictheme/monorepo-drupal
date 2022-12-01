@@ -1,4 +1,4 @@
-@civictheme @civictheme_migrate
+@p1 @civictheme @civictheme_migrate
 Feature: Tests the CivicTheme migration functionality
 
   @api

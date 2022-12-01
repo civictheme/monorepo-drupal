@@ -1,4 +1,4 @@
-@civictheme @civictheme_quote
+@p1 @civictheme @civictheme_quote
 Feature: Quote render
 
   Background:

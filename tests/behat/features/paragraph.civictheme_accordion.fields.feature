@@ -1,4 +1,4 @@
-@civictheme @civictheme_accordion
+@p0 @civictheme @civictheme_accordion
 Feature: Accordion fields
 
   @api

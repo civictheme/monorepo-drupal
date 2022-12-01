@@ -1,4 +1,4 @@
-@civictheme @civictheme_quote
+@p0 @civictheme @civictheme_quote
 Feature: Quote fields
 
   @api
