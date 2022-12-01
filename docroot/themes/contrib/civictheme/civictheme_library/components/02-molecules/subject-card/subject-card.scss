@@ -119,9 +119,17 @@
       }
     }
 
+    #{$root}__icon-wrapper {
+      @include ct-component-property($root, $theme, icon, color);
+    }
+
+    #{$root}__icon {
+      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color), true);
+    }
+
     #{$root}__icon--arrow,
     #{$root}__icon--external {
-      @include ct-icon-fill-color($ct-subject-card-light-icon-color, true);
+      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color), true);
     }
   }
 }
