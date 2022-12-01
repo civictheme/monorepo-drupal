@@ -1,4 +1,4 @@
-@civictheme @civictheme_slider
+@p0 @civictheme @civictheme_slider
 Feature: Slider render
 
   Background:

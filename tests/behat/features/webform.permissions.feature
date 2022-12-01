@@ -1,4 +1,4 @@
-@civictheme @webform @permissions
+@p0 @civictheme @webform @permissions
 Feature: Webform permissions
 
   @api

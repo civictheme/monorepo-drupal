@@ -1,13 +1,13 @@
 #!/usr/bin/env bats
 #
-# Test for Theme assets.
+# Test for Library assets.
 #
 # shellcheck disable=SC2030,SC2031,SC2129
 
 load _helper
 
-@test "CivicTheme Theme assets" {
-  dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/contrib/civictheme"
+@test "CivicTheme Library assets" {
+  dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/contrib/civictheme/civictheme_library"
 
   pushd "${dir}" > /dev/null || exit 1
 
@@ -35,10 +35,8 @@ load _helper
   assert_file_exists "dist/civictheme.css"
   assert_file_exists "dist/civictheme.variables.css"
   assert_file_contains "dist/civictheme.variables.css" "--ct"
-  assert_file_exists "dist/civictheme.editor.css"
   assert_file_exists "dist/civictheme.js"
   assert_file_not_exists "dist/civictheme-variables.js"
-  assert_file_not_exists "dist/civictheme-editor.js"
   assert_file_exists "dist/civictheme.variables.csv"
   assert_dir_exists "dist/assets"
   assert_dir_exists "dist/assets/backgrounds"
@@ -59,6 +57,7 @@ load _helper
   assert_dir_exists "storybook-static/assets/icons"
   assert_dir_exists "storybook-static/assets/images"
   assert_dir_exists "storybook-static/assets/logos"
+  assert_dir_exists "storybook-static/assets/videos"
   assert_dir_not_exists "storybook-static/backgrounds"
   assert_dir_not_exists "storybook-static/fonts"
   assert_dir_not_exists "storybook-static/icons"

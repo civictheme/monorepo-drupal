@@ -1,4 +1,4 @@
-@civictheme @civictheme_campaign
+@p0 @civictheme @civictheme_campaign
 Feature: Campaign fields
 
   @api

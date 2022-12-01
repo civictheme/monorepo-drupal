@@ -1,4 +1,4 @@
-@civictheme @block_type @block_civictheme_mobile_navigation
+@p0 @civictheme @block_type @block_civictheme_mobile_navigation
 Feature: Mobile Navigation block fields
 
   @api

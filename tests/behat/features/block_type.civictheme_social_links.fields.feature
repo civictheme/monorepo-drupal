@@ -1,4 +1,4 @@
-@civictheme @block_type @block_civictheme_social_links
+@p0 @civictheme @block_type @block_civictheme_social_links
 Feature: Social Links block fields
 
   Ensure that CivicTheme Social Links block fields have been setup correctly.

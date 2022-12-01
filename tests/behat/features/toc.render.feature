@@ -1,4 +1,4 @@
-@civictheme @civictheme_toc
+@p0 @civictheme @civictheme_toc
 Feature: Table Of Contents render
 
   @api @javascript

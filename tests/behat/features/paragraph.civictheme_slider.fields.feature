@@ -1,4 +1,4 @@
-@civictheme @civictheme_slider
+@p1 @civictheme @civictheme_slider
 Feature: Slider, Slider Slide and Slider Slide Reference fields
 
   @api

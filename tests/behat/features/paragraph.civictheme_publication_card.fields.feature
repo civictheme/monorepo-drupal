@@ -1,4 +1,4 @@
-@civictheme @civictheme_publication_card
+@p0 @civictheme @civictheme_publication_card
 Feature: Publication card fields
 
   @api

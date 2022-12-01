@@ -1,4 +1,4 @@
-@civictheme @civictheme_webform
+@p0 @civictheme @civictheme_webform
 Feature: Webform render
 
   Background:

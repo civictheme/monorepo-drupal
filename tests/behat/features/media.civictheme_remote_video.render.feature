@@ -1,4 +1,4 @@
-@civictheme @media @civictheme_remote_video
+@p1 @civictheme @media @civictheme_remote_video
 Feature: CivicTheme remote video
 
   Background:
