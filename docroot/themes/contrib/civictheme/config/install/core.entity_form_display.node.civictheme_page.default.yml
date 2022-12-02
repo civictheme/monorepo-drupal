@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
+    - field.field.node.civictheme_page.field_c_n_hide_tags
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_site_section
@@ -23,7 +24,6 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_vertical_spacing
     - node.type.civictheme_page
   module:
-    - content_moderation
     - datetime
     - field_group
     - media_library
@@ -71,6 +71,7 @@ third_party_settings:
         - field_c_n_summary
         - group_metadata
         - field_c_n_show_toc
+        - field_c_n_hide_tags
         - field_c_n_components
         - group_appearance
       label: Content
@@ -108,7 +109,7 @@ third_party_settings:
       label: Background
       region: content
       parent_name: group_civictheme_banner
-      weight: 22
+      weight: 21
       format_type: details
       format_settings:
         classes: ''
@@ -123,7 +124,7 @@ third_party_settings:
       label: 'Featured image'
       region: content
       parent_name: group_civictheme_banner
-      weight: 23
+      weight: 22
       format_type: details
       format_settings:
         classes: ''
@@ -140,7 +141,7 @@ third_party_settings:
       label: Appearance
       region: content
       parent_name: group_civictheme_content
-      weight: 16
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -186,7 +187,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_components:
     type: paragraphs
-    weight: 24
+    weight: 23
     region: content
     settings:
       title: Paragraph
@@ -231,7 +232,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_hide_breadcrumb:
     type: boolean_checkbox
-    weight: 21
+    weight: 20
     region: content
     settings:
       display_label: true
@@ -264,7 +265,7 @@ content:
     third_party_settings: {  }
   field_c_n_components:
     type: paragraphs
-    weight: 15
+    weight: 16
     region: content
     settings:
       title: Paragraph
@@ -290,6 +291,13 @@ content:
   field_c_n_hide_sidebar:
     type: boolean_checkbox
     weight: 18
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_c_n_hide_tags:
+    type: boolean_checkbox
+    weight: 15
     region: content
     settings:
       display_label: true

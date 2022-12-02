@@ -42,6 +42,23 @@ function _civictheme_preprocess_node(&$variables) {
       '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
     ]);
   }
+
+  // Add Tags if hide tags is not set on node.
+  if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
+    $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
+    if ($topics) {
+      $render_controller = \Drupal::entityTypeManager()->getViewBuilder('taxonomy_term');
+      $topics = array_map(function ($topic) use ($render_controller) {
+        return $render_controller->view($topic, 'chip');
+
+      }, $topics);
+
+      $variables['content'][] = [
+        '#theme' => 'civictheme_item_list',
+        '#items' => $topics,
+      ];
+    }
+  }
 }
 
 /**
