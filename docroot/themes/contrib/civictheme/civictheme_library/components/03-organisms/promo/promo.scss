@@ -28,10 +28,9 @@
   }
 
   &__button {
-    width: 100%;
+    width: auto;
 
     @include ct-breakpoint(m) {
-      width: auto;
       white-space: nowrap;
     }
   }
