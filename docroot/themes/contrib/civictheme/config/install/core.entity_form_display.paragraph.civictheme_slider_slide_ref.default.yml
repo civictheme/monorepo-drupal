@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_link_text
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
     - paragraphs.paragraphs_type.civictheme_slider_slide_ref
@@ -13,9 +14,17 @@ mode: default
 content:
   field_c_p_image_position:
     type: options_select
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_c_p_link_text:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_c_p_reference:
     type: entity_reference_autocomplete
@@ -29,7 +38,7 @@ content:
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
