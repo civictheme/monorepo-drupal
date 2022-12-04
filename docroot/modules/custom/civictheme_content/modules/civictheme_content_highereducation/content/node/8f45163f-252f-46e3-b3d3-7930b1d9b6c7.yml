@@ -60,9 +60,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -104,9 +101,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -139,9 +133,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -171,9 +162,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -203,9 +191,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -235,9 +220,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -267,9 +249,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -299,9 +278,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -331,9 +307,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -363,9 +336,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -432,9 +402,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 70debdf1-8d42-4ac2-94d3-3b1781181833
@@ -476,9 +443,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
@@ -495,7 +459,7 @@ default:
                       value: large
                   field_c_p_summary:
                     -
-                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat and models.'
+                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat.'
                   field_c_p_theme:
                     -
                       value: light
@@ -520,9 +484,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d4bd31b4-651a-4120-a7bf-e6d6832f722c
@@ -557,6 +518,9 @@ default:
           field_c_p_title:
             -
               value: 'Latest research news'
+          field_c_p_vertical_spacing:
+            -
+              value: both
   field_c_n_hide_sidebar:
     -
       value: false
