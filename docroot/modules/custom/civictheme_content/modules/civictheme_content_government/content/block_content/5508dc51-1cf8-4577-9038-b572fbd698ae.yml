@@ -49,7 +49,7 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Sign up for industry news and updates from CivicTheme'
+              value: 'Stay up to date with our latest news, programs and events'
           field_c_p_vertical_spacing:
             -
               value: top

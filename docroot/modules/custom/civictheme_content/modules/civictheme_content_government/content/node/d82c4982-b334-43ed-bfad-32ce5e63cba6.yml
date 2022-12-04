@@ -13,6 +13,7 @@ _meta:
     e343a613-0b38-49f4-a4b5-f000b171b10d: media
     e0c710e3-6eeb-4ea5-b656-0fa728b389b8: media
     9a81d79d-79da-4bc4-8584-27c411248d3e: media
+    02831341-01cd-4d7d-80b7-20f01feb950b: node
     e7acc411-519a-4735-80a6-c0bc7dfb61f3: media
     9e389925-f1f6-4d1c-8aee-03e4a91f6eb4: media
     0d96ff66-61ff-44fc-a9e4-a8b174f6da95: node
@@ -76,7 +77,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>We manage national affairs for Australian citizens and immigrants. We deliver programs, services and funding that benefit our community.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-dark\" href=\"/about-this-template-website\">More about the Department of Citizens</a></p>\r\n"
+              value: "<p>We manage national affairs for Australian citizens and immigrants. We deliver programs, services and funding that benefit our community.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-dark\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8\" href=\"/node/6\">More about the Department of Citizens</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
@@ -314,6 +315,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: true
@@ -347,7 +351,7 @@ default:
                       entity: 9a81d79d-79da-4bc4-8584-27c411248d3e
                   field_c_p_link:
                     -
-                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
                       title: 'Health and aged card home support services'
                       options: {  }
                   field_c_p_show_image_as_icon:
@@ -364,7 +368,7 @@ default:
                       value: light
                   field_c_p_title:
                     -
-                      value: 'Health and aged card home support services'
+                      value: 'Health and aged care home support services'
             -
               entity:
                 _meta:
@@ -388,7 +392,7 @@ default:
                       entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
                   field_c_p_link:
                     -
-                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
                       title: '24 hour translation service'
                       options: {  }
                   field_c_p_show_image_as_icon:
@@ -429,7 +433,7 @@ default:
                       entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
                   field_c_p_link:
                     -
-                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
                       title: 'Employment assistance services'
                       options: {  }
                   field_c_p_show_image_as_icon:
@@ -449,7 +453,7 @@ default:
                       value: 'Employment assistance services'
           field_c_p_list_link_above:
             -
-              target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+              target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
               title: 'View all'
               options: {  }
           field_c_p_theme:
@@ -541,9 +545,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content:
             -
               value: "<p>A citizenship ceremony is the final step in the journey to becoming an Australian. During the ceremony you pledge your commitment to Australia.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"

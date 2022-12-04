@@ -6,7 +6,7 @@ _meta:
   default_langcode: en
   depends:
     4b1d211b-63ab-41c6-82f9-d124d52417a3: menu_link_content
-    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
+    6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8: node
 default:
   enabled:
     -
@@ -19,7 +19,7 @@ default:
       value: civictheme-footer
   link:
     -
-      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+      target_uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
       title: ''
       options: {  }
   external:
