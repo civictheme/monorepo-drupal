@@ -13,7 +13,7 @@ default:
       value: true
   title:
     -
-      value: 'Contact Us'
+      value: 'Contact us'
   menu_name:
     -
       value: civictheme-footer
