@@ -67,17 +67,24 @@
     {% block title %}
       {% if title %}
         <div class="ct-event-card__title">
-          {% if url %}
-            {% include '@atoms/link/link.twig' with {
-              theme: theme,
-              text: title,
-              url: url,
-              is_new_window: is_external,
-              modifier_class: "ct-event-card__title-link",
-            } only %}
-          {% else %}
-            {{ title }}
-          {% endif %}
+          {% set heading_content %}
+            {% if url %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: title,
+                url: url,
+                is_new_window: is_external,
+                modifier_class: "ct-event-card__title-link",
+              } only %}
+            {% else %}
+              {{ title }}
+            {% endif %}
+          {% endset %}
+          {% include '@atoms/heading/heading.twig' with {
+            content: heading_content,
+            level: 4,
+            theme: theme,
+          } only %}
         </div>
       {% endif %}
     {% endblock %}
