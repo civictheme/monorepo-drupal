@@ -346,9 +346,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9a81d79d-79da-4bc4-8584-27c411248d3e
@@ -390,9 +387,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
@@ -434,9 +428,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
@@ -462,7 +453,7 @@ default:
                       value: 'Employment assistance services'
           field_c_p_list_link_above:
             -
-              target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+              target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
               title: 'View all'
               options: {  }
           field_c_p_theme:
