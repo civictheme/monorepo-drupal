@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    4c1ad737-0d04-4adc-a2b4-10a6b914cb1a: media
     11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     70debdf1-8d42-4ac2-94d3-3b1781181833: media
     0900bcaa-2670-4ffa-b22e-f9fa667c45d0: node
@@ -61,6 +60,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -102,6 +104,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -115,9 +120,6 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_title:
-            -
-              value: 'Our research areas'
           field_c_p_list_items:
             -
               entity:
@@ -137,6 +139,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -166,6 +171,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -195,6 +203,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -224,6 +235,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -253,6 +267,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -282,6 +299,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -311,6 +331,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -340,6 +363,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -354,6 +380,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'Our research areas'
     -
       entity:
         _meta:
@@ -372,6 +401,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -400,6 +432,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 70debdf1-8d42-4ac2-94d3-3b1781181833
@@ -441,6 +476,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
@@ -482,6 +520,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d4bd31b4-651a-4120-a7bf-e6d6832f722c

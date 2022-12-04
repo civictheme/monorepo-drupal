@@ -17,22 +17,17 @@ _meta:
     eac50bb1-3e95-4be4-80cb-7c768fef1c09: media
     4cd88c26-8e03-415e-8d67-6d818b07a49b: node
     5f9ad45f-5aa9-45cd-838d-719f82b7417a: taxonomy_term
-    7d8c80cb-6e45-4ba2-aad6-8e9bc132f88f: media
-    baeb7d42-1e11-4d7a-abde-dc02cd89d417: node
-    1c76b992-a37f-407a-b0b3-65784043454a: taxonomy_term
+    90720509-6653-4acf-a96b-7154da530b88: media
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
+    a54aec7d-5aaf-4709-a0ce-dab0ad436a33: taxonomy_term
     12d28525-2e6c-4d9a-9bca-1e8758d0b706: media
     866d2c87-0baa-4b54-839c-1e89d5ba6ab6: node
     96d87429-9acf-4c03-9da6-3e8ba9cc3fab: taxonomy_term
-    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     205adb84-4add-4e30-92b8-e5c052aa0bc3: media
-    61e15cff-4f8f-4480-9c0a-8f11669c4374: media
-    2e309b77-8d77-40e8-95bb-1c1475955e67: node
-    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
-    9160afda-d35a-4538-9284-0148f87278e6: media
-    5d9e4e6b-f957-42c3-8019-30b1ca190dd5: node
-    b4fa303d-042f-4b38-a06b-88c26d1a7eb3: media
-    82bdc4d8-e299-490e-92f8-2a0362724be1: node
+    baeb7d42-1e11-4d7a-abde-dc02cd89d417: node
+    1c76b992-a37f-407a-b0b3-65784043454a: taxonomy_term
     db8e6781-f356-497d-9aba-ef0994b6268c: node
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
 default:
   revision_uid:
     -
@@ -393,10 +388,10 @@ default:
                       value: {  }
                   field_c_p_image:
                     -
-                      entity: 7d8c80cb-6e45-4ba2-aad6-8e9bc132f88f
+                      entity: 90720509-6653-4acf-a96b-7154da530b88
                   field_c_p_link:
                     -
-                      target_uuid: baeb7d42-1e11-4d7a-abde-dc02cd89d417
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
                       title: ''
                       options: {  }
                   field_c_p_summary:
@@ -410,7 +405,7 @@ default:
                       value: 'International students'
                   field_c_p_topics:
                     -
-                      entity: 1c76b992-a37f-407a-b0b3-65784043454a
+                      entity: a54aec7d-5aaf-4709-a0ce-dab0ad436a33
             -
               entity:
                 _meta:
@@ -516,7 +511,7 @@ default:
                   field_c_p_link:
                     -
                       target_uuid: baeb7d42-1e11-4d7a-abde-dc02cd89d417
-                      title: 'Find out more'
+                      title: 'More about double degrees'
                       options: {  }
                   field_c_p_theme:
                     -
@@ -538,8 +533,8 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 741d8709-8cf5-4a66-ba43-e56c7c3efcf5
-          bundle: civictheme_manual_list
+          uuid: 2b79bc03-823a-4b8b-8093-58d7dda3553b
+          bundle: civictheme_automated_list
           default_langcode: en
         default:
           status:
@@ -547,148 +542,48 @@ default:
               value: true
           created:
             -
-              value: 1666096835
+              value: 1670122640
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
-              value: false
+              value: true
           field_c_p_column_count:
             -
               value: 3
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_list_items:
+          field_c_p_list_content_type:
             -
-              entity:
-                _meta:
-                  version: '1.0'
-                  entity_type: paragraph
-                  uuid: 6983e648-c472-4efb-9276-1071d3582a43
-                  bundle: civictheme_event_card
-                  default_langcode: en
-                default:
-                  status:
-                    -
-                      value: true
-                  created:
-                    -
-                      value: 1666096907
-                  behavior_settings:
-                    -
-                      value: {  }
-                  field_c_p_date:
-                    -
-                      value: '2022-08-12'
-                  field_c_p_image:
-                    -
-                      entity: 61e15cff-4f8f-4480-9c0a-8f11669c4374
-                  field_c_p_link:
-                    -
-                      target_uuid: 2e309b77-8d77-40e8-95bb-1c1475955e67
-                      title: ''
-                      options: {  }
-                  field_c_p_summary:
-                    -
-                      value: 'My university chemotherapy breakthrough will increase a patient''s life expectancy by 20%.'
-                  field_c_p_theme:
-                    -
-                      value: light
-                  field_c_p_title:
-                    -
-                      value: 'New chemotherapy breakthrough'
-                  field_c_p_topic:
-                    -
-                      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+              value: all
+          field_c_p_list_item_theme:
             -
-              entity:
-                _meta:
-                  version: '1.0'
-                  entity_type: paragraph
-                  uuid: 884fefaf-a716-44ba-a670-878baf663ae7
-                  bundle: civictheme_event_card
-                  default_langcode: en
-                default:
-                  status:
-                    -
-                      value: true
-                  created:
-                    -
-                      value: 1666097435
-                  behavior_settings:
-                    -
-                      value: {  }
-                  field_c_p_date:
-                    -
-                      value: '2022-09-01'
-                  field_c_p_image:
-                    -
-                      entity: 9160afda-d35a-4538-9284-0148f87278e6
-                  field_c_p_link:
-                    -
-                      target_uuid: 5d9e4e6b-f957-42c3-8019-30b1ca190dd5
-                      title: ''
-                      options: {  }
-                  field_c_p_summary:
-                    -
-                      value: 'My University’s Strategic Plan 2022-2032 is now available. Includes MU’s vision for the future and its goals and objectives.'
-                  field_c_p_theme:
-                    -
-                      value: light
-                  field_c_p_title:
-                    -
-                      value: 'New strategic plan available'
-                  field_c_p_topic:
-                    -
-                      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+              value: light
+          field_c_p_list_item_view_as:
             -
-              entity:
-                _meta:
-                  version: '1.0'
-                  entity_type: paragraph
-                  uuid: ed8375cc-fb99-46e8-9282-de2806f15964
-                  bundle: civictheme_event_card
-                  default_langcode: en
-                default:
-                  status:
-                    -
-                      value: true
-                  created:
-                    -
-                      value: 1666097484
-                  behavior_settings:
-                    -
-                      value: {  }
-                  field_c_p_date:
-                    -
-                      value: '2022-08-20'
-                  field_c_p_image:
-                    -
-                      entity: b4fa303d-042f-4b38-a06b-88c26d1a7eb3
-                  field_c_p_link:
-                    -
-                      target_uuid: 82bdc4d8-e299-490e-92f8-2a0362724be1
-                      title: ''
-                      options: {  }
-                  field_c_p_summary:
-                    -
-                      value: 'My University has risen 11 places in the recently released QS World University Rankings.'
-                  field_c_p_theme:
-                    -
-                      value: light
-                  field_c_p_title:
-                    -
-                      value: 'My University ranked in top 20 worldwide'
-                  field_c_p_topic:
-                    -
-                      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+              value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 3
+          field_c_p_list_limit_type:
+            -
+              value: limited
           field_c_p_list_link_above:
             -
               target_uuid: db8e6781-f356-497d-9aba-ef0994b6268c
-              title: 'View all'
+              title: 'View all news'
               options: {  }
+          field_c_p_list_topics:
+            -
+              entity: d95f5188-650c-4dea-abcb-df8ea008919b
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
           field_c_p_theme:
             -
               value: light
@@ -697,7 +592,7 @@ default:
               value: 'Latest news'
           field_c_p_vertical_spacing:
             -
-              value: bottom
+              value: both
   field_c_n_hide_sidebar:
     -
       value: true
