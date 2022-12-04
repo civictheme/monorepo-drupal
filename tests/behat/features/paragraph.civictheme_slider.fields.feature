@@ -40,7 +40,7 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Slider slide" in the "civictheme_slider_slide" row
+    Then I should see the text "Slider reference slide" in the "civictheme_slider_slide" row
 
   @api
   Scenario: Slider Slide paragraph exists with fields.
@@ -80,16 +80,16 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Slider slide - reference" in the "civictheme_slider_slide_ref" row
+    Then I should see the text "Slider reference slide" in the "civictheme_slider_slide_ref" row
 
   @api
-  Scenario: Slider slide - reference paragraph exists with fields.
+  Scenario: Slider reference slide paragraph exists with fields.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_slider_slide_ref/fields"
     And I should see the text "field_c_p_reference" in the "Reference" row
 
   @api
-  Scenario: Slider slide - reference paragraph field field_c_p_reference settings.
+  Scenario: Slider reference slide paragraph field field_c_p_reference settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_slider_slide_ref/fields/paragraph.civictheme_slider_slide_ref.field_c_p_reference"
     And the "Label" field should contain "Reference"
@@ -117,6 +117,7 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]']" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_theme]']" element
+    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_link_text][0][value]']" element
 
   @api
   Scenario: CivicTheme slider paragraph field_c_p_slides field settings.
@@ -125,4 +126,4 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     And the "Label" field should contain "Slides"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
-    And the "Slider slide - reference" checkbox should be checked
+    And the "Slider reference slide" checkbox should be checked
