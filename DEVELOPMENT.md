@@ -87,14 +87,14 @@ Note that wildcards are supported.
 
 ## Demo content export
 
-1. Prepare content with a clean installation:
+    # Set profile name.
+    export CIVICTHEME_CONTENT_PROFILE=default
 
-    CIVICTHEME_CONTENT_PROFILE=default DREVOPS_DRUPAL_PROFILE=minimal SKIP_SUBTHEME_ACTIVATION=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
+    # Prepare content with a clean installation.
+    DREVOPS_DRUPAL_PROFILE=minimal SKIP_SUBTHEME_ACTIVATION=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
 
-2. Export content:
+    # Export content.
+    ahoy export-content
 
-    CIVICTHEME_CONTENT_PROFILE=default ahoy export-content
-
-3. Export config:
-
-    ahoy drush cde civictheme_content_default
+    # Export config.
+    ahoy drush cde civictheme_content_${CIVICTHEME_CONTENT_PROFILE:-default}
