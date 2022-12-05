@@ -44,7 +44,7 @@ default:
   field_c_n_date:
     -
       value: '2022-12-23T02:00:00'
-      end_value: '2022-12-23T04:00:00'
+      end_value: '2022-12-23T05:00:00'
   field_c_n_location:
     -
       entity:
@@ -64,9 +64,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_address:
             -
               value: '260 Elizabeth St, Melbourne VIC 3000'
@@ -107,9 +104,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_address:
             -
               value: '1/1 Martin Pl, Sydney NSW 2000'
