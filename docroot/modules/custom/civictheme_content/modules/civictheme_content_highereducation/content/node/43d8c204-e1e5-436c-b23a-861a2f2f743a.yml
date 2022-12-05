@@ -146,7 +146,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Johnson & Johnson'
@@ -178,7 +178,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: Pfizer
@@ -210,7 +210,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: Deloitte
@@ -242,7 +242,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: Aecom
@@ -274,7 +274,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: BCG
@@ -306,7 +306,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Baker McKenzie'
@@ -334,6 +334,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -372,7 +375,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'World Health Organization'
@@ -404,7 +407,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'World Vision'
@@ -436,7 +439,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'United Nations'
@@ -468,7 +471,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Red Cross'
@@ -500,7 +503,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Smithsonian Institute'
@@ -532,7 +535,7 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Alzheimer’s Association'
@@ -542,6 +545,9 @@ default:
           field_c_p_title:
             -
               value: 'Not-for-profit partners'
+          field_c_p_vertical_spacing:
+            -
+              value: both
   field_c_n_hide_sidebar:
     -
       value: false

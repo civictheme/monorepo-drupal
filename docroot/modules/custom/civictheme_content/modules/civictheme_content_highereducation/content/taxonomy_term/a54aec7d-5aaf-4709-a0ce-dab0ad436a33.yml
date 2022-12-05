@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: taxonomy_term
-  uuid: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+  uuid: a54aec7d-5aaf-4709-a0ce-dab0ad436a33
   bundle: civictheme_topics
   default_langcode: en
 default:
@@ -10,7 +10,7 @@ default:
       value: true
   name:
     -
-      value: Listing
+      value: 'International students'
   weight:
     -
       value: 0

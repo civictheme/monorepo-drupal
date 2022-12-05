@@ -239,6 +239,8 @@ job-mirror: &job-mirror
     - checkout
     - run:
         name: Re-deploy environment.
+        # We do not have a standalone branch for 'default' profile because we
+        # are using `develop` branch to build with 'default' profile.
         command: |
           set -x
           profiles=()
@@ -264,21 +266,14 @@ jobs:
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
-  # Drupal 9, minimal profile, 'default' content profile.
-  build-drupal9-minimal-default:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
-      CIVICTHEME_CONTENT_PROFILE: default
-      DREVOPS_TEST_BEHAT_TAGS: smoke
-    <<: *job-build-no-persist
-
   # Drupal 9, minimal profile, 'corporate' content profile.
   build-drupal9-minimal-corporate:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -288,6 +283,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -297,6 +294,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -481,12 +480,6 @@ workflows:
               only: /develop|release\/.*/
             tags:
               only: /.*/
-      - build-drupal9-minimal-default:
-          filters:
-            branches:
-              only: /^release\/.*/
-            tags:
-              only: /.*/
       - build-drupal9-minimal-corporate:
           filters:
             branches:
@@ -548,7 +541,6 @@ workflows:
           requires:
             - build-drupal9-govcms
             - build-drupal9-minimal
-            - build-drupal9-minimal-default
             - build-drupal9-minimal-corporate
             - build-drupal9-minimal-highereducation
             - build-drupal9-minimal-government
@@ -564,7 +556,10 @@ workflows:
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
       - mirror-into-content-branches:
           requires:
+            - build-drupal9-minimal
             - build-drupal9-govcms-no-subtheme
+            - build-drupal9-govcms
+            - build-drupal10-minimal
             - build-drupal10-minimal-no-subtheme
           filters:
             branches:
