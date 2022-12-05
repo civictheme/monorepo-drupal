@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomUrl } from '../../00-base/base.stories';
+import { generateSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {
@@ -117,7 +117,7 @@ export const Attachment = (knobTab) => {
 
   return CivicThemeAttachment({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'content_top',
       'content_bottom',
     ]),

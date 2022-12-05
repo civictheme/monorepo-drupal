@@ -6,7 +6,7 @@ import {
 import CivicThemeNavigationCard from './navigation-card.twig';
 import {
   demoImage,
-  getSlots,
+  generateSlots,
   randomTags,
   randomUrl,
 } from '../../00-base/base.stories';
@@ -72,7 +72,7 @@ export const NavigationCard = (knobTab) => {
   return CivicThemeNavigationCard({
     ...generalKnobs,
     ...iconKnobs,
-    ...getSlots([
+    ...generateSlots([
       'image_over',
       'content_top',
       'content_middle',

@@ -2,7 +2,7 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { demoImage, getSlots, objectFromArray } from '../../00-base/base.stories';
+import { demoImage, generateSlots, objectFromArray } from '../../00-base/base.stories';
 import CivicThemeBannerExample from './banner.stories.twig';
 
 export default {
@@ -52,7 +52,7 @@ export const Banner = (knobTab) => {
 
   return CivicThemeBannerExample({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'content_top1',
       'content_top2',
       'content_top3',

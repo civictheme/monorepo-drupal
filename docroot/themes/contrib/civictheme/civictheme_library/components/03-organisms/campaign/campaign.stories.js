@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import {
   demoImage,
-  getSlots, randomSentence,
+  generateSlots, randomSentence,
   randomTags,
 } from '../../00-base/base.stories';
 
@@ -81,7 +81,7 @@ export const Campaign = (knobTab) => {
 
   return CivicThemeCampaign({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'content_top',
       'content_middle',
       'content_bottom',

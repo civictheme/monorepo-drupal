@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
+import { demoImage, generateSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeSubjectCard from './subject-card.twig';
 
 export default {
@@ -36,7 +36,7 @@ export const SubjectCard = (knobTab) => {
 
   return CivicThemeSubjectCard({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'image_over',
     ]),
   });

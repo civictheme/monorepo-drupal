@@ -3,7 +3,7 @@ import {
   boolean,
   number, radios, text,
 } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import { generateSlots } from '../../00-base/base.stories';
 import { randomSlidesComponent } from './slider.utils';
 import CivicThemeSlider from './slider.twig';
 
@@ -43,7 +43,7 @@ export const Slider = () => {
       Left: 'left',
       Right: 'right',
     }, 'right', generalKnobTab),
-    ...getSlots([
+    ...generateSlots([
       'content_top',
       'links',
       'content_bottom',

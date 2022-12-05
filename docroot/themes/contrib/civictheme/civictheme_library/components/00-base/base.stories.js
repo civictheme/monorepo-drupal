@@ -19,37 +19,36 @@ export const getThemes = () => ({
   dark: 'Dark',
 });
 
-export const getSlots = (names) => {
-  const showSlots = boolean('Show story-slots', false, 'Slots');
-  const obj = {};
+export const demoImage = (idx) => {
+  const images = [
+    './assets/images/demo1.jpg',
+    './assets/images/demo2.jpg',
+    './assets/images/demo3.jpg',
+  ];
 
-  if (showSlots) {
-    for (const i in names) {
-      obj[names[i]] = `<div class="story-slot story-slot--${names[i]}">{{ ${names[i]} }}</div>`;
-    }
-  }
+  idx = idx || Math.floor(Math.random() * images.length);
 
-  return obj;
+  return images[idx];
 };
 
-export const randomText = (words) => {
-  const lorem = new LoremIpsum({
-    sentencesPerParagraph: {
-      max: 8,
-      min: 4,
-    },
-    wordsPerSentence: {
-      max: 16,
-      min: 4,
-    },
-  });
+export const demoVideos = () => [
+  {
+    url: './assets/videos/demo.webm',
+    type: 'video/webm',
+  },
+  {
+    url: './assets/videos/demo.mp4',
+    type: 'video/mp4',
+  },
+  {
+    url: './assets/videos/demo.avi',
+    type: 'video/avi',
+  },
+];
 
-  return lorem.generateWords(words);
-};
+export const demoVideoPoster = () => './assets/videos/demo_poster.png';
 
-export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;
-
-export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+export const demoIcon = () => './assets/icons/megaphone.svg';
 
 export const randomInt = (min, max) => {
   min = Math.ceil(min);
@@ -67,6 +66,21 @@ export const randomString = (length) => randomText(length).substring(0, length).
 export const randomSentence = (words) => {
   words = words || randomInt(5, 25);
   return capitalizeFirstLetter(randomText(words));
+};
+
+export const randomText = (words) => {
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
+
+  return lorem.generateWords(words);
 };
 
 export const randomUrl = (domain) => {
@@ -100,41 +114,6 @@ export const randomTags = (count, rand) => {
 
   return tags;
 };
-
-export const indexedString = function (prefix, idx = null) {
-  return `${prefix}${idx !== null ? `-${idx}` : ''}`;
-};
-
-export const demoImage = (idx) => {
-  const images = [
-    './assets/images/demo1.jpg',
-    './assets/images/demo2.jpg',
-    './assets/images/demo3.jpg',
-  ];
-
-  idx = idx || Math.floor(Math.random() * images.length);
-
-  return images[idx];
-};
-
-export const demoVideos = () => [
-  {
-    url: './assets/videos/demo.webm',
-    type: 'video/webm',
-  },
-  {
-    url: './assets/videos/demo.mp4',
-    type: 'video/mp4',
-  },
-  {
-    url: './assets/videos/demo.avi',
-    type: 'video/avi',
-  },
-];
-
-export const demoVideoPoster = () => './assets/videos/demo_poster.png';
-
-export const demoIcon = () => './assets/icons/megaphone.svg';
 
 export const randomFormElement = (inputType, options, theme, rand, itr) => {
   const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
@@ -250,6 +229,19 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
   });
 };
 
+export const generateSlots = (names) => {
+  const showSlots = boolean('Show story-slots', false, 'Slots');
+  const obj = {};
+
+  if (showSlots) {
+    for (const i in names) {
+      obj[names[i]] = `<div class="story-slot story-slot--${names[i]}">{{ ${names[i]} }}</div>`;
+    }
+  }
+
+  return obj;
+};
+
 export const generateInputItems = (count, sameName = false, idx = null) => {
   const items = [];
   for (let i = 1; i <= count; i++) {
@@ -285,6 +277,14 @@ export const generateItems = (count, content) => {
     items.push(content);
   }
   return items;
+};
+
+export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;
+
+export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+export const indexedString = function (prefix, idx = null) {
+  return `${prefix}${idx !== null ? `-${idx}` : ''}`;
 };
 
 export const objectFromArray = (array) => {

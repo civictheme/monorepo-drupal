@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomLinks } from '../../00-base/base.stories';
+import { generateSlots, randomLinks } from '../../00-base/base.stories';
 
 import CivicThemeServiceCard from './service-card.twig';
 
@@ -43,7 +43,7 @@ export const ServiceCard = (knobTab) => {
 
   return CivicThemeServiceCard({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'content_top',
       'content_bottom',
     ]),

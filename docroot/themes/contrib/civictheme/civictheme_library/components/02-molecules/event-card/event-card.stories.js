@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import {
   demoImage,
-  getSlots, randomSentence,
+  generateSlots, randomSentence,
   randomTags,
   randomUrl,
 } from '../../00-base/base.stories';
@@ -64,7 +64,7 @@ export const EventCard = (knobTab) => {
 
   return CivicThemeEventCard({
     ...generalKnobs,
-    ...getSlots([
+    ...generateSlots([
       'image_over',
       'content_top',
       'content_middle',

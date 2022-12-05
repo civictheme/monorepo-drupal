@@ -6,7 +6,7 @@ import {
 import CivicThemePublicationCard from './publication-card.twig';
 import {
   demoImage,
-  getSlots,
+  generateSlots,
   randomSentence,
 } from '../../00-base/base.stories';
 
@@ -62,7 +62,7 @@ export const PublicationCard = (knobTab) => {
   return CivicThemePublicationCard({
     ...generalKnobs,
     ...iconKnobs,
-    ...getSlots([
+    ...generateSlots([
       'image_over',
       'content_top',
       'content_middle',
