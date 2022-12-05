@@ -34,6 +34,7 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   $class_prefix = 'ct-';
   $link_class = 'ct-content-link ct-theme-light';
   $link_external_class = 'ct-content-link--external';
+  $link_external_icon_class = 'ct-icon--upper-right-arrow--after--small';
 
   $email_pattern = '~(^|[\s\.,;\n\(])([a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})~';
   $html = preg_replace($email_pattern, '$1<a href="mailto:$2">$2</a>', $html);
@@ -72,9 +73,17 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
       $classes .= ' ' . $link_external_class;
     }
 
+    if ($is_external && !str_contains($classes, $link_external_icon_class)) {
+      $classes .= ' ' . $link_external_icon_class;
+    }
+
     if (!$anchor->hasAttribute('target')) {
       if ($new_window || ($is_external && $external_new_window)) {
         $anchor->setAttribute('target', '_blank');
+        $anchor->setAttribute('aria-label', 'Opens in a new tab');
+        $span = $dom->createElement('span', '(Opens in a new tab/window)');
+        $span->setAttribute('class', "ct-visually-hidden");
+        $anchor->appendChild($span);
       }
     }
 

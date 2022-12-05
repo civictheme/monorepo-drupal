@@ -59,7 +59,7 @@
 
 {% if is_new_window %}
   {% set is_new_window_text %}
-    <span class="ct-visually-hidden">Opens in a new tab/window</span>
+    <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
   {% endset %}
 {% endif %}
 
@@ -79,7 +79,7 @@
     data-component-name="button"
     {% if url %}href="{{ url }}"{% endif %}
     {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
-    {{ is_new_window ? 'target="_blank"' }}
+    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
     {{ button_text }}{{ is_new_window_text }}

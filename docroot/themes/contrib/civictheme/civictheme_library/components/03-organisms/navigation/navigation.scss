@@ -82,6 +82,10 @@
                 margin-top: -1 * ct-particle(0.25);
                 top: ct-spacing(2);
               }
+
+              &--external {
+                padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-spacing();
+              }
             }
 
             // Accommodate extra spacing for dropdown icon.
@@ -392,6 +396,10 @@
             &::after {
               right: ct-spacing();
               margin-top: -1 * ct-particle(0.25);
+            }
+
+            &--external {
+              padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-spacing();
             }
           }
 
