@@ -58,6 +58,7 @@
 {% if panels is not empty or link_items is not empty %}
   <div class="ct-tabs {{ modifier_class }}" data-tabs-panel {% if attributes is not empty %}{{ attributes }}{% endif %}>
     {% include '@base/item-list/item-list.twig' with {
+      direction: 'horizontal',
       items: link_items,
       no_gap: true,
       modifier_class: 'ct-tabs__links',
