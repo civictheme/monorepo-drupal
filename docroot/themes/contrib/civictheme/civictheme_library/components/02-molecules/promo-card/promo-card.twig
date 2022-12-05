@@ -72,17 +72,24 @@
       {% block title %}
         {% if title is not empty %}
           <div class="ct-promo-card__title">
-            {% if url is not empty %}
-            {% include '@atoms/link/link.twig' with {
+            {% set heading_content %}
+              {% if url is not empty %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: title,
+                url: url,
+                is_new_window: is_external,
+                modifier_class: 'ct-promo-card__title-link',
+              } only %}
+              {% else %}
+                {{ title }}
+              {% endif %}
+            {% endset %}
+            {% include '@atoms/heading/heading.twig' with {
+              content: heading_content,
+              level: 4,
               theme: theme,
-              text: title,
-              url: url,
-              is_new_window: is_external,
-              modifier_class: 'ct-promo-card__title-link',
             } only %}
-            {% else %}
-              {{ title }}
-            {% endif %}
           </div>
         {% endif %}
       {% endblock %}

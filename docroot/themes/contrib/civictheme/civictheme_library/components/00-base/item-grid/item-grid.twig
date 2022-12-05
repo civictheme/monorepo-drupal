@@ -20,16 +20,16 @@
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
-          <div class="ct-item-grid__items">
-            <div class="row">
+          <div>
+            <ul class="row ct-item-grid__items">
               {% for item in items %}
                 {% if item is not empty %}
-                  <div class="ct-item-grid__item {{ column_class }}">
+                  <li class="ct-item-grid__item {{ column_class }}">
                     {{ item }}
-                  </div>
+                  </li>
                 {% endif %}
               {% endfor %}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

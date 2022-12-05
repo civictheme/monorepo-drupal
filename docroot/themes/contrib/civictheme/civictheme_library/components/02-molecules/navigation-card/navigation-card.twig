@@ -91,30 +91,37 @@
     {% block title %}
       {% if title is not empty %}
         <div class="ct-navigation-card__title">
-          {% if url is not empty %}
-          <a class="ct-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
-          {% endif %}
-            {{ title }}
+          {% set heading_content %}
             {% if url is not empty %}
-              <span class="ct-navigation-card__icon-wrapper">
-                {% if is_external %}
-                  {% include '@base/icon/icon.twig' with {
-                    symbol: 'upper-right-arrow',
-                    color: 'primary',
-                    modifier_class: 'ct-navigation-card__icon--external'
-                  } only %}
-                {% else %}
-                  {% include '@base/icon/icon.twig' with {
-                    symbol: 'right-arrow-2',
-                    color: 'primary',
-                    modifier_class: 'ct-navigation-card__icon--arrow',
-                  } only %}
-                {% endif %}
-              </span>
+            <a class="ct-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
             {% endif %}
-          {% if url is not empty %}
-          </a>
-          {% endif %}
+              {{ title }}
+              {% if url is not empty %}
+                <span class="ct-navigation-card__icon-wrapper">
+                  {% if is_external %}
+                    {% include '@base/icon/icon.twig' with {
+                      symbol: 'upper-right-arrow',
+                      color: 'primary',
+                      modifier_class: 'ct-navigation-card__icon--external'
+                    } only %}
+                  {% else %}
+                    {% include '@base/icon/icon.twig' with {
+                      symbol: 'right-arrow-2',
+                      color: 'primary',
+                      modifier_class: 'ct-navigation-card__icon--arrow',
+                    } only %}
+                  {% endif %}
+                </span>
+              {% endif %}
+            {% if url is not empty %}
+            </a>
+            {% endif %}
+          {% endset %}
+          {% include '@atoms/heading/heading.twig' with {
+            content: heading_content,
+            level: 4,
+            theme: theme,
+          } only %}
         </div>
       {% endif %}
     {% endblock %}

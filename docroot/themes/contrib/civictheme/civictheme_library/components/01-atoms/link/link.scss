@@ -23,7 +23,6 @@
     padding-right: ct-icon-size-dimension('regular', 'm', 'width');
 
     &::after {
-      content: $ct-link-icon-external;
       overflow-x: hidden;
       overflow-y: hidden;
       width: ct-particle(3);

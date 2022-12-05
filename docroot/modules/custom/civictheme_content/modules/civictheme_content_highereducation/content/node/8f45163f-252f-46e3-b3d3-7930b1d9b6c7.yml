@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    4c1ad737-0d04-4adc-a2b4-10a6b914cb1a: media
     11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     70debdf1-8d42-4ac2-94d3-3b1781181833: media
     0900bcaa-2670-4ffa-b22e-f9fa667c45d0: node
@@ -115,9 +114,6 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_title:
-            -
-              value: 'Our research areas'
           field_c_p_list_items:
             -
               entity:
@@ -137,9 +133,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -169,9 +162,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -201,9 +191,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -233,9 +220,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -265,9 +249,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -297,9 +278,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -329,9 +307,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -361,9 +336,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -378,6 +350,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'Our research areas'
     -
       entity:
         _meta:
@@ -396,6 +371,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -481,7 +459,7 @@ default:
                       value: large
                   field_c_p_summary:
                     -
-                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat and models.'
+                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat.'
                   field_c_p_theme:
                     -
                       value: light
@@ -540,6 +518,9 @@ default:
           field_c_p_title:
             -
               value: 'Latest research news'
+          field_c_p_vertical_spacing:
+            -
+              value: both
   field_c_n_hide_sidebar:
     -
       value: false

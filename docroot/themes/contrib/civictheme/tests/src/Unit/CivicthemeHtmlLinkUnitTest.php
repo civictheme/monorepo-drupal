@@ -155,6 +155,8 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['<a href="http://example.com:8080/path" class="someclass">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com:8080/path" class="someclass ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com/path/" class="someclass">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com/path/" class="someclass ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com:8080/path/" class="someclass">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com:8080/path/" class="someclass ct-content-link ct-theme-light">Link</a>'],
+      ['<a href="http://example.com:8080/path/" class="someclass ct-custom">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com:8080/path/" class="someclass ct-custom">Link</a>'],
+      ['<a href="http://example.com:8080/path/" class="someclass ct-custom">Link</a>', 'example.com', TRUE, TRUE, [], '<a href="http://example.com:8080/path/" class="someclass ct-custom" target="_blank">Link</a>'],
 
       // External, no CSS classes, no domain overrides.
       ['<a href="http://example.com">Link</a>', 'example2.com', FALSE, FALSE, [], '<a href="http://example.com" class="ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
@@ -166,6 +168,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['<a href="http://example.com:8080/path">Link</a>', 'example2.com', FALSE, FALSE, [], '<a href="http://example.com:8080/path" class="ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
       ['<a href="http://example.com/path/">Link</a>', 'example2.com', FALSE, FALSE, [], '<a href="http://example.com/path/" class="ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
       ['<a href="http://example.com:8080/path/">Link</a>', 'example2.com', FALSE, FALSE, [], '<a href="http://example.com:8080/path/" class="ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
+      ['<a href="http://example.com:8080/path/">Link</a>', 'example2.com', TRUE, TRUE, [], '<a href="http://example.com:8080/path/" target="_blank" class="ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
 
       // External, CSS classes, no domain overrides.
       ['<a href="http://example.com" class="someclass">Link</a>', 'example2.com', FALSE, FALSE, [], '<a href="http://example.com" class="someclass ct-content-link ct-theme-light ct-content-link--external">Link</a>'],
@@ -182,6 +185,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       // External, no CSS classes, domain overrides.
       ['<a href="http://example.com">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com" class="ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com">Link</a>', 'example2.com', TRUE, FALSE, ['example.com'], '<a href="http://example.com" target="_blank" class="ct-content-link ct-theme-light">Link</a>'],
+      ['<a href="http://example.com" target="_blank">Link</a>', 'example2.com', TRUE, FALSE, ['example.com'], '<a href="http://example.com" target="_blank" class="ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com">Link</a>', 'example2.com', FALSE, TRUE, ['example.com'], '<a href="http://example.com" class="ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com:8080">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com:8080" class="ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com/">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com/" class="ct-content-link ct-theme-light">Link</a>'],
@@ -202,6 +206,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['<a href="http://example.com:8080/path" class="someclass">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com:8080/path" class="someclass ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com/path/" class="someclass">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com/path/" class="someclass ct-content-link ct-theme-light">Link</a>'],
       ['<a href="http://example.com:8080/path/" class="someclass">Link</a>', 'example2.com', FALSE, FALSE, ['example.com'], '<a href="http://example.com:8080/path/" class="someclass ct-content-link ct-theme-light">Link</a>'],
+      ['<a href="http://example.com:8080/path/" class="someclass">Link</a>', 'example2.com', TRUE, TRUE, ['example.com'], '<a href="http://example.com:8080/path/" class="someclass ct-content-link ct-theme-light" target="_blank">Link</a>'],
 
       // Multiple links within content, no overrides.
       [
