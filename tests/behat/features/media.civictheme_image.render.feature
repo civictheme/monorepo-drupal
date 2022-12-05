@@ -1,4 +1,4 @@
-@civictheme @media @civictheme_image
+@p0 @civictheme @media @civictheme_image
 Feature: CivicTheme image
 
   @api @javascript

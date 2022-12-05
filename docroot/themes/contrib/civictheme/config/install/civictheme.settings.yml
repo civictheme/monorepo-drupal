@@ -54,12 +54,16 @@ components:
     external_override_domains: {  }
   skip_link:
     theme: light
+  event_card:
+    summary_length: 160
   navigation_card:
     summary_length: 160
   promo_card:
     summary_length: 160
   publication_card:
     summary_length: 160
+  migrate:
+    expose_migration_metadata: true
 colors:
   use_color_selector: true
   use_brand_colors: true

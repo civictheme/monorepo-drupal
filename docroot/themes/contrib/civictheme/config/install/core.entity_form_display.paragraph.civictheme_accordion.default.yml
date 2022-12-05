@@ -48,7 +48,7 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   field_c_p_theme:
-    type: options_select
+    type: options_buttons
     weight: 4
     region: content
     settings: {  }

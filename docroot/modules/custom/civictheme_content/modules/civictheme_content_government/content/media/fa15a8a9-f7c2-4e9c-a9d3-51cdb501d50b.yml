@@ -7,6 +7,9 @@ _meta:
   depends:
     0db708be-ca52-44f6-a9d9-ff5a24b0867d: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'Australian citizenship ceremony 2022.  All you need to know..png'
+      value: 'Australian flag on a pole'
   created:
     -
       value: 1666918744
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: 0db708be-ca52-44f6-a9d9-ff5a24b0867d
-      alt: 'Australian citizenship ceremony 2022.  All you need to know.'
+      alt: 'Australian flag on a pole'
       title: ''
       width: 476
       height: 520

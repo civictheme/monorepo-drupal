@@ -112,15 +112,14 @@ commands:
     usage: Install a site.
     cmd: |
       docker-compose exec \
+      -e DREVOPS_DRUPAL_VERSION=${DREVOPS_DRUPAL_VERSION:-} \
       -e DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=${DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP:-} \
       -e DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB=${DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB:-0} \
       -e DREVOPS_DRUPAL_PROFILE=${DREVOPS_DRUPAL_PROFILE:-standard} \
-      -e CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION:-0} \
-      -e CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION:-0} \
-      -e DREVOPS_DRUPAL_VERSION=${DREVOPS_DRUPAL_VERSION:-} \
-      -e CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-} \
+      -e SKIP_SUBTHEME_ACTIVATION=${SKIP_SUBTHEME_ACTIVATION:-0} \
       -e SKIP_SUBTHEME_FE=${SKIP_SUBTHEME_FE:-} \
       -e SKIP_GENERATED_CONTENT_CREATE=${SKIP_GENERATED_CONTENT_CREATE:-} \
+      -e CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-} \
       -T cli ./scripts/drevops/drupal-install-site.sh
 
   export-db:
@@ -148,13 +147,13 @@ commands:
   fei:
     usage: Install front-end assets.
     cmd: |
-      ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library install"
+      [ "${SKIP_LIBRARY_INSTALL}" != "1" ] && ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library install"
       ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
     cmd: |
-      ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library && npm run build"
+      [ "${SKIP_LIBRARY_INSTALL}" != "1" ] && ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library && npm run build"
       ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} && npm run build"
 
   lint:

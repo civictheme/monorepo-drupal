@@ -77,7 +77,7 @@ Copied as-is from '@base/menu/menu.twig'.
         {% endif %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, item) }}
         {% endif %}
 
       </li>
@@ -95,7 +95,7 @@ Copied as-is from '@base/menu/menu.twig'.
 {#
 Overrides for generation of child links.
 #}
-{% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, parent_item) %}
 
   {% include '@atoms/button/button.twig' with {
     theme: theme,
@@ -103,7 +103,7 @@ Overrides for generation of child links.
     icon: 'right-arrow-2',
     size: 'regular',
     modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
-    attributes: 'data-flyout-open-trigger',
+    attributes: 'data-flyout-open-trigger aria-label="Open %s submenu"'|format(parent_item.title),
   } only %}
 
   <div data-flyout data-flyout-direction="right">
@@ -118,14 +118,14 @@ Overrides for generation of child links.
           icon_placement: 'before',
           size: 'regular',
           text: parent_item.title,
-          attributes: 'data-flyout-close-trigger',
+          attributes: 'data-flyout-close-trigger aria-label="Close %s submenu"'|format(parent_item.title),
         } only %}
       </div>
 
-      {{ menus.menu_links(items, menu_level, modifier_class) }}
+      {{ menus.menu_links(items, menu_level, modifier_class, theme) }}
     </div>
   </div>
 
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class) }}
+{{ menus.menu_links(items, 0, modifier_class, theme) }}

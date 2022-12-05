@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_image
+    - media.type.civictheme_icon
     - media.type.civictheme_image
     - paragraphs.paragraphs_type.civictheme_navigation_card
 id: paragraph.civictheme_navigation_card.field_c_p_image
@@ -19,10 +20,11 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
+      civictheme_icon: civictheme_icon
       civictheme_image: civictheme_image
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: civictheme_icon
 field_type: entity_reference

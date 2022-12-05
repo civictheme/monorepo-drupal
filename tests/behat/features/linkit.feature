@@ -1,4 +1,4 @@
-@civictheme @civictheme_linkit @d9
+@p0 @civictheme @civictheme_linkit @d9only
 Feature: Linkit works correctly on pages
 
   Background:
@@ -23,8 +23,7 @@ Feature: Linkit works correctly on pages
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Page linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element
@@ -40,15 +39,14 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Page linkit render"
-    And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-content-link" element
 
   @api @javascript
   Scenario: Check if Linkit can lookup for Event Content.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Event linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element
@@ -64,15 +62,14 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Event linkit render"
-    And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-content-link" element
 
   @api @javascript
   Scenario: Check if Linkit can lookup for Document Media.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "TEST Document Media linkit render"
-    When I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
-    And I press the "field_c_n_components_civictheme_content_add_more" button
+    When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
     When I click on ".cke_button__drupallink" element
@@ -88,4 +85,4 @@ Feature: Linkit works correctly on pages
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Document Media linkit render"
-    And I should see an ".ct-basic-content a[title='TEST CivicTheme PDF'].ct-link" element
+    And I should see an ".ct-basic-content a[title='TEST CivicTheme PDF'].ct-content-link" element

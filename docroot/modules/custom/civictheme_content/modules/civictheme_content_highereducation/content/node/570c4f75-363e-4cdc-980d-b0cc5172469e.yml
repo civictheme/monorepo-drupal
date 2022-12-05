@@ -111,37 +111,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 7eb6e737-5aeb-4685-aa9b-3afef47ef4e9
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666106622
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: '<p><span>My University is broken into the following departments:</span></p>'
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 348e62fb-f693-4ded-a03e-1667a8214231
           bundle: civictheme_manual_list
           default_langcode: en
@@ -164,6 +133,10 @@ default:
           field_c_p_column_count:
             -
               value: 3
+          field_c_p_content:
+            -
+              value: "<p>My University is broken into the following departments:</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_fill_width:
             -
               value: false
@@ -199,7 +172,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -243,7 +216,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -287,7 +260,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -331,7 +304,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -375,7 +348,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -419,7 +392,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -463,7 +436,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -507,7 +480,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -551,7 +524,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -595,7 +568,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -639,7 +612,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -683,7 +656,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -727,7 +700,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -771,7 +744,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -815,7 +788,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -859,7 +832,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -903,7 +876,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -947,7 +920,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -991,7 +964,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -1035,7 +1008,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small
@@ -1079,7 +1052,7 @@ default:
                       options: {  }
                   field_c_p_show_image_as_icon:
                     -
-                      value: false
+                      value: true
                   field_c_p_size:
                     -
                       value: small

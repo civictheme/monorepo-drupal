@@ -1,4 +1,4 @@
-@civictheme @civictheme_callout
+@p1 @civictheme @civictheme_callout
 Feature: Callout render
 
   Background:

@@ -9,7 +9,7 @@ field_name: field_c_n_banner_hide_breadcrumb
 entity_type: node
 bundle: civictheme_page
 label: 'Hide breadcrumb'
-description: 'Check to hide breadcrumb.'
+description: 'Hide breadcrumb shown in banner.'
 required: false
 translatable: false
 default_value:

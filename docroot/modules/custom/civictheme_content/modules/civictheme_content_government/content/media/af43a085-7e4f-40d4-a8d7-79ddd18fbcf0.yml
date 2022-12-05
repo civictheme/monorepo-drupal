@@ -7,6 +7,9 @@ _meta:
   depends:
     5d20173e-6b13-4ada-9621-28dd1c65bcc3: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: uluru-336476.png
+      value: 'Bottom of Uluru mountain'
   created:
     -
       value: 1666866989
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: 5d20173e-6b13-4ada-9621-28dd1c65bcc3
-      alt: 'Homepage banner image'
+      alt: 'Bottom of Uluru mountain'
       title: ''
       width: 1440
       height: 750

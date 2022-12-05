@@ -1,4 +1,4 @@
-@civictheme @civictheme_callout
+@p0 @civictheme @civictheme_callout
 Feature: Callout fields
 
   @api
@@ -22,13 +22,11 @@ Feature: Callout fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civictheme_callout_add_more" button
     And I wait for AJAX to finish
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
@@ -36,4 +34,4 @@ Feature: Callout fields
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]'].required" element
-    And the option "Light" from select "Theme" is selected
+    And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"

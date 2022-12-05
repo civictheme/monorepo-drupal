@@ -30,9 +30,6 @@ default:
   sticky:
     -
       value: false
-  revision_translation_affected:
-    -
-      value: true
   path:
     -
       alias: /news-and-events/new-chemotherapy-breakthrough
@@ -72,15 +69,12 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
           field_c_p_content:
             -
-              value: '<img src="/sites/default/files/inline-images/Newbreakthrough.png" data-entity-uuid="725cfa2e-448d-41df-bf2d-aaf9e9844006" data-entity-type="file" alt="Image showing person in medical gowns with injection"><p dir="ltr"><span>My University researchers have made a breakthrough in chemotherapy that will increase a patient''s life expectancy by 20%.</span></p><p dir="ltr"><span>The new treatment has been shown to have a stronger effect on cancer cells, while also providing less side effects for patients.&nbsp;</span></p><h2 dir="ltr"><span>About the sample</span></h2><p dir="ltr"><span>The trial consisted of 3000 cancer patients undergoing a 6-week course of chemo. The types of cancers included breast cancer, liver cancer, bowel cancer, lung cancer and kidney cancer. All patients had surgical intervention prior to the chemotherapy treatment.</span></p><p dir="ltr"><span>Half the group followed standard chemotherapy protocols (control) and the other half received the new treatment.&nbsp;</span></p><h2 dir="ltr"><span>The results</span></h2><p dir="ltr"><span>The patients were followed up at six-monthly intervals for 10 years. In the control group, after 5 years 60% of patients had experienced a recurrence of their primary cancer or a secondary cancer. In the group who received the new treatment, only 20% had a recurrence of their primary cancer or a secondary cancer. This shows a significant difference between the two groups.</span></p><p dir="ltr"><span>Importantly, mortality was also reviewed. In the control group 30% of patients had died by the 10-year followup, however only 10% of patients died in the experimental group.&nbsp;&nbsp;</span></p><p><br>&nbsp;</p>'
+              value: "<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"d4bd31b4-651a-4120-a7bf-e6d6832f722c\"></drupal-media>\r\n\r\n<p dir=\"ltr\">My University researchers have made a breakthrough in chemotherapy that will increase a patient's life expectancy by 20%.</p>\r\n\r\n<p dir=\"ltr\">The new treatment has been shown to have a stronger effect on cancer cells, while also providing less side effects for patients.&nbsp;</p>\r\n\r\n<h2 dir=\"ltr\">About the sample</h2>\r\n\r\n<p dir=\"ltr\">The trial consisted of 3000 cancer patients undergoing a 6-week course of chemo. The types of cancers included breast cancer, liver cancer, bowel cancer, lung cancer and kidney cancer. All patients had surgical intervention prior to the chemotherapy treatment.</p>\r\n\r\n<p dir=\"ltr\">Half the group followed standard chemotherapy protocols (control) and the other half received the new treatment.&nbsp;</p>\r\n\r\n<h2 dir=\"ltr\">The results</h2>\r\n\r\n<p dir=\"ltr\">The patients were followed up at six-monthly intervals for 10 years. In the control group, after 5 years 60% of patients had experienced a recurrence of their primary cancer or a secondary cancer. In the group who received the new treatment, only 20% had a recurrence of their primary cancer or a secondary cancer. This shows a significant difference between the two groups.</p>\r\n\r\n<p dir=\"ltr\">Importantly, mortality was also reviewed. In the control group 30% of patients had died by the 10-year followup, however only 10% of patients died in the experimental group.&nbsp;&nbsp;</p>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
@@ -96,7 +90,7 @@ default:
       value: false
   field_c_n_summary:
     -
-      value: 'My university chemotherapy breakthrough will increase a patient''s life expectancy by 20%.'
+      value: 'My University chemotherapy breakthrough will increase a patient''s life expectancy by 20%.'
   field_c_n_thumbnail:
     -
       entity: 61e15cff-4f8f-4480-9c0a-8f11669c4374

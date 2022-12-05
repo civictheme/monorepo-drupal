@@ -1,4 +1,4 @@
-@civictheme @civictheme_quick_links
+@p1 @civictheme @civictheme_quick_links
 Feature: Quick links fields
 
   @api
@@ -32,9 +32,8 @@ Feature: Quick links fields
     And I wait for AJAX to finish
     And I press the "field_c_b_components_civictheme_quick_links_add_more" button
     And I wait for AJAX to finish
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]'].required" element
-    And the option "Light" from select "Theme" is selected
+    And should see an "input[name='field_c_b_components[0][subform][field_c_p_theme]']" element
+    And the "field_c_b_components[0][subform][field_c_p_theme]" field should contain "light"
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]']" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]'].required" element

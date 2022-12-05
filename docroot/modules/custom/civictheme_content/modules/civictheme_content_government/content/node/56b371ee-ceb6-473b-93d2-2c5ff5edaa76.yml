@@ -4,8 +4,6 @@ _meta:
   uuid: 56b371ee-ceb6-473b-93d2-2c5ff5edaa76
   bundle: civictheme_page
   default_langcode: en
-  depends:
-    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
 default:
   revision_uid:
     -
@@ -36,21 +34,18 @@ default:
       alias: /subscribe
       langcode: en
       pathauto: 1
-  field_c_n_banner_background:
-    -
-      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
   field_c_n_banner_theme:
     -
-      value: light
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
-      value: overlay
+      value: normal
   field_c_n_components:
     -
       entity:

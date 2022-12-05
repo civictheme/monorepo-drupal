@@ -5,6 +5,8 @@
  * Card theme alterations.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Generic setter of global variables for nodes as card renders.
  */
@@ -126,7 +128,11 @@ function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
   $node = $variables['node'];
   $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
   if ($summary) {
-    $variables['summary'] = text_summary($summary, NULL, 100);
+    $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
+    if (!empty($variables['view_mode']) && str_ends_with($variables['view_mode'], '_card')) {
+      $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $variables['view_mode']), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+    }
+    $variables['summary'] = text_summary($summary, NULL, $length);
   }
 }
 
@@ -136,8 +142,12 @@ function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
 function _civictheme_preprocess_node__civictheme_event__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  $summary = civictheme_get_field_value($node, 'field_c_n_body', TRUE);
+  $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
   if ($summary) {
-    $variables['summary'] = text_summary($summary, NULL, 100);
+    $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
+    if (!empty($variables['view_mode']) && str_ends_with($variables['view_mode'], '_card')) {
+      $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $variables['view_mode']), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+    }
+    $variables['summary'] = text_summary($summary, NULL, $length);
   }
 }

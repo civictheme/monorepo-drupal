@@ -1,4 +1,4 @@
-@civictheme @civictheme_webform
+@p1 @civictheme @civictheme_webform
 Feature: Webform fields
 
   @api
@@ -18,7 +18,6 @@ Feature: Webform fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I click on "div.field--name-field-c-n-components .add-more-button-civictheme-webform.dropbutton-action" element
@@ -26,7 +25,6 @@ Feature: Webform fields
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-webform-0-target-id" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-webform-0-target-id select.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme select.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing" element
     And I should not see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing select.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element

@@ -325,7 +325,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
       'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
-      'show_filters' => !empty(explode(', ', civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', FALSE, ''))),
+      'show_filters' => !empty(count(array_filter(explode(', ', civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', FALSE, ''))))),
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];

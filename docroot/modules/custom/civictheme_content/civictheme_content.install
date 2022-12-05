@@ -75,7 +75,7 @@ function _civictheme_content_install_submodule($module) {
   $active_theme = \Drupal::theme()->getActiveTheme();
   // Only proceed if current theme is CivicTheme, or it's sub-theme so that
   // content could be applied only to expected configurations.
-  if (!array_key_exists('civictheme', $active_theme->getBaseThemeExtensions())) {
+  if ($active_theme->getName() != 'civictheme' && !array_key_exists('civictheme', $active_theme->getBaseThemeExtensions())) {
     return;
   }
 

@@ -5,8 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
-    4c1ad737-0d04-4adc-a2b4-10a6b914cb1a: media
     11575ae4-d804-4b68-a9e2-528dde78ca5e: node
     70debdf1-8d42-4ac2-94d3-3b1781181833: media
     0900bcaa-2670-4ffa-b22e-f9fa667c45d0: node
@@ -43,9 +41,6 @@ default:
       alias: /research
       langcode: en
       pathauto: 1
-  field_c_n_banner_background:
-    -
-      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
   field_c_n_banner_components:
     -
       entity:
@@ -80,42 +75,14 @@ default:
       value: false
   field_c_n_banner_theme:
     -
-      value: dark
+      value: inherit
   field_c_n_banner_type:
     -
-      value: default
+      value: inherit
   field_c_n_blend_mode:
     -
       value: normal
   field_c_n_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 4b6bf047-5ec0-47cd-b6c7-e652f38f58c3
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666101964
-          behavior_settings:
-            -
-              value: {  }
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: '<h2><span>Our research areas</span></h2><p><span>Find an area of research that interests you below.&nbsp;</span></p>'
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
     -
       entity:
         _meta:
@@ -140,6 +107,10 @@ default:
           field_c_p_column_count:
             -
               value: 3
+          field_c_p_content:
+            -
+              value: "<p>Find an area of research that interests you below.&nbsp;</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_fill_width:
             -
               value: false
@@ -162,9 +133,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -194,9 +162,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -226,9 +191,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -258,9 +220,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -290,9 +249,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -322,9 +278,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -354,9 +307,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -386,9 +336,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_c_p_image:
-                    -
-                      entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -402,7 +349,10 @@ default:
                       value: Law
           field_c_p_theme:
             -
-              value: dark
+              value: light
+          field_c_p_title:
+            -
+              value: 'Our research areas'
     -
       entity:
         _meta:
@@ -421,6 +371,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -506,7 +459,7 @@ default:
                       value: large
                   field_c_p_summary:
                     -
-                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat and models.'
+                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat.'
                   field_c_p_theme:
                     -
                       value: light
@@ -554,46 +507,20 @@ default:
                   field_c_p_title:
                     -
                       value: 'New chemotherapy breakthrough'
+          field_c_p_list_link_below:
+            -
+              target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+              title: 'More research news'
+              options: {  }
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'Latest research news'
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 5aad9c07-96b8-43e7-a253-3968a71e13f0
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666102707
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<p><a href=\"/about-this-template-website\">More research news</a></p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
           field_c_p_vertical_spacing:
             -
-              value: bottom
+              value: both
   field_c_n_hide_sidebar:
     -
       value: false

@@ -57,6 +57,7 @@ export const Banner = (knobTab) => {
       'content_top2',
       'content_top3',
       'content_middle',
+      'content',
       'content_bottom',
     ]),
   });

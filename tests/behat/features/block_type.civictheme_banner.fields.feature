@@ -1,4 +1,4 @@
-@civictheme @block_type @block_civictheme_banner
+@p0 @civictheme @block_type @block_civictheme_banner
 Feature: Banner block fields
 
   @api

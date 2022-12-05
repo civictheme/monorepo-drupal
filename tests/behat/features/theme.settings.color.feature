@@ -1,10 +1,10 @@
-@civictheme @civictheme_theme_settings @civictheme_theme_color_settings
+@p0 @civictheme @civictheme_theme_settings @civictheme_theme_color_settings
 Feature: Color settings are available in the theme settings
 
   @api
   Scenario: Color fields are present.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
 
     And I should see an "input[name='colors[use_brand_colors]']" element
 
@@ -147,7 +147,7 @@ Feature: Color settings are available in the theme settings
   @api @javascript
   Scenario: Palette colors have values produced from selected brand colors.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
     And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
     And I press "Save configuration"
@@ -160,7 +160,7 @@ Feature: Color settings are available in the theme settings
   @api @javascript
   Scenario: Palette colors have values produced from selected brand colors can have overrides.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme_demo"
+    And I visit "/admin/appearance/settings/civictheme"
     And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
     And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
     And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
@@ -172,19 +172,19 @@ Feature: Color settings are available in the theme settings
     Then save screenshot
     Then I should see an "#edit-colors-palette-light-background-background-light[value='#000000']" element
 
-  @api @drush
+  @api @drush @basetheme
   Scenario: The 'css-variables' library CSS file is included on the page when Color Selector is used.
-    Given I run drush "config-set civictheme_demo.settings colors.use_color_selector 0"
+    Given I run drush "config-set civictheme.settings colors.use_color_selector 0"
     And the cache has been cleared
     When I go to the homepage
-    Then the response should not contain "/sites/default/files/css-variables.civictheme_demo.css"
+    Then the response should not contain "/sites/default/files/css-variables.civictheme.css"
 
-    Given I run drush "config-set civictheme_demo.settings colors.use_color_selector 1"
+    Given I run drush "config-set civictheme.settings colors.use_color_selector 1"
     And the cache has been cleared
     When I go to the homepage
-    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
+    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme.css"]' element with the "rel" attribute set to 'stylesheet'
 
-  @api
+  @api @subtheme
   Scenario: Assert that generating a CSS variable file has different suffix per theme.
     Given I am logged in as a user with the "Site Administrator" role
 
@@ -227,15 +227,15 @@ Feature: Color settings are available in the theme settings
     Then the response should not contain "/sites/default/files/css-variables.civictheme.css"
     And I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
 
-  @drush
+  @drush @basetheme
   Scenario: Brand colors can be set through a Drush command.
     Given I run drush 'civictheme:set-brand-colors' '--include=themes/contrib/civictheme/src/Drush "#ff0000" "#00ff00" "#0000ff" "#ffff00" "#00ffff" "#ff00ff"'
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
     When I go to the homepage
-    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme_demo.css"]' element with the "rel" attribute set to 'stylesheet'
+    Then I should see the 'link[href^="/sites/default/files/css-variables.civictheme.css"]' element with the "rel" attribute set to 'stylesheet'
     And save screenshot
 
-    When I go to "/sites/default/files/css-variables.civictheme_demo.css"
+    When I go to "/sites/default/files/css-variables.civictheme.css"
     And save screenshot
 
     And the response should contain "--ct-color-light-heading:#280000;"
@@ -265,6 +265,6 @@ Feature: Color settings are available in the theme settings
     And the response should contain "--ct-color-dark-interaction-hover-background:#ffffa3;"
     And the response should contain "--ct-color-dark-highlight:#ff00ff;"
 
-    When I run drush 'config-set' 'civictheme_demo.settings colors.use_color_selector 0'
+    When I run drush 'config-set' 'civictheme.settings colors.use_color_selector 0'
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
     Then the response should not contain "/sites/default/files/css-variables.civictheme.css"

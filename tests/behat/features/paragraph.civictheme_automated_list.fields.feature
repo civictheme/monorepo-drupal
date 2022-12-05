@@ -1,4 +1,4 @@
-@civictheme @civictheme_automated_list
+@p0 @civictheme @civictheme_automated_list
 Feature: Automated list fields
 
   @api
@@ -35,7 +35,6 @@ Feature: Automated list fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
 
-    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_automated_list_add_more" button
@@ -99,8 +98,6 @@ Feature: Automated list fields
 
     And I see the text "Link above"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]']" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'].required" element
-    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'][disabled]" element
 
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]'].required" element
@@ -121,9 +118,8 @@ Feature: Automated list fields
     And I wait 1 second
 
     And I see the text "Theme"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'][disabled]" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_theme]']" element
+    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_theme]'][disabled]" element
 
     And I see the text "Vertical spacing"
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
@@ -151,6 +147,4 @@ Feature: Automated list fields
     And should not see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_view_as]'][disabled]" element
 
     And I see the text "Item theme"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]']" element
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_theme]'][disabled]" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_item_theme]']" element

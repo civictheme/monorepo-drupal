@@ -822,7 +822,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block) 
     'type' => 'civictheme_content',
   ]);
   $paragraph->field_c_p_content = [
-    'value' => "<p>We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n",
+    'value' => "<p class=\"ct-text-small\">We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n",
     'format' => 'civictheme_rich_text',
   ];
   $paragraph->field_c_p_theme = 'dark';
@@ -847,7 +847,7 @@ function _civictheme_provision__blocks__copyright(array $block) {
     'type' => 'civictheme_content',
   ]);
   $paragraph->field_c_p_content = [
-    'value' => "<p class=\"text-align-right\">©2022 Commonwealth of Australia</p>\r\n",
+    'value' => "<p class=\"text-align-right ct-text-small\">©2022 Commonwealth of Australia</p>\r\n",
     'format' => 'civictheme_rich_text',
   ];
   $paragraph->field_c_p_theme = 'dark';

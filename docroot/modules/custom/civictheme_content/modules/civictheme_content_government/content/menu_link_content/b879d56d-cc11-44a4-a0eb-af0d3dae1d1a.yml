@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: b879d56d-cc11-44a4-a0eb-af0d3dae1d1a
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    e66e8371-b802-4722-a078-5a19fc6b0f8c: menu_link_content
+    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Privacy
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -47
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:e66e8371-b802-4722-a078-5a19fc6b0f8c'
+  revision_translation_affected:
+    -
+      value: true

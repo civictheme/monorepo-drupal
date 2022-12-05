@@ -7,6 +7,9 @@ _meta:
   depends:
     6a16b860-5aac-40a4-a5e7-13d8bc051448: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: 'Brain cancer research.png'
+      value: 'Man with a microscope'
   created:
     -
       value: 1666868592
@@ -27,10 +30,13 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Department of Citizens, Medical Research'
   field_c_m_image:
     -
       entity: 6a16b860-5aac-40a4-a5e7-13d8bc051448
-      alt: 'Brain cancer research'
+      alt: 'Man with a microscope'
       title: ''
       width: 1000
       height: 669

@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_page
+@p1 @civictheme @content_type @civictheme_page
 Feature: CivicTheme Page content type render
 
   Ensure that Page content can be viewed correctly.
@@ -220,8 +220,8 @@ Feature: CivicTheme Page content type render
     And I should see 1 "div.ct-subject-card__title" elements
     And I should see 1 "div.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "div.ct-item-grid__item > .ct-theme-light" elements
-    And I should see 1 "div.ct-item-grid__item > .ct-theme-dark" elements
+    And I should see 3 "li.ct-item-grid__item > .ct-theme-light" elements
+    And I should see 1 "li.ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
 
   @api @javascript

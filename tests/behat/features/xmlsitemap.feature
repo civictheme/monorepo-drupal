@@ -1,4 +1,4 @@
-@civictheme @xmlsitemap
+@p0 @civictheme @xmlsitemap
 Feature: XML Sitemap
 
   @api

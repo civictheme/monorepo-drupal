@@ -32,7 +32,11 @@
     {% block title %}
       {% if title is not empty %}
         <div class="ct-service-card__title">
-          {{ title }}
+          {% include '@atoms/heading/heading.twig' with {
+            content: title,
+            level: 4,
+            theme: theme,
+          } only %}
         </div>
       {% endif %}
     {% endblock %}

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create demo icons.
+ * Create generated icons.
  */
 
 use Drupal\Core\Link;
@@ -36,7 +36,7 @@ function cs_generated_content_generated_content_create_media_civictheme_icon() {
   $entities = [];
   for ($i = 0; $i < $total_media_count; $i++) {
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_SVG);
-    $name = sprintf('Demo static Icon media %s %s', $i + 1, $helper::staticSentence(2));
+    $name = sprintf('Generated static Icon media %s %s', $i + 1, $helper::staticSentence(2));
 
     if (!$file) {
       continue;

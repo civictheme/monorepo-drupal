@@ -175,11 +175,23 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#default_value' => $config->get('remote')['auth_password'] ?? NULL,
     ];
 
-    $form['remote']['endpoint'] = [
+    $form['remote']['content_endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Migration source content JSON URL endpoints'),
+      '#title' => $this->t('Migration source page content JSON URL endpoints'),
       '#description' => $this->t('One URL each line'),
-      '#default_value' => $config->get('remote')['endpoint'] ?? NULL,
+      '#default_value' => $config->get('remote')['content_endpoint'] ?? NULL,
+      '#states' => [
+        'required' => [
+          ':input[name="migration_type"]' => ['value' => 'remote'],
+        ],
+      ],
+    ];
+
+    $form['remote']['media_endpoint'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Migration source media JSON URL endpoints'),
+      '#description' => $this->t('One URL each line'),
+      '#default_value' => $config->get('remote')['media_endpoint'] ?? NULL,
       '#states' => [
         'required' => [
           ':input[name="migration_type"]' => ['value' => 'remote'],
@@ -194,17 +206,31 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#button_type' => 'primary',
     ];
 
-    $form['configuration_files'] = [
+    $form['content_configuration_files'] = [
       '#type' => 'managed_file',
       '#title' => $this->t('Upload extracted content JSON Files'),
-      '#default_value' => $config->get('configuration_files'),
+      '#default_value' => $config->get('content_configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
-      '#progress_message' => $this->t('Uploading files...'),
-      '#upload_location' => 'private://civictheme_migrate/',
-      '#upload_validators' => [
+      '#progress_message'   => $this->t('Uploading files...'),
+      '#upload_location' => 'private://civictheme_migrate/page',
+      '#upload_validators'  => [
         'file_validate_extensions' => ['json txt'],
         'civictheme_migrate_validate_json' => ['civictheme_page'],
+      ],
+    ];
+
+    $form['media_configuration_files'] = [
+      '#type' => 'managed_file',
+      '#title' => $this->t('Upload extracted media JSON Files'),
+      '#default_value' => $config->get('media_configuration_files'),
+      '#multiple' => TRUE,
+      '#progress_indicator' => 'bar',
+      '#progress_message'   => $this->t('Uploading files...'),
+      '#upload_location' => 'private://civictheme_migrate/media_image',
+      '#upload_validators'  => [
+        'file_validate_extensions' => ['json txt'],
+        'civictheme_migrate_validate_json' => ['civictheme_media'],
       ],
     ];
 
@@ -228,9 +254,14 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $files = $form_state->getValue('configuration_files');
-      if (empty($files)) {
-        $form_state->setError($form['configuration_files'], $this->t('Configuration files are required to generate a migration'));
+      $content_files = $form_state->getValue('content_configuration_files');
+      if (empty($content_files)) {
+        $form_state->setError($form['content_configuration_files'], $this->t('Page content migration files are required to generate a migration'));
+      }
+
+      $media_files = $form_state->getValue('content_configuration_files');
+      if (empty($media_files)) {
+        $form_state->setError($form['media_configuration_files'], $this->t('Media migration files are required to generate a migration'));
       }
     }
   }
@@ -246,8 +277,13 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     $this->saveConfig($form, $form_state);
 
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $file_ids = $form_state->getValue('configuration_files');
-      $this->migrationManager->generateMigration($file_ids);
+      $migration_types = [
+        'content' => $form_state->getValue('content_configuration_files'),
+        'media' => $form_state->getValue('media_configuration_files'),
+      ];
+
+      $this->migrationManager->generateMigrations($migration_types);
+
       $form_state->setRedirect('entity.migration.list', [
         'migration_group' => 'civictheme_migrate',
       ]);
@@ -269,7 +305,8 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     // Saving migration configuration files whether uploaded locally or
     // saved remotely.
     if ($this->isSaveConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
-      $config->set('configuration_files', $form_state->getValue('configuration_files'));
+      $config->set('content_configuration_files', $form_state->getValue('content_configuration_files'));
+      $config->set('media_configuration_files', $form_state->getValue('media_configuration_files'));
     }
     $config->set('migration_type', $form_state->getValue('migration_type'));
     $config->set('remote', [
@@ -277,7 +314,8 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       'auth_username' => $form_state->getValue('auth_username'),
       'auth_password' => $form_state->getValue('auth_password'),
       'auth_token' => $form_state->getValue('auth_token'),
-      'endpoint' => $form_state->getValue('endpoint'),
+      'content_endpoint' => $form_state->getValue('content_endpoint'),
+      'media_endpoint' => $form_state->getValue('media_endpoint'),
     ]);
     $config->save();
     $this->messenger()->addStatus($this->t('The configuration options have been saved.'));
@@ -292,18 +330,31 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
    *   Formstate object.
    */
   protected function retrieveRemoteFilesSubmit(array &$form, FormStateInterface $form_state) {
-    $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue('endpoint')));
-    $config = $this->config('civictheme_migrate.settings');
-    try {
-      $files = $this->migrationManager->retrieveRemoteFiles($urls, $form['configuration_files']['#upload_validators']);
-      $existing_files = $config->get('configuration_files') ?? [];
-      $config->set('configuration_files', array_merge($existing_files, $files));
-      $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
-      $config->save();
+    $file_types = [
+      [
+        'endpoint' => 'media_endpoint',
+        'config_key' => 'media_configuration_files',
+      ],
+      [
+        'endpoint' => 'content_endpoint',
+        'config_key' => 'content_configuration_files',
+      ],
+    ];
+    foreach ($file_types as $file_type) {
+      $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue($file_type['endpoint'])));
+      $config = $this->config('civictheme_migrate.settings');
+      try {
+        $files = $this->migrationManager->retrieveRemoteFiles($urls, $form[$file_type['config_key']]['#upload_validators']);
+        $existing_files = $config->get($file_type['config_key']) ?? [];
+        $config->set($file_type['config_key'], array_merge($existing_files, $files));
+        $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
+        $config->save();
+      }
+      catch (\Exception $exception) {
+        $this->messenger()->addError($exception->getMessage());
+      }
     }
-    catch (\Exception $exception) {
-      $this->messenger()->addError($exception->getMessage());
-    }
+
   }
 
   /**
