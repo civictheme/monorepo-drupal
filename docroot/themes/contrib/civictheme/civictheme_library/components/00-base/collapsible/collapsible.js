@@ -214,7 +214,7 @@ CivicThemeCollapsible.prototype.keydownEvent = function (e) {
 
     // Space.
     if (e.which === 32) {
-      this.dispatchEvent(new CustomEvent('ct.collapsible.toggle', { bubbles: true }));
+      e.target.click();
     }
   }
 };

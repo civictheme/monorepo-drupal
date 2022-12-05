@@ -147,18 +147,20 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
       $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
 
       // Links.
-      $links = [];
-      $links[] = [
-        'type' => 'primary',
-        'size' => 'regular',
-        'text' => $node->label(),
-        'url' => $node->toUrl()->toString(),
-      ];
-      $variables['links']['slide_links'] = [
-        '#theme' => 'civictheme_slider_slide_links',
-        '#component_theme' => $variables['theme'],
-        '#links' => $links,
-      ];
+      if (civictheme_field_has_value($paragraph, 'field_c_p_link_text')) {
+        $links = [];
+        $links[] = [
+          'type' => 'primary',
+          'size' => 'regular',
+          'text' => civictheme_get_field_value($paragraph, 'field_c_p_link_text', TRUE),
+          'url' => $node->toUrl()->toString(),
+        ];
+        $variables['links']['slide_links'] = [
+          '#theme' => 'civictheme_slider_slide_links',
+          '#component_theme' => $variables['theme'],
+          '#links' => $links,
+        ];
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_link_text
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
     - paragraphs.paragraphs_type.civictheme_slider_slide_ref
@@ -19,6 +20,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_c_p_link_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_c_p_reference:
     type: entity_reference_entity_view

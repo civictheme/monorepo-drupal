@@ -20,7 +20,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Department of Citizens to invest $23 million into clinical trials for brain cancer'
+      value: 'Clinical trials for brain cancer'
   created:
     -
       value: 1666868692
@@ -98,9 +98,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -122,7 +119,7 @@ default:
       value: false
   field_c_n_summary:
     -
-      value: 'The Department of Citizens is investing $23 million into clinical trials for brain cancer.'
+      value: 'The Department of Citizens is investing $23 million into clinical trials for brain cancer. We’re inviting Australia’s best researchers to apply for a grant.'
   field_c_n_thumbnail:
     -
       entity: 37c33114-06dc-43a2-a6d0-6b6befc11fa2

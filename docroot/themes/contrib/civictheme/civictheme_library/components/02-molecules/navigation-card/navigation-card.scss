@@ -82,6 +82,11 @@
 
     #{$root}__title {
       @include ct-typography('heading-5');
+
+      .ct-heading {
+        margin-block-start: 0;
+        margin-block-end: 0;
+      }
     }
 
     #{$root}__image-wrapper {
