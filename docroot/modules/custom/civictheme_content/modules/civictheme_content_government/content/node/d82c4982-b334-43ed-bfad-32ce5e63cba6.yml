@@ -17,7 +17,6 @@ _meta:
     e7acc411-519a-4735-80a6-c0bc7dfb61f3: media
     9e389925-f1f6-4d1c-8aee-03e4a91f6eb4: media
     0d96ff66-61ff-44fc-a9e4-a8b174f6da95: node
-    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
     fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b: media
     abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
 default:
@@ -315,9 +314,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: true
@@ -483,6 +479,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: true
@@ -512,9 +511,6 @@ default:
               target_uuid: 0d96ff66-61ff-44fc-a9e4-a8b174f6da95
               title: 'View all'
               options: {  }
-          field_c_p_list_topics:
-            -
-              entity: d95f5188-650c-4dea-abcb-df8ea008919b
           field_c_p_list_type:
             -
               value: civictheme_automated_list__block1
