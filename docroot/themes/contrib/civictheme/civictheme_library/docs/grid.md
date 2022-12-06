@@ -113,7 +113,7 @@ max-width of the child column (with `col-xs-12` class) is 50% of the parent.
 
 CivicTheme component library come with a variety of
 [Grid utility mixins](../components/00-base/mixins/_grid.scss) including
-`offset`, `row-reverse`, `flex-column` among others.
+`offset`, `row--reverse`, `row--flex-column` among others.
 
 ## Advanced
 

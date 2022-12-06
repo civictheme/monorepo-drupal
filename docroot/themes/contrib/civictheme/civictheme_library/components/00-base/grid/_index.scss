@@ -11,15 +11,15 @@
     flex-wrap: nowrap;
   }
 
-  &.reverse {
+  &--reverse {
     @include ct-row-reverse();
   }
 
-  &.natural-height {
+  &--natural-height {
     @include ct-row-natural-height();
   }
 
-  &.flex-column {
+  &--flex-column {
     @include ct-row-flex-column();
   }
 }
@@ -35,12 +35,20 @@
     @include _ct-grid-col();
   }
 
-  &.reverse {
+  &--reverse {
     @include ct-col-reverse();
   }
 
   &--no-grow {
     flex-grow: initial;
+  }
+
+  &--auto {
+    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
   }
 }
 
