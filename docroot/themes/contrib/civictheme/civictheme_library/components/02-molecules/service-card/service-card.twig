@@ -31,13 +31,12 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="ct-service-card__title">
-          {% include '@atoms/heading/heading.twig' with {
-            content: title,
-            level: 4,
-            theme: theme,
-          } only %}
-        </div>
+        {% include '@atoms/heading/heading.twig' with {
+          content: title,
+          level: 4,
+          theme: theme,
+          modifier_class: 'ct-service-card__title',
+        } only %}
       {% endif %}
     {% endblock %}
 

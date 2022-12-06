@@ -43,11 +43,8 @@
     @include ct-typography('heading-5');
 
     z-index: 1;
-
-    .ct-heading {
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
+    margin-block-start: 0;
+    margin-block-end: 0;
   }
 
   &__title-link {

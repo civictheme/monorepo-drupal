@@ -69,12 +69,8 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="ct-publication-card__title">
-          {% include '@atoms/heading/heading.twig' with {
-            content: title,
-            level: 4,
-            theme: theme,
-          } only %}
+        {% set heading_content %}
+        {{ title }}
           {% if link is not empty %}
             <span class="ct-publication-card__icon-wrapper">
                 {% include '@base/icon/icon.twig' with {
@@ -85,7 +81,13 @@
                 } only %}
               </span>
           {% endif %}
-        </div>
+        {% endset %}
+        {% include '@atoms/heading/heading.twig' with {
+          content: heading_content,
+          level: 4,
+          theme: theme,
+          modifier_class: 'ct-publication-card__title',
+        } only %}
       {% endif %}
     {% endblock %}
 
