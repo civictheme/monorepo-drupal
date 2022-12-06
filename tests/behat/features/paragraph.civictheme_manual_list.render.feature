@@ -143,7 +143,7 @@ Feature: Manual list render
     And I should see 1 "div.ct-list" elements
     And I should see 3 "div.ct-subject-card" elements
     And I should see 2 "div.ct-subject-card__image img" elements
-    And I should see 3 "div.ct-subject-card__title" elements
+    And I should see 3 "h4.ct-subject-card__title" elements
     And I should not see an "div.ct-navigation-card" element
     And I should see the text "Subject card title"
     And I should see the text "Subject card title 1"
@@ -177,7 +177,7 @@ Feature: Manual list render
     And I should see 3 "div.ct-service-card" elements
     And I should see 2 "div.ct-service-card.ct-theme-dark" elements
     And I should see 1 "div.ct-service-card.ct-theme-light" elements
-    And I should see 3 "div.ct-service-card__title" elements
+    And I should see 3 "h4.ct-service-card__title" elements
     And I should see 3 "ul.ct-service-card__links" elements
     And I should not see an "div.ct-subject-card" element
     And I should not see an "div.ct-service-card img" element
@@ -210,8 +210,8 @@ Feature: Manual list render
     And I should not see an "div.ct-list__link a" element
     And I should see 1 "div.ct-list" elements
     And I should see 1 "div.ct-event-card__content" elements
-    And I should see 1 "div.ct-subject-card__title" elements
-    And I should see 1 "div.ct-navigation-card__title" elements
+    And I should see 1 "h4.ct-subject-card__title" elements
+    And I should see 1 "h4.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
     And I should see 3 "li.ct-item-grid__item > .ct-theme-light" elements
     And I should see 1 "li.ct-item-grid__item > .ct-theme-dark" elements

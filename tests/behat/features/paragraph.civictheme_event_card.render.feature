@@ -72,7 +72,7 @@ Feature: Event Card render
     And I should see 2 "div.ct-event-card.ct-theme-light" elements
     And I should see 2 "div.ct-event-card.ct-theme-dark" elements
     And I should see 4 "div.ct-event-card__content" elements
-    And I should see 4 "div.ct-event-card__title" elements
+    And I should see 4 "h4.ct-event-card__title" elements
     And I should see 4 "div.ct-event-card__summary" elements
     And I should see 3 "div.ct-event-card__tags .ct-tag" elements
     And I should see the text "Event card title 1"
