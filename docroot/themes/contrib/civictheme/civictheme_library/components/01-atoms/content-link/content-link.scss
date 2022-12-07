@@ -83,22 +83,5 @@
   $root: &;
 
   @include ct-content-link-base();
-
-  &#{$root}--external {
-    position: relative;
-    padding-right: ct-icon-size-dimension('regular', 'm', 'width');
-
-    &::after {
-      content: $ct-link-icon-external;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      width: ct-particle(3);
-      height: ct-particle(3);
-      fill: currentcolor;
-      vertical-align: -webkit-baseline-middle;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-  }
+  @include ct-link-external($root);
 }

@@ -407,6 +407,12 @@
     &#{$root}--tertiary {
       padding: 0;
     }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      &#{$root}--external {
+        @include ct-icon-external(ct-component-var($root, $theme, primary, color), 'large');
+      }
+    }
   }
 
   &--regular {
@@ -415,6 +421,12 @@
     &#{$root}--tertiary {
       padding: 0;
     }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      &#{$root}--external {
+        @include ct-icon-external(ct-component-var($root, $theme, primary, color), 'regular');
+      }
+    }
   }
 
   &--small {
@@ -422,6 +434,12 @@
 
     &#{$root}--tertiary {
       padding: 0;
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      &#{$root}--external {
+        @include ct-icon-external(ct-component-var($root, $theme, primary, color));
+      }
     }
   }
 }

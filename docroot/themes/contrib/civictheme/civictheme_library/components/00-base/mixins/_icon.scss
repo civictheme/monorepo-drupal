@@ -129,3 +129,15 @@
     }
   }
 }
+
+//
+// Fill icon for External.
+//
+@mixin ct-icon-external($color, $size: 'small') {
+  &::after {
+    content: ct-color-svg-fill($ct-content-link-icon-external, $color);
+    vertical-align: -webkit-baseline-middle;
+    position: absolute;
+    @include ct-icon-size($size);
+  }
+}

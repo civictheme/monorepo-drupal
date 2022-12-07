@@ -18,23 +18,6 @@
     @include ct-outline-border();
   }
 
-  &#{$root}--external {
-    position: relative;
-    padding-right: ct-icon-size-dimension('regular', 'm', 'width');
-
-    &::after {
-      overflow-x: hidden;
-      overflow-y: hidden;
-      width: ct-particle(3);
-      height: ct-particle(3);
-      fill: currentcolor;
-      vertical-align: -webkit-baseline-middle;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-  }
-
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
 
@@ -50,6 +33,10 @@
     &#{$root}--active,
     &:active {
       @include ct-component-property($root, $theme, active, color);
+    }
+
+    &#{$root}--external {
+      @include ct-icon-external(ct-component-var($root, $theme, color));
     }
   }
 }

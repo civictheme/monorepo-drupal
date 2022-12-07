@@ -138,3 +138,50 @@
     right: 0;
   }
 }
+
+//
+// Cover parent to allow the whole element to become a link.
+//
+@mixin ct-link-external($root, $size: 'small') {
+  &#{$root}--external {
+    position: relative;
+    padding-right: ct-icon-size-dimension($size, 'm', 'width') + ct-spacing();
+
+    @include ct-component-theme($root) using($root, $theme) {
+      @include ct-icon-external(ct-component-var($root, $theme, color));
+    }
+  }
+}
+
+//
+// Set link background colors.
+//
+@mixin ct-link-external-color($normal, $hover: $normal, $visited: $normal, $active: $normal, $focus: false, $size: 'small') {
+  @include ct-icon-external(normal);
+
+  @if $hover !=false {
+    &:hover {
+      @include ct-icon-external($hover, $size);
+    }
+  }
+
+  @if $visited !=false {
+    &:visited {
+      @include ct-icon-external($visited, $size);
+    }
+  }
+
+  @if $active !=false {
+
+    &--active,
+    &:active {
+      @include ct-icon-external($active, $size);
+    }
+  }
+
+  @if $focus !=false {
+    &:focus {
+      @include ct-icon-external($focus, $size);
+    }
+  }
+}
