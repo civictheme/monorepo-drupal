@@ -30,9 +30,6 @@ default:
   sticky:
     -
       value: false
-  revision_translation_affected:
-    -
-      value: true
   path:
     -
       alias: /news-and-events/new-chemotherapy-breakthrough
@@ -72,9 +69,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -96,7 +90,7 @@ default:
       value: false
   field_c_n_summary:
     -
-      value: 'My university chemotherapy breakthrough will increase a patient''s life expectancy by 20%.'
+      value: 'My University chemotherapy breakthrough will increase a patient''s life expectancy by 20%.'
   field_c_n_thumbnail:
     -
       entity: 61e15cff-4f8f-4480-9c0a-8f11669c4374

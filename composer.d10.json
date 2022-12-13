@@ -13,6 +13,7 @@
         "drupal/jquery_ui": "@dev",
         "drupal/jquery_ui_autocomplete": "@dev",
         "drupal/jquery_ui_menu": "@dev",
+        "drupal/linkit": "^6.0@beta",
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
@@ -182,8 +183,8 @@
                 "version": "6.0.0-beta3",
                 "source": {
                     "type": "git",
-                    "url": "https://git.drupalcode.org/issue/linkit-3288339.git",
-                    "reference": "b5f739cbfe2cb02d5f008fc9bebd07419907b85d"
+                    "url": "https://git.drupalcode.org/project/linkit.git",
+                    "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
                 }
             }
         },

@@ -1,10 +1,11 @@
-@civictheme @civictheme_map
+@p0 @civictheme @civictheme_map
 Feature: Map render
 
   Background:
     Given "civictheme_page" content:
-      | title                | status |
-      | [TEST] Page map test | 1      |
+      | title                 | status |
+      | [TEST] Page map test  | 1      |
+      | [TEST] Page map test2 | 1      |
 
   @api @javascript
   Scenario: Map light without background
@@ -34,14 +35,14 @@ Feature: Map render
   @api @javascript
   Scenario: Map dark with background
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page map test" has "civictheme_map" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page map test2" has "civictheme_map" paragraph:
       | field_c_p_address    | Australia                                                                                         |
       | field_c_p_theme      | dark                                                                                              |
       | field_c_p_background | 1                                                                                                 |
       | field_c_p_embed_url  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed |
       | field_c_p_view_link  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia                                    |
 
-    When I visit "civictheme_page" "[TEST] Page map test"
+    When I visit "civictheme_page" "[TEST] Page map test2"
     And I wait 10 seconds
     And I should see an "div.ct-map" element
     And I should see an "div.ct-map.ct-theme-dark" element

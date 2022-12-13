@@ -334,6 +334,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -542,6 +545,9 @@ default:
           field_c_p_title:
             -
               value: 'Not-for-profit partners'
+          field_c_p_vertical_spacing:
+            -
+              value: both
   field_c_n_hide_sidebar:
     -
       value: false

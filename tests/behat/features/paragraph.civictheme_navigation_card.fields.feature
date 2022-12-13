@@ -1,4 +1,4 @@
-@civictheme @civictheme_navigation_card
+@p1 @civictheme @civictheme_navigation_card
 Feature: Navigation card fields
 
   @api
@@ -56,4 +56,4 @@ Feature: Navigation card fields
     And I should see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]']" element
     And I should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][title]']" element
+    And I should not see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][title]']" element

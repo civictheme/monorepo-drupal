@@ -1,4 +1,4 @@
-@civictheme @media @image_styles
+@p0 @civictheme @media @image_styles
 Feature: Image styles
 
   @api

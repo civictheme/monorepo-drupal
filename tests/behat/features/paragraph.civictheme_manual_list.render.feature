@@ -1,4 +1,4 @@
-@civictheme @civictheme_manual_list
+@p0 @civictheme @civictheme_manual_list
 Feature: Manual list render
 
   Background:
@@ -213,6 +213,6 @@ Feature: Manual list render
     And I should see 1 "div.ct-subject-card__title" elements
     And I should see 1 "div.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "div.ct-item-grid__item > .ct-theme-light" elements
-    And I should see 1 "div.ct-item-grid__item > .ct-theme-dark" elements
+    And I should see 3 "li.ct-item-grid__item > .ct-theme-light" elements
+    And I should see 1 "li.ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot

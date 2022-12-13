@@ -35,6 +35,9 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   $link_class = 'ct-content-link ct-theme-light';
   $link_external_class = 'ct-content-link--external';
 
+  $email_pattern = '~(^|[\s\.,;\n\(])([a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})~';
+  $html = preg_replace($email_pattern, '$1<a href="mailto:$2">$2</a>', $html);
+
   $dom = Html::load($html);
 
   if (!$dom) {
@@ -54,14 +57,11 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
 
     // Apply only if there are no classes prefixed with a prefix.
     $classes = $anchor->hasAttribute('class') ? ($anchor->getAttribute('class') ?: '') : '';
-    if (str_contains($classes, $class_prefix)) {
-      continue;
-    }
 
     $url = $anchor->getAttribute('href');
     $is_external = civictheme_url_is_external($url, $base_url, $override_domains);
 
-    if (!str_contains($classes, $link_class)) {
+    if ((!str_contains($classes, $class_prefix)) && (!str_contains($classes, $link_class))) {
       $classes .= ' ' . $link_class;
     }
 

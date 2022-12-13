@@ -48,6 +48,13 @@
     align-self: self-start;
   }
 
+  #{$root}__title {
+    .ct-heading {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  }
+
   #{$root}__title-link {
     @include ct-typography('heading-4');
     @include ct-link-decoration();

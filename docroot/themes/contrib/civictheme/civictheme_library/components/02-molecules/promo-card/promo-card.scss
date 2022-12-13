@@ -53,6 +53,11 @@
     @include ct-typography('heading-5');
 
     margin-bottom: ct-spacing(2);
+
+    .ct-heading {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
   }
 
   #{$root}__title-link {

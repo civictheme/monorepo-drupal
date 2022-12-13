@@ -1,4 +1,4 @@
-@civictheme @civictheme_attachment
+@p0 @civictheme @civictheme_attachment
 Feature: Attachment fields
 
   @api

@@ -4,6 +4,8 @@ _meta:
   uuid: c0dc5f2f-ce09-4c0f-8fae-db1689f622e1
   bundle: civictheme_page
   default_langcode: en
+  depends:
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
 default:
   revision_uid:
     -
@@ -122,6 +124,11 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -155,6 +162,11 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -188,6 +200,11 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -227,6 +244,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -255,6 +275,14 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -288,6 +316,14 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -321,6 +357,14 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
                   field_c_p_show_image_as_icon:
                     -
                       value: false
@@ -342,6 +386,9 @@ default:
           field_c_p_title:
             -
               value: 'Featured postgraduate courses'
+          field_c_p_vertical_spacing:
+            -
+              value: top
   field_c_n_hide_sidebar:
     -
       value: false

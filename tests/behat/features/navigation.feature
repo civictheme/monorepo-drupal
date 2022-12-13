@@ -1,4 +1,4 @@
-@civictheme @navigation
+@p0 @civictheme @navigation
 Feature: Navigation
 
   Background:
@@ -21,12 +21,12 @@ Feature: Navigation
       | title                    | enabled | uri                 |
       | [TEST] External new link | 1       | https://example.com |
 
-  @api
+  @api @basetheme
   Scenario: External menu links open in a new tab.
     Given I am logged in as a user with the "Administrator" role
-    When I go to "/admin/structure/block/add/menu_block:civictheme-footer/civictheme_demo?region=footer_top_1"
+    When I go to "/admin/structure/block/add/menu_block:civictheme-footer/civictheme?region=footer_top_1"
     And I press "Save"
-    When I go to "/admin/structure/block/add/menu_block:testnewmenu/civictheme_demo?region=footer_top_1"
+    When I go to "/admin/structure/block/add/menu_block:testnewmenu/civictheme?region=footer_top_1"
     And I press "Save"
     Given I visit civictheme_page "[TEST] Page Internal"
     And I should see the '.ct-secondary-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'

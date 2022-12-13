@@ -1,4 +1,4 @@
-@civictheme @civictheme_campaign
+@p1 @civictheme @civictheme_campaign
 Feature: Campaign render
 
   Background:

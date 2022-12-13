@@ -133,13 +133,15 @@ aliases:
         # Remove lines containing '###' and uncomment comments starting with '##'.
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
-        [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
+        [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -f .docker/Dockerfile.cli.sibling .docker/Dockerfile.cli || true
+        [ "$SKIP_LIBRARY_INSTALL" = "1" ] && cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli || true
 
 ################################################################################
 # JOBS
 ################################################################################
 
 job-build: &job-build
+  parallelism: 2
   steps:
     - attach_workspace:
         at: /workspace
@@ -185,6 +187,7 @@ job-build: &job-build
 # Exactly as above, but no persisting of the code at the end of the build.
 # @see https://github.com/yaml/yaml/issues/35
 job-build-no-persist: &job-build-no-persist
+  parallelism: 2
   steps:
     - attach_workspace:
         at: /workspace
@@ -236,6 +239,8 @@ job-mirror: &job-mirror
     - checkout
     - run:
         name: Re-deploy environment.
+        # We do not have a standalone branch for 'default' profile because we
+        # are using `develop` branch to build with 'default' profile.
         command: |
           set -x
           profiles=()
@@ -252,25 +257,13 @@ job-mirror: &job-mirror
           fi
 
 jobs:
-  build-drupal9-govcms:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: govcms
-    <<: *job-build
 
   # Drupal 9, minimal profile.
   build-drupal9-minimal:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
-    <<: *job-build-no-persist
-
-  # Drupal 9, minimal profile, 'default' content profile.
-  build-drupal9-minimal-default:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
-      CIVICTHEME_CONTENT_PROFILE: default
+      DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
   # Drupal 9, minimal profile, 'corporate' content profile.
@@ -279,6 +272,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -288,6 +283,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -297,7 +294,17 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 9, GovCMS profile, subtheme. Longest test run.
+  build-drupal9-govcms:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
+      DREVOPS_TEST_BEHAT_PROFILE: subtheme
     <<: *job-build-no-persist
 
   # Drupal 9, GovCMS profile, subtheme is a sibling.
@@ -314,9 +321,9 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
-      DREVOPS_TEST_BEHAT_TAGS: smoke
       SKIP_SUBTHEME_ACTIVATION: 1
-    <<: *job-build-no-persist
+      SKIP_LIBRARY_INSTALL: 1
+    <<: *job-build
 
   # Drupal 10, minimal profile.
   build-drupal10-minimal:
@@ -324,11 +331,21 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
-      DREVOPS_TEST_BEHAT_PROFILE: d10
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 10, minimal profile, no subtheme.
+  build-drupal10-minimal-no-subtheme:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      DREVOPS_DRUPAL_VERSION: 10
+      SKIP_SUBTHEME_ACTIVATION: 1
+      SKIP_LIBRARY_INSTALL: 1
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.
-  mirror-content:
+  mirror-into-content-branches:
     <<: *container_config
     <<: *job-mirror
 
@@ -454,43 +471,37 @@ workflows:
       - build-drupal9-govcms:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /develop|release\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal:
           filters:
             branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-drupal9-minimal-default:
-          filters:
-            branches:
-              ignore: /^content\/.*/
+              only: /develop|release\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-corporate:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^release\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-highereducation:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^release\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-government:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^release\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-sibling:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^release\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-no-subtheme:
@@ -502,20 +513,19 @@ workflows:
       - build-drupal10-minimal:
           filters:
             branches:
+              only: /develop|release\/.*/
+            tags:
+              only: /.*/
+      - build-drupal10-minimal-no-subtheme:
+          filters:
+            branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
       - deploy:
           requires:
-            - build-drupal9-govcms
-            - build-drupal9-minimal
-            - build-drupal9-minimal-default
-            - build-drupal9-minimal-corporate
-            - build-drupal9-minimal-highereducation
-            - build-drupal9-minimal-government
-            - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
-            - build-drupal10-minimal
+            - build-drupal10-minimal-no-subtheme
           filters:
             branches:
               # Allowed branches:
@@ -531,30 +541,26 @@ workflows:
           requires:
             - build-drupal9-govcms
             - build-drupal9-minimal
-            - build-drupal9-minimal-default
             - build-drupal9-minimal-corporate
             - build-drupal9-minimal-highereducation
             - build-drupal9-minimal-government
             - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
             - build-drupal10-minimal
+            - build-drupal10-minimal-no-subtheme
           filters:
             branches:
               ignore: /.*/
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
-      - mirror-content:
+      - mirror-into-content-branches:
           requires:
-            - build-drupal9-govcms
             - build-drupal9-minimal
-            - build-drupal9-minimal-default
-            - build-drupal9-minimal-corporate
-            - build-drupal9-minimal-highereducation
-            - build-drupal9-minimal-government
-            - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
+            - build-drupal9-govcms
             - build-drupal10-minimal
+            - build-drupal10-minimal-no-subtheme
           filters:
             branches:
               only: develop

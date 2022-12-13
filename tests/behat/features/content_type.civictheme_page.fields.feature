@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_page
+@p0 @civictheme @content_type @civictheme_page
 Feature: CivicTheme Page content type fields
 
   @api

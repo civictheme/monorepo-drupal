@@ -95,6 +95,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_summary:
+    -
+      value: 'The community is invited to address the Department of Citizens on any general matter.'
   field_c_n_thumbnail:
     -
       entity: c16012a7-6fb9-40a4-8ccf-b4f3691e1feb

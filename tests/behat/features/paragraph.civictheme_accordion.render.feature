@@ -1,4 +1,4 @@
-@civictheme @civictheme_accordion
+@p1 @civictheme @civictheme_accordion
 Feature: Accordion render
 
   Background:
