@@ -15,7 +15,7 @@
     "show_toc": true,
     "banner": {
       "type": "container",
-      "children" : [
+      "children": [
         {
           "theme": "light",
           "title": "[TEST] Banner title - Migrated Content 6",
