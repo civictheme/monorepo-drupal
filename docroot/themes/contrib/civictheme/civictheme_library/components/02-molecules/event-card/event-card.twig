@@ -105,9 +105,12 @@
 
       {% block location %}
         {% if location %}
-          <div class="ct-event-card__location">
-            {{ location }}
-          </div>
+          {% include '@atoms/paragraph/paragraph.twig' with {
+            theme: theme,
+            content: location,
+            allow_html: true,
+            modifier_class: 'ct-event-card__location',
+          } only %}
         {% endif %}
       {% endblock %}
 
