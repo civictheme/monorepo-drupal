@@ -33,6 +33,4 @@ function getIcons() {
 
 module.exports = {
   getIcons,
-  getIconPaths,
-  getIconNameFromPath,
 };
