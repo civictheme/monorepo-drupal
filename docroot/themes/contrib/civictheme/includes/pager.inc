@@ -130,10 +130,9 @@ function _civictheme_preprocess_pager__items_per_page(&$variables, $view, $pager
  */
 function _civictheme_preprocess_mini_pager__ellipsis(&$variables) {
   if ($variables['items']['current'] > 1) {
-    $variables['ellipses']['previous'] = TRUE;
+    $variables['ellipsis']['previous'] = TRUE;
   }
-
   if ($variables['items']['current'] < $variables['total_pages']) {
-    $variables['ellipses']['next'] = TRUE;
+    $variables['ellipsis']['next'] = TRUE;
   }
 }
