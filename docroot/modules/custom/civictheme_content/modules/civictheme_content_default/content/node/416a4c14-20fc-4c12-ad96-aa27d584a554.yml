@@ -31,6 +31,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: /civictheme-60-second-series
@@ -67,6 +70,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_link:
             -
               target_uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
@@ -96,6 +102,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -124,15 +133,15 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 2b8021df-e474-4b3a-8b91-62844aefe844
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"
@@ -160,15 +169,15 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 209291bc-81be-41c7-912c-70d695e9376c
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"
@@ -196,15 +205,15 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: faa70cfa-88f0-49e7-81ed-9523560bb0d5
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: "CivicTheme in 60 second series\r\n"

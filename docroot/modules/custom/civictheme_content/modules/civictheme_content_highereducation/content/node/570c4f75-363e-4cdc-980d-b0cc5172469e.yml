@@ -173,9 +173,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Art '
@@ -217,9 +214,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: ' Department of Architecture'
@@ -261,9 +255,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: ' School of Social Sciences'
@@ -305,9 +296,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: ' School of English and Creative Writing'
@@ -349,9 +337,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'School of Media and Journalism'
@@ -393,9 +378,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'School of Languages'
@@ -437,9 +419,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Banking, Finance and Accounting'
@@ -481,9 +460,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Marketing'
@@ -525,9 +501,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Economics'
@@ -569,9 +542,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Political Science'
@@ -613,9 +583,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Education'
@@ -657,9 +624,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Chemical Engineering'
@@ -701,9 +665,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Mechanical Engineering'
@@ -745,9 +706,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Structural Engineering'
@@ -789,9 +747,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Civil Engineering'
@@ -833,9 +788,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Software Systems'
@@ -877,9 +829,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Cyber Security'
@@ -921,9 +870,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Department of Emerging Technologies'
@@ -965,9 +911,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'School of Law'
@@ -1009,9 +952,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'School of Medicine'
@@ -1053,9 +993,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'School of Biomedical Sciences'

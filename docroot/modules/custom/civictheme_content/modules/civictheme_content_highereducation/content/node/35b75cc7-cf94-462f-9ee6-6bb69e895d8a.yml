@@ -145,9 +145,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Dive into the world of business and pick a major that suits your interests.'
@@ -186,9 +183,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Join the growing world of biomedical science and make your mark on disease.'
@@ -227,9 +221,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Want to stand out from the crowd?'
