@@ -7,31 +7,21 @@
 
   margin: 0;
   display: block;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
 
-  .ct-image {
+  @include ct-reset-margins();
+
+  #{$root}__image {
     border-radius: $ct-figure-border-radius;
     object-fit: contain;
   }
 
-  @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, caption, color);
+  #{$root}__caption {
+    @include ct-typography('label-small');
   }
 
-  &__caption {
-    @include ct-typography('label-small');
-
-    .ct-icon {
-      #{$root}.ct-theme-light & {
-        fill: $ct-figure-light-caption-icon-color;
-      }
-
-      #{$root}.ct-theme-dark & {
-        fill: $ct-figure-dark-caption-icon-color;
-      }
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__caption {
+      @include ct-component-property($root, $theme, caption, color);
     }
   }
 }

@@ -67,6 +67,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -108,6 +111,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -136,6 +142,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: aadedf42-c600-4397-9e6b-5b85e20f1d6a
@@ -168,6 +177,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: afe262f2-18fb-4dd9-b4e2-4f4482766cde
@@ -200,6 +212,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: ece7dd42-dc11-4d3d-becf-1b0bfad61fb2
@@ -232,6 +247,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: ba25bcb8-b010-4d47-8765-1f9f2b1309a0
@@ -264,6 +282,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 738f9580-7a92-4a92-9b0a-30d191f49737
@@ -296,6 +317,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 20b3c516-3834-4eff-b24f-d67d17464c9c
@@ -365,6 +389,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 7b02f9f8-0b74-475b-98cb-efb080b09929
@@ -397,6 +424,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 23bc48fc-9abc-4e61-be57-f73be8ec5328
@@ -429,6 +459,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d1a149ce-4422-4767-aef1-1a22ae4e2193
@@ -461,6 +494,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 2293c43c-5b29-45f6-9b58-51344002758a
@@ -493,6 +529,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 052ab323-9e65-4c7b-8c5c-e16277731a30
@@ -525,6 +564,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: c4254aad-8fe9-4e9d-abba-1aab19dcec78

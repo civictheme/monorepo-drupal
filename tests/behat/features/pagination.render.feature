@@ -37,9 +37,9 @@ Feature: Pagination
     Then I should see the text "Pager"
     And I should see a "nav.ct-pager" element
 
-  @api
+  @api @skipped
   Scenario: Views page with full pager and items per page should render and function correctly
-
+    Given I am an anonymous user
     When I visit "civictheme-no-sidebar/test-table"
     Then I should see the text "Civictheme test table"
     Then I should see an ".ct-list table.ct-table" element
@@ -74,7 +74,7 @@ Feature: Pagination
 
   @api
   Scenario: Views page with mini pager and items per page should render and function correctly
-
+    Given I am an anonymous user
     When I visit "civictheme-no-sidebar/test-table-mini-pager"
     Then I should see the text "Civictheme test table"
     Then I should see an ".ct-list table.ct-table" element

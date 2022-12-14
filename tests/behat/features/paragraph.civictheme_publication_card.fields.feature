@@ -15,7 +15,6 @@ Feature: Publication card fields
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_image" in the "Image" row
-    And I should see the text "field_c_p_size" in the "Size" row
     And I should see the text "field_c_p_document" in the "Document" row
 
   @api @javascript
@@ -23,11 +22,11 @@ Feature: Publication card fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
-    And I click on "div.field--name-field-c-n-components .field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_publication_card_add_more" button
     And I wait for AJAX to finish

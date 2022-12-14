@@ -148,6 +148,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'type' => 'civictheme_promo_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => $helper::staticSentence(3),
+              'subtitle' => $helper::staticSentence(2),
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::staticUrl(),
@@ -155,7 +156,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => '2022-11-14',
             ],
           ],
         ],
@@ -200,7 +200,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       ],
     ],
     [
-      'title' => 'Manual list component, Publication card, Image, Light, Small',
+      'title' => 'Manual list component, Publication card, Image, Light',
       'components' => [
         [
           'type' => 'manual_list',
@@ -213,14 +213,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
-              'size' => $helper::civicthemeSizeSmall(),
             ],
           ],
         ],
       ],
     ],
     [
-      'title' => 'Manual list component, Publication card, No Image, Dark, Large',
+      'title' => 'Manual list component, Publication card, No Image, Dark',
       'components' => [
         [
           'type' => 'manual_list',
@@ -232,7 +231,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'title' => $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
-              'size' => $helper::civicthemeSizeLarge(),
             ],
           ],
         ],
@@ -267,6 +265,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'type' => 'civictheme_promo_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => $helper::staticSentence(3),
+              'subtitle' => $helper::staticSentence(2),
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::staticUrl(),
@@ -274,7 +273,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => '2022-11-14',
             ],
             [
               'type' => 'civictheme_subject_card_ref',
@@ -286,6 +284,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               'type' => 'civictheme_promo_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => $helper::staticSentence(3),
+              'subtitle' => $helper::staticSentence(2),
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::staticUrl(),
@@ -293,7 +292,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
-              'date' => '2022-11-14',
             ],
           ],
         ],

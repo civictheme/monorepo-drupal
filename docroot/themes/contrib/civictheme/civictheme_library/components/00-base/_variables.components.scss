@@ -57,7 +57,6 @@
 //
 // Collapsible.
 //
-$ct-collapsible-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' class='ct-icon ct-icon--color-primary ct-icon--size-small ' title='downarrow_1' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M16.9997 9.17C16.8123 8.98375 16.5589 8.87921 16.2947 8.87921C16.0305 8.87921 15.7771 8.98375 15.5897 9.17L11.9997 12.71L8.4597 9.17C8.27234 8.98375 8.01889 8.87921 7.7547 8.87921C7.49052 8.87921 7.23707 8.98375 7.0497 9.17C6.95598 9.26297 6.88158 9.37357 6.83081 9.49543C6.78004 9.61729 6.75391 9.74799 6.75391 9.88C6.75391 10.012 6.78004 10.1427 6.83081 10.2646C6.88158 10.3864 6.95598 10.497 7.0497 10.59L11.2897 14.83C11.3827 14.9237 11.4933 14.9981 11.6151 15.0489C11.737 15.0997 11.8677 15.1258 11.9997 15.1258C12.1317 15.1258 12.2624 15.0997 12.3843 15.0489C12.5061 14.9981 12.6167 14.9237 12.7097 14.83L16.9997 10.59C17.0934 10.497 17.1678 10.3864 17.2186 10.2646C17.2694 10.1427 17.2955 10.012 17.2955 9.88C17.2955 9.74799 17.2694 9.61729 17.2186 9.49543C17.1678 9.37357 17.0934 9.26297 16.9997 9.17Z'%3E%3C/path%3E%3C/svg%3E") !default;
 $ct-collapsible-icon-size: 'm' !default;
 $ct-collapsible-light-color: ct-color-light('body') !default;
 $ct-collapsible-light-icon-color: $ct-collapsible-light-color !default;
@@ -447,7 +446,7 @@ $ct-attachment-light-icon-color: ct-color-light('body') !default;
 $ct-attachment-light-title-color: ct-color-light('body') !default;
 $ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-attachment-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-attachment-dark-border-color: ct-color-dark('border-dark') !default;
+$ct-attachment-dark-border-color: ct-color-dark('border') !default;
 $ct-attachment-dark-color: ct-color-dark('body') !default;
 $ct-attachment-dark-date-color: ct-color-dark('body') !default;
 $ct-attachment-dark-heading-color: ct-color-dark('heading') !default;
@@ -496,7 +495,7 @@ $ct-basic-content-dark-wrapper-background-color: ct-color-dark('background') !de
 // Callout.
 //
 $ct-callout-border-radius: $ct-border-radius !default;
-$ct-callout-stripe-width: ct-particle(0.75) !default;
+$ct-callout-stripe-width: $ct-stripe-size !default;
 $ct-callout-light-background-color: ct-color-light('background') !default;
 $ct-callout-light-heading-color: ct-color-light('heading') !default;
 $ct-callout-light-summary-color: ct-color-light('body') !default;
@@ -515,13 +514,11 @@ $ct-dropdown-filter-light-filter-options-border-color: transparent !default;
 $ct-dropdown-filter-light-filter-text-color: ct-color-light('body') !default;
 $ct-dropdown-filter-light-filter-text-icon-color: ct-color-light('body') !default;
 $ct-dropdown-filter-light-inline-filter-text-color: ct-color-light('body') !default;
-$ct-dropdown-filter-light-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='ct-icon ct-search__icon' title='magnifier' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M21.7104 20.2899L18.0004 16.6099C19.4405 14.8143 20.1379 12.5352 19.9492 10.2412C19.7605 7.94721 18.7001 5.81269 16.9859 4.27655C15.2718 2.74041 13.0342 1.91941 10.7333 1.98237C8.43243 2.04534 6.24311 2.98747 4.61553 4.61505C2.98795 6.24263 2.04582 8.43194 1.98286 10.7328C1.9199 13.0337 2.7409 15.2713 4.27704 16.9854C5.81318 18.6996 7.94769 19.76 10.2417 19.9487C12.5357 20.1374 14.8148 19.44 16.6104 17.9999L20.2904 21.6799C20.3834 21.7736 20.494 21.848 20.6158 21.8988C20.7377 21.9496 20.8684 21.9757 21.0004 21.9757C21.1324 21.9757 21.2631 21.9496 21.385 21.8988C21.5068 21.848 21.6174 21.7736 21.7104 21.6799C21.8906 21.4934 21.9914 21.2442 21.9914 20.9849C21.9914 20.7256 21.8906 20.4764 21.7104 20.2899ZM11.0004 17.9999C9.61592 17.9999 8.26255 17.5894 7.1114 16.8202C5.96026 16.051 5.06305 14.9578 4.53324 13.6787C4.00342 12.3996 3.8648 10.9921 4.1349 9.63427C4.40499 8.27641 5.07168 7.02912 6.05065 6.05016C7.02961 5.07119 8.27689 4.4045 9.63476 4.13441C10.9926 3.86431 12.4001 4.00293 13.6792 4.53275C14.9583 5.06256 16.0515 5.95977 16.8207 7.11091C17.5899 8.26206 18.0004 9.61544 18.0004 10.9999C18.0004 12.8564 17.2629 14.6369 15.9501 15.9497C14.6374 17.2624 12.8569 17.9999 11.0004 17.9999Z'%3E%3C/path%3E%3C/svg%3E") !default;
 $ct-dropdown-filter-dark-filter-options-background-color: ct-color-dark('background-dark') !default;
 $ct-dropdown-filter-dark-filter-options-border-color: transparent !default;
 $ct-dropdown-filter-dark-filter-text-color: ct-color-dark('body') !default;
 $ct-dropdown-filter-dark-filter-text-icon-color: ct-color-dark('body') !default;
 $ct-dropdown-filter-dark-inline-filter-text-color: ct-color-dark('body') !default;
-$ct-dropdown-filter-dark-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%23FFFFFF' fill='%23FFFFFF' class='ct-icon ct-search__icon' title='magnifier' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M21.7104 20.2899L18.0004 16.6099C19.4405 14.8143 20.1379 12.5352 19.9492 10.2412C19.7605 7.94721 18.7001 5.81269 16.9859 4.27655C15.2718 2.74041 13.0342 1.91941 10.7333 1.98237C8.43243 2.04534 6.24311 2.98747 4.61553 4.61505C2.98795 6.24263 2.04582 8.43194 1.98286 10.7328C1.9199 13.0337 2.7409 15.2713 4.27704 16.9854C5.81318 18.6996 7.94769 19.76 10.2417 19.9487C12.5357 20.1374 14.8148 19.44 16.6104 17.9999L20.2904 21.6799C20.3834 21.7736 20.494 21.848 20.6158 21.8988C20.7377 21.9496 20.8684 21.9757 21.0004 21.9757C21.1324 21.9757 21.2631 21.9496 21.385 21.8988C21.5068 21.848 21.6174 21.7736 21.7104 21.6799C21.8906 21.4934 21.9914 21.2442 21.9914 20.9849C21.9914 20.7256 21.8906 20.4764 21.7104 20.2899ZM11.0004 17.9999C9.61592 17.9999 8.26255 17.5894 7.1114 16.8202C5.96026 16.051 5.06305 14.9578 4.53324 13.6787C4.00342 12.3996 3.8648 10.9921 4.1349 9.63427C4.40499 8.27641 5.07168 7.02912 6.05065 6.05016C7.02961 5.07119 8.27689 4.4045 9.63476 4.13441C10.9926 3.86431 12.4001 4.00293 13.6792 4.53275C14.9583 5.06256 16.0515 5.95977 16.8207 7.11091C17.5899 8.26206 18.0004 9.61544 18.0004 10.9999C18.0004 12.8564 17.2629 14.6369 15.9501 15.9497C14.6374 17.2624 12.8569 17.9999 11.0004 17.9999Z'%3E%3C/path%3E%3C/svg%3E") !default;
 
 //
 // Campaign.
@@ -546,49 +543,20 @@ $ct-event-card-image-height-desktop: ct-particle(30) !default;
 $ct-event-card-image-height-mobile: ct-particle(25) !default;
 $ct-event-card-image-width-desktop: auto !default;
 $ct-event-card-image-width-mobile: auto !default;
+$ct-event-card-stripe-height: $ct-stripe-size !default;
 $ct-event-card-light-background-color: ct-color-light('background-light') !default;
-$ct-event-card-light-border-top-color: ct-color-light('highlight') !default;
-$ct-event-card-light-heading-color: ct-color-light('heading') !default;
-$ct-event-card-light-heading-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-event-card-light-heading-active-color: ct-color-light('body') !default;
-$ct-event-card-light-icon-arrow-color: inherit !default;
-$ct-event-card-light-icon-color: ct-color-light('interaction-background') !default;
-$ct-event-card-light-location-color: ct-color-light('body') !default;
-$ct-event-card-light-summary-color: ct-color-light('body') !default;
-$ct-event-card-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-event-card-dark-border-top-color: ct-color-dark('highlight') !default;
-$ct-event-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-event-card-dark-heading-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-event-card-dark-heading-active-color: ct-color-dark('body') !default;
-$ct-event-card-dark-icon-arrow-color: inherit !default;
-$ct-event-card-dark-icon-color: ct-color-dark('interaction-background') !default;
-$ct-event-card-dark-location-color: ct-color-dark('body') !default;
-$ct-event-card-dark-summary-color: ct-color-dark('body') !default;
+$ct-event-card-dark-background-color: ct-color-dark('background') !default;
 
 //
 // Cards/Navigation card.
 //
 $ct-navigation-card-border-radius: $ct-border-radius !default;
-$ct-navigation-card-image-height-desktop: ct-particle(25) !default;
 $ct-navigation-card-image-height-mobile: ct-particle(35) !default;
-$ct-navigation-card-large-image-height-desktop: auto !default;
-$ct-navigation-card-large-image-height-mobile: ct-particle(35) !default;
-$ct-navigation-card-large-image-width-desktop: ct-particle(45) !default;
-$ct-navigation-card-large-image-width-mobile: 100% !default;
+$ct-navigation-card-image-width-mobile: auto !default;
+$ct-navigation-card-image-height-desktop: ct-particle(32) !default;
+$ct-navigation-card-image-width-desktop: ct-particle(36) !default;
 $ct-navigation-card-light-background-color: ct-color-light('background-light') !default;
-$ct-navigation-card-light-color: ct-color-light('body') !default;
-$ct-navigation-card-light-heading-active-color: ct-color-light('heading') !default;
-$ct-navigation-card-light-heading-color: ct-color-light('heading') !default;
-$ct-navigation-card-light-heading-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-navigation-card-light-icon-arrow-color: ct-color-light('interaction-background') !default;
-$ct-navigation-card-light-icon-color: ct-color-light('interaction-background') !default;
 $ct-navigation-card-dark-background-color: ct-color-dark('background') !default;
-$ct-navigation-card-dark-color: ct-color-dark('body') !default;
-$ct-navigation-card-dark-heading-active-color: ct-color-dark('heading') !default;
-$ct-navigation-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-navigation-card-dark-heading-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-navigation-card-dark-icon-arrow-color: ct-color-dark('interaction-background') !default;
-$ct-navigation-card-dark-icon-color: ct-color-dark('interaction-background') !default;
 
 //
 // Cards/Promo card.
@@ -598,76 +566,52 @@ $ct-promo-card-image-height-desktop: ct-particle(30) !default;
 $ct-promo-card-image-height-mobile: ct-particle(25) !default;
 $ct-promo-card-image-width-desktop: auto !default;
 $ct-promo-card-image-width-mobile: auto !default;
+$ct-promo-card-stripe-height: $ct-stripe-size !default;
 $ct-promo-card-light-background-color: ct-color-light('background-light') !default;
-$ct-promo-card-light-border-top-color: ct-color-light('highlight') !default;
-$ct-promo-card-light-heading-color: ct-color-light('heading') !default;
-$ct-promo-card-light-icon-arrow-color: ct-color-light('interaction-background') !default;
-$ct-promo-card-light-summary-color: ct-color-light('body') !default;
-$ct-promo-card-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-promo-card-dark-border-top-color: ct-color-dark('highlight') !default;
-$ct-promo-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-promo-card-dark-icon-arrow-color: ct-color-dark('interaction-background') !default;
-$ct-promo-card-dark-summary-color: ct-color-dark('body') !default;
+$ct-promo-card-light-stripe-color: ct-color-light('highlight') !default;
+$ct-promo-card-dark-background-color: ct-color-dark('background') !default;
+$ct-promo-card-dark-stripe-color: ct-color-dark('highlight') !default;
 
 //
 // Cards/Publication card.
 //
 $ct-publication-card-border-radius: $ct-border-radius !default;
-$ct-publication-card-image-height-desktop: ct-particle(30) !default;
-$ct-publication-card-image-height-mobile: ct-particle(25) !default;
-$ct-publication-card-large-image-height-desktop: auto !default;
-$ct-publication-card-large-image-height-mobile: 100% !default;
-$ct-publication-card-large-image-width-desktop: ct-particle(30) !default;
-$ct-publication-card-large-image-width-mobile: 100% !default;
-$ct-publication-card-light-attachment-icon-color: ct-color-light('body') !default;
+$ct-publication-card-image-height-mobile: ct-particle(23) !default;
+$ct-publication-card-image-width-mobile: auto !default;
+$ct-publication-card-image-height-desktop: ct-particle(23) !default;
+$ct-publication-card-image-width-desktop: 50% !default;
 $ct-publication-card-light-background-color: ct-color-light('background-light') !default;
-$ct-publication-card-light-color: ct-color-light('body') !default;
-$ct-publication-card-light-heading-color: ct-color-light('heading') !default;
-$ct-publication-card-light-icon-color: ct-color-light('heading') !default;
-$ct-publication-card-dark-attachment-icon-color: ct-color-dark('body') !default;
-$ct-publication-card-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-publication-card-dark-color: ct-color-dark('body') !default;
-$ct-publication-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-publication-card-dark-icon-color: ct-color-dark('heading') !default;
+$ct-publication-card-dark-background-color: ct-color-dark('background') !default;
 
 //
 // Cards/Service card.
 //
 $ct-service-card-border-radius: $ct-border-radius !default;
+$ct-service-card-stripe-height: $ct-stripe-size !default;
 $ct-service-card-light-background-color: ct-color-light('background-light') !default;
-$ct-service-card-light-border-top-color: ct-color-light('highlight') !default;
-$ct-service-card-light-heading-color: ct-color-light('heading') !default;
-$ct-service-card-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-service-card-dark-border-top-color: ct-color-dark('highlight') !default;
-$ct-service-card-dark-heading-color: ct-color-dark('heading') !default;
+$ct-service-card-light-stripe-color: ct-color-light('highlight') !default;
+$ct-service-card-dark-background-color: ct-color-dark('background') !default;
+$ct-service-card-dark-stripe-color: ct-color-dark('highlight') !default;
 
 //
 // Cards/Subject card.
 //
 $ct-subject-card-border-radius: $ct-border-radius !default;
-$ct-subject-card-image-height-desktop: ct-particle(28) !default;
 $ct-subject-card-image-height-mobile: ct-particle(20) !default;
-$ct-subject-card-image-width-desktop: auto !default;
 $ct-subject-card-image-width-mobile: auto !default;
-$ct-subject-card-light-active-color: ct-color-light('body') !default;
-$ct-subject-card-light-color: ct-color-light('interaction-background') !default;
-$ct-subject-card-light-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-subject-card-light-icon-color: ct-color-light('interaction-background') !default;
-$ct-subject-card-light-image-background-color: ct-color-light('background-light') !default;
-$ct-subject-card-dark-active-color: ct-color-dark('body') !default;
-$ct-subject-card-dark-color: ct-color-dark('interaction-background') !default;
-$ct-subject-card-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-subject-card-dark-icon-color: ct-color-dark('interaction-background') !default;
-$ct-subject-card-dark-image-background-color: ct-color-dark('background') !default;
+$ct-subject-card-image-height-desktop: ct-particle(28) !default;
+$ct-subject-card-image-width-desktop: auto !default;
+$ct-subject-card-light-background-color: ct-color-light('background-light') !default;
+$ct-subject-card-light-image-opacity: 30% !default;
+$ct-subject-card-dark-background-color: ct-color-dark('background') !default;
+$ct-subject-card-dark-image-opacity: 20% !default;
 
 //
 // Figure.
 //
 $ct-figure-border-radius: $ct-border-radius !default;
 $ct-figure-light-caption-color: ct-color-light('body') !default;
-$ct-figure-light-caption-icon-color: $ct-figure-light-caption-color !default;
 $ct-figure-dark-caption-color: ct-color-dark('body') !default;
-$ct-figure-dark-caption-icon-color: $ct-figure-dark-caption-color !default;
 
 //
 // Field.
@@ -726,31 +670,17 @@ $ct-logo-dark-stripe-color: ct-color-dark('border-light') !default;
 //
 $ct-map-padding-bottom: 56.25% !default;
 $ct-map-space-horizontal: ct-spacing(7) !default;
-$ct-map-light-background-color: transparent !default;
-$ct-map-light-wrapper-background-color: ct-color-light('background') !default;
-$ct-map-dark-background-color: transparent !default;
-$ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 
 //
 // Next steps.
 //
 $ct-next-steps-border-radius: $ct-border-radius !default;
-$ct-next-steps-stripe-width: ct-particle(0.75) !default;
-$ct-next-steps-light-active-color: ct-color-light('body') !default;
+$ct-next-steps-stripe-width: $ct-stripe-size !default;
 $ct-next-steps-light-background-color: ct-color-light('background-light') !default;
 $ct-next-steps-light-border-color: ct-color-light('border-light') !default;
-$ct-next-steps-light-color: ct-color-light('body') !default;
-$ct-next-steps-light-heading-color: ct-color-light('heading') !default;
-$ct-next-steps-light-hover-color: ct-color-light('body') !default;
-$ct-next-steps-light-icon-color: ct-color-light('heading') !default;
 $ct-next-steps-light-stripe-color: ct-color-light('highlight') !default;
-$ct-next-steps-dark-active-color: ct-color-dark('body') !default;
-$ct-next-steps-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-next-steps-dark-background-color: ct-color-dark('background') !default;
 $ct-next-steps-dark-border-color: ct-color-dark('border') !default;
-$ct-next-steps-dark-color: ct-color-dark('body') !default;
-$ct-next-steps-dark-heading-color: ct-color-dark('heading') !default;
-$ct-next-steps-dark-hover-color: ct-color-dark('body') !default;
-$ct-next-steps-dark-icon-color: ct-color-dark('heading') !default;
 $ct-next-steps-dark-stripe-color: ct-color-dark('highlight') !default;
 
 //
@@ -842,7 +772,7 @@ $ct-tooltip-dark-icon-color: ct-color-dark('interaction-background') !default;
 $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
-$ct-accordion-stripe-width: ct-particle(0.75) !default;
+$ct-accordion-stripe-width: $ct-stripe-size !default;
 $ct-accordion-space-horizontal: ct-spacing(7) !default;
 $ct-accordion-light-background-color: ct-color-light('background-light') !default;
 $ct-accordion-light-border-color: ct-color-light('border-light') !default;
@@ -856,7 +786,7 @@ $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
 $ct-accordion-dark-background-color: ct-color-dark('background-light') !default;
-$ct-accordion-dark-border-color: ct-color-dark('border-dark') !default;
+$ct-accordion-dark-border-color: ct-color-dark('border') !default;
 $ct-accordion-dark-color: ct-color-dark('body') !default;
 $ct-accordion-dark-button-background-color: ct-color-dark('background-light') !default;
 $ct-accordion-dark-button-color: ct-color-dark('heading') !default;
@@ -1136,7 +1066,7 @@ $ct-mobile-navigation-light-top-menu-background-color: $ct-mobile-navigation-lig
 $ct-mobile-navigation-light-bottom-menu-background-color: ct-color-light('background') !default;
 $ct-mobile-navigation-light-menu-item-color: ct-color-light('interaction-background') !default;
 $ct-mobile-navigation-light-menu-item-hover-color: $ct-mobile-navigation-light-menu-item-color !default;
-$ct-mobile-navigation-light-menu-divider-border-color: ct-color-light('border') !default;
+$ct-mobile-navigation-light-menu-divider-border-color: ct-color-light('border-light') !default;
 $ct-mobile-navigation-light-subsection-heading-color: ct-color-light('heading') !default;
 $ct-mobile-navigation-light-subsection-heading-icon-color: $ct-mobile-navigation-light-subsection-heading-color !default;
 $ct-mobile-navigation-light-subsection-trigger-color: ct-color-light('interaction-background') !default;
@@ -1201,12 +1131,12 @@ $ct-slide-dark-title-color: ct-color-dark('heading') !default;
 // Social links.
 //
 $ct-social-links-light-color: ct-color-light('interaction-background') !default;
-$ct-social-links-light-hover-color: ct-color-light('interaction-background') !default;
+$ct-social-links-light-hover-color: ct-color-light('interaction-hover-background') !default;
 $ct-social-links-light-focus-color: $ct-social-links-light-hover-color !default;
 $ct-social-links-light-active-color: $ct-social-links-light-hover-color !default;
 $ct-social-links-light-visited-color: $ct-social-links-light-color !default;
 $ct-social-links-dark-color: ct-color-dark('interaction-background') !default;
-$ct-social-links-dark-hover-color: ct-color-dark('interaction-background') !default;
+$ct-social-links-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
 $ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color !default;
 $ct-social-links-dark-active-color: $ct-social-links-dark-hover-color !default;
 $ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;

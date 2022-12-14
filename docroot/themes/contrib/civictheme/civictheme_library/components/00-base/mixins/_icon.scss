@@ -50,14 +50,6 @@
 }
 
 //
-// Compile all icon symbols into a single map.
-//
-// stylelint-disable-next-line scss/at-function-pattern
-@function _ct-icon-symbols-all() {
-  @return map.merge($ct-icon-symbols-default, $ct-icon-symbols);
-}
-
-//
 // Compile all icon sizes into a single map.
 //
 // Do not use directly.
@@ -87,45 +79,6 @@
     @include ct-breakpoint($breakpoint) {
       width: ct-icon-size-dimension($size, $breakpoint, 'width');
       height: ct-icon-size-dimension($size, $breakpoint, 'height');
-      // stylelint-disable-next-line property-no-vendor-prefix
-      -webkit-mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
-      mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
-    }
-  }
-}
-
-//
-// Fill icon color.
-//
-@mixin ct-icon-fill-color($color, $self: false) {
-  @if $self {
-    &.ct-icon {
-      fill: $color;
-    }
-  }
-  @else {
-    .ct-icon {
-      fill: $color;
-    }
-  }
-}
-
-//
-// Fill icon for Collapsible.
-//
-@mixin ct-icon-collapsible($color, $self: false) {
-  @if $self {
-    &[data-collapsible-trigger] {
-      &::after {
-        content: ct-color-svg-fill($ct-collapsible-icon, $color);
-      }
-    }
-  }
-  @else {
-    [data-collapsible-trigger] {
-      &::after {
-        content: ct-color-svg-fill($ct-collapsible-icon, $color);
-      }
     }
   }
 }

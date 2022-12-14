@@ -79,6 +79,8 @@ function main(array $argv, $argc) {
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
     'remove_examples' => $remove_examples,
+    'composerjson' => find_composerjson(__DIR__),
+    'packagejson' => find_packagejson(__DIR__),
   ]);
 
   // Copy files from stub to the new theme path.
@@ -202,8 +204,9 @@ function process_stub($dir, $options) {
   $current_dir = __DIR__;
   $relative_dir = file_get_relative_dir($options['path'], $current_dir);
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'webpack.common.js');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
 
   // Adjust per-file settings.
   //
@@ -213,6 +216,32 @@ function process_stub($dir, $options) {
     $content = file_get_contents($info_file);
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
+  }
+
+  // Add current CivicTheme information to the composer.json.
+  $composerjson_file = $dir . DIRECTORY_SEPARATOR . 'composer.json';
+  if (file_exists($composerjson_file)) {
+    $composerjson = find_composerjson($dir);
+    $composerjson['extra']['civictheme']['version'] = $options['composerjson']['version'] ?? '1.0.0';
+    $composerjson['extra']['civictheme']['homepage'] = $options['composerjson']['homepage'];
+    $composerjson['extra']['civictheme']['support']['issues'] = $options['composerjson']['support']['issues'];
+    $composerjson['extra']['civictheme']['support']['source'] = $options['composerjson']['support']['source'];
+    $composerjson_encoded = json_encode($composerjson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    file_put_contents($composerjson_file, $composerjson_encoded);
+  }
+
+  // Add current CivicTheme information to the package.json.
+  $packagejson_file = $dir . DIRECTORY_SEPARATOR . 'package.json';
+  if (file_exists($packagejson_file)) {
+    $packagejson = find_packagejson($dir);
+    $packagejson['civictheme']['version'] = $options['packagejson']['version'] ?? '1.0.0';
+    $packagejson['civictheme']['homepage'] = $options['packagejson']['homepage'];
+    $packagejson['civictheme']['bugs'] = $options['packagejson']['bugs'];
+    $packagejson['civictheme']['repository'] = $options['packagejson']['repository'];
+    $packagejson_encoded = preg_replace_callback('/^ +/m', function ($m) {
+      return str_repeat(' ', strlen($m[0]) / 2);
+    }, json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    file_put_contents($packagejson_file, $packagejson_encoded);
   }
 
   // Remove all the examples component before moving to the final path.
@@ -243,6 +272,36 @@ function find_starter_kit_dir() {
   }
 
   return $dir;
+}
+
+/**
+ * Find composer.json.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function find_composerjson($dir) {
+  $filepath = $dir . DIRECTORY_SEPARATOR . 'composer.json';
+
+  if (!file_exists($filepath)) {
+    throw new \Exception('Unable to find CivicTheme composer.json location.');
+  }
+
+  return json_decode(file_get_contents($filepath), TRUE);
+}
+
+/**
+ * Find package.json.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function find_packagejson($dir) {
+  $filepath = $dir . DIRECTORY_SEPARATOR . 'package.json';
+
+  if (!file_exists($filepath)) {
+    throw new \Exception('Unable to find CivicTheme package.json location.');
+  }
+
+  return json_decode(file_get_contents($filepath), TRUE);
 }
 
 // ////////////////////////////////////////////////////////////////////////// //

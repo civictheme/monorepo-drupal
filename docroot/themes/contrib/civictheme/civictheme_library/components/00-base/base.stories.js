@@ -26,7 +26,7 @@ export const demoImage = (idx) => {
     './assets/images/demo3.jpg',
   ];
 
-  idx = idx || Math.floor(Math.random() * images.length);
+  idx = Math.max(0, Math.min(idx, images.length)) || Math.floor(Math.random() * images.length);
 
   return images[idx];
 };
@@ -289,7 +289,9 @@ export const indexedString = function (prefix, idx = null) {
 
 export const objectFromArray = (array) => {
   const obj = {};
-  array.forEach((item) => { obj[item] = item; });
+  array.forEach((item) => {
+    obj[item] = item;
+  });
   return obj;
 };
 
@@ -299,4 +301,30 @@ export const cleanCssIdentifier = function (string) {
     .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
     .replace(/(^\s+)|(\s+$)/gim, '')
     .replace(/\s+/gm, '-');
+};
+
+export const arrayCombine = function (keys, values) {
+  const obj = {};
+
+  if (!keys || !values || keys.constructor !== Array || values.constructor !== Array) {
+    return false;
+  }
+
+  if (keys.length !== values.length) {
+    return false;
+  }
+
+  for (let i = 0; i < keys.length; i++) {
+    obj[keys[i]] = values[i];
+  }
+
+  return obj;
+};
+
+export const toLabels = function (values) {
+  const arr = [];
+  for (const i in values) {
+    arr.push(capitalizeFirstLetter(values[i].replace(/[-_]/, ' ')));
+  }
+  return arr;
 };

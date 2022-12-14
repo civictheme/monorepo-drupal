@@ -204,3 +204,8 @@
 @function _ct-typography-all() {
   @return map.merge($ct-typography-default, $ct-typography);
 }
+
+@mixin ct-font-size-inherit() {
+  font-size: inherit;
+  line-height: inherit;
+}

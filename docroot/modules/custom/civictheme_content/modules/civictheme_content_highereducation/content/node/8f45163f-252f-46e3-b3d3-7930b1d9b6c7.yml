@@ -60,6 +60,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -101,6 +104,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -133,6 +139,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -162,6 +171,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -191,6 +203,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -220,6 +235,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -249,6 +267,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -278,6 +299,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -307,6 +331,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -336,6 +363,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -402,6 +432,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 70debdf1-8d42-4ac2-94d3-3b1781181833
@@ -413,9 +446,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Our COVID risk app helps people make informed decisions regarding the COVID risk at specific locations.'
@@ -443,6 +473,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
@@ -454,9 +487,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat.'
@@ -484,6 +514,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d4bd31b4-651a-4120-a7bf-e6d6832f722c
@@ -495,9 +528,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'My University researchers have made a breakthrough in chemotherapy that will increase a patient''s life.'

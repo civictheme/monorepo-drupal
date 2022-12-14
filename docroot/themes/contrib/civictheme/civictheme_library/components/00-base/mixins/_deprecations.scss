@@ -1,0 +1,34 @@
+//
+// Polyfills for deprecated mixins.
+//
+
+//
+// Global flag to identify if the current theme is outdated.
+//
+// Internal. The value is automatically injected during the build.
+// Do not modify this value.
+//
+$ct-outdated: false !default;
+
+// Suppress deprecation warnings.
+$ct-suppress-deprecations: false !default;
+
+//
+// Warn about deprecated functionality.
+//
+@mixin ct-deprecation($version, $deprecated, $replacement: false) {
+  $message: 'CivicTheme deprecation warning: Using "#{$deprecated}" is deprecated and will be removed in CivicTheme #{$version}.';
+
+  @if $replacement {
+    $message: '#{$message} Use replacement: "#{$replacement}".';
+  }
+
+  @if $ct-outdated and not $ct-suppress-deprecations {
+    @warn $message;
+  }
+}
+
+@mixin ct-highlight-stripe($width, $border-radius, $border-width: ct-particle(0.125), $position: 'left') {
+  @include ct-deprecation(1.5, 'ct-highlight-stripe()', 'ct-highlight-stripe-vertical()');
+  @include ct-highlight-stripe-vertical($width, $border-radius, $border-width, $position);
+}

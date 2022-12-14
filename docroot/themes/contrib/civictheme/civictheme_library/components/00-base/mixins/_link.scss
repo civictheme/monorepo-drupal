@@ -138,3 +138,12 @@
     right: 0;
   }
 }
+
+@mixin ct-link-wide() {
+  display: flex;
+  column-gap: ct-spacing(2);
+
+  .ct-link__icon {
+    @include ct-flex-align-right();
+  }
+}

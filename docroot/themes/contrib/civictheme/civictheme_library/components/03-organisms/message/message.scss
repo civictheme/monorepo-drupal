@@ -19,13 +19,7 @@
   @include ct-typography('text-regular');
 
   #{$root}__icon {
-    width: rem(26px);
     margin-right: ct-spacing(2);
-  }
-
-  .ct-icon {
-    width: rem(26px);
-    height: rem(26px);
   }
 
   #{$root}__title {
@@ -46,9 +40,7 @@
         @include ct-component-property($root, $theme, $type, border-color);
 
         #{$root}__icon {
-          .ct-icon {
-            @include ct-component-property($root, $theme, $type, icon, color);
-          }
+          @include ct-component-property($root, $theme, $type, icon, color);
         }
       }
     }

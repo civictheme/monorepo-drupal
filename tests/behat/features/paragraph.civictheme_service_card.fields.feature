@@ -29,14 +29,14 @@ Feature: Service card fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-list-link-above-0-uri" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
-    And I click on "div.field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-list-link-above-0-uri" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
+    And I click on ".field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_service_card_add_more" button
     And I wait for AJAX to finish

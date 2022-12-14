@@ -9,9 +9,9 @@ load _helper
 @test "CivicTheme Demo Theme assets" {
   dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/custom/civictheme_demo"
 
-  pushd "${dir}" > /dev/null || exit 1
+  pushd "${dir}" >/dev/null || exit 1
 
-  [ ! -d "dist" ] &&  npm run build
+  [ ! -d "dist" ] && npm run build
 
   # Files managed by the developer.
   assert_dir_exists "assets"
@@ -88,5 +88,5 @@ load _helper
   assert_file_exists "components_combined/03-organisms/header/header.twig"
   assert_file_contains "components_combined/03-organisms/header/header.twig" "Example of extending of the base CivicTheme component."
 
-  popd > /dev/null
+  popd >/dev/null
 }

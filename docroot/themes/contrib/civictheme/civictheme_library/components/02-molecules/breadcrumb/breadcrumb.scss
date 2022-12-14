@@ -8,8 +8,8 @@
   @include ct-typography('label-regular');
 
   @include ct-component-theme($root) using($root, $theme) {
-    .ct-icon {
-      background-color: ct-component-var($root, $theme, color);
+    #{$root}__links__separator {
+      @include ct-component-property($root, $theme, color);
     }
 
     #{$root}__links {

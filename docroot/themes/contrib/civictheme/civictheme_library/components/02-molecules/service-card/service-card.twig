@@ -31,33 +31,37 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="ct-service-card__title">
-          {% include '@atoms/heading/heading.twig' with {
-            content: title,
-            level: 4,
-            theme: theme,
-          } only %}
-        </div>
+        {% include '@atoms/heading/heading.twig' with {
+          theme: theme,
+          content: title,
+          level: 4,
+          modifier_class: 'ct-service-card__content__title',
+        } only %}
       {% endif %}
     {% endblock %}
 
     {% block links %}
       {% if links is not empty %}
-        <ul class="ct-service-card__links">
-          {% for link in links %}
-            {% if link.text is not empty %}
-              <li class="ct-service-card__link__item">
-                {% include '@atoms/link/link.twig' with {
-                  theme: theme,
-                  text: link.text,
-                  url: link.url,
-                  is_new_window: link.is_new_window is defined ? link.is_new_window : false,
-                  is_external: link.is_external is defined ? link.is_external : false,
-                } only %}
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+        {% set list_items = [] %}
+        {% for key, link in links %}
+          {% if link.text is not empty %}
+            {% set list_item %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: link.text,
+                url: link.url,
+                is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                is_external: link.is_external is defined ? link.is_external : false,
+              } only %}
+            {% endset %}
+            {% set list_items = list_items|merge([ list_item ]) %}
+          {% endif %}
+        {% endfor %}
+        {% include '@base/item-list/item-list.twig' with {
+          items: list_items,
+          type: 'vertical',
+          modifier_class: 'ct-service-card__content__links',
+        } only %}
       {% endif %}
     {% endblock %}
 

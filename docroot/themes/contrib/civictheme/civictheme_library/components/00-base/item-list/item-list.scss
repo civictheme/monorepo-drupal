@@ -13,38 +13,60 @@
     list-style: none;
   }
 
-  &--horizontal {
+  &#{$root}--horizontal {
     #{$root}__list {
       display: flex;
+      column-gap: $ct-item-list-horizontal-regular-column-gap;
+      row-gap: $ct-item-list-horizontal-regular-row-gap;
       flex-wrap: wrap;
-      column-gap: ct-spacing(2);
-      row-gap: ct-spacing(2);
+    }
+
+    &#{$root}--small {
+      #{$root}__list {
+        column-gap: $ct-item-list-horizontal-small-column-gap;
+        row-gap: $ct-item-list-horizontal-small-row-gap;
+      }
+    }
+
+    &#{$root}--large {
+      #{$root}__list {
+        column-gap: $ct-item-list-horizontal-large-column-gap;
+        row-gap: $ct-item-list-horizontal-large-row-gap;
+      }
     }
 
     &#{$root}--no-gap {
       #{$root}__list {
-        column-gap: 0;
-        row-gap: 0;
+        gap: unset;
       }
     }
   }
 
-  &--vertical {
+  &#{$root}--vertical {
     #{$root}__list {
-      display: inline-block;
+      display: flex;
+      flex-direction: column;
+      column-gap: $ct-item-list-vertical-regular-column-gap;
+      row-gap: $ct-item-list-vertical-regular-row-gap;
     }
 
-    #{$root}__list__item {
-      margin-bottom: ct-spacing(2);
+    &#{$root}--small {
+      #{$root}__list {
+        column-gap: $ct-item-list-vertical-small-column-gap;
+        row-gap: $ct-item-list-vertical-small-row-gap;
+      }
+    }
 
-      &:last-child {
-        margin-bottom: 0;
+    &#{$root}--large {
+      #{$root}__list {
+        column-gap: $ct-item-list-vertical-large-column-gap;
+        row-gap: $ct-item-list-vertical-large-row-gap;
       }
     }
 
     &#{$root}--no-gap {
-      #{$root}__list__item {
-        margin-bottom: 0;
+      #{$root}__list {
+        gap: unset;
       }
     }
   }

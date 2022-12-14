@@ -20,17 +20,17 @@ Feature: Map render
 
     When I visit "civictheme_page" "[TEST] Page map test"
     And I wait 10 seconds
-    And I should see an "div.ct-map" element
-    And I should see an "div.ct-map.ct-theme-light" element
-    And I should see an "div.ct-map.ct-vertical-spacing-inset--both" element
-    And I should not see an "div.ct-map.ct-theme-dark" element
-    And I should not see an "div.ct-map--with-background" element
-    And I should see an "div.ct-map__canvas" element
+    And I should see an ".ct-map" element
+    And I should see an ".ct-map.ct-theme-light" element
+    And I should see an ".ct-map.ct-vertical-spacing-inset--both" element
+    And I should not see an ".ct-map.ct-theme-dark" element
+    And I should not see an ".ct-map--with-background" element
+    And I should see an ".ct-map__canvas" element
     And I should see an "iframe.ct-iframe.ct-theme-light" element
-    And I should see an "div.ct-map__links" element
-    And I should see an "div.ct-map__view_link" element
+    And I should see an ".ct-map__links" element
+    And I should see an ".ct-map__view_link" element
     And I should see the text "Australia"
-    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
+    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in '.ct-map__links'
 
   @api @javascript
   Scenario: Map dark with background
@@ -44,13 +44,13 @@ Feature: Map render
 
     When I visit "civictheme_page" "[TEST] Page map test2"
     And I wait 10 seconds
-    And I should see an "div.ct-map" element
-    And I should see an "div.ct-map.ct-theme-dark" element
-    And I should not see an "div.ct-map.ct-theme-light" element
-    And I should see an "div.ct-map--with-background" element
-    And I should see an "div.ct-map__canvas" element
+    And I should see an ".ct-map" element
+    And I should see an ".ct-map.ct-theme-dark" element
+    And I should not see an ".ct-map.ct-theme-light" element
+    And I should see an ".ct-map--with-background" element
+    And I should see an ".ct-map__canvas" element
     And I should see an "iframe.ct-iframe" element
-    And I should see an "div.ct-map__links" element
-    And I should see an "div.ct-map__view_link" element
+    And I should see an ".ct-map__links" element
+    And I should see an ".ct-map__view_link" element
     And I should see the text "Australia"
-    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
+    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in '.ct-map__links'

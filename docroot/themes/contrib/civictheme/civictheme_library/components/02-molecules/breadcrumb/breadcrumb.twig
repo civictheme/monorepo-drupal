@@ -48,7 +48,7 @@
         {% set link_item %}
           {% include '@base/icon/icon.twig' with {
             symbol: 'right-arrow-1',
-            size: 'small',
+            modifier_class: 'ct-breadcrumb__links__separator',
           } only %}
         {% endset %}
         {% set link_items = link_items|merge([ link_item ]) %}

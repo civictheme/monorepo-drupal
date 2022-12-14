@@ -62,29 +62,29 @@ features:
 
 components:
   namespaces:
-    ct-base:
-      - components/00-base
     base:
+      - components/00-base
+    atoms:
+      - components/01-atoms
+    molecules:
+      - components/02-molecules
+    organisms:
+      - components/03-organisms
+    templates:
+      - components/04-templates
+    pages:
+      - components/05-pages
+    ct-base:
       - components/00-base
     ct-atoms:
       - components/01-atoms
-    atoms:
-      - components/01-atoms
     ct-molecules:
-      - components/02-molecules
-    molecules:
       - components/02-molecules
     ct-organisms:
       - components/03-organisms
-    organisms:
-      - components/03-organisms
     ct-templates:
       - components/04-templates
-    templates:
-      - components/04-templates
     ct-pages:
-      - components/05-pages
-    pages:
       - components/05-pages
 
 ckeditor_stylesheets:
@@ -380,7 +380,6 @@ config_devel:
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_size
     - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
     - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
@@ -399,6 +398,7 @@ config_devel:
     - field.field.paragraph.civictheme_promo_card.field_c_p_date
     - field.field.paragraph.civictheme_promo_card.field_c_p_image
     - field.field.paragraph.civictheme_promo_card.field_c_p_link
+    - field.field.paragraph.civictheme_promo_card.field_c_p_subtitle
     - field.field.paragraph.civictheme_promo_card.field_c_p_summary
     - field.field.paragraph.civictheme_promo_card.field_c_p_theme
     - field.field.paragraph.civictheme_promo_card.field_c_p_title
@@ -407,7 +407,6 @@ config_devel:
     - field.field.paragraph.civictheme_promo_card_ref.field_c_p_theme
     - field.field.paragraph.civictheme_publication_card.field_c_p_document
     - field.field.paragraph.civictheme_publication_card.field_c_p_image
-    - field.field.paragraph.civictheme_publication_card.field_c_p_size
     - field.field.paragraph.civictheme_publication_card.field_c_p_summary
     - field.field.paragraph.civictheme_publication_card.field_c_p_theme
     - field.field.paragraph.civictheme_publication_card.field_c_p_title
@@ -507,7 +506,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_content
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_default_panel
-    - field.storage.paragraph.field_c_p_description
     - field.storage.paragraph.field_c_p_document
     - field.storage.paragraph.field_c_p_embed_url
     - field.storage.paragraph.field_c_p_expand
@@ -537,8 +535,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference
     - field.storage.paragraph.field_c_p_show_image_as_icon
-    - field.storage.paragraph.field_c_p_size
     - field.storage.paragraph.field_c_p_slides
+    - field.storage.paragraph.field_c_p_subtitle
     - field.storage.paragraph.field_c_p_summary
     - field.storage.paragraph.field_c_p_theme
     - field.storage.paragraph.field_c_p_title

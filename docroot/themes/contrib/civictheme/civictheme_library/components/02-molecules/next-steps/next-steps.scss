@@ -5,92 +5,42 @@
 .ct-next-steps {
   $root: &;
 
-  display: block;
   position: relative;
-  text-decoration: none;
+  width: 100%;
 
-  &__content {
+  #{$root}__inner {
     display: block;
     position: relative;
-    border: 1px solid transparent;
+    border-width: ct-particle(0.125);
+    border-style: solid;
+    padding: ct-spacing(3) ct-spacing(2) ct-spacing(3) ct-spacing(2) + $ct-next-steps-stripe-width;
     border-radius: $ct-next-steps-border-radius;
-    padding: ct-spacing(3) ct-spacing(3);
+
+    @include ct-highlight-stripe-vertical($ct-next-steps-stripe-width, $ct-next-steps-border-radius);
 
     @include ct-breakpoint(m) {
-      padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
+      padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(3) + $ct-next-steps-stripe-width;
     }
-
-    @include ct-highlight-stripe($ct-next-steps-stripe-width, $ct-next-steps-border-radius, 0);
   }
 
-  &__title {
-    @include ct-typography('heading-4');
+  #{$root}__content__title {
+    @include ct-typography('heading-5');
   }
 
-  &__summary {
+  #{$root}__content__title__link {
+    @include ct-font-size-inherit();
+    @include ct-link-wide();
+  }
+
+  #{$root}__content__summary {
     margin-top: ct-spacing(2);
-
-    @include ct-typography('text-regular');
-  }
-
-  &__read-more {
-    position: absolute;
-    top: ct-spacing(3);
-    right: ct-spacing(2);
-
-    @include ct-breakpoint(m) {
-      right: ct-spacing(4);
-    }
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    #{$root}__content {
-      @include ct-component-property($root, $theme, color);
+    #{$root}__inner {
+      @include ct-component-property($root, $theme, border, color);
       @include ct-component-property($root, $theme, background-color);
-      @include ct-component-property($root, $theme, border-color);
       @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, color));
-    }
-
-    &:focus {
-      @include ct-outline-theme($theme);
-    }
-
-    &:hover {
-      #{$root}__title {
-        @include ct-component-property($root, $theme, hover, color);
-
-        text-decoration: underline;
-      }
-
-      #{$root}__read-more {
-        .ct-icon {
-          fill: ct-component-var($root, $theme, hover, color);
-        }
-      }
-    }
-
-    &:active {
-      .ct-next-steps__title {
-        @include ct-component-property($root, $theme, active, color);
-
-        text-decoration: underline;
-      }
-
-      #{$root}__read-more {
-        .ct-icon {
-          fill: ct-component-var($root, $theme, active, color);
-        }
-      }
-    }
-
-    #{$root}__title {
-      @include ct-component-property($root, $theme, heading, color);
-    }
-
-    #{$root}__read-more {
-      .ct-icon {
-        fill: ct-component-var($root, $theme, icon, color);
-      }
     }
   }
 }

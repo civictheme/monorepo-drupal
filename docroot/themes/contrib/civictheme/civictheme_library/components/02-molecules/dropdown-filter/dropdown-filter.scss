@@ -139,18 +139,6 @@
 
     #{$root}__filter-text {
       @include ct-component-property($root, $theme, inline, filter, text, color);
-
-      &::after {
-        content: ct-color-svg-fill($ct-collapsible-icon, ct-component-var($root, $theme, filter, text, icon, color)) !important;
-      }
-    }
-
-    &[data-dropdown-filter-searchable] {
-      #{$root}__search.ct-input {
-        &::after {
-          background-image: ct-component-var($root, $theme, search, icon);
-        }
-      }
     }
   }
 }

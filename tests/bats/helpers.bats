@@ -170,7 +170,7 @@ load _helper
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture_symlink"
 
   # Assert file.
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture_symlink/src.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture_symlink/src.txt"
   ln -s "${BATS_TEST_TMPDIR}/fixture_symlink/src.txt" "${BATS_TEST_TMPDIR}/fixture_symlink/dst.txt"
   assert_symlink_exists "${BATS_TEST_TMPDIR}/fixture_symlink/dst.txt"
 
@@ -188,7 +188,7 @@ load _helper
 @test "assert_symlink_not_exists" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture_symlink"
 
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture_symlink/src.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture_symlink/src.txt"
   ln -s "${BATS_TEST_TMPDIR}/fixture_symlink/src.txt" "${BATS_TEST_TMPDIR}/fixture_symlink/dst.txt"
 
   # Assert others.
@@ -202,7 +202,7 @@ load _helper
 
 @test "assert_file_mode" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture_mode"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture_mode/1.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture_mode/1.txt"
   chmod 644 "${BATS_TEST_TMPDIR}/fixture_mode/1.txt"
   assert_file_mode "${BATS_TEST_TMPDIR}/fixture_mode/1.txt" "644"
   chmod 664 "${BATS_TEST_TMPDIR}/fixture_mode/1.txt"
@@ -220,9 +220,9 @@ load _helper
 
 @test "assert_file_contains" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture_file_assert"
-  echo "some existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
-  echo "other existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
-  echo "one more line of existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "some existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "other existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "one more line of existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
 
   assert_file_contains "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt" "some existing text"
 
@@ -232,9 +232,9 @@ load _helper
 
 @test "assert_file_not_contains" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture_file_assert"
-  echo "some existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
-  echo "other existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
-  echo "one more line of existing text" >> "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "some existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "other existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
+  echo "one more line of existing text" >>"${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt"
 
   assert_file_not_contains "${BATS_TEST_TMPDIR}/fixture_file_assert/1.txt" "other non-existing text"
 
@@ -248,7 +248,7 @@ load _helper
 @test "assert_dir_empty" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/dir1"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/dir2"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture/dir2/1.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture/dir2/1.txt"
 
   assert_dir_empty "${BATS_TEST_TMPDIR}/fixture/dir1"
 
@@ -262,7 +262,7 @@ load _helper
 @test "assert_dir_not_empty" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/dir1"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/dir2"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture/dir2/1.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture/dir2/1.txt"
 
   assert_dir_not_empty "${BATS_TEST_TMPDIR}/fixture/dir2"
 
@@ -275,7 +275,7 @@ load _helper
 
 @test "assert_dir_contains_string" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture/1.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture/1.txt"
 
   assert_dir_contains_string "${BATS_TEST_TMPDIR}/fixture" "existing"
 
@@ -288,9 +288,9 @@ load _helper
 
 @test "assert_dir_not_contains_string" {
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture/1.txt"
-  echo "some other text" > "${BATS_TEST_TMPDIR}/fixture/2.txt"
-  echo "some existing text" > "${BATS_TEST_TMPDIR}/fixture/3.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture/1.txt"
+  echo "some other text" >"${BATS_TEST_TMPDIR}/fixture/2.txt"
+  echo "some existing text" >"${BATS_TEST_TMPDIR}/fixture/3.txt"
 
   assert_dir_not_contains_string "${BATS_TEST_TMPDIR}/fixture" "non-existing"
 
@@ -310,7 +310,7 @@ load _helper
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo_empty_dot_git"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/not_git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
 
   assert_git_repo "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
@@ -332,7 +332,7 @@ load _helper
 
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/not_git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
 
   assert_not_git_repo "${BATS_TEST_TMPDIR}/fixture/not_git_repo"
 
@@ -347,7 +347,7 @@ load _helper
   prepare_git_config
 
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
   assert_git_repo "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
   assert_git_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
@@ -357,8 +357,8 @@ load _helper
   assert_failure
 
   # Now, commit first file and create another, but do not add.
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add -A > /dev/null
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "First commit" > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add -A >/dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "First commit" >/dev/null
   assert_git_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
   mktouch "${BATS_TEST_TMPDIR}/fixture/git_repo/other_uncommitted_file"
   run assert_git_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
@@ -369,7 +369,7 @@ load _helper
   prepare_git_config
 
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
   assert_git_repo "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
   run assert_git_not_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
@@ -378,10 +378,9 @@ load _helper
   mktouch "${BATS_TEST_TMPDIR}/fixture/git_repo/uncommitted_file"
   assert_git_not_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
-
   # Now, commit first file and create another, but do not add.
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add -A > /dev/null
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "First commit" > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add -A >/dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "First commit" >/dev/null
   run assert_git_not_clean "${BATS_TEST_TMPDIR}/fixture/git_repo"
   assert_failure
   mktouch "${BATS_TEST_TMPDIR}/fixture/git_repo/other_uncommitted_file"
@@ -393,12 +392,12 @@ load _helper
 
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/not_git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
   assert_git_repo "${BATS_TEST_TMPDIR}/fixture/git_repo"
   touch "${BATS_TEST_TMPDIR}/fixture/git_repo/1.txt"
   touch "${BATS_TEST_TMPDIR}/fixture/git_repo/2.txt"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add 1.txt > /dev/null
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "some message" > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add 1.txt >/dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "some message" >/dev/null
 
   assert_git_file_is_tracked "1.txt" "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
@@ -414,12 +413,12 @@ load _helper
 
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/git_repo"
   prepare_fixture_dir "${BATS_TEST_TMPDIR}/fixture/not_git_repo"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" init >/dev/null
   assert_git_repo "${BATS_TEST_TMPDIR}/fixture/git_repo"
   touch "${BATS_TEST_TMPDIR}/fixture/git_repo/1.txt"
   touch "${BATS_TEST_TMPDIR}/fixture/git_repo/2.txt"
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add 1.txt > /dev/null
-  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "some message" > /dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" add 1.txt >/dev/null
+  git --work-tree="${BATS_TEST_TMPDIR}/fixture/git_repo" --git-dir="${BATS_TEST_TMPDIR}/fixture/git_repo/.git" commit -m "some message" >/dev/null
 
   assert_git_file_is_not_tracked "2.txt" "${BATS_TEST_TMPDIR}/fixture/git_repo"
 
@@ -434,7 +433,7 @@ load _helper
   prepare_git_config
 
   cp "${BATS_TEST_DIRNAME}/fixtures/fixture.png" "${BATS_TEST_TMPDIR}/fixture1.png"
-  echo "some other file" > "${BATS_TEST_TMPDIR}/fixture2.png"
+  echo "some other file" >"${BATS_TEST_TMPDIR}/fixture2.png"
 
   assert_files_equal "${BATS_TEST_TMPDIR}/fixture1.png" "${BATS_TEST_TMPDIR}/fixture1.png"
 
@@ -450,7 +449,7 @@ load _helper
 
 @test "assert_files_not_equal" {
   cp "${BATS_TEST_DIRNAME}/fixtures/fixture.png" "${BATS_TEST_TMPDIR}/fixture1.png"
-  echo "some other file" > "${BATS_TEST_TMPDIR}/fixture2.png"
+  echo "some other file" >"${BATS_TEST_TMPDIR}/fixture2.png"
 
   assert_files_not_equal "${BATS_TEST_TMPDIR}/fixture1.png" "${BATS_TEST_TMPDIR}/fixture2.png"
 
@@ -473,7 +472,7 @@ load _helper
   assert_dirs_equal "${BATS_TEST_TMPDIR}/t11" "${BATS_TEST_TMPDIR}/t12"
 
   # Assert that files in the root are not equal.
-  echo "some other file" > "${BATS_TEST_TMPDIR}/t12/fixture1.png"
+  echo "some other file" >"${BATS_TEST_TMPDIR}/t12/fixture1.png"
   run assert_dirs_equal "${BATS_TEST_TMPDIR}/t11" "${BATS_TEST_TMPDIR}/t12"
   assert_failure
 
@@ -485,7 +484,7 @@ load _helper
   assert_dirs_equal "${BATS_TEST_TMPDIR}/t31" "${BATS_TEST_TMPDIR}/t32"
 
   # Assert that files in the subdirs are not equal.
-  echo "some other file" > "${BATS_TEST_TMPDIR}/t32/subdir/fixture1.png"
+  echo "some other file" >"${BATS_TEST_TMPDIR}/t32/subdir/fixture1.png"
   run assert_dirs_equal "${BATS_TEST_TMPDIR}/t31" "${BATS_TEST_TMPDIR}/t32"
   assert_failure
 
@@ -501,7 +500,7 @@ load _helper
   assert_dirs_equal "${BATS_TEST_TMPDIR}/t41" "${BATS_TEST_TMPDIR}/t42"
 
   # Assert that files in the root and subdirs are not equal.
-  echo "some other file" > "${BATS_TEST_TMPDIR}/t42/subdir/fixture1.png"
+  echo "some other file" >"${BATS_TEST_TMPDIR}/t42/subdir/fixture1.png"
   run assert_dirs_equal "${BATS_TEST_TMPDIR}/t41" "${BATS_TEST_TMPDIR}/t42"
   assert_failure
 
@@ -534,8 +533,8 @@ load _helper
 
   assert_file_not_exists ".env"
 
-  echo "VAR1=val1" >> .env
-  echo "VAR2=val2" >> .env
+  echo "VAR1=val1" >>.env
+  echo "VAR2=val2" >>.env
   run read_env "\$VAR1"
   assert_output_contains "val1"
   run read_env "\$VAR2"
@@ -545,9 +544,9 @@ load _helper
 }
 
 @test "trim_file" {
-  echo "line1" >> "${BATS_TEST_TMPDIR}/file.txt"
-  echo "line2" >> "${BATS_TEST_TMPDIR}/file.txt"
-  echo "line3" >> "${BATS_TEST_TMPDIR}/file.txt"
+  echo "line1" >>"${BATS_TEST_TMPDIR}/file.txt"
+  echo "line2" >>"${BATS_TEST_TMPDIR}/file.txt"
+  echo "line3" >>"${BATS_TEST_TMPDIR}/file.txt"
 
   trim_file "${BATS_TEST_TMPDIR}/file.txt"
 
@@ -565,8 +564,8 @@ load _helper
 @test "add_var_to_file and restore_file" {
   rm -fr /tmp/bkp
 
-  echo "line1" >> "${BATS_TEST_TMPDIR}/.env"
-  echo "line2" >> "${BATS_TEST_TMPDIR}/.env"
+  echo "line1" >>"${BATS_TEST_TMPDIR}/.env"
+  echo "line2" >>"${BATS_TEST_TMPDIR}/.env"
 
   add_var_to_file "${BATS_TEST_TMPDIR}/.env" "VAR" "value"
 

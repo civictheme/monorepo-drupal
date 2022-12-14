@@ -181,9 +181,9 @@ default:
                       uri: 'internal:/'
                       title: 'Find out more about grants'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: 'The DE is committed to helping Australian scientists and researchers advance environmental research. You can apply now for one of our grants. We offer grants of various sizes and durations.'

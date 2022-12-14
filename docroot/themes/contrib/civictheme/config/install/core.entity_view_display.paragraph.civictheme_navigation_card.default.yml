@@ -5,7 +5,6 @@ dependencies:
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_size
     - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
     - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
@@ -48,13 +47,6 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 6
-    region: content
-  field_c_p_size:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
     region: content
   field_c_p_summary:
     type: basic_string

@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicThemeItemList from './item-list.twig';
-import { generateItems, placeholder } from '../base.stories';
+import { generateItems, placeholder, randomSentence } from '../base.stories';
 
 export default {
   title: 'Base/Layout/Item List',
@@ -26,6 +26,16 @@ export const ItemList = (knobTab) => {
       'horizontal',
       generalKnobTab,
     ),
+    size: radios(
+      'Size',
+      {
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+      },
+      'regular',
+      generalKnobTab,
+    ),
     no_gap: boolean('No gap', false, generalKnobTab),
     items: generateItems(number(
       'Items count',
@@ -37,9 +47,9 @@ export const ItemList = (knobTab) => {
         step: 1,
       },
       generalKnobTab,
-    ), placeholder()),
+    ), placeholder(boolean('Long placeholder text', false, generalKnobTab) ? randomSentence(30) : 'Content placeholder')),
     attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
   };
 
   return CivicThemeItemList({

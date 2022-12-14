@@ -751,9 +751,9 @@ default:
                       uri: 'https://google.com.au/'
                       title: 'View open positions'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
@@ -864,9 +864,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View open position'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: 'The DE has positions available in our main Canberra office and at key outposts around Australia. '
@@ -905,9 +905,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'Register as a volunteer'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: 'Volunteers are important to help protect the Australian environment. Find out about projects in your area and join us as a volunteer. '
@@ -946,9 +946,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View all news'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: 'Read our latest news, including media releases.'
@@ -987,9 +987,9 @@ default:
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
                       title: 'View contact us page'
                       options: {  }
-                  field_c_p_size:
+                  field_c_p_show_image_as_icon:
                     -
-                      value: large
+                      value: false
                   field_c_p_summary:
                     -
                       value: 'There are many reasons you may like to contact us.'
