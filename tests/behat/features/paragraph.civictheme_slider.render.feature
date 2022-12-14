@@ -48,15 +48,15 @@ Feature: Slider render
     When I visit "civictheme_page" "[TEST] Page slider test"
     And I wait 5 second
     And I should see the text "[TEST] slider"
-    And I should see an "div.ct-slider" element
-    And I should see an "div.ct-slider.ct-theme-light" element
-    And I should see an "div.ct-slider.ct-vertical-spacing-inset--both" element
-    And I should not see an "div.ct-slider.ct-theme-dark" element
-    And I should see an "div.ct-slider__container" element
-    And I should see an "div.ct-slider__slides" element
+    And I should see an ".ct-slider" element
+    And I should see an ".ct-slider.ct-theme-light" element
+    And I should see an ".ct-slider.ct-vertical-spacing-inset--both" element
+    And I should not see an ".ct-slider.ct-theme-dark" element
+    And I should see an ".ct-slider__container" element
+    And I should see an ".ct-slider__slides" element
     Then I should see the text "[TEST] slide 1"
-    And I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.ct-slide__links'
-    And I should see an "div.ct-slider__controls" element
+    And I should see the link "[TEST] link 1" with "https://example.com/link1" in '.ct-slide__links'
+    And I should see an ".ct-slider__controls" element
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 2"
@@ -65,8 +65,8 @@ Feature: Slider render
     Then I should see the text "[TEST] slide 2"
     And I should see the link "[TEST] link 2" with "https://example.com/link2"
     And I should see the text "Slide 2 of 2"
-    And I should see an "div.ct-slider__steps" element
-  
+    And I should see an ".ct-slider__steps" element
+
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with slider reference slide
     Given I am an anonymous user
@@ -88,13 +88,13 @@ Feature: Slider render
     When I visit "civictheme_page" "[TEST] Page slider ref"
     And I wait 5 second
     Then I should see the text "[TEST] Page slider 1"
-    And I should not see an ".ct-slider__slides .ct-slide:first-child .ct-slide__links a.ct-button--link" element
+    And I should not see an ".ct-slider__slides .ct-slide:first-child .ct-slide__links .ct-button--link" element
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 2"
     Then I press "Next"
     And wait 2 second
     Then I should see the text "[TEST] Page slider 2"
-    And I should see an ".ct-slider__slides .ct-slide:nth-child(2) .ct-slide__links a.ct-button--link" element
+    And I should see an ".ct-slider__slides .ct-slide:nth-child(2) .ct-slide__links .ct-button--link" element
     And I should see the text "[TEST] Link"
     And I should see the text "Slide 2 of 2"

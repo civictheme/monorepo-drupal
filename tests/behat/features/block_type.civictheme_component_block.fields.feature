@@ -17,7 +17,7 @@ Feature: Component block fields
   Scenario: CivicTheme Component paragraph reference exists and works
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civictheme_component_block"
-    And I should see an "div.field--name-field-c-b-components" element
+    And I should see an ".field--name-field-c-b-components" element
     And I should see an "input[value='Add Accordion']" element
     And I should see an "input[value='Add Attachment']" element
     And I should see an "input[value='Add Manual list']" element

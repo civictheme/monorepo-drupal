@@ -70,8 +70,8 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page Promo cards test"
     And I should see the text "[TEST] Promo manual list"
-    Then I should see the link "View all promo cards" with "https://example.com" in 'div.ct-list'
-    And I should see an "div.ct-promo-card" element
+    Then I should see the link "View all promo cards" with "https://example.com" in '.ct-list'
+    And I should see an ".ct-promo-card" element
     And I should see the text "Promo card title"
     And I should see the text "Promo card title 1"
     And I should see the text "Promo card title 2"
@@ -112,10 +112,10 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page Navigation cards test"
     And I should see the text "[TEST] Navigation manual list"
-    Then I should see the link "View all navigation cards" with "https://example.com" in 'div.ct-list'
-    And I should see 4 "div.ct-navigation-card" elements
-    And I should see 4 ".ct-navigation-card__title" elements
-    And I should see 4 ".ct-navigation-card__summary" elements
+    Then I should see the link "View all navigation cards" with "https://example.com" in '.ct-list'
+    And I should see 4 ".ct-navigation-card" elements
+    And I should see 4 ".ct-navigation-card__content__title" elements
+    And I should see 4 ".ct-navigation-card__content__summary" elements
     And I should see the text "Navigation card title"
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"
@@ -146,12 +146,12 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page Subject cards test"
     And I should see the text "[TEST] Subject manual list"
-    Then I should see the link "View all Subject cards" with "https://example.com" in 'div.ct-list'
-    And I should see 1 "div.ct-list" elements
-    And I should see 3 "div.ct-subject-card" elements
-    And I should see 2 "div.ct-subject-card__image img" elements
-    And I should see 3 "div.ct-subject-card__title" elements
-    And I should not see an "div.ct-navigation-card" element
+    Then I should see the link "View all Subject cards" with "https://example.com" in '.ct-list'
+    And I should see 1 ".ct-list" elements
+    And I should see 3 ".ct-subject-card" elements
+    And I should see 2 ".ct-subject-card__content__image img" elements
+    And I should see 3 ".ct-subject-card__content__title" elements
+    And I should not see an ".ct-navigation-card" element
     And I should see the text "Subject card title"
     And I should see the text "Subject card title 1"
     And I should see the text "Subject card title 2"
@@ -179,15 +179,15 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page Service cards test"
     And I should see the text "[TEST] Service manual list"
-    Then I should see the link "View all Service cards" with "https://example.com" in 'div.ct-list'
-    And I should see 1 "div.ct-list" elements
-    And I should see 3 "div.ct-service-card" elements
-    And I should see 2 "div.ct-service-card.ct-theme-dark" elements
-    And I should see 1 "div.ct-service-card.ct-theme-light" elements
-    And I should see 3 "div.ct-service-card__title" elements
-    And I should see 3 "ul.ct-service-card__links" elements
-    And I should not see an "div.ct-subject-card" element
-    And I should not see an "div.ct-service-card img" element
+    Then I should see the link "View all Service cards" with "https://example.com" in '.ct-list'
+    And I should see 1 ".ct-list" elements
+    And I should see 3 ".ct-service-card" elements
+    And I should see 2 ".ct-service-card.ct-theme-dark" elements
+    And I should see 1 ".ct-service-card.ct-theme-light" elements
+    And I should see 3 ".ct-service-card__content__title" elements
+    And I should see 3 ".ct-service-card__content__links" elements
+    And I should not see an ".ct-subject-card" element
+    And I should not see an ".ct-service-card img" element
     And I should see the text "Service card title"
     And I should see the text "Service card title 1"
     And I should see the text "Service card title 2"
@@ -214,19 +214,18 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page Reference cards test"
     And I should see the text "[TEST] Reference cards container"
-    And I should not see an "div.ct-list__link a" element
-    And I should see 1 "div.ct-list" elements
-    And I should see 1 "div.ct-event-card__content" elements
-    And I should see 1 "div.ct-subject-card__title" elements
-    And I should see 1 "div.ct-navigation-card__title" elements
-    And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "li.ct-item-grid__item > .ct-theme-light" elements
-    And I should see 1 "li.ct-item-grid__item > .ct-theme-dark" elements
+    And I should not see an ".ct-list__link a" element
+    And I should see 1 ".ct-list" elements
+    And I should see 1 ".ct-event-card__content" elements
+    And I should see 1 ".ct-subject-card__content__title" elements
+    And I should see 1 ".ct-navigation-card__content__title" elements
+    And I should see 1 ".ct-promo-card__content" elements
+    And I should see 3 ".ct-item-grid__item > .ct-theme-light" elements
+    And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
 
   @api @javascript
   Scenario: CivicTheme page revisions can be viewed without error
-
     Given I am logged in as a user with the "Site Administrator" role
     When I edit "civictheme_page" "[TEST] Page Revision test"
     And I fill in "Title" with "[TEST] Page New Revision test"
@@ -279,11 +278,11 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated: 1 Jul 2022"
     When I visit "civictheme_page" "[TEST] Page with last updated date checked"
     And I should see the text "[TEST] Page with last updated date checked"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated"
     When I visit "civictheme_page" "[TEST] Page without date"
     And I should see the text "[TEST] Page without date"
@@ -299,7 +298,7 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated"
     When I visit "civictheme_page" "[TEST] Page without date"
     And I should see the text "[TEST] Page without date"
@@ -314,9 +313,9 @@ Feature: CivicTheme Page content type render
       | [TEST] Page without breadcrumb | 1      | 1                                |
 
     When I visit "civictheme_page" "[TEST] Page with breadcrumb"
-    And I should see an "div.ct-banner__breadcrumb" element
+    And I should see an ".ct-banner__breadcrumb" element
     When I visit "civictheme_page" "[TEST] Page without breadcrumb"
-    And I should not see an "div.ct-banner__breadcrumb" element
+    And I should not see an ".ct-banner__breadcrumb" element
 
   @api @banner_title
   Scenario: CivicTheme page content type page can override banner title.
@@ -327,10 +326,10 @@ Feature: CivicTheme Page content type render
       | [TEST] Page without Banner title | 1      |                         |
 
     When I visit "civictheme_page" "[TEST] Page with Banner title"
-    Then I should not see "[TEST] Page with Banner title" in the "div.ct-banner__title" element
-    And I should see "[OVERRIDE] Banner title" in the "div.ct-banner__title" element
+    Then I should not see "[TEST] Page with Banner title" in the ".ct-banner__title" element
+    And I should see "[OVERRIDE] Banner title" in the ".ct-banner__title" element
     When I visit "civictheme_page" "[TEST] Page without Banner title"
-    Then I should see "[TEST] Page without Banner title" in the "div.ct-banner__title" element
+    Then I should see "[TEST] Page without Banner title" in the ".ct-banner__title" element
 
   @api @sitesections
   Scenario: CivicTheme page content type page can configure Site sections
@@ -343,8 +342,8 @@ Feature: CivicTheme Page content type render
     When I visit "civictheme_page" "[TEST] Page with Site section"
     And I should see the text "[TEST] Page with Site section"
     And I should see an "body.ct-site-section---test-site-section-1" element
-    And I should see an "div.ct-banner__section" element
+    And I should see an ".ct-banner__section" element
     And I should see the text "[TEST] Site Section 1"
     When I visit "civictheme_page" "[TEST] Page without Site section"
     And I should see the text "[TEST] Page without Site section"
-    And I should not see an "div.ct-banner__section" element
+    And I should not see an ".ct-banner__section" element

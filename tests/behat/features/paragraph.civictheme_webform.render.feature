@@ -16,7 +16,7 @@ Feature: Webform render
       | field_c_p_background       | 0       |
 
     When I visit "civictheme_page" "[TEST] Page Webform test"
-    And I should see an "div.ct-webform" element
-    And I should see an "div.ct-webform.ct-theme-light" element
-    And I should see an "div.ct-webform.ct-vertical-spacing-inset--both" element
-    And I should not see an "div.ct-webform.ct-theme-dark" element
+    And I should see an ".ct-webform" element
+    And I should see an ".ct-webform.ct-theme-light" element
+    And I should see an ".ct-webform.ct-vertical-spacing-inset--both" element
+    And I should not see an ".ct-webform.ct-theme-dark" element
