@@ -506,7 +506,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_content
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_default_panel
-    - field.storage.paragraph.field_c_p_description
     - field.storage.paragraph.field_c_p_document
     - field.storage.paragraph.field_c_p_embed_url
     - field.storage.paragraph.field_c_p_expand
