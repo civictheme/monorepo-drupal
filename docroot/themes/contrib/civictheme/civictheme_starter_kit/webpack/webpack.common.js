@@ -2,9 +2,12 @@
 
 const path = require('path');
 const glob = require('glob');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { isOutdated, printHeader } = require('../../../../contrib/civictheme/civictheme_library/webpack/info');
+
+printHeader();
 
 module.exports = {
   entry: (function (pattern) {
@@ -65,7 +68,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({ chunk }) => (chunk.name === 'main' ? 'styles.css' : `styles.${chunk.name}.css`),
+      filename: ({chunk}) => (chunk.name === 'main' ? 'styles.css' : `styles.${chunk.name}.css`),
     }),
     new CleanWebpackPlugin({
       dry: false,
@@ -104,7 +107,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';",
+              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';`,
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
