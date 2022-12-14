@@ -28,7 +28,8 @@
     {% if icons[type] is defined %}
       {% include "@base/icon/icon.twig" with {
         symbol: icons[type],
-        size: 'small',
+        size: 'regular',
+        modifier_class: 'ct-field-message__icon',
       } only %}
     {% endif %}
     {% if content is not empty %}{{ content }}{% endif %}
