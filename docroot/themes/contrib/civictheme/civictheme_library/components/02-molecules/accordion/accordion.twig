@@ -8,9 +8,9 @@
  * - title: [string] Title.
  * - expand_all: [boolean] Expand all panels or not.
  * - panels: [array] Array of panels:
- *   - title: [string] Panel title
- *   - expanded: [boolean] Panel is expanded or not.
+ *   - title: [string] Panel title.
  *   - content: [string] Panel content.
+ *   - expanded: [boolean] Panel is expanded or not.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -25,39 +25,37 @@
   <div class="ct-accordion {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
-        {% if title is not empty %}
-          <div class="ct-accordion__content-top col-xxs-12">
-            <div class="ct-accordion__title-top">
-              {{ title }}
+        <div class="col-xxs-12">
+          {% if title is not empty %}
+            <div class="ct-accordion__content-top">
+              <div class="ct-accordion__content-top__title">
+                {{ title }}
+              </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
 
-        <div class="ct-accordion__inner col-xxs-12">
-          <ul class="ct-accordion__list">
-            {% for fold in panels %}
-              {% if fold.title is not empty or fold.content is not empty %}
-                {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
-                <li class="ct-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250">
-                  <div class="ct-accordion__header">
-                    <button class="ct-accordion__header__button" data-collapsible-trigger="" aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
-                      {% if fold.title is not empty %}
-                        <span>{{ fold.title }}</span>
-                      {% endif %}
-                    </button>
-                  </div>
+          <div class="ct-accordion__content">
+            <ul class="ct-accordion__panels">
+              {% for panel in panels %}
+                {% if panel.title is not empty and panel.content is not empty %}
+                  {% set is_expanded = panel.expanded == true or expand_all == true %}
+                  <li class="ct-accordion__panels__panel" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250" data-collapsible-trigger-wide>
+                    <div class="ct-accordion__panels__panel__header">
+                      <button class="ct-accordion__panels__panel__header__button" data-collapsible-trigger aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
+                        {{ panel.title }}
+                      </button>
+                    </div>
 
-                  {% if fold.content is not empty %}
-                    <div class="ct-accordion__content" data-collapsible-panel="" aria-hidden="{{ is_expanded ? 'false' : 'true' }}">
-                      <div class="ct-accordion__content--inner">
-                        {{ fold.content|raw }}
+                    <div class="ct-accordion__panels__panel__content" data-collapsible-panel aria-hidden="{{ is_expanded ? 'false' : 'true' }}">
+                      <div class="ct-accordion__panels__panel__content__inner">
+                        {{ panel.content|raw }}
                       </div>
                     </div>
-                  {% endif %}
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
