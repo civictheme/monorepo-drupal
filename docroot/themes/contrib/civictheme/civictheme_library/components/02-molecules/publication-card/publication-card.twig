@@ -11,7 +11,6 @@
   * - content_bottom: [string] Content slot.
   * - size: [string] Card type: large, small.
   * - image: [object] Consist details of the card image like src, width, height, alt text.
-  * - icon: [string] Icon name.
   * - title: [string] The text of card title.
   * - summary: [string] Summary of the card.
   * - image: [object] Image data.
@@ -22,15 +21,17 @@
   */
 #}
 
-{% set size = size|default('large') %}
-{% set size_class = size == 'large'?'ct-publication-card--large' : 'ct-publication-card--small' %}
+{% set with_image = image.src is not empty %}
+{% set with_image_class = with_image ? 'ct-publication-card--with-image': '' %}
+{% set with_link = link.url is defined and link.url is not empty %}
+{% set with_link_class = with_link ? 'ct-publication-card--with-link': '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, with_link_class, modifier_class|default('')) %}
 
 <div class="ct-publication-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image.src is not empty %}
-      <div class="ct-publication-card__image-wrapper">
+      <div class="ct-publication-card__image">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -39,7 +40,7 @@
 
         {% block image_over %}
           {% if image_over is not empty %}
-            <div class="ct-publication-card__image-over">
+            <div class="ct-publication-card__image__over">
               {{ image_over }}
             </div>
           {% endif %}
@@ -57,41 +58,34 @@
       {% endif %}
     {% endblock %}
 
-    {% if icon is not empty %}
-      <div class="ct-publication-card__icon">
-        {% include '@base/icon/icon.twig' with {
-          symbol: icon,
-          size: 'large',
-          color: 'primary',
-        } only %}
-      </div>
-    {% endif %}
-
     {% block title %}
       {% if title is not empty %}
-        <div class="ct-publication-card__title">
-          {% include '@atoms/heading/heading.twig' with {
-            content: title,
-            level: 4,
-            theme: theme,
-          } only %}
-          {% if link is not empty %}
-            <span class="ct-publication-card__icon-wrapper">
-                {% include '@base/icon/icon.twig' with {
-                  symbol: 'download',
-                  color: 'primary',
-                  size: 'small',
-                  modifier_class: 'ct-publication-card__icon--download',
-                } only %}
-              </span>
+        {% set title_content %}
+          {% if with_link %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: title,
+              url: link.url,
+              icon: 'download',
+              modifier_class: 'ct-publication-card__content__title__link',
+            } only %}
+          {% else %}
+            {{ title }}
           {% endif %}
-        </div>
+        {% endset %}
+
+        {% include '@atoms/heading/heading.twig' with {
+          content: title_content,
+          level: 4,
+          theme: theme,
+          modifier_class: 'ct-publication-card__content__title',
+        } only %}
       {% endif %}
     {% endblock %}
 
     {% block content_middle %}
       {% if content_middle is not empty %}
-        <div class="ct-publication-card__content-middle">
+        <div class="ct-publication-card__content__middle">
           {{ content_middle }}
         </div>
       {% endif %}
@@ -99,21 +93,23 @@
 
     {% block summary %}
       {% if summary is not empty %}
-        <div class="ct-publication-card__summary">
-          {{ summary }}
-        </div>
+        {% include '@atoms/paragraph/paragraph.twig' with {
+          theme: theme,
+          content: summary,
+          allow_html: true,
+          modifier_class: 'ct-publication-card__content__summary',
+        } only %}
       {% endif %}
     {% endblock %}
 
     {% block link %}
       {% if link is not empty %}
-        <div class="ct-publication-card__attachment-link">
+        <div class="ct-publication-card__content__attachment">
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: link.text,
             title: 'Download %s'|format(link.url|split('.')|last),
             url: link.url,
-            modifier_class: 'ct-link--attachment'
           } only %}
         </div>
       {% endif %}

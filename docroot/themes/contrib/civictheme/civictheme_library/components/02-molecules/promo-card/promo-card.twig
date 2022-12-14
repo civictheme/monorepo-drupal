@@ -10,25 +10,26 @@
  * - content_middle: [string] Content slot.
  * - content_bottom: [string] Content slot for bottom of Card.
  * - image: [object] Image data.
- * - title: [string] Card title.
- * - summary: [string] Card summary.
- * - date: [string] Date text.
- * - url: [string] URL for link out from Card
- * - is_external: [boolean] Link is external.
+ * - subtitle: [string] Subtitle text.
+ * - title: [string] Title.
+ * - summary: [string] Summary.
+ * - url: [string] Optional link.
  * - attributes: [string] Additional attributes.
  * - modifier_class:[string] Additional classes.
  */
 #}
 
-{% set type_class = image is empty ? 'ct-promo-card--no-image' : '' %}
+{% set with_image = image.src is not empty %}
+{% set with_image_class = with_image ? 'ct-promo-card--with-image' : '' %}
+{% set with_link = url is not empty %}
 {% set image_over_class = image_over ? 'ct-promo-card--image-over' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, image_over_class, modifier_class|default('')) %}
 
 <div class="ct-promo-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image.src is not empty or image_over is not empty %}
-      <div class="ct-promo-card__image-wrapper">
+      <div class="ct-promo-card__image">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -37,7 +38,7 @@
 
         {% block image_over %}
           {% if image_over is not empty %}
-            <div class="ct-promo-card__image-over">
+            <div class="ct-promo-card__image__over">
               {{ image_over }}
             </div>
           {% endif %}
@@ -50,53 +51,51 @@
     <div class="ct-promo-card__content">
       {% block content_top %}
         {% if content_top is not empty %}
-          <div class="ct-promo-card__content_top">
+          <div class="ct-promo-card__content-top">
             {{ content_top }}
           </div>
         {% endif %}
       {% endblock %}
 
-      {% block date %}
-        {% if date is not empty %}
-          {% include '@atoms/tag/tag.twig' with {
-            theme: theme,
-            type: 'tertiary',
-            content: date,
-            icon: 'calendar-2',
-            icon_placement: 'before',
-            modifier_class: 'ct-promo-card__date'
-          } only %}
-        {% endif %}
-      {% endblock %}
-
-      {% block title %}
-        {% if title is not empty %}
-          <div class="ct-promo-card__title">
-            {% set heading_content %}
-              {% if url is not empty %}
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: title,
-                url: url,
-                is_new_window: is_external,
-                modifier_class: 'ct-promo-card__title-link',
-              } only %}
-              {% else %}
-                {{ title }}
-              {% endif %}
-            {% endset %}
-            {% include '@atoms/heading/heading.twig' with {
-              content: heading_content,
-              level: 4,
+      {% block subtitle %}
+        {% if subtitle is not empty %}
+          <div class="ct-promo-card__content__subtitle">
+            {% include '@atoms/tag/tag.twig' with {
               theme: theme,
+              type: 'tertiary',
+              content: subtitle,
             } only %}
           </div>
         {% endif %}
       {% endblock %}
 
+      {% block title %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% if with_link %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: title,
+                url: url,
+                modifier_class: 'ct-promo-card__content__title__link',
+              } only %}
+            {% else %}
+              {{ title }}
+            {% endif %}
+          {% endset %}
+
+          {% include '@atoms/heading/heading.twig' with {
+            content: title_content,
+            level: 4,
+            theme: theme,
+            modifier_class: 'ct-promo-card__content__title',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
       {% block content_middle %}
         {% if content_middle is not empty %}
-          <div class="ct-promo-card__content_middle">
+          <div class="ct-promo-card__content__middle">
             {{ content_middle }}
           </div>
         {% endif %}
@@ -104,47 +103,48 @@
 
       {% block summary %}
         {% if summary is not empty %}
-          <div class="ct-promo-card__summary">
-            {{ summary|raw }}
-          </div>
+          {% include '@atoms/paragraph/paragraph.twig' with {
+            theme: theme,
+            content: summary,
+            allow_html: true,
+            modifier_class: 'ct-promo-card__content__summary',
+          } only %}
         {% endif %}
       {% endblock %}
 
-      {% block content_bottom_1 %}
+      {% block content_tags %}
         {% if tags or url %}
-          <div class="ct-promo-card__bottom-wrapper">
+          <div class="ct-promo-card__content__tags">
             {% if tags %}
-              <div class="ct-promo-card__tags">
-                {% for tag in tags %}
+              {% set tag_items = [] %}
+              {% for key, tag in tags %}
+                {% set tag_item %}
                   {% include '@atoms/tag/tag.twig' with {
                     theme: theme,
                     content: tag,
                   } only %}
-                {% endfor %}
-              </div>
+                {% endset %}
+                {% set tag_items = tag_items|merge([ tag_item ]) %}
+              {% endfor %}
+              {% include '@base/item-list/item-list.twig' with {
+                items: tag_items,
+                size: 'small',
+              } only %}
             {% endif %}
+
             {% if url %}
-              <div class="ct-promo-card__icon-wrapper">
-                {% if is_external %}
-                  {% include '@base/icon/icon.twig' with {
-                    symbol: 'upper-right-arrow',
-                    color: 'primary',
-                    modifier_class: 'ct-navigation-card__icon--external'
-                  } only %}
-                {% else %}
-                  {% include '@base/icon/icon.twig' with {
-                    symbol: 'right-arrow-2',
-                    color: 'primary',
-                    modifier_class: 'ct-navigation-card__icon--arrow',
-                  } only %}
-                {% endif %}
-              </div>
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                url: url,
+                icon: 'right-arrow-2',
+                modifier_class: 'ct-promo-card__content__tags__link',
+              } only %}
             {% endif %}
           </div>
         {% endif %}
       {% endblock %}
 
-      {% block content_bottom_2 %}
+      {% block content_bottom %}
         {% if content_bottom is not empty %}
           <div class="ct-promo-card__content-bottom">
             {{ content_bottom }}

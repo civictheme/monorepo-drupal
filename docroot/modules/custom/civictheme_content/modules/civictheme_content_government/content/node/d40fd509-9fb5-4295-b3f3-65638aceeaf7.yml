@@ -64,6 +64,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_address:
             -
               value: '260 Elizabeth St, Melbourne VIC 3000'
@@ -104,6 +107,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_address:
             -
               value: '1/1 Martin Pl, Sydney NSW 2000'

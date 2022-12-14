@@ -6,7 +6,7 @@
   $root: &;
 
   @include ct-reset-box-model();
-  @include ct-highlight-stripe($ct-quote-border-width, 0, 0);
+  @include ct-highlight-stripe-vertical($ct-quote-border-width, 0, 0);
 
   position: relative;
   padding-left: ct-spacing(2);

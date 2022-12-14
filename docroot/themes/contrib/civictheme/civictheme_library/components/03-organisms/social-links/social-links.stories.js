@@ -27,8 +27,8 @@ export const SocialLinks = (knobTab) => {
     },
     {
       url: 'https://www.dropbox.com',
-      text: `<img class="ct-button__icon" width=20 height=20 src="${demoIcon()}"/>`,
-      title: 'Icon with inline image',
+      text: `<img class="ct-button__icon" width=16 height=16 src="${demoIcon()}"/>`,
+      // Deliberately left witout a title.
     },
     {
       url: 'https://www.linkedin.com',

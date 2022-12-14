@@ -73,7 +73,7 @@ export const Button = (knobTab) => {
   generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
-  const withIcon = boolean('With icon', false, iconKnobTab);
+  const withIcon = boolean('With icon', false, generalKnobTab);
   const iconKnobs = {
     icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
     icon_placement: withIcon ? radios(
@@ -83,16 +83,6 @@ export const Button = (knobTab) => {
         After: 'after',
       },
       'after',
-      iconKnobTab,
-    ) : null,
-    icon_size: withIcon ? radios(
-      'Icon Size', {
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        None: '',
-      },
-      'regular',
       iconKnobTab,
     ) : null,
   };

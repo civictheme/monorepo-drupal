@@ -55,6 +55,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -96,6 +99,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -124,6 +130,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -132,9 +141,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Dive into the world of business and pick a major that suits your interests.'
@@ -162,6 +168,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -170,9 +179,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Join the growing world of biomedical science and make your mark on disease. '
@@ -200,6 +206,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -208,9 +217,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Want to stand out from the crowd? Our Bachelor of Music is producing successful, professional musicians.'
@@ -286,9 +292,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Be at the forefront of this emerging technology and drive digital transformation in our world. '
@@ -327,9 +330,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Transform our understanding of the human brain. Help people with brain injuries and disease and/or lead the way in brain research. '
@@ -368,9 +368,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Dive into engineering challenges and lead the way in the engineering speciality of your choice.'

@@ -26,14 +26,14 @@
       alt: alt,
       width: width,
       height: height,
-    } %}
+      modifier_class: 'ct-figure__image',
+    } only %}
 
     {% if caption is not empty %}
       <figcaption class="ct-figure__caption">
         {% include '@base/icon/icon.twig' with {
           symbol: 'image',
-          color: 'neutral_60',
-        } %}
+        } only %}
         {{ caption }}
       </figcaption>
     {% endif %}

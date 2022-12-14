@@ -77,6 +77,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -106,6 +109,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -134,6 +140,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 807435c6-a632-4c5c-bf66-2ffdc9ab609f
@@ -145,9 +154,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Kickstart your future with an undergraduate degree from My University.'
@@ -175,6 +181,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 8d96e514-518d-46fb-aa93-d0fb629035ee
@@ -186,9 +195,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Explore postgraduate courses and take your career to the next level.'
@@ -216,6 +222,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e8ab5ef1-2f45-4937-8f0a-f63c22f52df9
@@ -227,9 +236,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'World-leading researchers across all disciplines - from professors to honours students.'
@@ -257,6 +263,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: ac4255ad-ec69-47e9-9617-86b2e51872b8
@@ -268,9 +277,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: true
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Our range of faculties and departments offer the widest range of academic programs in Australia.'
@@ -320,6 +326,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: true
@@ -348,6 +357,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: eac50bb1-3e95-4be4-80cb-7c768fef1c09
@@ -386,6 +398,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 90720509-6653-4acf-a96b-7154da530b88
@@ -424,6 +439,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 12d28525-2e6c-4d9a-9bca-1e8758d0b706
@@ -476,6 +494,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -498,6 +519,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you.</p>\r\n"

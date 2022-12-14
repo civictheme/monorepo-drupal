@@ -20,7 +20,7 @@
       padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
     }
 
-    @include ct-highlight-stripe($ct-callout-stripe-width, $ct-callout-border-radius, 0);
+    @include ct-highlight-stripe-vertical($ct-callout-stripe-width, $ct-callout-border-radius, 0);
   }
 
   &__summary {

@@ -23,18 +23,18 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I click on "div.field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
+    And I click on ".field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
     And I wait for AJAX to finish
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing" element
     And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-link-0-uri" element
-    And I should see an "div.field--name-field-c-p-slides" element
-    And I should see an "div.field--name-field-c-p-slides .form-required" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-link-0-uri" element
+    And I should see an ".field--name-field-c-p-slides" element
+    And I should see an ".field--name-field-c-p-slides .form-required" element
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
@@ -59,21 +59,21 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I click on "div.field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
+    And I click on ".field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
     And I wait for AJAX to finish
     And I see field "field_c_n_components[0][subform][field_c_p_theme]"
     And I see field "Title"
     And I press the "field_c_n_components_0_subform_field_c_p_slides_civictheme_slider_slide_add_more" button
     And I wait for AJAX to finish
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value input.required" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-image-position" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-image-position select.required" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value input.required" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-image-position" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-image-position select.required" element
     And I should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform-field_c_p_slides-0-subform" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-content-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-link-0-uri" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-content-0-value" element
+    And I should see an ".js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-link-0-uri" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_topic][0][target_id]']" element
 
   @api
@@ -103,13 +103,13 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I click on "div.field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
+    And I click on ".field--name-field-c-n-components .add-more-button-civictheme-slider.dropbutton-action" element
     And I wait for AJAX to finish
     And I see field "field_c_n_components[0][subform][field_c_p_theme]"
     And I see field "Title"
-    And I click on "div.field--name-field-c-n-components div.field--name-field-c-p-slides .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .field--name-field-c-p-slides .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_slides_civictheme_slider_slide_ref_add_more" button
     And I wait for AJAX to finish

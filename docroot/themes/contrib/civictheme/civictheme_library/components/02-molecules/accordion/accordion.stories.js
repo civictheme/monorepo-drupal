@@ -61,7 +61,7 @@ export const Accordion = (knobTab) => {
   while (itr <= numOfPanels) {
     panels.push({
       title: text(`Panel ${itr} title `, `Accordion title ${itr}`, panelsKnobTab),
-      content: text(`Panel ${itr} content`, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.', panelsKnobTab),
+      content: `${text(`Panel ${itr} content`, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.', panelsKnobTab)}<a href="https://example.com">Example link</a>`,
       expanded: boolean(`Panel ${itr} initially expanded`, generalKnobs.expand_all, panelsKnobTab),
     });
     itr += 1;

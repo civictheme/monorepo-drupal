@@ -38,6 +38,11 @@
   flex-direction: column-reverse;
 }
 
+@mixin ct-flex-align-right() {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 //
 // Print all gutters at their breakpoints.
 //
