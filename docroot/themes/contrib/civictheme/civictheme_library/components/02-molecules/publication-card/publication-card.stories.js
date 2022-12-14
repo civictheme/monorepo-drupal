@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import {
-  boolean, radios, select, text,
+  boolean, radios, text,
 } from '@storybook/addon-knobs';
 
 import CivicThemePublicationCard from './publication-card.twig';
@@ -30,16 +30,7 @@ export const PublicationCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    size: radios(
-      'Size',
-      {
-        Large: 'large',
-        Small: 'small',
-      },
-      'large',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Publication or whitepaper main title.', generalKnobTab),
+    title: text('Title', 'Publication or whitepaper main title', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
@@ -53,15 +44,8 @@ export const PublicationCard = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  const iconKnobTab = 'Icon';
-  const withIcon = boolean('With icon', false, iconKnobTab);
-  const iconKnobs = {
-    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
-  };
-
   return CivicThemePublicationCard({
     ...generalKnobs,
-    ...iconKnobs,
     ...getSlots([
       'image_over',
       'content_top',
