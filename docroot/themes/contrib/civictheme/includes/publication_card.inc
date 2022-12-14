@@ -21,14 +21,10 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
     $variables['is_external'] = $link->isExternal();
   }
 
-  // Publication card size.
-  $variables['size'] = civictheme_get_field_value($paragraph, 'field_c_p_size');
-  /** @var \Drupal\media\MediaInterface|null $document $document */
   $document = civictheme_get_field_value($paragraph, 'field_c_p_document', TRUE);
   if ($document) {
     $fid = $document->getSource()->getSourceFieldValue($document);
 
-    /** @var \Drupal\file\FileInterface $file */
     $file = $fid ? File::load($fid) : NULL;
     if (!empty($file)) {
       $url = $file->createFileUrl(FALSE);
