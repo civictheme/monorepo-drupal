@@ -11,15 +11,7 @@
   right: $ct-back-to-top-space-right;
   bottom: $ct-back-to-top-space-bottom;
 
-  &[data-scrollspy='true'] {
-    display: none;
-
-    &.ct-scrollspy-scrolled {
-      display: block;
-    }
-  }
-
-  .ct-button {
+  #{$root}__button {
     &,
     &:focus,
     &:active,
@@ -32,16 +24,6 @@
       color: $ct-back-to-top-color;
       line-height: 0;
       outline-color: $ct-back-to-top-outline-color;
-    }
-
-    &__icon {
-      &:focus {
-        outline-style: unset;
-      }
-    }
-
-    .ct-icon {
-      fill: $ct-back-to-top-color;
     }
   }
 }
