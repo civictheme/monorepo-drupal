@@ -128,3 +128,8 @@
     font-weight: $font-weight;
   }
 }
+
+@mixin ct-font-size-inherit() {
+  font-size: inherit;
+  line-height: inherit;
+}
