@@ -66,7 +66,7 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
       [
         'some/non_existing/storybook-static',
         1,
-        'Directory "/app/some/non_existing/storybook-static" is not readable.',
+        'Directory "some/non_existing/storybook-static" is not readable.',
       ],
     ];
   }
