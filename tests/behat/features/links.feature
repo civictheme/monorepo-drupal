@@ -84,7 +84,7 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-theme-light" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'][target='_blank'].ct-content-link" element
     And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-content-link.ct-content-link--external" element
-    
+
     And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-light" element
 
     # Dark.
@@ -107,5 +107,5 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-theme-dark" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'][target='_blank'].ct-content-link" element
     And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-content-link.ct-content-link--external" element
-    
+
     And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element

@@ -46,7 +46,7 @@ Feature: Manual list fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
 
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish

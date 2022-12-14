@@ -63,8 +63,8 @@ Feature: Manual list render
 
     When I visit "civictheme_page" "[TEST] Page Promo cards test"
     And I should see the text "[TEST] Promo manual list"
-    Then I should see the link "View all promo cards" with "https://example.com" in 'div.ct-list'
-    And I should see an "div.ct-promo-card" element
+    Then I should see the link "View all promo cards" with "https://example.com" in '.ct-list'
+    And I should see an ".ct-promo-card" element
     And I should see the text "Promo card title"
     And I should see the text "Promo card title 1"
     And I should see the text "Promo card title 2"
@@ -105,10 +105,10 @@ Feature: Manual list render
 
     When I visit "civictheme_page" "[TEST] Page Navigation cards test"
     And I should see the text "[TEST] Navigation manual list"
-    Then I should see the link "View all navigation cards" with "https://example.com" in 'div.ct-list'
-    And I should see 4 "div.ct-navigation-card" elements
-    And I should see 4 ".ct-navigation-card__title" elements
-    And I should see 4 ".ct-navigation-card__summary" elements
+    Then I should see the link "View all navigation cards" with "https://example.com" in '.ct-list'
+    And I should see 4 ".ct-navigation-card" elements
+    And I should see 4 ".ct-navigation-card__content__title" elements
+    And I should see 4 ".ct-navigation-card__content__summary" elements
     And I should see the text "Navigation card title"
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"
@@ -139,12 +139,12 @@ Feature: Manual list render
 
     When I visit "civictheme_page" "[TEST] Page Subject cards test"
     And I should see the text "[TEST] Subject manual list"
-    Then I should see the link "View all Subject cards" with "https://example.com" in 'div.ct-list'
-    And I should see 1 "div.ct-list" elements
-    And I should see 3 "div.ct-subject-card" elements
-    And I should see 2 "div.ct-subject-card__image img" elements
-    And I should see 3 "div.ct-subject-card__title" elements
-    And I should not see an "div.ct-navigation-card" element
+    Then I should see the link "View all Subject cards" with "https://example.com" in '.ct-list'
+    And I should see 1 ".ct-list" elements
+    And I should see 3 ".ct-subject-card" elements
+    And I should see 2 ".ct-subject-card__content__image img" elements
+    And I should see 3 ".ct-subject-card__content__title" elements
+    And I should not see an ".ct-navigation-card" element
     And I should see the text "Subject card title"
     And I should see the text "Subject card title 1"
     And I should see the text "Subject card title 2"
@@ -172,15 +172,15 @@ Feature: Manual list render
 
     When I visit "civictheme_page" "[TEST] Page Service cards test"
     And I should see the text "[TEST] Service manual list"
-    Then I should see the link "View all Service cards" with "https://example.com" in 'div.ct-list'
-    And I should see 1 "div.ct-list" elements
-    And I should see 3 "div.ct-service-card" elements
-    And I should see 2 "div.ct-service-card.ct-theme-dark" elements
-    And I should see 1 "div.ct-service-card.ct-theme-light" elements
-    And I should see 3 "div.ct-service-card__title" elements
-    And I should see 3 "ul.ct-service-card__links" elements
-    And I should not see an "div.ct-subject-card" element
-    And I should not see an "div.ct-service-card img" element
+    Then I should see the link "View all Service cards" with "https://example.com" in '.ct-list'
+    And I should see 1 ".ct-list" elements
+    And I should see 3 ".ct-service-card" elements
+    And I should see 2 ".ct-service-card.ct-theme-dark" elements
+    And I should see 1 ".ct-service-card.ct-theme-light" elements
+    And I should see 3 ".ct-service-card__content__title" elements
+    And I should see 3 ".ct-service-card__content__links" elements
+    And I should not see an ".ct-subject-card" element
+    And I should not see an ".ct-service-card img" element
     And I should see the text "Service card title"
     And I should see the text "Service card title 1"
     And I should see the text "Service card title 2"
@@ -207,12 +207,12 @@ Feature: Manual list render
 
     When I visit "civictheme_page" "[TEST] Page Reference cards test"
     And I should see the text "[TEST] Reference manual list"
-    And I should not see an "div.ct-list__link a" element
-    And I should see 1 "div.ct-list" elements
-    And I should see 1 "div.ct-event-card__content" elements
-    And I should see 1 "div.ct-subject-card__title" elements
-    And I should see 1 "div.ct-navigation-card__title" elements
-    And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "li.ct-item-grid__item > .ct-theme-light" elements
-    And I should see 1 "li.ct-item-grid__item > .ct-theme-dark" elements
+    And I should not see an ".ct-list__link a" element
+    And I should see 1 ".ct-list" elements
+    And I should see 1 ".ct-event-card__content" elements
+    And I should see 1 ".ct-subject-card__content__title" elements
+    And I should see 1 ".ct-navigation-card__content__title" elements
+    And I should see 1 ".ct-promo-card__content" elements
+    And I should see 3 ".ct-item-grid__item > .ct-theme-light" elements
+    And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
