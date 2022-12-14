@@ -8,25 +8,25 @@
  * - content_top: [string] Content slot.
  * - content_bottom: [string] Content slot.
  * - title: [string] Title.
- * - summary: [string]  Summary.
+ * - summary: [string] Summary.
  * - url: [string] Link.
- * - is_external: [boolean] Link is external.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set with_link = url is not empty %}
 {% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
-{% if url is not empty %}
-  <a class="ct-next-steps {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+{% if title is not empty %}
+  <div class="ct-next-steps {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
-          <div class="ct-next-steps__content">
+          <div class="ct-next-steps__inner">
             {% block content_top %}
               {% if content_top is not empty %}
                 <div class="ct-next-steps__content-top">
@@ -37,28 +37,42 @@
 
             {% block content %}
               {% if title is not empty or summary is not empty %}
-                <div class="ct-next-steps__text">
-                  {% if title is not empty %}
-                    <div class="ct-next-steps__title">
-                      {{ title }}
-                    </div>
-                  {% endif %}
+                <div class="ct-next-steps__content">
+                  {% block title %}
+                    {% if title is not empty %}
+                      {% set title_content %}
+                        {% if with_link %}
+                          {% include '@atoms/link/link.twig' with {
+                            theme: theme,
+                            text: title,
+                            url: url,
+                            icon: 'right-arrow-2',
+                            modifier_class: 'ct-next-steps__content__title__link',
+                          } only %}
+                        {% else %}
+                          {{ title }}
+                        {% endif %}
+                      {% endset %}
+
+                      {% include '@atoms/heading/heading.twig' with {
+                        content: title_content,
+                        level: 4,
+                        theme: theme,
+                        modifier_class: 'ct-next-steps__content__title',
+                      } only %}
+                    {% endif %}
+                  {% endblock %}
+
                   {% if summary is not empty %}
-                    <div class="ct-next-steps__summary">
-                      {{ summary }}
-                    </div>
+                    {% include '@atoms/paragraph/paragraph.twig' with {
+                      theme: theme,
+                      content: summary,
+                      allow_html: true,
+                      modifier_class: 'ct-next-steps__content__summary',
+                    } only %}
                   {% endif %}
                 </div>
               {% endif %}
-            {% endblock %}
-
-            {% block icon %}
-              <div class="ct-next-steps__icon ct-next-steps__read-more">
-                {% include '@base/icon/icon.twig' with {
-                  symbol: is_external ? 'upper-right-arrow' : 'right-arrow-2',
-                  color: 'primary'
-                } only %}
-              </div>
             {% endblock %}
 
             {% block content_bottom %}
@@ -72,5 +86,5 @@
         </div>
       </div>
     </div>
-  </a>
+  </div>
 {% endif %}
