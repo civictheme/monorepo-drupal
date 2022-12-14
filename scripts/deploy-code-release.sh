@@ -42,6 +42,10 @@ DEPLOY_CODE_RELEASE_GITIGNORE="${DEPLOY_CODE_RELEASE_GITIGNORE:-${DEPLOY_CODE_RE
 # Filter commit logs using provided regex.
 DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="${DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX:-.*}"
 
+# Version placeholder to replace with the discovered version.
+# Used in configs where SemVer valid version is required.
+DEPLOY_CODE_RELEASE_VERSION_PLACEHOLDER="${DEPLOY_CODE_RELEASE_VERSION_PLACEHOLDER:-1.99.0}"
+
 # Email address of the user who will be committing to a remote repository.
 DEPLOY_GIT_USER_NAME="${DEPLOY_GIT_USER_NAME:-"Deployer Robot"}"
 
@@ -224,6 +228,7 @@ remove_special_comments_with_content "DEVELOPMENT" "${DEPLOY_CODE_RELEASE_DST_DI
 
 echo "==> Adding version number in ${DEPLOY_CODE_RELEASE_DST_DIR}."
 replace_string_content "{{ VERSION }}" "${current_tag}" "${DEPLOY_CODE_RELEASE_DST_DIR}"
+replace_string_content "${DEPLOY_CODE_RELEASE_VERSION_PLACEHOLDER}" "${current_tag}" "${DEPLOY_CODE_RELEASE_DST_DIR}"
 
 # Allow to provide custom .gitignore.
 if [ -f "${DEPLOY_CODE_RELEASE_GITIGNORE}" ]; then

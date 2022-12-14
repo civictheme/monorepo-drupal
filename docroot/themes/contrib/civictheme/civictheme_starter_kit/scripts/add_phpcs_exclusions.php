@@ -56,12 +56,13 @@ function main(array $argv, $argc) {
   $template = "// phpcs:ignoreFile\n";
 
   $target_directory = $argv[1];
+  $target_directory_original = $target_directory;
   $target_directory = getcwd() . '/' . $target_directory;
 
   print "==> Started adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;
 
   if (!file_exists($target_directory) || !is_dir($target_directory)) {
-    throw new \Exception(sprintf('Directory "%s" is not readable.', $target_directory) . PHP_EOL);
+    throw new \Exception(sprintf('Directory "%s" is not readable.', $target_directory_original) . PHP_EOL);
   }
 
   $files = glob($target_directory . '**/*.js');
