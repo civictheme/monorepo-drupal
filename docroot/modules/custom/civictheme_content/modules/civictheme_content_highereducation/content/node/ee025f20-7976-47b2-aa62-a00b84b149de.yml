@@ -145,9 +145,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Be at the forefront of this emerging technology and drive digital transformation in our world.'
@@ -186,9 +183,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Transform our understanding of the human brain.'
@@ -227,9 +221,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: small
                   field_c_p_summary:
                     -
                       value: 'Dive into engineering challenges and lead the way in the engineering speciality of your choice.'

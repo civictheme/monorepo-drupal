@@ -43,12 +43,13 @@
             <span class="ct-alert__icon">
               {% include "@base/icon/icon.twig" with {
                 symbol: icons[type],
-                modifier_class: "%s ct-icon--%s"|format(theme_class, type)
+                size: 'regular',
               } only %}
             </span>
           {% endif %}
           {{ title|raw }}
         </div>
+
         <div class="ct-alert__summary col-xxs-12 col-m-9">
           {{ description|raw }}
           {% include "@atoms/button/button.twig" with {

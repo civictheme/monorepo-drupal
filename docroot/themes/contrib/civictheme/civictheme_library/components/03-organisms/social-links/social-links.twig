@@ -29,12 +29,14 @@
           {% include '@atoms/button/button.twig' with {
             theme: theme,
             kind: 'link',
+            type: 'tertiary',
             icon: item.symbol,
             size: item.size,
             url: item.url,
             text: item.text,
-            title: item.title,
             is_raw_text: true,
+            modifier_class: 'ct-social-links__item__button',
+            attributes: item.title is defined and item.title is not empty ? ' title="' ~ item.title ~ '"' : '',
           } only %}
         </div>
       {% endfor %}

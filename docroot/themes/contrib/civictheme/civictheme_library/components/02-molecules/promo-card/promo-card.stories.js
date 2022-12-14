@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import {
-  boolean, date, number, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
   demoImage,
@@ -31,11 +31,10 @@ export const PromoCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    subtitle: text('Subtitle', randomSentence(3), generalKnobTab),
     title: text('Title', 'Promo card name which runs across two or three lines', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
-    date: date('Date', new Date(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
-    is_external: boolean('Is external', false, generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Image alt text',

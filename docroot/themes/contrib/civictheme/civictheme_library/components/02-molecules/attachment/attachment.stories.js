@@ -20,7 +20,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'DOC type document',
-      ext: 'DOC',
+      ext: 'doc',
       size: '42.88 KB',
       last_updated: date,
       icon: 'download-file',
@@ -28,7 +28,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'DOCX type document',
-      ext: 'DOCX',
+      ext: 'docx',
       size: '32.48 KB',
       last_updated: date,
       icon: 'download-file',
@@ -36,7 +36,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'PDF type document',
-      ext: 'PDF',
+      ext: 'pdf',
       size: '42.82 KB',
       last_updated: date,
       icon: 'download-file',
@@ -44,7 +44,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'PPT type document',
-      ext: 'PPT',
+      ext: 'ppt',
       size: '12.88 KB',
       last_updated: date,
       icon: 'download-file',
@@ -52,7 +52,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'XLSX type document',
-      ext: 'XLSX',
+      ext: 'xlsx',
       size: '34.45 KB',
       last_updated: date,
       icon: 'download-file',
@@ -60,7 +60,7 @@ export const Attachment = (knobTab) => {
     {
       url: randomUrl(),
       text: 'XLS type document',
-      ext: 'XLS',
+      ext: 'xls',
       size: '65.67 KB',
       last_updated: date,
       icon: 'download-file',
@@ -97,9 +97,10 @@ export const Attachment = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
-    summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
+    title: text('Title', 'Attachments', generalKnobTab),
+    summary: text('Summary', 'Summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines.', generalKnobTab),
     links: boolean('With links', true, generalKnobTab) ? links : null,
+    with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',
       {

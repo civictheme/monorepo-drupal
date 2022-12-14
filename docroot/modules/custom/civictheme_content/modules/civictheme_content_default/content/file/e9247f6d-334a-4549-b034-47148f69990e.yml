@@ -1,12 +1,12 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 32a0cdee-4b85-494d-b67e-92773b75a064
+  uuid: e9247f6d-334a-4549-b034-47148f69990e
   default_langcode: en
 default:
   uid:
     -
-      target_id: 0
+      target_id: 1
   filename:
     -
       value: generic.png
@@ -16,9 +16,12 @@ default:
   filemime:
     -
       value: image/png
+  filesize:
+    -
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1657021662
+      value: 1670912526

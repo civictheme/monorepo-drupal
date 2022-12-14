@@ -17,10 +17,10 @@ html {
   @each $name, $value in meta.module-variables('variables') {
     // Only filter by CivicTheme variables.
     @if str-index($name, 'ct-') {
-      // Only filter by variable names related to color.
-      @if str-index($name, 'color') {
+      // Only filter by variable names related to color or opacity.
+      @if str-index($name, 'color') or str-index($name, 'opacity') {
         // Only filter by color or string variables.
-        @if type-of($value) == 'color' or type-of($value) == 'string' {
+        @if type-of($value) == 'color' or type-of($value) == 'number' or type-of($value) == 'string' {
           --#{$name}: #{$value};
         }
       }

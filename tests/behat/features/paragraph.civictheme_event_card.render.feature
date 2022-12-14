@@ -65,16 +65,16 @@ Feature: Event Card render
 
     When I visit "civictheme_page" "[TEST] Page - Event cards test"
     And I should see the text "[TEST] Event manual list"
-    Then I should see the link "View all events" with "https://example.com" in 'div.ct-list'
-    And I should see an "div.ct-event-card" element
-    And I should see 1 "div.ct-list" elements
-    And I should see 4 "div.ct-event-card" elements
-    And I should see 2 "div.ct-event-card.ct-theme-light" elements
-    And I should see 2 "div.ct-event-card.ct-theme-dark" elements
-    And I should see 4 "div.ct-event-card__content" elements
-    And I should see 4 "div.ct-event-card__title" elements
-    And I should see 4 "div.ct-event-card__summary" elements
-    And I should see 3 "div.ct-event-card__tags .ct-tag" elements
+    Then I should see the link "View all events" with "https://example.com" in '.ct-list'
+    And I should see an ".ct-event-card" element
+    And I should see 1 ".ct-list" elements
+    And I should see 4 ".ct-event-card" elements
+    And I should see 2 ".ct-event-card.ct-theme-light" elements
+    And I should see 2 ".ct-event-card.ct-theme-dark" elements
+    And I should see 4 ".ct-event-card__content" elements
+    And I should see 4 ".ct-event-card__content__title" elements
+    And I should see 4 ".ct-event-card__content__summary" elements
+    And I should see 3 ".ct-event-card__content__tags .ct-tag" elements
     And I should see the text "Event card title 1"
     And I should see the text "Event card title 2"
     And I should see the text "Event card title 3"

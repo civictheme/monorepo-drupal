@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 33c47a40-e413-4ec8-bdad-770efab55bf5
+  uuid: 65559b88-1418-471a-908d-6f440aa939b7
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: generic.png
+      value: office_building.jpg
   uri:
     -
-      value: 'public://media-icons/generic/generic.png'
+      value: 'public://images/2022-12/office_building.jpg'
   filemime:
     -
-      value: image/png
+      value: image/jpeg
   filesize:
     -
-      value: 3900
+      value: 236137
   status:
     -
       value: true
   created:
     -
-      value: 1670116260
+      value: 1670274172
