@@ -14,6 +14,7 @@ use Drupal\node\NodeInterface;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
