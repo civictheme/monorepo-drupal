@@ -11,8 +11,7 @@
   }
 
   .ct-collapsible__icon {
-    width: ct-icon-size-dimension('regular', 'm', 'width');
-    height: ct-icon-size-dimension('regular', 'm', 'height');
+    @include ct-icon-size();
   }
 
   &:not([data-collapsible-trigger-no-icon]) {
