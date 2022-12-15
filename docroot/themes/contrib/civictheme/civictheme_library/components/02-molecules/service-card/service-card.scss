@@ -21,15 +21,13 @@
   }
 
   #{$root}__content__title {
-    @include ct-typography('heading-4');
-
     text-align: center;
   }
 
   #{$root}__content__links {
     margin-top: ct-spacing(2);
 
-    .ct-item-list__list__item {
+    .ct-item-list__item {
       text-align: center;
     }
   }

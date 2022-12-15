@@ -11,10 +11,6 @@
     border-bottom-style: solid;
     border-bottom-width: ct-particle(0.125);
 
-    .ct-link-list__list__item {
-      margin-right: 0;
-    }
-
     .ct-link {
       @include ct-typography('label-regular');
       @include ct-link-decoration(false, false, false, false);

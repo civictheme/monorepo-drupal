@@ -342,6 +342,22 @@ $ct-grid-offsets: (
 ) !default;
 
 //
+// Item list.
+//
+$ct-item-list-horizontal-large-column-gap: ct-spacing(4);
+$ct-item-list-horizontal-large-row-gap: ct-spacing(4);
+$ct-item-list-horizontal-regular-column-gap: ct-spacing(2);
+$ct-item-list-horizontal-regular-row-gap: ct-spacing(2);
+$ct-item-list-horizontal-small-column-gap: ct-spacing(1);
+$ct-item-list-horizontal-small-row-gap: ct-spacing(1);
+$ct-item-list-vertical-large-column-gap: ct-spacing(4);
+$ct-item-list-vertical-large-row-gap: ct-spacing(4);
+$ct-item-list-vertical-regular-column-gap: ct-spacing(2);
+$ct-item-list-vertical-regular-row-gap: ct-spacing(2);
+$ct-item-list-vertical-small-column-gap: ct-spacing(1);
+$ct-item-list-vertical-small-row-gap: ct-spacing(1);
+
+//
 // Visibility.
 //
 

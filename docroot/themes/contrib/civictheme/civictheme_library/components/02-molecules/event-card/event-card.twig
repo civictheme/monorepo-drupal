@@ -14,6 +14,7 @@
  * - title: [string] Title.
  * - summary: [string] Summary.
  * - url: [string] Optional URL.
+ * - tags: [array] Array of tags.
  * - attributes: [string] Additional attributes.
  * - modifier_class:[string] Additional classes.
  */
@@ -105,9 +106,12 @@
 
       {% block location %}
         {% if location %}
-          <div class="ct-event-card__location">
-            {{ location }}
-          </div>
+          {% include '@atoms/paragraph/paragraph.twig' with {
+            theme: theme,
+            content: location,
+            allow_html: true,
+            modifier_class: 'ct-event-card__location',
+          } only %}
         {% endif %}
       {% endblock %}
 
@@ -126,19 +130,9 @@
         {% if tags or url %}
           <div class="ct-event-card__content__tags">
             {% if tags %}
-              {% set tag_items = [] %}
-              {% for key, tag in tags %}
-                {% set tag_item %}
-                  {% include '@atoms/tag/tag.twig' with {
-                    theme: theme,
-                    content: tag,
-                  } only %}
-                {% endset %}
-                {% set tag_items = tag_items|merge([ tag_item ]) %}
-              {% endfor %}
-              {% include '@base/item-list/item-list.twig' with {
-                items: tag_items,
-                size: 'small',
+              {% include '@molecules/tag-list/tag-list.twig' with {
+                theme: theme,
+                tags: tags,
               } only %}
             {% endif %}
 

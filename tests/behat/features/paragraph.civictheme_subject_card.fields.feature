@@ -50,5 +50,5 @@ Feature: Subject card fields
     And I should see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform-field_c_p_list_items-0-subform']" element
     And I should not see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform-field_c_p_list_items-0-subform'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][title]']" element
+    And I should not see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][title]']" element
     And I should see an ".field--name-field-c-p-image.field--widget-media-library-widget .js-media-library-widget" element

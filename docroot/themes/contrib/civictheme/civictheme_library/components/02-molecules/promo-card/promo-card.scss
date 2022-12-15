@@ -60,7 +60,7 @@
     @include ct-flex-align-right();
 
     .ct-link__icon {
-      font-size: ct-icon-size-dimension('regular', 'm', 'width');
+      @include ct-icon-size();
     }
   }
 
