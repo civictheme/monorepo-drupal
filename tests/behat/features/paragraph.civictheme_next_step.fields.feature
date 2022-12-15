@@ -49,4 +49,6 @@ Feature: Next step fields
     And I see field "field_c_n_components[0][subform][field_c_p_vertical_spacing]"
     And I see field "Title"
     And I see field "Summary"
+    And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]']" element
+    And should not see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]'].required" element
