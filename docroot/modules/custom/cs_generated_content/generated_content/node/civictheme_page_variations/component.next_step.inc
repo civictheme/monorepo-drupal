@@ -30,6 +30,29 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
+      'title' => 'Next Step component, No Summary',
+      'components' => [
+        [
+          'type' => 'next_step',
+          'title' => $helper::staticSentence(3),
+          'link' => [
+            'uri' => $helper::staticUrl(),
+            'title' => $helper::staticSentence(2),
+          ],
+        ],
+      ],
+    ],
+    [
+      'title' => 'Next Step component, No link',
+      'components' => [
+        [
+          'type' => 'next_step',
+          'title' => $helper::staticSentence(3),
+          'summary' => $helper::staticSentence(8),
+        ],
+      ],
+    ],
+    [
       'title' => 'Next Step component, No link text',
       'components' => [
         [
