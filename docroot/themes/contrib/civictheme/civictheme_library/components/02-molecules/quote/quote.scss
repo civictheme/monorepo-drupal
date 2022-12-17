@@ -18,7 +18,7 @@
   }
 
   &__author {
-    @include ct-typography('label-extra-small');
+    @include ct-typography('label-small');
 
     padding: 0 ct-spacing(3) ct-spacing(3);
 
