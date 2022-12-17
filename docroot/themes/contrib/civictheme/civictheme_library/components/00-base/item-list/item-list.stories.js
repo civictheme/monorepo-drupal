@@ -17,8 +17,8 @@ export const ItemList = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
-    type: radios(
-      'Type',
+    direction: radios(
+      'Direction',
       {
         Horizontal: 'horizontal',
         Vertical: 'vertical',
