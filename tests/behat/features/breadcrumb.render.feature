@@ -21,6 +21,6 @@ Feature: Breadcrumb render
       | edit-path-0-alias | /test-breadcrumb-parent/breadcrumb-test |
     And I press "Save"
     When I visit "/test-breadcrumb-parent/breadcrumb-test"
-    Then I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in "nav.ct-breadcrumb .ct-item-list.hide-l"
-    And  I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in "nav.ct-breadcrumb .ct-item-list.show-l"
-    And I should see "[TEST] Page breadcrumb test" in the ".ct-breadcrumb .ct-item-list.show-l" element
+    Then I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in "nav.ct-breadcrumb .ct-item-list.hide-m"
+    And  I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in "nav.ct-breadcrumb .ct-item-list.show-m-flex"
+    And I should see "[TEST] Page breadcrumb test" in the ".ct-breadcrumb .ct-item-list.show-m-flex" element

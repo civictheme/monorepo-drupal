@@ -10,6 +10,8 @@
   $root: &;
 
   #{$root}__title {
+    @include ct-typography('heading-5');
+
     margin-bottom: ct-spacing(2);
     margin-top: ct-spacing(2);
   }

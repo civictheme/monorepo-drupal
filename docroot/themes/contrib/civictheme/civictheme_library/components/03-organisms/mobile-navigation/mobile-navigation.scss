@@ -71,8 +71,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-radius: 0;
 
       .ct-icon {
-        width: ct-icon-size-dimension('regular', 'm', 'width');
-        height: ct-icon-size-dimension('regular', 'm', 'height');
+        @include ct-icon-size();
       }
     }
   }
@@ -110,8 +109,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-radius: 0;
 
       .ct-icon {
-        width: ct-icon-size-dimension('small', 'm', 'width');
-        height: ct-icon-size-dimension('small', 'm', 'height');
+        @include ct-icon-size('small');
       }
     }
   }
@@ -191,8 +189,8 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
   }
 
   .ct-icon {
-    width: ct-icon-size-dimension('regular', 'xxs', 'width');
-    height: ct-icon-size-dimension('regular', 'xxs', 'height');
+    @include ct-icon-size('extra-small');
+
     vertical-align: middle;
   }
 

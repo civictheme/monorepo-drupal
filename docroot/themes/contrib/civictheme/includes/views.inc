@@ -227,11 +227,18 @@ function civictheme_preprocess_views_view(&$variables) {
   // and so we need to pass the view on different properties to be
   // accessible in the preprocess functions.
   if (!empty($variables['pager'])) {
-    if ($view->getPager()->getPluginId() === 'mini') {
-      $variables['pager']['#view'] = $view;
+    // Hide pager html if single page.
+    $view_pager = $view->display_handler->getOption('pager');
+    if ($view->total_rows <= (int) $view_pager['options']['items_per_page']) {
+      unset($variables['pager']);
     }
     else {
-      $variables['pager']['#attributes']['#view'] = $view;
+      if ($view->getPager()->getPluginId() === 'mini') {
+        $variables['pager']['#view'] = $view;
+      }
+      else {
+        $variables['pager']['#attributes']['#view'] = $view;
+      }
     }
   }
 
