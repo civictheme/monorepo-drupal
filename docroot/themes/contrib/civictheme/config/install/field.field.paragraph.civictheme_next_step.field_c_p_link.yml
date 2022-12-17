@@ -12,11 +12,11 @@ entity_type: paragraph
 bundle: civictheme_next_step
 label: Link
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 17
   title: 1
+  link_type: 17
 field_type: link

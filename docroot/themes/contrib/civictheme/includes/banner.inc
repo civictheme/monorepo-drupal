@@ -14,6 +14,7 @@ use Drupal\node\NodeInterface;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -40,11 +41,24 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   $variables['theme'] = civictheme_get_field_theme_value($entity);
 
+  if (civictheme_field_has_value($entity, 'field_c_b_banner_type')) {
+    $variables['type'] = civictheme_get_field_value($entity, 'field_c_b_banner_type', TRUE);
+  }
+
   if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
 
     if (civictheme_field_has_value($entity, 'field_c_b_blend_mode')) {
       $variables['background_image_blend_mode'] = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
+    }
+  }
+
+  if (civictheme_field_has_value($entity, 'field_c_b_featured_image')) {
+    $featured_image = civictheme_get_field_value($entity, 'field_c_b_featured_image', TRUE);
+    if ($featured_image !== NULL) {
+      $image = civictheme_get_field_value($featured_image, 'field_c_m_image', TRUE);
+      $variables['featured_image']['src'] = civictheme_media_get_url($featured_image);
+      $variables['featured_image']['alt'] = $image !== NULL ? $image->getValue()['alt'] : '';
     }
   }
 
