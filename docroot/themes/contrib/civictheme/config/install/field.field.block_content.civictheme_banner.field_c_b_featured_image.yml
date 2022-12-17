@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_banner
+    - field.storage.block_content.field_c_b_featured_image
+    - media.type.civictheme_image
+id: block_content.civictheme_banner.field_c_b_featured_image
+field_name: field_c_b_featured_image
+entity_type: block_content
+bundle: civictheme_banner
+label: 'Featured image'
+description: 'Image displayed on a side of the banner.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      civictheme_image: civictheme_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

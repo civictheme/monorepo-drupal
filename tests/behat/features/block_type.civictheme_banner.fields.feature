@@ -12,3 +12,5 @@ Feature: Banner block fields
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/block/block-content/manage/civictheme_banner/fields"
     Then I should see the text "Theme" in the "field_c_b_theme" row
+    Then I should see the text "Featured image" in the "field_c_b_featured_image" row
+    Then I should see the text "Type" in the "field_c_b_banner_type" row
