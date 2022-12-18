@@ -7,7 +7,7 @@ import {
   getSlots, randomSentence,
   randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemeEventCard from './event-card.twig';
 

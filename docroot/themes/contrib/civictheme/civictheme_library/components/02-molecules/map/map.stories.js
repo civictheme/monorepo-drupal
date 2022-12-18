@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
-import { randomUrl } from '../../00-base/base.stories';
+import { randomUrl } from '../../00-base/base.utils';
 import CivicThemeMap from './map.twig';
 
 export default {

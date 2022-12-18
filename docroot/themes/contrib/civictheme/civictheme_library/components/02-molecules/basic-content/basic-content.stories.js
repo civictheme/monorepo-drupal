@@ -10,7 +10,7 @@ import {
   demoImage,
   demoVideoPoster,
   demoVideos,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Content/Basic Content',

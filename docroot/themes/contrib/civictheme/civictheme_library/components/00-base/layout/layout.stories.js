@@ -4,7 +4,7 @@ import CivicThemeLayout from './layout.twig';
 import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
 import CivicThemeLayoutSingleColumnContained
   from './content-layout--single-column-contained.twig';
-import { getSlots, placeholder } from '../base.stories';
+import { getSlots, placeholder } from '../base.utils';
 
 export default {
   title: 'Base/Layout/Layout',

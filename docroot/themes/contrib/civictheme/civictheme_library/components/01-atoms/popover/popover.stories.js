@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import CivicThemePopover from './popover.stories.twig';
 import './popover';
-import { placeholder } from '../../00-base/base.stories';
+import { placeholder } from '../../00-base/base.utils';
 
 export default {
   title: 'Atoms/Popover',

@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicThemeVideo from './video.twig';
-import { demoVideoPoster, demoVideos } from '../../00-base/base.stories';
+import { demoVideoPoster, demoVideos } from '../../00-base/base.utils';
 
 export default {
   title: 'Atoms/Video',

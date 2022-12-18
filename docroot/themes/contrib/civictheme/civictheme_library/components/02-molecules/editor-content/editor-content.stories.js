@@ -6,7 +6,7 @@ import {
   demoImage,
   demoVideoPoster,
   demoVideos,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 import CivicThemeVideoPlayer from '../video-player/video-player.twig';
 
 export default {

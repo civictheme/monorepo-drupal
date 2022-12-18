@@ -6,7 +6,7 @@ import {
   number,
 } from '@storybook/addon-knobs';
 
-import { randomFormElement } from '../../00-base/base.stories';
+import { randomFormElement } from '../../00-base/base.utils';
 
 import CivicThemeDropdownFilter from './dropdown-filter.twig';
 

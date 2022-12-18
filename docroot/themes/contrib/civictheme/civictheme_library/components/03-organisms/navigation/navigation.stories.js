@@ -2,7 +2,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeNavigation from './navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
-import { randomInt, randomSentence } from '../../00-base/base.stories';
+import { randomInt, randomSentence } from '../../00-base/base.utils';
 
 export default {
   title: 'Organisms/Navigation/Navigation',

@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import {
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemeTag from './tag.twig';
 
