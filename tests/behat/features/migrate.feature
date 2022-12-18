@@ -84,7 +84,7 @@ Feature: Tests the CivicTheme migration functionality
     And I run drush "mim --group=civictheme_migrate"
 
     And I visit "/test/migrated-content-1"
-    And I should see "[TEST] Banner title - Migrated Content 1" in the ".ct-banner__title h1" element
+    And I should see "[TEST] Banner title - Migrated Content 1" in the ".ct-banner__title" element
     And I should see "Last updated: 8 Oct 2022"
     And I should see an ".ct-layout.ct-vertical-spacing--both" element
     And I should see an ".ct-banner.ct-theme-dark.ct-banner--decorative" element
