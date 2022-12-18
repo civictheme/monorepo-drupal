@@ -11,7 +11,7 @@ import {
   randomString,
   randomText,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 import Slide from './slide.twig';
 import Tag from '../../01-atoms/tag/tag.twig';
 import Button from '../../01-atoms/button/button.twig';

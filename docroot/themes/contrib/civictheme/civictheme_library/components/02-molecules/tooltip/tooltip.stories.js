@@ -5,7 +5,7 @@ import CivicThemeTooltip from './tooltip.twig';
 import './tooltip';
 
 import '../../00-base/collapsible/collapsible';
-import { randomText } from '../../00-base/base.stories';
+import { randomText } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Tooltip',

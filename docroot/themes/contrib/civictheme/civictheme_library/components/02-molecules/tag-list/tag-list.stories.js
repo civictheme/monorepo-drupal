@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomTags } from '../../00-base/base.stories';
+import { getSlots, randomTags } from '../../00-base/base.utils';
 
 import CivicThemeTagList from './tag-list.twig';
 

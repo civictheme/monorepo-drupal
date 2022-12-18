@@ -2,7 +2,7 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { demoImage, getSlots, objectFromArray } from '../../00-base/base.stories';
+import { demoImage, getSlots, objectFromArray } from '../../00-base/base.utils';
 import CivicThemeBannerExample from './banner.stories.twig';
 
 export default {

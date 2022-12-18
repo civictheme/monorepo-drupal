@@ -8,7 +8,7 @@ import {
   randomDropdownFilter,
   randomFormElement, randomSentence,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter
   from '../../02-molecules/group-filter/group-filter.twig';

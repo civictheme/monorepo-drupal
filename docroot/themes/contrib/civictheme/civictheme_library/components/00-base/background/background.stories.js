@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { color, select } from '@storybook/addon-knobs';
-import { objectFromArray } from '../base.stories';
+import { objectFromArray } from '../base.utils';
 
 export default {
   title: 'Base/Background',

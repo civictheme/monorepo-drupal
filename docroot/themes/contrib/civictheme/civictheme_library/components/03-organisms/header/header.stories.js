@@ -2,7 +2,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import { getSlots, randomInt, randomSentence } from '../../00-base/base.stories';
+import { getSlots, randomInt, randomSentence } from '../../00-base/base.utils';
 import CivicThemeHeaderExample from './header.stories.twig';
 
 import getMenuLinks from '../../00-base/menu/menu.utils';

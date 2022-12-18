@@ -3,7 +3,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemePagination from './pagination.twig';
-import { randomUrl } from '../../00-base/base.stories';
+import { randomUrl } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Pagination',
