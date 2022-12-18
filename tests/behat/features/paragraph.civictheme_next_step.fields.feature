@@ -40,7 +40,7 @@ Feature: Next step fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on ".field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civictheme_next_step_add_more" button
     And I wait for AJAX to finish
@@ -49,4 +49,6 @@ Feature: Next step fields
     And I see field "field_c_n_components[0][subform][field_c_p_vertical_spacing]"
     And I see field "Title"
     And I see field "Summary"
+    And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]']" element
+    And should not see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]'].required" element

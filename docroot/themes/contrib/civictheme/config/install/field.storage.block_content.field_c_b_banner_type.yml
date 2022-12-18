@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   module:
+    - block_content
     - options
-    - paragraphs
-id: paragraph.field_c_p_size
-field_name: field_c_p_size
-entity_type: paragraph
+id: block_content.field_c_b_banner_type
+field_name: field_c_b_banner_type
+entity_type: block_content
 type: list_string
 settings:
   allowed_values:
     -
-      value: small
-      label: Small
+      value: default
+      label: Default
     -
       value: large
       label: Large

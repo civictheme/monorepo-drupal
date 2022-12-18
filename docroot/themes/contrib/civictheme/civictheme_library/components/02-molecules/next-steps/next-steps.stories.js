@@ -20,7 +20,7 @@ export const NextSteps = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    title: text('Title', 'Next step title from knob', generalKnobTab),
+    title: text('Title', 'Next steps title from knob', generalKnobTab),
     summary: text('Summary', 'Short summary explaining why this link is relevant.', generalKnobTab),
     url: text('Link', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),

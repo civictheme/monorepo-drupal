@@ -86,10 +86,8 @@
           color: map.get($values, 'color');
           border-color: map.get($values, 'border-color');
 
-          .ct-icon {
-            @if $theme == 'light' {
-              background-color: map.get($values, 'icon-color');
-            }
+          #{$root}__icon {
+            color: map.get($values, 'icon-color');
           }
         }
       }

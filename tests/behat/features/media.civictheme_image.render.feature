@@ -24,4 +24,4 @@ Feature: CivicTheme image
       | field_c_p_content:format | civictheme_rich_text                                                                                                                                                            |
     When I visit "civictheme_page" "[TEST] CivicTheme Page"
     And I should see the text "[TEST] CivicTheme Page"
-    And should see an "div.ct-accordion__content .ct-figure img" element
+    And should see an ".ct-accordion__content .ct-figure img" element

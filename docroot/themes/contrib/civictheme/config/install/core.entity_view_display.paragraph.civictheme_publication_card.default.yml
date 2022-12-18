@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_publication_card.field_c_p_document
     - field.field.paragraph.civictheme_publication_card.field_c_p_image
-    - field.field.paragraph.civictheme_publication_card.field_c_p_size
     - field.field.paragraph.civictheme_publication_card.field_c_p_summary
     - field.field.paragraph.civictheme_publication_card.field_c_p_theme
     - field.field.paragraph.civictheme_publication_card.field_c_p_title
@@ -18,48 +17,41 @@ mode: default
 content:
   field_c_p_document:
     type: entity_reference_entity_view
-    weight: 4
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 4
     region: content
   field_c_p_image:
-    weight: 2
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_c_p_size:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
+    weight: 2
     region: content
   field_c_p_summary:
-    weight: 3
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
   field_c_p_theme:
-    weight: 0
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_c_p_title:
-    weight: 1
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
 hidden: {  }

@@ -27,17 +27,17 @@ Feature: Attachment render
       | field_c_p_attachments | [TEST] CivicTheme PDF |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
-    And I should see an "div.ct-attachment" element
-    And I should not see an "div.ct-attachment.ct-content--with-background" element
-    And I should see an "div.ct-attachment.ct-theme-light" element
-    And I should see an "div.ct-attachment__content" element
-    And I should see an "div.ct-attachment__text" element
-    And I should see an "div.ct-attachment__title" element
-    And I should see an "div.ct-attachment__summary" element
-    And I should see an "ul.ct-attachment__links" element
-    And I should see an "a.ct-link--attachment" element
+    And I should see an ".ct-attachment" element
+    And I should not see an ".ct-attachment.ct-attachment--with-background" element
+    And I should see an ".ct-attachment.ct-theme-light" element
+    And I should see an ".ct-attachment__content" element
+    And I should see an ".ct-attachment__content__title" element
+    And I should see an ".ct-attachment__content__summary" element
+    And I should see an ".ct-attachment__list" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Summary text"
+    And I should see the text "test_pdf.pdf"
+    And I should see the text "(PDF"
 
   @api
   Scenario: Attachment dark with background
@@ -50,14 +50,14 @@ Feature: Attachment render
       | field_c_p_attachments | [TEST] CivicTheme PDF |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
-    And I should see an "div.ct-attachment" element
-    And I should see an "div.ct-attachment.ct-attachment--with-background" element
-    And I should see an "div.ct-attachment.ct-theme-dark" element
-    And I should see an "div.ct-attachment__content" element
-    And I should see an "div.ct-attachment__text" element
-    And I should see an "div.ct-attachment__title" element
-    And I should see an "div.ct-attachment__summary" element
-    And I should see an "ul.ct-attachment__links" element
-    And I should see an "a.ct-link--attachment" element
+    And I should see an ".ct-attachment" element
+    And I should see an ".ct-attachment.ct-attachment--with-background" element
+    And I should see an ".ct-attachment.ct-theme-dark" element
+    And I should see an ".ct-attachment__content" element
+    And I should see an ".ct-attachment__content__title" element
+    And I should see an ".ct-attachment__content__summary" element
+    And I should see an ".ct-attachment__list" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Summary text"
+    And I should see the text "test_pdf.pdf"
+    And I should see the text "(PDF"

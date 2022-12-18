@@ -82,7 +82,23 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
   public function testLocation($civictheme_dir, $newtheme_rel_dir, $expected_newtheme_dir, $expected_rel_path) {
     $newtheme_name = 'new_theme';
 
-    $this->prepareSut($civictheme_dir);
+    $sut_dir = $this->prepareSut($civictheme_dir);
+
+    $composerjson_file = $sut_dir . '/composer.json';
+    $composerjson = json_decode(file_get_contents($composerjson_file), TRUE);
+    $composerjson['version'] = '9.8.7';
+    $composerjson['homepage'] = 'https://example.com/composer';
+    $composerjson['support']['issues'] = 'https://example.com/composer/issues';
+    $composerjson['support']['source'] = 'https://example.com/composer/source';
+    file_put_contents($composerjson_file, json_encode($composerjson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+    $packagejson_file = $sut_dir . '/package.json';
+    $packagejson = json_decode(file_get_contents($packagejson_file), TRUE);
+    $packagejson['version'] = '6.5.4';
+    $packagejson['homepage'] = 'https://example.com/package';
+    $packagejson['bugs'] = 'https://example.com/package/issues';
+    $packagejson['repository'] = 'https://example.com/package/source';
+    file_put_contents($packagejson_file, json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
     $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
 
@@ -113,11 +129,27 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
     $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
+    $this->assertFileExists($expected_new_theme_dir_full . 'composer.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
     $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'gulpfile.js'));
+    $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'webpack/webpack.common.js'));
+    $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'webpack/theme_js.js'));
+    $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'package.json'));
+
+    $composerjson_actual = json_decode(file_get_contents($expected_new_theme_dir_full . 'composer.json'), TRUE);
+    $this->assertStringContainsString($composerjson['version'], $composerjson_actual['extra']['civictheme']['version']);
+    $this->assertStringContainsString($composerjson['homepage'], $composerjson_actual['extra']['civictheme']['homepage']);
+    $this->assertStringContainsString($composerjson['support']['issues'], $composerjson_actual['extra']['civictheme']['support']['issues']);
+    $this->assertStringContainsString($composerjson['support']['source'], $composerjson_actual['extra']['civictheme']['support']['source']);
+
+    $packagejson_actual = json_decode(file_get_contents($expected_new_theme_dir_full . 'package.json'), TRUE);
+    $this->assertStringContainsString($packagejson['version'], $packagejson_actual['civictheme']['version']);
+    $this->assertStringContainsString($packagejson['homepage'], $packagejson_actual['civictheme']['homepage']);
+    $this->assertStringContainsString($packagejson['bugs'], $packagejson_actual['civictheme']['bugs']);
+    $this->assertStringContainsString($packagejson['repository'], $packagejson_actual['civictheme']['repository']);
 
     // Examples assertions.
     $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/01-atoms/demo-button');

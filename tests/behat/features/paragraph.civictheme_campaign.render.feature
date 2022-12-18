@@ -34,18 +34,18 @@ Feature: Campaign render
 
     When I visit "civictheme_page" "[TEST] Page Campaign test"
     And I scroll to an element with id "main-content"
-    And I should see an "div.ct-campaign" element
-    And I should see an "div.ct-campaign.ct-theme-light" element
+    And I should see an ".ct-campaign" element
+    And I should see an ".ct-campaign.ct-theme-light" element
     And I should not see an ".ct-campaign.ct-theme-dark" element
-    And I should see an "div.ct-campaign.ct-vertical-spacing-inset--both" element
-    And I should see an "div.ct-campaign.ct-campaign--image-position-right" element
-    And I should see an "div.ct-campaign__content" element
-    And I should see an "div.ct-campaign__tags" element
+    And I should see an ".ct-campaign.ct-vertical-spacing-inset--both" element
+    And I should see an ".ct-campaign.ct-campaign--image-position-right" element
+    And I should see an ".ct-campaign__content" element
+    And I should see an ".ct-campaign__tags" element
     And I should see an ".ct-campaign__date" element
     And I should see the text "[TEST] Campaign title"
-    And I should see an "div.ct-campaign__title" element
-    And I should see an "div.ct-campaign__summary" element
-    And I should see an "div.ct-campaign__image-wrapper" element
+    And I should see an ".ct-campaign__title" element
+    And I should see an ".ct-campaign__summary" element
+    And I should see an ".ct-campaign__image-wrapper" element
     And I should see the text "29 Apr 2021"
 
   @api @javascript
@@ -63,15 +63,15 @@ Feature: Campaign render
 
     When I visit "civictheme_page" "[TEST] Page Campaign test 1"
     And I scroll to an element with id "main-content"
-    And I should see an "div.ct-campaign" element
-    And I should not see an "div.ct-campaign.ct-theme-light" element
-    And I should see an "div.ct-campaign.ct-theme-dark" element
-    And I should not see an "div.ct-campaign.ct-vertical-spacing-inset--both" element
-    And I should see an "div.ct-campaign.ct-campaign--image-position-left" element
-    And I should see an "div.ct-campaign__content" element
-    And I should see an "div.ct-campaign__tags" element
+    And I should see an ".ct-campaign" element
+    And I should not see an ".ct-campaign.ct-theme-light" element
+    And I should see an ".ct-campaign.ct-theme-dark" element
+    And I should not see an ".ct-campaign.ct-vertical-spacing-inset--both" element
+    And I should see an ".ct-campaign.ct-campaign--image-position-left" element
+    And I should see an ".ct-campaign__content" element
+    And I should see an ".ct-campaign__tags" element
     And I should see an ".ct-campaign__date" element
     And I should see the text "[TEST] Campaign title"
-    And I should see an "div.ct-campaign__title" element
-    And I should see an "div.ct-campaign__summary" element
+    And I should see an ".ct-campaign__title" element
+    And I should see an ".ct-campaign__summary" element
     And I should see the text "30 Jun 2022"

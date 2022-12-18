@@ -21,50 +21,46 @@
 {% set type_class = 'ct-tag--%s'|format(type) %}
 {% set icon_class = icon is not empty ? 'ct-tag--with-icon' : '' %}
 {% set icon_placement_class = icon ? 'ct-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
-{% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
-{% set is_external = is_external ? 'ct-tag--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set is_external = is_external ? 'ct-tag--external': '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, is_external, modifier_class|default('')) %}
 
-{% set tag = url is not empty ? 'a' : 'span' %}
+{% if content|trim is not empty %}
+   {% set content %}
+     {% if icon %}
+       {% set link_icon %}
+         {% include '@base/icon/icon.twig' with {
+           symbol: icon,
+         } only %}
+       {% endset %}
+       {{ icon_placement == 'before' ? link_icon ~ content|raw : content|raw ~ link_icon }}
+     {% else %}
+       {{ content|raw }}
+     {% endif %}
+   {% endset %}
 
-{% set icon %}
-  {% if icon %}
-    {% include '@base/icon/icon.twig' with {
-      symbol: icon,
-      size: 'small',
-    } only %}
+  {% if is_new_window %}
+    {% set is_new_window_content %}
+      <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+    {% endset %}
   {% endif %}
-{% endset %}
 
-{% set text %}
-  {{ icon_placement == 'before' ? icon : '' }}{{ content }}{{ icon_placement == 'after' ? icon : '' }}
-{% endset %}
+  {% if is_external %}
+    {% set is_external_content %}
+      {% include '@base/icon/icon.twig' with {
+        symbol: 'upper-right-arrow',
+      } only %}
+    {% endset %}
+  {% endif %}
 
-{% if is_new_window %}
-  {% set text %}
-    {{ text }}<span class="ct-visually-hidden">Opens in a new tab/window</span>
-  {% endset %}
-{% endif %}
-
-{% if text|trim is not empty %}
+  {% set tag = url is not empty ? 'a' : 'span' %}
   <{{ tag }}
-    class="ct-tag {{ modifier_class }}"
-    {% if url is not empty %}
-      href="{{ url }}"
-    {% endif%}
-
-    {% if is_new_window %}
-      target="_blank"
-    {% endif%}
-
-    {% if content is not empty %}
-      title="{{ content }}"
-      aria-label="{{ content }}"
-    {% endif%}
-
-    {% if attributes is not empty %}
-      {{ attributes|raw }}
-    {% endif %}
-  >{{ text }}</{{ tag }}>
+  class="ct-tag {{ modifier_class }}"
+    {% if url is not empty %}href="{{ url }}"{% endif %}
+    {% if title is not empty %}title="{{ content }}"{% endif %}
+    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content }}{{ is_new_window_content }}{{ is_external_content }}
+  </{{ tag }}>
 {% endif %}

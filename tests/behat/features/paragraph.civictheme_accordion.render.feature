@@ -35,17 +35,17 @@ Feature: Accordion render
       | field_c_p_content:format | civictheme_rich_text                                                                                                                                |
 
     When I visit "civictheme_page" "[TEST] Page accordion test"
-    And I should see an "div.ct-accordion" element
-    And I should not see an "div.ct-accordion.ct-accordion--with-background" element
-    And I should see an "div.ct-accordion.ct-theme-light" element
-    And I should see an "div[data-collapsible-panel]" element
-    And I should see an "div.ct-accordion__inner" element
-    And I should see an "ul.ct-accordion__list" element
+    And I should see an ".ct-accordion" element
+    And I should not see an ".ct-accordion.ct-accordion--with-background" element
+    And I should see an ".ct-accordion.ct-theme-light" element
+    And I should see an "[data-collapsible-panel]" element
+    And I should see an ".ct-accordion__content" element
+    And I should see an ".ct-accordion__panels" element
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I should not see an "[data-collapsible-trigger][aria-expanded='true']" element
 
-  @api @javascript
+  @api
   Scenario: Accordion dark with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
@@ -64,13 +64,13 @@ Feature: Accordion render
       | field_c_p_content:format | civictheme_rich_text                                                                                                                                |
 
     When I visit "civictheme_page" "[TEST] Page accordion test"
-    And I should see an "div.ct-accordion" element
-    And I should see an "div.ct-accordion.ct-accordion--with-background" element
-    And I should not see an "div.ct-accordion.ct-theme-light" element
-    And I should see an "div.ct-accordion.ct-theme-dark" element
-    And I should see an "div[data-collapsible-panel]" element
-    And I should see an "div.ct-accordion__inner" element
-    And I should see an "ul.ct-accordion__list" element
+    And I should see an ".ct-accordion" element
+    And I should see an ".ct-accordion.ct-accordion--with-background" element
+    And I should not see an ".ct-accordion.ct-theme-light" element
+    And I should see an ".ct-accordion.ct-theme-dark" element
+    And I should see an "[data-collapsible-panel]" element
+    And I should see an ".ct-accordion__content" element
+    And I should see an ".ct-accordion__panels" element
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I wait 2 second

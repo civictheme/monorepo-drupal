@@ -3,8 +3,8 @@ Feature: IFrame render
 
   Background:
     Given "civictheme_page" content:
-      | title                   | status |
-      | [TEST] Page iframe test | 1      |
+      | title                    | status |
+      | [TEST] Page iframe test  | 1      |
       | [TEST] Page iframe test2 | 1      |
 
   @api @javascript

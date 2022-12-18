@@ -231,8 +231,10 @@ Feature: CivicTheme Page content type render
 
   @api @javascript
   Scenario: CivicTheme page revisions can be viewed without error
-
     Given I am logged in as a user with the "Site Administrator" role
+    And "civictheme_page" content:
+      | title                     | status | field_c_n_site_section |
+      | [TEST] Page Revision test | 1      |                        |
     When I edit "civictheme_page" "[TEST] Page Revision test"
     And I fill in "Title" with "[TEST] Page New Revision test"
     And I press "Save"
@@ -303,11 +305,11 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated: 1 Jul 2022"
     When I visit "civictheme_page" "[TEST] Page with last updated date checked"
     And I should see the text "[TEST] Page with last updated date checked"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated"
     When I visit "civictheme_page" "[TEST] Page without date"
     And I should see the text "[TEST] Page without date"
@@ -323,7 +325,7 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
-    And I should see an "div.ct-banner__content-middle" element
+    And I should see an ".ct-banner__content-middle" element
     And I should see the text "Last updated"
     When I visit "civictheme_page" "[TEST] Page without date"
     And I should see the text "[TEST] Page without date"
@@ -338,9 +340,9 @@ Feature: CivicTheme Page content type render
       | [TEST] Page without breadcrumb | 1      | 1                                |
 
     When I visit "civictheme_page" "[TEST] Page with breadcrumb"
-    And I should see an "div.ct-banner__breadcrumb" element
+    And I should see an ".ct-banner__breadcrumb" element
     When I visit "civictheme_page" "[TEST] Page without breadcrumb"
-    And I should not see an "div.ct-banner__breadcrumb" element
+    And I should not see an ".ct-banner__breadcrumb" element
 
   @api @banner_title
   Scenario: CivicTheme page content type page can override banner title.
@@ -351,24 +353,26 @@ Feature: CivicTheme Page content type render
       | [TEST] Page without Banner title | 1      |                         |
 
     When I visit "civictheme_page" "[TEST] Page with Banner title"
-    Then I should not see "[TEST] Page with Banner title" in the "div.ct-banner__title" element
-    And I should see "[OVERRIDE] Banner title" in the "div.ct-banner__title" element
+    Then I should not see "[TEST] Page with Banner title" in the ".ct-banner__title" element
+    And I should see "[OVERRIDE] Banner title" in the ".ct-banner__title" element
     When I visit "civictheme_page" "[TEST] Page without Banner title"
-    Then I should see "[TEST] Page without Banner title" in the "div.ct-banner__title" element
+    Then I should see "[TEST] Page without Banner title" in the ".ct-banner__title" element
 
   @api @sitesections
   Scenario: CivicTheme page content type page can configure Site sections
-    Given I am an anonymous user
+    Given "civictheme_site_sections" terms:
+      | name                  |
+      | [TEST] Site Section 1 |
     And "civictheme_page" content:
       | title                            | status | field_c_n_site_section |
       | [TEST] Page with Site section    | 1      | [TEST] Site Section 1  |
       | [TEST] Page without Site section | 1      |                        |
-
+    And I am an anonymous user
     When I visit "civictheme_page" "[TEST] Page with Site section"
     And I should see the text "[TEST] Page with Site section"
     And I should see an "body.ct-site-section---test-site-section-1" element
-    And I should see an "div.ct-banner__section" element
+    And I should see an ".ct-banner__section" element
     And I should see the text "[TEST] Site Section 1"
     When I visit "civictheme_page" "[TEST] Page without Site section"
     And I should see the text "[TEST] Page without Site section"
-    And I should not see an "div.ct-banner__section" element
+    And I should not see an ".ct-banner__section" element
