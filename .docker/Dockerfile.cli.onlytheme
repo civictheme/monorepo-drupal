@@ -57,7 +57,6 @@ COPY patches /app/patches
 COPY scripts /app/scripts
 
 RUN mkdir -p docroot/themes/contrib/civictheme \
-    && mkdir -p docroot/themes/contrib/civictheme \
     && mkdir -p docroot/modules/custom/civictheme_govcms \
     && mkdir -p docroot/modules/custom/civictheme_admin \
     && mkdir -p docroot/modules/custom/civictheme_migrate \
