@@ -28,9 +28,12 @@
         <div class="col-xxs-12">
           {% if title is not empty %}
             <div class="ct-accordion__content-top">
-              <div class="ct-accordion__content-top__title">
-                {{ title }}
-              </div>
+              {% include '@atoms/heading/heading.twig' with {
+                content: title,
+                level: 2,
+                theme: theme,
+                modifier_class: 'ct-accordion__content-top__title',
+              } only %}
             </div>
           {% endif %}
 
