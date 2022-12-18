@@ -133,8 +133,8 @@ aliases:
         # Remove lines containing '###' and uncomment comments starting with '##'.
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
-        [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -f .docker/Dockerfile.cli.sibling .docker/Dockerfile.cli || true
-        [ "$SKIP_LIBRARY_INSTALL" = "1" ] && cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli || true
+        if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then cp -f .docker/Dockerfile.cli.sibling .docker/Dockerfile.cli; fi
+        if [ "$CIVICTHEME_SKIP_LIBRARY_INSTALL" = "1" ]; then cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli; fi
 
 ################################################################################
 # JOBS
@@ -272,8 +272,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
-      SKIP_SUBTHEME_ACTIVATION: 1
-      SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -283,8 +283,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
-      SKIP_SUBTHEME_ACTIVATION: 1
-      SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -294,8 +294,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
-      SKIP_SUBTHEME_ACTIVATION: 1
-      SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -321,8 +321,8 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
-      SKIP_SUBTHEME_ACTIVATION: 1
-      SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
     <<: *job-build
 
   # Drupal 10, minimal profile.
@@ -340,8 +340,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
-      SKIP_SUBTHEME_ACTIVATION: 1
-      SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.

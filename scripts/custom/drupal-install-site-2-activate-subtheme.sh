@@ -12,7 +12,7 @@ APP="${APP:-/app}"
 
 # ------------------------------------------------------------------------------
 
-[ "${SKIP_SUBTHEME_ACTIVATION}" = "1" ] && echo "Skipping sub-theme activation" && return
+[ "${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION}" = "1" ] && echo "Skipping sub-theme activation" && return
 
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
@@ -30,7 +30,7 @@ $drush theme:enable civictheme_demo -y
 echo "  > Setting civictheme_demo as a default theme."
 $drush config-set system.theme default civictheme_demo -y
 
-if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
+if [ "$CIVICTHEME_SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
   pushd $APP/docroot/themes/custom/civictheme_demo >/dev/null || exit 1
 
   if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
