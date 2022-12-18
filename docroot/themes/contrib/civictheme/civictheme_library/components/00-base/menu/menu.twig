@@ -46,9 +46,9 @@
       ] %}
 
       {% set item_attributes = item.attributes|default('') %}
+      {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
       {% if is_collapsible %}
         {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
-        {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
         {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=0', collapsible_collapsed, aria_expanded]|join(' ') %}
       {% endif %}
 
@@ -60,13 +60,13 @@
           title: item.title,
           url: item.url,
           modifier_class: 'ct-menu__item__link',
-          attributes: item.link_attributes|default(''),
+          attributes: item.link_attributes|default('') ~ aria_expanded,
           is_new_window: item.is_new_window is defined ? item.is_new_window : false,
           is_external: item.is_external is defined ? item.is_external : false,
         } only %}
 
         {% if is_collapsible and item.below %}
-          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
+          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded }} title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
         {% if item.below %}
