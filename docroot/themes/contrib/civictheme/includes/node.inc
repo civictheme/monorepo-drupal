@@ -42,6 +42,22 @@ function _civictheme_preprocess_node(&$variables) {
       '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
     ]);
   }
+
+  // Add Tags if hide tags is not set on node.
+  if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
+    $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
+    if ($topics) {
+      $topics = array_map(function ($topic) {
+        return $topic->label();
+
+      }, $topics);
+
+      $variables['content'][] = [
+        '#theme' => 'civictheme_tag_list',
+        '#tags' => $topics,
+      ];
+    }
+  }
 }
 
 /**

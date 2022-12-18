@@ -81,6 +81,15 @@ function civictheme_theme() {
       ],
       'template' => 'misc/description-list',
     ],
+    'civictheme_tag_list' => [
+      'variables' => [
+        'tags' => [],
+        'content_top' => '',
+        'content_bottom' => '',
+        'modifier_class' => '',
+      ],
+      'template' => 'misc/tag-list',
+    ],
     'civictheme_slider_slide_links' => [
       'variables' => [
         'component_theme' => CivicthemeConstants::THEME_LIGHT,
