@@ -2,6 +2,11 @@
 #
 # All CLI operations performed in this container.
 #
+# - Installs Composer dependencies
+# - Installs CivicTheme Library dependencies and builds assets
+# - Installs CivicTheme dependencies and builds assets
+# - Creates sub-theme, installs dependencies and builds assets
+#
 # @see https://hub.docker.com/r/uselagoon/php-7.4-cli-drupal/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
 FROM uselagoon/php-8.1-cli-drupal:22.8.0
