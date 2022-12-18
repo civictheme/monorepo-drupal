@@ -27,7 +27,7 @@
       row-gap: $ct-item-list-horizontal-large-row-gap;
     }
 
-    &#{$root}--no-gutter {
+    &#{$root}--no-gap {
       gap: unset;
     }
   }
@@ -48,7 +48,7 @@
       row-gap: $ct-item-list-vertical-large-row-gap;
     }
 
-    &#{$root}--no-gutter {
+    &#{$root}--no-gap {
       gap: unset;
     }
   }
