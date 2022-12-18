@@ -268,12 +268,12 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with tags"
     And I should see the text "[TEST] Page with tags"
-    And I should see an ".ct-item-list span.ct-chip" element
+    And I should see an ".ct-tag-list span.ct-tag" element
     And I should see the text "[TEST] Topic 1"
     And I should see the text "[TEST] Topic 2"
     When I visit "civictheme_page" "[TEST] Page without tags"
     And I should see the text "[TEST] Page without tags"
-    And I should not see an ".ct-item-list span.ct-chip" element
+    And I should not see an ".ct-tag-list span.ct-tag" element
     And I should not see the text "[TEST] Topic 1"
     And I should not see the text "[TEST] Topic 2"
 

@@ -47,15 +47,14 @@ function _civictheme_preprocess_node(&$variables) {
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
     $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
     if ($topics) {
-      $render_controller = \Drupal::entityTypeManager()->getViewBuilder('taxonomy_term');
-      $topics = array_map(function ($topic) use ($render_controller) {
-        return $render_controller->view($topic, 'chip');
+      $topics = array_map(function ($topic) {
+        return $topic->label();
 
       }, $topics);
 
       $variables['content'][] = [
-        '#theme' => 'civictheme_item_list',
-        '#items' => $topics,
+        '#theme' => 'civictheme_tag_list',
+        '#tags' => $topics,
       ];
     }
   }

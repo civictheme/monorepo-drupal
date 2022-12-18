@@ -57,7 +57,6 @@ require_once 'includes/slider.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
 require_once 'includes/table.inc';
-require_once 'includes/taxonomy_term.inc';
 require_once 'includes/views.inc';
 
 /**
@@ -82,13 +81,14 @@ function civictheme_theme() {
       ],
       'template' => 'misc/description-list',
     ],
-    'civictheme_item_list' => [
+    'civictheme_tag_list' => [
       'variables' => [
-        'items' => [],
-        'type' => '',
+        'tags' => [],
+        'content_top' => '',
+        'content_bottom' => '',
         'modifier_class' => '',
       ],
-      'template' => 'misc/item-list-tags',
+      'template' => 'misc/tag-list',
     ],
     'civictheme_slider_slide_links' => [
       'variables' => [
