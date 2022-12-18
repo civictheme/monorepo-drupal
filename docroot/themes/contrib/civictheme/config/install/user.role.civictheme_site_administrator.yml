@@ -24,6 +24,7 @@ dependencies:
     - media
     - node
     - path
+    - redirect
     - shortcut
     - system
     - taxonomy
@@ -55,6 +56,7 @@ permissions:
   - 'administer media types'
   - 'administer menu'
   - 'administer nodes'
+  - 'administer redirects'
   - 'administer shortcuts'
   - 'administer taxonomy'
   - 'administer themes'
