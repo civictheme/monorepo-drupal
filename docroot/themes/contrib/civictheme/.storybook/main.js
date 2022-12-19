@@ -20,7 +20,6 @@ const customPlugin = new webpack.DefinePlugin({
   ICONS: JSON.stringify(iconUtils.getIcons()),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
-  CSV_VARIABLES_FILENAME: JSON.stringify({ name: 'civictheme.variables.csv' }),
 });
 
 module.exports = {

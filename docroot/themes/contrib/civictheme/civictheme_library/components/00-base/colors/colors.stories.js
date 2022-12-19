@@ -117,10 +117,7 @@ export const Colors = () => {
     }
   }
 
-  const colorMapFile = { ...CSV_VARIABLES_FILENAME };
-
   return CivicThemeColors({
     sections,
-    color_map_link: `../dist/${colorMapFile.name}`,
   });
 };
