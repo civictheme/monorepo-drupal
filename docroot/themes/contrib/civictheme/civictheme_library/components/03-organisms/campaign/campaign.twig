@@ -77,13 +77,12 @@
 
             {% block title %}
               {% if title is not empty %}
-                <div class="ct-campaign__title">
-                  {% include '@atoms/heading/heading.twig' with {
-                    content: title,
-                    level: 3,
-                    theme: theme,
-                  } only %}
-                </div>
+                {% include '@atoms/heading/heading.twig' with {
+                  content: title,
+                  level: 3,
+                  theme: theme,
+                  modifier_class: 'ct-campaign__title',
+                } only %}
               {% endif %}
             {% endblock %}
 

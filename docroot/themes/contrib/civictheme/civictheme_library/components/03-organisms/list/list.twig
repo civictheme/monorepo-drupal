@@ -35,13 +35,12 @@
               <div class="col-xxs-12 col-m-9">
                 {% block title %}
                   {% if title -%}
-                    <div class="ct-list__header-title">
-                      {% include '@atoms/heading/heading.twig' with {
-                        content: title,
-                        level: 2,
-                        theme: theme,
-                      } only %}
-                    </div>
+                    {% include '@atoms/heading/heading.twig' with {
+                      content: title,
+                      level: 2,
+                      theme: theme,
+                      modifier_class: 'ct-list__header-title',
+                    } only %}
                   {% endif %}
                 {% endblock %}
               </div>

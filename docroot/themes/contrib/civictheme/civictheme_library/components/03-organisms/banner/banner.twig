@@ -106,13 +106,12 @@
             <div class="row">
               {%- block title %}
                 <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
-                  <div class="ct-banner__title">
-                    {% include '@atoms/heading/heading.twig' with {
-                      theme: theme,
-                      content: title,
-                      level: 1,
-                    } only %}
-                  </div>
+                  {% include '@atoms/heading/heading.twig' with {
+                    theme: theme,
+                    content: title,
+                    level: 1,
+                    modifier_class: 'ct-banner__title',
+                  } only %}
                 </div>
               {% endblock -%}
             </div>
