@@ -66,6 +66,22 @@ DREVOPS_TEST_TYPE="${DREVOPS_TEST_TYPE:-unit-kernel-functional-bdd}"
 [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && mkdir -p "${DREVOPS_TEST_REPORTS_DIR}"
 [ -n "${DREVOPS_TEST_ARTIFACT_DIR}" ] && mkdir -p "${DREVOPS_TEST_ARTIFACT_DIR}"
 
+if [ -z "${DREVOPS_TEST_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
+  echo "==> Run front-end tests."
+  if [ -d "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library/node_modules" ]; then
+    npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library" test || \
+    # Flag to allow test to fail.
+    [ "${DREVOPS_TEST_FE_ALLOW_FAILURE}" -eq 1 ]
+  fi
+else
+  echo "==> Skipped front-end tests."
+fi
+
+if [ ! -d "/app/vendor" ]; then
+  echo "==> Skipped PHP tests."
+  exit 0
+fi
+
 if [ -z "${DREVOPS_TEST_TYPE##*unit*}" ]; then
   echo "==> Run unit tests."
 
@@ -75,8 +91,10 @@ if [ -z "${DREVOPS_TEST_TYPE##*unit*}" ]; then
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Unit.*/' "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 
-  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/themes/contrib/civictheme --filter '/.*Unit.*/' "$@" \
-  || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
+  if [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
+    vendor/bin/phpunit "${phpunit_opts[@]}" "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" --filter '/.*Unit.*/' "$@" \
+    || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
+  fi
 
   vendor/bin/phpunit "${phpunit_opts[@]}" tests/phpunit/unit/ --filter '/.*Unit.*/' "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
