@@ -67,7 +67,7 @@ Copied as-is from '@base/menu/menu.twig'.
           title: item.title,
           url: item.url,
           modifier_class: 'ct-menu__item__link',
-          attributes: item.link_attributes|default('') ~ aria_expanded,
+          attributes: item.link_attributes|default(''),
           is_new_window: item.is_new_window is defined ? item.is_new_window : false,
           is_external: item.is_external is defined ? item.is_external : false,
         } only %}
@@ -103,7 +103,7 @@ Overrides for generation of child links.
     icon: 'right-arrow-2',
     size: 'regular',
     modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
-    attributes: 'data-flyout-open-trigger aria-label="Open %s submenu"'|format(parent_item.title),
+    attributes: 'data-flyout-open-trigger aria-expanded="false" aria-label="Open %s submenu"'|format(parent_item.title),
   } only %}
 
   <div data-flyout data-flyout-direction="right">
