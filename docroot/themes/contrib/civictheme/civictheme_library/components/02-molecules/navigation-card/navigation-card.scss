@@ -52,15 +52,7 @@
   }
 
   #{$root}__content__title {
-    @include ct-typography('heading-4');
-
     margin-bottom: ct-spacing(2);
-  }
-
-  &#{$root}--with-image {
-    #{$root}__content__title {
-      @include ct-typography('heading-5');
-    }
   }
 
   #{$root}__content__title__link {
