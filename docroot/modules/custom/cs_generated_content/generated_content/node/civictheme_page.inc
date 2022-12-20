@@ -41,6 +41,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
       for ($i = 0; $i < 20; $i++) {
         $variations[] = [
           'title' => sprintf('%s %s', ($i + 1), $helper::staticSentence(3)),
+          'thumbnail' => $helper::staticMediaItem('civictheme_image'),
           'components' => [
             [
               'type' => 'content',
