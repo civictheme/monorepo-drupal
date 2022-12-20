@@ -20,20 +20,28 @@
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : 'primary' %}
 {% set type_class = 'ct-tag--%s'|format(type) %}
 {% set icon_class = icon is not empty ? 'ct-tag--with-icon' : '' %}
+{% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_placement_class = icon ? 'ct-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
 {% set is_external = is_external ? 'ct-tag--external': '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, is_external, modifier_class|default('')) %}
 
 {% if content|trim is not empty %}
-   {% set content %}
+   {% set content_markup %}
      {% if icon %}
-       {% set link_icon %}
+       {% set icon_markup %}
          {% include '@base/icon/icon.twig' with {
            symbol: icon,
+           modifier_class: 'ct-tag__icon',
          } only %}
        {% endset %}
-       {{ icon_placement == 'before' ? link_icon ~ content|raw : content|raw ~ link_icon }}
+
+       {% if icon_placement == 'before' %}
+         {{ icon_markup }}{{ content|raw }}
+       {% else %}
+         {{ content|raw }}{{ icon_markup }}
+       {% endif %}
+
      {% else %}
        {{ content|raw }}
      {% endif %}
@@ -57,10 +65,10 @@
   <{{ tag }}
   class="ct-tag {{ modifier_class }}"
     {% if url is not empty %}href="{{ url }}"{% endif %}
-    {% if title is not empty %}title="{{ content }}"{% endif %}
-    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
+    {% if url is not empty %}title="{{ content }}"{% endif %}
+    {{ url is not empty and is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
-    {{ content }}{{ is_new_window_content }}{{ is_external_content }}
+    {{ content_markup }}{{ is_new_window_content }}{{ is_external_content }}
   </{{ tag }}>
 {% endif %}
