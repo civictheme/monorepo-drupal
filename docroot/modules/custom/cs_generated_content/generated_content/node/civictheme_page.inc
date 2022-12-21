@@ -33,7 +33,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
 
   // Some components require to reference existing nodes. Since variation
   // evaluation happens before such nodes created, we need to pre-create them
-  // in a previous pass.
+  // in a preceding pass.
   for ($pass = 0; $pass < 2; $pass++) {
     // First pass - provide variations from the generated content pages.
     if ($pass === 0) {
