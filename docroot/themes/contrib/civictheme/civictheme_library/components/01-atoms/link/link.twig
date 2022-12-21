@@ -41,9 +41,9 @@
       {% endset %}
 
       {% if icon_placement == 'before' %}
-        {{ icon_markup }}{{ content|raw }}
+        {{ icon_markup }}{{ text|raw }}
       {% else %}
-        {{ content|raw }}{{ icon_markup }}
+        {{ text|raw }}{{ icon_markup }}
       {% endif %}
 
     {% else %}

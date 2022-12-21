@@ -83,17 +83,11 @@ Feature: Manual list render
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text                          |
       | field_c_p_theme   | light                                 |
-      | field_c_p_title   | Navigation card title                 |
-    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Navigation manual list" has "civictheme_navigation_card" paragraph:
-      | field_c_p_image   | [TEST] CivicTheme Image               |
-      | field_c_p_link    | 0: Test link - 1: https://example.com |
-      | field_c_p_summary | Summary text 2                        |
-      | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Navigation card title 1               |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Navigation manual list" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
-      | field_c_p_summary | Summary text 3                        |
+      | field_c_p_summary | Summary text 2                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Navigation card title 2               |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Navigation manual list" has "civictheme_navigation_card" paragraph:
@@ -102,6 +96,12 @@ Feature: Manual list render
       | field_c_p_summary | Summary text 3                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Navigation card title 3               |
+    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Navigation manual list" has "civictheme_navigation_card" paragraph:
+      | field_c_p_image   | [TEST] CivicTheme Image               |
+      | field_c_p_link    | 0: Test link - 1: https://example.com |
+      | field_c_p_summary | Summary text 3                        |
+      | field_c_p_theme   | dark                                  |
+      | field_c_p_title   | Navigation card title 4               |
 
     When I visit "civictheme_page" "[TEST] Page Navigation cards test"
     And I should see the text "[TEST] Navigation manual list"
@@ -109,10 +109,10 @@ Feature: Manual list render
     And I should see 4 ".ct-navigation-card" elements
     And I should see 4 ".ct-navigation-card__content__title" elements
     And I should see 4 ".ct-navigation-card__content__summary" elements
-    And I should see the text "Navigation card title"
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"
     And I should see the text "Navigation card title 3"
+    And I should see the text "Navigation card title 4"
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Subject cards
@@ -160,15 +160,15 @@ Feature: Manual list render
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Service manual list" has "civictheme_service_card" paragraph:
       | field_c_p_links | 0: Test link 1 - 1: https://example.com, 0: Test link 11 - 1: https://example.com |
       | field_c_p_theme | light                                                                             |
-      | field_c_p_title | Service card title                                                                |
+      | field_c_p_title | Service card title 1                                                              |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Service manual list" has "civictheme_service_card" paragraph:
       | field_c_p_links | 0: Test link 2 - 1: https://example.com, 0: Test link 21 - 1: https://example.com |
       | field_c_p_theme | dark                                                                              |
-      | field_c_p_title | Service card title 1                                                              |
+      | field_c_p_title | Service card title 2                                                              |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Service manual list" has "civictheme_service_card" paragraph:
       | field_c_p_links | 0: Test link 3 - 1: https://example.com, 0: Test link 31 - 1: https://example.com, 0: Test link 32 - 1: https://example.com, 0: Test link 33 - 1: https://example.com |
       | field_c_p_theme | dark                                                                                                                                                                  |
-      | field_c_p_title | Service card title 2                                                                                                                                                  |
+      | field_c_p_title | Service card title 3                                                                                                                                                  |
 
     When I visit "civictheme_page" "[TEST] Page Service cards test"
     And I should see the text "[TEST] Service manual list"
@@ -181,9 +181,9 @@ Feature: Manual list render
     And I should see 3 ".ct-service-card__content__links" elements
     And I should not see an ".ct-subject-card" element
     And I should not see an ".ct-service-card img" element
-    And I should see the text "Service card title"
     And I should see the text "Service card title 1"
     And I should see the text "Service card title 2"
+    And I should see the text "Service card title 3"
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Reference cards
