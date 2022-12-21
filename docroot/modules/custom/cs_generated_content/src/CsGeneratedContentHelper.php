@@ -74,7 +74,7 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
    * @return array
    *   Array of static link URI and content string.
    */
-  public static function staticLinkFieldValue($count = 5) {
+  public static function staticLinkFieldValue($count = 2) {
     return [
       'uri' => static::staticUrl(),
       'title' => static::staticSentence($count),
