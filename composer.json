@@ -199,7 +199,6 @@
                 "docroot/modules/custom/civictheme_migrate/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",
-                "docroot/modules/custom/civictheme_styleguide/composer.json",
                 "docroot/modules/custom/cs_generated_content/composer.json"
             ],
             "recurse": true,

@@ -214,19 +214,6 @@
                 }
             }
         },
-        "drupal/styleguide": {
-            "type": "package",
-            "package": {
-                "name": "drupal/styleguide",
-                "type": "drupal-module",
-                "version": "2.0.0-beta1",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/styleguide-3298185.git",
-                    "reference": "5ac7a7590734426f8684a37a39d816dff8ae8b34"
-                }
-            }
-        },
         "drupal/webform": {
             "type": "package",
             "package": {
@@ -366,7 +353,6 @@
                 "docroot/modules/custom/civictheme_migrate/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",
-                "docroot/modules/custom/civictheme_styleguide/composer.json",
                 "docroot/modules/custom/cs_generated_content/composer.json"
             ],
             "recurse": true,

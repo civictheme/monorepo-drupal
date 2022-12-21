@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0dc8c7088c230dafd7a87292176bab5",
+    "content-hash": "be588f9f94fec2bdf5539cb971a4bbdf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3256,16 +3256,6 @@
                 "source": "https://cgit.drupalcode.org/simple_sitemap",
                 "issues": "https://drupal.org/project/issues/simple_sitemap"
             }
-        },
-        {
-            "name": "drupal/styleguide",
-            "version": "2.0.0-beta1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/issue/styleguide-3298185.git",
-                "reference": "5ac7a7590734426f8684a37a39d816dff8ae8b34"
-            },
-            "type": "drupal-module"
         },
         {
             "name": "drupal/testmode",
@@ -13340,8 +13330,7 @@
         "drupal/linkit": 10,
         "drupal/core-dev": 10,
         "drupal/drupal-extension": 20,
-        "drupal/default_content": 15,
-        "drupal/styleguide": 10
+        "drupal/default_content": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
