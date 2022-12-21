@@ -59,7 +59,7 @@
         {% endfor %}
         {% include '@base/item-list/item-list.twig' with {
           items: list_items,
-          type: 'vertical',
+          direction: 'vertical',
           modifier_class: 'ct-service-card__content__links',
         } only %}
       {% endif %}
