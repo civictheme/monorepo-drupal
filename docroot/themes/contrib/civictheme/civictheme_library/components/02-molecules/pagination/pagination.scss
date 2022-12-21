@@ -16,7 +16,7 @@
   border-top-style: solid;
   padding: ct-spacing(3);
 
-  @include ct-breakpoint('m') {
+  @include ct-breakpoint(m) {
     width: 100%;
     border-bottom-width: ct-particle(0.125);
     border-bottom-style: solid;
@@ -29,7 +29,7 @@
     width: 100%;
     margin-bottom: ct-spacing(4);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       width: auto;
       margin-bottom: 0;
     }
@@ -56,7 +56,7 @@
     align-items: center;
     justify-content: center;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-left: auto;
     }
   }
@@ -70,7 +70,7 @@
   #{$root}__item--previous {
     padding: 0 ct-spacing(1) 0 0;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: 0 ct-spacing(4) 0 0;
     }
   }
@@ -79,7 +79,7 @@
   #{$root}__item--last {
     padding: 0 0 0 ct-spacing(1);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: 0 0 0 ct-spacing(4);
     }
   }

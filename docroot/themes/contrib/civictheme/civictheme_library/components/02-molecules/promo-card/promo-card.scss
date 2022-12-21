@@ -27,7 +27,7 @@
     height: $ct-promo-card-image-height-mobile;
     width: $ct-promo-card-image-width-mobile;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       height: $ct-promo-card-image-height-desktop;
       width: $ct-promo-card-image-width-desktop;
     }
