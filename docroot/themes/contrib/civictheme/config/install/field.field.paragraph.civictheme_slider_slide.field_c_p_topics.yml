@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_topic
+    - field.storage.paragraph.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_slider_slide
     - taxonomy.vocabulary.civictheme_topics
-id: paragraph.civictheme_slider_slide.field_c_p_topic
-field_name: field_c_p_topic
+id: paragraph.civictheme_slider_slide.field_c_p_topics
+field_name: field_c_p_topics
 entity_type: paragraph
 bundle: civictheme_slider_slide
-label: Topic
+label: Topics
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
