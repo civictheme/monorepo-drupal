@@ -84,9 +84,10 @@ function civictheme_theme() {
     'civictheme_tag_list' => [
       'variables' => [
         'tags' => [],
-        'content_top' => '',
-        'content_bottom' => '',
-        'modifier_class' => '',
+        'vertical_spacing' => NULL,
+        'content_top' => NULL,
+        'content_bottom' => NULL,
+        'modifier_class' => NULL,
       ],
       'template' => 'misc/tag-list',
     ],

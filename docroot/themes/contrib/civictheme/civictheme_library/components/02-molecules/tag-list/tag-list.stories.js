@@ -35,6 +35,17 @@ export const TagList = (knobTab) => {
       },
       generalKnobTab,
     ), true),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
