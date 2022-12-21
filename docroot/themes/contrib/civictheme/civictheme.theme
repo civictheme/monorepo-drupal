@@ -98,12 +98,6 @@ function civictheme_theme() {
       ],
       'template' => 'misc/slider-slide-links',
     ],
-    'civictheme_slider_slide_tags' => [
-      'variables' => [
-        'tags' => [],
-      ],
-      'template' => 'misc/slider-slide-tags',
-    ],
     'civictheme_basic_content' => [
       'variables' => [
         'component_theme' => CivicthemeConstants::THEME_LIGHT,
