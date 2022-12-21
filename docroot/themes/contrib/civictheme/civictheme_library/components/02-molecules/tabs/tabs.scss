@@ -22,7 +22,7 @@
       border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
       border: solid ct-particle(0.125);
 
-      @include ct-breakpoint('m') {
+      @include ct-breakpoint(m) {
         padding: ct-spacing(1.5) ct-spacing(2);
       }
     }

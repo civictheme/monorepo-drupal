@@ -27,7 +27,7 @@
     height: $ct-event-card-image-height-mobile;
     width: $ct-event-card-image-width-mobile;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       height: $ct-event-card-image-height-desktop;
       width: $ct-event-card-image-width-desktop;
     }

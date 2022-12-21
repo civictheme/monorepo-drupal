@@ -12,7 +12,7 @@
 
   &--image-position-right {
     > .container > .row {
-      @include ct-breakpoint('m') {
+      @include ct-breakpoint(m) {
         flex-direction: row-reverse;
       }
     }
@@ -29,7 +29,7 @@
     width: $ct-campaign-image-width-mobile;
     margin-bottom: ct-spacing(3);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       height: $ct-campaign-image-height-desktop;
       width: $ct-campaign-image-width-desktop;
       margin-bottom: 0;
@@ -41,7 +41,7 @@
     flex-direction: column;
     flex: 1;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       height: 100%;
       justify-content: center;
     }
@@ -71,7 +71,7 @@
     margin-top: ct-spacing(-1);
     margin-bottom: ct-spacing(3);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       @include ct-typography('text-large');
 
       margin-top: ct-spacing(-1);

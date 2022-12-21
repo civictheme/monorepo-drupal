@@ -22,7 +22,7 @@
     min-width: $ct-subject-card-image-width-mobile;
     padding: ct-spacing(2);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(3);
       min-height: $ct-subject-card-image-height-desktop;
       min-width: $ct-subject-card-image-width-desktop;
