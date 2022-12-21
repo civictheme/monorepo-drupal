@@ -81,4 +81,14 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
     ];
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function staticRichText($paragraphs = 4, $prefix = '') {
+    $content = parent::staticRichText($paragraphs, $prefix);
+    $content .= '<a href="' . self::staticUrl() . '">' . self::staticSentence(2) . '</a>';
+
+    return $content;
+  }
+
 }
