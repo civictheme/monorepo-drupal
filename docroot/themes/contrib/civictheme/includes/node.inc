@@ -55,6 +55,7 @@ function _civictheme_preprocess_node(&$variables) {
       $variables['content'][] = [
         '#theme' => 'civictheme_tag_list',
         '#tags' => $topics,
+        '#vertical_spacing' => 'top',
       ];
     }
   }
