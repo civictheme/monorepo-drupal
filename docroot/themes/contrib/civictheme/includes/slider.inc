@@ -50,7 +50,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
 
   // Topic.
-  $topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
+  $topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
   if ($topics) {
     $topics = array_map(function ($topic) use ($theme) {
       return [

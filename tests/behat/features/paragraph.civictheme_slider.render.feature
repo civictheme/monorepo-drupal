@@ -27,7 +27,6 @@ Feature: Slider render
       | field_c_p_theme            | light                                                      |
       | field_c_p_vertical_spacing | both                                                       |
       | field_c_p_background       | 0                                                          |
-      | field_c_p_link             | 0: [TEST] slider link - 1: https://example.com/sliderlink1 |
     And "field_c_p_slides" in "civictheme_slider" "paragraph" with "field_c_p_title" of "[TEST] slider" has "civictheme_slider_slide" paragraph:
       | field_c_p_title          | [TEST] slide 1                                                                                                                                      |
       | field_c_p_image          | [TEST] CivicTheme Slide 1                                                                                                                           |
@@ -35,7 +34,7 @@ Feature: Slider render
       | field_c_p_content:format | civictheme_rich_text                                                                                                                                |
       | field_c_p_image_position | left                                                                                                                                                |
       | field_c_p_link           | 0: [TEST] link 1 - 1: https://example.com/link1                                                                                                     |
-      | field_c_p_topic          | [TEST] Topic 1                                                                                                                                      |
+      | field_c_p_topics         | [TEST] Topic 1                                                                                                                                      |
     And "field_c_p_slides" in "civictheme_slider" "paragraph" with "field_c_p_title" of "[TEST] slider" has "civictheme_slider_slide" paragraph:
       | field_c_p_title          | [TEST] slide 2                                                                                                                                      |
       | field_c_p_image          | [TEST] CivicTheme Slide 2                                                                                                                           |
@@ -43,7 +42,7 @@ Feature: Slider render
       | field_c_p_content:format | civictheme_rich_text                                                                                                                                |
       | field_c_p_image_position | right                                                                                                                                               |
       | field_c_p_link           | 0: [TEST] link 2 - 1: https://example.com/link2                                                                                                     |
-      | field_c_p_topic          | [TEST] Topic 2                                                                                                                                      |
+      | field_c_p_topics         | [TEST] Topic 2                                                                                                                                      |
 
     When I visit "civictheme_page" "[TEST] Page slider test"
     And I wait 5 second
