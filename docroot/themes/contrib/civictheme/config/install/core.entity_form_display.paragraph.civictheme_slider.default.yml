@@ -3,14 +3,12 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_slider.field_c_p_background
-    - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
     - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_slider
   module:
-    - link
     - paragraphs
 id: paragraph.civictheme_slider.default
 targetEntityType: paragraph
@@ -23,14 +21,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  field_c_p_link:
-    type: link_default
-    weight: 1
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
     third_party_settings: {  }
   field_c_p_slides:
     type: entity_reference_paragraphs

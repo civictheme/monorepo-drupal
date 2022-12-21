@@ -424,7 +424,6 @@ config_devel:
     - field.field.paragraph.civictheme_service_card.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_title
     - field.field.paragraph.civictheme_slider.field_c_p_background
-    - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
