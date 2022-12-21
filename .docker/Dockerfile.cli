@@ -63,7 +63,6 @@ RUN mkdir -p docroot/themes/contrib/civictheme \
     && mkdir -p docroot/modules/custom/civictheme_migrate \
     && mkdir -p docroot/modules/custom/civictheme_content \
     && mkdir -p docroot/modules/custom/civictheme_dev \
-    && mkdir -p docroot/modules/custom/civictheme_styleguide \
     && mkdir -p docroot/modules/custom/cs_generated_content
 
 # Copy files required for PHP dependencies resolution.
@@ -81,7 +80,6 @@ COPY docroot/modules/custom/civictheme_admin/composer.json docroot/modules/custo
 COPY docroot/modules/custom/civictheme_migrate/composer.json docroot/modules/custom/civictheme_migrate/
 COPY docroot/modules/custom/civictheme_content/composer.json docroot/modules/custom/civictheme_content/
 COPY docroot/modules/custom/civictheme_dev/composer.json docroot/modules/custom/civictheme_dev/
-COPY docroot/modules/custom/civictheme_styleguide/composer.json docroot/modules/custom/civictheme_styleguide/
 COPY docroot/modules/custom/cs_generated_content/composer.json docroot/modules/custom/cs_generated_content/
 
 # Install PHP dependencies, but without development dependencies. This is very
