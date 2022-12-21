@@ -3,7 +3,7 @@ import {
   boolean,
   number, radios, text,
 } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.utils';
+import { getSlots, randomLinks, randomTags } from '../../00-base/base.utils';
 import { randomSlidesComponent } from './slider.utils';
 import CivicThemeSlider from './slider.twig';
 
@@ -42,10 +42,31 @@ export const Slider = () => {
     image_position: radios('Image Position', {
       Left: 'left',
       Right: 'right',
-    }, 'right', generalKnobTab),
+    }, 'right', slidesKnobTab),
+    tags: randomTags(number(
+      'Number of tags',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      slidesKnobTab,
+    ), true),
+    links: randomLinks(number(
+      'Number of links',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      slidesKnobTab,
+    ), 10),
     ...getSlots([
       'content_top',
-      'links',
       'content_bottom',
     ]),
   }).join(' ');
@@ -73,6 +94,10 @@ export const Slider = () => {
   };
 
   return CivicThemeSlider({
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
     ...generalKnobs,
   });
 };

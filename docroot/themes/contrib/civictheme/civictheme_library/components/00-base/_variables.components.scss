@@ -1123,30 +1123,15 @@ $ct-skip-link-dark-background-color: ct-color-dark('background') !default;
 // Slider.
 //
 $ct-slider-border-radius: $ct-border-radius !default;
-$ct-slider-progress-indicator-border-radius: $ct-border-radius !default;
 $ct-slider-space-horizontal: ct-spacing(7) !default;
-$ct-slider-light-background-color: ct-color-light('background') !default;
-$ct-slider-light-progress-indicator-background-color: ct-color-light('interaction-background') !default;
-$ct-slider-light-progress-indicator-color: ct-color-light('interaction-text') !default;
-$ct-slider-light-title-color: ct-color-light('heading') !default;
-$ct-slider-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-slider-slide-desktop-min-height: ct-particle(35) !default;
+$ct-slider-slide-mobile-min-height: ct-particle(35) !default;
+$ct-slider-mobile-transition: 0.5s !default;
+$ct-slider-desktop-transition: 1s !default;
+$ct-slider-light-background-color: ct-color-light('background-light') !default;
+$ct-slider-light-slide-background-color: ct-color-light('background') !default;
 $ct-slider-dark-background-color: ct-color-dark('background') !default;
-$ct-slider-dark-progress-indicator-background-color: ct-color-dark('interaction-background') !default;
-$ct-slider-dark-progress-indicator-color: ct-color-dark('interaction-text') !default;
-$ct-slider-dark-title-color: ct-color-dark('heading') !default;
-$ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
-
-//
-// Slide.
-//
-$ct-slide-desktop-min-height: ct-particle(70) !default;
-$ct-slide-mobile-min-height: ct-particle(35) !default;
-$ct-slide-light-background-color: ct-color-light('background') !default;
-$ct-slide-light-summary-color: ct-color-light('body') !default;
-$ct-slide-light-title-color: ct-color-light('heading') !default;
-$ct-slide-dark-background-color: ct-color-dark('background') !default;
-$ct-slide-dark-summary-color: ct-color-dark('heading') !default;
-$ct-slide-dark-title-color: ct-color-dark('heading') !default;
+$ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
 
 //
 // Social links.
