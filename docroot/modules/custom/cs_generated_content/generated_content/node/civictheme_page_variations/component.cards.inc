@@ -361,7 +361,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             [
               'type' => 'civictheme_subject_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
-              'topic' => $helper::staticTerm('civictheme_topics')->id(),
               'theme' => $helper::civicthemeThemeLight(),
             ],
           ],
@@ -376,7 +375,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             [
               'type' => 'civictheme_subject_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
-              'topic' => $helper::staticTerm('civictheme_topics')->id(),
               'theme' => $helper::civicthemeThemeDark(),
             ],
           ],

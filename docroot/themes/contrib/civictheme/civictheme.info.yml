@@ -448,7 +448,6 @@ config_devel:
     - field.field.paragraph.civictheme_subject_card.field_c_p_title
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_topic
     - field.field.paragraph.civictheme_webform.field_c_p_background
     - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
