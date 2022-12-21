@@ -34,4 +34,6 @@ Feature: Callout fields
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]'].required" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][title]']" element
+    And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][title]'].required" element
     And the "field_c_n_components[0][subform][field_c_p_theme]" field should contain "light"
