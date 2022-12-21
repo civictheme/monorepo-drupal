@@ -16,120 +16,50 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Map component',
+      'title' => 'Map',
       'components' => [
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Map component, 3 on page, View link',
-      'components' => [
-        [
-          'type' => 'map',
-          'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
-          'view_link' => $helper::staticUrl(),
+          'theme' => $helper::civicthemeThemeLight(),
         ],
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
-          'view_link' => $helper::staticUrl(),
+          'theme' => $helper::civicthemeThemeDark(),
         ],
-        [
-          'type' => 'map',
-          'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
-          'view_link' => $helper::staticUrl(),
-        ],
-      ],
-    ],
 
-    [
-      'title' => 'Map component, Dark',
-      'components' => [
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
-          'theme' => $helper::civicthemeThemeDark(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Light, BG',
-      'components' => [
-        [
-          'type' => 'map',
-          'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Dark, BG',
-      'components' => [
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Light, No BG, Both spaces',
-      'components' => [
+
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Dark, No BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'map',
-          'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Light, BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'map',
-          'embed_url' => $helper::staticUrl(),
-          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
         ],
-      ],
-    ],
-    [
-      'title' => 'Map component, Dark, BG, Both spaces',
-      'components' => [
         [
           'type' => 'map',
           'embed_url' => $helper::staticUrl(),
           'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),

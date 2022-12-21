@@ -8,7 +8,7 @@ dependencies:
     - field.field.paragraph.civictheme_slider_slide.field_c_p_link
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
-    - field.field.paragraph.civictheme_slider_slide.field_c_p_topic
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_slider_slide
   module:
     - link
@@ -50,7 +50,7 @@ content:
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -62,9 +62,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_c_p_topic:
+  field_c_p_topics:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS

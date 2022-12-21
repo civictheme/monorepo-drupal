@@ -33,7 +33,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
 
   // Some components require to reference existing nodes. Since variation
   // evaluation happens before such nodes created, we need to pre-create them
-  // in a previous pass.
+  // in a preceding pass.
   for ($pass = 0; $pass < 2; $pass++) {
     // First pass - provide variations from the generated content pages.
     if ($pass === 0) {
@@ -41,11 +41,13 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
       for ($i = 0; $i < 20; $i++) {
         $variations[] = [
           'title' => sprintf('%s %s', ($i + 1), $helper::staticSentence(3)),
+          'thumbnail' => $helper::staticMediaItem('civictheme_image'),
+          'summary' => 'Summary ' . $helper::staticSentence(20),
+          'topics' => $helper::staticTerms('civictheme_topics', 1),
           'components' => [
             [
               'type' => 'content',
               'content' => $helper::staticRichText(3),
-              'topic' => $helper::staticTerm('civictheme_topics')->id(),
             ],
           ],
         ];

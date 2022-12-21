@@ -424,7 +424,6 @@ config_devel:
     - field.field.paragraph.civictheme_service_card.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_title
     - field.field.paragraph.civictheme_slider.field_c_p_background
-    - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
@@ -435,7 +434,7 @@ config_devel:
     - field.field.paragraph.civictheme_slider_slide.field_c_p_link
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
-    - field.field.paragraph.civictheme_slider_slide.field_c_p_topic
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_topics
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_link_text
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
@@ -448,7 +447,6 @@ config_devel:
     - field.field.paragraph.civictheme_subject_card.field_c_p_title
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_subject_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_topic
     - field.field.paragraph.civictheme_webform.field_c_p_background
     - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
