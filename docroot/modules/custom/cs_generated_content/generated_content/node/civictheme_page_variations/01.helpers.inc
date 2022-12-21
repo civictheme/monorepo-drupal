@@ -11,6 +11,9 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Variations post-process callback.
  */
 function _cs_generated_content_create_node_civictheme_page__variations__post_process($variations) {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
   // Add common variation properties to all variations, but only if they were
   // not provided within variations.
   foreach ($variations as &$variation) {
@@ -18,6 +21,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__post_pro
     $variation += [
       'status' => TRUE,
       'alias' => '/generated-content/civictheme_page/{title}',
+      'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeNone(),
     ];
   }
 
