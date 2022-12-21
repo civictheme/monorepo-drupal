@@ -51,12 +51,13 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'theme' => civictheme_get_field_theme_value($paragraph),
     'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
     'link_above' => $link_above_data,
-    'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
-    'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
-    'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
+    'title' => civictheme_get_field_value($paragraph, 'field_c_p_title'),
+    'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
+    'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background', FALSE, FALSE),
+    'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
     'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_column_count'),
     'link_below' => $link_below_data,
-    'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_fill_width') ?? FALSE,
+    'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_fill_width', FALSE, FALSE),
     'cache_tags' => $paragraph->getCacheTags(),
   ];
 
