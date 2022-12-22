@@ -77,7 +77,7 @@
       }
     }
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       width: $ct-tooltip-width;
     }
 

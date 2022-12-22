@@ -10,7 +10,7 @@
   position: relative;
   padding: ct-spacing(2);
 
-  @include ct-breakpoint('m') {
+  @include ct-breakpoint(m) {
     padding: ct-spacing(3);
   }
 
@@ -31,7 +31,7 @@
     width: ct-particle(3);
     margin-right: ct-spacing();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-right: ct-spacing(2);
     }
   }

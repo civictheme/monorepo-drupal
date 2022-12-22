@@ -30,13 +30,6 @@ Feature: Pagination
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api @d9only
-  Scenario: Styleguide page should show table with correct markup.
-    Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/appearance/styleguide/civictheme#pagination-heading"
-    Then I should see the text "Pager"
-    And I should see a "nav.ct-pager" element
-
   @api @skipped
   Scenario: Views page with full pager and items per page should render and function correctly
     Given I am an anonymous user

@@ -14,13 +14,13 @@
       margin: 0;
     }
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-right: auto;
     }
   }
 
   &__link-above {
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       display: flex;
       justify-content: flex-end;
       align-self: center;
@@ -71,7 +71,7 @@
   &__feed_icons {
     @include ct-content();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(6) 0;
     }
   }

@@ -52,7 +52,7 @@
       height: 100%;
     }
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       display: block;
       position: absolute;
       bottom: ct-spacing(4);

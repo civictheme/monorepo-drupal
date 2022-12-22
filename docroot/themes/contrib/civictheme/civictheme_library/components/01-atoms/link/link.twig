@@ -31,15 +31,21 @@
 {% set attributes = is_disabled ? attributes ~ ' disabled' : attributes %}
 
 {% if text is not empty or icon is not empty %}
-  {% set link_text %}
+  {% set content_markup %}
     {% if icon %}
-      {% set link_icon %}
+      {% set icon_markup %}
         {% include '@base/icon/icon.twig' with {
           symbol: icon,
           modifier_class: 'ct-link__icon',
         } only %}
       {% endset %}
-      {{ (icon_placement == 'before' ? link_icon ~ text : text ~ link_icon)|raw }}
+
+      {% if icon_placement == 'before' %}
+        {{ icon_markup }}{{ text|raw }}
+      {% else %}
+        {{ text|raw }}{{ icon_markup }}
+      {% endif %}
+
     {% else %}
       {{ text|raw }}
     {% endif %}
@@ -67,6 +73,6 @@
     {{ disabled ? 'disabled' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
-    {{ link_text }}{{ is_new_window_content }}{{ is_external_content }}
+    {{ content_markup }}{{ is_new_window_content }}{{ is_external_content }}
   </a>
 {% endif %}

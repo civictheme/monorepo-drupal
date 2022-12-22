@@ -15,7 +15,6 @@ dependencies:
   - shield:shield
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views
-  - styleguide:styleguide
   - testmode:testmode
 
 config_devel:
