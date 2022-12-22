@@ -3,14 +3,16 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_slider_slide.field_c_p_content
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_date
     - field.field.paragraph.civictheme_slider_slide.field_c_p_image
     - field.field.paragraph.civictheme_slider_slide.field_c_p_image_position
-    - field.field.paragraph.civictheme_slider_slide.field_c_p_link
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_links
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
     - field.field.paragraph.civictheme_slider_slide.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_slider_slide
   module:
+    - datetime
     - link
     - options
     - text
@@ -25,6 +27,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_c_p_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_c_p_image:
     type: entity_reference_entity_view
@@ -42,7 +53,7 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_c_p_link:
+  field_c_p_links:
     type: link
     label: above
     settings:
@@ -52,7 +63,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 10
     region: content
   field_c_p_theme:
     type: list_default

@@ -21,14 +21,15 @@ Feature: Slider, Slider Slide and Slider Slide Reference fields
     When I press "Add Slider slide"
     Then I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_title][0][value]']" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_title][0][value]'].required" element
+    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image][media_library_selection]']" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]']" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]'].required" element
-    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image][media_library_selection]']" element
+    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_date][0][value][date]']" element
+    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_date][0][value][date]'].required" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_content][0][value]']" element
     And I should not see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_content][0][value]'].required" element
-    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_link][0][uri]']" element
-    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_link][0][uri]'].required" element
-    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_link][0][title]']" element
+    And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_links][0][uri]']" element
+    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_links][0][uri]'].required" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_topics][0][target_id]']" element
     And I should not see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_topics][0][target_id]'].required" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_theme]']" element
