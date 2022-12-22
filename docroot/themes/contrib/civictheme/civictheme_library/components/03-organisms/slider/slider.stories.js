@@ -94,10 +94,10 @@ export const Slider = () => {
   };
 
   return CivicThemeSlider({
+    ...generalKnobs,
     ...getSlots([
       'content_top',
       'content_bottom',
     ]),
-    ...generalKnobs,
   });
 };

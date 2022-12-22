@@ -17,14 +17,14 @@ mode: default
 content:
   field_c_p_background:
     type: boolean_checkbox
-    weight: 5
+    weight: 2
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_p_slides:
     type: entity_reference_paragraphs
-    weight: 2
+    weight: 1
     region: content
     settings:
       title: Paragraph
