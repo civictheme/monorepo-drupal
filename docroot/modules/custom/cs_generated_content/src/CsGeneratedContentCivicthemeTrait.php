@@ -149,27 +149,17 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Slider slide image position - left.
+   * Image position - left.
    */
-  public static function civicthemeSliderSlideImagePositionLeft() {
+  public static function civicthemeImagePositionLeft() {
     return 'left';
   }
 
   /**
-   * Slider slide image position - right.
+   * Image position - right.
    */
-  public static function civicthemeSliderSlideImagePositionRight() {
+  public static function civicthemeImagePositionRight() {
     return 'right';
-  }
-
-  /**
-   * Slider slide image position.
-   */
-  public static function civicthemeSliderSlideImagePositions() {
-    return [
-      static:: civicthemeSliderSlideImagePositionLeft(),
-      static:: civicthemeSliderSlideImagePositionRight(),
-    ];
   }
 
   /**
@@ -245,7 +235,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $defaults = [
       'content' => '',
       'theme' => static::civicthemeThemeLight(),
-      'vertical_spacing' => static::civicthemeVerticalSpacingTypeTop(),
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
       'background' => FALSE,
     ];
 
@@ -450,6 +440,38 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Attach Campaign paragraph to a node.
+   */
+  public static function civicthemeParagraphCampaignAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'image' => NULL,
+      'image_position' => self::civicthemeImagePositionLeft(),
+      'title' => '',
+      'date' => '',
+      'summary' => '',
+      'links' => FALSE,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_campaign', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
    * Attach Iframe paragraph to a node.
    */
   public static function civicthemeParagraphIframeAttach($node, $field_name, $options) {
@@ -505,7 +527,7 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Attach Promo paragraph to a node.
+   * Attach Next Step paragraph to a node.
    */
   public static function civicthemeParagraphNextStepAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
