@@ -11,6 +11,7 @@
  * - image_position: [string] left / right
  * - tags: [array] Array of tags.
  * - title: [string] Title.
+ * - date: [string] Date.
  * - summary: [string] Summary text.
  * - links: [array] Links.
  * - attributes: [string] Additional attributes.
@@ -62,6 +63,15 @@
             content: title,
             level: 2,
             modifier_class: 'ct-slide__content__title'
+          } only %}
+        {% endif %}
+
+        {% if date is not empty %}
+          {% include '@atoms/tag/tag.twig' with {
+            theme: theme,
+            content: date,
+            type: 'tertiary',
+            modifier_class: 'ct-slide__content__date'
           } only %}
         {% endif %}
 

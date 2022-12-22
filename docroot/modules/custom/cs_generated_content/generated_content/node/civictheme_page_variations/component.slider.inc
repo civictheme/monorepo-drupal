@@ -67,9 +67,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -77,9 +81,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Light, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -87,9 +95,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -106,9 +118,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -116,9 +132,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Light, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -126,9 +146,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -144,9 +168,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -154,9 +182,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Dark, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -164,9 +196,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -183,9 +219,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -193,9 +233,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Light, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -203,9 +247,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -221,9 +269,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -231,9 +283,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Dark, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -241,9 +297,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -261,9 +321,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -271,9 +335,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Light, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -281,9 +349,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Light, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeLight(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -300,9 +372,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 1, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),
@@ -310,9 +386,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 2, Dark, image right, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionRight(),
@@ -320,9 +400,13 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           [
             'type' => 'civictheme_slider_slide',
             'title' => 'Slide 3, Dark, image left, ' . $helper::staticSentence(2),
+            'date' => '2022-12-22',
             'content' => $helper::staticSentenceFieldValue(),
             'topics' => $helper::staticTerms('civictheme_topics', 2),
-            'link' => $helper::staticLinkFieldValue(),
+            'links' => [
+              $helper::staticLinkFieldValue(),
+              $helper::staticLinkFieldValue(),
+            ],
             'theme' => $helper::civicthemeThemeDark(),
             'image' => $helper->staticMediaItem('civictheme_image')->id(),
             'image_position' => $helper::civicthemeImagePositionLeft(),

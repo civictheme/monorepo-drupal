@@ -13,6 +13,7 @@
 function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
 
@@ -41,19 +42,26 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civictheme_preprocess_paragraph__card__image($variables);
+  _civictheme_preprocess_paragraph__image($variables);
 
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
   $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
   $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_content', TRUE);
 
-  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
-  if ($link) {
-    $variables['links'][] = [
-      'text' => $link->get('title')->getString(),
-      'url' => $link->getUrl()->toString(),
-      'is_new_window' => $link->isExternal(),
-    ];
+  $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
+  }
+
+  $links = civictheme_get_field_value($paragraph, 'field_c_p_links');
+  if ($links) {
+    foreach ($links as $link) {
+      $variables['links'][] = [
+        'text' => $link->get('title')->getString(),
+        'url' => $link->getUrl()->toString(),
+        'is_new_window' => $link->isExternal(),
+      ];
+    }
   }
 }
 
@@ -69,19 +77,17 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
     if (!empty($nodes)) {
       /** @var \Drupal\node\NodeInterface $node */
       $node = reset($nodes);
+
       $variables['title'] = $node->label();
-
-      if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
-        $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
-        if ($target) {
-          $media = $target->getValue();
-          $variables['image'] = civictheme_media_image_process_variables($media);
-          $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
-        }
-      }
-
+      $variables['date'] = civictheme_format_short_date($node->getChangedTime());
+      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary');
       $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
-      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
+
+      $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
+      if ($media) {
+        $variables['image'] = civictheme_media_image_process_variables($media);
+        $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
+      }
 
       $link_text = civictheme_get_field_value($paragraph, 'field_c_p_link_text', TRUE);
       if ($link_text) {

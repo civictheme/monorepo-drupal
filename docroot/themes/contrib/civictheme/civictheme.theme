@@ -91,13 +91,6 @@ function civictheme_theme() {
       ],
       'template' => 'misc/tag-list',
     ],
-    'civictheme_slider_slide_links' => [
-      'variables' => [
-        'component_theme' => CivicthemeConstants::THEME_LIGHT,
-        'links' => [],
-      ],
-      'template' => 'misc/slider-slide-links',
-    ],
     'civictheme_basic_content' => [
       'variables' => [
         'component_theme' => CivicthemeConstants::THEME_LIGHT,

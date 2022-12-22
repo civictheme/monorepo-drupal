@@ -12,7 +12,7 @@ function civictheme_preprocess_paragraph__civictheme_campaign(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civictheme_preprocess_paragraph__card__image($variables);
+  _civictheme_preprocess_paragraph__image($variables);
 
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
   $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
@@ -34,5 +34,4 @@ function civictheme_preprocess_paragraph__civictheme_campaign(&$variables) {
       ];
     }
   }
-
 }
