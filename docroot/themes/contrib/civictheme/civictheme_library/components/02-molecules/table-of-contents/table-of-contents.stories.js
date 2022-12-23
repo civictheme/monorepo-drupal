@@ -6,7 +6,7 @@ import {
 import { randomText } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Table Of Contents',
+  title: 'Molecules/Table Of Contents',
 };
 
 export const TableOfContents = (knobTab) => {

@@ -5,7 +5,7 @@ import CivicThemeImage from './image.twig';
 import { demoImage } from '../../00-base/base.utils';
 
 export default {
-  title: 'Atoms/Content/Image',
+  title: 'Atoms/Image',
   parameters: {
     layout: 'centered',
   },

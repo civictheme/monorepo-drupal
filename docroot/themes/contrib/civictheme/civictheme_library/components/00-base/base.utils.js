@@ -109,7 +109,7 @@ export const demoImage = (idx) => {
     './assets/images/demo3.jpg',
   ];
 
-  idx = Math.max(0, Math.min(idx, images.length)) || Math.floor(Math.random() * images.length);
+  idx = typeof idx !== 'undefined' ? Math.max(0, Math.min(idx, images.length)) : Math.floor(Math.random() * images.length);
 
   return images[idx];
 };

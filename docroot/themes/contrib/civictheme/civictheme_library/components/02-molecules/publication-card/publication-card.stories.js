@@ -11,7 +11,7 @@ import {
 } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Cards/Publication Card',
+  title: 'Molecules/Publication Card',
   parameters: {
     layout: 'centered',
   },

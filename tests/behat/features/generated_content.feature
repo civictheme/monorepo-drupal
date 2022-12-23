@@ -6,4 +6,4 @@ Feature: Generated Content list
     Given I am an anonymous user
     When I go to "generated-content/components"
     Then the response status code should be 200
-    And the response should contain "Generated Page,"
+    And the response should contain "Generated component pages"

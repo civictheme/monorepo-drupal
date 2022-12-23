@@ -6,7 +6,7 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - content_top1: [string] Content slot.
- * - breadcrumb: [string] Content slot.
+ * - breadcrumb: [array] Breadcrumb links.
  * - content_top2: [string] Content slot.
  * - content_top3: [string] Content slot.
  * - content_middle: [string] Content slot.
@@ -53,15 +53,17 @@
 
           {% if breadcrumb is not empty or content_top2 is not empty %}
             <div class="row">
-              {% if breadcrumb is not empty %}
-                {%- block breadcrumb %}
-                  <div class="col-xxs-12">
-                    <div class="ct-banner__breadcrumb">
-                      {{- breadcrumb -}}
-                    </div>
+              {% block breadcrumb %}
+                {% if breadcrumb is not empty %}
+                  <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
+                    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
+                      theme: theme,
+                      links: breadcrumb,
+                      modifier_class: 'ct-banner__breadcrumb',
+                    } only %}
                   </div>
-                {% endblock -%}
-              {% endif %}
+                {% endif %}
+              {% endblock %}
 
               {% if content_top2 is not empty %}
                 {%- block content_top2 %}
@@ -91,12 +93,11 @@
             <div class="row">
               {%- block section %}
                 <div class="col-xxs-12">
-                  <div class="ct-banner__section">
-                    {% include '@atoms/heading/heading.twig' with {
-                      content: section,
-                      level: 5,
-                    } only %}
-                  </div>
+                  {% include '@atoms/heading/heading.twig' with {
+                    content: section,
+                    level: 5,
+                    modifier_class: 'ct-banner__section',
+                  } only %}
                 </div>
               {% endblock -%}
             </div>
@@ -105,7 +106,7 @@
           {% if title is not empty %}
             <div class="row">
               {%- block title %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                   {% include '@atoms/heading/heading.twig' with {
                     theme: theme,
                     content: title,
@@ -120,7 +121,7 @@
           {% if content_middle is not empty %}
             <div class="row">
               {%- block content_middle %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                   <div class="ct-banner__content-middle">
                     {{- content_middle -}}
                   </div>
@@ -132,7 +133,7 @@
           {% if content is not empty %}
             <div class="row">
               {%- block content %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                   <div class="ct-banner__content">
                     {{- content -}}
                   </div>
@@ -146,11 +147,12 @@
 
       {% block featured_image %}
         {% if featured_image is not empty %}
-          <div class="ct-banner__featured-image">
+          <div class="ct-banner__featured-image-wrapper">
             {% include '@atoms/image/image.twig' with {
               theme: theme,
               src: featured_image.src,
               alt:  featured_image.alt,
+              modifier_class: 'ct-banner__featured-image',
             } only %}
           </div>
         {% endif %}

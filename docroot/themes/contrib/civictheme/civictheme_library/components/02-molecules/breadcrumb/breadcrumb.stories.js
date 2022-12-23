@@ -9,7 +9,7 @@ export default {
   title: 'Molecules/Breadcrumb',
 };
 
-export const Breadcrumb = (knobTab) => {
+export const Breadcrumb = (knobTab, doRender = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -48,7 +48,7 @@ export const Breadcrumb = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeBreadcrumb({
+  return doRender ? CivicThemeBreadcrumb({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

@@ -6,7 +6,7 @@ import CivicThemeItemGrid from './item-grid.twig';
 import { generateItems, placeholder } from '../base.utils';
 
 export default {
-  title: 'Base/Layout/Item Grid',
+  title: 'Base/Item Grid',
 };
 
 export const ItemGrid = (knobTab) => {
