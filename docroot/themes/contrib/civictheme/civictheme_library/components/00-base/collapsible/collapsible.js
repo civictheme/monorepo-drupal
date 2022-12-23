@@ -39,6 +39,8 @@ function CivicThemeCollapsible(el) {
 
   // Make sure that both trigger and a panel have required attributes set.
   this.trigger.setAttribute('data-collapsible-trigger', '');
+  // Added this to allow focus on non intractive elements. i.e div h2 etc.
+  this.trigger.setAttribute('tabindex', 0);
   this.panel.setAttribute('data-collapsible-panel', '');
 
   if (!this.panel.hasAttribute('data-collapsible-trigger-no-icon') && !this.trigger.querySelector('.ct-collapsible__icon')) {
@@ -58,6 +60,8 @@ function CivicThemeCollapsible(el) {
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {
     this.collapse();
+    // Diable focus on hidden elements.
+    this.panel.style.visibility = 'hidden';
   }
 
   this.el.addEventListener('ct.collapsible.collapse', (evt) => {
@@ -194,7 +198,7 @@ CivicThemeCollapsible.prototype.focusoutEvent = function (e) {
  * React on pressed keys.
  */
 CivicThemeCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) {
+  if (!/(32|27|38|40|13)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) {
     return;
   }
 
@@ -219,8 +223,8 @@ CivicThemeCollapsible.prototype.keydownEvent = function (e) {
       this.dispatchEvent(new CustomEvent('ct.collapsible.expand', { bubbles: true }));
     }
 
-    // Space.
-    if (e.which === 32) {
+    // Space & Enter.
+    if (e.which === 32 || e.which === 13) {
       e.target.click();
     }
   }
@@ -306,6 +310,7 @@ CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
         });
         // Finally, change the height, triggering the transition.
         t.panel.style.height = '0px';
+        t.panel.style.visibility = 'hidden';
       });
     });
   } else {
@@ -363,6 +368,7 @@ CivicThemeCollapsible.prototype.expand = function (animate) {
           // Remove progress state.
           t.el.removeAttribute('data-collapsible-collapsing');
         });
+        t.panel.style.visibility = 'visible';
         // Finally, change the height, triggering the transition.
         t.panel.style.height = `${h}px`;
       });

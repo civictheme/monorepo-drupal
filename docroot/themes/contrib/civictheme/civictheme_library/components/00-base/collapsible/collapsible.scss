@@ -21,6 +21,11 @@
       .ct-collapsible__icon {
         transform: rotate(-180deg);
       }
+
+      &:focus {
+        @include ct-outline();
+        @include ct-outline-border();
+      }
     }
 
     &[data-collapsible-trigger-wide] {
