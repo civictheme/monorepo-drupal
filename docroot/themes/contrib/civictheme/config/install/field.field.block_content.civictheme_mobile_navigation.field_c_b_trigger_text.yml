@@ -10,7 +10,7 @@ entity_type: block_content
 bundle: civictheme_mobile_navigation
 label: 'Trigger text'
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -
