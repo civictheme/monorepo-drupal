@@ -163,6 +163,13 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Image blend-mode.
+   */
+  public static function civicthemeImageBlendMode() {
+    return 'soft-light';
+  }
+
+  /**
    * Small size name.
    */
   public static function civicthemeSizeSmall() {

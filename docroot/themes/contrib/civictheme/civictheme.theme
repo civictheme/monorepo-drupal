@@ -17,7 +17,6 @@ require_once 'includes/alert.inc';
 require_once 'includes/attachment.inc';
 require_once 'includes/banner.inc';
 require_once 'includes/block_content.inc';
-require_once 'includes/breadcrumb.inc';
 require_once 'includes/callout.inc';
 require_once 'includes/campaign.inc';
 require_once 'includes/event_card.inc';
@@ -63,15 +62,21 @@ require_once 'includes/views.inc';
  * Implements hook_theme().
  */
 function civictheme_theme() {
+  // Components from the library are used directly by including them within
+  // existing templates.
+  //
+  // However, in some rare cases we still need to define custom themes to allow
+  // component reuse outside the library.
+  //
+  // The list below may be reduced further upon architectural review and
+  // adjustments within the library.
   return [
-    'civictheme_breadcrumb' => [
-      'base hook' => 'breadcrumb',
+    'civictheme_basic_content' => [
       'variables' => [
-        'display_theme' => NULL,
-        'active_is_link' => NULL,
-        'links' => [],
+        'component_theme' => CivicthemeConstants::THEME_LIGHT,
+        'content' => '',
       ],
-      'template' => 'navigation/breadcrumb',
+      'template' => 'misc/basic-content',
     ],
     'civictheme_tag_list' => [
       'variables' => [
@@ -82,13 +87,6 @@ function civictheme_theme() {
         'modifier_class' => NULL,
       ],
       'template' => 'misc/tag-list',
-    ],
-    'civictheme_basic_content' => [
-      'variables' => [
-        'component_theme' => CivicthemeConstants::THEME_LIGHT,
-        'content' => '',
-      ],
-      'template' => 'misc/basic-content',
     ],
   ];
 }
@@ -212,13 +210,6 @@ function civictheme_preprocess_block(&$variables) {
   _civictheme_preprocess_block__content($variables);
   _civictheme_preprocess_block__civictheme_mobile_navigation($variables);
   _civictheme_preprocess_block__civictheme_social_links($variables);
-}
-
-/**
- * Implements template_preprocess_civictheme_breadcrumb().
- */
-function civictheme_preprocess_civictheme_breadcrumb(&$variables) {
-  _civictheme_preprocess_civictheme_breadcrumb($variables);
 }
 
 /**

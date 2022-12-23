@@ -165,11 +165,11 @@ function _civictheme_preprocess_civictheme_banner_breadcrumb(&$variables) {
     /** @var \Drupal\Core\Breadcrumb\Breadcrumb|null $breadcrumb */
     $breadcrumb = \Drupal::service('breadcrumb')->build($route_match);
     if ($breadcrumb) {
-      $variables['breadcrumb'] = $breadcrumb->toRenderable();
-      if (isset($variables['theme'])) {
-        // Changing to CivicTheme theme to pass other variables to template.
-        $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
-        $variables['breadcrumb']['#display_theme'] = $variables['theme'];
+      foreach ($breadcrumb->getLinks() as $link) {
+        $variables['breadcrumb'][] = [
+          'text' => $link->getText(),
+          'url' => $link->getUrl()->toString(),
+        ];
       }
     }
   }
