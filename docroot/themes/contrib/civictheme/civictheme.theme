@@ -73,14 +73,6 @@ function civictheme_theme() {
       ],
       'template' => 'navigation/breadcrumb',
     ],
-    'civictheme_description_list' => [
-      'variables' => [
-        'items' => [],
-        'is_inline' => '',
-        'modifier_class' => '',
-      ],
-      'template' => 'misc/description-list',
-    ],
     'civictheme_tag_list' => [
       'variables' => [
         'tags' => [],
