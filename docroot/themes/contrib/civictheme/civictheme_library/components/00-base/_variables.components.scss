@@ -851,13 +851,14 @@ $ct-back-to-top-outline-color: transparent !default;
 //
 // Banner.
 //
-$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(11)}), 0% 100%) !default;
-$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(5)}), 0% 100%) !default;
+$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(2)}), 0% 100%) !default;
+$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(6)}), 0% 100%) !default;
+$ct-banner-featured-image-width: 40% !default;
 $ct-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
 $ct-banner-light-background-color: ct-color-light('background') !default;
-$ct-banner-light-color: ct-color-light('body') !default;
+$ct-banner-light-featured-image-shadow-color: ct-color-light('background-light') !default;
 $ct-banner-dark-background-color: ct-color-dark('background') !default;
-$ct-banner-dark-color: ct-color-dark('body') !default;
+$ct-banner-dark-featured-image-shadow-color: ct-color-dark('background') !default;
 
 //
 // Layout.
