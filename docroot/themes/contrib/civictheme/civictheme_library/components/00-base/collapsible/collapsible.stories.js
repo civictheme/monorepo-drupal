@@ -3,7 +3,7 @@ import CivicThemeCollapsible from './collapsible.stories.twig';
 import './collapsible';
 
 export default {
-  title: 'Base/Utilities/Collapsible',
+  title: 'Base/Collapsible',
 };
 
 export const Collapsible = CivicThemeCollapsible;

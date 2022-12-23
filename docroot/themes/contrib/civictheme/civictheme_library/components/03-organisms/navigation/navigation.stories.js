@@ -5,7 +5,7 @@ import getMenuLinks from '../../00-base/menu/menu.utils';
 import { randomInt, randomSentence } from '../../00-base/base.utils';
 
 export default {
-  title: 'Organisms/Navigation/Navigation',
+  title: 'Organisms/Navigation',
   parameters: {
     layout: 'centered',
   },

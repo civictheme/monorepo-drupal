@@ -3,7 +3,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeQuote from './quote.twig';
 
 export default {
-  title: 'Molecules/Content/Quote',
+  title: 'Molecules/Quote',
   parameters: {
     layout: 'fullscreen',
   },

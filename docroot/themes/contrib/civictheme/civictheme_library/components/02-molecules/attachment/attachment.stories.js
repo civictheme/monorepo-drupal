@@ -4,7 +4,7 @@ import { getSlots, randomUrl } from '../../00-base/base.utils';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {
-  title: 'Molecules/Content/Attachment',
+  title: 'Molecules/Attachment',
 };
 
 export const Attachment = (knobTab) => {

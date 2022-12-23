@@ -5,7 +5,7 @@ import { getSlots } from '../../00-base/base.utils';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Mobile Navigation',
+  title: 'Organisms/Mobile Navigation',
   parameters: {
     layout: 'fullscreen',
   },
