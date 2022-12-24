@@ -5,9 +5,6 @@
  * CivicTheme iFrame paragraph component.
  */
 
-use Drupal\civictheme\CivicthemeUtility;
-use Drupal\Core\Template\Attribute;
-
 /**
  * Implements template_preprocess_paragraph().
  *
