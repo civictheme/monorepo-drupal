@@ -46,14 +46,14 @@ export const Pagination = (knobTab) => {
     },
     generalKnobTab,
   );
-  const use_ellipsis = boolean('With ellipsis', false, generalKnobTab);
+  const useEllipsis = boolean('With ellipsis', false, generalKnobTab);
 
   const pages = {};
   const pagerMiddle = Math.ceil(pageCount / 2);
   const pagerFirst = current - pagerMiddle + 1;
   const pagerLast = current + pageCount - pagerMiddle;
   for (let i = 0; i < pageCount; i++) {
-    if (use_ellipsis) {
+    if (useEllipsis) {
       if (i === 0 || (i > pagerFirst && i < pagerLast) || i === (pageCount - 1)) {
         pages[i + 1] = {
           href: randomUrl(),
@@ -79,7 +79,7 @@ export const Pagination = (knobTab) => {
       },
     } : null,
     heading_id: text('Heading Id', 'ct-pager-demo', generalKnobTab),
-    use_ellipsis,
+    use_ellipsis: useEllipsis,
     items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
       {
         type: 'option', label: 10, value: 10, selected: false,
