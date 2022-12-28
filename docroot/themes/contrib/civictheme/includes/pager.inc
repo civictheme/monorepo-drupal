@@ -94,7 +94,7 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
     _civictheme_preprocess_pager__items_per_page($variables, $view, $pager);
   }
 
-  _civictheme_preprocess_mini_pager__ellipsis($variables);
+  $variables['use_ellipsis'] = TRUE;
 }
 
 /**
@@ -122,17 +122,5 @@ function _civictheme_preprocess_pager__items_per_page(&$variables, $view, $pager
     }
     $variables['items_per_page_options'] = $items_per_page;
     $variables['items_per_page_attributes'] = 'name="items_per_page" form="' . $exposed_widgets['#id'] . '"';
-  }
-}
-
-/**
- * Helper to process ellipsis for mini pager.
- */
-function _civictheme_preprocess_mini_pager__ellipsis(&$variables) {
-  if ($variables['items']['current'] > 1) {
-    $variables['ellipsis']['previous'] = TRUE;
-  }
-  if ($variables['items']['current'] < $variables['total_pages']) {
-    $variables['ellipsis']['next'] = TRUE;
   }
 }
