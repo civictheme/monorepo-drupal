@@ -47,6 +47,13 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     }
   }
 
+  // Sidebar check.
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!is_null($node)) {
+    $variables['modifier_class'] = trim(sprintf('%s %s', $variables['modifier_class'], civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ? '' : 'has_sidebar'));
+  }
+
   $settings = [
     'theme' => civictheme_get_field_theme_value($paragraph),
     'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),

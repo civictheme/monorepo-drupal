@@ -47,6 +47,13 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
       $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
     }
   }
+
+  // Sidebar check.
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!is_null($node)) {
+    $variables['modifier_class'] = trim(sprintf('%s %s', $variables['modifier_class'], civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ? '' : 'has_sidebar'));
+  }
 }
 
 /**

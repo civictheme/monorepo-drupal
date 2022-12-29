@@ -91,4 +91,14 @@
       }
     }
   }
+
+  &.has_sidebar {
+    padding: ct-spacing(2);
+  }
+}
+
+.has_sidebar {
+  .ct-list {
+    padding: ct-spacing(2);
+  }
 }

@@ -184,4 +184,10 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
   if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['reference_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
+  // Sidebar check.
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!is_null($node)) {
+    $variables['modifier_class'] = trim(sprintf('%s %s', $variables['modifier_class'] ?? '', civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ? '' : 'has_sidebar'));
+  }
 }

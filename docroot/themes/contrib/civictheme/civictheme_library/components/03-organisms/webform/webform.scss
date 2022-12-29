@@ -14,4 +14,8 @@
       @include ct-component-property($root, $theme, background-color);
     }
   }
+
+  &.has_sidebar {
+    padding: ct-spacing(2);
+  }
 }
