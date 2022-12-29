@@ -15,6 +15,8 @@ use Drupal\views\Views;
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
