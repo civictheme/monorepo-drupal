@@ -338,10 +338,10 @@ config_devel:
     - field.field.paragraph.civictheme_campaign.field_c_p_date
     - field.field.paragraph.civictheme_campaign.field_c_p_image
     - field.field.paragraph.civictheme_campaign.field_c_p_image_position
-    - field.field.paragraph.civictheme_campaign.field_c_p_summary
+    - field.field.paragraph.civictheme_campaign.field_c_p_links
     - field.field.paragraph.civictheme_campaign.field_c_p_theme
     - field.field.paragraph.civictheme_campaign.field_c_p_title
-    - field.field.paragraph.civictheme_campaign.field_c_p_topic
+    - field.field.paragraph.civictheme_campaign.field_c_p_topics
     - field.field.paragraph.civictheme_campaign.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_content.field_c_p_background
     - field.field.paragraph.civictheme_content.field_c_p_content
@@ -429,9 +429,10 @@ config_devel:
     - field.field.paragraph.civictheme_slider.field_c_p_title
     - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_slider_slide.field_c_p_content
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_date
     - field.field.paragraph.civictheme_slider_slide.field_c_p_image
     - field.field.paragraph.civictheme_slider_slide.field_c_p_image_position
-    - field.field.paragraph.civictheme_slider_slide.field_c_p_link
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_links
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
     - field.field.paragraph.civictheme_slider_slide.field_c_p_topics

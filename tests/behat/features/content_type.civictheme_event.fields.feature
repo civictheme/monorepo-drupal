@@ -1,82 +1,85 @@
 @p0 @civictheme @content_type @civictheme_event
 Feature: CivicTheme Event content type fields
 
-  Ensure that fields have been setup correctly.
-
   @api
-  Scenario: CivicTheme Event content type exists with fields
-    Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/structure/types/manage/civictheme_event/fields"
-    Then I should see the text "Attachments" in the "field_c_n_attachments" row
-    And I should see the text "Body" in the "field_c_n_body" row
-    And I should see the text "Custom Last updated date" in the "field_c_n_custom_last_updated" row
-    And I should see the text "Date" in the "field_c_n_date" row
-    And I should see the text "Location" in the "field_c_n_location" row
-    And I should see the text "how Last updated date" in the "field_c_n_show_last_updated" row
-    And I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
-    And I should see the text "Summary" in the "field_c_n_summary" row
-    And I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
-    And I should see the text "Topics" in the "field_c_n_topics" row
-
-  @api
-  Scenario: CivicTheme Event content type form has the relevant fields
+  Scenario: Fields appear as expected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_event"
     Then the response status code should be 200
 
     And I see field "Title"
-    And should see an "input#edit-title-0-value" element
-    And should see an "input#edit-title-0-value.required" element
-    And should not see an "input#edit-title-0-value[disabled]" element
+    And should see an "[name='title[0][value]']" element
+    And should see an "[name='title[0][value]'].required" element
+    And should not see an "[name='title[0][value]'][disabled]" element
 
     And I see field "Summary"
-    And should see a "textarea#edit-field-c-n-summary-0-value" element
-    And should not see a "textarea#edit-field-c-n-summary-0-value.required" element
-    And should not see a "textarea#edit-field-c-n-summary-0-value[disabled]" element
+    And should see an "[name='field_c_n_summary[0][value]']" element
+    And should not see an "[name='field_c_n_summary[0][value]'].required" element
+    And should not see an "[name='field_c_n_summary[0][value]'][disabled]" element
 
     And I see field "Topics"
-    And should see a "input#edit-field-c-n-topics-0-target-id" element
-    And should not see a "input#edit-field-c-n-topics-0-target-id.required" element
-    And should not see a "input#edit-field-c-n-topics-0-target-id[disabled]" element
+    And should see an "[name='field_c_n_topics[0][target_id]']" element
+    And should not see an "[name='field_c_n_topics[0][target_id]'].required" element
+    And should not see an "[name='field_c_n_topics[0][target_id]'][disabled]" element
 
-    And I should see the text "Thumbnail"
-    And should see a "input#edit-field-c-n-thumbnail-open-button" element
-    And should not see a "input#edit-field-c-n-thumbnail-open-button.required" element
-    And should not see a "input#edit-field-c-n-thumbnail-open-button[disabled]" element
-
-    And I should see the text "Start date"
-    And I should see a "input#edit-field-c-n-date-0-value-date" element
-    And I should not see a "input#edit-field-c-n-date-0-value-date.required" element
-    And I should not see a "input#edit-field-c-n-date-0-value-date.required[disabled]" element
-    And I should see the text "End date"
-    And I should see a "input#edit-field-c-n-date-0-end-value-date" element
-    And I should not see a "input#edit-field-c-n-date-0-end-value-date.required" element
-    And I should not see a "input#edit-field-c-n-date-0-end-value-date.required[disabled]" element
-
-    And I see field "Address"
-    And I should see a "input#edit-field-c-n-location-0-subform-field-c-p-address-0-value" element
+    And I see field "Site section"
+    And should see an "[name='field_c_n_site_section']" element
+    And should not see an "[name='field_c_n_site_section'].required" element
+    And should not see an "[name='field_c_n_site_section'][disabled]" element
 
     And I see field "Show Table of Contents"
-    And I should see a "input#edit-field-c-n-show-toc-value" element
-    And I should not see a "input#edit-field-c-n-show-toc-value.required" element
-    And I should not see a "input#edit-field-c-n-show-toc-value[disabled]" element
+    And should see an "[name='field_c_n_show_toc[value]']" element
+    And should not see an "[name='field_c_n_show_toc[value]'].required" element
+    And should not see an "[name='field_c_n_show_toc[value]'][disabled]" element
 
     And I see field "Body"
-    And should see a "textarea#edit-field-c-n-body-0-value" element
-    And should see a "textarea#edit-field-c-n-body-0-value.required" element
-    And should not see a "textarea#edit-field-c-n-body-0-value[disabled]" element
+    And should see an "[name='field_c_n_body[0][value]']" element
+    And should see an "[name='field_c_n_body[0][value]'].required" element
+    And should not see an "[name='field_c_n_body[0][value]'][disabled]" element
+
+    And I should see the text "Thumbnail"
+    And should see an "[name='field_c_n_thumbnail[media_library_selection]']" element
+
+    And I see field "Vertical spacing"
+    And should see an "[name='field_c_n_vertical_spacing']" element
+    And should not see an "[name='field_c_n_vertical_spacing'].required" element
+    And should not see an "[name='field_c_n_vertical_spacing'][disabled]" element
+
+    And I should see the text "Start date"
+    And should see an "[name='field_c_n_date[0][value][date]']" element
+    And should not see an "[name='field_c_n_date[0][value][date]'].required" element
+    And should not see an "[name='field_c_n_date[0][value][date]'][disabled]" element
+    And I should see the text "End date"
+    And should see an "[name='field_c_n_date[0][end_value][date]']" element
+    And should not see an "[name='field_c_n_date[0][end_value][date]'].required" element
+    And should not see an "[name='field_c_n_date[0][end_value][date]'][disabled]" element
+
+    And I see field "Address"
+
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_address][0][value]']" element
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_address][0][value]'].required" element
+    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_address][0][value]'][disabled]" element
+
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_view_link][0][uri]']" element
+    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_view_link][0][uri]'].required" element
+    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_view_link][0][uri]'][disabled]" element
+
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_embed_url][0][uri]']" element
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_embed_url][0][uri]'].required" element
+    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_embed_url][0][uri]'][disabled]" element
+
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_theme]']" element
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_background][value]']" element
+
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_vertical_spacing]']" element
+    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_vertical_spacing]'].required" element
 
     And I see field "Show Last updated date"
-    And I should see a "input#edit-field-c-n-show-last-updated-value" element
-    And I should not see a "input#edit-field-c-n-show-last-updated-value.required" element
-    And I should not see a "input#edit-field-c-n-show-last-updated-value[disabled]" element
+    And I should see a "[name='field_c_n_show_last_updated[value]']" element
+    And I should not see a "[name='field_c_n_show_last_updated[value]'].required" element
+    And I should not see a "[name='field_c_n_show_last_updated[value]'][disabled]" element
 
     And I should see the text "Custom Last updated date"
-    And I should see a "input#edit-field-c-n-custom-last-updated-0-value-date" element
-    And I should not see a "input#edit-field-c-n-custom-last-updated-0-value-date.required" element
-    And I should not see a "input#edit-field-c-n-custom-last-updated-0-value-date[disabled]" element
-
-    And I see field "Published"
-    And I should see a "input#edit-status-value" element
-    And I should not see a "input#edit-status-value.required" element
-    And I should not see a "input#edit-status-value[disabled]" element
+    And I should see a "[name='field_c_n_custom_last_updated[0][value][date]']" element
+    And I should not see a "[name='field_c_n_custom_last_updated[0][value][date]'].required" element
+    And I should not see a "[name='field_c_n_custom_last_updated[0][value][date]'][disabled]" element

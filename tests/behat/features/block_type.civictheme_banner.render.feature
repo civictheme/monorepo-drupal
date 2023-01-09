@@ -3,9 +3,9 @@ Feature: Banner render
 
   Background:
     Given managed file:
-      | filename       | uri                                       | path           |
-      | test_image.jpg | public://civictheme_test/test_image.jpg   | test_image.jpg |
-      | image.jpg      | public://civictheme_test/image.jpg        | image.jpg      |
+      | filename       | uri                                     | path           |
+      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
+      | image.jpg      | public://civictheme_test/image.jpg      | image.jpg      |
 
     And "civictheme_image" media:
       | name                            | field_c_m_image |

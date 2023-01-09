@@ -149,6 +149,14 @@
     }
   }
 
+  #{$root}__content__date {
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(2);
+    }
+  }
+
   #{$root}__content__summary {
     margin-bottom: ct-spacing(4);
 

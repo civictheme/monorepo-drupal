@@ -185,7 +185,10 @@ function civictheme_attributes_to_modifier_class(&$variables) {
 }
 
 /**
- * Format dates for cards.
+ * Format date.
+ *
+ * @param mixed $date
+ *   Timestamp or date as a string.
  *
  * @return mixed
  *   Formatted date.
@@ -193,7 +196,9 @@ function civictheme_attributes_to_modifier_class(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_format_short_date($date) {
-  return \Drupal::service('date.formatter')->format(strtotime($date), 'civictheme_short_date');
+  $timestamp = is_numeric($date) ? $date : strtotime($date);
+
+  return \Drupal::service('date.formatter')->format($timestamp, 'civictheme_short_date');
 }
 
 /**

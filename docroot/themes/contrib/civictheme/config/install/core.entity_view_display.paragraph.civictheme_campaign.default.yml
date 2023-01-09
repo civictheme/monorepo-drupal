@@ -6,14 +6,15 @@ dependencies:
     - field.field.paragraph.civictheme_campaign.field_c_p_date
     - field.field.paragraph.civictheme_campaign.field_c_p_image
     - field.field.paragraph.civictheme_campaign.field_c_p_image_position
-    - field.field.paragraph.civictheme_campaign.field_c_p_summary
+    - field.field.paragraph.civictheme_campaign.field_c_p_links
     - field.field.paragraph.civictheme_campaign.field_c_p_theme
     - field.field.paragraph.civictheme_campaign.field_c_p_title
-    - field.field.paragraph.civictheme_campaign.field_c_p_topic
+    - field.field.paragraph.civictheme_campaign.field_c_p_topics
     - field.field.paragraph.civictheme_campaign.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_campaign
   module:
     - datetime
+    - link
     - options
     - text
 id: paragraph.civictheme_campaign.default
@@ -35,7 +36,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 2
+    weight: 10
     region: content
   field_c_p_image:
     type: entity_reference_label
@@ -52,12 +53,17 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
-  field_c_p_summary:
-    type: basic_string
+  field_c_p_links:
+    type: link
     label: above
-    settings: {  }
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 11
     region: content
   field_c_p_theme:
     type: list_default
@@ -74,13 +80,13 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_c_p_topic:
+  field_c_p_topics:
     type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 0
+    weight: 9
     region: content
   field_c_p_vertical_spacing:
     type: list_default

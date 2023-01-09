@@ -18,9 +18,7 @@
  *   - value: [string] Option value.
  *   - selected: [string] Flag whether option is selected.
  * - items_per_page_attributes: attributes for select element.
- * - ellipsis: [object] Object with oolean flags for whether to print ellipsis.
- *   - previous: [boolean] Show ellipsis before item links
- *   - next: [boolean] Show ellipsis after item links
+ * - use_ellipsis: [boolean] Flag whether ellipsis to be shown.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -93,9 +91,9 @@
       {# Generate pager. #}
       {% for key, item in items.pages %}
         {% if loop.last %}
-          {# Add an ellipsis if there are further next pages. #}
-          {% if ellipsis.next %}
-            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-next" role="presentation">
+          {# Add an ellipsis if there are further previous pages. #}
+          {% if use_ellipsis and current > 1 %}
+            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-previous" role="presentation">
               &hellip;
             </li>
           {% endif %}
@@ -118,9 +116,9 @@
           } only %}
         </li>
         {% if loop.first %}
-          {# Add an ellipsis if there are further previous pages. #}
-          {% if ellipsis.previous %}
-            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-previous" role="presentation">
+          {# Add an ellipsis if there are further next pages. #}
+          {% if use_ellipsis and current < total_pages %}
+            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-next" role="presentation">
               &hellip;
             </li>
           {% endif %}

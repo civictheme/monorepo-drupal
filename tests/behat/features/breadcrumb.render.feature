@@ -1,4 +1,4 @@
-@p1 @civictheme @breadcrumb
+@p1 @civictheme @breadcrumb @d9only
 Feature: Breadcrumb render
 
   Background:

@@ -4,7 +4,7 @@ import { randomFormElements } from '../../00-base/base.utils';
 import CivicThemeFieldset from './fieldset.twig';
 
 export default {
-  title: 'Atoms/Forms/Fieldset',
+  title: 'Atoms/Fieldset',
 };
 
 export const Fieldset = () => {

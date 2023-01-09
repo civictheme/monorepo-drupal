@@ -211,7 +211,6 @@ Feature: Automated list render
     And should see an "input[name='title']" element
     And should not see an "input[name='title'].required" element
 
-
   @api @testmode
   Scenario: CivicTheme listing page with pagination works as expected
     Given I am an anonymous user

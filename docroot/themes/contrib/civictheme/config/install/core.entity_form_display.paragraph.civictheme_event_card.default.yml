@@ -35,7 +35,7 @@ content:
     third_party_settings: {  }
   field_c_p_link:
     type: link_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
   field_c_p_location:
     type: string_textfield
-    weight: 7
+    weight: 4
     region: content
     settings:
       size: 60
@@ -59,7 +59,7 @@ content:
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -73,7 +73,7 @@ content:
     third_party_settings: {  }
   field_c_p_topic:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS
