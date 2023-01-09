@@ -15,7 +15,7 @@
     border-radius: $ct-attachment-border-radius;
     padding: ct-spacing(3);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(4);
     }
   }
@@ -37,7 +37,7 @@
     gap: ct-spacing();
     margin-bottom: ct-spacing(0.5);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing();
     }
 

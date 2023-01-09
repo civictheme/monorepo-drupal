@@ -13,6 +13,7 @@
 function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
 
@@ -40,49 +41,27 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_field_theme_value($paragraph, $variables['theme'] ?? NULL);
 
-  _civictheme_preprocess_paragraph__card__image($variables);
+  _civictheme_preprocess_paragraph__image($variables);
 
-  $variables['attributes']['data-component-ct-slider-slide'] = '';
-
-  // Image position.
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
-
-  // Topic.
-  $topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
-  if ($topics) {
-    $topics = array_map(function ($topic) use ($theme) {
-      return [
-        'text' => $topic,
-        'theme' => $theme,
-      ];
-    }, $topics);
-
-    $variables['content_top']['slide_topics'] = [
-      '#theme' => 'civictheme_slider_slide_tags',
-      '#tags' => $topics,
-    ];
-  }
-
-  // Summary.
+  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
   $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_content', TRUE);
 
-  // Links.
-  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
-  $links = [];
-  if ($link) {
-    $links[] = [
-      'type' => 'primary',
-      'size' => 'regular',
-      'text' => $link->get('title')->getString(),
-      'url' => $link->getUrl()->toString(),
-    ];
-    $variables['links']['slide_links'] = [
-      '#theme' => 'civictheme_slider_slide_links',
-      '#component_theme' => $theme,
-      '#links' => $links,
-    ];
+  $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
+  }
+
+  $links = civictheme_get_field_value($paragraph, 'field_c_p_links');
+  if ($links) {
+    foreach ($links as $link) {
+      $variables['links'][] = [
+        'text' => $link->get('title')->getString(),
+        'url' => $link->getUrl()->toString(),
+        'is_new_window' => $link->isExternal(),
+      ];
+    }
   }
 }
 
@@ -92,73 +71,30 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_field_theme_value($paragraph, $variables['theme'] ?? NULL);
-  // Image position.
-  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
-  $variables['attributes']['data-component-ct-slider-slide'] = '';
 
   if ($paragraph->hasField('field_c_p_reference')) {
-    $node = $paragraph->field_c_p_reference->referencedEntities();
-    if (!empty($node)) {
+    $nodes = $paragraph->field_c_p_reference->referencedEntities();
+    if (!empty($nodes)) {
       /** @var \Drupal\node\NodeInterface $node */
-      $node = reset($node);
+      $node = reset($nodes);
+
       $variables['title'] = $node->label();
+      $variables['date'] = civictheme_format_short_date($node->getChangedTime());
+      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary');
+      $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
 
-      // Image.
-      if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
-        $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
-        if ($target) {
-          $media = $target->getValue();
-          $variables['image'] = civictheme_media_image_process_variables($media);
-        }
+      $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
+      if ($media) {
+        $variables['image'] = civictheme_media_image_process_variables($media);
+        $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
       }
 
-      // Topic.
-      $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
-      if ($topics) {
-        $topics = array_map(function ($topic) use ($theme) {
-          return [
-            'text' => $topic,
-            'theme' => $theme,
-          ];
-
-        }, $topics);
-      }
-
-      // Date.
-      $date_range = civictheme_get_field_value($node, 'field_c_n_date', TRUE);
-      if ($date_range) {
-        $topics[] = [
-          'text' => civictheme_format_short_date($date_range->get('value')->getString()),
-          'theme' => $theme,
-          'type' => 'tertiary',
-          'modifier_class' => 'ct-slide__date',
-        ];
-      }
-
-      if ($topics) {
-        $variables['content_top']['slide_topics'] = [
-          '#theme' => 'civictheme_slider_slide_tags',
-          '#tags' => $topics,
-        ];
-      }
-
-      // Summary.
-      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
-
-      // Links.
-      if (civictheme_field_has_value($paragraph, 'field_c_p_link_text')) {
-        $links = [];
-        $links[] = [
-          'type' => 'primary',
-          'size' => 'regular',
-          'text' => civictheme_get_field_value($paragraph, 'field_c_p_link_text', TRUE),
+      $link_text = civictheme_get_field_value($paragraph, 'field_c_p_link_text', TRUE);
+      if ($link_text) {
+        $variables['links'][] = [
+          'text' => $link_text,
           'url' => $node->toUrl()->toString(),
-        ];
-        $variables['links']['slide_links'] = [
-          '#theme' => 'civictheme_slider_slide_links',
-          '#component_theme' => $variables['theme'],
-          '#links' => $links,
+          'is_new_window' => $node->toUrl()->isExternal(),
         ];
       }
     }

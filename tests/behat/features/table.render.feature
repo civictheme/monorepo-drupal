@@ -1,13 +1,6 @@
 @p0 @civictheme @civictheme_table @testmode
 Feature: Table render
 
-  @api @d9only
-  Scenario: Styleguide page should show table with correct markup.
-    Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/appearance/styleguide/civictheme#table"
-    Then I should see the text "Table"
-    And I should see a "table.ct-table" element
-
   @api
   Scenario: Views page should show table with correct markup.
     Given civictheme_page content:

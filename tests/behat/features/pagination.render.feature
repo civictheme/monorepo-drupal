@@ -30,14 +30,7 @@ Feature: Pagination
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api @d9only
-  Scenario: Styleguide page should show table with correct markup.
-    Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/appearance/styleguide/civictheme#pagination-heading"
-    Then I should see the text "Pager"
-    And I should see a "nav.ct-pager" element
-
-  @api @skipped
+  @api
   Scenario: Views page with full pager and items per page should render and function correctly
     Given I am an anonymous user
     When I visit "civictheme-no-sidebar/test-table"
@@ -49,7 +42,7 @@ Feature: Pagination
     And I should not see "First" in the ".ct-list__results-below .ct-pager" element
     And I should see "Prev" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element
     And I should see "Last" in the ".ct-list__results-below .ct-pager" element
-    And I should see a ".ct-pager .ct-pager__item--ellipsis-next" element
+    And I should not see a ".ct-pager .ct-pager__item--ellipsis-next" element
     And I should not see a ".ct-pager .ct-pager__item--ellipsis-previous" element
     And I click "2"
     And I should see "Last" in the ".ct-list__results-below .ct-pager" element
@@ -60,7 +53,7 @@ Feature: Pagination
     And I should see "Next" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element
     And I should see "Items per page" in the ".ct-list__results-below .ct-pager .ct-pager__items_per_page" element
     And I should not see a ".ct-pager .ct-pager__item--ellipsis-next" element
-    And I should see a ".ct-pager .ct-pager__item--ellipsis-previous" element
+    And I should not see a ".ct-pager .ct-pager__item--ellipsis-previous" element
     And select "items_per_page" should have an option "5"
     And select "items_per_page" should have an option "10"
     And select "items_per_page" should have an option "25"

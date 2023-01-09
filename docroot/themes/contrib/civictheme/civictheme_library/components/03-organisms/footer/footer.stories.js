@@ -2,7 +2,7 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots } from '../../00-base/base.utils';
 import CivicThemeFooter from './footer.stories.twig';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';

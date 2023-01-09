@@ -9,10 +9,10 @@ import {
   getSlots,
   randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Cards/Navigation Card',
+  title: 'Molecules/Navigation Card',
   parameters: {
     layout: 'centered',
   },

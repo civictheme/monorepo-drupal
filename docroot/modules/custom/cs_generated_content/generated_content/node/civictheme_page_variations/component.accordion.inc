@@ -16,264 +16,141 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Accordion component',
+      'title' => 'Accordion',
       'components' => [
         [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 1, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
         ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, 2 panels',
-      'components' => [
         [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 2 of 2, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
         ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, 2 panels, all expanded',
-      'components' => [
         [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, all expanded, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 2 of 2, all expanded, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
           'expand_all' => TRUE,
         ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, 2 panels, only first expanded',
-      'components' => [
         [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 2 of 2, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
         ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, 2 panels, first and all expanded',
-      'components' => [
+
         [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, all expanded, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 2 of 2, all expanded, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
           'expand_all' => TRUE,
         ],
-      ],
-    ],
 
-    [
-      'title' => 'Accordion component, Light, 2 panels, only first expanded',
-      'components' => [
         [
-          'type' => 'accordion',
-          'panels' => [
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-              'expand' => TRUE,
-            ],
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-            ],
-          ],
-          'theme' => $helper::civicthemeThemeLight(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Light, BG, 2 panels, only first expanded',
-      'components' => [
-        [
-          'type' => 'accordion',
-          'panels' => [
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-              'expand' => TRUE,
-            ],
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-            ],
-          ],
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Light, BG, Both spaces, 2 panels, only first expanded',
-      'components' => [
-        [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, Light, BG, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, Dark, BG, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
-          'theme' => $helper::civicthemeThemeLight(),
+        ],
+        [
+          'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Light, No BG, Both spaces, 2 panels, only first expanded',
-      'components' => [
-        [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, Dark, BG, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, Dark, BG, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
         ],
-      ],
-    ],
 
-    [
-      'title' => 'Accordion component, Dark, 2 panels, only first expanded',
-      'components' => [
         [
-          'type' => 'accordion',
-          'panels' => [
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-              'expand' => TRUE,
-            ],
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-            ],
-          ],
-          'theme' => $helper::civicthemeThemeDark(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Dark, BG, 2 panels, only first expanded',
-      'components' => [
-        [
-          'type' => 'accordion',
-          'panels' => [
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-              'expand' => TRUE,
-            ],
-            [
-              'title' => $helper::staticSentence(3),
-              'content' => $helper::staticRichText(3),
-            ],
-          ],
-          'theme' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Dark, BG, Both spaces, 2 panels, only first expanded',
-      'components' => [
-        [
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, Light, BG, Vertical spacing, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, Dark, BG, Vertical spacing, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
+        ],
+        [
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Accordion component, Dark, No BG, Both spaces, 2 panels, only first expanded',
-      'components' => [
-        [
           'type' => 'accordion',
           'panels' => [
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, expanded, Dark, BG, Vertical spacing, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
               'expand' => TRUE,
             ],
             [
-              'title' => $helper::staticSentence(3),
+              'title' => 'Panel 1 of 2, Dark, BG, Vertical spacing, ' . $helper::staticSentence(3),
               'content' => $helper::staticRichText(3),
             ],
           ],
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
         ],
       ],
     ],

@@ -33,7 +33,7 @@
     z-index: $ct-popover-z-index;
     padding: ct-spacing(2);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(3);
     }
   }

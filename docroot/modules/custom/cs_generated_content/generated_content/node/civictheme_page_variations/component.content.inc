@@ -14,113 +14,67 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  return [
-    [
-      'title' => 'Content component',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-        ],
+  $page = [
+    'components' => [
+      [
+        'type' => 'content',
+        'content' => 'Light, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeLight(),
       ],
-    ],
-    [
-      'title' => 'Content component, 3 on page',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-        ],
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-        ],
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-        ],
+      [
+        'type' => 'content',
+        'content' => 'Dark, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeDark(),
       ],
-    ],
 
-    [
-      'title' => 'Content component, Dark',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeDark(),
-        ],
+      [
+        'type' => 'content',
+        'content' => 'Light, BG, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeLight(),
+        'background' => TRUE,
+      ],
+      [
+        'type' => 'content',
+        'content' => 'Dark, BG, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeDark(),
+        'background' => TRUE,
+      ],
+
+      [
+        'type' => 'content',
+        'content' => 'Light, Vertical Spacing, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeLight(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+      ],
+      [
+        'type' => 'content',
+        'content' => 'Dark, Vertical Spacing, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeDark(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+      ],
+
+      [
+        'type' => 'content',
+        'content' => 'Light, BG, Vertical Spacing, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeLight(),
+        'background' => TRUE,
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+      ],
+      [
+        'type' => 'content',
+        'content' => 'Dark, BG, Vertical Spacing, ' . $helper::staticRichText(3),
+        'theme' => $helper::civicthemeThemeDark(),
+        'background' => TRUE,
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       ],
     ],
-    [
-      'title' => 'Content component, Light, BG',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Content component, Dark, BG',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Content component, Light, No BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Content component, Dark, No BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Content component, Light, BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => TRUE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Content component, Dark, BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'content' => $helper::staticRichText(3),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => TRUE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
+  ];
+
+  return [
+    $page + ['title' => 'Content, sidebar'],
+    $page + [
+      'title' => 'Content, no sidebar',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];
 }

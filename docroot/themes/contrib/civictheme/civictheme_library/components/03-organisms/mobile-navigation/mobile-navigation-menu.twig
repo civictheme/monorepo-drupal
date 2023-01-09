@@ -53,9 +53,9 @@ Copied as-is from '@base/menu/menu.twig'.
       ] %}
 
       {% set item_attributes = item.attributes|default('') %}
+      {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
       {% if is_collapsible %}
         {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
-        {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
         {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=0', collapsible_collapsed, aria_expanded]|join(' ') %}
       {% endif %}
 
@@ -73,7 +73,7 @@ Copied as-is from '@base/menu/menu.twig'.
         } only %}
 
         {% if is_collapsible and item.below %}
-          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
+          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded }} title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
         {% if item.below %}
@@ -103,7 +103,7 @@ Overrides for generation of child links.
     icon: 'right-arrow-2',
     size: 'regular',
     modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
-    attributes: 'data-flyout-open-trigger aria-label="Open %s submenu"'|format(parent_item.title),
+    attributes: 'data-flyout-open-trigger aria-expanded="false" aria-label="Open %s submenu"'|format(parent_item.title),
   } only %}
 
   <div data-flyout data-flyout-direction="right">

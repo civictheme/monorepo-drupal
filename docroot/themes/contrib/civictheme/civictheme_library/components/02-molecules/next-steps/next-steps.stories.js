@@ -1,10 +1,10 @@
 // phpcs:ignoreFile
 import { radios, text, boolean } from '@storybook/addon-knobs';
 import CivicThemeNextSteps from './next-steps.twig';
-import { randomUrl } from '../../00-base/base.stories';
+import { randomUrl } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Next Steps',
+  title: 'Molecules/Next Steps',
 };
 
 export const NextSteps = (knobTab) => {

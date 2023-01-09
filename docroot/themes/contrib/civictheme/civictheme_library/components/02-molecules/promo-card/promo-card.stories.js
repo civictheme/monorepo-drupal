@@ -7,12 +7,12 @@ import {
   getSlots, randomSentence,
   randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemePromoCard from './promo-card.twig';
 
 export default {
-  title: 'Molecules/Cards/Promo Card',
+  title: 'Molecules/Promo Card',
   parameters: {
     layout: 'centered',
   },

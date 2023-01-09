@@ -18,7 +18,7 @@
       border-radius: ct-particle(12);
       padding: ct-spacing(1.375);
 
-      @include ct-breakpoint('m') {
+      @include ct-breakpoint(m) {
         padding: ct-spacing(1.625);
       }
     }

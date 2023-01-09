@@ -1,10 +1,10 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { randomOptions, randomInt } from '../../00-base/base.stories';
+import { randomOptions, randomInt } from '../../00-base/base.utils';
 
 export default {
-  title: 'Atoms/Forms/Select',
+  title: 'Atoms/Select',
   parameters: {
     layout: 'centered',
   },

@@ -3,13 +3,13 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeBreadcrumb from './breadcrumb.twig';
-import { randomLinks } from '../../00-base/base.stories';
+import { randomLinks } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Breadcrumb',
 };
 
-export const Breadcrumb = (knobTab) => {
+export const Breadcrumb = (knobTab, doRender = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -48,7 +48,7 @@ export const Breadcrumb = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeBreadcrumb({
+  return doRender ? CivicThemeBreadcrumb({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

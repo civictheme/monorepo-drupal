@@ -6,12 +6,8 @@
   $root: &;
 
   @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, color);
-
     &#{$root}--with-background {
       @include ct-component-property($root, $theme, background-color);
-      @include ct-component-property($root, $theme, padding-left);
-      @include ct-component-property($root, $theme, padding-right);
     }
 
     &#{$root}--with-spacing {

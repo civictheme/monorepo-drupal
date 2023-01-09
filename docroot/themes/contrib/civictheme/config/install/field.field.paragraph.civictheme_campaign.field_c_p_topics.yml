@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_topic
-    - paragraphs.paragraphs_type.civictheme_subject_card_ref
+    - field.storage.paragraph.field_c_p_topics
+    - paragraphs.paragraphs_type.civictheme_campaign
     - taxonomy.vocabulary.civictheme_topics
-id: paragraph.civictheme_subject_card_ref.field_c_p_topic
-field_name: field_c_p_topic
+id: paragraph.civictheme_campaign.field_c_p_topics
+field_name: field_c_p_topics
 entity_type: paragraph
-bundle: civictheme_subject_card_ref
-label: Topic
+bundle: civictheme_campaign
+label: Topics
 description: ''
 required: false
 translatable: true

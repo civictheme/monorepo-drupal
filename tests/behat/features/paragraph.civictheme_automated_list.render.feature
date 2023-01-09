@@ -114,6 +114,7 @@ Feature: Automated list render
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 5 ".ct-item-grid__item" elements
+    And I should not see an ".ct-list__results-below .ct-list__pager" element
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
@@ -126,6 +127,7 @@ Feature: Automated list render
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 14 ".ct-item-grid__item" elements
+    And I should not see an ".ct-list__results-below .ct-list__pager" element
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
@@ -137,6 +139,7 @@ Feature: Automated list render
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 6 ".ct-item-grid__item" elements
+    And I should not see an ".ct-list__results-below .ct-list__pager" element
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @javascript @skipped
@@ -201,12 +204,12 @@ Feature: Automated list render
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
     And I should see 2 ".ct-item-grid__item" elements
+    And I should not see an ".ct-list__results-below .ct-list__pager" element
     And I should not see an ".ct-list__results-below .ct-pager" element
 
     And I see field "Title"
     And should see an "input[name='title']" element
     And should not see an "input[name='title'].required" element
-
 
   @api @testmode
   Scenario: CivicTheme listing page with pagination works as expected

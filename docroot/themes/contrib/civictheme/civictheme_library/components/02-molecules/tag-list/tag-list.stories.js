@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomTags } from '../../00-base/base.stories';
+import { getSlots, randomTags } from '../../00-base/base.utils';
 
 import CivicThemeTagList from './tag-list.twig';
 
@@ -35,6 +35,17 @@ export const TagList = (knobTab) => {
       },
       generalKnobTab,
     ), true),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

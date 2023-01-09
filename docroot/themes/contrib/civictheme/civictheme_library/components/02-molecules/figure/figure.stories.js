@@ -2,10 +2,10 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeFigure from './figure.twig';
-import { demoImage } from '../../00-base/base.stories';
+import { demoImage } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Figure',
+  title: 'Molecules/Figure',
   parameters: {
     layout: 'centered',
   },

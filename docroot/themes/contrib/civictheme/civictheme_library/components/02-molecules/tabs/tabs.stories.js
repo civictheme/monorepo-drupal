@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import CivicThemeTabs from './tabs.twig';
 import './tabs';
-import { placeholder, randomText, randomUrl } from '../../00-base/base.stories';
+import { placeholder, randomText, randomUrl } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Tabs',

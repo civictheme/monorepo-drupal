@@ -418,7 +418,7 @@ $ct-table-light-row-even-background-color: ct-color-light('background') !default
 $ct-table-light-row-even-color: ct-color-light('body') !default;
 $ct-table-light-row-odd-background-color: ct-color-light('background-light') !default;
 $ct-table-light-row-odd-color: ct-color-light('body') !default;
-$ct-table-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-table-dark-background-color: ct-color-dark('background') !default;
 $ct-table-dark-border-color: ct-color-dark('border') !default;
 $ct-table-dark-caption-color: ct-color-dark('body') !default;
 $ct-table-dark-color: ct-color-dark('body') !default;
@@ -426,9 +426,9 @@ $ct-table-dark-footer-border-color: ct-color-dark('border') !default;
 $ct-table-dark-footer-color: ct-color-dark('heading') !default;
 $ct-table-dark-header-border-color: ct-color-dark('border') !default;
 $ct-table-dark-header-color: ct-color-dark('heading') !default;
-$ct-table-dark-row-even-background-color: ct-color-dark('background') !default;
+$ct-table-dark-row-even-background-color: ct-color-dark('background-light') !default;
 $ct-table-dark-row-even-color: ct-color-dark('body') !default;
-$ct-table-dark-row-odd-background-color: ct-color-dark('background-dark') !default;
+$ct-table-dark-row-odd-background-color: ct-color-dark('background') !default;
 $ct-table-dark-row-odd-color: ct-color-dark('body') !default;
 
 //
@@ -472,7 +472,7 @@ $ct-attachment-light-heading-color: ct-color-light('heading') !default;
 $ct-attachment-light-icon-color: ct-color-light('body') !default;
 $ct-attachment-light-title-color: ct-color-light('body') !default;
 $ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
-$ct-attachment-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-attachment-dark-background-color: ct-color-dark('background') !default;
 $ct-attachment-dark-border-color: ct-color-dark('border') !default;
 $ct-attachment-dark-color: ct-color-dark('body') !default;
 $ct-attachment-dark-date-color: ct-color-dark('body') !default;
@@ -541,7 +541,7 @@ $ct-dropdown-filter-light-filter-options-border-color: transparent !default;
 $ct-dropdown-filter-light-filter-text-color: ct-color-light('body') !default;
 $ct-dropdown-filter-light-filter-text-icon-color: ct-color-light('body') !default;
 $ct-dropdown-filter-light-inline-filter-text-color: ct-color-light('body') !default;
-$ct-dropdown-filter-dark-filter-options-background-color: ct-color-dark('background-dark') !default;
+$ct-dropdown-filter-dark-filter-options-background-color: ct-color-dark('background') !default;
 $ct-dropdown-filter-dark-filter-options-border-color: transparent !default;
 $ct-dropdown-filter-dark-filter-text-color: ct-color-dark('body') !default;
 $ct-dropdown-filter-dark-filter-text-icon-color: ct-color-dark('body') !default;
@@ -551,16 +551,10 @@ $ct-dropdown-filter-dark-inline-filter-text-color: ct-color-dark('body') !defaul
 // Campaign.
 //
 $ct-campaign-image-border-radius: $ct-border-radius !default;
-$ct-campaign-image-height-desktop: ct-particle(65) !default;
-$ct-campaign-image-height-mobile: ct-particle(30) !default;
-$ct-campaign-image-width-desktop: auto !default;
-$ct-campaign-image-width-mobile: auto !default;
+$ct-campaign-mobile-height: ct-particle(30) !default;
+$ct-campaign-desktop-height: ct-particle(65) !default;
 $ct-campaign-light-background-color: ct-color-light('background-light') !default;
-$ct-campaign-light-content-color: ct-color-light('body') !default;
-$ct-campaign-light-summary-color: ct-color-light('body') !default;
-$ct-campaign-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-campaign-dark-content-color: ct-color-dark('body') !default;
-$ct-campaign-dark-summary-color: ct-color-dark('body') !default;
+$ct-campaign-dark-background-color: ct-color-dark('background') !default;
 
 //
 // Cards/Event card.
@@ -857,13 +851,14 @@ $ct-back-to-top-outline-color: transparent !default;
 //
 // Banner.
 //
-$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(11)}), 0% 100%) !default;
-$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(5)}), 0% 100%) !default;
+$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(2)}), 0% 100%) !default;
+$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(6)}), 0% 100%) !default;
+$ct-banner-featured-image-width: 40% !default;
 $ct-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
 $ct-banner-light-background-color: ct-color-light('background') !default;
-$ct-banner-light-color: ct-color-light('body') !default;
+$ct-banner-light-featured-image-shadow-color: ct-color-light('background-light') !default;
 $ct-banner-dark-background-color: ct-color-dark('background') !default;
-$ct-banner-dark-color: ct-color-dark('body') !default;
+$ct-banner-dark-featured-image-shadow-color: ct-color-dark('background') !default;
 
 //
 // Layout.
@@ -1123,30 +1118,15 @@ $ct-skip-link-dark-background-color: ct-color-dark('background') !default;
 // Slider.
 //
 $ct-slider-border-radius: $ct-border-radius !default;
-$ct-slider-progress-indicator-border-radius: $ct-border-radius !default;
 $ct-slider-space-horizontal: ct-spacing(7) !default;
-$ct-slider-light-background-color: ct-color-light('background') !default;
-$ct-slider-light-progress-indicator-background-color: ct-color-light('interaction-background') !default;
-$ct-slider-light-progress-indicator-color: ct-color-light('interaction-text') !default;
-$ct-slider-light-title-color: ct-color-light('heading') !default;
-$ct-slider-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-slider-slide-desktop-min-height: ct-particle(35) !default;
+$ct-slider-slide-mobile-min-height: ct-particle(35) !default;
+$ct-slider-mobile-transition: 0.5s !default;
+$ct-slider-desktop-transition: 1s !default;
+$ct-slider-light-background-color: ct-color-light('background-light') !default;
+$ct-slider-light-slide-background-color: ct-color-light('background') !default;
 $ct-slider-dark-background-color: ct-color-dark('background') !default;
-$ct-slider-dark-progress-indicator-background-color: ct-color-dark('interaction-background') !default;
-$ct-slider-dark-progress-indicator-color: ct-color-dark('interaction-text') !default;
-$ct-slider-dark-title-color: ct-color-dark('heading') !default;
-$ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
-
-//
-// Slide.
-//
-$ct-slide-desktop-min-height: ct-particle(70) !default;
-$ct-slide-mobile-min-height: ct-particle(35) !default;
-$ct-slide-light-background-color: ct-color-light('background') !default;
-$ct-slide-light-summary-color: ct-color-light('body') !default;
-$ct-slide-light-title-color: ct-color-light('heading') !default;
-$ct-slide-dark-background-color: ct-color-dark('background') !default;
-$ct-slide-dark-summary-color: ct-color-dark('heading') !default;
-$ct-slide-dark-title-color: ct-color-dark('heading') !default;
+$ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
 
 //
 // Social links.
@@ -1167,11 +1147,7 @@ $ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;
 //
 $ct-webform-space-horizontal: ct-spacing(7) !default;
 $ct-webform-light-background-color: ct-color-light('background') !default;
-$ct-webform-light-color: ct-color-light('body') !default;
-$ct-webform-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-webform-dark-background-color: ct-color-dark('background') !default;
-$ct-webform-dark-color: ct-color-dark('body') !default;
-$ct-webform-dark-wrapper-background-color: ct-color-dark('background') !default;
 
 //
 // Pagination.

@@ -3,7 +3,7 @@ import {
   radios, number, text, boolean,
 } from '@storybook/addon-knobs';
 
-import { randomDropdownFilter, randomFormElement } from '../../00-base/base.stories';
+import { randomDropdownFilter, randomFormElement } from '../../00-base/base.utils';
 
 import CivicThemeDropdownFilter from '../dropdown-filter/dropdown-filter.twig';
 import CivicThemeGroupFilter from './group-filter.twig';

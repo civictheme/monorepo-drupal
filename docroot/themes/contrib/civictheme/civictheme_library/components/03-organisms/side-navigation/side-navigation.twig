@@ -25,9 +25,12 @@
     } only %}
     {% if title %}
       {% block title %}
-        <div class="ct-side-navigation__title">
-          {{ title }}
-        </div>
+        {% include '@atoms/heading/heading.twig' with {
+          content: title,
+          level: 2,
+          theme: theme,
+          modifier_class: 'ct-side-navigation__title',
+        } only %}
       {% endblock %}
     {% endif %}
     {% include '@base/menu/menu.twig' with {

@@ -17,7 +17,7 @@ Feature: CivicTheme Page content type render
     And I should see "Revision of [TEST] Page Revision test"
     And save screenshot
 
-  @api @sidebar
+  @api
   Scenario: CivicTheme page content type page can configure sidebar display
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -32,7 +32,31 @@ Feature: CivicTheme Page content type render
     And I should see the text "[TEST] Page without sidebar"
     And I should not see an "aside.ct-layout__sidebar" element
 
-  @api @breadcrumb
+  @api
+  Scenario: CivicTheme page content type page can configure tags display
+    Given I am an anonymous user
+    And "civictheme_topics" terms:
+      | name           |
+      | [TEST] Topic 1 |
+      | [TEST] Topic 2 |
+
+    And "civictheme_page" content:
+      | title                    | status | field_c_n_hide_tags | field_c_n_topics               |
+      | [TEST] Page with tags    | 1      | 0                   | [TEST] Topic 1, [TEST] Topic 2 |
+      | [TEST] Page without tags | 1      | 1                   | [TEST] Topic 2, [TEST] Topic 2 |
+
+    When I visit "civictheme_page" "[TEST] Page with tags"
+    And I should see the text "[TEST] Page with tags"
+    And I should see an ".ct-tag-list span.ct-tag" element
+    And I should see the text "[TEST] Topic 1"
+    And I should see the text "[TEST] Topic 2"
+    When I visit "civictheme_page" "[TEST] Page without tags"
+    And I should see the text "[TEST] Page without tags"
+    And I should not see an ".ct-tag-list span.ct-tag" element
+    And I should not see the text "[TEST] Topic 1"
+    And I should not see the text "[TEST] Topic 2"
+
+  @api
   Scenario: CivicTheme page content type page breadcrumb theme can be overridden
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -49,7 +73,7 @@ Feature: CivicTheme Page content type render
     And I should see an "nav.ct-breadcrumb.ct-theme-dark" element
     And I should not see an "nav.ct-breadcrumb.ct-theme-light" element
 
-  @api @lastcustomupdated
+  @api
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -70,7 +94,7 @@ Feature: CivicTheme Page content type render
     And I should see the text "[TEST] Page without date"
     And I should not see the text "Last updated"
 
-  @api @lastupdated
+  @api
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -86,7 +110,7 @@ Feature: CivicTheme Page content type render
     And I should see the text "[TEST] Page without date"
     And I should not see the text "Last updated"
 
-  @api @breadcrumb
+  @api
   Scenario: CivicTheme page content type page can configure breadcrumb display
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -99,7 +123,7 @@ Feature: CivicTheme Page content type render
     When I visit "civictheme_page" "[TEST] Page without breadcrumb"
     And I should not see an ".ct-banner__breadcrumb" element
 
-  @api @banner_title
+  @api
   Scenario: CivicTheme page content type page can override banner title.
     Given I am an anonymous user
     And "civictheme_page" content:
@@ -113,7 +137,7 @@ Feature: CivicTheme Page content type render
     When I visit "civictheme_page" "[TEST] Page without Banner title"
     Then I should see "[TEST] Page without Banner title" in the ".ct-banner__title" element
 
-  @api @sitesections
+  @api
   Scenario: CivicTheme page content type page can configure Site sections
     Given "civictheme_site_sections" terms:
       | name                  |

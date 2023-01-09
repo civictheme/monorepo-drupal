@@ -4,10 +4,10 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicThemeItemList from './item-list.twig';
-import { generateItems, placeholder, randomSentence } from '../base.stories';
+import { generateItems, placeholder, randomSentence } from '../base.utils';
 
 export default {
-  title: 'Base/Layout/Item List',
+  title: 'Base/Item List',
   parameters: {
     layout: 'centered',
   },
@@ -17,8 +17,8 @@ export const ItemList = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
-    type: radios(
-      'Type',
+    direction: radios(
+      'Direction',
       {
         Horizontal: 'horizontal',
         Vertical: 'vertical',
@@ -36,7 +36,7 @@ export const ItemList = (knobTab) => {
       'regular',
       generalKnobTab,
     ),
-    no_gutter: boolean('No gutter', false, generalKnobTab),
+    no_gap: boolean('No gap', false, generalKnobTab),
     items: generateItems(number(
       'Items count',
       5,

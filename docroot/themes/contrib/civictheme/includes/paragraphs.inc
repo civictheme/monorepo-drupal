@@ -41,7 +41,7 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   // @todo documentation for the field api ie they must have certain fields in
   // card fielded paragraph types.
   _civictheme_preprocess_paragraph__card__icon($variables);
-  _civictheme_preprocess_paragraph__card__image($variables);
+  _civictheme_preprocess_paragraph__image($variables);
 
 }
 
@@ -137,7 +137,7 @@ function _civictheme_preprocess_paragraph__card__icon(&$variables) {
 /**
  * Pre-process Icon for CivicTheme Paragraphs.
  */
-function _civictheme_preprocess_paragraph__card__image(&$variables) {
+function _civictheme_preprocess_paragraph__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $media = civictheme_get_field_value($paragraph, 'field_c_p_image', TRUE);

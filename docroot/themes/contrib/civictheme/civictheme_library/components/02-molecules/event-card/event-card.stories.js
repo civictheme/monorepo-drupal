@@ -7,12 +7,12 @@ import {
   getSlots, randomSentence,
   randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemeEventCard from './event-card.twig';
 
 export default {
-  title: 'Molecules/Cards/Event Card',
+  title: 'Molecules/Event Card',
   parameters: {
     layout: 'centered',
   },

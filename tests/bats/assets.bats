@@ -39,7 +39,6 @@ load _helper
   assert_file_exists "dist/civictheme.js"
   assert_file_not_exists "dist/civictheme-variables.js"
   assert_file_not_exists "dist/civictheme-editor.js"
-  assert_file_exists "dist/civictheme.variables.csv"
   assert_dir_exists "dist/assets"
   assert_dir_exists "dist/assets/backgrounds"
   assert_dir_not_exists "dist/assets/fonts"

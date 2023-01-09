@@ -15,7 +15,7 @@ bats tests/bats/mock.bats --tap
 echo "==> Test Assets mock."
 bats tests/bats/assets.bats --tap
 
-if [ "${SKIP_LIBRARY_INSTALL}" != "1" ]; then
+if [ "${CIVICTHEME_SKIP_LIBRARY_INSTALL}" != "1" ]; then
   echo "  > Test Library assets."
   bats tests/bats/assets_library.bats --tap
 fi
@@ -23,7 +23,7 @@ fi
 echo "  > Test theme assets."
 bats tests/bats/assets.bats --tap
 
-if [ "${SKIP_SUBTHEME_ACTIVATION}" != "1" ]; then
+if [ "${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION}" != "1" ]; then
   if [ "${CIVICTHEME_INSTALL_SIBLING}" = "1" ]; then
     echo "  > Test Sub-theme sibling assets."
     bats tests/bats/assets_demo_sibling.bats --tap

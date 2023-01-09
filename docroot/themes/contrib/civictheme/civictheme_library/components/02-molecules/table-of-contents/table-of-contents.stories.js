@@ -3,10 +3,10 @@ import {
   boolean,
   number, radios, text,
 } from '@storybook/addon-knobs';
-import { randomText } from '../../00-base/base.stories';
+import { randomText } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Table Of Contents',
+  title: 'Molecules/Table Of Contents',
 };
 
 export const TableOfContents = (knobTab) => {

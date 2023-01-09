@@ -19,3 +19,10 @@
     }
   }
 }
+
+//
+// Drop shadow for image.
+//
+@mixin ct-image-shadow($color) {
+  filter: drop-shadow(-1 * ct-particle(2) -1 * ct-particle(2) 0 $color);
+}

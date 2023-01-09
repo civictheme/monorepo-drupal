@@ -32,7 +32,12 @@
               {% block column_one %}
                 <div class="ct-promo__first-container">
                   {% if title %}
-                    <div class="ct-promo__title">{{ title }}</div>
+                    {% include '@atoms/heading/heading.twig' with {
+                      content: title,
+                      level: 2,
+                      theme: theme,
+                      modifier_class: 'ct-promo__title',
+                    } only %}
                   {% endif %}
                   {% if content %}
                     <div class="ct-promo__content">{{ content }}</div>

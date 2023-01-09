@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import merge from 'deepmerge';
-import { capitalizeFirstLetter, cleanCssIdentifier } from '../base.stories';
+import { capitalizeFirstLetter, cleanCssIdentifier } from '../base.utils';
 
 export default {
   title: 'Base/Fonts',

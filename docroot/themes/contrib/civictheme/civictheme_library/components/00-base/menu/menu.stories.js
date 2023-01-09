@@ -4,7 +4,7 @@ import CivicThemeMenu from './menu.twig';
 import getMenuLinks from './menu.utils';
 
 export default {
-  title: 'Base/Utilities/Menu Generator',
+  title: 'Base/Menu Generator',
   parameters: {
     layout: 'centered',
   },
