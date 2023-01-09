@@ -35,28 +35,28 @@ aliases:
   # Generate a separate SSH key for a user who has push permissions to
   # $DREVOPS_DEPLOY_ARTIFACT_GIT_REMOTE repo with `ssh-keygen -m PEM -t rsa -C "deployer@example.com"
   # command and add private key under "SSH Permissions" in CircleCI UI.
-  - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
+  - &deploy_ssh_fingerprint "bc:87:4a:74:cf:e0:02:4e:34:aa:16:b5:c3:6f:89:cd"
 
   # SSH key fingerprint to deploy code to civictheme.
-  - &deploy_ssh_fingerprint1 "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
+  - &deploy_ssh_fingerprint1 "b7:05:38:98:47:28:c7:1f:d8:6d:7a:75:3c:13:5b:af"
 
   # SSH key fingerprint to deploy code to civictheme_library.
-  - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
+  - &deploy_ssh_fingerprint2 "12:06:0e:75:93:10:3b:b4:59:fe:11:75:11:22:20:dd"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
-  - &deploy_ssh_fingerprint3 "ee:42:65:bf:d7:2d:10:f4:53:17:ab:ed:d7:6a:99:84"
+  - &deploy_ssh_fingerprint3 "a9:33:24:68:20:f9:91:24:b8:38:c5:f3:b6:4b:34:5d"
 
   # SSH key fingerprint to deploy code to civictheme_content.
-  - &deploy_ssh_fingerprint4 "ef:1c:ad:2a:dd:ec:0c:cd:1a:63:4c:bb:8a:d7:c1:b7"
+  - &deploy_ssh_fingerprint4 "a3:41:d1:47:85:4c:5d:12:9c:4c:1f:a2:67:d3:a5:3f"
 
   # SSH key fingerprint to deploy code to civictheme_admin.
-  - &deploy_ssh_fingerprint5 "a8:ac:6a:dc:6c:af:fd:a3:82:3d:12:06:20:ec:5a:f9"
+  - &deploy_ssh_fingerprint5 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
 
   # SSH key fingerprint to deploy code to civictheme_migrate.
-  - &deploy_ssh_fingerprint6 "58:a5:e8:af:8c:3f:c8:5d:f8:a0:58:03:07:81:73:cf"
+  - &deploy_ssh_fingerprint6 "2b:61:1c:7c:d1:f8:9b:63:dc:a7:10:c1:d6:0a:4f:b8"
 
   # SSH key fingerprint to mirror code.
-  - &git_mirror_ssh_fingerprint "75:84:c7:7a:3a:f8:39:5b:af:ef:d8:48:7d:65:6a:fa"
+  - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
 
   #-----------------------------------------------------------------------------
   # Optional variables.

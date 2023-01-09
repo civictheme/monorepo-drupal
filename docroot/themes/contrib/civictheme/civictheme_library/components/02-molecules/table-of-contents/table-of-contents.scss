@@ -107,6 +107,8 @@
 
         border-width: ct-particle(0.125);
         border-left-width: 0;
+        padding-top: ct-spacing(1 - 0.125);
+        padding-bottom: ct-spacing(1 - 0.125);
       }
 
       &:focus {
