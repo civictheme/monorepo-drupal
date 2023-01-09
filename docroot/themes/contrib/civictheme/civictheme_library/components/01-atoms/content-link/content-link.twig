@@ -41,6 +41,6 @@
     {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
-    {{ text|raw }}{{ is_new_window_text }}{{ is_external_content }}
+    {{ text|raw }}{{ is_new_window_content }}{{ is_external_content }}
   </a>
 {% endif %}

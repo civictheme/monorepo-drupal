@@ -69,10 +69,16 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
       $classes .= ' ' . $link_external_class;
     }
 
-    if (!$anchor->hasAttribute('target')) {
-      if ($new_window || ($is_external && $external_new_window)) {
+    if ($new_window || ($is_external && $external_new_window)) {
+      if (!$anchor->hasAttribute('target')) {
         $anchor->setAttribute('target', '_blank');
       }
+      if (!$anchor->hasAttribute('aria-label')) {
+        $anchor->setAttribute('aria-label', 'Opens in a new tab');
+      }
+      $span = $dom->createElement('span', '(Opens in a new tab/window)');
+      $span->setAttribute('class', 'ct-visually-hidden');
+      $anchor->appendChild($span);
     }
 
     $anchor->setAttribute('class', trim($classes));
