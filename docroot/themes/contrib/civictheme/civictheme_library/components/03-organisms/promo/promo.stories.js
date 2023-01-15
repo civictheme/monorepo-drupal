@@ -1,6 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemePromo from './promo.twig';
+import {getSlots} from "../../00-base/base.utils";
 
 export default {
   title: 'Organisms/Promo',
@@ -23,7 +24,7 @@ export const Promo = () => {
       generalKnobTab,
     ),
     title: text('Title', 'Sign up for industry news and updates from CivicTheme', generalKnobTab),
-    content: text('Content', '', generalKnobTab),
+    summary: text('Summary', '', generalKnobTab),
     link: {
       text: text('Link text', 'Sign up', generalKnobTab),
       url: text('Link URL', 'https://example.com', generalKnobTab),
@@ -47,5 +48,9 @@ export const Promo = () => {
 
   return CivicThemePromo({
     ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };
