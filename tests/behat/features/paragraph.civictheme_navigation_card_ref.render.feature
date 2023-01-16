@@ -29,6 +29,3 @@ Feature: Navigation reference card render
     And I should not see an ".ct-list__link a" element
     And I should see 1 ".ct-list" elements
     And I should see 3 ".ct-navigation-card__content" elements
-    # And I should see 2 ".ct-item-grid__item > .ct-theme-light" elements
-    # And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
-    And save screenshot

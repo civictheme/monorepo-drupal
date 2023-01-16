@@ -211,4 +211,3 @@ Feature: Manual list render
     And I should see 1 ".ct-promo-card__content" elements
     And I should see 3 ".ct-item-grid__item > .ct-theme-light" elements
     And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
-    And save screenshot

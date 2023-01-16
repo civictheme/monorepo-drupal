@@ -87,4 +87,3 @@ Feature: Event Card render
     And I should see the text "29 Apr 2021"
     And I should see the text "29 May 2022"
     And I should see the text "29 Jun 2023"
-    And save screenshot
