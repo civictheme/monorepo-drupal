@@ -1,7 +1,7 @@
 @p0 @civictheme @media @civictheme_image
 Feature: CivicTheme image
 
-  @api @javascript
+  @api
   Scenario: Ensure that a Image renders correctly when added to WYSIWYG.
     Given I am an anonymous user
     And managed file:
