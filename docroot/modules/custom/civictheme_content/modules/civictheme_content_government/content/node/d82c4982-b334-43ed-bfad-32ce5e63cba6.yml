@@ -572,7 +572,7 @@ default:
           field_c_p_title:
             -
               value: 'Australian citizenship ceremony 2022 — what you need to know'
-          field_c_p_topic:
+          field_c_p_topics:
             -
               entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
           field_c_p_vertical_spacing:
