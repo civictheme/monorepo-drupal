@@ -398,7 +398,6 @@ config_devel:
     - field.field.paragraph.civictheme_promo.field_c_p_theme
     - field.field.paragraph.civictheme_promo.field_c_p_title
     - field.field.paragraph.civictheme_promo.field_c_p_vertical_spacing
-    - field.field.paragraph.civictheme_promo_card.field_c_p_date
     - field.field.paragraph.civictheme_promo_card.field_c_p_image
     - field.field.paragraph.civictheme_promo_card.field_c_p_link
     - field.field.paragraph.civictheme_promo_card.field_c_p_subtitle

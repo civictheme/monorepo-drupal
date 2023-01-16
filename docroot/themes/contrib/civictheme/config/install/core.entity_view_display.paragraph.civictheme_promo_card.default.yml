@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_promo_card.field_c_p_date
     - field.field.paragraph.civictheme_promo_card.field_c_p_image
     - field.field.paragraph.civictheme_promo_card.field_c_p_link
     - field.field.paragraph.civictheme_promo_card.field_c_p_subtitle
@@ -12,7 +11,6 @@ dependencies:
     - field.field.paragraph.civictheme_promo_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_promo_card
   module:
-    - datetime
     - link
     - options
 id: paragraph.civictheme_promo_card.default
@@ -20,15 +18,6 @@ targetEntityType: paragraph
 bundle: civictheme_promo_card
 mode: default
 content:
-  field_c_p_date:
-    type: datetime_default
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_c_p_image:
     type: entity_reference_label
     label: hidden
