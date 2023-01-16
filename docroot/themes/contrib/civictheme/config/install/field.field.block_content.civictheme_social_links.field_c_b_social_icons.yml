@@ -75,9 +75,6 @@ settings:
       civictheme_promo:
         weight: 43
         enabled: false
-      civictheme_quick_links:
-        weight: 44
-        enabled: false
       civictheme_search:
         weight: 45
         enabled: false
