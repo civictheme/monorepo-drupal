@@ -39,6 +39,7 @@ function CivicThemeCollapsible(el) {
 
   // Make sure that both trigger and a panel have required attributes set.
   this.trigger.setAttribute('data-collapsible-trigger', '');
+  this.trigger.setAttribute('tabindex', 0);
   this.panel.setAttribute('data-collapsible-panel', '');
 
   if (!this.panel.hasAttribute('data-collapsible-trigger-no-icon') && !this.trigger.querySelector('.ct-collapsible__icon')) {
@@ -58,6 +59,8 @@ function CivicThemeCollapsible(el) {
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {
     this.collapse();
+    // Diable focus on hidden elements.
+    this.panel.style.visibility = 'hidden';
   }
 
   this.el.addEventListener('ct.collapsible.collapse', (evt) => {
@@ -273,6 +276,7 @@ CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
   const setAttributes = function (obj) {
     obj.panel.style.transition = '';
     obj.panel.style.overflow = 'hidden';
+    obj.panel.style.visibility = 'hidden';
     obj.el.setAttribute('data-collapsible-collapsed', '');
     obj.panel.setAttribute('aria-hidden', true);
     obj.trigger.setAttribute('aria-expanded', false);
@@ -306,6 +310,7 @@ CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
         });
         // Finally, change the height, triggering the transition.
         t.panel.style.height = '0px';
+        t.panel.style.visibility = 'hidden';
       });
     });
   } else {
@@ -335,6 +340,7 @@ CivicThemeCollapsible.prototype.expand = function (animate) {
     obj.panel.style.transition = '';
     obj.panel.style.overflow = '';
     obj.panel.style.height = '';
+    obj.panel.style.visibility = 'visible';
     obj.panel.setAttribute('aria-hidden', false);
     obj.trigger.setAttribute('aria-expanded', true);
     obj.el.removeAttribute('data-collapsible-collapsed');
@@ -364,6 +370,7 @@ CivicThemeCollapsible.prototype.expand = function (animate) {
           t.el.removeAttribute('data-collapsible-collapsing');
         });
         // Finally, change the height, triggering the transition.
+        t.panel.style.visibility = 'visible';
         t.panel.style.height = `${h}px`;
       });
     });

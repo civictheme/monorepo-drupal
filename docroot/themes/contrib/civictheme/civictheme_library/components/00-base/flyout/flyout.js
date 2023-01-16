@@ -59,6 +59,10 @@ function CivicThemeFlyout(el) {
     });
   }
 
+  if (this.panel) {
+    this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
+  }
+
   // Mark as initialized.
   this.el.setAttribute('data-flyout', 'true');
 }
@@ -116,13 +120,34 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
     panel.setAttribute('aria-hidden', true);
     const duration = panel.parentNode.hasAttribute('data-flyout-duration') ? parseInt(panel.parentNode.getAttribute('data-flyout-duration'), 10) : 500;
     setTimeout(() => {
-      panel.style.visibility = null;
+      panel.style.visibility = 'hidden';
       document.body.style.overflow = null;
     }, duration);
   });
   document.querySelectorAll('[data-flyout-open-trigger]').forEach((trigger) => {
     trigger.setAttribute('aria-expanded', false);
   });
+
+  this.openTrigger.focus();
+};
+
+/**
+ * Focusout event handler.
+ */
+CivicThemeFlyout.prototype.focusoutEvent = function (e) {
+  // Close when trigger or panel leaves a focus, but only for grouped ones.
+  if (
+    e.relatedTarget
+    && !this.panel.contains(e.relatedTarget)
+  ) {
+
+    if (this.panel.querySelector(':scope > .ct-mobile-navigation__close-trigger [data-flyout-close-trigger]')) {
+      this.panel.querySelector('[data-flyout-close-trigger]').click();
+    }
+    else if (this.panel.querySelector('[data-flyout-close-all-trigger]')) {
+      this.panel.querySelector('[data-flyout-close-all-trigger]').click();
+    }
+  }
 };
 
 /**
@@ -132,6 +157,11 @@ CivicThemeFlyout.prototype.expand = function () {
   this.el.expanded = true;
   this.openTrigger.setAttribute('aria-expanded', true);
   this.panel.style.visibility = 'visible';
+
+  // Set focus on first link if available.
+  if (this.panel.querySelector('a.ct-link')) {
+    this.panel.querySelector('a.ct-link').focus();
+  }
 
   // Add required classes.
   this.el.setAttribute('data-flyout-expanded', true);
@@ -145,10 +175,11 @@ CivicThemeFlyout.prototype.expand = function () {
 CivicThemeFlyout.prototype.collapse = function () {
   this.el.expanded = false;
   this.openTrigger.setAttribute('aria-expanded', false);
+  this.openTrigger.focus();
   this.el.removeAttribute('data-flyout-expanded');
   this.panel.setAttribute('aria-hidden', true);
   setTimeout(() => {
-    this.panel.style.visibility = null;
+    this.panel.style.visibility = 'hidden';
     document.body.style.overflow = null;
   }, this.duration);
 };
