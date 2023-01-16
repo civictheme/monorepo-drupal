@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { radios, text, boolean } from '@storybook/addon-knobs';
 import CivicThemeNextSteps from './next-steps.twig';
-import {getSlots, randomUrl} from '../../00-base/base.utils';
+import { getSlots, randomUrl } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Next Steps',

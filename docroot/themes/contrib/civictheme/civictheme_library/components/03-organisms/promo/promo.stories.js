@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemePromo from './promo.twig';
-import {getSlots} from "../../00-base/base.utils";
+import { getSlots } from '../../00-base/base.utils';
 
 export default {
   title: 'Organisms/Promo',
