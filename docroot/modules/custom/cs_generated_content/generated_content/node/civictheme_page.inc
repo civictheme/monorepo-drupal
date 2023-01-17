@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create generated page nodes.
+ * Create generated Page nodes.
  */
 
 use Drupal\Core\Link;
