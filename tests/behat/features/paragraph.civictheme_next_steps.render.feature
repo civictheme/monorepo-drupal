@@ -28,7 +28,6 @@ Feature: Next steps render
     And I should see an ".ct-next-steps__content__summary" element
     And the response should contain "https://example.com/link1"
 
-
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with next steps dark without vertical space
     Given I am an anonymous user

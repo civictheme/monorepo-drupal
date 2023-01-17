@@ -33,28 +33,24 @@ Feature: Manual list render
       | field_c_p_list_link_above | 0: View all promo cards - 1: https://example.com |
       | field_c_p_fill_width      | 0                                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
-      | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text                          |
       | field_c_p_theme   | light                                 |
       | field_c_p_title   | Promo card title                      |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
-      | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 2                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Promo card title 1                    |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
-      | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 3                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Promo card title 2                    |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
-      | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 3                        |
@@ -215,4 +211,3 @@ Feature: Manual list render
     And I should see 1 ".ct-promo-card__content" elements
     And I should see 3 ".ct-item-grid__item > .ct-theme-light" elements
     And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
-    And save screenshot

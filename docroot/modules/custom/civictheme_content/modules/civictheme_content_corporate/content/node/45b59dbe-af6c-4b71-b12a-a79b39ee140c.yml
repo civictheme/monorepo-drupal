@@ -690,7 +690,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Climate change presentation'
-                  field_c_p_topic:
+                  field_c_p_topics:
                     -
                       entity: bb1443d2-3262-4f61-be2c-e9730424054f
             -
