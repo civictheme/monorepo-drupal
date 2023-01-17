@@ -20,9 +20,7 @@ _meta:
     f06a9e48-e4bc-4e1d-9646-047d984c36ca: media
     74076f33-5c1e-4b09-9522-bbafd6e43afb: node
     ec6f5030-d733-45c9-bd47-50de3d053e5c: media
-    d044d201-6f40-41ed-bdbd-595bfa72cc4d: node
     e0a78fef-3e3a-4b96-b303-974ac8fec445: media
-    c8ee30e2-85e5-42db-b27a-92e508eacd0c: node
     ba705a5b-91ca-4f48-9d82-feeabb645cff: media
     6ec9411b-6148-420b-ab02-87466c42db1f: node
     bb1443d2-3262-4f61-be2c-e9730424054f: taxonomy_term
@@ -559,11 +557,6 @@ default:
                   field_c_p_image_position:
                     -
                       value: left
-                  field_c_p_link:
-                    -
-                      target_uuid: d044d201-6f40-41ed-bdbd-595bfa72cc4d
-                      title: 'Learn more about the recipients'
-                      options: {  }
                   field_c_p_theme:
                     -
                       value: dark
@@ -601,11 +594,6 @@ default:
                   field_c_p_image_position:
                     -
                       value: left
-                  field_c_p_link:
-                    -
-                      target_uuid: c8ee30e2-85e5-42db-b27a-92e508eacd0c
-                      title: 'More about glacial movement'
-                      options: {  }
                   field_c_p_theme:
                     -
                       value: dark
@@ -784,6 +772,9 @@ default:
   field_c_n_hide_sidebar:
     -
       value: true
+  field_c_n_hide_tags:
+    -
+      value: false
   field_c_n_show_last_updated:
     -
       value: true
