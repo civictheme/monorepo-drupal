@@ -543,7 +543,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Expand your study options with a double degree'
-                  field_c_p_topic:
+                  field_c_p_topics:
                     -
                       entity: 1c76b992-a37f-407a-b0b3-65784043454a
           field_c_p_theme:

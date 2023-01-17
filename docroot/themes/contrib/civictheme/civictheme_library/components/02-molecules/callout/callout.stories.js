@@ -1,6 +1,7 @@
 // phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeCallout from './callout.twig';
+import { getSlots } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Callout',
@@ -14,7 +15,7 @@ export const Callout = (knobTab) => {
   const cta1KnobTab = 'CTA 1';
   const cta2KnobTab = 'CTA 2';
 
-  const calloutKnobs = {
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -90,7 +91,11 @@ export const Callout = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  const html = CivicThemeCallout(calloutKnobs);
-
-  return `${html}`;
+  return CivicThemeCallout({
+    ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
+  });
 };

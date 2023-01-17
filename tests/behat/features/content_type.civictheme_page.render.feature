@@ -15,7 +15,6 @@ Feature: CivicTheme Page content type render
     And I click "Revisions"
     And I click on ".node-revision-table .even a" element
     And I should see "Revision of [TEST] Page Revision test"
-    And save screenshot
 
   @api
   Scenario: CivicTheme page content type page can configure sidebar display

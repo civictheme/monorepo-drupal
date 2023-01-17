@@ -192,7 +192,6 @@ Feature: Components settings are available in the theme settings
     And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
-    And save screenshot
 
   @api
   Scenario: The CivicTheme theme settings External Links component validation works.

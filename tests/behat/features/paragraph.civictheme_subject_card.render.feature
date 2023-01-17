@@ -25,16 +25,16 @@ Feature: Subject card render
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | light                                 |
-      | field_c_p_title | Subject card title                    |
+      | field_c_p_title | Subject card title 1                  |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Subject manual list" has "civictheme_subject_card" paragraph:
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | dark                                  |
-      | field_c_p_title | Subject card title 1                  |
+      | field_c_p_title | Subject card title 2                  |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Subject manual list" has "civictheme_subject_card" paragraph:
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | dark                                  |
-      | field_c_p_title | Subject card title 2                  |
+      | field_c_p_title | Subject card title 3                  |
 
     When I visit "civictheme_page" "[TEST] Page Subject cards test"
     And I should see the text "[TEST] Subject manual list"
@@ -44,6 +44,6 @@ Feature: Subject card render
     And I should see 2 ".ct-subject-card__content__image img" elements
     And I should see 3 ".ct-subject-card__content__title" elements
     And I should not see an ".ct-navigation-card" element
-    And I should see the text "Subject card title"
     And I should see the text "Subject card title 1"
     And I should see the text "Subject card title 2"
+    And I should see the text "Subject card title 3"

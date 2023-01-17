@@ -17,16 +17,14 @@ Feature: Banner render
       | [TEST] Page banner test          | 1      |                       |                                 |
       | [TEST] Page banner override test | 1      | large                 | [TEST] CivicTheme Content Image |
 
-  @api @javascript
+  @api
   Scenario: CivicTheme Page banner with default values.
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Page banner test"
-    And save screenshot
 
-  @api @javascript
+  @api
   Scenario: CivicTheme Page banner with override values.
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Page banner override test"
     And I should see an ".ct-banner__featured-image" element
     And I should see an ".ct-banner.ct-banner--decorative" element
-    And save screenshot
