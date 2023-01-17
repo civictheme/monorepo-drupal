@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: e7906ecd-061e-482b-8d16-608f9a1e31be
+  uuid: df4c44a4-71a2-45d0-88c7-6eadd66d3d48
   default_langcode: en
 default:
   uid:
@@ -24,4 +24,4 @@ default:
       value: true
   created:
     -
-      value: 1671241949
+      value: 1673923974

@@ -24,7 +24,6 @@ _meta:
     866d2c87-0baa-4b54-839c-1e89d5ba6ab6: node
     96d87429-9acf-4c03-9da6-3e8ba9cc3fab: taxonomy_term
     205adb84-4add-4e30-92b8-e5c052aa0bc3: media
-    baeb7d42-1e11-4d7a-abde-dc02cd89d417: node
     1c76b992-a37f-407a-b0b3-65784043454a: taxonomy_term
     db8e6781-f356-497d-9aba-ef0994b6268c: node
     d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
@@ -532,11 +531,6 @@ default:
                   field_c_p_image_position:
                     -
                       value: right
-                  field_c_p_link:
-                    -
-                      target_uuid: baeb7d42-1e11-4d7a-abde-dc02cd89d417
-                      title: 'More about double degrees'
-                      options: {  }
                   field_c_p_theme:
                     -
                       value: light
@@ -620,6 +614,9 @@ default:
   field_c_n_hide_sidebar:
     -
       value: true
+  field_c_n_hide_tags:
+    -
+      value: false
   field_c_n_show_last_updated:
     -
       value: false
