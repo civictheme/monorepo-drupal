@@ -155,7 +155,6 @@ Feature: Color settings are available in the theme settings
     And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
     And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
     And I scroll to an element with id "edit-colors-palette-light-background"
-    Then save screenshot
 
   @api @javascript
   Scenario: Palette colors have values produced from selected brand colors can have overrides.
@@ -169,7 +168,6 @@ Feature: Color settings are available in the theme settings
     And I press "Save configuration"
     And I should see the text "The configuration options have been saved."
     And I scroll to an element with id "edit-colors-palette-light-background"
-    Then save screenshot
     Then I should see an "#edit-colors-palette-light-background-background-light[value='#000000']" element
 
   @api @drush @basetheme
@@ -194,7 +192,6 @@ Feature: Color settings are available in the theme settings
     And I visit "/admin/appearance/settings/civictheme"
     And I uncheck the box "Use Color Selector"
     And I press "Save configuration"
-    And save screenshot
     And I should see the text "The configuration options have been saved."
     When I go to the homepage
     Then the response should not contain "/sites/default/files/css-variables.civictheme.css"

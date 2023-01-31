@@ -20,5 +20,5 @@ function civictheme_preprocess_paragraph__civictheme_promo(&$variables) {
       'is_new_window' => $link->isExternal(),
     ];
   }
-  $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_summary');
+  $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_summary');
 }

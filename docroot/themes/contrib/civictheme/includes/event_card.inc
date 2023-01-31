@@ -25,6 +25,6 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
     $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
   }
 
-  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
+  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
   $variables['location'] = civictheme_get_field_value($paragraph, 'field_c_p_location');
 }

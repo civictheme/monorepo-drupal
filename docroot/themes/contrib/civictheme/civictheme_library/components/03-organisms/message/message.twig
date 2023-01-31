@@ -25,7 +25,7 @@
 
 <div
   class="ct-message {{ modifier_class }}"
-  role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}"
+  role="{% if type == 'error' %}alert{% else %}contentinfo{% endif %}"
   aria-label="{{ type }}"
   {% if type == 'error' %}aria-live="polite"{% endif %}
   {% if attributes is not empty %}{{ attributes|raw }}{% endif %}

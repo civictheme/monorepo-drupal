@@ -81,6 +81,9 @@ default:
   field_c_n_hide_sidebar:
     -
       value: false
+  field_c_n_hide_tags:
+    -
+      value: false
   field_c_n_show_last_updated:
     -
       value: true
