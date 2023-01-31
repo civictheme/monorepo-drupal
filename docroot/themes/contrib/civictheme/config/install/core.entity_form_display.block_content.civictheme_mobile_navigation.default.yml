@@ -16,63 +16,63 @@ third_party_settings:
       children:
         - field_c_b_trigger_text
         - field_c_b_trigger_theme
+      label: Trigger
+      region: content
       parent_name: ''
       weight: 4
       format_type: details
-      region: content
       format_settings:
+        classes: ''
         show_empty_fields: false
         id: ''
-        classes: ''
+        open: true
         description: ''
-        open: false
         required_fields: true
-      label: Trigger
 id: block_content.civictheme_mobile_navigation.default
 targetEntityType: block_content
 bundle: civictheme_mobile_navigation
 mode: default
 content:
   field_c_b_bottom:
+    type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_c_b_theme:
+    type: options_buttons
     weight: 3
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_c_b_top:
+    type: entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_c_b_trigger_text:
+    type: string_textfield
     weight: 4
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_c_b_trigger_theme:
+    type: options_select
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   info:
     type: string_textfield
     weight: 0

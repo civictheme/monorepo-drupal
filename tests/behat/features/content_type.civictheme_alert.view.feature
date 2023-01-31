@@ -13,7 +13,7 @@ Feature: CivicTheme Alert content type render
       | [TEST] Test alerts on pages | 1      |
 
   @api @javascript
-  Scenario: CivicTheme alerts can be viewed on homepage
+  Scenario: Alerts can be viewed on homepage
     Given I am an anonymous user
     And I go to the homepage
     And wait 5 second
@@ -26,7 +26,7 @@ Feature: CivicTheme Alert content type render
     And I should see the text "[TEST] Test dismissing alert body all pages"
 
   @api @javascript
-  Scenario: CivicTheme alerts should follow the visibility settings.
+  Scenario: Alerts should follow the visibility settings
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second
@@ -36,7 +36,7 @@ Feature: CivicTheme Alert content type render
     And I should see the text "[TEST] Test dismissing alert body all pages"
 
   @api @javascript
-  Scenario: CivicTheme alerts should be dismissed and not show in the same session
+  Scenario: Alerts should be dismissed and not shown in the same session
     Given I am an anonymous user
     And I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second
@@ -64,7 +64,7 @@ Feature: CivicTheme Alert content type render
     And I should see the text "[TEST] Test dismissing alert body all pages"
 
   @api @javascript
-  Scenario: CivicTheme alerts should be dismissed and not show in same session for logged in user.
+  Scenario: Alerts should be dismissed and not shown in same session for logged in user
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second
@@ -85,7 +85,7 @@ Feature: CivicTheme Alert content type render
     And I should not see the text "[TEST] Test dismissing alert body all pages"
 
   @api @javascript
-  Scenario: CivicTheme alerts should be dismissed and show if their content was updated
+  Scenario: Alerts should be dismissed and shown if their content was updated
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second

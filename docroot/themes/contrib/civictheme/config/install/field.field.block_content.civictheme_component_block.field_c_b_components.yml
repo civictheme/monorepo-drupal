@@ -15,7 +15,6 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
-    - paragraphs.paragraphs_type.civictheme_quick_links
     - paragraphs.paragraphs_type.civictheme_quote
     - paragraphs.paragraphs_type.civictheme_slider
     - paragraphs.paragraphs_type.civictheme_webform
@@ -47,7 +46,6 @@ settings:
       civictheme_next_step: civictheme_next_step
       civictheme_promo: civictheme_promo
       civictheme_slider: civictheme_slider
-      civictheme_quick_links: civictheme_quick_links
       civictheme_quote: civictheme_quote
       civictheme_webform: civictheme_webform
     negate: 0
@@ -109,9 +107,6 @@ settings:
       civictheme_publication_card:
         weight: -33
         enabled: false
-      civictheme_quick_links:
-        weight: -47
-        enabled: true
       civictheme_quote:
         weight: -46
         enabled: true

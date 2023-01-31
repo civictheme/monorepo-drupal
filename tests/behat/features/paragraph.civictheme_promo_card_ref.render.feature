@@ -4,9 +4,11 @@ Feature: Promo reference card render
   Background:
 
     Given "civictheme_page" content:
-      | title                            | status | field_c_n_site_section |
-      | [TEST] Page Reference cards test | 1      |                        |
-      | [TEST] Page Promo cards test     | 1      |                        |
+      | title                            | status |
+      | [TEST] Page Reference cards test | 1      |
+      | [TEST] Referenced page 1         | 1      |
+      | [TEST] Referenced page 2         | 1      |
+      | [TEST] Referenced page 3         | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Reference cards
@@ -16,20 +18,20 @@ Feature: Promo reference card render
       | field_c_p_column_count | 3                                |
       | field_c_p_fill_width   | 0                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_promo_card_ref" paragraph:
-      | field_c_p_reference | [TEST] Page Promo cards test |
-      | field_c_p_theme     | light                        |
+      | field_c_p_reference | [TEST] Referenced page 1 |
+      | field_c_p_theme     | light                    |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_promo_card_ref" paragraph:
-      | field_c_p_reference | [TEST] Page Promo cards test |
-      | field_c_p_theme     | light                        |
+      | field_c_p_reference | [TEST] Referenced page 2 |
+      | field_c_p_theme     | light                    |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_promo_card_ref" paragraph:
-      | field_c_p_reference | [TEST] Page Promo cards test |
-      | field_c_p_theme     | dark                         |
+      | field_c_p_reference | [TEST] Referenced page 3 |
+      | field_c_p_theme     | dark                     |
 
     When I visit "civictheme_page" "[TEST] Page Reference cards test"
     And I should see the text "[TEST] Reference cards container"
     And I should not see an ".ct-list__link a" element
     And I should see 1 ".ct-list" elements
     And I should see 3 ".ct-promo-card__content" elements
-    # And I should see 2 ".ct-item-grid__item > .ct-theme-light" elements
-    # And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
-    And save screenshot
+    And I should see the text "Referenced page 1"
+    And I should see the text "Referenced page 2"
+    And I should see the text "Referenced page 3"

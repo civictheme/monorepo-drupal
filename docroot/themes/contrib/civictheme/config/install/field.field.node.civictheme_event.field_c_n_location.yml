@@ -85,9 +85,6 @@ settings:
       civictheme_publication_card:
         weight: 48
         enabled: false
-      civictheme_quick_links:
-        weight: 49
-        enabled: false
       civictheme_quote:
         weight: 50
         enabled: false
