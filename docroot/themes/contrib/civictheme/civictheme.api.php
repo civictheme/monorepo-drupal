@@ -5,6 +5,7 @@
  * Hooks related to the CivicTheme theme.
  */
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\ViewExecutable;
 
