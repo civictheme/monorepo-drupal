@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Variations for CivicTheme Event nodes.
+ */
+
+use Drupal\cs_generated_content\CsGeneratedContentHelper;
+
+/**
+ * Event, Location - Map.
+ */
+function _cs_generated_content_create_node_civictheme_event__variations__component_map() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
+  return [
+    [
+      'title' => 'Map',
+      'summary' => $helper::staticSentence(8),
+      'topics' => $helper::staticTerms('civictheme_topics', 1),
+      'body' => $helper::staticRichText(3),
+      'location' => [
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'theme' => $helper::civicthemeThemeLight(),
+        ],
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'theme' => $helper::civicthemeThemeDark(),
+        ],
+
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+        ],
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+        ],
+
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        ],
+        [
+          'type' => 'map',
+          'embed_url' => $helper::staticUrl(),
+          'address' => $helper::staticSentence(3),
+          'view_link' => $helper::staticLinkFieldValue(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        ],
+      ],
+    ],
+  ];
+}
