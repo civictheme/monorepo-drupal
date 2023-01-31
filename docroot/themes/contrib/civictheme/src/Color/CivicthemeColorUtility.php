@@ -101,7 +101,7 @@ class CivicthemeColorUtility {
    */
   public static function normalizeHex($value, $preserve_hash = FALSE) {
     if (!is_string($value)) {
-      throw new \Exception(sprintf('Non-string color value provided: %s', print_r($value, TRUE)));
+      throw new \Exception(sprintf('Non-string color value provided: %s', var_export($value, TRUE)));
     }
 
     $value = str_starts_with($value, '#') && !$preserve_hash ? substr($value, 1) : $value;
