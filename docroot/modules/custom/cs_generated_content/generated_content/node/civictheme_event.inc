@@ -31,45 +31,60 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  for ($i = 0; $i < 20; $i++) {
-    $variations[] = [
-      'status' => 1,
-      'title' => sprintf('%s Event %s', ($i + 1), $helper::staticSentence(3)),
-      'thumbnail' => $helper::staticMediaItem('civictheme_image'),
-      'summary' => 'Summary ' . $helper::staticSentence(20),
-      'body' => $helper::staticSentenceFieldValue(),
-      'topics' => $helper::staticTerms('civictheme_topics', 1),
-      'site_section' => $helper::staticTerms('civictheme_site_sections', 1),
-      'field_c_n_show_toc' => TRUE,
-      'attachments' => $helper::staticMediaItems('civictheme_document', 3),
-      'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-      'show_last_updated' => TRUE,
-    ];
+  // Some components require to reference existing nodes. Since variation
+  // evaluation happens before such nodes created, we need to pre-create them
+  // in a preceding pass.
+  for ($pass = 0; $pass < 2; $pass++) {
+    // First pass - provide variations from the generated content pages.
+    if ($pass === 0) {
+      require_once __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_event_variations/01.helpers.inc';
+      for ($i = 0; $i < 20; $i++) {
+        $variations[] = [
+          'title' => sprintf('%s %s', ($i + 1), $helper::staticSentence(3)),
+          'thumbnail' => $helper::staticMediaItem('civictheme_image'),
+          'summary' => 'Summary ' . $helper::staticSentence(20),
+          'topics' => $helper::staticTerms('civictheme_topics', 1),
+          'body' => $helper::staticRichText(3),
+          'site_section' => $helper::staticTerms('civictheme_site_sections', 1),
+          'field_c_n_show_toc' => TRUE,
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+          'show_last_updated' => TRUE,
+        ];
+      }
+      $variations = _cs_generated_content_create_node_civictheme_event__variations__post_process($variations);
+    }
+    else {
+      // Second pass - provide variations from the variation callbacks.
+      $variations = $helper::variationFetchAll(
+        '_cs_generated_content_create_node_civictheme_event__variations__',
+        __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_event_variations',
+      );
+    }
+
+    foreach ($variations as $i => $variation) {
+      /** @var \Drupal\node\Entity\Node $node */
+      $node = $helper::variationCreateNode('civictheme_event', $variation, $i, '_cs_generated_content_create_node_civictheme_event__variation_to_fields');
+
+      $variation_info = $helper::variationFormatInfo($variation);
+      $node->revision_log = $variation_info;
+
+      $node->save();
+
+      $helper::log(
+        'Created "%s" node "%s" [ID: %s] %s',
+        $node->bundle(),
+        $node->toLink()->toString(),
+        $node->id(),
+        Link::createFromRoute('Edit', 'entity.node.edit_form', ['node' => $node->id()])->toString()
+      );
+
+      $nodes[] = $node;
+    }
+
+    // Add created nodes to the repository to make them available within the
+    // next pass.
+    $helper::addToRepository($nodes);
   }
-
-  foreach ($variations as $i => $variation) {
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = $helper::variationCreateNode('civictheme_event', $variation, $i, '_cs_generated_content_create_node_civictheme_event__variation_to_fields');
-
-    $variation_info = $helper::variationFormatInfo($variation);
-    $node->revision_log = $variation_info;
-
-    $node->save();
-
-    $helper::log(
-      'Created "%s" node "%s" [ID: %s] %s',
-      $node->bundle(),
-      $node->toLink()->toString(),
-      $node->id(),
-      Link::createFromRoute('Edit', 'entity.node.edit_form', ['node' => $node->id()])->toString()
-    );
-
-    $nodes[] = $node;
-  }
-
-  // Add created nodes to the repository to make them available within the
-  // next pass.
-  $helper::addToRepository($nodes);
 
   return $nodes;
 }
@@ -113,12 +128,12 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
     $node->field_c_n_topics = $variation['topics'];
   }
 
-  if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
-    $node->field_c_n_site_section = $variation['site_section'];
+  if (!empty($variation['date']) && $node->hasField('field_c_n_date')) {
+    $node->field_c_n_date = $variation['date'];
   }
 
-  if (!empty($variation['attachments']) && $node->hasField('field_c_n_attachments')) {
-    $node->field_c_n_attachments = $variation['attachments '];
+  if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
+    $node->field_c_n_site_section = $variation['site_section'];
   }
 
   if (isset($variation['vertical_spacing']) && $node->hasField('field_c_n_vertical_spacing')) {
@@ -131,5 +146,27 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
     $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
+  }
+
+  // Locations.
+  if (!empty($variation['location']) && $node->hasField('field_c_n_location')) {
+    for ($i = 0; $i < count($variation['location']); $i++) {
+      // Extract component type.
+      $component_type = $variation['location'][$i]['type'];
+      // Remove component type and passthrough properties.
+      $component_options = array_diff_key($variation['location'][$i], ['type' => TRUE]);
+      $helper::civicthemeComponentAttach($node, 'field_c_n_location', $component_type, $component_options);
+    }
+  }
+
+  // Attachments.
+  if (!empty($variation['attachments']) && $node->hasField('field_c_n_attachments')) {
+    for ($i = 0; $i < count($variation['attachments']); $i++) {
+      // Extract component type.
+      $component_type = $variation['attachments'][$i]['type'];
+      // Remove component type and passthrough properties.
+      $component_options = array_diff_key($variation['attachments'][$i], ['type' => TRUE]);
+      $helper::civicthemeComponentAttach($node, 'field_c_n_attachments', $component_type, $component_options);
+    }
   }
 }
