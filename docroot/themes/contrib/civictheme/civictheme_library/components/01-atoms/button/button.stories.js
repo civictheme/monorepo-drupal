@@ -3,8 +3,10 @@ import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
+import merge from 'deepmerge';
 import CivicThemeButton from './button.twig';
 import './button';
+import { arrayCombine, toLabels } from '../../00-base/base.utils';
 
 export default {
   title: 'Atoms/Button',
@@ -74,8 +76,15 @@ export const Button = (knobTab) => {
 
   const iconKnobTab = 'Icon';
   const withIcon = boolean('With icon', false, generalKnobTab);
+  const defaultSizes = SCSS_VARIABLES['ct-icon-sizes-default'];
+  const customSizes = SCSS_VARIABLES['ct-icon-sizes'];
+  let sizes = Object.keys(merge(defaultSizes, customSizes));
+
+  sizes = arrayCombine(toLabels(sizes), sizes);
+  sizes = merge({ Auto: 'auto' }, sizes);
   const iconKnobs = {
     icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
+    icon_size: withIcon ? radios('Size', sizes, 'auto', iconKnobTab) : null,
     icon_placement: withIcon ? radios(
       'Position',
       {

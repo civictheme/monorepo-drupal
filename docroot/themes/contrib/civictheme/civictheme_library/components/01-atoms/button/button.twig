@@ -10,6 +10,7 @@
  * - size: [string] Button size: large, regular, small.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: left, right
+ * - icon_size: [string] Optional icon size.
  * - text: [string] Button text.
  * - url: [string] URL for the link button.
  * - is_raw_text: [boolean] Output text as raw value.
@@ -25,6 +26,7 @@
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
 {% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : null %}
 {% set type_class = type ? 'ct-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'ct-button--%s'|format(kind) : '' %}
 {% set size_class = 'ct-button--%s'|format(size) %}
@@ -38,6 +40,7 @@
     {% set icon_markup %}
       {% include '@base/icon/icon.twig' with {
         symbol: icon,
+        size: icon_size,
         modifier_class: 'ct-button__icon',
       } only %}
     {% endset %}
