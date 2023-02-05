@@ -55,9 +55,11 @@
           {% include "@atoms/button/button.twig" with {
             kind: 'button',
             theme: theme,
+            type: 'tertiary',
             modifier_class: 'ct-alert__dismiss-button',
             text: '',
             icon: 'cancel',
+            size: 'regular',
             attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger title="close ' ~ type ~ ' alert"'
           } %}
         </div>

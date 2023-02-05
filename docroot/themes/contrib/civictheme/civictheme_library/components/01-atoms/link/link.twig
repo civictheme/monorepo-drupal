@@ -34,8 +34,12 @@
   {% set content_markup %}
     {% if icon %}
       {% set icon_markup %}
-        {% include '@base/icon/icon.twig' with {
-          symbol: icon,
+        {% include "@atoms/button/button.twig" with {
+          theme: theme,
+          type: 'tertiary',
+          kind: 'button',
+          icon: icon,
+          size: 'regular',
           modifier_class: 'ct-link__icon',
         } only %}
       {% endset %}
