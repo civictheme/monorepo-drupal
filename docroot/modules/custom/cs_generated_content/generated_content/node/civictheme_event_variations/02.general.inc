@@ -62,7 +62,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
-      'date' => [
+      'date_range' => [
         'value' => '2022-07-01T12:12:12',
         'end_value' => '2022-07-01T12:12:12',
       ],
@@ -74,7 +74,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
-      'date' => [
+      'date_range' => [
         'value' => '2022-07-01T12:12:12',
         'end_value' => '2023-07-01T12:12:12',
       ],

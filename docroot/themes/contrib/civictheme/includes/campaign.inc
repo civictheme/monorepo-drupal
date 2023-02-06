@@ -21,7 +21,7 @@ function civictheme_preprocess_paragraph__civictheme_campaign(&$variables) {
 
   $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
   if ($date) {
-    $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime(), $date->get('end_value')->getDateTime());
   }
 
   $links = civictheme_get_field_value($paragraph, 'field_c_p_links');

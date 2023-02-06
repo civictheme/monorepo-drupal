@@ -29,7 +29,7 @@ function _civictheme_preprocess_node__card(&$variables) {
  */
 function _civictheme_preprocess_node__civictheme_event_card(&$variables) {
   _civictheme_preprocess_node__card($variables);
-  _civictheme_preprocess_node__date($variables);
+  _civictheme_preprocess_node__date_range($variables);
   _civictheme_preprocess_node__thumbnail($variables, 'civictheme_promo_card');
   _civictheme_preprocess_node__topics($variables);
 }
@@ -67,9 +67,9 @@ function _civictheme_preprocess_node__civictheme_navigation_card(&$variables) {
 function _civictheme_preprocess_node__civictheme_promo_card(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civictheme_short_date');
+  $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
   _civictheme_preprocess_node__card($variables);
-  _civictheme_preprocess_node__date($variables);
+  _civictheme_preprocess_node__date_range($variables);
   _civictheme_preprocess_node__thumbnail($variables, 'civictheme_promo_card');
   _civictheme_preprocess_node__topics($variables);
 }
@@ -85,12 +85,12 @@ function _civictheme_preprocess_node__civictheme_subject_card(&$variables) {
 /**
  * Pre-process date field.
  */
-function _civictheme_preprocess_node__date(&$variables) {
+function _civictheme_preprocess_node__date_range(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  $date_range = civictheme_get_field_value($node, 'field_c_n_date', TRUE);
+  $date_range = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
   if ($date_range) {
-    $variables['date'] = civictheme_format_short_date($date_range->get('value')->getString());
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date_range->get('value')->getString());
   }
 }
 

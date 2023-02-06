@@ -50,7 +50,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 
   $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
   if ($date) {
-    $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
   }
 
   $links = civictheme_get_field_value($paragraph, 'field_c_p_links');
@@ -79,7 +79,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
       $node = reset($nodes);
 
       $variables['title'] = $node->label();
-      $variables['date'] = civictheme_format_short_date($node->getChangedTime());
+      $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
       $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary');
       $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
 

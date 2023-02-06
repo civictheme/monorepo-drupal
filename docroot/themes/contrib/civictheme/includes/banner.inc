@@ -233,11 +233,11 @@ function _civictheme_preprocess_civictheme_banner_get_last_updated($node) {
   $final_date = NULL;
 
   if ($last_updated && $custom_updated) {
-    $final_date = civictheme_format_short_date($custom_updated->get('value')->getDateTime());
+    $final_date = civictheme_format_date('civictheme_short_date', $custom_updated->get('value')->getDateTime());
   }
 
   elseif ($last_updated) {
-    $final_date = \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date');
+    $final_date = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
   }
 
   return $final_date;

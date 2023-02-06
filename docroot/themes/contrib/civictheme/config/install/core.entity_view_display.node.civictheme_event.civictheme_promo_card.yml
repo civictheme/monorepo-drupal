@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_attachments
     - field.field.node.civictheme_event.field_c_n_body
     - field.field.node.civictheme_event.field_c_n_custom_last_updated
-    - field.field.node.civictheme_event.field_c_n_date
+    - field.field.node.civictheme_event.field_c_n_date_range
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - node.type.civictheme_event
   module:
-    - datetime_range
     - layout_builder
     - text
     - user
@@ -37,16 +36,6 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_c_n_date:
-    type: daterange_default
-    label: visually_hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-      separator: '-'
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_c_n_thumbnail:
     type: entity_reference_entity_view
     label: visually_hidden
@@ -59,6 +48,7 @@ content:
 hidden:
   field_c_n_attachments: true
   field_c_n_custom_last_updated: true
+  field_c_n_date_range: true
   field_c_n_location: true
   field_c_n_show_last_updated: true
   field_c_n_show_toc: true

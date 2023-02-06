@@ -128,8 +128,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
     $node->field_c_n_topics = $variation['topics'];
   }
 
-  if (!empty($variation['date']) && $node->hasField('field_c_n_date')) {
-    $node->field_c_n_date = $variation['date'];
+  if (!empty($variation['date_range']) && $node->hasField('field_c_n_date_range')) {
+    $node->field_c_n_date_range = $variation['date_range'];
   }
 
   if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {

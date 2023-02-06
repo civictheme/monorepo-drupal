@@ -187,18 +187,34 @@ function civictheme_attributes_to_modifier_class(&$variables) {
 /**
  * Format date.
  *
+ * @param string $type
+ *   Format type.
  * @param mixed $date
  *   Timestamp or date as a string.
+ * @param mixed $date_end
+ *   Timestamp or end date as a string.
  *
  * @return mixed
- *   Formatted date.
+ *   Formatted date or date range.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_format_short_date($date) {
+function civictheme_format_date($type, $date, $date_end = NULL) {
   $timestamp = is_numeric($date) ? $date : strtotime($date);
+  $timestamp2 = $date_end ? (is_numeric($date_end) ? $date_end : strtotime($date_end)) : NULL;
 
-  return \Drupal::service('date.formatter')->format($timestamp, 'civictheme_short_date');
+  // @todo Implement more robust date range formatting.
+  $output = '';
+  if ($timestamp) {
+    $output .= \Drupal::service('date.formatter')->format($timestamp, $type);
+  }
+
+  if ($timestamp2) {
+    $output .= !empty($output) ? ' - ' : '';
+    $output .= \Drupal::service('date.formatter')->format($timestamp2, $type);
+  }
+
+  return $output;
 }
 
 /**

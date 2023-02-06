@@ -46,13 +46,13 @@ Feature: CivicTheme Event content type fields
     And should not see an "[name='field_c_n_vertical_spacing'][disabled]" element
 
     And I should see the text "Start date"
-    And should see an "[name='field_c_n_date[0][value][date]']" element
-    And should not see an "[name='field_c_n_date[0][value][date]'].required" element
-    And should not see an "[name='field_c_n_date[0][value][date]'][disabled]" element
+    And should see an "[name='field_c_n_date_range[0][value][date]']" element
+    And should not see an "[name='field_c_n_date_range[0][value][date]'].required" element
+    And should not see an "[name='field_c_n_date_range[0][value][date]'][disabled]" element
     And I should see the text "End date"
-    And should see an "[name='field_c_n_date[0][end_value][date]']" element
-    And should not see an "[name='field_c_n_date[0][end_value][date]'].required" element
-    And should not see an "[name='field_c_n_date[0][end_value][date]'][disabled]" element
+    And should see an "[name='field_c_n_date_range[0][end_value][date]']" element
+    And should not see an "[name='field_c_n_date_range[0][end_value][date]'].required" element
+    And should not see an "[name='field_c_n_date_range[0][end_value][date]'][disabled]" element
 
     And I see field "Address"
 

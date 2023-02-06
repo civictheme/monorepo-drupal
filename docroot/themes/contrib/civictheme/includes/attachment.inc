@@ -9,8 +9,6 @@ use Drupal\file\Entity\File;
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -36,7 +34,7 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
         'ext' => $file_extension ?? '',
         'size' => $file_size ?? '',
         'icon' => $icon,
-        'last_updated' => \Drupal::service('date.formatter')->format($attachment->getChangedTime(), 'civictheme_short_date'),
+        'last_updated' => civictheme_format_date('civictheme_short_date', $attachment->getChangedTime()),
       ];
     }
   }
