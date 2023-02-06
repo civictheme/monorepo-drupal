@@ -98,7 +98,7 @@ function _civictheme_preprocess_civictheme_banner_section(&$variables) {
 
   if (!is_null($node)) {
     $the_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
-    $variables['section'] = isset($the_section) ? $the_section->getName() : '';
+    $variables['site_section'] = isset($the_section) ? $the_section->getName() : '';
   }
 }
 

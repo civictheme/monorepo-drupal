@@ -45,6 +45,7 @@ export const Banner = (knobTab) => {
       alt: 'Featured image alt text',
     } : null,
     is_decorative: boolean('Decorative', true, generalKnobTab),
+    site_section: boolean('With site section', true, generalKnobTab) ? 'Site section name' : '',
     breadcrumb: boolean('With breadcrumb', true, generalKnobTab) ? Breadcrumb(breadcrumbKnobTab, false).links : '',
     show_content_text: boolean('With content text', true, generalKnobTab),
     show_content_below: boolean('With content below', false, generalKnobTab),
