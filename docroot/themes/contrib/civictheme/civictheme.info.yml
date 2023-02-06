@@ -345,7 +345,7 @@ config_devel:
     - field.field.paragraph.civictheme_content.field_c_p_content
     - field.field.paragraph.civictheme_content.field_c_p_theme
     - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
-    - field.field.paragraph.civictheme_event_card.field_c_p_date
+    - field.field.paragraph.civictheme_event_card.field_c_p_date_range
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
     - field.field.paragraph.civictheme_event_card.field_c_p_location
@@ -503,6 +503,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_column_count
     - field.storage.paragraph.field_c_p_content
     - field.storage.paragraph.field_c_p_date
+    - field.storage.paragraph.field_c_p_date_range
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_document
     - field.storage.paragraph.field_c_p_embed_url
