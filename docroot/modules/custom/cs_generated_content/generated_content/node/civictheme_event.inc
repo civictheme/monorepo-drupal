@@ -66,7 +66,7 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
       $node = $helper::variationCreateNode('civictheme_event', $variation, $i, '_cs_generated_content_create_node_civictheme_event__variation_to_fields');
 
       $variation_info = $helper::variationFormatInfo($variation);
-      $node->revision_log = $variation_info;
+      $node->revision_log = 'Generated content. ' . $variation_info;
 
       $node->save();
 
