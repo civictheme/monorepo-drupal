@@ -149,8 +149,8 @@ Feature: CivicTheme Page content type render
     When I visit "civictheme_page" "[TEST] Page with Site section"
     And I should see the text "[TEST] Page with Site section"
     And I should see an "body.ct-site-section---test-site-section-1" element
-    And I should see an ".ct-banner__section" element
+    And I should see an ".ct-banner__site-section" element
     And I should see the text "[TEST] Site Section 1"
     When I visit "civictheme_page" "[TEST] Page without Site section"
     And I should see the text "[TEST] Page without Site section"
-    And I should not see an ".ct-banner__section" element
+    And I should not see an ".ct-banner__site-section" element
