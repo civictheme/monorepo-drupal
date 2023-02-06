@@ -3,10 +3,11 @@ Feature: CivicTheme Alert content type render
 
   Background:
     Given civictheme_alert content:
-      | nid    | title                                        | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                              |
-      | 999991 | [TEST] Test alert title Homepage only        | 1      | information          | /                               | [TEST] Test alert body Homepage only        |
-      | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            |
-      | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages |
+      | nid    | title                                        | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                              | field_c_n_date_range:value      | field_c_n_date_range:end_value   |
+      | 999991 | [TEST] Test alert title Homepage only        | 1      | information          | /                               | [TEST] Test alert body Homepage only        | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
+      | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
+      | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
+      | 999994 | [TEST] Test alert title all pages future     | 1      | error                |                                 | [TEST] Test alert body all pages future     | [relative:+2 days#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] |
 
     Given civictheme_page content:
       | title                       | status |
@@ -107,3 +108,12 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
     And I should see the text "[TEST] Test dismissing alert body all pages updated"
+
+  @api @javascript
+  Scenario: Alerts should not be shown if the date range is not today
+    Given I am logged in as a user with the "Site Administrator" role
+    When I visit "civictheme_page" "[TEST] Test alerts on pages"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should see the text "[TEST] Test alert body all pages"
+    And I should not see the text "[TEST] Test alert body all pages future"
