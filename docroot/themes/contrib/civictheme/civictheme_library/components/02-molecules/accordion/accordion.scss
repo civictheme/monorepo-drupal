@@ -96,9 +96,9 @@
       @include ct-component-property($root, $theme, background-color);
       @include ct-component-property($root, $theme, border-color);
 
-      border-left-color: ct-component-var($root, $theme, stripe, border, color);
+      border-left-color: ct-component-var($root, $theme, stripe, background-color);
 
-      @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, border, color));
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
   }
 }

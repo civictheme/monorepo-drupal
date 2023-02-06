@@ -66,7 +66,7 @@
     @include ct-component-property($root, $theme, background-color);
 
     &#{$root}:not(#{$root}--with-image) {
-      @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, color));
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
   }
 }

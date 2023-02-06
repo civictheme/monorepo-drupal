@@ -290,35 +290,35 @@ $ct-field-message-border-radius: $ct-border-radius !default;
 $ct-field-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 85) !default;
 $ct-field-message-light-error-border-color: ct-color-light('error') !default;
 $ct-field-message-light-error-color: ct-color-light('body') !default;
-$ct-field-message-light-error-icon-color: ct-color-light('error') !default;
+$ct-field-message-light-error-icon-color: $ct-field-message-light-error-color !default;
 $ct-field-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 85) !default;
 $ct-field-message-light-information-border-color: ct-color-light('information') !default;
 $ct-field-message-light-information-color: ct-color-light('body') !default;
-$ct-field-message-light-information-icon-color: ct-color-light('information') !default;
+$ct-field-message-light-information-icon-color: $ct-field-message-light-information-color !default;
 $ct-field-message-light-success-border-color: ct-color-light('success') !default;
 $ct-field-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 85) !default;
 $ct-field-message-light-success-color: ct-color-light('body') !default;
-$ct-field-message-light-success-icon-color: ct-color-light('success') !default;
+$ct-field-message-light-success-icon-color: $ct-field-message-light-success-color !default;
 $ct-field-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 85) !default;
 $ct-field-message-light-warning-border-color: ct-color-light('warning') !default;
 $ct-field-message-light-warning-color: ct-color-light('body') !default;
-$ct-field-message-light-warning-icon-color: ct-color-light('warning') !default;
+$ct-field-message-light-warning-icon-color: $ct-field-message-light-warning-color !default;
 $ct-field-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
 $ct-field-message-dark-error-border-color: ct-color-dark('error') !default;
 $ct-field-message-dark-error-color: ct-color-dark('body') !default;
-$ct-field-message-dark-error-icon-color: ct-color-dark('error') !default;
+$ct-field-message-dark-error-icon-color: $ct-field-message-dark-error-color !default;
 $ct-field-message-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 30) !default;
 $ct-field-message-dark-information-border-color: ct-color-dark('information') !default;
 $ct-field-message-dark-information-color: ct-color-dark('body') !default;
-$ct-field-message-dark-information-icon-color: ct-color-dark('information') !default;
+$ct-field-message-dark-information-icon-color: $ct-field-message-dark-information-color !default;
 $ct-field-message-dark-success-border-color: ct-color-dark('success') !default;
 $ct-field-message-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 30) !default;
 $ct-field-message-dark-success-color: ct-color-dark('body') !default;
-$ct-field-message-dark-success-icon-color: ct-color-dark('success') !default;
+$ct-field-message-dark-success-icon-color: $ct-field-message-dark-success-color !default;
 $ct-field-message-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 30) !default;
 $ct-field-message-dark-warning-border-color: ct-color-dark('warning') !default;
 $ct-field-message-dark-warning-color: ct-color-dark('body') !default;
-$ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
+$ct-field-message-dark-warning-icon-color: $ct-field-message-dark-warning-color !default;
 
 //
 // Field label.
@@ -526,11 +526,11 @@ $ct-callout-stripe-width: $ct-stripe-size !default;
 $ct-callout-light-background-color: ct-color-light('background') !default;
 $ct-callout-light-heading-color: ct-color-light('heading') !default;
 $ct-callout-light-summary-color: ct-color-light('body') !default;
-$ct-callout-light-stripe-border-color: ct-color-light('highlight') !default;
+$ct-callout-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-callout-dark-background-color: ct-color-dark('background') !default;
 $ct-callout-dark-heading-color: ct-color-dark('heading') !default;
 $ct-callout-dark-summary-color: ct-color-dark('body') !default;
-$ct-callout-dark-stripe-border-color: ct-color-dark('highlight') !default;
+$ct-callout-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Dropdown filter.
@@ -566,7 +566,9 @@ $ct-event-card-image-width-desktop: auto !default;
 $ct-event-card-image-width-mobile: auto !default;
 $ct-event-card-stripe-height: $ct-stripe-size !default;
 $ct-event-card-light-background-color: ct-color-light('background-light') !default;
+$ct-event-card-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-event-card-dark-background-color: ct-color-dark('background') !default;
+$ct-event-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Cards/Navigation card.
@@ -589,9 +591,9 @@ $ct-promo-card-image-width-desktop: auto !default;
 $ct-promo-card-image-width-mobile: auto !default;
 $ct-promo-card-stripe-height: $ct-stripe-size !default;
 $ct-promo-card-light-background-color: ct-color-light('background-light') !default;
-$ct-promo-card-light-stripe-color: ct-color-light('highlight') !default;
+$ct-promo-card-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-promo-card-dark-background-color: ct-color-dark('background') !default;
-$ct-promo-card-dark-stripe-color: ct-color-dark('highlight') !default;
+$ct-promo-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Cards/Publication card.
@@ -610,9 +612,9 @@ $ct-publication-card-dark-background-color: ct-color-dark('background') !default
 $ct-service-card-border-radius: $ct-border-radius !default;
 $ct-service-card-stripe-height: $ct-stripe-size !default;
 $ct-service-card-light-background-color: ct-color-light('background-light') !default;
-$ct-service-card-light-stripe-color: ct-color-light('highlight') !default;
+$ct-service-card-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-service-card-dark-background-color: ct-color-dark('background') !default;
-$ct-service-card-dark-stripe-color: ct-color-dark('highlight') !default;
+$ct-service-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Cards/Subject card.
@@ -677,8 +679,8 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 $ct-logo-breakpoint: 'l' !default;
 $ct-logo-image-height-max-desktop: ct-particle(5) !default;
 $ct-logo-image-height-max-mobile: ct-particle(5) !default;
-$ct-logo-light-stripe-color: ct-color-light('border-dark') !default;
-$ct-logo-dark-stripe-color: ct-color-dark('border-light') !default;
+$ct-logo-light-stripe-background-color: ct-color-light('border-dark') !default;
+$ct-logo-dark-stripe-background-color: ct-color-dark('border-light') !default;
 
 //
 // Map.
@@ -693,10 +695,10 @@ $ct-next-steps-border-radius: $ct-border-radius !default;
 $ct-next-steps-stripe-width: $ct-stripe-size !default;
 $ct-next-steps-light-background-color: ct-color-light('background-light') !default;
 $ct-next-steps-light-border-color: ct-color-light('border-light') !default;
-$ct-next-steps-light-stripe-color: ct-color-light('highlight') !default;
+$ct-next-steps-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-next-steps-dark-background-color: ct-color-dark('background') !default;
 $ct-next-steps-dark-border-color: ct-color-dark('border') !default;
-$ct-next-steps-dark-stripe-color: ct-color-dark('highlight') !default;
+$ct-next-steps-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Quote.
@@ -706,10 +708,12 @@ $ct-quote-light-background-color: ct-color-light('background-light') !default;
 $ct-quote-light-border-color: ct-color-light('highlight') !default;
 $ct-quote-light-body-color: ct-color-light('body') !default;
 $ct-quote-light-author-color: ct-color-light('heading') !default;
+$ct-quote-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-quote-dark-background-color: ct-color-dark('background-light') !default;
 $ct-quote-dark-border-color: ct-color-dark('highlight') !default;
 $ct-quote-dark-body-color: ct-color-dark('body') !default;
 $ct-quote-dark-author-color: ct-color-dark('heading') !default;
+$ct-quote-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Table Of Contents.
@@ -738,14 +742,14 @@ $ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
 // Tabs.
 //
 $ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
-$ct-tabs-light-links-stripe-border-color: ct-color-light('border-light') !default;
+$ct-tabs-light-links-stripe-background-color: ct-color-light('border-light') !default;
 $ct-tabs-light-links-background-color: ct-color-light('background') !default;
 $ct-tabs-light-links-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-links-active-background-color: ct-color-light('background-light') !default;
 $ct-tabs-light-links-active-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-panel-background-color: ct-color-light('background') !default;
 $ct-tabs-light-panel-border-color: ct-color-light('border') !default;
-$ct-tabs-dark-links-stripe-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-links-stripe-background-color: ct-color-dark('border-light') !default;
 $ct-tabs-dark-links-background-color: ct-color-dark('background') !default;
 $ct-tabs-dark-links-border-color: ct-color-dark('border-light') !default;
 $ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !default;
@@ -795,7 +799,7 @@ $ct-accordion-light-color: ct-color-light('body') !default;
 $ct-accordion-light-button-background-color: ct-color-light('background-light') !default;
 $ct-accordion-light-button-color: ct-color-light('heading') !default;
 $ct-accordion-light-icon-color: ct-color-light('interaction-background') !default;
-$ct-accordion-light-stripe-border-color: ct-color-light('highlight') !default;
+$ct-accordion-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-accordion-light-wrapper-background-color: ct-color-light('background-light') !default;
 $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
@@ -806,7 +810,7 @@ $ct-accordion-dark-color: ct-color-dark('body') !default;
 $ct-accordion-dark-button-background-color: ct-color-dark('background-light') !default;
 $ct-accordion-dark-button-color: ct-color-dark('heading') !default;
 $ct-accordion-dark-icon-color: ct-color-dark('interaction-background') !default;
-$ct-accordion-dark-stripe-border-color: ct-color-dark('highlight') !default;
+$ct-accordion-dark-stripe-background-color: ct-color-dark('highlight') !default;
 $ct-accordion-dark-wrapper-background-color: ct-color-dark('background-dark') !default;
 
 //
@@ -815,16 +819,16 @@ $ct-accordion-dark-wrapper-background-color: ct-color-dark('background-dark') !d
 $ct-alert-light-divider-color: ct-color-light('interaction-background') !default;
 $ct-alert-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 90) !default;
 $ct-alert-light-error-color: ct-color-light('body') !default;
-$ct-alert-light-error-icon-color: ct-color-light('error') !default;
+$ct-alert-light-error-icon-color: $ct-alert-light-error-color !default;
 $ct-alert-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 90) !default;
 $ct-alert-light-information-color: ct-color-light('body') !default;
-$ct-alert-light-information-icon-color: ct-color-light('information') !default;
+$ct-alert-light-information-icon-color: $ct-alert-light-information-color !default;
 $ct-alert-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 90) !default;
 $ct-alert-light-success-color: ct-color-light('body') !default;
-$ct-alert-light-success-icon-color: ct-color-light('success') !default;
+$ct-alert-light-success-icon-color: $ct-alert-light-success-color !default;
 $ct-alert-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 90) !default;
 $ct-alert-light-warning-color: ct-color-light('body') !default;
-$ct-alert-light-warning-icon-color: ct-color-light('warning') !default;
+$ct-alert-light-warning-icon-color: $ct-alert-light-warning-color !default;
 $ct-alert-dark-divider-color: ct-color-dark('interaction-background') !default;
 $ct-alert-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
 $ct-alert-dark-error-color: ct-color-dark('body') !default;
@@ -909,19 +913,19 @@ $ct-message-border-radius: $ct-border-radius !default;
 $ct-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 90) !default;
 $ct-message-light-error-border-color: ct-color-light('error') !default;
 $ct-message-light-error-color: ct-color-light('body') !default;
-$ct-message-light-error-icon-color: ct-color-light('error') !default;
+$ct-message-light-error-icon-color: $ct-message-light-error-color !default;
 $ct-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 90) !default;
 $ct-message-light-information-border-color: ct-color-light('information') !default;
 $ct-message-light-information-color: ct-color-light('body') !default;
-$ct-message-light-information-icon-color: ct-color-light('information') !default;
+$ct-message-light-information-icon-color: $ct-message-light-information-color !default;
 $ct-message-light-success-border-color: ct-color-light('success') !default;
 $ct-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 90) !default;
 $ct-message-light-success-color: ct-color-light('body') !default;
-$ct-message-light-success-icon-color: ct-color-light('success') !default;
+$ct-message-light-success-icon-color: $ct-message-light-success-color !default;
 $ct-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 90) !default;
 $ct-message-light-warning-border-color: ct-color-light('warning') !default;
 $ct-message-light-warning-color: ct-color-light('body') !default;
-$ct-message-light-warning-icon-color: ct-color-light('warning') !default;
+$ct-message-light-warning-icon-color: $ct-message-light-warning-color !default;
 $ct-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
 $ct-message-dark-error-border-color: ct-color-dark('error') !default;
 $ct-message-dark-error-color: ct-color-dark('body') !default;
@@ -1025,53 +1029,53 @@ $ct-side-navigation-light-link-expanded-icon-color: ct-color-light('heading') !d
 $ct-side-navigation-light-link-parent-background-color: ct-color-light('background-light') !default;
 $ct-side-navigation-light-link-parent-border-color: ct-color-light('border-light') !default;
 $ct-side-navigation-light-link-parent-color: ct-color-light('heading') !default;
-$ct-side-navigation-light-link-parent-stripe-color: ct-color-light('border-light') !default;
+$ct-side-navigation-light-link-parent-stripe-background-color: ct-color-light('border-light') !default;
 $ct-side-navigation-light-link-parent-hover-background-color: ct-color-light('background-dark') !default;
 $ct-side-navigation-light-link-parent-hover-border-color: $ct-side-navigation-light-link-parent-border-color !default;
 $ct-side-navigation-light-link-parent-hover-color: $ct-side-navigation-light-link-parent-color !default;
-$ct-side-navigation-light-link-parent-hover-stripe-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-parent-hover-stripe-background-color: ct-color-light('highlight') !default;
 $ct-side-navigation-light-link-parent-active-background-color: ct-color-light('background') !default;
 $ct-side-navigation-light-link-parent-active-border-color: $ct-side-navigation-light-link-parent-border-color !default;
 $ct-side-navigation-light-link-parent-active-color: $ct-side-navigation-light-link-parent-color !default;
-$ct-side-navigation-light-link-parent-active-stripe-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-parent-active-stripe-background-color: ct-color-light('highlight') !default;
 $ct-side-navigation-light-link-child-background-color: $ct-side-navigation-light-link-parent-background-color !default;
 $ct-side-navigation-light-link-child-border-color: $ct-side-navigation-light-link-parent-border-color !default;
 $ct-side-navigation-light-link-child-color: $ct-side-navigation-light-link-parent-color !default;
-$ct-side-navigation-light-link-child-stripe-color: $ct-side-navigation-light-link-parent-stripe-color !default;
+$ct-side-navigation-light-link-child-stripe-background-color: $ct-side-navigation-light-link-parent-stripe-background-color !default;
 $ct-side-navigation-light-link-child-hover-background-color: $ct-side-navigation-light-link-parent-hover-background-color !default;
 $ct-side-navigation-light-link-child-hover-border-color: $ct-side-navigation-light-link-child-border-color !default;
 $ct-side-navigation-light-link-child-hover-color: $ct-side-navigation-light-link-child-color !default;
-$ct-side-navigation-light-link-child-hover-stripe-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-child-hover-stripe-background-color: ct-color-light('highlight') !default;
 $ct-side-navigation-light-link-child-active-background-color: ct-color-light('background') !default;
 $ct-side-navigation-light-link-child-active-border-color: $ct-side-navigation-light-link-child-border-color !default;
 $ct-side-navigation-light-link-child-active-color: $ct-side-navigation-light-link-child-color !default;
-$ct-side-navigation-light-link-child-active-stripe-color: $ct-side-navigation-light-link-child-stripe-color !default;
+$ct-side-navigation-light-link-child-active-stripe-background-color: $ct-side-navigation-light-link-child-stripe-background-color !default;
 $ct-side-navigation-dark-title-color: ct-color-dark('heading') !default;
 $ct-side-navigation-dark-link-expanded-icon-color: ct-color-dark('heading') !default;
 $ct-side-navigation-dark-link-parent-background-color: ct-color-dark('background-light') !default;
 $ct-side-navigation-dark-link-parent-border-color: ct-color-dark('interaction-text') !default;
 $ct-side-navigation-dark-link-parent-color: ct-color-dark('heading') !default;
-$ct-side-navigation-dark-link-parent-stripe-color: ct-color-dark('interaction-text') !default;
+$ct-side-navigation-dark-link-parent-stripe-background-color: ct-color-dark('interaction-text') !default;
 $ct-side-navigation-dark-link-parent-hover-background-color: ct-color-dark('background-dark') !default;
 $ct-side-navigation-dark-link-parent-hover-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
 $ct-side-navigation-dark-link-parent-hover-color: $ct-side-navigation-dark-link-parent-color !default;
-$ct-side-navigation-dark-link-parent-hover-stripe-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-parent-hover-stripe-background-color: ct-color-dark('highlight') !default;
 $ct-side-navigation-dark-link-parent-active-background-color: ct-color-dark('background') !default;
 $ct-side-navigation-dark-link-parent-active-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
 $ct-side-navigation-dark-link-parent-active-color: $ct-side-navigation-dark-link-parent-color !default;
-$ct-side-navigation-dark-link-parent-active-stripe-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-parent-active-stripe-background-color: ct-color-dark('highlight') !default;
 $ct-side-navigation-dark-link-child-background-color: $ct-side-navigation-dark-link-parent-background-color !default;
 $ct-side-navigation-dark-link-child-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
 $ct-side-navigation-dark-link-child-color: $ct-side-navigation-dark-link-parent-color !default;
-$ct-side-navigation-dark-link-child-stripe-color: $ct-side-navigation-dark-link-parent-stripe-color !default;
+$ct-side-navigation-dark-link-child-stripe-background-color: $ct-side-navigation-dark-link-parent-stripe-background-color !default;
 $ct-side-navigation-dark-link-child-hover-background-color: $ct-side-navigation-dark-link-parent-hover-background-color !default;
 $ct-side-navigation-dark-link-child-hover-border-color: $ct-side-navigation-dark-link-child-border-color !default;
 $ct-side-navigation-dark-link-child-hover-color: $ct-side-navigation-dark-link-child-color !default;
-$ct-side-navigation-dark-link-child-hover-stripe-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-child-hover-stripe-background-color: ct-color-dark('highlight') !default;
 $ct-side-navigation-dark-link-child-active-background-color: ct-color-dark('background') !default;
 $ct-side-navigation-dark-link-child-active-border-color: $ct-side-navigation-dark-link-child-border-color !default;
 $ct-side-navigation-dark-link-child-active-color: $ct-side-navigation-dark-link-child-color !default;
-$ct-side-navigation-dark-link-child-active-stripe-color: $ct-side-navigation-dark-link-child-stripe-color !default;
+$ct-side-navigation-dark-link-child-active-stripe-background-color: $ct-side-navigation-dark-link-child-stripe-background-color !default;
 
 //
 // Mobile navigation.
