@@ -4,6 +4,6 @@ dependencies:
   module:
     - node
 id: node.civictheme_event_card
-label: Event
+label: 'Event card'
 targetEntityType: node
 cache: true
