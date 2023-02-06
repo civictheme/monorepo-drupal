@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Automated list component, Dark single exposed filter, light navigation cards, no title top link with bottom space, with pagination',
+      'title' => 'Automated list, Dark single exposed filter, light navigation cards, no title top link with bottom space, with pagination',
       'components' => [
         [
           'type' => 'automated_list',
@@ -36,7 +36,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Automated list component, Light single filter light navigation cards, no title, content, top link with top space, with pagination',
+      'title' => 'Automated list, Light single filter light navigation cards, no title, content, top link with top space, with pagination',
       'components' => [
         [
           'type' => 'automated_list',
@@ -57,12 +57,12 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
     // Light no filter dark promo, title, bottom link with no space listing multiple filters, without pagination
     [
-      'title' => 'Automated list component, Light no filter dark promo, title, bottom link with no space listing without pagination',
+      'title' => 'Automated list, Light no filter dark promo, title, bottom link with no space listing without pagination',
       'components' => [
         [
           'type' => 'automated_list',
           'theme' => $helper::civicthemeThemeLight(),
-          'title' => 'Automated list component, Light no filter dark promo, title, bottom link with no space listing without pagination',
+          'title' => 'Automated list, Light no filter dark promo, title, bottom link with no space listing without pagination',
           'list_type' => $helper::civicthemeAutomatedListType(),
           'list_show_filters' => FALSE,
           'list_content_type' => $helper::civicthemePageContentType(),
@@ -77,7 +77,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
     // Dark no filter light navigation cards, no title top link with bottom space, without pagination.
     [
-      'title' => 'Automated list component, Dark no filter light navigation cards, no title top link with bottom space, without pagination.',
+      'title' => 'Automated list, Dark no filter light navigation cards, no title top link with bottom space, without pagination.',
       'components' => [
         [
           'type' => 'automated_list',
@@ -96,7 +96,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Automated list component, Light multi-filter light navigation, title and top link with both space, with pagination.',
+      'title' => 'Automated list, Light multi-filter light navigation, title and top link with both space, with pagination.',
       'components' => [
         [
           'type' => 'automated_list',
@@ -117,7 +117,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Automated list component, Dark multi-filter dark promo cards, no title, bottom link with top space, with pagination',
+      'title' => 'Automated list, Dark multi-filter dark promo cards, no title, bottom link with top space, with pagination',
       'components' => [
         [
           'type' => 'automated_list',

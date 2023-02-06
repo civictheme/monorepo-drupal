@@ -210,6 +210,7 @@ commands:
     cmd: |
       ahoy cli "./scripts/update-theme-config.sh"
       ahoy drush cde civictheme_dev
+      ahoy drush cde cs_generated_content
 
   export-content:
     usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
