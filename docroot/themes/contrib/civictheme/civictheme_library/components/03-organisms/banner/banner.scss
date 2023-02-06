@@ -80,11 +80,15 @@
   }
 
   #{$root}__breadcrumb {
-    margin-bottom: ct-spacing(2);
+    margin-bottom: ct-spacing(4);
 
     @include ct-breakpoint(m) {
-      margin-bottom: ct-spacing(3);
+      margin-bottom: ct-spacing(6);
     }
+  }
+
+  #{$root}__site-section {
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__title {
