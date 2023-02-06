@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
   return [
     [
-      'title' => 'Navigation card',
+      'title' => 'Page. Component. Navigation card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -55,7 +55,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
       ],
     ],
     [
-      'title' => 'Navigation reference card',
+      'title' => 'Page. Component. Navigation reference card',
       'components' => [
         [
           'theme' => $helper::civicthemeThemeLight(),
@@ -89,7 +89,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
-      'title' => 'Promo card',
+      'title' => 'Page. Component. Promo card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -166,7 +166,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
       ],
     ],
     [
-      'title' => 'Promo reference card',
+      'title' => 'Page. Component. Promo reference card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -200,7 +200,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
-      'title' => 'Publication card',
+      'title' => 'Page. Component. Publication card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -256,7 +256,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
-      'title' => 'Service card',
+      'title' => 'Page. Component. Service card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -300,7 +300,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
-      'title' => 'Subject card',
+      'title' => 'Page. Component. Subject card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -349,7 +349,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
       ],
     ],
     [
-      'title' => 'Subject reference card',
+      'title' => 'Page. Component. Subject reference card',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),

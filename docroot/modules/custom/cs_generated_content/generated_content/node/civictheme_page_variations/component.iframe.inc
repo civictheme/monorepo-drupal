@@ -96,9 +96,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   ];
 
   return [
-    $page + ['title' => 'Iframe'],
+    $page + ['title' => 'Page. Component. Iframe'],
     $page + [
-      'title' => 'Iframe, no sidebar',
+      'title' => 'Page. Component. Iframe, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];

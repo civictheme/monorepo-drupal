@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__compone
 
   return [
     [
-      'title' => 'Map',
+      'title' => 'Event. Component. Map',
       'summary' => $helper::staticSentence(8),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'body' => $helper::staticRichText(3),

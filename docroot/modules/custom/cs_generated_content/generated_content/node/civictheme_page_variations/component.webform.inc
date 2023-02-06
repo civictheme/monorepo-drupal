@@ -72,9 +72,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   ];
 
   return [
-    $page + ['title' => 'Webform, sidebar'],
+    $page + ['title' => 'Page. Component. Webform, sidebar'],
     $page + [
-      'title' => 'Webform, no sidebar',
+      'title' => 'Page. Component. Webform, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];

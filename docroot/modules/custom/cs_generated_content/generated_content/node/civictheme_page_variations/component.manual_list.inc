@@ -233,9 +233,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
   ];
 
   return [
-    $page + ['title' => 'Manual list, sidebar'],
+    $page + ['title' => 'Page. Component. Manual list, sidebar'],
     $page + [
-      'title' => 'Manual list, no sidebar',
+      'title' => 'Page. Component. Manual list, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];

@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
   return [
     [
-      'title' => 'Attachment',
+      'title' => 'Page. Component. Attachment',
       'components' => [
         [
           'type' => 'attachment',
