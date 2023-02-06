@@ -60,7 +60,7 @@
   }
 }
 
-@mixin ct-highlight-stripe-color($color) {
+@mixin ct-highlight-stripe-background-color($color) {
   &::before {
     background-color: $color;
   }

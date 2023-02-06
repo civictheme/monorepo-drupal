@@ -49,7 +49,7 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     #{$root}__stripe {
-      background-color: ct-component-var($root, $theme, stripe, color);
+      background-color: ct-component-var($root, $theme, stripe, background-color);
     }
   }
 }

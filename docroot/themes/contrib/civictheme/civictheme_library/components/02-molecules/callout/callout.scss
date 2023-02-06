@@ -64,8 +64,8 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     #{$root}--wrapper {
-      @include ct-highlight-stripe-color(ct-component-var(ct-navigation, $theme, stripe, border-color));
       @include ct-component-property($root, $theme, background-color);
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
 
     .ct-callout {

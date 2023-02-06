@@ -34,6 +34,6 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
-    @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, color));
+    @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
   }
 }
