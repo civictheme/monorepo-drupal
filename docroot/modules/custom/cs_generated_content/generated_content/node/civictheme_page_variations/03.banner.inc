@@ -16,7 +16,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
 
   $variations = [
     [
-      'title' => 'Banner default, Light, Background, Content',
+      'title' => 'Page. Banner default, Light, Background, Content',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -30,7 +30,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner default, Light, Background, Content',
+      'title' => 'Page. Banner default, Light, Background, Content',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -45,7 +45,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
     ],
 
     [
-      'title' => 'Banner large, Light, Background, Content',
+      'title' => 'Page. Banner large, Light, Background, Content',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -59,7 +59,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner large, Light, Background, Content',
+      'title' => 'Page. Banner large, Light, Background, Content',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -74,7 +74,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
     ],
 
     [
-      'title' => 'Banner default, Light, All fields, Content, Accordion below',
+      'title' => 'Page. Banner default, Light, All fields, Content, Accordion below',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -101,7 +101,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner default, Dark, All fields, Content, Accordion below',
+      'title' => 'Page. Banner default, Dark, All fields, Content, Accordion below',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -129,7 +129,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
     ],
 
     [
-      'title' => 'Banner large, Light, All fields, Content, Accordion below',
+      'title' => 'Page. Banner large, Light, All fields, Content, Accordion below',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -156,7 +156,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Banner large, Dark, All fields, Content, Accordion below',
+      'title' => 'Page. Banner large, Dark, All fields, Content, Accordion below',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -184,7 +184,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
     ],
 
     [
-      'title' => 'Banner default, Light, Background, Content, No breadcrumb',
+      'title' => 'Page. Banner default, Light, Background, Content, No breadcrumb',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),

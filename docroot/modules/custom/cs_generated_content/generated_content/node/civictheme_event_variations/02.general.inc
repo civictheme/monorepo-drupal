@@ -16,39 +16,39 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
 
   $variations = [
     [
-      'title' => 'Default values',
+      'title' => 'Event. Default values',
     ],
     [
-      'title' => 'Summary',
+      'title' => 'Event. Summary',
       'summary' => $helper::staticPlainParagraph(),
     ],
     [
-      'title' => 'Summary, Body',
+      'title' => 'Event. Summary, Body',
       'summary' => $helper::staticPlainParagraph(),
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Both spaces, Body',
+      'title' => 'Event. Summary, Both spaces, Body',
       'summary' => $helper::staticPlainParagraph(),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (1), Both spaces, Body',
+      'title' => 'Event. Summary, Topics (1), Both spaces, Body',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (3), Both spaces, Body',
+      'title' => 'Event. Summary, Topics (3), Both spaces, Body',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 3),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -56,7 +56,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -68,7 +68,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       ],
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date Range',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date Range',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -80,7 +80,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       ],
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body, Show Last Updated Date, Not Custom Date',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Show Last Updated Date, Not Custom Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -90,7 +90,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body, Show Last Updated Date',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Show Last Updated Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
@@ -99,7 +99,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Summary, Topics (1), Thumbnail, Both spaces, Body, Uncheck Last Updated Date, Shows Custom Date',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Uncheck Last Updated Date, Shows Custom Date',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),

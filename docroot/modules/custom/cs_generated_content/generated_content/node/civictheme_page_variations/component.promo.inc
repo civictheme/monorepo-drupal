@@ -49,9 +49,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   ];
 
   return [
-    $page + ['title' => 'Promo, sidebar'],
+    $page + ['title' => 'Page. Component. Promo, sidebar'],
     $page + [
-      'title' => 'Promo, no sidebar',
+      'title' => 'Page. Component. Promo, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];

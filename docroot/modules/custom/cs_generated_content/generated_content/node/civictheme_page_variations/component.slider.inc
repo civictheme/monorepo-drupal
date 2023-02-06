@@ -417,9 +417,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   ];
 
   return [
-    $page + ['title' => 'Slider, sidebar'],
+    $page + ['title' => 'Page. Component. Slider, sidebar'],
     $page + [
-      'title' => 'Slider, no sidebar',
+      'title' => 'Page. Component. Slider, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];
