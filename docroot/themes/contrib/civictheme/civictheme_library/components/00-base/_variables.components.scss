@@ -435,8 +435,8 @@ $ct-table-dark-row-odd-color: ct-color-dark('body') !default;
 // Iframe.
 //
 $ct-iframe-space-horizontal: ct-spacing(7) !default;
-$ct-iframe-light-background-color: ct-color-light('background-light') !default;
-$ct-iframe-dark-background-color: ct-color-dark('background-light') !default;
+$ct-iframe-light-wrapper-background-color: ct-color-light('background-light') !default;
+$ct-iframe-dark-wrapper-background-color: ct-color-dark('background-light') !default;
 
 //
 // Popover.

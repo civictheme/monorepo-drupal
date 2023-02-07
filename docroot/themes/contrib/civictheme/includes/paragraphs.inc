@@ -120,6 +120,13 @@ function _civictheme_preprocess_paragraph__field__view_link(&$variables) {
 }
 
 /**
+ * Pre-process for URL field.
+ */
+function _civictheme_preprocess_paragraph__field__url(&$variables) {
+  $variables['url'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_url');
+}
+
+/**
  * Pre-process for Embed URL field.
  */
 function _civictheme_preprocess_paragraph__field__embed_url(&$variables) {
@@ -169,6 +176,27 @@ function _civictheme_preprocess_paragraph__field__author(&$variables) {
  */
 function _civictheme_preprocess_paragraph__field__address(&$variables) {
   $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_address');
+}
+
+/**
+ * Pre-process for Width field.
+ */
+function _civictheme_preprocess_paragraph__field__width(&$variables) {
+  $variables['width'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_width');
+}
+
+/**
+ * Pre-process for Height field.
+ */
+function _civictheme_preprocess_paragraph__field__height(&$variables) {
+  $variables['height'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_height');
+}
+
+/**
+ * Pre-process for Component attributes field.
+ */
+function _civictheme_preprocess_paragraph__field__component_attributes(&$variables) {
+  $variables['component_attributes'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attributes');
 }
 
 /**
