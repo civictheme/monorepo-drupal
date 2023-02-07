@@ -55,7 +55,7 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
     const tags = template && template.tags ? template.tags : {};
     const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(randomInt(5, 30))}` : ''}`;
     const url = template && template.url ? template.url : (randomBool() ? randomUrl() : null);
-    const summary = template && template.summary ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
+    const content = template && template.content ? template.content : `Content ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
     const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
     const attributes = template && template.attributes ? template.attributes : 'data-slider-slide';
 
@@ -66,7 +66,7 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
       tags,
       title,
       url,
-      summary,
+      content,
       links,
       attributes,
     }));
