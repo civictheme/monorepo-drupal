@@ -13,6 +13,7 @@ function _civictheme_preprocess_image(&$variables) {
     $variables['src'] = $variables['attributes']['src'];
   }
   elseif (!empty($variables['uri'])) {
-    $variables['attributes']['src'] = file_url_transform_relative(\Drupal::service('file_url_generator')->generateAbsoluteString($variables['uri']));
+    $url_generator = \Drupal::service('file_url_generator');
+    $variables['attributes']['src'] = $url_generator->transformRelative($url_generator->generateAbsoluteString($variables['uri']));
   }
 }
