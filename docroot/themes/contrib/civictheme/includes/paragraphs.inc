@@ -6,6 +6,7 @@
  */
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\file\Entity\File;
 
 /**
  * Pre-process paragraph fields using field preprocessors.
@@ -208,6 +209,40 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
   if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
+}
+
+/**
+ * Pre-process for Attachements field.
+ */
+function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
+  $links = [];
+
+  $attachments = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
+  foreach ($attachments as $attachment) {
+    $fid = $attachment->getSource()->getSourceFieldValue($attachment);
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $fid ? File::load($fid) : NULL;
+    if (!empty($file)) {
+      $url = $file->createFileUrl(FALSE);
+      $file_size = format_size($file->getSize());
+
+      $icon = civictheme_get_icon_from_file($file);
+      $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
+
+      $links[] = [
+        'url' => $url,
+        'text' => t('@name', [
+          '@name' => $file->label(),
+        ]),
+        'ext' => $file_extension ?? '',
+        'size' => $file_size ?? '',
+        'icon' => $icon,
+        'last_updated' => civictheme_format_date('civictheme_short_date', $attachment->getChangedTime()),
+      ];
+    }
+  }
+
+  $variables['links'] = $links;
 }
 
 /**

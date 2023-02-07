@@ -402,7 +402,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $defaults = [
       'title' => '',
-      'summary' => '',
+      'content' => '',
       'attachments' => [],
     ];
 

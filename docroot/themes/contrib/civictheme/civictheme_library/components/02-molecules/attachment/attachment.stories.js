@@ -1,10 +1,13 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomUrl } from '../../00-base/base.utils';
+import {getSlots, randomSentence, randomUrl} from '../../00-base/base.utils';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {
   title: 'Molecules/Attachment',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Attachment = (knobTab) => {
@@ -98,7 +101,7 @@ export const Attachment = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Attachments', generalKnobTab),
-    summary: text('Summary', 'Summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines.', generalKnobTab),
+    content: text('Content', randomSentence(), generalKnobTab),
     links: boolean('With links', true, generalKnobTab) ? links : null,
     with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
