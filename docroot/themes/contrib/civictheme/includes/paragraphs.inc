@@ -136,6 +136,17 @@ function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
 }
 
 /**
+ * Preprocessing reference webfrom paragraphs.
+ */
+function _civictheme_preprocess_paragraph__field__webform(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
+    $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
+  }
+}
+
+/**
  * Pre-process for Theme field.
  */
 function _civictheme_preprocess_paragraph__field__theme(&$variables) {
