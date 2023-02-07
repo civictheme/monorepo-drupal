@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import {getSlots, randomSentence, randomUrl} from '../../00-base/base.utils';
+import { getSlots, randomSentence, randomUrl } from '../../00-base/base.utils';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {

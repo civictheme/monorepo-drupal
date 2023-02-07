@@ -246,6 +246,27 @@ function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
 }
 
 /**
+ * Pre-process for Panels field.
+ */
+function _civictheme_preprocess_paragraph__field__panels(&$variables) {
+  $panels = civictheme_get_field_value($variables['paragraph'], 'field_c_p_panels') ?? [];
+  foreach ($panels as $panel) {
+    $variables['panels'][] = [
+      'expanded' => civictheme_get_field_value($panel, 'field_c_p_expand'),
+      'title' => civictheme_get_field_value($panel, 'field_c_p_title'),
+      'content' => $panel->field_c_p_content->view(),
+    ];
+  }
+}
+
+/**
+ * Pre-process for Expand all field.
+ */
+function _civictheme_preprocess_paragraph__field__expand_all(&$variables) {
+  $variables['expand_all'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_expand') ?? FALSE;
+}
+
+/**
  * Pre-process for Theme field.
  */
 function _civictheme_preprocess_paragraph__field__theme(&$variables) {

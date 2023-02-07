@@ -64,10 +64,6 @@
     }
   }
 
-  #{$root}__panels__panel__content {
-    @include ct-typography('text-regular');
-  }
-
   #{$root}__panels__panel__content__inner {
     padding: 0 ct-spacing(3) ct-spacing(3);
   }
@@ -95,9 +91,6 @@
     #{$root}__panels__panel {
       @include ct-component-property($root, $theme, background-color);
       @include ct-component-property($root, $theme, border-color);
-
-      border-left-color: ct-component-var($root, $theme, stripe, background-color);
-
       @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
   }

@@ -91,12 +91,7 @@
 
     #{$root}__image {
       @include ct-breakpoint(m) {
-        @include ct-image-shadow(
-          ct-component-var($root, $theme, image, shadow-color),
-            false,
-            $ct-campaign-image-shadow-offset-x,
-            $ct-campaign-image-shadow-offset-y
-        );
+        @include ct-image-shadow(ct-component-var($root, $theme, image, shadow-color), false, $ct-campaign-image-shadow-offset-x, $ct-campaign-image-shadow-offset-y);
       }
     }
   }
