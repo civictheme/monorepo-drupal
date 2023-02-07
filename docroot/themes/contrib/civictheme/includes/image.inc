@@ -7,6 +7,8 @@
 
 /**
  * Generic image pre-processing.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_image(&$variables) {
   if (isset($variables['attributes']['src'])) {
