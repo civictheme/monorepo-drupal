@@ -591,6 +591,34 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Attach Quote paragraph to a node.
+   */
+  public static function civicthemeParagraphQuoteAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'content' => '',
+      'author' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_quote', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
    * Attach Automated list paragraph to a node.
    */
   public static function civicthemeParagraphAutomatedListAttach($node, $field_name, $options) {

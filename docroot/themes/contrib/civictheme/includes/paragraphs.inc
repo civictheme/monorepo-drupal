@@ -136,7 +136,14 @@ function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
 }
 
 /**
- * Preprocessing reference webfrom paragraphs.
+ * Pre-process for Author field.
+ */
+function _civictheme_preprocess_paragraph__field__author(&$variables) {
+  $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_author');
+}
+
+/**
+ * Pre-process for Webform field.
  */
 function _civictheme_preprocess_paragraph__field__webform(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
