@@ -31,16 +31,16 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
       [
         'type' => 'promo',
-        'title' => 'Light, Summary, Vertical spacing, ' . $helper::staticSentence(3),
-        'summary' => $helper::staticSentence(8),
+        'title' => 'Light, Content, Vertical spacing, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
         'link' => $helper::staticLinkFieldValue(),
         'theme' => $helper::civicthemeThemeLight(),
         'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       ],
       [
         'type' => 'promo',
-        'title' => 'Dark, Summary, Vertical spacing, ' . $helper::staticSentence(3),
-        'summary' => $helper::staticSentence(8),
+        'title' => 'Dark, Content, Vertical spacing, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
         'link' => $helper::staticLinkFieldValue(),
         'theme' => $helper::civicthemeThemeDark(),
         'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),

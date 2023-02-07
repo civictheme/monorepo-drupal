@@ -4,14 +4,16 @@
  * Promo component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
  * - title: [string] Title text.
- * - summary: [string] Summary.
+ * - content: [string] Content.
  * - link: [object] Link:
- *   - title [string] Link title.
+ *   - text [string] Link text.
  *   - url [string] Link URL.
  *   - is_new_window [boolean] Open link in the new window.
  *   - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -22,38 +24,38 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
-{% if title is not empty or summary is not empty %}
+{% if title is not empty or content is not empty %}
   <div class="ct-promo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
           {% block content_top %}
             {% if content_top is not empty %}
-              <div class="ct-next-steps__content-top">
+              <div class="ct-promo__content-top">
                 {{ content_top }}
               </div>
             {% endif %}
           {% endblock %}
 
           {% block content %}
-            <div class="ct-promo__inner">
+            <div class="ct-promo__wrapper">
               {% block content_left %}
-                <div class="ct-promo__content">
+                <div class="ct-promo__inner">
                   {% if title %}
                     {% include '@atoms/heading/heading.twig' with {
                       content: title,
                       level: 4,
                       theme: theme,
-                      modifier_class: 'ct-promo__content__title',
+                      modifier_class: 'ct-promo__title',
                     } only %}
                   {% endif %}
 
-                  {% if summary is not empty %}
+                  {% if content is not empty %}
                     {% include '@atoms/paragraph/paragraph.twig' with {
                       theme: theme,
-                      content: summary,
+                      content: content,
                       allow_html: true,
-                      modifier_class: 'ct-promo__content__summary',
+                      modifier_class: 'ct-promo__content',
                     } only %}
                   {% endif %}
                 </div>
@@ -71,7 +73,7 @@
                       url: link.url,
                       is_new_window: link.is_new_window is defined ? link.is_new_window : false,
                       is_external: link.is_external is defined ? link.is_external : false,
-                      modifier_class: 'ct-promo__links__button',
+                      modifier_class: 'ct-promo__button',
                     } only %}
                   </div>
                 {% endif %}
@@ -81,7 +83,7 @@
 
           {% block content_bottom %}
             {% if content_bottom is not empty %}
-              <div class="ct-next-steps__content-bottom">
+              <div class="ct-promo__content-bottom">
                 {{ content_bottom }}
               </div>
             {% endif %}

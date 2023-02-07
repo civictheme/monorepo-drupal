@@ -12,9 +12,9 @@ Feature: Promo fields
     And should see an "[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should not see an "[name='field_c_n_components[0][subform][field_c_p_title][0][value]'][disabled]" element
 
-    And I should see an "[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
-    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
-    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'][disabled]" element
+    And I should see an "[name='field_c_n_components[0][subform][field_c_p_content][0][value]']" element
+    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_content][0][value]'].required" element
+    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_content][0][value]'][disabled]" element
 
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_link][0][uri]']" element
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_link][0][uri]'].required" element

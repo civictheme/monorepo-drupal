@@ -62,43 +62,51 @@ function civictheme_load_node_or_revision($variables) {
 }
 
 /**
- * Process media to generate image array for twig.
+ * Get variables from image media.
  *
  * @param \Drupal\media\MediaInterface $media
  *   Host Media entity for image.
  * @param string $image_style
- *   Name of image style to apply.
+ *   Name of the image style to apply.
  *
- * @return array
- *   Image array or false if not available.
+ * @return array|null
+ *   Image variables array or NULL if not available.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_image_process_variables(MediaInterface $media, $image_style = NULL) {
-  if ($media instanceof Media) {
-    $fid = $media->getSource()->getSourceFieldValue($media);
-    $config = $media->getSource()->getConfiguration();
-    $image_entity = $media->get($config['source_field'])->first()->getValue();
+function civictheme_media_image_get_variables(MediaInterface $media, $image_style = NULL) {
+  if (!$media instanceof Media) {
+    return NULL;
+  }
 
-    $file = File::load($fid);
-    if ($file) {
-      $image_src = $file->createFileUrl();
-      if (!empty($image_style)) {
-        $style = ImageStyle::load($image_style);
-        if (!empty($style)) {
-          $path = $file->get('uri')->getString();
-          $image_src = $style->buildUrl($path);
-        }
-      }
-      // @todo fix image style generation from static content.
-      $image = [];
-      $image['src'] = $image_src;
-      $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
-      $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
+  $fid = $media->getSource()->getSourceFieldValue($media);
 
-      return $image;
+  $file = File::load($fid);
+  if (!$file) {
+    return NULL;
+  }
+
+  $src = $file->createFileUrl();
+
+  if (!empty($image_style)) {
+    $style = ImageStyle::load($image_style);
+    if (!empty($style)) {
+      $src = $style->buildUrl($file->get('uri')->getString());
     }
   }
+
+  $variables = [];
+  $variables['src'] = $src;
+
+  $entity = $media
+    ->get($media->getSource()->getConfiguration()['source_field'])
+    ->first()
+    ->getValue();
+
+  $variables['alt'] = $entity['alt'] ?? NULL;
+  $variables['title'] = $entity['title'] ?? NULL;
+
+  return $variables;
 }
 
 /**

@@ -391,8 +391,8 @@ config_devel:
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
     - field.field.paragraph.civictheme_next_step.field_c_p_vertical_spacing
+    - field.field.paragraph.civictheme_promo.field_c_p_content
     - field.field.paragraph.civictheme_promo.field_c_p_link
-    - field.field.paragraph.civictheme_promo.field_c_p_summary
     - field.field.paragraph.civictheme_promo.field_c_p_theme
     - field.field.paragraph.civictheme_promo.field_c_p_title
     - field.field.paragraph.civictheme_promo.field_c_p_vertical_spacing
