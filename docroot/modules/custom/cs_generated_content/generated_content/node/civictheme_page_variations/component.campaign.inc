@@ -33,7 +33,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
       [
         'type' => 'campaign',
-        'title' => 'Light, Image left, Date, Summary, 2 links, 2 Topics, ' . $helper::staticSentence(3),
+        'title' => 'Light, Image left, Date, Content, 2 links, 2 Topics, ' . $helper::staticSentence(3),
         'image' => $helper::staticMediaItem('civictheme_image'),
         'image_position' => $helper::civicthemeImagePositionLeft(),
         'date' => '2022-12-22',
@@ -47,7 +47,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
       [
         'type' => 'campaign',
-        'title' => 'Dark, Image left, Date, Summary, 2 links, 2 Topics, ' . $helper::staticSentence(3),
+        'title' => 'Dark, Image left, Date, Content, 2 links, 2 Topics, ' . $helper::staticSentence(3),
         'image' => $helper::staticMediaItem('civictheme_image'),
         'image_position' => $helper::civicthemeImagePositionLeft(),
         'date' => '2022-12-22',
@@ -62,7 +62,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
       [
         'type' => 'campaign',
-        'title' => 'Light, Image left, Date, Summary, 2 links, 2 Topics, Vertical spacing, ' . $helper::staticSentence(3),
+        'title' => 'Light, Image left, Date, Content, 2 links, 2 Topics, Vertical spacing, ' . $helper::staticSentence(3),
         'image' => $helper::staticMediaItem('civictheme_image'),
         'image_position' => $helper::civicthemeImagePositionLeft(),
         'date' => '2022-12-22',
@@ -77,7 +77,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
       [
         'type' => 'campaign',
-        'title' => 'Dark, Image left, Date, Summary, 2 links, 2 Topics, Vertical spacing, ' . $helper::staticSentence(3),
+        'title' => 'Dark, Image left, Date, Content, 2 links, 2 Topics, Vertical spacing, ' . $helper::staticSentence(3),
         'image' => $helper::staticMediaItem('civictheme_image'),
         'image_position' => $helper::civicthemeImagePositionLeft(),
         'date' => '2022-12-22',

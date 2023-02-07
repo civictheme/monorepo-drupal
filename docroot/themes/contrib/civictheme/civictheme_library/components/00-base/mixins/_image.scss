@@ -23,6 +23,10 @@
 //
 // Drop shadow for image.
 //
-@mixin ct-image-shadow($color) {
-  filter: drop-shadow(-1 * ct-particle(2) -1 * ct-particle(2) 0 $color);
+@mixin ct-image-shadow($color, $up: true, $offset-x: ct-particle(2), $offset-y: ct-particle(2)) {
+  $multiplier: 1;
+  @if $up {
+    $multiplier: -1;
+  }
+  filter: drop-shadow(-1 * $offset-x $multiplier * $offset-y 0 $color);
 }

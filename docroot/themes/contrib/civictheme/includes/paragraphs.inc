@@ -11,8 +11,8 @@ use Drupal\civictheme\CivicthemeConstants;
  * Pre-process paragraph fields using field preprocessors.
  */
 function _civictheme_preprocess_paragraph__fields(&$variables, array $fields) {
-  foreach ($fields as $field) {
-    $callback = '_civictheme_preprocess_paragraph__field__' . $field;
+  foreach ($fields as $field_name) {
+    $callback = '_civictheme_preprocess_paragraph__field__' . $field_name;
     if (function_exists($callback)) {
       call_user_func_array($callback, [&$variables]);
     }
@@ -26,6 +26,15 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
+}
+
+/**
+ * Pre-process for Content field.
+ */
+function _civictheme_preprocess_paragraph__field__content(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_content');
 }
 
 /**
@@ -53,6 +62,15 @@ function _civictheme_preprocess_paragraph__field__image(&$variables) {
   if ($media) {
     $variables['image'] = civictheme_media_image_get_variables($media);
   }
+}
+
+/**
+ * Pre-process for Image field.
+ */
+function _civictheme_preprocess_paragraph__field__image_position(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
 }
 
 /**
@@ -86,12 +104,58 @@ function _civictheme_preprocess_paragraph__field__link(&$variables) {
 }
 
 /**
- * Pre-process for Content field.
+ * Pre-process for Links field.
  */
-function _civictheme_preprocess_paragraph__field__content(&$variables) {
+function _civictheme_preprocess_paragraph__field__links(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_content');
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null[] $link */
+  $links = civictheme_get_field_value($paragraph, 'field_c_p_links');
+  if ($links) {
+    foreach ($links as $link) {
+      $variables['links'][] = [
+        'text' => $link->get('title')->getString(),
+        'url' => $link->getUrl()->toString(),
+        'is_new_window' => $link->isExternal(),
+      ];
+    }
+  }
+}
+
+/**
+ * Pre-process for Topics field.
+ */
+function _civictheme_preprocess_paragraph__field__topics(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null[] $link */
+  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
+}
+
+/**
+ * Pre-process for Date field.
+ */
+function _civictheme_preprocess_paragraph__field__date(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
+  }
+}
+
+/**
+ * Pre-process for Date range field.
+ */
+function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $date = civictheme_get_field_value($paragraph, 'field_c_p_date_range', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime(), $date->get('end_value')->getDateTime());
+  }
 }
 
 /**

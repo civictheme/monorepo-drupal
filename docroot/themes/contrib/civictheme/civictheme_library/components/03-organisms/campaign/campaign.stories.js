@@ -31,7 +31,7 @@ export const Campaign = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Campaign heading which runs across two or three lines', generalKnobTab),
-    summary: text('Summary', randomSentence(), generalKnobTab),
+    content: text('Content', randomSentence(), generalKnobTab),
     date: date('Date', new Date(), generalKnobTab),
     image: {
       src: demoImage(),

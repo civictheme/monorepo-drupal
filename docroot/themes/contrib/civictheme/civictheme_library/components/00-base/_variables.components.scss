@@ -551,10 +551,14 @@ $ct-dropdown-filter-dark-inline-filter-text-color: ct-color-dark('body') !defaul
 // Campaign.
 //
 $ct-campaign-image-border-radius: $ct-border-radius !default;
+$ct-campaign-image-shadow-offset-x: ct-particle(2) !default;
+$ct-campaign-image-shadow-offset-y: ct-particle(2) !default;
 $ct-campaign-mobile-height: ct-particle(30) !default;
 $ct-campaign-desktop-height: ct-particle(65) !default;
 $ct-campaign-light-background-color: ct-color-light('background-light') !default;
+$ct-campaign-light-image-shadow-color: ct-color-light('background') !default;
 $ct-campaign-dark-background-color: ct-color-dark('background') !default;
+$ct-campaign-dark-image-shadow-color: ct-color-dark('background-dark') !default;
 
 //
 // Cards/Event card.
