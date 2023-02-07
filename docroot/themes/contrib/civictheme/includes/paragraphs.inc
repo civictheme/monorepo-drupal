@@ -109,6 +109,28 @@ function _civictheme_preprocess_paragraph__field__links(&$variables) {
 }
 
 /**
+ * Pre-process for View link field.
+ */
+function _civictheme_preprocess_paragraph__field__view_link(&$variables) {
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_view_link', TRUE);
+  if ($link) {
+    $variables['view_url'] = $link->getUrl()->toString();
+  }
+}
+
+/**
+ * Pre-process for Embed URL field.
+ */
+function _civictheme_preprocess_paragraph__field__embed_url(&$variables) {
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_embed_url', TRUE);
+  if ($link) {
+    $variables['url'] = $link->getUrl()->toString();
+  }
+}
+
+/**
  * Pre-process for Topics field.
  */
 function _civictheme_preprocess_paragraph__field__topics(&$variables) {
@@ -140,6 +162,13 @@ function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
  */
 function _civictheme_preprocess_paragraph__field__author(&$variables) {
   $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_author');
+}
+
+/**
+ * Pre-process for Address field.
+ */
+function _civictheme_preprocess_paragraph__field__address(&$variables) {
+  $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_address');
 }
 
 /**

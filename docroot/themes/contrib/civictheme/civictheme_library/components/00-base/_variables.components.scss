@@ -691,6 +691,8 @@ $ct-logo-dark-stripe-background-color: ct-color-dark('border-light') !default;
 //
 $ct-map-padding-bottom: 56.25% !default;
 $ct-map-space-horizontal: ct-spacing(7) !default;
+$ct-map-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 
 //
 // Next steps.
