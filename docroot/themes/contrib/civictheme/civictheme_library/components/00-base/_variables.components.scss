@@ -695,14 +695,14 @@ $ct-map-space-horizontal: ct-spacing(7) !default;
 //
 // Next steps.
 //
-$ct-next-steps-border-radius: $ct-border-radius !default;
-$ct-next-steps-stripe-width: $ct-stripe-size !default;
-$ct-next-steps-light-background-color: ct-color-light('background-light') !default;
-$ct-next-steps-light-border-color: ct-color-light('border-light') !default;
-$ct-next-steps-light-stripe-background-color: ct-color-light('highlight') !default;
-$ct-next-steps-dark-background-color: ct-color-dark('background') !default;
-$ct-next-steps-dark-border-color: ct-color-dark('border') !default;
-$ct-next-steps-dark-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-next-step-border-radius: $ct-border-radius !default;
+$ct-next-step-stripe-width: $ct-stripe-size !default;
+$ct-next-step-light-background-color: ct-color-light('background-light') !default;
+$ct-next-step-light-border-color: ct-color-light('border-light') !default;
+$ct-next-step-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-next-step-dark-background-color: ct-color-dark('background') !default;
+$ct-next-step-dark-border-color: ct-color-dark('border') !default;
+$ct-next-step-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Quote.

@@ -4,50 +4,54 @@
  * Next Steps component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top: [string] Content slot.
- * - content_bottom: [string] Content slot.
  * - title: [string] Title.
- * - summary: [string] Summary.
- * - url: [string] Link.
+ * - content: [string] Content.
+ * - link: [object] Link:
+ *   - text [string] Link text.
+ *   - url [string] Link URL.
+ *   - is_new_window [boolean] Open link in the new window.
+ *   - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set with_link = url is not empty %}
 {% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if title is not empty %}
-  <div class="ct-next-steps {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-next-step {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
-          <div class="ct-next-steps__inner">
+          <div class="ct-next-step__wrapper">
             {% block content_top %}
               {% if content_top is not empty %}
-                <div class="ct-next-steps__content-top">
+                <div class="ct-next-step__content-top">
                   {{ content_top }}
                 </div>
               {% endif %}
             {% endblock %}
 
             {% block content %}
-              {% if title is not empty or summary is not empty %}
-                <div class="ct-next-steps__content">
+              {% if title is not empty or content is not empty %}
+                <div class="ct-next-step__inner">
                   {% block title %}
                     {% if title is not empty %}
                       {% set title_content %}
-                        {% if with_link %}
+                        {% if link.url is defined and link.url is not empty %}
                           {% include '@atoms/link/link.twig' with {
                             theme: theme,
                             text: title,
-                            url: url,
+                            url: link.url,
                             icon: 'right-arrow-2',
-                            modifier_class: 'ct-next-steps__content__title__link',
+                            is_new_window: link.is_new_window,
+                            modifier_class: 'ct-next-step__title__link',
                           } only %}
                         {% else %}
                           {{ title }}
@@ -58,17 +62,17 @@
                         content: title_content,
                         level: 4,
                         theme: theme,
-                        modifier_class: 'ct-next-steps__content__title',
+                        modifier_class: 'ct-next-step__title',
                       } only %}
                     {% endif %}
                   {% endblock %}
 
-                  {% if summary is not empty %}
+                  {% if content is not empty %}
                     {% include '@atoms/paragraph/paragraph.twig' with {
                       theme: theme,
-                      content: summary,
+                      content: content,
                       allow_html: true,
-                      modifier_class: 'ct-next-steps__content__summary',
+                      modifier_class: 'ct-next-step__content',
                     } only %}
                   {% endif %}
                 </div>
@@ -77,7 +81,7 @@
 
             {% block content_bottom %}
               {% if content_bottom is not empty %}
-                <div class="ct-next-steps__content-bottom">
+                <div class="ct-next-step__content-bottom">
                   {{ content_bottom }}
                 </div>
               {% endif %}
