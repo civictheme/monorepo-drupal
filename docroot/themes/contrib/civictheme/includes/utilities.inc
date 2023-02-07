@@ -492,3 +492,24 @@ function _civictheme_get_dom_document($content) {
 
   return $doc;
 }
+
+/**
+ * Check if the provided field is wysiwyg.
+ *
+ * @param string $field_name
+ *   Field name to check.
+ *
+ * @return bool
+ *   TRUE if the field is wysiwyg, FALSE otherwise.
+ */
+function _civictheme_field_is_wysiwyg(string $field_name) {
+  $wysiwyg_field_list = [
+    'field_c_n_body',
+    'field_c_p_content',
+  ];
+  if (in_array($field_name, $wysiwyg_field_list)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
