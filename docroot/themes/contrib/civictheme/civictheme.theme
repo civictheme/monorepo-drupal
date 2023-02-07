@@ -19,11 +19,7 @@ require_once 'includes/banner.inc';
 require_once 'includes/block_content.inc';
 require_once 'includes/callout.inc';
 require_once 'includes/campaign.inc';
-require_once 'includes/event_card.inc';
 require_once 'includes/manual_list.inc';
-require_once 'includes/navigation_card.inc';
-require_once 'includes/promo_card.inc';
-require_once 'includes/subject_card.inc';
 require_once 'includes/cards.inc';
 require_once 'includes/filter.inc';
 require_once 'includes/form.inc';
@@ -44,11 +40,9 @@ require_once 'includes/pager.inc';
 require_once 'includes/paragraphs.inc';
 require_once 'includes/primary_navigation.inc';
 require_once 'includes/promo.inc';
-require_once 'includes/publication_card.inc';
 require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
-require_once 'includes/service_card.inc';
 require_once 'includes/site_section.inc';
 require_once 'includes/skip_link.inc';
 require_once 'includes/slider.inc';
@@ -174,25 +168,6 @@ function civictheme_preprocess_node(&$variables) {
   $view_mode = $variables['elements']['#view_mode'] ?? NULL;
   if ($view_mode) {
     $preprocessor_function = '_civictheme_preprocess_node__' . $view_mode;
-    if (function_exists($preprocessor_function)) {
-      $preprocessor_function($variables);
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph().
- */
-function civictheme_preprocess_paragraph(&$variables) {
-  // Generic paragraphs pre-processing.
-  _civictheme_preprocess_paragraph($variables);
-
-  // Per-paragraph type pre-processing.
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'] ?? NULL;
-  if ($paragraph) {
-    $type = $paragraph->getType();
-    $preprocessor_function = '_civictheme_preprocess_paragraph__' . $type;
     if (function_exists($preprocessor_function)) {
       $preprocessor_function($variables);
     }

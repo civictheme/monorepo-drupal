@@ -42,7 +42,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civictheme_preprocess_paragraph__image($variables);
+  _civictheme_preprocess_paragraph__field__image($variables);
 
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
   $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
@@ -85,7 +85,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
 
       $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
       if ($media) {
-        $variables['image'] = civictheme_media_image_process_variables($media);
+        $variables['image'] = civictheme_media_image_get_variables($media);
         $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
       }
 

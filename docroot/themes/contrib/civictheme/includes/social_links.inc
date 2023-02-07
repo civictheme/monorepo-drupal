@@ -32,7 +32,7 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
     $item['size'] = 'regular';
     $media = civictheme_get_field_value($social_link_paragraph, 'field_c_p_icon', TRUE);
     if ($media) {
-      $item['image'] = civictheme_media_image_process_variables($media);
+      $item['image'] = civictheme_media_image_get_variables($media);
     }
 
     if (isset($item['image'])) {

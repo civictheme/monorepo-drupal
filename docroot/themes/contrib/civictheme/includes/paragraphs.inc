@@ -23,18 +23,14 @@ function _civictheme_preprocess_paragraph__fields(&$variables, array $fields) {
  * Pre-process for Title field.
  */
 function _civictheme_preprocess_paragraph__field__title(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
+  $variables['title'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_title');
 }
 
 /**
  * Pre-process for Content field.
  */
 function _civictheme_preprocess_paragraph__field__content(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_content');
+  $variables['content'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_content');
 }
 
 /**
@@ -44,7 +40,7 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
-    $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_summary');
+    $variables['summary'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_summary');
     $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $paragraph->bundle()), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
     if ($length) {
       $variables['summary'] = text_summary($variables['summary'], NULL, $length);
@@ -56,9 +52,7 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
  * Pre-process for Image field.
  */
 function _civictheme_preprocess_paragraph__field__image(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $media = civictheme_get_field_value($paragraph, 'field_c_p_image', TRUE);
+  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image', TRUE);
   if ($media) {
     $variables['image'] = civictheme_media_image_get_variables($media);
   }
@@ -68,18 +62,14 @@ function _civictheme_preprocess_paragraph__field__image(&$variables) {
  * Pre-process for Image field.
  */
 function _civictheme_preprocess_paragraph__field__image_position(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
+  $variables['image_position'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image_position');
 }
 
 /**
  * Pre-process for Icon field.
  */
 function _civictheme_preprocess_paragraph__field__icon(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
+  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_icon', TRUE);
   if ($media) {
     $variables['image'] = civictheme_media_image_get_variables($media);
   }
@@ -89,10 +79,8 @@ function _civictheme_preprocess_paragraph__field__icon(&$variables) {
  * Pre-process for Link field.
  */
 function _civictheme_preprocess_paragraph__field__link(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_link', TRUE);
   if ($link) {
     $variables['link'] = [
       'text' => $link->get('title')->getString(),
@@ -107,10 +95,8 @@ function _civictheme_preprocess_paragraph__field__link(&$variables) {
  * Pre-process for Links field.
  */
 function _civictheme_preprocess_paragraph__field__links(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null[] $link */
-  $links = civictheme_get_field_value($paragraph, 'field_c_p_links');
+  $links = civictheme_get_field_value($variables['paragraph'], 'field_c_p_links');
   if ($links) {
     foreach ($links as $link) {
       $variables['links'][] = [
@@ -126,20 +112,14 @@ function _civictheme_preprocess_paragraph__field__links(&$variables) {
  * Pre-process for Topics field.
  */
 function _civictheme_preprocess_paragraph__field__topics(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null[] $link */
-  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics');
+  $variables['tags'] = civictheme_get_referenced_entity_labels($variables['paragraph'], 'field_c_p_topics');
 }
 
 /**
  * Pre-process for Date field.
  */
 function _civictheme_preprocess_paragraph__field__date(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
-  $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
+  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
   if ($date) {
     $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
   }
@@ -149,10 +129,7 @@ function _civictheme_preprocess_paragraph__field__date(&$variables) {
  * Pre-process for Date range field.
  */
 function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
-  $date = civictheme_get_field_value($paragraph, 'field_c_p_date_range', TRUE);
+  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
   if ($date) {
     $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime(), $date->get('end_value')->getDateTime());
   }
@@ -162,25 +139,19 @@ function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
  * Pre-process for Theme field.
  */
 function _civictheme_preprocess_paragraph__field__theme(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['theme'] = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $variables['theme'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_theme');
 }
 
 /**
  * Pre-process for Vertical spacing field.
  */
 function _civictheme_preprocess_paragraph__field__vertical_spacing(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['vertical_spacing'] = civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing');
+  $variables['vertical_spacing'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_vertical_spacing');
 }
 
 /**
  * Pre-process for With background field.
  */
 function _civictheme_preprocess_paragraph__field__background(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['with_background'] = civictheme_get_field_value($paragraph, 'field_c_p_background');
+  $variables['with_background'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_background');
 }
