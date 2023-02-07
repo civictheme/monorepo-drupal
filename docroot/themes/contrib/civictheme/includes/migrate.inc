@@ -35,7 +35,7 @@ function civictheme_expose_migration_metadata__page(&$variables) {
     // are generated from field values.
     if ($node) {
       if ($variables['content_attributes']['data-ct-migrate-show-last-updated']) {
-        $variables['content_attributes']['data-ct-migrate-last-updated'] = _civictheme_preprocess_civictheme_banner_get_last_updated($node);
+        $variables['content_attributes']['data-ct-migrate-last-updated'] = _civictheme_node_get_updated_date($node);
       }
 
       $thumbnail = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
@@ -56,15 +56,18 @@ function civictheme_expose_migration_metadata__page(&$variables) {
 /**
  * Exposes civictheme migration banner metadata.
  */
-function civictheme_expose_migration_metadata__banner(&$variables) {
-  if (civictheme_migrate_metadata_enabled()) {
-    $variables['attributes']['data-ct-migrate-banner-type'] = $variables['type'];
-    $variables['attributes']['data-ct-migrate-banner-theme'] = $variables['theme'];
-    $variables['attributes']['data-ct-migrate-banner-hide-breadcrumb'] = (int) empty($variables['breadcrumb']);
-    if (isset($variables['background_image'])) {
-      $variables['attributes']['data-ct-migrate-banner-blend-mode'] = $variables['background_image_blend_mode'];
-      $variables['attributes']['data-ct-migrate-banner-background-image'] = $variables['background_image'];
-    }
+function _civictheme_expose_migration_metadata__banner(&$variables) {
+  if (!civictheme_migrate_metadata_enabled()) {
+    return;
+  }
+
+  $variables['attributes']['data-ct-migrate-banner-type'] = $variables['type'];
+  $variables['attributes']['data-ct-migrate-banner-theme'] = $variables['theme'];
+  $variables['attributes']['data-ct-migrate-banner-hide-breadcrumb'] = (int) empty($variables['breadcrumb']);
+
+  if (!empty($variables['background_image'])) {
+    $variables['attributes']['data-ct-migrate-banner-blend-mode'] = $variables['background_image_blend_mode'];
+    $variables['attributes']['data-ct-migrate-banner-background-image'] = $variables['background_image'];
   }
 }
 

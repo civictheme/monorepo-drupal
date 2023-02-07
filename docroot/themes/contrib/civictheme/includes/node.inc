@@ -123,3 +123,22 @@ function _civictheme_preprocess_page__node(&$variables) {
   // Hide sidebar check.
   $variables['hide_sidebar'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
 }
+
+/**
+ * Determine last updated date for a page.
+ */
+function _civictheme_node_get_updated_date($node, $format = 'civictheme_short_date') {
+  $show_last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
+  $custom_updated_value = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
+
+  $date = NULL;
+
+  if ($show_last_updated && !empty($custom_updated_value)) {
+    $date = civictheme_format_date($format, $custom_updated_value->get('value')->getDateTime());
+  }
+  elseif ($show_last_updated) {
+    $date = civictheme_format_date($format, $node->getChangedTime());
+  }
+
+  return $date;
+}

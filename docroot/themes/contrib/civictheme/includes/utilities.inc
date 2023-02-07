@@ -111,27 +111,6 @@ function civictheme_media_image_get_variables(MediaInterface $media, $image_styl
 }
 
 /**
- * Get URL of the media entity from field on provided entity.
- *
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   The entity to get the media from.
- * @param string $field_name
- *   The field name that has media.
- *
- * @return string
- *   Image URL or FALSE if not available.
- */
-function civictheme_media_get_url_from_field(EntityInterface $entity, $field_name) {
-  /** @var \Drupal\media\Entity\Media|NULL $media */
-  $media = civictheme_get_field_value($entity, $field_name, TRUE);
-  if ($media) {
-    return civictheme_media_get_url($media);
-  }
-
-  return FALSE;
-}
-
-/**
  * Get the media source file url.
  *
  * @param \Drupal\media\MediaInterface $media

@@ -11,7 +11,7 @@
     position: relative;
   }
 
-  #{$root}__wrapper__inner {
+  #{$root}__inner {
     @include ct-background();
 
     padding-top: ct-spacing(3);
@@ -27,7 +27,7 @@
     margin-top: ct-spacing(2);
   }
 
-  #{$root}__featured-image-wrapper {
+  #{$root}__featured-image__wrapper {
     @include ct-image-fit();
 
     width: $ct-banner-featured-image-width;
@@ -43,7 +43,7 @@
   }
 
   &#{$root}--decorative {
-    #{$root}__wrapper__inner {
+    #{$root}__inner {
       clip-path: $ct-banner-decorative-mobile-clip-path;
 
       @include ct-breakpoint(m) {
@@ -62,7 +62,7 @@
       margin-top: -1 * ct-spacing(2);
     }
 
-    #{$root}__featured-image-wrapper {
+    #{$root}__featured-image__wrapper {
       @include ct-breakpoint(m) {
         bottom: 0;
         top: auto;
@@ -100,12 +100,12 @@
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    #{$root}__wrapper__inner {
+    #{$root}__inner {
       @include ct-component-property($root, $theme, background-color);
     }
 
     &#{$root}--decorative {
-      #{$root}__featured-image-wrapper {
+      #{$root}__featured-image__wrapper {
         @include ct-breakpoint(m) {
           @include ct-image-shadow(ct-component-var($root, $theme, featured-image, shadow-color));
         }
