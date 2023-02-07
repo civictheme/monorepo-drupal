@@ -557,7 +557,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * Normalize domain.
    */
   protected function externalLinkNormalizeDomain($domain) {
-    return _civictheme_external_link_normalize_domain($domain);
+    return civictheme_external_link_normalize_domain($domain);
   }
 
 }
