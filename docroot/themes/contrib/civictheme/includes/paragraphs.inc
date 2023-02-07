@@ -212,7 +212,9 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
 }
 
 /**
- * Pre-process for Attachements field.
+ * Pre-process for Attachments field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
   $links = [];
