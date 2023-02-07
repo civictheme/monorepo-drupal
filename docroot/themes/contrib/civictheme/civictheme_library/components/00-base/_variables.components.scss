@@ -1125,20 +1125,6 @@ $ct-slider-dark-background-color: ct-color-dark('background') !default;
 $ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
 
 //
-// Social links.
-//
-$ct-social-links-light-color: ct-color-light('interaction-background') !default;
-$ct-social-links-light-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-social-links-light-focus-color: $ct-social-links-light-hover-color !default;
-$ct-social-links-light-active-color: $ct-social-links-light-hover-color !default;
-$ct-social-links-light-visited-color: $ct-social-links-light-color !default;
-$ct-social-links-dark-color: ct-color-dark('interaction-background') !default;
-$ct-social-links-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color !default;
-$ct-social-links-dark-active-color: $ct-social-links-dark-hover-color !default;
-$ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;
-
-//
 // Webform.
 //
 $ct-webform-space-horizontal: ct-spacing(7) !default;

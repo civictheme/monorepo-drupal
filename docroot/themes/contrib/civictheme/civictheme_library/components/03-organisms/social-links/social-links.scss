@@ -1,19 +1,16 @@
 //
 // Social Links component.
 //
-// alex, fix this one and then remove extra mixins.
+
 .ct-social-links {
   $root: &;
 
-  display: flex;
-  gap: ct-spacing(2);
-
-  #{$root}__item__button {
+  #{$root}__button {
     line-height: 0;
   }
 
   &#{$root}--with-border {
-    #{$root}__item__button {
+    #{$root}__button {
       border: ct-particle(0.125) solid currentcolor;
       border-radius: ct-particle(12);
       padding: ct-spacing(1.375);
@@ -21,18 +18,6 @@
       @include ct-breakpoint(m) {
         padding: ct-spacing(1.625);
       }
-    }
-  }
-
-  @include ct-component-theme($root) using($root, $theme) {
-    #{$root}__item__button {
-      @include ct-link-colors(
-        ct-component-var($root, $theme, color),
-        ct-component-var($root, $theme, hover-color),
-        ct-component-var($root, $theme, visited-color),
-        ct-component-var($root, $theme, active-color),
-        ct-component-var($root, $theme, focus-color)
-      );
     }
   }
 }
