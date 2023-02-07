@@ -411,7 +411,6 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
  * @return string
  *   The theme field value for the entity.
  *   If field does not have a value - $default is returned.
- * @todo FIX THIS - remove altogether
  */
 function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $default = NULL) {
   $field_name = FALSE;

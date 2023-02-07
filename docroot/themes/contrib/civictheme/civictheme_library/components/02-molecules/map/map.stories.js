@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
-import {boolean, radios, text} from '@storybook/addon-knobs';
-import {getSlots, randomUrl} from '../../00-base/base.utils';
+import { boolean, radios, text } from '@storybook/addon-knobs';
+import { getSlots, randomUrl } from '../../00-base/base.utils';
 import CivicThemeMap from './map.twig';
 
 export default {

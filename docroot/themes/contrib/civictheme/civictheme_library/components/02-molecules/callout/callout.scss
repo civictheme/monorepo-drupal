@@ -8,7 +8,6 @@
   &__wrapper {
     border-radius: $ct-callout-border-radius;
     padding: ct-spacing(3) ct-spacing(3);
-
     margin: 0;
 
     @include ct-breakpoint(m) {

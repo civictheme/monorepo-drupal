@@ -9,7 +9,7 @@
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_iframe(&$variables) {
-    _civictheme_preprocess_paragraph__fields($variables, [
+  _civictheme_preprocess_paragraph__fields($variables, [
     'url',
     'width',
     'height',

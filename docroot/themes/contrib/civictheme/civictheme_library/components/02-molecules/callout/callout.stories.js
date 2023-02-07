@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
-import {number, radios, text} from '@storybook/addon-knobs';
+import { number, radios, text } from '@storybook/addon-knobs';
 import CivicThemeCallout from './callout.twig';
-import {getSlots, randomLinks, randomSentence} from '../../00-base/base.utils';
+import { getSlots, randomLinks, randomSentence } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Callout',

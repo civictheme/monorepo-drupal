@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import {boolean, radios, text} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeIframe from './iframe.twig';
 
 export default {
