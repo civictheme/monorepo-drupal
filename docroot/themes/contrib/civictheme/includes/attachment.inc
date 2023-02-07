@@ -5,8 +5,6 @@
  * CivicTheme Attachment paragraph component.
  */
 
-use Drupal\file\Entity\File;
-
 /**
  * Implements template_preprocess_paragraph().
  *

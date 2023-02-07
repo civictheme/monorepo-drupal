@@ -518,8 +518,8 @@ function _civictheme_field_is_wysiwyg(string $field_name) {
 /**
  * File icon symbol provider.
  *
- * @param string $mime_type
- *   File mimetype to get the respected symbol.
+ * @param \Drupal\file\Entity\File $file
+ *   File object.
  *
  * @return string
  *   Return Symbol.
