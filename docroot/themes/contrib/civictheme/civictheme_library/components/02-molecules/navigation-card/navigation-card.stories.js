@@ -39,17 +39,6 @@ export const NavigationCard = (knobTab) => {
       alt: 'Image alt text',
     } : false,
     image_as_icon: boolean('Image as icon', false, generalKnobTab),
-    tags: randomTags(number(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ), true),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
