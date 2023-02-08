@@ -4,7 +4,6 @@
  * Promo Card component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top: [string] Content slot.
  * - image_over: [string] Content slot for image over.
  * - content_middle: [string] Content slot.
@@ -15,6 +14,7 @@
  * - summary: [string] Summary.
  * - url: [string] Optional URL.
  * - tags: [array] Array of tags.
+ * - theme: [string] Theme: light, dark.
  * - attributes: [string] Additional attributes.
  * - modifier_class:[string] Additional classes.
  */
@@ -60,7 +60,7 @@
 
       {% block subtitle %}
         {% if subtitle is not empty %}
-          <div class="ct-promo-card__content__subtitle">
+          <div class="ct-promo-card__subtitle">
             {% include '@atoms/tag/tag.twig' with {
               theme: theme,
               type: 'tertiary',
@@ -78,7 +78,7 @@
                 theme: theme,
                 text: title,
                 url: url,
-                modifier_class: 'ct-promo-card__content__title__link',
+                modifier_class: 'ct-promo-card__title__link',
               } only %}
             {% else %}
               {{ title }}
@@ -89,14 +89,14 @@
             content: title_content,
             level: 4,
             theme: theme,
-            modifier_class: 'ct-promo-card__content__title',
+            modifier_class: 'ct-promo-card__title',
           } only %}
         {% endif %}
       {% endblock %}
 
       {% block content_middle %}
         {% if content_middle is not empty %}
-          <div class="ct-promo-card__content__middle">
+          <div class="ct-promo-card__content-middle">
             {{ content_middle }}
           </div>
         {% endif %}
@@ -108,14 +108,14 @@
             theme: theme,
             content: summary,
             allow_html: true,
-            modifier_class: 'ct-promo-card__content__summary',
+            modifier_class: 'ct-promo-card__summary',
           } only %}
         {% endif %}
       {% endblock %}
 
       {% block content_tags %}
         {% if tags or url %}
-          <div class="ct-promo-card__content__tags">
+          <div class="ct-promo-card__tags">
             {% if tags %}
               {% include '@molecules/tag-list/tag-list.twig' with {
                 theme: theme,
@@ -128,7 +128,7 @@
                 theme: theme,
                 url: url,
                 icon: 'right-arrow-2',
-                modifier_class: 'ct-promo-card__content__tags__link',
+                modifier_class: 'ct-promo-card__tags__link',
               } only %}
             {% endif %}
           </div>
