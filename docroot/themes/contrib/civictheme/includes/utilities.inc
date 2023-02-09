@@ -107,7 +107,7 @@ function civictheme_media_get_variables(MediaInterface $media) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_media_image_get_variables(MediaInterface $media, $image_style = NULL) {
-  if ($media->bundle() != 'civictheme_image') {
+  if (!in_array($media->bundle(), ['civictheme_image', 'civictheme_icon'])) {
     return NULL;
   }
 
