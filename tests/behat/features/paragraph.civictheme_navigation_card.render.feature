@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_navigation_card
+@p1 @civictheme @civictheme_card @civictheme_navigation_card
 Feature: Navigation card render
 
   Background:

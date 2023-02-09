@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_event_card_ref
+@p0 @civictheme @civictheme_card @civictheme_event_card_ref
 Feature: Event reference card render
 
   Background:

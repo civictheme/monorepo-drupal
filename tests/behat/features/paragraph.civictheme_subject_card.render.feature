@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_subject_card
+@p1 @civictheme @civictheme_card @civictheme_subject_card
 Feature: Subject card render
 
   Background:

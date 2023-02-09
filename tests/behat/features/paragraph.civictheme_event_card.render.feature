@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_event_card
+@p1 @civictheme @civictheme_card @civictheme_event_card
 Feature: Event Card render
 
   @api
