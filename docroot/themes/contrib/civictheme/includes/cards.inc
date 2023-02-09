@@ -47,3 +47,17 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
     'theme',
   ]);
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
+  _civictheme_preprocess_paragraph__fields($variables, [
+    'image',
+    'title',
+    'link',
+    'theme',
+  ]);
+}
