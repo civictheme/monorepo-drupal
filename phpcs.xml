@@ -7,9 +7,11 @@
     <rule ref="Generic.Debug.ESLint"/>
     <rule ref="PHPCompatibility"/>
 
-    <arg name="extensions" value="css,inc,info,install,js,module,php,profile,test,theme"/>
+    <arg name="extensions" value="css,inc,info,install,js,module,php,profile,test,theme,twig"/>
     <arg name="colors"/>
     <arg value="sp"/>
+    <arg name="cache"/>
+
     <arg name="parallel" value="75"/>
     <!--Lint code against platform version specified in composer.json
     key "config.platform.php".-->
@@ -19,15 +21,20 @@
     <exclude-pattern>circle\.yml</exclude-pattern>
     <exclude-pattern>\.circle\/config\.yml</exclude-pattern>
 
-    <!-- Exclude node_module directories. -->
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/node_modules\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/node_modules\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/node_modules\/.*</exclude-pattern>
+    <!-- Exclude dependencies directories. -->
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>vendor/*</exclude-pattern>
 
     <!-- Exclude all minified files. -->
     <exclude-pattern>*\.min\.js</exclude-pattern>
     <exclude-pattern>*\.css</exclude-pattern>
     <exclude-pattern>*dist\/*\.js</exclude-pattern>
+
+    <!-- Exclude CivicTheme library files. -->
+    <exclude-pattern>civictheme_library/*</exclude-pattern>
+    <exclude-pattern>storybook-static/*</exclude-pattern>
+    <exclude-pattern>.storybook/*</exclude-pattern>
+    <exclude-pattern>webpack/*</exclude-pattern>
 
     <!-- Exclude array-heavy files without any logic. -->
     <exclude-pattern>docroot\/modules\/custom\/cs_generated_content\/generated_content\/node\/civictheme_page_variations\/.*</exclude-pattern>
@@ -45,5 +52,11 @@
     <!-- Force no empty lines after control structure closing. -->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose">
         <type>warning</type>
+    </rule>
+
+    <!-- Disable constants check in JS. -->
+    <!-- @see https://www.drupal.org/project/coder/issues/3309040 -->
+    <rule ref="Generic.PHP.UpperCaseConstant.Found">
+        <exclude-pattern>\.js</exclude-pattern>
     </rule>
 </ruleset>

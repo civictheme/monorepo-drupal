@@ -137,6 +137,7 @@ function civictheme_media_image_get_variables(MediaInterface $media, $image_styl
  *   The relative URL for the source file or FALSE if the file was not found.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function civictheme_media_get_url(MediaInterface $media, $relative = TRUE) {
   $file = File::load($media->getSource()->getSourceFieldValue($media));
@@ -158,6 +159,8 @@ function civictheme_media_get_url(MediaInterface $media, $relative = TRUE) {
  *   The relative URL for the source file or FALSE if the file was not found.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_media_image_get_url(MediaInterface $media, $image_style = NULL, $relative = TRUE) {
   $src = NULL;
