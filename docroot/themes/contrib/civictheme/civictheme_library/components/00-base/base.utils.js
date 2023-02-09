@@ -313,5 +313,5 @@ export const toLabels = function (values) {
 };
 
 export const dateIsValid = function (date) {
-  return !isNaN(Date.parse(date));
-}
+  return !Number.isNaN(Date.parse(date));
+};

@@ -152,6 +152,7 @@ function _civictheme_preprocess_paragraph__field__date(&$variables) {
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
   if ($date) {
     $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
+    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
   }
 }
 
@@ -161,7 +162,12 @@ function _civictheme_preprocess_paragraph__field__date(&$variables) {
 function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
   if ($date) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime(), $date->get('end_value')->getDateTime());
+    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
+    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+    if ($date->get('end_value')->getDateTime()) {
+      $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime(), 'j M Y H:i');
+      $variables['date_end_iso'] = date('c', strtotime($date->get('end_value')->getDateTime()));
+    }
   }
 }
 

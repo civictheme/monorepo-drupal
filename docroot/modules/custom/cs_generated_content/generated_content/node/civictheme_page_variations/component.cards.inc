@@ -204,6 +204,137 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
+      'title' => 'Page. Component. Event card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
+      'components' => [
+        [
+          'title' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => 'Same day ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2021-04-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image, no link ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+          ],
+        ],
+        [
+          'title' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => 'Same day ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2021-04-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image, no link ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+          ],
+        ],
+      ],
+    ],
+
+    [
       'title' => 'Page. Component. Publication card',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [

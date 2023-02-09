@@ -224,34 +224,18 @@ function civictheme_attributes_to_modifier_class(&$variables) {
 /**
  * Format date.
  *
- * @param string $type
- *   Format type.
+ * @param string $format_name
+ *   Drupal format type.
  * @param mixed $date
  *   Timestamp or date as a string.
- * @param mixed $date_end
- *   Timestamp or end date as a string.
  *
  * @return mixed
  *   Formatted date or date range.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_format_date($type, $date, $date_end = NULL) {
-  $timestamp = is_numeric($date) ? $date : strtotime($date);
-  $timestamp2 = $date_end ? (is_numeric($date_end) ? $date_end : strtotime($date_end)) : NULL;
-
-  // @todo Implement more robust date range formatting.
-  $output = '';
-  if ($timestamp) {
-    $output .= \Drupal::service('date.formatter')->format($timestamp, $type);
-  }
-
-  if ($timestamp2) {
-    $output .= !empty($output) ? ' - ' : '';
-    $output .= \Drupal::service('date.formatter')->format($timestamp2, $type);
-  }
-
-  return $output;
+function civictheme_format_date($format_name, $date) {
+  return \Drupal::service('date.formatter')->format(is_numeric($date) ? $date : strtotime($date), $format_name);
 }
 
 /**

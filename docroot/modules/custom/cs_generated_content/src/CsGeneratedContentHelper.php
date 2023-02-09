@@ -91,4 +91,14 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
     return $content;
   }
 
+  /**
+   * Convert date string to formatted date in UTC timezone.
+   */
+  public static function dateToUtc($date, $format = 'Y-m-d\TH:i:s') {
+    $datetime = new \DateTime($date);
+    $datetime->setTimezone(new \DateTimeZone('UTC'));
+
+    return $datetime->format($format);
+  }
+
 }

@@ -4,7 +4,6 @@
  * Event Card component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top: [string] Content slot.
  * - image_over: [string] Content slot for image over.
  * - content_middle: [string] Content slot.
@@ -12,11 +11,16 @@
  * - image: [object] Image object:
  *   - url: [string] Image URL.
  *   - alt: [string] Image alt text.
- * - subtitle: [string] Subtitle text.
  * - title: [string] Title.
  * - summary: [string] Summary.
+ * - date: [string] Start date and time.
+ * - date_iso: [string] Start date and time in ISO format.
+ * - date_end: [string] Optional end date and time.
+ * - date_end_iso: [string] Optional end date and time in ISO format.
+ * - location: [string] Location.
  * - url: [string] Optional URL.
  * - tags: [array] Array of tags.
+ * - theme: [string] Theme: light, dark.
  * - attributes: [string] Additional attributes.
  * - modifier_class:[string] Additional classes.
  */
@@ -62,11 +66,20 @@
 
       {% block date %}
         {% if date is not empty %}
-          <div class="ct-event-card__content__date">
+          {% set date_content %}
+            {% include '@base/time/time.twig' with {
+              start: date,
+              start_iso: date_iso ?? null,
+              end: date_end ?? null,
+              end_iso: date_end_iso ?? null,
+            } only %}
+          {% endset %}
+
+          <div class="ct-event-card__date">
             {% include '@atoms/tag/tag.twig' with {
               theme: theme,
               type: 'secondary',
-              content: date,
+              content: date_content,
               icon: 'calendar-2',
               icon_placement: 'before',
             } only %}
@@ -82,7 +95,7 @@
                 theme: theme,
                 text: title,
                 url: url,
-                modifier_class: 'ct-event-card__content__title__link',
+                modifier_class: 'ct-event-card__title__link',
               } only %}
             {% else %}
               {{ title }}
@@ -93,14 +106,14 @@
             content: title_content,
             level: 4,
             theme: theme,
-            modifier_class: 'ct-event-card__content__title',
+            modifier_class: 'ct-event-card__title',
           } only %}
         {% endif %}
       {% endblock %}
 
       {% block content_middle %}
         {% if content_middle is not empty %}
-          <div class="ct-event-card__content__middle">
+          <div class="ct-event-card__middle">
             {{ content_middle }}
           </div>
         {% endif %}
@@ -123,14 +136,14 @@
             theme: theme,
             content: summary,
             allow_html: true,
-            modifier_class: 'ct-event-card__content__summary',
+            modifier_class: 'ct-event-card__summary',
           } only %}
         {% endif %}
       {% endblock %}
 
       {% block content_tags %}
         {% if tags or url %}
-          <div class="ct-event-card__content__tags">
+          <div class="ct-event-card__tags">
             {% if tags %}
               {% include '@molecules/tag-list/tag-list.twig' with {
                 theme: theme,
@@ -143,7 +156,7 @@
                 theme: theme,
                 url: url,
                 icon: 'right-arrow-2',
-                modifier_class: 'ct-event-card__content__tags__link',
+                modifier_class: 'ct-event-card__tags__link',
               } only %}
             {% endif %}
           </div>

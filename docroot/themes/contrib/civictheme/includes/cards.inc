@@ -24,6 +24,23 @@ function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
+function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
+  _civictheme_preprocess_paragraph__fields($variables, [
+    'image',
+    'title',
+    'summary',
+    'date_range',
+    'link',
+    'topics',
+    'theme',
+  ]);
+
+  $variables['location'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_location', TRUE);
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
 function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables) {
   _civictheme_preprocess_paragraph__fields($variables, [
     'image',
@@ -38,8 +55,6 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_publication_card(&$variables) {
   _civictheme_preprocess_paragraph__fields($variables, [
@@ -53,8 +68,6 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
   _civictheme_preprocess_paragraph__fields($variables, [
@@ -67,8 +80,6 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_service_card(&$variables) {
   _civictheme_preprocess_paragraph__fields($variables, [

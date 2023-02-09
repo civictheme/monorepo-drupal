@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
-import {text} from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 import CivicThemeTime from './time.twig';
-import {dateIsValid} from "../base.utils";
+import { dateIsValid } from '../base.utils';
 
 export default {
   title: 'Base/Time',

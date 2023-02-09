@@ -1,8 +1,9 @@
 // phpcs:ignoreFile
 import {
-  boolean, date, number, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
+  dateIsValid,
   demoImage,
   getSlots, randomSentence,
   randomTags,
@@ -31,7 +32,8 @@ export const EventCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    date: date('Date', new Date(), generalKnobTab),
+    date: text('Date', '20 Jan 2023 11:00', generalKnobTab),
+    date_end: text('End date', '21 Jan 2023 15:00', generalKnobTab),
     title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
     location: text('Location', 'Suburb, State – 16:00–17:00', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
@@ -39,7 +41,7 @@ export const EventCard = (knobTab) => {
     image: boolean('With image', true, generalKnobTab) ? {
       url: demoImage(),
       alt: 'Image alt text',
-    } : false,
+    } : null,
     tags: randomTags(number(
       'Number of tags',
       2,
@@ -55,11 +57,8 @@ export const EventCard = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
+  generalKnobs.date_iso = dateIsValid(generalKnobs.date) ? new Date(generalKnobs.date).toISOString() : null;
+  generalKnobs.date_end_iso = dateIsValid(generalKnobs.date_end) ? new Date(generalKnobs.date_end).toISOString() : null;
 
   return CivicThemeEventCard({
     ...generalKnobs,

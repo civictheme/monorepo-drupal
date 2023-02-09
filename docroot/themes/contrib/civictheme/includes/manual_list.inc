@@ -16,6 +16,9 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
+  // Remove existing content.
+  $variables['content'] = NULL;
+
   $attributes = [];
   $attributes['id'] = Html::getUniqueId('listing-' . $paragraph->id());
   $variables['attributes'] = $variables['attributes'] ?? [];
