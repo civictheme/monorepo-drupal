@@ -21,6 +21,7 @@
 
     <!-- Exclude node_module directories. -->
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/node_modules\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/node_modules\/.*</exclude-pattern>
 
     <!-- Exclude all minified files. -->

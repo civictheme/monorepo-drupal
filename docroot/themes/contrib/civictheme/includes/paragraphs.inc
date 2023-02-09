@@ -6,8 +6,6 @@
  */
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\file\Entity\File;
-use Drupal\media\Entity\Media;
 
 /**
  * Pre-process paragraph fields using field preprocessors.
@@ -236,7 +234,7 @@ function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
 function _civictheme_preprocess_paragraph__field__document(&$variables) {
   $media_item = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE) ?? NULL;
 
-  if (!$media_item){
+  if (!$media_item) {
     return;
   }
 

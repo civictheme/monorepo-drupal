@@ -1,13 +1,12 @@
 // phpcs:ignoreFile
 import {
-  boolean, number, radios, select, text,
+  boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
 import CivicThemeNavigationCard from './navigation-card.twig';
 import {
   demoImage,
   getSlots,
-  randomTags,
   randomUrl,
 } from '../../00-base/base.utils';
 

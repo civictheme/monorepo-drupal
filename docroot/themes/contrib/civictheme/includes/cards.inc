@@ -5,6 +5,9 @@
  * Card theme alterations.
  */
 
+/**
+ * Implements template_preprocess_paragraph().
+ */
 function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
   _civictheme_preprocess_paragraph__fields($variables, [
     'image',

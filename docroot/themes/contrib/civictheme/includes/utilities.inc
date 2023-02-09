@@ -15,7 +15,6 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
-use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 

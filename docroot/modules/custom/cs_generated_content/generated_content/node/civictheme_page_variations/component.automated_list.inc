@@ -55,7 +55,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         ],
       ],
     ],
-    // Light no filter dark promo, title, bottom link with no space listing multiple filters, without pagination
+    // Light no filter dark promo, title, bottom link with no space listing multiple filters, without pagination.
     [
       'title' => 'Page. Component. Automated list, Light no filter dark promo, title, bottom link with no space listing without pagination',
       'components' => [
