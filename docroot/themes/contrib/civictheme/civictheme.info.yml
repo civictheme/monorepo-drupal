@@ -113,6 +113,7 @@ config_devel:
     - core.base_field_override.node.civictheme_event.promote
     - core.base_field_override.node.civictheme_page.promote
     - core.date_format.civictheme_short_date
+    - core.date_format.civictheme_short_date_and_time
     - core.entity_form_display.block_content.civictheme_banner.default
     - core.entity_form_display.block_content.civictheme_component_block.default
     - core.entity_form_display.block_content.civictheme_mobile_navigation.default
