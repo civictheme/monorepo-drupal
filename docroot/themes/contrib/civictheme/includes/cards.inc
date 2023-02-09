@@ -61,3 +61,16 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
     'theme',
   ]);
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_paragraph__civictheme_service_card(&$variables) {
+  _civictheme_preprocess_paragraph__fields($variables, [
+    'title',
+    'links',
+    'theme',
+  ]);
+}

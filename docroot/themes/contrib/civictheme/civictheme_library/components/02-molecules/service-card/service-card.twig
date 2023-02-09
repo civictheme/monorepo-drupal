@@ -4,13 +4,15 @@
  * Service Card component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - title: [string] The text of card title.
  * - links: [array] Links array:
  *   - title [string] Title.
  *   - url [string] URL.
  *   - is_new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
- * - title: [string] The text of card title.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -35,7 +37,7 @@
           theme: theme,
           content: title,
           level: 4,
-          modifier_class: 'ct-service-card__content__title',
+          modifier_class: 'ct-service-card__title',
         } only %}
       {% endif %}
     {% endblock %}
@@ -60,7 +62,7 @@
         {% include '@base/item-list/item-list.twig' with {
           items: list_items,
           direction: 'vertical',
-          modifier_class: 'ct-service-card__content__links',
+          modifier_class: 'ct-service-card__links',
         } only %}
       {% endif %}
     {% endblock %}

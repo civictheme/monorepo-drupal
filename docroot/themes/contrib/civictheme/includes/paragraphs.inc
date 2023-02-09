@@ -105,6 +105,7 @@ function _civictheme_preprocess_paragraph__field__links(&$variables) {
         'text' => $link->get('title')->getString(),
         'url' => $link->getUrl()->toString(),
         'is_new_window' => $link->isExternal(),
+        'is_external' => $link->isExternal(),
       ];
     }
   }
