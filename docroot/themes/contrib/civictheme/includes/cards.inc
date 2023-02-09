@@ -32,3 +32,18 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables
 
   $variables['image_as_icon'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_show_image_as_icon') ?? FALSE;
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_paragraph__civictheme_publication_card(&$variables) {
+  _civictheme_preprocess_paragraph__fields($variables, [
+    'image',
+    'title',
+    'summary',
+    'document',
+    'theme',
+  ]);
+}

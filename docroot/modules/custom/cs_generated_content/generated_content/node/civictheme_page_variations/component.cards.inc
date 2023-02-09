@@ -17,6 +17,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
   return [
     [
       'title' => 'Page. Component. Navigation card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -56,6 +57,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Navigation reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'theme' => $helper::civicthemeThemeLight(),
@@ -90,6 +92,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Promo card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -167,6 +170,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Promo reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -201,6 +205,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Publication card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -219,7 +224,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             ],
             [
               'type' => 'civictheme_publication_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => 'No image, ' . $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
@@ -244,7 +248,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             ],
             [
               'type' => 'civictheme_publication_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => 'No image, ' . $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
@@ -257,6 +260,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Service card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -301,6 +305,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Subject card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -350,6 +355,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Subject reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),

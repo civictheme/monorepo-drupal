@@ -218,12 +218,30 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
-  $files = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
-  foreach ($files as $file) {
-    $vars = civictheme_media_get_variables($file);
+  $media_items = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
+  foreach ($media_items as $media_item) {
+    $vars = civictheme_media_get_variables($media_item);
     if ($vars) {
       $variables['files'][] = $vars;
     }
+  }
+}
+
+/**
+ * Pre-process for Document field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_paragraph__field__document(&$variables) {
+  $media_item = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE) ?? NULL;
+
+  if (!$media_item){
+    return;
+  }
+
+  $vars = civictheme_media_get_variables($media_item);
+  if ($vars) {
+    $variables['file'] = $vars;
   }
 }
 

@@ -43,27 +43,22 @@
     padding: ct-spacing(3);
   }
 
-  #{$root}__content__title {
+  #{$root}__title {
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__content__title__link {
+  #{$root}__title__link {
     @include ct-font-size-inherit();
     @include ct-link-wide();
   }
 
-  #{$root}__content__attachment {
-    margin-top: ct-spacing(2);
+  #{$root}__summary {
+    padding-right: ct-spacing(3);
+    margin-bottom: ct-spacing(2);
   }
 
-  &#{$root}--with-link {
-    #{$root}__content__summary {
-      padding-right: ct-spacing(3);
-    }
-
-    #{$root}__content__attachment {
-      padding-right: ct-spacing(3);
-    }
+  #{$root}__link {
+    padding-right: ct-spacing(3);
   }
 
   #{$root}__content-bottom {

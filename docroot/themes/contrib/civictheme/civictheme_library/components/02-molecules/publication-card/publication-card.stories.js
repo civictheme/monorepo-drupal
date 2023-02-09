@@ -7,7 +7,7 @@ import CivicThemePublicationCard from './publication-card.twig';
 import {
   demoImage,
   getSlots,
-  randomSentence,
+  randomSentence, randomUrl,
 } from '../../00-base/base.utils';
 
 export default {
@@ -19,6 +19,12 @@ export default {
 
 export const PublicationCard = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const date = new Date().toLocaleDateString('en-uk', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
   const generalKnobs = {
     theme: radios(
@@ -36,9 +42,14 @@ export const PublicationCard = (knobTab) => {
       url: demoImage(),
       alt: 'Image alt text',
     } : false,
-    link: boolean('With file', true, generalKnobTab) ? {
-      url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
-      text: 'Filename (PDF, 175.96 KB)',
+    file: boolean('With file', true, generalKnobTab) ? {
+      url: randomUrl(),
+      name: 'Document.doc',
+      ext: 'doc',
+      size: '42.88 KB',
+      created: date,
+      changed: date,
+      icon: 'word-file',
     } : null,
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
