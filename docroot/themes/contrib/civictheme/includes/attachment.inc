@@ -9,12 +9,17 @@
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
-  _civictheme_preprocess_paragraph__fields($variables, [
-    'title',
-    'content',
-    'attachments',
-    'theme',
-    'vertical_spacing',
-    'background',
-  ]);
+  _civictheme_preprocess_paragraph__field__title($variables);
+  _civictheme_preprocess_paragraph__field__content($variables);
+  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__field__vertical_spacing($variables);
+  _civictheme_preprocess_paragraph__field__background($variables);
+
+  $attachments = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
+  foreach ($attachments as $attachment) {
+    $vars = civictheme_media_get_variables($attachment);
+    if ($vars) {
+      $variables['files'][] = $vars;
+    }
+  }
 }

@@ -8,22 +8,10 @@
 use Drupal\civictheme\CivicthemeConstants;
 
 /**
- * Pre-process paragraph fields using field preprocessors.
+ * Pre-process for With background field.
  */
-function _civictheme_preprocess_paragraph__fields(&$variables, array $fields) {
-  foreach ($fields as $field_name) {
-    $callback = '_civictheme_preprocess_paragraph__field__' . $field_name;
-    if (function_exists($callback)) {
-      call_user_func_array($callback, [&$variables]);
-    }
-  }
-}
-
-/**
- * Pre-process for Title field.
- */
-function _civictheme_preprocess_paragraph__field__title(&$variables) {
-  $variables['title'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_title');
+function _civictheme_preprocess_paragraph__field__background(&$variables) {
+  $variables['with_background'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_background');
 }
 
 /**
@@ -34,16 +22,27 @@ function _civictheme_preprocess_paragraph__field__content(&$variables) {
 }
 
 /**
- * Pre-process for Summary field.
+ * Pre-process for Date field.
  */
-function _civictheme_preprocess_paragraph__field__summary(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
-    $variables['summary'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_summary');
-    $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $paragraph->bundle()), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
-    if ($length) {
-      $variables['summary'] = text_summary($variables['summary'], NULL, $length);
+function _civictheme_preprocess_paragraph__field__date(&$variables) {
+  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
+    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+  }
+}
+
+/**
+ * Pre-process for Date range field.
+ */
+function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
+  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
+    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+    if ($date->get('end_value')->getDateTime()) {
+      $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime(), 'j M Y H:i');
+      $variables['date_end_iso'] = date('c', strtotime($date->get('end_value')->getDateTime()));
     }
   }
 }
@@ -63,16 +62,6 @@ function _civictheme_preprocess_paragraph__field__image(&$variables) {
  */
 function _civictheme_preprocess_paragraph__field__image_position(&$variables) {
   $variables['image_position'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image_position');
-}
-
-/**
- * Pre-process for Icon field.
- */
-function _civictheme_preprocess_paragraph__field__icon(&$variables) {
-  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_icon', TRUE);
-  if ($media) {
-    $variables['image'] = civictheme_media_image_get_variables($media);
-  }
 }
 
 /**
@@ -110,32 +99,32 @@ function _civictheme_preprocess_paragraph__field__links(&$variables) {
 }
 
 /**
- * Pre-process for View link field.
+ * Pre-process for Summary field.
  */
-function _civictheme_preprocess_paragraph__field__view_link(&$variables) {
-  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_view_link', TRUE);
-  if ($link) {
-    $variables['view_url'] = $link->getUrl()->toString();
+function _civictheme_preprocess_paragraph__field__summary(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
+    $variables['summary'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_summary');
+    $length = civictheme_get_theme_config_manager()->loadForComponent(str_replace('civictheme_', '', $paragraph->bundle()), 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+    if ($length) {
+      $variables['summary'] = text_summary($variables['summary'], NULL, $length);
+    }
   }
 }
 
 /**
- * Pre-process for URL field.
+ * Pre-process for Theme field.
  */
-function _civictheme_preprocess_paragraph__field__url(&$variables) {
-  $variables['url'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_url');
+function _civictheme_preprocess_paragraph__field__theme(&$variables) {
+  $variables['theme'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_theme');
 }
 
 /**
- * Pre-process for Embed URL field.
+ * Pre-process for Title field.
  */
-function _civictheme_preprocess_paragraph__field__embed_url(&$variables) {
-  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_embed_url', TRUE);
-  if ($link) {
-    $variables['url'] = $link->getUrl()->toString();
-  }
+function _civictheme_preprocess_paragraph__field__title(&$variables) {
+  $variables['title'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_title');
 }
 
 /**
@@ -146,64 +135,10 @@ function _civictheme_preprocess_paragraph__field__topics(&$variables) {
 }
 
 /**
- * Pre-process for Date field.
+ * Pre-process for Vertical spacing field.
  */
-function _civictheme_preprocess_paragraph__field__date(&$variables) {
-  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
-  if ($date) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
-  }
-}
-
-/**
- * Pre-process for Date range field.
- */
-function _civictheme_preprocess_paragraph__field__date_range(&$variables) {
-  $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
-  if ($date) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
-    if ($date->get('end_value')->getDateTime()) {
-      $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime(), 'j M Y H:i');
-      $variables['date_end_iso'] = date('c', strtotime($date->get('end_value')->getDateTime()));
-    }
-  }
-}
-
-/**
- * Pre-process for Author field.
- */
-function _civictheme_preprocess_paragraph__field__author(&$variables) {
-  $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_author');
-}
-
-/**
- * Pre-process for Address field.
- */
-function _civictheme_preprocess_paragraph__field__address(&$variables) {
-  $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_address');
-}
-
-/**
- * Pre-process for Width field.
- */
-function _civictheme_preprocess_paragraph__field__width(&$variables) {
-  $variables['width'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_width');
-}
-
-/**
- * Pre-process for Height field.
- */
-function _civictheme_preprocess_paragraph__field__height(&$variables) {
-  $variables['height'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_height');
-}
-
-/**
- * Pre-process for Component attributes field.
- */
-function _civictheme_preprocess_paragraph__field__component_attributes(&$variables) {
-  $variables['component_attributes'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attributes');
+function _civictheme_preprocess_paragraph__field__vertical_spacing(&$variables) {
+  $variables['vertical_spacing'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_vertical_spacing');
 }
 
 /**
@@ -215,79 +150,4 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
   if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
-}
-
-/**
- * Pre-process for Attachments field.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
-  $media_items = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
-  foreach ($media_items as $media_item) {
-    $vars = civictheme_media_get_variables($media_item);
-    if ($vars) {
-      $variables['files'][] = $vars;
-    }
-  }
-}
-
-/**
- * Pre-process for Document field.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_paragraph__field__document(&$variables) {
-  $media_item = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE) ?? NULL;
-
-  if (!$media_item) {
-    return;
-  }
-
-  $vars = civictheme_media_get_variables($media_item);
-  if ($vars) {
-    $variables['file'] = $vars;
-  }
-}
-
-/**
- * Pre-process for Panels field.
- */
-function _civictheme_preprocess_paragraph__field__panels(&$variables) {
-  $panels = civictheme_get_field_value($variables['paragraph'], 'field_c_p_panels') ?? [];
-  foreach ($panels as $panel) {
-    $variables['panels'][] = [
-      'expanded' => civictheme_get_field_value($panel, 'field_c_p_expand'),
-      'title' => civictheme_get_field_value($panel, 'field_c_p_title'),
-      'content' => $panel->field_c_p_content->view(),
-    ];
-  }
-}
-
-/**
- * Pre-process for Expand all field.
- */
-function _civictheme_preprocess_paragraph__field__expand_all(&$variables) {
-  $variables['expand_all'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_expand') ?? FALSE;
-}
-
-/**
- * Pre-process for Theme field.
- */
-function _civictheme_preprocess_paragraph__field__theme(&$variables) {
-  $variables['theme'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_theme');
-}
-
-/**
- * Pre-process for Vertical spacing field.
- */
-function _civictheme_preprocess_paragraph__field__vertical_spacing(&$variables) {
-  $variables['vertical_spacing'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_vertical_spacing');
-}
-
-/**
- * Pre-process for With background field.
- */
-function _civictheme_preprocess_paragraph__field__background(&$variables) {
-  $variables['with_background'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_background');
 }

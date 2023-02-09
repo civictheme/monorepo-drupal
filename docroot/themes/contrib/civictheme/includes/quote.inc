@@ -11,10 +11,9 @@
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_quote(&$variables) {
-  _civictheme_preprocess_paragraph__fields($variables, [
-    'content',
-    'author',
-    'theme',
-    'vertical_spacing',
-  ]);
+  _civictheme_preprocess_paragraph__field__content($variables);
+  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__field__vertical_spacing($variables);
+
+  $variables['author'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_author');
 }
