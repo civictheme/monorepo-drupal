@@ -4,6 +4,9 @@ import CivicThemeHeading from './heading.twig';
 
 export default {
   title: 'Atoms/Heading',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Heading = (knobTab) => {
