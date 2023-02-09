@@ -37,7 +37,7 @@ export const EventCard = (knobTab) => {
     summary: text('Summary', randomSentence(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
     tags: randomTags(number(

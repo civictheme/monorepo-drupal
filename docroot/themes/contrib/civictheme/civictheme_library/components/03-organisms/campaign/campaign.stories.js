@@ -34,7 +34,7 @@ export const Campaign = (knobTab) => {
     content: text('Content', randomSentence(), generalKnobTab),
     date: date('Date', new Date(), generalKnobTab),
     image: {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     },
     image_position: radios(

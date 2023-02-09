@@ -260,7 +260,7 @@ export const List = (knobTab) => {
         summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
         url: text('Link URL', 'http://example.com', cardsKnobTab),
         image: boolean('With image', true, cardsKnobTab) ? {
-          src: demoImage(),
+          url: demoImage(),
           alt: 'Image alt text',
         } : false,
         size: 'large',

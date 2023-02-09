@@ -33,7 +33,7 @@ export const PublicationCard = (knobTab) => {
     title: text('Title', 'Publication or whitepaper main title', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
     link: boolean('With file', true, generalKnobTab) ? {

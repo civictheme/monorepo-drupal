@@ -36,7 +36,7 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
     if ($media) {
       $image = civictheme_media_image_get_variables($media);
       if ($image) {
-        $item['icon_html'] = civictheme_embed_svg($image['src'], [
+        $item['icon_html'] = civictheme_embed_svg($image['url'], [
           'ct-icon',
         ]);
       }

@@ -82,7 +82,7 @@ export const BasicContent = (knobTab) => {
   // Image.
   html += CivicThemeFigure({
     theme,
-    src: demoImage(),
+    url: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
   });

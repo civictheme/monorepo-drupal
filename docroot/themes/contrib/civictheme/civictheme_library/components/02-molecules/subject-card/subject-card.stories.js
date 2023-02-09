@@ -26,7 +26,7 @@ export const SubjectCard = (knobTab) => {
     title: text('Title', 'Subject card title which runs across two or three lines', generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,

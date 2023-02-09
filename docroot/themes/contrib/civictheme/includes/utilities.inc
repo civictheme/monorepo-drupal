@@ -63,7 +63,38 @@ function civictheme_load_node_or_revision($variables) {
 }
 
 /**
- * Get variables from image media.
+ * Get variables from media.
+ *
+ * @param \Drupal\media\MediaInterface $media
+ *   Host Media entity for image.
+ *
+ * @return array|null
+ *   Variables array or NULL if not available.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_media_get_variables(MediaInterface $media) {
+  $fid = $media->getSource()->getSourceFieldValue($media);
+  /** @var \Drupal\file\FileInterface $file */
+  $file = $fid ? File::load($fid) : NULL;
+
+  if (empty($file)) {
+    return NULL;
+  }
+
+  return [
+    'name' => t('@name', ['@name' => $file->label()]),
+    'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?? '',
+    'url' => civictheme_media_get_url($media),
+    'size' => format_size($file->getSize()),
+    'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
+    'changed' => civictheme_format_date('civictheme_short_date', $media->getChangedTime()),
+    'icon' => civictheme_get_icon_from_file($file),
+  ];
+}
+
+/**
+ * Get variables from Image media.
  *
  * @param \Drupal\media\MediaInterface $media
  *   Host Media entity for image.
@@ -76,59 +107,75 @@ function civictheme_load_node_or_revision($variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_media_image_get_variables(MediaInterface $media, $image_style = NULL) {
-  if (!$media instanceof Media) {
+  if ($media->bundle() != 'civictheme_image') {
     return NULL;
   }
 
-  $fid = $media->getSource()->getSourceFieldValue($media);
+  $variables = civictheme_media_get_variables($media);
 
-  $file = File::load($fid);
-  if (!$file) {
-    return NULL;
-  }
+  $variables['url'] = civictheme_media_image_get_url($media, $image_style);
 
-  $src = $file->createFileUrl();
-
-  if (!empty($image_style)) {
-    $style = ImageStyle::load($image_style);
-    if (!empty($style)) {
-      $src = $style->buildUrl($file->get('uri')->getString());
-    }
-  }
-
-  $variables = [];
-  $variables['src'] = $src;
-
-  $entity = $media
+  $image = $media
     ->get($media->getSource()->getConfiguration()['source_field'])
     ->first()
     ->getValue();
 
-  $variables['alt'] = $entity['alt'] ?? NULL;
-  $variables['title'] = $entity['title'] ?? NULL;
+  $variables['alt'] = $image['alt'] ?? NULL;
+  $variables['title'] = $image['title'] ?? NULL;
 
   return $variables;
 }
 
 /**
- * Get the media source file url.
+ * Get the media source file URL.
  *
  * @param \Drupal\media\MediaInterface $media
- *   The media entity to derive the url from.
+ *   The media entity to derive the URL from.
+ * @param bool $relative
+ *   (optional) Whether the URL should be root-relative, defaults to TRUE.
  *
  * @return string|false
- *   The url for the source file or false.
+ *   The relative URL for the source file or FALSE if the file was not found.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_get_url(MediaInterface $media) {
-  $fid = $media->getSource()->getSourceFieldValue($media);
-  $file = File::load($fid);
+function civictheme_media_get_url(MediaInterface $media, $relative = TRUE) {
+  $file = File::load($media->getSource()->getSourceFieldValue($media));
+
+  return $file ? $file->createFileUrl($relative) : FALSE;
+}
+
+/**
+ * Get Image media file URL, optionally using an image style.
+ *
+ * @param \Drupal\media\MediaInterface $media
+ *   The media entity to derive the URL from.
+ * @param string $image_style
+ *   (optional) Image style name.
+ * @param bool $relative
+ *   (optional) Whether the URL should be root-relative, defaults to TRUE.
+ *
+ * @return string|false
+ *   The relative URL for the source file or FALSE if the file was not found.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_media_image_get_url(MediaInterface $media, $image_style = NULL, $relative = TRUE) {
+  $src = NULL;
+
+  $file = File::load($media->getSource()->getSourceFieldValue($media));
+
   if ($file) {
-    return \Drupal::service('file_url_generator')->generateAbsoluteString($file->createFileUrl());
+    if ($image_style) {
+      $style = ImageStyle::load($image_style);
+      $src = $style ? $style->buildUrl($file->get('uri')->getString()) : NULL;
+    }
+    else {
+      $src = $file->createFileUrl($relative);
+    }
   }
 
-  return FALSE;
+  return $src;
 }
 
 /**
@@ -556,7 +603,7 @@ function civictheme_get_icon_from_file(File $file) {
     case 'application/x-kpresenter':
       return 'download-file';
 
-    // Acrobat types.
+    // PDF types.
     case 'application/pdf':
     case 'application/x-pdf':
     case 'applications/vnd.pdf':

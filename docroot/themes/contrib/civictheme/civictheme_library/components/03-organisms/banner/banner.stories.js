@@ -41,7 +41,7 @@ export const Banner = (knobTab) => {
       bgImageKnobTab,
     ) : null,
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
-      src: demoImage(0),
+      url: demoImage(0),
       alt: 'Featured image alt text',
     } : null,
     is_decorative: boolean('Decorative', true, generalKnobTab),

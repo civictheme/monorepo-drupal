@@ -24,7 +24,7 @@ export const Image = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    src: boolean('Show image', true, generalKnobTab) ? demoImage() : false,
+    url: boolean('Show image', true, generalKnobTab) ? demoImage() : false,
     alt: text('Image alt text', 'Alternative text', generalKnobTab),
     width: text('Width', '', generalKnobTab),
     height: text('Height', '', generalKnobTab),

@@ -5,7 +5,9 @@
  *
  * Variables:
  * - content_top: [string] Content slot.
- * - image: [object] object with src and alt tag { src: '', alt: '' }
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
  * - image_position: [string] left / right
  * - tags: [array] Array of tags.
  * - title: [string] Title.
@@ -29,8 +31,8 @@
       <div class="ct-slide__image">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
-          src: image.src,
-          alt:  image.alt,
+          url: image.url,
+          alt: image.alt,
         } only %}
       </div>
     {% endif %}

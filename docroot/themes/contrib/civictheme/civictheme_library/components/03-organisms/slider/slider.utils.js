@@ -48,7 +48,7 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
 
   for (let i = 0; i < count; i++) {
     const image = template && template.image ? template.image : {
-      src: demoImage(),
+      url: demoImage(),
       alt: randomText(4),
     };
     const imagePosition = template && template.image_position ? template.image_position : 'right';

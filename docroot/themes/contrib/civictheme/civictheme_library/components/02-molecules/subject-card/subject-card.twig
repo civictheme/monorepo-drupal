@@ -6,7 +6,9 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - image_over: [string] Content slot.
- * - image: [object] Image data.
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
  * - title: [string] Card title.
  * - url: [string] Optional URL.
  * - is_external: [boolean] Link is external.
@@ -16,7 +18,7 @@
 #}
 
 {% set with_link = url is not empty %}
-{% set with_image = image.src is defined and image.src is not empty %}
+{% set with_image = image.url is defined and image.url is not empty %}
 {% set with_image_class = with_image ? 'ct-subject-card--with-image' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, with_image_class, modifier_class|default('')) %}
@@ -24,12 +26,12 @@
 <div class="ct-subject-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="ct-subject-card__content">
     {% block image %}
-      {% if image.src is defined and image.src is not empty %}
+      {% if image.url is defined and image.url is not empty %}
         <div class="ct-subject-card__content__image">
           {% include '@atoms/image/image.twig' with {
             theme: theme,
-            src: image.src,
-            alt:  image.alt,
+            url: image.url,
+            alt: image.alt,
           } only %}
         </div>
       {% endif %}
