@@ -41,8 +41,8 @@ Feature: Subject card render
     Then I should see the link "View all Subject cards" with "https://example.com" in '.ct-list'
     And I should see 1 ".ct-list" elements
     And I should see 3 ".ct-subject-card" elements
-    And I should see 2 ".ct-subject-card__content__image img" elements
-    And I should see 3 ".ct-subject-card__content__title" elements
+    And I should see 2 ".ct-subject-card__image img" elements
+    And I should see 3 ".ct-subject-card__title" elements
     And I should not see an ".ct-navigation-card" element
     And I should see the text "Subject card title 1"
     And I should see the text "Subject card title 2"

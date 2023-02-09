@@ -52,8 +52,8 @@ Feature: Navigation card render
     And I should see the text "[TEST] Navigation manual list"
     Then I should see the link "View all navigation cards" with "https://example.com" in '.ct-list'
     And I should see 4 ".ct-navigation-card" elements
-    And I should see 4 ".ct-navigation-card__content__title" elements
-    And I should see 4 ".ct-navigation-card__content__summary" elements
+    And I should see 4 ".ct-navigation-card__title" elements
+    And I should see 4 ".ct-navigation-card__summary" elements
     And I should see the text "Navigation card title"
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"

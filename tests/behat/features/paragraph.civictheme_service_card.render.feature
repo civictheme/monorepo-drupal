@@ -34,8 +34,8 @@ Feature: Service card render
     And I should see 3 ".ct-service-card" elements
     And I should see 2 ".ct-service-card.ct-theme-dark" elements
     And I should see 1 ".ct-service-card.ct-theme-light" elements
-    And I should see 3 ".ct-service-card__content__title" elements
-    And I should see 3 ".ct-service-card__content__links" elements
+    And I should see 3 ".ct-service-card__title" elements
+    And I should see 3 ".ct-service-card__links" elements
     And I should not see an ".ct-subject-card" element
     And I should not see an ".ct-service-card img" element
     And I should see the text "Service card title 1"

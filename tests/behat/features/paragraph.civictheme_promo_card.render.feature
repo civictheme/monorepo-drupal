@@ -69,9 +69,9 @@ Feature: Promo card render
     And I should see 2 ".ct-promo-card.ct-theme-light" elements
     And I should see 2 ".ct-promo-card.ct-theme-dark" elements
     And I should see 4 ".ct-promo-card__content" elements
-    And I should see 4 ".ct-promo-card__content__title" elements
-    And I should see 4 ".ct-promo-card__content__summary" elements
-    And I should see 3 ".ct-promo-card__content__tags .ct-tag" elements
+    And I should see 4 ".ct-promo-card__title" elements
+    And I should see 4 ".ct-promo-card__summary" elements
+    And I should see 3 ".ct-promo-card__tags .ct-tag" elements
     And I should see the text "Promo card title 1"
     And I should see the text "Promo card title 2"
     And I should see the text "Promo card title 3"

@@ -67,8 +67,8 @@ Feature: Publication card render
     And I should see 2 ".ct-publication-card.ct-theme-light" elements
     And I should see 2 ".ct-publication-card.ct-theme-dark" elements
     And I should see 4 ".ct-publication-card__content" elements
-    And I should see 4 ".ct-publication-card__content__title" elements
-    And I should see 4 ".ct-publication-card__content__summary" elements
+    And I should see 4 ".ct-publication-card__title" elements
+    And I should see 4 ".ct-publication-card__summary" elements
     And I should see the text "Publication card title 1"
     And I should see the text "Publication card title 2"
     And I should see the text "Publication card title 3"

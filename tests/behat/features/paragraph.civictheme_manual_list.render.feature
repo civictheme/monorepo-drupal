@@ -103,8 +103,8 @@ Feature: Manual list render
     And I should see the text "[TEST] Navigation manual list"
     Then I should see the link "View all navigation cards" with "https://example.com" in '.ct-list'
     And I should see 4 ".ct-navigation-card" elements
-    And I should see 4 ".ct-navigation-card__content__title" elements
-    And I should see 4 ".ct-navigation-card__content__summary" elements
+    And I should see 4 ".ct-navigation-card__title" elements
+    And I should see 4 ".ct-navigation-card__summary" elements
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"
     And I should see the text "Navigation card title 3"
@@ -138,8 +138,8 @@ Feature: Manual list render
     Then I should see the link "View all Subject cards" with "https://example.com" in '.ct-list'
     And I should see 1 ".ct-list" elements
     And I should see 3 ".ct-subject-card" elements
-    And I should see 2 ".ct-subject-card__content__image img" elements
-    And I should see 3 ".ct-subject-card__content__title" elements
+    And I should see 2 ".ct-subject-card__image img" elements
+    And I should see 3 ".ct-subject-card__title" elements
     And I should not see an ".ct-navigation-card" element
     And I should see the text "Subject card title"
     And I should see the text "Subject card title 1"
@@ -173,8 +173,8 @@ Feature: Manual list render
     And I should see 3 ".ct-service-card" elements
     And I should see 2 ".ct-service-card.ct-theme-dark" elements
     And I should see 1 ".ct-service-card.ct-theme-light" elements
-    And I should see 3 ".ct-service-card__content__title" elements
-    And I should see 3 ".ct-service-card__content__links" elements
+    And I should see 3 ".ct-service-card__title" elements
+    And I should see 3 ".ct-service-card__links" elements
     And I should not see an ".ct-subject-card" element
     And I should not see an ".ct-service-card img" element
     And I should see the text "Service card title 1"
@@ -206,8 +206,8 @@ Feature: Manual list render
     And I should not see an ".ct-list__link a" element
     And I should see 1 ".ct-list" elements
     And I should see 1 ".ct-event-card__content" elements
-    And I should see 1 ".ct-subject-card__content__title" elements
-    And I should see 1 ".ct-navigation-card__content__title" elements
+    And I should see 1 ".ct-subject-card__title" elements
+    And I should see 1 ".ct-navigation-card__title" elements
     And I should see 1 ".ct-promo-card__content" elements
     And I should see 3 ".ct-item-grid__item > .ct-theme-light" elements
     And I should see 1 ".ct-item-grid__item > .ct-theme-dark" elements
