@@ -40,10 +40,10 @@ Feature: Campaign render
     And I should not see an ".ct-campaign.ct-theme-dark" element
     And I should see an ".ct-campaign.ct-vertical-spacing-inset--both" element
     And I should see an ".ct-campaign.ct-campaign--image-right" element
-    And I should see an ".ct-campaign__content__summary" element
-    And I should see an ".ct-campaign__content__tags" element
-    And I should see an ".ct-campaign__content__date" element
-    And I should see an ".ct-campaign__content__links" element
+    And I should see an ".ct-campaign__content" element
+    And I should see an ".ct-campaign__tags" element
+    And I should see an ".ct-campaign__date" element
+    And I should see an ".ct-campaign__links" element
     And I should see the text "[TEST] Campaign title"
     And I should see the text "Summary text"
     And I should see the text "29 Apr 2021"
