@@ -7,6 +7,7 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 
 /**
  * Pre-process paragraph fields using field preprocessors.
@@ -217,34 +218,13 @@ function _civictheme_preprocess_paragraph__field__webform(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__field__attachments(&$variables) {
-  $links = [];
-
-  $attachments = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
-  foreach ($attachments as $attachment) {
-    $fid = $attachment->getSource()->getSourceFieldValue($attachment);
-    /** @var \Drupal\file\FileInterface $file */
-    $file = $fid ? File::load($fid) : NULL;
-    if (!empty($file)) {
-      $url = $file->createFileUrl(FALSE);
-      $file_size = format_size($file->getSize());
-
-      $icon = civictheme_get_icon_from_file($file);
-      $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
-
-      $links[] = [
-        'url' => $url,
-        'text' => t('@name', [
-          '@name' => $file->label(),
-        ]),
-        'ext' => $file_extension ?? '',
-        'size' => $file_size ?? '',
-        'icon' => $icon,
-        'last_updated' => civictheme_format_date('civictheme_short_date', $attachment->getChangedTime()),
-      ];
+  $files = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
+  foreach ($files as $file) {
+    $vars = civictheme_media_get_variables($file);
+    if ($vars) {
+      $variables['files'][] = $vars;
     }
   }
-
-  $variables['links'] = $links;
 }
 
 /**
