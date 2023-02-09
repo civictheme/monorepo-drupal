@@ -311,3 +311,7 @@ export const toLabels = function (values) {
   }
   return arr;
 };
+
+export const dateIsValid = function (date) {
+  return !isNaN(Date.parse(date));
+}
