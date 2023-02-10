@@ -125,6 +125,18 @@ export const BasicContent = (knobTab) => {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
     is_contained: boolean('Contained', true, generalKnobTab),
+    with_background: boolean('With background', false, generalKnobTab),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

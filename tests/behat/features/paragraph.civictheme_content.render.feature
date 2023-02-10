@@ -17,8 +17,8 @@ Feature: Content render
 
     When I visit "civictheme_page" "[TEST] Page content test"
     And I should see an ".ct-basic-content" element
-    And I should not see an ".ct-basic-content.ct-content--with-background" element
     And I should see an ".ct-basic-content.ct-theme-light" element
+    And I should not see an ".ct-basic-content.ct-basic-content--with-background" element
     And I should see the text "[TEST] Page content"
 
   @api
@@ -32,7 +32,7 @@ Feature: Content render
 
     When I visit "civictheme_page" "[TEST] Page content test"
     And I should see an ".ct-basic-content" element
-    And I should see an ".ct-basic-content.ct-content--with-background" element
     And I should see an ".ct-basic-content.ct-theme-dark" element
+    And I should see an ".ct-basic-content.ct-basic-content--with-background" element
     And I should not see an ".ct-basic-content.ct-theme-light" element
     And I should see the text "[TEST] Page content"
