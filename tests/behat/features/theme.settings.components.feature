@@ -112,10 +112,6 @@ Feature: Components settings are available in the theme settings
     And should see an "textarea#edit-components-link-external-override-domains" element
     And should not see an "textarea#edit-components-link-external-override-domains.required" element
 
-    And I see field "Expose Migration metadata"
-    And should see an "input[name='components[migrate][expose_migration_metadata]']" element
-    And should not see an "input[name='components[migrate][expose_migration_metadata]'].required" element
-
     And I should see the text "Theme"
     And I should see an "input[name='components[skip_link][theme]']" element
     And I should see an "#edit-components-skip-link-theme--wrapper.required" element
