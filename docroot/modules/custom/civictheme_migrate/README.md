@@ -19,8 +19,6 @@ For an understanding of the structure of JSON Schema files [see JSON schema docu
 
 Validation is carried out using [opis/json-schema](https://github.com/opis/json-schema).
 
-
-
 ## Example valid JSON file
 
 ```json

@@ -14,6 +14,7 @@ use Opis\JsonSchema\Validator;
  * @group CivicTheme
  */
 class CivicthemeMigrateValidatorBase extends KernelTestBase {
+
   /**
    * {@inheritdoc}
    */
@@ -41,6 +42,7 @@ class CivicthemeMigrateValidatorBase extends KernelTestBase {
     $validation_result = $this->validator->validate($data, $scheme_id);
     if ($message !== NULL) {
       $this->assertEquals($expected, $validation_result, $message);
+
       return;
     }
     $this->assertEquals($expected, $validation_result);

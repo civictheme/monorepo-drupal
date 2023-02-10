@@ -2,10 +2,10 @@
 
 namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 
-use Drupal\migrate_file\Plugin\migrate\process\FileImport;
 use Drupal\migrate\MigrateExecutableInterface;
-use Drupal\migrate\Row;
 use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Row;
+use Drupal\migrate_file\Plugin\migrate\process\FileImport;
 
 /**
  * Imports a file from a remote URL.

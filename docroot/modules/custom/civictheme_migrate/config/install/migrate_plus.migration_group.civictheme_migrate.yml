@@ -1,6 +1,6 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies: {}
 id: civictheme_migrate
 label: 'CivicTheme Migrate'
 description: 'CivicTheme migration'
