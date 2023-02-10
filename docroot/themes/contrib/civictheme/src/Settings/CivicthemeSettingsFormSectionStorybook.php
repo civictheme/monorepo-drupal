@@ -13,7 +13,7 @@ class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSecti
    * {@inheritdoc}
    */
   public function weight() {
-    return 5;
+    return 6;
   }
 
   /**
@@ -31,7 +31,7 @@ class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSecti
         '%theme' => $theme_name,
       ]),
       '#open' => FALSE,
-      '#weight' => 52,
+      '#weight' => 60,
     ];
 
     $storybook_file = $theme_path . '/storybook-static/index.html';

@@ -61,7 +61,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
     $form['colors'] = [
       '#type' => 'details',
       '#title' => $this->t('Colors'),
-      '#weight' => 40,
+      '#weight' => 20,
       '#open' => TRUE,
       '#tree' => TRUE,
       '#description' => $this->t('<p>Website colors can be specified via:</p><ul><li><strong>CSS code</strong><br>Uncheck <code>Use Color Selector</code> below.</li><li><strong>Color Selector</strong><br>Check <code>Use Color Selector</code> below.</li><li><strong>CSS code with Color Selector overrides</strong><br>Check <code>Use Color Selector</code> below. Note that this will require to keep CSS synchronised with Color Selector values. This approach is not recommended and should be used as a last resort.</li></ul>'),

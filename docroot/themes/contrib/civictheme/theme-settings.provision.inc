@@ -42,7 +42,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     // @todo Improve content creation by allowing to skip overwriting of the
     // existing items.
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
-    '#weight' => 51,
+    '#weight' => 50,
     '#open' => FALSE,
   ];
 
