@@ -123,7 +123,10 @@ function _civictheme_preprocess_block_civictheme_banner_node(&$variables) {
     $variables['breadcrumb'] = NULL;
   }
 
-  $variables['site_section'] = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+  $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+  if (!empty($site_section)) {
+    $variables['site_section'] = $site_section->getName();
+  }
 
   $updated_date = _civictheme_node_get_updated_date($node);
   if (!empty($updated_date)) {

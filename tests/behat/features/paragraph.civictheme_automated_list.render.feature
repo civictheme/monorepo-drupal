@@ -29,7 +29,7 @@ Feature: Automated list render
       | [TEST] Page 15                | [relative:-15 minutes] | 1      |                                                |
 
   @api @testmode
-  Scenario: Listing, defaults
+  Scenario: Automated list, defaults
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -43,7 +43,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__filters .views-exposed-form" element
 
   @api @testmode
-  Scenario: Listing, custom values
+  Scenario: Automated list, custom values
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -81,7 +81,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__filters .views-exposed-form" element
 
   @api @testmode
-  Scenario: Listing, unlimited
+  Scenario: Automated list, unlimited
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -93,7 +93,7 @@ Feature: Automated list render
     And I should see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
-  Scenario: Listing, unlimited with limit
+  Scenario: Automated list, unlimited with limit
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -105,7 +105,7 @@ Feature: Automated list render
     And I should see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
-  Scenario: Listing, unlimited with limit
+  Scenario: Automated list, unlimited with limit
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -118,7 +118,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
-  Scenario: Listing, limited with limit more than page
+  Scenario: Automated list, limited with limit more than page
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -131,7 +131,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @testmode
-  Scenario: Listing, topics
+  Scenario: Automated list, topics
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
@@ -143,7 +143,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__results-below .ct-pager" element
 
   @api @javascript @skipped
-  Scenario: Listing, exposed filters, filtering
+  Scenario: Automated list, exposed filters, filtering
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
