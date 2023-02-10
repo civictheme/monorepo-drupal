@@ -46,32 +46,30 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if (!$paragraph->hasField('field_c_p_reference')) {
-    return;
-  }
-
   /** @var \Drupal\node\NodeInterface $node */
   $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE);
   if (empty($node)) {
     return;
   }
 
-  $variables['title'] = $node->label();
-  $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
-  $variables['content'] = civictheme_get_field_value($node, 'field_c_n_summary');
-  $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__date($variables);
+  _civictheme_preprocess_paragraph__node_field__topics($variables);
+  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
-  $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
-  if ($media) {
-    $variables['image'] = civictheme_media_image_get_variables($media);
-    $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
-  }
+  // Special case to re-use 'summary' processor for 'content' field.
+  _civictheme_preprocess_paragraph__node_field__summary($variables);
+  $variables['content'] = $variables['summary'] ?? FALSE;
+  unset($variables['summary']);
 
   $link_text = civictheme_get_field_value($paragraph, 'field_c_p_link_text', TRUE);
   if ($link_text) {
     $variables['links'][] = [
       'text' => $link_text,
       'url' => $node->toUrl()->toString(),
+      'is_external' => $node->toUrl()->isExternal(),
       'is_new_window' => $node->toUrl()->isExternal(),
     ];
   }

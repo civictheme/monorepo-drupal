@@ -38,6 +38,17 @@ function _civictheme_preprocess_paragraph__paragraph_field__date(&$variables) {
 }
 
 /**
+ * Pre-process for Date node field.
+ */
+function _civictheme_preprocess_paragraph__node_field__date(&$variables) {
+  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  if ($node) {
+    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $node->getChangedTime());
+    $variables['date_iso'] = date('c', strtotime($node->getChangedTime()));
+  }
+}
+
+/**
  * Pre-process for Date range paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__date_range(&$variables) {

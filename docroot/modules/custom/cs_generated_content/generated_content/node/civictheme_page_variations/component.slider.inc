@@ -61,6 +61,34 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
       [
         'type' => 'slider',
+        'title' => 'Dark, 1 reference slide,  ' . $helper::staticSentence(2),
+        'theme' => $helper::civicthemeThemeDark(),
+        'slides' => [
+          [
+            'type' => 'civictheme_slider_slide_ref',
+            'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
+            'theme' => $helper::civicthemeThemeDark(),
+            'image_position' => $helper::civicthemeImagePositionRight(),
+            'link_text' => 'Reference slide, Image on right, ' . $helper::staticSentence(2),
+          ],
+        ],
+      ],
+      [
+        'type' => 'slider',
+        'title' => 'Dark, 1 reference slide, no button, ' . $helper::staticSentence(2),
+        'theme' => $helper::civicthemeThemeDark(),
+        'slides' => [
+          [
+            'type' => 'civictheme_slider_slide_ref',
+            'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
+            'theme' => $helper::civicthemeThemeDark(),
+            'image_position' => $helper::civicthemeImagePositionRight(),
+          ],
+        ],
+      ],
+
+      [
+        'type' => 'slider',
         'title' => 'Light, 3 slides ' . $helper::staticSentence(2),
         'theme' => $helper::civicthemeThemeLight(),
         'slides' => [
