@@ -15,12 +15,12 @@
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__image($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__summary($variables);
-  _civictheme_preprocess_paragraph__field__link($variables);
-  _civictheme_preprocess_paragraph__field__topics($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
   $variables['subtitle'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_subtitle', TRUE);
 }
@@ -28,14 +28,26 @@ function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
+function civictheme_preprocess_paragraph__civictheme_promo_card_ref(&$variables) {
+  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__summary($variables);
+  _civictheme_preprocess_paragraph__node_field__link($variables);
+  _civictheme_preprocess_paragraph__node_field__topics($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
 function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__image($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__summary($variables);
-  _civictheme_preprocess_paragraph__field__date_range($variables);
-  _civictheme_preprocess_paragraph__field__link($variables);
-  _civictheme_preprocess_paragraph__field__topics($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__date_range($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
   $variables['location'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_location', TRUE);
 }
@@ -43,12 +55,26 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
+function civictheme_preprocess_paragraph__civictheme_event_card_ref(&$variables) {
+  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__location($variables);
+  _civictheme_preprocess_paragraph__node_field__summary($variables);
+  _civictheme_preprocess_paragraph__node_field__link($variables);
+  _civictheme_preprocess_paragraph__node_field__date_range($variables);
+  _civictheme_preprocess_paragraph__node_field__topics($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
 function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__image($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__summary($variables);
-  _civictheme_preprocess_paragraph__field__link($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
   $variables['image_as_icon'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_show_image_as_icon') ?? FALSE;
 }
@@ -56,11 +82,22 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables
 /**
  * Implements template_preprocess_paragraph().
  */
+function civictheme_preprocess_paragraph__civictheme_navigation_card_ref(&$variables) {
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__summary($variables);
+  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__node_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
 function civictheme_preprocess_paragraph__civictheme_publication_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__image($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__summary($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
   $document = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE) ?? NULL;
   if ($document) {
@@ -75,17 +112,27 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__image($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__link($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function civictheme_preprocess_paragraph__civictheme_subject_card_ref(&$variables) {
+  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 }
 
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_service_card(&$variables) {
-  _civictheme_preprocess_paragraph__field__title($variables);
-  _civictheme_preprocess_paragraph__field__links($variables);
-  _civictheme_preprocess_paragraph__field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__links($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 }

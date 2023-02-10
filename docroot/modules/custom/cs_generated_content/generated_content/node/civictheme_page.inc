@@ -42,7 +42,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
         $variations[] = [
           'title' => sprintf('Page. %s %s', str_pad($i + 1, 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
           'thumbnail' => $helper::staticMediaItem('civictheme_image'),
-          'summary' => 'Summary ' . $helper::staticSentence(20),
+          'summary' => 'Summary ' . $helper::staticSentence(100),
           'topics' => $helper::staticTerms('civictheme_topics', 1),
           'components' => [
             [

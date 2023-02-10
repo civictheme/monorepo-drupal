@@ -333,6 +333,40 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
         ],
       ],
     ],
+    [
+      'title' => 'Page. Component. Event reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
+      'components' => [
+        [
+          'title' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card_ref',
+              'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+          ],
+        ],
+        [
+          'title' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'type' => 'manual_list',
+          'column_count' => 2,
+          'background' => TRUE,
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card_ref',
+              'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+          ],
+        ],
+      ],
+    ],
 
     [
       'title' => 'Page. Component. Publication card',

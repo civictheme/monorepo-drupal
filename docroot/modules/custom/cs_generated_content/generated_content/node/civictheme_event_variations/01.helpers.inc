@@ -17,7 +17,6 @@ function _cs_generated_content_create_node_civictheme_event__variations__post_pr
   // Add common variation properties to all variations, but only if they were
   // not provided within variations.
   foreach ($variations as &$variation) {
-    $variation['title'] = $variation['title'];
     $variation += [
       'status' => TRUE,
       'alias' => '/generated-content/civictheme_event/{title}',

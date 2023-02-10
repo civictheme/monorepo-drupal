@@ -660,3 +660,16 @@ function civictheme_external_link_normalize_domain($domain) {
 
   return $domain;
 }
+
+/**
+ * Extract card name from card and reference card paragraph bundles.
+ */
+function _civictheme_get_card_name_from_bundle($bundle) {
+  if (preg_match('/civictheme_(.*_card).*/', $bundle, $matches)) {
+    if (!empty($matches[1])) {
+      return $matches[1];
+    }
+  }
+
+  return FALSE;
+}
