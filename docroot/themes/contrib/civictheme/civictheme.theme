@@ -50,6 +50,7 @@ require_once 'includes/system_branding.inc';
 require_once 'includes/table.inc';
 require_once 'includes/views.inc';
 require_once 'includes/wysiwyg.inc';
+require_once 'includes/webform.inc';
 
 /**
  * Implements hook_theme().

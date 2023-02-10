@@ -235,17 +235,6 @@ function _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing(&$v
 }
 
 /**
- * Pre-process for Webform paragraph field.
- */
-function _civictheme_preprocess_paragraph__paragraph_field__webform(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
-    $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
-  }
-}
-
-/**
  * Pre-process for Location node field.
  */
 function _civictheme_preprocess_paragraph__node_field__location(&$variables) {
