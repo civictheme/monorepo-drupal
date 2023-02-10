@@ -4,14 +4,24 @@
  * List component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - title: [string] Title.
+ * - link_above: [object] Link object:
+ *   - text [string] Text.
+ *   - url [string] URL.
+ *   - is_new_window [boolean] Open link in a new window.
+ *   - is_external [boolean] Link is external or not.
  * - filters: [string] Exposed filters.
  * - header: [string] Header slot.
  * - rows: [string] Rows content.
  * - empty: [string] Empty results content.
  * - pager: [string] Pager slot.
  * - footer: [string] Footer slot.
+ * - link_below: [object] Link object:
+ *   - text [string] Text.
+ *   - url [string] URL.
+ *   - is_new_window [boolean] Open link in a new window.
+ *   - is_external [boolean] Link is external or not.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - with_background: [boolean] With background or not.
  * - attributes: [string] Additional attributes.
@@ -39,7 +49,7 @@
                       content: title,
                       level: 2,
                       theme: theme,
-                      modifier_class: 'ct-list__header-title',
+                      modifier_class: 'ct-list__title',
                     } only %}
                   {% endif %}
                 {% endblock %}
@@ -58,6 +68,7 @@
                         is_new_window: link_above.is_external,
                         is_external: link_above.is_external,
                         icon: link_above.is_external ? '' : 'right-arrow-2',
+                        modifier_class: 'ct-list__link-above__link',
                       } only %}
                     </div>
                   {% endif %}
@@ -71,13 +82,14 @@
 
     {% block content %}
       {% if content %}
-        <div class="ct-list__content">
+        <div class="ct-list__content__wrapper">
           <div class="container">
             <div class="row">
               <div class="col-xxs-12">
                 {% include '@atoms/paragraph/paragraph.twig' with {
                   content: content,
                   theme: theme,
+                  modifier_class: 'ct-list__content',
                 } only %}
               </div>
             </div>
@@ -152,6 +164,7 @@
               is_new_window: link_below.is_external,
               is_external: link_below.is_external,
               icon: link_below.is_external ? '' : 'right-arrow-2',
+              modifier_class: 'ct-list__link-below__link',
             } only %}
           </div>
         {% endif %}

@@ -19,13 +19,6 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
   // Remove existing content.
   $variables['content'] = NULL;
 
-  $attributes = [];
-  $attributes['id'] = Html::getUniqueId('listing-' . $paragraph->id());
-  $variables['attributes'] = $variables['attributes'] ?? [];
-  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
-  unset($variables['attributes']['class']);
-  $variables['attributes'] = $variables['attributes'] + $attributes;
-
   $link_above = civictheme_get_field_value($paragraph, 'field_c_p_list_link_above', TRUE);
   $link_above_data = $link_above ? [
     'text' => $link_above->get('title')->getString(),
@@ -57,7 +50,7 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'title' => civictheme_get_field_value($paragraph, 'field_c_p_title'),
     'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
     'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background', FALSE, FALSE),
-    'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
+    'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
     'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_column_count'),
     'link_below' => $link_below_data,
     'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_fill_width', FALSE, FALSE),
@@ -65,4 +58,11 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
   ];
 
   $variables += $settings;
+
+  $attributes = [];
+  $attributes['id'] = Html::getUniqueId('civictheme-manual-list-' . $paragraph->id());
+  $variables['attributes'] = $variables['attributes'] ?? [];
+  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
+  unset($variables['attributes']['class']);
+  $variables['attributes'] = $variables['attributes'] + $attributes;
 }
