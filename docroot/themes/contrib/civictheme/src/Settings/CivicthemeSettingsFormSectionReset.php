@@ -49,6 +49,17 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
         ],
       ],
     ];
+
+    $form['#process'][] = [$this, 'processForm'];
+  }
+
+  /**
+   * Process callback.
+   */
+  public function processForm(&$element, FormStateInterface $form_state) {
+    $form_state->addCleanValueKey('reset');
+
+    return $element;
   }
 
   /**
