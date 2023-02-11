@@ -11,7 +11,7 @@ field_name: field_c_p_list_content_type
 entity_type: paragraph
 bundle: civictheme_automated_list
 label: 'Content type'
-description: ''
+description: "Content types to be shown within a list.<br/>\r\nUse <code>Any</code> to show content from all content types."
 required: true
 translatable: false
 default_value:

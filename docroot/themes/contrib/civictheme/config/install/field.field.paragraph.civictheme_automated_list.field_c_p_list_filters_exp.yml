@@ -11,7 +11,7 @@ field_name: field_c_p_list_filters_exp
 entity_type: paragraph
 bundle: civictheme_automated_list
 label: 'Exposed filters'
-description: 'Select exposed filters that should be shown.'
+description: 'Select exposed filters to show above the list.'
 required: false
 translatable: false
 default_value: {  }

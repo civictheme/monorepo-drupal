@@ -190,14 +190,14 @@ Feature: Automated list render
     And I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields/paragraph.civictheme_automated_list.field_c_p_list_type/storage"
     And I fill in "Allowed values list" with:
       """
-      civictheme_automated_list__block1|Default Listing
-      civictheme_automated_list_test__block_test_1|Test Listing
+      civictheme_automated_list__block1|Default
+      civictheme_automated_list_test__block_test_1|Test
       """
     And I press "Save field settings"
 
     And I edit civictheme_page "Page Automated list component"
     And I press "field_c_n_components_0_edit"
-    When I select "Test Listing" from "edit-field-c-n-components-0-subform-field-c-p-list-type"
+    When I select "Test" from "edit-field-c-n-components-0-subform-field-c-p-list-type"
 
     And I press "Save"
 
