@@ -72,7 +72,7 @@ function _civictheme_preprocess_node__full(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  civictheme_attributes_to_modifier_class($variables);
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -86,7 +86,7 @@ function _civictheme_preprocess_node__default(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  civictheme_attributes_to_modifier_class($variables);
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

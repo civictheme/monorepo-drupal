@@ -18,20 +18,20 @@ use Drupal\paragraphs\Entity\Paragraph;
  */
 function civictheme_preprocess_input(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
-  $variables['state'] = 'none';
-  if (isset($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
 
+  $variables['state'] = 'none';
+
+  if (isset($variables['attributes']['class'])) {
     if (in_array('error', $variables['attributes']['class'])) {
       $variables['state'] = 'error';
     }
-
-    unset($variables['attributes']['class']);
   }
 
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
   }
+
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -41,11 +41,7 @@ function civictheme_preprocess_input(&$variables) {
  */
 function civictheme_preprocess_select(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
-
-  if (isset($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -87,10 +83,7 @@ function _civictheme_preprocess_form_element_classes(&$variables) {
     $variables['attributes']['class'][] = 'form-item--error';
   }
 
-  if (isset($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -205,10 +198,7 @@ function civictheme_preprocess_form_element_label(&$variables) {
     $variables['attributes']['class'][] = 'form-required';
   }
 
-  if (isset($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -258,21 +248,21 @@ function _civictheme_preprocess_fieldset_attributes(&$variables) {
     'js-form-wrapper',
     'form-wrapper',
   ]);
-  if (isset($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
+
   if (isset($variables['legend_span']['attributes'])) {
     $variables['legend_span_attributes'] = $variables['legend_span']['attributes'];
   }
+
   if (isset($variables['legend']['title'])) {
     $variables['legend'] = $variables['legend']['title'];
   }
+
   if (isset($variables['legend']['attributes']['class'])) {
     $variables['legend_modifier_class'] = implode(' ', $variables['legend']['attributes']['class']);
     unset($variables['legend']['attributes']['class']);
     $variables['legend_attributes'] = $variables['legend']['attributes'] ?? '';
   }
+
   if (isset($variables['description']['content'])) {
     $variables['description_attributes'] = $variables['description']['attributes'] ?? '';
     if (isset($variables['description']['attributes']['class'])) {
@@ -280,6 +270,8 @@ function _civictheme_preprocess_fieldset_attributes(&$variables) {
     }
     $variables['description'] = $variables['description']['content'];
   }
+
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

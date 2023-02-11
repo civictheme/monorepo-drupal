@@ -283,21 +283,15 @@ function civictheme_preprocess_views_view(&$variables) {
   $variables['theme'] = $variables['theme'] ?? 'light';
   $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
 
-  $variables['modifier_class'] = [];
-  if (!empty($variables['attributes']['class'])) {
-    $variables['modifier_class'] = $variables['attributes']['class'];
-    unset($variables['attributes']['class']);
+  if (!empty($variables['dom_id'])) {
+    $variables['attributes']['class'] = 'js-view-dom-id-' . $variables['dom_id'];
   }
-
-  $variables['modifier_class'] = array_merge($variables['modifier_class'], [
-    !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
-  ]);
-
-  $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
 
   if (isset($view->civictheme_automated_list['show_filters']) && $view->civictheme_automated_list['show_filters'] === FALSE) {
     $variables['filters'] = NULL;
   }
+
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

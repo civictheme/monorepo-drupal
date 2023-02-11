@@ -207,18 +207,20 @@ function civictheme_embed_svg($url, array $css_classes = []) {
 }
 
 /**
- * Parse attribute classes into a string for modifier_class property.
+ * Preprocess 'attribute' classes variables into 'modifier_class'.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_attributes_to_modifier_class(&$variables) {
-  if (isset($variables['attributes']['class'])) {
-    $attributes = new Attribute($variables['attributes']);
-    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
-    // Remove class from attributes to avoid duplicated 'class' attribute on
-    // the element.
-    unset($variables['attributes']['class']);
+function civictheme_convert_attributes_to_modifier_class(&$variables) {
+  if (!isset($variables['attributes']['class'])) {
+    return;
   }
+
+  $attributes = new Attribute($variables['attributes']);
+  $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+  // Remove class from attributes to avoid duplicated 'class' attribute on
+  // the element.
+  unset($variables['attributes']['class']);
 }
 
 /**

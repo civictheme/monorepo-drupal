@@ -30,11 +30,6 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
     $attributes['data-view-display'] = Html::cleanCssIdentifier($variables['automated_list']['#display_name']);
   }
 
-  $variables['attributes'] = $variables['attributes'] ?? [];
-  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
-  unset($variables['attributes']['class']);
-  $variables['attributes'] = $variables['attributes'] + $attributes;
-
   // @todo Review why we need these variables.
   $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
   $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit');
@@ -47,6 +42,8 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
       $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
     }
   }
+
+  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

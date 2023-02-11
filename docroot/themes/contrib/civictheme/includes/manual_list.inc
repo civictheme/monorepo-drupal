@@ -61,8 +61,7 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
 
   $attributes = [];
   $attributes['id'] = Html::getUniqueId('civictheme-manual-list-' . $paragraph->id());
-  $variables['attributes'] = $variables['attributes'] ?? [];
-  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
-  unset($variables['attributes']['class']);
-  $variables['attributes'] = $variables['attributes'] + $attributes;
+
+  $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
+  civictheme_convert_attributes_to_modifier_class($variables);
 }

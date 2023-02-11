@@ -99,6 +99,36 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ */
+function civictheme_theme_registry_alter(&$theme_registry) {
+  // Define a new preprocess hook that will always run last.
+  $hook = 'civictheme_preprocess_last';
+
+  foreach ($theme_registry as $name => $info) {
+    if (in_array($hook, $theme_registry[$name]['preprocess functions'] ?? [])) {
+      foreach ($info['preprocess functions'] as $k => $function) {
+        if ($function == $hook) {
+          unset($theme_registry[$name]['preprocess functions'][$k]);
+          $theme_registry[$name]['preprocess functions'][] = $hook;
+        }
+      }
+    }
+    else {
+      $theme_registry[$name]['preprocess functions'][] = $hook;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_last().
+ */
+function civictheme_preprocess_last(&$variables, $hook) {
+  // Process attributes for all components before they are sent to templates.
+  civictheme_convert_attributes_to_modifier_class($variables);
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_html(&$variables) {

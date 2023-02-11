@@ -5,7 +5,6 @@
  * Template for CivicTheme Starter Kit theme.
  */
 
-use Drupal\Core\Site\Settings;
 use Drupal\views\ViewExecutable;
 use Drupal\paragraphs\Entity\Paragraph;
 
