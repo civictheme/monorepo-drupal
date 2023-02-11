@@ -28,6 +28,7 @@ use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
+use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
 
 /**
@@ -309,10 +310,29 @@ class FeatureContext extends DrupalContext {
    *
    * @When I set :name theme as default
    */
-  public function setThemAsDefault($name) {
+  public function setThemeAsDefault($name) {
     \Drupal::service('config.factory')->getEditable('system.theme')
       ->set('default', $name)
       ->save();
+  }
+
+  /**
+   * Visit a settings page of the theme.
+   *
+   * @When I visit :name theme settings page
+   */
+  public function themeVisitSettings($name = NULL) {
+    if (!$name || $name == 'current') {
+      $name = \Drupal::theme()->getActiveTheme()->getName();
+    }
+
+    if (!\Drupal::service('theme_handler')->themeExists($name)) {
+      throw new \RuntimeException(sprintf('Theme %s does not exist.', $name));
+    }
+
+    $url = Url::fromRoute('system.theme_settings_theme', ['theme' => $name]);
+
+    $this->visitPath($url->toString());
   }
 
 }
