@@ -4,6 +4,7 @@ namespace Drupal\civictheme;
 
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,16 +38,29 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   protected $themeManager;
 
   /**
+   * The theme extension list.
+   *
+   * @var \Drupal\Core\Extension\ThemeExtensionList
+   */
+  protected $themeExtensionList;
+
+  /**
    * Constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   The config factory.
    * @param \Drupal\Core\Theme\ThemeManager $theme_manager
    *   The theme manager.
+   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
+   *   The extension list.
+   * @param \Drupal\civictheme\CivicthemeConfigImporter $config_importer
+   *   The config importer.
    */
-  public function __construct(ConfigFactory $config_factory, ThemeManager $theme_manager) {
+  public function __construct(ConfigFactory $config_factory, ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, CivicthemeConfigImporter $config_importer) {
     $this->configFactory = $config_factory;
     $this->themeManager = $theme_manager;
+    $this->themeExtensionList = $theme_extension_list;
+    $this->configImporter = $config_importer;
     $this->setTheme($this->themeManager->getActiveTheme());
   }
 
@@ -56,7 +70,9 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('theme.manager')
+      $container->get('theme.manager'),
+      $container->get('extension.list.theme'),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class)
     );
   }
 
@@ -124,6 +140,33 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
     $this->theme = $theme;
 
     return $this;
+  }
+
+  /**
+   * Reset settings to defaults.
+   */
+  public function resetToDefaults() {
+    $base_theme_name = 'civictheme';
+    $base_theme_path = $this->themeExtensionList->getPath($base_theme_name);
+
+    $theme_name = $this->theme->getName();
+    $theme_path = $this->themeExtensionList->getPath($theme_name);
+
+    $tokens = [
+      'themes/contrib/civictheme' => $theme_path,
+      $base_theme_name => $theme_name,
+    ];
+
+    if (!array_key_exists($base_theme_path, $tokens)) {
+      $tokens[$base_theme_path] = $theme_path;
+    }
+
+    $this->configImporter->importSingleConfig(
+      'civictheme.settings',
+      $base_theme_path . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'install',
+      "$theme_name.settings",
+      $tokens
+    );
   }
 
 }
