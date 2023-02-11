@@ -26,7 +26,8 @@ Feature: Campaign render
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Campaign test 1" has "civictheme_campaign" paragraph:
       | field_c_p_title            | [TEST] Campaign title                                                                            |
       | field_c_p_theme            | light                                                                                            |
-      | field_c_p_content          | Summary text                                                                                     |
+      | field_c_p_content:value          | Content text                                                                                     |
+      | field_c_p_content:format | civictheme_rich_text     |
       | field_c_p_vertical_spacing | both                                                                                             |
       | field_c_p_date             | 2021-04-29                                                                                       |
       | field_c_p_topics           | [TEST] Topic 1, [TEST] Topic 2                                                                   |
@@ -45,7 +46,7 @@ Feature: Campaign render
     And I should see an ".ct-campaign__date" element
     And I should see an ".ct-campaign__links" element
     And I should see the text "[TEST] Campaign title"
-    And I should see the text "Summary text"
+    And I should see the text "Content text"
     And I should see the text "29 Apr 2021"
     And I should see the text "[TEST] link 1"
     And I should see the text "[TEST] link 2"

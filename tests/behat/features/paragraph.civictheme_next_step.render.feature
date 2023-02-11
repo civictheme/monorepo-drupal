@@ -13,7 +13,8 @@ Feature: Next step render
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next step test" has "civictheme_next_step" paragraph:
       | field_c_p_title            | [TEST] Next step title                          |
       | field_c_p_theme            | light                                           |
-      | field_c_p_content          | [TEST] Content text                             |
+      | field_c_p_content:value          | [TEST] Content text                             |
+      | field_c_p_content:format | civictheme_rich_text     |
       | field_c_p_vertical_spacing | both                                            |
       | field_c_p_link             | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
@@ -34,7 +35,8 @@ Feature: Next step render
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next step test 1" has "civictheme_next_step" paragraph:
       | field_c_p_title            | [TEST] Next step title                          |
       | field_c_p_theme            | dark                                            |
-      | field_c_p_content          | [TEST] Content text                             |
+      | field_c_p_content:value          | [TEST] Content text                             |
+      | field_c_p_content:format | civictheme_rich_text     |
       | field_c_p_vertical_spacing | 0                                               |
       | field_c_p_link             | 0: [TEST] link 2 - 1: https://example.com/link2 |
 
