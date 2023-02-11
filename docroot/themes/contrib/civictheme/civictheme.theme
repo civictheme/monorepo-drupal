@@ -134,6 +134,9 @@ function civictheme_preprocess_last(&$variables, $hook) {
 function civictheme_preprocess_html(&$variables) {
   _civictheme_preprocess_html__skip_link($variables);
   _civictheme_preprocess_html__site_section($variables);
+
+  // Disable modifier_class as this template is provided by Drupal.
+  $variables['modifier_class'] = FALSE;
 }
 
 /**

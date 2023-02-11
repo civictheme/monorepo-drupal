@@ -209,9 +209,17 @@ function civictheme_embed_svg($url, array $css_classes = []) {
 /**
  * Preprocess 'attribute' classes variables into 'modifier_class'.
  *
+ * Preprocessors can set $variables['modifier_class'] = FALSE to disable this
+ * conversion.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_convert_attributes_to_modifier_class(&$variables) {
+  // Allow to skip this conversion.
+  if (isset($variables['modifier_class']) && $variables['modifier_class'] === FALSE) {
+    return;
+  }
+
   if (!isset($variables['attributes']['class'])) {
     return;
   }

@@ -170,7 +170,7 @@ Feature: Automated list render
     And I should see 12 ".ct-item-grid__item" elements
 
   @api @testmode
-  Scenario: CivicTheme listing page with different view from listing type field.
+  Scenario: Automated list, different view from listing type field
     Given "civictheme_page" content:
       | title          | created            | status |
       | [TEST] Page 16 | [relative:-5 days] | 1      |
@@ -212,7 +212,7 @@ Feature: Automated list render
     And should not see an "input[name='title'].required" element
 
   @api @testmode
-  Scenario: CivicTheme listing page with pagination works as expected
+  Scenario: Automated list, pagination
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       | field_c_p_list_limit_type | unlimited |
