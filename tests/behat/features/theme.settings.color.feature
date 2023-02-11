@@ -1,10 +1,17 @@
-@p0 @civictheme @civictheme_theme_settings @civictheme_theme_color_settings
+@p0 @civictheme @civictheme_theme_settings @civictheme_theme_settings_color
 Feature: Color settings are available in the theme settings
 
   @api
   Scenario: Color fields are present.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
+
+    # Reset settings.
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+    When I visit current theme settings page
     Then I should see an "input[name='colors[use_brand_colors]']" element
 
     # All Light then all Dark.
@@ -147,57 +154,87 @@ Feature: Color settings are available in the theme settings
   Scenario: Palette colors have values produced from selected brand colors.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
+
+    # Reset settings.
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+    When I visit current theme settings page
     And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
     And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
+    Then color field "#edit-colors-palette-light-background-background" value is "#fffc41"
+    And color field "#edit-colors-palette-light-typography-heading" value is "#480a00"
     And I press "Save configuration"
-    And I should see the text "The configuration options have been saved."
-    And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
-    And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
-    And I scroll to an element with id "edit-colors-palette-light-background"
+
+    Then I should see the text "The configuration options have been saved."
+    Then color field "#edit-colors-palette-light-background-background" value is "#fffc41"
+    And color field "#edit-colors-palette-light-typography-heading" value is "#480a00"
 
   @api @javascript
   Scenario: Palette colors have values produced from selected brand colors can have overrides.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
+
+    # Reset settings.
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+    When I visit current theme settings page
     And I fill color in "#edit-colors-brand-light-brand1" with "#b51a00"
     And I fill color in "#edit-colors-brand-light-brand2" with "#fffc41"
-    And I should see an "#edit-colors-palette-light-background-background[value='#fffc41']" element
-    And I should see an "#edit-colors-palette-light-typography-heading[value='#480a00']" element
-    And I fill color in "#edit-colors-palette-light-background-background-light" with "#000000"
+    Then color field "#edit-colors-palette-light-background-background" value is "#fffc41"
+    And color field "#edit-colors-palette-light-typography-heading" value is "#480a00"
+
+    When I fill color in "#edit-colors-palette-light-background-background-light" with "#000000"
+    Then color field "#edit-colors-palette-light-background-background-light" value is "#000000"
     And I press "Save configuration"
-    And I should see the text "The configuration options have been saved."
-    And I scroll to an element with id "edit-colors-palette-light-background"
-    Then I should see an "#edit-colors-palette-light-background-background-light[value='#000000']" element
+    Then I should see the text "The configuration options have been saved."
+    And color field "#edit-colors-palette-light-background-background-light" value is "#000000"
 
   @api
   Scenario: The 'css-variables' library CSS file is included on the page when Color Selector is used.
     Given I am logged in as a user with the "Site Administrator" role
+    And I visit current theme settings page
 
-    When I visit current theme settings page
-    And I uncheck the box "Use Color Selector"
+    # Reset settings.
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+    When I uncheck the box "Use Color Selector"
     And I press "Save configuration"
-    And I should see the text "The configuration options have been saved."
+    Then I should see the text "The configuration options have been saved."
     And the cache has been cleared
+
     When I go to the homepage
     Then the response should not contain "/sites/default/files/css-variables"
 
     When I visit current theme settings page
     And I check the box "Use Color Selector"
     And I press "Save configuration"
-    And I should see the text "The configuration options have been saved."
+    Then I should see the text "The configuration options have been saved."
     And the cache has been cleared
+
     When I go to the homepage
     Then the response should contain "/sites/default/files/css-variables"
 
   @api @subtheme
   Scenario: Assert that generating a CSS variable file has different suffix per theme.
-    # This test will only succeed if the subtheme was created.
+    # This test will only succeed if the subtheme was created from the starter kit.
     Given I am logged in as a user with the "Site Administrator" role
+
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
 
     And I install "civictheme" theme
     And I set "civictheme" theme as default
 
-    And I visit civictheme theme settings page
+    When I visit civictheme theme settings page
     And I uncheck the box "Use Color Selector"
     And I press "Save configuration"
     And I should see the text "The configuration options have been saved."

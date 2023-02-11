@@ -1,7 +1,7 @@
-@p0 @civictheme @civictheme_theme_settings @civictheme_migration
+@p0 @civictheme @civictheme_theme_settings @civictheme_theme_settings_migration @civictheme_migration
 Feature: Migration metadata is available on selected components.
 
-  @api @basetheme
+  @api
   Scenario: The CivicTheme theme setting `Expose Migration metadata` exposes meta data in DOM
     Given managed file:
       | filename       | uri                                     | path           |
@@ -22,7 +22,13 @@ Feature: Migration metadata is available on selected components.
       | [TEST] Page 2 | 1      | bottom                     | 0                  | 0                           | 1                      | 2022-07-01                    | large                 | dark                   | 0                                |
 
     When I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
+
+    # Reset settings.
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
     And I check the box "Expose Migration metadata"
     And I press "Save configuration"
 
@@ -57,7 +63,7 @@ Feature: Migration metadata is available on selected components.
     And should see a "[data-ct-migrate-banner-theme='dark']" element
     And should see a "[data-ct-migrate-banner-hide-breadcrumb='0']" element
 
-    When I visit "/admin/appearance/settings/civictheme"
+    When I visit civictheme theme settings page
     And I uncheck the box "Expose Migration metadata"
     And I press "Save configuration"
 
