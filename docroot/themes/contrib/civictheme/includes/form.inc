@@ -30,8 +30,6 @@ function civictheme_preprocess_input(&$variables) {
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -41,7 +39,6 @@ function civictheme_preprocess_input(&$variables) {
  */
 function civictheme_preprocess_select(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -82,8 +79,6 @@ function _civictheme_preprocess_form_element_classes(&$variables) {
   if (!empty($variables['errors'])) {
     $variables['attributes']['class'][] = 'form-item--error';
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -197,8 +192,6 @@ function civictheme_preprocess_form_element_label(&$variables) {
     $variables['attributes']['class'][] = 'js-form-required';
     $variables['attributes']['class'][] = 'form-required';
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -270,8 +263,6 @@ function _civictheme_preprocess_fieldset_attributes(&$variables) {
     }
     $variables['description'] = $variables['description']['content'];
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

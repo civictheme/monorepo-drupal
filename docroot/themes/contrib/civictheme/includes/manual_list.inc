@@ -63,5 +63,4 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
   $attributes['id'] = Html::getUniqueId('civictheme-manual-list-' . $paragraph->id());
 
   $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
-  civictheme_convert_attributes_to_modifier_class($variables);
 }

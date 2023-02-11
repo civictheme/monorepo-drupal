@@ -290,8 +290,6 @@ function civictheme_preprocess_views_view(&$variables) {
   if (isset($view->civictheme_automated_list['show_filters']) && $view->civictheme_automated_list['show_filters'] === FALSE) {
     $variables['filters'] = NULL;
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**

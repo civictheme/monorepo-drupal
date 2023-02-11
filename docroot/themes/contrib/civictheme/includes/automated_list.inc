@@ -42,8 +42,6 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
       $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
     }
   }
-
-  civictheme_convert_attributes_to_modifier_class($variables);
 }
 
 /**
