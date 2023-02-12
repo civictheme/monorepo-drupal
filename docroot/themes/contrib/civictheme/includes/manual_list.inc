@@ -35,6 +35,20 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'url' => $link_below->getUrl()->toString(),
   ] : [];
 
+  $variables += [
+    'link_above' => $link_above_data,
+    'title' => civictheme_get_field_value($paragraph, 'field_c_p_title'),
+    'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
+    'link_below' => $link_below_data,
+    'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_list_column_count'),
+    'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
+    'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_list_fill_width', FALSE, FALSE),
+    'theme' => civictheme_get_field_theme_value($paragraph),
+    'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background', FALSE, FALSE),
+    'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
+    'cache_tags' => $paragraph->getCacheTags(),
+  ];
+
   $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items');
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   if ($items) {
@@ -43,24 +57,8 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     }
   }
 
-  $settings = [
-    'theme' => civictheme_get_field_theme_value($paragraph),
-    'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
-    'link_above' => $link_above_data,
-    'title' => civictheme_get_field_value($paragraph, 'field_c_p_title'),
-    'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
-    'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background', FALSE, FALSE),
-    'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
-    'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_list_column_count'),
-    'link_below' => $link_below_data,
-    'fill_width' => civictheme_get_field_value($paragraph, 'field_c_p_list_fill_width', FALSE, FALSE),
-    'cache_tags' => $paragraph->getCacheTags(),
-  ];
-
-  $variables += $settings;
-
   $attributes = [];
-  $attributes['id'] = Html::getUniqueId('civictheme-manual-list-' . $paragraph->id());
+  $attributes['id'] = Html::getUniqueId('ct-manual-list-' . $paragraph->id());
 
   $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
 }
