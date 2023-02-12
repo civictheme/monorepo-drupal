@@ -38,9 +38,9 @@ Feature: Event reference card render
       | field_c_p_address   | Address 2                                                                                         |
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page with container" has "civictheme_manual_list" paragraph:
-      | field_c_p_title        | [TEST] Reference cards container |
-      | field_c_p_column_count | 3                                |
-      | field_c_p_fill_width   | 0                                |
+      | field_c_p_title             | [TEST] Reference cards container |
+      | field_c_p_list_column_count | 3                                |
+      | field_c_p_list_fill_width   | 0                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_event_card_ref" paragraph:
       | field_c_p_reference | [TEST] Referenced Event 1 |
       | field_c_p_theme     | light                     |

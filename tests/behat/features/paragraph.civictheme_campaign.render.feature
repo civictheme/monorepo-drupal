@@ -26,8 +26,8 @@ Feature: Campaign render
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Campaign test 1" has "civictheme_campaign" paragraph:
       | field_c_p_title            | [TEST] Campaign title                                                                            |
       | field_c_p_theme            | light                                                                                            |
-      | field_c_p_content:value          | Content text                                                                                     |
-      | field_c_p_content:format | civictheme_rich_text     |
+      | field_c_p_content:value    | Content text                                                                                     |
+      | field_c_p_content:format   | civictheme_rich_text                                                                             |
       | field_c_p_vertical_spacing | both                                                                                             |
       | field_c_p_date             | 2021-04-29                                                                                       |
       | field_c_p_topics           | [TEST] Topic 1, [TEST] Topic 2                                                                   |

@@ -638,10 +638,13 @@ trait CsGeneratedContentCivicthemeTrait {
       'list_link_below' => NULL,
       'list_show_filters' => FALSE,
       'list_site_sections' => NULL,
-      'theme' => static::civicthemeThemeLight(),
-      'title' => NULL,
       'list_topics' => NULL,
+      'list_column_count' => 1,
+      'list_fill_width' => NULL,
+      'title' => NULL,
+      'theme' => static::civicthemeThemeLight(),
       'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
+      'background' => FALSE,
     ];
 
     $options += $defaults;
@@ -753,7 +756,8 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
-      'column_count' => NULL,
+      'list_column_count' => 1,
+      'list_fill_width' => NULL,
       'theme' => self::civicthemeThemeLight(),
       'list_link_above' => NULL,
       'list_link_below' => NULL,

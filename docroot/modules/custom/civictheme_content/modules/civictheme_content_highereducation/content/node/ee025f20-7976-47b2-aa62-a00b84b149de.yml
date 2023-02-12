@@ -105,14 +105,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 1
           field_c_p_content:
             -
               value: "<p>Search our postgraduate courses by keyword or school/department.</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:

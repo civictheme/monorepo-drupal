@@ -17,10 +17,10 @@ Feature: Subject card render
       | title                          | status | field_c_n_site_section |
       | [TEST] Page Subject cards test | 1      |                        |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Subject cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Subject manual list                         |
-      | field_c_p_column_count    | 3                                                  |
-      | field_c_p_list_link_above | 0: View all Subject cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                  |
+      | field_c_p_title             | [TEST] Subject manual list                         |
+      | field_c_p_list_column_count | 3                                                  |
+      | field_c_p_list_link_above   | 0: View all Subject cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                  |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Subject manual list" has "civictheme_subject_card" paragraph:
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |

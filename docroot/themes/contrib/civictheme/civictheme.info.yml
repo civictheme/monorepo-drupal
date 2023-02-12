@@ -311,10 +311,10 @@ config_devel:
     - field.field.paragraph.civictheme_attachment.field_c_p_title
     - field.field.paragraph.civictheme_attachment.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_automated_list.field_c_p_background
-    - field.field.paragraph.civictheme_automated_list.field_c_p_column_count
     - field.field.paragraph.civictheme_automated_list.field_c_p_content
-    - field.field.paragraph.civictheme_automated_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_column_count
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_content_type
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_fill_width
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_filters_exp
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_item_theme
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_item_view_as
@@ -364,9 +364,9 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_iframe.field_c_p_width
     - field.field.paragraph.civictheme_manual_list.field_c_p_background
-    - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
-    - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_column_count
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_fill_width
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -501,7 +501,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_author
     - field.storage.paragraph.field_c_p_background
     - field.storage.paragraph.field_c_p_cards
-    - field.storage.paragraph.field_c_p_column_count
     - field.storage.paragraph.field_c_p_content
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_date_range
@@ -509,7 +508,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_document
     - field.storage.paragraph.field_c_p_embed_url
     - field.storage.paragraph.field_c_p_expand
-    - field.storage.paragraph.field_c_p_fill_width
     - field.storage.paragraph.field_c_p_footer_link
     - field.storage.paragraph.field_c_p_header_link
     - field.storage.paragraph.field_c_p_height
@@ -519,7 +517,9 @@ config_devel:
     - field.storage.paragraph.field_c_p_link
     - field.storage.paragraph.field_c_p_link_text
     - field.storage.paragraph.field_c_p_links
+    - field.storage.paragraph.field_c_p_list_column_count
     - field.storage.paragraph.field_c_p_list_content_type
+    - field.storage.paragraph.field_c_p_list_fill_width
     - field.storage.paragraph.field_c_p_list_filters_exp
     - field.storage.paragraph.field_c_p_list_item_theme
     - field.storage.paragraph.field_c_p_list_item_view_as

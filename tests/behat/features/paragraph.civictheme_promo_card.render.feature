@@ -25,10 +25,10 @@ Feature: Promo card render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Promo cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Promo cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Promo manual list                         |
-      | field_c_p_column_count    | 4                                                |
-      | field_c_p_list_link_above | 0: View all promo cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                |
+      | field_c_p_title             | [TEST] Promo manual list                         |
+      | field_c_p_list_column_count | 4                                                |
+      | field_c_p_list_link_above   | 0: View all promo cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
       | field_c_p_title    | Promo card title 1                    |
       | field_c_p_subtitle | Promo card subtitle 1                 |

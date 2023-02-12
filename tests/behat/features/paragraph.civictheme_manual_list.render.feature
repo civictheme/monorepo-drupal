@@ -28,10 +28,10 @@ Feature: Manual list render
   Scenario: CivicTheme page content type page can be viewed by anonymous with promo cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Promo cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Promo manual list                         |
-      | field_c_p_column_count    | 4                                                |
-      | field_c_p_list_link_above | 0: View all promo cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                |
+      | field_c_p_title             | [TEST] Promo manual list                         |
+      | field_c_p_list_column_count | 4                                                |
+      | field_c_p_list_link_above   | 0: View all promo cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
@@ -70,10 +70,10 @@ Feature: Manual list render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Navigation cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Navigation cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Navigation manual list                         |
-      | field_c_p_column_count    | 4                                                     |
-      | field_c_p_list_link_above | 0: View all navigation cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                     |
+      | field_c_p_title             | [TEST] Navigation manual list                         |
+      | field_c_p_list_column_count | 4                                                     |
+      | field_c_p_list_link_above   | 0: View all navigation cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                     |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Navigation manual list" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
@@ -114,10 +114,10 @@ Feature: Manual list render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Subject cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Subject cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Subject manual list                         |
-      | field_c_p_column_count    | 3                                                  |
-      | field_c_p_list_link_above | 0: View all Subject cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                  |
+      | field_c_p_title             | [TEST] Subject manual list                         |
+      | field_c_p_list_column_count | 3                                                  |
+      | field_c_p_list_link_above   | 0: View all Subject cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                  |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Subject manual list" has "civictheme_subject_card" paragraph:
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |
@@ -149,10 +149,10 @@ Feature: Manual list render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Service cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Service cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Service manual list                         |
-      | field_c_p_column_count    | 3                                                  |
-      | field_c_p_list_link_above | 0: View all Service cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                  |
+      | field_c_p_title             | [TEST] Service manual list                         |
+      | field_c_p_list_column_count | 3                                                  |
+      | field_c_p_list_link_above   | 0: View all Service cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                  |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Service manual list" has "civictheme_service_card" paragraph:
       | field_c_p_links | 0: Test link 1 - 1: https://example.com, 0: Test link 11 - 1: https://example.com |
       | field_c_p_theme | light                                                                             |
@@ -185,9 +185,9 @@ Feature: Manual list render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Reference cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Reference cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title        | [TEST] Reference manual list |
-      | field_c_p_column_count | 3                            |
-      | field_c_p_fill_width   | 0                            |
+      | field_c_p_title             | [TEST] Reference manual list |
+      | field_c_p_list_column_count | 3                            |
+      | field_c_p_list_fill_width   | 0                            |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Reference manual list" has "civictheme_event_card_ref" paragraph:
       | field_c_p_reference | [TEST] Reference Page Event cards test |
       | field_c_p_theme     | light                                  |
