@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_automated_list @skipped
+@p0 @civictheme @civictheme_automated_list
 Feature: CivicTheme listing renders on views pages with filters
 
   Ensure that CivicTheme listing component can be used on the views
@@ -39,8 +39,7 @@ Feature: CivicTheme listing renders on views pages with filters
     When I go to "civictheme-no-sidebar/listing-no-filter"
     Then the response status code should be 200
 
-    And I should not see a ".ct-single-filter" element
-    And I should not see a ".ct-group-filter" element
+    And I should not see an ".ct-list__filters" element
 
     And I should see the text "[TEST] Page 1"
     And I should see the text "[TEST] Page 2"
@@ -62,118 +61,119 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     # Pager should be visible.
-    And I should see a ".ct-pager" element
+    And I should see a ".ct-list__pager" element
 
-  @api @testmode
-  Scenario Outline: Listing example - Filters
-    Given I am an anonymous user
-    When I go to "<path>"
-    Then the response status code should be 200
-
-    And I should see "[TEST] Topic 1" in the "<filter_element>" element
-    And I should see "[TEST] Topic 2" in the "<filter_element>" element
-    And I should see "[TEST] Topic 3" in the "<filter_element>" element
-    And I should see "[TEST] Topic 4" in the "<filter_element>" element
-
-    And I should see the text "[TEST] Page 1"
-    And I should see the text "[TEST] Page 2"
-    And I should see the text "[TEST] Page 3"
-    And I should see the text "[TEST] Page 4"
-    And I should see the text "[TEST] Page 5"
-    And I should see the text "[TEST] Page 6"
-    And I should see the text "[TEST] Page 7"
-    And I should see the text "[TEST] Page 8"
-    And I should see the text "[TEST] Page 9"
-    And I should see the text "[TEST] Page 10"
-    # Not published pages.
-    And I should not see the text "[TEST] Page 11"
-    And I should not see the text "[TEST] Page 12"
-    # Published and should be on the first page.
-    And I should see the text "[TEST] Page 13"
-    And I should see the text "[TEST] Page 14"
-    # Published page, but on the next page.
-    And I should not see the text "[TEST] Page 15"
-
-    # Pager should be visible.
-    And I should see a ".ct-pager" element
-
-    Examples:
-      | path                                                                 | filter_element    |
-      | civictheme-no-sidebar/listing-one-filter-single-select               | .ct-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .ct-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select                | .ct-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .ct-single-filter |
-      | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter  |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter  |
-
-  @api @testmode
-  Scenario Outline: Listing example - One filter - Single
-    Given I am an anonymous user
-    When I go to "<path>"
-    Then the response status code should be 200
-
-    When I select the radio button "[TEST] Topic 1"
-    And I press "Apply"
-
-    Then I should see the text "[TEST] Page 1"
-    And I should see the text "[TEST] Page 2"
-    And I should see the text "[TEST] Page 3"
-    And I should see the text "[TEST] Page 4"
-    And I should not see the text "[TEST] Page 5"
-    And I should not see the text "[TEST] Page 6"
-    And I should not see the text "[TEST] Page 7"
-    And I should not see the text "[TEST] Page 8"
-    And I should not see the text "[TEST] Page 9"
-    And I should not see the text "[TEST] Page 10"
-    And I should not see the text "[TEST] Page 11"
-    And I should not see the text "[TEST] Page 12"
-    And I should not see the text "[TEST] Page 13"
-    And I should not see the text "[TEST] Page 14"
-    And I should not see the text "[TEST] Page 15"
-
-    Examples:
-      | path                                                                 |
-      | civictheme-no-sidebar/listing-one-filter-single-select               |
-      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block |
-
-  @api @testmode
-  Scenario Outline: Listing example - One filter - Multi and Multiple filters
-    Given I am an anonymous user
-    When I go to "<path>"
-    Then the response status code should be 200
-
-    When I check the box "[TEST] Topic 1"
-    And I check the box "[TEST] Topic 2"
-    And I press "Apply"
-
-    Then I should see the text "[TEST] Page 1"
-    And I should see the text "[TEST] Page 2"
-    And I should see the text "[TEST] Page 3"
-    And I should see the text "[TEST] Page 4"
-    And I should see the text "[TEST] Page 5"
-    And I should see the text "[TEST] Page 6"
-    And I should not see the text "[TEST] Page 7"
-    And I should not see the text "[TEST] Page 8"
-    And I should not see the text "[TEST] Page 9"
-    And I should not see the text "[TEST] Page 10"
-    And I should not see the text "[TEST] Page 11"
-    And I should not see the text "[TEST] Page 12"
-    And I should not see the text "[TEST] Page 13"
-    And I should not see the text "[TEST] Page 14"
-    And I should not see the text "[TEST] Page 15"
-
-    Examples:
-      | path                                                                |
-      | civictheme-no-sidebar/listing-one-filter-multi-select               |
-      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block |
-      | civictheme-no-sidebar/listing-multiple-filters                      |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block        |
-
-  @api @testmode
-  Scenario: Listing example - Title filter
-    Given I am an anonymous user
-    When I go to "civictheme-no-sidebar/listing-multiple-filters"
-    Then the response status code should be 200
-    And I see field "Title"
-    And should see an "input[name='title']" element
-    And should not see an "input[name='title'].required" element
+  # Uncomment when filters are fixed.
+  # @api @testmode
+  # Scenario Outline: Listing example - Filters
+  #   Given I am an anonymous user
+  #   When I go to "<path>"
+  #   Then the response status code should be 200
+  #
+  #   And I should see "[TEST] Topic 1" in the "<filter_element>" element
+  #   And I should see "[TEST] Topic 2" in the "<filter_element>" element
+  #   And I should see "[TEST] Topic 3" in the "<filter_element>" element
+  #   And I should see "[TEST] Topic 4" in the "<filter_element>" element
+  #
+  #   And I should see the text "[TEST] Page 1"
+  #   And I should see the text "[TEST] Page 2"
+  #   And I should see the text "[TEST] Page 3"
+  #   And I should see the text "[TEST] Page 4"
+  #   And I should see the text "[TEST] Page 5"
+  #   And I should see the text "[TEST] Page 6"
+  #   And I should see the text "[TEST] Page 7"
+  #   And I should see the text "[TEST] Page 8"
+  #   And I should see the text "[TEST] Page 9"
+  #   And I should see the text "[TEST] Page 10"
+  #   # Not published pages.
+  #   And I should not see the text "[TEST] Page 11"
+  #   And I should not see the text "[TEST] Page 12"
+  #   # Published and should be on the first page.
+  #   And I should see the text "[TEST] Page 13"
+  #   And I should see the text "[TEST] Page 14"
+  #   # Published page, but on the next page.
+  #   And I should not see the text "[TEST] Page 15"
+  #
+  #   # Pager should be visible.
+  #   And I should see a ".ct-pager" element
+  #
+  #   Examples:
+  #     | path                                                                 | filter_element    |
+  #     | civictheme-no-sidebar/listing-one-filter-single-select               | .ct-single-filter |
+  #     | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .ct-single-filter |
+  #     | civictheme-no-sidebar/listing-one-filter-multi-select                | .ct-single-filter |
+  #     | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .ct-single-filter |
+  #     | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter  |
+  #     | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter  |
+  #
+  # @api @testmode
+  # Scenario Outline: Listing example - One filter - Single
+  #   Given I am an anonymous user
+  #   When I go to "<path>"
+  #   Then the response status code should be 200
+  #
+  #   When I select the radio button "[TEST] Topic 1"
+  #   And I press "Apply"
+  #
+  #   Then I should see the text "[TEST] Page 1"
+  #   And I should see the text "[TEST] Page 2"
+  #   And I should see the text "[TEST] Page 3"
+  #   And I should see the text "[TEST] Page 4"
+  #   And I should not see the text "[TEST] Page 5"
+  #   And I should not see the text "[TEST] Page 6"
+  #   And I should not see the text "[TEST] Page 7"
+  #   And I should not see the text "[TEST] Page 8"
+  #   And I should not see the text "[TEST] Page 9"
+  #   And I should not see the text "[TEST] Page 10"
+  #   And I should not see the text "[TEST] Page 11"
+  #   And I should not see the text "[TEST] Page 12"
+  #   And I should not see the text "[TEST] Page 13"
+  #   And I should not see the text "[TEST] Page 14"
+  #   And I should not see the text "[TEST] Page 15"
+  #
+  #   Examples:
+  #     | path                                                                 |
+  #     | civictheme-no-sidebar/listing-one-filter-single-select               |
+  #     | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block |
+  #
+  # @api @testmode
+  # Scenario Outline: Listing example - One filter - Multi and Multiple filters
+  #   Given I am an anonymous user
+  #   When I go to "<path>"
+  #   Then the response status code should be 200
+  #
+  #   When I check the box "[TEST] Topic 1"
+  #   And I check the box "[TEST] Topic 2"
+  #   And I press "Apply"
+  #
+  #   Then I should see the text "[TEST] Page 1"
+  #   And I should see the text "[TEST] Page 2"
+  #   And I should see the text "[TEST] Page 3"
+  #   And I should see the text "[TEST] Page 4"
+  #   And I should see the text "[TEST] Page 5"
+  #   And I should see the text "[TEST] Page 6"
+  #   And I should not see the text "[TEST] Page 7"
+  #   And I should not see the text "[TEST] Page 8"
+  #   And I should not see the text "[TEST] Page 9"
+  #   And I should not see the text "[TEST] Page 10"
+  #   And I should not see the text "[TEST] Page 11"
+  #   And I should not see the text "[TEST] Page 12"
+  #   And I should not see the text "[TEST] Page 13"
+  #   And I should not see the text "[TEST] Page 14"
+  #   And I should not see the text "[TEST] Page 15"
+  #
+  #   Examples:
+  #     | path                                                                |
+  #     | civictheme-no-sidebar/listing-one-filter-multi-select               |
+  #     | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block |
+  #     | civictheme-no-sidebar/listing-multiple-filters                      |
+  #     | civictheme-no-sidebar/listing-multiple-filters-exposed-block        |
+  #
+  # @api @testmode
+  # Scenario: Listing example - Title filter
+  #   Given I am an anonymous user
+  #   When I go to "civictheme-no-sidebar/listing-multiple-filters"
+  #   Then the response status code should be 200
+  #   And I see field "Title"
+  #   And should see an "input[name='title']" element
+  #   And should not see an "input[name='title'].required" element

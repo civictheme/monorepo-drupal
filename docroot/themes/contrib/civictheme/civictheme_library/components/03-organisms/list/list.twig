@@ -89,6 +89,7 @@
                 {% include '@atoms/paragraph/paragraph.twig' with {
                   content: content,
                   theme: theme,
+                  allow_html: true,
                   modifier_class: 'ct-list__content',
                 } only %}
               </div>
@@ -150,52 +151,57 @@
         {% endif %}
       {% endblock %}
 
-      {% block rows_below %}
-
-        {% if link_below %}
-          <div class="ct-list__link-below">
-            {% include '@atoms/button/button.twig' with {
-              theme: theme,
-              type: 'secondary',
-              kind: 'link',
-              size: 'large',
-              text: link_below.text,
-              url: link_below.url,
-              is_new_window: link_below.is_external,
-              is_external: link_below.is_external,
-              icon: link_below.is_external ? '' : 'right-arrow-2',
-              modifier_class: 'ct-list__link-below__link',
-            } only %}
-          </div>
-        {% endif %}
-
-        {% if pager is defined and pager is not empty %}
-          <div class="ct-list__results-below">
-            <div class="container">
-              <div class="row">
-                <div class="col-xxs-12">
-                  {% block pager %}
-                    <div class="ct-list__pager">
-                      {{ pager }}
-                    </div>
-                  {% endblock %}
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endif %}
-
-      {% endblock %}
-
-      {% block footer %}
-        {% if footer is not empty -%}
-          <footer class="ct-list__footer">
-            {{ footer }}
-          </footer>
-        {% endif %}
-      {% endblock %}
 
     {% endblock %}
 
+
+    {% block list_below %}
+      {% if link_below %}
+        <div class="ct-list__link-below">
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            type: 'secondary',
+            kind: 'link',
+            size: 'large',
+            text: link_below.text,
+            url: link_below.url,
+            is_new_window: link_below.is_external,
+            is_external: link_below.is_external,
+            icon: link_below.is_external ? '' : 'right-arrow-2',
+            modifier_class: 'ct-list__link-below__link',
+          } only %}
+        </div>
+      {% endif %}
+
+      {% if pager is defined and pager is not empty %}
+        <div class="ct-list__results-below">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {% block pager %}
+                  <div class="ct-list__pager">
+                    {{ pager }}
+                  </div>
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block footer %}
+      {% if footer is not empty -%}
+        <footer class="ct-list__footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {{ footer }}
+              </div>
+            </div>
+          </div>
+        </footer>
+      {% endif %}
+    {% endblock %}
   </div>
 </div>

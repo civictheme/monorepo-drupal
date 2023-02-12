@@ -54,6 +54,8 @@ export const Slider = () => {
       },
       slidesKnobTab,
     ), true),
+    date: text('Date', '20 Jan 2023 11:00', slidesKnobTab),
+    date_end: text('End date', '21 Jan 2023 15:00', slidesKnobTab),
     links: randomLinks(number(
       'Number of links',
       2,

@@ -41,6 +41,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -53,11 +55,17 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
   }
 
   _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__date($variables);
   _civictheme_preprocess_paragraph__node_field__topics($variables);
   _civictheme_preprocess_paragraph__node_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+
+  if ($node->bundle() == 'civictheme_event') {
+    _civictheme_preprocess_paragraph__node_field__date_range($variables);
+  }
+  else {
+    _civictheme_preprocess_paragraph__node_field__date($variables);
+  }
 
   // Special case to re-use 'summary' processor for 'content' field.
   _civictheme_preprocess_paragraph__node_field__summary($variables);

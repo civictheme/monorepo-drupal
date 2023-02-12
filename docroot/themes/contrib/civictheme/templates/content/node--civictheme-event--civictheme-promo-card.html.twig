@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display an Event node as a Promo card.
+ *
+ * For nodes rendered in views, it is not possible to switch the view mode
+ * based on the result type in the theme layer (the hook does not run).
+ * So we are swapping a FE component for Promo card view mode on Event content
+ * type to 'Event card' FE component.
+ *
+ * All required variables are already passed from the preprocess.
+ *
+ * @see _civictheme_preprocess_node__civictheme_promo_card()
+ */
+#}
+{% include "@molecules/event-card/event-card.twig" %}

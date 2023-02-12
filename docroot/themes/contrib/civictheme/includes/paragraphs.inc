@@ -48,9 +48,9 @@ function _civictheme_preprocess_paragraph__paragraph_field__date(&$variables) {
  * Pre-process for Date node field.
  */
 function _civictheme_preprocess_paragraph__node_field__date(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $node->getChangedTime());
+    $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
     $variables['date_iso'] = date('c', strtotime($node->getChangedTime()));
   }
 }
@@ -74,7 +74,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__date_range(&$variabl
  * Pre-process for Date range node field.
  */
 function _civictheme_preprocess_paragraph__node_field__date_range(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
     if ($date) {
@@ -109,7 +109,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__image(&$variables) {
  * Pre-process for Thumbnail node field.
  */
 function _civictheme_preprocess_paragraph__node_field__image(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
     if ($media) {
@@ -177,7 +177,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__link_below(&$variabl
  * Pre-process for Link node field.
  */
 function _civictheme_preprocess_paragraph__node_field__link(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $variables['link'] = [
       'text' => $node->getTitle(),
@@ -226,14 +226,14 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(&$variables)
 /**
  * Pre-process for Summary node field.
  */
-function _civictheme_preprocess_paragraph__node_field__summary(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+function _civictheme_preprocess_paragraph__node_field__summary(&$variables, $card_type = NULL) {
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
     if (!empty($summary)) {
       $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
 
-      $card_name = _civictheme_get_card_name_from_bundle($variables['paragraph']->bundle());
+      $card_name = _civictheme_get_card_name_from_bundle($card_type ?? $variables['paragraph']->bundle() ?? 'none');
       if ($card_name) {
         $length = civictheme_get_theme_config_manager()->loadForComponent($card_name, 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
       }
@@ -261,7 +261,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__title(&$variables) {
  * Pre-process for Title node field.
  */
 function _civictheme_preprocess_paragraph__node_field__title(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $variables['title'] = $node->getTitle();
   }
@@ -278,7 +278,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__topics(&$variables) 
  * Pre-process for Topics node field.
  */
 function _civictheme_preprocess_paragraph__node_field__topics(&$variables) {
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
   }

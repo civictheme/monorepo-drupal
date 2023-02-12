@@ -357,16 +357,27 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
  *   The entity reference field.
  *
  * @return \Drupal\Core\Entity\EntityInterface[]|EntityInterface|null
- *   Referenced entities, or referenced entity if found.
+ *   Referenced entities, or referenced entity if $only_first is TRUE.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, $field_name, bool $only_first = FALSE) {
   $entities = NULL;
 
   if (civictheme_field_has_value($entity, $field_name)) {
+    /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
     $entities = $entity->get($field_name)->referencedEntities();
-    $entities = $only_first ? reset($entities) : $entities;
+    if ($only_first) {
+      $entities = reset($entities);
+    }
+    else {
+      $keyed_entities = [];
+      foreach ($entities as $entity) {
+        $keyed_entities[$entity->id()] = $entity;
+      }
+      $entities = $keyed_entities;
+    }
   }
 
   return $entities;

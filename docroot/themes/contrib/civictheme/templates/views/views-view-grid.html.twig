@@ -1,13 +1,12 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation for views to display rows in a grid.
+ * CivicTheme implementation for views to display rows in a grid.
  */
 #}
 {% include '@base/item-grid/item-grid.twig' with {
-  title: title,
-  column_count: options.columns,
-  fill_width: false,
   items: rows,
+  column_count: options.columns,
+  fill_width: fill_width,
   modifier_class: modifier_class,
 } only %}

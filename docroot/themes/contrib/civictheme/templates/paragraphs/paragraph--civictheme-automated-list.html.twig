@@ -1,4 +1,13 @@
-{% set modifier_class = modifier_class|default('') %}
-<div {{ attributes }} class="{{ modifier_class }}">
-  {{ automated_list }}
-</div>
+{#
+/**
+ * @file
+ * CivicTheme implementation for Automated list.
+ */
+#}
+{% extends '@organisms/list/list.twig' %}
+
+{% block rows %}
+  {% if rows -%}
+    {{ rows }}
+  {% endif %}
+{% endblock %}

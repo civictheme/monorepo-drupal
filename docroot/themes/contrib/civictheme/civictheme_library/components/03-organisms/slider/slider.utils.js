@@ -5,6 +5,7 @@
  */
 
 import {
+  dateIsValid,
   demoImage,
   randomBool,
   randomInt,
@@ -53,17 +54,26 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
     };
     const imagePosition = template && template.image_position ? template.image_position : 'right';
     const tags = template && template.tags ? template.tags : {};
+    const date = template && template.date ? template.date : '20 Jan 2023 11:00';
+    const dateEnd = template && template.date_end ? template.date_end : null;
     const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(randomInt(5, 30))}` : ''}`;
     const url = template && template.url ? template.url : (randomBool() ? randomUrl() : null);
     const content = template && template.content ? template.content : `Content ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
     const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
     const attributes = template && template.attributes ? template.attributes : 'data-slider-slide';
 
+    const dateIso = dateIsValid(date) ? new Date(date).toISOString() : null;
+    const dateEndIso = dateIsValid(dateEnd) ? new Date(dateEnd).toISOString() : null;
+
     slides.push(Slide({
       theme,
       image,
       image_position: imagePosition,
       tags,
+      date,
+      date_iso: dateIso,
+      date_end: dateEnd,
+      date_end_iso: dateEndIso,
       title,
       url,
       content,

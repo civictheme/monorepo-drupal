@@ -149,9 +149,6 @@ function civictheme_preprocess_page(&$variables) {
   // Node pages.
   _civictheme_preprocess_page__node($variables);
 
-  // Views pages.
-  _civictheme_preprocess_page__views($variables);
-
   // Preprocessing for Alerts functionality.
   _civictheme_preprocess_page__civictheme_alert($variables);
 

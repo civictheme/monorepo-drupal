@@ -11,7 +11,10 @@
  * - image_position: [string] left / right
  * - tags: [array] Array of tags.
  * - title: [string] Title.
- * - date: [string] Date.
+ * - date: [string] Start date and time.
+ * - date_iso: [string] Start date and time in ISO format.
+ * - date_end: [string] Optional end date and time.
+ * - date_end_iso: [string] Optional end date and time in ISO format.
  * - content: [string] Content text.
  * - links: [array] Links.
  * - content_bottom: [string] Content slot.
@@ -68,14 +71,28 @@
           } only %}
         {% endif %}
 
-        {% if date is not empty %}
-          {% include '@atoms/tag/tag.twig' with {
-            theme: theme,
-            content: date,
-            type: 'tertiary',
-            modifier_class: 'ct-slide__date'
-          } only %}
-        {% endif %}
+        {% block date %}
+          {% if date is not empty %}
+            {% set date_content %}
+              {% include '@base/time/time.twig' with {
+                start: date,
+                start_iso: date_iso ?? null,
+                end: date_end ?? null,
+                end_iso: date_end_iso ?? null,
+              } only %}
+            {% endset %}
+
+            <div class="ct-slide__date">
+              {% include '@atoms/tag/tag.twig' with {
+                theme: theme,
+                type: date_end ? 'secondary' : 'tertiary',
+                content: date_content,
+                icon: date_end ? 'calendar-2' : null,
+                icon_placement: 'before',
+              } only %}
+            </div>
+          {% endif %}
+        {% endblock %}
 
         {% if content is not empty %}
           {% include '@atoms/paragraph/paragraph.twig' with {

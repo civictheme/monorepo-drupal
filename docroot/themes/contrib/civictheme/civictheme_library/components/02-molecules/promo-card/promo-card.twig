@@ -12,6 +12,8 @@
  *   - url: [string] Image URL.
  *   - alt: [string] Image alt text.
  * - subtitle: [string] Subtitle text.
+ * - date: [string] Start date and time.
+ * - date_iso: [string] Start date and time in ISO format.
  * - title: [string] Title.
  * - summary: [string] Summary.
  * - link: [object] Link object:
@@ -72,6 +74,29 @@
                 theme: theme,
                 type: 'tertiary',
                 content: subtitle,
+              } only %}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block date %}
+          {% if date is not empty %}
+            {% set date_content %}
+              {% include '@base/time/time.twig' with {
+                start: date,
+                start_iso: date_iso ?? null,
+                end: date_end ?? null,
+                end_iso: date_end_iso ?? null,
+              } only %}
+            {% endset %}
+
+            <div class="ct-promo-card__date">
+              {% include '@atoms/tag/tag.twig' with {
+                theme: theme,
+                type: date_end ? 'secondary' : 'tertiary',
+                content: date_content,
+                icon: date_end ? 'calendar-2' : null,
+                icon_placement: 'before',
               } only %}
             </div>
           {% endif %}

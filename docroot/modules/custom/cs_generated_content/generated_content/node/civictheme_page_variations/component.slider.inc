@@ -58,6 +58,20 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           ],
         ],
       ],
+      [
+        'type' => 'slider',
+        'title' => 'Light, 1 reference slide, Event  ' . $helper::staticSentence(2),
+        'theme' => $helper::civicthemeThemeLight(),
+        'slides' => [
+          [
+            'type' => 'civictheme_slider_slide_ref',
+            'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+            'theme' => $helper::civicthemeThemeLight(),
+            'image_position' => $helper::civicthemeImagePositionRight(),
+            'link_text' => 'Reference slide, Image on right, ' . $helper::staticSentence(2),
+          ],
+        ],
+      ],
 
       [
         'type' => 'slider',
@@ -83,6 +97,20 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
             'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
             'theme' => $helper::civicthemeThemeDark(),
             'image_position' => $helper::civicthemeImagePositionRight(),
+          ],
+        ],
+      ],
+      [
+        'type' => 'slider',
+        'title' => 'Dark, 1 reference slide, Event ' . $helper::staticSentence(2),
+        'theme' => $helper::civicthemeThemeDark(),
+        'slides' => [
+          [
+            'type' => 'civictheme_slider_slide_ref',
+            'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+            'theme' => $helper::civicthemeThemeDark(),
+            'image_position' => $helper::civicthemeImagePositionRight(),
+            'link_text' => 'Reference slide, Image on right, ' . $helper::staticSentence(2),
           ],
         ],
       ],

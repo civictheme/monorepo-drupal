@@ -614,7 +614,6 @@ config_devel:
     - block.block.civictheme_secondary_navigation
     - block.block.civictheme_side_navigation
     - block.block.civictheme_signup
-    - core.entity_view_mode.node.teaser
     - linkit.linkit_profile.civictheme
     - media.settings
 #;> DEVELOPMENT

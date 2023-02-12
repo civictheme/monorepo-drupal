@@ -472,3 +472,20 @@ function _civictheme_get_theme_from_element($element) {
 
   return $theme;
 }
+
+/**
+ * Propagate component theme setting to nested form elements.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
+  $form_elements = Element::children($elements);
+  foreach ($form_elements as $form_element) {
+    $elements[$form_element]['#attributes']['#civictheme_theme'] = $theme;
+    $elements[$form_element]['#attributes']['#component_theme'] = $theme;
+    $children = Element::children($elements[$form_element]);
+    if (!empty($children)) {
+      _civictheme_propagate_component_theme_settings($elements[$form_element], $theme);
+    }
+  }
+}
