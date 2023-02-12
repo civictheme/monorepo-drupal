@@ -85,6 +85,8 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_layouts:
         - civictheme_one_column
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
       restricted_categories: {  }
       blacklisted_blocks: {  }
       whitelisted_blocks: {  }
