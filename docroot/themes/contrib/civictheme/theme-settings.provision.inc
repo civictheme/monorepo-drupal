@@ -749,7 +749,10 @@ function _civictheme_provision__blocks__signup(array $block) {
     'type' => 'civictheme_promo',
   ]);
   $paragraph->field_c_p_title = 'Sign up';
-  $paragraph->field_c_p_summary = 'Sign up for news and updates from our agency.';
+  $paragraph->field_c_p_content = [
+    'value' => 'Sign up for news and updates from our agency.',
+    'format' => 'civictheme_rich_text',
+  ];
   $paragraph->field_c_p_link = [
     'uri' => 'internal:/subscribe',
     'title' => 'Sign up',
