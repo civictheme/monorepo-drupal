@@ -20,6 +20,13 @@ function _civictheme_preprocess_paragraph__paragraph_field__background(&$variabl
 }
 
 /**
+ * Pre-process for Column count paragraph field.
+ */
+function _civictheme_preprocess_paragraph__paragraph_field__column_count(&$variables) {
+  $variables['column_count'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_column_count', TRUE, 1);
+}
+
+/**
  * Pre-process for Content paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__content(&$variables) {
@@ -82,6 +89,13 @@ function _civictheme_preprocess_paragraph__node_field__date_range(&$variables) {
 }
 
 /**
+ * Pre-process for Fill width paragraph field.
+ */
+function _civictheme_preprocess_paragraph__paragraph_field__fill_width(&$variables) {
+  $variables['fill_width'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_fill_width', TRUE, FALSE);
+}
+
+/**
  * Pre-process for Image paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__image(&$variables) {
@@ -119,6 +133,38 @@ function _civictheme_preprocess_paragraph__paragraph_field__link(&$variables) {
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_link', TRUE);
   if ($link) {
     $variables['link'] = [
+      'text' => $link->get('title')->getString(),
+      'url' => $link->getUrl()->toString(),
+      'is_new_window' => $link->isExternal(),
+      'is_external' => $link->isExternal(),
+    ];
+  }
+}
+
+/**
+ * Pre-process for Link Above paragraph field.
+ */
+function _civictheme_preprocess_paragraph__paragraph_field__link_above(&$variables) {
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_link_above', TRUE);
+  if ($link) {
+    $variables['link_above'] = [
+      'text' => $link->get('title')->getString(),
+      'url' => $link->getUrl()->toString(),
+      'is_new_window' => $link->isExternal(),
+      'is_external' => $link->isExternal(),
+    ];
+  }
+}
+
+/**
+ * Pre-process for Link Below paragraph field.
+ */
+function _civictheme_preprocess_paragraph__paragraph_field__link_below(&$variables) {
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_link_below', TRUE);
+  if ($link) {
+    $variables['link_below'] = [
       'text' => $link->get('title')->getString(),
       'url' => $link->getUrl()->toString(),
       'is_new_window' => $link->isExternal(),
