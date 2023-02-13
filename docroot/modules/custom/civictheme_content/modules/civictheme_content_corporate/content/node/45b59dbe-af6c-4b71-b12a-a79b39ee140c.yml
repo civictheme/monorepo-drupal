@@ -503,7 +503,7 @@ default:
                       value: 'Bushfire recovery'
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'Popular topics'
@@ -765,7 +765,7 @@ default:
                       value: 'Event 3 title'
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'Upcoming events'

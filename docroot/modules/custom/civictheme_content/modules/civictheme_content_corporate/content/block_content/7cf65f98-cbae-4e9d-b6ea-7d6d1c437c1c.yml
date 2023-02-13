@@ -49,6 +49,3 @@ default:
           field_c_p_theme:
             -
               value: dark
-          field_c_p_vertical_spacing:
-            -
-              value: bottom
