@@ -1,12 +1,15 @@
 // phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean, number, radios, text,
+} from '@storybook/addon-knobs';
 
 import CivicThemeSingleFilter from './single-filter.twig';
+import { getSlots, randomLinks } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Single Filter',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 };
 
@@ -23,23 +26,31 @@ export const SingleFilter = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    title: text('Title', 'Filter search results by:', generalKnobTab),
     is_multiple: boolean('Multiple', false, generalKnobTab),
-    items: boolean('With items', true, generalKnobTab) ? [
-      {
-        text: text('Text', 'Basic filter 1', generalKnobTab),
-      },
-      {
-        text: text('Text2', 'Basic filter 2', generalKnobTab),
-      },
-      {
-        text: text('Text3', 'Basic filter 3', generalKnobTab),
-      },
-    ] : null,
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
+  const count = number(
+    'Number of filters',
+    3,
+    {
+      range: true,
+      min: 0,
+      max: 15,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+
+  generalKnobs.items = count > 0 ? randomLinks(count, 7, null, 'Filter') : null;
+
   return CivicThemeSingleFilter({
     ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };
