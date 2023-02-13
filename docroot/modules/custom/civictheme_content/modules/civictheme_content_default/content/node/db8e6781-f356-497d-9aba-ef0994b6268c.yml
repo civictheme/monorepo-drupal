@@ -9,7 +9,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -54,37 +54,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: ca66728f-27ec-4168-a908-fa76e23a666f
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1648686374
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<h2>List any content (Heading 2)</h2>\r\n\r\n<p>Content listing component for pages with News topic tagged displayed as navigation cards..</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 80ebb324-7c2e-4129-bf9d-38c1add856e5
           bundle: civictheme_automated_list
           default_langcode: en
@@ -98,21 +67,22 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
+          field_c_p_content:
+            -
+              value: "<p>Content listing component for pages with News topic tagged displayed as navigation cards.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_list_fill_width:
-            -
-              value: false
+              value: 3
           field_c_p_list_content_type:
             -
               value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light
@@ -134,6 +104,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'List any content'
   field_c_n_hide_sidebar:
     -
       value: false
@@ -148,4 +121,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top

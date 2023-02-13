@@ -12,6 +12,7 @@ use Drupal\Core\Utility\UpdateException;
  * Common updates.
  */
 function civictheme_content_default_post_update_common() {
+  \Drupal::moduleHandler()->loadInclude('civictheme_content', 'install');
   civictheme_content_post_update_common();
 }
 

@@ -5,10 +5,10 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8: node
     2b8021df-e474-4b3a-8b91-62844aefe844: media
     209291bc-81be-41c7-912c-70d695e9376c: media
     faa70cfa-88f0-49e7-81ed-9523560bb0d5: media
+    6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8: node
 default:
   revision_uid:
     -
@@ -21,7 +21,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'CivicTheme in 60 second series'
+      value: 'CivicTheme in 60 seconds series'
   created:
     -
       value: 1649559632
@@ -52,38 +52,6 @@ default:
     -
       value: normal
   field_c_n_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: e6321337-3dfc-4416-b4db-b4dfa204a206
-          bundle: civictheme_promo
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1649559645
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_link:
-            -
-              target_uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
-              title: 'Read all News and Events >'
-              options: {  }
-          field_c_p_theme:
-            -
-              value: light
-          field_c_p_title:
-            -
-              value: 'CivicTheme in 60 second series'
     -
       entity:
         _meta:
@@ -133,9 +101,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 2b8021df-e474-4b3a-8b91-62844aefe844
@@ -169,9 +134,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 209291bc-81be-41c7-912c-70d695e9376c
@@ -205,9 +167,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: faa70cfa-88f0-49e7-81ed-9523560bb0d5
@@ -223,9 +182,17 @@ default:
                   field_c_p_title:
                     -
                       value: CivicTheme
+          field_c_p_list_link_above:
+            -
+              target_uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
+              title: 'Read all'
+              options: {  }
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'CivicTheme in 60 seconds'
   field_c_n_hide_sidebar:
     -
       value: false
@@ -240,4 +207,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top
