@@ -109,6 +109,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4729baf2-63ab-48e2-9c47-ce82acc1f0d1
@@ -141,6 +144,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
@@ -173,6 +179,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 8810505e-9c28-43b9-b019-a0a034701b3a
@@ -205,6 +214,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 6eb923f5-2fa8-49b1-ac4c-46d587ec25eb
@@ -222,6 +234,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -240,6 +255,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content:
             -
               value: "<p>Learn more about what lies below the surface waters, what's in the deep sea and on the sea floor</p>\r\n"
@@ -250,6 +268,9 @@ default:
           field_c_p_title:
             -
               value: 'The open ocean'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

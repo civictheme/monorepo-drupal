@@ -28,6 +28,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: /climate-change
@@ -67,6 +70,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -77,6 +83,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -95,6 +104,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -120,6 +132,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra. Nulla eget luctus nunc, eu hendrerit risus. Proin fringilla pharetra sapien nec finibus. Cras ut sapien sit amet elit sollicitudin volutpat ac gravida est. Praesent vel convallis augue, pharetra pulvinar sem. Vestibulum pulvinar dui ut consectetur suscipit.</p>\r\n"
@@ -148,6 +163,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_content:
                     -
                       value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra. Nulla eget luctus nunc, eu hendrerit risus. Proin fringilla pharetra sapien nec finibus. Cras ut sapien sit amet elit sollicitudin volutpat ac gravida est. Praesent vel convallis augue, pharetra pulvinar sem. Vestibulum pulvinar dui ut consectetur suscipit.</p>\r\n"
@@ -161,6 +179,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false
