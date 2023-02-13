@@ -156,7 +156,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
     $variables = CivicthemeUtility::flattenArray($variables, self::CSS_VARIABLES_SEPARATOR);
 
     foreach ($variables as $name => $value) {
-      $variables['--' . $prefix . self::CSS_VARIABLES_SEPARATOR . $name] = (string) $value;
+      $variables['--' . $prefix . self::CSS_VARIABLES_SEPARATOR . str_replace('_', '-', $name)] = (string) $value;
       unset($variables[$name]);
     }
 
