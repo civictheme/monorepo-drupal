@@ -6,3 +6,13 @@ package: CivicTheme
 dependencies:
   - default_content:default_content
   - civictheme_content:civictheme_content
+
+#;< DEVELOPMENT
+config_devel:
+  optional:
+    - block.block.civictheme_footer_menu_1
+    - block.block.civictheme_footer_menu_2
+    - block.block.civictheme_footer_menu_3
+    - block.block.civictheme_footer_menu_4
+    - civictheme.settings
+#;> DEVELOPMENT
