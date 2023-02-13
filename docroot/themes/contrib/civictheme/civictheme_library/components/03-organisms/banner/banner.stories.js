@@ -46,7 +46,7 @@ export const Banner = (knobTab) => {
     } : null,
     is_decorative: boolean('Decorative', true, generalKnobTab),
     site_section: boolean('With site section', true, generalKnobTab) ? 'Site section name' : '',
-    breadcrumb: boolean('With breadcrumb', true, generalKnobTab) ? Breadcrumb(breadcrumbKnobTab, false).links : '',
+    breadcrumb: boolean('With breadcrumb', true, generalKnobTab) ? Breadcrumb(breadcrumbKnobTab, false) : '',
     show_content_text: boolean('With content text', true, generalKnobTab),
     show_content_below: boolean('With content below', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),

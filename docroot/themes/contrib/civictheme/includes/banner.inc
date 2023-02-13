@@ -7,6 +7,7 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Link;
 
 /**
  * Pre-process for Banner block.
@@ -55,22 +56,10 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
 
-  // Disable breadcrumb on homepage.
-  if (!\Drupal::service('path.matcher')->isFrontPage()) {
-    /** @var \Drupal\Core\Breadcrumb\Breadcrumb $breadcrumb */
-    $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
-    if ($breadcrumb) {
-      foreach ($breadcrumb->getLinks() as $link) {
-        $variables['breadcrumb'][] = [
-          'text' => $link->getText(),
-          'url' => $link->getUrl()->toString(),
-        ];
-      }
-    }
-  }
+  _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
   // Per-node overrides.
-  _civictheme_preprocess_block_civictheme_banner_node($variables);
+  _civictheme_preprocess_block__civictheme_banner__node($variables);
 
   if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
@@ -93,7 +82,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_preprocess_block_civictheme_banner_node(&$variables) {
+function _civictheme_preprocess_block__civictheme_banner__node(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
 
   if (empty($node)) {
@@ -152,5 +141,50 @@ function _civictheme_preprocess_block_civictheme_banner_node(&$variables) {
   $block = $variables['elements']['content']['#block_content'];
   if (!empty($block)) {
     $variables['#cache']['tags'] = Cache::mergeTags($block->getCacheTags(), $node->getCacheTags());
+  }
+}
+
+/**
+ * Pre-process for Breadcrumb.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
+function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables) {
+  // Disable breadcrumb on homepage.
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    return;
+  }
+
+  $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
+  if (!$breadcrumb) {
+    return;
+  }
+
+  // Always show the last item as a plain text (not a link).
+  $variables['breadcrumb']['active_is_link'] = FALSE;
+
+  // Gather existing links. Note that some profiles (GovCMS) may already have
+  // the functionality to add current page as a last item implemented.
+  foreach ($breadcrumb->getLinks() as $link) {
+    $variables['breadcrumb']['links'][] = [
+      'text' => $link->getText(),
+      'url' => $link->getUrl()->toString(),
+    ];
+  }
+
+  $current_route_match = \Drupal::routeMatch();
+  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
+  if (!empty($title)) {
+    $breadcrumb_links = $breadcrumb->getLinks();
+    $breadcrumb_last_link = end($breadcrumb_links);
+    $link = Link::createFromRoute($title, '<none>');
+    // Check if the link already exists and add it if not.
+    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+      $variables['breadcrumb']['links'][] = [
+        'text' => $link->getText(),
+        'url' => $link->getUrl()->toString(),
+      ];
+    }
   }
 }

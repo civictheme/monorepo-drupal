@@ -60,7 +60,8 @@
                   <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                     {% include '@molecules/breadcrumb/breadcrumb.twig' with {
                       theme: theme,
-                      links: breadcrumb,
+                      links: breadcrumb.links,
+                      active_is_link: breadcrumb.active_is_link,
                       modifier_class: 'ct-banner__breadcrumb',
                     } only %}
                   </div>
