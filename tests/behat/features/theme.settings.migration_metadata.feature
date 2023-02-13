@@ -63,7 +63,7 @@ Feature: Migration metadata is available on selected components.
     And should see a "[data-ct-migrate-banner-theme='dark']" element
     And should see a "[data-ct-migrate-banner-hide-breadcrumb='0']" element
 
-    When I visit civictheme theme settings page
+    When I visit current theme settings page
     And I uncheck the box "Expose Migration metadata"
     And I press "Save configuration"
 
