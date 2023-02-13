@@ -75,13 +75,14 @@ export const randomUrl = (domain) => {
   return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
 };
 
-export const randomLinks = (count, length, domain) => {
+export const randomLinks = (count, length, domain, prefix) => {
   const links = [];
+  prefix = prefix || 'Link';
   length = length || 0;
 
   for (let i = 0; i < count; i++) {
     links.push({
-      text: `Link ${i + 1}${length ? ` ${randomString(randomInt(1, length))}` : ''}`,
+      text: `${prefix} ${i + 1}${length ? ` ${randomString(randomInt(3, length))}` : ''}`,
       url: randomUrl(domain),
       is_new_window: randomBool(),
       is_external: randomBool(0.8),
