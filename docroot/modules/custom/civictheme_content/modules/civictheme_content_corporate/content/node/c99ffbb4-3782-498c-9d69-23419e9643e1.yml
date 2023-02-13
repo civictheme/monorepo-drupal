@@ -61,9 +61,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -95,37 +92,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: e347a23a-c221-4166-9a2c-6977fa3d7489
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1644896868
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<h2>Our commitment to science and research</h2>\r\n\r\n<p>As part of our commitment to science and research, we&nbsp;provide research grants every year to key projects and scientists working in cutting-edge environmental research.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 1c4f8f87-be91-4a93-82f0-8191389693c4
           bundle: civictheme_manual_list
           default_langcode: en
@@ -139,12 +105,13 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
+          field_c_p_content:
+            -
+              value: "<p>As part of our commitment to science and research, we&nbsp;provide research grants every year to key projects and scientists working in cutting-edge environmental research.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_list_column_count:
             -
               value: 1
@@ -170,9 +137,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: ec6f5030-d733-45c9-bd47-50de3d053e5c
@@ -196,6 +160,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'Our commitment to science and research'
     -
       entity:
         _meta:
@@ -222,10 +189,10 @@ default:
               value: false
           field_c_p_list_column_count:
             -
-              value: 4
+              value: 3
           field_c_p_list_fill_width:
             -
-              value: false
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -245,9 +212,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 6d127a84-70f5-43d3-a0dc-ee2872d97c8b
@@ -280,9 +244,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: c66b84d0-bd69-4330-96d2-71e1ecddebf0
@@ -315,9 +276,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: ab44a2e7-acd4-4276-bf83-3c6fd3e71271
@@ -350,9 +308,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e7ab9bae-edec-4639-b196-9dece305235d
@@ -398,41 +353,10 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Coastal erosion'
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 1edd556a-4cba-424c-b1ed-de18b51ddbb4
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1645161504
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<h2>More about The Great Barrier Reef</h2>\r\n\r\n<p>Watch the video below to find out more about The Reef.&nbsp;&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"f9dda201-13a4-4505-99e0-35ae0baf3357\" data-view-mode=\"\"></drupal-media>\r\n"
-              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light

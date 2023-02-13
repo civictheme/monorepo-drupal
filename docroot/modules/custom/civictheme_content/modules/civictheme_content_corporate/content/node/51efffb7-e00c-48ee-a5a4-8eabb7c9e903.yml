@@ -75,13 +75,13 @@ default:
               value: false
           field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_list_fill_width:
-            -
-              value: false
+              value: 3
           field_c_p_list_content_type:
             -
               value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light

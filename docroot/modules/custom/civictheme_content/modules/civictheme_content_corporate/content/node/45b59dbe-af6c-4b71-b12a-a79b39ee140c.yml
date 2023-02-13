@@ -78,9 +78,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -110,9 +107,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -141,9 +135,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
@@ -173,9 +164,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ce6b14c7-f782-40c6-884d-47724566ec60
@@ -205,9 +193,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ef661701-2c8e-4ea4-b927-2d2ecad7617e
@@ -237,9 +222,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 7a35464b-da5b-4edb-a490-6bcd54339f29
@@ -265,7 +247,7 @@ default:
       value: large
   field_c_n_blend_mode:
     -
-      value: normal
+      value: multiply
   field_c_n_components:
     -
       entity:
@@ -285,21 +267,18 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
           field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_list_fill_width:
-            -
-              value: false
+              value: 3
           field_c_p_list_content_type:
             -
               value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light
@@ -339,9 +318,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -370,9 +346,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -405,9 +378,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 6ce72705-bab7-4dce-9ca5-4a3ae097faa3
@@ -440,9 +410,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
@@ -475,9 +442,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: f06a9e48-e4bc-4e1d-9646-047d984c36ca
@@ -524,7 +488,7 @@ default:
               value: true
           field_c_p_background:
             -
-              value: false
+              value: true
           field_c_p_slides:
             -
               entity:
@@ -559,7 +523,7 @@ default:
                       value: left
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Bright Ideas in Science - 2022'
@@ -596,13 +560,13 @@ default:
                       value: left
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Glacial movement and climate change'
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_vertical_spacing:
             -
               value: both
@@ -624,9 +588,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -655,12 +616,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
-                  field_c_p_date:
-                    -
-                      value: '2022-04-20'
                   field_c_p_image:
                     -
                       entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
@@ -699,12 +654,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
-                  field_c_p_date:
-                    -
-                      value: '0022-05-05'
                   field_c_p_image:
                     -
                       entity: a8b62c0c-3e6c-450b-93b4-df5956b87cce
@@ -740,12 +689,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
-                  field_c_p_date:
-                    -
-                      value: '2022-06-20'
                   field_c_p_image:
                     -
                       entity: 1273590e-5a80-45ee-9172-0e1b9343ddb3

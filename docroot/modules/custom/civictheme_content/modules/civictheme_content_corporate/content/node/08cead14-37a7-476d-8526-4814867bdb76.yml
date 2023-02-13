@@ -61,37 +61,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: eda5e835-14b3-4752-9a91-4b5c611ff8d5
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1642671530
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<p>Marine habitats make up an important part of the DE’s work.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 60111b20-de17-482a-911a-374218a74c09
           bundle: civictheme_manual_list
           default_langcode: en
@@ -111,6 +80,10 @@ default:
           field_c_p_background:
             -
               value: false
+          field_c_p_content:
+            -
+              value: "<p>Marine habitats make up an important part of the DE’s work.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_list_column_count:
             -
               value: 4
@@ -136,9 +109,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4729baf2-63ab-48e2-9c47-ce82acc1f0d1
@@ -171,9 +141,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
@@ -206,9 +173,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 8810505e-9c28-43b9-b019-a0a034701b3a
@@ -241,9 +205,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 6eb923f5-2fa8-49b1-ac4c-46d587ec25eb
@@ -279,15 +240,13 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
+          field_c_p_content:
             -
-              value: true
-          field_c_p_summary:
-            -
-              value: 'Learn more about what lies below the surface waters, what''s in the deep sea and on the sea floor'
+              value: "<p>Learn more about what lies below the surface waters, what's in the deep sea and on the sea floor</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'The open ocean'

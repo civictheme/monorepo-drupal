@@ -39,14 +39,15 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_content:
+            -
+              value: "<p>Sign up for news and updates from our agency.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'internal:/subscribe'
               title: 'Sign up'
               options: {  }
-          field_c_p_summary:
-            -
-              value: 'Sign up for news and updates from our agency.'
           field_c_p_theme:
             -
               value: dark

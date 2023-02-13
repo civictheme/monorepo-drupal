@@ -55,9 +55,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -79,7 +76,7 @@ default:
       value: dark
   field_c_n_banner_type:
     -
-      value: default
+      value: large
   field_c_n_blend_mode:
     -
       value: normal
@@ -102,9 +99,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
