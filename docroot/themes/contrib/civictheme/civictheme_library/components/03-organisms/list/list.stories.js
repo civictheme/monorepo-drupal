@@ -53,14 +53,14 @@ export const List = (knobTab) => {
 
   generalKnobs.content = boolean('With content', true, generalKnobTab) ? randomSentence(50) : null;
   generalKnobs.link_above = boolean('With link above', true, generalKnobTab) ? {
-    text: 'View more',
+    text: text('Link above text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
     is_external: false,
   } : null;
   generalKnobs.link_below = boolean('With link below', true, generalKnobTab) ? {
-    text: 'View more',
+    text: text('Link below text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
