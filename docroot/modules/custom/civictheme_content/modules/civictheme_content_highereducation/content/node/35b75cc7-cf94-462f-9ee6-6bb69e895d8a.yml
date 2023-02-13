@@ -55,9 +55,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -105,13 +102,13 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_list_column_count:
-            -
-              value: 1
           field_c_p_content:
             -
               value: "<p>Search our undergraduate courses by keyword or school/department.</p>\r\n"
               format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 1
           field_c_p_list_fill_width:
             -
               value: false
@@ -134,9 +131,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -172,9 +166,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -210,9 +201,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -236,33 +224,9 @@ default:
           field_c_p_title:
             -
               value: 'Featured undergraduate courses'
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: e1e98683-66aa-49cd-a508-8b8d877c7494
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
+          field_c_p_vertical_spacing:
             -
-              value: true
-          created:
-            -
-              value: 1669028436
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_theme:
-            -
-              value: light
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

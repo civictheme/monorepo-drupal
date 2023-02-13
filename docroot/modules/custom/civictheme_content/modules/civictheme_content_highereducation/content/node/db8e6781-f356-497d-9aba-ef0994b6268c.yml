@@ -56,9 +56,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -109,12 +106,12 @@ default:
           field_c_p_list_column_count:
             -
               value: 3
-          field_c_p_list_fill_width:
-            -
-              value: false
           field_c_p_list_content_type:
             -
               value: all
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light
@@ -138,6 +135,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

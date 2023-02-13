@@ -41,10 +41,10 @@ default:
     -
       value: "<p>Men’s tennis finals. Including rankings, news and championship brackets.</p>\r\n"
       format: civictheme_rich_text
-  field_c_n_date:
+  field_c_n_date_range:
     -
-      value: '2022-08-04T15:00:00'
-      end_value: '2022-08-06T19:00:00'
+      value: '2023-03-20T00:30:00'
+      end_value: '2023-03-20T02:30:00'
   field_c_n_location:
     -
       entity:
@@ -77,6 +77,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_show_last_updated:
     -
       value: false

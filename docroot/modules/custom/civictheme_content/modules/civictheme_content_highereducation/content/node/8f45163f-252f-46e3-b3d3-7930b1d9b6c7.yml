@@ -110,13 +110,13 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_list_column_count:
-            -
-              value: 3
           field_c_p_content:
             -
               value: "<p>Find an area of research that interests you below.&nbsp;</p>\r\n"
               format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 3
           field_c_p_list_fill_width:
             -
               value: false

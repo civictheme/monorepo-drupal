@@ -60,9 +60,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -112,7 +109,7 @@ default:
               value: false
           field_c_p_list_column_count:
             -
-              value: 1
+              value: 2
           field_c_p_list_fill_width:
             -
               value: false
@@ -135,9 +132,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a
@@ -170,9 +164,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4c1ad737-0d04-4adc-a2b4-10a6b914cb1a

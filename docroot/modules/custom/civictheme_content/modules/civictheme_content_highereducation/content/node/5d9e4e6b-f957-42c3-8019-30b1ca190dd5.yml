@@ -113,9 +113,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_summary:
-            -
-              value: 'Download Strategic Plan 2022-2032'
           field_c_p_theme:
             -
               value: light
