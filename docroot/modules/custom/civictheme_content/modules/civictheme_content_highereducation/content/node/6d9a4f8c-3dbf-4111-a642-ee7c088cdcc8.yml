@@ -58,9 +58,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -102,9 +99,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -136,9 +130,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -164,9 +155,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -195,9 +183,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -226,9 +211,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -257,9 +239,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -288,9 +267,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -319,9 +295,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: '<p>Lorem ipsum</p>'
@@ -369,6 +342,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

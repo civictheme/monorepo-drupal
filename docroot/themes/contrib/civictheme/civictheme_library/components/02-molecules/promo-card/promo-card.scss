@@ -37,24 +37,28 @@
     padding: ct-spacing(3);
   }
 
-  #{$root}__content__subtitle {
+  #{$root}__subtitle {
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__content__title {
+  #{$root}__date {
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__content__title__link {
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title__link {
     @include ct-font-size-inherit();
   }
 
-  #{$root}__content__tags {
+  #{$root}__tags {
     display: flex;
     margin-top: ct-spacing(2);
   }
 
-  #{$root}__content__tags__link {
+  #{$root}__tags__link {
     @include ct-flex-align-right();
 
     .ct-link__icon {

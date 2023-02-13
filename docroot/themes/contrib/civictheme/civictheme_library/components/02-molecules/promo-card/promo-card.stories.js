@@ -3,6 +3,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
+  dateIsValid,
   demoImage,
   getSlots, randomSentence,
   randomTags,
@@ -32,11 +33,17 @@ export const PromoCard = (knobTab) => {
       generalKnobTab,
     ),
     subtitle: text('Subtitle', randomSentence(3), generalKnobTab),
+    date: text('Date', '20 Jan 2023 11:00', generalKnobTab),
+    date_end: text('End date', '21 Jan 2023 15:00', generalKnobTab),
     title: text('Title', 'Promo card name which runs across two or three lines', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
-    url: text('Link URL', randomUrl(), generalKnobTab),
+    link: {
+      url: text('Link URL', randomUrl(), generalKnobTab),
+      is_external: boolean('Link is external', false, generalKnobTab),
+      is_new_window: boolean('Open in a new window', false, generalKnobTab),
+    },
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
     tags: randomTags(number(
@@ -54,11 +61,8 @@ export const PromoCard = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
+  generalKnobs.date_iso = dateIsValid(generalKnobs.date) ? new Date(generalKnobs.date).toISOString() : null;
+  generalKnobs.date_end_iso = dateIsValid(generalKnobs.date_end) ? new Date(generalKnobs.date_end).toISOString() : null;
 
   return CivicThemePromoCard({
     ...generalKnobs,

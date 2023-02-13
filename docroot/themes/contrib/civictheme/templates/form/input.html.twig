@@ -1,15 +1,9 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation for an 'input' #type form element.
- *
- * Available variables:
- * - attributes: A list of HTML attributes for the input element.
- * - children: Optional additional rendered elements.
- *
+ * CivicTheme implementation to display an 'input' form element.
  */
 #}
-
 {% include '@atoms/input/input.twig' with {
   type: attributes.offsetGet('type'),
   value: attributes.offsetGet('value'),

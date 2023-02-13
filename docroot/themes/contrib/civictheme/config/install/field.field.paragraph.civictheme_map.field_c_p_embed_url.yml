@@ -11,12 +11,12 @@ field_name: field_c_p_embed_url
 entity_type: paragraph
 bundle: civictheme_map
 label: 'Embed URL'
-description: ''
+description: 'URL of the map to embed.'
 required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 16
   title: 0
+  link_type: 16
 field_type: link

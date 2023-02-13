@@ -42,7 +42,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     // @todo Improve content creation by allowing to skip overwriting of the
     // existing items.
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
-    '#weight' => 51,
+    '#weight' => 50,
     '#open' => FALSE,
   ];
 
@@ -749,7 +749,10 @@ function _civictheme_provision__blocks__signup(array $block) {
     'type' => 'civictheme_promo',
   ]);
   $paragraph->field_c_p_title = 'Sign up';
-  $paragraph->field_c_p_summary = 'Sign up for news and updates from our agency.';
+  $paragraph->field_c_p_content = [
+    'value' => 'Sign up for news and updates from our agency.',
+    'format' => 'civictheme_rich_text',
+  ];
   $paragraph->field_c_p_link = [
     'uri' => 'internal:/subscribe',
     'title' => 'Sign up',

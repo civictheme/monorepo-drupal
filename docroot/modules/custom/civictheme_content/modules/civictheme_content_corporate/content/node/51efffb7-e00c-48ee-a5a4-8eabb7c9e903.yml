@@ -73,15 +73,15 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
+              value: 3
           field_c_p_list_content_type:
             -
               value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light
@@ -103,6 +103,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

@@ -365,3 +365,10 @@ civictheme.settings:
                 success:
                   label: Success
                   type: string
+    migration:
+      type: mapping
+      label: Migration
+      mapping:
+        expose_metadata:
+          label: 'Expose migration metadata'
+          type: boolean

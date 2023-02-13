@@ -5,7 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - src: [string] URL of the image.
+ * - url: [string] URL of the image.
  * - alt: [string] Alternate text of the image.
  * - width: [string] Width.
  * - height: [string] Height.
@@ -17,10 +17,10 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if src is not empty %}
+{% if url is not empty %}
   <img
     class="ct-image {{ modifier_class }}"
-    src="{{ src }}"
+    src="{{ url }}"
     {% if alt is not null %}alt="{{ alt }}"{% endif %}
     {% if width is not empty %}width="{{ width }}"{% endif %}
     {% if height is not empty %}height="{{ height }}"{% endif %}

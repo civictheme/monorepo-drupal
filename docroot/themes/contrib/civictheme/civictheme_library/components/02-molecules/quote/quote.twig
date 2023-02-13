@@ -4,9 +4,9 @@
  * Quote component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content: [string] Content.
- * - author: [string] Quote author.
+ * - author: [string] Author.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -23,7 +23,9 @@
       {{ content }}
     </blockquote>
     {%- if author %}
-      <figcaption class="ct-quote__author">{{ author }}</figcaption>
+      <figcaption class="ct-quote__author">
+        {{ author }}
+      </figcaption>
     {% endif  -%}
   </figure>
 {% endif %}

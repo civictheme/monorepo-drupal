@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_next_step.field_c_p_content
     - field.field.paragraph.civictheme_next_step.field_c_p_link
-    - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
     - field.field.paragraph.civictheme_next_step.field_c_p_vertical_spacing
@@ -11,11 +11,19 @@ dependencies:
   module:
     - link
     - options
+    - text
 id: paragraph.civictheme_next_step.default
 targetEntityType: paragraph
 bundle: civictheme_next_step
 mode: default
 content:
+  field_c_p_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_c_p_link:
     type: link
     label: above
@@ -27,13 +35,6 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 6
-    region: content
-  field_c_p_summary:
-    type: basic_string
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_c_p_theme:
     type: list_default

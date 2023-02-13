@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_theme_settings
+@p0 @civictheme @civictheme_theme_settings @civictheme_theme_settings_components
 Feature: Components settings are available in the theme settings
 
   Background:
@@ -13,7 +13,7 @@ Feature: Components settings are available in the theme settings
   @api
   Scenario: The CivicTheme theme settings form has Component fields
     Given I am logged in as a user with the "Site Administrator" role
-    When I visit "/admin/appearance/settings/civictheme"
+    When I visit current theme settings page
 
     And I should not see an "input#edit-toggle-node-user-picture" element
     And I should not see an "input#edit-toggle-comment-user-picture" element
@@ -112,18 +112,15 @@ Feature: Components settings are available in the theme settings
     And should see an "textarea#edit-components-link-external-override-domains" element
     And should not see an "textarea#edit-components-link-external-override-domains.required" element
 
-    And I see field "Expose Migration metadata"
-    And should see an "input[name='components[migrate][expose_migration_metadata]']" element
-    And should not see an "input[name='components[migrate][expose_migration_metadata]'].required" element
-
     And I should see the text "Theme"
     And I should see an "input[name='components[skip_link][theme]']" element
     And I should see an "#edit-components-skip-link-theme--wrapper.required" element
 
-  @api @basetheme
-  Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
+  @api
+  Scenario: The CivicTheme theme settings verify custom logo configuration with a stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
+
     When I fill in "Image path for Primary Light logo for Desktop" with "public://civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "public://civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
@@ -134,6 +131,7 @@ Feature: Components settings are available in the theme settings
     And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I fill in "Footer background image path" with "public://civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
+
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
@@ -141,16 +139,24 @@ Feature: Components settings are available in the theme settings
     And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
-  @api @basetheme
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+  @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
+
     When I fill in "Image path for Primary Light logo for Desktop" with "sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "sites/default/files/civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I fill in "Image path for Primary Dark logo for Mobile" with "sites/default/files/civictheme_test/logo_dark_mobile.jpg"
     And I fill in "Footer background image path" with "sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
+
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
@@ -160,7 +166,8 @@ Feature: Components settings are available in the theme settings
 
     # Assert with static assets prefixed with '/'.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
+
     When I fill in "Image path for Primary Light logo for Desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I fill in "Image path for Primary Light logo for Mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
     And I fill in "Image path for Primary Dark logo for Desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
@@ -171,6 +178,7 @@ Feature: Components settings are available in the theme settings
     And I fill in "Image path for Secondary Dark logo for Mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
     And I fill in "Footer background image path" with "/sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
+
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
@@ -178,10 +186,17 @@ Feature: Components settings are available in the theme settings
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
+
     When I attach the file "test_image_logo_light_desktop.jpg" to "Upload Primary Light logo for Desktop"
     And I attach the file "test_image_logo_light_mobile.jpg" to "Upload Primary Light logo for Mobile"
     And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload Primary Dark logo for Desktop"
@@ -193,10 +208,16 @@ Feature: Components settings are available in the theme settings
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
 
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
   @api
   Scenario: The CivicTheme theme settings External Links component validation works.
     Given I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
 
     When I fill in "Override external link domains" with "http://exampleoverridden.com"
     And I press "Save configuration"
@@ -206,20 +227,32 @@ Feature: Components settings are available in the theme settings
     And I press "Save configuration"
     Then I should not see the text "The configuration options have been saved."
 
-  @api @basetheme
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+  @api
   Scenario: The CivicTheme theme settings Skip Link works.
     Given I am logged in as a user with the "Site Administrator" role
 
-    When I visit "/admin/appearance/settings/civictheme"
+    When I visit current theme settings page
     And  I select the radio button "Light" with the id "edit-components-skip-link-theme-light"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see a ".ct-skip-link.ct-theme-light" element
 
-    When I visit "/admin/appearance/settings/civictheme"
+    When I visit current theme settings page
     And I select the radio button "Dark" with the id "edit-components-skip-link-theme-dark"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see a ".ct-skip-link.ct-theme-dark" element
+
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."

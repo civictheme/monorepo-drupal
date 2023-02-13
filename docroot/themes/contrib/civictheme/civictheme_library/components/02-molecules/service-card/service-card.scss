@@ -20,11 +20,11 @@
     }
   }
 
-  #{$root}__content__title {
+  #{$root}__title {
     text-align: center;
   }
 
-  #{$root}__content__links {
+  #{$root}__links {
     margin-top: ct-spacing(2);
 
     .ct-item-list__item {

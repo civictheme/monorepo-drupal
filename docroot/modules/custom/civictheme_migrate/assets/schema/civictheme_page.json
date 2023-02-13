@@ -109,6 +109,13 @@
         }
       }
     },
-    "required": ["id", "title", "alias", "show_toc","hide_sidebar", "show_last_updated_date"]
+    "required": [
+      "id",
+      "title",
+      "alias",
+      "show_toc",
+      "hide_sidebar",
+      "show_last_updated_date"
+    ]
   }
 }

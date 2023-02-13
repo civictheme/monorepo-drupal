@@ -56,16 +56,13 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'body' => $helper::staticRichText(3),
     ],
     [
-      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date',
+      'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Site section',
       'summary' => $helper::staticPlainParagraph(),
       'topics' => $helper::staticTerms('civictheme_topics', 1),
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
-      'date' => [
-        'value' => '2022-07-01T12:12:12',
-        'end_value' => '2022-07-01T12:12:12',
-      ],
+      'site_section' => $helper::staticTerms('civictheme_site_sections', 1),
     ],
     [
       'title' => 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date Range',
@@ -74,9 +71,9 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'thumbnail' => $helper::staticMediaItem('civictheme_image'),
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       'body' => $helper::staticRichText(3),
-      'date' => [
-        'value' => '2022-07-01T12:12:12',
-        'end_value' => '2023-07-01T12:12:12',
+      'date_range' => [
+        'value' => $helper::dateToUtc('2022-07-01T09:45:00'),
+        'end_value' => $helper::dateToUtc('2022-08-14T15:30:00'),
       ],
     ],
     [

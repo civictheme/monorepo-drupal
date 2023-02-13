@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_promo_card
+@p0 @civictheme @civictheme_card @civictheme_promo_card
 Feature: Promo card fields
 
   @api
@@ -24,7 +24,7 @@ Feature: Promo card fields
     And I should not see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_summary][0][value]'][disabled]" element
 
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]']" element
-    And I should see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'].required" element
+    And I should not see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'].required" element
     And I should not see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_link][0][uri]'][disabled]" element
 
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_topics][0][target_id]']" element

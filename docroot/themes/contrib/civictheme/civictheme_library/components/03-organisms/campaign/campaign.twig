@@ -4,16 +4,18 @@
  * Campaign component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top: [string] Content slot.
- * - content_bottom: [string] Content slot.
- * - image: [object] object with src and alt tag { src: '', alt: '' }
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
  * - image_position: [string] left / right
  * - tags: [array] Array of tags.
  * - title: [string] Title.
  * - date: [string] Date.
- * - summary: [string] Summary text.
+ * - content: [string] Content.
  * - links: [array] Links.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -29,24 +31,24 @@
   <div class="container">
     <div class="row">
       <div class="col-xxs-12">
-        <div class="ct-campaign__inner">
+        <div class="ct-campaign__wrapper">
           {% block image %}
             {% if image is not empty %}
               <div class="ct-campaign__image">
                 {% include '@atoms/image/image.twig' with {
                   theme: theme,
-                  src: image.src,
-                  alt:  image.alt,
+                  url: image.url,
+                  alt: image.alt,
                 } only %}
               </div>
             {% endif %}
           {% endblock %}
 
-          <div class="ct-campaign__content">
-            <div class="ct-campaign__content__inner">
+          <div class="ct-campaign__inner-wrapper">
+            <div class="ct-campaign__inner">
               {% block content_top %}
                 {% if content_top is not empty %}
-                  <div class="ct-campaign__content__top">
+                  <div class="ct-campaign__content-top">
                     {{ content_top }}
                   </div>
                 {% endif %}
@@ -57,7 +59,7 @@
                   {% include '@molecules/tag-list/tag-list.twig' with {
                     theme: theme,
                     tags: tags,
-                    modifier_class: 'ct-campaign__content__tags'
+                    modifier_class: 'ct-campaign__tags'
                   } only %}
                 {% endif %}
               {% endblock %}
@@ -68,7 +70,7 @@
                     theme: theme,
                     content: title,
                     level: 2,
-                    modifier_class: 'ct-campaign__content__title'
+                    modifier_class: 'ct-campaign__title'
                   } only %}
                 {% endif %}
 
@@ -77,16 +79,16 @@
                     theme: theme,
                     content: date,
                     type: 'tertiary',
-                    modifier_class: 'ct-campaign__content__date'
+                    modifier_class: 'ct-campaign__date'
                   } only %}
                 {% endif %}
 
-                {% if summary is not empty %}
+                {% if content is not empty %}
                   {% include '@atoms/paragraph/paragraph.twig' with {
                     theme: theme,
-                    content: summary,
+                    content: content,
                     allow_html: true,
-                    modifier_class: 'ct-campaign__content__summary',
+                    modifier_class: 'ct-campaign__content',
                   } only %}
                 {% endif %}
 
@@ -110,7 +112,7 @@
                     {% include '@base/item-list/item-list.twig' with {
                       items: link_items,
                       size: 'small',
-                      modifier_class: 'ct-campaign__content__links',
+                      modifier_class: 'ct-campaign__links',
                     } only %}
                   {% endif %}
                 {% endblock %}
@@ -118,7 +120,7 @@
 
               {% block content_bottom %}
                 {% if content_bottom is not empty %}
-                  <div class="ct-campaign__content__bottom">
+                  <div class="ct-campaign__content-bottom">
                     {{ content_bottom }}
                   </div>
                 {% endif %}

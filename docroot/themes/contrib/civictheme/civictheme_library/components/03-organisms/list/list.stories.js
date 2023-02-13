@@ -51,16 +51,16 @@ export const List = (knobTab) => {
     title: text('Title', 'List title', generalKnobTab),
   };
 
-  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomSentence() : null;
-  generalKnobs.link_above = boolean('With link above', false, generalKnobTab) ? {
-    text: 'View more',
+  generalKnobs.content = boolean('With content', true, generalKnobTab) ? randomSentence(50) : null;
+  generalKnobs.link_above = boolean('With link above', true, generalKnobTab) ? {
+    text: text('Link above text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
     is_external: false,
   } : null;
-  generalKnobs.link_below = boolean('With link below', false, generalKnobTab) ? {
-    text: 'View more',
+  generalKnobs.link_below = boolean('With link below', true, generalKnobTab) ? {
+    text: text('Link below text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
@@ -260,7 +260,7 @@ export const List = (knobTab) => {
         summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
         url: text('Link URL', 'http://example.com', cardsKnobTab),
         image: boolean('With image', true, cardsKnobTab) ? {
-          src: demoImage(),
+          url: demoImage(),
           alt: 'Image alt text',
         } : false,
         size: 'large',

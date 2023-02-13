@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_promo_card
+@p0 @civictheme @civictheme_card @civictheme_promo_card
 Feature: Promo card render
 
   Background:
@@ -25,10 +25,10 @@ Feature: Promo card render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Promo cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Promo cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Promo manual list                         |
-      | field_c_p_column_count    | 4                                                |
-      | field_c_p_list_link_above | 0: View all promo cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                |
+      | field_c_p_title             | [TEST] Promo manual list                         |
+      | field_c_p_list_column_count | 4                                                |
+      | field_c_p_list_link_above   | 0: View all promo cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Promo manual list" has "civictheme_promo_card" paragraph:
       | field_c_p_title    | Promo card title 1                    |
       | field_c_p_subtitle | Promo card subtitle 1                 |
@@ -69,9 +69,9 @@ Feature: Promo card render
     And I should see 2 ".ct-promo-card.ct-theme-light" elements
     And I should see 2 ".ct-promo-card.ct-theme-dark" elements
     And I should see 4 ".ct-promo-card__content" elements
-    And I should see 4 ".ct-promo-card__content__title" elements
-    And I should see 4 ".ct-promo-card__content__summary" elements
-    And I should see 3 ".ct-promo-card__content__tags .ct-tag" elements
+    And I should see 4 ".ct-promo-card__title" elements
+    And I should see 4 ".ct-promo-card__summary" elements
+    And I should see 3 ".ct-promo-card__tags .ct-tag" elements
     And I should see the text "Promo card title 1"
     And I should see the text "Promo card title 2"
     And I should see the text "Promo card title 3"

@@ -17,6 +17,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
   return [
     [
       'title' => 'Page. Component. Navigation card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -56,6 +57,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Navigation reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'theme' => $helper::civicthemeThemeLight(),
@@ -90,6 +92,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Promo card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -167,6 +170,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Promo reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -200,7 +204,173 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
 
     [
+      'title' => 'Page. Component. Event card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
+      'components' => [
+        [
+          'title' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => 'Same day ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2021-04-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image, no link ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => '2021-04-30T12:15:00',
+                'end_value' => '2026-05-30T14:30:00',
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+          ],
+        ],
+        [
+          'title' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'image' => $helper->staticMediaItem('civictheme_image'),
+              'title' => 'Same day ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2021-04-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'link' => $helper::staticLinkFieldValue(),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+            [
+              'type' => 'civictheme_event_card',
+              'title' => 'No image, no link ' . $helper::staticSentence(3),
+              'summary' => 'Summary ' . $helper::staticSentence(8),
+              'date_range' => [
+                'value' => $helper::dateToUtc('2021-04-30T12:15:00'),
+                'end_value' => $helper::dateToUtc('2026-05-30T14:30:00'),
+              ],
+              'location' => 'Location ' . $helper::staticSentence(2),
+              'topics' => $helper::staticTerms('civictheme_topics', 3),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+          ],
+        ],
+      ],
+    ],
+    [
+      'title' => 'Page. Component. Event reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
+      'components' => [
+        [
+          'title' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'column_count' => 2,
+          'background' => TRUE,
+          'type' => 'manual_list',
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card_ref',
+              'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+              'theme' => $helper::civicthemeThemeLight(),
+            ],
+          ],
+        ],
+        [
+          'title' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'type' => 'manual_list',
+          'column_count' => 2,
+          'background' => TRUE,
+          'cards' => [
+            [
+              'type' => 'civictheme_event_card_ref',
+              'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
+              'theme' => $helper::civicthemeThemeDark(),
+            ],
+          ],
+        ],
+      ],
+    ],
+
+    [
       'title' => 'Page. Component. Publication card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -219,7 +389,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             ],
             [
               'type' => 'civictheme_publication_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => 'No image, ' . $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
@@ -244,7 +413,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
             ],
             [
               'type' => 'civictheme_publication_card',
-              'image' => $helper->staticMediaItem('civictheme_image'),
               'title' => 'No image, ' . $helper::staticSentence(3),
               'summary' => $helper::staticSentence(8),
               'document' => $helper->staticMediaItem('civictheme_document'),
@@ -257,6 +425,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Service card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -301,6 +470,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
 
     [
       'title' => 'Page. Component. Subject card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),
@@ -350,6 +520,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
     ],
     [
       'title' => 'Page. Component. Subject reference card',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
       'components' => [
         [
           'title' => $helper::civicthemeThemeLight(),

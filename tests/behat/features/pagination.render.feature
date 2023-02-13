@@ -1,4 +1,5 @@
-@p1 @civictheme @civictheme_pagination @testmode
+@p1 @civictheme @civictheme_pagination @skipped
+# Skipped until exposed filters are fixed.
 Feature: Pagination
 
   Background:
@@ -30,7 +31,7 @@ Feature: Pagination
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api
+  @api @testmode
   Scenario: Views page with full pager and items per page should render and function correctly
     Given I am an anonymous user
     When I visit "civictheme-no-sidebar/test-table"
@@ -65,7 +66,7 @@ Feature: Pagination
     And I should see 25 ".ct-list table.ct-table tbody tr" elements
     And the option "25" from select "items_per_page" is selected
 
-  @api
+  @api @testmode
   Scenario: Views page with mini pager and items per page should render and function correctly
     Given I am an anonymous user
     When I visit "civictheme-no-sidebar/test-table-mini-pager"

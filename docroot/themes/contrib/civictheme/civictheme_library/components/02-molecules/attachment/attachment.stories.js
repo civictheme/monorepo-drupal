@@ -1,10 +1,13 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomUrl } from '../../00-base/base.utils';
+import { getSlots, randomSentence, randomUrl } from '../../00-base/base.utils';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {
   title: 'Molecules/Attachment',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Attachment = (knobTab) => {
@@ -16,73 +19,82 @@ export const Attachment = (knobTab) => {
     day: 'numeric',
   });
 
-  const links = [
+  const files = [
     {
       url: randomUrl(),
-      text: 'DOC type document',
+      name: 'Document.doc',
       ext: 'doc',
       size: '42.88 KB',
-      last_updated: date,
-      icon: 'download-file',
+      created: date,
+      changed: date,
+      icon: 'word-file',
     },
     {
       url: randomUrl(),
-      text: 'DOCX type document',
+      name: 'Document.doc',
       ext: 'docx',
       size: '32.48 KB',
-      last_updated: date,
-      icon: 'download-file',
+      created: date,
+      changed: date,
+      icon: 'word-file',
     },
     {
       url: randomUrl(),
-      text: 'PDF type document',
+      name: 'Document.pdf',
       ext: 'pdf',
       size: '42.82 KB',
-      last_updated: date,
-      icon: 'download-file',
+      created: date,
+      changed: date,
+      icon: 'pdf-file',
     },
     {
       url: randomUrl(),
-      text: 'PPT type document',
+      name: 'Document.ppt',
       ext: 'ppt',
       size: '12.88 KB',
-      last_updated: date,
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLSX type document',
+      name: 'Document.xlsx',
       ext: 'xlsx',
       size: '34.45 KB',
-      last_updated: date,
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLS type document',
+      name: 'Document.xls',
       ext: 'xls',
       size: '65.67 KB',
-      last_updated: date,
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLS type document',
+      name: 'Document.xls',
       size: '65.67 KB',
-      last_updated: date,
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLS type document',
+      name: 'Document.xls',
       ext: 'XLS',
-      last_updated: date,
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
     {
       url: randomUrl(),
-      text: 'XLS type document',
-      last_updated: date,
+      name: 'Document.xls',
+      created: date,
+      changed: date,
       icon: 'download-file',
     },
   ];
@@ -98,8 +110,8 @@ export const Attachment = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Attachments', generalKnobTab),
-    summary: text('Summary', 'Summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines.', generalKnobTab),
-    links: boolean('With links', true, generalKnobTab) ? links : null,
+    content: text('Content', randomSentence(), generalKnobTab),
+    files: boolean('With files', true, generalKnobTab) ? files : null,
     with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',

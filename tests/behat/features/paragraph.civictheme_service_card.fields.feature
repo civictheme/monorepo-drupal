@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_service_card
+@p0 @civictheme @civictheme_card @civictheme_service_card
 Feature: Service card fields
 
   @api

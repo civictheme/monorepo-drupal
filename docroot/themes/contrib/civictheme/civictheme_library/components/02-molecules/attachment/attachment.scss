@@ -10,7 +10,7 @@
     padding-right: $ct-attachment-space-horizontal;
   }
 
-  #{$root}__inner {
+  #{$root}__wrapper {
     border: solid ct-particle(0.125);
     border-radius: $ct-attachment-border-radius;
     padding: ct-spacing(3);
@@ -20,68 +20,33 @@
     }
   }
 
-  #{$root}__content__summary {
-    margin-top: ct-spacing(2);
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__list {
-    list-style: none;
-    margin: ct-spacing(2) 0 0 0;
-    padding: 0;
+  #{$root}__content {
+    margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__list__item {
-    @include ct-typography('label-regular');
-
+  #{$root}__links .ct-item-list__item {
     display: flex;
-    gap: ct-spacing();
-    margin-bottom: ct-spacing(0.5);
-
-    @include ct-breakpoint(m) {
-      margin-bottom: ct-spacing();
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    gap: 0 ct-spacing();
   }
 
-  #{$root}__list__item__details__extension {
+  #{$root}__links__link__extension {
     text-transform: uppercase;
   }
 
-  #{$root}__list__item__details__last-updated {
-    @include ct-typography('text-small');
-  }
-
   @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
     &#{$root}--with-background {
       @include ct-component-property($root, $theme, wrapper, background-color);
     }
 
-    #{$root}__inner {
-      @include ct-component-property($root, $theme, border, color);
+    #{$root}__wrapper {
+      @include ct-component-property($root, $theme, border-color);
       @include ct-component-property($root, $theme, background-color);
-    }
-
-    #{$root}__content {
-      @include ct-component-property($root, $theme, color);
-    }
-
-    #{$root}__content__title {
-      @include ct-component-property($root, $theme, title, color);
-    }
-
-    #{$root}__list__item {
-      @include ct-component-property($root, $theme, heading, color);
-    }
-
-    #{$root}__list__item__icon {
-      @include ct-component-property($root, $theme, icon, color);
-    }
-
-    #{$root}__list__item__details__last-updated {
-      @include ct-component-property($root, $theme, date, color);
     }
   }
 }

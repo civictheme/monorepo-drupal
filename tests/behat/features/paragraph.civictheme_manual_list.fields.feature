@@ -54,9 +54,9 @@ Feature: Manual list fields
     And should see a "[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
 
     And I see the text "Column count"
-    And should see a "[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
-    And should see a "[name='field_c_n_components[0][subform][field_c_p_column_count]'].required" element
-    And should not see a "[name='field_c_n_components[0][subform][field_c_p_column_count]'][disabled]" element
+    And should see a "[name='field_c_n_components[0][subform][field_c_p_list_column_count]']" element
+    And should see a "[name='field_c_n_components[0][subform][field_c_p_list_column_count]'].required" element
+    And should not see a "[name='field_c_n_components[0][subform][field_c_p_list_column_count]'][disabled]" element
 
     And I see the text "Fill width in the last row"
-    And should see a "[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
+    And should see a "[name='field_c_n_components[0][subform][field_c_p_list_fill_width][value]']" element

@@ -43,25 +43,25 @@
     padding: ct-spacing(3);
   }
 
-  #{$root}__content__icon {
+  #{$root}__icon {
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__content__icon__image {
+  #{$root}__icon__image {
     @include ct-image-fit();
   }
 
-  #{$root}__content__title {
+  #{$root}__title {
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__content__title__link {
+  #{$root}__title__link {
     @include ct-font-size-inherit();
     @include ct-link-wide();
   }
 
   &#{$root}--with-link {
-    #{$root}__content__summary {
+    #{$root}__summary {
       padding-right: ct-spacing(3);
     }
   }

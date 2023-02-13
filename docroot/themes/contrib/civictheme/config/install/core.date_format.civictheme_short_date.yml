@@ -2,6 +2,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: civictheme_short_date
-label: 'Short Date'
+label: 'CivicTheme Short Date'
 locked: false
 pattern: 'j M Y'

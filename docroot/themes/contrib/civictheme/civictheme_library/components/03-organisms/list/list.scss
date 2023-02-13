@@ -5,11 +5,16 @@
 .ct-list {
   $root: &;
 
+  &#{$root}--with-background {
+    padding-left: $ct-accordion-space-horizontal;
+    padding-right: $ct-accordion-space-horizontal;
+  }
+
   &__header {
     margin-bottom: ct-spacing(3);
   }
 
-  &__header-title {
+  &__title {
     .ct-heading {
       margin: 0;
     }

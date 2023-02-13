@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_navigation_card_ref
+@p0 @civictheme @civictheme_card @civictheme_navigation_card_ref
 Feature: Navigation reference Card fields
 
   @api

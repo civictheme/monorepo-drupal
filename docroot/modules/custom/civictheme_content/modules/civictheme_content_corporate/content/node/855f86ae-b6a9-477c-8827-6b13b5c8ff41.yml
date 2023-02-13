@@ -73,11 +73,14 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<h2><strong>What is CivicTheme?</strong></h2>\r\n\r\n<p>CivicTheme is a government-grade design system with a theme and component library to provide a consistent, high-quality digital experience out-of-the-box.</p>\r\n\r\n<p>The CivicTheme design system is a framework for Drupal 9 sites to build website pages using components like menus, hero banners, navigation cards, body text, tables and accordions.&nbsp;</p>\r\n\r\n<p><a href=\"google.com.au\">CivicTheme.io - Learn more about CivicTheme</a></p>\r\n\r\n<h2><strong>See how CivicTheme works with Storybook</strong></h2>\r\n\r\n<p>CivicTheme is based on a modular, ‘atomic design’ system.&nbsp; Each of the components and elements can be viewed individually in Storybook — a user interface (UI) tool that allows individual web page components to be viewed in isolation.</p>\r\n\r\n<p><a href=\"google.com.au\">CivicTheme storybook - Visit the CivicTheme storybook&nbsp;</a></p>\r\n\r\n<h2><strong>CivicTheme supporting documentation</strong>&nbsp;</h2>\r\n\r\n<p>Find out more about how to use CivicTheme in the supporting documentation.</p>\r\n\r\n<p><a href=\"google.com.au\">CivicTheme documentation - Visit the GitHub documentation</a></p>\r\n"
+              value: "<h2><strong>What is CivicTheme?</strong></h2>\r\n\r\n<p>CivicTheme is a government-grade design system with a theme and component library to provide a consistent, high-quality digital experience out-of-the-box.</p>\r\n\r\n<p>The CivicTheme design system is a framework for Drupal 9 sites to build website pages using components like menus, hero banners, navigation cards, body text, tables and accordions.&nbsp;</p>\r\n\r\n<p><a href=\"https://civictheme.io\">CivicTheme.io - Learn more about CivicTheme</a></p>\r\n\r\n<h2><strong>See how CivicTheme works with Storybook</strong></h2>\r\n\r\n<p>CivicTheme is based on a modular, ‘atomic design’ system.&nbsp; Each of the components and elements can be viewed individually in Storybook — a user interface (UI) tool that allows individual web page components to be viewed in isolation.</p>\r\n\r\n<p><a href=\"https://civictheme.io/storybook\">CivicTheme storybook - Visit the CivicTheme storybook&nbsp;</a></p>\r\n\r\n<h2><strong>CivicTheme supporting documentation</strong>&nbsp;</h2>\r\n\r\n<p>Find out more about how to use CivicTheme in the supporting documentation.</p>\r\n\r\n<p><a href=\"https://civictheme.io/docs\">CivicTheme documentation - Visit the documentation</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

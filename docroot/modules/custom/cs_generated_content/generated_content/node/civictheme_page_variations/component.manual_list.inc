@@ -19,7 +19,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       [
         'title' => 'Light, Full width, 1 column, 1 card',
         'theme' => $helper::civicthemeThemeLight(),
-        'column_count' => 1,
+        'list_column_count' => 1,
         'type' => 'manual_list',
         'cards' => [
           [
@@ -31,8 +31,8 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       [
         'title' => 'Light, Full width, 1 column, 1 card, fill width',
         'theme' => $helper::civicthemeThemeLight(),
-        'column_count' => 1,
-        'fill_width' => TRUE,
+        'list_column_count' => 1,
+        'list_fill_width' => TRUE,
         'type' => 'manual_list',
         'cards' => [
           [
@@ -44,7 +44,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       [
         'title' => 'Light, Full width, 2 column, 3 cards',
         'theme' => $helper::civicthemeThemeLight(),
-        'column_count' => 2,
+        'list_column_count' => 2,
         'type' => 'manual_list',
         'cards' => [
           [
@@ -64,8 +64,8 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
       [
         'title' => 'Light, Full width, 2 column, 3 cards, fill width',
         'theme' => $helper::civicthemeThemeLight(),
-        'column_count' => 2,
-        'fill_width' => TRUE,
+        'list_column_count' => 2,
+        'list_fill_width' => TRUE,
         'type' => 'manual_list',
         'cards' => [
           [
@@ -87,7 +87,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'theme' => $helper::civicthemeThemeLight(),
         'content' => $helper::staticSentence(8),
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',
@@ -108,7 +108,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'theme' => $helper::civicthemeThemeDark(),
         'content' => $helper::staticSentenceFieldValue(8),
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',
@@ -132,7 +132,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'list_link_below' => $helper::staticLinkFieldValue(2),
         'background' => TRUE,
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',
@@ -156,7 +156,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'list_link_below' => $helper::staticLinkFieldValue(2),
         'background' => TRUE,
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',
@@ -185,7 +185,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'list_link_below' => $helper::staticLinkFieldValue(2),
         'background' => TRUE,
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',
@@ -210,7 +210,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
         'list_link_below' => $helper::staticLinkFieldValue(2),
         'background' => TRUE,
         'type' => 'manual_list',
-        'column_count' => 2,
+        'list_column_count' => 2,
         'cards' => [
           [
             'type' => 'civictheme_promo_card',

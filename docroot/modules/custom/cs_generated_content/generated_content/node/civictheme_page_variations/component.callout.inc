@@ -21,7 +21,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'callout',
           'title' => 'Light, 1 link, ' . $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
+          'content' => $helper::staticSentence(8),
           'links' => [
             $helper::staticLinkFieldValue(),
           ],
@@ -29,7 +29,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'callout',
           'title' => 'Light, 2 links, ' . $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
+          'content' => $helper::staticSentence(8),
           'links' => [
             $helper::staticLinkFieldValue(),
             $helper::staticLinkFieldValue(),
@@ -38,7 +38,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'callout',
           'title' => 'Dark, 1 link, ' . $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
+          'content' => $helper::staticSentence(8),
           'links' => [
             $helper::staticLinkFieldValue(),
           ],
@@ -48,7 +48,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'callout',
           'title' => 'Light, 1 link, Vertical spacing' . $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
+          'content' => $helper::staticSentence(8),
           'links' => [
             $helper::staticLinkFieldValue(),
           ],
@@ -58,7 +58,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'callout',
           'title' => 'Dark, 1 link, Vertical spacing' . $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
+          'content' => $helper::staticSentence(8),
           'links' => [
             $helper::staticLinkFieldValue(),
           ],

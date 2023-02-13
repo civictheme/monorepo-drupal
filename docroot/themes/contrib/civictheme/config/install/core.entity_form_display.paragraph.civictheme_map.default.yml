@@ -18,7 +18,7 @@ mode: default
 content:
   field_c_p_address:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -33,7 +33,7 @@ content:
     third_party_settings: {  }
   field_c_p_embed_url:
     type: link_default
-    weight: 2
+    weight: 0
     region: content
     settings:
       placeholder_url: ''
@@ -53,7 +53,7 @@ content:
     third_party_settings: {  }
   field_c_p_view_link:
     type: link_default
-    weight: 1
+    weight: 2
     region: content
     settings:
       placeholder_url: ''

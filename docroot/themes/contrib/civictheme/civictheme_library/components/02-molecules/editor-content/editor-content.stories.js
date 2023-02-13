@@ -68,7 +68,7 @@ export const EditorContent = () => {
   // Image.
   html += CivicThemeFigure({
     theme: 'light',
-    src: demoImage(),
+    url: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
   });

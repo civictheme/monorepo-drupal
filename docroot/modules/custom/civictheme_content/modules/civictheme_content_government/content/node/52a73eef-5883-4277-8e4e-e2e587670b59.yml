@@ -57,9 +57,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -109,7 +106,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>Effective from 12am, 1 July 2022 (Australian Eastern Standard Time), the Department of Citizens will increase the citizenship application fee. The fee increase more accurately reflects the delivery of the citizenship program and application processing.</p>\r\n\r\n<p>The fee increase will apply to any citizenship application and payment received on or after 1 July 2022. There will be no changes to application fee exemptions.</p>\r\n\r\n<p>This is the first change to citizenship application fees since 2013 and is consistent with rising inflation, staffing costs, and the increased complexity of end-to-end processing of citizenship applications.</p>\r\n\r\n<p>The citizenship application fee increase remains comparable with other countries and will still be lower than in the United States, United Kingdom and Ireland.</p>\r\n\r\n<p><a href=\"/about-this-template-website\"><strong>Learn more about the citizenship application fees (effective 1 July 2022)</strong></a></p>\r\n"
+              value: "<p>Effective from 12am, 1 July 2022 (Australian Eastern Standard Time), the Department of Citizens will increase the citizenship application fee. The fee increase more accurately reflects the delivery of the citizenship program and application processing.</p>\r\n\r\n<p>The fee increase will apply to any citizenship application and payment received on or after 1 July 2022. There will be no changes to application fee exemptions.</p>\r\n\r\n<p>This is the first change to citizenship application fees since 2013 and is consistent with rising inflation, staffing costs, and the increased complexity of end-to-end processing of citizenship applications.</p>\r\n\r\n<p>The citizenship application fee increase remains comparable with other countries and will still be lower than in the United States, United Kingdom and Ireland.</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Learn more about the citizenship application fees (effective 1 July 2022)</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -

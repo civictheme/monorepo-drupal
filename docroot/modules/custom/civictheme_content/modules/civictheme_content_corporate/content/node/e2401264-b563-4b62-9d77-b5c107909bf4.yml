@@ -78,6 +78,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -102,10 +105,10 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -243,6 +246,9 @@ default:
           field_c_p_title:
             -
               value: 'Alternative energy sources'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

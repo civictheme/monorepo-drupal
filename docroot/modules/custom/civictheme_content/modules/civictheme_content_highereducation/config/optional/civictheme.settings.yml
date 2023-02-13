@@ -62,8 +62,6 @@ components:
     summary_length: 160
   publication_card:
     summary_length: 160
-  migrate:
-    expose_migration_metadata: 0
 colors:
   use_color_selector: true
   use_brand_colors: true
@@ -115,3 +113,5 @@ colors:
       warning: '#f5ae5c'
       error: '#ed6b5e'
       success: '#1fa593'
+migration:
+  expose_metadata: false

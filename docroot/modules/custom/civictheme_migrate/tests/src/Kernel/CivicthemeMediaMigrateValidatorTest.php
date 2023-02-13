@@ -53,6 +53,7 @@ class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->file);
+
           return $data;
         }),
         [
@@ -64,6 +65,7 @@ class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->uuid);
+
           return $data;
         }),
         [
@@ -75,6 +77,7 @@ class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->alt);
+
           return $data;
         }),
         [

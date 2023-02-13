@@ -101,6 +101,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -128,9 +131,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_summary:
-            -
-              value: 'Our 10-year strategy focuses on how we''re going to achieve our vision. '
           field_c_p_theme:
             -
               value: light
@@ -164,10 +164,10 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -454,6 +454,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -485,6 +488,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -509,12 +515,12 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_fill_width:
+              value: 3
+          field_c_p_list_fill_width:
             -
-              value: false
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -694,81 +700,9 @@ default:
           field_c_p_theme:
             -
               value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 095f7d52-8646-4658-b89f-003aad2bf4f8
-          bundle: civictheme_manual_list
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1645008158
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_column_count:
-            -
-              value: 1
-          field_c_p_fill_width:
-            -
-              value: true
-          field_c_p_list_items:
-            -
-              entity:
-                _meta:
-                  version: '1.0'
-                  entity_type: paragraph
-                  uuid: 449e39b7-ceb0-4060-b25d-a4bf2984acbd
-                  bundle: civictheme_navigation_card
-                  default_langcode: en
-                default:
-                  status:
-                    -
-                      value: true
-                  created:
-                    -
-                      value: 1645008194
-                  behavior_settings:
-                    -
-                      value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
-                  field_c_p_link:
-                    -
-                      uri: 'https://google.com.au/'
-                      title: 'View open positions'
-                      options: {  }
-                  field_c_p_show_image_as_icon:
-                    -
-                      value: false
-                  field_c_p_summary:
-                    -
-                      value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
-                  field_c_p_theme:
-                    -
-                      value: light
-                  field_c_p_title:
-                    -
-                      value: 'Work for us'
-          field_c_p_theme:
-            -
-              value: dark
           field_c_p_vertical_spacing:
             -
-              value: both
+              value: bottom
     -
       entity:
         _meta:
@@ -790,20 +724,24 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_content:
+            -
+              value: "<p>The DE often has positions available in both our main offices in Canberra and at key outposts around Australia.</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_links:
             -
               uri: 'https://www.google.com.au/'
               title: 'View open positions'
               options: {  }
-          field_c_p_summary:
-            -
-              value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
               value: 'Work for us'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -828,10 +766,10 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 2
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -1010,7 +948,7 @@ default:
               value: top
   field_c_n_hide_sidebar:
     -
-      value: false
+      value: true
   field_c_n_hide_tags:
     -
       value: false
@@ -1022,4 +960,4 @@ default:
       value: false
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top

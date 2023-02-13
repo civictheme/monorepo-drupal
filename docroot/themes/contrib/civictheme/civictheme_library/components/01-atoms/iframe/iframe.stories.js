@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeIframe from './iframe.twig';
 
 export default {
@@ -36,6 +36,7 @@ export const Iframe = (knobTab) => {
       'none',
       generalKnobTab,
     ),
+    with_background: boolean('With background', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

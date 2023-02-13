@@ -12,7 +12,7 @@ migration_tags:
   - civictheme_migrate
   - civictheme_media_migration
 migration_group: civictheme_migrate
-label: 'CivicTheme image media'
+label: 'CivicTheme Media Image'
 source:
   plugin: url
   data_fetcher_plugin: file
@@ -48,4 +48,4 @@ process:
 destination:
   plugin: 'entity:media'
   default_bundle: civictheme_image
-migration_dependencies: {  }
+migration_dependencies: {}

@@ -84,14 +84,14 @@ display:
             first: First
             last: Last
           expose:
-            items_per_page: false
+            items_per_page: true
             items_per_page_label: 'Items per page'
             items_per_page_options: '6, 12, 24, 48, 96'
             items_per_page_options_all: false
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 4
+          quantity: 5
       exposed_form:
         type: basic
         options:

@@ -41,10 +41,10 @@ default:
     -
       value: "<p>Mental health day</p>\r\n"
       format: civictheme_rich_text
-  field_c_n_date:
+  field_c_n_date_range:
     -
-      value: '2022-07-10T10:00:00'
-      end_value: '2022-07-10T17:00:00'
+      value: '2023-02-26T22:30:00'
+      end_value: '2023-02-27T07:00:00'
   field_c_n_location:
     -
       entity:
@@ -64,9 +64,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false

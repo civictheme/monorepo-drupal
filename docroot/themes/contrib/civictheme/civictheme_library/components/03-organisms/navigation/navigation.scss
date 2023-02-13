@@ -78,6 +78,7 @@
             > .ct-link {
               display: block;
               padding: ct-spacing(2);
+              text-align: center;
 
               &::after {
                 right: ct-spacing();
@@ -380,6 +381,10 @@
 
             &:last-child {
               margin-right: 0;
+            }
+
+            > .ct-link {
+              text-align: center;
             }
           }
 

@@ -68,6 +68,7 @@
 
   .ct-social-links {
     @include ct-breakpoint(m) {
+      display: flex;
       justify-content: flex-end;
     }
   }

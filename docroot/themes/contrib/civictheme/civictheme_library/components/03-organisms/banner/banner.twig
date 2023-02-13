@@ -4,7 +4,6 @@
  * Banner component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top1: [string] Content slot.
  * - breadcrumb: [array] Breadcrumb links.
  * - content_top2: [string] Content slot.
@@ -17,10 +16,13 @@
  * - title: [string] Title.
  * - is_decorative: [boolean] Show as decorative.
  * - featured_image: [object] Featured image object:
- *   - src: [string] Source.
+ *   - url: [string] Source.
  *   - alt: [string] Alt text.
  * - background_image: [string] URL to a background image.
+ *   - url: [string] Source.
+ *   - alt: [string] Alt text.
  * - background_image_blend_mode: [string] Type of the backgeound image blending. Defaults to 'normal'.
+ * - theme: [string] Theme: light, dark.
  * - modifier_class: [string] Additional classes.
  * - attributes: [string] Banner attributes.
  */
@@ -34,8 +36,8 @@
   <div class="ct-banner {{ modifier_class }}" {{ attributes }}>
     <div class="ct-banner__wrapper">
       <div
-        class="ct-banner__wrapper__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
-        {% if background_image %}style="background-image: url('{{ background_image }}');"{% endif %}
+        class="ct-banner__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
+        {% if background_image and background_image.url is defined and background_image.url is not empty %}style="background-image: url('{{ background_image.url }}');"{% endif %}
       >
         <div class="container">
 
@@ -58,7 +60,8 @@
                   <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                     {% include '@molecules/breadcrumb/breadcrumb.twig' with {
                       theme: theme,
-                      links: breadcrumb,
+                      links: breadcrumb.links,
+                      active_is_link: breadcrumb.active_is_link,
                       modifier_class: 'ct-banner__breadcrumb',
                     } only %}
                   </div>
@@ -148,10 +151,10 @@
 
       {% block featured_image %}
         {% if featured_image is not empty %}
-          <div class="ct-banner__featured-image-wrapper">
+          <div class="ct-banner__featured-image__wrapper">
             {% include '@atoms/image/image.twig' with {
               theme: theme,
-              src: featured_image.src,
+              url: featured_image.url,
               alt:  featured_image.alt,
               modifier_class: 'ct-banner__featured-image',
             } only %}

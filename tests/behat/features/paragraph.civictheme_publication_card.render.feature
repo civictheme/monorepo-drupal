@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_publication_card
+@p0 @civictheme @civictheme_card @civictheme_publication_card
 Feature: Publication card render
 
   Background:
@@ -21,19 +21,19 @@ Feature: Publication card render
 
     And "civictheme_document" media:
       | name              | field_c_m_document |
-      | [TEST] Document 1 | test_pdf1.pdf       |
-      | [TEST] Document 2 | test_pdf2.pdf       |
-      | [TEST] Document 3 | test_pdf3.pdf       |
-      | [TEST] Document 4 | test_pdf4.pdf       |
+      | [TEST] Document 1 | test_pdf1.pdf      |
+      | [TEST] Document 2 | test_pdf2.pdf      |
+      | [TEST] Document 3 | test_pdf3.pdf      |
+      | [TEST] Document 4 | test_pdf4.pdf      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Publication cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Publication cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title           | [TEST] Publication card manual list                         |
-      | field_c_p_column_count    | 4                                                      |
-      | field_c_p_list_link_above | 0: View all publication cards - 1: https://example.com |
-      | field_c_p_fill_width      | 0                                                      |
+      | field_c_p_title             | [TEST] Publication card manual list                    |
+      | field_c_p_list_column_count | 4                                                      |
+      | field_c_p_list_link_above   | 0: View all publication cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                      |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Publication card manual list" has "civictheme_publication_card" paragraph:
       | field_c_p_title    | Publication card title 1 |
       | field_c_p_summary  | Summary text 1           |
@@ -67,8 +67,8 @@ Feature: Publication card render
     And I should see 2 ".ct-publication-card.ct-theme-light" elements
     And I should see 2 ".ct-publication-card.ct-theme-dark" elements
     And I should see 4 ".ct-publication-card__content" elements
-    And I should see 4 ".ct-publication-card__content__title" elements
-    And I should see 4 ".ct-publication-card__content__summary" elements
+    And I should see 4 ".ct-publication-card__title" elements
+    And I should see 4 ".ct-publication-card__summary" elements
     And I should see the text "Publication card title 1"
     And I should see the text "Publication card title 2"
     And I should see the text "Publication card title 3"

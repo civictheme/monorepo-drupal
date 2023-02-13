@@ -74,6 +74,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_featured_image:
     -
       entity: 48a4995f-75fc-4bb4-b43b-8dcd81f3f68b
@@ -90,37 +93,6 @@ default:
     -
       value: normal
   field_c_n_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: e347a23a-c221-4166-9a2c-6977fa3d7489
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1644896868
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<h2>Our commitment to science and research</h2>\r\n\r\n<p>As part of our commitment to science and research, we&nbsp;provide research grants every year to key projects and scientists working in cutting-edge environmental research.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
     -
       entity:
         _meta:
@@ -145,10 +117,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_content:
+            -
+              value: "<p>As part of our commitment to science and research, we&nbsp;provide research grants every year to key projects and scientists working in cutting-edge environmental research.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
             -
               value: 1
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -196,6 +172,12 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_title:
+            -
+              value: 'Our commitment to science and research'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -220,12 +202,12 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_fill_width:
+              value: 3
+          field_c_p_list_fill_width:
             -
-              value: false
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -398,44 +380,16 @@ default:
                       options: {  }
                   field_c_p_theme:
                     -
-                      value: dark
+                      value: light
                   field_c_p_title:
                     -
                       value: 'Coastal erosion'
           field_c_p_theme:
             -
               value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 1edd556a-4cba-424c-b1ed-de18b51ddbb4
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
+          field_c_p_vertical_spacing:
             -
-              value: true
-          created:
-            -
-              value: 1645161504
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<h2>More about The Great Barrier Reef</h2>\r\n\r\n<p>Watch the video below to find out more about The Reef.&nbsp;&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"f9dda201-13a4-4505-99e0-35ae0baf3357\" data-view-mode=\"\"></drupal-media>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false

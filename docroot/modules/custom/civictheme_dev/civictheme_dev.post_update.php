@@ -99,6 +99,7 @@ function civictheme_dev_post_update_update_side_navigation_block() {
 function civictheme_dev_post_update_update_testmode_settings() {
   $config = \Drupal::service('config.factory')->getEditable('testmode.settings');
   $views_list = $config->get('views_node', []);
+  $views_list[] = 'civictheme_automated_list';
   $views_list[] = 'civictheme_automated_list_examples';
   $views_list[] = 'civictheme_automated_list_test';
   $config->set('views_node', $views_list)->save();

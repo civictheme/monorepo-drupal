@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_event_card.field_c_p_date
+    - field.field.paragraph.civictheme_event_card.field_c_p_date_range
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
     - field.field.paragraph.civictheme_event_card.field_c_p_location
@@ -12,7 +12,7 @@ dependencies:
     - field.field.paragraph.civictheme_event_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_event_card
   module:
-    - datetime
+    - datetime_range
     - link
     - options
 id: paragraph.civictheme_event_card.default
@@ -20,14 +20,15 @@ targetEntityType: paragraph
 bundle: civictheme_event_card
 mode: default
 content:
-  field_c_p_date:
-    type: datetime_default
+  field_c_p_date_range:
+    type: daterange_default
     label: above
     settings:
       timezone_override: ''
       format_type: medium
+      separator: '-'
     third_party_settings: {  }
-    weight: 4
+    weight: 9
     region: content
   field_c_p_image:
     type: entity_reference_label

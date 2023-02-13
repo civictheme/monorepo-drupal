@@ -27,4 +27,4 @@ Feature: Banner render
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Page banner override test"
     And I should see an ".ct-banner__featured-image" element
-    And I should see an ".ct-banner.ct-banner--decorative" element
+    And I should see an ".ct-banner--decorative" element

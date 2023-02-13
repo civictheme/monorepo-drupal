@@ -41,10 +41,10 @@ default:
     -
       value: "<p>The community is invited to address the Department of Citizens on any general matter.</p>\r\n"
       format: civictheme_rich_text
-  field_c_n_date:
+  field_c_n_date_range:
     -
-      value: '2022-12-15T22:00:00'
-      end_value: '2022-12-15T22:00:00'
+      value: '2023-05-26T12:45:00'
+      end_value: '2023-06-27T07:00:00'
   field_c_n_location:
     -
       entity:
@@ -64,9 +64,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_address:
             -
               value: 'Citizenship Shire Council'

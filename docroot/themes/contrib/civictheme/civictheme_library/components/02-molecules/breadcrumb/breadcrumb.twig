@@ -35,7 +35,7 @@
           modifier_class: (loop.index == links_count) ? 'ct-breadcrumb__links__link ct-breadcrumb__links__link--active' : 'ct-breadcrumb__links__link',
         } %}
 
-        {% if not active_is_link and (loop.index == links_count) %}
+        {% if (not active_is_link or link.url is empty) and (loop.index == links_count) %}
           <span class="ct-breadcrumb__links__link ct-breadcrumb__links__link--active" aria-current="location">{{ link.text }}</span>
         {% else %}
           {% include '@atoms/link/link.twig' with link only %}

@@ -435,8 +435,8 @@ $ct-table-dark-row-odd-color: ct-color-dark('body') !default;
 // Iframe.
 //
 $ct-iframe-space-horizontal: ct-spacing(7) !default;
-$ct-iframe-light-background-color: ct-color-light('background-light') !default;
-$ct-iframe-dark-background-color: ct-color-dark('background-light') !default;
+$ct-iframe-light-wrapper-background-color: ct-color-light('background-light') !default;
+$ct-iframe-dark-wrapper-background-color: ct-color-dark('background-light') !default;
 
 //
 // Popover.
@@ -467,18 +467,10 @@ $ct-attachment-space-horizontal: ct-spacing(7) !default;
 $ct-attachment-light-background-color: ct-color-light('background-light') !default;
 $ct-attachment-light-border-color: ct-color-light('border-light') !default;
 $ct-attachment-light-color: ct-color-light('body') !default;
-$ct-attachment-light-date-color: ct-color-light('body') !default;
-$ct-attachment-light-heading-color: ct-color-light('heading') !default;
-$ct-attachment-light-icon-color: ct-color-light('body') !default;
-$ct-attachment-light-title-color: ct-color-light('body') !default;
 $ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-attachment-dark-background-color: ct-color-dark('background') !default;
 $ct-attachment-dark-border-color: ct-color-dark('border') !default;
 $ct-attachment-dark-color: ct-color-dark('body') !default;
-$ct-attachment-dark-date-color: ct-color-dark('body') !default;
-$ct-attachment-dark-heading-color: ct-color-dark('heading') !default;
-$ct-attachment-dark-icon-color: ct-color-dark('body') !default;
-$ct-attachment-dark-title-color: ct-color-dark('body') !default;
 $ct-attachment-dark-wrapper-background-color: ct-color-dark('background') !default;
 
 //
@@ -502,7 +494,7 @@ $ct-basic-content-light-ol-li-color: ct-color-light('body') !default;
 $ct-basic-content-light-ol-li-marker-color: ct-color-light('body') !default;
 $ct-basic-content-light-ul-li-color: ct-color-light('body') !default;
 $ct-basic-content-light-ul-li-marker-color: ct-color-light('body') !default;
-$ct-basic-content-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-basic-content-light-background-color: ct-color-light('background') !default;
 $ct-basic-content-dark-base-color: ct-color-dark('body') !default;
 $ct-basic-content-dark-blockquote-block: ct-color-dark('body') !default;
 $ct-basic-content-dark-blockquote-color: ct-color-dark('body') !default;
@@ -516,7 +508,7 @@ $ct-basic-content-dark-ol-li-color: ct-color-dark('body') !default;
 $ct-basic-content-dark-ol-li-marker-color: ct-color-dark('body') !default;
 $ct-basic-content-dark-ul-li-color: ct-color-dark('body') !default;
 $ct-basic-content-dark-ul-li-marker-color: ct-color-dark('body') !default;
-$ct-basic-content-dark-wrapper-background-color: ct-color-dark('background') !default;
+$ct-basic-content-dark-background-color: ct-color-dark('background') !default;
 
 //
 // Callout.
@@ -524,12 +516,8 @@ $ct-basic-content-dark-wrapper-background-color: ct-color-dark('background') !de
 $ct-callout-border-radius: $ct-border-radius !default;
 $ct-callout-stripe-width: $ct-stripe-size !default;
 $ct-callout-light-background-color: ct-color-light('background') !default;
-$ct-callout-light-heading-color: ct-color-light('heading') !default;
-$ct-callout-light-summary-color: ct-color-light('body') !default;
 $ct-callout-light-stripe-background-color: ct-color-light('highlight') !default;
 $ct-callout-dark-background-color: ct-color-dark('background') !default;
-$ct-callout-dark-heading-color: ct-color-dark('heading') !default;
-$ct-callout-dark-summary-color: ct-color-dark('body') !default;
 $ct-callout-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
@@ -551,10 +539,14 @@ $ct-dropdown-filter-dark-inline-filter-text-color: ct-color-dark('body') !defaul
 // Campaign.
 //
 $ct-campaign-image-border-radius: $ct-border-radius !default;
+$ct-campaign-image-shadow-offset-x: ct-particle(2) !default;
+$ct-campaign-image-shadow-offset-y: ct-particle(2) !default;
 $ct-campaign-mobile-height: ct-particle(30) !default;
 $ct-campaign-desktop-height: ct-particle(65) !default;
 $ct-campaign-light-background-color: ct-color-light('background-light') !default;
+$ct-campaign-light-image-shadow-color: ct-color-light('background') !default;
 $ct-campaign-dark-background-color: ct-color-dark('background') !default;
+$ct-campaign-dark-image-shadow-color: ct-color-dark('background-dark') !default;
 
 //
 // Cards/Event card.
@@ -687,18 +679,20 @@ $ct-logo-dark-stripe-background-color: ct-color-dark('border-light') !default;
 //
 $ct-map-padding-bottom: 56.25% !default;
 $ct-map-space-horizontal: ct-spacing(7) !default;
+$ct-map-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 
 //
 // Next steps.
 //
-$ct-next-steps-border-radius: $ct-border-radius !default;
-$ct-next-steps-stripe-width: $ct-stripe-size !default;
-$ct-next-steps-light-background-color: ct-color-light('background-light') !default;
-$ct-next-steps-light-border-color: ct-color-light('border-light') !default;
-$ct-next-steps-light-stripe-background-color: ct-color-light('highlight') !default;
-$ct-next-steps-dark-background-color: ct-color-dark('background') !default;
-$ct-next-steps-dark-border-color: ct-color-dark('border') !default;
-$ct-next-steps-dark-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-next-step-border-radius: $ct-border-radius !default;
+$ct-next-step-stripe-width: $ct-stripe-size !default;
+$ct-next-step-light-background-color: ct-color-light('background-light') !default;
+$ct-next-step-light-border-color: ct-color-light('border-light') !default;
+$ct-next-step-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-next-step-dark-background-color: ct-color-dark('background') !default;
+$ct-next-step-dark-border-color: ct-color-dark('border') !default;
+$ct-next-step-dark-stripe-background-color: ct-color-dark('highlight') !default;
 
 //
 // Quote.
@@ -800,7 +794,7 @@ $ct-accordion-light-button-background-color: ct-color-light('background-light') 
 $ct-accordion-light-button-color: ct-color-light('heading') !default;
 $ct-accordion-light-icon-color: ct-color-light('interaction-background') !default;
 $ct-accordion-light-stripe-background-color: ct-color-light('highlight') !default;
-$ct-accordion-light-wrapper-background-color: ct-color-light('background-light') !default;
+$ct-accordion-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
@@ -1129,20 +1123,6 @@ $ct-slider-light-background-color: ct-color-light('background-light') !default;
 $ct-slider-light-slide-background-color: ct-color-light('background') !default;
 $ct-slider-dark-background-color: ct-color-dark('background') !default;
 $ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
-
-//
-// Social links.
-//
-$ct-social-links-light-color: ct-color-light('interaction-background') !default;
-$ct-social-links-light-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-social-links-light-focus-color: $ct-social-links-light-hover-color !default;
-$ct-social-links-light-active-color: $ct-social-links-light-hover-color !default;
-$ct-social-links-light-visited-color: $ct-social-links-light-color !default;
-$ct-social-links-dark-color: ct-color-dark('interaction-background') !default;
-$ct-social-links-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color !default;
-$ct-social-links-dark-active-color: $ct-social-links-dark-hover-color !default;
-$ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;
 
 //
 // Webform.

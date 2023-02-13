@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation to display a one-column edge to edge layout.
+ * CivicTheme implementation to display a one-column edge to edge layout.
  *
  * Available variables:
  * - content: The content for this layout.
@@ -16,11 +16,11 @@
 {% if content %}
   <div class="layout">
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
-        {% include '@base/layout/content-layout--single-column.twig' with {
-          content: content.content,
-          modifier_class: modifier_class,
-          is_contained: is_contained,
-        } %}
+      {% include '@base/layout/content-layout--single-column.twig' with {
+        content: content.content,
+        modifier_class: modifier_class,
+        is_contained: is_contained,
+      } %}
     </div>
   </div>
 {% endif %}

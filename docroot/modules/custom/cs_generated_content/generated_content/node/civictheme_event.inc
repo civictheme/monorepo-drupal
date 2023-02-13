@@ -12,7 +12,7 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_node_civictheme_event_weight() {
-  return 36;
+  return 31;
 }
 
 /**
@@ -45,10 +45,24 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
           'summary' => 'Summary ' . $helper::staticSentence(20),
           'topics' => $helper::staticTerms('civictheme_topics', 1),
           'body' => $helper::staticRichText(3),
-          'site_section' => $helper::staticTerms('civictheme_site_sections', 1),
           'field_c_n_show_toc' => TRUE,
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
           'show_last_updated' => TRUE,
+          'date_range' => [
+            'value' => $helper::dateToUtc('2022-07-01T09:45:00'),
+            'end_value' => $helper::dateToUtc('2022-08-14T15:30:00'),
+          ],
+          'location' => [
+            [
+              'type' => 'map',
+              'embed_url' => $helper::staticUrl(),
+              'address' => $helper::staticSentence(3),
+              'view_link' => $helper::staticLinkFieldValue(),
+              'theme' => $helper::civicthemeThemeLight(),
+              'background' => TRUE,
+              'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+            ],
+          ],
         ];
       }
       $variations = _cs_generated_content_create_node_civictheme_event__variations__post_process($variations);
@@ -128,8 +142,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
     $node->field_c_n_topics = $variation['topics'];
   }
 
-  if (!empty($variation['date']) && $node->hasField('field_c_n_date')) {
-    $node->field_c_n_date = $variation['date'];
+  if (!empty($variation['date_range']) && $node->hasField('field_c_n_date_range')) {
+    $node->field_c_n_date_range = $variation['date_range'];
   }
 
   if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {

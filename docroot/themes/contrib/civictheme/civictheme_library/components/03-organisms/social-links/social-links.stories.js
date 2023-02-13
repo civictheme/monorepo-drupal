@@ -16,24 +16,26 @@ export const SocialLinks = (knobTab) => {
 
   const items = [
     {
-      symbol: 'facebook',
-      url: 'https://www.facebook.com',
       title: 'Facebook',
-    },
-    {
-      symbol: 'twitter',
+      icon: 'facebook',
       url: 'https://www.facebook.com',
+    },
+    {
       title: 'Twitter',
+      icon: 'twitter',
+      url: 'https://www.facebook.com',
     },
     {
+      icon_html: `<img class="ct-button__icon" width=16 height=16 src="${demoIcon()}"/>`,
       url: 'https://www.dropbox.com',
-      text: `<img class="ct-button__icon" width=16 height=16 src="${demoIcon()}"/>`,
-      // Deliberately left witout a title.
+      // Deliberately left without a title.
     },
     {
-      url: 'https://www.linkedin.com',
-      text: CivicThemeIcon({ symbol: 'linkedin', size: 'small' }),
       title: 'Icon with inline SVG',
+      // icon_html should take precedence.
+      icon_html: CivicThemeIcon({ symbol: 'linkedin', size: 'small' }),
+      icon: 'twitter',
+      url: 'https://www.linkedin.com',
     },
   ];
 
