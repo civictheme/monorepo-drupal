@@ -5,8 +5,6 @@
 .ct-form-element {
   $root: &;
 
-  @include ct-typography('text-regular');
-
   margin-bottom: ct-spacing(2);
   width: 100%;
 
@@ -36,37 +34,6 @@
     label {
       margin: ct-spacing(0.5) 0;
     }
-  }
-
-  &--button,
-  &--submit {
-    display: inline-block;
-    width: auto;
-    margin-left: ct-spacing(2);
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-
-  .ct-field-message {
-    padding: ct-spacing();
-    margin-bottom: ct-spacing();
-    display: inline-flex;
-    align-items: center;
-    border: none;
-
-    @include ct-typography('label-small');
-
-    &__title {
-      font-weight: 400;
-    }
-  }
-
-  &__description {
-    margin-bottom: ct-spacing(1);
-
-    @include ct-typography('text-small');
   }
 
   @include ct-component-theme($root) using($root, $theme) {

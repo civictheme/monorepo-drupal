@@ -29,21 +29,29 @@
   {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
   {% set civictheme_input_modifier_class = '%s %s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, type_class, modifier_class|default('')) %}
 
-  <div class="ct-input {{ civictheme_input_modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% if type == 'textarea' %}
-      {% include '@atoms/textarea/textarea.twig' %}
-    {% elseif type == 'radio' %}
-      {% include '@atoms/radio/radio.twig' %}
-    {% elseif type == 'checkbox' %}
-      {% include '@atoms/checkbox/checkbox.twig' %}
-    {% elseif type == 'submit' or type == 'reset' %}
-      {% include '@atoms/button/button.twig' with {
-        kind: type,
-        text: value,
-        modifier_class: civictheme_input_modifier_class,
-      } only %}
-    {% else %}
-      {% include '@atoms/textfield/textfield.twig' %}
-    {% endif %}
-  </div>
+  {% if type == 'hidden' %}
+    <input
+      type="{{ type }}"
+      value="{{ value }}"
+      {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+    />
+  {% else %}
+    <div class="ct-input {{ civictheme_input_modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+      {% if type == 'textarea' %}
+        {% include '@atoms/textarea/textarea.twig' %}
+      {% elseif type == 'radio' %}
+        {% include '@atoms/radio/radio.twig' %}
+      {% elseif type == 'checkbox' %}
+        {% include '@atoms/checkbox/checkbox.twig' %}
+      {% elseif type == 'submit' or type == 'reset' %}
+        {% include '@atoms/button/button.twig' with {
+          kind: type,
+          text: value,
+          modifier_class: civictheme_input_modifier_class,
+        } only %}
+      {% else %}
+        {% include '@atoms/textfield/textfield.twig' %}
+      {% endif %}
+    </div>
+  {% endif %}
 {% endif %}

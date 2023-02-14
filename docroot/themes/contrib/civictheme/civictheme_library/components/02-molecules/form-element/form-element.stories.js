@@ -4,6 +4,7 @@ import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
 import CivicThemeLabel from '../../01-atoms/label/label.twig';
+import {randomName} from "../../00-base/base.utils";
 
 export default {
   title: 'Molecules/Form Element',
@@ -45,27 +46,28 @@ export const FormElement = () => {
 
   const generalKnobs = {
     theme,
+    label: text('Label', 'Label for input', generalKnobTab),
     label_display: isRadioOrCheckbox ? 'after' : radios(
-      'Label position',
+      'Label display',
       {
         Before: 'before',
         After: 'after',
+        Invisible: 'invisible',
       },
       'before',
       generalKnobTab,
     ),
-    description_position: isRadioOrCheckbox ? 'after' : radios(
-      'Description position',
+    description: text('Description', 'Example input description', generalKnobTab),
+    description_display: isRadioOrCheckbox ? 'after' : radios(
+      'Description display',
       {
         Before: 'before',
         After: 'after',
+        Invisible: 'invisible',
       },
       'after',
       generalKnobTab,
     ),
-    description: {
-      content: text('Description', 'CivicTheme input description', generalKnobTab),
-    },
     errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
     required: boolean('Required', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
@@ -80,15 +82,14 @@ export const FormElement = () => {
 
   const inputKnobs = {
     theme,
-    value: text('Value', 'CivicTheme input', inputKnobTab),
-    placeholder: text('Placeholder', 'CivicTheme input', inputKnobTab),
+    value: text('Value', 'Form element value', inputKnobTab),
+    placeholder: text('Placeholder', 'Form element placeholder', inputKnobTab),
     state: radios(
       'State',
       states,
       'default',
       inputKnobTab,
     ),
-    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
@@ -101,7 +102,6 @@ export const FormElement = () => {
       'default',
       inputKnobTab,
     ),
-    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     options: [
       { type: 'option', value: 'option1', label: 'Option 1' },
@@ -119,7 +119,6 @@ export const FormElement = () => {
       'default',
       inputKnobTab,
     ),
-    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
@@ -132,28 +131,8 @@ export const FormElement = () => {
       'default',
       inputKnobTab,
     ),
-    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
-  };
-
-  const labelKnobTab = 'Label';
-  const labelKnobs = {
-    theme,
-    size: radios(
-      'Size', {
-        'Extra Large': 'extra-large',
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        'Extra Small': 'extra-small',
-        None: '',
-      },
-      'regular',
-      labelKnobTab,
-    ),
-    content: text('Label', 'Label for input', labelKnobTab),
-    attributes: `for="input-${inputType}"`,
   };
 
   const children = [];
@@ -186,12 +165,11 @@ export const FormElement = () => {
       }));
   }
 
-  const label = [CivicThemeLabel(labelKnobs)];
+  generalKnobs.id = randomName(5);
 
   const html = CivicThemeFormElement({
     ...generalKnobs,
     type: inputType,
-    label,
     children,
   });
 
