@@ -65,6 +65,8 @@ export const randomBool = (skew) => {
 
 export const randomString = (length) => randomText(length).substring(0, length).trim();
 
+export const randomName = (length) => randomText(length).replace(' ', '').substring(0, length).trim();
+
 export const randomSentence = (words) => {
   words = words || randomInt(5, 25);
   return capitalizeFirstLetter(randomText(words));

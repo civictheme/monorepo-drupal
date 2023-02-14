@@ -8,7 +8,8 @@
  * - title: [string] Title for filters.
  * - items: [array] Filter links:
  *   - text: [string] Link text.
- *   - url: [string] URL.
+ *   - name: [string] Optional name attribute.
+ *   - attributes: [string] Additional attributes.
  * - content_bottom: [string] Content slot.
  * - is_multiple: [boolean] Allow to select multiple filter values.
  * - theme: [string] Theme: light, dark.
@@ -39,14 +40,15 @@
             {% for item in items %}
               {% set filter_item %}
                 {% if item.text is not empty %}
+                  {% set atrtibutes = 'name' not in attributes ? attributes ~ ' name="' ~ (is_multiple ? 'single-filter-' ~ loop.index : 'single-filter') ~ '"' : attributes %}
                   {% include '@atoms/chip/chip.twig' with {
                     theme: theme,
                     kind: 'input',
                     size: 'small',
                     is_multiple: is_multiple,
+                    is_selected: item.is_selected ?? false,
                     content: item.text,
-                    name: is_multiple ? 'single-filter-' ~ loop.index : 'single-filter',
-                    id: 'chip-' ~ loop.index,
+                    attributes: atrtibutes,
                   } only %}
                 {% endif %}
               {% endset %}

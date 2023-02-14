@@ -184,42 +184,31 @@ $ct-button-dark-tertiary-focus-outline-color: ct-color-dark('interaction-focus')
 //
 // Chip.
 //
-$ct-chip-light-background-color: transparent !default;
+$ct-chip-border-width: ct-particle(0.125) !default;
+
+$ct-chip-light-background-color: ct-color-light('interaction-text') !default;
 $ct-chip-light-border-color: ct-color-light('interaction-background') !default;
 $ct-chip-light-color: ct-color-light('interaction-background') !default;
-$ct-chip-light-dismiss-color: ct-color-light('interaction-background') !default;
-$ct-chip-light-hover-background-color: ct-color-light('interaction-hover-background') !default;
-$ct-chip-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
-$ct-chip-light-hover-color: ct-color-light('interaction-hover-text') !default;
-$ct-chip-light-selected-background-color: $ct-chip-light-background-color !default;
-$ct-chip-light-selected-border-color: $ct-chip-light-border-color !default;
-$ct-chip-light-selected-color: $ct-chip-light-color !default;
-$ct-chip-light-active-background-color: $ct-chip-light-hover-background-color !default;
-$ct-chip-light-active-border-color: $ct-chip-light-hover-border-color !default;
-$ct-chip-light-active-color: $ct-chip-light-hover-color !default;
-$ct-chip-light-visited-background-color: $ct-chip-light-background-color !default;
-$ct-chip-light-visited-border-color: $ct-chip-light-border-color !default;
-$ct-chip-light-visited-color: $ct-chip-light-color !default;
+$ct-chip-light-selected-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-selected-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-selected-color: ct-color-light('interaction-hover-text') !default;
+$ct-chip-light-hover-background-color: $ct-chip-light-selected-background-color !default;
+$ct-chip-light-hover-border-color: $ct-chip-light-selected-border-color !default;
+$ct-chip-light-hover-color: $ct-chip-light-selected-color !default;
 $ct-chip-light-focus-background-color: false !default;
 $ct-chip-light-focus-border-color: false !default;
 $ct-chip-light-focus-color: false !default;
 $ct-chip-light-focus-outline-color: ct-color-light('interaction-focus') !default;
-$ct-chip-dark-background-color: transparent !default;
+
+$ct-chip-dark-background-color: ct-color-dark('interaction-text') !default;
 $ct-chip-dark-border-color: ct-color-dark('interaction-background') !default;
 $ct-chip-dark-color: ct-color-dark('interaction-background') !default;
-$ct-chip-dark-dismiss-color: ct-color-dark('interaction-background') !default;
-$ct-chip-dark-hover-background-color: ct-color-dark('interaction-hover-background') !default;
-$ct-chip-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
-$ct-chip-dark-hover-color: ct-color-dark('interaction-hover-text') !default;
-$ct-chip-dark-selected-background-color: $ct-chip-dark-background-color !default;
-$ct-chip-dark-selected-border-color: $ct-chip-dark-border-color !default;
-$ct-chip-dark-selected-color: $ct-chip-dark-color !default;
-$ct-chip-dark-active-background-color: $ct-chip-dark-hover-background-color !default;
-$ct-chip-dark-active-border-color: $ct-chip-dark-hover-border-color !default;
-$ct-chip-dark-active-color: $ct-chip-dark-hover-color !default;
-$ct-chip-dark-visited-background-color: $ct-chip-dark-background-color !default;
-$ct-chip-dark-visited-border-color: $ct-chip-dark-border-color !default;
-$ct-chip-dark-visited-color: $ct-chip-dark-color !default;
+$ct-chip-dark-selected-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-selected-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-selected-color: ct-color-dark('interaction-hover-text') !default;
+$ct-chip-dark-hover-background-color: $ct-chip-dark-selected-background-color !default;
+$ct-chip-dark-hover-border-color: $ct-chip-dark-selected-border-color !default;
+$ct-chip-dark-hover-color: $ct-chip-dark-selected-color !default;
 $ct-chip-dark-focus-background-color: false !default;
 $ct-chip-dark-focus-border-color: false !default;
 $ct-chip-dark-focus-color: false !default;
