@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicThemeSingleFilter from './single-filter.twig';
-import { getSlots, randomLinks } from '../../00-base/base.utils';
+import {getSlots, randomLinks, randomName, randomString} from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Single Filter',
@@ -44,7 +44,30 @@ export const SingleFilter = (knobTab) => {
     generalKnobTab,
   );
 
-  generalKnobs.items = count > 0 ? randomLinks(count, 7, null, 'Filter') : null;
+  const selected = number(
+    'Selected',
+    0,
+    {
+      range: true,
+      min: 0,
+      max: count,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+
+  var items = [];
+  var name = randomName(5);
+  for (var i = 0; i < count; i++) {
+    items.push({
+      text: 'Filter ' + (i + 1) + randomString(3),
+      name: generalKnobs.is_multiple ? name + (i + 1) : name,
+      is_selected: generalKnobs.is_multiple ? (i + 1) <= selected : (i + 1) === selected,
+      attributes: 'id="' + name + '_' + randomName(3) + '_' + (i + 1) + '"',
+    });
+  }
+
+  generalKnobs.items = items;
 
   return CivicThemeSingleFilter({
     ...generalKnobs,
