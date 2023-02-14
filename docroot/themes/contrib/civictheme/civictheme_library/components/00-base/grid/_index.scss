@@ -145,3 +145,10 @@
 .ct-text-align-right {
   text-align: right;
 }
+
+.ct-align-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
