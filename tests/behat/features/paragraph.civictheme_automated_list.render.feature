@@ -72,7 +72,7 @@ Feature: Automated list render
     And I should see the link "[TEST] Link above" with "https://example.com/above" in '.ct-list'
     And I should see the link "[TEST] Link below" with "https://example.com/below" in '.ct-list'
 
-    And I should see a ".ct-list__body" element
+    And I should see a ".ct-list__rows" element
     # 16 items = 15 pages - 2 pages unpublished + 3 events
     And I should see 16 ".ct-item-grid__item" elements
     And I should see 13 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements

@@ -55,10 +55,12 @@
     padding: ct-spacing(6) 0;
   }
 
-  &__rows-header {
-    @include ct-typography('label-regular');
+  &__rows-above {
+    padding: ct-spacing(2) 0 ct-spacing(2);
+  }
 
-    padding: ct-spacing(2) 0 ct-spacing(6);
+  &__rows-below {
+    padding: ct-spacing(2) 0 ct-spacing(2);
   }
 
   &__link-below {
