@@ -19,6 +19,10 @@
     margin-bottom: ct-spacing(3);
   }
 
+  #{$root}__submit {
+    white-space: nowrap;
+  }
+
   @include ct-component-theme($root) using($root, $theme) {
     border-top-color: ct-component-var($root, $theme, border-color);
     border-bottom-color: ct-component-var($root, $theme, border-color);
