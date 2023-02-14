@@ -4,13 +4,13 @@
  * Footer component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - type: [string] Type.
  * - name: [string] Name.
  * - label_display: [string] Display label: before, after.
  * - description_position: [string] Display description: before, after.
  * - disabled: [boolean] Disabled or not.
  * - errors: [array] Optional array of errors.
+ * - theme: [string] Theme: light, dark.
  * - description_modifier_class: [string] Additional classes for description.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -34,10 +34,10 @@
   {% endif %}
 
   {% if prefix is not empty %}
-    <span class="field-prefix">{{ prefix }}</span>
+    <span class="ct-form-element__prefix">{{ prefix }}</span>
   {% endif %}
 
-  {% if  description.content is not empty and description_position == 'before' %}
+  {% if description.content is not empty and description_position == 'before' %}
     <div class="ct-form-element__description {{ description_modifier_class }}" {% if description.attributes is not empty %}{{ description.attributes }}{% endif %}>
       {{ description.content }}
     </div>
@@ -48,7 +48,7 @@
   {% endif %}
 
   {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
+    <span class="ct-form-element__suffix">{{ suffix }}</span>
   {% endif %}
 
   {% if label is not empty and label_display == 'after' %}
@@ -62,10 +62,10 @@
   {% endif %}
 
   {% if errors %}
-    {% include '@organisms/message/message.twig' with {
+    {% include '@atoms/field-message/field-message.twig' with {
       theme: theme,
       type: 'error',
-      title: errors
+      content: errors
     } only %}
   {% endif %}
 </div>
