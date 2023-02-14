@@ -11,14 +11,14 @@ function CivicThemeChip(el) {
 
   this.el = el;
   this.el.setAttribute('data-chip', 'true');
-  this.dismissChip = this.el.querySelector('[data-chip-dismiss]');
+  this.dismissible = this.el.hasAttribute('data-chip-dismiss');
 
   this.el.addEventListener('click', this.clickEvent.bind(this));
   this.el.addEventListener('focusin', this.focusinEvent.bind(this));
   this.el.addEventListener('focusout', this.focusoutEvent.bind(this));
 
-  if (this.dismissChip) {
-    this.dismissChip.addEventListener('click', this.dismissClickEvent.bind(this));
+  if (this.dismissible) {
+    this.el.addEventListener('click', this.dismissClickEvent.bind(this));
   }
 }
 
@@ -96,7 +96,6 @@ CivicThemeChip.prototype.dismissClickEvent = function (e) {
   if (chip) {
     const input = chip.getElementsByTagName('input');
     if (input.length <= 0) {
-      chip.remove();
       this.el.dispatchEvent(new CustomEvent('ct.chip.dismiss', { bubbles: true }));
     }
   }
