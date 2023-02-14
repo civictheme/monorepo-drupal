@@ -104,7 +104,7 @@ export const List = (knobTab) => {
       {
         range: true,
         min: 0,
-        max: 5,
+        max: 15,
         step: 1,
       },
       filtersKnobTab,
@@ -285,6 +285,9 @@ export const List = (knobTab) => {
         fill_width: false,
         with_background: generalKnobs.with_background,
       });
+
+      generalKnobs.rows_above = `Showing ${cardsCount} of ${resultNumber}`;
+      generalKnobs.rows_below = boolean('With content below rows', true, generalKnobTab) ? 'Example content below rows' : null;
     }
   }
 

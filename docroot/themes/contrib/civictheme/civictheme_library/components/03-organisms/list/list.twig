@@ -12,7 +12,9 @@
  *   - is_external [boolean] Link is external or not.
  * - filters: [string] Exposed filters.
  * - header: [string] Header slot.
+ * - rows_above: [string] Content above rows.
  * - rows: [string] Rows content.
+ * - rows_below: [string] Content below rows.
  * - empty: [string] Empty results content.
  * - pager: [string] Pager slot.
  * - footer: [string] Footer slot.
@@ -115,25 +117,45 @@
         {% endif %}
       {% endblock %}
 
-      {% block rows_header %}
-        {% if rows_header -%}
-          <header class="ct-list__rows-header" tabindex="0">
-            <div class="container">
-              <div class="row">
-                <div class="col-xxs-12">
-                  {{ rows_header }}
-                </div>
-              </div>
-            </div>
-          </header>
-        {% endif %}
-      {% endblock %}
-
       {% block rows %}
         {% if rows -%}
-          <div class="ct-list__body">
+
+          {% block rows_above %}
+            {% if rows_above -%}
+              <div class="container">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% include '@atoms/label/label.twig' with {
+                      content: rows_above,
+                      theme: theme,
+                      modifier_class: 'ct-list__rows-above',
+                    } only %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          <div class="ct-list__rows">
             {{ rows }}
           </div>
+
+          {% block rows_below %}
+            {% if rows_below %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% include '@atoms/paragraph/paragraph.twig' with {
+                      content: rows_below,
+                      theme: theme,
+                      modifier_class: 'ct-list__rows-below',
+                    } only %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
         {% endif %}
       {% endblock %}
 
@@ -151,9 +173,7 @@
         {% endif %}
       {% endblock %}
 
-
     {% endblock %}
-
 
     {% block list_below %}
       {% if link_below %}
@@ -175,17 +195,17 @@
 
       {% if pager is defined and pager is not empty %}
         <div class="ct-list__results-below">
-          <div class="container">
-            <div class="row">
-              <div class="col-xxs-12">
-                {% block pager %}
-                  <div class="ct-list__pager">
-                    {{ pager }}
-                  </div>
-                {% endblock %}
+          {% block pager %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                    <div class="ct-list__pager">
+                      {{ pager }}
+                    </div>
+                </div>
               </div>
             </div>
-          </div>
+          {% endblock %}
         </div>
       {% endif %}
     {% endblock %}
