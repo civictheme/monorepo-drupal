@@ -1,5 +1,7 @@
 // phpcs:ignoreFile
-import { radios, text, number } from '@storybook/addon-knobs';
+import {
+  radios, text, number, boolean,
+} from '@storybook/addon-knobs';
 import { randomFormElements } from '../../00-base/base.utils';
 import CivicThemeFieldset from './fieldset.twig';
 
@@ -22,7 +24,8 @@ export const Fieldset = () => {
   const generalKnobs = {
     theme,
     legend: text('Legend', 'Fieldset legend', generalKnobTab),
-    description: text('Description', 'CivicTheme input description', generalKnobTab),
+    description: text('Description', 'Fieldset example description', generalKnobTab),
+    required: boolean('Required', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

@@ -3,8 +3,9 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import CivicThemeLabel from '../../01-atoms/label/label.twig';
-import {randomName} from "../../00-base/base.utils";
+import { randomName } from '../../00-base/base.utils';
+import { Radio } from '../../01-atoms/radio/radio.stories';
+import { Checkbox } from '../../01-atoms/checkbox/checkbox.stories';
 
 export default {
   title: 'Molecules/Form Element',
@@ -40,14 +41,10 @@ export const FormElement = () => {
     generalKnobTab,
   );
 
-  // We don't allow before and after label for radio or checkbox it is always
-  // after.
-  const isRadioOrCheckbox = inputType === 'radio' || inputType === 'checkbox';
-
   const generalKnobs = {
     theme,
     label: text('Label', 'Label for input', generalKnobTab),
-    label_display: isRadioOrCheckbox ? 'after' : radios(
+    label_display: radios(
       'Label display',
       {
         Before: 'before',
@@ -58,7 +55,7 @@ export const FormElement = () => {
       generalKnobTab,
     ),
     description: text('Description', 'Example input description', generalKnobTab),
-    description_display: isRadioOrCheckbox ? 'after' : radios(
+    description_display: radios(
       'Description display',
       {
         Before: 'before',
@@ -139,14 +136,14 @@ export const FormElement = () => {
 
   switch (inputType) {
     case 'radio':
-      children.push(Input({
+      children.push(Radio({
         type: inputType,
         ...radioKnobs,
       }));
       break;
 
     case 'checkbox':
-      children.push(Input({
+      children.push(Checkbox({
         type: inputType,
         ...checkboxKnobs,
       }));

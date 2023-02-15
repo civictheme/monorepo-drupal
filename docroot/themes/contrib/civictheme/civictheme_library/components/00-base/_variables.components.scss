@@ -185,7 +185,6 @@ $ct-button-dark-tertiary-focus-outline-color: ct-color-dark('interaction-focus')
 // Chip.
 //
 $ct-chip-border-width: ct-particle(0.125) !default;
-
 $ct-chip-light-background-color: ct-color-light('interaction-text') !default;
 $ct-chip-light-border-color: ct-color-light('interaction-background') !default;
 $ct-chip-light-color: ct-color-light('interaction-background') !default;
@@ -199,7 +198,6 @@ $ct-chip-light-focus-background-color: false !default;
 $ct-chip-light-focus-border-color: false !default;
 $ct-chip-light-focus-color: false !default;
 $ct-chip-light-focus-outline-color: ct-color-light('interaction-focus') !default;
-
 $ct-chip-dark-background-color: ct-color-dark('interaction-text') !default;
 $ct-chip-dark-border-color: ct-color-dark('interaction-background') !default;
 $ct-chip-dark-color: ct-color-dark('interaction-background') !default;
@@ -430,13 +428,12 @@ $ct-iframe-dark-wrapper-background-color: ct-color-dark('background-light') !def
 //
 // Popover.
 //
-$ct-popover-width: ct-particle(35) !default;
+$ct-popover-min-width: ct-particle(35) !default;
 $ct-popover-description-border-radius: $ct-border-radius !default;
 $ct-popover-z-index: 99 !default;
+$ct-popover-top-offset: ct-particle(2) !default;
 $ct-popover-light-content-background-color: ct-color-light('background-light') !default;
-$ct-popover-light-content-border-color: ct-color-light('border-light') !default;
-$ct-popover-dark-content-background-color: ct-color-dark('background-light') !default;
-$ct-popover-dark-content-border-color: ct-color-dark('border-light') !default;
+$ct-popover-dark-content-background-color: ct-color-dark('background') !default;
 
 //
 // Video
@@ -632,7 +629,6 @@ $ct-single-filter-dark-border-color: ct-color-dark('border') !default;
 //
 // Group filter.
 //
-$ct-group-filter-breakpoint: 'm' !default;
 $ct-group-filter-light-background-color: ct-color-light('background') !default;
 $ct-group-filter-light-border-color: ct-color-light('border-light') !default;
 $ct-group-filter-light-dropdown-filter-border-color: ct-color-light('border') !default;
@@ -862,7 +858,8 @@ $ct-layout-dark-background-color: inherit !default;
 //
 // Form/Fieldset.
 //
-$ct-fieldset-required-color: ct-color-light('error') !default;
+$ct-fieldset-light-required-color: ct-color-light('error') !default;
+$ct-fieldset-dark-required-color: ct-color-dark('error') !default;
 
 //
 // Footer.
