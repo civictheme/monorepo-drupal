@@ -45,3 +45,16 @@ function _civictheme_process__html_content($html, $options = []) {
 
   return $html;
 }
+
+/**
+ * Preprocess date range field.
+ */
+function _civictheme_preprocess_date_range_field(&$variables) {
+  if ($variables['field_name'] !== 'field_c_n_date_range') {
+    return;
+  }
+
+  $variables['node'] = $variables['element']['#object'] ?? NULL;
+  _civictheme_preprocess_paragraph__node_field__date_range($variables);
+  unset($variables['node']);
+}
