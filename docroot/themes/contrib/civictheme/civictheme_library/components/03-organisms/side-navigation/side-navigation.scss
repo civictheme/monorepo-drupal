@@ -82,7 +82,7 @@
       padding: ct-spacing() ct-spacing(0.25);
       z-index: 1;
 
-      @include ct-breakpoint('m') {
+      @include ct-breakpoint(m) {
         padding: ct-spacing(1.25) ct-spacing(0.25);
       }
     }
@@ -110,12 +110,7 @@
     #{$root}__menu {
       .ct-menu__item {
         .ct-menu__item__link-trigger {
-          @if $theme == 'light' {
-            @include ct-icon-collapsible($ct-side-navigation-light-link-expanded-icon-color, true);
-          }
-          @else {
-            @include ct-icon-collapsible($ct-side-navigation-dark-link-expanded-icon-color, true);
-          }
+          @include ct-component-property($root, $theme, link, expanded, icon, color);
         }
 
         .ct-menu__item__link {

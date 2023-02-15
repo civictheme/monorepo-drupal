@@ -2,8 +2,9 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { demoImage, getSlots, objectFromArray } from '../../00-base/base.stories';
+import { demoImage, getSlots, objectFromArray } from '../../00-base/base.utils';
 import CivicThemeBannerExample from './banner.stories.twig';
+import { Breadcrumb } from '../../02-molecules/breadcrumb/breadcrumb.stories';
 
 export default {
   title: 'Organisms/Banner',
@@ -14,6 +15,7 @@ export default {
 
 export const Banner = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  const breadcrumbKnobTab = 'Breadcrumb';
   const bgImageKnobTab = 'Background Image';
 
   const theme = radios(
@@ -39,13 +41,13 @@ export const Banner = (knobTab) => {
       bgImageKnobTab,
     ) : null,
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(0),
       alt: 'Featured image alt text',
     } : null,
     is_decorative: boolean('Decorative', true, generalKnobTab),
-    show_breadcrumb: boolean('With breadcrumb', true, generalKnobTab),
+    site_section: boolean('With site section', true, generalKnobTab) ? 'Site section name' : '',
+    breadcrumb: boolean('With breadcrumb', true, generalKnobTab) ? Breadcrumb(breadcrumbKnobTab, false) : '',
     show_content_text: boolean('With content text', true, generalKnobTab),
-    show_content_search: boolean('With content search', false, generalKnobTab),
     show_content_below: boolean('With content below', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };

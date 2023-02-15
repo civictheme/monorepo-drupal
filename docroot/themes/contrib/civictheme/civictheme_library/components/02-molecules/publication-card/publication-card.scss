@@ -7,61 +7,58 @@
 .ct-publication-card {
   $root: &;
 
-  position: relative;
-  border-radius: $ct-publication-card-border-radius;
-  overflow: hidden;
-  width: 100%;
-
   @include ct-elevation-interaction();
 
-  #{$root}__image-wrapper {
-    position: relative;
+  position: relative;
+  border-radius: $ct-publication-card-border-radius;
+  width: 100%;
 
+  // Prevent image from "spilling" over the border radius.
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @include ct-breakpoint(m) {
+    flex-direction: row;
+  }
+
+  #{$root}__image {
     @include ct-image-fit();
+
+    position: relative;
+    height: $ct-publication-card-image-height-mobile;
+    width: auto;
+    min-width: $ct-publication-card-image-width-mobile;
+
+    @include ct-breakpoint(m) {
+      width: $ct-publication-card-image-width-desktop;
+      height: auto;
+      min-height: $ct-publication-card-image-height-desktop;
+      flex-shrink: 0;
+    }
   }
 
   #{$root}__content {
+    width: 100%;
     padding: ct-spacing(3);
-    display: flex;
-    flex-direction: column;
-    flex: 1;
   }
 
   #{$root}__title {
-    @include ct-typography('heading-5');
-
     margin-bottom: ct-spacing(2);
-    display: flex;
-    justify-content: space-between;
-
-    .ct-heading {
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
   }
 
-  #{$root}__icon-wrapper {
-    margin-left: ct-spacing(2);
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+    @include ct-link-wide();
   }
 
   #{$root}__summary {
-    @include ct-typography(text-regular);
-
     padding-right: ct-spacing(3);
+    margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__attachment-link {
-    margin-top: ct-spacing(2);
-
-    .ct-link--attachment {
-      @include ct-link-decoration(true, true, true, true);
-      @include ct-link-no-outline();
-      @include ct-link-cover-parent();
-      @include ct-typography('text-small');
-
-      font-weight: 700 !important;
-      word-break: break-word;
-    }
+  #{$root}__link {
+    padding-right: ct-spacing(3);
   }
 
   #{$root}__content-bottom {
@@ -71,63 +68,7 @@
     padding-top: ct-spacing(3);
   }
 
-  &#{$root}--small {
-    display: flex;
-    flex-direction: column;
-
-    #{$root}__image-wrapper {
-      width: 100%;
-      height: $ct-publication-card-image-height-mobile;
-
-      @include ct-breakpoint('m') {
-        height: $ct-publication-card-image-height-desktop;
-      }
-    }
-  }
-
-  &#{$root}--large {
-    @include ct-breakpoint(m) {
-      display: flex;
-    }
-
-    #{$root}__image-wrapper {
-      @include ct-image-fit();
-
-      height: $ct-publication-card-large-image-height-mobile;
-      width: $ct-publication-card-large-image-width-mobile;
-
-      @include ct-breakpoint(m) {
-        height: $ct-publication-card-large-image-height-desktop;
-        width: $ct-publication-card-large-image-width-desktop;
-        flex-shrink: 0;
-        max-width: 50%;
-      }
-
-      .ct-image {
-        @include ct-breakpoint(m) {
-          position: absolute;
-        }
-      }
-    }
-  }
-
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
-
-    #{$root}__icon--download {
-      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, color));
-    }
-
-    #{$root}__title {
-      @include ct-component-property($root, $theme, heading, color);
-    }
-
-    #{$root}__icon-wrapper {
-      @include ct-component-property($root, $theme, attachment, icon, color);
-    }
-
-    #{$root}__summary {
-      @include ct-component-property($root, $theme, color);
-    }
   }
 }

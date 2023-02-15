@@ -9,7 +9,7 @@ field_name: field_c_p_address
 entity_type: paragraph
 bundle: civictheme_map
 label: Address
-description: ''
+description: 'Geographical address.'
 required: true
 translatable: false
 default_value: {  }

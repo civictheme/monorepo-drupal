@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_manual_list.field_c_p_background
-    - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
-    - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_column_count
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_fill_width
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -102,8 +102,8 @@ third_party_settings:
         required_fields: true
     group_columns:
       children:
-        - field_c_p_column_count
-        - field_c_p_fill_width
+        - field_c_p_list_column_count
+        - field_c_p_list_fill_width
       label: Columns
       region: content
       parent_name: group_appearance
@@ -128,12 +128,6 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-  field_c_p_column_count:
-    type: options_select
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_c_p_content:
     type: text_textarea
     weight: 47
@@ -142,18 +136,24 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_c_p_fill_width:
-    type: boolean_checkbox
-    weight: 6
+  field_c_p_list_column_count:
+    type: options_select
+    weight: 5
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings: {  }
   field_c_p_list_content_type:
     type: options_buttons
     weight: 13
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_fill_width:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_c_p_list_filters_exp:
     type: options_buttons
@@ -168,14 +168,15 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       closed_mode: summary
       autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }

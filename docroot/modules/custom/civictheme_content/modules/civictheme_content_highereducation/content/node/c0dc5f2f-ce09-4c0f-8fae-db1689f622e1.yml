@@ -55,6 +55,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -65,6 +68,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -96,13 +102,16 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 1
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -124,6 +133,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -132,9 +144,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Dive into the world of business and pick a major that suits your interests.'
@@ -162,6 +171,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -170,9 +182,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Join the growing world of biomedical science and make your mark on disease. '
@@ -200,6 +209,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
@@ -208,9 +220,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Want to stand out from the crowd? Our Bachelor of Music is producing successful, professional musicians.'
@@ -226,6 +235,9 @@ default:
           field_c_p_title:
             -
               value: 'Featured undergraduate courses'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -250,10 +262,10 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 1
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -286,9 +298,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Be at the forefront of this emerging technology and drive digital transformation in our world. '
@@ -327,9 +336,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Transform our understanding of the human brain. Help people with brain injuries and disease and/or lead the way in brain research. '
@@ -368,9 +374,6 @@ default:
                   field_c_p_show_image_as_icon:
                     -
                       value: false
-                  field_c_p_size:
-                    -
-                      value: large
                   field_c_p_summary:
                     -
                       value: 'Dive into engineering challenges and lead the way in the engineering speciality of your choice.'
@@ -388,8 +391,11 @@ default:
               value: 'Featured postgraduate courses'
           field_c_p_vertical_spacing:
             -
-              value: top
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

@@ -35,7 +35,7 @@
           modifier_class: (loop.index == links_count) ? 'ct-breadcrumb__links__link ct-breadcrumb__links__link--active' : 'ct-breadcrumb__links__link',
         } %}
 
-        {% if not active_is_link and (loop.index == links_count) %}
+        {% if (not active_is_link or link.url is empty) and (loop.index == links_count) %}
           <span class="ct-breadcrumb__links__link ct-breadcrumb__links__link--active" aria-current="location">{{ link.text }}</span>
         {% else %}
           {% include '@atoms/link/link.twig' with link only %}
@@ -48,7 +48,7 @@
         {% set link_item %}
           {% include '@base/icon/icon.twig' with {
             symbol: 'right-arrow-1',
-            size: 'small',
+            modifier_class: 'ct-breadcrumb__links__separator',
           } only %}
         {% endset %}
         {% set link_items = link_items|merge([ link_item ]) %}
@@ -73,15 +73,15 @@
       {% include '@base/item-list/item-list.twig' with {
         direction: 'horizontal',
         items: [parent_link_item],
-        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-l',
+        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-m',
       } only %}
     {% endif %}
 
     {% include '@base/item-list/item-list.twig' with {
       direction: 'horizontal',
       items: link_items,
-      no_gutter: true,
-      modifier_class: 'ct-breadcrumb__links hide-xxs show-l',
+      no_gap: true,
+      modifier_class: 'ct-breadcrumb__links hide-xxs show-m-flex',
     } only %}
   </nav>
 {% endif %}

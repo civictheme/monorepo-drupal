@@ -28,6 +28,7 @@ use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
+use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
 
 /**
@@ -66,13 +67,23 @@ class FeatureContext extends DrupalContext {
       throw new RuntimeException('Unsupported driver for this step');
     }
 
-    $page_iframe_elements = $driver->find('//iframe[@id="' . $id . '"]');
-    if (empty($page_iframe_elements) || $page_iframe_elements[0] === NULL) {
+    $index = NULL;
+
+    $iframe_elements = $driver->find('//iframe');
+    if (!empty($iframe_elements)) {
+      foreach ($iframe_elements as $k => $all_page_iframe_element) {
+        if ($all_page_iframe_element->getAttribute('id') == $id) {
+          $index = $k;
+          break;
+        }
+      }
+    }
+
+    if (is_null($index)) {
       throw new ElementNotFoundException($driver, 'iFrame', $id);
     }
 
-    // Select WYSIWYG iframe frame.
-    $driver->switchToIFrame($id);
+    $driver->switchToIFrame($index);
 
     if (!$driver->find('//body')) {
       throw new Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
@@ -282,7 +293,22 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
-   * Inastall a theme with provided name.
+   * Asserts that a color field has a value.
+   *
+   * @Then /^color field "(?P<field>(?:[^"]|\\")*)" value is "(?P<value>(?:[^"]|\\")*)"$/
+   */
+  public function assertColorFieldHasValue($field, $value) {
+    $js = sprintf('jQuery("%s").val();', $field);
+
+    $actual = $this->getSession()->evaluateScript($js);
+
+    if ($actual != $value) {
+      throw new \Exception(sprintf('Color field "%s" expected a value "%s" but has a value "%s".', $field, $value, $actual));
+    }
+  }
+
+  /**
+   * Install a theme with provided name.
    *
    * @When I install :name theme
    */
@@ -309,10 +335,29 @@ class FeatureContext extends DrupalContext {
    *
    * @When I set :name theme as default
    */
-  public function setThemAsDefault($name) {
+  public function setThemeAsDefault($name) {
     \Drupal::service('config.factory')->getEditable('system.theme')
       ->set('default', $name)
       ->save();
+  }
+
+  /**
+   * Visit a settings page of the theme.
+   *
+   * @When I visit :name theme settings page
+   */
+  public function themeVisitSettings($name = NULL) {
+    if (!$name || $name == 'current') {
+      $name = \Drupal::theme()->getActiveTheme()->getName();
+    }
+
+    if (!\Drupal::service('theme_handler')->themeExists($name)) {
+      throw new \RuntimeException(sprintf('Theme %s does not exist.', $name));
+    }
+
+    $url = Url::fromRoute('system.theme_settings_theme', ['theme' => $name]);
+
+    $this->visitPath($url->toString());
   }
 
 }

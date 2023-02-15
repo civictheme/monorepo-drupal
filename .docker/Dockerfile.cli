@@ -2,6 +2,11 @@
 #
 # All CLI operations performed in this container.
 #
+# - Installs Composer dependencies
+# - Installs CivicTheme Library dependencies and builds assets
+# - Installs CivicTheme dependencies and builds assets
+# - Creates sub-theme, installs dependencies and builds assets
+#
 # @see https://hub.docker.com/r/uselagoon/php-7.4-cli-drupal/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
 FROM uselagoon/php-8.1-cli-drupal:22.8.0
@@ -53,13 +58,11 @@ COPY patches /app/patches
 COPY scripts /app/scripts
 
 RUN mkdir -p docroot/themes/contrib/civictheme \
-    && mkdir -p docroot/themes/contrib/civictheme \
     && mkdir -p docroot/modules/custom/civictheme_govcms \
     && mkdir -p docroot/modules/custom/civictheme_admin \
     && mkdir -p docroot/modules/custom/civictheme_migrate \
     && mkdir -p docroot/modules/custom/civictheme_content \
     && mkdir -p docroot/modules/custom/civictheme_dev \
-    && mkdir -p docroot/modules/custom/civictheme_styleguide \
     && mkdir -p docroot/modules/custom/cs_generated_content
 
 # Copy files required for PHP dependencies resolution.
@@ -77,7 +80,6 @@ COPY docroot/modules/custom/civictheme_admin/composer.json docroot/modules/custo
 COPY docroot/modules/custom/civictheme_migrate/composer.json docroot/modules/custom/civictheme_migrate/
 COPY docroot/modules/custom/civictheme_content/composer.json docroot/modules/custom/civictheme_content/
 COPY docroot/modules/custom/civictheme_dev/composer.json docroot/modules/custom/civictheme_dev/
-COPY docroot/modules/custom/civictheme_styleguide/composer.json docroot/modules/custom/civictheme_styleguide/
 COPY docroot/modules/custom/cs_generated_content/composer.json docroot/modules/custom/cs_generated_content/
 
 # Install PHP dependencies, but without development dependencies. This is very

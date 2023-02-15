@@ -3,14 +3,12 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_slider.field_c_p_background
-    - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
     - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_slider
   module:
-    - link
     - paragraphs
 id: paragraph.civictheme_slider.default
 targetEntityType: paragraph
@@ -19,30 +17,22 @@ mode: default
 content:
   field_c_p_background:
     type: boolean_checkbox
-    weight: 5
+    weight: 2
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  field_c_p_link:
-    type: link_default
-    weight: 1
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
   field_c_p_slides:
     type: entity_reference_paragraphs
-    weight: 2
+    weight: 1
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons

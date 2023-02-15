@@ -7,30 +7,27 @@
 .ct-promo-card {
   $root: &;
 
+  @include ct-elevation-interaction();
+
   position: relative;
   border-radius: $ct-promo-card-border-radius;
+  width: 100%;
 
   // Promo image from "spilling" over the border radius.
   overflow: hidden;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 
-  @include ct-elevation-interaction();
-
-  &#{$root}--no-image {
-    border-top-width: ct-spacing(0.75);
-    border-top-style: solid;
+  &:not(#{$root}--with-image) {
+    @include ct-highlight-stripe-horizontal($ct-promo-card-stripe-height, $ct-promo-card-border-radius, 0);
   }
 
-  #{$root}__image-wrapper {
+  #{$root}__image {
     @include ct-image-fit();
 
     position: relative;
     height: $ct-promo-card-image-height-mobile;
     width: $ct-promo-card-image-width-mobile;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       height: $ct-promo-card-image-height-desktop;
       width: $ct-promo-card-image-width-desktop;
     }
@@ -38,93 +35,42 @@
 
   #{$root}__content {
     padding: ct-spacing(3);
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  }
+
+  #{$root}__subtitle {
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__date {
-    @include ct-typography('label-regular');
-
     margin-bottom: ct-spacing(2);
   }
 
   #{$root}__title {
-    @include ct-typography('heading-5');
-
-    margin-bottom: ct-spacing(2);
-
-    .ct-heading {
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
-  }
-
-  #{$root}__title-link {
-    @include ct-link-decoration ();
-    @include ct-link-no-outline ();
-    @include ct-link-cover-parent ();
-
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #{$root}__location {
-    @include ct-typography('text-regular');
-
-    font-weight: 600;
     margin-bottom: ct-spacing(2);
   }
 
-  #{$root}__summary {
-    @include ct-typography('text-regular');
-  }
-
-  #{$root}__bottom-wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: ct-spacing(3);
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
   }
 
   #{$root}__tags {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-right: auto;
-    margin-top: -1 * ct-spacing(0.5);
-
-    .ct-tag {
-      margin-top: ct-spacing(0.5);
-      margin-right: ct-spacing(0.5);
-    }
+    margin-top: ct-spacing(2);
   }
 
-  #{$root}__icon-wrapper {
-    align-self: flex-end;
+  #{$root}__tags__link {
+    @include ct-flex-align-right();
+
+    .ct-link__icon {
+      @include ct-icon-size();
+    }
   }
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
 
-    &#{$root}--no-image {
-      @include ct-component-property($root, $theme, border-top-color);
-    }
-
-    #{$root}__title {
-      @include ct-component-property($root, $theme, heading, color);
-    }
-
-    #{$root}__summary {
-      @include ct-component-property($root, $theme, summary, color);
-    }
-
-    #{$root}__icon-wrapper {
-      @include ct-component-property($root, $theme, icon, arrow, color);
-    }
-
-    #{$root}__icon--arrow {
-      @include ct-icon-fill-color(ct-component-var($root, $theme, icon, arrow, color));
+    &#{$root}:not(#{$root}--with-image) {
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
   }
 }

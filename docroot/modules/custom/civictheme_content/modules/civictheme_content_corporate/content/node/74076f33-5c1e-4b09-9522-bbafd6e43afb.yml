@@ -52,37 +52,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: c5e6c8f0-34ab-491e-81e7-6d8083e26fce
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1642672064
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<p>Bushfires have always been a part of the Australian landscape. However, bushfires have been increasing in frequency and intensity in the past 10 years. Bushfires also significantly impact Australian wildlife.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 064f3dc4-8572-4332-a50e-7450b5e7573f
           bundle: civictheme_manual_list
           default_langcode: en
@@ -102,10 +71,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_content:
+            -
+              value: "<p>Bushfires have always been a part of the Australian landscape. However, bushfires have been increasing in frequency and intensity in the past 10 years. Bushfires also significantly impact Australian wildlife.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -240,7 +213,13 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

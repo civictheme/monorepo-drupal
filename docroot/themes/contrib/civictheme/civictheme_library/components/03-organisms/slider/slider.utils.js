@@ -5,13 +5,14 @@
  */
 
 import {
+  dateIsValid,
   demoImage,
   randomBool,
   randomInt,
   randomString,
   randomText,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 import Slide from './slide.twig';
 import Tag from '../../01-atoms/tag/tag.twig';
 import Button from '../../01-atoms/button/button.twig';
@@ -28,17 +29,17 @@ export const randomTagsComponent = (count, theme) => {
 };
 
 export const randomButtonsComponent = (count, theme) => {
-  const tags = [];
+  const buttons = [];
   for (let i = 0; i < count; i++) {
-    tags.push(Button({
+    buttons.push(Button({
       theme,
-      kind: 'link',
+      kind: 'button',
       text: randomString(randomInt(3, 8)),
       type: ['primary', 'secondary', 'tertiary'][randomInt(0, 2)],
       url: randomUrl(),
     }));
   }
-  return tags;
+  return buttons;
 };
 
 export const randomSlidesComponent = (count, theme, rand, template) => {
@@ -47,29 +48,36 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
   const inverseTheme = theme === 'dark' ? 'dark' : 'light';
 
   for (let i = 0; i < count; i++) {
-    const contentTop = template && template.content_top ? template.content_top : randomTagsComponent(randomInt(0, 4), theme).join(' ');
-    const imagePosition = template && template.image_position ? template.image_position : 'right';
-    const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(randomInt(5, 30))}` : ''}`;
-    const randURL = randomBool() ? randomUrl() : null;
-    const url = template && template.url ? template.url : randURL;
-    const summary = template && template.summary ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
-    const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
     const image = template && template.image ? template.image : {
-      src: demoImage(),
+      url: demoImage(),
       alt: randomText(4),
     };
-    const contentBottom = template && template.content_bottom ? template.content_bottom : '';
-    const attributes = template && template.attributes ? template.attributes : 'data-component-ct-slider-slide';
+    const imagePosition = template && template.image_position ? template.image_position : 'right';
+    const tags = template && template.tags ? template.tags : {};
+    const date = template && template.date ? template.date : '20 Jan 2023 11:00';
+    const dateEnd = template && template.date_end ? template.date_end : null;
+    const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(randomInt(5, 30))}` : ''}`;
+    const url = template && template.url ? template.url : (randomBool() ? randomUrl() : null);
+    const content = template && template.content ? template.content : `Content ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
+    const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
+    const attributes = template && template.attributes ? template.attributes : 'data-slider-slide';
+
+    const dateIso = dateIsValid(date) ? new Date(date).toISOString() : null;
+    const dateEndIso = dateIsValid(dateEnd) ? new Date(dateEnd).toISOString() : null;
+
     slides.push(Slide({
       theme,
+      image,
       image_position: imagePosition,
-      content_top: contentTop,
+      tags,
+      date,
+      date_iso: dateIso,
+      date_end: dateEnd,
+      date_end_iso: dateEndIso,
       title,
       url,
-      summary,
+      content,
       links,
-      image,
-      content_bottom: contentBottom,
       attributes,
     }));
   }

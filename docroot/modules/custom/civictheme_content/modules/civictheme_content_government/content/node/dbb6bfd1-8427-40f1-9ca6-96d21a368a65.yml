@@ -22,7 +22,7 @@ default:
       value: 'Spotlight on Dementia webinar'
   created:
     -
-      value: 1668751441
+      value: 1676437441
   promote:
     -
       value: false
@@ -38,10 +38,10 @@ default:
     -
       value: "<p>The Department of Citizens is investing $176.2 million to improve the care and quality of life for those living with dementia.</p>\r\n"
       format: civictheme_rich_text
-  field_c_n_date:
+  field_c_n_date_range:
     -
-      value: '2022-12-19T23:00:00'
-      end_value: '2022-12-20T00:30:00'
+      value: '2023-02-27T23:00:00'
+      end_value: '2023-02-28T00:00:00'
   field_c_n_location:
     -
       entity:
@@ -66,11 +66,14 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>Online</p>\r\n"
+              value: "<p>Online webinar</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_show_last_updated:
     -
       value: true
@@ -86,3 +89,6 @@ default:
   field_c_n_topics:
     -
       entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -7,62 +7,28 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
-use Drupal\node\NodeInterface;
+use Drupal\Core\Link;
 
 /**
- * Pre-process for Programmatic Block - Banner block.
+ * Pre-process for Banner block.
+ *
+ * 3 parts:
+ * 1. Properties from the block.
+ * 2. Properties from the node that may override properties from the block.
+ * 3. Cache tags.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }
 
-  $entity = $variables['elements']['content']['#block_content'];
-  if ($entity->bundle() != 'civictheme_banner' || ($entity->hasField('field_c_b_type') && $entity->field_c_b_type->isEmpty())) {
+  $block = $variables['elements']['content']['#block_content'];
+  if ($block->bundle() != 'civictheme_banner' || ($block->hasField('field_c_b_type') && $block->field_c_b_type->isEmpty())) {
     return;
-  }
-
-  $variables['content'] = NULL;
-
-  // Cache tags.
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof NodeInterface) {
-    $variables['#cache']['tags'] = Cache::mergeTags($entity->getCacheTags(), $node->getCacheTags());
-  }
-  $variables['#cache']['contexts'][] = 'url.path';
-  $variables['#cache']['contexts'][] = 'url.query_args';
-
-  $variables['type'] = CivicthemeConstants::BANNER_TYPE_DEFAULT;
-
-  $variables['theme'] = civictheme_get_field_theme_value($entity);
-
-  if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
-    $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
-
-    if (civictheme_field_has_value($entity, 'field_c_b_blend_mode')) {
-      $variables['background_image_blend_mode'] = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
-    }
-  }
-
-  // Combining Drupal block classes with banner.
-  if (!empty($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
-
-  _civictheme_preprocess_civictheme_banner_title($variables);
-  _civictheme_preprocess_civictheme_banner_node($variables);
-  _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
-  _civictheme_preprocess_civictheme_banner_section($variables);
-
-  civictheme_expose_migration_metadata__banner($variables);
-
-  if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
-    $variables['is_decorative'] = TRUE;
   }
 
   // Explicitly defined variables to allow additional preprocessing.
@@ -70,112 +36,56 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
   $variables['content_bottom'] = NULL;
+
+  $variables['theme'] = civictheme_get_field_value($block, 'field_c_b_theme', TRUE, CivicthemeConstants::BANNER_THEME_DEFAULT);
+  $variables['type'] = civictheme_get_field_value($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
+
+  // Remove existing content.
+  $variables['content'] = NULL;
+
+  $background_image = civictheme_get_field_value($block, 'field_c_b_background_image', TRUE);
+  if (!empty($background_image)) {
+    $variables['background_image'] = civictheme_media_image_get_variables($background_image);
+    $variables['background_image_blend_mode'] = civictheme_get_field_value($block, 'field_c_b_blend_mode', TRUE);
+  }
+
+  $featured_image = civictheme_get_field_value($block, 'field_c_b_featured_image', TRUE);
+  if (!empty($featured_image)) {
+    $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
+  }
+
+  $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+
+  _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
+
+  // Per-node overrides.
+  _civictheme_preprocess_block__civictheme_banner__node($variables);
+
+  if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
+    $variables['is_decorative'] = TRUE;
+  }
+
+  // Note that per-node overrides above may adjust cache tags as required.
+  $variables['#cache']['contexts'][] = 'url.path';
+  $variables['#cache']['contexts'][] = 'url.query_args';
+
+  _civictheme_migration_metadata__banner($variables);
+
+  // 'type' is internal field and should not be passed to the template.
+  unset($variables['type']);
 }
 
 /**
- * Pre-process banner section.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_civictheme_banner_section(&$variables) {
-  // Site section.
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-
-  if (!is_null($node)) {
-    $the_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
-    $variables['section'] = isset($the_section) ? $the_section->getName() : '';
-  }
-}
-
-/**
- * Pre-process banner title.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_civictheme_banner_title(&$variables) {
-  // Banner title.
-  /** @var \Symfony\Component\HttpFoundation\Request $request */
-  $request = \Drupal::request();
-  /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
-  $route_match = \Drupal::routeMatch();
-  /** @var \Drupal\Core\Controller\TitleResolverInterface $title_resolver */
-  $title_resolver = \Drupal::service('title_resolver');
-
-  $page_title = $title_resolver->getTitle($request, $route_match->getRouteObject());
-
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
-
-  if ($node_revision !== NULL) {
-    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
-  }
-
-  if (!is_null($node)) {
-    $page_title = civictheme_get_field_value($node, 'field_c_n_banner_title') ?? $page_title;
-  }
-
-  $variables['title'] = $page_title ?? '';
-}
-
-/**
- * Pre-process banner breadcrumb.
+ * Pre-process Banner using per-node overrides.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_preprocess_civictheme_banner_breadcrumb(&$variables) {
-  // Disable breadcrumb on homepage.
-  if (\Drupal::service('path.matcher')->isFrontPage()) {
-    return;
-  }
+function _civictheme_preprocess_block__civictheme_banner__node(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
 
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
-
-  if ($node_revision !== NULL) {
-    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
-  }
-
-  // Breadcrumb visibility.
-  $hide_breadcrumb = FALSE;
-  if (!is_null($node)) {
-    $hide_breadcrumb = civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb') ?? FALSE;
-  }
-
-  if (!$hide_breadcrumb) {
-    /** @var \Drupal\Core\Routing\RouteMatch $route_match */
-    $route_match = \Drupal::getContainer()->get('current_route_match');
-    /** @var \Drupal\Core\Breadcrumb\Breadcrumb|null $breadcrumb */
-    $breadcrumb = \Drupal::service('breadcrumb')->build($route_match);
-    if ($breadcrumb) {
-      $variables['breadcrumb'] = $breadcrumb->toRenderable();
-      if (isset($variables['theme'])) {
-        // Changing to CivicTheme theme to pass other variables to template.
-        $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
-        $variables['breadcrumb']['#display_theme'] = $variables['theme'];
-      }
-    }
-  }
-}
-
-/**
- * Pre-process banner for all nodes.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_civictheme_banner_node(&$variables) {
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
-
-  if ($node_revision !== NULL) {
-    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
-  }
-
-  if (is_null($node)) {
+  if (empty($node)) {
     return;
   }
 
@@ -185,91 +95,96 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   $theme = civictheme_get_field_value($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
   $variables['theme'] = $theme == CivicthemeConstants::INHERIT ? ($variables['theme'] ?? CivicthemeConstants::BANNER_THEME_DEFAULT) : $theme;
 
-  $is_front = \Drupal::service('path.matcher')->isFrontPage();
-  $variables['is_front'] = $is_front;
+  $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
+  if (!empty($background_image)) {
+    $variables['background_image'] = civictheme_media_image_get_variables($background_image);
+    $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
+  }
 
-  _civictheme_preprocess_civictheme_banner_last_updated($variables, $node);
-  _civictheme_preprocess_civictheme_banner_background_image($variables, $node);
-  _civictheme_preprocess_civictheme_banner_featured_image($variables, $node);
-  _civictheme_preprocess_civictheme_banner_components($variables, $node);
-}
+  $featured_image = civictheme_get_field_value($node, 'field_c_n_banner_featured_image', TRUE);
+  if (!empty($featured_image)) {
+    $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
+  }
 
-/**
- * Preprocess banner last updated date.
- */
-function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $node) {
-  $final_date = _civictheme_preprocess_civictheme_banner_get_last_updated($node);
+  $variables['title'] = civictheme_get_field_value($node, 'field_c_n_banner_title') ?: $variables['title'];
 
-  if (isset($final_date)) {
+  if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
+    $variables['breadcrumb'] = NULL;
+  }
+
+  $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+  if (!empty($site_section)) {
+    $variables['site_section'] = $site_section->getName();
+  }
+
+  $updated_date = _civictheme_node_get_updated_date($node);
+  if (!empty($updated_date)) {
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '</p>',
+      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $updated_date . '</p>',
     ];
   }
-}
 
-/**
- * Helper to determine last updated date for a page.
- */
-function _civictheme_preprocess_civictheme_banner_get_last_updated($node) {
-  $last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
-  $custom_updated = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
-
-  $final_date = NULL;
-
-  if ($last_updated && $custom_updated) {
-    $final_date = civictheme_format_short_date($custom_updated->get('value')->getDateTime());
-  }
-
-  elseif ($last_updated) {
-    $final_date = \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date');
-  }
-
-  return $final_date;
-}
-
-/**
- * Preprocess banner background image.
- *
- * @SuppressWarnings(PHPMD.ElseExpression)
- */
-function _civictheme_preprocess_civictheme_banner_background_image(&$variables, $node) {
-  $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
-  if ($background_image !== NULL) {
-    $variables['background_image'] = civictheme_media_get_url($background_image);
-    if (civictheme_field_has_value($node, 'field_c_n_blend_mode')) {
-      $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
-    }
-  }
-}
-
-/**
- * Preprocess banner featured image.
- */
-function _civictheme_preprocess_civictheme_banner_featured_image(&$variables, $node) {
-  $featured_image = civictheme_get_field_value($node, 'field_c_n_banner_featured_image', TRUE);
-  if ($featured_image !== NULL) {
-    $image = civictheme_get_field_value($featured_image, 'field_c_m_image', TRUE);
-    $variables['featured_image']['src'] = civictheme_media_get_url($featured_image);
-    $variables['featured_image']['alt'] = $image !== NULL ? $image->getValue()['alt'] : '';
-  }
-}
-
-/**
- * Preprocess banner components.
- */
-function _civictheme_preprocess_civictheme_banner_components(&$variables, $node) {
   $banner_components = civictheme_get_field_value($node, 'field_c_n_banner_components');
-  if ($banner_components) {
+  if (!empty($banner_components)) {
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     $variables['content'][] = $render_controller->viewMultiple($banner_components, 'default');
   }
 
-  // Banner content below components.
   $banner_below_components = civictheme_get_field_value($node, 'field_c_n_banner_components_bott');
-  if ($banner_below_components) {
+  if (!empty($banner_below_components)) {
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     $variables['content_below'][] = $render_controller->viewMultiple($banner_below_components, 'default');
+  }
+
+  $block = $variables['elements']['content']['#block_content'];
+  if (!empty($block)) {
+    $variables['#cache']['tags'] = Cache::mergeTags($block->getCacheTags(), $node->getCacheTags());
+  }
+}
+
+/**
+ * Pre-process for Breadcrumb.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
+function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables) {
+  // Disable breadcrumb on homepage.
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    return;
+  }
+
+  $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
+  if (!$breadcrumb) {
+    return;
+  }
+
+  // Always show the last item as a plain text (not a link).
+  $variables['breadcrumb']['active_is_link'] = FALSE;
+
+  // Gather existing links. Note that some profiles (GovCMS) may already have
+  // the functionality to add current page as a last item implemented.
+  foreach ($breadcrumb->getLinks() as $link) {
+    $variables['breadcrumb']['links'][] = [
+      'text' => $link->getText(),
+      'url' => $link->getUrl()->toString(),
+    ];
+  }
+
+  $current_route_match = \Drupal::routeMatch();
+  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
+  if (!empty($title)) {
+    $breadcrumb_links = $breadcrumb->getLinks();
+    $breadcrumb_last_link = end($breadcrumb_links);
+    $link = Link::createFromRoute($title, '<none>');
+    // Check if the link already exists and add it if not.
+    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+      $variables['breadcrumb']['links'][] = [
+        'text' => $link->getText(),
+        'url' => $link->getUrl()->toString(),
+      ];
+    }
   }
 }

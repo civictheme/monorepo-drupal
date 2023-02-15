@@ -5,7 +5,10 @@
 .ct-promo {
   $root: &;
 
-  &__inner {
+  border-top: solid ct-particle(0.125);
+  border-bottom: solid ct-particle(0.125);
+
+  &__wrapper {
     padding: ct-spacing(3) 0;
 
     @include ct-breakpoint(m) {
@@ -15,15 +18,26 @@
     }
   }
 
-  &__title {
-    @include ct-typography('heading-4');
+  &__inner {
+    @include ct-breakpoint(m) {
+      flex-grow: 1;
+      padding-right: ct-spacing(5);
+    }
+  }
 
+  &__links {
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  &__title {
     margin-bottom: ct-spacing(1);
   }
 
   &__content {
-    @include ct-typography('text-regular');
-
     margin-left: auto;
   }
 
@@ -35,30 +49,8 @@
     }
   }
 
-  &__first-container {
-    @include ct-breakpoint(m) {
-      flex-grow: 1;
-      padding-right: ct-spacing(5);
-    }
-  }
-
-  &__second-container {
-    margin-top: ct-spacing(3);
-
-    @include ct-breakpoint(m) {
-      margin-top: 0;
-    }
-  }
-
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
-
-    #{$root}__title {
-      @include ct-component-property($root, $theme, title, color);
-    }
-
-    #{$root}__content {
-      @include ct-component-property($root, $theme, content, color);
-    }
+    @include ct-component-property($root, $theme, border-color);
   }
 }

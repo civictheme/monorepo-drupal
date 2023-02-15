@@ -5,56 +5,35 @@
 .ct-service-card {
   $root: &;
 
-  border-top-width: ct-spacing(0.75);
-  border-top-style: solid;
+  @include ct-elevation-interaction();
+  @include ct-highlight-stripe-horizontal($ct-service-card-stripe-height, $ct-service-card-border-radius, 0);
+
+  position: relative;
   border-radius: $ct-service-card-border-radius;
-  text-align: center;
   width: 100%;
 
-  @include ct-elevation-interaction();
-
   #{$root}__content {
-    padding: ct-spacing(3) 0 ct-spacing(3) 0;
+    padding: ct-spacing(3);
 
     @include ct-breakpoint(m) {
-      padding: ct-spacing(4) 0 ct-spacing(4) 0;
+      padding: ct-spacing(4);
     }
   }
 
   #{$root}__title {
-    @include ct-typography('heading-4');
-
-    margin: 0;
-    padding: 0 ct-spacing(4);
-
-    .ct-heading {
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
+    text-align: center;
   }
 
   #{$root}__links {
-    list-style: none;
-    margin-bottom: 0;
-    padding: 0 ct-spacing(3);
-  }
+    margin-top: ct-spacing(2);
 
-  #{$root}__link__item {
-    margin-bottom: ct-spacing(2);
-
-    @include ct-typography('text-large');
-
-    &:last-child {
-      margin-bottom: 0;
+    .ct-item-list__item {
+      text-align: center;
     }
   }
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
-    @include ct-component-property($root, $theme, border-top-color);
-
-    #{$root}__title {
-      @include ct-component-property($root, $theme, heading, color);
-    }
+    @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
   }
 }

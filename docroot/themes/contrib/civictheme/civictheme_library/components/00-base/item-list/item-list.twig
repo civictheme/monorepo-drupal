@@ -4,30 +4,30 @@
  * Link List component.
  *
  * Variables:
- * - type: [string] Type: horizontal, vertical.
- * - no_gutter: [boolean] Render without gutters.
+ * - direction: [string] Direction: horizontal, vertical. Defaults to horizontal.
+ * - size: [string] Size: large, regular, small. Defaults to regular.
+ * - no_gap: [boolean] Render without gaps.
  * - items: [array] Items array
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set type_class = 'ct-item-list--%s'|format(type|default('horizontal')) %}
-{% set no_gutter_class = no_gutter ? 'ct-item-list--no-gutter' : '' %}
-{% set modifier_class = '%s %s %s'|format(type_class, no_gutter_class, modifier_class|default('')) %}
+{% set direction = direction in ['horizontal', 'vertical'] ? direction : 'horizontal' %}
+{% set size = size in ['small', 'regular', 'large'] ? size : 'regular' %}
+{% set direction_class = 'ct-item-list--%s'|format(direction) %}
+{% set size_class = 'ct-item-list--%s'|format(size) %}
+{% set no_gap_class = no_gap ? 'ct-item-list--no-gap' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(direction_class, size_class, no_gap_class, modifier_class|default('')) %}
 
 {% if items %}
-  <div class="ct-item-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% block items %}
-      <ul class="ct-item-list__list">
-        {% for item in items %}
-          {% if item is not empty %}
-            <li class="ct-item-list__list__item">
-              {{ item }}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endblock %}
-  </div>
+  <ul class="ct-item-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% for item in items %}
+      {% if item is not empty %}
+        <li class="ct-item-list__item">
+          {{ item }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 {% endif %}

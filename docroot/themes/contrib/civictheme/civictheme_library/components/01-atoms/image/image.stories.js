@@ -2,10 +2,10 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeImage from './image.twig';
-import { demoImage } from '../../00-base/base.stories';
+import { demoImage } from '../../00-base/base.utils';
 
 export default {
-  title: 'Atoms/Content/Image',
+  title: 'Atoms/Image',
   parameters: {
     layout: 'centered',
   },
@@ -24,7 +24,7 @@ export const Image = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    src: boolean('Show image', true, generalKnobTab) ? demoImage() : false,
+    url: boolean('Show image', true, generalKnobTab) ? demoImage() : false,
     alt: text('Image alt text', 'Alternative text', generalKnobTab),
     width: text('Width', '', generalKnobTab),
     height: text('Height', '', generalKnobTab),

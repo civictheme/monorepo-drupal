@@ -1,14 +1,14 @@
 // phpcs:ignoreFile
 import {
-  boolean, date, number, radios, text,
+  date, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
   demoImage,
-  getSlots, randomSentence,
+  getSlots, randomLinks, randomSentence,
   randomTags,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
-import CivicThemeCampaign from './campaign.stories.twig';
+import CivicThemeCampaign from './campaign.twig';
 
 export default {
   title: 'Organisms/Campaign',
@@ -31,11 +31,10 @@ export const Campaign = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Campaign heading which runs across two or three lines', generalKnobTab),
-    summary: text('Summary', randomSentence(), generalKnobTab),
-    show_content_text: boolean('With content text', true, generalKnobTab),
+    content: text('Content', randomSentence(), generalKnobTab),
     date: date('Date', new Date(), generalKnobTab),
     image: {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     },
     image_position: radios(
@@ -44,9 +43,20 @@ export const Campaign = (knobTab) => {
         Left: 'left',
         Right: 'right',
       },
-      'right',
+      'left',
       generalKnobTab,
     ),
+    links: randomLinks(number(
+      'Number of links',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    ), 10),
     tags: randomTags(number(
       'Number of tags',
       1,

@@ -14,108 +14,68 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
+  $page = [
+    'components' => [
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'theme' => $helper::civicthemeThemeDark(),
+      ],
+
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        'theme' => $helper::civicthemeThemeDark(),
+      ],
+
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'background' => TRUE,
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'background' => TRUE,
+        'theme' => $helper::civicthemeThemeDark(),
+      ],
+
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'background' => TRUE,
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+      [
+        'type' => 'webform',
+        'webform' => $helper::randomRealWebform(),
+        'background' => TRUE,
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+        'theme' => $helper::civicthemeThemeDark(),
+      ],
+
+    ],
+  ];
+
   return [
-    [
-      'title' => 'Webform component',
-      'components' => [
-        [
-          'type' => 'webform',
-          'webform' => $helper::randomRealWebform(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, 2 on page',
-      'components' => [
-        [
-          'type' => 'webform',
-          'webform' => $helper::randomRealWebform(),
-        ],
-        [
-          'type' => 'webform',
-          'webform' => $helper::randomRealWebform(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Dark',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeDark(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Light, BG',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Dark, BG',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => TRUE,
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Light, No BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Dark, No BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => FALSE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Light, BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeLight(),
-          'background' => TRUE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Webform component, Dark, BG, Both spaces',
-      'components' => [
-        [
-          'type' => 'content',
-          'webform' => $helper::randomRealWebform(),
-          'theme' => $helper::civicthemeThemeDark(),
-          'background' => TRUE,
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
+    $page + ['title' => 'Page. Component. Webform, sidebar'],
+    $page + [
+      'title' => 'Page. Component. Webform, no sidebar',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];
 }

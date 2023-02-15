@@ -27,7 +27,7 @@ function civictheme_preprocess_media__civictheme_image(&$variables) {
     if ($image->isValid()) {
       $variables['width'] = $image->getWidth();
       $variables['height'] = $image->getHeight();
-      $variables['src'] = $image_file->createFileUrl();
+      $variables['url'] = $image_file->createFileUrl();
       $variables['alt'] = $media->get('field_c_m_image')->first()->get('alt')->getString();
       $variables['caption'] = $media->get('field_c_m_caption')->getString();
     }

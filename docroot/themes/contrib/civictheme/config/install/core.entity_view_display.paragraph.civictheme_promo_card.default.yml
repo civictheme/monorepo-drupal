@@ -2,16 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_promo_card.field_c_p_date
     - field.field.paragraph.civictheme_promo_card.field_c_p_image
     - field.field.paragraph.civictheme_promo_card.field_c_p_link
+    - field.field.paragraph.civictheme_promo_card.field_c_p_subtitle
     - field.field.paragraph.civictheme_promo_card.field_c_p_summary
     - field.field.paragraph.civictheme_promo_card.field_c_p_theme
     - field.field.paragraph.civictheme_promo_card.field_c_p_title
     - field.field.paragraph.civictheme_promo_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_promo_card
   module:
-    - datetime
     - link
     - options
 id: paragraph.civictheme_promo_card.default
@@ -19,25 +18,16 @@ targetEntityType: paragraph
 bundle: civictheme_promo_card
 mode: default
 content:
-  field_c_p_date:
-    weight: 4
-    label: hidden
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_c_p_image:
-    weight: 2
+    type: entity_reference_label
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_c_p_link:
-    weight: 5
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -46,36 +36,44 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 5
+    region: content
+  field_c_p_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_c_p_summary:
-    weight: 3
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
   field_c_p_theme:
-    weight: 0
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_c_p_title:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_c_p_topics:
-    weight: 6
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 6
     region: content
 hidden: {  }

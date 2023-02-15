@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_topics
+    - paragraphs.paragraphs_type.civictheme_slider_slide
+    - taxonomy.vocabulary.civictheme_topics
+id: paragraph.civictheme_slider_slide.field_c_p_topics
+field_name: field_c_p_topics
+entity_type: paragraph
+bundle: civictheme_slider_slide
+label: Topics
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      civictheme_topics: civictheme_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -5,22 +5,27 @@
 .ct-list {
   $root: &;
 
+  &#{$root}--with-background {
+    padding-left: $ct-accordion-space-horizontal;
+    padding-right: $ct-accordion-space-horizontal;
+  }
+
   &__header {
     margin-bottom: ct-spacing(3);
   }
 
-  &__header-title {
+  &__title {
     .ct-heading {
       margin: 0;
     }
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-right: auto;
     }
   }
 
   &__link-above {
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       display: flex;
       justify-content: flex-end;
       align-self: center;
@@ -36,10 +41,6 @@
     margin-bottom: ct-spacing(3);
   }
 
-  &__filters {
-    margin-bottom: ct-spacing(5);
-  }
-
   &__pager {
     display: flex;
     margin: 0 auto;
@@ -50,10 +51,12 @@
     padding: ct-spacing(6) 0;
   }
 
-  &__rows-header {
-    @include ct-typography('label-regular');
+  &__rows-above {
+    padding: ct-spacing(2) 0 ct-spacing(2);
+  }
 
-    padding: ct-spacing(2) 0 ct-spacing(6);
+  &__rows-below {
+    padding: ct-spacing(2) 0 ct-spacing(2);
   }
 
   &__link-below {
@@ -71,7 +74,7 @@
   &__feed_icons {
     @include ct-content();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(6) 0;
     }
   }

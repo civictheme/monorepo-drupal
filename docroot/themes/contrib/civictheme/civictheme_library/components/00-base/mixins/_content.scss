@@ -19,7 +19,7 @@
 
     margin-bottom: ct-spacing(3);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(4);
     }
   }
@@ -29,7 +29,7 @@
 
     margin-bottom: ct-spacing(3);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(4);
     }
   }
@@ -39,7 +39,7 @@
 
     margin-bottom: ct-spacing(2);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(3);
     }
   }
@@ -49,7 +49,7 @@
 
     margin-bottom: ct-spacing(2);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(3);
     }
   }
@@ -59,7 +59,7 @@
 
     margin-bottom: ct-spacing();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(2);
     }
   }
@@ -69,7 +69,7 @@
 
     margin-bottom: ct-spacing();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-bottom: ct-spacing(2);
     }
   }
@@ -81,9 +81,13 @@
     &:first-child {
       margin-top: 0;
     }
+  }
 
-    &:last-child {
-      margin-bottom: 0;
+  &:last-child {
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

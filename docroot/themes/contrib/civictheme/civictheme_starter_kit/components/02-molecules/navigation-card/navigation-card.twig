@@ -33,7 +33,7 @@
  * - content_bottom: [string] Content slot.
  * - size: [string] Size: large, small.
  * - image: [object] Image object:
- *   - src: [string] Image source.
+ *   - url: [string] Image URL.
  *   - alt: [string] Image alt text.
  * - image_as_icon: [boolean] Show image as an icon.
  * - icon: [string] Icon name.
@@ -64,7 +64,7 @@
     case in this example).
   #}
   {% if tags %}
-    <div class="ct-promo-card__tags">
+    <div class="ct-navigation-card__tags">
       {% for tag in tags %}
         {% include '@atoms/tag/tag.twig' with {
           theme: theme,

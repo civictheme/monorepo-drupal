@@ -1,7 +1,7 @@
 @p1 @civictheme @civictheme_links
 Feature: Content links processing
 
-  @api @basetheme
+  @api
   Scenario: Links in content have correct classes assigned.
     Given "civictheme_page" content:
       | title         | status |
@@ -56,7 +56,7 @@ Feature: Content links processing
       | field_c_p_theme          | dark                 |
 
     And I am logged in as a user with the "Site Administrator" role
-    And I visit "/admin/appearance/settings/civictheme"
+    And I visit current theme settings page
     And I check the box "Open links in a new window"
     And I fill in "Override external link domains" with "http://exampleoverridden.com"
     And I press "Save configuration"
@@ -84,7 +84,7 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-theme-light" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'][target='_blank'].ct-content-link" element
     And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-light-link'].ct-content-link.ct-content-link--external" element
-    
+
     And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-light" element
 
     # Dark.
@@ -107,5 +107,5 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-theme-dark" element
     And I should see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'][target='_blank'].ct-content-link" element
     And I should not see an ".ct-basic-content a[href='http://exampleoverridden.com/external-dark-link'].ct-content-link.ct-content-link--external" element
-    
+
     And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element

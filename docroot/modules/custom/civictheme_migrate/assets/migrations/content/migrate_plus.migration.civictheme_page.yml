@@ -4,14 +4,14 @@ dependencies:
   enforced:
     module:
       - civictheme_migrate
-id: civictheme_page_migrate
+id: civictheme_page
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags:
   - civictheme_migrate
 migration_group: civictheme_migrate
-label: 'CivicTheme Page Migration'
+label: 'CivicTheme Page'
 source:
   plugin: url
   data_fetcher_plugin: file
@@ -70,10 +70,10 @@ source:
       selector: banner/children/0/banner_type
     - name: banner_blend_mode
       label: 'Vertical Spacing'
-      selector:  banner/children/0/blend_mode
+      selector: banner/children/0/blend_mode
     - name: banner_theme
       label: 'Banner theme'
-      selector:  banner/children/0/theme
+      selector: banner/children/0/theme
   ids:
     id:
       type: string

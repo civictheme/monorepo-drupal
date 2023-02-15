@@ -32,4 +32,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/news-and-events\n\r/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide\n\r/admin/appearance/styleguide/*"
+    pages: "/news-and-events"

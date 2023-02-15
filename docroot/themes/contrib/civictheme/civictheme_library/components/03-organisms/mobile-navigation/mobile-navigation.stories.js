@@ -1,11 +1,11 @@
 // phpcs:ignoreFile
 import { radios, select, text } from '@storybook/addon-knobs';
 import CivicThemeMobileNavigationExample from './mobile-navigation.stories.twig';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots } from '../../00-base/base.utils';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Mobile Navigation',
+  title: 'Organisms/Mobile Navigation',
   parameters: {
     layout: 'fullscreen',
   },

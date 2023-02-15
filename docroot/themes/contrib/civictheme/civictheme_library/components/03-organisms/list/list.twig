@@ -4,14 +4,26 @@
  * List component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - title: [string] Title.
+ * - link_above: [object] Link object:
+ *   - text: [string] Text.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
  * - filters: [string] Exposed filters.
  * - header: [string] Header slot.
+ * - rows_above: [string] Content above rows.
  * - rows: [string] Rows content.
+ * - rows_below: [string] Content below rows.
  * - empty: [string] Empty results content.
  * - pager: [string] Pager slot.
  * - footer: [string] Footer slot.
+ * - link_below: [object] Link object:
+ *   - text: [string] Text.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - with_background: [boolean] With background or not.
  * - attributes: [string] Additional attributes.
@@ -35,13 +47,12 @@
               <div class="col-xxs-12 col-m-9">
                 {% block title %}
                   {% if title -%}
-                    <div class="ct-list__header-title">
-                      {% include '@atoms/heading/heading.twig' with {
-                        content: title,
-                        level: 2,
-                        theme: theme,
-                      } only %}
-                    </div>
+                    {% include '@atoms/heading/heading.twig' with {
+                      content: title,
+                      level: 2,
+                      theme: theme,
+                      modifier_class: 'ct-list__title',
+                    } only %}
                   {% endif %}
                 {% endblock %}
               </div>
@@ -53,12 +64,13 @@
                         theme: theme,
                         type: 'secondary',
                         kind: 'link',
-                        size: 'large',
+                        size: 'regular',
                         text: link_above.text,
                         url: link_above.url,
                         is_new_window: link_above.is_external,
                         is_external: link_above.is_external,
                         icon: link_above.is_external ? '' : 'right-arrow-2',
+                        modifier_class: 'ct-list__link-above__link',
                       } only %}
                     </div>
                   {% endif %}
@@ -72,13 +84,15 @@
 
     {% block content %}
       {% if content %}
-        <div class="ct-list__content">
+        <div class="ct-list__content__wrapper">
           <div class="container">
             <div class="row">
               <div class="col-xxs-12">
                 {% include '@atoms/paragraph/paragraph.twig' with {
                   content: content,
                   theme: theme,
+                  allow_html: true,
+                  modifier_class: 'ct-list__content',
                 } only %}
               </div>
             </div>
@@ -103,25 +117,45 @@
         {% endif %}
       {% endblock %}
 
-      {% block rows_header %}
-        {% if rows_header -%}
-          <header class="ct-list__rows-header" tabindex="0">
-            <div class="container">
-              <div class="row">
-                <div class="col-xxs-12">
-                  {{ rows_header }}
-                </div>
-              </div>
-            </div>
-          </header>
-        {% endif %}
-      {% endblock %}
-
       {% block rows %}
         {% if rows -%}
-          <div class="ct-list__body">
+
+          {% block rows_above %}
+            {% if rows_above -%}
+              <div class="container">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% include '@atoms/label/label.twig' with {
+                      content: rows_above,
+                      theme: theme,
+                      modifier_class: 'ct-list__rows-above',
+                    } only %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          <div class="ct-list__rows">
             {{ rows }}
           </div>
+
+          {% block rows_below %}
+            {% if rows_below %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% include '@atoms/paragraph/paragraph.twig' with {
+                      content: rows_below,
+                      theme: theme,
+                      modifier_class: 'ct-list__rows-below',
+                    } only %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
         {% endif %}
       {% endblock %}
 
@@ -139,51 +173,55 @@
         {% endif %}
       {% endblock %}
 
-      {% block rows_below %}
+    {% endblock %}
 
-        {% if link_below %}
-          <div class="ct-list__link-below">
-            {% include '@atoms/button/button.twig' with {
-              theme: theme,
-              type: 'secondary',
-              kind: 'link',
-              size: 'large',
-              text: link_below.text,
-              url: link_below.url,
-              is_new_window: link_below.is_external,
-              is_external: link_below.is_external,
-              icon: link_below.is_external ? '' : 'right-arrow-2',
-            } only %}
-          </div>
-        {% endif %}
+    {% block list_below %}
+      {% if link_below %}
+        <div class="ct-list__link-below">
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            type: 'secondary',
+            kind: 'link',
+            size: 'large',
+            text: link_below.text,
+            url: link_below.url,
+            is_new_window: link_below.is_external,
+            is_external: link_below.is_external,
+            icon: link_below.is_external ? '' : 'right-arrow-2',
+            modifier_class: 'ct-list__link-below__link',
+          } only %}
+        </div>
+      {% endif %}
 
-        {% if pager is defined and pager is not empty %}
-          <div class="ct-list__results-below">
+      {% if pager is defined and pager is not empty %}
+        <div class="ct-list__results-below">
+          {% block pager %}
             <div class="container">
               <div class="row">
                 <div class="col-xxs-12">
-                  {% block pager %}
                     <div class="ct-list__pager">
                       {{ pager }}
                     </div>
-                  {% endblock %}
                 </div>
               </div>
             </div>
-          </div>
-        {% endif %}
-
-      {% endblock %}
-
-      {% block footer %}
-        {% if footer is not empty -%}
-          <footer class="ct-list__footer">
-            {{ footer }}
-          </footer>
-        {% endif %}
-      {% endblock %}
-
+          {% endblock %}
+        </div>
+      {% endif %}
     {% endblock %}
 
+    {% block footer %}
+      {% if footer is not empty -%}
+        <footer class="ct-list__footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {{ footer }}
+              </div>
+            </div>
+          </div>
+        </footer>
+      {% endif %}
+    {% endblock %}
   </div>
 </div>

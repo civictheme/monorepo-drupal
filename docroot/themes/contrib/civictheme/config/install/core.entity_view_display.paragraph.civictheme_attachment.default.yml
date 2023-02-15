@@ -4,13 +4,14 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_attachment.field_c_p_attachments
     - field.field.paragraph.civictheme_attachment.field_c_p_background
-    - field.field.paragraph.civictheme_attachment.field_c_p_summary
+    - field.field.paragraph.civictheme_attachment.field_c_p_content
     - field.field.paragraph.civictheme_attachment.field_c_p_theme
     - field.field.paragraph.civictheme_attachment.field_c_p_title
     - field.field.paragraph.civictheme_attachment.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_attachment
   module:
     - options
+    - text
 id: paragraph.civictheme_attachment.default
 targetEntityType: paragraph
 bundle: civictheme_attachment
@@ -35,12 +36,12 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
-  field_c_p_summary:
-    type: basic_string
-    label: hidden
+  field_c_p_content:
+    type: text_default
+    label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 9
     region: content
   field_c_p_theme:
     type: list_default

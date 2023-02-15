@@ -2,23 +2,16 @@
 
 /**
  * @file
- * CivicTheme promo paragraph component.
+ * CivicTheme Promo paragraph component.
  */
 
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_promo(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
-  if ($link) {
-    $variables['link'] = [
-      'text' => $link->get('title')->getString(),
-      'url' => $link->getUrl()->toString(),
-      'is_new_window' => $link->isExternal(),
-    ];
-  }
-  $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_summary');
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__content($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
 }

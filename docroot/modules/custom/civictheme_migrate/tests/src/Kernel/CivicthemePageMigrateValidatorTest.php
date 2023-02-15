@@ -36,6 +36,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->id);
+
           return $data;
         }),
         [
@@ -47,6 +48,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->title);
+
           return $data;
         }),
         [
@@ -67,6 +69,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->alias);
+
           return $data;
         }),
         [
@@ -78,6 +81,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->show_toc);
+
           return $data;
         }),
         [
@@ -89,6 +93,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->hide_sidebar);
+
           return $data;
         }),
         [
@@ -100,6 +105,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           unset($data[0]->show_last_updated_date);
+
           return $data;
         }),
         [
@@ -111,6 +117,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           $data[0]->alias = 'test/test123';
+
           return $data;
         }),
         [
@@ -123,6 +130,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           $data[0]->vertical_spacing = 'not_valid';
+
           return $data;
         }),
         [
@@ -135,6 +143,7 @@ class CivicthemePageMigrateValidatorTest extends CivicthemeMigrateValidatorBase 
       [
         $this->getTestDataStructure(function ($data) {
           $data[0]->banner->children[0]->blend_mode = 'invalid_value';
+
           return $data;
         }),
         [

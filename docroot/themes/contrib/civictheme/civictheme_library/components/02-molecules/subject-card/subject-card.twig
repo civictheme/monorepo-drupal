@@ -6,75 +6,76 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - image_over: [string] Content slot.
- * - image: [object] Image data.
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
  * - title: [string] Card title.
- * - url: [string] Url for link out from Card.
+ * - link: [object] Link object:
+ *   - text: [string] Text.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
  * - is_external: [boolean] Link is external.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set with_image = image.url is defined and image.url is not empty %}
+{% set with_image_class = with_image ? 'ct-subject-card--with-image' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'ct-subject-card--no-image' : '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, with_image_class, modifier_class|default('')) %}
 
-<div class="ct-subject-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-  <div class="ct-subject-card__image-wrapper">
-    {% block image %}
-      {% if image.src is not empty %}
-        <div class="ct-subject-card__image">
-          {% include '@atoms/image/image.twig' with {
-            theme: theme,
-            src: image.src,
-            alt:  image.alt,
-          } only %}
-        </div>
-      {% endif %}
-    {% endblock %}
+{% if title is not empty %}
+  <div class="ct-subject-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="ct-subject-card__content">
+      {% block image %}
+        {% if image.url is defined and image.url is not empty %}
+          <div class="ct-subject-card__image">
+            {% include '@atoms/image/image.twig' with {
+              theme: theme,
+              url: image.url,
+              alt: image.alt,
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
 
-    {% block image_over %}
-      {% if image_over is not empty %}
-        <div class="ct-subject-card__image-over">
-          {{ image_over }}
-        </div>
-      {% endif %}
-    {% endblock %}
+      {% block image_over %}
+        {% if image_over is not empty %}
+          <div class="ct-subject-card__image__over">
+            {{ image_over }}
+          </div>
+        {% endif %}
+      {% endblock %}
 
-    {% block title %}
-      {% if title is not empty %}
-        <div class="ct-subject-card__title">
-          {% set heading_content %}
-            {% if url is not empty %}
-              <a class="ct-subject-card__title-link" href="{{ url }}">
-            {% endif %}
+      {% block title %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% if with_link %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: title,
+                url: link.url,
+                is_new_window: link.is_new_window,
+                is_external: false,
+                icon: not with_image and with_link ? 'right-arrow-2' : '',
+                modifier_class: 'ct-subject-card__title__link',
+              } only %}
+            {% else %}
               {{ title }}
-            {% if url is not empty %}
-              </a>
-              <div class="ct-subject-card__icon-wrapper">
-                  {% if is_external %}
-                    {% include '@base/icon/icon.twig' with {
-                      symbol: 'upper-right-arrow',
-                      color: 'primary',
-                      modifier_class: 'ct-subject-card__icon--external'
-                    } only %}
-                  {% else %}
-                    {% include '@base/icon/icon.twig' with {
-                      symbol: 'right-arrow-2',
-                      color: 'primary',
-                      modifier_class: 'ct-subject-card__icon--arrow',
-                    } only %}
-                  {% endif %}
-                </div>
             {% endif %}
           {% endset %}
+
           {% include '@atoms/heading/heading.twig' with {
-            content: heading_content,
+            content: title_content,
             level: 4,
             theme: theme,
+            modifier_class: 'ct-subject-card__title',
           } only %}
-        </div>
-      {% endif %}
-    {% endblock %}
+        {% endif %}
+      {% endblock %}
+    </div>
   </div>
-</div>
+{% endif %}

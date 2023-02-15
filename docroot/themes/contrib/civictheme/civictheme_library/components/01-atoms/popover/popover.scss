@@ -4,50 +4,39 @@
 
 @use 'sass:math';
 
-[data-popover] {
+.ct-popover {
   $root: &;
 
-  &[data-popover-trigger] {
-    appearance: none;
-    border: 0;
-    cursor: pointer;
-    position: relative;
-    background-color: transparent;
-    padding: 0;
+  position: relative;
 
-    &:focus {
-      @include ct-outline(true);
-    }
-  }
-
-  &[data-popover-content] {
+  #{$root}__content {
     @include ct-elevation(4);
 
-    display: flex;
-    align-items: center;
-    border-radius: $ct-popover-description-border-radius;
-    border: solid ct-particle(0.125) transparent;
     position: absolute;
-    min-width: $ct-popover-width;
-    min-height: ct-particle(12);
     z-index: $ct-popover-z-index;
+    border-radius: $ct-popover-description-border-radius;
+    margin-top: $ct-popover-top-offset;
+  }
+
+  #{$root}__content__inner {
+    min-width: $ct-popover-min-width;
+    min-height: ct-particle(12);
     padding: ct-spacing(2);
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       padding: ct-spacing(3);
     }
   }
 
-  &.ct-popover {
-    &:not([data-popover-visible]) {
-      @include ct-visually-hidden();
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__content {
+      @include ct-component-property($root, $theme, content, background-color);
     }
+  }
+}
 
-    @include ct-component-theme($root) using($root, $theme) {
-      &[data-popover-content] {
-        @include ct-component-property(ct-popover, $theme, content, background-color);
-        @include ct-component-property(ct-popover, $theme, content, border-color);
-      }
-    }
+.no-js {
+  .ct-popover__content {
+    position: relative;
   }
 }

@@ -2,16 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_promo_card.field_c_p_date
     - field.field.paragraph.civictheme_promo_card.field_c_p_image
     - field.field.paragraph.civictheme_promo_card.field_c_p_link
+    - field.field.paragraph.civictheme_promo_card.field_c_p_subtitle
     - field.field.paragraph.civictheme_promo_card.field_c_p_summary
     - field.field.paragraph.civictheme_promo_card.field_c_p_theme
     - field.field.paragraph.civictheme_promo_card.field_c_p_title
     - field.field.paragraph.civictheme_promo_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_promo_card
   module:
-    - datetime
     - link
     - media_library
 id: paragraph.civictheme_promo_card.default
@@ -19,30 +18,32 @@ targetEntityType: paragraph
 bundle: civictheme_promo_card
 mode: default
 content:
-  field_c_p_date:
-    type: datetime_default
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_c_p_image:
     type: media_library_widget
-    weight: 1
+    weight: 2
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_c_p_link:
     type: link_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_c_p_subtitle:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_c_p_summary:
     type: string_textarea
-    weight: 2
+    weight: 3
     region: content
     settings:
       rows: 5
@@ -50,7 +51,7 @@ content:
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -64,7 +65,7 @@ content:
     third_party_settings: {  }
   field_c_p_topics:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS

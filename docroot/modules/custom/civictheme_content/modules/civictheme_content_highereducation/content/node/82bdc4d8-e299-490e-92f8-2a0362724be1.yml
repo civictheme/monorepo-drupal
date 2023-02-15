@@ -80,12 +80,18 @@ default:
               value: false
           field_c_p_content:
             -
-              value: '<p dir="ltr"><span>Our university is consistently ranked in the top 50 universities in the different world rankings, with our top ranking being #19 in the Times Higher Education World University Rankings.&nbsp;</span></p><p dir="ltr"><span>My University has risen 11 places in the recently released QS World University Rankings.&nbsp; Overall, we’ve moved from 28th place to 17th place. In addition most of our schools have also seen an increase of between 5-15 points.&nbsp;</span></p><p dir="ltr"><span>We’d like to congratulate all the staff and students at My University for ensuring our university is a global leader in education.&nbsp;</span></p>'
+              value: "<p dir=\"ltr\"><span>Our university is consistently ranked in the top 50 universities in the different world rankings, with our top ranking being #19 in the Times Higher Education World University Rankings.&nbsp;</span></p>\r\n\r\n<p dir=\"ltr\"><span>My University has risen 11 places in the recently released QS World University Rankings.&nbsp; Overall, we’ve moved from 28th place to 17th place. In addition most of our schools have also seen an increase of between 5-15 points.&nbsp;</span></p>\r\n\r\n<p dir=\"ltr\"><span>We’d like to congratulate all the staff and students at My University for ensuring our university is a global leader in education.&nbsp;</span></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:
@@ -105,4 +111,4 @@ default:
       entity: d95f5188-650c-4dea-abcb-df8ea008919b
   field_c_n_vertical_spacing:
     -
-      value: both
+      value: top

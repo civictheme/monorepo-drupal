@@ -1,1 +1,4 @@
 **/*.min.js
+node_modules
+vendor
+storybook-static

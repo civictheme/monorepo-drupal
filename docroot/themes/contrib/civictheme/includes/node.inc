@@ -42,6 +42,23 @@ function _civictheme_preprocess_node(&$variables) {
       '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
     ]);
   }
+
+  // Add Tags if hide tags is not set on node.
+  if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
+    $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
+    if ($topics) {
+      $topics = array_map(function ($topic) {
+        return $topic->label();
+
+      }, $topics);
+
+      $variables['content'][] = [
+        '#theme' => 'civictheme_tag_list',
+        '#tags' => $topics,
+        '#vertical_spacing' => 'both',
+      ];
+    }
+  }
 }
 
 /**
@@ -55,7 +72,6 @@ function _civictheme_preprocess_node__full(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  civictheme_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -69,17 +85,16 @@ function _civictheme_preprocess_node__default(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  civictheme_attributes_to_modifier_class($variables);
 }
 
 /**
- * Pre-process CivicTheme alert nodes.
+ * Pre-process CivicTheme Alert nodes.
  */
 function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = civictheme_process_html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
+  $variables['description'] = _civictheme_process__html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
     // Force dark theme to make sure that text colour has enough contrast with
     // a background.
     'theme' => CivicthemeConstants::THEME_DARK,
@@ -105,4 +120,23 @@ function _civictheme_preprocess_page__node(&$variables) {
 
   // Hide sidebar check.
   $variables['hide_sidebar'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
+}
+
+/**
+ * Determine last updated date for a page.
+ */
+function _civictheme_node_get_updated_date($node, $format = 'civictheme_short_date') {
+  $show_last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
+  $custom_updated_value = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
+
+  $date = NULL;
+
+  if ($show_last_updated && !empty($custom_updated_value)) {
+    $date = civictheme_format_date($format, $custom_updated_value->get('value')->getDateTime());
+  }
+  elseif ($show_last_updated) {
+    $date = civictheme_format_date($format, $node->getChangedTime());
+  }
+
+  return $date;
 }

@@ -15,7 +15,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="{{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+<div class="ct-page {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <a id="top"></a>
 
   {% block header %}

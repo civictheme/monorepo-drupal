@@ -37,6 +37,8 @@
 }
 
 .sb-show-main {
+  overflow-y: scroll;
+
   &.sb-main-fullscreen,
   &.sb-main-centered {
     #root {

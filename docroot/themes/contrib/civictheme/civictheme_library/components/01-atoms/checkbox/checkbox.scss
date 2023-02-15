@@ -5,7 +5,7 @@
 .ct-checkbox {
   $root: &;
 
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -39,7 +39,7 @@
 
       &::after {
         position: absolute;
-        top: ct-particle(0.25);
+        top: -1 * ct-particle(0.25);
         left: ct-particle(0.25);
         display: inline-block;
         width: ct-particle(3) - rem(2px);

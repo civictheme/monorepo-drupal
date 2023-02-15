@@ -5,154 +5,48 @@
 .ct-attachment {
   $root: &;
 
-  display: flex;
-  flex-wrap: wrap;
-  flex: none;
-  order: 1;
-  flex-grow: 1;
-  margin: 0;
-
-  @include ct-breakpoint(m) {
-    flex-direction: row;
-    flex-wrap: nowrap;
+  &#{$root}--with-background {
+    padding-left: $ct-attachment-space-horizontal;
+    padding-right: $ct-attachment-space-horizontal;
   }
 
-  &__image {
-    width: 100%;
-    max-height: 250px;
-    flex-basis: 100%;
+  #{$root}__wrapper {
+    border: solid ct-particle(0.125);
+    border-radius: $ct-attachment-border-radius;
+    padding: ct-spacing(3);
 
     @include ct-breakpoint(m) {
-      max-height: 100%;
-      width: 25%;
-      flex-basis: unset;
-    }
-
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__content {
-    @include ct-typography('text-regular');
-
-    padding: ct-spacing(3);
-    flex: 1;
-    border-radius: $ct-attachment-border-radius;
-
-    @include ct-breakpoint('m') {
       padding: ct-spacing(4);
     }
   }
 
-  &__summary {
-    margin-top: 16px;
-
-    @include ct-typography('text-small');
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
   }
 
-  &__title {
-    @include ct-typography('heading-4');
+  #{$root}__content {
+    margin-bottom: ct-spacing(2);
   }
 
-  &__links {
-    list-style: none;
-    margin: ct-spacing(2) 0 0 0;
-    padding: 0;
-
-    &--link {
-      display: flex;
-      margin-bottom: rem(4px);
-
-      @include ct-breakpoint('m') {
-        margin-bottom: ct-spacing();
-      }
-
-      svg {
-        margin-right: ct-spacing();
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      @include ct-typography('label-regular');
-    }
-
-    &--icon {
-      margin-right: ct-spacing();
-    }
-
-    &--last-updated {
-      @include ct-typography('text-small');
-    }
+  #{$root}__links .ct-item-list__item {
+    display: flex;
+    gap: 0 ct-spacing();
   }
 
-  &__icon {
-    padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) 0;
-    width: ct-spacing(3);
-
-    @include ct-breakpoint('m') {
-      padding-top: ct-spacing(4);
-    }
-  }
-
-  .ct-link--attachment {
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: ct-spacing() 0;
-
-    @include ct-breakpoint(m) {
-      margin: ct-spacing() ct-spacing() 0 0;
-    }
-
-    font-weight: 600;
-
-    .extension {
-      text-transform: uppercase;
-    }
+  #{$root}__links__link__extension {
+    text-transform: uppercase;
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    &.ct-attachment--with-background {
-      @include ct-component-property($root, $theme, wrapper, background-color);
+    @include ct-component-property($root, $theme, color);
 
-      padding-left: $ct-attachment-space-horizontal;
-      padding-right: $ct-attachment-space-horizontal;
+    &#{$root}--with-background {
+      @include ct-component-property($root, $theme, wrapper, background-color);
     }
 
-    .ct-attachment {
-      &__content {
-        @include ct-component-property($root, $theme, color);
-        @include ct-component-property($root, $theme, background-color);
-
-        border: solid ct-particle(0.125) ct-component-var($root, $theme, border, color);
-      }
-
-      &__title {
-        @include ct-component-property($root, $theme, title, color);
-      }
-
-      &__links {
-        &--link {
-          @include ct-component-property($root, $theme, heading, color);
-
-          svg {
-            fill: ct-component-var($root, $theme, icon, color);
-          }
-        }
-
-        &--icon {
-          @include ct-component-property($root, $theme, icon, color);
-        }
-
-        &--last-updated {
-          @include ct-component-property($root, $theme, date, color);
-        }
-      }
+    #{$root}__wrapper {
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-component-property($root, $theme, background-color);
     }
   }
 }

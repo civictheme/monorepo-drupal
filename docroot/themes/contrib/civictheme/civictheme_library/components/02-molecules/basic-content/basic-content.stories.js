@@ -10,10 +10,10 @@ import {
   demoImage,
   demoVideoPoster,
   demoVideos,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Basic Content',
+  title: 'Molecules/Basic Content',
   parameters: {
     layout: 'fullscreen',
     knobs: {
@@ -82,7 +82,7 @@ export const BasicContent = (knobTab) => {
   // Image.
   html += CivicThemeFigure({
     theme,
-    src: demoImage(),
+    url: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
   });
@@ -125,6 +125,18 @@ export const BasicContent = (knobTab) => {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
     is_contained: boolean('Contained', true, generalKnobTab),
+    with_background: boolean('With background', false, generalKnobTab),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

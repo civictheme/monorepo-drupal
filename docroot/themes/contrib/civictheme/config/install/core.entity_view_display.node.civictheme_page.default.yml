@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
+    - field.field.node.civictheme_page.field_c_n_hide_tags
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_site_section
@@ -84,9 +85,11 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_layouts:
         - civictheme_one_column
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
+      restricted_categories: {  }
       blacklisted_blocks: {  }
       whitelisted_blocks: {  }
-      restricted_categories: {  }
 id: node.civictheme_page.default
 targetEntityType: node
 bundle: civictheme_page
@@ -127,6 +130,16 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_c_n_hide_tags:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_c_n_show_last_updated:
     type: boolean

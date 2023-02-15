@@ -7,8 +7,7 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Render\Element;
-use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -20,113 +19,134 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // Get the automated list element.
-  $variables['automated_list'] = _civictheme_automated_list_element($paragraph);
+  // Remove existing content.
+  $variables['content'] = NULL;
 
+  // The paragraph contains 2 types of values:
+  // 1. Content values that should be passed as variables to the render image.
+  // 2. View settings values that should be passed to a view for alterations
+  // in child preprocess hooks.
+  //
+  // Content values.
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__content($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link_above($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link_below($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__background($variables);
+
+  // Views settings.
+  // We want to have a single place to gather all the view settings to pass
+  // them further in the pipeline. There should not be any other places to
+  // access these fields variables directly (separation of concerns). Only
+  // these settings should be used.
+  $settings = [];
+  $settings['type'] = civictheme_get_field_value($paragraph, 'field_c_p_list_type');
+  $settings['content_type'] = civictheme_get_field_value($paragraph, 'field_c_p_list_content_type');
+  $settings['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit');
+  $settings['limit_type'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit_type');
+  $settings['filters_exp'] = civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', TRUE, '');
+  $settings['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
+  $settings['item_theme'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme');
+  $settings['topics'] = civictheme_get_field_value($paragraph, 'field_c_p_list_topics');
+  $settings['site_sections'] = civictheme_get_field_value($paragraph, 'field_c_p_list_site_sections');
+  $settings['cache_tags'] = $paragraph->getCacheTags();
+  // Use existing value getters to populate settings.
+  $settings['paragraph'] = $paragraph;
+  _civictheme_preprocess_paragraph__paragraph_field__theme($settings);
+  _civictheme_preprocess_paragraph__paragraph_field__title($settings);
+  _civictheme_preprocess_paragraph__paragraph_field__column_count($settings);
+  _civictheme_preprocess_paragraph__paragraph_field__fill_width($settings);
+  unset($settings['paragraph']);
+
+  // Get view with already set display.
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = _civictheme_automated_list__get_view($settings);
+
+  $settings['view_id'] = $view->id();
+  $settings['view_display'] = $view->current_display;
+
+  // Make component settings available to the processing functions to further
+  // alter view settings.
+  // @see civictheme_preprocess_views_view()
+  $view->component_settings = $settings;
+
+  // Preprocess view properties based on the settings above.
+  _civictheme_automated_list__update_view($view);
+
+  // Render view as rows.
+  $variables['rows'] = $view->executeDisplay();
+
+  // Add unique HTML ID.
   $attributes = [];
-  $attributes['id'] = Html::getUniqueId('listing-' . $paragraph->id());
-  if (!empty($variables['automated_list']['view_id'])) {
-    $attributes['data-view'] = Html::cleanCssIdentifier($variables['automated_list']['#view_name']);
-    $attributes['data-view-display'] = Html::cleanCssIdentifier($variables['automated_list']['#display_name']);
-  }
+  $attributes['id'] = Html::getUniqueId('ct-automated-list-' . $paragraph->id());
 
-  $variables['attributes'] = $variables['attributes'] ?? [];
-  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
-  unset($variables['attributes']['class']);
-  $variables['attributes'] = $variables['attributes'] + $attributes;
-
-  // @todo Review why we need these variables.
-  $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
-  $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit');
-
-  // Propagate Automated list theme settings to the view filters.
-  // @todo Possibly move these into _civictheme_automated_list_element().
-  if (!empty($variables['automated_list']['view']['#view'])) {
-    $form_elements = Element::children($variables['automated_list']['view']['#view']->exposed_widgets);
-    foreach ($form_elements as $form_element) {
-      $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
-    }
-  }
+  // Run merging of the attributes last. Do not add any code below this line.
+  $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
 }
 
 /**
- * Render Automated list paragraph.
+ * Get view for Automated list.
  *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph containing Automated list component configurations.
+ * @param array $settings
+ *   View alteration settings passed by reference.
  *
- * @return array
- *   The render array for view and exposed form.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_automated_list_element(Paragraph $paragraph) {
-  $element = NULL;
-
-  $info = _civictheme_automated_list_get_view_info($paragraph);
-
-  $view = Views::getView($info['view_name']);
-  if (!$view) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to set Automated list view "%s".', $info['view_name']));
-
-    // Do not render this element if the display does not exist.
-    return NULL;
-  }
-
-  if (!$view->setDisplay($info['display_name'])) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to set Automated list view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
-
-    // Do not render this element if the display does not exist.
-    return NULL;
-  }
-
-  // Add config entity to provide access to fields in process hooks.
-  $view->civictheme_automated_list_entity = $paragraph;
-
-  // Adjust view based on configuration provided in
-  // 'civictheme_automated_list_entity' field.
-  _civictheme_automated_list_view_alter($view);
-
-  $element['#view_name'] = $info['view_name'];
-  $element['#display_name'] = $info['display_name'];
-
-  // Render view.
-  $element['view'] = $view->executeDisplay($info['display_name']);
-
-  return $element;
-}
-
-/**
- * Get the Automated list view name and display name.
- *
- * @param object|null $paragraph
- *   Configuration paragraph object.
- *
- * @return array|null
- *   Array of view information with 'view_name' and 'display_name' filled in or
- *   NULL if info was not correctly provided (during alteration, for example).
+ * @return \Drupal\views\ViewExecutable|null
+ *   Loaded view object with set display or NULL.
  *
  * @see hook_civictheme_automated_list_view_info_alter()
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_automated_list_get_view_info($paragraph) {
+function _civictheme_automated_list__get_view(array &$settings) {
+  // Get information about a view and a display that will be used produce
+  // the results.
   $info = [
     'view_name' => CivicthemeConstants::AUTOMATED_LIST_DEFAULT_VIEW_NAME,
     'display_name' => CivicthemeConstants::AUTOMATED_LIST_DEFAULT_VIEW_DISPLAY_NAME,
   ];
 
-  if (!empty($paragraph)) {
-    $info_from_field = civictheme_get_field_value($paragraph, 'field_c_p_list_type');
-    $info_from_field = _civictheme_automated_list_parse_view_info($info_from_field);
-    $info = !empty($info_from_field) ? $info_from_field : $info;
+  // Collect information about views from the 'type' setting and allow to alter
+  // it in hook_civictheme_automated_list_view_info().
+  if (!empty($settings)) {
+    // View name and display separated by '__' in the field value.
+    $parts = explode('__', $settings['type']);
+    $info = [
+      'view_name' => $parts[0],
+      'display_name' => $parts[1] ?? 'default',
+    ];
 
-    \Drupal::moduleHandler()->alter('civictheme_automated_list_view_info', $info, $paragraph);
-    \Drupal::service('theme.manager')->alter('civictheme_automated_list_view_info', $info, $paragraph);
+    // Allow to alter view information to modules and themes.
+    \Drupal::moduleHandler()->alter('civictheme_automated_list_view_info', $info, $settings);
+    \Drupal::service('theme.manager')->alter('civictheme_automated_list_view_info', $info, $settings);
   }
 
-  return $info;
+  // Validate that resulting information has correct structure.
+  if (empty($info) || !is_array($info) || empty($info['view_name']) || empty($info['display_name'])) {
+    \Drupal::logger('civictheme')->error('Missing view_name or display_name information for Automated list view.');
+
+    return NULL;
+  }
+
+  // Get view instance.
+  $view = Views::getView($info['view_name']);
+  if (!$view) {
+    \Drupal::logger('civictheme')->error(sprintf('Unable to use Automated list view "%s".', $info['view_name']));
+
+    // Do not render this element if the view does not exist.
+    return NULL;
+  }
+
+  // Set display.
+  if (!$view->setDisplay($info['display_name'])) {
+    \Drupal::logger('civictheme')->error(sprintf('Unable to use Automated list view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
+
+    // Do not render this element if the display does not exist.
+    return NULL;
+  }
+
+  return $view;
 }
 
 /**
@@ -135,71 +155,72 @@ function _civictheme_automated_list_get_view_info($paragraph) {
  * Please, do not optimise conditions in this function - the code is organised
  * this way on purpose to ease readability and debugging.
  *
- * @param object $view
- *   View object to later. Note that the view object already has
- *   'civictheme_automated_list_entity' field populated.
+ * @param \Drupal\views\ViewExecutable $view
+ *   View instance.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  * @SuppressWarnings(PHPMD.MissingImport)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_automated_list_view_alter($view) {
-  if (!property_exists($view, 'civictheme_automated_list_entity')) {
-    throw new \Exception('Listing view object is missing required property "civictheme_automated_list_entity".');
+function _civictheme_automated_list__update_view(ViewExecutable $view) {
+  if (!isset($view->component_settings)) {
+    return;
   }
 
-  $listing_title = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_title');
-  $listing_content_type = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_content_type');
-  $listing_topics = civictheme_get_entity_field_key_values($view->civictheme_automated_list_entity, 'field_c_p_list_topics', 'target_id');
-  $listing_site_sections = civictheme_get_entity_field_key_values($view->civictheme_automated_list_entity, 'field_c_p_list_site_sections', 'target_id');
-  $listing_item_view_as = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_item_view_as');
-  $listing_limit_type = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit_type');
-  $listing_limit = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit');
-  $listing_items_per_page = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_limit');
-  $listing_show_filters = !empty(explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, '')));
+  $settings = $view->component_settings;
 
   $view_args = [];
   // First view argument - content types.
-  $view_args[] = !empty($listing_content_type) ? $listing_content_type : 'all';
+  $view_args[] = $settings['content_type'] ?? 'all';
   // Second view argument - Topics.
-  $view_args[] = !empty($listing_topics) ? implode('+', $listing_topics) : 'all';
+  $view_args[] = !empty($settings['topics']) ? implode('+', array_keys($settings['topics'])) : 'all';
   // Third view argument - Site Sections.
-  $view_args[] = !empty($listing_site_sections) ? implode('+', $listing_site_sections) : 'all';
+  $view_args[] = !empty($settings['site_sections']) ? implode('+', array_keys($settings['site_sections'])) : 'all';
   $view->setArguments($view_args);
 
   // Title.
-  $view->setTitle($listing_title);
+  $view->setTitle($settings['title']);
 
-  // Items view mode.
-  if (!empty($listing_item_view_as)) {
+  // Set items view mode.
+  // Note that resulting items (nodes) should have these view modes
+  // configured and themed (we are not checking an existence of the view mode
+  // for a result entity here).
+  if (!empty($settings['view_as'])) {
     $view_mode_options = $view->display_handler->getOption('row');
-    $view_mode_options['options']['view_mode'] = $listing_item_view_as;
+    $view_mode_options['options']['view_mode'] = $settings['view_as'];
     $view->display_handler->setOption('row', $view_mode_options);
   }
 
-  // Pager.
-  $view_header = $view->display_handler->getOption('header');
+  // @todo Implement hiding of the filters that were not selected.
+  $show_filters = !empty(array_filter(explode(', ', $settings['filters_exp'])));
+  if (!$show_filters) {
+    $view->display_handler->has_exposed = FALSE;
+  }
 
+  // Pager.
   // Show exact number of items.
-  if ($listing_limit_type == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_LIMITED) {
+  if ($settings['limit_type'] == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_LIMITED) {
     // Prevent endless lists by using a fallback limit if a limit is 0.
-    $listing_limit = $listing_limit > 0 ? $listing_limit : CivicthemeConstants::AUTOMATED_LIST_LIMIT_FALLBACK;
+    $settings['limit'] = $settings['limit'] > 0 ? $settings['limit'] : CivicthemeConstants::AUTOMATED_LIST_LIMIT_FALLBACK;
 
     // Changing pager type to 'some' and setting 'items_per_page'.
     $view_pager = $view->display_handler->getOption('pager');
     $view_pager['type'] = 'some';
-    $view_pager['options']['items_per_page'] = $listing_limit;
+    // Set custom limit.
+    $view_pager['options']['items_per_page'] = $settings['limit'];
+    // Hide exposed 'items_per_page'.
+    $view_pager['options']['expose']['items_per_page'] = FALSE;
     $view->display_handler->setOption('pager', $view_pager);
 
-    $view_header = [];
-    if ($listing_show_filters && isset($view_header['result']['content'])) {
-      $view_header['result']['content'] = 'Showing @end of @total';
+    // Hide 'Showing x of y' (set through a view) as this is a limited page.
+    $view_header = $view->display_handler->getOption('header');
+    if (!$show_filters && isset($view_header['result']['content'])) {
+      $view->removeHandler($settings['view_display'], 'header', 'result');
     }
-    $view->display_handler->setOption('header', $view_header);
   }
-  elseif ($listing_limit_type == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_UNLIMITED) {
-    if ($listing_items_per_page == 0) {
+  elseif ($settings['limit_type'] == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_UNLIMITED) {
+    if ($settings['limit'] == 0) {
       // Show pager and default number of items.
       // This is default view display state, so no change is required.
       // Do not optimise - left empty for clarity.
@@ -207,32 +228,15 @@ function _civictheme_automated_list_view_alter($view) {
     else {
       // Show pager with specified number of items per page.
       // Re-using existing pager.
-      $view->setItemsPerPage($listing_items_per_page);
+      $view_pager = $view->display_handler->getOption('pager');
+      // Set custom limit.
+      $view_pager['options']['items_per_page'] = $settings['limit'];
+      // Hide exposed 'items_per_page'.
+      $view_pager['options']['expose']['items_per_page'] = FALSE;
+      $view->display_handler->setOption('pager', $view_pager);
     }
   }
-}
 
-/**
- * Parse view info string into array.
- *
- * @param string $info_string
- *   Info string with view name and view display name separated by '__'.
- *
- * @return array|null
- *   View info array to alter passed by reference or NULL if incorrect string
- *   is provided. Keys are:
- *   - view_name: (string) A view machine name.
- *   - display_name: (string) A view display machine name.
- */
-function _civictheme_automated_list_parse_view_info($info_string) {
-  if (!is_string($info_string) || empty($info_string)) {
-    return NULL;
-  }
-
-  $parts = explode('__', $info_string);
-
-  return [
-    'view_name' => $parts[0],
-    'display_name' => $parts[1] ?? 'default',
-  ];
+  // Mark these settings.
+  $view->component_settings['processed'] = TRUE;
 }

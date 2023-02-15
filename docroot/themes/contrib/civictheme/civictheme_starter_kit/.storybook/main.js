@@ -20,7 +20,6 @@ const customPlugin = new webpack.DefinePlugin({
   ICONS: JSON.stringify(iconUtils.getIcons()),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
-  CSV_VARIABLES_FILENAME: JSON.stringify({ name: 'styles.variables.csv' }),
 });
 
 module.exports = {
@@ -48,7 +47,7 @@ module.exports = {
     custom.module.rules[1].use[0] = 'style-loader';
 
     // Override assets location for Storybook.
-    custom.module.rules[1].use[2].options.additionalData = "$ct-assets-directory: './assets/';";
+    custom.module.rules[1].use[2].options.additionalData = custom.module.rules[1].use[2].options.additionalData.replace(/\$ct-assets-directory:\s*[^;]+;/, "$ct-assets-directory: './assets/';");
 
     return merge(config, custom);
   },

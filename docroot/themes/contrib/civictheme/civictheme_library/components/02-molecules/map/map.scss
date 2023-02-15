@@ -5,43 +5,30 @@
 .ct-map {
   $root: &;
 
-  &__canvas {
+  &#{$root}--with-background {
+    padding-left: $ct-map-space-horizontal;
+    padding-right: $ct-map-space-horizontal;
+  }
+
+  #{$root}__canvas {
     position: relative;
     height: 0;
     overflow: hidden;
-    padding: 0 ct-spacing() $ct-map-padding-bottom ct-spacing();
-
-    iframe {
-      position: absolute;
-    }
+    padding: 0 0 $ct-map-padding-bottom 0;
   }
 
-  &__links {
-    display: flex;
-    margin-top: ct-spacing(4);
-    padding: 0 ct-spacing();
-
-    @include ct-breakpoint-upto(s) {
-      display: block;
-    }
+  #{$root}__iframe {
+    position: absolute;
   }
 
-  &__view_link {
-    padding-right: ct-spacing(2);
-
-    @include ct-breakpoint(m) {
-      padding-right: ct-spacing(3);
-    }
+  #{$root}__link {
+    margin-top: ct-spacing(2);
+    margin-bottom: ct-spacing(2);
   }
 
   @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, background-color);
-
-    &.ct-map--with-background {
+    &#{$root}--with-background {
       @include ct-component-property($root, $theme, wrapper, background-color);
-
-      padding-left: $ct-map-space-horizontal;
-      padding-right: $ct-map-space-horizontal;
     }
   }
 }

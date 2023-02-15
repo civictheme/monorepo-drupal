@@ -10,7 +10,6 @@
  * - size: [string] Button size: large, regular, small.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: left, right
- * - icon_size: [string] Icon size: large, regular, small.
  * - text: [string] Button text.
  * - url: [string] URL for the link button.
  * - is_raw_text: [boolean] Output text as raw value.
@@ -26,40 +25,45 @@
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
 {% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : 'small' %}
 {% set type_class = type ? 'ct-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'ct-button--%s'|format(kind) : '' %}
 {% set size_class = 'ct-button--%s'|format(size) %}
 {% set dismiss_class =  is_dismissable ? 'ct-button--dismiss' : '' %}
-{% set is_external = is_external ? 'ct-button--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set is_external = is_external ? 'ct-button--external' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, is_external, modifier_class|default('')) %}
 
-{% set button_icon %}
+{% set content_markup %}
   {% if icon %}
-    {% include '@base/icon/icon.twig' with {
-      symbol: icon,
-      size: icon_size,
-      modifier_class: 'ct-button__icon'
-    } only %}
-  {% endif %}
-{% endset %}
+    {% set icon_markup %}
+      {% include '@base/icon/icon.twig' with {
+        symbol: icon,
+        modifier_class: 'ct-button__icon',
+      } only %}
+    {% endset %}
 
-{% set button_text %}
-  {% if icon %}
     {% if icon_placement == 'before' %}
-      {{ button_icon }}{{ is_raw_text ? text|raw : text }}
-    {% elseif icon_placement == 'after' %}
-      {{ is_raw_text ? text|raw : text }}{{ button_icon }}
+      {{ icon_markup }}{{ is_raw_text ? text|raw : text }}
+    {% else %}
+      {{ is_raw_text ? text|raw : text }}{{ icon_markup }}
     {% endif %}
+
   {% else %}
     {{ is_raw_text ? text|raw : text }}
   {% endif %}
 {% endset %}
 
 {% if is_new_window %}
-  {% set is_new_window_text %}
-    <span class="ct-visually-hidden">Opens in a new tab/window</span>
+  {% set is_new_window_content %}
+    <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+  {% endset %}
+{% endif %}
+
+{% if is_external %}
+  {% set is_external_content %}
+    {% include '@base/icon/icon.twig' with {
+      symbol: 'upper-right-arrow',
+    } only %}
   {% endset %}
 {% endif %}
 
@@ -70,7 +74,7 @@
     {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
-    {{ button_text }}
+    {{ content_markup }}
   </button>
 {% elseif kind == 'link' %}
   <a
@@ -79,10 +83,10 @@
     data-component-name="button"
     {% if url %}href="{{ url }}"{% endif %}
     {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
-    {{ is_new_window ? 'target="_blank"' }}
+    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
-    {{ button_text }}{{ is_new_window_text }}
+    {{ content_markup }}{{ is_new_window_content }}{{ is_external_content }}
   </a>
 {% elseif kind in ['reset', 'submit'] %}
   <input

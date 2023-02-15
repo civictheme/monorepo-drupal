@@ -10,10 +10,18 @@
   $root: &;
 
   cursor: pointer;
-  border: $ct-button-border-width solid transparent;
+  border: $ct-chip-border-width solid transparent;
   border-radius: ct-spacing(6);
 
   @include ct-link-decoration(false, false, false, false);
+
+  #{$root}__dismiss {
+    display: none;
+  }
+
+  #{$root}__input[checked] + .ct-chip__dismiss {
+    display: inline;
+  }
 
   $map: (
     'chip': (
@@ -30,32 +38,28 @@
           'border-color': $ct-chip-light-hover-border-color,
           'outline-color': false,
         ),
-        'visited': (
-          'color': $ct-chip-light-visited-color,
-          'background-color': $ct-chip-light-visited-background-color,
-          'border-color': $ct-chip-light-visited-border-color,
-          'outline-color': false,
-        ),
-        'active': (
-          'color': $ct-chip-light-active-color,
-          'background-color': $ct-chip-light-active-background-color,
-          'border-color': $ct-chip-light-active-border-color,
-          'outline-color': false,
-        ),
         'focus': (
           'color': $ct-chip-light-focus-color,
           'background-color': $ct-chip-light-focus-background-color,
           'border-color': $ct-chip-light-focus-border-color,
           'outline-color': $ct-chip-light-focus-outline-color,
         ),
-        'dismiss': (
-          'fill': $ct-chip-light-dismiss-color,
-          'fill-selected': $ct-chip-light-selected-color,
-        ),
         'selected': (
           'color': $ct-chip-light-selected-color,
           'background-color': $ct-chip-light-selected-background-color,
           'border-color': $ct-chip-light-selected-border-color,
+        ),
+        'active': (
+          'color': $ct-chip-light-selected-color,
+          'background-color': $ct-chip-light-selected-background-color,
+          'border-color': $ct-chip-light-selected-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $ct-chip-light-selected-color,
+          'background-color': $ct-chip-light-selected-background-color,
+          'border-color': $ct-chip-light-selected-border-color,
+          'outline-color': false,
         ),
       ),
       'dark': (
@@ -71,37 +75,34 @@
           'border-color': $ct-chip-dark-hover-border-color,
           'outline-color': false,
         ),
-        'visited': (
-          'color': $ct-chip-dark-visited-color,
-          'background-color': $ct-chip-dark-visited-background-color,
-          'border-color': $ct-chip-dark-visited-border-color,
-          'outline-color': false,
-        ),
-        'active': (
-          'color': $ct-chip-dark-active-color,
-          'background-color': $ct-chip-dark-active-background-color,
-          'border-color': $ct-chip-dark-active-border-color,
-          'outline-color': false,
-        ),
         'focus': (
           'color': $ct-chip-dark-focus-color,
           'background-color': $ct-chip-dark-focus-background-color,
           'border-color': $ct-chip-dark-focus-border-color,
           'outline-color': $ct-chip-dark-focus-outline-color,
         ),
-        'dismiss': (
-          'fill': $ct-chip-dark-dismiss-color,
-          'fill-selected': $ct-chip-dark-selected-color
-        ),
         'selected': (
           'color': $ct-chip-dark-selected-color,
           'background-color': $ct-chip-dark-selected-background-color,
           'border-color': $ct-chip-dark-selected-border-color,
         ),
+        'active': (
+          'color': $ct-chip-dark-selected-color,
+          'background-color': $ct-chip-dark-selected-background-color,
+          'border-color': $ct-chip-dark-selected-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $ct-chip-dark-selected-color,
+          'background-color': $ct-chip-dark-selected-background-color,
+          'border-color': $ct-chip-dark-selected-border-color,
+          'outline-color': false,
+        ),
       )
     ),
   );
 
+  // Re-using Button's mixin with Chip's custom color map.
   @include ct-button-type('chip', $map);
 
   // Size.

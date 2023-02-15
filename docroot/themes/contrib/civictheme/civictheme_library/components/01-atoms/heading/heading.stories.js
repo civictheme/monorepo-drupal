@@ -3,7 +3,10 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeHeading from './heading.twig';
 
 export default {
-  title: 'Atoms/Content/Heading',
+  title: 'Atoms/Heading',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Heading = (knobTab) => {

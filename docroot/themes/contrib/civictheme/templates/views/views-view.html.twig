@@ -1,11 +1,12 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation for main view template.
+ * CivicTheme implementation for view template.
  */
 #}
 {% extends '@organisms/list/list.twig' %}
 
+{#Override footer block to provide Drupal-specific view properties.#}
 {% block footer %}
   {% if attachment_after is defined and attachment_after is not empty %}
     <div class="ct-list__attachment_after">
@@ -33,7 +34,13 @@
 
   {% if footer %}
     <footer class="ct-list__footer">
-      {{ footer }}
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ footer }}
+          </div>
+        </div>
+      </div>
     </footer>
   {% endif %}
 

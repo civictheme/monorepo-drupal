@@ -61,13 +61,14 @@
   }
 
   .copyright {
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       text-align: right;
     }
   }
 
   .ct-social-links {
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
+      display: flex;
       justify-content: flex-end;
     }
   }
@@ -98,7 +99,7 @@
 
     #{$root}__top {
       .row {
-        @include ct-breakpoint('m') {
+        @include ct-breakpoint(m) {
           @include ct-component-property($root, $theme, border-color);
         }
       }
@@ -106,7 +107,7 @@
 
     #{$root}__middle {
       .row {
-        @include ct-breakpoint('m') {
+        @include ct-breakpoint(m) {
           @include ct-component-property($root, $theme, border-color);
         }
       }

@@ -125,9 +125,10 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#type' => 'radios',
       '#title' => $this->t('Remote files authentication type'),
       '#options' => [
-        '' => $this->t('None'),
+        '_none' => $this->t('None'),
         'basic' => $this->t('Basic authentication'),
       ],
+      '#default_value' => ($config->get('remote')['auth_username'] ?? NULL) ? 'basic' : '_none',
     ];
 
     $form['remote']['auth_username'] = [
@@ -177,7 +178,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['remote']['content_endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Migration source page content JSON URL endpoints'),
+      '#title' => $this->t('Migration source Page content JSON URL endpoints'),
       '#description' => $this->t('One URL each line'),
       '#default_value' => $config->get('remote')['content_endpoint'] ?? NULL,
       '#states' => [
@@ -189,7 +190,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['remote']['media_endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Migration source media JSON URL endpoints'),
+      '#title' => $this->t('Migration source Media JSON URL endpoints'),
       '#description' => $this->t('One URL each line'),
       '#default_value' => $config->get('remote')['media_endpoint'] ?? NULL,
       '#states' => [
@@ -212,9 +213,9 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#default_value' => $config->get('content_configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
-      '#progress_message'   => $this->t('Uploading files...'),
+      '#progress_message' => $this->t('Uploading files...'),
       '#upload_location' => 'private://civictheme_migrate/page',
-      '#upload_validators'  => [
+      '#upload_validators' => [
         'file_validate_extensions' => ['json txt'],
         'civictheme_migrate_validate_json' => ['civictheme_page'],
       ],
@@ -226,9 +227,9 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#default_value' => $config->get('media_configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
-      '#progress_message'   => $this->t('Uploading files...'),
+      '#progress_message' => $this->t('Uploading files...'),
       '#upload_location' => 'private://civictheme_migrate/media_image',
-      '#upload_validators'  => [
+      '#upload_validators' => [
         'file_validate_extensions' => ['json txt'],
         'civictheme_migrate_validate_json' => ['civictheme_media'],
       ],

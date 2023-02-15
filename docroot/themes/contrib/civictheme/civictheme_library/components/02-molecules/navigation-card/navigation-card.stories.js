@@ -1,18 +1,17 @@
 // phpcs:ignoreFile
 import {
-  boolean, number, radios, select, text,
+  boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
 import CivicThemeNavigationCard from './navigation-card.twig';
 import {
   demoImage,
   getSlots,
-  randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Cards/Navigation Card',
+  title: 'Molecules/Navigation Card',
   parameters: {
     layout: 'centered',
   },
@@ -31,40 +30,24 @@ export const NavigationCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    size: radios(
-      'Size',
-      {
-        Large: 'large',
-        Small: 'small',
-      },
-      'large',
-      generalKnobTab,
-    ),
     title: text('Title', 'Navigation card heading which runs across two or three lines', generalKnobTab),
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
-    url: text('URL', randomUrl(), generalKnobTab),
-    is_external: boolean('Is external', false, generalKnobTab),
+    link: {
+      url: text('Link URL', randomUrl(), generalKnobTab),
+      is_external: boolean('Link is external', false, generalKnobTab),
+      is_new_window: boolean('Open in a new window', false, generalKnobTab),
+    },
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
-    tags: randomTags(number(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ), true),
+    image_as_icon: boolean('Image as icon', false, generalKnobTab),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
-  const withIcon = boolean('With icon', false, iconKnobTab);
+  const withIcon = boolean('With icon', false, generalKnobTab);
   const iconKnobs = {
     icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
   };

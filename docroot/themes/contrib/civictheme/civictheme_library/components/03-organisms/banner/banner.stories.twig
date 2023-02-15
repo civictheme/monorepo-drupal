@@ -7,69 +7,38 @@
 
 {% extends './banner.twig' %}
 
-{% if show_breadcrumb %}
-  {% set breadcrumb %}
-    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
-      theme: theme,
-      links: [
-        { 'text': 'Home', 'url': 'http://example.com'},
-        { 'text': 'Sub Page', 'url': 'http://example.com'},
-        { 'text': 'Active Page', 'url': 'http://example.com'}
-      ]
-    } only %}
-  {% endset %}
-{% endif %}
-
 {% if show_content_text %}
   {% set content %}
-    <div class="ct-banner__content__example">
-      <div class="ct-banner__content__example-last-updated">
-        <p>Last updated: 26 Oct 2020</p>
-      </div>
-      <div class="ct-banner__content__example-summary">
-        <p>Government grade set of high quality design themes that are
-          accessible,
-          inclusive and provide a consistent digital experience for your
-          citizen. </p>
-      </div>
-      {% include '@atoms/button/button.twig' with {
-        text: 'Learn about our mission',
-        type: 'primary',
-        theme: theme,
-      } only %}
-    </div>
-  {% endset %}
-{% endif %}
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: '<p>Government grade set of high quality design themes that are accessible, inclusive and provide a consistent digital experience for your citizen. </p>',
+      modifier_class: 'ct-banner__content__example',
+    } only %}
 
-{% if show_content_search %}
-  {% set content %}
-    <div class="ct-banner__content__example">
-      {% include '@molecules/search/search.twig' with {
-        theme: theme,
-        placeholder: 'Enter keywords or phrase',
-        button_text: 'Search',
-        help_text: 'Search by keyword',
-      } only %}
-    </div>
+    {% include '@atoms/button/button.twig' with {
+      text: 'Learn about our mission',
+      type: 'primary',
+      theme: theme,
+      modifier_class: 'ct-banner__content__example',
+    } only %}
   {% endset %}
 {% endif %}
 
 {% if show_content_below %}
   {% set card %}
     {% include '@molecules/navigation-card/navigation-card.twig' with {
-      theme: 'dark',
+      theme: theme,
       title: 'Register for a workshop',
       summary: 'Optional summary in the breakdown of tasks.',
-      icon: 'education_mortarboard',
+      icon: 'mortarboard',
     } only %}
   {% endset %}
 
   {% set content_below %}
-    <div class="ct-banner__content__example">
-      {% include '@base/item-grid/item-grid.twig' with {
-        column_count: 4,
-        items: [card, card, card, card],
-      } only %}
-    </div>
+    {% include '@base/item-grid/item-grid.twig' with {
+      column_count: 4,
+      items: [card, card, card, card],
+      modifier_class: 'ct-banner__content__example',
+    } only %}
   {% endset %}
 {% endif %}

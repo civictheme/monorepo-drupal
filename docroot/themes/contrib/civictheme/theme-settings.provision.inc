@@ -42,7 +42,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     // @todo Improve content creation by allowing to skip overwriting of the
     // existing items.
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
-    '#weight' => 51,
+    '#weight' => 50,
     '#open' => FALSE,
   ];
 
@@ -682,6 +682,8 @@ function _civictheme_provision__blocks__banner(array $block) {
   $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
   $block_content->field_c_b_theme = 'dark';
   $block_content->field_c_b_blend_mode = 'soft-light';
+  $block_content->field_c_b_banner_type = 'default';
+  $block_content->field_c_b_featured_image = civictheme_provision_load_media_by_name("demo_image.jpg");
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -747,7 +749,10 @@ function _civictheme_provision__blocks__signup(array $block) {
     'type' => 'civictheme_promo',
   ]);
   $paragraph->field_c_p_title = 'Sign up';
-  $paragraph->field_c_p_summary = 'Sign up for news and updates from our agency.';
+  $paragraph->field_c_p_content = [
+    'value' => 'Sign up for news and updates from our agency.',
+    'format' => 'civictheme_rich_text',
+  ];
   $paragraph->field_c_p_link = [
     'uri' => 'internal:/subscribe',
     'title' => 'Sign up',

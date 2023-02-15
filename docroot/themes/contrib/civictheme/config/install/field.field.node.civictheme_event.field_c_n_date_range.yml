@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_date_range
+    - node.type.civictheme_event
+  module:
+    - datetime_range
+id: node.civictheme_event.field_c_n_date_range
+field_name: field_c_n_date_range
+entity_type: node
+bundle: civictheme_event
+label: Date
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

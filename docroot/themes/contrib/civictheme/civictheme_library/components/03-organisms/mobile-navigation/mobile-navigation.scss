@@ -71,8 +71,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-radius: 0;
 
       .ct-icon {
-        width: ct-icon-size-dimension('regular', 'm', 'width');
-        height: ct-icon-size-dimension('regular', 'm', 'height');
+        @include ct-icon-size();
       }
     }
   }
@@ -110,8 +109,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-radius: 0;
 
       .ct-icon {
-        width: ct-icon-size-dimension('small', 'm', 'width');
-        height: ct-icon-size-dimension('small', 'm', 'height');
+        @include ct-icon-size('small');
       }
     }
   }
@@ -164,7 +162,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-left-color: ct-component-var($root, $theme, menu-divider, border-color);
 
       .ct-icon {
-        background-color: ct-component-var($root, $theme, subsection-trigger, color);
+        @include ct-component-property($root, $theme, subsection-trigger, color);
       }
     }
 
@@ -173,7 +171,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
         color: ct-component-var($root, $theme, subsection-heading, color);
 
         .ct-icon {
-          background-color: ct-component-var($root, $theme, subsection-heading, icon-color);
+          @include ct-component-property($root, $theme, subsection-heading, icon-color);
         }
       }
     }
@@ -200,8 +198,8 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
   }
 
   .ct-icon {
-    width: ct-icon-size-dimension('regular', 'xxs', 'width');
-    height: ct-icon-size-dimension('regular', 'xxs', 'height');
+    @include ct-icon-size('extra-small');
+
     vertical-align: middle;
   }
 

@@ -88,7 +88,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * Spacing - none.
    */
   public static function civicthemeVerticalSpacingTypeNone() {
-    return '';
+    return 'none';
   }
 
   /**
@@ -149,27 +149,24 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Slider slide image position - left.
+   * Image position - left.
    */
-  public static function civicthemeSliderSlideImagePositionLeft() {
+  public static function civicthemeImagePositionLeft() {
     return 'left';
   }
 
   /**
-   * Slider slide image position - right.
+   * Image position - right.
    */
-  public static function civicthemeSliderSlideImagePositionRight() {
+  public static function civicthemeImagePositionRight() {
     return 'right';
   }
 
   /**
-   * Slider slide image position.
+   * Image blend-mode.
    */
-  public static function civicthemeSliderSlideImagePositions() {
-    return [
-      static:: civicthemeSliderSlideImagePositionLeft(),
-      static:: civicthemeSliderSlideImagePositionRight(),
-    ];
+  public static function civicthemeImageBlendMode() {
+    return 'soft-light';
   }
 
   /**
@@ -245,7 +242,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $defaults = [
       'content' => '',
       'theme' => static::civicthemeThemeLight(),
-      'vertical_spacing' => static::civicthemeVerticalSpacingTypeTop(),
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
       'background' => FALSE,
     ];
 
@@ -405,7 +402,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $defaults = [
       'title' => '',
-      'summary' => '',
+      'content' => '',
       'attachments' => [],
     ];
 
@@ -445,6 +442,38 @@ trait CsGeneratedContentCivicthemeTrait {
     $paragraph = self::civicthemeParagraphAttach('civictheme_callout', $node, $field_name, $options);
 
     $paragraph->save();
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Campaign paragraph to a node.
+   */
+  public static function civicthemeParagraphCampaignAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'image' => NULL,
+      'image_position' => self::civicthemeImagePositionLeft(),
+      'title' => '',
+      'date' => '',
+      'summary' => '',
+      'links' => FALSE,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_campaign', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
 
     $node->{$field_name}->appendItem($paragraph);
   }
@@ -505,7 +534,7 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Attach Promo paragraph to a node.
+   * Attach Next Step paragraph to a node.
    */
   public static function civicthemeParagraphNextStepAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
@@ -562,6 +591,34 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Attach Quote paragraph to a node.
+   */
+  public static function civicthemeParagraphQuoteAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'content' => '',
+      'author' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_quote', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
    * Attach Automated list paragraph to a node.
    */
   public static function civicthemeParagraphAutomatedListAttach($node, $field_name, $options) {
@@ -573,18 +630,20 @@ trait CsGeneratedContentCivicthemeTrait {
       'list_type' => static::civicthemeAutomatedListType(),
       'list_content_type' => static::civicthemePageContentType(),
       'list_item_view_as' => static::civicthemePromoCardType(),
-      'list_filters_exp' => FALSE,
+      'list_filters_exp' => [],
       'list_item_theme' => static::civicthemeThemeLight(),
       'list_limit' => 0,
       'list_limit_type' => self::civicthemeAutomatedListLimitTypeUnlimited(),
       'list_link_above' => NULL,
       'list_link_below' => NULL,
-      'list_show_filters' => FALSE,
       'list_site_sections' => NULL,
-      'theme' => static::civicthemeThemeLight(),
-      'title' => NULL,
       'list_topics' => NULL,
+      'list_column_count' => 1,
+      'list_fill_width' => NULL,
+      'title' => NULL,
+      'theme' => static::civicthemeThemeLight(),
       'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
+      'background' => FALSE,
     ];
 
     $options += $defaults;
@@ -598,10 +657,6 @@ trait CsGeneratedContentCivicthemeTrait {
     }
     else {
       $options['list_limit'] = $options['list_limit'] ?? 0;
-    }
-
-    if ($options['list_show_filters']) {
-      $options['list_filters_exp'] = $options['list_filters_exp'] ?? [];
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_automated_list', $node, $field_name, $options);
@@ -696,10 +751,9 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
-      'column_count' => NULL,
+      'list_column_count' => 1,
+      'list_fill_width' => NULL,
       'theme' => self::civicthemeThemeLight(),
-      'list_item_view_as' => static::civicthemePromoCardType(),
-      'list_item_theme' => self::civicthemeThemeLight(),
       'list_link_above' => NULL,
       'list_link_below' => NULL,
     ];

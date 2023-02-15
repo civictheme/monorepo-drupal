@@ -7,41 +7,49 @@
 .ct-item-list {
   $root: &;
 
-  #{$root}__list {
-    @include ct-reset-box-model();
+  @include ct-reset-box-model();
 
-    list-style: none;
+  list-style: none;
+
+  &#{$root}--horizontal {
+    display: flex;
+    column-gap: $ct-item-list-horizontal-regular-column-gap;
+    row-gap: $ct-item-list-horizontal-regular-row-gap;
+    flex-wrap: wrap;
+
+    &#{$root}--small {
+      column-gap: $ct-item-list-horizontal-small-column-gap;
+      row-gap: $ct-item-list-horizontal-small-row-gap;
+    }
+
+    &#{$root}--large {
+      column-gap: $ct-item-list-horizontal-large-column-gap;
+      row-gap: $ct-item-list-horizontal-large-row-gap;
+    }
+
+    &#{$root}--no-gap {
+      gap: unset;
+    }
   }
 
-  &--horizontal {
-    #{$root}__list {
-      display: flex;
+  &#{$root}--vertical {
+    display: flex;
+    flex-direction: column;
+    column-gap: $ct-item-list-vertical-regular-column-gap;
+    row-gap: $ct-item-list-vertical-regular-row-gap;
+
+    &#{$root}--small {
+      column-gap: $ct-item-list-vertical-small-column-gap;
+      row-gap: $ct-item-list-vertical-small-row-gap;
     }
 
-    #{$root}__list__item {
-      margin-right: ct-spacing(2);
+    &#{$root}--large {
+      column-gap: $ct-item-list-vertical-large-column-gap;
+      row-gap: $ct-item-list-vertical-large-row-gap;
     }
 
-    &#{$root}--no-gutter {
-      #{$root}__list__item {
-        margin-right: 0;
-      }
-    }
-  }
-
-  &--vertical {
-    #{$root}__list {
-      display: inline-block;
-    }
-
-    #{$root}__list__item {
-      margin-bottom: ct-spacing(2);
-    }
-
-    &#{$root}--no-gutter {
-      #{$root}__list__item {
-        margin-bottom: 0;
-      }
+    &#{$root}--no-gap {
+      gap: unset;
     }
   }
 }

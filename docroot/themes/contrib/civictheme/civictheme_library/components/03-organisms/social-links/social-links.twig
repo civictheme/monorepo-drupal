@@ -4,14 +4,13 @@
  * Social links Component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - items: [array] Array of items:
- *   - symbol: [string] Icon name from the existing icon set.
- *   - url: [string] URL.
- *   - text: [string] Raw text.
- *   - title: [string] Title to be added to the 'title' attribute.
- *   - size: [string] Icon size.
+ *   - title: [string] Title to be added to the 'title' attribute
+ *   - icon: [string] Icon name from the existing icon set.
+ *   - icon_html [string] Alternative icon HTML for embedding.
+ *   - url: [string] Link URL.
  * - with_border: [boolean] Whether icons have borders.
+ * - theme: [string] Theme: light, dark.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -23,21 +22,34 @@
 
 {% if items is not empty %}
   <div class="ct-social-links {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% if items is not empty %}
-      {% for item in items %}
-        <div class="ct-social-links__item">
+
+    {% block items %}
+      {% set items_rendered = [] %}
+      {% for k, item in items %}
+        {%- set item_rendered %}
           {% include '@atoms/button/button.twig' with {
             theme: theme,
             kind: 'link',
-            icon: item.symbol,
-            size: item.size,
+            type: 'tertiary',
+            icon: item.icon_html is not defined or item.icon_html is empty ? item.icon : null,
+            text: item.icon_html ?? null,
             url: item.url,
-            text: item.text,
-            title: item.title,
+            is_external: false,
+            is_new_window: true,
             is_raw_text: true,
+            modifier_class: 'ct-social-links__button',
+            attributes: item.title is defined and item.title is not empty ? ' title="' ~ item.title ~ '"' : '',
           } only %}
-        </div>
+        {% endset -%}
+        {% set items_rendered = items_rendered|merge([item_rendered]) %}
       {% endfor %}
-    {% endif %}
+
+      {% include '@base/item-list/item-list.twig' with {
+        items: items_rendered,
+        direction: 'horizontal',
+        modifier_class: 'ct-social-links__list',
+      } only %}
+    {% endblock %}
+
   </div>
 {% endif %}

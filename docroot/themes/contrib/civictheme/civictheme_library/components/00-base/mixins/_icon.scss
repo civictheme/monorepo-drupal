@@ -50,18 +50,10 @@
 }
 
 //
-// Compile all icon symbols into a single map.
-//
-// stylelint-disable-next-line scss/at-function-pattern
-@function _ct-icon-symbols-all() {
-  @return map.merge($ct-icon-symbols-default, $ct-icon-symbols);
-}
-
-//
 // Compile all icon sizes into a single map.
 //
 // Do not use directly.
-// Use @include ct-icon-size-dimension() function instead.
+// Use ct-icon-size-dimension() function instead.
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _ct-icon-sizes-all() {
@@ -69,11 +61,14 @@
 }
 
 //
-// Include icon width, height for one-to-many breakpoints.
+// Include icon size for one-to-many breakpoints.
+//
+// Note that icons inherit font size by default. This mixin should be used
+// only as an override for the default functionality.
 //
 // @include ct-icon-size('regular');
 //
-@mixin ct-icon-size($size) {
+@mixin ct-icon-size($size: 'regular', $use-font-size: true) {
   $all-icon-sizes: _ct-icon-sizes-all();
 
   @if map.get($all-icon-sizes, $size) == null {
@@ -85,46 +80,12 @@
 
   @each $breakpoint in $breakpoints {
     @include ct-breakpoint($breakpoint) {
-      width: ct-icon-size-dimension($size, $breakpoint, 'width');
-      height: ct-icon-size-dimension($size, $breakpoint, 'height');
-      // stylelint-disable-next-line property-no-vendor-prefix
-      -webkit-mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
-      mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
-    }
-  }
-}
-
-//
-// Fill icon color.
-//
-@mixin ct-icon-fill-color($color, $self: false) {
-  @if $self {
-    &.ct-icon {
-      fill: $color;
-    }
-  }
-  @else {
-    .ct-icon {
-      fill: $color;
-    }
-  }
-}
-
-//
-// Fill icon for Collapsible.
-//
-@mixin ct-icon-collapsible($color, $self: false) {
-  @if $self {
-    &[data-collapsible-trigger] {
-      &::after {
-        content: ct-color-svg-fill($ct-collapsible-icon, $color);
+      @if $use-font-size {
+        font-size: ct-icon-size-dimension($size, $breakpoint, 'width');
       }
-    }
-  }
-  @else {
-    [data-collapsible-trigger] {
-      &::after {
-        content: ct-color-svg-fill($ct-collapsible-icon, $color);
+      @else {
+        width: ct-icon-size-dimension($size, $breakpoint, 'width');
+        height: ct-icon-size-dimension($size, $breakpoint, 'height');
       }
     }
   }

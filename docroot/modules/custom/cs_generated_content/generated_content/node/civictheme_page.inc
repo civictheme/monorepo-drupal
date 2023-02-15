@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Create generated page nodes.
+ * Create generated Page nodes.
  */
 
 use Drupal\Core\Link;
@@ -12,7 +12,7 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_node_civictheme_page_weight() {
-  return 35;
+  return 32;
 }
 
 /**
@@ -33,19 +33,21 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
 
   // Some components require to reference existing nodes. Since variation
   // evaluation happens before such nodes created, we need to pre-create them
-  // in a previous pass.
+  // in a preceding pass.
   for ($pass = 0; $pass < 2; $pass++) {
     // First pass - provide variations from the generated content pages.
     if ($pass === 0) {
       require_once __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations/01.helpers.inc';
       for ($i = 0; $i < 20; $i++) {
         $variations[] = [
-          'title' => sprintf('%s %s', ($i + 1), $helper::staticSentence(3)),
+          'title' => sprintf('Page. %s %s', str_pad($i + 1, 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
+          'thumbnail' => $helper::staticMediaItem('civictheme_image'),
+          'summary' => 'Summary ' . $helper::staticSentence(100),
+          'topics' => $helper::staticTerms('civictheme_topics', 1),
           'components' => [
             [
               'type' => 'content',
               'content' => $helper::staticRichText(3),
-              'topic' => $helper::staticTerm('civictheme_topics')->id(),
             ],
           ],
         ];
@@ -65,7 +67,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
       $node = $helper::variationCreateNode('civictheme_page', $variation, $i, '_cs_generated_content_create_node_civictheme_page__variation_to_fields');
 
       $variation_info = $helper::variationFormatInfo($variation);
-      $node->revision_log = $variation_info;
+      $node->revision_log = 'Generated content. ' . $variation_info;
 
       $node->save();
 
@@ -153,12 +155,16 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
     $node->field_c_n_banner_background = $variation['banner_background'];
   }
 
+  if (!empty($variation['blend_mode']) && $node->hasField('field_c_n_blend_mode')) {
+    $node->field_c_n_blend_mode = $variation['blend_mode'];
+  }
+
   if (!empty($variation['banner_featured_image']) && $node->hasField('field_c_n_banner_featured_image')) {
     $node->field_c_n_banner_featured_image = $variation['banner_featured_image'];
   }
 
-  if (!empty($variation['hide_breadcrumb']) && $node->hasField('field_c_n_banner_hide_breadcrumb')) {
-    $node->field_c_n_banner_hide_breadcrumb = $variation['hide_breadcrumb'];
+  if (!empty($variation['banner_hide_breadcrumb']) && $node->hasField('field_c_n_banner_hide_breadcrumb')) {
+    $node->field_c_n_banner_hide_breadcrumb = $variation['banner_hide_breadcrumb'];
   }
 
   if (!empty($variation['banner_title']) && $node->hasField('field_c_n_banner_title')) {

@@ -72,6 +72,9 @@ class CivicthemeColor {
    *
    * @param string $value
    *   The color value.
+   * @param bool $apply_filters
+   *   Flag to apply filters to the color. Usually set when a new color value
+   *   gets calculated. Defaults to FALSE.
    *
    * @return $this
    *   Instance of the current class.
@@ -79,13 +82,19 @@ class CivicthemeColor {
    * @throws \Exception
    *   When value does not have a correct format and cannot be normalized.
    *
-   * @SuppressWarnings(StaticAccess)
-   * @SuppressWarnings(MissingImport)
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
    */
-  public function setValue($value) {
-    $value = CivicthemeColorUtility::keywordToHex($value);
-    $value = CivicthemeColorUtility::normalizeHex($value);
-    $this->value = $this->applyFilters($value);
+  public function setValue($value, $apply_filters = FALSE) {
+    $val = CivicthemeColorUtility::keywordToHex($value);
+    $val = CivicthemeColorUtility::normalizeHex($val);
+
+    if ($apply_filters) {
+      $val = $this->applyFilters($val);
+    }
+
+    $this->value = $val;
 
     return $this;
   }

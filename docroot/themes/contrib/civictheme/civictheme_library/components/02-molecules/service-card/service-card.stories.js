@@ -1,11 +1,11 @@
 // phpcs:ignoreFile
 import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomLinks } from '../../00-base/base.stories';
+import { getSlots, randomLinks } from '../../00-base/base.utils';
 
 import CivicThemeServiceCard from './service-card.twig';
 
 export default {
-  title: 'Molecules/Cards/Service Card',
+  title: 'Molecules/Service Card',
   parameters: {
     layout: 'centered',
   },

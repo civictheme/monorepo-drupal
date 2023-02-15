@@ -5,23 +5,28 @@
 .ct-accordion {
   $root: &;
 
-  &__inner {
+  &#{$root}--with-background {
+    padding-left: $ct-accordion-space-horizontal;
+    padding-right: $ct-accordion-space-horizontal;
+  }
+
+  #{$root}__content {
     display: block;
   }
 
-  &__list {
+  #{$root}__panels {
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  &__list-item {
+  #{$root}__panels__panel {
     position: relative;
     border: ct-particle(0.125) solid;
     border-radius: $ct-accordion-item-border-radius;
     margin-bottom: ct-spacing(2);
 
-    @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
+    @include ct-highlight-stripe-vertical($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
 
     &::before {
       z-index: 1;
@@ -32,109 +37,61 @@
     }
   }
 
-  &__header {
+  #{$root}__panels__panel__header {
     display: block;
     margin: 0;
     border-top-left-radius: $ct-accordion-header-border-radius;
     border-top-right-radius: $ct-accordion-header-border-radius;
+  }
 
-    // @todo Fix transition to use data-collapsible-collapsed.
-    &__button[aria-expanded='true'] {
+  #{$root}__panels__panel__header__button {
+    @include ct-typography('heading-6');
+
+    border-radius: $ct-accordion-button-border-radius;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    text-align: left;
+    margin: 0;
+    padding: ct-spacing(3);
+    justify-content: stretch;
+    width: 100%;
+
+    [data-collapsible-collapsed] > & {
       border-bottom: none;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-
-      svg {
-        transform: rotate(-180deg);
-      }
-    }
-
-    &__button {
-      @include ct-typography('heading-6');
-
-      width: 100%;
-      padding: ct-spacing(3);
-      border-radius: $ct-accordion-button-border-radius;
-      margin: 0;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      display: flex;
-      justify-content: stretch;
-
-      svg {
-        margin-left: auto;
-
-        @if $ct-animation-enabled {
-          transition: transform 0.5s;
-        }
-      }
     }
   }
 
-  &__content {
-    $content: &;
-
-    overflow: auto;
-    visibility: hidden;
-    height: 0;
-
-    @if $ct-animation-enabled {
-      transition: height 0.5s, visibility 0.5s;
-    }
-
-    @include ct-typography('text-regular');
-
-    &[aria-hidden='false'] {
-      height: auto;
-      border-top: none;
-      visibility: visible;
-
-      #{$content}--inner {
-        opacity: 100%;
-      }
-    }
-
-    &--inner {
-      opacity: 0%;
-      padding: 0 ct-spacing(3) ct-spacing(3);
-
-      @if $ct-animation-enabled {
-        transition: opacity 0.5s;
-      }
-
-      @include ct-print() {
-        opacity: 100%;
-      }
-    }
+  #{$root}__panels__panel__content__inner {
+    padding: 0 ct-spacing(3) ct-spacing(3);
   }
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
 
-    &.ct-accordion--with-background {
+    &#{$root}--with-background {
       @include ct-component-property($root, $theme, wrapper, background-color);
-
-      padding-left: $ct-accordion-space-horizontal;
-      padding-right: $ct-accordion-space-horizontal;
     }
 
-    #{$root}__header__button {
+    #{$root}__panels__panel__header__button {
       @include ct-component-property($root, $theme, button, background-color);
       @include ct-component-property($root, $theme, button, color);
 
-      svg {
-        fill: ct-component-var($root, $theme, icon, color);
+      &:focus {
+        @include ct-outline-theme($theme);
+      }
+
+      .ct-collapsible__icon {
+        @include ct-component-property($root, $theme, icon, color);
       }
     }
 
-    #{$root}__list-item {
-      @include ct-component-property($root, $theme, border-color);
-
-      border-left-color: ct-component-var($root, $theme, stripe, border, color);
-
+    #{$root}__panels__panel {
       @include ct-component-property($root, $theme, background-color);
-      @include ct-highlight-stripe-color(ct-component-var($root, $theme, stripe, border, color));
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
     }
   }
 }

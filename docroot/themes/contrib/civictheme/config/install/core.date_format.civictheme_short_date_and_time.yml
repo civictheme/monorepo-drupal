@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_short_date_and_time
+label: 'CivicTheme short Date and Time'
+locked: false
+pattern: 'j M Y - H:i'

@@ -6,3 +6,7 @@ package: CivicTheme
 dependencies:
   - drupal:views
   - generated_content:generated_content
+
+config_devel:
+  optional:
+    - views.view.cs_generated_content_list

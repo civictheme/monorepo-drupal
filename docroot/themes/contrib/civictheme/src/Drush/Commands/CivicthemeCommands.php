@@ -17,6 +17,10 @@ use Drupal\civictheme\CivicthemeConstants;
  *
  * Usage:
  * drush --include=docroot/themes/contrib/civictheme/src/Drush command
+ *
+ * phpcs:disable Drupal.Commenting.DocComment.ParamGroup
+ * phpcs:disable Drupal.Commenting.FunctionComment.MissingParamType
+ * phpcs:disable Drupal.Commenting.DocComment.ParamNotFirst
  */
 class CivicthemeCommands extends DrushCommands {
 
@@ -74,6 +78,41 @@ class CivicthemeCommands extends DrushCommands {
     catch (\Exception $exception) {
       $this->logger()->error($exception->getMessage());
     }
+  }
+
+  /**
+   * Generate stylesheet for the current theme.
+   *
+   * @command civictheme:stylesheet
+   *
+   * @param $suffix
+   *   Optional stylesheet suffix. Defaults to the currently active theme.
+   *
+   * @usage drush civictheme:stylesheet
+   *   Generate stylesheet with the name of the active theme as a suffix.
+   * @usage drush civictheme:stylesheet mysuffix
+   *   Generate stylesheet with "mysuffix" suffix.
+   *
+   * @bootstrap full
+   *
+   * @SuppressWarnings(StaticAccess)
+   */
+  public function stylesheet($suffix = NULL) {
+    $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
+
+    if (empty($suffix)) {
+      $suffix = \Drupal::theme()->getActiveTheme()->getName();
+    }
+
+    $stylesheet_path = $this->colorManager->stylesheet($suffix);
+
+    if (!$stylesheet_path) {
+      $this->logger()->error(sprintf('Unable to generate stylesheet with suffix "%s".', $suffix));
+
+      return;
+    }
+
+    $this->logger()->success(sprintf('Successfully generated stylesheet with suffix "%s" at path %s.', $suffix, $stylesheet_path));
   }
 
   /**

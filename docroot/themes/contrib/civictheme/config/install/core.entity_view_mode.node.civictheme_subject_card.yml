@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - node
-id: node.civictheme_subject_card
-label: Subject
-targetEntityType: node
-cache: true

@@ -77,12 +77,8 @@
       }
     }
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       width: $ct-tooltip-width;
-
-      [data-tooltip-close] {
-        @include ct-visually-hidden();
-      }
     }
 
     [data-tooltip-close] {

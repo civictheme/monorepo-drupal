@@ -10,17 +10,11 @@
   position: relative;
   padding: ct-spacing(2);
 
-  @include ct-breakpoint('m') {
+  @include ct-breakpoint(m) {
     padding: ct-spacing(3);
   }
 
   @include ct-typography('label-small');
-
-  border-bottom: ct-particle(0.125) solid;
-
-  &:last-child {
-    border-bottom: none;
-  }
 
   #{$root}__title {
     @include ct-typography('heading-6');
@@ -37,14 +31,9 @@
     width: ct-particle(3);
     margin-right: ct-spacing();
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint(m) {
       margin-right: ct-spacing(2);
     }
-  }
-
-  .ct-icon {
-    width: ct-particle(3);
-    height: ct-particle(3);
   }
 
   #{$root}__summary {
@@ -90,17 +79,9 @@
         @include ct-component-property($root, $theme, $type, background-color);
         @include ct-component-property($root, $theme, $type, color);
 
-        border-color: ct-component-var($root, $theme, $type, divider, color);
-
         #{$root}__dismiss-button,
         #{$root}__icon {
-          .ct-icon {
-            @include ct-component-property($root, $theme, $type, icon, color);
-
-            @include ct-breakpoint-upto(s) {
-              vertical-align: middle;
-            }
-          }
+          @include ct-component-property($root, $theme, $type, icon, color);
         }
       }
     }

@@ -9,9 +9,9 @@ load _helper
 @test "CivicTheme Library assets" {
   dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/contrib/civictheme/civictheme_library"
 
-  pushd "${dir}" > /dev/null || exit 1
+  pushd "${dir}" >/dev/null || exit 1
 
-  [ ! -d "dist" ] &&  npm run build
+  [ ! -d "dist" ] && npm run build
 
   # Files managed by the developer.
   assert_dir_exists "assets"
@@ -37,7 +37,6 @@ load _helper
   assert_file_contains "dist/civictheme.variables.css" "--ct"
   assert_file_exists "dist/civictheme.js"
   assert_file_not_exists "dist/civictheme-variables.js"
-  assert_file_exists "dist/civictheme.variables.csv"
   assert_dir_exists "dist/assets"
   assert_dir_exists "dist/assets/backgrounds"
   assert_dir_not_exists "dist/assets/fonts"
@@ -66,5 +65,5 @@ load _helper
   assert_dir_not_exists "storybook-static/videos"
   assert_dir_exists "storybook-static/api"
 
-  popd > /dev/null
+  popd >/dev/null
 }

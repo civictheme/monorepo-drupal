@@ -86,6 +86,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -113,9 +116,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_summary:
-            -
-              value: 'Download Strategic Plan 2022-2032'
           field_c_p_theme:
             -
               value: light
@@ -126,6 +126,9 @@ default:
             -
               value: top
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

@@ -5,10 +5,9 @@ import {
 
 import {
   demoImage,
-  randomDropdownFilter,
-  randomFormElement, randomSentence,
+  randomFormElements, randomName, randomSentence, randomString,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter
   from '../../02-molecules/group-filter/group-filter.twig';
@@ -51,16 +50,16 @@ export const List = (knobTab) => {
     title: text('Title', 'List title', generalKnobTab),
   };
 
-  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomSentence() : null;
-  generalKnobs.link_above = boolean('With link above', false, generalKnobTab) ? {
-    text: 'View more',
+  generalKnobs.content = boolean('With content', true, generalKnobTab) ? randomSentence(50) : null;
+  generalKnobs.link_above = boolean('With link above', true, generalKnobTab) ? {
+    text: text('Link above text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
     is_external: false,
   } : null;
-  generalKnobs.link_below = boolean('With link below', false, generalKnobTab) ? {
-    text: 'View more',
+  generalKnobs.link_below = boolean('With link below', true, generalKnobTab) ? {
+    text: text('Link below text', 'View more', generalKnobTab),
     url: 'http://www.example.com',
     title: 'View more',
     is_new_window: false,
@@ -91,10 +90,10 @@ export const List = (knobTab) => {
     const filterType = radios(
       'Filter type',
       {
-        Group: 'group',
         Single: 'single',
+        Group: 'group',
       },
-      'group',
+      'single',
       filtersKnobTab,
     );
 
@@ -104,60 +103,46 @@ export const List = (knobTab) => {
       {
         range: true,
         min: 0,
-        max: 5,
+        max: 15,
         step: 1,
       },
       filtersKnobTab,
     );
 
-    let count = 0;
-    const filters = [];
-    const basicFilterTitles = [
-      'News',
-      'Events',
-      'Highlights',
-    ];
-
-    if (filtersCount > 0) {
-      for (let i = 0; i < filtersCount; i++) {
-        if (filterType === 'group') {
-          const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
-          filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
-        } else {
-          filters.push({
-            text: basicFilterTitles[i % 3],
+    if (filterType === 'single') {
+      const name = randomName(5);
+      const items = [];
+      if (filtersCount > 0) {
+        for (let i = 0; i < filtersCount; i++) {
+          items.push({
+            text: `Filter ${i + 1}${randomString(3)}`,
+            name: generalKnobs.is_multiple ? name + (i + 1) : name,
+            attributes: `id="${name}_${randomName(3)}_${i + 1}"`,
           });
         }
       }
-    }
 
-    if (filterType === 'group') {
-      generalKnobs.filters = CivicThemeGroupFilter({
-        theme,
-        filter_title: 'Filter search results by:',
-        tags_title: 'Selected filters:',
-        clear_text: 'Clear all',
-        filters: filters.join(''),
-        with_background: generalKnobs.with_background,
-      });
-    } else {
       generalKnobs.filters = CivicThemeSingleFilter({
         theme,
-        is_multiple: false,
-        items: filters,
+        is_multiple: true,
+        items,
       });
-    }
+    } else {
+      const filters = [];
+      if (filtersCount > 0) {
+        for (let j = 0; j < filtersCount; j++) {
+          filters.push({
+            content: randomFormElements(1, generalKnobs.theme, true)[0],
+            title: `Filter ${j + 1}`,
+          });
+        }
+      }
 
-    const childrenFilters = [];
-    for (let i = 6; i <= 48; i += 6) {
-      const options = {
-        title: i,
-        required: false,
-        description: false,
-        attributes: 'name="test"',
-        form_element_attributes: 'data-dropdown-filter-item',
-      };
-      childrenFilters.push(randomFormElement('radio', options, theme, false, i));
+      generalKnobs.filters = CivicThemeGroupFilter({
+        theme,
+        title: 'Filter search results by:',
+        filters,
+      });
     }
   }
 
@@ -260,7 +245,7 @@ export const List = (knobTab) => {
         summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
         url: text('Link URL', 'http://example.com', cardsKnobTab),
         image: boolean('With image', true, cardsKnobTab) ? {
-          src: demoImage(),
+          url: demoImage(),
           alt: 'Image alt text',
         } : false,
         size: 'large',
@@ -285,6 +270,9 @@ export const List = (knobTab) => {
         fill_width: false,
         with_background: generalKnobs.with_background,
       });
+
+      generalKnobs.rows_above = `Showing ${cardsCount} of ${resultNumber}`;
+      generalKnobs.rows_below = boolean('With content below rows', true, generalKnobTab) ? 'Example content below rows' : null;
     }
   }
 

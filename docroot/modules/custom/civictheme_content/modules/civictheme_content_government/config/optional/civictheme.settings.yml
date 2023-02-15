@@ -62,8 +62,6 @@ components:
     summary_length: 160
   publication_card:
     summary_length: 160
-  migrate:
-    expose_migration_metadata: 0
 colors:
   use_color_selector: true
   use_brand_colors: true
@@ -78,8 +76,8 @@ colors:
       brand3: '#e38444'
   palette:
     dark:
-      heading: '#fefefe'
-      body: '#fafdfe'
+      heading: '#f5fafd'
+      body: '#e1f2fa'
       background_light: '#1b3a62'
       background: '#0f305a'
       background_dark: '#0a213e'
@@ -87,31 +85,33 @@ colors:
       border: '#27446a'
       border_dark: '#0a213e'
       interaction_text: '#0f305a'
-      interaction_background: '#61daff'
+      interaction_background: '#39aee2'
       interaction_hover_text: '#0a213e'
-      interaction_hover_background: '#c6f1ff'
+      interaction_hover_background: '#88ceed'
       interaction_focus: '#8b5cd7'
-      highlight: '#e28444'
-      information: '#4dc4fd'
+      highlight: '#e38444'
+      information: '#4cc4fc'
       warning: '#e38444'
-      error: '#e85653'
-      success: '#14b0ae'
+      error: '#e75653'
+      success: '#12b0ae'
     light:
       background: '#f2f2f2'
-      border: '#262626'
-      highlight: '#024e8f'
+      border: '#606060'
+      highlight: '#024d8f'
       heading: '#042849'
       body: '#34434f'
-      background_light: '#fefefe'
-      background_dark: '#939496'
-      border_light: '#818384'
-      border_dark: '#020202'
-      interaction_text: '#fefefe'
+      background_light: '#fdfdfd'
+      background_dark: '#c1c1c1'
+      border_light: '#b5b5b5'
+      border_dark: '#181818'
+      interaction_text: '#fcfcfc'
       interaction_background: '#0b66b8'
-      interaction_hover_text: '#fefefe'
+      interaction_hover_text: '#fcfcfc'
       interaction_hover_background: '#063d6e'
       interaction_focus: '#8b5cd7'
       information: '#007cbf'
-      warning: '#c95000'
-      error: '#ce3936'
+      warning: '#c95100'
+      error: '#ce3836'
       success: '#008482'
+migration:
+  expose_metadata: false

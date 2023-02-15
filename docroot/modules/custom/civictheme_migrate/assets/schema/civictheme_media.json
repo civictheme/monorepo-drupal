@@ -21,6 +21,11 @@
         "description": "Alt tag"
       }
     },
-    "required": ["name", "file", "uuid", "alt"]
+    "required": [
+      "name",
+      "file",
+      "uuid",
+      "alt"
+    ]
   }
 }

@@ -7,6 +7,11 @@
 
   border: 0;
 
+  &#{$root}--with-background {
+    padding-left: $ct-iframe-space-horizontal;
+    padding-right: $ct-iframe-space-horizontal;
+  }
+
   &:not([width]) {
     width: 100%;
   }
@@ -17,9 +22,7 @@
 
   @include ct-component-theme($root) using($root, $theme) {
     &.ct-iframe--with-background {
-      @include ct-component-property($root, $theme, background-color);
-      @include ct-component-property($root, $theme, padding-left);
-      @include ct-component-property($root, $theme, padding-right);
+      @include ct-component-property($root, $theme, wrapper, background-color);
     }
   }
 }

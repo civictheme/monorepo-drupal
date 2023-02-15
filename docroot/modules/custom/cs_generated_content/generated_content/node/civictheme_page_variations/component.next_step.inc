@@ -14,118 +14,66 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  return [
-    [
-      'title' => 'Next Step component',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-        ],
+  $page = [
+    'components' => [
+      [
+        'type' => 'next_step',
+        'title' => 'Light, ' . $helper::staticSentence(3),
+        'theme' => $helper::civicthemeThemeLight(),
       ],
-    ],
-    [
-      'title' => 'Next Step component, No link text',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-          ],
-        ],
+      [
+        'type' => 'next_step',
+        'title' => 'Dark, ' . $helper::staticSentence(3),
+        'theme' => $helper::civicthemeThemeDark(),
       ],
-    ],
-    [
-      'title' => 'Next Step component, 2 on page, Link text & No link text',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-        ],
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-          ],
-        ],
-      ],
-    ],
 
-    [
-      'title' => 'Next Step component, Dark',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'theme' => $helper::civicthemeThemeDark(),
+      [
+        'type' => 'next_step',
+        'title' => 'Light, Content, Link, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
+        'link' => [
+          'uri' => $helper::staticUrl(),
         ],
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+      [
+        'type' => 'next_step',
+        'title' => 'Dark, Content, Link, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
+        'link' => [
+          'uri' => $helper::staticUrl(),
+        ],
+        'theme' => $helper::civicthemeThemeLight(),
+      ],
+
+      [
+        'type' => 'next_step',
+        'title' => 'Light, Content, Link, Vertical Space, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
+        'link' => [
+          'uri' => $helper::staticUrl(),
+        ],
+        'theme' => $helper::civicthemeThemeLight(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+      ],
+      [
+        'type' => 'next_step',
+        'title' => 'Dark, Content, Link, Vertical Space, ' . $helper::staticSentence(3),
+        'content' => $helper::staticSentence(8),
+        'link' => [
+          'uri' => $helper::staticUrl(),
+        ],
+        'theme' => $helper::civicthemeThemeDark(),
+        'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       ],
     ],
-    [
-      'title' => 'Next Step component, Light',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'theme' => $helper::civicthemeThemeLight(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Next Step component, Light, Both spaces',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'theme' => $helper::civicthemeThemeLight(),
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Next Step component, Dark, Both spaces',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::staticUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'theme' => $helper::civicthemeThemeDark(),
-          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
-        ],
-      ],
+  ];
+
+  return [
+    $page + ['title' => 'Page. Component. Next Step, sidebar'],
+    $page + [
+      'title' => 'Page. Component. Next Step, no sidebar',
+      'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];
 }

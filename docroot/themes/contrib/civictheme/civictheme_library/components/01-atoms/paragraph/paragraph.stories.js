@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeParagraph from './paragraph.twig';
 
 export default {
-  title: 'Atoms/Content/Paragraph',
+  title: 'Atoms/Paragraph',
   parameters: {
     layout: 'centered',
     knobs: {

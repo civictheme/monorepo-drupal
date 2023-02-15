@@ -77,6 +77,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -114,12 +117,12 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 2
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
-              value: false
+              value: true
           field_c_p_list_items:
             -
               entity:
@@ -238,7 +241,13 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

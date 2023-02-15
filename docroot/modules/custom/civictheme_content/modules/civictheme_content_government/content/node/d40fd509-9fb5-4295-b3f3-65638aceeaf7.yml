@@ -41,10 +41,6 @@ default:
     -
       value: "<p>A citizenship ceremony is where you make the pledge of commitment, this is the final step in the journey to becoming an Australian. Find your nearest ceremony.</p>\r\n"
       format: civictheme_rich_text
-  field_c_n_date:
-    -
-      value: '2022-12-23T02:00:00'
-      end_value: '2022-12-23T05:00:00'
   field_c_n_location:
     -
       entity:
@@ -64,6 +60,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_address:
             -
               value: '260 Elizabeth St, Melbourne VIC 3000'
@@ -104,6 +103,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_address:
             -
               value: '1/1 Martin Pl, Sydney NSW 2000'
@@ -141,3 +143,6 @@ default:
   field_c_n_topics:
     -
       entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

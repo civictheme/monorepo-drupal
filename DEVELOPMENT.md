@@ -91,7 +91,7 @@ Note that wildcards are supported.
     export CIVICTHEME_CONTENT_PROFILE=default
 
     # Prepare content with a clean installation.
-    DREVOPS_DRUPAL_PROFILE=minimal SKIP_SUBTHEME_ACTIVATION=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
+    DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=1 CIVICTHEME_SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
 
     # Export content.
     ahoy export-content

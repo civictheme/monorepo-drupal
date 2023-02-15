@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_manual_list.field_c_p_background
-    - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
-    - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_column_count
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_fill_width
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
@@ -33,13 +33,6 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_c_p_column_count:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 17
-    region: content
   field_c_p_content:
     type: text_default
     label: above
@@ -47,7 +40,14 @@ content:
     third_party_settings: {  }
     weight: 16
     region: content
-  field_c_p_fill_width:
+  field_c_p_list_column_count:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_c_p_list_fill_width:
     type: boolean
     label: above
     settings:

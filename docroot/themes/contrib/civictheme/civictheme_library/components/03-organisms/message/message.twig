@@ -25,7 +25,7 @@
 
 <div
   class="ct-message {{ modifier_class }}"
-  role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}"
+  role="{% if type == 'error' %}alert{% else %}contentinfo{% endif %}"
   aria-label="{{ type }}"
   {% if type == 'error' %}aria-live="polite"{% endif %}
   {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
@@ -34,7 +34,7 @@
     <div class="ct-message__icon">
       {% include "@base/icon/icon.twig" with {
         symbol: icons[type],
-        modifier_class: "%s ct-icon--%s"|format(theme_class, type)
+        size: 'regular',
       } only %}
     </div>
   {% endif %}

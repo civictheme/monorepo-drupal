@@ -31,4 +31,10 @@ drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_conten
 drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content" menu_link_content
 drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content" media
 
+echo "  > Enabling config_devel."
+drush pm-enable -y config_devel || true
+
+echo "  > Exporting config."
+drush -q cde "civictheme_content_${CIVICTHEME_CONTENT_PROFILE}"
+
 echo "==> Finished updating content in ${CIVICTHEME_CONTENT_PROFILE} content profile."

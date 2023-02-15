@@ -1,11 +1,9 @@
 {#
 /**
  * @file
- * Accordion component.
+ * Tabs component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
- * - title: [string] Title.
  * - panels: [array] Array of panels:
  *   - title: [string] Panel title.
  *   - content: [string] Panel content.
@@ -17,6 +15,7 @@
  *   - url: [string] Link URL.
  *   - modifier_class: [string] Additional link classes.
  *   - attributes: [string] Additional link attributes.
+ * - theme: [string] Theme: light, dark.
  * - attributes: [string] Additional classes.
  * - modifier_class: [string] Additional classes.
  */
@@ -59,7 +58,7 @@
   <div class="ct-tabs {{ modifier_class }}" data-tabs-panel {% if attributes is not empty %}{{ attributes }}{% endif %}>
     {% include '@base/item-list/item-list.twig' with {
       items: link_items,
-      no_gutter: true,
+      no_gap: true,
       modifier_class: 'ct-tabs__links',
     } only %}
 

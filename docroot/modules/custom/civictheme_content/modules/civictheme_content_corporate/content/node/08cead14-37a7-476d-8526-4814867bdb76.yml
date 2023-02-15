@@ -61,37 +61,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: eda5e835-14b3-4752-9a91-4b5c611ff8d5
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1642671530
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<p>Marine habitats make up an important part of the DE’s work.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 60111b20-de17-482a-911a-374218a74c09
           bundle: civictheme_manual_list
           default_langcode: en
@@ -111,10 +80,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_content:
+            -
+              value: "<p>Marine habitats make up an important part of the DE’s work.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -261,6 +234,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -282,16 +258,23 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_summary:
+          field_c_p_content:
             -
-              value: 'Learn more about what lies below the surface waters, what''s in the deep sea and on the sea floor'
+              value: "<p>Learn more about what lies below the surface waters, what's in the deep sea and on the sea floor</p>\r\n"
+              format: civictheme_rich_text
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'The open ocean'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

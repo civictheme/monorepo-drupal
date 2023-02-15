@@ -52,37 +52,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 2c84c6f9-9e8b-49eb-8d29-a8d9155f630f
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1642671970
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: "<p>The Great Barrier Reef is one of the world’s natural wonders. It’s home to significant marine life and is the largest coral reef in the world. The DE is committed to protecting this important Australian icon.</p>\r\n"
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: d1483450-b87a-4e21-a967-607c61ec897c
           bundle: civictheme_manual_list
           default_langcode: en
@@ -102,10 +71,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_content:
+            -
+              value: "<p>The Great Barrier Reef is one of the world’s natural wonders. It’s home to significant marine life and is the largest coral reef in the world. The DE is committed to protecting this important Australian icon.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -240,7 +213,13 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

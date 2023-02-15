@@ -17,7 +17,7 @@ import {
   getSlots,
   randomTags,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Card/Navigation Card',
@@ -53,7 +53,7 @@ export const NavigationCard = (knobTab) => {
     url: text('URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: demoImage(),
+      url: demoImage(),
       alt: 'Image alt text',
     } : false,
     // This is a new property added for this extended component.

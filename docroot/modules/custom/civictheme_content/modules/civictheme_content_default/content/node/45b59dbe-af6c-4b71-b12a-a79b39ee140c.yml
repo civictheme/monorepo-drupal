@@ -62,9 +62,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -75,6 +72,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_components_bott:
     -
       entity:
@@ -94,16 +94,13 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -125,9 +122,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -155,9 +149,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -185,9 +176,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -215,9 +203,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -230,6 +215,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -261,21 +249,18 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
-              value: 4
-          field_c_p_fill_width:
-            -
-              value: false
+              value: 3
           field_c_p_list_content_type:
             -
               value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
           field_c_p_list_item_theme:
             -
               value: light
@@ -284,7 +269,7 @@ default:
               value: civictheme_promo_card
           field_c_p_list_limit:
             -
-              value: 4
+              value: 3
           field_c_p_list_limit_type:
             -
               value: limited
@@ -297,6 +282,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -321,10 +309,10 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_list_column_count:
             -
               value: 4
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -346,9 +334,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -381,9 +366,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
@@ -416,9 +398,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
@@ -451,9 +430,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
@@ -470,7 +446,7 @@ default:
                       value: 'Subject nav card 4'
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'Design systems'
@@ -495,17 +471,15 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
+          field_c_p_content:
             -
-              value: true
+              value: 'Short summary area for the callout to promote any content.'
+              format: civictheme_rich_text
           field_c_p_links:
             -
               uri: 'internal:/'
               title: 'Callout text link '
               options: {  }
-          field_c_p_summary:
-            -
-              value: 'Short summary area for the callout to promote any content.'
           field_c_p_theme:
             -
               value: light
@@ -518,6 +492,9 @@ default:
   field_c_n_hide_sidebar:
     -
       value: true
+  field_c_n_hide_tags:
+    -
+      value: false
   field_c_n_show_last_updated:
     -
       value: true

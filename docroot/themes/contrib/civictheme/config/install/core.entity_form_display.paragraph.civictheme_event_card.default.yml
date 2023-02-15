@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_event_card.field_c_p_date
+    - field.field.paragraph.civictheme_event_card.field_c_p_date_range
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
     - field.field.paragraph.civictheme_event_card.field_c_p_location
     - field.field.paragraph.civictheme_event_card.field_c_p_summary
     - field.field.paragraph.civictheme_event_card.field_c_p_theme
     - field.field.paragraph.civictheme_event_card.field_c_p_title
-    - field.field.paragraph.civictheme_event_card.field_c_p_topic
+    - field.field.paragraph.civictheme_event_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_event_card
   module:
-    - datetime
+    - datetime_range
     - link
     - media_library
 id: paragraph.civictheme_event_card.default
@@ -20,8 +20,8 @@ targetEntityType: paragraph
 bundle: civictheme_event_card
 mode: default
 content:
-  field_c_p_date:
-    type: datetime_default
+  field_c_p_date_range:
+    type: daterange_default
     weight: 3
     region: content
     settings: {  }
@@ -35,7 +35,7 @@ content:
     third_party_settings: {  }
   field_c_p_link:
     type: link_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
   field_c_p_location:
     type: string_textfield
-    weight: 7
+    weight: 4
     region: content
     settings:
       size: 60
@@ -59,7 +59,7 @@ content:
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -71,9 +71,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_c_p_topic:
+  field_c_p_topics:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS

@@ -21,13 +21,10 @@
     padding-right: ct-spacing(2);
     padding-top: $ct-navigation-drawer-top-offset;
     padding-bottom: $ct-navigation-drawer-top-offset;
+    text-align: center;
 
     .ct-button__icon {
       margin-left: ct-spacing(0.5);
-
-      .ct-icon {
-        vertical-align: middle;
-      }
     }
   }
 

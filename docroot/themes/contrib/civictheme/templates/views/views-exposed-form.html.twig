@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation of views exposed form.
+ * CivicTheme implementation of views exposed form.
  */
 #}
 {% if q is not empty %}
@@ -11,12 +11,23 @@
   #}
   {{ q }}
 {% endif %}
-{# Group filter is printed if there is more than 1 exposed filter in the view #}
-{% if group_filter %}
+
+{% if single_filter %}
+  {% include '@molecules/single-filter/single-filter.twig' with {
+    theme: theme,
+    title: filter_title,
+    items: filter_items,
+    is_multiple: is_multiple,
+    form_attributes: form_attributes,
+    form_suffix: form_suffix,
+  } only %}
+{% elseif group_filter %}
   {% include '@molecules/group-filter/group-filter.twig' with {
-    filter_title: filter_title,
-    desktop_breakpoint: '>=m',
-    filters: form,
+    theme: theme,
+    title: filter_title,
+    items: filter_items,
+    form_attributes: form_attributes,
+    form_suffix: form_suffix,
   } %}
 {% else %}
   {{ form }}

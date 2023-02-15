@@ -6,7 +6,7 @@
   $root: &;
 
   @include ct-reset-box-model();
-  @include ct-highlight-stripe($ct-quote-border-width, 0, 0);
+  @include ct-highlight-stripe-vertical($ct-quote-border-width, 0, 0);
 
   position: relative;
   padding-left: ct-spacing(2);
@@ -18,7 +18,7 @@
   }
 
   &__author {
-    @include ct-typography('label-extra-small');
+    @include ct-typography('label-small');
 
     padding: 0 ct-spacing(3) ct-spacing(3);
 
@@ -31,7 +31,7 @@
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, background-color);
     @include ct-component-property($root, $theme, body, color);
-    @include ct-highlight-stripe-color(ct-component-var($root, $theme, border, color));
+    @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
 
     #{$root}__author {
       @include ct-component-property($root, $theme, author, color);

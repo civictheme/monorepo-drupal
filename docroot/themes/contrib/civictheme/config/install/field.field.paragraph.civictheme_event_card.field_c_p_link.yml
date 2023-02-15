@@ -12,11 +12,11 @@ entity_type: paragraph
 bundle: civictheme_event_card
 label: Link
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
+  title: 0
   link_type: 17
-  title: 1
 field_type: link

@@ -5,7 +5,7 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_attachments
     - field.field.node.civictheme_event.field_c_n_body
     - field.field.node.civictheme_event.field_c_n_custom_last_updated
-    - field.field.node.civictheme_event.field_c_n_date
+    - field.field.node.civictheme_event.field_c_n_date_range
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
@@ -20,13 +20,80 @@ dependencies:
     - entity_reference_revisions
     - layout_builder
     - layout_builder_restrictions
-    - options
     - text
     - user
+  theme:
+    - civictheme
 third_party_settings:
   layout_builder:
-    enabled: false
+    enabled: true
     allow_custom: false
+    sections:
+      -
+        layout_id: civictheme_one_column_contained
+        layout_settings:
+          label: Main
+          context_mapping: {  }
+        components:
+          693c2dc9-0290-4122-842b-3f1b9cd69380:
+            uuid: 693c2dc9-0290-4122-842b-3f1b9cd69380
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_date_range'
+              label: Date
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: daterange_default
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          2c1b19b3-bdd8-4b90-b5ef-ddcc0026bee4:
+            uuid: 2c1b19b3-bdd8-4b90-b5ef-ddcc0026bee4
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_body'
+              label: Body
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          06e90499-3555-4df7-b29e-89198edfd431:
+            uuid: 06e90499-3555-4df7-b29e-89198edfd431
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_location'
+              label: Locations
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+        third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
@@ -46,12 +113,12 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_c_n_date:
+  field_c_n_date_range:
     type: daterange_default
     label: above
     settings:
       timezone_override: ''
-      format_type: short
+      format_type: medium
       separator: '-'
     third_party_settings: {  }
     weight: 0
@@ -73,13 +140,6 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_c_n_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
 hidden:
   field_c_n_attachments: true
   field_c_n_custom_last_updated: true
@@ -88,4 +148,5 @@ hidden:
   field_c_n_summary: true
   field_c_n_thumbnail: true
   field_c_n_topics: true
+  field_c_n_vertical_spacing: true
   links: true

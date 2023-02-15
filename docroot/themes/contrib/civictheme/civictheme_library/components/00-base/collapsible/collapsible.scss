@@ -6,32 +6,37 @@
 @use 'sass:map';
 
 [data-collapsible] {
-  $root: ct-collapsible;
-
   [data-collapsible-trigger] {
     cursor: pointer;
   }
 
+  .ct-collapsible__icon {
+    @include ct-icon-size();
+  }
+
   &:not([data-collapsible-trigger-no-icon]) {
     [data-collapsible-trigger] {
-      padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width');
       position: relative;
 
-      &::after {
-        @include ct-icon-size('regular');
-
-        content: $ct-collapsible-icon;
-        position: absolute;
-        right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width');
+      .ct-collapsible__icon {
         transform: rotate(-180deg);
-        line-height: 0;
+      }
+    }
+
+    &[data-collapsible-trigger-wide] {
+      [data-collapsible-trigger] {
+        display: flex;
+
+        .ct-collapsible__icon {
+          @include ct-flex-align-right();
+        }
       }
     }
   }
 
   &:not([data-collapsible-duration='0']) {
     [data-collapsible-trigger] {
-      &::after {
+      .ct-collapsible__icon {
         transition: transform 0.5s;
       }
     }
@@ -39,14 +44,14 @@
 
   &[data-collapsible-collapsing] {
     [data-collapsible-trigger] {
-      &::after {
+      .ct-collapsible__icon {
         transform: rotate(0deg);
       }
     }
 
     &[data-collapsible-collapsed] {
       [data-collapsible-trigger] {
-        &::after {
+        .ct-collapsible__icon {
           transform: rotate(-180deg);
         }
       }
@@ -55,7 +60,7 @@
 
   &[data-collapsible-collapsed] {
     [data-collapsible-trigger] {
-      &::after {
+      .ct-collapsible__icon {
         transform: rotate(0deg);
       }
     }
@@ -70,12 +75,15 @@
       }
     }
   }
+}
 
-  @include ct-component-theme($root) using($root, $theme) {
-    @include ct-component-property($root, $theme, color);
-
-    &:not([data-collapsible-trigger-no-icon]) {
-      @include ct-icon-collapsible(ct-component-var($root, $theme, icon, color));
+.no-js {
+  [data-collapsible] {
+    &[data-collapsible-collapsed] {
+      [data-collapsible-panel] {
+        height: auto;
+        overflow: auto;
+      }
     }
   }
 }

@@ -4,23 +4,25 @@
  * Banner component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
  * - content_top1: [string] Content slot.
- * - breadcrumb: [string] Content slot.
+ * - breadcrumb: [array] Breadcrumb links.
  * - content_top2: [string] Content slot.
  * - content_top3: [string] Content slot.
  * - content_middle: [string] Content slot.
  * - content: [string] Content slot.
  * - content_bottom: [string] Content slot.
  * - content_below: [string] Content slot.
- * - section: [string] Site section.
+ * - site_section: [string] Site section.
  * - title: [string] Title.
  * - is_decorative: [boolean] Show as decorative.
  * - featured_image: [object] Featured image object:
- *   - src: [string] Source.
+ *   - url: [string] Source.
  *   - alt: [string] Alt text.
  * - background_image: [string] URL to a background image.
+ *   - url: [string] Source.
+ *   - alt: [string] Alt text.
  * - background_image_blend_mode: [string] Type of the backgeound image blending. Defaults to 'normal'.
+ * - theme: [string] Theme: light, dark.
  * - modifier_class: [string] Additional classes.
  * - attributes: [string] Banner attributes.
  */
@@ -30,12 +32,12 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, is_decorative_class, modifier_class|default('')) %}
 
-{% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or section is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
+{% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or site_section is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
   <div class="ct-banner {{ modifier_class }}" {{ attributes }}>
     <div class="ct-banner__wrapper">
       <div
-        class="ct-banner__wrapper__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
-        {% if background_image %}style="background-image: url('{{ background_image }}');"{% endif %}
+        class="ct-banner__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
+        {% if background_image and background_image.url is defined and background_image.url is not empty %}style="background-image: url('{{ background_image.url }}');"{% endif %}
       >
         <div class="container">
 
@@ -53,15 +55,18 @@
 
           {% if breadcrumb is not empty or content_top2 is not empty %}
             <div class="row">
-              {% if breadcrumb is not empty %}
-                {%- block breadcrumb %}
-                  <div class="col-xxs-12">
-                    <div class="ct-banner__breadcrumb">
-                      {{- breadcrumb -}}
-                    </div>
+              {% block breadcrumb %}
+                {% if breadcrumb is not empty %}
+                  <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
+                    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
+                      theme: theme,
+                      links: breadcrumb.links,
+                      active_is_link: breadcrumb.active_is_link,
+                      modifier_class: 'ct-banner__breadcrumb',
+                    } only %}
                   </div>
-                {% endblock -%}
-              {% endif %}
+                {% endif %}
+              {% endblock %}
 
               {% if content_top2 is not empty %}
                 {%- block content_top2 %}
@@ -87,16 +92,16 @@
             </div>
           {% endif %}
 
-          {% if section is not empty %}
+          {% if site_section is not empty %}
             <div class="row">
-              {%- block section %}
+              {%- block site_section %}
                 <div class="col-xxs-12">
-                  <div class="ct-banner__section">
-                    {% include '@atoms/heading/heading.twig' with {
-                      content: section,
-                      level: 5,
-                    } only %}
-                  </div>
+                  {% include '@atoms/heading/heading.twig' with {
+                    theme: theme,
+                    content: site_section,
+                    level: 5,
+                    modifier_class: 'ct-banner__site-section',
+                  } only %}
                 </div>
               {% endblock -%}
             </div>
@@ -105,14 +110,13 @@
           {% if title is not empty %}
             <div class="row">
               {%- block title %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
-                  <div class="ct-banner__title">
-                    {% include '@atoms/heading/heading.twig' with {
-                      theme: theme,
-                      content: title,
-                      level: 1,
-                    } only %}
-                  </div>
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
+                  {% include '@atoms/heading/heading.twig' with {
+                    theme: theme,
+                    content: title,
+                    level: 1,
+                    modifier_class: 'ct-banner__title',
+                  } only %}
                 </div>
               {% endblock -%}
             </div>
@@ -121,7 +125,7 @@
           {% if content_middle is not empty %}
             <div class="row">
               {%- block content_middle %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                   <div class="ct-banner__content-middle">
                     {{- content_middle -}}
                   </div>
@@ -133,7 +137,7 @@
           {% if content is not empty %}
             <div class="row">
               {%- block content %}
-                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12' }}">
+                <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6' : 'col-xxs-12' }}">
                   <div class="ct-banner__content">
                     {{- content -}}
                   </div>
@@ -147,11 +151,12 @@
 
       {% block featured_image %}
         {% if featured_image is not empty %}
-          <div class="ct-banner__featured-image">
+          <div class="ct-banner__featured-image__wrapper">
             {% include '@atoms/image/image.twig' with {
               theme: theme,
-              src: featured_image.src,
+              url: featured_image.url,
               alt:  featured_image.alt,
+              modifier_class: 'ct-banner__featured-image',
             } only %}
           </div>
         {% endif %}

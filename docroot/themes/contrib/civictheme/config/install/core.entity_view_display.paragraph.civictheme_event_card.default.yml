@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_event_card.field_c_p_date
+    - field.field.paragraph.civictheme_event_card.field_c_p_date_range
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
     - field.field.paragraph.civictheme_event_card.field_c_p_location
     - field.field.paragraph.civictheme_event_card.field_c_p_summary
     - field.field.paragraph.civictheme_event_card.field_c_p_theme
     - field.field.paragraph.civictheme_event_card.field_c_p_title
-    - field.field.paragraph.civictheme_event_card.field_c_p_topic
+    - field.field.paragraph.civictheme_event_card.field_c_p_topics
     - paragraphs.paragraphs_type.civictheme_event_card
   module:
-    - datetime
+    - datetime_range
     - link
     - options
 id: paragraph.civictheme_event_card.default
@@ -20,25 +20,26 @@ targetEntityType: paragraph
 bundle: civictheme_event_card
 mode: default
 content:
-  field_c_p_date:
-    weight: 4
+  field_c_p_date_range:
+    type: daterange_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
+      separator: '-'
     third_party_settings: {  }
-    type: datetime_default
+    weight: 9
     region: content
   field_c_p_image:
-    weight: 2
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_c_p_link:
-    weight: 5
+    type: link
     label: above
     settings:
       trim_length: 80
@@ -47,44 +48,44 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 5
     region: content
   field_c_p_location:
-    weight: 7
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 7
     region: content
   field_c_p_summary:
-    weight: 3
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
   field_c_p_theme:
-    weight: 0
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_c_p_title:
-    weight: 1
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
-  field_c_p_topic:
-    weight: 6
+  field_c_p_topics:
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 8
     region: content
 hidden: {  }

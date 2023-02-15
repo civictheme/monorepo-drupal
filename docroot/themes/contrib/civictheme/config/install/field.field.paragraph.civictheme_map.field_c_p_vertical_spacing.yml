@@ -12,11 +12,11 @@ entity_type: paragraph
 bundle: civictheme_map
 label: 'Vertical spacing'
 description: ''
-required: false
+required: true
 translatable: true
 default_value:
   -
-    value: both
+    value: bottom
 default_value_callback: ''
 settings: {  }
 field_type: list_string

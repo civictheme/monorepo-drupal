@@ -10,14 +10,11 @@
   text-decoration-thickness: ct-particle(0.25);
   text-underline-offset: ct-particle(0.375);
   padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+  word-break: break-word;
 
   &:hover {
     text-decoration: none;
     padding: ct-spacing(0.375) 0 ct-spacing(0.5);
-  }
-
-  .ct-content-link__link-icon {
-    margin-right: ct-spacing(0.5);
   }
 
   &,
@@ -63,16 +60,6 @@
       @include ct-component-property($root, $theme, visited, hover, color);
     }
   }
-}
-
-@mixin ct-icon-inline($content) {
-  content: $content;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: ct-particle(3);
-  height: ct-particle(3);
-  fill: currentcolor;
-  vertical-align: -webkit-baseline-middle;
 }
 
 //

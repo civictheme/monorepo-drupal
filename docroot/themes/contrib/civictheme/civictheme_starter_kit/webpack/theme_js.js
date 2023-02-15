@@ -7,5 +7,5 @@ function requireAll(r) {
   r.keys().forEach(r);
 }
 
-requireAll(require.context('../../../contrib/civictheme/assets/js/', true, /\.js$/));
+requireAll(require.context('../../../../contrib/civictheme/assets/js/', true, /\.js$/));
 requireAll(require.context('../assets/js/', true, /\.js$/));

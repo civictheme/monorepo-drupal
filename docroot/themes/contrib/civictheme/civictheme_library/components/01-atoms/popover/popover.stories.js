@@ -1,10 +1,10 @@
 // phpcs:ignoreFile
 import {
-  radios, text, number,
+  radios, text,
 } from '@storybook/addon-knobs';
-import CivicThemePopover from './popover.stories.twig';
-import './popover';
-import { placeholder } from '../../00-base/base.stories';
+
+import CivicThemePopover from './popover.twig';
+import { getSlots, placeholder } from '../../00-base/base.utils';
 
 export default {
   title: 'Atoms/Popover',
@@ -26,36 +26,20 @@ export const Popover = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    num_of_popovers: number(
-      'Number of popoves',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ),
-    trigger_text: text('Trigger text', 'Trigger me', generalKnobTab),
-    trigger_event: radios(
-      'Trigger event',
-      {
-        Click: 'click',
-        Hover: 'hover',
-      },
-      'click',
-      generalKnobTab,
-    ),
+    trigger: {
+      text: text('Trigger text', 'Click me', generalKnobTab),
+      url: text('Trigger URL', null, generalKnobTab),
+    },
+    content: placeholder(),
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
-  generalKnobs.contents = [];
-  for (let i = 0; i < generalKnobs.num_of_popovers; i++) {
-    generalKnobs.contents.push(placeholder());
-  }
 
   return CivicThemePopover({
     ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };

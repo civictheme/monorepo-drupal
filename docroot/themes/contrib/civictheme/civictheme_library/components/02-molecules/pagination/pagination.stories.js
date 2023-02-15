@@ -3,7 +3,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemePagination from './pagination.twig';
-import { randomUrl } from '../../00-base/base.stories';
+import { randomUrl } from '../../00-base/base.utils';
 
 export default {
   title: 'Molecules/Pagination',
@@ -46,36 +46,14 @@ export const Pagination = (knobTab) => {
     },
     generalKnobTab,
   );
-  const ellipses = boolean('With ellipses', true, generalKnobTab)
-    ? pageCount >= 1
-      ? current > 1
-        ? current < pageCount
-          ? {
-            previous: 1,
-            next: 1,
-          }
-          : {
-            previous: 1,
-            next: 0,
-          }
-        : current <= pageCount
-          ? {
-            previous: 0,
-            next: 1,
-          }
-          : {
-            previous: 1,
-            next: 1,
-          }
-      : false
-    : false;
+  const useEllipsis = boolean('With ellipsis', false, generalKnobTab);
 
   const pages = {};
   const pagerMiddle = Math.ceil(pageCount / 2);
   const pagerFirst = current - pagerMiddle + 1;
   const pagerLast = current + pageCount - pagerMiddle;
   for (let i = 0; i < pageCount; i++) {
-    if (ellipses) {
+    if (useEllipsis) {
       if (i === 0 || (i > pagerFirst && i < pagerLast) || i === (pageCount - 1)) {
         pages[i + 1] = {
           href: randomUrl(),
@@ -101,7 +79,7 @@ export const Pagination = (knobTab) => {
       },
     } : null,
     heading_id: text('Heading Id', 'ct-pager-demo', generalKnobTab),
-    ellipses,
+    use_ellipsis: useEllipsis,
     items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
       {
         type: 'option', label: 10, value: 10, selected: false,

@@ -12,9 +12,11 @@ entity_type: paragraph
 bundle: civictheme_manual_list
 label: 'Vertical spacing'
 description: ''
-required: false
+required: true
 translatable: true
-default_value: {  }
+default_value:
+  -
+    value: bottom
 default_value_callback: ''
 settings: {  }
 field_type: list_string

@@ -4,25 +4,39 @@
  * Map component.
  *
  * Variables:
- * - theme: [string] Theme: light, dark.
- * - url: [string] URL for the google map iframe.
+ * - content_top: [string] Content slot.
  * - address: [string] Optional address.
- * - view_link: [string] View link.
+ * - url: [string] URL for the map iframe.
+ * - view_url: [string] URL for the external map.
+ * - view_text: [string] Optional text for the URL for the external map.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
  * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set view_text = view_text|default('View in Google Maps') %}
+{% set with_background_class = with_background ? 'ct-map--with-background' : '' %}
 {% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
 
 {% if url is not empty %}
   <div class="ct-map {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="ct-map__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
           {% block map %}
             <div class="ct-map__canvas">
               {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
@@ -32,30 +46,32 @@
               {% include '@atoms/iframe/iframe.twig' with {
                 url: url,
                 attributes: attributes,
-                modifier_class: 'ct-map__action-icon',
+                modifier_class: 'ct-map__iframe',
               } only %}
             </div>
           {% endblock %}
 
           {% block links %}
-            <div class="ct-map__links">
-            {% if view_link is not empty %}
-              <div class="ct-map__view_link">
-                {% set view_text = view_text|trim ~ 'View in Google Maps' %}
-                {% include '@atoms/button/button.twig' with {
-                  kind: 'link',
-                  theme: theme,
-                  type: 'tertiary',
-                  text: view_text,
-                  url: view_link,
-                  is_new_window: true,
-                  is_external: true,
-                  icon: 'locationandmaps_map',
-                  icon_placement: 'before',
-                } only %}
+            {% if view_url is not empty %}
+              {% include '@atoms/button/button.twig' with {
+                kind: 'link',
+                theme: theme,
+                type: 'tertiary',
+                text: view_text,
+                url: view_url,
+                is_new_window: true,
+                is_external: true,
+                modifier_class: 'ct-map__link',
+              } only %}
+            {% endif %}
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="ct-map__content-bottom">
+                {{ content_bottom }}
               </div>
             {% endif %}
-          </div>
           {% endblock %}
         </div>
       </div>

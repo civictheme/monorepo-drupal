@@ -1,14 +1,14 @@
 {#
 /**
  * @file
- * CivicTheme theme implementation for Manual list.
+ * CivicTheme implementation for Manual list.
  */
 #}
 {% extends '@organisms/list/list.twig' %}
 
 {% block rows %}
   {% if rows -%}
-    <div class="ct-list__body">
+    <div class="ct-list__rows">
       {% include '@base/item-grid/item-grid.twig' with {
         title: title,
         column_count: column_count,

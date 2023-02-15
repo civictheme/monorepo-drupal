@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Date range field.
+ */
+#}
+{% include '@base/time/time.twig' with {
+  start: date,
+  start_iso: date_iso ?? null,
+  end: date_end ?? null,
+  end_iso: date_end_iso ?? null,
+} only %}

@@ -133,21 +133,21 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
           'body' => 'brand1|shade,80|tint,20',
         ],
         'background' => [
-          'background-light' => 'brand2|tint,90',
+          'background_light' => 'brand2|tint,90',
           'background' => 'brand2',
-          'background-dark' => 'brand2|shade,20',
+          'background_dark' => 'brand2|shade,20',
         ],
         'border' => [
-          'border-light' => 'brand2|shade,25',
+          'border_light' => 'brand2|shade,25',
           'border' => 'brand2|shade,60',
-          'border-dark' => 'brand2|shade,90',
+          'border_dark' => 'brand2|shade,90',
         ],
         'interaction' => [
-          'interaction-text' => 'brand2|tint,80',
-          'interaction-background' => 'brand1',
-          'interaction-hover-text' => 'brand2|tint,80',
-          'interaction-hover-background' => 'brand1|shade,40',
-          'interaction-focus' => FALSE,
+          'interaction_text' => 'brand2|tint,80',
+          'interaction_background' => 'brand1',
+          'interaction_hover_text' => 'brand2|tint,80',
+          'interaction_hover_background' => 'brand1|shade,40',
+          'interaction_focus' => FALSE,
         ],
         'highlight' => [
           'highlight' => 'brand3',
@@ -165,21 +165,21 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
           'body' => 'brand1|tint,85',
         ],
         'background' => [
-          'background-light' => 'brand2|tint,5',
+          'background_light' => 'brand2|tint,5',
           'background' => 'brand2',
-          'background-dark' => 'brand2|shade,30',
+          'background_dark' => 'brand2|shade,30',
         ],
         'border' => [
-          'border-light' => 'brand2|tint,65',
+          'border_light' => 'brand2|tint,65',
           'border' => 'brand2|tint,10',
-          'border-dark' => 'brand2|shade,30',
+          'border_dark' => 'brand2|shade,30',
         ],
         'interaction' => [
-          'interaction-text' => 'brand2',
-          'interaction-background' => 'brand1',
-          'interaction-hover-text' => 'brand2|shade,30',
-          'interaction-hover-background' => 'brand1|tint,40',
-          'interaction-focus' => FALSE,
+          'interaction_text' => 'brand2',
+          'interaction_background' => 'brand1',
+          'interaction_hover_text' => 'brand2|shade,30',
+          'interaction_hover_background' => 'brand1|tint,40',
+          'interaction_focus' => FALSE,
         ],
         'highlight' => [
           'highlight' => 'brand3',
@@ -447,7 +447,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
     if ($type == self::COLOR_TYPE_BRAND) {
       $dependents = $this->getColorDependencies($theme, $name);
       foreach ($dependents as $dependent) {
-        $dependent->setValue($value);
+        $dependent->setValue($value, TRUE);
       }
     }
 
@@ -458,7 +458,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   }
 
   /**
-   * Get an array of the color dependecies.
+   * Get an array of the color dependencies.
    *
    * @return \Drupal\civictheme\Color\CivicthemeColor[]
    *   Array of color dependencies.
@@ -493,7 +493,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       foreach ($set as $theme => $set_theme) {
         foreach ($set_theme as $name => $value) {
           unset($colors[$type][$theme][$name]);
-          $colors[$type][$theme][str_replace('_', '-', $name)] = $value;
+          $colors[$type][$theme][$name] = $value;
         }
       }
     }

@@ -73,6 +73,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -86,37 +89,6 @@ default:
     -
       value: normal
   field_c_n_components:
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: f4309767-59e8-4f79-b0c0-b1f353159410
-          bundle: civictheme_content
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1666107245
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_c_p_background:
-            -
-              value: false
-          field_c_p_content:
-            -
-              value: '<p dir="ltr"><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you. Alternatively, you can pursue one main path, but also have a ‘backup’ option available.&nbsp;</span></p><p dir="ltr"><span>Our double degrees cover:</span></p>'
-              format: civictheme_rich_text
-          field_c_p_theme:
-            -
-              value: light
     -
       entity:
         _meta:
@@ -141,10 +113,14 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_column_count:
+          field_c_p_content:
+            -
+              value: "<p dir=\"ltr\"><span>Double degrees keep your options open. You can pursue two different career paths and then make an informed choice about the best option for you. Alternatively, you can pursue one main path, but also have a ‘backup’ option available.&nbsp;</span></p>\r\n\r\n<p dir=\"ltr\"><span>Our double degrees cover:</span></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
             -
               value: 2
-          field_c_p_fill_width:
+          field_c_p_list_fill_width:
             -
               value: false
           field_c_p_list_items:
@@ -501,7 +477,13 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
     -
       value: false
   field_c_n_show_last_updated:

@@ -2,19 +2,28 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_next_step.field_c_p_content
     - field.field.paragraph.civictheme_next_step.field_c_p_link
-    - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
     - field.field.paragraph.civictheme_next_step.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_next_step
   module:
     - link
+    - text
 id: paragraph.civictheme_next_step.default
 targetEntityType: paragraph
 bundle: civictheme_next_step
 mode: default
 content:
+  field_c_p_content:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_c_p_link:
     type: link_default
     weight: 3
@@ -22,14 +31,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_c_p_summary:
-    type: string_textarea
-    weight: 1
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
     third_party_settings: {  }
   field_c_p_theme:
     type: options_buttons

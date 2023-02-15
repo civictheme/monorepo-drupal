@@ -44,7 +44,7 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
         $logo_image = civictheme_get_theme_config_manager()->load("components.logo.{$type}.{$theme}.{$breakpoint}.path", '');
         if (!empty($logo_image)) {
           $variables['logos'][$type][$breakpoint] = [
-            'src' => '/' . ltrim($logo_image, '/'),
+            'url' => '/' . ltrim($logo_image, '/'),
             'alt' => $logo_alt,
           ];
         }

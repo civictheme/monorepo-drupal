@@ -1,9 +1,10 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { number, radios, text } from '@storybook/addon-knobs';
 import CivicThemeCallout from './callout.twig';
+import { getSlots, randomLinks, randomSentence } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Content/Callout',
+  title: 'Molecules/Callout',
   parameters: {
     layout: 'centered',
   },
@@ -11,10 +12,8 @@ export default {
 
 export const Callout = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const cta1KnobTab = 'CTA 1';
-  const cta2KnobTab = 'CTA 2';
 
-  const calloutKnobs = {
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -25,7 +24,7 @@ export const Callout = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Callout title from knob', generalKnobTab),
-    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
+    content: text('Content', randomSentence(), generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',
       {
@@ -37,60 +36,26 @@ export const Callout = (knobTab) => {
       'none',
       generalKnobTab,
     ),
-    links: [
+    links: randomLinks(number(
+      'Count of links',
+      2,
       {
-        text: text('Text', 'CTA 1', cta1KnobTab),
-        url: text('URL', 'http://example.com', cta1KnobTab),
-        type: radios(
-          'Type',
-          {
-            Primary: 'primary',
-            Secondary: 'secondary',
-            Tertiary: 'tertiary',
-          },
-          'primary',
-          cta1KnobTab,
-        ),
-        size: radios(
-          'Size',
-          {
-            Large: 'large',
-            Regular: 'regular',
-            Small: 'small',
-          },
-          'regular',
-          cta1KnobTab,
-        ),
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
       },
-      {
-        text: text('Text', 'CTA 2', cta2KnobTab),
-        url: text('URL', 'http://example.com', cta2KnobTab),
-        type: radios(
-          'Type', {
-            Primary: 'primary',
-            Secondary: 'secondary',
-            Tertiary: 'tertiary',
-          },
-          'secondary',
-          'CTA 2',
-        ),
-        size: radios(
-          'Size',
-          {
-            Large: 'large',
-            Regular: 'regular',
-            Small: 'small',
-          },
-          'regular',
-          cta2KnobTab,
-        ),
-      },
-    ],
+      generalKnobTab,
+    )),
     modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  const html = CivicThemeCallout(calloutKnobs);
-
-  return `${html}`;
+  return CivicThemeCallout({
+    ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
+  });
 };

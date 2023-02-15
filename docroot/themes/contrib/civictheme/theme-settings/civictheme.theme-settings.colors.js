@@ -166,7 +166,7 @@
       var $checkbox = $source.siblings('[name="' + name + '"]');
       if (!$checkbox.length) {
         var id = 'id-' + Date.now() + Math.floor(Math.random() * 26);
-        var $wrapper = $('<div class="js-show-dependants-container"><input type="checkbox" id="' + id + '" name="' + name + '"><label for="' + id + '">Show dependands</label></div>').insertBefore($source);
+        var $wrapper = $('<div class="js-show-dependants-container"><input type="checkbox" id="' + id + '" name="' + name + '"><label for="' + id + '">Show dependants</label></div>').insertBefore($source);
         $checkbox = $wrapper.find('[name="' + name + '"]');
         $checkbox.change(function () {
           var sourceName = $(this).attr('name').replace('-show-arrows', '');

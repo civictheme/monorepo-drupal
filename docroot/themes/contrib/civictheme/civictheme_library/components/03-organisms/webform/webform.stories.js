@@ -26,7 +26,7 @@ export const Webform = (knobTab) => {
 
   const generalKnobs = {
     theme,
-    reference_webform: text('Title', 'Webform title', generalKnobTab),
+    referenced_webform: text('Title', 'Webform title', generalKnobTab),
     with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
       'Vertical spacing',

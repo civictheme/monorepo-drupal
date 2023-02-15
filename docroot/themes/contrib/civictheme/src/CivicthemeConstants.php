@@ -117,6 +117,16 @@ final class CivicthemeConstants {
   const AUTOMATED_LIST_DEFAULT_THEME = self::THEME_LIGHT;
 
   /**
+   * Defines a limit of filter options on the Automated list.
+   *
+   * If there are more options than the limit - the filter will render as
+   * standard fields.
+   *
+   * @todo Move to configuration.
+   */
+  const AUTOMATED_LIST_SINGLE_FILTER_LIMIT = 50;
+
+  /**
    * Defines Navigation "none" dropdown type.
    */
   const NAVIGATION_DROPDOWN_NONE = 'none';
@@ -135,5 +145,15 @@ final class CivicthemeConstants {
    * Defines card summary length.
    */
   const CARD_SUMMARY_DEFAULT_LENGTH = 160;
+
+  /**
+   * Defines an optout string for views exposed filters.
+   */
+  const OPTOUT_VIEWS_EXPOSED_FILTER = 'CivicThemeOptoutViewsExposedFilter';
+
+  /**
+   * Defines an optout string for views table style.
+   */
+  const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
 
 }

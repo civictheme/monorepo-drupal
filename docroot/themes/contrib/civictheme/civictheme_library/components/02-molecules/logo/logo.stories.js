@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { randomUrl } from '../../00-base/base.stories';
+import { randomUrl } from '../../00-base/base.utils';
 import CivicThemeLogo from './logo.twig';
 
 export default {
@@ -35,32 +35,32 @@ export const Logo = (knobTab, doRender = true) => {
   generalKnobs.logos = generalKnobs.with_secondary_image ? {
     primary: {
       mobile: {
-        src: LOGOS[generalKnobs.theme].primary.mobile,
+        url: LOGOS[generalKnobs.theme].primary.mobile,
         alt: 'Primary logo mobile alt text',
       },
       desktop: {
-        src: LOGOS[generalKnobs.theme].primary.desktop,
+        url: LOGOS[generalKnobs.theme].primary.desktop,
         alt: 'Primary logo desktop alt text',
       },
     },
     secondary: {
       mobile: {
-        src: LOGOS[generalKnobs.theme].secondary.mobile,
+        url: LOGOS[generalKnobs.theme].secondary.mobile,
         alt: 'Secondary logo mobile alt text',
       },
       desktop: {
-        src: LOGOS[generalKnobs.theme].secondary.desktop,
+        url: LOGOS[generalKnobs.theme].secondary.desktop,
         alt: 'Secondary logo desktop alt text',
       },
     },
   } : {
     primary: {
       mobile: {
-        src: LOGOS[generalKnobs.theme].primary.mobile,
+        url: LOGOS[generalKnobs.theme].primary.mobile,
         alt: 'Primary logo mobile alt text',
       },
       desktop: {
-        src: LOGOS[generalKnobs.theme].primary.desktop,
+        url: LOGOS[generalKnobs.theme].primary.desktop,
         alt: 'Primary logo mobile alt text',
       },
     },

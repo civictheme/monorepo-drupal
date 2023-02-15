@@ -5,7 +5,7 @@ import {
 
 import CivicThemeChip from './chip.twig';
 import './chip';
-import './chip.stories.event';
+import './chip.event.stories';
 
 export default {
   title: 'Atoms/Chip',
@@ -26,6 +26,17 @@ export const Chip = (knobTab) => {
     generalKnobTab,
   );
 
+  const size = radios(
+    'Size', {
+      Large: 'large',
+      Regular: 'regular',
+      Small: 'small',
+      None: '',
+    },
+    'regular',
+    generalKnobTab,
+  );
+
   const kind = radios(
     'Kind', {
       Default: 'default',
@@ -36,22 +47,12 @@ export const Chip = (knobTab) => {
   );
 
   const generalKnobs = {
-    theme: () => theme,
-    kind: () => kind,
-    size: radios(
-      'Size', {
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        None: '',
-      },
-      'regular',
-      generalKnobTab,
-    ),
-    content: text('Chip label', 'Chip label', generalKnobTab),
-    is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
+    theme,
+    kind,
+    size,
     is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,
     is_selected: (kind === 'input') ? boolean('Is selected', false, generalKnobTab) : null,
+    content: text('Chip label', 'Chip label', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
