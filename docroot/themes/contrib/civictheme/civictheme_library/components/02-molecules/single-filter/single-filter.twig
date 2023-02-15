@@ -26,6 +26,8 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
+  {% set title = title|default('Filter results by:') %}
+
   <div class="ct-single-filter {{ modifier_class }}" data-component-name="ct-single-filter" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
@@ -85,6 +87,7 @@
                 <div class="col col--no-grow">
                   <div class="ct-align-middle">
                     {% include '@atoms/button/button.twig' with {
+                      theme: theme,
                       kind: 'button',
                       type: 'secondary',
                       size: 'small',
