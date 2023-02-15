@@ -12,8 +12,6 @@ import CivicThemeRadio from '../01-atoms/radio/radio.twig';
 import CivicThemeFormElement
   from '../02-molecules/form-element/form-element.twig';
 import CivicThemeLabel from '../01-atoms/label/label.twig';
-import CivicThemeDropdownFilter
-  from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
 export const getThemes = () => ({
   light: 'Light',
@@ -221,33 +219,6 @@ export const randomFormElements = (count, theme, rand) => {
   }
 
   return formElements;
-};
-
-export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr) => {
-  const filterOptions = {
-    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
-    filter_group: 'filter_group',
-    options_title: Math.round(Math.random()) ? 'Options title (optional)' : '',
-  };
-  const children = [];
-  let count = itr * numOfOptions;
-  for (let i = 1; i <= numOfOptions; i++) {
-    const options = {
-      required: false,
-      description: false,
-      attributes: '',
-      value: randomString(randomInt(1, 8)),
-    };
-    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(randomInt(3, 8))}"`;
-    children.push(randomFormElement(filterType, options, theme, true, count++));
-  }
-
-  return CivicThemeDropdownFilter({
-    theme,
-    ...filterOptions,
-    type: filterType,
-    options: children.join(''),
-  });
 };
 
 export const randomOptions = (numOfOptions, optionType = 'option') => {
