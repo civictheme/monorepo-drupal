@@ -64,6 +64,9 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
   /** @var \Drupal\views\ViewExecutable $view */
   $view = _civictheme_automated_list__get_view($settings);
 
+  $settings['view_id'] = $view->id();
+  $settings['view_display'] = $view->current_display;
+
   // Make component settings available to the processing functions to further
   // alter view settings.
   // @see civictheme_preprocess_views_view()
@@ -210,11 +213,10 @@ function _civictheme_automated_list__update_view(ViewExecutable $view) {
     $view_pager['options']['expose']['items_per_page'] = FALSE;
     $view->display_handler->setOption('pager', $view_pager);
 
-    // Add 'Showing x of y' to the views header.
+    // Hide 'Showing x of y' (set through a view) as this is a limited page.
     $view_header = $view->display_handler->getOption('header');
-    if ($show_filters && isset($view_header['result']['content'])) {
-      $view_header['result']['content'] = 'Showing @end of @total';
-      $view->display_handler->setOption('header', $view_header);
+    if (!$show_filters && isset($view_header['result']['content'])) {
+      $view->removeHandler($settings['view_display'], 'header', 'result');
     }
   }
   elseif ($settings['limit_type'] == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_UNLIMITED) {
