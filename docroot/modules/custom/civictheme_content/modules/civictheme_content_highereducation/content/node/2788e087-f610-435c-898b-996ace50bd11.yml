@@ -64,6 +64,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -74,6 +77,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_show_last_updated:
     -
       value: true
@@ -89,3 +95,6 @@ default:
   field_c_n_topics:
     -
       entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

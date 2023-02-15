@@ -95,3 +95,6 @@ default:
   field_c_n_topics:
     -
       entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

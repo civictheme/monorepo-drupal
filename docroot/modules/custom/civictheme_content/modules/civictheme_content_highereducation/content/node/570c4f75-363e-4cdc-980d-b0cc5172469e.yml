@@ -80,6 +80,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -90,6 +93,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -156,6 +162,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b1142872-23be-4b62-a4a8-37cdcd453bb6
@@ -194,6 +203,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 33025cb8-4e76-4122-8e56-48c04cb12c8f
@@ -232,6 +244,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 7a47a1a3-d8c3-40e6-bb92-9fdea76de772
@@ -270,6 +285,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 519c4e0c-acd5-4233-9628-8335ee7ce51f
@@ -308,6 +326,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 1a1cbd4b-36f6-45ca-b71f-89bccb5d2e83
@@ -346,6 +367,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 405e6f34-e721-473c-b3da-49d618e92105
@@ -384,6 +408,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b2960675-19ac-4689-8fca-fd717c4b8163
@@ -422,6 +449,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 6e092085-4a97-4bd5-9711-ef0005ecdf4a
@@ -460,6 +490,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e71dbfa0-a672-4c84-a4b7-3b7863e6268c
@@ -498,6 +531,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: fd86cf0a-1055-4ae7-8358-0bf198723fe2
@@ -536,6 +572,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d40603f6-cf19-40da-812d-fbee32d8696d
@@ -574,6 +613,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e4f38f37-1947-4b47-8e9f-3b85ab96614a
@@ -612,6 +654,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 02c5cb96-7bf6-4362-ad5a-0a562e996632
@@ -650,6 +695,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 286955ac-256e-480d-b914-dcad37fa96ff
@@ -688,6 +736,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 2e4ffce7-2f27-4196-9def-763b2657d951
@@ -726,6 +777,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: b7711963-ecc5-41b8-923f-692f4416f7d2
@@ -764,6 +818,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 143fe51b-83b1-4e43-a0d0-40476540abc3
@@ -802,6 +859,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4a661a2b-f6cc-480c-99ed-1f9911b5d405
@@ -840,6 +900,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: ff9dd1cc-ab2e-468c-9b71-174b04ff3707
@@ -878,6 +941,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d6d58799-0fe0-47c8-8bda-153a48694b1b
@@ -916,6 +982,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 3a518ae8-054c-4b58-b673-3771f897dbd9
