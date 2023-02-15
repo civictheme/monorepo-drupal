@@ -43,7 +43,7 @@
         <tr>
           {% for col in row %}
             <td {% if header is not empty and header[loop.index0] %}data-title="{{ header[loop.index0] }}"{% endif %}>
-              {{ col }}
+              {{ col|raw }}
             </td>
           {% endfor %}
         </tr>
