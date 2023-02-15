@@ -12,9 +12,11 @@ entity_type: node
 bundle: civictheme_event
 label: 'Vertical spacing'
 description: ''
-required: false
+required: true
 translatable: true
-default_value: {  }
+default_value:
+  -
+    value: both
 default_value_callback: ''
 settings: {  }
 field_type: list_string

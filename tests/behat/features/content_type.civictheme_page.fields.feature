@@ -40,7 +40,7 @@ Feature: CivicTheme Page content type fields
 
     And I see field "Vertical spacing"
     And should see an "[name='field_c_n_vertical_spacing']" element
-    And should not see an "[name='field_c_n_vertical_spacing'].required" element
+    And should see an "[name='field_c_n_vertical_spacing'].required" element
     And should not see an "[name='field_c_n_vertical_spacing'][disabled]" element
 
     And I should see the text "Hide sidebar"
