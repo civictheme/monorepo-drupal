@@ -101,6 +101,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 2b8021df-e474-4b3a-8b91-62844aefe844
@@ -134,6 +137,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 209291bc-81be-41c7-912c-70d695e9376c
@@ -167,6 +173,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: faa70cfa-88f0-49e7-81ed-9523560bb0d5
@@ -193,6 +202,9 @@ default:
           field_c_p_title:
             -
               value: 'CivicTheme in 60 seconds'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_hide_sidebar:
     -
       value: false
