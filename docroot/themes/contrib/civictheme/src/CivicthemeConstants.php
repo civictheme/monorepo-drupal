@@ -136,4 +136,14 @@ final class CivicthemeConstants {
    */
   const CARD_SUMMARY_DEFAULT_LENGTH = 160;
 
+  /**
+   * Defines an optout string for views exposed filters.
+   */
+  const OPTOUT_VIEWS_EXPOSED_FILTER = 'CivicThemeOptoutViewsExposedFilter';
+
+  /**
+   * Defines an optout string for views table style.
+   */
+  const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
+
 }
