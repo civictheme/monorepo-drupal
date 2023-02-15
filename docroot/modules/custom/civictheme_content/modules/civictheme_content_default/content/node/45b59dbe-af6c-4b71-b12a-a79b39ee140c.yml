@@ -72,6 +72,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_components_bott:
     -
       entity:
@@ -212,6 +215,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -243,9 +249,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -279,6 +282,9 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
     -
       entity:
         _meta:
@@ -297,6 +303,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -437,7 +446,7 @@ default:
                       value: 'Subject nav card 4'
           field_c_p_theme:
             -
-              value: dark
+              value: light
           field_c_p_title:
             -
               value: 'Design systems'

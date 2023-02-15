@@ -41,7 +41,7 @@ default:
               value: true
           field_c_p_content:
             -
-              value: 'Sign up for news and updates from our agency.'
+              value: "<p>Sign up for news and updates from our agency.</p>\r\n"
               format: civictheme_rich_text
           field_c_p_link:
             -
