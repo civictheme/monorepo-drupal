@@ -17,6 +17,7 @@ use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Get a theme config manager.
@@ -693,4 +694,39 @@ function _civictheme_get_card_name_from_bundle($bundle) {
   }
 
   return FALSE;
+}
+
+/**
+ * Check if the CivicTheme feature was opted out.
+ *
+ * @param string $type
+ *   The type of the optout.
+ * @param string $name
+ *   The name of the optout flag.
+ * @param mixed $context
+ *   Optional context to pass to assess the optout.
+ *
+ * @return bool
+ *   TRUE if a feature should be opted out, FALSE otherwise.
+ */
+function _civictheme_feature_is_optedout($type, $name, $context = NULL) {
+  $optedout = FALSE;
+
+  switch ($type) {
+    case 'views':
+      // For views, use view Tag as an opt-out data source.
+      if (!empty($context) && $context instanceof ViewExecutable) {
+        $view = $context;
+        $tags = $view->storage->get('tag');
+        $tags = !empty($tags) ? explode(',', $tags) : [];
+        $tags = array_map('trim', $tags);
+
+        if (in_array($name, $tags)) {
+          $optedout = TRUE;
+        }
+      }
+      break;
+  }
+
+  return $optedout;
 }
