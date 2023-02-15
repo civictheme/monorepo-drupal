@@ -41,6 +41,7 @@ require_once 'includes/promo.inc';
 require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
+require_once 'includes/system_main_block.inc';
 require_once 'includes/site_section.inc';
 require_once 'includes/skip_link.inc';
 require_once 'includes/slider.inc';
@@ -187,6 +188,7 @@ function civictheme_preprocess_node(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_block(&$variables) {
+  _civictheme_preprocess_block__system_main_block($variables);
   _civictheme_preprocess_block__civictheme_banner($variables);
   _civictheme_preprocess_block__navigation($variables);
   _civictheme_preprocess_block__civictheme_footer_menu($variables);
