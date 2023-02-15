@@ -48,7 +48,9 @@
   }
 
   #{$root}__icon__image {
-    @include ct-image-fit();
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
   }
 
   #{$root}__title {
