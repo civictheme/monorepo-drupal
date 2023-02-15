@@ -47,9 +47,9 @@ export const Chip = (knobTab) => {
   );
 
   const generalKnobs = {
-    theme: theme,
-    kind: kind,
-    size: size,
+    theme,
+    kind,
+    size,
     is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,
     is_selected: (kind === 'input') ? boolean('Is selected', false, generalKnobTab) : null,
     content: text('Chip label', 'Chip label', generalKnobTab),
