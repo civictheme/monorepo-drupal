@@ -12,30 +12,6 @@
     margin-bottom: 0;
   }
 
-  &--radio,
-  &--checkbox {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-
-    .ct-input {
-      margin: 0;
-    }
-
-    .ct-form-element__description,
-    label {
-      padding-left: ct-spacing(5);
-    }
-
-    .ct-form-element__description {
-      width: 100%;
-    }
-
-    label {
-      margin: ct-spacing(0.5) 0;
-    }
-  }
-
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
   }
