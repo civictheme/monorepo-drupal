@@ -76,3 +76,14 @@
     }
   }
 }
+
+.no-js {
+  [data-collapsible] {
+    &[data-collapsible-collapsed] {
+      [data-collapsible-panel] {
+        height: auto;
+        overflow: auto;
+      }
+    }
+  }
+}
