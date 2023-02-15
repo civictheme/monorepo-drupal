@@ -82,7 +82,8 @@
     {% include '@atoms/field-message/field-message.twig' with {
       theme: theme,
       type: 'error',
-      content: errors
+      content: errors,
+      modifier_class: 'ct-form-element__message',
     } only %}
   {% endif %}
 </div>
