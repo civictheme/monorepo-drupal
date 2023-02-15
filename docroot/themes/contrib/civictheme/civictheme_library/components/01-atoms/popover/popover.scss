@@ -34,3 +34,9 @@
     }
   }
 }
+
+.no-js {
+  .ct-popover__content {
+    position: relative;
+  }
+}
