@@ -21,7 +21,7 @@ Feature: Attachment fields
     And should see an "[name='field_c_n_components[0][subform][field_c_p_theme]']" element
 
     And should see an "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
-    And should not see an "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
+    And should see an "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
     And should not see an "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'][disabled]" element
 
     And I should see an "[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
