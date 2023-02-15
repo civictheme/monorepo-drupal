@@ -84,6 +84,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_components_bott:
     -
       entity:
@@ -283,6 +286,9 @@ default:
           field_c_p_theme:
             -
               value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
   field_c_n_banner_featured_image:
     -
       entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
