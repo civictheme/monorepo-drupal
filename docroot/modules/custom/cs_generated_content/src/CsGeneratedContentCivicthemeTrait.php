@@ -88,7 +88,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * Spacing - none.
    */
   public static function civicthemeVerticalSpacingTypeNone() {
-    return '';
+    return 'none';
   }
 
   /**

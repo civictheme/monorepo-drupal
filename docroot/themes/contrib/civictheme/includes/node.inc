@@ -88,7 +88,7 @@ function _civictheme_preprocess_node__default(&$variables) {
 }
 
 /**
- * Pre-process CivicTheme alert nodes.
+ * Pre-process CivicTheme Alert nodes.
  */
 function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $node = $variables['node'];
