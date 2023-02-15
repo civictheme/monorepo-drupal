@@ -16,7 +16,7 @@
  * @return string
  *   The processed string.
  */
-function civictheme_process_html_content($html, $options = []) {
+function _civictheme_process__html_content($html, $options = []) {
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
 
@@ -33,7 +33,7 @@ function civictheme_process_html_content($html, $options = []) {
   // Process contextual theme value.
   if (!empty($options['theme'])) {
     // Replace theme variable with component level component theme.
-    // Note: All style dropdowns and components need to use civictheme's
+    // Note: All style dropdowns and components need to use CivicTheme's
     // default theme light in order to be updated with the correct component
     // set theme.
     // Example: Button style dropdown classes are:

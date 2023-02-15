@@ -18,7 +18,7 @@ function _civictheme_preprocess_wysiwyg_field(&$variables) {
       foreach (Element::children($variables['items']) as $item) {
         if (!empty($variables['items'][$item]['content']['#text'])) {
           $theme = !empty($variables['element']['#object']) ? civictheme_get_field_theme_value($variables['element']['#object']) : NULL;
-          $variables['items'][$item]['content']['#text'] = civictheme_process_html_content($variables['items'][$item]['content']['#text'], [
+          $variables['items'][$item]['content']['#text'] = _civictheme_process__html_content($variables['items'][$item]['content']['#text'], [
             'theme' => $theme,
           ]);
         }

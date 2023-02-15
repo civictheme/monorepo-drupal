@@ -94,7 +94,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = civictheme_process_html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
+  $variables['description'] = _civictheme_process__html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
     // Force dark theme to make sure that text colour has enough contrast with
     // a background.
     'theme' => CivicthemeConstants::THEME_DARK,
