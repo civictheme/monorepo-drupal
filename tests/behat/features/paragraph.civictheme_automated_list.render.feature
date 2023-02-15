@@ -245,7 +245,7 @@ Feature: Automated list render
     And I should see 6 ".ct-item-grid__item" elements
     And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
     And I should see an ".ct-list__pager" element
-    And I should not see an ".ct-list__filters" element
+    And I should see an ".ct-list__filters" element
 
     # Add a Test view as a list type.
     # This view only shows items older than 2 days and has a Title filter exposed.
@@ -267,38 +267,8 @@ Feature: Automated list render
     And I should see 2 ".ct-item-grid__item" elements
     And I should see 2 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__pager" element
-    And I should not see an ".ct-list__filters" element
 
-    # todo Uncomment below when exposed filters are fixed.
-    # And I should see an ".ct-list__filters" element
-    # And I see field "Title"
-    # And should see an "input[name='title']" element
-    # And should not see an "input[name='title'].required" element
-
-  # @api @javascript @skipped
-  # This test needs full refactoring.
-  # Scenario: Automated list, exposed filters, filtering
-  #   Given I am an anonymous user
-  #   And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
-  #     # Selection.
-  #     | field_c_p_list_filters_exp | type, topic, title |
-  #
-  #   When I visit "civictheme_page" "Test page with Automated list content"
-  #   Then I should see an ".ct-list .ct-item-grid__items" element
-  #   And I should see 12 ".ct-item-grid__item" elements
-  #   And I should see an ".ct-list__results-below .ct-pager" element
-  #   And I should see an ".ct-list__filters .views-exposed-form" element
-  #
-  #   And I press the "Topics" button
-  #   And I check the box "[TEST] Topic 2"
-  #   And I press the "Topics" button
-  #   And I wait 1 second
-  #   And I wait for AJAX to finish
-  #
-  #   And I press the "edit-submit-civictheme-automated-list" button
-  #   And I should see 4 ".ct-item-grid__item" elements
-  #
-  #   And I press the "Clear all" button
-  #   And I wait 1 second
-  #   And I wait for AJAX to finish
-  #   And I should see 12 ".ct-item-grid__item" elements
+    And I should see an ".ct-list__filters" element
+    And I see field "Title"
+    And should see an "input[name='title']" element
+    And should not see an "input[name='title'].required" element
