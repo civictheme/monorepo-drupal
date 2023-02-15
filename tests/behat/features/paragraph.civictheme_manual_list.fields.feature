@@ -47,7 +47,7 @@ Feature: Manual list fields
 
     And I see the text "Vertical spacing"
     And should see a "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
-    And should not see a "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
+    And should see a "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
     And should not see a "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'][disabled]" element
 
     And I see the text "Background"

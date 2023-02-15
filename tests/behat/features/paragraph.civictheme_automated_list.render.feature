@@ -43,7 +43,7 @@ Feature: Automated list render
       | [TEST] Referenced Event 3 | [relative:-18 minutes] | 1      | Summary 3         | [TEST] Image 1      | [TEST] Topic 3, [TEST] Topic 4 | 2024-07-01T09:45:00        | 2025-08-14T11:30:00            |
 
   @api @testmode
-  Scenario: Automated list, All results
+  Scenario: Automated list, All results (limited to a large number to fit on the page)
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title             | [TEST] Automated list title                         |
@@ -72,6 +72,9 @@ Feature: Automated list render
     And I should see the link "[TEST] Link above" with "https://example.com/above" in '.ct-list'
     And I should see the link "[TEST] Link below" with "https://example.com/below" in '.ct-list'
 
+    # 'Show x of y' is not visible.
+    And I should not see an ".ct-list__rows-above" element
+
     And I should see a ".ct-list__rows" element
     # 16 items = 15 pages - 2 pages unpublished + 3 events
     And I should see 16 ".ct-item-grid__item" elements
@@ -98,6 +101,9 @@ Feature: Automated list render
     And I should see 12 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
 
+    # 'Show x of y' is visible.
+    And I should see an ".ct-list__rows-above" element
+
     # Pager is visible and set to a number of pages in the view.
     And I should see an ".ct-list__pager" element
     # Items per page is visible.
@@ -123,6 +129,9 @@ Feature: Automated list render
     And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
 
+    # 'Show x of y' is visible.
+    And I should see an ".ct-list__rows-above" element
+
     # Pager is visible and set to a custom number of pages.
     And I should see an ".ct-list__pager" element
     # Items per page is not visible since it is a custom number not from the list of available 'items per page' values.
@@ -143,6 +152,9 @@ Feature: Automated list render
     And I should see a ".ct-list.ct-theme-light" element
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
+
+    # 'Show x of y' is not visible.
+    And I should not see an ".ct-list__rows-above" element
 
     And I should see 6 ".ct-item-grid__item" elements
     And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
