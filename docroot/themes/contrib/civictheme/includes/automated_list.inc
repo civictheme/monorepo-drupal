@@ -189,6 +189,12 @@ function _civictheme_automated_list__update_view(ViewExecutable $view) {
     $view->display_handler->setOption('row', $view_mode_options);
   }
 
+  // @todo Implement hiding of the filters that were not selected.
+  $show_filters = !empty(array_filter(explode(', ', $settings['filters_exp'])));
+  if (!$show_filters) {
+    $view->display_handler->has_exposed = FALSE;
+  }
+
   // Pager.
   // Show exact number of items.
   if ($settings['limit_type'] == CivicthemeConstants::AUTOMATED_LIST_LIMIT_TYPE_LIMITED) {
@@ -205,10 +211,8 @@ function _civictheme_automated_list__update_view(ViewExecutable $view) {
     $view->display_handler->setOption('pager', $view_pager);
 
     // Add 'Showing x of y' to the views header.
-    // @todo Refactor this to show outside of the view in the List template.
-    $listing_show_filters = !empty(explode(', ', $settings['filters_exp']));
     $view_header = $view->display_handler->getOption('header');
-    if ($listing_show_filters && isset($view_header['result']['content'])) {
+    if ($show_filters && isset($view_header['result']['content'])) {
       $view_header['result']['content'] = 'Showing @end of @total';
       $view->display_handler->setOption('header', $view_header);
     }
