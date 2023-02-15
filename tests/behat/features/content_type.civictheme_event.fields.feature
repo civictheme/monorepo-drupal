@@ -72,7 +72,7 @@ Feature: CivicTheme Event content type fields
     And I should see a "[name='field_c_n_location[0][subform][field_c_p_background][value]']" element
 
     And I should see a "[name='field_c_n_location[0][subform][field_c_p_vertical_spacing]']" element
-    And I should not see a "[name='field_c_n_location[0][subform][field_c_p_vertical_spacing]'].required" element
+    And I should see a "[name='field_c_n_location[0][subform][field_c_p_vertical_spacing]'].required" element
 
     And I see field "Show Last updated date"
     And I should see a "[name='field_c_n_show_last_updated[value]']" element
