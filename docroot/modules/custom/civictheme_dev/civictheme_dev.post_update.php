@@ -15,21 +15,20 @@ use Drupal\user\Entity\User;
  */
 function civictheme_dev_post_update_provision_users() {
   $emails = [
-    'akhil.bhandari@salsadigital.com.au',
-    'alan.rako@salsadigital.com.au',
-    'alan@salsadigital.com.au',
-    'alex.skrypnyk@salsadigital.com.au',
-    'deepali.shelar@salsadigital.com.au',
-    'govind@salsadigital.com.au',
-    'john.cloys@salsadigital.com.au',
-    'joshua.fernandes@salsadigital.com.au',
-    'nathania.sudirman@salsadigital.com.au',
-    'nathania@salsadigital.com.au',
-    'nick.georgiou@salsadigital.com.au',
-    'nicolas.haase@salsadigital.com.au',
-    'phillipa.martin@salsadigital.com.au',
-    'richard.gaunt@salsadigital.com.au',
-    'sonam.chaturvedi@salsadigital.com.au',
+    'akhil.bhandari@salsa.digital',
+    'alan.rako@salsa.digital',
+    'alex.skrypnyk@salsa.digital',
+    'deepali.shelar@salsa.digital',
+    'fiona.morrison@salsa.digital',
+    'govind@salsa.digital',
+    'john.cloys@salsa.digital',
+    'joshua.fernandes@salsa.digital',
+    'nathania.sudirman@salsa.digital',
+    'nathania@salsa.digital',
+    'nick.georgiou@salsa.digital',
+    'phillipa.martin@salsa.digital',
+    'richard.gaunt@salsa.digital',
+    'sonam.chaturvedi@salsa.digital',
   ];
 
   foreach ($emails as $email) {
