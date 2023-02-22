@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this defect report!
+        Thanks for taking the time to fill out this defect report.
   - type: textarea
     id: summary
     attributes:
