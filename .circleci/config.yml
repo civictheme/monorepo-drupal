@@ -55,6 +55,9 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_migrate.
   - &deploy_ssh_fingerprint6 "2b:61:1c:7c:d1:f8:9b:63:dc:a7:10:c1:d6:0a:4f:b8"
 
+  # SSH key fingerprint to deploy code to Drupal.org
+  - &deploy_ssh_fingerprint7 "47:f9:29:8b:9b:1b:e9:66:5d:b3:f6:dd:e7:60:d1:f9"
+
   # SSH key fingerprint to mirror code.
   - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
 
@@ -90,6 +93,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
       DEPLOY_SSH_FINGERPRINT6: *deploy_ssh_fingerprint6
+      DEPLOY_SSH_FINGERPRINT7: *deploy_ssh_fingerprint7
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
       - image: drevops/ci-builder
@@ -394,6 +398,7 @@ jobs:
             - *deploy_ssh_fingerprint4
             - *deploy_ssh_fingerprint5
             - *deploy_ssh_fingerprint6
+            - *deploy_ssh_fingerprint7
       - checkout
       - *step_process_codebase
       - run:
@@ -403,7 +408,15 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
+      - run:
+          name: Deploy release to Drupal.org.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT7 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=1.x \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -413,7 +426,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -423,7 +435,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -433,7 +444,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -443,7 +453,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -453,7 +462,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_migrate.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_migrate" \
-            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:
