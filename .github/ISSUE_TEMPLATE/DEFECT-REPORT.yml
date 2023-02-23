@@ -1,0 +1,33 @@
+name: Defect Report
+description: File a defect report
+title: "[DEFECT] "
+labels: ["Type: Defect"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this defect report.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: observed-outcome
+    attributes:
+      label: Observed outcome
+    validations:
+      required: true
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected outcome
+    validations:
+      required: true

@@ -1,0 +1,35 @@
+name: Feature Request
+description: Suggest a new feature
+title: "[FEATURE] "
+labels: ["Type: Feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request.
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User story
+      value: |
+        As a <user persona>
+        I want <to perform this action>
+        So that <I can accomplish this goal>
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        Given I am a <user persona>
+        When I <perform an action>
+        Then I <expect an outcome>
+    validations:
+      required: true
