@@ -1,7 +1,7 @@
 name: Feature Request
-description: File a defect report
+description: Suggest a new feature
 title: "[FEATURE] "
-labels: ["Type: Defect"]
+labels: ["Type: Feature"]
 body:
   - type: markdown
     attributes:
