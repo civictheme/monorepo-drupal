@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1740c7b3473fa11c06d40bc88c7a19b",
+    "content-hash": "33b18371988d1a6f4258e257f4404cc5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3230,12 +3230,12 @@
             ],
             "authors": [
                 {
-                    "name": "Docc",
-                    "homepage": "https://www.drupal.org/user/310132"
-                },
-                {
                     "name": "benellefimostfa",
                     "homepage": "https://www.drupal.org/user/3092403"
+                },
+                {
+                    "name": "Docc",
+                    "homepage": "https://www.drupal.org/user/310132"
                 },
                 {
                     "name": "gnuget",
@@ -3563,6 +3563,10 @@
                 {
                     "name": "jmiccolis",
                     "homepage": "https://www.drupal.org/user/31731"
+                },
+                {
+                    "name": "Kristen Pol",
+                    "homepage": "https://www.drupal.org/user/8389"
                 },
                 {
                     "name": "nedjo",
@@ -4423,6 +4427,10 @@
                     "name": "Brian Gilbert (realityloop).",
                     "homepage": "https://www.drupal.org/u/realityloop",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "lhangea",
+                    "homepage": "https://www.drupal.org/user/2743803"
                 },
                 {
                     "name": "miro_dietiker",
@@ -6422,8 +6430,8 @@
             ],
             "authors": [
                 {
-                    "name": "hubdrop",
-                    "homepage": "https://www.drupal.org/user/2750597"
+                    "name": "jcnventura",
+                    "homepage": "https://www.drupal.org/user/122464"
                 },
                 {
                     "name": "yannickoo",
@@ -8667,7 +8675,7 @@
             "extra": {
                 "drupal": {
                     "version": "4.1.3",
-                    "datestamp": "1665573795",
+                    "datestamp": "1674225949",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -21350,7 +21358,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.1"
+        "php": ">=8.1"
     },
     "platform-dev": [],
     "platform-overrides": {
