@@ -36,6 +36,17 @@ export const Tabs = (knobTab) => {
       generalKnobTab,
     ),
     with_panels: boolean('With panels', true, generalKnobTab),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
