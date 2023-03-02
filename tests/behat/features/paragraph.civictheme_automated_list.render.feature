@@ -73,7 +73,7 @@ Feature: Automated list render
     And I should see the link "[TEST] Link below" with "https://example.com/below" in '.ct-list'
 
     # 'Show x of y' is not visible.
-    And I should not see an ".ct-list__rows-above" element
+    And I should not see an ".ct-list__results-count" element
 
     And I should see a ".ct-list__rows" element
     # 16 items = 15 pages - 2 pages unpublished + 3 events
@@ -102,7 +102,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__filters" element
 
     # 'Show x of y' is visible.
-    And I should see an ".ct-list__rows-above" element
+    And I should see an ".ct-list__results-count" element
 
     # Pager is visible and set to a number of pages in the view.
     And I should see an ".ct-list__pager" element
@@ -130,7 +130,7 @@ Feature: Automated list render
     And I should not see an ".ct-list__filters" element
 
     # 'Show x of y' is visible.
-    And I should see an ".ct-list__rows-above" element
+    And I should see an ".ct-list__results-count" element
 
     # Pager is visible and set to a custom number of pages.
     And I should see an ".ct-list__pager" element
@@ -154,7 +154,7 @@ Feature: Automated list render
     And I should see the text "[TEST] Automated list title"
 
     # 'Show x of y' is not visible.
-    And I should not see an ".ct-list__rows-above" element
+    And I should not see an ".ct-list__results-count" element
 
     And I should see 6 ".ct-item-grid__item" elements
     And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
