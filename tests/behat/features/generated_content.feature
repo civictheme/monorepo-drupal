@@ -18,4 +18,4 @@ Feature: Generated Content list
     And the response should contain "Generated Events"
 
     When I go to "generated-content"
-    Then I am in the "generated-content/components" path
+    Then I should be in the "generated-content/components" path

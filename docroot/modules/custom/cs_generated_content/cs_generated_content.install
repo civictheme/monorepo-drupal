@@ -12,7 +12,7 @@ use Drupal\redirect\Entity\Redirect;
 /**
  * Implements hook_install().
  */
-function cs_generated_content() {
+function cs_generated_content_install() {
   // Create menu item.
   $menu_link = MenuLinkContent::create([
     'menu_name' => 'civictheme-secondary-navigation',
