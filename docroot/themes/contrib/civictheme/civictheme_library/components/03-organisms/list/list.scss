@@ -47,16 +47,17 @@
     width: 100%;
   }
 
-  &__emptyresults {
-    padding: ct-spacing(6) 0;
+  &__results-count {
+    margin-bottom: ct-spacing(2);
   }
 
   &__rows-above {
-    padding: ct-spacing(2) 0 ct-spacing(2);
+    margin-bottom: ct-spacing(2);
   }
 
   &__rows-below {
-    padding: ct-spacing(2) 0 ct-spacing(2);
+    margin-top: ct-spacing(2);
+    margin-bottom: ct-spacing(2);
   }
 
   &__link-below {
@@ -70,12 +71,9 @@
     margin-top: ct-spacing(3);
   }
 
-  &__empty-results,
   &__feed_icons {
-    @include ct-content();
-
     @include ct-breakpoint(m) {
-      padding: ct-spacing(6) 0;
+      margin-bottom: ct-spacing(3);
     }
   }
 
