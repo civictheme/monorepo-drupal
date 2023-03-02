@@ -40,7 +40,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
       require_once __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations/01.helpers.inc';
       for ($i = 0; $i < 20; $i++) {
         $variations[] = [
-          'title' => sprintf('Page. %s %s', str_pad($i + 1, 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
+          'title' => sprintf('Page %s. %s', str_pad($i + 1, 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
           'thumbnail' => $helper::staticMediaItem('civictheme_image'),
           'summary' => 'Summary ' . $helper::staticSentence(100),
           'topics' => $helper::staticTerms('civictheme_topics', 1),
