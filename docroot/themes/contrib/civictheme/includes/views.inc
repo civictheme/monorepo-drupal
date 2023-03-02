@@ -31,10 +31,17 @@ function _civictheme_preprocess_views_view__view(&$variables) {
 
   $variables['attributes']['class'] = !empty($variables['dom_id']) ? 'js-view-dom-id-' . $variables['dom_id'] : Html::getUniqueId('js-view-dom-id');
 
-  // Header is displayed within List.
-  if (!empty($view->header['result']) && $view->getStyle()->getBaseId() == 'grid') {
-    $variables['rows_above'] = $view->header['result']->render();
-    unset($variables['header']);
+  if (!empty($view->header) && is_array($view->header)) {
+    // Extract 'results' into own variable.
+    if (!empty($view->header['result'])) {
+      $variables['results_count'] = $view->header['result']->render();
+      unset($view->header['result']);
+    }
+
+    // Render the rest of the header.
+    foreach ($view->header as $header_item) {
+      $variables['rows_above'][] = $header_item->render();
+    }
   }
 
   // Render 'exposed' as Filters component.
