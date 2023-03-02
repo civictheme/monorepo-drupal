@@ -5,8 +5,6 @@
 .ct-tabs {
   $root: &;
 
-  margin-top: ct-spacing(2);
-
   #{$root}__links {
     border-bottom-style: solid;
     border-bottom-width: ct-particle(0.125);
