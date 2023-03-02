@@ -11,7 +11,7 @@
  *   - is_new_window: [boolean] Open link in a new window.
  *   - is_external: [boolean] Link is external or not.
  * - filters: [string] Exposed filters.
- * - header: [string] Header slot.
+ * - results_count: [string] Results count.
  * - rows_above: [string] Content above rows.
  * - rows: [string] Rows content.
  * - rows_below: [string] Content below rows.
@@ -124,11 +124,23 @@
             {% if rows_above -%}
               <div class="container">
                 <div class="row">
+                  <div class="col-xxs-12 ct-list__rows-above">
+                      {{ rows_above }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block results_count %}
+            {% if results_count -%}
+              <div class="container">
+                <div class="row">
                   <div class="col-xxs-12">
                     {% include '@atoms/label/label.twig' with {
-                      content: rows_above,
+                      content: results_count,
                       theme: theme,
-                      modifier_class: 'ct-list__rows-above',
+                      modifier_class: 'ct-list__results-count',
                     } only %}
                   </div>
                 </div>
@@ -161,12 +173,15 @@
 
       {% block empty %}
         {% if empty is defined and (rows is not defined or rows is empty) -%}
-          <div class="ct-list__empty-results">
-            <div class="container">
-              <div class="row">
-                <div class="col-xxs-12">
-                  {{ empty }}
-                </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {% include '@atoms/paragraph/paragraph.twig' with {
+                  content: empty,
+                  allow_html: true,
+                  theme: theme,
+                  modifier_class: 'ct-list__empty-results',
+                } only %}
               </div>
             </div>
           </div>
