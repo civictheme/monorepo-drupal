@@ -47,7 +47,7 @@ function cs_generated_content_generated_content_create_file_file() {
   foreach ($generation_types as $generation_type => $asset_types) {
     foreach ($asset_types as $asset_type) {
       for ($i = 0; $i < $total_files_count_per_type; $i++) {
-        $filename = sprintf('Generated %s %s file %s %s', $generation_type, $asset_type, $i + 1, $helper::randomName(4));
+        $filename = sprintf('Generated %s %s file %s %s', $generation_type, $asset_type, $i + 1, $helper::staticName(4));
         $file = $helper->createFile($asset_type, [
           'filename' => str_replace(' ', '_', $filename),
         ], $generation_type);
