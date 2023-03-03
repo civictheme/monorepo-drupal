@@ -271,7 +271,8 @@ export const List = (knobTab) => {
         with_background: generalKnobs.with_background,
       });
 
-      generalKnobs.rows_above = `Showing ${cardsCount} of ${resultNumber}`;
+      generalKnobs.results_count = boolean('With result count', true, generalKnobTab) ? `Showing ${cardsCount} of ${resultNumber}` : null;
+      generalKnobs.rows_above = boolean('With content above rows', true, generalKnobTab) ? 'Example content above rows' : null;
       generalKnobs.rows_below = boolean('With content below rows', true, generalKnobTab) ? 'Example content below rows' : null;
     }
   }
