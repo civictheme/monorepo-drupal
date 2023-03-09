@@ -11,8 +11,7 @@ Feature: Tests the CivicTheme migration functionality
       | civictheme_migrate.invalid_json_1.json  | public://civictheme_migrate.invalid_json_1.json  | civictheme_migrate.invalid_json_1.json  |
 
     And I run drush "mr --group=civictheme_migrate"
-    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
-    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
+    And I run drush "cset civictheme_migrate.settings configuration_files [] -y"
 
   @api
   Scenario Outline: Only administrator can access the CivicTheme migration configuration form
@@ -104,5 +103,4 @@ Feature: Tests the CivicTheme migration functionality
 
     # Cleanup.
     When I run drush "mr --group=civictheme_migrate"
-    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
-    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
+    And I run drush "cset civictheme_migrate.settings configuration_files [] -y"
