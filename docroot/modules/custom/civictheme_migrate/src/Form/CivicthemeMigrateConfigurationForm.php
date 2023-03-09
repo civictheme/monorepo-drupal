@@ -8,6 +8,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Configure CivicTheme Migrate.
@@ -190,7 +191,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
 
     $form['remote']['media_endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Migration source Media JSON URL endpoints'),
+      '#title' => $this->t('Migration source Media Image JSON URL endpoints'),
       '#description' => $this->t('One URL each line'),
       '#default_value' => $config->get('remote')['media_endpoint'] ?? NULL,
       '#states' => [
@@ -207,31 +208,111 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#button_type' => 'primary',
     ];
 
-    $form['content_configuration_files'] = [
-      '#type' => 'managed_file',
-      '#title' => $this->t('Upload extracted content JSON Files'),
-      '#default_value' => $config->get('content_configuration_files'),
-      '#multiple' => TRUE,
-      '#progress_indicator' => 'bar',
-      '#progress_message' => $this->t('Uploading files...'),
-      '#upload_location' => 'private://civictheme_migrate/page',
-      '#upload_validators' => [
-        'file_validate_extensions' => ['json txt'],
-        'civictheme_migrate_validate_json' => ['civictheme_page'],
-      ],
+    $configuration_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : NULL;
+    $configuration_files_count = $configuration_files ? count($configuration_files) : 1;
+    $num_files = $form_state->get('num_files') ?? $configuration_files_count;
+    if (!$form_state->get('num_files')) {
+      $form_state->set('num_files', $num_files);
+    }
+    // We have to ensure that there is at least one fieldset.
+    if ($num_files === NULL) {
+      $form_state->set('num_files', 1);
+      $num_files = 1;
+    }
+
+    // Get a list of fields that were removed.
+    $removed_fields = $form_state->get('removed_fields');
+    // If no fields have been removed yet we use an empty array.
+    if ($removed_fields === NULL) {
+      $form_state->set('removed_fields', []);
+      $removed_fields = $form_state->get('removed_fields');
+    }
+
+    $form['#tree'] = TRUE;
+    $form['configuration'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Upload extracted JSON Files'),
     ];
 
-    $form['media_configuration_files'] = [
-      '#type' => 'managed_file',
-      '#title' => $this->t('Upload extracted media JSON Files'),
-      '#default_value' => $config->get('media_configuration_files'),
-      '#multiple' => TRUE,
-      '#progress_indicator' => 'bar',
-      '#progress_message' => $this->t('Uploading files...'),
-      '#upload_location' => 'private://civictheme_migrate/media_image',
-      '#upload_validators' => [
-        'file_validate_extensions' => ['json txt'],
-        'civictheme_migrate_validate_json' => ['civictheme_media'],
+    $form['configuration']['configuration_files'] = [
+      '#type' => 'fieldset',
+      '#prefix' => '<div id="configurations-fieldset-wrapper">',
+      '#suffix' => '</div>',
+    ];
+
+    for ($i = 0; $i < $num_files; $i++) {
+      if (in_array($i, $removed_fields)) {
+        // Skip if field was removed and move to the next field.
+        continue;
+      }
+      $form['configuration']['configuration_files'][$i] = [
+        '#type' => 'fieldset',
+        '#attributes' => [
+          'class' => ['container-inline'],
+        ],
+      ];
+      $form['configuration']['configuration_files'][$i]['json_configuration_type'] = [
+        '#type' => 'select',
+        '#required' => TRUE,
+        '#options' => [
+          'Node' => [
+            'civictheme_page' => $this->t('Page'),
+            // 'civictheme_event' => $this->t('Event'),
+            // 'civictheme_alert' => $this->t('Alert'),
+          ],
+          'Media' => [
+            'civictheme_media_image' => $this->t('Image'),
+            // 'civictheme_media_document' => $this->t('Document'),
+            // 'civictheme_media_audio' => $this->t('Audio'),
+            // 'civictheme_media_video' => $this->t('Video'),
+            // 'civictheme_media_remote_video' => $this->t('Remote video'),
+            // 'civictheme_media_icon' => $this->t('Icon'),
+          ],
+          'Menu' => [
+            // 'civictheme_menu_primary_navigation' => $this->t('Primary'),
+            // 'civictheme_menu_secondary_navigation' => $this->t('Secondary'),
+            // 'civictheme_menu_footer' => $this->t('Footer'),
+          ],
+        ],
+      ];
+      $form['configuration']['configuration_files'][$i]['json_configuration_files'] = [
+        '#type' => 'managed_file',
+        '#required' => TRUE,
+        '#default_value' => $config->get('content_configuration_files'),
+        '#multiple' => FALSE,
+        '#progress_indicator' => 'bar',
+        '#progress_message' => $this->t('Uploading files...'),
+        '#upload_location' => 'private://civictheme_migrate',
+        '#upload_validators' => [
+          'file_validate_extensions' => ['json txt'],
+        ],
+      ];
+      if (isset($configuration_files[$i])) {
+        $form['configuration']['configuration_files'][$i]['json_configuration_type']['#default_value'] = $configuration_files[$i]['json_configuration_type'];
+        $form['configuration']['configuration_files'][$i]['json_configuration_files']['#default_value'] = $configuration_files[$i]['json_configuration_files'];
+      }
+      if ($num_files > 1) {
+        $form['configuration']['configuration_files'][$i]['actions'] = [
+          '#type' => 'submit',
+          '#value' => $this->t('Remove Row'),
+          '#name' => $i,
+          '#submit' => ['::removeCallback'],
+          '#ajax' => [
+            'callback' => '::addmoreCallback',
+            'wrapper' => 'configurations-fieldset-wrapper',
+          ],
+          '#limit_validation_errors' => [],
+        ];
+      }
+    }
+    $form['configuration']['actions']['#type'] = 'actions';
+    $form['configuration']['actions']['add_more'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Add one more'),
+      '#submit' => ['::addOne'],
+      '#ajax' => [
+        'callback' => '::addmoreCallback',
+        'wrapper' => 'configurations-fieldset-wrapper',
       ],
     ];
 
@@ -251,18 +332,55 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
   }
 
   /**
+   * Submit handler for the "remove" button.
+   *
+   * Removes the corresponding line.
+   */
+  public function removeCallback(array &$form, FormStateInterface $form_state) {
+    $trigger = $form_state->getTriggeringElement();
+    $indexToRemove = $trigger['#name'];
+
+    unset($form['configuration']['configuration_files'][$indexToRemove]);
+    $configurationFieldset = $form_state->getValue('configuration');
+    unset($configurationFieldset['configuration_files'][$indexToRemove]);
+    $form_state->setValue('configuration', $configurationFieldset);
+
+    $removed_fields = $form_state->get('removed_fields');
+    $removed_fields[] = $indexToRemove;
+    $form_state->set('removed_fields', $removed_fields);
+
+    $form_state->setRebuild();
+  }
+
+  /**
+   * Callback for both ajax-enabled buttons.
+   *
+   * Selects and returns the fieldset with the names in it.
+   */
+  public function addmoreCallback(array &$form, FormStateInterface $form_state) {
+    return $form['configuration']['configuration_files'];
+  }
+
+  /**
+   * Submit handler for the "add-one-more" button.
+   *
+   * Increments the max counter and causes a rebuild.
+   */
+  public function addOne(array &$form, FormStateInterface $form_state) {
+    $files = $form_state->get('num_files');
+    $add_button = $files + 1;
+    $form_state->set('num_files', $add_button);
+    $form_state->setRebuild();
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $content_files = $form_state->getValue('content_configuration_files');
+      $content_files = $form_state->getValue('configuration')['configuration_files'];
       if (empty($content_files)) {
-        $form_state->setError($form['content_configuration_files'], $this->t('Page content migration files are required to generate a migration'));
-      }
-
-      $media_files = $form_state->getValue('content_configuration_files');
-      if (empty($media_files)) {
-        $form_state->setError($form['media_configuration_files'], $this->t('Media migration files are required to generate a migration'));
+        $form_state->setError($form['configuration']['configuration_files'], $this->t('Migration files are required to generate a migration'));
       }
     }
   }
@@ -278,10 +396,13 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     $this->saveConfig($form, $form_state);
 
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $migration_types = [
-        'content' => $form_state->getValue('content_configuration_files'),
-        'media' => $form_state->getValue('media_configuration_files'),
-      ];
+      $migrations = $form_state->getValue('configuration')['configuration_files'] ?? [];
+      $migration_types = [];
+      if ($migrations) {
+        foreach ($migrations as $migration) {
+          $migration_types[$migration['json_configuration_type']][] = current($migration['json_configuration_files']);
+        }
+      }
 
       $this->migrationManager->generateMigrations($migration_types);
 
@@ -306,8 +427,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     // Saving migration configuration files whether uploaded locally or
     // saved remotely.
     if ($this->isSaveConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
-      $config->set('content_configuration_files', $form_state->getValue('content_configuration_files'));
-      $config->set('media_configuration_files', $form_state->getValue('media_configuration_files'));
+      $config->set('configuration_files', Json::encode($form_state->getValue('configuration')['configuration_files']));
     }
     $config->set('migration_type', $form_state->getValue('migration_type'));
     $config->set('remote', [
@@ -334,20 +454,24 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     $file_types = [
       [
         'endpoint' => 'media_endpoint',
-        'config_key' => 'media_configuration_files',
+        'config_key' => 'civictheme_media_image',
       ],
       [
         'endpoint' => 'content_endpoint',
-        'config_key' => 'content_configuration_files',
+        'config_key' => 'civictheme_page',
       ],
     ];
     foreach ($file_types as $file_type) {
       $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue($file_type['endpoint'])));
       $config = $this->config('civictheme_migrate.settings');
+      $validators = [
+        'file_validate_extensions' => ['json txt'],
+        'civictheme_migrate_validate_json' => [$file_type['config_key']],
+      ];
       try {
-        $files = $this->migrationManager->retrieveRemoteFiles($urls, $form[$file_type['config_key']]['#upload_validators']);
-        $existing_files = $config->get($file_type['config_key']) ?? [];
-        $config->set($file_type['config_key'], array_merge($existing_files, $files));
+        $files = $this->migrationManager->retrieveRemoteFiles($urls, $validators);
+        $existing_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : [];
+        $config->set('configuration_files', Json::encode(array_merge($existing_files[$file_type['config_key']], $files)));
         $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
         $config->save();
       }
