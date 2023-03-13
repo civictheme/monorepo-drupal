@@ -83,6 +83,7 @@ Feature: Tests the CivicTheme migration functionality
     When I am logged in as an administrator
     And I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
+    And I select the radio button "None"
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
     And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
     And I press the "Retrieve files" button

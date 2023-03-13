@@ -289,7 +289,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
         $form['configuration']['configuration_files'][$i]['json_configuration_type']['#default_value'] = $configuration_files[$i]['json_configuration_type'];
         $form['configuration']['configuration_files'][$i]['json_configuration_files']['#default_value'] = $configuration_files[$i]['json_configuration_files'];
       }
-      if ($num_files > 1) {
+      if ($i >= 1) {
         $form['configuration']['configuration_files'][$i]['actions'] = [
           '#type' => 'submit',
           '#value' => $this->t('Remove Row'),
@@ -375,10 +375,29 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    $content_files = $form_state->getValue('configuration');
     if ($this->isGenerateMigrationSubmit($form_state)) {
-      $content_files = $form_state->getValue('configuration')['configuration_files'];
-      if (empty($content_files)) {
+      if (empty($content_files['configuration_files'])) {
         $form_state->setError($form['configuration']['configuration_files'], $this->t('Migration files are required to generate a migration'));
+      }
+    }
+    if ($this->isGenerateMigrationSubmit($form_state) || $this->isSaveConfigurationSubmit($form_state)) {
+      if (!empty($content_files['configuration_files'])) {
+        foreach ($content_files['configuration_files'] as $key => $migrations) {
+          if (empty($migrations['json_configuration_files'])) {
+            $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_files'], $this->t('Field Cannot be empty.'));
+          }
+          if (!empty($migrations['json_configuration_files'])) {
+            $fid = current($migrations['json_configuration_files']);
+            $validators = [
+              'civictheme_migrate_validate_json' => [$migrations['json_configuration_type']],
+            ];
+            $status = $this->migrationManager->validateFile($fid, $validators);
+            if (!$status) {
+              $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_files'], $this->t('JSON is malformed / invalid.'));
+            }
+          }
+        }
       }
     }
   }
