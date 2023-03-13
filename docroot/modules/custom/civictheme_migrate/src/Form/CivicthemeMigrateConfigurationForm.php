@@ -129,7 +129,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
         '_none' => $this->t('None'),
         'basic' => $this->t('Basic authentication'),
       ],
-      '#default_value' => ($config->get('remote')['auth_username'] ?? NULL) ? 'basic' : '_none',
+      '#default_value' => $config->get('remote')['auth_type'] ?? '_none',
     ];
 
     $form['remote']['auth_username'] = [
@@ -137,14 +137,14 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#title' => $this->t('Username'),
       '#states' => [
         'visible' => [
-          ':input[name="auth_type"]' => [
+          ':input[name="remote[auth_type]"]' => [
             ['value' => 'password'],
             'or',
             ['value' => 'basic'],
           ],
         ],
         'required' => [
-          ':input[name="auth_type"]' => [
+          ':input[name="remote[auth_type]"]' => [
             ['value' => 'password'],
             'or',
             ['value' => 'basic'],
@@ -160,14 +160,14 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       '#description' => $this->t('Password is not shown after saving'),
       '#states' => [
         'visible' => [
-          ':input[name="auth_type"]' => [
+          ':input[name="remote[auth_type]"]' => [
             ['value' => 'password'],
             'or',
             ['value' => 'basic'],
           ],
         ],
         'required' => [
-          ':input[name="auth_type"]' => [
+          ':input[name="remote[auth_type]"]' => [
             ['value' => 'password'],
             'or',
             ['value' => 'basic'],
@@ -253,7 +253,6 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       ];
       $form['configuration']['configuration_files'][$i]['json_configuration_type'] = [
         '#type' => 'select',
-        '#required' => TRUE,
         '#options' => [
           'Node' => [
             'civictheme_page' => $this->t('Page'),
@@ -277,7 +276,6 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       ];
       $form['configuration']['configuration_files'][$i]['json_configuration_files'] = [
         '#type' => 'managed_file',
-        '#required' => TRUE,
         '#default_value' => $config->get('content_configuration_files'),
         '#multiple' => FALSE,
         '#progress_indicator' => 'bar',
@@ -431,12 +429,12 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     }
     $config->set('migration_type', $form_state->getValue('migration_type'));
     $config->set('remote', [
-      'auth_type' => $form_state->getValue('auth_type'),
-      'auth_username' => $form_state->getValue('auth_username'),
-      'auth_password' => $form_state->getValue('auth_password'),
-      'auth_token' => $form_state->getValue('auth_token'),
-      'content_endpoint' => $form_state->getValue('content_endpoint'),
-      'media_endpoint' => $form_state->getValue('media_endpoint'),
+      'auth_type' => $form_state->getValue('remote')['auth_type'] ?? '_none',
+      'auth_username' => $form_state->getValue('remote')['auth_username'] ?? '',
+      'auth_password' => $form_state->getValue('remote')['auth_password'] ?? '',
+      'auth_token' => $form_state->getValue('remote')['auth_token'] ?? '' ?? '',
+      'content_endpoint' => $form_state->getValue('remote')['content_endpoint'] ?? '',
+      'media_endpoint' => $form_state->getValue('remote')['media_endpoint'] ?? '',
     ]);
     $config->save();
     $this->messenger()->addStatus($this->t('The configuration options have been saved.'));

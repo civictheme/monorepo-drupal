@@ -35,21 +35,22 @@ Feature: Tests the CivicTheme migration functionality
     And I select the radio button "Local"
     And I should see the text "Upload extracted content JSON Files"
     And I should not see the text "Connect to remote API to retrieve extracted content JSON files"
-    And I should not see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should not see a visible "textarea[name='media_endpoint'][required='required']" element
+    And I should not see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should not see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
     And I select the radio button "Remote"
     And I should see the text "Connect to remote API to retrieve extracted content JSON files"
     And I see the text "Migration source Page content JSON URL endpoints"
     And I see the text "Migration source Media Image JSON URL endpoints"
-    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
-    And I should not see a visible "input[name='auth_username'][required='required']" element
-    And I should not see a visible "input[name='auth_password'][required='required']" element
+    And I select the radio button "None"
+    And I should see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
+    And I should not see a visible "input[name='remote[auth_username]'][required='required']" element
+    And I should not see a visible "input[name='remote[auth_password]'][required='required']" element
     And I select the radio button "Basic authentication"
-    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
-    And I should see a visible "input[name='auth_username'][required='required']" element
-    And I should see a visible "input[name='auth_password'][required='required']" element
+    And I should see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
+    And I should see a visible "input[name='remote[auth_username]'][required='required']" element
+    And I should see a visible "input[name='remote[auth_password]'][required='required']" element
     And I should see the button "Retrieve files"
     And I should see the button "Save configuration"
 
