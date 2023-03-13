@@ -460,7 +460,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       ],
     ];
     foreach ($file_types as $file_type) {
-      $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue($file_type['endpoint'])));
+      $urls = explode("\n", str_replace("\r\n", "\n", $form_state->getValue('remote')[$file_type['endpoint']]));
       $config = $this->config('civictheme_migrate.settings');
       $validators = [
         'file_validate_extensions' => ['json txt'],
