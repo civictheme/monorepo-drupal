@@ -209,7 +209,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     ];
 
     $configuration_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : NULL;
-    $configuration_files_count = $configuration_files ? count($configuration_files) : 1;
+    $configuration_files_count = is_array($configuration_files) ? count($configuration_files) : 1;
     $num_files = $form_state->get('num_files') ?? $configuration_files_count;
     if (!$form_state->get('num_files')) {
       $form_state->set('num_files', $num_files);
@@ -254,6 +254,7 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
       $form['configuration']['configuration_files'][$i]['json_configuration_type'] = [
         '#type' => 'select',
         '#options' => [
+          '_none' => $this->t('None'),
           'Node' => [
             'civictheme_page' => $this->t('Page'),
             // 'civictheme_event' => $this->t('Event'),
@@ -384,17 +385,23 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
     if ($this->isGenerateMigrationSubmit($form_state) || $this->isSaveConfigurationSubmit($form_state)) {
       if (!empty($content_files['configuration_files'])) {
         foreach ($content_files['configuration_files'] as $key => $migrations) {
-          if (empty($migrations['json_configuration_files'])) {
+          if ($migrations['json_configuration_type'] != '_none' && empty($migrations['json_configuration_files'])) {
             $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_files'], $this->t('Field Cannot be empty.'));
           }
           if (!empty($migrations['json_configuration_files'])) {
-            $fid = current($migrations['json_configuration_files']);
-            $validators = [
-              'civictheme_migrate_validate_json' => [$migrations['json_configuration_type']],
-            ];
-            $status = $this->migrationManager->validateFile($fid, $validators);
-            if (!$status) {
-              $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_files'], $this->t('JSON is malformed / invalid.'));
+            if ($migrations['json_configuration_type'] == '_none') {
+              $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_type'], $this->t('Select a proper type.'));
+            }
+            else {
+              $fid = current($migrations['json_configuration_files']);
+              $validators = [
+                'civictheme_migrate_validate_json' => [$migrations['json_configuration_type']],
+              ];
+              $errors = $this->migrationManager->validateFile($fid, $validators);
+              if (!empty($errors)) {
+                $error = array_pop($errors);
+                $form_state->setError($form['configuration']['configuration_files'][$key]['json_configuration_files'], $error);
+              }
             }
           }
         }
@@ -486,9 +493,19 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
         'civictheme_migrate_validate_json' => [$file_type['config_key']],
       ];
       try {
-        $files = $this->migrationManager->retrieveRemoteFiles($urls, $validators);
+        $files = [];
+        $fids = $this->migrationManager->retrieveRemoteFiles($urls, $validators);
+        if ($fids) {
+          $files = [
+            'json_configuration_type' => $file_type['config_key'],
+            'json_configuration_files' => $fids,
+          ];
+        }
         $existing_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : [];
-        $config->set('configuration_files', Json::encode(array_merge($existing_files[$file_type['config_key']], $files)));
+        if (!empty($existing_files) && is_array($existing_files)) {
+          $files = array_push($existing_files, $files);
+        }
+        $config->set('configuration_files', Json::encode($files));
         $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
         $config->save();
       }

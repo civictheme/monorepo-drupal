@@ -229,14 +229,14 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
    * @param array $validators
    *   File upload validators.
    *
-   * @return bool
+   * @return null|array
    *   Return status.
    */
-  public function validateFile(string $fid, array $validators): bool {
+  public function validateFile(string $fid, array $validators): ? array {
     /** @var \Drupal\file\FileInterface $file */
     $file = $this->fileStorage->load($fid);
     $errors = file_validate($file, $validators);
-    return $errors ? FALSE : TRUE;
+    return $errors ?? NULL;
   }
 
   /**

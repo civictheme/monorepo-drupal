@@ -59,6 +59,7 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as a user with the "administrator" role
     And I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
+    And I select the radio button "None"
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
     And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
 
@@ -72,7 +73,7 @@ Feature: Tests the CivicTheme migration functionality
 
     When I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
-    Then I should see the message containing "Client error"
+    Then I should see "Client error"
 
   @api @javascript
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
@@ -90,7 +91,7 @@ Feature: Tests the CivicTheme migration functionality
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
     And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_2.json"
     And I press the "Retrieve files" button
-    Then I should see the message "Migration content files have been retrieved"
+    Then I should see "Migration content files have been retrieved"
 
     When I press the "Generate migration" button
     Then I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
