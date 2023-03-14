@@ -493,21 +493,22 @@ class CivicthemeMigrateConfigurationForm extends ConfigFormBase {
         'civictheme_migrate_validate_json' => [$file_type['config_key']],
       ];
       try {
-        $files = [];
         $fids = $this->migrationManager->retrieveRemoteFiles($urls, $validators);
         if ($fids) {
           $files = [
-            'json_configuration_type' => $file_type['config_key'],
-            'json_configuration_files' => $fids,
+            [
+              'json_configuration_type' => $file_type['config_key'],
+              'json_configuration_files' => $fids,
+            ],
           ];
+          $existing_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : [];
+          if (!empty($existing_files) && is_array($existing_files)) {
+            $files = array_merge($existing_files, $files);
+          }
+          $config->set('configuration_files', Json::encode($files));
+          $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
+          $config->save();
         }
-        $existing_files = $config->get('configuration_files') ? Json::decode($config->get('configuration_files')) : [];
-        if (!empty($existing_files) && is_array($existing_files)) {
-          $files = array_push($existing_files, $files);
-        }
-        $config->set('configuration_files', Json::encode($files));
-        $this->messenger()->addStatus($this->t('Migration content files have been retrieved'));
-        $config->save();
       }
       catch (\Exception $exception) {
         $this->messenger()->addError($exception->getMessage());
