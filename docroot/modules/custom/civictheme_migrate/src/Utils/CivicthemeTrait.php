@@ -345,10 +345,6 @@ trait CivicthemeTrait {
       'type' => $type,
     ]);
 
-    if ($type == 'civictheme_promo_card') {
-      print_r($options);
-    }
-
     // Attaching all fields to paragraph.
     foreach ($options as $field_name => $value) {
       $field_name = 'field_c_p_' . $field_name;
