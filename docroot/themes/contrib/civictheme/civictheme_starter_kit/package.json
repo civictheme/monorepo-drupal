@@ -24,7 +24,7 @@
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
-    "@integratedexperts/scss-variables-extractor": "^0.1.0",
+    "@alexskrypnyk/scss-variables-extractor": "^0.1.0",
     "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-knobs": "^6.3.1",
