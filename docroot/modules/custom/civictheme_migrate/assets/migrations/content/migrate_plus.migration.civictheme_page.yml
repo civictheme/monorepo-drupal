@@ -75,8 +75,9 @@ source:
       label: 'Banner theme'
       selector: banner/children/0/theme
   ids:
-    id:
+    alias:
       type: string
+      max_length: 2048
 process:
   title:
     - plugin: skip_on_empty

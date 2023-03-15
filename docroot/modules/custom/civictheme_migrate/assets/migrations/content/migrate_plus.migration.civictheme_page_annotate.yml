@@ -78,13 +78,20 @@ source:
       label: Components
       selector: content/children
   ids:
-    id:
+    alias:
       type: string
+      max_length: 2048
 process:
   nid:
     -
+      plugin: skip_on_empty
+      source: alias
+      method: row
+      message: 'URL is empty'
+    -
       plugin: migration_lookup
       migration: civictheme_page
+      source: alias
       no_stub: true
     -
       plugin: skip_on_empty
