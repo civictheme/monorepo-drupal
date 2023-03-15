@@ -165,13 +165,15 @@ class ContentComponentFactory {
     if (!empty($item_data['children'])) {
       $cards = [];
       if (!empty($item_data['children']['cards']['children'])) {
-        $type = "civictheme_" . $item_data['children']['cards']['type'];
         foreach ($item_data['children']['cards']['children'] as $children) {
-          $cards[] = [
-            'type' => $type,
-            'title' => $children['item_title'],
-            'summary' => $children['item_content']['value'],
-          ];
+          foreach ($children as $type => $card) {
+            $cards[] = [
+              'type' => "civictheme_" . $type,
+              'title' => $card['item_title'],
+              'summary' => $card['item_content']['value'] ?? '',
+              'links' => $card['item_links'] ?? [],
+            ];
+          }
         }
       }
 

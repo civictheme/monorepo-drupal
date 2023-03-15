@@ -715,13 +715,12 @@ trait CivicthemeTrait {
       return;
     }
 
-    // Slider slide.
+    // Cards.
     if (!empty($cards)) {
       foreach ($cards as $card_options) {
         if (!empty($card_options['type'])) {
           $type = $card_options['type'];
           unset($card_options['type']);
-          print_r($card_options);
           $card = self::civicthemeParagraphCreate($type, $card_options, TRUE);
           if (!empty($card)) {
             $paragraph->field_c_p_list_items->appendItem($card);

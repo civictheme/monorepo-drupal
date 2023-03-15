@@ -54,27 +54,45 @@
                         "type": "list",
                         "children": {
                             "cards": {
-                                "type": "promo_card",
+                                "type": "container",
                                 "children": [
                                     {
-                                        "item_title": "Get started with GovCMS",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>Understanding the steps to get started with GovCMS</p>"
-                                        }
-                                    },
-                                    {
-                                        "item_title": "Review my site",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>An exercise in opportunity&nbsp;</p>"
-                                        }
-                                    },
-                                    {
-                                        "item_title": "Keep accounts up to date",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>Keeping up good security practice</p>"
+                                        "promo_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "event_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "publication_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "service_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_links": [
+                                                {
+                                                    "uri": "http://example.com",
+                                                    "title": "Example link"
+                                                },
+                                                {
+                                                    "uri": "http://example.com/1",
+                                                    "title": "Example link 1"
+                                                }
+                                            ]
+                                        },
+                                        "subject_card": {
+                                            "item_title": "Get started with GovCMS"
                                         }
                                     }
                                 ]
@@ -200,27 +218,45 @@
                         "type": "list",
                         "children": {
                             "cards": {
-                                "type": "promo_card",
+                                "type": "container",
                                 "children": [
                                     {
-                                        "item_title": "Get started with GovCMS",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>Understanding the steps to get started with GovCMS</p>"
-                                        }
-                                    },
-                                    {
-                                        "item_title": "Review my site",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>An exercise in opportunity&nbsp;</p>"
-                                        }
-                                    },
-                                    {
-                                        "item_title": "Keep accounts up to date",
-                                        "item_content": {
-                                            "format": "rich_text",
-                                            "value": "<p>Keeping up good security practice</p>"
+                                        "promo_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "event_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "publication_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_content": {
+                                                "format": "rich_text",
+                                                "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                                            }
+                                        },
+                                        "service_card": {
+                                            "item_title": "Get started with GovCMS",
+                                            "item_links": [
+                                                {
+                                                    "uri": "http://example.com",
+                                                    "title": "Example link"
+                                                },
+                                                {
+                                                    "uri": "http://example.com/1",
+                                                    "title": "Example link 1"
+                                                }
+                                            ]
+                                        },
+                                        "subject_card": {
+                                            "item_title": "Get started with GovCMS"
                                         }
                                     }
                                 ]
