@@ -43,12 +43,21 @@ if [ -z "${DREVOPS_LINT_TYPE##*be*}" ]; then
   [ "${DREVOPS_LINT_BE_ALLOW_FAILURE}" -eq 1 ]
 fi
 
-if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ] && grep -q lint "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/package.json"; then
-  # Lint code using front-end linter.
-  npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library" lint && \
-  npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" lint || \
-  # Flag to allow lint to fail.
-  [ "${DREVOPS_LINT_FE_ALLOW_FAILURE}" -eq 1 ]
+# Lint code using front-end linter.
+if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
+  # Lint library.
+  if grep -q lint "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library/package.json" && [ -d "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library/node_modules" ]; then
+    npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library" lint || \
+    # Flag to allow lint to fail.
+    [ "${DREVOPS_LINT_FE_ALLOW_FAILURE}" -eq 1 ]
+  fi
+
+  # Lint base theme.
+  if grep -q lint "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/package.json" && [ -d "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/node_modules" ]; then
+    npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" lint || \
+    # Flag to allow lint to fail.
+    [ "${DREVOPS_LINT_FE_ALLOW_FAILURE}" -eq 1 ]
+  fi
 fi
 
 # Lint theme configuration.
