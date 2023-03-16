@@ -1,5 +1,3 @@
-https://salsadigital.atlassian.net/browse/CIVIC-<NUMBER>
-
 ## Checklist before requesting a review
 
 - [ ] I have formatted the subject to include ticket number as `[CIVIC-123] Verb in past tense with dot at the end.`

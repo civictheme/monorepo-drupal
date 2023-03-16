@@ -3,7 +3,7 @@
 // Extract CSS variables as object from SCSS file.
 //
 const fs = require('fs');
-const extractor = require('@integratedexperts/scss-variables-extractor');
+const extractor = require('@alexskrypnyk/scss-variables-extractor');
 
 const files = [
   './components_combined/00-base/_variables.base.scss',

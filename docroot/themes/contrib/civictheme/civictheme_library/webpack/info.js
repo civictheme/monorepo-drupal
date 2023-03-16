@@ -1,11 +1,19 @@
 // phpcs:ignoreFile
-const boxen = require('boxen');
-const chalk = require('chalk');
-const dedent = require('dedent');
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob-gitignore');
-const semver = require('semver');
+
+const options = {
+  paths: [
+    'node_modules',
+  ],
+};
+/* eslint-disable */
+const boxen = require(require.resolve('boxen', options));
+const chalk = require(require.resolve('chalk', options));
+const dedent = require(require.resolve('dedent', options));
+const glob = require(require.resolve('glob-gitignore', options));
+const semver = require(require.resolve('semver', options));
+/* eslint-enable */
 
 const defaultInfo = {
   version: '1.99.0',
