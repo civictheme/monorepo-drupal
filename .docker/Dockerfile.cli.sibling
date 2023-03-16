@@ -97,22 +97,11 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist -
 COPY docroot/themes/contrib/civictheme/civictheme_library/package.json docroot/themes/contrib/civictheme/civictheme_library/package* /app/docroot/themes/contrib/civictheme/civictheme_library/
 COPY docroot/themes/contrib/civictheme/ docroot/themes/contrib/civictheme/package* /app/docroot/themes/contrib/civictheme/
 
-# Install NodeJS dependencies.
-# Since Drupal does not use NodeJS for production, it does not matter if we
-# install development dependencies here - they are not exposed in any way.
-RUN npm --prefix docroot/themes/contrib/civictheme/civictheme_library install --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
-
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
 COPY . /app
 
-# Compile front-end assets. Running this after copying all files as we need
-# sources to compile assets.
-RUN cd /app/docroot/themes/contrib/civictheme/civictheme_library && npm run build
-RUN cd /app/docroot/themes/contrib/civictheme && npm run build
-
-# Create another subtheme in the same directory as CivicTheme.
+# Create a subtheme in the same directory as CivicTheme.
 RUN cd /app/docroot/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
 

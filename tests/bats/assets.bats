@@ -11,6 +11,8 @@ load _helper
 
   pushd "${dir}" >/dev/null || exit 1
 
+  [ ! -d "node_modules" ] && debug "Skipping tests" && return
+
   [ ! -d "dist" ] && npm run build
 
   # Files managed by the developer.
