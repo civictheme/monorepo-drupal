@@ -509,7 +509,7 @@ workflows:
       - build-drupal9-govcms-sibling:
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^release\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-no-subtheme:
