@@ -18,7 +18,10 @@ class CivicthemeMigrateValidatorBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['civictheme_migrate'];
+  protected static $modules = [
+    'civictheme_migrate',
+    'migrate',
+  ];
 
   /**
    * Validator instance.

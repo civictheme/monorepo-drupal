@@ -2,7 +2,6 @@
 
 namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\civictheme_migrate\ContentComponentFactory;
 use Drupal\migrate\MigrateExecutableInterface;
@@ -41,11 +40,10 @@ class ContentComponents extends ProcessPluginBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentComponentFactory $factory, MigratePluginManager $migrate_plugin_manager, Connection $database) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentComponentFactory $factory, MigratePluginManager $migrate_plugin_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->factory = $factory;
     $this->migratePluginManager = $migrate_plugin_manager;
-    $this->database = $database;
   }
 
   /**
@@ -57,8 +55,7 @@ class ContentComponents extends ProcessPluginBase implements ContainerFactoryPlu
       $plugin_id,
       $plugin_definition,
       $container->get('civictheme_migrate.migration.content_component_factory'),
-      $container->get('plugin.manager.migrate.process'),
-      $container->get('database')
+      $container->get('plugin.manager.migrate.process')
     );
   }
 

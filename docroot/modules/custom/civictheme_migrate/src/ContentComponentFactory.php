@@ -3,12 +3,12 @@
 namespace Drupal\civictheme_migrate;
 
 use Drupal\Component\Utility\NestedArray;
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\civictheme_migrate\Utils\CivicthemeTrait;
 use Drupal\migrate\Plugin\MigratePluginManager;
 use Drupal\paragraphs\ParagraphInterface;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Content Component Factory.
@@ -37,15 +37,22 @@ class ContentComponentFactory {
    *
    * @param \Drupal\migrate\Plugin\MigratePluginManager $migrate_plugin_manager
    *   Migrate plugin manager.
-   * @param \Drupal\Core\Database\Connection $database
-   *   The database connection.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity type manager.
    */
-  public function __construct(MigratePluginManager $migrate_plugin_manager, Connection $database, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(MigratePluginManager $migrate_plugin_manager, EntityTypeManagerInterface $entity_type_manager) {
     $this->migratePluginManager = $migrate_plugin_manager;
-    $this->database = $database;
     $this->entityTypeManager = $entity_type_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('plugin.manager.migrate.process'),
+      $container->get('entity_type.manager'),
+    );
   }
 
   /**
@@ -70,17 +77,10 @@ class ContentComponentFactory {
 
     $components = [];
     foreach ($items as $item) {
-      foreach ($item as $item_type => $item_data) {
-        $component = $this->createComponent($item_type, $item_data, $context);
+      foreach ($item as $component_type => $item_data) {
+        $component = $this->createComponent($component_type, $item_data, $context);
         if ($component instanceof ParagraphInterface) {
           $components[] = $component;
-        }
-        elseif (is_array($component)) {
-          foreach ($component as $component_item) {
-            if ($component_item instanceof ParagraphInterface) {
-              $components[] = $component_item;
-            }
-          }
         }
       }
     }
@@ -91,7 +91,7 @@ class ContentComponentFactory {
   /**
    * Create a single component.
    *
-   * @param string $item_type
+   * @param string $component_type
    *   The type of the component to create.
    * @param mixed $item_data
    *   The item data to create the component.
@@ -101,8 +101,8 @@ class ContentComponentFactory {
    * @return mixed|null
    *   The component.
    */
-  public function createComponent(string $item_type, $item_data, array &$context) {
-    $method = $this->getFactoryMethod($item_type);
+  public function createComponent(string $component_type, $item_data, array &$context) {
+    $method = $this->getFactoryMethod($component_type);
     if ($method) {
       return call_user_func_array([$this, $method], [$item_data, &$context]);
     }
@@ -161,14 +161,14 @@ class ContentComponentFactory {
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function generateList($item_data, array &$context): ?ParagraphInterface {
+  protected function generateManualList($item_data, array &$context): ?ParagraphInterface {
     if (!empty($item_data['children'])) {
       $cards = [];
       if (!empty($item_data['children']['cards']['children'])) {
         foreach ($item_data['children']['cards']['children'] as $children) {
           foreach ($children as $type => $card) {
             $cards[] = [
-              'type' => "civictheme_" . $type,
+              'type' => 'civictheme_' . $type,
               'title' => $card['item_title'],
               'summary' => $card['item_content']['value'] ?? '',
               'links' => $card['item_links'] ?? [],

@@ -184,22 +184,6 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Static Topics.
-   */
-  public static function civicthemeStaticTopics($count = NULL) {
-    return static::staticTerms('civictheme_topics', $count);
-  }
-
-  /**
-   * Static Topic.
-   */
-  public static function civicthemeStaticTopic() {
-    $entities = static::civicthemeStaticTopics(1);
-
-    return count($entities) > 0 ? reset($entities) : NULL;
-  }
-
-  /**
    * Expose single listing filter type.
    */
   public static function civicThemeExposeSingleFilter() {
@@ -214,23 +198,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Static Site sections.
-   */
-  public static function civicthemeStaticSiteSections($count = NULL) {
-    return static::staticTerms('civictheme_site_sections', $count);
-  }
-
-  /**
-   * Static Site section.
-   */
-  public static function civicthemeStaticSiteSection() {
-    $entities = static::civicthemeStaticSiteSections(1);
-
-    return count($entities) > 0 ? reset($entities) : NULL;
-  }
-
-  /**
-   * Generic component attach helper.
+   * Generic component create helper.
    */
   public static function civicthemeComponentCreate($type, $options) {
     $method = 'civicthemeParagraph' . str_replace(' ', '', (ucwords(str_replace('_', ' ', $type)))) . 'Create';
@@ -271,7 +239,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Content paragraph to a node.
+   * Create Content paragraph.
    */
   public static function civicthemeParagraphContentCreate($options) {
     if (empty($options['content'])) {
@@ -290,7 +258,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Accordion paragraph to a node.
+   * Create Accordion paragraph.
    */
   public static function civicthemeParagraphAccordionCreate($options) {
     $options += [
@@ -381,7 +349,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Attachment paragraph to a node.
+   * Create Attachment paragraph.
    */
   public static function civicthemeParagraphAttachmentCreate($options) {
     $defaults = [
@@ -404,7 +372,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Callout paragraph to a node.
+   * Create Callout paragraph.
    */
   public static function civicthemeParagraphCalloutCreate($options) {
     $defaults = [
@@ -427,7 +395,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Campaign paragraph to a node.
+   * Create Campaign paragraph.
    */
   public static function civicthemeParagraphCampaignCreate($options) {
     $defaults = [
@@ -455,7 +423,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Iframe paragraph to a node.
+   * Create Iframe paragraph.
    */
   public static function civicthemeParagraphIframeCreate($options) {
     $defaults = [
@@ -478,7 +446,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Map paragraph to a node.
+   * Create Map paragraph.
    */
   public static function civicthemeParagraphMapCreate($options) {
     $defaults = [
@@ -502,7 +470,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Next Step paragraph to a node.
+   * Create Next Step paragraph.
    */
   public static function civicthemeParagraphNextStepCreate($options) {
     $defaults = [
@@ -527,7 +495,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Promo paragraph to a node.
+   * Create Promo paragraph.
    */
   public static function civicthemeParagraphPromoCreate($options) {
     $defaults = [
@@ -551,7 +519,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Quote paragraph to a node.
+   * Create Quote paragraph.
    */
   public static function civicthemeParagraphQuoteCreate($options) {
     $defaults = [
@@ -575,7 +543,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Automated list paragraph to a node.
+   * Create Automated list paragraph.
    */
   public static function civicthemeParagraphAutomatedListCreate($options) {
     $defaults = [
@@ -621,7 +589,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Webform paragraph to a node.
+   * Create Webform paragraph.
    */
   public static function civicthemeParagraphWebformCreate($options) {
     $defaults = [
@@ -644,7 +612,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Slider paragraph to a node.
+   * Create Slider paragraph.
    */
   public static function civicthemeParagraphSliderCreate($options) {
     $defaults = [
@@ -687,7 +655,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Card container paragraph to a node.
+   * Create Card container paragraph.
    */
   public static function civicthemeParagraphManualListCreate($options) {
     $defaults = [
@@ -734,7 +702,7 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Search paragraph to a node.
+   * Create Search paragraph.
    */
   public static function civicthemeParagraphSearchCreate($options) {
     $defaults = [
