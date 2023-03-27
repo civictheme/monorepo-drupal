@@ -41,7 +41,7 @@ class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase
    * @dataProvider dataProviderMedia
    */
   public function testMediaJsonSchema(mixed $data, $expected, $message = NULL): void {
-    $this->testJsonValidity($data, 'civictheme_media', $expected, $message);
+    $this->testJsonValidity($data, 'civictheme_media_image', $expected, $message);
   }
 
   /**

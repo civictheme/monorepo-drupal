@@ -11,8 +11,7 @@ Feature: Tests the CivicTheme migration functionality
       | civictheme_migrate.invalid_json_1.json  | public://civictheme_migrate.invalid_json_1.json  | civictheme_migrate.invalid_json_1.json  |
 
     And I run drush "mr --group=civictheme_migrate"
-    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
-    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
+    And I run drush "cset civictheme_migrate.settings configuration_files [] -y"
 
   @api
   Scenario Outline: Only administrator can access the CivicTheme migration configuration form
@@ -36,21 +35,22 @@ Feature: Tests the CivicTheme migration functionality
     And I select the radio button "Local"
     And I should see the text "Upload extracted content JSON Files"
     And I should not see the text "Connect to remote API to retrieve extracted content JSON files"
-    And I should not see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should not see a visible "textarea[name='media_endpoint'][required='required']" element
+    And I should not see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should not see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
     And I select the radio button "Remote"
     And I should see the text "Connect to remote API to retrieve extracted content JSON files"
     And I see the text "Migration source Page content JSON URL endpoints"
-    And I see the text "Migration source Media JSON URL endpoints"
-    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
-    And I should not see a visible "input[name='auth_username'][required='required']" element
-    And I should not see a visible "input[name='auth_password'][required='required']" element
+    And I see the text "Migration source Media Image JSON URL endpoints"
+    And I select the radio button "None"
+    And I should see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
+    And I should not see a visible "input[name='remote[auth_username]'][required='required']" element
+    And I should not see a visible "input[name='remote[auth_password]'][required='required']" element
     And I select the radio button "Basic authentication"
-    And I should see a visible "textarea[name='content_endpoint'][required='required']" element
-    And I should see a visible "textarea[name='media_endpoint'][required='required']" element
-    And I should see a visible "input[name='auth_username'][required='required']" element
-    And I should see a visible "input[name='auth_password'][required='required']" element
+    And I should see a visible "textarea[name='remote[content_endpoint]'][required='required']" element
+    And I should see a visible "textarea[name='remote[media_endpoint]'][required='required']" element
+    And I should see a visible "input[name='remote[auth_username]'][required='required']" element
+    And I should see a visible "input[name='remote[auth_password]'][required='required']" element
     And I should see the button "Retrieve files"
     And I should see the button "Save configuration"
 
@@ -59,20 +59,21 @@ Feature: Tests the CivicTheme migration functionality
     Given I am logged in as a user with the "administrator" role
     And I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
+    And I select the radio button "None"
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
-    And I fill in "Migration source Media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
+    And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
 
     When I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     Then I should see the text "JSON is malformed / invalid"
 
-    When I fill in "Migration source Media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
+    When I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.invalid_json_1.json"
     And I press the "Retrieve files" button
     Then I should see the text "JSON is malformed / invalid"
 
     When I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/file-does-not-exist.json"
     And I press the "Retrieve files" button
-    Then I should see the message containing "Client error"
+    Then I should see "Client error"
 
   @api @javascript
   Scenario: Valid Extracted content JSON can be imported and a Migration can be setup
@@ -83,13 +84,14 @@ Feature: Tests the CivicTheme migration functionality
     When I am logged in as an administrator
     And I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
+    And I select the radio button "None"
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_1.json"
-    And I fill in "Migration source Media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
+    And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_1.json"
     And I press the "Retrieve files" button
     And I fill in "Migration source Page content JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.page_content_2.json"
-    And I fill in "Migration source Media JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_2.json"
+    And I fill in "Migration source Media Image JSON URL endpoints" with "http://nginx:8080/sites/default/files/civictheme_migrate.media_content_2.json"
     And I press the "Retrieve files" button
-    Then I should see the message "Migration content files have been retrieved"
+    Then I should see "Migration content files have been retrieved"
 
     When I press the "Generate migration" button
     Then I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
@@ -104,5 +106,4 @@ Feature: Tests the CivicTheme migration functionality
 
     # Cleanup.
     When I run drush "mr --group=civictheme_migrate"
-    And I run drush "cset civictheme_migrate.settings content_configuration_files [] -y"
-    And I run drush "cset civictheme_migrate.settings media_configuration_files [] -y"
+    And I run drush "cset civictheme_migrate.settings configuration_files [] -y"
