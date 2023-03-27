@@ -1,0 +1,40 @@
+name: Post opened issue to Jira
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  issue_opened:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        uses: atlassian/gajira-login@v3
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+      - name: Create issue
+        id: create
+        uses: atlassian/gajira-create@v3
+        with:
+          project: ${{ vars.JIRA_PROJECT_KEY }}
+          issuetype: Story
+          summary: "${{ github.event.issue.title }}"
+          description: |
+            GitHub URL: ${{ github.event.issue.html_url }}
+            
+            ${{ github.event.issue.body }}
+          fields: '{"customfield_11600": "${{ github.event.issue.number }}"}'
+
+      - name: Append JIRA issue number to GitHub issue
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'update-issue'
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            
+            ---
+            JIRA: ${{ steps.create.outputs.issue }}
+          update-mode: 'append'
