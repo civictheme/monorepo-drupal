@@ -139,7 +139,7 @@ services:
 
   # Chrome container, used for browser testing.
   chrome:
-    image: selenium/standalone-chrome:4.5.2-20221021
+    image: selenium/standalone-chrome
     shm_size: '1gb' # Increase '/dev/shm' partition size to avoid browser crashing.
     <<: *default-volumes # Use default volumes to provide access to test fixtures.
     environment:

@@ -36,18 +36,11 @@ civictheme_migrate.settings:
           label: 'Remote Media JSON Endpoints'
           type: string
           nullable: true
-    content_configuration_files:
-      label: 'List of page content JSON files'
+    configuration_files:
+      label: 'List of JSON files'
       type: 'sequence'
       nullable: true
       sequence:
-        label: 'Migration file ids'
-        type: 'string'
-    media_configuration_files:
-      label: 'List of media content JSON files'
-      type: 'sequence'
-      nullable: true
-      sequence:
-        label: 'Migration file ids'
+        label: 'Migration file info'
         type: 'string'
 
