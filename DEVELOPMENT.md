@@ -1,39 +1,7 @@
-CivicTheme theme development
+CivicTheme Drupal theme development
 -----------------------
 
-## Terminology
-
-- CivicTheme theme - CivicTheme Drupal theme, developed in this repository
-  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme).
-- CivicTheme Library - CivicTheme front-end library, developed in this repository
-  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme_library).
-- Demo theme, consumer theme, reference theme - a theme that uses CivicTheme
-  Drupal theme as a base theme.
-- Reference site, development site - an example site (this repository) that uses
-  CivicTheme Drupal theme to demonstrate all components.
-
-## Requirements and constraints
-
-- CivicTheme theme MAY be used out of the box without any customisations.
-- CivicTheme theme MUST NOT be changed for customisations. If customisations are
-  required - a consumer theme MUST be created and used as a sub-theme of the CivicTheme theme.
-- CivicTheme theme MUST be fully compatible with GovCMS 9 SaaS:
-  - MUST NOT have any modules
-  - MUST NOT have any libraries
-  - MUST NOT rely on GovCMS content structures
-  - MUST assume that FE compilation happens on local machine and then committed
-    to repository
-- MUST provide a static version of compiled Storybook for the CivicTheme reference
-  site (this site).
-- MUST provide a static version of compiled Storybook for the CivicTheme-based
-  consumer site.
-
-## Agreements
-
-- Config is stored in the `civictheme` theme's `config/install` and
-  `config/optional` directories.
-- Content types are prefixed with `civictheme_`.
-- Field names are prefixed with `field_c_`.
+See documentation for [UI kit](https://docs.civictheme.io/ui-kit) and [Drupal theme](https://docs.civictheme.io/drupal-theme) first.
 
 ## Custom Drupal site building scripts
 
