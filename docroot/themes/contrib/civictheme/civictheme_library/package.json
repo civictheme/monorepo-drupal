@@ -2,9 +2,10 @@
   "name": "civictheme",
   "version": "1.99.0",
   "private": true,
-  "description": "CivicTheme components library with Storybook integration.",
+  "description": "CivicTheme UI kit with Storybook integration.",
   "keywords": [
     "component library",
+    "ui kit",
     "design system",
     "pattern library",
     "storybook",
