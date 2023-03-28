@@ -40,14 +40,14 @@ jobs:
           issuetype: Story
           summary: "${{ github.event.issue.title }}"
           description: ${{ env.JIRA_CONTENT }}
-          fields: '{"customfield_11600": "${{ github.event.issue.number }}"}'
+          fields: '{"customfield_11600": "${{ github.event.issue.html_url }}"}'
 
       - name: Append JIRA issue number to GitHub issue
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'update-issue'
           issue-number: ${{ github.event.issue.number }}
-          body: |            
+          body: |
             <br/>
             ---
             JIRA: ${{ steps.create.outputs.issue }}
