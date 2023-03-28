@@ -9,6 +9,23 @@ jobs:
     if: ${{ !github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
+      - name: Create comment body file
+        run: echo "${{ github.event.comment.body }}" > ${{ runner.temp }}/_github_workflow/comment.md
+
+      - name: Convert GitHub markdown to Jira markup
+        uses: docker://pandoc/core:3.1
+        with:
+          args: --from gfm --to jira --output=/github/workflow/comment.jira /github/workflow/comment.md
+
+      - name: Put output to the variable
+        run: |
+          echo 'JIRA_CONTENT<<EOF' >> $GITHUB_ENV
+          cat ${{ runner.temp }}/_github_workflow/comment.jira >> $GITHUB_ENV
+          echo >> $GITHUB_ENV
+          echo "----" >> $GITHUB_ENV
+          echo "GitHub comment: ${{ github.event.comment.html_url }}" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
       - name: Login
         uses: atlassian/gajira-login@v3
         env:
@@ -19,7 +36,7 @@ jobs:
       - name: Find JIRA ticket in the issue body
         id: find_key
         run: |
-          jira_id="$(echo "${{ github.event.issue.body }}" | grep -o -E '${{ vars.JIRA_PROJECT_KEY }}\-[0-9]+')"
+          jira_id="$(echo "${{ github.event.issue.body }}" | grep -o -E '${{ vars.JIRA_PROJECT_KEY }}\-[0-9]+')" || true
           echo "jira_id=$jira_id" >> $GITHUB_OUTPUT
 
       - name: Comment on Jira issue
@@ -27,8 +44,4 @@ jobs:
         if: ${{ startsWith(steps.find_key.outputs.jira_id, format('{0}-', vars.JIRA_PROJECT_KEY)) }}
         with:
           issue: ${{ steps.find_key.outputs.jira_id }}
-          comment: |
-            ${{ github.event.comment.body }}
-            
-            -----
-            GitHub comment: ${{ github.event.comment.html_url }}
+          comment: ${{ env.JIRA_CONTENT }}

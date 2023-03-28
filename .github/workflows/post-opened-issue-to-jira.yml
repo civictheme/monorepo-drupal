@@ -8,6 +8,23 @@ jobs:
   issue_opened:
     runs-on: ubuntu-latest
     steps:
+      - name: Create issue body file
+        run: echo "${{ github.event.issue.body }}" > ${{ runner.temp }}/_github_workflow/issue.md
+
+      - name: Convert GitHub markdown to Jira markup
+        uses: docker://pandoc/core:3.1
+        with:
+          args: --from gfm --to jira --output=/github/workflow/issue.jira /github/workflow/issue.md
+
+      - name: Put output to the variable
+        run: |                   
+          echo 'JIRA_CONTENT<<EOF' >> $GITHUB_ENV
+          cat ${{ runner.temp }}/_github_workflow/issue.jira >> $GITHUB_ENV
+          echo >> $GITHUB_ENV
+          echo "----" >> $GITHUB_ENV
+          echo "GitHub issue: ${{ github.event.issue.html_url }}" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
       - name: Login
         uses: atlassian/gajira-login@v3
         env:
@@ -22,10 +39,7 @@ jobs:
           project: ${{ vars.JIRA_PROJECT_KEY }}
           issuetype: Story
           summary: "${{ github.event.issue.title }}"
-          description: |
-            GitHub URL: ${{ github.event.issue.html_url }}
-            
-            ${{ github.event.issue.body }}
+          description: ${{ env.JIRA_CONTENT }}
           fields: '{"customfield_11600": "${{ github.event.issue.number }}"}'
 
       - name: Append JIRA issue number to GitHub issue
@@ -33,8 +47,8 @@ jobs:
         with:
           actions: 'update-issue'
           issue-number: ${{ github.event.issue.number }}
-          body: |
-            
+          body: |            
+            <br/>
             ---
             JIRA: ${{ steps.create.outputs.issue }}
           update-mode: 'append'
