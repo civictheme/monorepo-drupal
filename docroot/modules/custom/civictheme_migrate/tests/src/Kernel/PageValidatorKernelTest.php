@@ -9,6 +9,7 @@ namespace Drupal\Tests\civictheme_migrate\Kernel;
  * Test cases for validating civictheme_page JSON migration source files.
  *
  * @group civictheme_migrate
+ * @group site:kernel
  */
 class PageValidatorKernelTest extends ValidatorKernelTestBase {
 

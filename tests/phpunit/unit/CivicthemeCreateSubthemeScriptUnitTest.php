@@ -5,6 +5,7 @@
  *
  * Unit tests for civictheme_create_subtheme.php.
  *
+ * @group site:unit
  * @group scripts
  *
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort

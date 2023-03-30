@@ -9,6 +9,7 @@ namespace Drupal\Tests\civictheme_migrate\Kernel;
  * Test cases for validating JSON civictheme_media migration source files.
  *
  * @group civictheme_migrate
+ * @group site:kernel
  */
 class MediaValidatorKernelTest extends ValidatorKernelTestBase {
 
