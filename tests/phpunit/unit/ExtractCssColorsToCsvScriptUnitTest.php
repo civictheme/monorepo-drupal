@@ -5,6 +5,7 @@
  *
  * Unit tests for extract_css_colors_to_csv.php.
  *
+ * @group site:unit
  * @group scripts
  *
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort

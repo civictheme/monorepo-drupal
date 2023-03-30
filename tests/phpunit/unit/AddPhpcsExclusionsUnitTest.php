@@ -5,6 +5,7 @@
  *
  * Unit tests for add_phpcs_exclusions.php.
  *
+ * @group site:unit
  * @group scripts
  *
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort

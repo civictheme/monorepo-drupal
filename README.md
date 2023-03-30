@@ -71,9 +71,13 @@ Please refer to [FAQs](FAQs.md).
 
 ## More about CivicTheme
 
-- [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme_library)
+- [CivicTheme UI kit](https://github.com/salsadigitalauorg/civictheme_library)
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
 - [Migrations for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_migrate)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
+
+---
+
+For additional information, please refer to the [Documentation site](https://docs.civictheme.io/)
