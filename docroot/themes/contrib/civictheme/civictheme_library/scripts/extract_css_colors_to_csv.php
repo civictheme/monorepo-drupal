@@ -85,7 +85,7 @@ Options:
   --help                    This help.
 
 Examples:
-  php ${script_name} path/to/variables.css
+  php $script_name path/to/variables.css
 
 EOF;
   print PHP_EOL;
