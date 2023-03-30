@@ -10,6 +10,7 @@ use Drupal\civictheme\Color\CivicthemeColorUtility;
  * Test cases for color utility functions.
  *
  * @group CivicTheme
+ * @group site:unit
  */
 class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
 

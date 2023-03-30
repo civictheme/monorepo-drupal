@@ -10,6 +10,7 @@ use Drupal\civictheme\CivicthemeUtility;
  * Test cases for utility functions.
  *
  * @group CivicTheme
+ * @group site:unit
  */
 class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
 

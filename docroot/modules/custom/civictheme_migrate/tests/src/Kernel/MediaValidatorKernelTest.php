@@ -3,45 +3,23 @@
 // phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
 namespace Drupal\Tests\civictheme_migrate\Kernel;
 
-use Drupal\civictheme_migrate\CivicthemeMigrateValidator;
-use Opis\JsonSchema\Validator;
-
 /**
- * Class CivicthemeMediaMigrateValidatorTest.
+ * Class MediaValidatorKernelTest.
  *
- * Test cases for processing validating JSON Media migration source files.
+ * Test cases for validating JSON civictheme_media migration source files.
  *
- * @group CivicTheme
+ * @group civictheme_migrate
+ * @group site:kernel
  */
-class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = ['civictheme_migrate'];
-
-  /**
-   * Validator instance.
-   *
-   * @var \Drupal\civictheme_migrate\CivicthemeMigrateValidator
-   */
-  protected $validator;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->validator = new CivicthemeMigrateValidator(new Validator(), $this->container->get('extension.path.resolver'));
-  }
+class MediaValidatorKernelTest extends ValidatorKernelTestBase {
 
   /**
    * Test page JSON fields.
    *
    * @dataProvider dataProviderMedia
    */
-  public function testMediaJsonSchema(mixed $data, $expected, $message = NULL): void {
-    $this->testJsonValidity($data, 'civictheme_media_image', $expected, $message);
+  public function testMediaJsonSchema(mixed $data, $expected, $message = ''): void {
+    $this->assertJsonIsValid($data, 'civictheme_media_image', $expected, $message);
   }
 
   /**
@@ -94,24 +72,24 @@ class CivicthemeMediaMigrateValidatorTest extends CivicthemeMigrateValidatorBase
    */
   protected function getTestDataStructure($callback = NULL) {
     $thumbnail = (object) [
-      "uuid" => "f352fb5f-5319-4a09-a039-6b7080b31443",
-      "name" => "D10 launch.png",
-      "file" => "https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png",
-      "alt" => "Test alt text for thumbnail",
+      'uuid' => 'f352fb5f-5319-4a09-a039-6b7080b31443',
+      'name' => 'D10 launch.png',
+      'file' => 'https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png',
+      'alt' => 'Test alt text for thumbnail',
     ];
 
     $featured_image = (object) [
-      "uuid" => "f352fb5f-5319-4a09-a039-6b7080b31443",
-      "name" => "D10 launch.png",
-      "file" => "https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png",
-      "alt" => "Test alt text for thumbnail",
+      'uuid' => 'f352fb5f-5319-4a09-a039-6b7080b31443',
+      'name' => 'D10 launch.png',
+      'file' => 'https://www.civictheme.io/sites/default/files/images/2022-10/D10%20launch.png',
+      'alt' => 'Test alt text for thumbnail',
     ];
 
     $background = (object) [
-      "uuid" => "427186ad-c561-4441-9951-28399d8a4923",
-      "name" => "demo_banner-background.png",
-      "file" => "https://www.civictheme.io/sites/default/files/demo_banner-background.png",
-      "alt" => "",
+      'uuid' => '427186ad-c561-4441-9951-28399d8a4923',
+      'name' => 'demo_banner-background.png',
+      'file' => 'https://www.civictheme.io/sites/default/files/demo_banner-background.png',
+      'alt' => '',
     ];
 
     $data = [$thumbnail, $featured_image, $background];

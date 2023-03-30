@@ -29,11 +29,20 @@ set -e
 # Flag to allow Unit tests to fail.
 DREVOPS_TEST_UNIT_ALLOW_FAILURE="${DREVOPS_TEST_UNIT_ALLOW_FAILURE:-0}"
 
+# Group to run Unit tests.
+DREVOPS_TEST_UNIT_GROUP="${DREVOPS_TEST_UNIT_GROUP:-site:unit}"
+
 # Flag to allow Kernel tests to fail.
 DREVOPS_TEST_KERNEL_ALLOW_FAILURE="${DREVOPS_TEST_KERNEL_ALLOW_FAILURE:-0}"
 
+# Group to run Kernel tests.
+DREVOPS_TEST_KERNEL_GROUP="${DREVOPS_TEST_KERNEL_GROUP:-site:kernel}"
+
 # Flag to allow Functional tests to fail.
 DREVOPS_TEST_FUNCTIONAL_ALLOW_FAILURE="${DREVOPS_TEST_FUNCTIONAL_ALLOW_FAILURE:-0}"
+
+# Group to run Functional tests.
+DREVOPS_TEST_FUNCTIONAL_GROUP="${DREVOPS_TEST_FUNCTIONAL_GROUP:-site:functional}"
 
 # Flag to allow BDD tests to fail.
 DREVOPS_TEST_BDD_ALLOW_FAILURE="${DREVOPS_TEST_BDD_ALLOW_FAILURE:-0}"
@@ -70,7 +79,6 @@ if [ -z "${DREVOPS_TEST_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
   echo "==> Run front-end tests."
   if [ -d "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library/node_modules" ]; then
     npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library" test || \
-    # Flag to allow test to fail.
     [ "${DREVOPS_TEST_FE_ALLOW_FAILURE}" -eq 1 ]
   fi
 else
@@ -85,19 +93,25 @@ fi
 if [ -z "${DREVOPS_TEST_TYPE##*unit*}" ]; then
   echo "==> Run unit tests."
 
-  phpunit_opts=(-c /app/docroot/core/phpunit.xml.dist)
+  # Generic tests that do not require Drupal bootstrap.
+  phpunit_opts=()
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/unit.xml)
-
-  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Unit.*/' "$@" \
+  vendor/bin/phpunit "${phpunit_opts[@]:-}" tests/phpunit --group "${DREVOPS_TEST_UNIT_GROUP}" "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 
+  # Custom modules tests that require Drupal bootstrap.
+  phpunit_opts=(-c /app/docroot/core/phpunit.xml.dist)
+  [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/unit_modules.xml)
+  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom --group "${DREVOPS_TEST_UNIT_GROUP}" "$@" \
+  || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
+
+  # Custom theme tests that require Drupal bootstrap.
   if [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
-    vendor/bin/phpunit "${phpunit_opts[@]}" "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" --filter '/.*Unit.*/' "$@" \
+    phpunit_opts=(-c /app/docroot/core/phpunit.xml.dist)
+    [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/unit_themes.xml)
+    vendor/bin/phpunit "${phpunit_opts[@]}" "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" --group "${DREVOPS_TEST_UNIT_GROUP}" "$@" \
     || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
   fi
-
-  vendor/bin/phpunit "${phpunit_opts[@]}" tests/phpunit/unit/ --filter '/.*Unit.*/' "$@" \
-  || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 fi
 
 if [ -z "${DREVOPS_TEST_TYPE##*kernel*}" ]; then
@@ -106,7 +120,7 @@ if [ -z "${DREVOPS_TEST_TYPE##*kernel*}" ]; then
   phpunit_opts=(-c /app/docroot/core/phpunit.xml.dist)
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/kernel.xml)
 
-  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Kernel.*/' "$@" \
+  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom --group "${DREVOPS_TEST_KERNEL_GROUP}" "$@" \
   || [ "${DREVOPS_TEST_KERNEL_ALLOW_FAILURE:-0}" -eq 1 ]
 fi
 
@@ -116,7 +130,7 @@ if [ -z "${DREVOPS_TEST_TYPE##*functional*}" ]; then
   phpunit_opts=(-c /app/docroot/core/phpunit.xml.dist)
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/functional.xml)
 
-  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Functional.*/' "$@" \
+  vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom --group "${DREVOPS_TEST_FUNCTIONAL_GROUP}" "$@" \
   || [ "${DREVOPS_TEST_FUNCTIONAL_ALLOW_FAILURE:-0}" -eq 1 ]
 fi
 
