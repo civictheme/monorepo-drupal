@@ -1,69 +1,72 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "string",
-        "description": "Unique ID for the node"
-      },
-      "title": {
-        "type": "string",
-        "description": "Page title"
-      },
-      "alias": {
-        "type": "string",
-        "description": "Page url alias, validation ensures backslash at start of url alias",
-        "pattern": "^\\/[\\S]+$"
-      },
-      "summary": {
-        "type": "string",
-        "description": "Page summary"
-      },
-      "topics": {
-        "type": "string",
-        "description": "Comma delimited page topics"
-      },
-      "thumbnail": {
-        "type": "array",
-        "items": {
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "title": {
           "type": "string",
-          "description": "Media uuid"
-        }
-      },
-      "vertical_spacing": {
-        "type": "string",
-        "pattern": "top|bottom|both",
-        "description": "Page level vertical spacing"
-      },
-      "show_toc": {
-        "type": "boolean",
-        "description": "Whether to hide table of contents"
-      },
-      "hide_sidebar": {
-        "type": "boolean",
-        "description": "Whether to hide sidebar"
-      },
-      "show_last_updated_date": {
-        "type": "boolean",
-        "description": "Determines if last updated date is visible or not"
-      },
-      "last_updated_date": {
-        "type": "string",
-        "description": "Last updated date in `D MMM YYYY`format"
-      },
-      "banner": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Hardcoded Merlin UI Output",
-            "pattern": "container"
+          "description": "Page title"
+        },
+        "alias": {
+          "type": "string",
+          "description": "Page url alias, validation ensures backslash at start of url alias",
+          "pattern": "^\\/[\\S]+$"
+        },
+        "summary": {
+          "type": "object",
+          "description": "Page summary",
+          "properties": {
+            "format": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
           },
-          "children": {
-            "type": "array",
-            "contains": {
+          "required": [
+            "format",
+            "value"
+          ]
+        },
+        "topics": {
+          "type": "string",
+          "description": "Comma delimited page topics"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "vertical_spacing": {
+          "type": "string",
+          "pattern": "top|bottom|both",
+          "description": "Page level vertical spacing"
+        },
+        "show_toc": {
+          "type": "boolean",
+          "description": "Whether to hide table of contents"
+        },
+        "hide_sidebar": {
+          "type": "string",
+          "description": "Whether to hide sidebar"
+        },
+        "show_last_updated_date": {
+          "type": "string",
+          "description": "Determines if last updated date is visible or not"
+        },
+        "last_updated_date": {
+          "type": "string",
+          "description": "Last updated date in `D MMM YYYY`format"
+        },
+        "banner": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Hardcoded Merlin UI Output",
+              "pattern": "container"
+            },
+            "children": {
               "type": "object",
               "properties": {
                 "theme": {
@@ -82,40 +85,579 @@
                 },
                 "blend_mode": {
                   "type": "string",
-                  "description": "Banner blend mode",
+                   "description": "Banner blend mode",
                   "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
                 },
                 "featured_image": {
                   "type": "array",
-                  "items": {
-                    "type": "string",
-                    "description": "Media uuid"
-                  }
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "file": {
+                          "type": "string"
+                        },
+                        "uuid": {
+                          "type": "string"
+                        },
+                        "alt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "file",
+                        "uuid",
+                        "alt"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "file": {
+                          "type": "string"
+                        },
+                        "uuid": {
+                          "type": "string"
+                        },
+                        "alt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "file",
+                        "uuid",
+                        "alt"
+                      ]
+                    }
+                  ]
                 },
                 "background": {
                   "type": "array",
-                  "items": {
-                    "type": "string",
-                    "description": "Media uuid"
-                  }
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "file": {
+                          "type": "string"
+                        },
+                        "uuid": {
+                          "type": "string"
+                        },
+                        "alt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "file",
+                        "uuid",
+                        "alt"
+                      ]
+                    }
+                  ]
                 },
                 "hide_breadcrumb": {
-                  "type": "boolean",
+                  "type": "string",
                   "description": "Whether to hide breadcrumb in banner"
                 }
-              }
+              },
+              "required": [
+                "theme",
+                "title",
+                "blend_mode",
+                "featured_image",
+                "background",
+                "hide_breadcrumb"
+              ]
             }
-          }
+          },
+          "required": [
+            "type",
+            "children"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "text_content": {
+                      "type": "object",
+                      "properties": {
+                        "format": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "format",
+                        "value"
+                      ]
+                    },
+                    "manual_list": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "children": {
+                          "type": "object",
+                          "properties": {
+                            "cards": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "promo_card": {
+                                          "type": "object",
+                                          "properties": {
+                                            "item_title": {
+                                              "type": "string"
+                                            },
+                                            "item_content": {
+                                              "type": "object",
+                                              "properties": {
+                                                "format": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "format",
+                                                "value"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "item_title",
+                                            "item_content"
+                                          ]
+                                        },
+                                        "event_card": {
+                                          "type": "object",
+                                          "properties": {
+                                            "item_title": {
+                                              "type": "string"
+                                            },
+                                            "item_content": {
+                                              "type": "object",
+                                              "properties": {
+                                                "format": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "format",
+                                                "value"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "item_title",
+                                            "item_content"
+                                          ]
+                                        },
+                                        "publication_card": {
+                                          "type": "object",
+                                          "properties": {
+                                            "item_title": {
+                                              "type": "string"
+                                            },
+                                            "item_content": {
+                                              "type": "object",
+                                              "properties": {
+                                                "format": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "format",
+                                                "value"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "item_title",
+                                            "item_content"
+                                          ]
+                                        },
+                                        "service_card": {
+                                          "type": "object",
+                                          "properties": {
+                                            "item_title": {
+                                              "type": "string"
+                                            },
+                                            "item_links": {
+                                              "type": "array",
+                                              "items": [
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "uri": {
+                                                      "type": "string"
+                                                    },
+                                                    "title": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "uri",
+                                                    "title"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "uri": {
+                                                      "type": "string"
+                                                    },
+                                                    "title": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "uri",
+                                                    "title"
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "item_title",
+                                            "item_links"
+                                          ]
+                                        },
+                                        "subject_card": {
+                                          "type": "object",
+                                          "properties": {
+                                            "item_title": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "item_title"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "promo_card",
+                                        "event_card",
+                                        "publication_card",
+                                        "service_card",
+                                        "subject_card"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "children"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "cards"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "children"
+                      ]
+                    },
+                    "accordion": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "children": {
+                          "type": "object",
+                          "properties": {
+                            "accordion_title": {
+                              "type": "string"
+                            },
+                            "accordion_list": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "accordion_items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string"
+                                            },
+                                            "children": {
+                                              "type": "array",
+                                              "items": [
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "item_title": {
+                                                      "type": "string"
+                                                    },
+                                                    "item_content": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "format": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "format",
+                                                        "value"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "item_title",
+                                                    "item_content"
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "children"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "accordion_items"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "children"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "accordion_title",
+                            "accordion_list"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "children"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "text_content",
+                    "manual_list",
+                    "accordion"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "children"
+          ]
         }
-      }
-    },
-    "required": [
-      "id",
-      "title",
-      "alias",
-      "show_toc",
-      "hide_sidebar",
-      "show_last_updated_date"
-    ]
-  }
+      },
+      "required": [
+        "title",
+        "alias",
+        "summary",
+        "thumbnail",
+        "vertical_spacing",
+        "hide_sidebar",
+        "show_last_updated_date",
+        "last_updated_date",
+        "banner",
+        "content"
+      ]
+    }
+  ]
 }
