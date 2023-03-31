@@ -151,7 +151,7 @@ class CivicthemeMigrateManager implements ContainerInjectionInterface {
       $file_stream_wrappers[] = $file->getFileUri();
     }
     $migration_directory = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrations';
-    $migration_config_files = glob($migration_directory . '/*/*' . $migration_type . '.yml');
+    $migration_config_files = glob($migration_directory . '/*/*' . $migration_type . '*.yml');
     foreach ($migration_config_files as $migration_config_file) {
       $migration_config = file_get_contents($migration_config_file);
       $migration_config = $this->yaml->decode($migration_config);
