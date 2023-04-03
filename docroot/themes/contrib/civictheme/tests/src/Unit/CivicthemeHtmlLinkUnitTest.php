@@ -267,4 +267,63 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
     ];
   }
 
+  /**
+   * Test for _civictheme_process_html_content_links_get_email_regex().
+   *
+   * @dataProvider dataProviderEmailRegex
+   */
+  public function testEmail($string, $match) {
+    preg_match(_civictheme_process_html_content_links_get_email_regex(), $string, $matches);
+
+    if ($match) {
+      $this->assertEquals(3, count($matches));
+      $this->assertEquals($match, $matches[2]);
+    }
+    else {
+      $this->assertEquals(0, count($matches));
+    }
+  }
+
+  /**
+   * Data provider for testEmail().
+   *
+   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+   */
+  public function dataProviderEmailRegex() {
+    return [
+      ['a@example.com', 'a@example.com'],
+      ['a@example2.com', 'a@example2.com'],
+      ['a@e2xample2.com', 'a@e2xample2.com'],
+      ['a.a@e2xample2.com', 'a.a@e2xample2.com'],
+      ['a.a1@e2xample2.com', 'a.a1@e2xample2.com'],
+      ['a@e2xample2.com.au', 'a@e2xample2.com.au'],
+      ['a@e2xample2.digital', 'a@e2xample2.digital'],
+      ['a+b_c.d+e@e2xample2.digital', 'a+b_c.d+e@e2xample2.digital'],
+      ['a+b_c.d+e-f--g@e2xample2.digital', 'a+b_c.d+e-f--g@e2xample2.digital'],
+
+      ['  a+b_c.d+e@e2xample2.digital', 'a+b_c.d+e@e2xample2.digital'],
+      ["\ta+b_c.d+e@e2xample2.digital", 'a+b_c.d+e@e2xample2.digital'],
+      ["\na+b_c.d+e@e2xample2.digital", 'a+b_c.d+e@e2xample2.digital'],
+
+      ['', FALSE],
+      ['a@b.c', FALSE],
+      ['a.a@b.c', FALSE],
+      ['a.1@b.c', FALSE],
+      ['a1@b.c', FALSE],
+      ['a1.2@b.c', FALSE],
+
+      ['a@example.com.a', 'a@example.com'],
+      ['a@example.com.a.b', 'a@example.com'],
+      ['a@example.com.a.b.c', 'a@example.com'],
+
+      ['a@example.com.', 'a@example.com'],
+      ['a@example.com,', 'a@example.com'],
+      ['a@e2xample2.com.', 'a@e2xample2.com'],
+      ['1a@e2xample2.com.', '1a@e2xample2.com'],
+      ['1a@3e2xample2.com.', '1a@3e2xample2.com'],
+
+      ['<p>  a+b_c.d+e@e2xample2.digital.</p>', 'a+b_c.d+e@e2xample2.digital'],
+    ];
+  }
+
 }
