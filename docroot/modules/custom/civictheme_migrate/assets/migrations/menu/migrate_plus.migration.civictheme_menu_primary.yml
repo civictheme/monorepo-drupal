@@ -1,0 +1,71 @@
+# Migration configuration
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - civictheme_migrate
+id: civictheme_menu_items
+label: Menu items
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - civictheme_migrate
+migration_group: civictheme_migrate
+source:
+  plugin: menu_json
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  # URLs are the uploaded or remote files fetched during migration generation.
+  # This contains the stream wrappers of the locally hosted files.
+  #  urls:
+  urls: /app/merlin/crawled-data/menu.json
+  fields:
+    - name: id
+      label: 'ID'
+      selector: id
+    - name: title
+      label: 'Title'
+      selector: title
+    - name: url
+      label: 'Path'
+      selector: url
+    - name: parent
+      label: 'Parent'
+      selector: parent
+  ids:
+    id:
+      type: integer
+destination:
+  plugin: entity:menu_link_content
+  no_stub: true
+process:
+  bundle: menu_link_content
+  title:
+    - plugin: skip_on_empty
+      method: row
+      source: title
+  menu_name:
+    plugin: default_value
+    default_value: civictheme-primary-navigation
+  url:
+    - plugin: skip_on_empty
+      method: row
+      source: uri
+  external:
+    plugin: default_value
+    default_value: 0
+  weight: ID
+  expanded:
+    plugin: default_value
+    default_value: 1
+  enabled:
+    plugin: default_value
+    default_value: 1
+  parent:
+    plugin: menu_link_parent
+    source:
+      - parent
+      - '@menu_name'
+      - parent_name

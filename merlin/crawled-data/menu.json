@@ -1,0 +1,37 @@
+[
+  {
+    "url": "",
+    "title": "Home 1",
+    "description": null,
+    "options": [],
+    "enabled": "1",
+    "expanded": "0",
+    "weight": "0",
+    "menu_name": "civictheme-primary-navigation",
+    "link": { "uri": "route:\u003Cfront\u003E", "title": null, "options": [] }
+  },
+  {
+    "url": "http://google.com",
+    "title": "Test link 1",
+    "description": null,
+    "options": { "external": true },
+    "enabled": "1",
+    "expanded": "0",
+    "weight": "0",
+    "menu_name": "civictheme-primary-navigation",
+    "link": { "uri": "http://google.com", "title": "", "options": [] },
+    "children": [
+      {
+        "url": "",
+        "title": "Sub link 1",
+        "description": null,
+        "options": [],
+        "enabled": "1",
+        "expanded": "0",
+        "weight": "0",
+        "menu_name": "civictheme-primary-navigation",
+        "link": { "uri": "internal:/", "title": "", "options": [] }
+      }
+    ]
+  }
+]
