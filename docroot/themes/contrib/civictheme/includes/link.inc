@@ -34,7 +34,7 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   $link_class = 'ct-content-link ct-theme-light';
   $link_external_class = 'ct-content-link--external';
 
-  $email_pattern = '~(^|[\s\.,;\n\(])([a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})~';
+  $email_pattern = _civictheme_process_html_content_links_get_email_regex();
   $html = preg_replace($email_pattern, '$1<a href="mailto:$2">$2</a>', $html);
 
   $dom = Html::load($html);
@@ -97,4 +97,11 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   }
 
   return Html::serialize($dom);
+}
+
+/**
+ * Email pattern as regex string.
+ */
+function _civictheme_process_html_content_links_get_email_regex() {
+  return '~(^|[\s\.,;\n\(])([a-zA-Z0-9._+-]+@(?:[a-zA-Z0-9.-])+(?:\.[a-zA-Z]{2,}))~';
 }
