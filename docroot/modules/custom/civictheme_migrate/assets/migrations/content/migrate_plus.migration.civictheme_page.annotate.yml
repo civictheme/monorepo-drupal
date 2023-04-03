@@ -11,7 +11,7 @@ cck_plugin_method: null
 migration_tags:
   - civictheme_migrate
 migration_group: civictheme_migrate
-label: 'CivicTheme Page'
+label: 'CivicTheme Page Annotate'
 source:
   plugin: url
   data_fetcher_plugin: file
