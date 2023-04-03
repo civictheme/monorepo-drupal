@@ -64,19 +64,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/migrate_file": {
-            "type": "package",
-            "package": {
-                "name": "drupal/migrate_file",
-                "type": "drupal-module",
-                "version": "2.1.1",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/migrate_file-3288621.git",
-                    "reference": "9b971e83cc54acc84166bee794a82b577a161804"
-                }
-            }
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -124,11 +111,7 @@
         "patches": {
             "drupal/core": {
                 "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests": "https://www.drupal.org/files/issues/2023-03-30/3249443-d-9-5-43.patch",
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch",
-                "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch"
-            },
-            "drupal/webform": {
-                "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
             }
         },
         "drupal-scaffold": {
