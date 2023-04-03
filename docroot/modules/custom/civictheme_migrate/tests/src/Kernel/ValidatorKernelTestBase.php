@@ -25,7 +25,10 @@ abstract class ValidatorKernelTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['civictheme_migrate'];
+  protected static $modules = [
+    'civictheme_migrate',
+    'migrate',
+  ];
 
   /**
    * {@inheritdoc}
