@@ -13,6 +13,7 @@
         "drupal/config_filter": "^2.4",
         "drupal/config_ignore": "^2",
         "drupal/environment_indicator": "^4.0",
+        "drupal/config_inspector": "^2",
         "drupal/shield": "^1.7",
         "drupal/testmode": "^2.1"
     }

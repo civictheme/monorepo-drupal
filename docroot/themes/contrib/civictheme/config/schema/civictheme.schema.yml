@@ -92,6 +92,9 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
+            image_alt:
+              label: 'Logo image "alt" text'
+              type: string
         header:
           type: mapping
           label: 'Header settings'
@@ -249,7 +252,7 @@ civictheme.settings:
           type: mapping
           label: 'Palette colors'
           mapping:
-            theme:
+            light:
               type: mapping
               label: Light
               mapping:

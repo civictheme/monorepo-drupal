@@ -64,4 +64,7 @@ fi
 if [ -z "${DREVOPS_LINT_TYPE##*config*}" ]; then
   # Lint theme configuration.
   ./scripts/lint-theme-config.sh
+
+  # Lint theme schema.
+  ./vendor/bin/drush inspect_config civictheme.settings --detail --only-error
 fi
