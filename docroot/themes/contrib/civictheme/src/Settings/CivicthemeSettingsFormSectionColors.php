@@ -25,7 +25,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * {@inheritdoc}
    */
   public function weight() {
-    return 2;
+    return 20;
   }
 
   /**

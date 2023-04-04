@@ -243,7 +243,8 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
         '<p>Word3 <a href="http://example2.com/path">Link</a> word4</p>' .
         '<p>Word5 <a href="http://example2.com" class="someclass">Link</a> word6</p>' .
         '<p>Word7 <a href="http://example2.com/path" class="someclass">Link</a> word8</p>' .
-        '<p>Word9 <a href="mailto:example@example.com" class="someclass">example@example.com</a> word10</p>',
+        '<p>Word9 <a href="mailto:example@example.com" class="someclass">example@example.com</a> word10</p>' .
+        '<p>Word11 <a href="mailto:example@example.com" class="someclass">example@example.com</a> word12 example2@example.com word13</p>',
         'example2.com',
         FALSE,
         FALSE,
@@ -256,7 +257,8 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
         '<p>Word3 <a href="http://example2.com/path" class="ct-content-link ct-theme-light">Link</a> word4</p>' .
         '<p>Word5 <a href="http://example2.com" class="someclass ct-content-link ct-theme-light">Link</a> word6</p>' .
         '<p>Word7 <a href="http://example2.com/path" class="someclass ct-content-link ct-theme-light">Link</a> word8</p>' .
-        '<p>Word9 <a href="mailto:example@example.com" class="someclass ct-content-link ct-theme-light">example@example.com</a> word10</p>',
+        '<p>Word9 <a href="mailto:example@example.com" class="someclass ct-content-link ct-theme-light">example@example.com</a> word10</p>' .
+        '<p>Word11 <a href="mailto:example@example.com" class="someclass ct-content-link ct-theme-light">example@example.com</a> word12 <a href="mailto:example2@example.com" class="ct-content-link ct-theme-light">example2@example.com</a> word13</p>',
       ],
 
       // Existing classes.
@@ -277,8 +279,8 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
     preg_match(_civictheme_process_html_content_links_get_email_regex(), $string, $matches);
 
     if ($match) {
-      $this->assertEquals(3, count($matches));
-      $this->assertEquals($match, $matches[2]);
+      $this->assertEquals(1, count($matches));
+      $this->assertEquals($match, $matches[0]);
     }
     else {
       $this->assertEquals(0, count($matches));
@@ -313,9 +315,9 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['a1@b.c', FALSE],
       ['a1.2@b.c', FALSE],
 
-      ['a@example.com.a', 'a@example.com'],
-      ['a@example.com.a.b', 'a@example.com'],
-      ['a@example.com.a.b.c', 'a@example.com'],
+      ['a@example.com.a', FALSE],
+      ['a@example.com.a.b', FALSE],
+      ['a@example.com.a.b.c', FALSE],
 
       ['a@example.com.', 'a@example.com'],
       ['a@example.com,', 'a@example.com'],
