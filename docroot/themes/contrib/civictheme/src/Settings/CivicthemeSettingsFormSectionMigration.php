@@ -13,7 +13,7 @@ class CivicthemeSettingsFormSectionMigration extends CivicthemeSettingsFormSecti
    * {@inheritdoc}
    */
   public function weight() {
-    return 4;
+    return 40;
   }
 
   /**

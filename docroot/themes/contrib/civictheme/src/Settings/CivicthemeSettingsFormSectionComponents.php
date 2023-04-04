@@ -16,7 +16,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * {@inheritdoc}
    */
   public function weight() {
-    return 3;
+    return 30;
   }
 
   /**
