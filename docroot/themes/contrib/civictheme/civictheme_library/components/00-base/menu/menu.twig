@@ -32,7 +32,7 @@
         {% set collapsible_panel = 'data-collapsible-panel' %}
         {% set aria_hidden = item.in_active_trail ? 'aria-hidden="false"' : 'aria-hidden="true"' %}
       {% endif %}
-      <div class="ct-menu__sub-menu__wrapper ct-menu__sub-menu__wrapper--level-{{ menu_level }}" {{ collapsible_panel }} {{ aria_hidden }}>
+      <div class="ct-menu__sub-menu__wrapper ct-menu__sub-menu__wrapper--level-{{ menu_level }}" {{ collapsible_panel }} {{ aria_hidden|raw }}>
         <ul class="ct-menu ct-menu__sub-menu ct-menu--level-{{ menu_level }}">
     {% endif %}
 
@@ -49,10 +49,10 @@
       {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
       {% if is_collapsible %}
         {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
-        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=0', collapsible_collapsed, aria_expanded]|join(' ') %}
+        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration="0"', collapsible_collapsed, aria_expanded]|join(' ') %}
       {% endif %}
 
-      <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
+      <li class="{{ item_classes|join(' ') }}" {{ item_attributes|raw }}>
 
         {% include '@atoms/link/link.twig' with {
           theme: theme,
@@ -66,7 +66,7 @@
         } only %}
 
         {% if is_collapsible and item.below %}
-          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded }} title="Expand {{ item.title }} menu"></a>
+          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded|raw }} title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
         {% if item.below %}

@@ -726,7 +726,30 @@ function _civictheme_feature_is_optedout($type, $name, $context = NULL) {
         }
       }
       break;
+
+    default:
+      try {
+        $optouts = civictheme_get_theme_config_manager()->load('optouts', []);
+        // Additionally filter using available flags to ensure that only
+        // correctly mapped flags are used.
+        if (array_key_exists($name, _civictheme_feature_optout_flags())) {
+          $optedout = in_array($name, $optouts);
+        }
+      }
+      catch (\Exception $e) {
+        $optedout = FALSE;
+      }
   }
 
   return $optedout;
+}
+
+/**
+ * Map of available opt-out flags.
+ */
+function _civictheme_feature_optout_flags() {
+  return [
+    'components.link' => t('Links processing'),
+    'components.link.email' => t('Email links processing'),
+  ];
 }

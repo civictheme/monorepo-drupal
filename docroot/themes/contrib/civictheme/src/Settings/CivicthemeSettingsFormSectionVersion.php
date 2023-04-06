@@ -34,7 +34,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
    * {@inheritdoc}
    */
   public function weight() {
-    return 1;
+    return 10;
   }
 
   /**

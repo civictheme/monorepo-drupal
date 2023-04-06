@@ -13,7 +13,7 @@ class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSecti
    * {@inheritdoc}
    */
   public function weight() {
-    return 6;
+    return 60;
   }
 
   /**

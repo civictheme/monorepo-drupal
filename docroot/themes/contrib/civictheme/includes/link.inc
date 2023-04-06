@@ -30,12 +30,15 @@ use Drupal\Component\Utility\Html;
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
+  if (_civictheme_feature_is_optedout('process', 'components.link')) {
+    return $html;
+  }
+
   $class_prefix = 'ct-';
   $link_class = 'ct-content-link ct-theme-light';
   $link_external_class = 'ct-content-link--external';
 
-  $email_pattern = '~(^|[\s\.,;\n\(])([a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})~';
-  $html = preg_replace($email_pattern, '$1<a href="mailto:$2">$2</a>', $html);
+  $html = _civictheme_process_html_content_links_emails($html);
 
   $dom = Html::load($html);
 
@@ -97,4 +100,46 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   }
 
   return Html::serialize($dom);
+}
+
+/**
+ * Process HTML content to replace emails with mailto links.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_process_html_content_links_emails($html) {
+  if (_civictheme_feature_is_optedout('process', 'components.link.email')) {
+    return $html;
+  }
+
+  $dom = Html::load($html);
+
+  if (!$dom) {
+    return $html;
+  }
+
+  $xpath = new \DOMXPath($dom);
+
+  $text_nodes = $xpath->query('//text()[not(ancestor::a)]');
+
+  foreach ($text_nodes as $text_node) {
+    if (preg_match_all(_civictheme_process_html_content_links_get_email_regex(), $text_node->nodeValue, $matches)) {
+      $emails = $matches[0];
+      foreach ($emails as $email) {
+        $replacement = $dom->createDocumentFragment();
+        $replacement->appendXML(str_replace($email, "<a href=\"mailto:$email\">$email</a>", $text_node->textContent));
+        $text_node->replaceWith($replacement);
+      }
+    }
+  }
+
+  return Html::serialize($dom);
+}
+
+/**
+ * Email pattern as a regex string.
+ */
+function _civictheme_process_html_content_links_get_email_regex() {
+  return '/\b[A-Za-z0-9._%+-]+@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+(?:[a-zA-Z]{2,})\b)(?!\.[a-zA-Z0-9]{1,}\b)/';
 }
