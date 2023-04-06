@@ -34,7 +34,7 @@
       },
       "vertical_spacing": {
         "type": "string",
-        "pattern": "top|bottom|both",
+        "pattern": "none|top|bottom|both",
         "description": "Page level vertical spacing"
       },
       "show_toc": {
@@ -111,11 +111,7 @@
     },
     "required": [
       "id",
-      "title",
-      "alias",
-      "show_toc",
-      "hide_sidebar",
-      "show_last_updated_date"
+      "title"
     ]
   }
 }

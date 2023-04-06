@@ -6,7 +6,7 @@
     "summary": "Summary for [TEST] Migrated Content 1",
     "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
     "thumbnail": [
-      "f352fb5f-5319-4a09-a039-6b7080b31443"
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
     ],
     "vertical_spacing": "top",
     "hide_sidebar": true,
@@ -22,10 +22,10 @@
           "banner_type": "large",
           "blend_mode": "darken",
           "featured_image": [
-            "7bed7c3c-ebab-44aa-b19e-0e164ab81d10"
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
           ],
           "background": [
-            "427186ad-c561-4441-9951-28399d8a4923"
+            "7966cf0a-598d-4da2-8443-837fccd46109"
           ],
           "hide_breadcrumb": true
         }
