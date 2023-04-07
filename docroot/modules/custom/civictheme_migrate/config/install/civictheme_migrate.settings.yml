@@ -1,4 +1,5 @@
-migration_type: "local"
-remote:
-  auth_type: 'none'
-
+remote_authentication:
+  type: none
+  basic:
+    username: ''
+    password: ''

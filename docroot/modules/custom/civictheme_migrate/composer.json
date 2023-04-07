@@ -1,6 +1,6 @@
 {
     "name": "salsadigitalauorg/civictheme_migrate",
-    "description": "Migrations for CivicTheme Drupal theme.",
+    "description": "Migration mappings for CivicTheme Drupal theme.",
     "type": "drupal-module",
     "support": {
         "source": "https://github.com/salsadigitalauorg/civictheme_source",

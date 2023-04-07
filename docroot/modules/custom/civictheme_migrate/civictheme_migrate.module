@@ -2,30 +2,34 @@
 
 /**
  * @file
- * CivicTheme Migrate module.
+ * CivicTheme migrate module.
  */
 
+use Drupal\civictheme_migrate\Form\MigrationEditFormAlter;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\FileInterface;
 
 /**
- * Checks that the file is recognized as a valid JSON file.
+ * Validation handler for migration file.
  *
  * @param \Drupal\file\FileInterface $file
- *   A file entity.
- * @param string $schema_id
- *   Schema ID to validate the JSON file against.
+ *   File instance to validate.
+ * @param string $migration_schema_id
+ *   The migration schema ID.
  *
  * @return array
- *   An empty array if the file is a valid JSON file or an array containing
- *   an error message if it's not.
- *
- * @see hook_file_validate()
+ *   Array of errors.
  */
-function civictheme_migrate_validate_json(FileInterface $file, $schema_id) {
-  $json = json_decode(file_get_contents($file->getFileUri()));
+function civictheme_migrate_validate_migration_schema(FileInterface $file, string $migration_schema_id): array {
+  /** @var \Drupal\civictheme_migrate\MigrationFileValidator $validator */
+  $validator = \Drupal::getContainer()->get('civictheme_migrate.migration_file_validator');
 
-  /** @var \Drupal\civictheme_migrate\CivicthemeMigrateValidator $schema_validator */
-  $schema_validator = \Drupal::service('civictheme_migrate.validator');
+  return $validator->validate($migration_schema_id, $file->getFileUri());
+}
 
-  return $schema_validator->validate($json, $schema_id);
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function civictheme_migrate_form_migration_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::classResolver(MigrationEditFormAlter::class)->formAlter($form, $form_state, $form_id);
 }

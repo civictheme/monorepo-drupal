@@ -1,4 +1,6 @@
-This document is used as a starting point to define a "contract" between field names provided in MerlinUI when defining extractors so that consumer migration modules could define such field as "source" fields.
+This document is used as a starting point to define a "contract" between field
+names provided in MerlinUI when defining extractors so that consumer migration
+modules could define such field as "source" fields.
 
 Status:
 
@@ -6,24 +8,25 @@ Status:
 - `in review` - field mapping is in review by all parties
 - `approved` - field mapping is approved and ready to be used
 
-| Merlin UI                |  Description                            | Merlin type | Other settings | Status   | CivicTheme                          |
-|--------------------------|-----------------------------------------|-------------|----------------|----------|-------------------------------------|
-| `id`                     | Page ID (Migration ID)                  | `uuid`      | Required       | draft    | `id`                                |
-| `title`                  | Page title                              | `text`      | Required       | approved | `title`                             |
-| `alias`                  | Page URL alias                          | `alias`     | Required       | draft    | `alias`                             |
-| `summary`                | Page Summary                            | `text`      |                | draft    | `field_n_summary`                   |
-| `topics`                 | Topics (comma separated list of topics) | `text`      |                | draft    | `field_c_n_topics`                  |
-| `thumbnail`              | Thumbnail                               | `Media`     |                | draft    | `field_c_n_thumbnail`               |
-| `vertical_spacing`       | Vertical spacing                        | `text`      |                | draft    | `field_c_n_vertical_spacing`        |
-| `hide_sidebar`           | Hide sidebar                            | `boolean`   |                | draft    | `field_c_n_hide_sidebar`            |
-| `show_last_updated_date` | Show last updated date                  |             |                | draft    | `field_c_n_show_last_updated`       |
-| `last_updated_date`      | Last updated date                       |             |                | draft    | `field_c_n_custom_last_updated`     |
-| `show_toc`               | Show table of contents                  |             |                | draft    | `field_c_n_show_toc`                |
-| `banner`                 | Container for banner items              | `container` | Required       | draft    |                                     |
-| `banner.theme`           | Banner theme                            |             |                | draft    | `field_c_n_banner_theme`            |
-| `banner.title`           | Banner title                            | `text`      | Required       | draft    | `field_c_n_banner_title`            |
-| `banner.banner_type`     | Banner type                             | `text`      |                | draft    | `field_c_n_banner_type`             |
-| `banner.blend_mode`      | Banner blend mode                       |             |                | draft    | `field_c_n_blend_mode`              |
-| `banner.featured_image`  | Banner featured image                   | `Media`     |                | draft    | `field_c_n_banner_featured_image`   |
-| `banner.background`      | Banner background image                 | `Media`     |                | draft    | `field_c_n_banner_background_image` |
-| `banner.hide_breadcrumb` | Hide breadcrumb                         | `boolean`   |                | draft    | `field_c_n_hide_breadcrumb`         |
+| Merlin UI                | Description                             | Merlin type | Required | Status   | CivicTheme                          | CivicTheme version |
+|--------------------------|-----------------------------------------|-------------|----------|----------|-------------------------------------|--------------------|
+| `id`                     | Page ID (Migration ID)                  | `uuid`      | Yes      | approved | `id`                                | 1.4                |
+| `title`                  | Page title                              | `text`      | Yes      | approved | `title`                             | 1.4                |
+| `alias`                  | Page URL alias                          | `alias`     | No       | approved | `alias`                             | 1.4                |
+| `summary`                | Page Summary                            | `text`      | No       | approved | `field_n_summary`                   | 1.4                |
+| `topics`                 | Topics (comma separated list of topics) | `text`      | No       | approved | `field_c_n_topics`                  | 1.4                |
+| `thumbnail`              | Thumbnail                               | `Media`     | No       | approved | `field_c_n_thumbnail`               | 1.4                |
+| `vertical_spacing`       | Vertical spacing                        | `text`      | No       | approved | `field_c_n_vertical_spacing`        | 1.4                |
+| `hide_sidebar`           | Hide sidebar                            | `boolean`   | No       | approved | `field_c_n_hide_sidebar`            | 1.4                |
+| `show_last_updated_date` | Show last updated date                  |             | No       | approved | `field_c_n_show_last_updated`       | 1.4                |
+| `last_updated_date`      | Last updated date                       |             | No       | approved | `field_c_n_custom_last_updated`     | 1.4                |
+| `show_toc`               | Show table of contents                  |             | No       | approved | `field_c_n_show_toc`                | 1.4                |
+| `banner`                 | Container for banner items              | `container` | No       | approved |                                     | 1.4                |
+| `banner.theme`           | Banner theme                            |             | No       | approved | `field_c_n_banner_theme`            | 1.4                |
+| `banner.title`           | Banner title                            | `text`      | No       | approved | `field_c_n_banner_title`            | 1.4                |
+| `banner.banner_type`     | Banner type                             | `text`      | No       | approved | `field_c_n_banner_type`             | 1.4                |
+| `banner.blend_mode`      | Banner blend mode                       |             | No       | approved | `field_c_n_blend_mode`              | 1.4                |
+| `banner.featured_image`  | Banner featured image                   | `Media`     | No       | approved | `field_c_n_banner_featured_image`   | 1.4                |
+| `banner.background`      | Banner background image                 | `Media`     | No       | approved | `field_c_n_banner_background_image` | 1.4                |
+| `banner.hide_breadcrumb` | Hide breadcrumb                         | `boolean`   | No       | approved | `field_c_n_hide_breadcrumb`         | 1.4                |
+|

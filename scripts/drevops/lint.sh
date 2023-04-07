@@ -67,4 +67,8 @@ if [ -z "${DREVOPS_LINT_TYPE##*config*}" ]; then
 
   # Lint theme schema.
   ./vendor/bin/drush inspect_config civictheme.settings --detail --only-error
+
+  # Lint modules schema.
+  ./vendor/bin/drush inspect_config civictheme_migrate.settings --detail --only-error
+  ./vendor/bin/drush inspect_config civictheme_migrate.generate --detail --only-error
 fi
