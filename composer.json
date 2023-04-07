@@ -20,10 +20,10 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "drevops/behat-format-progress-fail": "^1",
         "drevops/behat-screenshot": "^1",
-        "drevops/behat-steps": "^1",
+        "drevops/behat-steps": "^1.5",
         "drupal/coder": "8.3.16",
         "drupal/core-dev": "^9",
-        "drupal/drupal-extension": "^4",
+        "drupal/drupal-extension": "dev-feature/drupal-10 as 4.2.1-dev",
         "phpcompatibility/php-compatibility": "^9.0",
         "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
@@ -64,6 +64,14 @@
         "drupal/drupal": "*"
     },
     "repositories": {
+        "drupal/drupal-driver": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/DrupalDriver"
+        },
+        "drupal/drupal-extension": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/drupalextension"
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -101,7 +109,7 @@
             "Utilities\\composer\\DrupalSettings::create"
         ]
     },
-    "minimum-stability": "alpha",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "composer-exit-on-patch-failure": true,
