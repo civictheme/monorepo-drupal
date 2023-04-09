@@ -30,6 +30,7 @@ ENV GITHUB_TOKEN=$GITHUB_TOKEN
 ENV WEBROOT=docroot \
     COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_CACHE_DIR=/tmp/.composer/cache \
+    COMPOSER_AUTH="{\"github-oauth\": {\"github.com\": \"$GITHUB_TOKEN\"}}" \
     MYSQL_HOST=mariadb \
     SIMPLETEST_DB=mysql://drupal:drupal@mariadb/drupal \
     SIMPLETEST_BASE_URL=http://nginx:8080 \
