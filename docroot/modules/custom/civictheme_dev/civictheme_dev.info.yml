@@ -12,6 +12,7 @@ dependencies:
   - drupal:field_ui
   - drupal:views_ui
   - environment_indicator:environment_indicator
+  - inspect_config:config_inspector
   - shield:shield
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views

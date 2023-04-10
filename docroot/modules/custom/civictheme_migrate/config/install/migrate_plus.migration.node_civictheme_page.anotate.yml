@@ -4,21 +4,18 @@ dependencies:
   enforced:
     module:
       - civictheme_migrate
-id: civictheme_page_annotate
+id: node_civictheme_page_anotate
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags:
   - civictheme_migrate
 migration_group: civictheme_migrate
-label: 'CivicTheme Page Annotate'
+label: 'Node CivicTheme Page components'
 source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: json
-  # URLs are the uploaded or remote files fetched during migration generation.
-  # This contains the stream wrappers of the locally hosted files.
-  #  urls:
   fields:
     - name: content
       label: Components
@@ -30,22 +27,19 @@ source:
     alias:
       type: string
       max_length: 2048
+  urls: []
 process:
-  nid:
+  field_c_n_components:
     -
       plugin: skip_on_empty
-      source: alias
+      source: content
       method: row
-      message: 'URL is empty'
+      message: 'Content is empty'
     -
       plugin: migration_lookup
       migration: civictheme_page
       source: alias
       no_stub: true
-    -
-      plugin: skip_on_empty
-      method: row
-  field_c_n_components:
     -
       plugin: ct_content_component_create
       source: 'content'
@@ -54,7 +48,6 @@ process:
           no_stub: true
           migration:
             - civictheme_page
-
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
@@ -62,5 +55,5 @@ destination:
     - field_c_n_components
 migration_dependencies:
   required:
-    - civictheme_media_image
-    - civictheme_page
+    - node_civictheme_page
+    - media_civictheme_image

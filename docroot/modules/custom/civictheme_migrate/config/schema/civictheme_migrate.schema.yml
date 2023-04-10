@@ -1,0 +1,24 @@
+civictheme_migrate.settings:
+  label: 'CivicTheme Migrate settings'
+  type: config_object
+  mapping:
+    remote_authentication:
+      label: 'Remote authentication settings'
+      type: mapping
+      mapping:
+        type:
+          label: 'Authentication type'
+          type: string
+          nullable: true
+        basic:
+          label: 'Basic authentication'
+          type: mapping
+          mapping:
+            username:
+              label: 'Username'
+              type: string
+              nullable: true
+            password:
+              label: 'Password'
+              type: string
+              nullable: true

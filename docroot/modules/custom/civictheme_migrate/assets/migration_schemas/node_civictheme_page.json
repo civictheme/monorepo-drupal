@@ -1,227 +1,108 @@
 {
-  "definitions": {},
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Root",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
-  "default": [],
   "items": {
-    "title": "Items",
     "type": "object",
-    "required": [
-      "title",
-      "alias",
-      "summary",
-      "thumbnail",
-      "vertical_spacing",
-      "hide_sidebar",
-      "show_last_updated_date",
-      "last_updated_date",
-      "banner",
-      "content"
-    ],
     "properties": {
-      "title": {
-        "$id": "#root/items/title",
-        "title": "Title",
+      "id": {
         "type": "string",
-        "default": ""
+        "description": "Unique ID for the node"
+      },
+      "title": {
+        "type": "string",
+        "description": "Page title"
       },
       "alias": {
-        "$id": "#root/items/alias",
-        "title": "Alias",
         "type": "string",
-        "default": ""
+        "description": "Page url alias, validation ensures backslash at start of url alias",
+        "pattern": "^\\/[\\S]+$"
       },
       "summary": {
-        "$id": "#root/items/summary",
-        "title": "Summary",
-        "type": "object",
-        "required": [
-          "format",
-          "value"
-        ],
-        "properties": {
-          "format": {
-            "$id": "#root/items/summary/format",
-            "title": "Format",
-            "type": "string",
-            "default": ""
-          },
-          "value": {
-            "$id": "#root/items/summary/value",
-            "title": "Value",
-            "type": "string",
-            "default": ""
-          }
-        }
+        "type": "string",
+        "description": "Page summary"
+      },
+      "topics": {
+        "type": "string",
+        "description": "Comma delimited page topics"
       },
       "thumbnail": {
-        "$id": "#root/items/thumbnail",
-        "title": "Thumbnail",
-        "type": "string",
-        "default": ""
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Media uuid"
+        }
       },
       "vertical_spacing": {
-        "$id": "#root/items/vertical_spacing",
-        "title": "Vertical_spacing",
         "type": "string",
-        "default": ""
+        "pattern": "none|top|bottom|both",
+        "description": "Page level vertical spacing"
+      },
+      "show_toc": {
+        "type": "boolean",
+        "description": "Whether to hide table of contents"
       },
       "hide_sidebar": {
-        "$id": "#root/items/hide_sidebar",
-        "title": "Hide_sidebar",
-        "type": "string",
-        "default": ""
+        "type": "boolean",
+        "description": "Whether to hide sidebar"
       },
       "show_last_updated_date": {
-        "$id": "#root/items/show_last_updated_date",
-        "title": "Show_last_updated_date",
-        "type": "string",
-        "default": ""
+        "type": "boolean",
+        "description": "Determines if last updated date is visible or not"
       },
       "last_updated_date": {
-        "$id": "#root/items/last_updated_date",
-        "title": "Last_updated_date",
         "type": "string",
-        "default": ""
+        "description": "Last updated date in `D MMM YYYY`format"
       },
       "banner": {
-        "$id": "#root/items/banner",
-        "title": "Banner",
         "type": "object",
-        "required": [
-          "type",
-          "children"
-        ],
         "properties": {
           "type": {
-            "$id": "#root/items/banner/type",
-            "title": "Type",
             "type": "string",
-            "default": ""
+            "description": "Hardcoded Merlin UI Output",
+            "pattern": "container"
           },
           "children": {
-            "$id": "#root/items/banner/children",
-            "title": "Children",
-            "type": "object",
-            "required": [
-              "theme",
-              "title",
-              "blend_mode",
-              "featured_image",
-              "background",
-              "hide_breadcrumb"
-            ],
-            "properties": {
-              "theme": {
-                "$id": "#root/items/banner/children/theme",
-                "title": "Theme",
-                "type": "string",
-                "default": ""
-              },
-              "title": {
-                "$id": "#root/items/banner/children/title",
-                "title": "Title",
-                "type": "string",
-                "default": ""
-              },
-              "blend_mode": {
-                "$id": "#root/items/banner/children/blend_mode",
-                "title": "Blend_mode",
-                "type": "string",
-                "default": ""
-              },
-              "featured_image": {
-                "$id": "#root/items/banner/children/featured_image",
-                "title": "Featured_image",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "$id": "#root/items/banner/children/featured_image/items",
-                  "title": "Items",
-                  "type": "object",
-                  "required": [
-                    "name",
-                    "file",
-                    "uuid",
-                    "alt"
-                  ],
-                  "properties": {
-                    "name": {
-                      "$id": "#root/items/banner/children/featured_image/items/name",
-                      "title": "Name",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "file": {
-                      "$id": "#root/items/banner/children/featured_image/items/file",
-                      "title": "File",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "uuid": {
-                      "$id": "#root/items/banner/children/featured_image/items/uuid",
-                      "title": "Uuid",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "alt": {
-                      "$id": "#root/items/banner/children/featured_image/items/alt",
-                      "title": "Alt",
-                      "type": "string",
-                      "default": ""
-                    }
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Banner theme",
+                  "pattern": "light|dark"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Banner title"
+                },
+                "banner_type": {
+                  "type": "string",
+                  "description": "Type of banner",
+                  "pattern": "default|large"
+                },
+                "blend_mode": {
+                  "type": "string",
+                  "description": "Banner blend mode",
+                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
+                },
+                "featured_image": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
                   }
-                }
-              },
-              "background": {
-                "$id": "#root/items/banner/children/background",
-                "title": "Background",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "$id": "#root/items/banner/children/background/items",
-                  "title": "Items",
-                  "type": "object",
-                  "required": [
-                    "name",
-                    "file",
-                    "uuid",
-                    "alt"
-                  ],
-                  "properties": {
-                    "name": {
-                      "$id": "#root/items/banner/children/background/items/name",
-                      "title": "Name",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "file": {
-                      "$id": "#root/items/banner/children/background/items/file",
-                      "title": "File",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "uuid": {
-                      "$id": "#root/items/banner/children/background/items/uuid",
-                      "title": "Uuid",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "alt": {
-                      "$id": "#root/items/banner/children/background/items/alt",
-                      "title": "Alt",
-                      "type": "string",
-                      "default": ""
-                    }
+                },
+                "background": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Media uuid"
                   }
+                },
+                "hide_breadcrumb": {
+                  "type": "boolean",
+                  "description": "Whether to hide breadcrumb in banner"
                 }
-              },
-              "hide_breadcrumb": {
-                "$id": "#root/items/banner/children/hide_breadcrumb",
-                "title": "Hide_breadcrumb",
-                "type": "string",
-                "default": ""
               }
             }
           }
@@ -649,6 +530,10 @@
           }
         }
       }
-    }
+    },
+    "required": [
+      "id",
+      "title"
+    ]
   }
 }
