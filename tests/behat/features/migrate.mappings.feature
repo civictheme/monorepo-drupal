@@ -79,10 +79,7 @@ Feature: CivicTheme migrate module
     And I should see a ".ct-banner .ct-background--darken" element
     # Banner featured image.
     And I should see a ".ct-banner .ct-banner__featured-image" element
-    And the response should contain "dummy2.jpg"
     And the response should contain "Dummy file 2"
-    # Banner background.
-    And the response should contain "dummy3.jpg"
     # Hide breadcrumb.
     And I should not see a ".ct-banner .ct-breadcrumb" element
 

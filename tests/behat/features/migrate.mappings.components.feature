@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_migrate @check
+@p1 @civictheme @civictheme_migrate
 Feature: CivicTheme migrate module Component mapping
 
   Background:
