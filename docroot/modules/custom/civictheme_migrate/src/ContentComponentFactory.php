@@ -167,10 +167,11 @@ class ContentComponentFactory {
       if (!empty($item_data['children']['cards']['children'])) {
         foreach ($item_data['children']['cards']['children'] as $children) {
           foreach ($children as $type => $card) {
+            $summary = $card['item_content']['value'] ?? '';
             $cards[] = [
               'type' => 'civictheme_' . $type,
               'title' => $card['item_title'],
-              'summary' => $card['item_content']['value'] ?? '',
+              'summary' => strip_tags($summary),
               'links' => $card['item_links'] ?? [],
             ];
           }

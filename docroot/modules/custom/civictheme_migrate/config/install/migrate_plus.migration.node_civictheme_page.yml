@@ -90,6 +90,10 @@ source:
       name: banner_theme
       label: 'Banner theme'
       selector: banner/children/0/theme
+    -
+      name: content
+      label: Components
+      selector: content/children
   ids:
     alias:
       type: string
@@ -204,6 +208,10 @@ process:
     plugin: default_value
     default_value: 0
   path/alias: alias
+  field_c_n_components:
+    -
+      plugin: ct_content_component_create
+      source: 'content'
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
