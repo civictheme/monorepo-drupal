@@ -41,6 +41,10 @@ Feature: CivicTheme migrate module Component mapping
     And I attach the file "civictheme_migrate.node_civictheme_page_3.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.type 'basic'"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username 'civic'"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password '2022civic'"
+
     When I run drush "mim --group=civictheme_migrate"
     And I visit "civictheme_page" "[TEST] Migrated Page Content 1"
 
@@ -100,3 +104,6 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.type ''"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username ''"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password ''"

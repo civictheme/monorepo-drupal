@@ -210,7 +210,7 @@ process:
   path/alias: alias
   field_c_n_components:
     -
-      plugin: ct_content_component_create
+      plugin: content_components
       source: 'content'
 destination:
   plugin: 'entity:node'

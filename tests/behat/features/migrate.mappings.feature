@@ -50,6 +50,10 @@ Feature: CivicTheme migrate module
     And I attach the file "civictheme_migrate.node_civictheme_page_1.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.type 'basic'"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username 'civic'"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password '2022civic'"
+
     When I run drush "mim --group=civictheme_migrate"
     And I visit "civictheme_page" "[TEST] Migrated Content 1"
 
@@ -79,7 +83,10 @@ Feature: CivicTheme migrate module
     And I should see a ".ct-banner .ct-background--darken" element
     # Banner featured image.
     And I should see a ".ct-banner .ct-banner__featured-image" element
+    And the response should contain "dummy2.jpg"
     And the response should contain "Dummy file 2"
+    # Banner background.
+    And the response should contain "dummy3.jpg"
     # Hide breadcrumb.
     And I should not see a ".ct-banner .ct-breadcrumb" element
 
@@ -87,6 +94,9 @@ Feature: CivicTheme migrate module
     And I run drush "mr --group=civictheme_migrate"
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.type ''"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username ''"
+    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password ''"
 
   @api @drush
   Scenario: Migration remote sources can be updated from the migration edit form

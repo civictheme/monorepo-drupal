@@ -12,10 +12,10 @@ use Drupal\paragraphs\ParagraphInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Content Components creator.
+ * Migrate plugin used to process content components.
  *
  * @MigrateProcessPlugin(
- *   id = "ct_content_component_create",
+ *   id = "content_components",
  *   handle_multiples = TRUE
  * )
  *
