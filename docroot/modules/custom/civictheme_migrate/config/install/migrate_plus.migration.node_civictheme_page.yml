@@ -218,3 +218,4 @@ destination:
 migration_dependencies:
   required:
     - media_civictheme_image
+    - media_civictheme_document

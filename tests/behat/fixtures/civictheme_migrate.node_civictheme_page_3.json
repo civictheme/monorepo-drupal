@@ -1,6 +1,6 @@
 [
   {
-    "id": "4593761e-8a5d-4564-8c0e-2126fb4f3338",
+    "id": "77d61781-0657-4f9a-9d12-173ea03eae91",
     "title": "[TEST] Migrated Page Content 1",
     "alias": "/migrated/page-content-1",
     "summary": "<span>Designed by government, for government. Our goal is to help you deliver and maintain secure, modern and user-friendly websites. GovCMS is community-based, but don't just take our word for it.</span>",
@@ -57,7 +57,10 @@
                       "item_content": {
                         "format": "rich_text",
                         "value": "<p>Understanding the steps to get started with GovCMS</p>"
-                      }
+                      },
+                      "item_document": [
+                        "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
+                      ]
                     },
                     "service_card": {
                       "item_title": "[TEST] Service card 1",
@@ -138,7 +141,7 @@
     }
   },
   {
-    "id": "4593761e-8a5d-4564-8c0e-2126fb4f3399",
+    "id": "35e33c63-2991-41f9-bfe2-0901463a5f53",
     "title": "[TEST] Migrated Page Content 2",
     "alias": "/migrated/page-content-2",
     "summary": "<span>Designed by government, for government. Our goal is to help you deliver and maintain secure, modern and user-friendly websites. GovCMS is community-based, but don't just take our word for it.</span>",
@@ -195,7 +198,10 @@
                       "item_content": {
                         "format": "rich_text",
                         "value": "<p>Understanding the steps to get started with GovCMS</p>"
-                      }
+                      },
+                      "item_document": [
+                        "a8bd4335-9d5a-4163-b06c-a2dcb36d8fe5"
+                      ]
                     },
                     "service_card": {
                       "item_title": "[TEST] Service card",

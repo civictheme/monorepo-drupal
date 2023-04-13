@@ -168,12 +168,24 @@ class ContentComponentFactory {
         foreach ($item_data['children']['cards']['children'] as $children) {
           foreach ($children as $type => $card) {
             $summary = $card['item_content']['value'] ?? '';
-            $cards[] = [
+            $option = [
               'type' => 'civictheme_' . $type,
               'title' => $card['item_title'],
               'summary' => strip_tags($summary),
               'links' => $card['item_links'] ?? [],
             ];
+
+            // Document for publication card.
+            if (!empty($card['item_document'][0])) {
+              $entity = $this->entityTypeManager->getStorage('media')
+                ->loadByProperties(['uuid', $card['item_document'][0]]);
+              $entity = reset($entity);
+              if ($entity) {
+                $option['document'] = $entity;
+              }
+            }
+
+            $cards[] = $option;
           }
         }
       }

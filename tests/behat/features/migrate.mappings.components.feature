@@ -8,16 +8,18 @@ Feature: CivicTheme migrate module Component mapping
       | [TEST] Migrated Page Content 2  |
 
     And no managed files:
-      | filename                                              |
-      | test_civictheme_migrate.node_civictheme_page_3.json   |
-      | test_civictheme_migrate.media_civictheme_image_1.json |
-      | test_civictheme_migrate.media_civictheme_image_2.json |
+      | filename                                                  |
+      | test_civictheme_migrate.node_civictheme_page_3.json       |
+      | test_civictheme_migrate.media_civictheme_image_1.json     |
+      | test_civictheme_migrate.media_civictheme_image_2.json     |
+      | test_civictheme_migrate.media_civictheme_document_1.json  |
 
     And managed file:
-      | path                                             | filename                                              | uri                                                            |
-      | civictheme_migrate.node_civictheme_page_3.json   | test_civictheme_migrate.node_civictheme_page_3.json   | public://test_civictheme_migrate.node_civictheme_page_3.json   |
-      | civictheme_migrate.media_civictheme_image_1.json | test_civictheme_migrate.media_civictheme_image_1.json | public://test_civictheme_migrate.media_civictheme_image_1.json |
-      | civictheme_migrate.media_civictheme_image_2.json | test_civictheme_migrate.media_civictheme_image_2.json | public://test_civictheme_migrate.media_civictheme_image_2.json |
+      | path                                                | filename                                                     | uri                                                                |
+      | civictheme_migrate.node_civictheme_page_2.json      | test_civictheme_migrate.node_civictheme_page_2.json          | public://test_civictheme_migrate.node_civictheme_page_2.json       |
+      | civictheme_migrate.media_civictheme_image_1.json    | test_civictheme_migrate.media_civictheme_image_1.json        | public://test_civictheme_migrate.media_civictheme_image_1.json     |
+      | civictheme_migrate.media_civictheme_image_2.json    | test_civictheme_migrate.media_civictheme_image_2.json        | public://test_civictheme_migrate.media_civictheme_image_2.json     |
+      | civictheme_migrate.media_civictheme_document_1.json | test_civictheme_migrate.media_civictheme_document_1.json     | public://test_civictheme_migrate.media_civictheme_document_1.json  |
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
@@ -37,13 +39,13 @@ Feature: CivicTheme migrate module Component mapping
     And I attach the file "civictheme_migrate.media_civictheme_image_2.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
+    When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/media_civictheme_document/edit"
+    And I attach the file "civictheme_migrate.media_civictheme_document_1.json" to "files[source_update_files][]"
+    And I press "Update Migration"
+
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
     And I attach the file "civictheme_migrate.node_civictheme_page_3.json" to "files[source_update_files][]"
     And I press "Update Migration"
-
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.type 'basic'"
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username 'civic'"
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password '2022civic'"
 
     When I run drush "mim --group=civictheme_migrate"
     And I visit "civictheme_page" "[TEST] Migrated Page Content 1"
@@ -103,7 +105,5 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "media_civictheme_image" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.type ''"
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.username ''"
-    And I run drush "config-set civictheme_migrate.settings remote_authentication.basic.password ''"

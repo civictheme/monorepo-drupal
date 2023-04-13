@@ -54,6 +54,9 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
   public function dataProvideTestValidate() {
     return [
       ['node_civictheme_page', 'civictheme_migrate.node_civictheme_page_1.json', []],
+      ['node_civictheme_page', 'civictheme_migrate.node_civictheme_page_components.json', []],
+
+      ['media_civictheme_document', 'civictheme_migrate.media_civictheme_document_1.json', []],
       ['media_civictheme_image', 'civictheme_migrate.media_civictheme_image_1.json', []],
 
       [
