@@ -9,6 +9,7 @@ use Drupal\migrate\Plugin\MigratePluginManager;
 use Drupal\paragraphs\ParagraphInterface;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\migrate\MigrateLookupInterface;
 
 /**
  * Content Component Factory.
@@ -33,16 +34,26 @@ class ContentComponentFactory {
   protected $entityTypeManager;
 
   /**
+   * The migrate lookup service.
+   *
+   * @var \Drupal\migrate\MigrateLookupInterface
+   */
+  protected $migrateLookup;
+
+  /**
    * ContentComponentFactory constructor.
    *
    * @param \Drupal\migrate\Plugin\MigratePluginManager $migrate_plugin_manager
    *   Migrate plugin manager.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity type manager.
+   * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
+   *   The migrate lookup service.
    */
-  public function __construct(MigratePluginManager $migrate_plugin_manager, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(MigratePluginManager $migrate_plugin_manager, EntityTypeManagerInterface $entity_type_manager, MigrateLookupInterface $migrate_lookup) {
     $this->migratePluginManager = $migrate_plugin_manager;
     $this->entityTypeManager = $entity_type_manager;
+    $this->migrateLookup = $migrate_lookup;
   }
 
   /**
@@ -52,6 +63,7 @@ class ContentComponentFactory {
     return new static(
       $container->get('plugin.manager.migrate.process'),
       $container->get('entity_type.manager'),
+      $container->get('migrate.lookup'),
     );
   }
 
@@ -173,15 +185,48 @@ class ContentComponentFactory {
               'title' => $card['item_title'],
               'summary' => strip_tags($summary),
               'links' => $card['item_links'] ?? [],
+              'location' => $card['item_location'] ?? '',
             ];
 
             // Document for publication card.
             if (!empty($card['item_document'][0])) {
-              $entity = $this->entityTypeManager->getStorage('media')
-                ->loadByProperties(['uuid', $card['item_document'][0]]);
-              $entity = reset($entity);
-              if ($entity) {
-                $option['document'] = $entity;
+              $lookup_result = $this->migrateLookup->lookup('media_civictheme_document', [$card['item_document'][0]]);
+              if (!empty($lookup_result)) {
+                $option['document'] = $lookup_result[0]['mid'];
+              }
+            }
+
+            // Image lookup.
+            if (!empty($card['item_image'][0])) {
+              $lookup_result = $this->migrateLookup->lookup('media_civictheme_image', [$card['item_image'][0]]);
+              if (!empty($lookup_result)) {
+                $option['image'] = $lookup_result[0]['mid'];
+              }
+            }
+
+            // Topics.
+            if (!empty($card['item_topics'])) {
+              $topics = explode(',', $card['item_topics']);
+              if (count($topics) > 0) {
+                foreach ($topics as $topic) {
+                  $props = [
+                    'name' => $topic,
+                    'vid' => 'civictheme_topics',
+                  ];
+                  $term = $this->entityTypeManager
+                    ->getStorage('taxonomy_term')
+                    ->loadByProperties($props);
+                  $term = reset($term);
+                  if ($term) {
+                    $option['topics'][] = $term->id();
+                  }
+                  else {
+                    $option['topics'][] = $this->entityTypeManager->getStorage('taxonomy_term')->create([
+                      'name' => $topic,
+                      'vid' => 'civictheme_topics',
+                    ])->save();
+                  }
+                }
               }
             }
 

@@ -23,8 +23,10 @@ Feature: CivicTheme migrate module Component mapping
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
+    And I clear "node_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
 
   @api @drush
@@ -60,8 +62,16 @@ Feature: CivicTheme migrate module Component mapping
     #Manual list
     And I should see an ".ct-list" element
     And I should see "[TEST] Promo card 1" in the ".ct-promo-card" element
+    And I should see "[TEST] Promo card summary" in the ".ct-promo-card__content" element
     And I should see "[TEST] Event card 1" in the ".ct-event-card" element
+    And I should see "[TEST] Event card summary" in the ".ct-event-card__content" element
+    And I should see "[TEST] Publication card 1" in the ".ct-publication-card" element
+    And I should see "[TEST] Publication card summary" in the ".ct-publication-card__summary" element
+    And the response should contain "dummy1.pdf"
     And I should see "[TEST] Service card 1" in the ".ct-service-card" element
+    And I should see 2 ".ct-service-card .ct-link" elements
+    And I should see "[TEST] Service card link 1" in the ".ct-service-card .ct-link" element
+    And I should see "[TEST] Service card link 2" in the ".ct-service-card" element
     And I should see "[TEST] Subject card 1" in the ".ct-subject-card" element
     #Accordion
     And I should see an ".ct-accordion" element

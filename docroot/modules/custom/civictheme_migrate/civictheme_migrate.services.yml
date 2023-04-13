@@ -18,3 +18,4 @@ services:
     arguments:
       - '@plugin.manager.migrate.process'
       - '@entity_type.manager'
+      - '@migrate.lookup'

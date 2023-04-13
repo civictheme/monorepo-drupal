@@ -42,21 +42,22 @@
                       "item_title": "[TEST] Promo card 1",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                        "value": "<p>[TEST] Promo card summary</p>"
                       }
                     },
                     "event_card": {
                       "item_title": "[TEST] Event card 1",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
-                      }
+                        "value": "<p>[TEST] Event card summary</p>"
+                      },
+                      "item_topics": "[TEST] Event Topic 1,[TEST] Topic 2"
                     },
                     "publication_card": {
                       "item_title": "[TEST] Publication card 1",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                        "value": "<p>[TEST] Publication card summary</p>"
                       },
                       "item_document": [
                         "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
@@ -67,11 +68,11 @@
                       "item_links": [
                         {
                           "uri": "http://example.com",
-                          "title": "Example link"
+                          "title": "[TEST] Service card link 1"
                         },
                         {
                           "uri": "http://example.com/1",
-                          "title": "Example link 1"
+                          "title": "[TEST] Service card link 2"
                         }
                       ]
                     },
