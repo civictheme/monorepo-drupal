@@ -46,8 +46,9 @@
       ] %}
 
       {% set item_attributes = item.attributes|default('') %}
-      {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
-      {% if is_collapsible %}
+      {% set aria_expanded = '' %}
+      {% if item.below and is_collapsible %}
+        {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
         {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
         {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration="0"', collapsible_collapsed, aria_expanded]|join(' ') %}
       {% endif %}
