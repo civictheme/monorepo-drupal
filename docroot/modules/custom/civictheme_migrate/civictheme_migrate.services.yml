@@ -13,3 +13,9 @@ services:
   civictheme_migrate.json_schema_validator:
     class: '\Opis\JsonSchema\Validator'
     public: false
+  civictheme_migrate.migration.content_component_factory:
+    class: Drupal\civictheme_migrate\ContentComponentFactory
+    arguments:
+      - '@plugin.manager.migrate.process'
+      - '@entity_type.manager'
+      - '@migrate.lookup'

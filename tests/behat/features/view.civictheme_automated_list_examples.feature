@@ -137,7 +137,7 @@ Feature: CivicTheme listing renders on views pages with filters
   #     | civictheme-no-sidebar/listing-one-filter-single-select               |
   #     | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block |
 
-  @api @testmode
+    @api @testmode
   Scenario Outline: Listing example - One filter - Multi
     Given I am an anonymous user
     When I go to "<path>"
@@ -195,8 +195,8 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     Examples:
-      | path                                                         |
-      | civictheme-no-sidebar/listing-multiple-filters               |
+      | path                                           |
+      | civictheme-no-sidebar/listing-multiple-filters |
       # Disabled test below as it fails in CI with "An illegal choice
       # has been detected. Please contact the site administrator." message.
       # Need to investigate.

@@ -90,9 +90,14 @@ source:
       name: banner_theme
       label: 'Banner theme'
       selector: banner/children/0/theme
+    -
+      name: content
+      label: Components
+      selector: content/children
   ids:
-    id:
+    alias:
       type: string
+      max_length: 2048
   urls: []
 process:
   title:
@@ -203,9 +208,14 @@ process:
     plugin: default_value
     default_value: 0
   path/alias: alias
+  field_c_n_components:
+    -
+      plugin: content_components
+      source: 'content'
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
 migration_dependencies:
   required:
     - media_civictheme_image
+    - media_civictheme_document
