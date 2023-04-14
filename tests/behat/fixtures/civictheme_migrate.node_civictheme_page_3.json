@@ -36,6 +36,8 @@
           "manual_list": {
             "type": "manual_list",
             "children": {
+              "title": "[TEST] Manual list",
+              "content": "<p>[TEST] Manual list Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
               "cards": {
                 "type": "container",
                 "children": [
