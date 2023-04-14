@@ -23,7 +23,7 @@ Feature: CivicTheme migrate module Component mapping
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
-    And I clear "node_civictheme_document" migration map
+    And I clear "media_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
