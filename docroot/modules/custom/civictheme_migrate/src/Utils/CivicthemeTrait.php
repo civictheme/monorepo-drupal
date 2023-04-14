@@ -364,6 +364,7 @@ trait CivicthemeTrait {
       return NULL;
     }
 
+    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content'] ?? '');
     $paragraph = self::civicthemeParagraphCreate('civictheme_attachment', $options);
 
     $paragraph->save();

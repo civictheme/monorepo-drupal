@@ -1,0 +1,55 @@
+[
+  {
+    "id": "77d61781-0657-4f9a-9d12-173ea03eae91",
+    "title": "[TEST] Migrated Page Content 1",
+    "alias": "/migrated/page-content-1",
+    "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
+    "vertical_spacing": "top",
+    "hide_sidebar": true,
+    "show_last_updated_date": true,
+    "last_updated_date": "1 July 2020",
+    "banner": {
+      "type": "container",
+      "children": [
+        {
+          "theme": "dark",
+          "title": "[TEST] Banner title - Migrated Page Content 1",
+          "blend_mode": "darken",
+          "featured_image": ["7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"],
+          "background": ["7966cf0a-598d-4da2-8443-837fccd46109"],
+          "hide_breadcrumb": true
+        }
+      ]
+    },
+    "content": {
+      "type": "container",
+      "children": [
+        {
+          "text_content": {
+            "format": "rich_text",
+             "value": "<h3>[TEST] Basic text content</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+          }
+        },
+        {
+          "attachments": {
+            "type": "container",
+            "children": {
+              "title": "[TEST] Attachments",
+              "content": "<p>[TEST] Attachments Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "attachments": {
+                "type": "container",
+                "children": [
+                  "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98",
+                  "32347ee0-afd5-46c2-92d6-3c37147c9943",
+                  "a8bd4335-9d5a-4163-b06c-a2dcb36d8fe5"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]
