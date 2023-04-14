@@ -3,7 +3,7 @@
     "id": "77d61781-0657-4f9a-9d12-173ea03eae91",
     "title": "[TEST] Migrated Page Content 1",
     "alias": "/migrated/page-content-1",
-    "summary": "<span>Designed by government, for government. Our goal is to help you deliver and maintain secure, modern and user-friendly websites. GovCMS is community-based, but don't just take our word for it.</span>",
+    "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
     "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
     "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
     "vertical_spacing": "top",
@@ -29,8 +29,10 @@
         {
           "text_content": {
             "format": "rich_text",
-            "value": "<p>[Content migration] - Product and Services Guide</p>"
-          },
+             "value": "<h3>[TEST] Basic text content</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+          }
+        },
+        {
           "manual_list": {
             "type": "manual_list",
             "children": {
@@ -44,7 +46,21 @@
                         "format": "rich_text",
                         "value": "<p>[TEST] Promo card summary</p>"
                       }
-                    },
+                    }
+                  },
+                  {
+                    "promo_card": {
+                      "item_title": "[TEST] Promo card with image",
+                      "item_content": {
+                        "format": "rich_text",
+                        "value": "<p>[TEST] Promo card summary</p>"
+                      },
+                      "item_image": [
+                        "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+                      ]
+                    }
+                  },
+                  {
                     "event_card": {
                       "item_title": "[TEST] Event card 1",
                       "item_content": {
@@ -52,7 +68,9 @@
                         "value": "<p>[TEST] Event card summary</p>"
                       },
                       "item_topics": "[TEST] Event Topic 1,[TEST] Topic 2"
-                    },
+                    }
+                  },
+                  {
                     "publication_card": {
                       "item_title": "[TEST] Publication card 1",
                       "item_content": {
@@ -62,28 +80,37 @@
                       "item_document": [
                         "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
                       ]
-                    },
+                    }
+                  },
+                  {
                     "service_card": {
                       "item_title": "[TEST] Service card 1",
                       "item_links": [
                         {
                           "uri": "http://example.com",
-                          "title": "[TEST] Service card link 1"
+                          "title": "[TEST] Service card 1 link 1"
                         },
                         {
                           "uri": "http://example.com/1",
-                          "title": "[TEST] Service card link 2"
+                          "title": "[TEST] Service card 1 link 2"
                         }
                       ]
-                    },
+                    }
+                  },
+                  {
                     "subject_card": {
-                      "item_title": "[TEST] Subject card 1"
+                      "item_title": "[TEST] Subject card 1",
+                      "item_image": [
+                        "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+                      ]
                     }
                   }
                 ]
               }
             }
-          },
+          }
+        },
+        {
           "accordion": {
             "type": "accordion",
             "children": {
@@ -99,35 +126,35 @@
                           "item_title": "[TEST] Accordion panel 1",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What health services does Mildura Base Hospital provide?</h5><p>Mildura Base Hospital is a public 165-bed (level 1) tertiary teaching hospital, providing public hospital services on behalf of the Victorian Government to the community of Mildura and the Sunraysia District. The hospital delivers a range of services including Emergency, Maternity, Intensive Care, General Medicine and Surgery, Oncology, Medical Imaging, Pathology, Dialysis, Mental Health (Inpatient and community services), subacute care and a range of Ambulatory Services.</p><h5>Why has Government made the decision to transfer Mildura Base Hospital to public management now?</h5><p>As the existing agreement with Ramsay Health is approaching the end of its current term in 2020, the Victorian Government decided the time was right to consider whether or not to continue this arrangement.</p><p>The Victorian Government has carefully considered this decision, including reviewing feedback from the recent community consultation. This decision will help ensure the community of Mildura feel more connected and aligned with their local health service and will also help bring operations of Mildura Base Hospital in line with all other rural Victorian public health services.</p><p>Making this decision now provides more certainty to the community as to how public health services will be delivered in Mildura beyond 2020 and allows time to transition to the new public sector management model.</p><h5>When will public management of Mildura Base Hospital begin?</h5><p>Public sector management will start after the current agreement between Ramsay Health and the Victorian Government ends on 15 September 2020.</p><h5>How does a privately managed public hospital model really work? What will change once the service is transitioned to public management?</h5><p>The Mildura Base Hospital is a public health service currently operated by a private provider, Ramsay Health Care. The arrangement is managed under the terms of a Service Agreement between Ramsay Health and the Victorian Government.</p><p>In a privately managed public hospital, the private operator receives the same level of funding as any other public health service across Victoria and must abide by the same conditions. However, unlike other public health services, Mildura Base Hospital doesn't have a Board of Directors appointed by the Minister for Health and operational surpluses are able to be retained by Ramsay Health, and the health service's annual report is not tabled in Parliament.</p><p>Once under public management, Mildura Base Hospital will continue to receive funding consistent with the policies applied to all Victorian public health services and meet the same quality and safety standards expected of all other public hospitals.</p><p>The hospital will also operate with a Minister appointed Board of Directors, and any future operational surpluses will be reinvested into services for the community and their annual report will be tabled in Parliament each year.</p>"
+                            "value": "<h3>[TEST] Accordion panel content 1</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 2",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What impact will there be on Mildura Base Hospital services over the course of transition?</h5><p>Mildura Base Hospital is a public 165-bed (level 1) tertiary teaching hospital and will continue to operate at the same level. Existing public services will continue to be provided during the transition and beyond.</p><p>This includes a range of services including emergency, maternity, intensive care, general medicine and surgery, oncology, medical imaging, pathology, dialysis, mental health (inpatient and community services), subacute care and a range of ambulatory services. For further details please visit the <a href=\"https://www.mildurabase.com.au/\" target=\"_blank\" title=\"link to external website\">Mildura Base Hospital website</a>.</p><p>The performance monitoring of Mildura Base Hospital will continue in line with the framework applied to all Victorian public health services.</p><h5>Why is the transition not happening until 15 September 2020?</h5><p>The current agreement between Ramsay Health and the Victorian Government ends on 15 September 2020. Ramsay Health will continue to operate the service until this time.</p><h5>What will be the impact on existing Mildura Base Hospital staff?</h5><p>Staff of any health service play a vital role in the ability of a health service to deliver high quality care. Ensuring staff are supported through the transition process is paramount to a successful transition.</p><p>Existing Mildura Base Hospital staff will be able to transition to the publicly operated health service at the end of the transition. The Department will be working closely with Ramsay Health and respective unions to support staff through the transition process.</p><h5>What changes will patients see at Mildura Base Hospital beyond the transition?</h5><p>The community will be more connected to the service through a local Board of Directors. Existing services will continue to be provided at the Mildura Base Hospital. The regional service plan will identify opportunities to expand and improve the scope of the services currently provided at Mildura Base Hospital.</p><p>Patients and the community are important stakeholders in this process and will be consulted. The Community Consultative Committee (CCC) will ensure that the community have a voice in shaping the future services at Mildura Base Hospital, working with government to provide input into the service planning process.</p><h5>How will the community be kept informed of the process?</h5><p>Updates for the community will be provided on the Department of Health and Human Services website.</p><h5>How will staff be kept informed of the process?</h5><p>We will work closely with Ramsay Health to ensure staff are supported during this period.</p><p>Staff will be consulted and kept informed of the process through regular emails, team discussions and updates as well as discussions with their union representatives. </p>"
+                            "value": "<h3>[TEST] Accordion panel content 2</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 3",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What is the role of the Board of Directors of a Victorian public health service?</h5><p>A health service board is accountable to the Minister for Health for the performance of the health service and ensures the hospital adheres to Government policy.</p><p>The role of the board includes overall governance of the health service, setting the strategic direction of the service, oversite of financial and service performance, responding to the needs of the local area, such as addressing changes in population and demographics, and meeting the regulatory and government policy requirements and standards for health services.</p><p>The Board of Directors would be made up of between 6-12 members who have varied skill sets relevant to the operation of a large public entity, including clinical governance, legal, financial, ICT and risk management expertise.</p><p>Board of Directors are also required to be representative of their communities, with membership including representation for both men and women, indigenous Australians, people with a disability, young people and people from a culturally and linguistically diverse background.</p><h5>How are the Board of Directors appointed?</h5><p>Directors are appointed by the Minister for Health through an annual Board Appointment Round. The annual round typically starts in November of each year with the positions being advertised in local newspapers and vacancies listed on the <a href=\"https://getonboard.vic.gov.au/\" target=\"_blank\" title=\"link to external website\">Victorian public sector boards website</a>.</p><p>Applicants are required to submit a formal application which demonstrates their experience and expertise against key selection criteria.</p><p>A Board of Directors for a publicly operated Mildura Base Hospital will be appointed to commence in 1 July 2020.</p><p>Applications for the Board of Directors close at 5:00pm Monday 2 December 2019.</p><p>For further information, including information on how to apply, please visit health.vic's <a href=\"~/link.aspx?_id=E2DEA31750C044778530BE5CD40500E0&amp;_z=z\">health service boards and governance section</a>.</p><h5>Why is the board starting 1 July 2020 and not 15 September 2020?</h5><p>The newly appointed board of Mildura Base Hospital is commencing at an earlier date than the handover date to ensure that the board is fully prepared to commence their role when the hospital returns to public management. </p><p>As there has not been a board in place, the new board will spend time preparing for the handover and working with the Department. </p><p>The work of the board will include the provision of overall governance of the health service, and as such has range of responsibilities they will need to prepare for, for example: </p><ul> <li>setting the strategic direction of the service, </li> <li>oversite of financial and service performance, </li> <li>responding to the needs of the local area, such as addressing changes in population and demographics, and meeting the regulatory and government policy requirements; and </li> <li>standards for health services. </li></ul><h5>Will the board have operational control over the privately managed Mildura Base Hospital?</h5><p>No, the newly appointed board will not have operational control over the privately managed Mildura Base Hospital. The current agreement between the private operator and the Victorian Government ends on 15 September 2020</p>"
+                            "value": "<h3>[TEST] Accordion panel content 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 4",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>How will regional service planning improve the provision of health services to the Sunraysia region?</h5><p>Regional service planning identifies how to deliver the very best health, mental health and aged care services, that best meets the unique needs of the Mildura community, now and into the future.</p><p>The plan will inform how a publicly operated Mildura Base Hospital will grow and tailor it's services to meet the needs of the local community and its role as part of the wider Victorian health system. This includes identifying partnerships, clinical capabilities and infrastructure needs as well as identifying opportunities for better health prevention initiatives and more integrated and contemporary service delivery.</p><p>The plan will also help inform the Victorian Government on future investment opportunities to best meet community needs.</p><p>The CCC will be established to ensure that the community provides input for the development of the plan.</p><h5>What investment is Government making to ensure a publicly operated Mildura Base Hospital can better meet the needs of the Sunraysia Community?</h5><p>Across the state, the Labor Government is providing a record $12.2 billion for our hospitals and health services to treat more patients and provide even better care, helping meet the needs of our growing state.</p><p>This includes a massive $124.07 million investment in operational funding for Mildura Base Hospital in 2019/20, which is $7.56 million more than the previous 12 months. The allocation is $36.19 million more than 2014/15 - a 41.2 per cent improvement.</p><p>It comes on top of $8.86 million from the Regional Health Infrastructure Fund for an 8-bed intensive care unit, an 8-bed paediatric ward to open next year and to replace operating theatre equipment.</p><p>A $1 million regional service plan by the Victorian Government will identify services to meet future community needs, allowing further investment opportunities to be analysed and proposed to provide the greatest benefit to the people of Mildura.</p>"
+                            "value": "<h3>[TEST] Accordion panel content 4</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 5",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What is the role of the Community Consultative Committee (CCC)?</h5><p>The CCC will provide an opportunity for the community to have a say in the development of the regional service plan, ensuring the plan truly meets the community's future healthcare needs.</p><p>Further information and Terms of Reference for the CCC is available at the <a href=\"https://www.vhhsba.vic.gov.au/mildura-base-hospital-transition\" target=\"_blank\" title=\"link to external website\">Victorian Health and Human Services Building Authority (VHHSBA) website</a>.</p><p>An expression of interest process for community members closed on Tuesday 29 October.</p>"
+                            "value": "<h3>[TEST] Accordion panel content 5</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         }
                       ]
@@ -145,7 +172,7 @@
     "id": "35e33c63-2991-41f9-bfe2-0901463a5f53",
     "title": "[TEST] Migrated Page Content 2",
     "alias": "/migrated/page-content-2",
-    "summary": "<span>Designed by government, for government. Our goal is to help you deliver and maintain secure, modern and user-friendly websites. GovCMS is community-based, but don't just take our word for it.</span>",
+    "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
     "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
     "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
     "vertical_spacing": "top",
@@ -171,8 +198,10 @@
         {
           "text_content": {
             "format": "rich_text",
-            "value": "<p>A more user friendly approach to the Drupal Services Panel - Product and Services Guide</p>"
-          },
+            "value": "<h3>[TEST] Basic text content</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+          }
+        },
+        {
           "manual_list": {
             "type": "manual_list",
             "children": {
@@ -184,47 +213,58 @@
                       "item_title": "[TEST] Promo card",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                        "value": "<p>[TEST] Promo card summary</p>"
                       }
-                    },
+                    }
+                  },
+                  {
                     "event_card": {
                       "item_title": "[TEST] Event card",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                        "value": "<p>[TEST] Event card summary</p>"
                       }
-                    },
+                    }
+                  },
+                  {
                     "publication_card": {
                       "item_title": "[TEST] Publication card",
                       "item_content": {
                         "format": "rich_text",
-                        "value": "<p>Understanding the steps to get started with GovCMS</p>"
+                        "value": "<p>[TEST] Publication card summary</p>"
                       },
                       "item_document": [
                         "a8bd4335-9d5a-4163-b06c-a2dcb36d8fe5"
                       ]
-                    },
+                    }
+                  },
+                  {
                     "service_card": {
                       "item_title": "[TEST] Service card",
                       "item_links": [
                         {
                           "uri": "http://example.com",
-                          "title": "Example link"
+                          "title": "[TEST] Service card link 1"
                         },
                         {
                           "uri": "http://example.com/1",
-                          "title": "Example link 1"
+                          "title": "[TEST] Service card link 2"
                         }
                       ]
-                    },
+                    }
+                  },
+                  {
                     "subject_card": {
-                      "item_title": "[TEST] Subject card"
+                      "item_title": "[TEST] Subject card",
+                      "item_image": "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
                     }
                   }
                 ]
               }
             }
-          },
+          }
+        },
+        {
           "accordion": {
             "type": "accordion",
             "children": {
@@ -240,28 +280,28 @@
                           "item_title": "[TEST] Accordion panel 1",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What health services does Mildura Base Hospital provide?</h5><p>Mildura Base Hospital is a public 165-bed (level 1) tertiary teaching hospital, providing public hospital services on behalf of the Victorian Government to the community of Mildura and the Sunraysia District. The hospital delivers a range of services including Emergency, Maternity, Intensive Care, General Medicine and Surgery, Oncology, Medical Imaging, Pathology, Dialysis, Mental Health (Inpatient and community services), subacute care and a range of Ambulatory Services.</p><h5>Why has Government made the decision to transfer Mildura Base Hospital to public management now?</h5><p>As the existing agreement with Ramsay Health is approaching the end of its current term in 2020, the Victorian Government decided the time was right to consider whether or not to continue this arrangement.</p><p>The Victorian Government has carefully considered this decision, including reviewing feedback from the recent community consultation. This decision will help ensure the community of Mildura feel more connected and aligned with their local health service and will also help bring operations of Mildura Base Hospital in line with all other rural Victorian public health services.</p><p>Making this decision now provides more certainty to the community as to how public health services will be delivered in Mildura beyond 2020 and allows time to transition to the new public sector management model.</p><h5>When will public management of Mildura Base Hospital begin?</h5><p>Public sector management will start after the current agreement between Ramsay Health and the Victorian Government ends on 15 September 2020.</p><h5>How does a privately managed public hospital model really work? What will change once the service is transitioned to public management?</h5><p>The Mildura Base Hospital is a public health service currently operated by a private provider, Ramsay Health Care. The arrangement is managed under the terms of a Service Agreement between Ramsay Health and the Victorian Government.</p><p>In a privately managed public hospital, the private operator receives the same level of funding as any other public health service across Victoria and must abide by the same conditions. However, unlike other public health services, Mildura Base Hospital doesn't have a Board of Directors appointed by the Minister for Health and operational surpluses are able to be retained by Ramsay Health, and the health service's annual report is not tabled in Parliament.</p><p>Once under public management, Mildura Base Hospital will continue to receive funding consistent with the policies applied to all Victorian public health services and meet the same quality and safety standards expected of all other public hospitals.</p><p>The hospital will also operate with a Minister appointed Board of Directors, and any future operational surpluses will be reinvested into services for the community and their annual report will be tabled in Parliament each year.</p>"
+                            "value": "<h3>[TEST] Accordion panel content 1</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 2",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What impact will there be on Mildura Base Hospital services over the course of transition?</h5><p>Mildura Base Hospital is a public 165-bed (level 1) tertiary teaching hospital and will continue to operate at the same level. Existing public services will continue to be provided during the transition and beyond.</p><p>This includes a range of services including emergency, maternity, intensive care, general medicine and surgery, oncology, medical imaging, pathology, dialysis, mental health (inpatient and community services), subacute care and a range of ambulatory services. For further details please visit the <a href=\"https://www.mildurabase.com.au/\" target=\"_blank\" title=\"link to external website\">Mildura Base Hospital website</a>.</p><p>The performance monitoring of Mildura Base Hospital will continue in line with the framework applied to all Victorian public health services.</p><h5>Why is the transition not happening until 15 September 2020?</h5><p>The current agreement between Ramsay Health and the Victorian Government ends on 15 September 2020. Ramsay Health will continue to operate the service until this time.</p><h5>What will be the impact on existing Mildura Base Hospital staff?</h5><p>Staff of any health service play a vital role in the ability of a health service to deliver high quality care. Ensuring staff are supported through the transition process is paramount to a successful transition.</p><p>Existing Mildura Base Hospital staff will be able to transition to the publicly operated health service at the end of the transition. The Department will be working closely with Ramsay Health and respective unions to support staff through the transition process.</p><h5>What changes will patients see at Mildura Base Hospital beyond the transition?</h5><p>The community will be more connected to the service through a local Board of Directors. Existing services will continue to be provided at the Mildura Base Hospital. The regional service plan will identify opportunities to expand and improve the scope of the services currently provided at Mildura Base Hospital.</p><p>Patients and the community are important stakeholders in this process and will be consulted. The Community Consultative Committee (CCC) will ensure that the community have a voice in shaping the future services at Mildura Base Hospital, working with government to provide input into the service planning process.</p><h5>How will the community be kept informed of the process?</h5><p>Updates for the community will be provided on the Department of Health and Human Services website.</p><h5>How will staff be kept informed of the process?</h5><p>We will work closely with Ramsay Health to ensure staff are supported during this period.</p><p>Staff will be consulted and kept informed of the process through regular emails, team discussions and updates as well as discussions with their union representatives. </p>"
+                            "value": "<h3>[TEST] Accordion panel content 2</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 3",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>What is the role of the Board of Directors of a Victorian public health service?</h5><p>A health service board is accountable to the Minister for Health for the performance of the health service and ensures the hospital adheres to Government policy.</p><p>The role of the board includes overall governance of the health service, setting the strategic direction of the service, oversite of financial and service performance, responding to the needs of the local area, such as addressing changes in population and demographics, and meeting the regulatory and government policy requirements and standards for health services.</p><p>The Board of Directors would be made up of between 6-12 members who have varied skill sets relevant to the operation of a large public entity, including clinical governance, legal, financial, ICT and risk management expertise.</p><p>Board of Directors are also required to be representative of their communities, with membership including representation for both men and women, indigenous Australians, people with a disability, young people and people from a culturally and linguistically diverse background.</p><h5>How are the Board of Directors appointed?</h5><p>Directors are appointed by the Minister for Health through an annual Board Appointment Round. The annual round typically starts in November of each year with the positions being advertised in local newspapers and vacancies listed on the <a href=\"https://getonboard.vic.gov.au/\" target=\"_blank\" title=\"link to external website\">Victorian public sector boards website</a>.</p><p>Applicants are required to submit a formal application which demonstrates their experience and expertise against key selection criteria.</p><p>A Board of Directors for a publicly operated Mildura Base Hospital will be appointed to commence in 1 July 2020.</p><p>Applications for the Board of Directors close at 5:00pm Monday 2 December 2019.</p><p>For further information, including information on how to apply, please visit health.vic's <a href=\"~/link.aspx?_id=E2DEA31750C044778530BE5CD40500E0&amp;_z=z\">health service boards and governance section</a>.</p><h5>Why is the board starting 1 July 2020 and not 15 September 2020?</h5><p>The newly appointed board of Mildura Base Hospital is commencing at an earlier date than the handover date to ensure that the board is fully prepared to commence their role when the hospital returns to public management. </p><p>As there has not been a board in place, the new board will spend time preparing for the handover and working with the Department. </p><p>The work of the board will include the provision of overall governance of the health service, and as such has range of responsibilities they will need to prepare for, for example: </p><ul> <li>setting the strategic direction of the service, </li> <li>oversite of financial and service performance, </li> <li>responding to the needs of the local area, such as addressing changes in population and demographics, and meeting the regulatory and government policy requirements; and </li> <li>standards for health services. </li></ul><h5>Will the board have operational control over the privately managed Mildura Base Hospital?</h5><p>No, the newly appointed board will not have operational control over the privately managed Mildura Base Hospital. The current agreement between the private operator and the Victorian Government ends on 15 September 2020</p>"
+                            "value": "<h3>[TEST] Accordion panel content 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         },
                         {
                           "item_title": "[TEST] Accordion panel 4",
                           "item_content": {
                             "format": "rich_text",
-                            "value": "<h5>How will regional service planning improve the provision of health services to the Sunraysia region?</h5><p>Regional service planning identifies how to deliver the very best health, mental health and aged care services, that best meets the unique needs of the Mildura community, now and into the future.</p><p>The plan will inform how a publicly operated Mildura Base Hospital will grow and tailor it's services to meet the needs of the local community and its role as part of the wider Victorian health system. This includes identifying partnerships, clinical capabilities and infrastructure needs as well as identifying opportunities for better health prevention initiatives and more integrated and contemporary service delivery.</p><p>The plan will also help inform the Victorian Government on future investment opportunities to best meet community needs.</p><p>The CCC will be established to ensure that the community provides input for the development of the plan.</p><h5>What investment is Government making to ensure a publicly operated Mildura Base Hospital can better meet the needs of the Sunraysia Community?</h5><p>Across the state, the Labor Government is providing a record $12.2 billion for our hospitals and health services to treat more patients and provide even better care, helping meet the needs of our growing state.</p><p>This includes a massive $124.07 million investment in operational funding for Mildura Base Hospital in 2019/20, which is $7.56 million more than the previous 12 months. The allocation is $36.19 million more than 2014/15 - a 41.2 per cent improvement.</p><p>It comes on top of $8.86 million from the Regional Health Infrastructure Fund for an 8-bed intensive care unit, an 8-bed paediatric ward to open next year and to replace operating theatre equipment.</p><p>A $1 million regional service plan by the Victorian Government will identify services to meet future community needs, allowing further investment opportunities to be analysed and proposed to provide the greatest benefit to the people of Mildura.</p>"
+                            "value": "<h3>[TEST] Accordion panel content 4</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
                           }
                         }
                       ]

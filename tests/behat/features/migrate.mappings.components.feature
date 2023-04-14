@@ -59,30 +59,46 @@ Feature: CivicTheme migrate module Component mapping
     Then I should see "[TEST] Banner title - Migrated Page Content 1" in the ".ct-banner__title" element
     #Content
     And I should see an ".ct-basic-content" element
+    And I should see "[TEST] Basic text content" in the ".ct-basic-content" element
     #Manual list
     And I should see an ".ct-list" element
+    #Promo card
     And I should see "[TEST] Promo card 1" in the ".ct-promo-card" element
     And I should see "[TEST] Promo card summary" in the ".ct-promo-card__content" element
+    #Promo card with image
+    And I should see "[TEST] Promo card 2" in the ".ct-promo-card" element
+    #Event card
+    #Event card
     And I should see "[TEST] Event card 1" in the ".ct-event-card" element
     And I should see "[TEST] Event card summary" in the ".ct-event-card__content" element
+    And I should see "[TEST] Event Topic 1" in the ".ct-event-card__tags" element
+    #Publication card
     And I should see "[TEST] Publication card 1" in the ".ct-publication-card" element
     And I should see "[TEST] Publication card summary" in the ".ct-publication-card__summary" element
     And the response should contain "dummy1.pdf"
+    #Service card
     And I should see "[TEST] Service card 1" in the ".ct-service-card" element
     And I should see 2 ".ct-service-card .ct-link" elements
-    And I should see "[TEST] Service card link 1" in the ".ct-service-card .ct-link" element
-    And I should see "[TEST] Service card link 2" in the ".ct-service-card" element
+    And I should see "[TEST] Service card 1 link 1" in the ".ct-service-card" element
+    And I should see "[TEST] Service card 1 link 2" in the ".ct-service-card" element
+    #Subject card
     And I should see "[TEST] Subject card 1" in the ".ct-subject-card" element
-    #Accordion
+    And the response should contain "Dummy file 2"
+    #Accordions
     And I should see an ".ct-accordion" element
     And I should see an ".ct-accordion__content" element
     And I should see an ".ct-accordion__panels" element
     And I should see 5 ".ct-accordion__panels__panel" elements
     And I should see the text "[TEST] Accordion panel 1"
+    And I should see the text "[TEST] Accordion panel content 1"
     And I should see the text "[TEST] Accordion panel 2"
+    And I should see the text "[TEST] Accordion panel content 2"
     And I should see the text "[TEST] Accordion panel 3"
+    And I should see the text "[TEST] Accordion panel content 3"
     And I should see the text "[TEST] Accordion panel 4"
+    And I should see the text "[TEST] Accordion panel content 4"
     And I should see the text "[TEST] Accordion panel 5"
+    And I should see the text "[TEST] Accordion panel content 5"
 
     And I visit "civictheme_page" "[TEST] Migrated Page Content 2"
     #Alias
@@ -91,6 +107,7 @@ Feature: CivicTheme migrate module Component mapping
 
     #Content
     And I should see an ".ct-basic-content" element
+    And I should see "[TEST] Basic text content" in the ".ct-basic-content" element
 
     #Manual list
     And I should see 1 ".ct-list" elements
@@ -106,9 +123,13 @@ Feature: CivicTheme migrate module Component mapping
     And I should see an ".ct-accordion__panels" element
     And I should see 4 ".ct-accordion__panels__panel" elements
     And I should see the text "[TEST] Accordion panel 1"
+    And I should see the text "[TEST] Accordion panel content 1"
     And I should see the text "[TEST] Accordion panel 2"
+    And I should see the text "[TEST] Accordion panel content 2"
     And I should see the text "[TEST] Accordion panel 3"
+    And I should see the text "[TEST] Accordion panel content 3"
     And I should see the text "[TEST] Accordion panel 4"
+    And I should see the text "[TEST] Accordion panel content 4"
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
