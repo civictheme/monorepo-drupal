@@ -23,7 +23,7 @@ Feature: CivicTheme migrate module Component mapping
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
-    And I clear "node_civictheme_document" migration map
+    And I clear "media_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
@@ -59,15 +59,16 @@ Feature: CivicTheme migrate module Component mapping
     Then I should see "[TEST] Banner title - Migrated Page Content 1" in the ".ct-banner__title" element
     #Content
     And I should see an ".ct-basic-content" element
-    And I should see "[TEST] Basic text content" in the ".ct-basic-content" element
+    And I should see the text "[TEST] Basic text content"
     #Manual list
     And I should see an ".ct-list" element
     #Promo card
-    And I should see "[TEST] Promo card 1" in the ".ct-promo-card" element
+    And I should see 2 ".ct-promo-card" elements
+    And I should see the text "[TEST] Promo card 1"
     And I should see "[TEST] Promo card summary" in the ".ct-promo-card__content" element
     #Promo card with image
-    And I should see "[TEST] Promo card 2" in the ".ct-promo-card" element
-    #Event card
+    And I should see the text "[TEST] Promo card with image"
+    And the response should contain "dummy1.jpg"
     #Event card
     And I should see "[TEST] Event card 1" in the ".ct-event-card" element
     And I should see "[TEST] Event card summary" in the ".ct-event-card__content" element
@@ -107,7 +108,7 @@ Feature: CivicTheme migrate module Component mapping
 
     #Content
     And I should see an ".ct-basic-content" element
-    And I should see "[TEST] Basic text content" in the ".ct-basic-content" element
+    And I should see the text "[TEST] Basic text content"
 
     #Manual list
     And I should see 1 ".ct-list" elements

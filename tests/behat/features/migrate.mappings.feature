@@ -112,7 +112,7 @@ Feature: CivicTheme migrate module
     """
     And I press "Update Migration"
 
-    When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_document/edit"
+    When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/media_civictheme_document/edit"
     And I fill in "Source as URLs" with "http://nginx:8080/sites/default/files/test_civictheme_migrate.media_civictheme_document_1.json"
     And I press "Update Migration"
 

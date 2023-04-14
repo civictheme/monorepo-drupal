@@ -659,7 +659,7 @@ trait CivicthemeTrait {
    */
   public static function civicthemeParagraphManualListCreate($options) {
     $defaults = [
-      'list_column_count' => 1,
+      'list_column_count' => 3,
       'list_fill_width' => NULL,
       'theme' => self::civicthemeThemeLight(),
       'list_link_above' => NULL,
@@ -671,6 +671,8 @@ trait CivicthemeTrait {
     if (empty(array_filter($options))) {
       return NULL;
     }
+
+    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content']);
 
     if (!empty($options['cards']) && count($options['cards']) > 0) {
       $cards = $options['cards'];

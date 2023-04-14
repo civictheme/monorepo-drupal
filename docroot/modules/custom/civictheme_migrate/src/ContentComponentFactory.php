@@ -233,13 +233,15 @@ class ContentComponentFactory {
             $cards[] = $option;
           }
         }
+
+        $options = [
+          'title' => $item_data['children']['title'] ?? '',
+          'content' => $item_data['children']['content'] ?? '',
+          'cards' => $cards,
+        ];
+
+        return $this->civicthemeComponentCreate('manual_list', $options);
       }
-
-      $options = [
-        'cards' => $cards,
-      ];
-
-      return $this->civicthemeComponentCreate('manual_list', $options);
     }
 
     return NULL;
