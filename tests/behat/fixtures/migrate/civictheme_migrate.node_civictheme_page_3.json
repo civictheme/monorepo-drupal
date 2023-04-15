@@ -4,8 +4,10 @@
     "title": "[TEST] Migrated Page Content 31",
     "alias": "/migrated/page-content-31",
     "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
-    "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
+    "topics": "[TEST] Migrated topic 1,[TEST] Migrated topic 2,[TEST] Migrated topic 3,[TEST] Migrated topic 4",
+    "thumbnail": [
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+    ],
     "vertical_spacing": "top",
     "hide_sidebar": true,
     "show_last_updated_date": true,
@@ -16,9 +18,14 @@
         {
           "theme": "dark",
           "title": "[TEST] Banner title - Migrated Page Content 31",
+          "type": "default",
           "blend_mode": "darken",
-          "featured_image": ["7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"],
-          "background": ["7966cf0a-598d-4da2-8443-837fccd46109"],
+          "featured_image": [
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+          ],
+          "background": [
+            "7966cf0a-598d-4da2-8443-837fccd46109"
+          ],
           "hide_breadcrumb": true
         }
       ]
@@ -29,7 +36,7 @@
         {
           "text_content": {
             "format": "rich_text",
-             "value": "<h3>[TEST] Basic text content</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+            "value": "<h3>[TEST] Basic text content</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
           }
         },
         {
@@ -69,7 +76,7 @@
                         "format": "rich_text",
                         "value": "<p>[TEST] Event card summary</p>"
                       },
-                      "item_topics": "[TEST] Event Topic 1,[TEST] Topic 2"
+                      "item_topics": "[TEST] Migrated event topic 1,[TEST] Migrated topic 2"
                     }
                   },
                   {
@@ -175,8 +182,10 @@
     "title": "[TEST] Migrated Page Content 32",
     "alias": "/migrated/page-content-32",
     "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
-    "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
+    "topics": "[TEST] Migrated topic 1,[TEST] Migrated topic 2,[TEST] Migrated topic 3,[TEST] Migrated topic 4",
+    "thumbnail": [
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+    ],
     "vertical_spacing": "top",
     "hide_sidebar": true,
     "show_last_updated_date": true,
@@ -187,9 +196,14 @@
         {
           "theme": "dark",
           "title": "[TEST] Banner title - Migrated Page Content 32",
+          "type": "default",
           "blend_mode": "darken",
-          "featured_image": ["7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"],
-          "background": ["7966cf0a-598d-4da2-8443-837fccd46109"],
+          "featured_image": [
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+          ],
+          "background": [
+            "7966cf0a-598d-4da2-8443-837fccd46109"
+          ],
           "hide_breadcrumb": true
         }
       ]

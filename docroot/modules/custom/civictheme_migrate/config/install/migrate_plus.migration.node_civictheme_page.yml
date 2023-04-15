@@ -47,14 +47,6 @@ source:
       label: 'Thumbnail id'
       selector: thumbnail/0
     -
-      name: featured_image_id
-      label: 'Featured image id'
-      selector: banner/children/0/featured_image/0
-    -
-      name: banner_background_id
-      label: 'Banner background image id'
-      selector: banner/children/0/background/0
-    -
       name: hide_sidebar
       label: 'Hide sidebar'
       selector: hide_sidebar
@@ -62,10 +54,6 @@ source:
       name: show_toc
       label: 'Show table of contents'
       selector: show_toc
-    -
-      name: hide_breadcrumb
-      label: 'Hide breadcrumb in banner'
-      selector: banner/children/0/hide_breadcrumb
     -
       name: show_last_updated_date
       label: 'Show last updated date'
@@ -75,21 +63,33 @@ source:
       label: 'Custom updated date'
       selector: last_updated_date
     -
+      name: banner_theme
+      label: 'Banner theme'
+      selector: banner/children/0/theme
+    -
+      name: banner_type
+      label: 'Banner type'
+      selector: banner/children/0/type
+    -
       name: banner_title
       label: 'Banner title'
       selector: banner/children/0/title
     -
-      name: banner_type
-      label: 'Banner type'
-      selector: banner/children/0/banner_type
+      name: banner_featured_image_id
+      label: 'Featured image id'
+      selector: banner/children/0/featured_image/0
+    -
+      name: banner_background_image_id
+      label: 'Banner background image id'
+      selector: banner/children/0/background/0
     -
       name: banner_blend_mode
       label: 'Banner blend mode'
       selector: banner/children/0/blend_mode
     -
-      name: banner_theme
-      label: 'Banner theme'
-      selector: banner/children/0/theme
+      name: banner_hide_breadcrumb
+      label: 'Hide breadcrumb in banner'
+      selector: banner/children/0/hide_breadcrumb
     -
       name: content
       label: Components
@@ -98,7 +98,7 @@ source:
     alias:
       type: string
       max_length: 2048
-  urls: []
+  urls: {  }
 process:
   title:
     -
@@ -149,28 +149,6 @@ process:
     -
       plugin: default_value
       default_value: 0
-  field_c_n_banner_theme:
-    -
-      plugin: get
-      source: banner_theme
-    -
-      plugin: default_value
-      default_value: dark
-  field_c_n_banner_title: banner_title
-  field_c_n_banner_type:
-    -
-      plugin: get
-      source: banner_type
-    -
-      plugin: default_value
-      default_value: default
-  field_c_n_blend_mode:
-    -
-      plugin: get
-      source: banner_blend_mode
-    -
-      plugin: default_value
-      default_value: color
   field_c_n_custom_last_updated:
     -
       plugin: format_date
@@ -189,21 +167,43 @@ process:
     -
       plugin: default_value
       default_value: 0
-  field_c_n_banner_hide_breadcrumb:
+  field_c_n_banner_theme:
     -
       plugin: get
-      source: hide_breadcrumb
+      source: banner_theme
     -
       plugin: default_value
-      default_value: 0
+      default_value: dark
+  field_c_n_banner_type:
+    -
+      plugin: get
+      source: banner_type
+    -
+      plugin: default_value
+      default_value: default
+  field_c_n_banner_title: banner_title
   field_c_n_banner_featured_image:
     plugin: migration_lookup
     migration: media_civictheme_image
-    source: featured_image_id
+    source: banner_featured_image_id
   field_c_n_banner_background:
     plugin: migration_lookup
     migration: media_civictheme_image
-    source: banner_background_id
+    source: banner_background_image_id
+  field_c_n_blend_mode:
+    -
+      plugin: get
+      source: banner_blend_mode
+    -
+      plugin: default_value
+      default_value: color
+  field_c_n_banner_hide_breadcrumb:
+    -
+      plugin: get
+      source: banner_hide_breadcrumb
+    -
+      plugin: default_value
+      default_value: 0
   path/pathauto:
     plugin: default_value
     default_value: 0
@@ -211,7 +211,7 @@ process:
   field_c_n_components:
     -
       plugin: content_components
-      source: 'content'
+      source: content
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page

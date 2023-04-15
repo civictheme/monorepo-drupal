@@ -69,21 +69,16 @@
                 "theme": {
                   "type": "string",
                   "description": "Banner theme",
-                  "pattern": "light|dark"
+                  "pattern": "light|dark|inherit"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of banner",
+                  "pattern": "default|large|inherit"
                 },
                 "title": {
                   "type": "string",
                   "description": "Banner title"
-                },
-                "banner_type": {
-                  "type": "string",
-                  "description": "Type of banner",
-                  "pattern": "default|large"
-                },
-                "blend_mode": {
-                  "type": "string",
-                  "description": "Banner blend mode",
-                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
                 },
                 "featured_image": {
                   "type": "array",
@@ -98,6 +93,11 @@
                     "type": "string",
                     "description": "Media uuid"
                   }
+                },
+                "blend_mode": {
+                  "type": "string",
+                  "description": "Banner blend mode",
+                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
                 },
                 "hide_breadcrumb": {
                   "type": "boolean",

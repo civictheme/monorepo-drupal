@@ -1,0 +1,8 @@
+[
+  {
+    "uuid": "7966cf0a-598d-4da2-8443-837fccd46109",
+    "name": "migrated_dummy3.jpg",
+    "file": "http://nginx:8080/sites/default/files/migrated_dummy3.jpg",
+    "alt": "Migrated dummy file 3"
+  }
+]
