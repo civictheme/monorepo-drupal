@@ -24,9 +24,9 @@ Status:
 | `banner`                 | Container for banner items              | `container` | No       | approved |                                     | 1.4                |
 | `banner.theme`           | Banner theme                            |             | No       | approved | `field_c_n_banner_theme`            | 1.4                |
 | `banner.title`           | Banner title                            | `text`      | No       | approved | `field_c_n_banner_title`            | 1.4                |
-| `banner.banner_type`     | Banner type                             | `text`      | No       | approved | `field_c_n_banner_type`             | 1.4                |
+| `banner.type`            | Banner type                             | `text`      | No       | approved | `field_c_n_banner_type`             | 1.4                |
 | `banner.blend_mode`      | Banner blend mode                       |             | No       | approved | `field_c_n_blend_mode`              | 1.4                |
 | `banner.featured_image`  | Banner featured image                   | `Media`     | No       | approved | `field_c_n_banner_featured_image`   | 1.4                |
 | `banner.background`      | Banner background image                 | `Media`     | No       | approved | `field_c_n_banner_background_image` | 1.4                |
-| `banner.hide_breadcrumb` | Hide breadcrumb                         | `boolean`   | No       | approved | `field_c_n_hide_breadcrumb`         | 1.4                |
+| `banner.hide_breadcrumb` | Hide breadcrumb                         | `boolean`   | No       | approved | `field_c_n_banner_hide_breadcrumb`  | 1.4                |
 |
