@@ -1,0 +1,14 @@
+[
+  {
+    "uuid": "c97a9b08-f3b0-477b-97f7-8b61f9d4a527",
+    "name": "dummy1.jpg",
+    "file": "http://nginx:8080/sites/default/files/dummy1.jpg",
+    "alt": "Dummy file 1"
+  },
+  {
+    "uuid": "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4",
+    "name": "dummy2.jpg",
+    "file": "http://nginx:8080/sites/default/files/dummy2.jpg",
+    "alt": "Dummy file 2"
+  }
+]

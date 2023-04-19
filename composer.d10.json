@@ -123,19 +123,6 @@
                 }
             }
         },
-        "drupal/migrate_file": {
-            "type": "package",
-            "package": {
-                "name": "drupal/migrate_file",
-                "type": "drupal-module",
-                "version": "2.1.1",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/migrate_file-3288621.git",
-                    "reference": "9b971e83cc54acc84166bee794a82b577a161804"
-                }
-            }
-        },
         "drupal/webform": {
             "type": "package",
             "package": {
@@ -213,11 +200,13 @@
             "file-mapping": {
                 "[project-root]/.editorconfig": false,
                 "[project-root]/.gitattributes": false,
-                "[web-root]/.htaccess": false,
                 "[web-root]/.ht.router.php": false,
-                "[web-root]/example.gitignore": false,
+                "[web-root]/.htaccess": false,
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.txt": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/sites/default/default.services.yml": false,
+                "[web-root]/sites/default/default.settings.php": false,
                 "[web-root]/sites/example.settings.local.php": false,
                 "[web-root]/sites/example.sites.php": false,
                 "[web-root]/web.config": false

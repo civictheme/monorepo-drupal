@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Media document entity name (default to filename)"
+      },
+      "file": {
+        "type": "string",
+        "description": "Document url"
+      },
+      "uuid": {
+        "type": "string",
+        "description": "UUID for file"
+      }
+    },
+    "required": [
+      "name",
+      "file",
+      "uuid"
+    ]
+  }
+}

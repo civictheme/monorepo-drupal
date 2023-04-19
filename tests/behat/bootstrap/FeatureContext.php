@@ -360,4 +360,16 @@ class FeatureContext extends DrupalContext {
     $this->visitPath($url->toString());
   }
 
+  /**
+   * Clear named migrate table.
+   *
+   * @Given I clear :name migration map
+   */
+  public function migrateClearMap($name) {
+    $table_name = 'migrate_map_' . $name;
+    if (\Drupal::database()->schema()->tableExists($table_name)) {
+      \Drupal::database()->query("TRUNCATE TABLE " . $table_name)->execute();
+    }
+  }
+
 }

@@ -2,13 +2,19 @@
 
 namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 
+use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrateProcessInterface;
 use Drupal\migrate\Row;
 use Drupal\migrate_file\Plugin\migrate\process\FileImport;
+use GuzzleHttp\ClientInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Imports a file from a remote URL.
+ * Imports a file from a remote URL, adding authentication, if required.
  *
  * Also, infers file names based on the content disposition header.
  *
@@ -19,66 +25,94 @@ use Drupal\migrate_file\Plugin\migrate\process\FileImport;
 class FileCopyDisposition extends FileImport {
 
   /**
-   * Parse a header string into an array.
+   * The client used to send HTTP requests.
    *
-   * @return array
-   *   An array of header values.
+   * @var \GuzzleHttp\ClientInterface
    */
-  public function parseHeader($header) {
-    $header_map = [];
+  protected $httpClient;
 
-    foreach ($header as $string) {
-      $parts = array_map('trim', explode(';', $string));
-      foreach ($parts as $part) {
-        [$name, $value] = explode('=', $part);
-        $header_map[$name] = str_replace('"', '', $value);
-      }
-    }
+  /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactory
+   */
+  protected $configFactory;
 
-    return $header_map;
+  /**
+   * Constructs a file_copy process plugin.
+   *
+   * @param array $configuration
+   *   The plugin configuration.
+   * @param string $plugin_id
+   *   The plugin ID.
+   * @param array $plugin_definition
+   *   The plugin definition.
+   * @param \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface $stream_wrappers
+   *   The stream wrapper manager service.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system service.
+   * @param \Drupal\migrate\Plugin\MigrateProcessInterface $download_plugin
+   *   An instance of the download plugin for handling remote URIs.
+   * @param \Drupal\Core\Config\ConfigFactory $config_factory
+   *   The configuration factory.
+   * @param \GuzzleHttp\ClientInterface $http_client
+   *   The HTTP client.
+   */
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, StreamWrapperManagerInterface $stream_wrappers, FileSystemInterface $file_system, MigrateProcessInterface $download_plugin, ConfigFactory $config_factory, ClientInterface $http_client) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $stream_wrappers, $file_system, $download_plugin);
+    $this->configFactory = $config_factory;
+    $this->httpClient = $http_client;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    if (!$value) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('stream_wrapper_manager'),
+      $container->get('file_system'),
+      $container->get('plugin.manager.migrate.process')->createInstance('download', $configuration),
+      $container->get('config.factory'),
+      $container->get('http_client')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function transform($url, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    if (!$url) {
       return NULL;
     }
 
-    if (!$curl = curl_init()) {
-      throw new MigrateSkipRowException("Unable to download file: Cannot initialise curl");
-    }
+    $options = [];
+    $options['header'] = ['Accept-Encoding: gzip, deflate'];
+    $options['http_errors'] = FALSE;
 
-    $value = str_replace(' ', '%20', $value);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept-Encoding: gzip, deflate']);
-    curl_setopt($curl, CURLOPT_URL, $value);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 600);
-    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 60);
-    curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
-    curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
-    curl_setopt($curl, CURLINFO_HEADER_OUT, TRUE);
-    curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
-
-    $data = curl_exec($curl);
-
-    if (curl_errno($curl)) {
-      $options = ['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1']];
-      if (!$data = file_get_contents($value, FILE_TEXT, stream_context_create($options))) {
-        $error = error_get_last();
-        echo "HTTP request failed. Error was: " . $error['message'] . PHP_EOL;
-        throw new MigrateSkipRowException("Unable to download file {$value}: {$error['message']}");
+    $authentication_settings = $this->configFactory->get('civictheme_migrate.settings')->get('remote_authentication');
+    if ($authentication_settings['type'] == 'basic') {
+      if (!empty($authentication_settings['basic']['username']) && !empty($authentication_settings['basic']['password'])) {
+        $options['auth'] = [
+          $authentication_settings['basic']['username'],
+          $authentication_settings['basic']['password'],
+        ];
       }
-      echo "Downloaded {$value} via file_get_contents, size is: " . mb_strlen($data) . PHP_EOL;
     }
+
+    $response = $this->httpClient->request('GET', $url, $options);
+    if ($response->getStatusCode() != '200') {
+      throw new MigrateSkipRowException("Unable to download file $url: {$response->getBody()}");
+    }
+
+    $data = $response->getBody();
 
     $uuid = $row->getSourceProperty('uuid');
 
-    curl_close($curl);
-
-    $filename = urldecode(basename($value));
-    $filename = "{$uuid}_{$filename}";
+    $filename = urldecode(basename($url));
+    $filename = "{$uuid}_$filename";
     $filename = "temporary://{$filename}";
 
     file_put_contents($filename, (string) $data);

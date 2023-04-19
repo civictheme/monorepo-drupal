@@ -1,0 +1,35 @@
+[
+  {
+    "id": "4593761e-8a5d-4564-8c0e-2126fb4f3338",
+    "title": "[TEST] Migrated Content 1",
+    "alias": "/test/migrated-content-1",
+    "summary": "Summary for [TEST] Migrated Content 1",
+    "topics": "[TEST] Migrated topic 1,[TEST] Migrated topic 2,[TEST] Migrated topic 3,[TEST] Migrated topic 4",
+    "thumbnail": [
+      "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+    ],
+    "vertical_spacing": "top",
+    "hide_sidebar": true,
+    "show_last_updated_date": true,
+    "last_updated_date": "8 Oct 2022",
+    "show_toc": true,
+    "banner": {
+      "type": "container",
+      "children": [
+        {
+          "theme": "dark",
+          "title": "[TEST] Banner title - Migrated Content 1",
+          "type": "large",
+          "blend_mode": "darken",
+          "featured_image": [
+            "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+          ],
+          "background": [
+            "7966cf0a-598d-4da2-8443-837fccd46109"
+          ],
+          "hide_breadcrumb": true
+        }
+      ]
+    }
+  }
+]

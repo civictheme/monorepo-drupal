@@ -210,6 +210,7 @@ job-build-no-persist: &job-build-no-persist
         command: ahoy lint
     - run:
         name: Lint theme config
+        # Drupal 10 has different configuration export logic which results in config differences.
         command: ahoy lint config || true
     - run:
         name: Run tooling tests

@@ -1,0 +1,124 @@
+[
+  {
+    "id": "77d61781-0657-4f9a-9d12-173ea03eae91",
+    "title": "[TEST] Migrated Content 1",
+    "alias": "/test/migrated-content-1",
+    "summary": "Summary for [TEST] Migrated Content 1",
+    "content": {
+      "type": "container",
+      "children": [
+        {
+          "text_content": {
+            "format": "rich_text",
+            "value": "<p>[TEST] Component - Basic text</p>"
+          },
+          "manual_list": {
+            "type": "manual_list",
+            "children": {
+              "cards": {
+                "type": "container",
+                "children": [
+                  {
+                    "promo_card": {
+                      "item_title": "[TEST] Promo card 1",
+                      "item_content": {
+                        "format": "rich_text",
+                        "value": "<p>[TEST] Promo card Summary</p>"
+                      }
+                    },
+                    "event_card": {
+                      "item_title": "[TEST] Event card 1",
+                      "item_content": {
+                        "format": "rich_text",
+                        "value": "<p>[TEST] Event card Summary</p>"
+                      }
+                    },
+                    "publication_card": {
+                      "item_title": "[TEST] Publication card 1",
+                      "item_content": {
+                        "format": "rich_text",
+                        "value": "<p>[TEST] Publication card Summary</p>"
+                      },
+                      "item_document": [
+                        "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
+                      ]
+                    },
+                    "service_card": {
+                      "item_title": "[TEST] Service card 1",
+                      "item_links": [
+                        {
+                          "uri": "http://example.com",
+                          "title": "Example link"
+                        },
+                        {
+                          "uri": "http://example.com/1",
+                          "title": "Example link 1"
+                        }
+                      ]
+                    },
+                    "subject_card": {
+                      "item_title": "[TEST] Subject card 1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "accordion": {
+            "type": "accordion",
+            "children": {
+              "accordion_title": "\r\n\t\tQuestions and answers\r\n\t",
+              "accordion_list": {
+                "type": "container",
+                "children": [
+                  {
+                    "accordion_items": {
+                      "type": "group",
+                      "children": [
+                        {
+                          "item_title": "[TEST] Accordion title 1",
+                          "item_content": {
+                            "format": "rich_text",
+                            "value": "<p>[TEST] Accordion item 1 content</p>"
+                          }
+                        },
+                        {
+                          "item_title": "[TEST] Accordion title 2",
+                          "item_content": {
+                            "format": "rich_text",
+                            "value": "<p>[TEST] Accordion item 2 content</p>"
+                          }
+                        },
+                        {
+                          "item_title": "[TEST] Accordion title title 3",
+                          "item_content": {
+                            "format": "rich_text",
+                            "value": "<p>[TEST] Accordion item 3 content</p>"
+                          }
+                        },
+                        {
+                          "item_title": "[TEST] Accordion title 4",
+                          "item_content": {
+                            "format": "rich_text",
+                            "value": "<p>[TEST] Accordion item 4 content</p>"
+                          }
+                        },
+                        {
+                          "item_title": "[TEST] Accordion title 5",
+                          "item_content": {
+                            "format": "rich_text",
+                            "value": "<p>[TEST] Accordion item 5 content</p>"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

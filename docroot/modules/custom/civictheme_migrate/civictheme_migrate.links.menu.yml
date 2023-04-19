@@ -1,6 +1,5 @@
-civictheme_migrate.admin:
+civictheme_migrate.settings:
   title: 'CivicTheme Migrate'
-  description: 'Create and configure local and remote migrations into CivicTheme'
+  description: 'CivicTheme Migrate settings'
   parent: system.admin_config_development
   route_name: civictheme_migrate.settings
-  weight: 100
