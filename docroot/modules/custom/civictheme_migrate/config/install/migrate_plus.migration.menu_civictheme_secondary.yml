@@ -1,0 +1,82 @@
+uuid: 1d418cff-98c2-465a-b02a-7b0e2ca0167d
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - civictheme_migrate
+id: menu_civictheme_secondary
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - civictheme_migrate
+migration_group: civictheme_migrate
+label: 'Secondary Menu items'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  fields:
+    -
+      name: uuid
+      label: ID
+      selector: uuid
+    -
+      name: title
+      label: Title
+      selector: text
+    -
+      name: link
+      label: Path
+      selector: link
+    -
+      name: parent
+      label: Parent
+      selector: parent
+    -
+      name: weight
+      label: Weight
+      selector: weight
+  ids:
+    uuid:
+      type: string
+  urls: { }
+process:
+  bundle: menu_link_content
+  title:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: title
+  menu_name:
+    plugin: default_value
+    default_value: civictheme-secondary-navigation
+  link:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: link
+  external:
+    plugin: default_value
+    default_value: 0
+  weight:
+    -
+      plugin: get
+      source: weight
+  expanded:
+    plugin: default_value
+    default_value: 1
+  enabled:
+    plugin: default_value
+    default_value: 1
+  parent:
+    plugin: menu_link_parent
+    source:
+      - parent
+      - '@menu_name'
+      - parent_link_path
+destination:
+  plugin: 'entity:menu_link_content'
+  default_bundle: civictheme_primary
+migration_dependencies: null

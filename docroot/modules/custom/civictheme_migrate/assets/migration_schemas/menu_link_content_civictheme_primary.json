@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "uuid": {
+        "type": "string",
+        "description": "UUID for menu item"
+      },
+      "text": {
+        "type": "string",
+        "description": "Menu item title"
+      },
+      "link": {
+        "type": "string",
+        "description": "Url"
+      },
+      "parent": {
+        "type": "string",
+        "description": "UUID for parent menu item"
+      },
+      "weight": {
+        "type": "integer",
+        "description": "Menu item weight"
+      }
+    },
+    "required": [
+      "uuid",
+      "link",
+      "text",
+      "parent",
+      "weight"
+    ]
+  }
+}
