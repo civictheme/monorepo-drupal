@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_migrate
+@p0 @civictheme @civictheme_migrate @civictheme_migrate_components
 Feature: CivicTheme migrate module Component mapping
 
   Background:
@@ -164,6 +164,7 @@ Feature: CivicTheme migrate module Component mapping
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
     And I clear "media_civictheme_image" migration map
+    And I clear "media_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
