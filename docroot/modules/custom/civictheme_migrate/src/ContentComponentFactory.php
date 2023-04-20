@@ -285,4 +285,44 @@ class ContentComponentFactory {
     return NULL;
   }
 
+  /**
+   * Produce Attachment components.
+   *
+   * @param mixed $item_data
+   *   The item data to create the component.
+   * @param array $context
+   *   The migration context.
+   *
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   The component.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  protected function generateAttachment($item_data, array &$context): ?ParagraphInterface {
+    if (!empty($item_data['children'])) {
+      $attachments = [];
+      if (!empty($item_data['children']['attachments']['children'])) {
+        $documents = NestedArray::getValue($item_data,
+          ['children', 'attachments', 'children']
+        );
+
+        // Process all the attached files.
+        foreach ($documents as $document) {
+          // Document lookup.
+          $lookup_result = $this->migrateLookup->lookup('media_civictheme_document', [$document]);
+          if (!empty($lookup_result)) {
+            $attachments[] = $lookup_result[0]['mid'];
+          }
+        }
+
+        $options = $item_data['children'];
+        $options['attachments'] = $attachments;
+
+        return $this->civicthemeComponentCreate('attachment', $options);
+      }
+    }
+
+    return NULL;
+  }
+
 }

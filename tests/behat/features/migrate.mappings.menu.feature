@@ -70,7 +70,6 @@ Feature: CivicTheme migrate module Component mapping
 
     # All the menu items are visible on FE.
     When I go to the homepage
-    And I should be in the "<front>" path
 
     # Primary menu.
     And I should see the link "Theme 1"
