@@ -1,0 +1,50 @@
+uuid: f63fb7fb-d22d-40b1-88fb-7758fa8e5a1c
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - civictheme_migrate
+id: block_content_civictheme_component_block
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - civictheme_migrate
+  - civictheme_block_content_migration
+migration_group: civictheme_migrate
+label: 'Block content CivicTheme'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  ids:
+    id:
+      type: string
+  fields:
+    -
+      name: id
+      label: ID
+      selector: id
+    -
+      name: content
+      label: Components
+      selector: content/children
+    -
+      name: info
+      label: Description
+      selector: description
+  urls: []
+process:
+  info:
+    -
+      plugin: get
+      source: info
+  field_c_b_components:
+    -
+      plugin: content_components
+      source: content
+destination:
+  plugin: 'entity:block_content'
+  default_bundle: civictheme_component_block
+migration_dependencies: {  }

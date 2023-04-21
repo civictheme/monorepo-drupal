@@ -1,0 +1,26 @@
+[
+  {
+    "id": "aef73ce1-06a3-4da1-a51b-49d24d2628c4",
+    "description": "[TEST] Component block",
+    "content": {
+      "type": "container",
+      "children": [
+        {
+          "promo": {
+            "type": "container",
+            "children": {
+              "title": "[TEST] Promo Block 1",
+              "content": "<p>[TEST] Promo content Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "link": {
+                "uri": "http://example.com",
+                "title": "[TEST] Promo Block link 1"
+              },
+              "theme": "light",
+              "vertical_spacing": "top"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

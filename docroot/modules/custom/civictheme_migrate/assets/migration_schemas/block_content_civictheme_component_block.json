@@ -1,0 +1,485 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Id for content"
+      },
+      "description": {
+        "type": "string",
+        "description": "Block title"
+      },
+      "content": {
+        "$id": "#root/items/content",
+        "title": "Content",
+        "type": "object",
+        "required": [
+          "type",
+          "children"
+        ],
+        "properties": {
+          "type": {
+            "$id": "#root/items/content/type",
+            "title": "Type",
+            "type": "string",
+            "default": ""
+          },
+          "children": {
+            "$id": "#root/items/content/children",
+            "title": "Children",
+            "type": "array",
+            "default": [],
+            "items": {
+              "$id": "#root/items/content/children/items",
+              "title": "Items",
+              "type": "object",
+              "properties": {
+                "text_content": {
+                  "$id": "#root/items/content/children/items/text_content",
+                  "title": "Text_content",
+                  "type": "object",
+                  "required": [
+                    "format",
+                    "value"
+                  ],
+                  "properties": {
+                    "format": {
+                      "$id": "#root/items/content/children/items/text_content/format",
+                      "title": "Format",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "value": {
+                      "$id": "#root/items/content/children/items/text_content/value",
+                      "title": "Value",
+                      "type": "string",
+                      "default": ""
+                    }
+                  }
+                },
+                "promo": {
+                  "$id": "#root/items/content/children/items/promo",
+                  "title": "Promo",
+                  "type": "object",
+                  "required": [
+                    "content",
+                    "link"
+                  ],
+                  "properties": {
+                    "content": {
+                      "$id": "#root/items/content/children/items/promo/content",
+                      "title": "Content",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "link": {
+                      "$id": "#root/items/content/children/items/promo/link",
+                      "title": "Link",
+                      "default": "",
+                      "type": "object",
+                      "required": [
+                        "uri",
+                        "title"
+                      ],
+                      "properties": {
+                        "uri": {
+                          "$id": "#root/items/content/children/items/promo/link/items/uri",
+                          "title": "Uri",
+                          "type": "string",
+                          "default": ""
+                        },
+                        "title": {
+                          "$id": "#root/items/content/children/items/promo/link/items/title",
+                          "title": "Title",
+                          "type": "string",
+                          "default": ""
+                        }
+                      }
+                    }
+                  }
+                },
+                "manual_list": {
+                  "$id": "#root/items/content/children/items/manual_list",
+                  "title": "Manual_list",
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "children"
+                  ],
+                  "properties": {
+                    "type": {
+                      "$id": "#root/items/content/children/items/manual_list/type",
+                      "title": "Type",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "children": {
+                      "$id": "#root/items/content/children/items/manual_list/children",
+                      "title": "Children",
+                      "type": "object",
+                      "required": [
+                        "cards"
+                      ],
+                      "properties": {
+                        "cards": {
+                          "$id": "#root/items/content/children/items/manual_list/children/cards",
+                          "title": "Cards",
+                          "type": "object",
+                          "required": [
+                            "type",
+                            "children"
+                          ],
+                          "properties": {
+                            "type": {
+                              "$id": "#root/items/content/children/items/manual_list/children/cards/type",
+                              "title": "Type",
+                              "type": "string",
+                              "default": ""
+                            },
+                            "children": {
+                              "$id": "#root/items/content/children/items/manual_list/children/cards/children",
+                              "title": "Children",
+                              "type": "array",
+                              "default": [],
+                              "items": {
+                                "$id": "#root/items/content/children/items/manual_list/children/cards/children/items",
+                                "title": "Items",
+                                "type": "object",
+                                "properties": {
+                                  "promo_card": {
+                                    "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/promo_card",
+                                    "title": "Promo_card",
+                                    "type": "object",
+                                    "required": [
+                                      "item_title",
+                                      "item_content"
+                                    ],
+                                    "properties": {
+                                      "item_title": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/promo_card/item_title",
+                                        "title": "Item_title",
+                                        "type": "string",
+                                        "default": ""
+                                      },
+                                      "item_content": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/promo_card/item_content",
+                                        "title": "Item_content",
+                                        "type": "object",
+                                        "required": [
+                                          "format",
+                                          "value"
+                                        ],
+                                        "properties": {
+                                          "format": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/promo_card/item_content/format",
+                                            "title": "Format",
+                                            "type": "string",
+                                            "default": ""
+                                          },
+                                          "value": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/promo_card/item_content/value",
+                                            "title": "Value",
+                                            "type": "string",
+                                            "default": ""
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "event_card": {
+                                    "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/event_card",
+                                    "title": "Event_card",
+                                    "type": "object",
+                                    "required": [
+                                      "item_title",
+                                      "item_content"
+                                    ],
+                                    "properties": {
+                                      "item_title": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/event_card/item_title",
+                                        "title": "Item_title",
+                                        "type": "string",
+                                        "default": ""
+                                      },
+                                      "item_content": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/event_card/item_content",
+                                        "title": "Item_content",
+                                        "type": "object",
+                                        "required": [
+                                          "format",
+                                          "value"
+                                        ],
+                                        "properties": {
+                                          "format": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/event_card/item_content/format",
+                                            "title": "Format",
+                                            "type": "string",
+                                            "default": ""
+                                          },
+                                          "value": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/event_card/item_content/value",
+                                            "title": "Value",
+                                            "type": "string",
+                                            "default": ""
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "publication_card": {
+                                    "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/publication_card",
+                                    "title": "Publication_card",
+                                    "type": "object",
+                                    "required": [
+                                      "item_title",
+                                      "item_content"
+                                    ],
+                                    "properties": {
+                                      "item_title": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/publication_card/item_title",
+                                        "title": "Item_title",
+                                        "type": "string",
+                                        "default": ""
+                                      },
+                                      "item_content": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/publication_card/item_content",
+                                        "title": "Item_content",
+                                        "type": "object",
+                                        "required": [
+                                          "format",
+                                          "value"
+                                        ],
+                                        "properties": {
+                                          "format": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/publication_card/item_content/format",
+                                            "title": "Format",
+                                            "type": "string",
+                                            "default": ""
+                                          },
+                                          "value": {
+                                            "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/publication_card/item_content/value",
+                                            "title": "Value",
+                                            "type": "string",
+                                            "default": ""
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "service_card": {
+                                    "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card",
+                                    "title": "Service_card",
+                                    "type": "object",
+                                    "required": [
+                                      "item_title",
+                                      "item_links"
+                                    ],
+                                    "properties": {
+                                      "item_title": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card/item_title",
+                                        "title": "Item_title",
+                                        "type": "string",
+                                        "default": ""
+                                      },
+                                      "item_links": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card/item_links",
+                                        "title": "Item_links",
+                                        "type": "array",
+                                        "default": [],
+                                        "items": {
+                                          "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card/item_links/items",
+                                          "title": "Items",
+                                          "type": "object",
+                                          "required": [
+                                            "uri",
+                                            "title"
+                                          ],
+                                          "properties": {
+                                            "uri": {
+                                              "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card/item_links/items/uri",
+                                              "title": "Uri",
+                                              "type": "string",
+                                              "default": ""
+                                            },
+                                            "title": {
+                                              "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/service_card/item_links/items/title",
+                                              "title": "Title",
+                                              "type": "string",
+                                              "default": ""
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "subject_card": {
+                                    "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/subject_card",
+                                    "title": "Subject_card",
+                                    "type": "object",
+                                    "required": [
+                                      "item_title"
+                                    ],
+                                    "properties": {
+                                      "item_title": {
+                                        "$id": "#root/items/content/children/items/manual_list/children/cards/children/items/subject_card/item_title",
+                                        "title": "Item_title",
+                                        "type": "string",
+                                        "default": ""
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "accordion": {
+                  "$id": "#root/items/content/children/items/accordion",
+                  "title": "Accordion",
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "children"
+                  ],
+                  "properties": {
+                    "type": {
+                      "$id": "#root/items/content/children/items/accordion/type",
+                      "title": "Type",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "children": {
+                      "$id": "#root/items/content/children/items/accordion/children",
+                      "title": "Children",
+                      "type": "object",
+                      "required": [
+                        "accordion_title",
+                        "accordion_list"
+                      ],
+                      "properties": {
+                        "accordion_title": {
+                          "$id": "#root/items/content/children/items/accordion/children/accordion_title",
+                          "title": "Accordion_title",
+                          "type": "string",
+                          "default": ""
+                        },
+                        "accordion_list": {
+                          "$id": "#root/items/content/children/items/accordion/children/accordion_list",
+                          "title": "Accordion_list",
+                          "type": "object",
+                          "required": [
+                            "type",
+                            "children"
+                          ],
+                          "properties": {
+                            "type": {
+                              "$id": "#root/items/content/children/items/accordion/children/accordion_list/type",
+                              "title": "Type",
+                              "type": "string",
+                              "default": ""
+                            },
+                            "children": {
+                              "$id": "#root/items/content/children/items/accordion/children/accordion_list/children",
+                              "title": "Children",
+                              "type": "array",
+                              "default": [],
+                              "items": {
+                                "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items",
+                                "title": "Items",
+                                "type": "object",
+                                "required": [
+                                  "accordion_items"
+                                ],
+                                "properties": {
+                                  "accordion_items": {
+                                    "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items",
+                                    "title": "Accordion_items",
+                                    "type": "object",
+                                    "required": [
+                                      "type",
+                                      "children"
+                                    ],
+                                    "properties": {
+                                      "type": {
+                                        "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/type",
+                                        "title": "Type",
+                                        "type": "string",
+                                        "default": ""
+                                      },
+                                      "children": {
+                                        "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children",
+                                        "title": "Children",
+                                        "type": "array",
+                                        "default": [],
+                                        "items": {
+                                          "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children/items",
+                                          "title": "Items",
+                                          "type": "object",
+                                          "required": [
+                                            "item_title",
+                                            "item_content"
+                                          ],
+                                          "properties": {
+                                            "item_title": {
+                                              "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children/items/item_title",
+                                              "title": "Item_title",
+                                              "type": "string",
+                                              "default": ""
+                                            },
+                                            "item_content": {
+                                              "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children/items/item_content",
+                                              "title": "Item_content",
+                                              "type": "object",
+                                              "required": [
+                                                "format",
+                                                "value"
+                                              ],
+                                              "properties": {
+                                                "format": {
+                                                  "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children/items/item_content/format",
+                                                  "title": "Format",
+                                                  "type": "string",
+                                                  "default": ""
+                                                },
+                                                "value": {
+                                                  "$id": "#root/items/content/children/items/accordion/children/accordion_list/children/items/accordion_items/children/items/item_content/value",
+                                                  "title": "Value",
+                                                  "type": "string",
+                                                  "default": ""
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "id",
+      "content",
+      "description"
+    ]
+  }
+}

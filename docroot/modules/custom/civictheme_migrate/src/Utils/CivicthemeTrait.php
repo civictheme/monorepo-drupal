@@ -315,6 +315,17 @@ trait CivicthemeTrait {
 
     // Attaching all fields to paragraph.
     foreach ($options as $field_name => $value) {
+
+      // Process content format.
+      if ($field_name == 'content') {
+        $value = static::civicthemeNormaliseRichTextContentValue($value);
+      }
+
+      // Process summary.
+      if ($field_name == 'summary') {
+        $value = strip_tags($value);
+      }
+
       $field_name = 'field_c_p_' . $field_name;
       if ($paragraph->hasField($field_name)) {
         $paragraph->{$field_name} = $value;
@@ -501,7 +512,7 @@ trait CivicthemeTrait {
   public static function civicthemeParagraphPromoCreate($options) {
     $defaults = [
       'title' => '',
-      'links' => FALSE,
+      'link' => FALSE,
     ];
 
     $options += $defaults;
