@@ -15,8 +15,6 @@ Feature: CivicTheme migrate module Component mapping
       | migrate/civictheme_migrate.menu_civictheme_secondary.json   | public://test_civictheme_migrate.menu_civictheme_secondary.json  |
       | migrate/civictheme_migrate.menu_civictheme_footer.json      | public://test_civictheme_migrate.menu_civictheme_footer.json     |
 
-
-
     # Files used as migration assets and are served from the local server as from remote.
     # @see fixtures/migrate/civictheme_migrate.menu_civictheme_primary.json
     # @see fixtures/migrate/civictheme_migrate.menu_civictheme_secondary.json
