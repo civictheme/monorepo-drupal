@@ -1,4 +1,3 @@
-uuid: 26e7ed69-10c1-4142-b306-35c8dfccc124
 langcode: en
 status: true
 dependencies:
@@ -98,7 +97,7 @@ source:
     alias:
       type: string
       max_length: 2048
-  urls: {  }
+  urls: { }
 process:
   title:
     -

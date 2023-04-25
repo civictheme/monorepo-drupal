@@ -1,4 +1,3 @@
-uuid: e8e291f5-8b93-4d9b-b3c1-2398d4a2575e
 langcode: en
 status: true
 dependencies:
@@ -38,7 +37,7 @@ source:
       name: alt
       label: 'Alternative text'
       selector: alt
-  urls: []
+  urls: { }
 process:
   name: name
   field_c_m_image/target_id:
