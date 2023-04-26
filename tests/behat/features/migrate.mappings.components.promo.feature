@@ -8,7 +8,7 @@ Feature: CivicTheme migrate module Promo Component mapping
 
     And no managed files:
       | filename                                                              |
-      | test_civictheme_migrate.node_civictheme_page_5.json                   |
+      | test_civictheme_migrate.node_civictheme_page_6.json                   |
       | test_civictheme_migrate.media_civictheme_image_1.json                 |
       | test_civictheme_migrate.media_civictheme_image_2.json                 |
       | test_civictheme_migrate.media_civictheme_document_1.json              |
@@ -17,7 +17,7 @@ Feature: CivicTheme migrate module Promo Component mapping
 
     And managed file:
       | path                                                                     | uri                                                                            |
-      | migrate/civictheme_migrate.node_civictheme_page_5.json                   | public://test_civictheme_migrate.node_civictheme_page_5.json                   |
+      | migrate/civictheme_migrate.node_civictheme_page_6.json                   | public://test_civictheme_migrate.node_civictheme_page_6.json                   |
       | migrate/civictheme_migrate.media_civictheme_image_1.json                 | public://test_civictheme_migrate.media_civictheme_image_1.json                 |
       | migrate/civictheme_migrate.media_civictheme_image_2.json                 | public://test_civictheme_migrate.media_civictheme_image_2.json                 |
       | migrate/civictheme_migrate.media_civictheme_document_1.json              | public://test_civictheme_migrate.media_civictheme_document_1.json              |
@@ -53,7 +53,7 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
-    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_5.json" to "files[source_update_files][]"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_6.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/block_civictheme/edit"

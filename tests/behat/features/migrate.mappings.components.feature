@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_migrate
+@p0 @civictheme @civictheme_migrate @civictheme_migrate_components
 Feature: CivicTheme migrate module Component mapping
 
   Background:
@@ -35,7 +35,7 @@ Feature: CivicTheme migrate module Component mapping
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_2.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_document_1.json
     And managed file:
-      | path               | uri                      |
+      | path               | uri                          |
       | migrate/dummy1.jpg | public://migrated_dummy1.jpg |
       | migrate/dummy2.jpg | public://migrated_dummy2.jpg |
       | migrate/dummy3.jpg | public://migrated_dummy3.jpg |
@@ -164,6 +164,7 @@ Feature: CivicTheme migrate module Component mapping
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
     And I clear "media_civictheme_image" migration map
+    And I clear "media_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
