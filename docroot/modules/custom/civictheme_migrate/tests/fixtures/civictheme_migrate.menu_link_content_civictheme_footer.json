@@ -1,0 +1,16 @@
+[
+  {
+    "uuid": "eb5fe9df-d48e-4a07-b643-25d5d32c4010",
+    "link": "internal:/",
+    "text": "Test footer 1",
+    "parent": "",
+    "weight": 0
+  },
+  {
+    "uuid": "32fcfa8a-501a-4af2-981f-a82d4d5d3020",
+    "link": "internal:/",
+    "text": "Test footer 2",
+    "parent": "",
+    "weight": 0
+  }
+]

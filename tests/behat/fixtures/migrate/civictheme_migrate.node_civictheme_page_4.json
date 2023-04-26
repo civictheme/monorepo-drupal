@@ -29,7 +29,7 @@
         {
           "text_content": {
             "format": "rich_text",
-             "value": "<h3>[TEST] Basic text content 41 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+            "value": "<h3>[TEST] Basic text content 41 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
           }
         },
         {

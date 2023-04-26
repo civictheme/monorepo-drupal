@@ -7,11 +7,11 @@ Feature: CivicTheme migrate module Component mapping
       | [TEST] Migrated Page Content 41 |
 
     And no managed files:
-      | filename                                                  |
-      | test_civictheme_migrate.node_civictheme_page_4.json       |
-      | test_civictheme_migrate.media_civictheme_image_1.json     |
-      | test_civictheme_migrate.media_civictheme_image_2.json     |
-      | test_civictheme_migrate.media_civictheme_document_1.json  |
+      | filename                                                 |
+      | test_civictheme_migrate.node_civictheme_page_4.json      |
+      | test_civictheme_migrate.media_civictheme_image_1.json    |
+      | test_civictheme_migrate.media_civictheme_image_2.json    |
+      | test_civictheme_migrate.media_civictheme_document_1.json |
 
     And managed file:
       | path                                                        | uri                                                               |

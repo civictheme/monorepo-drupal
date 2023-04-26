@@ -4,28 +4,27 @@
   "items": {
     "type": "object",
     "properties": {
+      "uuid": {
+        "type": "string",
+        "description": "Entity UUID"
+      },
       "name": {
         "type": "string",
-        "description": "Media image entity name (default to filename)"
+        "description": "Entity name"
       },
       "file": {
         "type": "string",
-        "description": "Banner featured image url"
-      },
-      "uuid": {
-        "type": "string",
-        "description": "UUID for image"
+        "description": "File URL"
       },
       "alt": {
         "type": "string",
-        "description": "Alt tag"
+        "description": "Alternative text"
       }
     },
     "required": [
-      "name",
-      "file",
       "uuid",
-      "alt"
+      "name",
+      "file"
     ]
   }
 }

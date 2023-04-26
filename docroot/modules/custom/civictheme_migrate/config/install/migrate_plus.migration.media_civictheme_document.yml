@@ -1,4 +1,3 @@
-uuid: dceda209-2a4f-40a2-b43e-2076fc614c43
 langcode: en
 status: true
 dependencies:
@@ -34,7 +33,7 @@ source:
       name: uuid
       label: 'Entity ID'
       selector: uuid
-  urls: []
+  urls: { }
 process:
   name: name
   field_c_m_document/target_id:
