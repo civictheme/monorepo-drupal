@@ -372,4 +372,29 @@ class FeatureContext extends DrupalContext {
     }
   }
 
+  /**
+   * Remove menu links by title.
+   *
+   * Fixed upstream method incorrectly throwing error on non-existing items.
+   *
+   * Provide menu link titles in the following format:
+   * | Test Menu    |
+   * | ...          |
+   *
+   * @Given no :menu_name menu_links:
+   */
+  public function menuLinksDelete($menu_name, TableNode $table) {
+    foreach ($table->getColumn(0) as $title) {
+      try {
+        $menu_link = $this->loadMenuLinkByTitle($title, $menu_name);
+        if ($menu_link) {
+          $menu_link->delete();
+        }
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
 }

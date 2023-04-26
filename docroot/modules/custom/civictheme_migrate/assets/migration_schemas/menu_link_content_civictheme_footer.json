@@ -6,29 +6,29 @@
     "properties": {
       "uuid": {
         "type": "string",
-        "description": "UUID for menu item"
+        "description": "Menu item UUID"
       },
       "text": {
         "type": "string",
-        "description": "Menu item title"
+        "description": "Menu item text"
       },
       "link": {
         "type": "string",
-        "description": "Url"
+        "description": "Menu item URL"
       },
       "parent": {
         "type": "string",
-        "description": "UUID for parent menu item"
+        "description": "Parent menu item UUID"
       },
       "weight": {
         "type": "integer",
-        "description": "Menu item weight"
+        "description": "Weight"
       }
     },
     "required": [
       "uuid",
-      "link",
       "text",
+      "link",
       "parent",
       "weight"
     ]
