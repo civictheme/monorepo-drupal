@@ -19,7 +19,7 @@ Feature: CivicTheme migrate module Component mapping
 
     And no managed files:
       | filename                                                                       |
-      | test_civictheme_migrate.node_civictheme_page_4.json                            |
+      | test_civictheme_migrate.node_civictheme_page_5.json                            |
       | test_civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   |
       | test_civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json |
       | test_civictheme_migrate.menu_link_content_civictheme_footer.json               |
@@ -27,13 +27,13 @@ Feature: CivicTheme migrate module Component mapping
     # Files used as migration sources and are attached to the migrations.
     And managed file:
       | path                                                                              | uri                                                                                     |
-      | migrate/civictheme_migrate.node_civictheme_page_4.json                            | public://test_civictheme_migrate.node_civictheme_page_4.json                            |
+      | migrate/civictheme_migrate.node_civictheme_page_5.json                            | public://test_civictheme_migrate.node_civictheme_page_5.json                            |
       | migrate/civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   | public://test_civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   |
       | migrate/civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json | public://test_civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json |
       | migrate/civictheme_migrate.menu_link_content_civictheme_footer.json               | public://test_civictheme_migrate.menu_link_content_civictheme_footer.json               |
 
     # Files used as migration assets and are served from the local server as from remote.
-    # @see fixtures/migrate/civictheme_migrate.node_civictheme_page_4.json
+    # @see fixtures/migrate/civictheme_migrate.node_civictheme_page_5.json
     # @see fixtures/migrate/civictheme_migrate.menu_link_content_civictheme_primary_navigation.json
     # @see fixtures/migrate/civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json
     # @see fixtures/migrate/civictheme_migrate.menu_link_content_civictheme_footer.json
@@ -53,7 +53,7 @@ Feature: CivicTheme migrate module Component mapping
     Given I am logged in as a user with the "administrator" role
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
-    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_4.json" to "files[source_update_files][]"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_5.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/menu_link_content_civictheme_primary_navigation/edit"
@@ -100,7 +100,7 @@ Feature: CivicTheme migrate module Component mapping
     And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
     And no managed files:
       | filename                                                                       |
-      | test_civictheme_migrate.node_civictheme_page_4.json                            |
+      | test_civictheme_migrate.node_civictheme_page_5.json                            |
       | test_civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   |
       | test_civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json |
       | test_civictheme_migrate.menu_link_content_civictheme_footer.json               |
@@ -110,11 +110,11 @@ Feature: CivicTheme migrate module Component mapping
     Given I am logged in as a user with the "administrator" role
 
     When I go to "<path>"
-    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_4.json" to "files[source_update_files][]"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_5.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
     And I should see the text "error has been found:"
-    And I should see the text "The specified file civictheme_migrate.node_civictheme_page_4.json could not be uploaded."
+    And I should see the text "The specified file civictheme_migrate.node_civictheme_page_5.json could not be uploaded."
     And I should see the text "All array items must match schema"
     And I should see the text "The required properties (uuid) are missing"
 
