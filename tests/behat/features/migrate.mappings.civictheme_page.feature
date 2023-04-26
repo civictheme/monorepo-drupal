@@ -183,7 +183,7 @@ Feature: CivicTheme migrate module
     And I should see the text "error has been found:"
     And I should see the text "The specified file civictheme_migrate.node_civictheme_page_1.json could not be uploaded."
     And I should see the text "All array items must match schema"
-    And I should see the text "The required properties (name) are missing"
+    And I should see the text "The required properties (uuid) are missing"
 
     # Try uploading image sources for page migration.
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
