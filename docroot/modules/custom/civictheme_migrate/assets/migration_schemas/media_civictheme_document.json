@@ -4,23 +4,23 @@
   "items": {
     "type": "object",
     "properties": {
+      "uuid": {
+        "type": "string",
+        "description": "Entity UUID"
+      },
       "name": {
         "type": "string",
-        "description": "Media document entity name (default to filename)"
+        "description": "Entity name"
       },
       "file": {
         "type": "string",
-        "description": "Document url"
-      },
-      "uuid": {
-        "type": "string",
-        "description": "UUID for file"
+        "description": "File URL"
       }
     },
     "required": [
+      "uuid",
       "name",
-      "file",
-      "uuid"
+      "file"
     ]
   }
 }

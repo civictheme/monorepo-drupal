@@ -50,7 +50,7 @@ Feature: CivicTheme migrate module
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_2.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_document_1.json
     And managed file:
-      | path               | uri                      |
+      | path               | uri                          |
       | migrate/dummy1.jpg | public://migrated_dummy1.jpg |
       | migrate/dummy2.jpg | public://migrated_dummy2.jpg |
       | migrate/dummy3.jpg | public://migrated_dummy3.jpg |
