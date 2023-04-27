@@ -3,8 +3,12 @@ Feature: CivicTheme migrate module Promo Component mapping
 
   Background:
     Given no civictheme_page content:
-      | title                           |
-      | [TEST] Migrated Page Content 51 |
+      | title                                          |
+      | [TEST] Migrated Content 5 with minimal mapping |
+
+    And no blocks:
+      | civictheme_demo_test_promo_block_1 |
+      | civictheme_test_promo_block_1      |
 
     And no managed files:
       | filename                                                              |
@@ -65,7 +69,7 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I press "Update Migration"
 
     When I run drush "mim --group=civictheme_migrate"
-    And I visit "civictheme_page" "[TEST] Migrated Page Content 51"
+    And I visit "civictheme_page" "[TEST] Migrated Content 5 with minimal mapping"
 
     # Asserting field mappings.
     #Alias

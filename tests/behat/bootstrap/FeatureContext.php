@@ -397,4 +397,34 @@ class FeatureContext extends DrupalContext {
     }
   }
 
+  /**
+   * Remove block defined by machine name.
+   *
+   * @code
+   * Given no blocks:
+   * | user_login         |
+   * @endcode
+   *
+   * @Given no blocks:
+   */
+  public function blockDelete(TableNode $table) {
+    foreach ($table->getColumn(0) as $id) {
+      try {
+        $block = \Drupal::entityTypeManager()
+          ->getStorage('block')
+          ->load($id);
+
+        if (empty($block)) {
+          throw new \Exception(sprintf('Unable to find block "%s"', $id));
+        }
+        if ($block) {
+          $block->delete();
+        }
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
 }
