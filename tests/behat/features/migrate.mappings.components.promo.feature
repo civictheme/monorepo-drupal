@@ -4,7 +4,7 @@ Feature: CivicTheme migrate module Promo Component mapping
   Background:
     Given no civictheme_page content:
       | title                                          |
-      | [TEST] Migrated Content 5 with minimal mapping |
+      | [TEST] Migrated Content 6 with minimal mapping |
 
     And no blocks:
       | civictheme_demo_test_promo_block_1 |
@@ -69,21 +69,21 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I press "Update Migration"
 
     When I run drush "mim --group=civictheme_migrate"
-    And I visit "civictheme_page" "[TEST] Migrated Content 5 with minimal mapping"
+    And I visit "civictheme_page" "[TEST] Migrated Content 6 with minimal mapping"
 
     # Asserting field mappings.
     #Alias
-    Then I should be in the "/migrated/page-content-51" path
+    Then I should be in the "/migrated/page-content-61" path
     #Banner
-    Then I should see "[TEST] Banner title - Migrated Page Content 51" in the ".ct-banner__title" element
+    Then I should see "[TEST] Banner title - Migrated Page Content 61" in the ".ct-banner__title" element
     #Content
     And I should see an ".ct-basic-content" element
     And I should see the text "[TEST] Basic text content"
     #Promo
     And I should see an ".ct-promo.ct-theme-light" element
     And I should see an ".ct-promo.ct-theme-dark" element
-    And I should see the text "[TEST] Promo 51"
-    And I should see the text "[TEST] Promo 52"
+    And I should see the text "[TEST] Promo 61"
+    And I should see the text "[TEST] Promo 62"
     And I should see the link "[TEST] Promo link 1"
     And I should see the link "[TEST] Promo link 2"
 
