@@ -325,4 +325,26 @@ class ContentComponentFactory {
     return NULL;
   }
 
+  /**
+   * Produce Promo components.
+   *
+   * @param mixed $item_data
+   *   The item data to create the component.
+   * @param array $context
+   *   The migration context.
+   *
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   The component.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  protected function generatePromo($item_data, array &$context): ?ParagraphInterface {
+    if (!empty($item_data['children'])) {
+      $options = $item_data['children'];
+      return $this->civicthemeComponentCreate('promo', $options);
+    }
+
+    return NULL;
+  }
+
 }
