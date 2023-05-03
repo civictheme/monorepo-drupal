@@ -29,7 +29,7 @@
   },
   {
     "uuid": "0c0d7e6c-075c-3417-9c9a-2b9b08b3e030",
-    "link": "internal:/",
+    "link": "http://google.com",
     "text": "Test primary 3",
     "parent": "",
     "weight": 0
