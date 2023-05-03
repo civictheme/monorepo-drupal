@@ -78,6 +78,7 @@ process:
 destination:
   plugin: 'entity:menu_link_content'
   default_bundle: civictheme_footer
+  validate: true
 migration_dependencies:
   required:
     - node_civictheme_page

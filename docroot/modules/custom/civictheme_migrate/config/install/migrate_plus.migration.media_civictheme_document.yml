@@ -50,4 +50,5 @@ process:
 destination:
   plugin: 'entity:media'
   default_bundle: civictheme_document
+  validate: true
 migration_dependencies: {  }
