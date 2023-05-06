@@ -427,13 +427,4 @@ class FeatureContext extends DrupalContext {
     }
   }
 
-  /**
-   * Wait until the id="updateprogress" element is gone.
-   *
-   * @Given /^I wait for the batch job to finish$/
-   */
-  public function iWaitForTheBatchJobToFinish() {
-    $this->getSession()->wait(180000, 'jQuery("#updateprogress").length === 0');
-  }
-
 }
