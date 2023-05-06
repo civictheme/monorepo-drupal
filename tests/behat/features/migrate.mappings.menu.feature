@@ -3,11 +3,11 @@ Feature: CivicTheme migrate module Component mapping
 
   Background:
     Given no "Primary navigation" menu_links:
-      | Test primary 1 parent |
-      | Test primary 11 child |
-      | Test primary 12 child |
-      | Test primary 2        |
-      | Test primary 3        |
+      | Test primary 1 parent   |
+      | Test primary 11 child   |
+      | Test primary 12 child   |
+      | Test primary 2          |
+      | Test primary 3 external |
 
     And no "Secondary navigation" menu_links:
       | Test secondary 1 |
@@ -76,7 +76,10 @@ Feature: CivicTheme migrate module Component mapping
     And I should see the link "Test primary 11 child"
     And I should see the link "Test primary 12 child"
     And I should see the link "Test primary 2"
-    And I should see the link "Test primary 3"
+    And I should see the link "Test primary 3 external"
+    # Assert that link was migrated as external.
+    When I go to homepage
+    Then the ".ct-primary-navigation .ct-link--external" element should contain "Test primary 3 external"
 
     # Secondary navigation items.
     Then I go to "admin/structure/menu/manage/civictheme-secondary-navigation"
