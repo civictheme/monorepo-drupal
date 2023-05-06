@@ -480,37 +480,37 @@ workflows:
       - build-drupal9-govcms:
           filters:
             branches:
-              only: /develop|release\/.*/
+              only: /develop|release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal:
           filters:
             branches:
-              only: /develop|release\/.*/
+              only: /develop|release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-corporate:
           filters:
             branches:
-              only: /^release\/.*/
+              only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-highereducation:
           filters:
             branches:
-              only: /^release\/.*/
+              only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-minimal-government:
           filters:
             branches:
-              only: /^release\/.*/
+              only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-sibling:
           filters:
             branches:
-              only: /^release\/.*/
+              only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal9-govcms-no-subtheme:
@@ -522,7 +522,7 @@ workflows:
       - build-drupal10-minimal:
           filters:
             branches:
-              only: /develop|release\/.*/
+              only: /develop|release\/.*|hotfix\/.*/
             tags:
               only: /.*/
       - build-drupal10-minimal-no-subtheme:
