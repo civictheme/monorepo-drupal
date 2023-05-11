@@ -2,6 +2,9 @@
 
 namespace Drupal\civictheme_migrate\Utils;
 
+use Drupal\civictheme_migrate\Utils\TextHelper;
+use Drupal\civictheme_migrate\Utils\NodeHelper;
+use Drupal\civictheme_migrate\Utils\AliasHelper;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
@@ -239,73 +242,6 @@ trait CivicthemeTrait {
   }
 
   /**
-   * Create Content paragraph.
-   */
-  public static function civicthemeParagraphContentCreate($options) {
-    if (empty($options['content'])) {
-      return;
-    }
-
-    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content']);
-
-    $paragraph = self::civicthemeParagraphCreate('civictheme_content', $options, TRUE);
-
-    if (empty($paragraph)) {
-      return;
-    }
-
-    return $paragraph;
-  }
-
-  /**
-   * Create Accordion paragraph.
-   */
-  public static function civicthemeParagraphAccordionCreate($options) {
-    $options += [
-      'panels' => [],
-      'expand_all' => FALSE,
-    ];
-
-    if (!empty($options['panels']) && count($options['panels']) > 0) {
-      $panels = $options['panels'];
-      unset($options['panels']);
-    }
-    else {
-      // Only create if panels were provided.
-      return;
-    }
-
-    if (!empty($options['expand_all'])) {
-      $options['expand'] = (bool) $options['expand_all'];
-    }
-    $paragraph = self::civicthemeParagraphCreate('civictheme_accordion', $options);
-
-    if (empty($paragraph)) {
-      return;
-    }
-
-    // Accordion panels.
-    if (!empty($panels)) {
-      foreach ($panels as $panel_options) {
-        $panel_options['content'] = static::civicthemeNormaliseRichTextContentValue($panel_options['content'] ?? '');
-
-        if (!empty($panel_options['expand'])) {
-          $panel_options['expand'] = (bool) $panel_options['expand'];
-        }
-
-        $panel = self::civicthemeParagraphCreate('civictheme_accordion_panel', $panel_options, TRUE);
-        if (!empty($panel)) {
-          $paragraph->field_c_p_panels->appendItem($panel);
-        }
-      }
-    }
-
-    $paragraph->save();
-
-    return $paragraph;
-  }
-
-  /**
    * Create paragraph to entity.
    */
   protected static function civicthemeParagraphCreate($type, $options, $save = FALSE) {
@@ -318,6 +254,7 @@ trait CivicthemeTrait {
 
       // Process content format.
       if ($field_name == 'content') {
+        $value = TextHelper::convertInlineReferencesToEmbeddedEntities($value);
         $value = static::civicthemeNormaliseRichTextContentValue($value);
       }
 
@@ -360,6 +297,69 @@ trait CivicthemeTrait {
   }
 
   /**
+   * Create Content paragraph.
+   */
+  public static function civicthemeParagraphContentCreate($options) {
+    if (empty($options['content'])) {
+      return;
+    }
+
+    $paragraph = self::civicthemeParagraphCreate('civictheme_content', $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    return $paragraph;
+  }
+
+  /**
+   * Create Accordion paragraph.
+   */
+  public static function civicthemeParagraphAccordionCreate($options) {
+    $options += [
+      'panels' => [],
+      'expand_all' => FALSE,
+    ];
+
+    if (!empty($options['panels']) && count($options['panels']) > 0) {
+      $panels = $options['panels'];
+      unset($options['panels']);
+    }
+    else {
+      // Only create if panels were provided.
+      return;
+    }
+
+    if (!empty($options['expand_all'])) {
+      $options['expand'] = (bool) $options['expand_all'];
+    }
+    $paragraph = self::civicthemeParagraphCreate('civictheme_accordion', $options);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Accordion panels.
+    if (!empty($panels)) {
+      foreach ($panels as $panel_options) {
+        if (!empty($panel_options['expand'])) {
+          $panel_options['expand'] = (bool) $panel_options['expand'];
+        }
+
+        $panel = self::civicthemeParagraphCreate('civictheme_accordion_panel', $panel_options, TRUE);
+        if (!empty($panel)) {
+          $paragraph->field_c_p_panels->appendItem($panel);
+        }
+      }
+    }
+
+    $paragraph->save();
+
+    return $paragraph;
+  }
+
+  /**
    * Create Attachment paragraph.
    */
   public static function civicthemeParagraphAttachmentCreate($options) {
@@ -375,7 +375,6 @@ trait CivicthemeTrait {
       return NULL;
     }
 
-    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content'] ?? '');
     $paragraph = self::civicthemeParagraphCreate('civictheme_attachment', $options);
 
     $paragraph->save();
@@ -683,8 +682,6 @@ trait CivicthemeTrait {
     if (empty(array_filter($options))) {
       return NULL;
     }
-
-    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content']);
 
     if (!empty($options['cards']) && count($options['cards']) > 0) {
       $cards = $options['cards'];

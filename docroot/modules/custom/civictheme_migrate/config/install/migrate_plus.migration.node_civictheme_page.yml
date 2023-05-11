@@ -207,10 +207,6 @@ process:
     plugin: default_value
     default_value: 0
   path/alias: alias
-  field_c_n_components:
-    -
-      plugin: content_components
-      source: content
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page
