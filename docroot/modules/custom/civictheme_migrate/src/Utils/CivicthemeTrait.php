@@ -2,9 +2,6 @@
 
 namespace Drupal\civictheme_migrate\Utils;
 
-use Drupal\civictheme_migrate\Utils\TextHelper;
-use Drupal\civictheme_migrate\Utils\NodeHelper;
-use Drupal\civictheme_migrate\Utils\AliasHelper;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**

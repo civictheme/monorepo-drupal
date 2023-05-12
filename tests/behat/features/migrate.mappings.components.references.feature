@@ -1,21 +1,22 @@
-@p1 @civictheme @civictheme_migrate @civictheme_migrate_attachment
+@p1 @civictheme @civictheme_migrate @civictheme_migrate_reference
 Feature: CivicTheme migrate module Component mapping
 
   Background:
     Given no civictheme_page content:
       | title                           |
-      | [TEST] Migrated Page Content 41 |
+      | [TEST] Migrated Page Content 71 |
+      | [TEST] Migrated Page Content 72 |
 
     And no managed files:
       | filename                                                 |
-      | test_civictheme_migrate.node_civictheme_page_4.json      |
+      | test_civictheme_migrate.node_civictheme_page_7.json      |
       | test_civictheme_migrate.media_civictheme_image_1.json    |
       | test_civictheme_migrate.media_civictheme_image_2.json    |
       | test_civictheme_migrate.media_civictheme_document_1.json |
 
     And managed file:
       | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.node_civictheme_page_4.json      | public://test_civictheme_migrate.node_civictheme_page_4.json      |
+      | migrate/civictheme_migrate.node_civictheme_page_7.json      | public://test_civictheme_migrate.node_civictheme_page_7.json      |
       | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
       | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
       | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
@@ -62,21 +63,21 @@ Feature: CivicTheme migrate module Component mapping
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
-    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_4.json" to "files[source_update_files][]"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_7.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page_annotate/edit"
-    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_4.json" to "files[source_update_files][]"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_7.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
     When I run drush "mim --group=civictheme_migrate"
-    And I visit "civictheme_page" "[TEST] Migrated Page Content 41"
+    And I visit "civictheme_page" "[TEST] Migrated Page Content 71"
 
     # Asserting field mappings.
     #Alias
-    Then I should be in the "/migrated/page-content-41" path
+    Then I should be in the "/migrated/page-content-71" path
     #Banner
-    Then I should see "[TEST] Banner title - Migrated Page Content 41" in the ".ct-banner__title" element
+    Then I should see "[TEST] Banner title - Migrated Page Content 71" in the ".ct-banner__title" element
     #Content
     And I should see an ".ct-basic-content" element
     And I should see the text "[TEST] Basic text content"
@@ -88,6 +89,26 @@ Feature: CivicTheme migrate module Component mapping
     And the response should contain "dummy1.pdf"
     And the response should contain "dummy2.pdf"
     And the response should contain "dummy1.txt"
+
+    And I visit "civictheme_page" "[TEST] Migrated Page Content 71"
+
+    # Asserting field mappings.
+    #Alias
+    Then I should be in the "/migrated/page-content-72" path
+    #Banner
+    Then I should see "[TEST] Banner title - Migrated Page Content 72" in the ".ct-banner__title" element
+    #Content
+    And I should see an ".ct-basic-content" element
+    And I should see the text "[TEST] Basic text content"
+    #attachment
+    And I should see an ".ct-figure" element
+    And the response should contain "dummy1.pdf"
+    And the response should contain "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
+    And the response should contain "dummy1.jpg"
+    And the response should contain "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
+    And the response should contain "dummy2.jpg"
+    And the response should contain "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
+    And the response should contain "dummy3.jpg"
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"

@@ -82,7 +82,23 @@ class TextHelper {
       $anchors = $dom->getElementsByTagName('a');
       if ($anchors) {
         foreach ($anchors as $a) {
-          if ($a->hasAttribute('href')) {
+          if (strpos($url, '/-/sites/default/files/') === 0) {
+            $alias = parse_url($url, PHP_URL_PATH);
+            $media = MediaHelper::lookupMediaFromUrl($alias, $context, TRUE);
+            if ($media) {
+              $fid = $media->getSource()->getSourceFieldValue($media);
+              if ($fid) {
+                $file = File::load($fid);
+                if ($file) {
+                  $a->setAttribute('data-entity-type', 'file');
+                  $a->setAttribute('data-entity-uuid', $media->uuid());
+                  $a->setAttribute('data-entity-substitution', 'file');
+                  $a->setAttribute('href', $file->createFileUrl(TRUE));
+                }
+              }
+            }
+          }
+          elseif ($a->hasAttribute('href')) {
             $url = $a->getAttribute('href');
             if (AliasHelper::isInternalUri($url)) {
               $url = AliasHelper::getAliasFromInternalUri($url);

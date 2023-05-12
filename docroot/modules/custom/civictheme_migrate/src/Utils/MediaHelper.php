@@ -150,7 +150,7 @@ class MediaHelper {
     $source_uri = trim($file_url);
     // Prepend with current_path if this is a relative URL.
     if (strpos($source_uri, '/') !== 0) {
-      $source_uri = dirname($current_path) . '/' . $source_uri;
+      $source_uri = $current_path . $source_uri;
     }
 
     // Strip off the query string.

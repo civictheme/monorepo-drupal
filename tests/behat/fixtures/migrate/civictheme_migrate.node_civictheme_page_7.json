@@ -1,0 +1,80 @@
+[
+  {
+    "id": "a3e2adfd-cd82-4609-b083-4d016381096c",
+    "title": "[TEST] Migrated Page Content 71",
+    "alias": "/migrated/page-content-71",
+    "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "thumbnail": [],
+    "vertical_spacing": "top",
+    "hide_sidebar": true,
+    "show_last_updated_date": true,
+    "last_updated_date": "1 July 2020",
+    "banner": {
+      "type": "container",
+      "children": [
+        {
+          "theme": "dark",
+          "title": "[TEST] Banner title - Migrated Page Content 71",
+          "blend_mode": "darken",
+          "featured_image": [],
+          "background": [],
+          "hide_breadcrumb": true
+        }
+      ]
+    },
+    "content": {
+      "type": "container",
+      "children": [
+        {
+          "text_content": {
+            "format": "rich_text",
+            "value": "<h3>[TEST] Basic text content 71 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "3a67f944-811a-4e19-8f70-f6811bfc963f",
+    "title": "[TEST] Migrated Page Content 72",
+    "alias": "/migrated/page-content-72",
+    "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "thumbnail": [],
+    "vertical_spacing": "top",
+    "hide_sidebar": true,
+    "show_last_updated_date": true,
+    "last_updated_date": "1 July 2020",
+    "banner": {
+      "type": "container",
+      "children": [
+        {
+          "theme": "dark",
+          "title": "[TEST] Banner title - Migrated Page Content 72",
+          "blend_mode": "darken",
+          "featured_image": [],
+          "background": [],
+          "hide_breadcrumb": true
+        }
+      ]
+    },
+    "content": {
+      "type": "container",
+      "children": [
+        {
+          "text_content": {
+            "format": "rich_text",
+            "value": "<h3>[TEST] Basic text content 721 </h3><p>Lorem ipsum dolor sit amet, <a href='/sites/default/files/migrated_dummy1.pdf'>TEST File Link</a>consectetur adipiscing elit, sed do eiusmod tempor <a href='/migrated/page-content-71'>TEST LINK MIGRATION</a> incididunt <img src='/sites/default/files/migrated_dummy1.jpg' title='Exisiting image' alt='Image title'/> ut labore et dolore magna aliqua.</p>"
+          }
+        },
+        {
+          "text_content": {
+            "format": "rich_text",
+            "value": "<h3>[TEST] Basic text content 722 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt <img src='http://nginx:8080/sites/default/files/migrated_dummy3.jpg' title='Download image'/> incididunt <img src='/sites/default/files/migrated_dummy2.jpg' title='Exisiting image' alt='Image title'/> ut labore et dolore magna aliqua.</p>"
+          }
+        }
+      ]
+    }
+  }
+]
