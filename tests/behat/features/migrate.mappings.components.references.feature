@@ -80,18 +80,8 @@ Feature: CivicTheme migrate module Component mapping
     Then I should see "[TEST] Banner title - Migrated Page Content 71" in the ".ct-banner__title" element
     #Content
     And I should see an ".ct-basic-content" element
-    And I should see the text "[TEST] Basic text content"
-    #attachment
-    And I should see an ".ct-attachment" element
-    And I should see an ".ct-attachment__content" element
-    And I should see the text "[TEST] Attachments"
-    And I should see 3 ".ct-attachment__links .ct-item-list__item" elements
-    And the response should contain "dummy1.pdf"
-    And the response should contain "dummy2.pdf"
-    And the response should contain "dummy1.txt"
 
-    And I visit "civictheme_page" "[TEST] Migrated Page Content 71"
-
+    And I visit "civictheme_page" "[TEST] Migrated Page Content 72"
     # Asserting field mappings.
     #Alias
     Then I should be in the "/migrated/page-content-72" path

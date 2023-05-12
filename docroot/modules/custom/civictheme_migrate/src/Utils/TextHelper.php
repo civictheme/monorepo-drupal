@@ -3,6 +3,7 @@
 namespace Drupal\civictheme_migrate\Utils;
 
 use Drupal\Component\Utility\Html;
+use Drupal\file\Entity\File;
 
 /**
  * Text Support helper class.
@@ -42,12 +43,15 @@ class TextHelper {
     $img_pattern = "<img\s[^>]*src=[\'\"](.*)[\'\"][^>]*>";
     $text = preg_replace_callback("/{$img_pattern}/siU", function (array $matches) use ($current_path) {
       $src = $matches[1];
-      $alias = AliasHelper::extractAliasFromUrl(html_entity_decode($src));
-      $context['base_url'] = AliasHelper::extractDomainFromUrl(html_entity_decode($src));
+      $src = html_entity_decode($src);
+      $alias = AliasHelper::extractAliasFromUrl($src);
+
       // Prepend with current_path if this is a relative URL.
       if (strpos($alias, '/') !== 0) {
         $alias = dirname($current_path) . '/' . $alias;
       }
+
+      $context['base_url'] = strpos($src, "http") === 0 ? AliasHelper::extractDomainFromUrl($src) : '';
 
       // Lookup the media.
       $media_uuid = MediaHelper::lookupMediaUuidFromUrl($alias, $context, TRUE);
@@ -82,25 +86,26 @@ class TextHelper {
       $anchors = $dom->getElementsByTagName('a');
       if ($anchors) {
         foreach ($anchors as $a) {
-          if (strpos($url, '/-/sites/default/files/') === 0) {
-            $alias = parse_url($url, PHP_URL_PATH);
-            $media = MediaHelper::lookupMediaFromUrl($alias, $context, TRUE);
-            if ($media) {
-              $fid = $media->getSource()->getSourceFieldValue($media);
-              if ($fid) {
-                $file = File::load($fid);
-                if ($file) {
-                  $a->setAttribute('data-entity-type', 'file');
-                  $a->setAttribute('data-entity-uuid', $media->uuid());
-                  $a->setAttribute('data-entity-substitution', 'file');
-                  $a->setAttribute('href', $file->createFileUrl(TRUE));
+          if ($a->hasAttribute('href')) {
+            $url = $a->getAttribute('href');
+            if (str_contains($url, '/sites/default/files')) {
+              $alias = parse_url($url, PHP_URL_PATH);
+              $context['base_url'] = strpos($url, "http") === 0 ? AliasHelper::extractDomainFromUrl($url) : '';
+              $media = MediaHelper::lookupMediaFromUrl($alias, $context, TRUE);
+              if ($media) {
+                $fid = $media->getSource()->getSourceFieldValue($media);
+                if ($fid) {
+                  $file = File::load($fid);
+                  if ($file) {
+                    $a->setAttribute('data-entity-type', 'file');
+                    $a->setAttribute('data-entity-uuid', $media->uuid());
+                    $a->setAttribute('data-entity-substitution', 'file');
+                    $a->setAttribute('href', $file->createFileUrl(TRUE));
+                  }
                 }
               }
             }
-          }
-          elseif ($a->hasAttribute('href')) {
-            $url = $a->getAttribute('href');
-            if (AliasHelper::isInternalUri($url)) {
+            elseif (AliasHelper::isInternalUri($url)) {
               $url = AliasHelper::getAliasFromInternalUri($url);
               $node = NodeHelper::lookupNodeFromAlias($url);
               if ($node) {
