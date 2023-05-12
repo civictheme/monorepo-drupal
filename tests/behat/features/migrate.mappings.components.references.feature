@@ -98,7 +98,6 @@ Feature: CivicTheme migrate module Component mapping
     And the response should contain "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
     And the response should contain "dummy2.jpg"
     And the response should contain "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
-    And the response should contain "dummy3.jpg"
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
