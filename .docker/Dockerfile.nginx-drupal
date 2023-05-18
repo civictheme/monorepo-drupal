@@ -8,6 +8,9 @@ FROM ${CLI_IMAGE:-cli} as cli
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/nginx-drupal
 FROM uselagoon/nginx-drupal:23.3.0
 
+COPY ./.docker/config/nginx/. /etc/nginx/conf.d/
+RUN fix-permissions /etc/nginx
+
 ENV WEBROOT=docroot
 
 COPY --from=cli /app /app
