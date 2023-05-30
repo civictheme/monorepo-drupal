@@ -30,7 +30,7 @@ They have identical structure and meaning of the columns.
 | Page ID (Migration ID)                  | Yes      | `id`                             | 1.5               | `id`                                         | 1.4                | approved |
 | Page title                              | Yes      | `title`                          | 1.5               | `title`                                      | 1.4                | approved |
 | Page URL alias                          | No       | `alias`                          | 1.5               | `alias`                                      | 1.4                | approved |
-| Page Summary                            | No       | `summary`                        | 1.5               | `field_n_summary`                            | 1.4                | approved |
+| Page Summary                            | No       | `summary`                        | 1.5               | `field_c_n_summary`                            | 1.4                | approved |
 | Topics (comma separated list of topics) | No       | `topics`                         | 1.5               | `field_c_n_topics`                           | 1.4                | approved |
 | Thumbnail                               | No       | `thumbnail`                      | 1.5               | `field_c_n_thumbnail`                        | 1.4                | approved |
 | Vertical spacing                        | No       | `vertical_spacing`               | 1.5               | `field_c_n_vertical_spacing`                 | 1.4                | approved |
