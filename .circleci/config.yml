@@ -347,6 +347,7 @@ jobs:
       DREVOPS_DRUPAL_VERSION: 10
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
       CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      DREVOPS_TEST_FUNCTIONAL_GROUP: site:functional,civictheme:functional:update
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.

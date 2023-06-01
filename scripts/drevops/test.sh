@@ -132,6 +132,11 @@ if [ -z "${DREVOPS_TEST_TYPE##*functional*}" ]; then
 
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom --group "${DREVOPS_TEST_FUNCTIONAL_GROUP}" "$@" \
   || [ "${DREVOPS_TEST_FUNCTIONAL_ALLOW_FAILURE:-0}" -eq 1 ]
+
+  if [ -n "${DREVOPS_DRUPAL_THEME}" ]; then
+    vendor/bin/phpunit "${phpunit_opts[@]}" "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" --group "${DREVOPS_TEST_FUNCTIONAL_GROUP}" "$@" \
+    || [ "${DREVOPS_TEST_FUNCTIONAL_ALLOW_FAILURE:-0}" -eq 1 ]
+  fi
 fi
 
 if [ -z "${DREVOPS_TEST_TYPE##*bdd*}" ]; then
