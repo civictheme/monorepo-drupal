@@ -277,7 +277,7 @@ class MediaHelper {
         $file = File::create([
           'uri' => $destination,
           'uid' => 1,
-          'status' => FILE_STATUS_PERMANENT,
+          'status' => FileInterface::STATUS_PERMANENT,
         ]);
         $file->save();
 

@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_migrate @cpage
+@p1 @civictheme @civictheme_migrate
 Feature: CivicTheme migrate module
 
   These tests assert migration update functionality, migration mappings and
