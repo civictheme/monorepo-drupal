@@ -160,4 +160,5 @@ class NodeHelper {
     $node = static::lookupNodeFromTitleAndType($title, $type);
     return $node ? 'entity:node/' . $node->id() : NULL;
   }
+
 }
