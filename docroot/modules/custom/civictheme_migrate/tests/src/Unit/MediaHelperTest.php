@@ -112,7 +112,7 @@ class MediaHelperTest extends UnitTestCase {
     $container->expects($this->exactly(2))
       ->method('get')
       ->withConsecutive(
-      ['file_system'],
+      ['stream_wrapper_manager'],
       ['entity_type.manager']
     )
       ->willReturnOnConsecutiveCalls(
@@ -178,7 +178,7 @@ class MediaHelperTest extends UnitTestCase {
     $container->expects($this->exactly(2))
       ->method('get')
       ->withConsecutive(
-      ['file_system'],
+      ['stream_wrapper_manager'],
       ['entity_type.manager']
     )
       ->willReturnOnConsecutiveCalls(
@@ -243,7 +243,7 @@ class MediaHelperTest extends UnitTestCase {
     $container->expects($this->exactly(2))
       ->method('get')
       ->withConsecutive(
-      ['file_system'],
+      ['stream_wrapper_manager'],
       ['entity_type.manager']
     )
       ->willReturnOnConsecutiveCalls(
