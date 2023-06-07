@@ -54,7 +54,7 @@ class AliasHelper {
    */
   public static function extractAliasPathFromUrl(string $url) : string {
     $parsed_url = parse_url(trim($url));
-    return $parsed_url['path'];
+    return $parsed_url['path'] ?? '';
   }
 
   /**

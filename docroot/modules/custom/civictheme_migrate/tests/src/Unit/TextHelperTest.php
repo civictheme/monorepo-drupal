@@ -9,6 +9,7 @@ use Drupal\civictheme_migrate\Utils\TextHelper;
  * Tests the TextHelper class.
  *
  * @group civictheme_migrate
+ * @group site:unit
  */
 class TextHelperTest extends UnitTestCase {
 

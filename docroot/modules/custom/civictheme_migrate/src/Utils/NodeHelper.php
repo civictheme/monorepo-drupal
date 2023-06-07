@@ -13,6 +13,23 @@ use Drupal\Core\Url;
 class NodeHelper {
 
   /**
+   * The static Url instance to be used for testing.
+   *
+   * @var \Drupal\Core\Url|null
+   */
+  protected static $testUrlInstance;
+
+  /**
+   * Set the Url instance to be used for testing.
+   *
+   * @param \Drupal\Core\Url $url
+   *   The Url instance.
+   */
+  public static function setTestUrlInstance(Url $url) {
+    self::$testUrlInstance = $url;
+  }
+
+  /**
    * Lookup an existing Node entity using a Alias URL.
    *
    * @param string $alias
@@ -31,7 +48,7 @@ class NodeHelper {
     }
     try {
       $alias = \Drupal::service('path_alias.manager')->getPathByAlias($alias);
-      $params = Url::fromUri("internal:" . $alias)->getRouteParameters();
+      $params = self::getRouteParametersFromUrl($alias);
     }
     catch (\Exception $exception) {
       return NULL;
@@ -49,6 +66,24 @@ class NodeHelper {
       return $node;
     }
     return NULL;
+  }
+
+  /**
+   * Get the route parameters from the provided URL.
+   *
+   * @param string $url
+   *   The URL string.
+   *
+   * @return array
+   *   The route parameters.
+   */
+  protected static function getRouteParametersFromUrl(string $url) {
+    if (self::$testUrlInstance) {
+      return self::$testUrlInstance->getRouteParameters();
+    }
+    else {
+      return Url::fromUri("internal:$url")->getRouteParameters();
+    }
   }
 
   /**
