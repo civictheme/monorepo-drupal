@@ -87,7 +87,7 @@ class NodeHelperTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function tearDown() {
+  protected function tearDown(): void {
     // Clean up the created node with ID '1'.
     $node = Node::load(99999999);
     if ($node instanceof NodeInterface) {
