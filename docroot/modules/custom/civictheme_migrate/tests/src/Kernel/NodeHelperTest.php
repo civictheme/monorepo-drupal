@@ -7,6 +7,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\civictheme_migrate\Utils\NodeHelper;
 use Drupal\node\Entity\NodeType;
+use Drupal\Core\Url;
 
 /**
  * Tests the NodeHelper class.
@@ -14,7 +15,7 @@ use Drupal\node\Entity\NodeType;
  * @coversDefaultClass \Drupal\civictheme_migrate\Utils\NodeHelper
  *
  * @group civictheme_migrate
- * @group site:kernel1
+ * @group site:kernel
  */
 class NodeHelperTest extends KernelTestBase {
 
@@ -104,6 +105,15 @@ class NodeHelperTest extends KernelTestBase {
    * @covers ::lookupNodeFromAlias
    */
   public function testLookupNodeFromAlias(string $alias, ?string $expectedNodeId) {
+    // Mock the Url class and provide the necessary route parameters.
+    $routeParameters = ['node' => (int) $expectedNodeId];
+    $url = $this->createMock(Url::class);
+    $url->method('getRouteParameters')
+      ->willReturn($routeParameters);
+
+    // Set the test Url instance in NodeHelper.
+    NodeHelper::setTestUrlInstance($url);
+
     $node = NodeHelper::lookupNodeFromAlias($alias);
 
     if ($expectedNodeId) {
