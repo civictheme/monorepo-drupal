@@ -9,6 +9,7 @@ use Drupal\civictheme_migrate\Utils\AliasHelper;
  * Tests the AliasHelper class.
  *
  * @group civictheme_migrate
+ * @group site:unit
  */
 class AliasHelperTest extends UnitTestCase {
 
