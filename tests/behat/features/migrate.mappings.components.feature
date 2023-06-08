@@ -25,7 +25,7 @@ Feature: CivicTheme migrate module Component mapping
     # Files used as migration sources and are attached to the migrations.
     And managed file:
       | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.node_civictheme_page_2.json      | public://test_civictheme_migrate.node_civictheme_page_2.json      |
+      | migrate/civictheme_migrate.node_civictheme_page_3.json      | public://test_civictheme_migrate.node_civictheme_page_3.json      |
       | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
       | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
       | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
