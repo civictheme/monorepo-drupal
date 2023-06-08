@@ -100,7 +100,7 @@ class NodeHelperTest extends KernelTestBase {
   /**
    * Tests the lookupNodeFromAlias method.
    *
-   * @dataProvider nodeAliasDataProvider
+   * @dataProvider dataProviderNodeAlias
    *
    * @covers ::lookupNodeFromAlias
    */
@@ -131,7 +131,7 @@ class NodeHelperTest extends KernelTestBase {
    * @return array
    *   An array of test data.
    */
-  public function nodeAliasDataProvider() {
+  public function dataProviderNodeAlias() {
     return [
       ['/alias1', '99999999'],
       ['/alias2', NULL],
