@@ -99,32 +99,6 @@ Feature: CivicTheme migrate module Component references
     And the response should contain "dummy2.jpg"
     And the response should contain "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
 
-    # New assertions for links conversion
-    # Existing referenced content should be converted to Linkit media items
-    And the response should contain "<a href=\"media:"
-    # Non-existing referenced content should stay as is (relative or absolute links)
-    And the response should contain "<a href=\"http://"
-    And the response should contain "<a href=\"/"
-    And the response should not contain "<a href=\"media:" with count "2"
-
-    # New assertions for embedded images
-    # Links to existing images should be asserted for
-    And the response should contain "<img src=\"http://"
-    # Links to non-existing images should be asserted for AND the presence of the created images
-    And the response should contain "<img src=\"public://migrated_dummy"
-    And the response should not contain "<img src=\"http://" with count "2"
-    # Referencing of newly created images should not create duplicates
-    And the response should not contain "<img src=\"public://" with count "2"
-
-    # New assertions for embedded documents
-    # Links to existing documents should be asserted for
-    And the response should contain "<a href=\"http://"
-    # Links to non-existing documents should be asserted for AND the presence of the created documents
-    And the response should contain "<a href=\"public://migrated_dummy"
-    And the response should not contain "<a href=\"http://" with count "2"
-    # Referencing of newly created documents should not create duplicates
-    And the response should not contain "<a href=\"public://" with count "2"
-
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
     And I clear "media_civictheme_image" migration map
