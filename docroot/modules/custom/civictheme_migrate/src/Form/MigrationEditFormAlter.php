@@ -84,7 +84,7 @@ class MigrationEditFormAlter implements ContainerInjectionInterface {
     ];
 
     $entity_type_id = str_replace('entity:', '', $migration_entity->destination['plugin'] ?? '');
-    $bundle = $migration_entity->destination['default_bundle'] ?? '';
+    $bundle = $migration_entity->destination['default_bundle'] ?? $migration_entity->destination['validation_bundle'] ?? '';
     $migration_schema_id = !empty($entity_type_id) && !empty($bundle) ? MigrationSchema::idFromEntityTypeBundle($entity_type_id, $bundle) : NULL;
     $form['source_update']['files'] = [
       '#title' => $this->t('Source as files'),

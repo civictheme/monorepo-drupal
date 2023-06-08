@@ -77,7 +77,8 @@ process:
       - parent_link_path
 destination:
   plugin: 'entity:menu_link_content'
-  default_bundle: civictheme_primary_navigation
+  validation_bundle: civictheme_primary_navigation
+  validate: true
 migration_dependencies:
   required:
     - node_civictheme_page
