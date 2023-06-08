@@ -34,7 +34,7 @@ Feature: CivicTheme migrate validation
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
 
-  @api @drush
+  @api @drush @abc
   Scenario: Migration of documents fails when images provided.
     Given I am logged in as a user with the "administrator" role
 
