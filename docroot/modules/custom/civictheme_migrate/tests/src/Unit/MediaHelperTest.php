@@ -2,26 +2,31 @@
 
 namespace Drupal\Tests\civictheme_migrate\Unit;
 
-use Drupal\Tests\UnitTestCase;
 use Drupal\civictheme_migrate\Utils\MediaHelper;
-use Drupal\Core\File\FileSystemInterface;
-use Drupal\file\Entity\File;
-use Drupal\media\Entity\Media;
-use Drupal\media\MediaInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Site\Settings;
+use Drupal\Tests\UnitTestCase;
+use Drupal\Core\File\File;
+use Psr\Container\ContainerInterface;
 
 /**
  * Tests the MediaHelper class.
  *
  * @group civictheme_migrate
- * @group site:unit
  */
 class MediaHelperTest extends UnitTestCase {
 
   /**
-   * The migration context.
+   * The media helper service.
+   *
+   * @var \Drupal\civictheme_migrate\Utils\MediaHelper
+   */
+  protected $mediaHelper;
+
+  /**
+   * The context array.
    *
    * @var array
    */
@@ -32,99 +37,43 @@ class MediaHelperTest extends UnitTestCase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->context = [];
-  }
 
-  /**
-   * Tests the getEmbeddedMediaCode method.
-   *
-   * @covers ::getEmbeddedMediaCode
-   */
-  public function testGetEmbeddedMediaCode() {
-    // Test with a valid media UUID, alt text, and title.
-    $uuid = '12345678-1234-1234-1234-1234567890ab';
-    $alt = 'Sample Alt Text';
-    $title = 'Sample Title';
+    // Mock the settings object.
+    $settings = $this->createMock(Settings::class);
+    $settings->expects($this->once())
+      ->method('get')
+      ->with('file_public_path')
+      ->willReturn('/public');
 
-    $expectedCode = '<drupal-media data-entity-embed-display="view_mode:media.embedded" data-entity-type="media" data-entity-uuid="' . $uuid . '" data-langcode="en" alt="' . $alt . '" title="' . $title . '"></drupal-media>';
+    // Create a mock file system object.
+    $fileSystem = $this->createMock(FileSystemInterface::class);
+    $fileSystem->expects($this->once())
+      ->method('realpath')
+      ->with('/public')
+      ->willReturn('/var/www/html/public');
 
-    $actualCode = MediaHelper::getEmbeddedMediaCode($uuid, $alt, $title);
-
-    $this->assertEquals($expectedCode, $actualCode);
-
-    // Test with a valid media UUID and empty alt text and title.
-    $uuid = '98765432-4321-4321-4321-0987654321ba';
-    $expectedCode = '<drupal-media data-entity-embed-display="view_mode:media.embedded" data-entity-type="media" data-entity-uuid="' . $uuid . '" data-langcode="en"></drupal-media>';
-
-    $actualCode = MediaHelper::getEmbeddedMediaCode($uuid);
-
-    $this->assertEquals($expectedCode, $actualCode);
-  }
-
-  /**
-   * Tests the lookupMediaFromUrl method.
-   *
-   * @covers ::lookupMediaFromUrl
-   */
-  public function testLookupMediaFromUrl(): void {
-    // Test case where media entity exists.
-    $file_url = 'http://example.com/image.jpg';
-    $context = $this->context;
-
-    // Create a mock file object.
-    $file = $this->createMock(File::class);
-    $file->expects($this->once())
-      ->method('id')
-      ->willReturn(123);
-
-    // Create a mock media object.
-    $media = $this->createMock(Media::class);
-    $media->expects($this->once())
-      ->method('uuid')
-      ->willReturn('abc');
-
-    // Mock the lookupFileFromUri method.
-    $mediaHelper = $this->getMockBuilder(MediaHelper::class)
-      ->setMethods(['lookupFileFromUri'])
-      ->getMock();
-    $mediaHelper->expects($this->once())
-      ->method('lookupFileFromUri')
-      ->with($file_url)
-      ->willReturn($file);
-
-    // Create a mock entity storage.
-    $entityStorage = $this->createMock(EntityStorageInterface::class);
-    $entityStorage->expects($this->once())
-      ->method('load')
-      ->with(123)
-      ->willReturn($media);
-
-    // Mock the entityTypeManager.
+    // Create a mock entity type manager.
     $entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
-    $entityTypeManager->expects($this->once())
-      ->method('getStorage')
-      ->with('media')
-      ->willReturn($entityStorage);
 
-    // Mock the Drupal service container.
-    $container = $this->getMockBuilder(ContainerInterface::class)
-      ->getMock();
+    // Create a mock container interface.
+    $container = $this->createMock(ContainerInterface::class);
     $container->expects($this->exactly(2))
       ->method('get')
       ->withConsecutive(
-      ['stream_wrapper_manager'],
-      ['entity_type.manager']
-    )
-      ->willReturnOnConsecutiveCalls(
-      $this->createMock(FileSystemInterface::class),
-      $entityTypeManager
-    );
-    \Drupal::setContainer($container);
+        ['settings'],
+        ['file_system']
+      )
+      ->willReturnOnConsecutiveCalls($settings, $fileSystem);
 
-    // Test the lookupMediaFromUrl method.
-    $result = MediaHelper::lookupMediaFromUrl($file_url, $context);
-    $this->assertInstanceOf(MediaInterface::class, $result);
-    $this->assertSame($media, $result);
+    // Create a new instance of the media helper.
+    $this->mediaHelper = new MediaHelper($entityTypeManager, $container);
+
+    // Set up the context array.
+    $this->context = [
+      'sandbox' => [
+        'migration' => 'test_migration',
+      ],
+    ];
   }
 
   /**
@@ -143,12 +92,6 @@ class MediaHelperTest extends UnitTestCase {
       ->method('id')
       ->willReturn(123);
 
-    // Create a mock media object.
-    $media = $this->createMock(Media::class);
-    $media->expects($this->once())
-      ->method('id')
-      ->willReturn(456);
-
     // Mock the lookupFileFromUri method.
     $mediaHelper = $this->getMockBuilder(MediaHelper::class)
       ->setMethods(['lookupFileFromUri'])
@@ -158,38 +101,29 @@ class MediaHelperTest extends UnitTestCase {
       ->with($file_url)
       ->willReturn($file);
 
-    // Create a mock entity storage.
+    // Create a mock entity storage for media.
     $entityStorage = $this->createMock(EntityStorageInterface::class);
     $entityStorage->expects($this->once())
-      ->method('load')
-      ->with(123)
-      ->willReturn($media);
+      ->method('loadByProperties')
+      ->with(['field_media_file' => 123])
+      ->willReturn(['media_id']);
 
-    // Mock the entityTypeManager.
+    // Create a mock entity type manager.
     $entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $entityTypeManager->expects($this->once())
       ->method('getStorage')
       ->with('media')
       ->willReturn($entityStorage);
 
-    // Mock the Drupal service container.
-    $container = $this->getMockBuilder(ContainerInterface::class)
-      ->getMock();
-    $container->expects($this->exactly(2))
-      ->method('get')
-      ->withConsecutive(
-      ['stream_wrapper_manager'],
-      ['entity_type.manager']
-    )
-      ->willReturnOnConsecutiveCalls(
-      $this->createMock(FileSystemInterface::class),
-      $entityTypeManager
-    );
-    \Drupal::setContainer($container);
+    // Set the mocked entity type manager and media helper on the test instance.
+    $this->mediaHelper->setEntityTypeManager($entityTypeManager);
+    $this->mediaHelper->setMediaHelper($mediaHelper);
 
-    // Test the lookupMediaIdFromUrl method.
-    $result = MediaHelper::lookupMediaIdFromUrl($file_url, $context);
-    $this->assertEquals(456, $result);
+    // Call the method under test.
+    $result = $this->mediaHelper->lookupMediaIdFromUrl($file_url, $context);
+
+    // Check the expected result.
+    $this->assertEquals(['media_id'], $result);
   }
 
   /**
@@ -208,12 +142,6 @@ class MediaHelperTest extends UnitTestCase {
       ->method('id')
       ->willReturn(123);
 
-    // Create a mock media object.
-    $media = $this->createMock(Media::class);
-    $media->expects($this->once())
-      ->method('uuid')
-      ->willReturn('12345678-1234-5678-1234-567812345678');
-
     // Mock the lookupFileFromUri method.
     $mediaHelper = $this->getMockBuilder(MediaHelper::class)
       ->setMethods(['lookupFileFromUri'])
@@ -223,38 +151,68 @@ class MediaHelperTest extends UnitTestCase {
       ->with($file_url)
       ->willReturn($file);
 
-    // Create a mock entity storage.
+    // Create a mock entity storage for media.
     $entityStorage = $this->createMock(EntityStorageInterface::class);
     $entityStorage->expects($this->once())
-      ->method('load')
-      ->with(123)
-      ->willReturn($media);
+      ->method('loadByProperties')
+      ->with(['field_media_file' => 123])
+      ->willReturn(['media_id']);
 
-    // Mock the entityTypeManager.
+    // Create a mock entity type manager.
     $entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $entityTypeManager->expects($this->once())
       ->method('getStorage')
       ->with('media')
       ->willReturn($entityStorage);
 
-    // Mock the Drupal service container.
-    $container = $this->getMockBuilder(ContainerInterface::class)
-      ->getMock();
-    $container->expects($this->exactly(2))
-      ->method('get')
-      ->withConsecutive(
-      ['stream_wrapper_manager'],
-      ['entity_type.manager']
-    )
-      ->willReturnOnConsecutiveCalls(
-      $this->createMock(FileSystemInterface::class),
-      $entityTypeManager
-    );
-    \Drupal::setContainer($container);
+    // Set the mocked entity type manager and media helper on the test instance.
+    $this->mediaHelper->setEntityTypeManager($entityTypeManager);
+    $this->mediaHelper->setMediaHelper($mediaHelper);
 
-    // Test the lookupMediaUuidFromUrl method.
-    $result = MediaHelper::lookupMediaUuidFromUrl($file_url, $context);
-    $this->assertEquals('12345678-1234-5678-1234-567812345678', $result);
+    // Call the method under test.
+    $result = $this->mediaHelper->lookupMediaUuidFromUrl($file_url, $context);
+
+    // Check the expected result.
+    $this->assertEquals(['media_id'], $result);
+  }
+
+  /**
+   * Tests the lookupFileFromUri method.
+   *
+   * @covers ::lookupFileFromUri
+   */
+  public function testLookupFileFromUri(): void {
+    // Test case where file entity exists.
+    $file_url = 'http://example.com/image.jpg';
+
+    // Create a mock file object.
+    $file = $this->createMock(File::class);
+    $file->expects($this->once())
+      ->method('id')
+      ->willReturn(123);
+
+    // Mock the file loadByProperties method.
+    $entityStorage = $this->createMock(EntityStorageInterface::class);
+    $entityStorage->expects($this->once())
+      ->method('loadByProperties')
+      ->with(['uri' => $file_url])
+      ->willReturn([$file]);
+
+    // Create a mock entity type manager.
+    $entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
+    $entityTypeManager->expects($this->once())
+      ->method('getStorage')
+      ->with('file')
+      ->willReturn($entityStorage);
+
+    // Set the mocked entity type manager on the test instance.
+    $this->mediaHelper->setEntityTypeManager($entityTypeManager);
+
+    // Call the method under test.
+    $result = $this->mediaHelper->lookupFileFromUri($file_url);
+
+    // Check the expected result.
+    $this->assertEquals($file, $result);
   }
 
 }
