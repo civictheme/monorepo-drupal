@@ -90,6 +90,8 @@ Feature: CivicTheme migrate module Component references
     #Content
     And I should see an ".ct-basic-content" element
     And I should see the text "[TEST] Basic text content"
+    And I should see an ".ct-basic-content a[href='https://example.com'].ct-content-link" element
+    And I should see an ".ct-basic-content a[data-entity-type='file'].ct-content-link" element
     #attachment
     And I should see an ".ct-figure" element
     And the response should contain "dummy1.pdf"

@@ -29,7 +29,7 @@
         {
           "text_content": {
             "format": "rich_text",
-            "value": "<h3>[TEST] Basic text content 71 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+            "value": "<h3>[TEST] Basic text content 71 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><p><img src='http://nginx:8080/sites/default/files/migrated_dummy1.jpg' title='Duplicate Image image'/></p>"
           }
         }
       ]
@@ -65,7 +65,7 @@
         {
           "text_content": {
             "format": "rich_text",
-            "value": "<h3>[TEST] Basic text content 721 </h3><p>Lorem ipsum dolor sit amet, <a href='/sites/default/files/448f7b0e-19a3-4c43-b1d7-5b1f196dbf98_migrated_dummy1.pdf'>TEST File Link</a>consectetur adipiscing elit, sed do eiusmod tempor <a href='/migrated/page-content-71'>TEST LINK MIGRATION</a> incididunt <img src='/sites/default/files/c97a9b08-f3b0-477b-97f7-8b61f9d4a527_migrated_dummy1.jpg' title='Exisiting image' alt='Image title'/> ut labore et dolore magna aliqua.</p>"
+            "value": "<h3>[TEST] Basic text content 721 </h3><p>Lorem ipsum dolor sit amet, <a href='/sites/default/files/448f7b0e-19a3-4c43-b1d7-5b1f196dbf98_migrated_dummy1.pdf'>TEST File Link</a>consectetur adipiscing elit, sed do eiusmod tempor <a href='/migrated/page-content-71'>TEST LINK MIGRATION</a> incididunt <img src='/sites/default/files/c97a9b08-f3b0-477b-97f7-8b61f9d4a527_migrated_dummy1.jpg' title='Exisiting image' alt='Image title'/> ut labore et dolore magna aliqua.</p><p><a href='https://example.com'>sample link</a></p>"
           }
         },
         {

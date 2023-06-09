@@ -124,7 +124,6 @@ class TextHelperTest extends KernelTestBase {
    * Tests the convertInlineReferencesToEmbeddedEntities method.
    */
   public function testConvertInlineReferencesToEmbeddedEntities() {
-
     // Mock the Url class and provide the necessary route parameters.
     $routeParameters = ['node' => (int) $this->node->id()];
     $url = $this->createMock(Url::class);
@@ -153,7 +152,6 @@ class TextHelperTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected function tearDown(): void {
-
     // Clean up any created entities.
     $node = Node::load($this->node->id());
     $node->delete();
