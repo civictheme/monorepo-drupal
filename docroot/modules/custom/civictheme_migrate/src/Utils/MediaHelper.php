@@ -200,10 +200,19 @@ class MediaHelper {
       return $cache[$uri];
     }
 
+    // Get the scheme from the file URI.
+    $uriParts = explode('://', $uri);
+    $scheme = $uriParts[0] ?? '';
+
+    // Check if the scheme is valid.
+    $streamWrapperManager = \Drupal::service('stream_wrapper_manager');
+    $isValidScheme = $streamWrapperManager->isValidScheme($scheme);
     $scheme_uri = 'public://';
     if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($scheme_uri)) {
-      $public_path = $wrapper->basePath();
-      $uri = $scheme_uri . ltrim($uri, $public_path);
+      if (!$isValidScheme) {
+        $public_path = $wrapper->basePath();
+        $uri = $scheme_uri . ltrim($uri, $public_path);
+      }
     }
 
     $results = \Drupal::entityQuery('file')

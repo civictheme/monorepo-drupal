@@ -46,8 +46,16 @@ class TextHelper {
       $src = html_entity_decode($src);
       $alias = AliasHelper::extractAliasFromUrl($src);
 
+      // Get the scheme from the file URI.
+      $uriParts = explode('://', $alias);
+      $scheme = $uriParts[0] ?? '';
+
+      // Check if the scheme is valid.
+      $streamWrapperManager = \Drupal::service('stream_wrapper_manager');
+      $isValidScheme = $streamWrapperManager->isValidScheme($scheme);
+
       // Prepend with current_path if this is a relative URL.
-      if (strpos($alias, '/') !== 0) {
+      if (strpos($alias, '/') !== 0 && !$isValidScheme) {
         $alias = dirname($current_path) . '/' . $alias;
       }
 

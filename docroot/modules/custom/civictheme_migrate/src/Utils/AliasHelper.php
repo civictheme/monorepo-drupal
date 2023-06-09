@@ -35,12 +35,14 @@ class AliasHelper {
    */
   public static function extractAliasFromUrl(string $url) : string {
     $parsed_url = parse_url(trim($url));
-    $alias = $parsed_url['path'];
-    if (!empty($parsed_url['query'])) {
-      $alias .= '?' . $parsed_url['query'];
+    if (!empty($parsed_url['path'])) {
+      $alias = $parsed_url['path'];
+      if (!empty($parsed_url['query'])) {
+        $alias .= '?' . $parsed_url['query'];
+      }
     }
 
-    return $alias;
+    return $alias ?? $url;
   }
 
   /**
