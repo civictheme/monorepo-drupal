@@ -6,4 +6,4 @@ label: 'CivicTheme Migrate'
 description: 'CivicTheme migration'
 source_type: 'Local or remote JSON files'
 module: null
-shared_configuration: null
+shared_configuration: {}

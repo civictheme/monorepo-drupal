@@ -40,6 +40,7 @@ Feature: CivicTheme migrate module
     # Files used as migration sources and are attached to the migrations.
     And managed file:
       | path                                                        | uri                                                               |
+      | migrate/civictheme_migrate.node_civictheme_page_1.json      | public://test_civictheme_migrate.node_civictheme_page_1.json      |
       | migrate/civictheme_migrate.node_civictheme_page_2.json      | public://test_civictheme_migrate.node_civictheme_page_2.json      |
       | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
       | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
@@ -161,7 +162,7 @@ Feature: CivicTheme migrate module
     # mappings were tested in the test above.
     # Alias.
     Then the response should contain "200"
-    And I should see "[TEST] Migrated Content 2 with minimal mapping" in the ".ct-banner .ct-banner__title" element
+    And I should see "[TEST] Banner title - Migrated Page Content 21" in the ".ct-banner .ct-banner__title" element
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"

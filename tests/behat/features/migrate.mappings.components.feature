@@ -25,7 +25,7 @@ Feature: CivicTheme migrate module Component mapping
     # Files used as migration sources and are attached to the migrations.
     And managed file:
       | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.node_civictheme_page_2.json      | public://test_civictheme_migrate.node_civictheme_page_2.json      |
+      | migrate/civictheme_migrate.node_civictheme_page_3.json      | public://test_civictheme_migrate.node_civictheme_page_3.json      |
       | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
       | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
       | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
@@ -74,6 +74,10 @@ Feature: CivicTheme migrate module Component mapping
     And I press "Update Migration"
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
+    And I attach the file "migrate/civictheme_migrate.node_civictheme_page_3.json" to "files[source_update_files][]"
+    And I press "Update Migration"
+
+    When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page_annotate/edit"
     And I attach the file "migrate/civictheme_migrate.node_civictheme_page_3.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
@@ -166,9 +170,11 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "media_civictheme_image" migration map
     And I clear "media_civictheme_document" migration map
     And I clear "node_civictheme_page" migration map
+    And I clear "node_civictheme_page_annotate" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
     And no civictheme_page content:
       | title                           |
       | [TEST] Migrated Page Content 31 |

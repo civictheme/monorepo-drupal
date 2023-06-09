@@ -47,4 +47,5 @@ process:
 destination:
   plugin: 'entity:block_content'
   default_bundle: civictheme_component_block
+  validate: true
 migration_dependencies: {  }

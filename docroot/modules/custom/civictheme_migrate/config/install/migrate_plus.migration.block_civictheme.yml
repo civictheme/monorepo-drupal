@@ -79,6 +79,7 @@ process:
 destination:
   plugin: 'entity:block'
   default_bundle: civictheme_block
+  validate: true
 migration_dependencies:
   required:
     - block_content_civictheme_component_block
