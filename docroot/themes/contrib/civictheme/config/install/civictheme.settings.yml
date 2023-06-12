@@ -117,3 +117,4 @@ colors:
       success: '#14b0ae'
 migration:
   expose_metadata: false
+optouts: {  }

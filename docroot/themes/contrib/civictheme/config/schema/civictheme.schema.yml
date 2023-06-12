@@ -173,6 +173,13 @@ civictheme.settings:
               type: sequence
               sequence:
                 type: string
+        site_slogan:
+          type: mapping
+          label: 'Site slogan setting'
+          mapping:
+            content:
+              label: 'Content'
+              type: string
         skip_link:
           type: mapping
           label: 'Skip Link settings'
@@ -375,3 +382,6 @@ civictheme.settings:
         expose_metadata:
           label: 'Expose migration metadata'
           type: boolean
+    optouts:
+      type: mapping
+      label: 'Opt-out flags'
