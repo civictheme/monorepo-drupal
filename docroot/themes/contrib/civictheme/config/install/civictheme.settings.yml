@@ -62,8 +62,6 @@ components:
     summary_length: 160
   publication_card:
     summary_length: 160
-  site_slogan:
-    content: 'A design system by Salsa Digital'
 colors:
   use_color_selector: true
   use_brand_colors: true

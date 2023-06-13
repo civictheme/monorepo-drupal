@@ -125,14 +125,15 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   Instance of the current class.
    */
   public function save($key, $value) {
-    $theme_name = $this->theme->getName();
-    $config = $this->configFactory->getEditable("$theme_name.settings");
-    $config->set($key, $value)->save();
-
     // Set site slogan.
     if ($key == 'components.site_slogan.content') {
       $config = $this->configFactory->getEditable('system.site')->set('slogan', $value)->save();
+      return $this;
     }
+
+    $theme_name = $this->theme->getName();
+    $config = $this->configFactory->getEditable("$theme_name.settings");
+    $config->set($key, $value)->save();
 
     return $this;
   }
