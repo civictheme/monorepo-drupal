@@ -248,16 +248,17 @@ job-mirror: &job-mirror
         # are using `develop` branch to build with 'default' profile.
         command: |
           set -x
-          profiles=()
-          profiles+=(content/corporate)
-          profiles+=(content/government)
-          profiles+=(content/highereducation)
+          branches=()
+          branches+=(content/corporate)
+          branches+=(content/government)
+          branches+=(content/highereducation)
+          branches+=(content/migration)
           if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
-            for profile in "${profiles[@]}"
+            for branch in "${branches[@]}"
             do
-              GIT_MIRROR_BRANCH_DST="${profile}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
+              GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
               sleep 5
-              DREVOPS_DEPLOY_LAGOON_BRANCH="${profile}" DEPLOY_ACTION=deploy_override_db ahoy deploy
+              DREVOPS_DEPLOY_LAGOON_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ahoy deploy
             done
           fi
 
