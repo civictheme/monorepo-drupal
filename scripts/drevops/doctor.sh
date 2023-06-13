@@ -16,8 +16,6 @@ if [ "${DREVOPS_DOCTOR_CHECK_MINIMAL}" = "1" ]; then
   DREVOPS_DOCTOR_CHECK_PORT=0
   DREVOPS_DOCTOR_CHECK_PYGMY=0
   DREVOPS_DOCTOR_CHECK_SSH=0
-  DREVOPS_DOCTOR_CHECK_WEBSERVER=0
-  DREVOPS_DOCTOR_CHECK_BOOTSTRAP=0
 fi
 
 if [ "${DREVOPS_DOCTOR_CHECK_PREFLIGHT}" = "1" ]; then
@@ -171,6 +169,12 @@ main() {
         exit 1
       fi
       success "Successfully bootstrapped website at http://${DREVOPS_DOCTOR_LOCALDEV_URL}."
+
+      if ! curl -L -s -N "${DREVOPS_DOCTOR_LOCALDEV_URL}/update.php" | grep -q "update"; then
+        error "Error accessing update.php"
+        exit 1
+      fi
+      success "Successfully checked access to update.php."
     fi
   fi
 
