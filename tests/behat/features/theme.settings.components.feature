@@ -60,6 +60,10 @@ Feature: Components settings are available in the theme settings
     And I should see an "input[name='components[header][theme]']" element
     And I should see an "#edit-components-header-theme--wrapper.required" element
 
+    And I should see the text "Content"
+    And I should see an "input[name='components[site_slogan][content]']" element
+    And I should see an "#edit-components-site-slogan-content.required" element
+
     And I should see the text "Theme"
     And I should see an "input[name='components[footer][theme]']" element
     And I should see an "#edit-components-footer-theme--wrapper.required" element
@@ -250,6 +254,24 @@ Feature: Components settings are available in the theme settings
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see a ".ct-skip-link.ct-theme-dark" element
+
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
+
+  @api
+  Scenario: The CivicTheme theme settings to set site slogan.
+    Given I am logged in as a user with the "Site Administrator" role
+
+    When I visit current theme settings page
+    When I fill in "components[site_slogan][content]" with "A design system by Salsa Digital - Updated"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+
+    And I go to the homepage
+    And I should see the text "A design system by Salsa Digital - Updated"
 
     # Reset settings.
     When I visit current theme settings page

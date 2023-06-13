@@ -106,6 +106,22 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.logo.image_alt'),
     ];
 
+    $form['components']['site_slogan'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Site slogan'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['site_slogan']['content'] = [
+      '#title' => $this->t('Content'),
+      '#description' => $this->t('Set the site slogan.'),
+      '#type' => 'textfield',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->load('components.site_slogan.content'),
+    ];
+
     $form['components']['header'] = [
       '#type' => 'details',
       '#title' => $this->t('Header'),
@@ -546,6 +562,16 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    */
   protected function externalLinkNormalizeDomain($domain) {
     return civictheme_external_link_normalize_domain($domain);
+  }
+
+  /**
+   * Submit callback for site slogan component.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   */
+  public function submitSiteSlogan(array &$form, FormStateInterface $form_state) {
+    $slogan = $form_state->getValue(['components', 'site_slogan', 'content']);
+    $this->themeConfigManager->save('components.site_slogan.content', $slogan);
   }
 
 }

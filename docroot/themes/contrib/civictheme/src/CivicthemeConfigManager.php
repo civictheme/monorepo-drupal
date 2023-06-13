@@ -88,6 +88,11 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The value of the requested setting, NULL if the setting does not exist.
    */
   public function load($key, $default = NULL) {
+    // Return site slogan from system site settings.
+    if ($key == 'components.site_slogan.content') {
+      return $this->configFactory->getEditable('system.site')->get('slogan');
+    }
+
     return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
@@ -120,6 +125,12 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   Instance of the current class.
    */
   public function save($key, $value) {
+    // Set site slogan.
+    if ($key == 'components.site_slogan.content') {
+      $config = $this->configFactory->getEditable('system.site')->set('slogan', $value)->save();
+      return $this;
+    }
+
     $theme_name = $this->theme->getName();
     $config = $this->configFactory->getEditable("$theme_name.settings");
     $config->set($key, $value)->save();

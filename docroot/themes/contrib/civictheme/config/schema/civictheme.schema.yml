@@ -375,3 +375,6 @@ civictheme.settings:
         expose_metadata:
           label: 'Expose migration metadata'
           type: boolean
+    optouts:
+      type: mapping
+      label: 'Opt-out flags'
