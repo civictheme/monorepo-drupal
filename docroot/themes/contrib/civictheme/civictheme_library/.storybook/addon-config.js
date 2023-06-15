@@ -19,7 +19,6 @@ exports.default = function () {
     config = [
       ...config,
       ...[
-        '@whitespace/storybook-addon-html',
         '@storybook/addon-a11y',
       ],
     ];

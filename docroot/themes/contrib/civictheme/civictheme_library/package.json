@@ -19,10 +19,10 @@
     "node": ">=18.14"
   },
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet",
+    "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook -s .storybook/static",
-    "storybook": "start-storybook -s .storybook/static",
-    "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -s .storybook/static",
+    "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && start-storybook -s .storybook/static",
     "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
@@ -42,7 +42,6 @@
     "@storybook/addons": "^6.1.18",
     "@storybook/html": "^6.3.8",
     "@storybook/test-runner": "^0.9.1",
-    "@whitespace/storybook-addon-html": "^5.0.0",
     "addon-screen-reader": "^1.8.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
