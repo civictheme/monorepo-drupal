@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: a1623ae4-d165-4923-a5f4-a52d3c9719c9
+  uuid: 2e83befe-9fcb-452e-871d-254b120385c3
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: generic.png
+      value: dummy2.pdf
   uri:
     -
-      value: 'public://media-icons/generic/generic.png'
+      value: 'public://documents/2023-06/dummy2.pdf'
   filemime:
     -
-      value: image/png
+      value: application/pdf
   filesize:
     -
-      value: 3900
+      value: 130418
   status:
     -
       value: true
   created:
     -
-      value: 1676436382
+      value: 1686797513

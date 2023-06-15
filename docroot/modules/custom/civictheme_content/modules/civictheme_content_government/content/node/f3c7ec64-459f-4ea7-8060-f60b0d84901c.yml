@@ -4,6 +4,9 @@ _meta:
   uuid: f3c7ec64-459f-4ea7-8060-f60b0d84901c
   bundle: civictheme_page
   default_langcode: en
+  depends:
+    ab71f96c-d1b4-4a7f-be7d-7b5fa5b26925: media
+    02986a1f-61c6-4e26-9e74-373d2bc0c634: media
 default:
   revision_uid:
     -
@@ -53,9 +56,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -100,9 +100,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -113,6 +110,44 @@ default:
           field_c_p_theme:
             -
               value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 78b50f79-bb99-46ba-b25a-5d75b2ea551a
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1686797620
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: ab71f96c-d1b4-4a7f-be7d-7b5fa5b26925
+            -
+              entity: 02986a1f-61c6-4e26-9e74-373d2bc0c634
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Example form'
           field_c_p_vertical_spacing:
             -
               value: bottom
