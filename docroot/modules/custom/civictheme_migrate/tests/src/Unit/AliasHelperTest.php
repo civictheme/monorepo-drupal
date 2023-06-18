@@ -14,12 +14,18 @@ use Drupal\civictheme_migrate\Utils\AliasHelper;
 class AliasHelperTest extends UnitTestCase {
 
   /**
-   * Provides data for testing the extractDomainFromUrl() method.
+   * Tests the extractDomainFromUrl() method.
    *
-   * @return array
-   *   An array of test cases, each containing the URL and the expected domain.
+   * @dataProvider dataProviderExtractDomainFromUrl
    */
-  public function domainDataProvider() {
+  public function testExtractDomainFromUrl($url, $expected) {
+    $this->assertEquals($expected, AliasHelper::extractDomainFromUrl($url));
+  }
+
+  /**
+   * Provides data for testing the extractDomainFromUrl() method.
+   */
+  public function dataProviderExtractDomainFromUrl() {
     return [
       ['https://www.example.com/some/path', 'https://www.example.com'],
       ['http://subdomain.example.com', 'http://subdomain.example.com'],
@@ -29,57 +35,47 @@ class AliasHelperTest extends UnitTestCase {
   }
 
   /**
-   * Tests the extractDomainFromUrl() method.
-   *
-   * @dataProvider domainDataProvider
-   */
-  public function testExtractDomainFromUrl($url, $expected_domain) {
-    $actual_domain = AliasHelper::extractDomainFromUrl($url);
-    $this->assertEquals($expected_domain, $actual_domain);
-  }
-
-  /**
    * Tests the extractAliasFromUrl() method.
    *
-   * @dataProvider extractAliasDataProvider
+   * @dataProvider dataProviderExtractAliasFromUrl
    */
-  public function testExtractAliasFromUrl($url, $expectedAlias) {
-    $actualAlias = AliasHelper::extractAliasFromUrl($url);
-
-    $this->assertEquals($expectedAlias, $actualAlias);
+  public function testExtractAliasFromUrl($url, $expected) {
+    $this->assertEquals($expected, AliasHelper::extractAliasFromUrl($url));
   }
 
   /**
    * Provides data for the testExtractAliasFromUrl() method.
-   *
-   * @return array
-   *   An array of test cases with URL and expected alias.
    */
-  public function extractAliasDataProvider() {
+  public function dataProviderExtractAliasFromUrl() {
     return [
       [
         'https://www.example.com/some/path?param=value',
         '/some/path?param=value',
       ],
-      ['https://www.example.com/another/path', '/another/path'],
-      ['https://www.example.com/', '/'],
+      [
+        'https://www.example.com/another/path',
+        '/another/path',
+      ],
+      [
+        'https://www.example.com/',
+        '/',
+      ],
     ];
   }
 
   /**
    * Tests the extractAliasPathFromUrl() method.
    *
-   * @dataProvider aliasPathProvider
+   * @dataProvider dataProviderExtractAliasPathFromUrl
    */
-  public function testExtractAliasPathFromUrl($url, $expectedPath) {
-    $actualPath = AliasHelper::extractAliasPathFromUrl($url);
-    $this->assertEquals($expectedPath, $actualPath);
+  public function testExtractAliasPathFromUrl($url, $expected) {
+    $this->assertEquals($expected, AliasHelper::extractAliasPathFromUrl($url));
   }
 
   /**
    * Provides test data for testExtractAliasPathFromUrl().
    */
-  public function aliasPathProvider() {
+  public function dataProviderExtractAliasPathFromUrl() {
     return [
       ['https://www.example.com/some/path', '/some/path'],
       ['https://www.example.com/another/path', '/another/path'],
@@ -93,17 +89,16 @@ class AliasHelperTest extends UnitTestCase {
   /**
    * Tests the isInternalUri() method.
    *
-   * @dataProvider isInternalUriDataProvider
+   * @dataProvider dataProviderIsInternalUri
    */
-  public function testIsInternalUri($uri, $expectedResult) {
-    $actualResult = AliasHelper::isInternalUri($uri);
-    $this->assertEquals($expectedResult, $actualResult);
+  public function testIsInternalUri($uri, $expected) {
+    $this->assertEquals($expected, AliasHelper::isInternalUri($uri));
   }
 
   /**
    * Provides data for the testIsInternalUri() method.
    */
-  public function isInternalUriDataProvider() {
+  public function dataProviderIsInternalUri() {
     return [
       ['internal:/some/path', TRUE],
       ['https://www.example.com', FALSE],
@@ -130,32 +125,26 @@ class AliasHelperTest extends UnitTestCase {
    */
   public function testStandardiseInternalUri() {
     $internal_uri = '/some/path';
-    $external_uri = 'https://www.example.com';
-
     $expected_internal_uri = 'internal:/some/path';
-
     $this->assertEquals($expected_internal_uri, AliasHelper::standardiseInternalUri($internal_uri));
+
+    $external_uri = 'https://www.example.com';
     $this->assertEquals($external_uri, AliasHelper::standardiseInternalUri($external_uri));
   }
 
   /**
    * Tests the sanitiseAlias() method.
    *
-   * @dataProvider sanitiseAliasDataProvider
+   * @dataProvider dataProviderSanitiseAlias
    */
-  public function testSanitiseAlias(string $alias, string $expectedSanitisedAlias) {
-    $actualSanitisedAlias = AliasHelper::sanitiseAlias($alias);
-
-    $this->assertEquals($expectedSanitisedAlias, $actualSanitisedAlias);
+  public function testSanitiseAlias(string $alias, string $expected) {
+    $this->assertEquals($expected, AliasHelper::sanitiseAlias($alias));
   }
 
   /**
    * Data provider for the testSanitiseAlias() method.
-   *
-   * @return array
-   *   An array of test cases with the alias and expected sanitised alias.
    */
-  public function sanitiseAliasDataProvider() {
+  public function dataProviderSanitiseAlias() {
     return [
       ['/some/path/', 'some/path'],
       ['/another/path/', 'another/path'],

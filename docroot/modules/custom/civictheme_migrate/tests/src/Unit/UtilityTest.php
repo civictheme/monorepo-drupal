@@ -11,23 +11,23 @@ use Drupal\Tests\UnitTestCase;
  * Tests for Drupal\civictheme_migrate\Utility class.
  *
  * @group civictheme_migrate
+ * @group site:unit
 | */
 class UtilityTest extends UnitTestCase {
 
   /**
    * Test for Utility::multilineToArray().
    *
-   * @dataProvider providerMultilineToArray
+   * @dataProvider dataProviderMultilineToArray
    */
   public function testMultilineToArray($string, $expected) {
-    $actual = Utility::multilineToArray($string);
-    $this->assertEquals($expected, $actual);
+    $this->assertEquals($expected, Utility::multilineToArray($string));
   }
 
   /**
    * Data provider for multilineToArray().
    */
-  public function providerMultilineToArray() {
+  public function dataProviderMultilineToArray() {
     return [
       ['', []],
       [' ', []],
@@ -61,17 +61,16 @@ class UtilityTest extends UnitTestCase {
   /**
    * Test for Utility::arrayToMultiline().
    *
-   * @dataProvider providerArrayToMultiline
+   * @dataProvider dataProviderArrayToMultiline
    */
   public function testArrayToMultiline($array, $expected) {
-    $actual = Utility::arrayToMultiline($array);
-    $this->assertEquals($expected, $actual);
+    $this->assertEquals($expected, Utility::arrayToMultiline($array));
   }
 
   /**
    * Data provider for arrayToTextarea().
    */
-  public function providerArrayToMultiline() {
+  public function dataProviderArrayToMultiline() {
     return [
       [[], ''],
       [[''], ''],

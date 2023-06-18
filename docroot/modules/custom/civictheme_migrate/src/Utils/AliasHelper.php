@@ -16,7 +16,7 @@ class AliasHelper {
    *   The URL.
    *
    * @return string
-   *   The clean domain withb scheme.
+   *   The clean domain with the scheme.
    */
   public static function extractDomainFromUrl(string $url) : string {
     $parsed_url = parse_url(trim($url));
@@ -69,7 +69,7 @@ class AliasHelper {
    *   The result.
    */
   public static function isInternalUri(string $uri) : bool {
-    return (strpos($uri, 'internal:') === 0) || (strpos($uri, '/') === 0);
+    return strpos($uri, 'internal:') === 0 || strpos($uri, '/') === 0;
   }
 
   /**
