@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\civictheme_migrate;
+namespace Drupal\civictheme_migrate\Validator;
 
 use Drupal\Core\Extension\ExtensionPathResolver;
 
@@ -10,14 +10,14 @@ use Drupal\Core\Extension\ExtensionPathResolver;
 class MigrationSchemaManager implements MigrationSchemaManagerInterface {
 
   /**
-   * Defines default schemas directory.
+   * Defines default schemas directory relative to the module root.
    */
   const SCHEMAS_DIRECTORY = 'schemas';
 
   /**
    * Discovered schemas.
    *
-   * @var \Drupal\civictheme_migrate\MigrationSchema[]
+   * @var \Drupal\civictheme_migrate\Validator\MigrationSchema[]
    */
   protected $schemas = [];
 
@@ -90,7 +90,7 @@ class MigrationSchemaManager implements MigrationSchemaManagerInterface {
   /**
    * Discover migration schemas within schemasDirectory.
    *
-   * @return \Drupal\civictheme_migrate\MigrationSchema[]
+   * @return \Drupal\civictheme_migrate\Validator\MigrationSchema[]
    *   Array of discovered MigrationSchema instances.
    */
   protected function discoverSchemas(): array {

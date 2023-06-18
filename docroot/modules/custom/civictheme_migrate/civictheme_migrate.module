@@ -21,7 +21,7 @@ use Drupal\file\FileInterface;
  *   Array of errors.
  */
 function civictheme_migrate_validate_migration_schema(FileInterface $file, string $migration_schema_id): array {
-  /** @var \Drupal\civictheme_migrate\MigrationFileValidator $validator */
+  /** @var \Drupal\civictheme_migrate\Validator\MigrationFileValidator $validator */
   $validator = \Drupal::getContainer()->get('civictheme_migrate.migration_file_validator');
 
   return $validator->validate($migration_schema_id, $file->getFileUri());

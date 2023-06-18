@@ -2,7 +2,7 @@
 
 namespace Drupal\civictheme_migrate\Form;
 
-use Drupal\civictheme_migrate\MigrationSchema;
+use Drupal\civictheme_migrate\Validator\MigrationSchema;
 use Drupal\civictheme_migrate\Utility;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
