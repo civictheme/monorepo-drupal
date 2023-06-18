@@ -11,21 +11,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Component\Utility\UrlHelper;
 
 /**
- * Migrate process plugin used to set link external property value.
+ * Migrate process plugin used to set 'external' link property value.
  *
  * @MigrateProcessPlugin(
- *   id = "link_external"
+ *   id = "link_is_external"
  * )
  *
  * To do custom value transformations use the following:
  *
  * @code
  * plugin:
- *   plugin: link_external
+ *   plugin: link_is_external
  *   source: name
  * @endcode
  */
-class LinkExternal extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+class LinkIsExternal extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * {@inheritdoc}
@@ -44,12 +44,7 @@ class LinkExternal extends ProcessPluginBase implements ContainerFactoryPluginIn
    * Set the block plugin id.
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    // If URL is external return 1.
-    if (UrlHelper::isValid($value) && UrlHelper::isExternal($value)) {
-      return 1;
-    }
-
-    return 0;
+    return (int) (UrlHelper::isValid($value) && UrlHelper::isExternal($value));
   }
 
 }
