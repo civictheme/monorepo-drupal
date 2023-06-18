@@ -20,7 +20,7 @@ from the provided sources is available for import.
 ## Migration file structure (schema) validation
 
 This module offers migration schemas for validating the structure of uploaded
-files. See the [schema README.md](assets/migration_schemas/README.md) for more
+files. See the [schema README.md](schemas/README.md) for more
 details.
 
 ## Remote authentication
@@ -35,7 +35,7 @@ Currently, only basic authentication is supported.
 The mappings with third-party services are documented in
 the [MAPPINGS.md](MAPPINGS.md) file. These documented mappings are reflected in
 both [migration configurations](config/install)
-and [migration schemas](assets/migration_schemas).
+and [migration schemas](schemas).
 
 When creating a new migration configuration, follow these guidelines:
 
