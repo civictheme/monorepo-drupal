@@ -13,19 +13,19 @@ use Drupal\file\Entity\File;
 class TextHelper {
 
   /**
-   * Remove whitespaces from a string.
+   * Reduce whitespaces from a string.
    *
-   * @param string $value
+   * @param string $string
    *   The string.
    *
    * @return string
    *   The clean string.
    */
-  public static function trimWhitespaces(string $value) : string {
-    $value = preg_replace("/(\n|\t|\r)/", '', $value);
-    $value = preg_replace('/ {2,}/', ' ', $value);
-    $value = preg_replace('/[\x{200B}-\x{200D}]/u', '', $value);
-    return trim($value);
+  public static function reduceWhitespaces(string $string) : string {
+    $string = preg_replace("/[\n\t\r]/", '', $string);
+    $string = preg_replace('/ {2,}/', ' ', $string);
+    $string = preg_replace('/[\x{200B}-\x{200D}]/u', '', $string);
+    return trim($string);
   }
 
   /**

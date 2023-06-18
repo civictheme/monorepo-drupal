@@ -10,14 +10,14 @@ class Utility {
   /**
    * Convert multi-line strings into an array.
    *
-   * @param string $string
-   *   String value to convert.
+   * @param string|array $input
+   *   Input value to convert.
    *
    * @return array
    *   Array of values.
    */
-  public static function multilineToArray(string $string): array {
-    $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
+  public static function multilineToArray(string|array $input): array {
+    $lines = is_array($input) ? $input : explode("\n", str_replace("\r\n", "\n", $input));
 
     return array_values(array_filter(array_map('trim', $lines)));
   }
@@ -25,16 +25,16 @@ class Utility {
   /**
    * Convert an array to multi-line string value.
    *
-   * @param string|array $array
-   *   Array to convert.
+   * @param string|array $input
+   *   Input value to convert.
    *
    * @return string
    *   String value of the array.
    */
-  public static function arrayToMultiline(array $array): string {
-    $array = is_array($array) ? $array : [$array];
+  public static function arrayToMultiline(string|array $input): string {
+    $input = is_array($input) ? $input : [$input];
 
-    return implode(PHP_EOL, array_filter($array));
+    return implode(PHP_EOL, array_filter($input));
   }
 
   /**
@@ -46,6 +46,9 @@ class Utility {
    *   Optional message.
    * @param array $message_args
    *   Optional array of message arguments.
+   *
+   * @throw \RuntimeException
+   *   If the file does not exist.
    */
   public static function validateFileExists(string $filepath, string $message = '', array $message_args = []): void {
     $message = !empty($message) ? $message : 'Unable to find file "%s".';

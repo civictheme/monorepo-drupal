@@ -14,26 +14,30 @@ use Drupal\civictheme_migrate\Utils\TextHelper;
 class TextHelperTest extends UnitTestCase {
 
   /**
-   * Tests the trimWhitespaces() method.
+   * Tests the reduceWhitespaces() method.
    *
-   * @dataProvider trimWhitespacesDataProvider
+   * @dataProvider dataProviderReduceWhitespaces
    */
-  public function testTrimWhitespaces(string $value, string $expectedResult) {
-    $result = TextHelper::trimWhitespaces($value);
+  public function testReduceWhitespaces(string $value, string $expectedResult) {
+    $result = TextHelper::reduceWhitespaces($value);
     $this->assertEquals($expectedResult, $result);
   }
 
   /**
-   * Data provider for the testTrimWhitespaces() method.
-   *
-   * @return array
-   *   An array of test cases with the input value and expected result.
+   * Data provider for the reduceWhitespaces() method.
    */
-  public function trimWhitespacesDataProvider() {
+  public function dataProviderReduceWhitespaces() {
     return [
+      ['', ''],
+      [' ', ''],
+      ['  ', ''],
+      [' a ', 'a'],
       ['   Hello    World   ', 'Hello World'],
       ['This is a test', 'This is a test'],
       ["Line 1\nLine 2\nLine 3", 'Line 1Line 2Line 3'],
+      ["Line 1\r\nLine 2\r\nLine 3", 'Line 1Line 2Line 3'],
+      ["Line 1\r\t\nLine 2\r\t\nLine 3", 'Line 1Line 2Line 3'],
+      ["Line 1\tLine 2\r\t\nLine 3", 'Line 1Line 2Line 3'],
     ];
   }
 

@@ -71,7 +71,7 @@ class NodeHelperTest extends KernelTestBase {
     ]);
     $type->save();
 
-    // Create and save a node with ID '1'.
+    // Create and save a node with ID '99999999'.
     $node = Node::create([
       'type' => 'type1',
       'nid' => 99999999,
@@ -88,7 +88,7 @@ class NodeHelperTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected function tearDown(): void {
-    // Clean up the created node with ID '1'.
+    // Clean up the created node with ID '99999999'.
     $node = Node::load(99999999);
     if ($node instanceof NodeInterface) {
       $node->delete();
