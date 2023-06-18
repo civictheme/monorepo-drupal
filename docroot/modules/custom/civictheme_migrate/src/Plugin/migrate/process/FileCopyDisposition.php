@@ -88,9 +88,32 @@ class FileCopyDisposition extends FileImport {
       return NULL;
     }
 
+    $filepath = $this->fetchFile($url, $row);
+
+    if (!$filepath) {
+      throw new MigrateSkipRowException(sprintf('Unable to download file %s', $url));
+    }
+
+    return parent::transform($filepath, $migrate_executable, $row, $destination_property);
+  }
+
+  /**
+   * Fetch the file from the remote URL.
+   *
+   * @param string $url
+   *   The URL of the file to be downloaded.
+   * @param \Drupal\migrate\Row $row
+   *   The row being processed.
+   *
+   * @return string|bool
+   *   The path to the downloaded file or FALSE if the download failed.
+   */
+  protected function fetchFile(string $url, Row $row) {
     $options = [];
-    $options['header'] = ['Accept-Encoding: gzip, deflate'];
+
     $options['http_errors'] = FALSE;
+
+    $options['header'] = $this->getHeaders();
 
     $authentication_settings = $this->configFactory->get('civictheme_migrate.settings')->get('remote_authentication');
     if ($authentication_settings['type'] == 'basic') {
@@ -104,21 +127,46 @@ class FileCopyDisposition extends FileImport {
 
     $response = $this->httpClient->request('GET', $url, $options);
     if ($response->getStatusCode() != '200') {
-      throw new MigrateSkipRowException("Unable to download file $url: {$response->getBody()}");
+      return FALSE;
     }
 
-    $data = $response->getBody();
+    $filename = $this->makeFilename($url, $row);
+    $filename = "temporary://{$filename}";
 
+    $data = $response->getBody();
+    file_put_contents($filename, (string) $data);
+
+    return $this->fileSystem->realpath($filename);
+  }
+
+  /**
+   * Return the filename to be used for the downloaded file.
+   *
+   * @param string $url
+   *   The URL of the file to be downloaded.
+   * @param \Drupal\migrate\Row $row
+   *   The row being processed.
+   *
+   * @return string
+   *   The filename.
+   */
+  protected function makeFilename(string $url, Row $row) {
     $uuid = $row->getSourceProperty('uuid');
 
     $filename = urldecode(basename($url));
     $filename = "{$uuid}_$filename";
-    $filename = "temporary://{$filename}";
 
-    file_put_contents($filename, (string) $data);
-    $file_path = $this->fileSystem->realpath($filename);
+    return $filename;
+  }
 
-    return parent::transform($file_path, $migrate_executable, $row, $destination_property);
+  /**
+   * Return the headers to be sent with the request.
+   *
+   * @return array
+   *   The headers.
+   */
+  protected function getHeaders() {
+    return ['Accept-Encoding: gzip, deflate'];
   }
 
 }
