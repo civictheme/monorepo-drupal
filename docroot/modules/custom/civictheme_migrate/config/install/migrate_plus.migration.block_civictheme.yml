@@ -42,7 +42,7 @@ source:
 process:
   theme:
     -
-      plugin: ct_block_theme
+      plugin: block_theme_default
   module:
     -
       plugin: default_value

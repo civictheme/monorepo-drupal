@@ -14,10 +14,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Migrate process plugin to get default theme.
  *
  * @MigrateProcessPlugin(
- *   id = "ct_block_theme"
+ *   id = "block_theme_default"
  * )
  */
-class BlockTheme extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+class BlockThemeDefault extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * Contains the configuration object factory.
