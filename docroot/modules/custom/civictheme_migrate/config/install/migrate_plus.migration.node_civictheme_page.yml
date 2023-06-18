@@ -111,12 +111,8 @@ process:
   field_c_n_summary: summary
   field_c_n_topics:
     -
-      plugin: explode
-      delimiter: ','
-      source: topics
-      strict: false
-    -
       plugin: entity_generate
+      source: topics
       value_key: name
       ignore_case: true
       operator: STARTS_WITH
@@ -150,12 +146,19 @@ process:
       default_value: 0
   field_c_n_custom_last_updated:
     -
-      plugin: format_date
+      plugin: str_replace
       source: last_updated_date
-      from_format: 'j M Y'
+      search: 'Last updated: '
+      replace: ''
+    -
+      plugin: callback
+      callable: strtotime
+    -
+      plugin: format_date
+      from_format: 'U'
       to_format: Y-m-d
       settings:
-        validate_format: false
+        validate_format: true
     -
       plugin: skip_on_empty
       method: process
@@ -206,7 +209,12 @@ process:
   path/pathauto:
     plugin: default_value
     default_value: 0
-  path/alias: alias
+  path/alias:
+    -
+      plugin: str_replace
+      source: alias
+      search: '//'
+      replace: '/'
 destination:
   plugin: 'entity:node'
   default_bundle: civictheme_page

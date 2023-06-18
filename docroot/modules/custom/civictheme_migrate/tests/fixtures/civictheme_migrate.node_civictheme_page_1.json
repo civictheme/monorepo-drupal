@@ -4,7 +4,12 @@
     "title": "[TEST] Migrated Content 1",
     "alias": "/test/migrated-content-1",
     "summary": "Summary for [TEST] Migrated Content 1",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "topics": [
+      "[TEST] Topic 1",
+      "[TEST] Topic 2",
+      "[TEST] Topic 3",
+      "[TEST] Topic 4"
+    ],
     "thumbnail": [
       "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
     ],

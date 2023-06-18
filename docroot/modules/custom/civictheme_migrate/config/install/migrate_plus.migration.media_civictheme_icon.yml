@@ -4,7 +4,7 @@ dependencies:
   enforced:
     module:
       - civictheme_migrate
-id: media_civictheme_document
+id: media_civictheme_icon
 class: null
 field_plugin_method: null
 cck_plugin_method: null
@@ -12,7 +12,7 @@ migration_tags:
   - civictheme_migrate
   - civictheme_media_migration
 migration_group: civictheme_migrate
-label: 'Media CivicTheme Document'
+label: 'Media CivicTheme Icon'
 source:
   plugin: url
   item_selector: data
@@ -37,7 +37,7 @@ source:
   urls: { }
 process:
   name: name
-  field_c_m_document/target_id:
+  field_c_m_icon/target_id:
     -
       plugin: skip_on_empty
       method: row
@@ -50,6 +50,6 @@ process:
       id_only: true
 destination:
   plugin: 'entity:media'
-  default_bundle: civictheme_document
+  default_bundle: civictheme_icon
   validate: true
 migration_dependencies: {  }

@@ -57,5 +57,6 @@ destination:
 migration_dependencies:
   required:
     - media_civictheme_image
+    - media_civictheme_icon
     - media_civictheme_document
     - node_civictheme_page

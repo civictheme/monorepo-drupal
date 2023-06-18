@@ -58,9 +58,9 @@ process:
       plugin: machine_name
       field: id
   block:
-   -
-    plugin: default_value
-    default_value: 'block_content:'
+    -
+      plugin: default_value
+      default_value: 'block_content:'
   plugin:
     -
       plugin: block_plugin

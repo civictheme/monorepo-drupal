@@ -43,10 +43,14 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "menu_link_content_civictheme_primary_navigation" migration map
     And I clear "menu_link_content_civictheme_secondary_navigation" migration map
     And I clear "menu_link_content_civictheme_footer" migration map
-    And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
-    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
-    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
     And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
   Scenario: Migration local sources for components can be updated from the migration edit form
@@ -118,8 +122,7 @@ Feature: CivicTheme migrate module Component mapping
 
     And I should see the text "error has been found:"
     And I should see the text "The specified file civictheme_migrate.node_civictheme_page_5.json could not be uploaded."
-    And I should see the text "All array items must match schema"
-    And I should see the text "The required properties (uuid) are missing"
+    And I should see the text "The data (array) must match the type: object"
 
     Examples:
       | path                                                                                                                |

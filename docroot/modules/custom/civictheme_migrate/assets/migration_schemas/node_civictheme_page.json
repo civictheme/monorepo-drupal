@@ -22,8 +22,11 @@
         "description": "Page summary"
       },
       "topics": {
-        "type": "string",
-        "description": "Comma delimited page topics"
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Topic name"
+        }
       },
       "thumbnail": {
         "type": "array",

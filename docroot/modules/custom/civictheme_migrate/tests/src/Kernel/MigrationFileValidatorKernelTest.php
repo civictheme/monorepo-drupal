@@ -59,8 +59,7 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
         'node_civictheme_page',
         'civictheme_migrate.media_civictheme_image_1.json',
         [
-          'All array items must match schema',
-          'The required properties (id) are missing',
+          'The data (object) must match the type: array',
         ],
       ],
 
@@ -69,18 +68,16 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
         'media_civictheme_document',
         'civictheme_migrate.node_civictheme_page_1.json',
         [
-          'All array items must match schema',
-          'The required properties (uuid) are missing',
+          'The data (array) must match the type: object',
         ],
       ],
 
       ['media_civictheme_image', 'civictheme_migrate.media_civictheme_image_1.json', []],
       [
-        'media_civictheme_document',
+        'media_civictheme_image',
         'civictheme_migrate.node_civictheme_page_1.json',
         [
-          'All array items must match schema',
-          'The required properties (uuid) are missing',
+          'The data (array) must match the type: object',
         ],
       ],
 
@@ -89,8 +86,7 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
         'menu_link_content_civictheme_primary_navigation',
         'civictheme_migrate.node_civictheme_page_1.json',
         [
-          'All array items must match schema',
-          'The required properties (uuid) are missing',
+          'The data (array) must match the type: object',
         ],
       ],
 
@@ -99,8 +95,7 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
         'menu_link_content_civictheme_secondary_navigation',
         'civictheme_migrate.node_civictheme_page_1.json',
         [
-          'All array items must match schema',
-          'The required properties (uuid) are missing',
+          'The data (array) must match the type: object',
         ],
       ],
 
@@ -109,8 +104,7 @@ class MigrationFileValidatorKernelTest extends KernelTestBase {
         'menu_link_content_civictheme_footer',
         'civictheme_migrate.node_civictheme_page_1.json',
         [
-          'All array items must match schema',
-          'The required properties (uuid) are missing',
+          'The data (array) must match the type: object',
         ],
       ],
     ];

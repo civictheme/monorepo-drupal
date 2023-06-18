@@ -15,6 +15,7 @@ migration_group: civictheme_migrate
 label: 'Media CivicTheme Image'
 source:
   plugin: url
+  item_selector: data
   data_fetcher_plugin: file
   data_parser_plugin: json
   ids:
