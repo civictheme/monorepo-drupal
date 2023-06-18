@@ -37,10 +37,12 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I clear "block_content_civictheme_component_block" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
-    And I run drush "config-set migrate_plus.migration.block_civictheme source.urls []"
-    And I run drush "config-set migrate_plus.migration.block_content_civictheme_component_block source.urls []"
 
   @api @drush
   Scenario: Migration local sources can be updated from the migration edit form
@@ -109,6 +111,9 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I clear "block_content_civictheme_component_block" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
-    And I run drush "config-set migrate_plus.migration.block_civictheme source.urls []"
-    And I run drush "config-set migrate_plus.migration.block_content_civictheme_component_block source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"

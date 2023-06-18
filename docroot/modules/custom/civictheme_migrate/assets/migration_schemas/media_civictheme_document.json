@@ -1,26 +1,37 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "array",
+  "type": "object",
   "items": {
     "type": "object",
     "properties": {
-      "uuid": {
-        "type": "string",
-        "description": "Entity UUID"
-      },
-      "name": {
-        "type": "string",
-        "description": "Entity name"
-      },
-      "file": {
-        "type": "string",
-        "description": "File URL"
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "uuid": {
+              "type": "string",
+              "description": "Entity UUID"
+            },
+            "name": {
+              "type": "string",
+              "description": "Entity name"
+            },
+            "file": {
+              "type": "string",
+              "description": "File URL"
+            }
+          },
+          "required": [
+            "uuid",
+            "name",
+            "file"
+          ]
+        }
       }
     },
     "required": [
-      "uuid",
-      "name",
-      "file"
+      "data"
     ]
   }
 }

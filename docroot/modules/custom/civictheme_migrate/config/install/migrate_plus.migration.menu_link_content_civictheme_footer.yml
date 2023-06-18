@@ -14,6 +14,7 @@ migration_group: civictheme_migrate
 label: 'Menu links for Footer'
 source:
   plugin: url
+  item_selector: data
   data_fetcher_plugin: file
   data_parser_plugin: json
   fields:

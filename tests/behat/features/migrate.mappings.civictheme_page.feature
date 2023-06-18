@@ -70,7 +70,12 @@ Feature: CivicTheme migrate module
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
   Scenario: Migration local sources can be updated from the migration edit form
@@ -132,7 +137,12 @@ Feature: CivicTheme migrate module
     And I run drush "mr --group=civictheme_migrate"
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
   Scenario: Migration remote sources can be updated from the migration edit form
@@ -170,7 +180,12 @@ Feature: CivicTheme migrate module
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
   Scenario: Migration local sources with incorrect schema will trigger a validation error
@@ -183,8 +198,7 @@ Feature: CivicTheme migrate module
 
     And I should see the text "error has been found:"
     And I should see the text "The specified file civictheme_migrate.node_civictheme_page_1.json could not be uploaded."
-    And I should see the text "All array items must match schema"
-    And I should see the text "The required properties (uuid) are missing"
+    And I should see the text "The data (array) must match the type: object"
 
     # Try uploading image sources for page migration.
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"
@@ -193,5 +207,4 @@ Feature: CivicTheme migrate module
 
     And I should see the text "error has been found:"
     And I should see the text "The specified file civictheme_migrate.media_civictheme_image_1.json could not be uploaded."
-    And I should see the text "All array items must match schema"
-    And I should see the text "The required properties (id) are missing"
+    And I should see the text "The data (object) must match the type: array"

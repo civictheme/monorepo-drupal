@@ -1,22 +1,24 @@
-[
-  {
-    "uuid": "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98",
-    "name": "dummy1.pdf",
-    "file": "http://nginx:8080/sites/default/files/dummy1.pdf"
-  },
-  {
-    "uuid": "32347ee0-afd5-46c2-92d6-3c37147c9943",
-    "name": "dummy2.pdf",
-    "file": "http://nginx:8080/sites/default/files/dummy2.pdf"
-  },
-  {
-    "uuid": "a8bd4335-9d5a-4163-b06c-a2dcb36d8fe5",
-    "name": "dummy1.txt",
-    "file": "http://nginx:8080/sites/default/files/dummy1.txt"
-  },
-  {
-    "uuid": "3369f866-a28d-4b49-957a-e405b5f63c4c",
-    "name": "dummy2.txt",
-    "file": "http://nginx:8080/sites/default/files/dummy2.txt"
-  }
-]
+{
+  "data": [
+    {
+      "uuid": "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98",
+      "name": "dummy1.pdf",
+      "file": "http://nginx:8080/sites/default/files/dummy1.pdf"
+    },
+    {
+      "uuid": "32347ee0-afd5-46c2-92d6-3c37147c9943",
+      "name": "dummy2.pdf",
+      "file": "http://nginx:8080/sites/default/files/dummy2.pdf"
+    },
+    {
+      "uuid": "a8bd4335-9d5a-4163-b06c-a2dcb36d8fe5",
+      "name": "dummy1.txt",
+      "file": "http://nginx:8080/sites/default/files/dummy1.txt"
+    },
+    {
+      "uuid": "3369f866-a28d-4b49-957a-e405b5f63c4c",
+      "name": "dummy2.txt",
+      "file": "http://nginx:8080/sites/default/files/dummy2.txt"
+    }
+  ]
+}

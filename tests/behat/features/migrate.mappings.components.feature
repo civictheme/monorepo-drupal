@@ -55,7 +55,12 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "node_civictheme_page" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
   Scenario: Migration local sources for components can be updated from the migration edit form
@@ -173,6 +178,10 @@ Feature: CivicTheme migrate module Component mapping
     And I clear "node_civictheme_page_annotate" migration map
     And I run drush "config-set migrate_plus.migration.media_civictheme_image source.urls []"
     And I run drush "config-set migrate_plus.migration.media_civictheme_document source.urls []"
+    And I run drush "config-set migrate_plus.migration.media_civictheme_icon source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_footer source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
+    And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
     And no civictheme_page content:

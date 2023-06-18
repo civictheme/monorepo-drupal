@@ -4,7 +4,12 @@
     "title": "[TEST] Migrated Page Content 41",
     "alias": "/migrated/page-content-41",
     "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "topics": [
+      "[TEST] Topic 1",
+      "[TEST] Topic 2",
+      "[TEST] Topic 3",
+      "[TEST] Topic 4"
+    ],
     "thumbnail": ["c97a9b08-f3b0-477b-97f7-8b61f9d4a527"],
     "vertical_spacing": "top",
     "hide_sidebar": true,

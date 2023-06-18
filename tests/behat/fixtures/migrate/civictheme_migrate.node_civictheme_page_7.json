@@ -4,12 +4,17 @@
     "title": "[TEST] Migrated Page Content 71",
     "alias": "/migrated/page-content-71",
     "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "topics": [
+      "[TEST] Topic 1",
+      "[TEST] Topic 2",
+      "[TEST] Topic 3",
+      "[TEST] Topic 4"
+    ],
     "thumbnail": [],
     "vertical_spacing": "top",
     "hide_sidebar": true,
     "show_last_updated_date": true,
-    "last_updated_date": "1 July 2020",
+    "last_updated_date": "Last updated: 1 July 2020",
     "banner": {
       "type": "container",
       "children": [
@@ -40,7 +45,12 @@
     "title": "[TEST] Migrated Page Content 72",
     "alias": "/migrated/page-content-72",
     "summary": "<p>[TEST] Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-    "topics": "[TEST] Topic 1,[TEST] Topic 2,[TEST] Topic 3,[TEST] Topic 4",
+    "topics": [
+      "[TEST] Topic 1",
+      "[TEST] Topic 2",
+      "[TEST] Topic 3",
+      "[TEST] Topic 4"
+    ],
     "thumbnail": [],
     "vertical_spacing": "top",
     "hide_sidebar": true,

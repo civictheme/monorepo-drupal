@@ -9,3 +9,19 @@ dependencies:
   - migrate_file:migrate_file
   - migrate_plus:migrate_plus
   - migrate_tools:migrate_tools
+#;< DEVELOPMENT
+config_devel:
+  install:
+    - civictheme_migrate.settings
+    - migrate_plus.migration.block_civictheme
+    - migrate_plus.migration.block_content_civictheme_component_block
+    - migrate_plus.migration.media_civictheme_document
+    - migrate_plus.migration.media_civictheme_icon
+    - migrate_plus.migration.media_civictheme_image
+    - migrate_plus.migration.menu_link_content_civictheme_footer
+    - migrate_plus.migration.menu_link_content_civictheme_primary_navigation
+    - migrate_plus.migration.menu_link_content_civictheme_secondary_navigation
+    - migrate_plus.migration.node_civictheme_page
+    - migrate_plus.migration.node_civictheme_page_anotate
+    - migrate_plus.migration_group.civictheme_migrate
+#;> DEVELOPMENT

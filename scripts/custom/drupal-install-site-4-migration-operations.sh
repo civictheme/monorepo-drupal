@@ -39,11 +39,29 @@ fi
 
 echo "==> Running migrations."
 
-# @todo Add setting remote URL for migrations.
+# Define pairs of migration type and URL.
+# @see https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/project/governmentcivicthemeio
+migrations=(
+  "media_civictheme_image"                            "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-129/media-civictheme_image.json"
+  "media_civictheme_icon"                             "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-132/media-civictheme_icon.json"
+  "media_civictheme_document"                         "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-130/media-civictheme_document.json"
+  "menu_link_content_civictheme_footer"               "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-footer.json"
+  "menu_link_content_civictheme_primary_navigation"   "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-primary-navigation.json"
+  "menu_link_content_civictheme_secondary_navigation" "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-secondary-navigation.json"
+  "node_civictheme_page"                              "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
+  "node_civictheme_page_annotate"                     "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
+)
 
-# @todo Remove 'echo' once CivicTheme 1.5 is released.
-echo $drush migrate:reset civictheme_migrate -y
-echo $drush migrate:import --group=civictheme_migrate --update -y
+# Loop over migrations array two items at a time
+for ((i=0; i<${#migrations[@]}; i+=2)); do
+  migration=${migrations[$i]}
+  url=${migrations[$i+1]}
+  drush config-set "migrate_plus.migration.${migration}" -y --input-format=yaml source.urls "[$url]"
+done
+
+$drush cr
+$drush migrate:status --group=civictheme_migrate -y
+$drush migrate:import --group=civictheme_migrate --update --limit="${MIGRATION_IMPORT_LIMIT}" -y
 
 if [ -n "${DREVOPS_DRUPAL_INSTALL_USE_MAINTENANCE_MODE}" ]; then
   echo "  > Disabling maintenance mode before running core group migrations."

@@ -25,36 +25,36 @@ They have identical structure and meaning of the columns.
 
 ### Page (`civictheme_page`)
 
-| Field description                       | Required | Merlin UI field name             | Merlin UI version | CivicTheme field name                        | CivicTheme version | Status   |
-|-----------------------------------------|----------|----------------------------------|-------------------|----------------------------------------------|--------------------|----------|
-| Page ID (Migration ID)                  | Yes      | `id`                             | 1.5               | `id`                                         | 1.4                | approved |
-| Page title                              | Yes      | `title`                          | 1.5               | `title`                                      | 1.4                | approved |
-| Page URL alias                          | No       | `alias`                          | 1.5               | `alias`                                      | 1.4                | approved |
-| Page Summary                            | No       | `summary`                        | 1.5               | `field_c_n_summary`                            | 1.4                | approved |
-| Topics (comma separated list of topics) | No       | `topics`                         | 1.5               | `field_c_n_topics`                           | 1.4                | approved |
-| Thumbnail                               | No       | `thumbnail`                      | 1.5               | `field_c_n_thumbnail`                        | 1.4                | approved |
-| Vertical spacing                        | No       | `vertical_spacing`               | 1.5               | `field_c_n_vertical_spacing`                 | 1.4                | approved |
-| Hide sidebar                            | No       | `hide_sidebar`                   | 1.5               | `field_c_n_hide_sidebar`                     | 1.4                | approved |
-| Show last updated date                  | No       | `show_last_updated_date`         | 1.5               | `field_c_n_show_last_updated`                | 1.4                | approved |
-| Last updated date                       | No       | `last_updated_date`              | 1.5               | `field_c_n_custom_last_updated`              | 1.4                | approved |
-| Show table of contents                  | No       | `show_toc`                       | 1.5               | `field_c_n_show_toc`                         | 1.4                | approved |
-| Container for banner items              | No       | `banner`                         | 1.5               |                                              | 1.4                | approved |
-| Banner theme                            | No       | `banner.theme`                   | 1.5               | `field_c_n_banner_theme`                     | 1.4                | approved |
-| Banner title                            | No       | `banner.title`                   | 1.5               | `field_c_n_banner_title`                     | 1.4                | approved |
-| Banner type                             | No       | `banner.type`                    | 1.5               | `field_c_n_banner_type`                      | 1.4                | approved |
-| Banner blend mode                       | No       | `banner.blend_mode`              | 1.5               | `field_c_n_blend_mode`                       | 1.4                | approved |
-| Banner featured image                   | No       | `banner.featured_image`          | 1.5               | `field_c_n_banner_featured_image`            | 1.4                | approved |
-| Banner background image                 | No       | `banner.background`              | 1.5               | `field_c_n_banner_background_image`          | 1.4                | approved |
-| Hide breadcrumb                         | No       | `banner.hide_breadcrumb`         | 1.5               | `field_c_n_banner_hide_breadcrumb`           | 1.4                | approved |
-| Container for components                | No       | `content`                        | 1.5               | `field_c_n_components`                       | 1.4                | approved |
-| Container for Basic text component      | No       | `content.text_content`           | 1.5               |                                              | 1.4                | approved |
-| Container for Manual list component     | No       | `content.manual_list`            | 1.5               |                                              | 1.4                | approved |
-| Container for Accordion component       | No       | `content.accordion`              | 1.5               |                                              | 1.4                | approved |
-| Container for Attachment component      | No       | `content.attachment`             | 1.5               |                                              | 1.4                | approved |
-| Attachment component title              | No       | `content.attachment.title`       | 1.5               | `field_c_n_components.field_c_p_title`       | 1.4                | approved |
-| Attachment component content            | No       | `content.attachment.content`     | 1.5               | `field_c_n_components.field_c_p_content`     | 1.4                | approved |
-| Attachment component attachments        | No       | `content.attachment.attachments` | 1.5               | `field_c_n_components.field_c_p_attachments` | 1.4                | approved |
-|                                         |
+| Field description                   | Required | Merlin UI field name             | Merlin UI version | CivicTheme field name                        | CivicTheme version | Status   |
+|-------------------------------------|----------|----------------------------------|-------------------|----------------------------------------------|--------------------|----------|
+| Page ID (Migration ID)              | Yes      | `id`                             | 1.5               | `id`                                         | 1.4                | approved |
+| Page title                          | Yes      | `title`                          | 1.5               | `title`                                      | 1.4                | approved |
+| Page URL alias                      | No       | `alias`                          | 1.5               | `alias`                                      | 1.4                | approved |
+| Page Summary                        | No       | `summary`                        | 1.5               | `field_c_n_summary`                          | 1.4                | approved |
+| Topics (array of topics)            | No       | `topics`                         | 1.5               | `field_c_n_topics`                           | 1.4                | approved |
+| Thumbnail                           | No       | `thumbnail`                      | 1.5               | `field_c_n_thumbnail`                        | 1.4                | approved |
+| Vertical spacing                    | No       | `vertical_spacing`               | 1.5               | `field_c_n_vertical_spacing`                 | 1.4                | approved |
+| Hide sidebar                        | No       | `hide_sidebar`                   | 1.5               | `field_c_n_hide_sidebar`                     | 1.4                | approved |
+| Show last updated date              | No       | `show_last_updated_date`         | 1.5               | `field_c_n_show_last_updated`                | 1.4                | approved |
+| Last updated date                   | No       | `last_updated_date`              | 1.5               | `field_c_n_custom_last_updated`              | 1.4                | approved |
+| Show table of contents              | No       | `show_toc`                       | 1.5               | `field_c_n_show_toc`                         | 1.4                | approved |
+| Container for banner items          | No       | `banner`                         | 1.5               |                                              | 1.4                | approved |
+| Banner theme                        | No       | `banner.theme`                   | 1.5               | `field_c_n_banner_theme`                     | 1.4                | approved |
+| Banner title                        | No       | `banner.title`                   | 1.5               | `field_c_n_banner_title`                     | 1.4                | approved |
+| Banner type                         | No       | `banner.type`                    | 1.5               | `field_c_n_banner_type`                      | 1.4                | approved |
+| Banner blend mode                   | No       | `banner.blend_mode`              | 1.5               | `field_c_n_blend_mode`                       | 1.4                | approved |
+| Banner featured image               | No       | `banner.featured_image`          | 1.5               | `field_c_n_banner_featured_image`            | 1.4                | approved |
+| Banner background image             | No       | `banner.background`              | 1.5               | `field_c_n_banner_background_image`          | 1.4                | approved |
+| Hide breadcrumb                     | No       | `banner.hide_breadcrumb`         | 1.5               | `field_c_n_banner_hide_breadcrumb`           | 1.4                | approved |
+| Container for components            | No       | `content`                        | 1.5               | `field_c_n_components`                       | 1.4                | approved |
+| Container for Basic text component  | No       | `content.text_content`           | 1.5               |                                              | 1.4                | approved |
+| Container for Manual list component | No       | `content.manual_list`            | 1.5               |                                              | 1.4                | approved |
+| Container for Accordion component   | No       | `content.accordion`              | 1.5               |                                              | 1.4                | approved |
+| Container for Attachment component  | No       | `content.attachment`             | 1.5               |                                              | 1.4                | approved |
+| Attachment component title          | No       | `content.attachment.title`       | 1.5               | `field_c_n_components.field_c_p_title`       | 1.4                | approved |
+| Attachment component content        | No       | `content.attachment.content`     | 1.5               | `field_c_n_components.field_c_p_content`     | 1.4                | approved |
+| Attachment component attachments    | No       | `content.attachment.attachments` | 1.5               | `field_c_n_components.field_c_p_attachments` | 1.4                | approved |
+|                                     |
 
 ### Event (`civictheme_event`)
 
@@ -71,6 +71,13 @@ TBD
 | File URL          | Yes      | `file`               | 1.5               | `field_c_m_image`     | 1.4                | approved |
 | Alternative text  | No       | `alt`                | 1.5               | `field_c_m_image`     | 1.4                | approved |
 
+### Icon (`civictheme_icon`)
+
+| Field description | Required | Merlin UI field name | Merlin UI version | CivicTheme field name | CivicTheme version | Status   |
+|-------------------|----------|----------------------|-------------------|-----------------------|--------------------|----------|
+| Unique identifier | Yes      | `uuid`               | 1.5               | `id`                  | 1.4                | approved |
+| Image name        | Yes      | `name`               | 1.5               | `name`                | 1.4                | approved |
+| File URL          | Yes      | `file`               | 1.5               | `field_c_m_icon`      | 1.4                | approved |
 
 ### Document (`civictheme_document`)
 
