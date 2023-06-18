@@ -12,7 +12,7 @@ class MigrationSchemaManager implements MigrationSchemaManagerInterface {
   /**
    * Defines default schemas directory.
    */
-  const SCHEMAS_DIRECTORY = 'assets/migration_schemas';
+  const SCHEMAS_DIRECTORY = 'schemas';
 
   /**
    * Discovered schemas.
