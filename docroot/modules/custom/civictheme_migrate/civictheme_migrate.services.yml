@@ -1,12 +1,12 @@
 services:
   civictheme_migrate.migration_file_validator:
-    class: \Drupal\civictheme_migrate\MigrationFileValidator
+    class: \Drupal\civictheme_migrate\Validator\MigrationFileValidator
     arguments:
       - '@civictheme_migrate.migration_schema_manager'
       - '@civictheme_migrate.json_schema_validator'
 
   civictheme_migrate.migration_schema_manager:
-    class: \Drupal\civictheme_migrate\MigrationSchemaManager
+    class: \Drupal\civictheme_migrate\Validator\MigrationSchemaManager
     arguments:
       - '@extension.path.resolver'
 
