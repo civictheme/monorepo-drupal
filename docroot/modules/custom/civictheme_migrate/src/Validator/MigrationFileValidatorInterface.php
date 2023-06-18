@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\civictheme_migrate;
+namespace Drupal\civictheme_migrate\Validator;
 
 /**
  * Validates migration file against predefined migration schema.

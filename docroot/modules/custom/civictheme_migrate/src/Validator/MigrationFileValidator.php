@@ -1,7 +1,8 @@
 <?php
 
-namespace Drupal\civictheme_migrate;
+namespace Drupal\civictheme_migrate\Validator;
 
+use Drupal\civictheme_migrate\Utility;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\JsonSchema\Validator;
@@ -16,7 +17,7 @@ class MigrationFileValidator implements MigrationFileValidatorInterface {
   /**
    * The migration schema manager.
    *
-   * @var \Drupal\civictheme_migrate\MigrationSchemaManagerInterface
+   * @var \Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface
    */
   protected $migrationSchemaManager;
 
@@ -33,7 +34,7 @@ class MigrationFileValidator implements MigrationFileValidatorInterface {
   /**
    * Constructor.
    *
-   * @param \Drupal\civictheme_migrate\MigrationSchemaManagerInterface $migration_schema_manager
+   * @param \Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface $migration_schema_manager
    *   The migration schema manager.
    * @param \Opis\JsonSchema\Validator $validator
    *   The schema validator service.

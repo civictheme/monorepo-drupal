@@ -13,12 +13,12 @@ use Drupal\KernelTests\KernelTestBase;
  * @group civictheme_migrate
  * @group site:kernel
  */
-class MigrationFileValidatorKernelTest extends KernelTestBase {
+class MigrationFileValidatorTest extends KernelTestBase {
 
   /**
    * Validator instance.
    *
-   * @var \Drupal\civictheme_migrate\MigrationFileValidator
+   * @var \Drupal\civictheme_migrate\Validator\MigrationFileValidator
    */
   protected $migrationFileValidator;
 

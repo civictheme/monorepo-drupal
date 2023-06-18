@@ -1,6 +1,8 @@
 <?php
 
-namespace Drupal\civictheme_migrate;
+namespace Drupal\civictheme_migrate\Validator;
+
+use Drupal\civictheme_migrate\Utility;
 
 /**
  * Migration schema.

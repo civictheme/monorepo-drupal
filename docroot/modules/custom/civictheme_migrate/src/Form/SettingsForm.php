@@ -2,7 +2,7 @@
 
 namespace Drupal\civictheme_migrate\Form;
 
-use Drupal\civictheme_migrate\MigrationSchemaManagerInterface;
+use Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -16,7 +16,7 @@ class SettingsForm extends ConfigFormBase {
   /**
    * The migration schema manager.
    *
-   * @var \Drupal\civictheme_migrate\MigrationSchemaManagerInterface
+   * @var \Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface
    */
   protected $migrationSchemaManager;
 
@@ -25,7 +25,7 @@ class SettingsForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
-   * @param \Drupal\civictheme_migrate\MigrationSchemaManagerInterface $migration_schema_manager
+   * @param \Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface $migration_schema_manager
    *   The migration schema manager.
    */
   public function __construct(ConfigFactoryInterface $config_factory, MigrationSchemaManagerInterface $migration_schema_manager) {
