@@ -125,7 +125,7 @@ process:
       source: vertical_spacing
     -
       plugin: default_value
-      default_value: ''
+      default_value: 'none'
   field_c_n_hide_sidebar:
     -
       plugin: get

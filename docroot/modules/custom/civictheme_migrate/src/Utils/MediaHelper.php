@@ -32,7 +32,7 @@ class MediaHelper {
    * @return \Drupal\media\MediaInterface|null
    *   The media entity.
    */
-  public static function lookupMediaFromUrl(string $file_url, array &$context, bool $create = FALSE) : ?MediaInterface {
+  public static function lookupMediaFromUrl(string $file_url, array &$context, bool $create = FALSE): ?MediaInterface {
     if (empty($file_url)) {
       return NULL;
     }
@@ -53,6 +53,7 @@ class MediaHelper {
         $media = $storage->load($mid);
         if ($media) {
           $cache[$file_url] = $media;
+
           return $media;
         }
       }
@@ -63,6 +64,7 @@ class MediaHelper {
       $media = static::downloadMediaFromUrl($file_url, $context);
       if ($media) {
         $cache[$file_url] = $media;
+
         return $media;
       }
     }
@@ -83,8 +85,9 @@ class MediaHelper {
    * @return string|null
    *   The media entity ID.
    */
-  public static function lookupMediaIdFromUrl(string $file_url, array &$context, bool $create = FALSE) : ?string {
+  public static function lookupMediaIdFromUrl(string $file_url, array &$context, bool $create = FALSE): ?string {
     $media = static::lookupMediaFromUrl($file_url, $context, $create);
+
     return $media ? $media->id() : NULL;
   }
 
@@ -101,8 +104,9 @@ class MediaHelper {
    * @return string|null
    *   The media entity UUID.
    */
-  public static function lookupMediaUuidFromUrl(string $file_url, array &$context, bool $create = FALSE) : ?string {
+  public static function lookupMediaUuidFromUrl(string $file_url, array &$context, bool $create = FALSE): ?string {
     $media = static::lookupMediaFromUrl($file_url, $context, $create);
+
     return $media ? $media->uuid() : NULL;
   }
 
@@ -119,7 +123,7 @@ class MediaHelper {
    * @return string
    *   The embedded code.
    */
-  public static function getEmbeddedMediaCode(string $uuid, string $alt = '', string $title = '') : string {
+  public static function getEmbeddedMediaCode(string $uuid, string $alt = '', string $title = ''): string {
     $code = '<drupal-media data-entity-embed-display="view_mode:media.embedded" data-entity-type="media" data-entity-uuid="' . $uuid . '" data-langcode="en"';
     if ($alt) {
       $code .= ' alt="' . $alt . '"';
@@ -143,7 +147,7 @@ class MediaHelper {
    * @return \Drupal\media\MediaInterface|null
    *   The media entity.
    */
-  public static function downloadMediaFromUrl(string $file_url, array &$context) : ?MediaInterface {
+  public static function downloadMediaFromUrl(string $file_url, array &$context): ?MediaInterface {
     $base_url = !empty($context['base_url']) ? $context['base_url'] : '';
     $current_path = '/';
     $file_destination = static::FILE_DESTINATION;
@@ -190,7 +194,7 @@ class MediaHelper {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public static function lookupFileFromUri(string $uri) : ?FileInterface {
+  public static function lookupFileFromUri(string $uri): ?FileInterface {
     if (empty($uri)) {
       return NULL;
     }
@@ -228,6 +232,7 @@ class MediaHelper {
       $file = $storage->load($fid);
       if ($file) {
         $cache[$uri] = $file;
+
         return $file;
       }
     }
@@ -248,7 +253,7 @@ class MediaHelper {
    * @return \Drupal\file\FileInterface|null
    *   The file entity.
    */
-  public static function downloadRemoteFile(string $source, string $destination, array &$context) : ?FileInterface {
+  public static function downloadRemoteFile(string $source, string $destination, array &$context): ?FileInterface {
     $migration = $context['migration'] ?? NULL;
 
     /** @var \Drupal\Core\File\FileSystemInterface $fs */
@@ -261,6 +266,7 @@ class MediaHelper {
           '@source' => $source,
         ]));
       }
+
       return NULL;
     }
 
@@ -272,6 +278,7 @@ class MediaHelper {
           '@source' => $source,
         ]));
       }
+
       return NULL;
     }
 
@@ -300,6 +307,7 @@ class MediaHelper {
           '@source' => $source,
         ]));
       }
+
       return NULL;
     }
 
@@ -321,7 +329,7 @@ class MediaHelper {
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public static function createMediaFromFile(FileInterface $file, array &$context, array $media_data = []) : ?MediaInterface {
+  public static function createMediaFromFile(FileInterface $file, array &$context, array $media_data = []): ?MediaInterface {
     $migration = $context['migration'] ?? NULL;
     $cache = &drupal_static(__METHOD__, []);
 

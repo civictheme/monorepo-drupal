@@ -2,12 +2,12 @@
 
 namespace Drupal\Tests\civictheme_migrate\Kernel\Utils;
 
+use Drupal\civictheme_migrate\Utils\NodeHelper;
+use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
-use Drupal\civictheme_migrate\Utils\NodeHelper;
 use Drupal\node\Entity\NodeType;
-use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 /**
  * Tests the NodeHelper class.
