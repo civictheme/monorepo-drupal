@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\civictheme_migrate\Unit;
 
-use Drupal\Tests\UnitTestCase;
 use Drupal\civictheme_migrate\Utils\AliasHelper;
+use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests the AliasHelper class.

@@ -12,7 +12,7 @@ use Drupal\Tests\UnitTestCase;
  *
  * @group civictheme_migrate
  * @group site:unit
-| */
+ */
 class UtilityTest extends UnitTestCase {
 
   /**

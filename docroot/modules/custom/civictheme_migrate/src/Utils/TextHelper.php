@@ -21,10 +21,11 @@ class TextHelper {
    * @return string
    *   The clean string.
    */
-  public static function reduceWhitespaces(string $string) : string {
+  public static function reduceWhitespaces(string $string): string {
     $string = preg_replace("/[\n\t\r]/", '', $string);
     $string = preg_replace('/ {2,}/', ' ', $string);
     $string = preg_replace('/[\x{200B}-\x{200D}]/u', '', $string);
+
     return trim($string);
   }
 
@@ -37,7 +38,7 @@ class TextHelper {
    * @return string
    *   The text.
    */
-  public static function convertEmbeddedImagesWithMedia(string $text) : string {
+  public static function convertEmbeddedImagesWithMedia(string $text): string {
     $current_path = '/';
     // Find all the <img> tags.
     $img_pattern = "<img\s[^>]*src=[\'\"](.*)[\'\"][^>]*>";
@@ -72,6 +73,7 @@ class TextHelper {
 
         return MediaHelper::getEmbeddedMediaCode($media_uuid, $alt, $title);
       }
+
       // Otherwise just return the original img tag.
       return $matches[0];
     }, $text);
@@ -88,7 +90,7 @@ class TextHelper {
    * @return string
    *   The processed string.
    */
-  public static function convertInternalLinkEntities(string $string) : ?string {
+  public static function convertInternalLinkEntities(string $string): ?string {
     $dom = Html::load($string);
     if ($dom) {
       $anchors = $dom->getElementsByTagName('a');
@@ -128,6 +130,7 @@ class TextHelper {
       }
       $string = Html::serialize($dom);
     }
+
     return $string;
   }
 
@@ -140,9 +143,10 @@ class TextHelper {
    * @return string
    *   The text.
    */
-  public static function convertInlineReferencesToEmbeddedEntities(string $text) : string {
+  public static function convertInlineReferencesToEmbeddedEntities(string $text): string {
     $text = static::convertEmbeddedImagesWithMedia($text);
     $text = static::convertInternalLinkEntities($text);
+
     return $text;
   }
 

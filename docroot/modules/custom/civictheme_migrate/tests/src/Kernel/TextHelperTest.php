@@ -2,16 +2,16 @@
 
 namespace Drupal\Tests\civictheme_migrate\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
-use Drupal\file\Entity\File;
-use Drupal\node\Entity\Node;
-use Drupal\civictheme_migrate\Utils\TextHelper;
 use Drupal\civictheme_migrate\Utils\NodeHelper;
-use Drupal\node\Entity\NodeType;
+use Drupal\civictheme_migrate\Utils\TextHelper;
 use Drupal\Core\Url;
-use Drupal\Tests\TestFileCreationTrait;
+use Drupal\file\Entity\File;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
+use Drupal\Tests\TestFileCreationTrait;
 
 /**
  * Tests the TextHelper class.
@@ -20,6 +20,7 @@ use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
  * @group site:kernel
  */
 class TextHelperTest extends KernelTestBase {
+
   use MediaTypeCreationTrait;
   use TestFileCreationTrait;
 

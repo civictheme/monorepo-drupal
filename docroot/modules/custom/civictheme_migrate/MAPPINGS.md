@@ -47,14 +47,13 @@ They have identical structure and meaning of the columns.
 | Banner background image             | No       | `banner.background`              | 1.5               | `field_c_n_banner_background_image`          | 1.4                | approved |
 | Hide breadcrumb                     | No       | `banner.hide_breadcrumb`         | 1.5               | `field_c_n_banner_hide_breadcrumb`           | 1.4                | approved |
 | Container for components            | No       | `content`                        | 1.5               | `field_c_n_components`                       | 1.4                | approved |
-| Container for Basic text component  | No       | `content.text_content`           | 1.5               |                                              | 1.4                | approved |
+| Container for Content component     | No       | `content.text_content`           | 1.5               |                                              | 1.4                | approved |
 | Container for Manual list component | No       | `content.manual_list`            | 1.5               |                                              | 1.4                | approved |
 | Container for Accordion component   | No       | `content.accordion`              | 1.5               |                                              | 1.4                | approved |
 | Container for Attachment component  | No       | `content.attachment`             | 1.5               |                                              | 1.4                | approved |
 | Attachment component title          | No       | `content.attachment.title`       | 1.5               | `field_c_n_components.field_c_p_title`       | 1.4                | approved |
 | Attachment component content        | No       | `content.attachment.content`     | 1.5               | `field_c_n_components.field_c_p_content`     | 1.4                | approved |
 | Attachment component attachments    | No       | `content.attachment.attachments` | 1.5               | `field_c_n_components.field_c_p_attachments` | 1.4                | approved |
-|                                     |
 
 ### Event (`civictheme_event`)
 
@@ -87,7 +86,6 @@ TBD
 | Document name     | Yes      | `name`               | 1.5               | `name`                | 1.4                | approved |
 | File URL          | Yes      | `file`               | 1.5               | `field_c_m_document`  | 1.4                | approved |
 
-
 ### Video (`civictheme_video`)
 
 TBD
@@ -99,7 +97,6 @@ TBD
 ### Audio (`civictheme_audio`)
 
 TBD
-
 
 ## Menus
 
@@ -113,7 +110,6 @@ TBD
 | Parent menu item UUID | Yes      | `parent`             | 1.5               | `parent`              | 1.4                | approved |
 | Weight                | Yes      | `weight`             | 1.5               | `weight`              | 1.4                | approved |
 
-
 ### Secondary (`civictheme-secondary-navigation`)
 
 | Field description     | Required | Merlin UI field name | Merlin UI version | CivicTheme field name | CivicTheme version | Status   |
@@ -123,7 +119,6 @@ TBD
 | Menu item URL         | Yes      | `link`               | 1.5               | `link`                | 1.4                | approved |
 | Parent menu item UUID | Yes      | `parent`             | 1.5               | `parent`              | 1.4                | approved |
 | Weight                | Yes      | `weight`             | 1.5               | `weight`              | 1.4                | approved |
-
 
 ### Footer (`civictheme-footer`)
 

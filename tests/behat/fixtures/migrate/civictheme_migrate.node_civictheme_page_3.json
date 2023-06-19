@@ -81,7 +81,10 @@
                         "format": "rich_text",
                         "value": "<p>[TEST] Event card summary</p>"
                       },
-                      "item_topics": "[TEST] Migrated event topic 1,[TEST] Migrated topic 2"
+                      "item_topics": [
+                        "[TEST] Migrated event topic 1",
+                        "[TEST] Migrated topic 2"
+                      ]
                     }
                   },
                   {

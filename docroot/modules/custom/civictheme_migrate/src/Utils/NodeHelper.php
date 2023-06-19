@@ -2,8 +2,8 @@
 
 namespace Drupal\civictheme_migrate\Utils;
 
-use Drupal\node\NodeInterface;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 /**
  * Node helper class.
@@ -38,7 +38,7 @@ class NodeHelper {
    * @return \Drupal\node\NodeInterface|null
    *   The node entity.
    */
-  public static function lookupNodeFromAlias(string $alias) : ?NodeInterface {
+  public static function lookupNodeFromAlias(string $alias): ?NodeInterface {
     if (empty($alias)) {
       return NULL;
     }
@@ -63,8 +63,10 @@ class NodeHelper {
     $node = $storage->load($nid);
     if ($node) {
       $cache[$alias] = $node;
+
       return $node;
     }
+
     return NULL;
   }
 
@@ -95,8 +97,9 @@ class NodeHelper {
    * @return string|null
    *   The node entity UUID.
    */
-  public static function lookupNodeUuidFromAlias(string $alias) : ?string {
+  public static function lookupNodeUuidFromAlias(string $alias): ?string {
     $node = static::lookupNodeFromAlias($alias);
+
     return $node ? $node->uuid() : NULL;
   }
 
@@ -109,8 +112,9 @@ class NodeHelper {
    * @return string|null
    *   The node entity ID.
    */
-  public static function lookupNodeIdFromAlias(string $alias) : ?string {
+  public static function lookupNodeIdFromAlias(string $alias): ?string {
     $node = static::lookupNodeFromAlias($alias);
+
     return $node ? $node->id() : NULL;
   }
 
@@ -123,8 +127,9 @@ class NodeHelper {
    * @return string|null
    *   The node entity Uri.
    */
-  public static function lookupNodeUriFromAlias(string $alias) : ?string {
+  public static function lookupNodeUriFromAlias(string $alias): ?string {
     $node = static::lookupNodeFromAlias($alias);
+
     return $node ? 'entity:node/' . $node->id() : NULL;
   }
 
@@ -137,8 +142,9 @@ class NodeHelper {
    * @return string|null
    *   The node entity path.
    */
-  public static function lookupNodePathFromAlias(string $alias) : ?string {
+  public static function lookupNodePathFromAlias(string $alias): ?string {
     $node = static::lookupNodeFromAlias($alias);
+
     return $node ? '/node/' . $node->id() : NULL;
   }
 
@@ -153,7 +159,7 @@ class NodeHelper {
    * @return \Drupal\node\NodeInterface|null
    *   The node entity.
    */
-  public static function lookupNodeFromTitleAndType(string $title, string $type) : ?NodeInterface {
+  public static function lookupNodeFromTitleAndType(string $title, string $type): ?NodeInterface {
     if (empty($title) || empty($type)) {
       return NULL;
     }
@@ -174,9 +180,11 @@ class NodeHelper {
       $node = $storage->load($nid);
       if ($node) {
         $cache[$title][$type] = $node;
+
         return $node;
       }
     }
+
     return NULL;
   }
 
@@ -191,8 +199,9 @@ class NodeHelper {
    * @return string|null
    *   The node entity ID.
    */
-  public static function lookupNodeUriTitleAndType(string $title, string $type) : ?string {
+  public static function lookupNodeUriTitleAndType(string $title, string $type): ?string {
     $node = static::lookupNodeFromTitleAndType($title, $type);
+
     return $node ? 'entity:node/' . $node->id() : NULL;
   }
 

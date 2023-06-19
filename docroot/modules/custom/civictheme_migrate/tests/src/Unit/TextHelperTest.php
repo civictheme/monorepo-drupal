@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\civictheme_migrate\Unit;
 
-use Drupal\Tests\UnitTestCase;
 use Drupal\civictheme_migrate\Utils\TextHelper;
+use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests the TextHelper class.

@@ -18,7 +18,7 @@ class AliasHelper {
    * @return string
    *   The clean domain with the scheme.
    */
-  public static function extractDomainFromUrl(string $url) : string {
+  public static function extractDomainFromUrl(string $url): string {
     $parsed_url = parse_url(trim($url));
 
     return $parsed_url['scheme'] . '://' . $parsed_url['host'];
@@ -33,7 +33,7 @@ class AliasHelper {
    * @return string
    *   The clean alias with path only and the query string (if exists).
    */
-  public static function extractAliasFromUrl(string $url) : string {
+  public static function extractAliasFromUrl(string $url): string {
     $parsed_url = parse_url(trim($url));
     if (!empty($parsed_url['path'])) {
       $alias = $parsed_url['path'];
@@ -54,8 +54,9 @@ class AliasHelper {
    * @return string
    *   The clean alias with path only.
    */
-  public static function extractAliasPathFromUrl(string $url) : string {
+  public static function extractAliasPathFromUrl(string $url): string {
     $parsed_url = parse_url(trim($url));
+
     return $parsed_url['path'] ?? '';
   }
 
@@ -68,7 +69,7 @@ class AliasHelper {
    * @return bool
    *   The result.
    */
-  public static function isInternalUri(string $uri) : bool {
+  public static function isInternalUri(string $uri): bool {
     return strpos($uri, 'internal:') === 0 || strpos($uri, '/') === 0;
   }
 
@@ -81,7 +82,7 @@ class AliasHelper {
    * @return string
    *   The alias.
    */
-  public static function getAliasFromInternalUri(string $uri) : string {
+  public static function getAliasFromInternalUri(string $uri): string {
     return static::isInternalUri($uri) ? preg_replace('/(^internal:)/i', '', $uri) : $uri;
   }
 
@@ -94,10 +95,11 @@ class AliasHelper {
    * @return string
    *   The standardised URI.
    */
-  public static function standardiseInternalUri(string $uri) : string {
+  public static function standardiseInternalUri(string $uri): string {
     if ((strpos($uri, '/') === 0)) {
       $uri = 'internal:' . $uri;
     }
+
     return $uri;
   }
 
@@ -110,8 +112,9 @@ class AliasHelper {
    * @return string
    *   The sanitised alias.
    */
-  public static function sanitiseAlias(string $alias) : string {
+  public static function sanitiseAlias(string $alias): string {
     $value = trim($alias);
+
     return trim($value, '/');
   }
 

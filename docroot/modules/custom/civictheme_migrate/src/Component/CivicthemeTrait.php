@@ -1,11 +1,12 @@
 <?php
 
-namespace Drupal\civictheme_migrate\Utils;
+namespace Drupal\civictheme_migrate\Component;
 
+use Drupal\civictheme_migrate\Utils\TextHelper;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
- * Trait CsGeneratedContentTrait.
+ * Trait CivicthemeTrait.
  *
  * Trait for centralised CivicTheme components handling.
  */
@@ -659,6 +660,7 @@ trait CivicthemeTrait {
     }
 
     $paragraph->save();
+
     return $paragraph;
   }
 
@@ -706,6 +708,7 @@ trait CivicthemeTrait {
     }
 
     $paragraph->save();
+
     return $paragraph;
   }
 

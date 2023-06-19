@@ -4,9 +4,9 @@ namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
-use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -67,6 +67,7 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
     $entity_type_manager = $container->get('entity_type.manager');
+
     return new static(
       $configuration,
       $plugin_id,
@@ -87,6 +88,7 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
     if ($lookup_result) {
       $block_id = $lookup_result[0]['id'];
       $block = $this->blockContentStorage->load($block_id);
+
       return 'block_content:' . $block->uuid();
     }
 

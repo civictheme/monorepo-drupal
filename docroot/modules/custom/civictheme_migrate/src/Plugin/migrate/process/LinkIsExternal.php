@@ -2,13 +2,13 @@
 
 namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Component\Utility\UrlHelper;
 
 /**
  * Migrate process plugin used to set 'external' link property value.
