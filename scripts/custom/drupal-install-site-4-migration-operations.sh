@@ -45,9 +45,9 @@ migrations=(
   "media_civictheme_image"                            "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-129/media-civictheme_image.json"
   "media_civictheme_icon"                             "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-132/media-civictheme_icon.json"
   "media_civictheme_document"                         "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-130/media-civictheme_document.json"
-  "menu_link_content_civictheme_footer"               "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-footer.json"
-  "menu_link_content_civictheme_primary_navigation"   "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-primary-navigation.json"
-  "menu_link_content_civictheme_secondary_navigation" "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-128/civictheme-secondary-navigation.json"
+  "menu_link_content_civictheme_primary_navigation"   "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-134/civictheme-primary-navigation.json"
+  "menu_link_content_civictheme_secondary_navigation" "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-135/civictheme-secondary-navigation.json"
+  "menu_link_content_civictheme_footer"               "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-136/civictheme-footer.json"
   "node_civictheme_page"                              "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
   "node_civictheme_page_annotate"                     "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
 )
