@@ -1,0 +1,226 @@
+{
+    "name": "yourorg/yoursite",
+    "description": "Example configuration to run CivicTheme on Drupal 10",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.1",
+        "composer/installers": "^2.1",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/civictheme": "^1.4",
+        "drupal/ckeditor": "^1.0",
+        "drupal/config_update": "^2@alpha",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
+        "drupal/environment_indicator": "^4.0",
+        "drupal/google_analytics": "^4.0",
+        "drupal/jquery_ui": "^1.6",
+        "drupal/jquery_ui_autocomplete": "^2",
+        "drupal/jquery_ui_menu": "^2",
+        "drupal/lagoon_logs": "^2.0",
+        "drupal/linkit": "^6.0@beta",
+        "drupal/pathauto": "^1.11",
+        "drupal/redirect": "^1.8",
+        "drupal/simple_sitemap": "^4.1",
+        "drush/drush": "^11",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "salsadigitalauorg/civictheme_admin": "^1.1",
+        "vlucas/phpdotenv": "^5.4",
+        "webflo/drupal-finder": "^1.2",
+        "webmozart/path-util": "^2.3",
+        "wikimedia/composer-merge-plugin": "^2.0"
+    },
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "drevops/behat-format-progress-fail": "^1",
+        "drevops/behat-screenshot": "^1",
+        "drevops/behat-steps": "^1",
+        "drupal/core-dev": "^10",
+        "drupal/drupal-extension": "dev-feature/drupal-10",
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpmd/phpmd": "^2.12",
+        "phpspec/prophecy-phpunit": "^2",
+        "pyrech/composer-changelogs": "^1.8",
+        "slevomat/coding-standard": "7.2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "8.1.16"
+        },
+        "process-timeout": 0,
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/console-extend-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "oomphinc/composer-installers-extender": true,
+            "pyrech/composer-changelogs": true,
+            "zaporylie/composer-drupal-optimizations": true,
+            "phpstan/extension-installer": true,
+            "wikimedia/composer-merge-plugin": true
+        }
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "repositories": {
+        "drupal/components": {
+            "type": "package",
+            "package": {
+                "name": "drupal/components",
+                "type": "drupal-module",
+                "version": "2.4",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/components.git",
+                    "reference": "8e184d5f98e56370cde9191f2810c913268b3294"
+                }
+            }
+        },
+        "drupal/linkit": {
+            "type": "package",
+            "package": {
+                "name": "drupal/linkit",
+                "type": "drupal-module",
+                "version": "6.0.0-beta3",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/linkit.git",
+                    "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
+                }
+            }
+        },
+        "drupal/webform": {
+            "type": "package",
+            "package": {
+                "name": "drupal/webform",
+                "type": "drupal-module",
+                "version": "6.2",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/webform-3290604.git",
+                    "reference": "46d9dff50f9bb00ba2031d7807d8e5cf06220369"
+                }
+            }
+        },
+        "drupal/drupal-driver": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/DrupalDriver"
+        },
+        "drupal/drupal-extension": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/drupalextension"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2022-11-13/3204271-15-10.1.x.patch"
+            }
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./docroot"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false,
+                "[project-root]/.gitattributes": false,
+                "[web-root]/.htaccess": false,
+                "[web-root]/.ht.router.php": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/INSTALL.txt": false,
+                "[web-root]/README.txt": false,
+                "[web-root]/sites/example.settings.local.php": false,
+                "[web-root]/sites/example.sites.php": false,
+                "[web-root]/web.config": false
+            }
+        },
+        "enable-patching": true,
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "docroot/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "docroot/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "preserve-paths": [
+            "docroot/modules/custom",
+            "docroot/themes/custom",
+            "docroot/drush",
+            "docroot/sites/default/settings.php",
+            "docroot/sites/default/services.yml",
+            "docroot/sites/default/default.settings.local.php",
+            "docroot/sites/default/default.services.local.yml",
+            "docroot/sites/default/settings.local.php",
+            "docroot/sites/default/services.local.yml",
+            "docroot/sites/default/files",
+            "docroot/robots.txt",
+            "docroot/.htaccess"
+        ]
+    }
+}
