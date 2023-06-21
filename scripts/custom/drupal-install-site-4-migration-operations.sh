@@ -41,23 +41,14 @@ echo "==> Running migrations."
 
 # Define pairs of migration type and URL.
 # @see https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/project/governmentcivicthemeio
-migrations=(
-  "media_civictheme_image"                            "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-129/media-civictheme_image.json"
-  "media_civictheme_icon"                             "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-132/media-civictheme_icon.json"
-  "media_civictheme_document"                         "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-130/media-civictheme_document.json"
-  "menu_link_content_civictheme_primary_navigation"   "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-134/civictheme-primary-navigation.json"
-  "menu_link_content_civictheme_secondary_navigation" "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-135/civictheme-secondary-navigation.json"
-  "menu_link_content_civictheme_footer"               "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-136/civictheme-footer.json"
-  "node_civictheme_page"                              "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
-  "node_civictheme_page_annotate"                     "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
-)
-
-# Loop over migrations array two items at a time
-for ((i=0; i<${#migrations[@]}; i+=2)); do
-  migration=${migrations[$i]}
-  url=${migrations[$i+1]}
-  drush config-set "migrate_plus.migration.${migration}" -y --input-format=yaml source.urls "[$url]"
-done
+$drush config-set "migrate_plus.migration.media_civictheme_image"                            -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-129/media-civictheme_image.json]"
+$drush config-set "migrate_plus.migration.media_civictheme_icon"                             -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-132/media-civictheme_icon.json]"
+$drush config-set "migrate_plus.migration.media_civictheme_document"                         -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-130/media-civictheme_document.json]"
+$drush config-set "migrate_plus.migration.menu_link_content_civictheme_primary_navigation"   -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-134/civictheme-primary-navigation.json]"
+$drush config-set "migrate_plus.migration.menu_link_content_civictheme_secondary_navigation" -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-135/civictheme-secondary-navigation.json]"
+$drush config-set "migrate_plus.migration.menu_link_content_civictheme_footer"               -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-136/civictheme-footer.json]"
+$drush config-set "migrate_plus.migration.node_civictheme_page"                              -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json]"
+$drush config-set "migrate_plus.migration.node_civictheme_page_annotate"                     -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json]"
 
 $drush cr
 $drush migrate:status --group=civictheme_migrate -y
