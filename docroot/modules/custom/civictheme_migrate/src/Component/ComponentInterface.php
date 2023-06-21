@@ -17,32 +17,22 @@ interface ComponentInterface {
    * @return string
    *   The name of the component.
    */
-  public static function getName(): string;
+  public static function name(): string;
 
   /**
-   * The name of the source component in the source mapping.
-   *
-   * The component may have another name in the source mapping.
-   *
-   * @return string
-   *   The name of the source component in the source mapping.
-   */
-  public static function getSrcName(): string;
-
-  /**
-   * The fields that the source component must have.
+   * Represent component fields as an array.
    *
    * @return array
-   *   The fields that the source component must have.
+   *   Component fields as an array.
    */
-  public static function getSrcFields(): array;
+  public function toArray(): array;
 
   /**
-   * Component structure representation.
+   * Component structure.
    *
    * @return mixed
    *   Component structure representation.
    */
-  public function getStructure(): mixed;
+  public function structure(): mixed;
 
 }
