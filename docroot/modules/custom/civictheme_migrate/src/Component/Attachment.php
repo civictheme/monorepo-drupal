@@ -2,6 +2,11 @@
 
 namespace Drupal\civictheme_migrate\Component;
 
+use Drupal\civictheme_migrate\Component\Field\BackgroundFieldTrait;
+use Drupal\civictheme_migrate\Component\Field\ContentFieldTrait;
+use Drupal\civictheme_migrate\Component\Field\ThemeFieldTrait;
+use Drupal\civictheme_migrate\Component\Field\TitleFieldTrait;
+use Drupal\civictheme_migrate\Component\Field\VerticalSpacingFieldTrait;
 use Drupal\Component\Utility\NestedArray;
 
 /**
@@ -11,17 +16,50 @@ use Drupal\Component\Utility\NestedArray;
  */
 class Attachment extends AbstractCivicThemeComponent {
 
+  use BackgroundFieldTrait;
+  use ContentFieldTrait;
+  use ThemeFieldTrait;
+  use TitleFieldTrait;
+  use VerticalSpacingFieldTrait;
+
+  /**
+   * A list of attachments.
+   *
+   * @var array
+   */
+  protected $attachments = [];
+
+  /**
+   * Get the attachments.
+   *
+   * @return array
+   *   A list of attachments.
+   */
+  public function getAttachments():array {
+    return $this->attachments;
+  }
+
+  /**
+   * Set the attachments.
+   *
+   * @param array $value
+   *   The attachments.
+   */
+  public function setAttachments(array $value): void {
+    $this->attachments = $value;
+  }
+
   /**
    * {@inheritdoc}
    */
-  public static function getSrcFields(): array {
+  public static function migrateFields(): array {
     return ['children'];
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function prepareData($data, array $context): array {
+  protected function prepareStub($data, array $context): array {
     $data = $data['children'];
 
     if (!empty($data['attachments']['children'])) {

@@ -81,7 +81,7 @@ class ComponentFactory {
   /**
    * Create a single component.
    *
-   * @param string $src_name
+   * @param string $migrate_name
    *   The source name of the component to create.
    * @param mixed $data
    *   The item data to create the component.
@@ -91,34 +91,34 @@ class ComponentFactory {
    * @return mixed|null
    *   The component.
    */
-  public function createComponent(string $src_name, $data, array &$context) {
-    $component_class = $this->findComponentClassBySrcName($src_name);
+  public function createComponent(string $migrate_name, $data, array &$context) {
+    $component_class = $this->findComponentClassByMigrateName($migrate_name);
 
     if (!$component_class || !class_exists($component_class)) {
-      throw new \Exception(sprintf('Component type %s not found.', $src_name));
+      throw new \Exception(sprintf('Component type %s not found.', $migrate_name));
     }
 
     /** @var \Drupal\civictheme_migrate\Component\ComponentInterface $component */
     $component = new $component_class($data, $context, $this->entityTypeManager, $this->migrateLookup);
 
-    return $component->getStructure();
+    return $component->structure();
   }
 
   /**
    * Find the component class by the source name.
    *
-   * @param string $src_name
-   *   The source name of the component.
+   * @param string $migrate_name
+   *   The migrate name of the component.
    *
    * @return string|null
    *   The component class name or NULL if the class fo the specified source
    *   name cannot be found.
    */
-  protected function findComponentClassBySrcName(string $src_name): string|null {
+  protected function findComponentClassByMigrateName(string $migrate_name): string|null {
     $component_classes = $this->getComponentClasses(__DIR__, '\Drupal\civictheme_migrate\Component\AbstractComponent');
 
     foreach ($component_classes as $component_class) {
-      if ($component_class::getSrcName() == $src_name) {
+      if ($component_class::migrateName() == $migrate_name) {
         return $component_class;
       }
     }

@@ -22,6 +22,6 @@ config_devel:
     - migrate_plus.migration.menu_link_content_civictheme_primary_navigation
     - migrate_plus.migration.menu_link_content_civictheme_secondary_navigation
     - migrate_plus.migration.node_civictheme_page
-    - migrate_plus.migration.node_civictheme_page_anotate
+    - migrate_plus.migration.node_civictheme_page_annotate
     - migrate_plus.migration_group.civictheme_migrate
 #;> DEVELOPMENT

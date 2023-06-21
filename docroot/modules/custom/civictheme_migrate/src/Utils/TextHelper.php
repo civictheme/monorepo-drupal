@@ -100,7 +100,7 @@ class TextHelper {
             $url = $a->getAttribute('href');
             if (str_contains($url, '/sites/default/files')) {
               $alias = parse_url($url, PHP_URL_PATH);
-              $context['base_url'] = strpos($url, "http") === 0 ? AliasHelper::extractDomainFromUrl($url) : '';
+              $context['base_url'] = strpos($url, 'http') === 0 ? AliasHelper::extractDomainFromUrl($url) : '';
               $media = MediaHelper::lookupMediaFromUrl($alias, $context, TRUE);
               if ($media) {
                 $fid = $media->getSource()->getSourceFieldValue($media);

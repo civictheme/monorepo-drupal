@@ -9,12 +9,19 @@ use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
 /**
  * Abstract Component.
  *
+ * Components represent Drupal components and are named after machine names.
+ *
+ * Components are built using composition (via traits) to reduce code
+ * duplication of processors.
+ *
+ * The component structure represents Drupal entities used for this component.
+ *
  * @package Drupal\civictheme_migrate
  */
-abstract class AbstractComponent implements ComponentInterface {
+abstract class AbstractComponent implements ComponentInterface, MigratableComponentInterface {
 
   /**
-   * Component structure representation.
+   * Internal structure of the component populated by build() method.
    *
    * @var mixed
    */
@@ -50,17 +57,20 @@ abstract class AbstractComponent implements ComponentInterface {
     $this->entityTypeManager = $entity_type_manager;
     $this->migrateLookup = $migrate_lookup;
 
-    $this->validateData($data);
-
-    $data = $this->prepareData($data, $context);
-
-    $this->structure = $this->build(static::getName(), $data);
+    // Validate data.
+    $this->validateMigrateData($data);
+    // Prepare stub from the provided data.
+    $stub = $this->prepareStub($data, $context);
+    // Convert data to fields.
+    $this->fieldsFromStub($stub);
+    // Build structure.
+    $this->structure = $this->build();
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function getName(): string {
+  public static function name(): string {
     return (new CamelCaseToSnakeCaseNameConverter())
       ->normalize((new \ReflectionClass(static::class))->getShortName());
   }
@@ -68,21 +78,39 @@ abstract class AbstractComponent implements ComponentInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSrcName(): string {
+  public static function migrateName(): string {
     // By default, the name of the source mapping field is the name of the
     // destination component class.
-    return static::getName();
+    return static::name();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getStructure(): mixed {
+  public function structure(): mixed {
     return $this->structure;
   }
 
   /**
-   * Validate the data required to create the component.
+   * {@inheritdoc}
+   */
+  public function toArray(): array {
+    $stub = [];
+
+    $reflection = new \ReflectionClass($this);
+    foreach ($reflection->getMethods() as $method) {
+      if (str_starts_with($method->getName(), 'get') && $method->getDeclaringClass()->getName() === $reflection->getName()) {
+        $field_name = (new CamelCaseToSnakeCaseNameConverter())
+          ->normalize(substr($method->getName(), 3));
+        $stub[$field_name] = $method->invoke($this);
+      }
+    }
+
+    return $stub;
+  }
+
+  /**
+   * Validate the migrate data required to create the component.
    *
    * @param array $data
    *   The data from the source mapping.
@@ -90,10 +118,10 @@ abstract class AbstractComponent implements ComponentInterface {
    * @throws \Exception
    *   If the data is not valid.
    */
-  protected function validateData(array $data): void {
+  protected function validateMigrateData(array $data): void {
     // Validate that all required fields are present.
     // Other validations may be added in the implementation classes.
-    $fields = static::getSrcFields();
+    $fields = static::migrateFields();
     $missing_fields = array_keys(array_diff_key(array_flip($fields), $data));
     if (!empty($missing_fields)) {
       throw new \Exception(sprintf('Missing fields: %s', implode(', ', $missing_fields)));
@@ -114,8 +142,25 @@ abstract class AbstractComponent implements ComponentInterface {
    * @return array
    *   The data to then pass to the component for creation.
    */
-  protected function prepareData($data, array $context): array {
-    return [];
+  protected function prepareStub($data, array $context): array {
+    return $data;
+  }
+
+  /**
+   * Convert stub data to fields using setters.
+   *
+   * This guarantees that the component will have only supported fields.
+   *
+   * @param array $stub
+   *   The stub data.
+   */
+  protected function fieldsFromStub(array $stub): void {
+    foreach ($stub as $field_name => $value) {
+      $method = 'set' . (new CamelCaseToSnakeCaseNameConverter(NULL, TRUE))->denormalize($field_name);
+      if (method_exists(static::class, $method)) {
+        $this->{$method}($value);
+      }
+    }
   }
 
   /**
@@ -128,14 +173,9 @@ abstract class AbstractComponent implements ComponentInterface {
    * factory. They can also throw an exception if the component cannot be
    * instantiated.
    *
-   * @param string $name
-   *   The name of the component.
-   * @param array $data
-   *   The data to pass to the component.
-   *
    * @return mixed
-   *   Component instance.
+   *   Component built structure.
    */
-  abstract protected function build(string $name, array $data): mixed;
+  abstract protected function build(): mixed;
 
 }
