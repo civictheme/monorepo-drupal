@@ -20,10 +20,13 @@ class ManualList extends AbstractCivicThemeComponent {
    * {@inheritdoc}
    */
   protected function prepareData($data, array $context): array {
-    if (!empty($data['children']['cards']['children'])) {
+    $data = $data['children'] ?? $data;
+
+    if (!empty($data['cards']['children'])) {
       $cards = [];
       foreach ($data['children']['cards']['children'] as $children) {
-        foreach ($children as $card_type => $card_info) {
+        foreach ($children as $card_type => $card_children) {
+          $card_info = $card_children['children'];
           $summary = $card_info['item_content']['value'] ?? '';
           $card = [
             'type' => 'civictheme_' . $card_type,
@@ -32,6 +35,11 @@ class ManualList extends AbstractCivicThemeComponent {
             'links' => $card_info['item_links'] ?? [],
             'location' => $card_info['item_location'] ?? '',
           ];
+
+          // Link process.
+          if (!empty($card_info['item_link'][0])) {
+            $card['link'] = array_combine(['uri', 'title'], $card_info['item_link'][0]);
+          }
 
           // Document for publication card.
           if (!empty($card_info['item_document'][0])) {

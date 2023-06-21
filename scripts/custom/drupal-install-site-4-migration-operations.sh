@@ -49,7 +49,7 @@ migrations=(
   "menu_link_content_civictheme_secondary_navigation" "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-135/civictheme-secondary-navigation.json"
   "menu_link_content_civictheme_footer"               "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-136/civictheme-footer.json"
   "node_civictheme_page"                              "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
-  "node_civictheme_page_annotate"                     "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json"
+  "node_civictheme_page_annotate"                     "https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-138/governmentcivicthemeio-extractor-page-list.json"
 )
 
 # Loop over migrations array two items at a time

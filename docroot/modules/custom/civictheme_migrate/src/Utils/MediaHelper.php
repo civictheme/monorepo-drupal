@@ -205,7 +205,7 @@ class MediaHelper {
     }
 
     // Get the scheme from the file URI.
-    $file_name = "%_" . basename($uri);
+    $file_name = "%" . basename($uri);
 
     $results = \Drupal::entityQuery('file')
       ->condition('filename', $file_name, 'LIKE')
