@@ -17,7 +17,12 @@ use Drupal\migrate\MigrateExecutable;
  */
 class MediaHelper {
 
-  const FILE_DESTINATION = 'public://migrated/';
+  /**
+   * File destination directory.
+   */
+  public static function getFileDestinationDirectory(): string {
+    return 'public://migrated/';
+  }
 
   /**
    * Lookup an existing media entity using URL.
@@ -150,7 +155,7 @@ class MediaHelper {
   public static function downloadMediaFromUrl(string $file_url, array &$context): ?MediaInterface {
     $base_url = !empty($context['base_url']) ? $context['base_url'] : '';
     $current_path = '/';
-    $file_destination = static::FILE_DESTINATION;
+    $file_destination = static::getFileDestinationDirectory();
     $source_uri = trim($file_url);
     // Prepend with current_path if this is a relative URL.
     if (strpos($source_uri, '/') !== 0) {
