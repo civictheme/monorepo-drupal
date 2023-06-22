@@ -18,12 +18,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "block_plugin"
  * )
  *
- * To do custom value transformations use the following:
- *
  * @code
- * plugin:
- *   plugin: block_plugin
- *   source: name
+ * process:
+ *   destination_field:
+ *     plugin: block_plugin
+ *     source: source_field
  * @endcode
  */
 class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginInterface {

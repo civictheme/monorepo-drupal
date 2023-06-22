@@ -17,8 +17,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "link_is_external"
  * )
  *
- * To do custom value transformations use the following:
- *
  * @code
  * plugin:
  *   plugin: link_is_external
