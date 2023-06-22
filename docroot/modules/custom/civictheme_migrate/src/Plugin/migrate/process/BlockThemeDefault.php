@@ -16,6 +16,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @MigrateProcessPlugin(
  *   id = "block_theme_default"
  * )
+ *
+ * @code
+ * process:
+ *   destination_field:
+ *     plugin: block_theme_default
+ *     source: source_field
+ * @endcode
  */
 class BlockThemeDefault extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 

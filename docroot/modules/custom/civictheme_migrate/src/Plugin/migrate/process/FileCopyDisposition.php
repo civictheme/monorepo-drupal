@@ -14,13 +14,22 @@ use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Imports a file from a remote URL, adding authentication, if required.
- *
- * Also, infers file names based on the content disposition header.
+ * Migrate process plugin to import a file from a remote URL.
  *
  * @MigrateProcessPlugin(
  *    id = "file_copy_disposition"
  * )
+ *
+ * @code
+ * process:
+ *   destination_field:
+ *     plugin: file_copy_disposition
+ *     skip_on_missing_source: true
+ *     skip_on_error: true
+ *     file_exist: 'use existing'
+ *     id_only: true
+ *     source: source_field
+ * @endcode
  */
 class FileCopyDisposition extends FileImport {
 

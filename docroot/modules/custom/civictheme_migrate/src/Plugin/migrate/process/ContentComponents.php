@@ -17,7 +17,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   handle_multiples = TRUE
  * )
  *
- * @package Drupal\civictheme_migrate\Plugin\migrate\process
+ * @code
+ * process:
+ *   destination_field:
+ *     plugin: content_components
+ *     source: source_field
+ * @endcode
  */
 class ContentComponents extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
