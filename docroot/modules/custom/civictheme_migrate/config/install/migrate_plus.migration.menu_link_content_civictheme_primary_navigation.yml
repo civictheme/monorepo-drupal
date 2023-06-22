@@ -58,7 +58,7 @@ process:
       method: row
       source: link
   external:
-    plugin: link_is_external
+    plugin: url_is_external
     source: link
   weight:
     -

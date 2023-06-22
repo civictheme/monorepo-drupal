@@ -14,16 +14,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Migrate process plugin used to set 'external' link property value.
  *
  * @MigrateProcessPlugin(
- *   id = "link_is_external"
+ *   id = "url_is_external"
  * )
  *
  * @code
  * plugin:
- *   plugin: link_is_external
+ *   plugin: url_is_external
  *   source: name
  * @endcode
  */
-class LinkIsExternal extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+class UrlIsExternal extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * {@inheritdoc}
