@@ -58,4 +58,35 @@ class Utility {
     }
   }
 
+  /**
+   * Load classes from path.
+   *
+   * @param string $path
+   *   Parent class name.
+   * @param string $parent_class
+   *   Lookup path.
+   *
+   * @return array
+   *   Array of loaded class instances.
+   */
+  public static function loadClasses($path, $parent_class = NULL) {
+    foreach (glob($path . '/*.php') as $filename) {
+      if ($filename !== __FILE__ && !str_contains(basename($filename), 'Trait')) {
+        require_once $filename;
+      }
+    }
+
+    $children = [];
+
+    if ($parent_class) {
+      foreach (get_declared_classes() as $class) {
+        if (is_subclass_of($class, $parent_class) && !(new \ReflectionClass($class))->isAbstract()) {
+          $children[] = $class;
+        }
+      }
+    }
+
+    return $children;
+  }
+
 }

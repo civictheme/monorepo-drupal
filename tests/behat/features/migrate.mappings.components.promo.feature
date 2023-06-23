@@ -20,13 +20,13 @@ Feature: CivicTheme migrate module Promo Component mapping
       | test_civictheme_migrate.block_content_civictheme_component_block.json |
 
     And managed file:
-      | path                                                                     | uri                                                                            |
-      | migrate/civictheme_migrate.node_civictheme_page_6.json                   | public://test_civictheme_migrate.node_civictheme_page_6.json                   |
-      | migrate/civictheme_migrate.media_civictheme_image_1.json                 | public://test_civictheme_migrate.media_civictheme_image_1.json                 |
-      | migrate/civictheme_migrate.media_civictheme_image_2.json                 | public://test_civictheme_migrate.media_civictheme_image_2.json                 |
-      | migrate/civictheme_migrate.media_civictheme_document_1.json              | public://test_civictheme_migrate.media_civictheme_document_1.json              |
-      | migrate/civictheme_migrate.block_civictheme.json                         | public://test_civictheme_migrate.block_civictheme.json                         |
-      | migrate/civictheme_migrate.block_content_civictheme_component_block.json | public://test_civictheme_migrate.block_content_civictheme_component_block.json |
+      | path                                                                     | uri                                                                                             |
+      | migrate/civictheme_migrate.node_civictheme_page_6.json                   | public://migration-source/test_civictheme_migrate.node_civictheme_page_6.json                   |
+      | migrate/civictheme_migrate.media_civictheme_image_1.json                 | public://migration-source/test_civictheme_migrate.media_civictheme_image_1.json                 |
+      | migrate/civictheme_migrate.media_civictheme_image_2.json                 | public://migration-source/test_civictheme_migrate.media_civictheme_image_2.json                 |
+      | migrate/civictheme_migrate.media_civictheme_document_1.json              | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json              |
+      | migrate/civictheme_migrate.block_civictheme.json                         | public://migration-source/test_civictheme_migrate.block_civictheme.json                         |
+      | migrate/civictheme_migrate.block_content_civictheme_component_block.json | public://migration-source/test_civictheme_migrate.block_content_civictheme_component_block.json |
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map

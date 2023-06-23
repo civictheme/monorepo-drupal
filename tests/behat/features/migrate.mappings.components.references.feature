@@ -15,26 +15,26 @@ Feature: CivicTheme migrate module Component references
       | test_civictheme_migrate.media_civictheme_document_1.json |
 
     And managed file:
-      | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.node_civictheme_page_7.json      | public://test_civictheme_migrate.node_civictheme_page_7.json      |
-      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
-      | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
-      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
+      | path                                                        | uri                                                                                |
+      | migrate/civictheme_migrate.node_civictheme_page_7.json      | public://migration-source/test_civictheme_migrate.node_civictheme_page_7.json      |
+      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_1.json    |
+      | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_2.json    |
+      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json |
 
     And managed file:
-      | path               | uri                          |
-      | migrate/dummy1.jpg | public://migrated_dummy1.jpg |
-      | migrate/dummy2.jpg | public://migrated_dummy2.jpg |
-      | migrate/dummy3.jpg | public://migrated_dummy3.jpg |
-      | migrate/dummy4.jpg | public://migrated_dummy4.jpg |
-      | migrate/dummy1.pdf | public://migrated_dummy1.pdf |
-      | migrate/dummy2.pdf | public://migrated_dummy2.pdf |
-      | migrate/dummy3.pdf | public://migrated_dummy3.pdf |
-      | migrate/dummy4.pdf | public://migrated_dummy4.pdf |
-      | migrate/dummy1.txt | public://migrated_dummy1.txt |
-      | migrate/dummy2.txt | public://migrated_dummy2.txt |
-      | migrate/dummy3.txt | public://migrated_dummy3.txt |
-      | migrate/dummy4.txt | public://migrated_dummy4.txt |
+      | path               | uri                                           |
+      | migrate/dummy1.jpg | public://migration-source/migrated_dummy1.jpg |
+      | migrate/dummy2.jpg | public://migration-source/migrated_dummy2.jpg |
+      | migrate/dummy3.jpg | public://migration-source/migrated_dummy3.jpg |
+      | migrate/dummy4.jpg | public://migration-source/migrated_dummy4.jpg |
+      | migrate/dummy1.pdf | public://migration-source/migrated_dummy1.pdf |
+      | migrate/dummy2.pdf | public://migration-source/migrated_dummy2.pdf |
+      | migrate/dummy3.pdf | public://migration-source/migrated_dummy3.pdf |
+      | migrate/dummy4.pdf | public://migration-source/migrated_dummy4.pdf |
+      | migrate/dummy1.txt | public://migration-source/migrated_dummy1.txt |
+      | migrate/dummy2.txt | public://migration-source/migrated_dummy2.txt |
+      | migrate/dummy3.txt | public://migration-source/migrated_dummy3.txt |
+      | migrate/dummy4.txt | public://migration-source/migrated_dummy4.txt |
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
@@ -95,7 +95,7 @@ Feature: CivicTheme migrate module Component references
     And I should see an ".ct-basic-content" element
     And I should see the text "[TEST] Basic text content"
     And I should see an ".ct-basic-content a[href='https://example.com'].ct-content-link" element
-    And I should see an ".ct-basic-content a[data-entity-type='file'].ct-content-link" element
+    And I should see an ".ct-basic-content a[data-entity-type='media'].ct-content-link" element
     #attachment
     And I should see an ".ct-figure" element
     And the response should contain "dummy1.pdf"

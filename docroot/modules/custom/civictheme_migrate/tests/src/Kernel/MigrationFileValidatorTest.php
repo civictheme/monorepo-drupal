@@ -28,6 +28,8 @@ class MigrationFileValidatorTest extends KernelTestBase {
   protected static $modules = [
     'civictheme_migrate',
     'migrate',
+    'path_alias',
+    'file',
   ];
 
   /**

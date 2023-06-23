@@ -24,30 +24,30 @@ Feature: CivicTheme migrate module Component mapping
 
     # Files used as migration sources and are attached to the migrations.
     And managed file:
-      | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.node_civictheme_page_3.json      | public://test_civictheme_migrate.node_civictheme_page_3.json      |
-      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
-      | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://test_civictheme_migrate.media_civictheme_image_2.json    |
-      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
+      | path                                                        | uri                                                                                |
+      | migrate/civictheme_migrate.node_civictheme_page_3.json      | public://migration-source/test_civictheme_migrate.node_civictheme_page_3.json      |
+      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_1.json    |
+      | migrate/civictheme_migrate.media_civictheme_image_2.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_2.json    |
+      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json |
 
     # Files used as migration assets and are served from the local server as from remote.
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_1.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_2.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_document_1.json
     And managed file:
-      | path               | uri                          |
-      | migrate/dummy1.jpg | public://migrated_dummy1.jpg |
-      | migrate/dummy2.jpg | public://migrated_dummy2.jpg |
-      | migrate/dummy3.jpg | public://migrated_dummy3.jpg |
-      | migrate/dummy4.jpg | public://migrated_dummy4.jpg |
-      | migrate/dummy1.pdf | public://migrated_dummy1.pdf |
-      | migrate/dummy2.pdf | public://migrated_dummy2.pdf |
-      | migrate/dummy3.pdf | public://migrated_dummy3.pdf |
-      | migrate/dummy4.pdf | public://migrated_dummy4.pdf |
-      | migrate/dummy1.txt | public://migrated_dummy1.txt |
-      | migrate/dummy2.txt | public://migrated_dummy2.txt |
-      | migrate/dummy3.txt | public://migrated_dummy3.txt |
-      | migrate/dummy4.txt | public://migrated_dummy4.txt |
+      | path               | uri                                           |
+      | migrate/dummy1.jpg | public://migration-source/migrated_dummy1.jpg |
+      | migrate/dummy2.jpg | public://migration-source/migrated_dummy2.jpg |
+      | migrate/dummy3.jpg | public://migration-source/migrated_dummy3.jpg |
+      | migrate/dummy4.jpg | public://migration-source/migrated_dummy4.jpg |
+      | migrate/dummy1.pdf | public://migration-source/migrated_dummy1.pdf |
+      | migrate/dummy2.pdf | public://migration-source/migrated_dummy2.pdf |
+      | migrate/dummy3.pdf | public://migration-source/migrated_dummy3.pdf |
+      | migrate/dummy4.pdf | public://migration-source/migrated_dummy4.pdf |
+      | migrate/dummy1.txt | public://migration-source/migrated_dummy1.txt |
+      | migrate/dummy2.txt | public://migration-source/migrated_dummy2.txt |
+      | migrate/dummy3.txt | public://migration-source/migrated_dummy3.txt |
+      | migrate/dummy4.txt | public://migration-source/migrated_dummy4.txt |
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map

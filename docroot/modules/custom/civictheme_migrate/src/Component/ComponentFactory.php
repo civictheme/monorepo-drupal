@@ -2,6 +2,8 @@
 
 namespace Drupal\civictheme_migrate\Component;
 
+use Drupal\civictheme_migrate\Converter\ConverterManager;
+use Drupal\civictheme_migrate\Utility;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\migrate\MigrateLookupInterface;
 
@@ -13,30 +15,12 @@ use Drupal\migrate\MigrateLookupInterface;
 class ComponentFactory {
 
   /**
-   * Entity Type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
-
-  /**
-   * The migrate lookup service.
-   *
-   * @var \Drupal\migrate\MigrateLookupInterface
-   */
-  protected $migrateLookup;
-
-  /**
    * ContentComponentFactory constructor.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity type manager.
-   * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
-   *   The migrate lookup service.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MigrateLookupInterface $migrate_lookup) {
-    $this->entityTypeManager = $entity_type_manager;
-    $this->migrateLookup = $migrate_lookup;
+  public function __construct(
+    protected EntityTypeManagerInterface $entityTypeManager,
+    protected MigrateLookupInterface $migrateLookup,
+    protected ConverterManager $converterManager) {
   }
 
   /**
@@ -99,9 +83,20 @@ class ComponentFactory {
     }
 
     /** @var \Drupal\civictheme_migrate\Component\ComponentInterface $component */
-    $component = new $component_class($data, $context, $this->entityTypeManager, $this->migrateLookup);
+    $component = new $component_class($data, $context, $this->entityTypeManager, $this->migrateLookup, $this->converterManager);
 
     return $component->structure();
+  }
+
+  /**
+   * Get messages populated during component creation.
+   *
+   * @return array
+   *   The list of messages.
+   */
+  public function getMessages() {
+    // Collect messages from converters only.
+    return $this->converterManager->getMessages();
   }
 
   /**
@@ -115,7 +110,7 @@ class ComponentFactory {
    *   name cannot be found.
    */
   protected function findComponentClassByMigrateName(string $migrate_name): string|null {
-    $component_classes = $this->getComponentClasses(__DIR__, '\Drupal\civictheme_migrate\Component\AbstractComponent');
+    $component_classes = Utility::loadClasses(__DIR__, AbstractComponent::class);
 
     foreach ($component_classes as $component_class) {
       if ($component_class::migrateName() == $migrate_name) {
@@ -124,37 +119,6 @@ class ComponentFactory {
     }
 
     return NULL;
-  }
-
-  /**
-   * Load component classes.
-   *
-   * @param string $path
-   *   Parent class name.
-   * @param string $parent_class
-   *   Lookup path.
-   *
-   * @return array
-   *   Array of loaded class instances.
-   */
-  protected function getComponentClasses($path, $parent_class = NULL) {
-    foreach (glob($path . '/*.php') as $filename) {
-      if ($filename !== __FILE__ && !str_contains(basename($filename), 'Trait')) {
-        require_once $filename;
-      }
-    }
-
-    $children = [];
-
-    if ($parent_class) {
-      foreach (get_declared_classes() as $class) {
-        if (is_subclass_of($class, $parent_class) && !(new \ReflectionClass($class))->isAbstract()) {
-          $children[] = $class;
-        }
-      }
-    }
-
-    return $children;
   }
 
 }

@@ -26,11 +26,11 @@ Feature: CivicTheme migrate module Component mapping
 
     # Files used as migration sources and are attached to the migrations.
     And managed file:
-      | path                                                                              | uri                                                                                     |
-      | migrate/civictheme_migrate.node_civictheme_page_5.json                            | public://test_civictheme_migrate.node_civictheme_page_5.json                            |
-      | migrate/civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   | public://test_civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   |
-      | migrate/civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json | public://test_civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json |
-      | migrate/civictheme_migrate.menu_link_content_civictheme_footer.json               | public://test_civictheme_migrate.menu_link_content_civictheme_footer.json               |
+      | path                                                                              | uri                                                                                                      |
+      | migrate/civictheme_migrate.node_civictheme_page_5.json                            | public://migration-source/test_civictheme_migrate.node_civictheme_page_5.json                            |
+      | migrate/civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   | public://migration-source/test_civictheme_migrate.menu_link_content_civictheme_primary_navigation.json   |
+      | migrate/civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json | public://migration-source/test_civictheme_migrate.menu_link_content_civictheme_secondary_navigation.json |
+      | migrate/civictheme_migrate.menu_link_content_civictheme_footer.json               | public://migration-source/test_civictheme_migrate.menu_link_content_civictheme_footer.json               |
 
     # Files used as migration assets and are served from the local server as from remote.
     # @see fixtures/migrate/civictheme_migrate.node_civictheme_page_5.json
@@ -53,7 +53,7 @@ Feature: CivicTheme migrate module Component mapping
     And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
-  Scenario: Migration local sources for components can be updated from the migration edit form
+  Scenario: Migration local sources for menus can be updated from the migration edit form
     Given I am logged in as a user with the "administrator" role
 
     When I go to "admin/structure/migrate/manage/civictheme_migrate/migrations/node_civictheme_page/edit"

@@ -5,6 +5,7 @@ namespace Drupal\civictheme_migrate\Plugin\migrate\process;
 use Drupal\civictheme_migrate\Component\ComponentFactory;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -49,7 +50,7 @@ class ContentComponents extends ProcessPluginBase implements ContainerFactoryPlu
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('civictheme_migrate.migration.component_factory')
+      $container->get('civictheme_migrate.component_factory')
     );
   }
 
@@ -57,12 +58,18 @@ class ContentComponents extends ProcessPluginBase implements ContainerFactoryPlu
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    return $this->componentFactory->createComponents($value, [
+    $components = $this->componentFactory->createComponents($value, [
       'configuration' => $this->configuration,
       'migration' => $migrate_executable,
       'row' => clone $row,
       'destination_property' => $destination_property,
     ]);
+
+    foreach ($this->componentFactory->getMessages() as $message) {
+      $migrate_executable->saveMessage($message, MigrationInterface::MESSAGE_INFORMATIONAL);
+    }
+
+    return $components;
   }
 
 }
