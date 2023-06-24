@@ -1,0 +1,11 @@
+name: 'CivicTheme Migrate Test'
+type: module
+description: 'Test module for CivicTheme migration mappings.'
+core_version_requirement: ^9 || ^10
+package: CivicTheme
+dependencies:
+  - drupal:migrate
+  - drupal:path_alias
+  - migrate_file:migrate_file
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools

@@ -15,19 +15,19 @@ Feature: CivicTheme migrate validation
 
     # Files used as migration sources and are attached to the migrations.
     And managed file:
-      | path                                                        | uri                                                               |
-      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://test_civictheme_migrate.media_civictheme_image_1.json    |
-      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://test_civictheme_migrate.media_civictheme_document_1.json |
+      | path                                                        | uri                                                                                |
+      | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_1.json    |
+      | migrate/civictheme_migrate.media_civictheme_document_1.json | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json |
 
     # Files used as migration assets and are served from the local server as from remote.
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_1.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_document_1.json
     And managed file:
-      | path               | uri                          |
-      | migrate/dummy1.pdf | public://migrated_dummy1.pdf |
-      | migrate/dummy2.pdf | public://migrated_dummy2.pdf |
-      | migrate/dummy1.txt | public://migrated_dummy1.txt |
-      | migrate/dummy2.txt | public://migrated_dummy2.txt |
+      | path               | uri                                           |
+      | migrate/dummy1.pdf | public://migration-source/migrated_dummy1.pdf |
+      | migrate/dummy2.pdf | public://migration-source/migrated_dummy2.pdf |
+      | migrate/dummy1.txt | public://migration-source/migrated_dummy1.txt |
+      | migrate/dummy2.txt | public://migration-source/migrated_dummy2.txt |
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"

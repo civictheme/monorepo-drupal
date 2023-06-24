@@ -2,8 +2,6 @@
 
 namespace Drupal\civictheme_migrate\Component\Field;
 
-use Drupal\civictheme_migrate\Utils\TextHelper;
-
 /**
  * Trait HelperFieldTrait.
  *
@@ -29,11 +27,13 @@ trait HelperFieldTrait {
    */
   protected function preprocessContent(mixed $value): array {
     $value = is_array($value) ? $value : ['value' => $value];
+
     $value += [
       'value' => '',
       'format' => 'civictheme_rich_text',
     ];
-    $value['value'] = TextHelper::convertInlineReferencesToEmbeddedEntities($value['value']);
+
+    $value['value'] = $this->converterManager->convert($value['value']);
 
     return $value;
   }

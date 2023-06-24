@@ -14,8 +14,22 @@ services:
     class: '\Opis\JsonSchema\Validator'
     public: false
 
-  civictheme_migrate.migration.component_factory:
+  civictheme_migrate.component_factory:
     class: Drupal\civictheme_migrate\Component\ComponentFactory
     arguments:
       - '@entity_type.manager'
       - '@migrate.lookup'
+      - '@civictheme_migrate.converter_manager'
+
+  civictheme_migrate.converter_manager:
+    class: Drupal\civictheme_migrate\Converter\ConverterManager
+    arguments:
+      - '@civictheme_migrate.lookup_manager'
+
+  civictheme_migrate.lookup_manager:
+    class: Drupal\civictheme_migrate\LookupManager
+    arguments:
+      - '@entity_type.manager'
+      - '@path_alias.manager'
+      - '@file.usage'
+      - '@stream_wrapper_manager'

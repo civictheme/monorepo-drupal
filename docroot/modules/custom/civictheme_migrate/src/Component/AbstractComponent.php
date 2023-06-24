@@ -2,6 +2,7 @@
 
 namespace Drupal\civictheme_migrate\Component;
 
+use Drupal\civictheme_migrate\Converter\ConverterManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\migrate\MigrateLookupInterface;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
@@ -42,6 +43,13 @@ abstract class AbstractComponent implements ComponentInterface, MigratableCompon
   protected $migrateLookup;
 
   /**
+   * The converter manager.
+   *
+   * @var \Drupal\civictheme_migrate\Converter\ConverterManager
+   */
+  protected $converterManager;
+
+  /**
    * AbstractComponent constructor.
    *
    * @param mixed $data
@@ -52,10 +60,13 @@ abstract class AbstractComponent implements ComponentInterface, MigratableCompon
    *   Entity type manager.
    * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
    *   The migrate lookup service.
+   * @param \Drupal\civictheme_migrate\Converter\ConverterManager $converter_manager
+   *   The converter manager.
    */
-  public function __construct($data, array &$context, EntityTypeManagerInterface $entity_type_manager, MigrateLookupInterface $migrate_lookup) {
+  public function __construct($data, array &$context, EntityTypeManagerInterface $entity_type_manager, MigrateLookupInterface $migrate_lookup, ConverterManager $converter_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->migrateLookup = $migrate_lookup;
+    $this->converterManager = $converter_manager;
 
     // Validate data.
     $this->validateMigrateData($data);
