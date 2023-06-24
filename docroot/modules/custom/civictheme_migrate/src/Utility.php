@@ -69,24 +69,26 @@ class Utility {
    * @return array
    *   Array of loaded class instances.
    */
-  public static function loadClasses($path, $parent_class = NULL) {
-    foreach (glob($path . '/*.php') as $filename) {
-      if ($filename !== __FILE__ && !str_contains(basename($filename), 'Trait')) {
-        require_once $filename;
-      }
-    }
+  public static function loadClasses(string $path, $parent_class = NULL): array {
+    $classes = [];
 
-    $children = [];
-
-    if ($parent_class) {
-      foreach (get_declared_classes() as $class) {
-        if (is_subclass_of($class, $parent_class) && !(new \ReflectionClass($class))->isAbstract()) {
-          $children[] = $class;
+    if (!empty($path) && is_dir($path)) {
+      foreach (glob($path . '/*.php') as $filename) {
+        if ($filename !== __FILE__ && !str_contains(basename($filename), 'Trait')) {
+          require_once $filename;
         }
       }
     }
 
-    return $children;
+    if ($parent_class) {
+      foreach (get_declared_classes() as $class) {
+        if (is_subclass_of($class, $parent_class) && !(new \ReflectionClass($class))->isAbstract()) {
+          $classes[] = $class;
+        }
+      }
+    }
+
+    return $classes;
   }
 
 }

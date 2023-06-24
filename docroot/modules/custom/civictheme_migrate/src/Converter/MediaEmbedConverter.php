@@ -36,7 +36,7 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
    * {@inheritdoc}
    */
   protected function lookup($src): ?EntityInterface {
-    return $this->entityManager->lookupMediaByFile($src);
+    return $this->entityManager->lookupMediaByFileUri($src);
   }
 
   /**
@@ -54,6 +54,9 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
   protected static function updateDomElement(\DOMElement $element, EntityInterface $entity): void {
     $replacement = $element->ownerDocument->createElement('drupal-media');
     static::updateDomElementAttributes($replacement, $entity);
+    if ($element->hasAttribute('alt')) {
+      $replacement->setAttribute('alt', $element->getAttribute('alt'));
+    }
     $element->parentNode->replaceChild($replacement, $element);
   }
 

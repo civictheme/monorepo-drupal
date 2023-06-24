@@ -27,9 +27,64 @@ class ConverterManager {
   protected $messages = [];
 
   /**
+   * The list of converters.
+   *
+   * @var array
+   */
+  protected $converters = [];
+
+  /**
+   * The list of converter class locations.
+   *
+   * @var array
+   */
+  protected $autodiscoveryLocations = [__DIR__];
+
+  /**
    * Constructor.
    */
-  public function __construct(protected LookupManager $lookupManager) {}
+  public function __construct(protected LookupManager $lookupManager) {
+  }
+
+  /**
+   * Get the list of autodiscovery locations.
+   *
+   * @return array
+   *   The list of autodiscovery locations.
+   */
+  public function getAutodiscoveryLocations() {
+    return $this->autodiscoveryLocations;
+  }
+
+  /**
+   * Set the list of autodiscovery locations.
+   *
+   * @param array $autodiscovery_locations
+   *   The list of autodiscovery locations.
+   *
+   * @return ConverterManager
+   *   The converter manager.
+   */
+  public function setAutodiscoveryLocations(array $autodiscovery_locations) {
+    $this->autodiscoveryLocations = $autodiscovery_locations;
+
+    return $this;
+  }
+
+  /**
+   * Add a converter.
+   *
+   * @param \Drupal\civictheme_migrate\Converter\ConverterInterface $converter
+   *   The converter to add.
+   *
+   * @return ConverterManager
+   *   The converter manager.
+   */
+  public function addConverter(ConverterInterface $converter) {
+    $this->converters[$converter::name()] = $converter;
+
+    return $this;
+  }
 
   /**
    * Get the list of messages encountered during conversion.
@@ -81,18 +136,37 @@ class ConverterManager {
    * @return \Drupal\civictheme_migrate\Converter\ConverterInterface[]
    *   The list of instantiated converters.
    */
-  protected function converters() {
-    $converters = [];
+  protected function converters($skip_autodiscovery = FALSE) {
+    $converters = $this->converters;
 
-    $converter_classes = Utility::loadClasses(__DIR__, AbstractEmbedConverter::class);
+    if (!$skip_autodiscovery) {
+      $converters += $this->discoverConverters();
+    }
 
-    usort($converter_classes, function ($a, $b) {
+    usort($converters, function ($a, $b) {
       return $a::weight() <=> $b::weight();
     });
 
-    $converter_classes = array_filter($converter_classes, function ($class) {
-      return !in_array($class::name(), $this->excludeConverters);
+    $converters = array_filter($converters, function ($converter) {
+      return !in_array($converter::name(), $this->excludeConverters);
     });
+
+    return $converters;
+  }
+
+  /**
+   * Discover converters.
+   *
+   * @return \Drupal\civictheme_migrate\Converter\ConverterInterface[]
+   *   The list of discovered converters.
+   */
+  protected function discoverConverters() {
+    $converters = [];
+
+    $converter_classes = [];
+    foreach ($this->getAutodiscoveryLocations() as $location) {
+      $converter_classes = Utility::loadClasses($location, AbstractEmbedConverter::class);
+    }
 
     foreach ($converter_classes as $converter_class) {
       $converters[] = new $converter_class($this->lookupManager);

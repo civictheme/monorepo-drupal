@@ -83,7 +83,7 @@ class LookupManager {
    * @return \Drupal\media\MediaInterface|null
    *   The media entity if found, otherwise NULL.
    */
-  public function lookupMediaByFile(string $uri, bool $reset = FALSE): ?MediaInterface {
+  public function lookupMediaByFileUri(string $uri, bool $reset = FALSE): ?MediaInterface {
     if (empty($uri)) {
       return NULL;
     }
