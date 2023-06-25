@@ -50,7 +50,7 @@ Feature: CivicTheme migrate module Component mapping
     And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
 
   @api @drush
-  Scenario: Migration local sources can be updated from the migration edit form
+  Scenario: Migration for Attachment component
     Given I am logged in as a user with the "administrator" role
 
     # Attaching 2 source image files as the node migration depends on images in both files.

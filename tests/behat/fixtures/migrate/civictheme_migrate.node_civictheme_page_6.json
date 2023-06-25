@@ -34,16 +34,16 @@
         {
           "text_content": {
             "format": "rich_text",
-            "value": "<h3>[TEST] Basic text content 61 </h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+            "value": "<h3>[TEST] Basic text content 611 </h3>"
           },
           "promo": {
             "type": "container",
             "children": {
-              "title": "[TEST] Promo 61",
-              "content": "<p>[TEST] Promo content Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "title": "[TEST] Promo 611 title",
+              "content": "<p>[TEST] Promo content 611.</p><p>Prefix <a href=\"/sites/default/files/migration-source/migrated_dummy1.pdf\">link to existing document</a> suffix, prefix <a href=\"/migrated/page-content-61\">link to existing page</a> suffix, prefix <img src=\"/sites/default/files/migration-source/migrated_dummy1.jpg\" title=\"Existing image title\" alt=\"Existing image alt\"/> suffix.</p><p><a href=\"https://example.com\">absolute link</a></p>",
               "link": {
-                "uri": "http://example.com",
-                "title": "[TEST] Promo link 1"
+                "uri": "http://example1.com",
+                "title": "[TEST] Promo link 611"
               },
               "theme": "light",
               "vertical_spacing": "top"
@@ -54,11 +54,11 @@
           "promo": {
             "type": "container",
             "children": {
-              "title": "[TEST] Promo 62",
-              "content": "<p>[TEST] Promo content Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "title": "[TEST] Promo 612 title",
+              "content": "<p>[TEST] Promo content 612.</p>",
               "link": {
-                "uri": "http://example.com",
-                "title": "[TEST] Promo link 2"
+                "uri": "http://example2.com",
+                "title": "[TEST] Promo link 612"
               },
               "theme": "dark",
               "vertical_spacing": "both"

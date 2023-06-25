@@ -402,7 +402,7 @@ class FeatureContext extends DrupalContext {
    *
    * @code
    * Given no blocks:
-   * | user_login         |
+   * | user_login |
    * @endcode
    *
    * @Given no blocks:
@@ -417,9 +417,38 @@ class FeatureContext extends DrupalContext {
         if (empty($block)) {
           throw new \Exception(sprintf('Unable to find block "%s"', $id));
         }
-        if ($block) {
-          $block->delete();
+
+        $block->delete();
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
+  /**
+   * Remove block_content defined by info.
+   *
+   * @code
+   * Given no content blocks:
+   * | Component block |
+   * @endcode
+   *
+   * @Given no content blocks:
+   */
+  public function contentBlockDelete(TableNode $table) {
+    foreach ($table->getColumn(0) as $info) {
+      try {
+        $entities = \Drupal::entityTypeManager()
+          ->getStorage('block_content')
+          ->loadByProperties(['info' => $info]);
+
+        if (empty($entities)) {
+          throw new \Exception(sprintf('Unable to find block_content with info "%s"', $info));
         }
+
+        $entity = reset($entities);
+        $entity->delete();
       }
       catch (\Exception $exception) {
         continue;

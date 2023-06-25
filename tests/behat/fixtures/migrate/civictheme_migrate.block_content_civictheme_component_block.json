@@ -9,11 +9,11 @@
           "promo": {
             "type": "container",
             "children": {
-              "title": "[TEST] Promo Block 1",
-              "content": "<p>[TEST] Promo content Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "title": "[TEST] Promo Block 1 title",
+              "content": "<p>[TEST] Promo block 1 content.</p><p>Prefix <a href=\"/sites/default/files/migration-source/migrated_dummy1.pdf\">link to existing document</a> suffix, prefix <a href=\"/migrated/page-content-61\">link to existing page</a> suffix, prefix <img src=\"/sites/default/files/migration-source/migrated_dummy1.jpg\" title=\"Existing image title\" alt=\"Existing image alt\"/> suffix.</p><p><a href=\"https://example.com\">absolute link</a></p>",
               "link": {
                 "uri": "http://example.com",
-                "title": "[TEST] Promo Block link 1"
+                "title": "[TEST] Promo Block 1 link"
               },
               "theme": "light",
               "vertical_spacing": "top"
