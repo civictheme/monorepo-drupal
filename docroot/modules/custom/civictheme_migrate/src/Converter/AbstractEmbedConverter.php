@@ -76,7 +76,7 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
           $entity = $this->lookup($src);
 
           if (!$entity) {
-            $this->messages[] = sprintf('Embed converter: entity with URI %s was not found.', $src);
+            $this->messages[] = sprintf('Embed converter: entity with source URI %s was not found.', $src);
             continue;
           }
 

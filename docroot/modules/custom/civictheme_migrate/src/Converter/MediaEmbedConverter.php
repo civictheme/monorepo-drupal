@@ -36,7 +36,7 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
    * {@inheritdoc}
    */
   protected function lookup($src): ?EntityInterface {
-    return $this->entityManager->lookupMediaByFileUri($src);
+    return $this->entityManager->lookupMediaByFileName(basename($src));
   }
 
   /**
