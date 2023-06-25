@@ -66,8 +66,13 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
     foreach (static::getTags() as $tag) {
       $elements = $dom->getElementsByTagName($tag);
       if ($elements) {
+        // Due to the \DOMNodeList object being live, the replacements of its
+        // elements may affect the objects within iterator, so we are iterating
+        // backwards.
         /** @var \DOMElement $element */
-        foreach ($elements as $element) {
+        for ($i = $elements->length - 1; $i >= 0; $i--) {
+          $element = $elements->item($i);
+
           $src = $this->getUrl($element);
           if (!$src) {
             continue;
