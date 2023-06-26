@@ -43,7 +43,7 @@ process:
       method: row
       source: url
     -
-      plugin: file_copy_disposition
+      plugin: file_import
       skip_on_missing_source: true
       skip_on_error: true
       file_exist: 'use existing'

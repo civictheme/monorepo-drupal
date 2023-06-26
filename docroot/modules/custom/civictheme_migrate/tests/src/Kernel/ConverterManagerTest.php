@@ -173,7 +173,7 @@ class ConverterManagerTest extends KernelTestBase {
         return $alias === '/src-page-1' ? $node : NULL;
       }));
     $this->lookupManager->expects($this->any())
-      ->method('lookupMediaByFileUri')
+      ->method('lookupMediaByFileName')
       ->will($this->returnCallback(function ($uri) use ($media_document, $media_image) {
         return $uri === '/src-file-1.txt' ? $media_document : ($uri === '/src-image-1.png' ? $media_image : NULL);
       }));

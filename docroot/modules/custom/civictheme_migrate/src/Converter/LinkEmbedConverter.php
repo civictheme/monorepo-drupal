@@ -38,7 +38,7 @@ class LinkEmbedConverter extends AbstractEmbedConverter {
    * {@inheritdoc}
    */
   protected function lookup($src): ?EntityInterface {
-    $entity = $this->entityManager->lookupMediaByFileUri($src);
+    $entity = $this->entityManager->lookupMediaByFileName(basename($src));
 
     if (!$entity) {
       $entity = $this->entityManager->lookupNodeByAlias($src);

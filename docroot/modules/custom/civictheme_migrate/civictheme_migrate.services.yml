@@ -33,3 +33,10 @@ services:
       - '@path_alias.manager'
       - '@file.usage'
       - '@stream_wrapper_manager'
+
+  civictheme_migrate.migration_plugin_subscriber:
+    class: Drupal\civictheme_migrate\EventSubscriber\MigrationPluginSubscriber
+    arguments:
+      - '@config.factory'
+    tags:
+      - { name: event_subscriber }

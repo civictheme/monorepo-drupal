@@ -73,79 +73,70 @@ class LookupManager {
   }
 
   /**
-   * Lookup a media entity by file URI.
+   * Lookup a media entity by file name.
    *
-   * @param string $uri
-   *   The URI to lookup.
+   * @param string $filename
+   *   The filename to lookup by.
    * @param bool $reset
    *   Whether to reset the cache.
    *
    * @return \Drupal\media\MediaInterface|null
    *   The media entity if found, otherwise NULL.
    */
-  public function lookupMediaByFileUri(string $uri, bool $reset = FALSE): ?MediaInterface {
-    if (empty($uri)) {
+  public function lookupMediaByFileName(string $filename, bool $reset = FALSE): ?MediaInterface {
+    if (empty($filename)) {
       return NULL;
     }
 
     $cache = &drupal_static(__METHOD__, []);
-    if (empty($cache[$uri]) || $reset) {
-      $cache[$uri] = NULL;
-      $file = $this->lookupFileByUri($uri, $reset);
+    if (empty($cache[$filename]) || $reset) {
+      $cache[$filename] = NULL;
+      $file = $this->lookupFileByFilename($filename, $reset);
       if ($file) {
         $usage = $this->fileUsage->listUsage($file);
         if (!empty($usage['file']['media'])) {
           $mid = key($usage['file']['media']);
-          $cache[$uri] = $this->entityTypeManager->getStorage('media')->load($mid);
+          $cache[$filename] = $this->entityTypeManager->getStorage('media')->load($mid);
         }
       }
     }
 
-    return $cache[$uri];
+    return $cache[$filename];
   }
 
   /**
-   * Lookup a file entity by URI.
+   * Lookup a file entity by the file name.
    *
-   * @param string $uri
-   *   The URI to lookup.
+   * @param string $filename
+   *   The filename to lookup.
    * @param bool $reset
    *   Whether to reset the cache.
    *
    * @return \Drupal\file\FileInterface|null
    *   The file entity if found, otherwise NULL.
    */
-  public function lookupFileByUri(string $uri, $reset = FALSE): ?FileInterface {
-    if (empty($uri)) {
+  public function lookupFileByFilename(string $filename, $reset = FALSE): ?FileInterface {
+    if (empty($filename)) {
       return NULL;
     }
 
     $cache = &drupal_static(__METHOD__, []);
-    if (empty($cache[$uri]) || $reset) {
-      $cache[$uri] = NULL;
-
-      $updated_uri = $uri;
-
-      // Normalize the URI if it's not a valid scheme.
-      $parts = explode('://', $uri);
-      $scheme = $parts[0] ?? '';
-      if (!$this->streamWrapperManager->isValidScheme($scheme)) {
-        $updated_uri = str_replace($this->streamWrapperManager->getViaUri('public://')->basePath() . '/', 'public://', ltrim($uri, '/'));
-      }
+    if (empty($cache[$filename]) || $reset) {
+      $cache[$filename] = NULL;
 
       $fids = $this->entityTypeManager->getStorage('file')->getQuery()
         ->accessCheck(FALSE)
-        ->condition('uri', $updated_uri)
+        ->condition('filename', $filename)
         ->range(0, 1)
         ->execute();
 
       if ($fids) {
         $fid = reset($fids);
-        $cache[$uri] = $this->entityTypeManager->getStorage('file')->load($fid);
+        $cache[$filename] = $this->entityTypeManager->getStorage('file')->load($fid);
       }
     }
 
-    return $cache[$uri];
+    return $cache[$filename];
   }
 
 }

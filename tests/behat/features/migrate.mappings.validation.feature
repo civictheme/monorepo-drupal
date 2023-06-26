@@ -19,6 +19,15 @@ Feature: CivicTheme migrate validation
       | migrate/civictheme_migrate.media_civictheme_image_1.json    | public://migration-source/test_civictheme_migrate.media_civictheme_image_1.json    |
       | migrate/civictheme_migrate.media_civictheme_document_1.json | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json |
 
+    And no managed files:
+      | filename            |
+      | migrated_dummy1.pdf |
+      | migrated_dummy2.pdf |
+      | migrated_dummy1.txt |
+      | migrated_dummy2.txt |
+      | migrated_dummy1.jpg |
+      | migrated_dummy2.jpg |
+
     # Files used as migration assets and are served from the local server as from remote.
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_image_1.json
     # @see fixtures/migrate/civictheme_migrate.media_civictheme_document_1.json
@@ -51,7 +60,7 @@ Feature: CivicTheme migrate validation
     And I attach the file "migrate/civictheme_migrate.media_civictheme_image_1.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
-    When I run drush "mim --group=civictheme_migrate"
+    And I run drush "mim media_civictheme_document --update --execute-dependencies --continue-on-failure"
     And I go to "admin/content/media"
     Then I should see "migrated_dummy1.pdf"
     And I should see "migrated_dummy2.pdf"

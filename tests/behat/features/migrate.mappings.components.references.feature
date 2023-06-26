@@ -74,36 +74,33 @@ Feature: CivicTheme migrate module Component references
     And I attach the file "migrate/civictheme_migrate.node_civictheme_page_7.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
-    When I run drush "mim --group=civictheme_migrate"
-    And I visit "civictheme_page" "[TEST] Migrated Page Content 71"
+    And I run drush "mim node_civictheme_page_annotate --update --execute-dependencies"
 
-    # Asserting field mappings.
-    #Alias
+    When I visit "civictheme_page" "[TEST] Migrated Page Content 71"
     Then I should be in the "/migrated/page-content-71" path
-    #Banner
-    Then I should see "[TEST] Banner title - Migrated Page Content 71" in the ".ct-banner__title" element
-    #Content
-    And I should see an ".ct-basic-content" element
+    And I should see "[TEST] Banner title - Migrated Page Content 71" in the ".ct-banner__title" element
 
+    # Asserting for correct assets processing.
     And I visit "civictheme_page" "[TEST] Migrated Page Content 72"
-    # Asserting field mappings.
-    #Alias
     Then I should be in the "/migrated/page-content-72" path
-    #Banner
-    Then I should see "[TEST] Banner title - Migrated Page Content 72" in the ".ct-banner__title" element
-    #Content
-    And I should see an ".ct-basic-content" element
-    And I should see the text "[TEST] Basic text content"
+    And I should see "[TEST] Banner title - Migrated Page Content 72" in the ".ct-banner__title" element
+
+    And I should see the text "[TEST] Basic text content 721"
+    # Link to existing document.
+    And I should see "link to existing document" in the ".ct-basic-content a[href$='migrated_dummy1.pdf']" element
+    And I should see "link to existing document" in the ".ct-basic-content a[href$='migrated_dummy1.pdf'][data-entity-uuid]" element
+    And I should see the ".ct-basic-content a[href$='migrated_dummy1.pdf']" element with the "data-entity-type" attribute set to "media"
+    And I should see the ".ct-basic-content a[href$='migrated_dummy1.pdf']" element with the "data-entity-substitution" attribute set to "media"
+    # Link to existing content.
+    And I should see "link to existing page" in the ".ct-basic-content a[href='/migrated/page-content-71']" element
+    And I should see "link to existing page" in the ".ct-basic-content a[href='/migrated/page-content-71'][data-entity-uuid]" element
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "data-entity-type" attribute set to "node"
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "data-entity-substitution" attribute set to "canonical"
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "title" attribute set to "[TEST] Migrated Page Content 71"
+    # Link to existing media image.
+    And I should see the ".ct-basic-content img[src$='files/migrated_dummy1.jpg']" element with the "alt" attribute set to "Existing image alt"
+    # Absolute link.
     And I should see an ".ct-basic-content a[href='https://example.com'].ct-content-link" element
-    And I should see an ".ct-basic-content a[data-entity-type='media'].ct-content-link" element
-    #attachment
-    And I should see an ".ct-figure" element
-    And the response should contain "dummy1.pdf"
-    And the response should contain "448f7b0e-19a3-4c43-b1d7-5b1f196dbf98"
-    And the response should contain "dummy1.jpg"
-    And the response should contain "c97a9b08-f3b0-477b-97f7-8b61f9d4a527"
-    And the response should contain "dummy2.jpg"
-    And the response should contain "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
