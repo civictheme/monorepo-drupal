@@ -176,7 +176,10 @@ function civictheme_post_update_list_component(&$sandbox) {
     _civictheme_list_component_fields_config_delete();
 
     return sprintf(
-      "Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. The 'field_c_p_column_count' was removed from %s. Please re-export your site configuration. \n
+      "Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'.\n
+      Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.\n
+      The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %s paragraph types.\n
+      Please re-export your site configuration. \n
       Update results ran in %s batch(es):\n   Processed: %s %s\n   Updated: %s %s\n   Skipped: %s %s\n",
       implode(', ', $paragraph_types),
       $sandbox['batch'],

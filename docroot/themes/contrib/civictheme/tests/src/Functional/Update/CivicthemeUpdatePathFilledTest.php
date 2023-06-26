@@ -65,6 +65,13 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 145');
     $this->assertSession()->pageTextContains('Updated: 9');
     $this->assertSession()->pageTextContains('Skipped: 136');
+
+    // Assertions for civictheme_post_update_list_component().
+    $this->assertSession()->pageTextContains('Update list_component');
+    $this->assertSession()->pageTextContains("The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from civictheme_manual_list, civictheme_automated_list");
+    $this->assertSession()->pageTextContains('Update results ran');
+    $this->assertSession()->pageTextContains('Processed: 24');
+    $this->assertSession()->pageTextContains('Updated: 24');
   }
 
 }
