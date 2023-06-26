@@ -13,11 +13,18 @@ use Drupal\civictheme_migrate\Utility;
 class ConverterManager {
 
   /**
-   * Array of converter names to be excluded.
+   * A list of converter names to be excluded.
    *
    * @var array
    */
   protected $excludedConverters = [];
+
+  /**
+   * A list of domains that should be considered internal.
+   *
+   * @var array
+   */
+  protected $localDomains = [];
 
   /**
    * A list of messages encountered during conversion.
@@ -91,6 +98,31 @@ class ConverterManager {
    */
   public function getMessages(): array {
     return $this->messages;
+  }
+
+  /**
+   * Get the list of domains that should be considered local.
+   *
+   * @return array
+   *   The list of internal domains.
+   */
+  public function getLocalDomains(): array {
+    return $this->localDomains;
+  }
+
+  /**
+   * Set the list of domains that should be considered local.
+   *
+   * @param array $domains
+   *   The list of domains.
+   *
+   * @return ConverterManager
+   *   The converter manager.
+   */
+  public function setLocalDomains(array $domains): ConverterManager {
+    $this->localDomains = $domains;
+
+    return $this;
   }
 
   /**
@@ -169,7 +201,9 @@ class ConverterManager {
     }
 
     foreach ($converter_classes as $converter_class) {
-      $converters[] = new $converter_class($this->lookupManager);
+      $converters[] = new $converter_class($this->lookupManager, [
+        'local_domains' => $this->localDomains,
+      ]);
     }
 
     return $converters;

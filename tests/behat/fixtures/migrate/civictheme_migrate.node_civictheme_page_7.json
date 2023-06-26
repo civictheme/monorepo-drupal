@@ -77,6 +77,12 @@
             "format": "rich_text",
             "value": "<h3>[TEST] Basic text content 721 </h3><p>Prefix <a href=\"/sites/default/files/migration-source/migrated_dummy1.pdf\">link to existing document</a> suffix, prefix <a href=\"/migrated/page-content-71\">link to existing page</a> suffix, prefix <img src=\"/sites/default/files/migration-source/migrated_dummy1.jpg\" title=\"Existing image title\" alt=\"Existing image alt\"/> suffix.</p><p><a href=\"https://example.com\">absolute link</a></p>"
           }
+        },
+        {
+          "text_content": {
+            "format": "rich_text",
+            "value": "<h3>[TEST] Basic text content 722 </h3><p>Prefix <a href=\"http://nginx:8080/sites/default/files/migration-source/migrated_dummy2.pdf\">link to existing external document set as local</a> suffix, prefix <a href=\"http://nginx:8080/migrated/page-content-71\">link to existing page</a> suffix, prefix <img src=\"http://nginx:8080/sites/default/files/migration-source/migrated_dummy2.jpg\" title=\"Existing external image set as local title\" alt=\"Existing external image set as local alt\"/> suffix.</p><p><a href=\"http://nginx:8080/\">absolute link set as local</a></p>"
+          }
         }
       ]
     }

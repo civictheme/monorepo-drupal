@@ -51,9 +51,8 @@ class ComponentFactory {
           $component = $this->createComponent($name, $data, $context);
         }
         catch (\Exception $e) {
+          $this->messages[] = sprintf('Skipped incorrectly instantiated component "%s".', $name);
           continue;
-          // Skip incorrectly instantiated components.
-          // @todo Add logging.
         }
         $components[] = $component;
       }
@@ -80,6 +79,14 @@ class ComponentFactory {
 
     if (!$component_class || !class_exists($component_class)) {
       throw new \Exception(sprintf('Component type %s not found.', $migrate_name));
+    }
+
+    if (!empty($context['configuration']['excluded_converters'])) {
+      $this->converterManager->setExcludedConverters($context['configuration']['excluded_converters']);
+    }
+
+    if (!empty($context['configuration']['local_domains'])) {
+      $this->converterManager->setLocalDomains($context['configuration']['local_domains']);
     }
 
     /** @var \Drupal\civictheme_migrate\Component\ComponentInterface $component */

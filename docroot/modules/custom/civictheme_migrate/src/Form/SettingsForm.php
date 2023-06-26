@@ -2,6 +2,7 @@
 
 namespace Drupal\civictheme_migrate\Form;
 
+use Drupal\civictheme_migrate\Utility;
 use Drupal\civictheme_migrate\Validator\MigrationSchemaManagerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
@@ -113,6 +114,13 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('remote_authentication')['basic']['password'] ?? NULL,
     ];
 
+    $form['local_domains'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Local domains'),
+      '#description' => $this->t('Local domains to use when resolving absolute URLs. One domain per line.'),
+      '#default_value' => Utility::arrayToMultiline($config->get('local_domains') ?? []),
+    ];
+
     $form['migration_schema'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Migration schemas'),
@@ -147,6 +155,10 @@ class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('civictheme_migrate.settings')
       ->set('remote_authentication', $form_state->getValue('remote_authentication'))
+      ->save();
+
+    $this->config('civictheme_migrate.settings')
+      ->set('local_domains', Utility::multilineToArray($form_state->getValue('local_domains')))
       ->save();
 
     parent::submitForm($form, $form_state);

@@ -23,6 +23,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   destination_field:
  *     plugin: content_components
  *     source: source_field
+ *     local_domains:
+ *       - http://example.com
+ *       - http://example2.com
+ *     excluded_converters:
+ *       - media_embed
  * @endcode
  */
 class ContentComponents extends ProcessPluginBase implements ContainerFactoryPluginInterface {

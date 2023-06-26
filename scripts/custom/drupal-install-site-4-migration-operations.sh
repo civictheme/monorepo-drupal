@@ -50,6 +50,8 @@ $drush config-set "migrate_plus.migration.menu_link_content_civictheme_footer"  
 $drush config-set "migrate_plus.migration.node_civictheme_page"                              -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json]"
 $drush config-set "migrate_plus.migration.node_civictheme_page_annotate"                     -y --input-format=yaml source.urls "[https://nginx-php.master.merlin-ui.lagoon.salsa.hosting/sites/default/files/extracted/node-131/governmentcivicthemeio-extractor-page.json]"
 
+$drush config-set "civictheme_migrate.settings"  -y --input-format=yaml local_domains "[https://nginx-php.content-government.civictheme-source.lagoon.salsa.hosting]"
+
 $drush cr
 $drush migrate:status --group=civictheme_migrate -y
 $drush migrate:import --group=civictheme_migrate --update --limit="${MIGRATION_IMPORT_LIMIT}" -y

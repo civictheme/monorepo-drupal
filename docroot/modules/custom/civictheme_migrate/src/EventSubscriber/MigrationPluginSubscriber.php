@@ -36,12 +36,6 @@ class MigrationPluginSubscriber implements EventSubscriberInterface {
    * Pre-import event callback.
    */
   public function onMigratePreImport(MigrateImportEvent $event): void {
-    $auth = $this->getAuth();
-
-    if (empty($auth)) {
-      return;
-    }
-
     $migration = $event->getMigration();
 
     $process = $migration->getProcess();
@@ -51,13 +45,21 @@ class MigrationPluginSubscriber implements EventSubscriberInterface {
       }
       foreach ($process_plugins as $k => $process_plugin) {
         if (isset($process_plugin['plugin']) && $process_plugin['plugin'] === 'file_import') {
-          // Treat authentication types differently.
-          if ($auth['type'] == 'basic') {
-            $process[$destination_field][$k]['guzzle_options']['auth'] = [
-              $auth['username'],
-              $auth['password'],
-            ];
+          $auth = $this->getAuth();
+          if (!empty($auth)) {
+            // Treat authentication types differently.
+            if ($auth['type'] == 'basic') {
+              $process[$destination_field][$k]['guzzle_options']['auth'] = [
+                $auth['username'],
+                $auth['password'],
+              ];
+            }
           }
+        }
+
+        if (isset($process_plugin['plugin']) && $process_plugin['plugin'] === 'content_components') {
+          $domains = $this->configFactory->get('civictheme_migrate.settings')->get('local_domains');
+          $process[$destination_field][$k]['local_domains'] = array_merge($process[$destination_field][$k]['local_domains'] ?? [], $domains);
         }
       }
     }

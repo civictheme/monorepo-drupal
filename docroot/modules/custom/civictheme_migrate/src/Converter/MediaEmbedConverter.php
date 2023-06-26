@@ -44,7 +44,7 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
    */
   protected function getUrl(\DOMElement $element): ?string {
     return in_array(strtolower($element->tagName), static::getTags()) && $element->hasAttribute('src')
-      ? static::extractUrlFromDomElement($element, 'src')
+      ? UrlHelper::extractLocalUrl($element->getAttribute('src'), $this->localDomains)
       : NULL;
   }
 
