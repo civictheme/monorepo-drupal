@@ -110,7 +110,7 @@ class ConverterManagerTest extends KernelTestBase {
       'link_embed',
     ], $names, 'Converters sorting works.');
 
-    $this->converterManager->setExcludeConverters(['test2', 'test3']);
+    $this->converterManager->setExcludedConverters(['test2', 'test3']);
     $converters = $this->callProtectedMethod($this->converterManager, 'converters');
     $names = array_values(array_map(function ($converter) {
       return $converter::name();

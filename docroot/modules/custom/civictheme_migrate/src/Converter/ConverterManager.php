@@ -17,7 +17,7 @@ class ConverterManager {
    *
    * @var array
    */
-  protected $excludeConverters = [];
+  protected $excludedConverters = [];
 
   /**
    * A list of messages encountered during conversion.
@@ -99,8 +99,8 @@ class ConverterManager {
    * @return array
    *   The list of converter names to be excluded.
    */
-  public function getExcludeConverters(): array {
-    return $this->excludeConverters;
+  public function getExcludedConverters(): array {
+    return $this->excludedConverters;
   }
 
   /**
@@ -112,8 +112,8 @@ class ConverterManager {
    * @return ConverterManager
    *   The converter manager.
    */
-  public function setExcludeConverters(array $exclude_converters): ConverterManager {
-    $this->excludeConverters = $exclude_converters;
+  public function setExcludedConverters(array $exclude_converters): ConverterManager {
+    $this->excludedConverters = $exclude_converters;
 
     return $this;
   }
@@ -148,7 +148,7 @@ class ConverterManager {
     });
 
     $converters = array_filter($converters, function ($converter) {
-      return !in_array($converter::name(), $this->excludeConverters);
+      return !in_array($converter::name(), $this->excludedConverters);
     });
 
     return $converters;
