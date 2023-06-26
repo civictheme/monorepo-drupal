@@ -87,7 +87,20 @@ Feature: CivicTheme migrate module Component mapping
     #attachment
     And I should see an ".ct-attachment" element
     And I should see an ".ct-attachment__content" element
-    And I should see the text "[TEST] Attachments"
+
+    And I should see the text "[TEST] Attachment 42 title"
+    # Link to existing document.
+    And I should see "link to existing document" in the ".ct-attachment__content a[href$='migrated_dummy1.pdf']" element
+    And I should see "link to existing document" in the ".ct-attachment__content a[href$='migrated_dummy1.pdf'][data-entity-uuid]" element
+    And I should see the ".ct-attachment__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-type" attribute set to "media"
+    And I should see the ".ct-attachment__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-substitution" attribute set to "media"
+    # Link to existing content.
+    And I should see "link to existing page" in the ".ct-attachment__content a[href='/migrated/page-content-41']" element
+    And I should see "link to existing page" in the ".ct-attachment__content a[href='/migrated/page-content-41'][data-entity-uuid]" element
+    And I should see the ".ct-attachment__content a[href='/migrated/page-content-41']" element with the "data-entity-type" attribute set to "node"
+    And I should see the ".ct-attachment__content a[href='/migrated/page-content-41']" element with the "data-entity-substitution" attribute set to "canonical"
+    And I should see the ".ct-attachment__content a[href='/migrated/page-content-41']" element with the "title" attribute set to "[TEST] Migrated Page Content 41"
+
     And I should see 3 ".ct-attachment__links .ct-item-list__item" elements
     And the response should contain "dummy1.pdf"
     And the response should contain "dummy2.pdf"

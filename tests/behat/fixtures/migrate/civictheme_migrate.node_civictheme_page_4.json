@@ -41,8 +41,8 @@
           "attachment": {
             "type": "container",
             "children": {
-              "title": "[TEST] Attachments 41",
-              "content": "<p>[TEST] Attachments Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+              "title": "[TEST] Attachment 42 title",
+              "content": "<h3>[TEST] Attachment 42 content</h3><p>Prefix <a href=\"/sites/default/files/migration-source/migrated_dummy1.pdf\">link to existing document</a> suffix, prefix <a href=\"/migrated/page-content-41\">link to existing page</a> suffix, prefix <img src=\"/sites/default/files/migration-source/migrated_dummy1.jpg\" title=\"Existing image title\" alt=\"Existing image alt\"/> suffix.</p><p><a href=\"https://example.com\">absolute link</a></p>",
               "attachments": {
                 "type": "container",
                 "children": [
