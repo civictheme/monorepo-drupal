@@ -30,13 +30,23 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
   protected $messages = [];
 
   /**
+   * A list of domains that should be considered local.
+   *
+   * @var array
+   */
+  protected $localDomains = [];
+
+  /**
    * Constructor.
    *
    * @param \Drupal\civictheme_migrate\LookupManager $entity_manager
    *   The entity manager.
+   * @param array $options
+   *   An array of options.
    */
-  public function __construct(LookupManager $entity_manager) {
+  public function __construct(LookupManager $entity_manager, array $options = []) {
     $this->entityManager = $entity_manager;
+    $this->localDomains = $options['local_domains'] ?? [];
   }
 
   /**
@@ -128,36 +138,6 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
    *   The entity or NULL if not found.
    */
   abstract protected function lookup(string $src): ?EntityInterface;
-
-  /**
-   * Extract URL from DOM element.
-   *
-   * This is a helper method expected to be called from the getUrl() method of
-   * the implementing class.
-   *
-   * @param \DOMElement $element
-   *   The element to extract the URL from.
-   * @param string $attribute_name
-   *   The attribute name to extract the URL from.
-   *
-   * @return string|null
-   *   The URL or NULL if not found.
-   */
-  protected static function extractUrlFromDomElement(\DOMElement $element, string $attribute_name): ?string {
-    $uri = $element->getAttribute($attribute_name);
-
-    if (!UrlHelper::isRelativeUrl($uri)) {
-      return NULL;
-    }
-
-    if (UrlHelper::isAnchor($uri)) {
-      return NULL;
-    }
-
-    $uri = UrlHelper::sanitiseRelativeUrl($uri);
-
-    return $uri;
-  }
 
   /**
    * Update DOM element with the entity URL and embed attributes.

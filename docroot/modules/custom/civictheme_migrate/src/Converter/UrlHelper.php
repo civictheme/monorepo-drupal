@@ -12,16 +12,45 @@ use Drupal\Component\Utility\UrlHelper as ParentUrlHelper;
 class UrlHelper extends ParentUrlHelper {
 
   /**
-   * Check if a URL is relative (no scheme).
+   * Extract local URL from provided URI.
    *
-   * @param string $url
-   *   The URL to check.
+   * This is a helper method expected to be called from the getUrl() method of
+   * the implementing class.
    *
-   * @return bool
-   *   TRUE if relative.
+   * @param string $uri
+   *   URI to process.
+   * @param array $local_domains
+   *   Array of domains that should be considered local.
+   *
+   * @return string|null
+   *   The URL or NULL if not found.
    */
-  public static function isRelativeUrl(string $url): bool {
-    return !static::isExternal($url);
+  public static function extractLocalUrl(string $uri, array $local_domains = []): ?string {
+    if (empty($uri)) {
+      return NULL;
+    }
+
+    if (static::isAnchor($uri) || static::isMailto($uri)) {
+      return NULL;
+    }
+
+    if (static::isExternal($uri)) {
+      foreach ($local_domains as $local_domain) {
+        if (!static::isValid($local_domain, TRUE)) {
+          continue;
+        }
+
+        if (static::externalIsLocal($uri, $local_domain)) {
+          return static::sanitiseRelativeUrl($uri);
+        }
+      }
+
+      return NULL;
+    }
+
+    $uri = static::sanitiseRelativeUrl($uri);
+
+    return $uri;
   }
 
   /**
@@ -38,6 +67,19 @@ class UrlHelper extends ParentUrlHelper {
   }
 
   /**
+   * Check if a URL is a 'mailto:'.
+   *
+   * @param string $url
+   *   The URL to check.
+   *
+   * @return bool
+   *   TRUE if an email link.
+   */
+  public static function isMailto(string $url): bool {
+    return str_starts_with($url, 'mailto:');
+  }
+
+  /**
    * Sanitise a relative URL.
    *
    * @param string $url
@@ -47,27 +89,17 @@ class UrlHelper extends ParentUrlHelper {
    *   The sanitised URL.
    */
   public static function sanitiseRelativeUrl(string $url): string {
-    if (static::isRelativeUrl($url)) {
-      // Ensure the URL only start with a single /.
-      $url = '/' . ltrim($url, '/');
-      if (strpos($url, '+') !== FALSE) {
-        $url = urldecode($url);
-      }
-      elseif (strpos($url, '%') !== FALSE) {
-        $url = rawurldecode($url);
-      }
+    $parsed_url = parse_url($url);
+    $url = $parsed_url['path'];
 
-      // Remove all query params except ID.
-      $parsed_url = parse_url($url);
-      if (!empty($parsed_url['path'])) {
-        $url = $parsed_url['path'];
-        if (!empty($parsed_url['query'])) {
-          parse_str($parsed_url['query'], $query);
-          if (!empty($query['ID'])) {
-            $url .= '?ID=' . $query['ID'];
-          }
-        }
-      }
+    // Ensure the URL only start with a single /.
+    $url = '/' . ltrim($url, '/');
+
+    if (strpos($url, '+') !== FALSE) {
+      $url = urldecode($url);
+    }
+    elseif (strpos($url, '%') !== FALSE) {
+      $url = rawurldecode($url);
     }
 
     return $url;

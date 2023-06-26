@@ -74,6 +74,8 @@ Feature: CivicTheme migrate module Component references
     And I attach the file "migrate/civictheme_migrate.node_civictheme_page_7.json" to "files[source_update_files][]"
     And I press "Update Migration"
 
+    And I run drush "config-set civictheme_migrate.settings local_domains --input-format=yaml [http://nginx:8080]"
+
     And I run drush "mim node_civictheme_page_annotate --update --execute-dependencies"
 
     When I visit "civictheme_page" "[TEST] Migrated Page Content 71"
@@ -101,6 +103,23 @@ Feature: CivicTheme migrate module Component references
     And I should see the ".ct-basic-content img[src$='files/migrated_dummy1.jpg']" element with the "alt" attribute set to "Existing image alt"
     # Absolute link.
     And I should see an ".ct-basic-content a[href='https://example.com'].ct-content-link" element
+
+    And I should see the text "[TEST] Basic text content 722"
+    # Link to existing document.
+    And I should see "link to existing external document set as local" in the ".ct-basic-content a[href$='migrated_dummy2.pdf']" element
+    And I should see "link to existing external document set as local" in the ".ct-basic-content a[href$='migrated_dummy2.pdf'][data-entity-uuid]" element
+    And I should see the ".ct-basic-content a[href$='migrated_dummy2.pdf']" element with the "data-entity-type" attribute set to "media"
+    And I should see the ".ct-basic-content a[href$='migrated_dummy2.pdf']" element with the "data-entity-substitution" attribute set to "media"
+    # Link to existing content.
+    And I should see "link to existing page" in the ".ct-basic-content a[href='/migrated/page-content-71']" element
+    And I should see "link to existing page" in the ".ct-basic-content a[href='/migrated/page-content-71'][data-entity-uuid]" element
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "data-entity-type" attribute set to "node"
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "data-entity-substitution" attribute set to "canonical"
+    And I should see the ".ct-basic-content a[href='/migrated/page-content-71']" element with the "title" attribute set to "[TEST] Migrated Page Content 71"
+    # Link to existing media image.
+    And I should see the ".ct-basic-content img[src$='files/migrated_dummy2.jpg']" element with the "alt" attribute set to "Existing external image set as local alt"
+    # Absolute link without entity reference would not be converted.
+    And I should see an ".ct-basic-content a[href='http://nginx:8080/'].ct-content-link" element
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
