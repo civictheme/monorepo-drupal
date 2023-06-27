@@ -11,10 +11,18 @@
       "type": "container",
       "children": [
         {
-          "theme": "dark",
-          "title": "[TEST] Banner title - Migrated Page Content 51",
-          "type": "default",
-          "blend_mode": "darken",
+          "theme": "dark"
+        },
+        {
+          "title": "[TEST] Banner title - Migrated Page Content 51"
+        },
+        {
+          "type": "default"
+        },
+        {
+          "blend_mode": "darken"
+        },
+        {
           "hide_breadcrumb": true
         }
       ]

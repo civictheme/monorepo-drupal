@@ -19,11 +19,18 @@
       "type": "container",
       "children": [
         {
-          "theme": "dark",
-          "title": "[TEST] Banner title - Migrated Page Content 61",
-          "blend_mode": "darken",
-          "featured_image": ["7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"],
-          "background": ["7966cf0a-598d-4da2-8443-837fccd46109"],
+          "theme": "dark"
+        },
+        {
+          "title": "[TEST] Banner title - Migrated Page Content 61"
+        },
+        {
+          "type": "large"
+        },
+        {
+          "blend_mode": "darken"
+        },
+        {
           "hide_breadcrumb": true
         }
       ]

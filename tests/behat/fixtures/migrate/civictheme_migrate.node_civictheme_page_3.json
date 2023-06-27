@@ -21,16 +21,28 @@
       "type": "container",
       "children": [
         {
-          "theme": "dark",
-          "title": "[TEST] Banner title - Migrated Page Content 31",
-          "type": "default",
-          "blend_mode": "darken",
+          "theme": "dark"
+        },
+        {
+          "title": "[TEST] Banner title - Migrated Page Content 31"
+        },
+        {
+          "type": "large"
+        },
+        {
+          "blend_mode": "darken"
+        },
+        {
           "featured_image": [
             "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4"
-          ],
+          ]
+        },
+        {
           "background": [
             "7966cf0a-598d-4da2-8443-837fccd46109"
-          ],
+          ]
+        },
+        {
           "hide_breadcrumb": true
         }
       ]
