@@ -10,7 +10,7 @@
       "uuid": "7fdce6fd-3bcb-4ffa-b349-2a6eb0b049c4",
       "name": "migrated_dummy2.jpg",
       "file": "http://nginx:8080/sites/default/files/migration-source/migrated_dummy2.jpg",
-      "alt": "Migrated dummy file 2"
+      "alt": "Migrated dummy file 2 Lorem ipsum dolor sit amet consectetur adipiscing elit, aliquam interdum feugiat montes cum laoreet hendrerite, erat mauris lobortis venenatis commodo est. Et vivamus faucibus velit potenti felis metus dis nisi feugiat turpis, tempus ac nostra cum proin natoque cubilia a arcu, mattis phasellus hac integer cras condimentum ad sed urna. Tempus interdum ridiculus velit morbi ut aliquam vestibulum nibh inceptos nostra cubilia duis volutpat libero at, placerat viverra quam [TEST CHAR 510] longer than that [TEST 512 character]"
     }
   ]
 }
