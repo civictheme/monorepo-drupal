@@ -5,8 +5,8 @@
  * Template for CivicTheme Starter Kit theme.
  */
 
-use Drupal\views\ViewExecutable;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_civictheme_automated_list_preprocess_view_alter().
