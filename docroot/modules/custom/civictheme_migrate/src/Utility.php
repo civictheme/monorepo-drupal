@@ -91,4 +91,44 @@ class Utility {
     return $classes;
   }
 
+  /**
+   * Extract array value by path.
+   *
+   * @param mixed $data
+   *   Data to extract value from.
+   * @param string $path
+   *   Path to the data as a forward-slash separated string of keys with * as
+   *   a wildcard.
+   *
+   * @return mixed
+   *   The extracted value.
+   */
+  public static function extractValueByPath(mixed $data, string $path): mixed {
+    $segments = explode('/', $path);
+
+    if (count(array_filter($segments)) === 0) {
+      return $data;
+    }
+
+    $segment = array_shift($segments);
+
+    if ($segment === '*') {
+      $result = '';
+      foreach ($data as $item) {
+        $result = static::extractValueByPath($item, implode('/', $segments));
+        if (!empty($result)) {
+          break;
+        }
+      }
+
+      return $result;
+    }
+
+    if (is_array($data) && !array_key_exists($segment, $data)) {
+      return '';
+    }
+
+    return is_array($data) ? static::extractValueByPath($data[$segment], implode('/', $segments)) : '';
+  }
+
 }

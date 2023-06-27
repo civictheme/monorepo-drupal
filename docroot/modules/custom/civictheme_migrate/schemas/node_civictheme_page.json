@@ -37,7 +37,7 @@
       },
       "vertical_spacing": {
         "type": "string",
-        "pattern": "none|top|bottom|both",
+        "enum": ["none", "top", "bottom", "both"],
         "description": "Page level vertical spacing"
       },
       "show_toc": {
@@ -61,55 +61,91 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Hardcoded Merlin UI Output",
-            "pattern": "container"
+            "enum": [
+              "container"
+            ]
           },
           "children": {
             "type": "array",
-            "contains": {
-              "type": "object",
-              "properties": {
-                "theme": {
-                  "type": "string",
-                  "description": "Banner theme",
-                  "pattern": "light|dark|inherit"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type of banner",
-                  "pattern": "default|large|inherit"
-                },
-                "title": {
-                  "type": "string",
-                  "description": "Banner title"
-                },
-                "featured_image": {
-                  "type": "array",
-                  "items": {
+            "items": [
+              {
+                "type": "object",
+                "properties": {
+                  "theme": {
                     "type": "string",
-                    "description": "Media uuid"
+                    "enum": [
+                      "dark",
+                      "light",
+                      "inherit"
+                    ]
                   }
-                },
-                "background": {
-                  "type": "array",
-                  "items": {
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
                     "type": "string",
-                    "description": "Media uuid"
+                    "enum": [
+                      "default",
+                      "large",
+                      "inherit"
+                    ]
                   }
-                },
-                "blend_mode": {
-                  "type": "string",
-                  "description": "Banner blend mode",
-                  "pattern": "color|color-burn|darken|difference|exclusion|hard-light|hue|lighten|luminosity|multiply|normal|overlay|saturation|screen|soft-light"
-                },
-                "hide_breadcrumb": {
-                  "type": "boolean",
-                  "description": "Whether to hide breadcrumb in banner"
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "blend_mode": {
+                    "type": "string",
+                    "enum": [
+                      "color",
+                      "color-burn",
+                      "darken",
+                      "difference",
+                      "exclusion",
+                      "hard-light",
+                      "hue",
+                      "lighten",
+                      "luminosity",
+                      "multiply",
+                      "normal",
+                      "overlay",
+                      "saturation",
+                      "screen",
+                      "soft-light"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "featured_image": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "hide_breadcrumb": {
+                    "type": "boolean"
+                  }
                 }
               }
-            }
+            ]
           }
-        }
+        },
+        "required": [
+          "type",
+          "children"
+        ]
       },
       "content": {
         "$id": "#root/items/content",

@@ -15,7 +15,7 @@ label: 'Node CivicTheme Page'
 source:
   plugin: url
   data_fetcher_plugin: file
-  data_parser_plugin: json
+  data_parser_plugin: jsonwildcard
   fields:
     -
       name: id
@@ -64,31 +64,31 @@ source:
     -
       name: banner_theme
       label: 'Banner theme'
-      selector: banner/children/0/theme
+      selector: banner/children/*/theme
     -
       name: banner_type
       label: 'Banner type'
-      selector: banner/children/0/type
+      selector: banner/children/*/type
     -
       name: banner_title
       label: 'Banner title'
-      selector: banner/children/0/title
+      selector: banner/children/*/title
     -
       name: banner_featured_image_id
       label: 'Featured image id'
-      selector: banner/children/0/featured_image/0
+      selector: banner/children/*/featured_image/0
     -
       name: banner_background_image_id
       label: 'Banner background image id'
-      selector: banner/children/0/background/0
+      selector: banner/children/*/background/0
     -
       name: banner_blend_mode
       label: 'Banner blend mode'
-      selector: banner/children/0/blend_mode
+      selector: banner/children/*/blend_mode
     -
       name: banner_hide_breadcrumb
       label: 'Hide breadcrumb in banner'
-      selector: banner/children/0/hide_breadcrumb
+      selector: banner/children/*/hide_breadcrumb
     -
       name: content
       label: Components
@@ -159,9 +159,6 @@ process:
       to_format: Y-m-d
       settings:
         validate_format: true
-    -
-      plugin: skip_on_empty
-      method: process
   field_c_n_show_toc:
     -
       plugin: get

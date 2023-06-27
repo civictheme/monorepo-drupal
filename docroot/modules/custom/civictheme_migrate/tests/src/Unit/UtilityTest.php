@@ -89,4 +89,58 @@ class UtilityTest extends UnitTestCase {
     ];
   }
 
+  /**
+   * Test for Utility::extractValueByPath().
+   *
+   * @covers ::extractValueByPath
+   * @dataProvider dataProviderExtractValueByPath
+   * @group wip2
+   */
+  public function testExtractValueByPath($data, $path, $expected) {
+    $this->assertEquals($expected, Utility::extractValueByPath($data, $path));
+  }
+
+  /**
+   * Data provider for testExtractValueByPath().
+   */
+  public function dataProviderExtractValueByPath(): array {
+    return [
+      [[], '', []],
+      [[], '/', []],
+
+      [['k1' => 'v1', 'k2' => 'v2'], 'k1', 'v1'],
+      [['k1' => 'v1', 'k2' => 'v2'], 'k2', 'v2'],
+      [['k1' => 'v1', 'k2' => 'v2'], 'k99', ''],
+
+      [['k1' => ['k11' => 'v11'], 'k2' => 'v2'], 'k1/k11', 'v11'],
+      [['k1' => ['k11' => 'v11'], 'k2' => 'v2'], 'k1/k99', ''],
+
+      [
+        [
+          'k1' => [
+            ['k11' => 'v11'],
+            ['k12' => 'v12'],
+            ['k13' => 'v13'],
+          ],
+          'k2' => 'v2',
+        ],
+        'k1/*/k12',
+        'v12',
+      ],
+
+      [
+        [
+          'k1' => [
+            ['k11' => 'v11'],
+            ['k12' => 'v12'],
+            ['k13' => 'v13'],
+          ],
+          'k2' => 'v2',
+        ],
+        'k1/*',
+        ['k11' => 'v11'],
+      ],
+    ];
+  }
+
 }
