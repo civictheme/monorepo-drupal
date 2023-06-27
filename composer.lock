@@ -1272,16 +1272,16 @@
         },
         {
             "name": "defuse/php-encryption",
-            "version": "v2.3.1",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/defuse/php-encryption.git",
-                "reference": "77880488b9954b7884c25555c2a0ea9e7053f9d2"
+                "reference": "f53396c2d34225064647a05ca76c1da9d99e5828"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/77880488b9954b7884c25555c2a0ea9e7053f9d2",
-                "reference": "77880488b9954b7884c25555c2a0ea9e7053f9d2",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/f53396c2d34225064647a05ca76c1da9d99e5828",
+                "reference": "f53396c2d34225064647a05ca76c1da9d99e5828",
                 "shasum": ""
             },
             "require": {
@@ -1290,7 +1290,8 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4|^5|^6|^7|^8|^9"
+                "phpunit/phpunit": "^5|^6|^7|^8|^9|^10",
+                "yoast/phpunit-polyfills": "^2.0.0"
             },
             "bin": [
                 "bin/generate-defuse-key"
@@ -1332,9 +1333,9 @@
             ],
             "support": {
                 "issues": "https://github.com/defuse/php-encryption/issues",
-                "source": "https://github.com/defuse/php-encryption/tree/v2.3.1"
+                "source": "https://github.com/defuse/php-encryption/tree/v2.4.0"
             },
-            "time": "2021-04-09T23:57:26+00:00"
+            "time": "2023-06-19T06:10:36+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8113,8 +8114,8 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "benjy",
-                    "homepage": "https://www.drupal.org/user/1852732"
+                    "name": "JeroenT",
+                    "homepage": "https://www.drupal.org/user/2228934"
                 }
             ],
             "description": "Allows site administrators to grant some roles the authority to assign selected roles to users.",
@@ -10962,35 +10963,34 @@
         },
         {
             "name": "league/oauth2-server",
-            "version": "8.5.1",
+            "version": "8.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-server.git",
-                "reference": "43cd4d406906c6be5c8de2cee9bd3ad3753544ef"
+                "reference": "8ab731e84eef904b5913ba31b38116acf8ea50b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/43cd4d406906c6be5c8de2cee9bd3ad3753544ef",
-                "reference": "43cd4d406906c6be5c8de2cee9bd3ad3753544ef",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/8ab731e84eef904b5913ba31b38116acf8ea50b6",
+                "reference": "8ab731e84eef904b5913ba31b38116acf8ea50b6",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.3",
-                "ext-json": "*",
                 "ext-openssl": "*",
                 "lcobucci/clock": "^2.2 || ^3.0",
                 "lcobucci/jwt": "^4.3 || ^5.0",
                 "league/event": "^2.2",
                 "league/uri": "^6.7",
                 "php": "^8.0",
-                "psr/http-message": "^1.0.1"
+                "psr/http-message": "^1.0.1 || ^2.0"
             },
             "replace": {
                 "league/oauth2server": "*",
                 "lncd/oauth2": "*"
             },
             "require-dev": {
-                "laminas/laminas-diactoros": "^2.24.0",
+                "laminas/laminas-diactoros": "^3.0.0",
                 "phpstan/phpstan": "^0.12.57",
                 "phpstan/phpstan-phpunit": "^0.12.16",
                 "phpunit/phpunit": "^9.6.6",
@@ -11039,7 +11039,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/oauth2-server/issues",
-                "source": "https://github.com/thephpleague/oauth2-server/tree/8.5.1"
+                "source": "https://github.com/thephpleague/oauth2-server/tree/8.5.2"
             },
             "funding": [
                 {
@@ -11047,7 +11047,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-04T10:20:16+00:00"
+            "time": "2023-06-16T15:32:47+00:00"
         },
         {
             "name": "league/uri",
@@ -11318,7 +11318,7 @@
         },
         {
             "name": "maennchen/zipstream-php",
-            "version": "v2.4.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maennchen/ZipStream-PHP.git",
@@ -11380,7 +11380,7 @@
             ],
             "support": {
                 "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/v2.4.0"
+                "source": "https://github.com/maennchen/ZipStream-PHP/tree/2.4.0"
             },
             "funding": [
                 {
@@ -11569,16 +11569,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.5",
+            "version": "v4.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e"
+                "reference": "19526a33fb561ef417e822e85f08a00db4059c17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/11e2663a5bc9db5d714eedb4277ee300403b4a9e",
-                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/19526a33fb561ef417e822e85f08a00db4059c17",
+                "reference": "19526a33fb561ef417e822e85f08a00db4059c17",
                 "shasum": ""
             },
             "require": {
@@ -11619,9 +11619,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.5"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.16.0"
             },
-            "time": "2023-05-19T20:20:00+00:00"
+            "time": "2023-06-25T14:52:30+00:00"
         },
         {
             "name": "oomphinc/composer-installers-extender",
@@ -12872,16 +12872,16 @@
         },
         {
             "name": "solarium/solarium",
-            "version": "6.3.0",
+            "version": "6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solariumphp/solarium.git",
-                "reference": "26295386d896d01937a4ec21436581aac86a3e9a"
+                "reference": "2c3d36d0e35fa88e386c80958b0b106f947fdce1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/26295386d896d01937a4ec21436581aac86a3e9a",
-                "reference": "26295386d896d01937a4ec21436581aac86a3e9a",
+                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/2c3d36d0e35fa88e386c80958b0b106f947fdce1",
+                "reference": "2c3d36d0e35fa88e386c80958b0b106f947fdce1",
                 "shasum": ""
             },
             "require": {
@@ -12933,9 +12933,9 @@
             ],
             "support": {
                 "issues": "https://github.com/solariumphp/solarium/issues",
-                "source": "https://github.com/solariumphp/solarium/tree/6.3.0"
+                "source": "https://github.com/solariumphp/solarium/tree/6.3.1"
             },
-            "time": "2023-06-13T07:45:42+00:00"
+            "time": "2023-06-22T14:24:00+00:00"
         },
         {
             "name": "stack/builder",
@@ -15825,16 +15825,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.4.24",
+            "version": "v5.4.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "8e12706bf9c68a2da633f23bfdc15b4dce5970b3"
+                "reference": "82269f73c0f0f9859ab9b6900eebacbe54954ede"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/8e12706bf9c68a2da633f23bfdc15b4dce5970b3",
-                "reference": "8e12706bf9c68a2da633f23bfdc15b4dce5970b3",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/82269f73c0f0f9859ab9b6900eebacbe54954ede",
+                "reference": "82269f73c0f0f9859ab9b6900eebacbe54954ede",
                 "shasum": ""
             },
             "require": {
@@ -15893,7 +15893,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.4.24"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.4.25"
             },
             "funding": [
                 {
@@ -15909,7 +15909,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-25T13:05:00+00:00"
+            "time": "2023-06-20T20:56:26+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -21208,16 +21208,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v5.4.23",
+            "version": "v5.4.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "1572c5b7cad812bdf0414d89a32a33a2dafb38ba"
+                "reference": "ed279c7839967958ee152c32eaa0eaaeac819404"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/1572c5b7cad812bdf0414d89a32a33a2dafb38ba",
-                "reference": "1572c5b7cad812bdf0414d89a32a33a2dafb38ba",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/ed279c7839967958ee152c32eaa0eaaeac819404",
+                "reference": "ed279c7839967958ee152c32eaa0eaaeac819404",
                 "shasum": ""
             },
             "require": {
@@ -21271,7 +21271,7 @@
             "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/phpunit-bridge/tree/v5.4.23"
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v5.4.25"
             },
             "funding": [
                 {
@@ -21287,7 +21287,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-18T09:42:03+00:00"
+            "time": "2023-06-02T09:36:43+00:00"
         },
         {
             "name": "symfony/polyfill-php81",

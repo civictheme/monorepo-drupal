@@ -89,32 +89,6 @@
                 }
             }
         },
-        "drupal/linkit": {
-            "type": "package",
-            "package": {
-                "name": "drupal/linkit",
-                "type": "drupal-module",
-                "version": "6.0.0-beta3",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/linkit.git",
-                    "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
-                }
-            }
-        },
-        "drupal/webform": {
-            "type": "package",
-            "package": {
-                "name": "drupal/webform",
-                "type": "drupal-module",
-                "version": "6.2",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/webform-3290604.git",
-                    "reference": "46d9dff50f9bb00ba2031d7807d8e5cf06220369"
-                }
-            }
-        },
         "drupal/drupal-driver": {
             "type": "vcs",
             "url": "https://github.com/drevops/DrupalDriver"
