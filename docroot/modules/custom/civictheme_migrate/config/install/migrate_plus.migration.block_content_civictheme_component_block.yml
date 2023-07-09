@@ -48,4 +48,9 @@ destination:
   plugin: 'entity:block_content'
   default_bundle: civictheme_component_block
   validate: true
-migration_dependencies: {  }
+migration_dependencies:
+  required:
+    - media_civictheme_image
+    - media_civictheme_icon
+    - media_civictheme_document
+    - node_civictheme_page

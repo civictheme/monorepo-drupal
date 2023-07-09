@@ -110,7 +110,7 @@ class ConverterManagerTest extends KernelTestBase {
       'link_embed',
     ], $names, 'Converters sorting works.');
 
-    $this->converterManager->setExcludeConverters(['test2', 'test3']);
+    $this->converterManager->setExcludedConverters(['test2', 'test3']);
     $converters = $this->callProtectedMethod($this->converterManager, 'converters');
     $names = array_values(array_map(function ($converter) {
       return $converter::name();
@@ -173,7 +173,7 @@ class ConverterManagerTest extends KernelTestBase {
         return $alias === '/src-page-1' ? $node : NULL;
       }));
     $this->lookupManager->expects($this->any())
-      ->method('lookupMediaByFileUri')
+      ->method('lookupMediaByFileName')
       ->will($this->returnCallback(function ($uri) use ($media_document, $media_image) {
         return $uri === '/src-file-1.txt' ? $media_document : ($uri === '/src-image-1.png' ? $media_image : NULL);
       }));

@@ -30,13 +30,23 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
   protected $messages = [];
 
   /**
+   * A list of domains that should be considered local.
+   *
+   * @var array
+   */
+  protected $localDomains = [];
+
+  /**
    * Constructor.
    *
    * @param \Drupal\civictheme_migrate\LookupManager $entity_manager
    *   The entity manager.
+   * @param array $options
+   *   An array of options.
    */
-  public function __construct(LookupManager $entity_manager) {
+  public function __construct(LookupManager $entity_manager, array $options = []) {
     $this->entityManager = $entity_manager;
+    $this->localDomains = $options['local_domains'] ?? [];
   }
 
   /**
@@ -66,8 +76,13 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
     foreach (static::getTags() as $tag) {
       $elements = $dom->getElementsByTagName($tag);
       if ($elements) {
+        // Due to the \DOMNodeList object being live, the replacements of its
+        // elements may affect the objects within iterator, so we are iterating
+        // backwards.
         /** @var \DOMElement $element */
-        foreach ($elements as $element) {
+        for ($i = $elements->length - 1; $i >= 0; $i--) {
+          $element = $elements->item($i);
+
           $src = $this->getUrl($element);
           if (!$src) {
             continue;
@@ -76,7 +91,7 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
           $entity = $this->lookup($src);
 
           if (!$entity) {
-            $this->messages[] = sprintf('Embed converter: entity with URI %s was not found.', $src);
+            $this->messages[] = sprintf('Embed converter: entity with source URI %s was not found.', $src);
             continue;
           }
 
@@ -123,36 +138,6 @@ abstract class AbstractEmbedConverter implements ConverterInterface {
    *   The entity or NULL if not found.
    */
   abstract protected function lookup(string $src): ?EntityInterface;
-
-  /**
-   * Extract URL from DOM element.
-   *
-   * This is a helper method expected to be called from the getUrl() method of
-   * the implementing class.
-   *
-   * @param \DOMElement $element
-   *   The element to extract the URL from.
-   * @param string $attribute_name
-   *   The attribute name to extract the URL from.
-   *
-   * @return string|null
-   *   The URL or NULL if not found.
-   */
-  protected static function extractUrlFromDomElement(\DOMElement $element, string $attribute_name): ?string {
-    $uri = $element->getAttribute($attribute_name);
-
-    if (!UrlHelper::isRelativeUrl($uri)) {
-      return NULL;
-    }
-
-    if (UrlHelper::isAnchor($uri)) {
-      return NULL;
-    }
-
-    $uri = UrlHelper::sanitiseRelativeUrl($uri);
-
-    return $uri;
-  }
 
   /**
    * Update DOM element with the entity URL and embed attributes.

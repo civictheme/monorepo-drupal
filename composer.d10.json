@@ -71,32 +71,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/config_ignore": {
-            "type": "package",
-            "package": {
-                "name": "drupal/config_ignore",
-                "type": "drupal-module",
-                "version": "2.3",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/config_ignore.git",
-                    "reference": "bbdb8d39d970ecde407c658dabc7fdb21c97947f"
-                }
-            }
-        },
-        "drupal/config_devel": {
-            "type": "package",
-            "package": {
-                "name": "drupal/config_devel",
-                "type": "drupal-module",
-                "version": "1.8",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/config_devel-3296836.git",
-                    "reference": "2cd5688e9c3845b7dc47eb2beab757077328e7f1"
-                }
-            }
-        },
         "drupal/components": {
             "type": "package",
             "package": {
@@ -107,32 +81,6 @@
                     "type": "git",
                     "url": "https://git.drupalcode.org/project/components.git",
                     "reference": "8e184d5f98e56370cde9191f2810c913268b3294"
-                }
-            }
-        },
-        "drupal/linkit": {
-            "type": "package",
-            "package": {
-                "name": "drupal/linkit",
-                "type": "drupal-module",
-                "version": "6.0.0-beta3",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/linkit.git",
-                    "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
-                }
-            }
-        },
-        "drupal/webform": {
-            "type": "package",
-            "package": {
-                "name": "drupal/webform",
-                "type": "drupal-module",
-                "version": "6.2",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/webform-3290604.git",
-                    "reference": "46d9dff50f9bb00ba2031d7807d8e5cf06220369"
                 }
             }
         },

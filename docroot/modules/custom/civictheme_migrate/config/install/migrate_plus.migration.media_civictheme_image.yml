@@ -47,12 +47,17 @@ process:
       method: row
       source: url
     -
-      plugin: file_copy_disposition
+      plugin: file_import
       skip_on_missing_source: true
       skip_on_error: true
       file_exist: 'use existing'
       id_only: true
-  field_c_m_image/alt: alt
+  field_c_m_image/alt:
+    -
+      plugin: substr
+      source: alt
+      start: 0
+      length: 510
 destination:
   plugin: 'entity:media'
   default_bundle: civictheme_image

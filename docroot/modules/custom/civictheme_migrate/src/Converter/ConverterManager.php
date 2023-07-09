@@ -13,11 +13,18 @@ use Drupal\civictheme_migrate\Utility;
 class ConverterManager {
 
   /**
-   * Array of converter names to be excluded.
+   * A list of converter names to be excluded.
    *
    * @var array
    */
-  protected $excludeConverters = [];
+  protected $excludedConverters = [];
+
+  /**
+   * A list of domains that should be considered internal.
+   *
+   * @var array
+   */
+  protected $localDomains = [];
 
   /**
    * A list of messages encountered during conversion.
@@ -94,13 +101,38 @@ class ConverterManager {
   }
 
   /**
+   * Get the list of domains that should be considered local.
+   *
+   * @return array
+   *   The list of internal domains.
+   */
+  public function getLocalDomains(): array {
+    return $this->localDomains;
+  }
+
+  /**
+   * Set the list of domains that should be considered local.
+   *
+   * @param array $domains
+   *   The list of domains.
+   *
+   * @return ConverterManager
+   *   The converter manager.
+   */
+  public function setLocalDomains(array $domains): ConverterManager {
+    $this->localDomains = $domains;
+
+    return $this;
+  }
+
+  /**
    * Get the list of converter names to be excluded during processing.
    *
    * @return array
    *   The list of converter names to be excluded.
    */
-  public function getExcludeConverters(): array {
-    return $this->excludeConverters;
+  public function getExcludedConverters(): array {
+    return $this->excludedConverters;
   }
 
   /**
@@ -112,8 +144,8 @@ class ConverterManager {
    * @return ConverterManager
    *   The converter manager.
    */
-  public function setExcludeConverters(array $exclude_converters): ConverterManager {
-    $this->excludeConverters = $exclude_converters;
+  public function setExcludedConverters(array $exclude_converters): ConverterManager {
+    $this->excludedConverters = $exclude_converters;
 
     return $this;
   }
@@ -148,7 +180,7 @@ class ConverterManager {
     });
 
     $converters = array_filter($converters, function ($converter) {
-      return !in_array($converter::name(), $this->excludeConverters);
+      return !in_array($converter::name(), $this->excludedConverters);
     });
 
     return $converters;
@@ -169,7 +201,9 @@ class ConverterManager {
     }
 
     foreach ($converter_classes as $converter_class) {
-      $converters[] = new $converter_class($this->lookupManager);
+      $converters[] = new $converter_class($this->lookupManager, [
+        'local_domains' => $this->localDomains,
+      ]);
     }
 
     return $converters;

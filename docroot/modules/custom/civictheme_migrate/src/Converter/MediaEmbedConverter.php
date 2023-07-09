@@ -36,7 +36,7 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
    * {@inheritdoc}
    */
   protected function lookup($src): ?EntityInterface {
-    return $this->entityManager->lookupMediaByFileUri($src);
+    return $this->entityManager->lookupMediaByFileName(basename($src));
   }
 
   /**
@@ -44,7 +44,7 @@ class MediaEmbedConverter extends AbstractEmbedConverter {
    */
   protected function getUrl(\DOMElement $element): ?string {
     return in_array(strtolower($element->tagName), static::getTags()) && $element->hasAttribute('src')
-      ? static::extractUrlFromDomElement($element, 'src')
+      ? UrlHelper::extractLocalUrl($element->getAttribute('src'), $this->localDomains)
       : NULL;
   }
 

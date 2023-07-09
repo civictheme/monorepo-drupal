@@ -10,13 +10,16 @@ Feature: CivicTheme migrate module Promo Component mapping
       | civictheme_demo_test_promo_block_1 |
       | civictheme_test_promo_block_1      |
 
+    And no content blocks:
+      | [TEST] Component block |
+
     And no managed files:
       | filename                                                              |
       | test_civictheme_migrate.node_civictheme_page_6.json                   |
       | test_civictheme_migrate.media_civictheme_image_1.json                 |
       | test_civictheme_migrate.media_civictheme_image_2.json                 |
       | test_civictheme_migrate.media_civictheme_document_1.json              |
-      | test_civictheme_migrate.civictheme_migrate.block_civictheme.json      |
+      | test_civictheme_migrate.block_civictheme.json                         |
       | test_civictheme_migrate.block_content_civictheme_component_block.json |
 
     And managed file:
@@ -27,6 +30,21 @@ Feature: CivicTheme migrate module Promo Component mapping
       | migrate/civictheme_migrate.media_civictheme_document_1.json              | public://migration-source/test_civictheme_migrate.media_civictheme_document_1.json              |
       | migrate/civictheme_migrate.block_civictheme.json                         | public://migration-source/test_civictheme_migrate.block_civictheme.json                         |
       | migrate/civictheme_migrate.block_content_civictheme_component_block.json | public://migration-source/test_civictheme_migrate.block_content_civictheme_component_block.json |
+
+    And managed file:
+      | path               | uri                                           |
+      | migrate/dummy1.jpg | public://migration-source/migrated_dummy1.jpg |
+      | migrate/dummy2.jpg | public://migration-source/migrated_dummy2.jpg |
+      | migrate/dummy3.jpg | public://migration-source/migrated_dummy3.jpg |
+      | migrate/dummy4.jpg | public://migration-source/migrated_dummy4.jpg |
+      | migrate/dummy1.pdf | public://migration-source/migrated_dummy1.pdf |
+      | migrate/dummy2.pdf | public://migration-source/migrated_dummy2.pdf |
+      | migrate/dummy3.pdf | public://migration-source/migrated_dummy3.pdf |
+      | migrate/dummy4.pdf | public://migration-source/migrated_dummy4.pdf |
+      | migrate/dummy1.txt | public://migration-source/migrated_dummy1.txt |
+      | migrate/dummy2.txt | public://migration-source/migrated_dummy2.txt |
+      | migrate/dummy3.txt | public://migration-source/migrated_dummy3.txt |
+      | migrate/dummy4.txt | public://migration-source/migrated_dummy4.txt |
 
     # Fully reset migration runs and migration configs.
     And I clear "media_civictheme_image" migration map
@@ -42,10 +60,12 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_primary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
-    And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
+    And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
+    And I run drush "config-set migrate_plus.migration.block_civictheme source.urls []"
+    And I run drush "config-set migrate_plus.migration.block_content_civictheme_component_block source.urls []"
 
   @api @drush
-  Scenario: Migration local sources can be updated from the migration edit form
+  Scenario: Migration for Promo component
     Given I am logged in as a user with the "administrator" role
 
     # Attaching 2 source image files as the node migration depends on images in both files.
@@ -77,31 +97,68 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I press "Update Migration"
 
     When I run drush "mim --group=civictheme_migrate"
+
     And I visit "civictheme_page" "[TEST] Migrated Content 6 with minimal mapping"
 
     # Asserting field mappings.
-    #Alias
     Then I should be in the "/migrated/page-content-61" path
-    #Banner
-    Then I should see "[TEST] Banner title - Migrated Page Content 61" in the ".ct-banner__title" element
-    #Content
+    And I should see "[TEST] Banner title - Migrated Page Content 61" in the ".ct-banner__title" element
     And I should see an ".ct-basic-content" element
-    And I should see the text "[TEST] Basic text content"
-    #Promo
+    And I should see the text "[TEST] Basic text content 611"
+
+    #
+    # Promo content component.
+    #
+
+    # Promo #1.
     And I should see an ".ct-promo.ct-theme-light" element
+    And I should see the text "[TEST] Promo 611 title"
+    # Link to existing document.
+    And I should see "link to existing document" in the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element
+    And I should see "link to existing document" in the ".ct-promo__content a[href$='migrated_dummy1.pdf'][data-entity-uuid]" element
+    And I should see the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-type" attribute set to "media"
+    And I should see the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-substitution" attribute set to "media"
+    # Link to existing content.
+    And I should see "link to existing page" in the ".ct-promo__content a[href='/migrated/page-content-61']" element
+    And I should see "link to existing page" in the ".ct-promo__content a[href='/migrated/page-content-61'][data-entity-uuid]" element
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "data-entity-type" attribute set to "node"
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "data-entity-substitution" attribute set to "canonical"
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "title" attribute set to "[TEST] Migrated Content 6 with minimal mapping"
+    # Link to existing media image.
+    And I should see the ".ct-promo__content img[src$='files/migrated_dummy1.jpg']" element with the "alt" attribute set to "Existing image alt"
+    # Absolute link.
+    And I should see an ".ct-promo__content a[href='https://example.com'].ct-content-link" element
+    And I should see the text "[TEST] Promo content 611"
+    And I should see the link "[TEST] Promo link 611"
+    # Promo #2.
     And I should see an ".ct-promo.ct-theme-dark" element
-    And I should see the text "[TEST] Promo 61"
-    And I should see the text "[TEST] Promo 62"
-    And I should see the link "[TEST] Promo link 1"
-    And I should see the link "[TEST] Promo link 2"
+    And I should see the text "[TEST] Promo 612 title"
+    And I should see the text "[TEST] Promo content 612"
+    And I should see the link "[TEST] Promo link 612"
 
-    #promo block
-    When I go to "admin/structure/block/block-content"
-    Then I should see the text "[TEST] Component block"
-
+    #
+    # Promo block.
+    #
     When I go to homepage
-    Then I should see the text "[TEST] Promo Block 1"
-    And I should see the link "[TEST] Promo Block link 1"
+    Then I should see an ".ct-promo.ct-theme-light" element
+    And  I should see the text "[TEST] Promo Block 1 title"
+    And  I should see the text "[TEST] Promo block 1 content"
+    # Link to existing document.
+    And I should see "link to existing document" in the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element
+    And I should see "link to existing document" in the ".ct-promo__content a[href$='migrated_dummy1.pdf'][data-entity-uuid]" element
+    And I should see the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-type" attribute set to "media"
+    And I should see the ".ct-promo__content a[href$='migrated_dummy1.pdf']" element with the "data-entity-substitution" attribute set to "media"
+    # Link to existing content.
+    And I should see "link to existing page" in the ".ct-promo__content a[href='/migrated/page-content-61']" element
+    And I should see "link to existing page" in the ".ct-promo__content a[href='/migrated/page-content-61'][data-entity-uuid]" element
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "data-entity-type" attribute set to "node"
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "data-entity-substitution" attribute set to "canonical"
+    And I should see the ".ct-promo__content a[href='/migrated/page-content-61']" element with the "title" attribute set to "[TEST] Migrated Content 6 with minimal mapping"
+    # Link to existing media image.
+    And I should see the ".ct-promo__content img[src$='files/migrated_dummy1.jpg']" element with the "alt" attribute set to "Existing image alt"
+    # Absolute link.
+    And I should see an ".ct-promo__content a[href='https://example.com'].ct-content-link" element
+    And I should see the link "[TEST] Promo Block 1 link"
 
     # Reset migration and configs.
     And I run drush "mr --group=civictheme_migrate"
@@ -117,3 +174,5 @@ Feature: CivicTheme migrate module Promo Component mapping
     And I run drush "config-set migrate_plus.migration.menu_link_content_civictheme_secondary_navigation source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page source.urls []"
     And I run drush "config-set migrate_plus.migration.node_civictheme_page_annotate source.urls []"
+    And I run drush "config-set migrate_plus.migration.block_civictheme source.urls []"
+    And I run drush "config-set migrate_plus.migration.block_content_civictheme_component_block source.urls []"

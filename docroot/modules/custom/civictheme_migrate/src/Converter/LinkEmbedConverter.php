@@ -38,7 +38,7 @@ class LinkEmbedConverter extends AbstractEmbedConverter {
    * {@inheritdoc}
    */
   protected function lookup($src): ?EntityInterface {
-    $entity = $this->entityManager->lookupMediaByFileUri($src);
+    $entity = $this->entityManager->lookupMediaByFileName(basename($src));
 
     if (!$entity) {
       $entity = $this->entityManager->lookupNodeByAlias($src);
@@ -52,7 +52,7 @@ class LinkEmbedConverter extends AbstractEmbedConverter {
    */
   protected function getUrl(\DOMElement $element): ?string {
     return in_array(strtolower($element->tagName), static::getTags()) && $element->hasAttribute('href')
-      ? static::extractUrlFromDomElement($element, 'href')
+      ? UrlHelper::extractLocalUrl($element->getAttribute('href'), $this->localDomains)
       : NULL;
   }
 
