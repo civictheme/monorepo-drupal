@@ -119,7 +119,7 @@ function _civictheme_update_vertical_spacing(Node $node) {
 /**
  * Update List components field config.
  */
-function civictheme_post_update_rename_list_fileds(&$sandbox) {
+function civictheme_post_update_rename_list_fields(&$sandbox) {
   // New field configs.
   $new_field_configs = [
     'field.storage.paragraph.field_c_p_list_fill_width' => 'field_storage_config',
@@ -235,5 +235,169 @@ function civictheme_post_update_rename_list_fileds(&$sandbox) {
       }
     },
   );
+}
 
+/**
+ * Replace Summary field with Content field.
+ */
+function civictheme_post_update_replace_summary(&$sandbox) {
+  // New field configs.
+  $new_field_configs = [
+    'field.storage.paragraph.field_c_p_content' => 'field_storage_config',
+    'field.field.paragraph.civictheme_attachment.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_callout.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_next_step.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_promo.field_c_p_content' => 'field_config',
+  ];
+
+  // Old field configs to remove.
+  $old_field_configs = [
+    'field.field.paragraph.civictheme_attachment.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_callout.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_next_step.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_promo.field_c_p_summary' => 'field_config',
+  ];
+
+  $field_settings = [
+    'type' => 'string_textarea',
+    'weight' => 1,
+    'region' => 'content',
+    'settings' => [
+      'rows' => 5,
+      'placeholder' => '',
+    ],
+    'third_party_settings' => [],
+  ];
+
+  $form_display_config = [
+    'civictheme_attachment' => [
+      'field_c_p_content' => $field_settings + ['weight' => 2],
+    ],
+    'civictheme_callout' => [
+      'field_c_p_content' => $field_settings,
+    ],
+    'civictheme_next_step' => [
+      'field_c_p_content' => $field_settings,
+    ],
+    'civictheme_promo' => [
+      'field_c_p_content' => $field_settings,
+    ],
+  ];
+
+  // Obtain configuration from yaml files.
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $bundles = array_keys($form_display_config);
+
+  $field_mapping = [
+    'field_c_p_summary' => 'field_c_p_content',
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'paragraph',
+    $bundles,
+    // Start callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $config_path, $new_field_configs) {
+      $helper->createConfigs($sandbox, $new_field_configs, $config_path);
+    },
+    // Process callback.
+    function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
+      $helper->updateFieldContent($sandbox, $entity, $field_mapping);
+    },
+    // Finished callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config) {
+      $helper->deleteConfig($sandbox, $old_field_configs);
+      // Updated form display setting.
+      foreach ($form_display_config as $bundle => $config) {
+        $helper->updateFormDisplay('paragraph', $bundle, $config);
+      }
+
+      if ($sandbox['#finished']) {
+        $paragraph_types = array_keys($form_display_config);
+        $log = new TranslatableMarkup("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'.
+        The 'field_c_p_summary' field was removed from %paragraph_types paragraph types.
+        Please re-export your site configuration. \n", [
+          '%paragraph_types' => implode(', ', $paragraph_types),
+        ]);
+        \Drupal::logger('update')->notice($log);
+      }
+    },
+  );
+}
+
+/**
+ * Rename machine name of date field in Event content type.
+ */
+function civictheme_post_update_replace_date_3(&$sandbox) {
+  // New field configs.
+  $new_field_configs = [
+    'field.storage.node.field_c_n_date_range' => 'field_storage_config',
+    'field.field.node.civictheme_event.field_c_n_date_range' => 'field_config',
+  ];
+
+  // Old field configs to remove.
+  $old_field_configs = [
+    'field.storage.node.field_c_n_date' => 'field_storage_config',
+    'field.field.node.civictheme_event.field_c_n_date' => 'field_config',
+  ];
+
+  $form_display_config = [
+    'civictheme_event' => [
+      'field_c_n_date_range' => [
+        'type' => 'daterange_default',
+        'weight' => 13,
+        'region' => 'content',
+        'settings' => [],
+        'third_party_settings' => [],
+      ],
+    ],
+  ];
+
+  $form_display_group_config = [
+    'civictheme_event' => [
+      'group_event' => [
+        'field_c_n_date_range',
+      ],
+    ],
+  ];
+
+  // Obtain configuration from yaml files.
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $bundles = array_keys($form_display_config);
+
+  $field_mapping = [
+    'field_c_n_date' => 'field_c_n_date_range',
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'node',
+    $bundles,
+    // Start callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $config_path, $new_field_configs) {
+      $helper->createConfigs($sandbox, $new_field_configs, $config_path);
+    },
+    // Process callback.
+    function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
+      $helper->updateFieldContent($sandbox, $entity, $field_mapping);
+    },
+    // Finished callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config, $form_display_group_config) {
+      $helper->deleteConfig($sandbox, $old_field_configs);
+      // Updated form display setting.
+      foreach ($form_display_config as $bundle => $config) {
+        $helper->updateFormDisplay('node', $bundle, $config, $form_display_group_config[$bundle]);
+      }
+
+      if ($sandbox['#finished']) {
+        $entity_types = array_keys($form_display_config);
+        $log = new TranslatableMarkup("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'.
+        The 'field_c_n_date_range' field was removed from %entity_types node types.
+        Please re-export your site configuration. \n", [
+          '%entity_types' => implode(', ', $entity_types),
+        ]);
+        \Drupal::logger('update')->notice($log);
+      }
+    },
+  );
 }

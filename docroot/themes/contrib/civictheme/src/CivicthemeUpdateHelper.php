@@ -223,13 +223,18 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
         }
         // Update the field groups.
         $field_group = $form_display->getThirdPartySettings('field_group');
-        foreach ($group_config as $group_name => $group_config) {
-          if (!empty($field_group[$group_name]['children'])) {
-            $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config);
-            $form_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
+
+        if (!is_null($group_config)) {
+          foreach ($group_config as $group_name => $group_config) {
+            $this->logger->notice(implode(', ', $field_group[$group_name]['children']));
+            if (!empty($field_group[$group_name]['children'])) {
+              $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config);
+              $form_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
+            }
           }
         }
       }
+      $form_display->save();
     }
   }
 
