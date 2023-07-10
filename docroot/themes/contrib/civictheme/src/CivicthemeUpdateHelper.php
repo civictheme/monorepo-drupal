@@ -15,6 +15,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
+   * Defines a batch size 10.
+   */
+  const BATCH_SIZE = 10;
+
+  /**
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -58,7 +63,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     return new static(
       $container->get('entity_type.manager'),
       $container->get('logger.factory')->get('action'),
-      $container->get('settings')->get('entity_update_batch_size', 20)
+      self::BATCH_SIZE
     );
   }
 
@@ -226,7 +231,6 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
         if (!is_null($group_config)) {
           foreach ($group_config as $group_name => $group_config) {
-            $this->logger->notice(implode(', ', $field_group[$group_name]['children']));
             if (!empty($field_group[$group_name]['children'])) {
               $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config);
               $form_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);

@@ -328,7 +328,7 @@ function civictheme_post_update_replace_summary(&$sandbox) {
 /**
  * Rename machine name of date field in Event content type.
  */
-function civictheme_post_update_replace_date_3(&$sandbox) {
+function civictheme_post_update_replace_date(&$sandbox) {
   // New field configs.
   $new_field_configs = [
     'field.storage.node.field_c_n_date_range' => 'field_storage_config',
