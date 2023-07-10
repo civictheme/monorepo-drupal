@@ -119,7 +119,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
     $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
-    if ($sandbox['#finished']) {
+    if ($sandbox['#finished'] >= 1) {
       // Finiished callback.
       $log = call_user_func($finished_callback, $this);
 

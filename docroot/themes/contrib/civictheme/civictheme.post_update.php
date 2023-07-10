@@ -223,7 +223,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
         $helper->updateFormDisplay('paragraph', $bundle, $config, $form_display_group_config[$bundle]);
       }
 
-      if ($sandbox['#finished']) {
+      if ($sandbox['#finished'] >= 1) {
         $paragraph_types = array_keys($form_display_config);
         $log = new TranslatableMarkup("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'.
           Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.
