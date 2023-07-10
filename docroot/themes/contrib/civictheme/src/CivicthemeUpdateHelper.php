@@ -6,6 +6,7 @@ use Drupal\Core\Config\FileStorage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -118,8 +119,12 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
     $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
-    if ($sandbox['#finished'] >= 1) {
-      $this->logger->notice("Update results ran in %batches batch(es):\n   Processed: %processed %processed_ids\n   Updated: %updated %updated_ids\n   Skipped: %skipped %skipped_ids\n", [
+    if ($sandbox['#finished']) {
+      // Finiished callback.
+      $log = call_user_func($finished_callback, $this);
+
+      $log = new TranslatableMarkup("%finished\n Update results ran in %batches batch(es):\n   Processed: %processed %processed_ids\n   Updated: %updated %updated_ids\n   Skipped: %skipped %skipped_ids\n", [
+        '%finished' => $log,
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
         '%processed_ids' => count($sandbox['results']['processed']) ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
@@ -128,9 +133,9 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
         '%skipped' => count($sandbox['results']['skipped']),
         '%skipped_ids' => count($sandbox['results']['skipped']) ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
       ]);
+      $this->logger->notice($log);
 
-      // Finiished callback.
-      call_user_func($finished_callback, $this);
+      return $log;
     }
   }
 

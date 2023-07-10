@@ -203,7 +203,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     'field_c_p_column_count' => 'field_c_p_list_column_count',
   ];
 
-  \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
     $sandbox,
     'paragraph',
     $bundles,
@@ -232,6 +232,8 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
             '%paragraph_types' => implode(', ', $paragraph_types),
           ]);
         \Drupal::logger('update')->notice($log);
+
+        return $log;
       }
     },
   );
@@ -292,7 +294,7 @@ function civictheme_post_update_replace_summary(&$sandbox) {
     'field_c_p_summary' => 'field_c_p_content',
   ];
 
-  \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
     $sandbox,
     'paragraph',
     $bundles,
@@ -320,6 +322,8 @@ function civictheme_post_update_replace_summary(&$sandbox) {
           '%paragraph_types' => implode(', ', $paragraph_types),
         ]);
         \Drupal::logger('update')->notice($log);
+
+        return $log;
       }
     },
   );
@@ -369,7 +373,7 @@ function civictheme_post_update_replace_date(&$sandbox) {
     'field_c_n_date' => 'field_c_n_date_range',
   ];
 
-  \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
     $sandbox,
     'node',
     $bundles,
@@ -397,6 +401,8 @@ function civictheme_post_update_replace_date(&$sandbox) {
           '%entity_types' => implode(', ', $entity_types),
         ]);
         \Drupal::logger('update')->notice($log);
+
+        return $log;
       }
     },
   );
