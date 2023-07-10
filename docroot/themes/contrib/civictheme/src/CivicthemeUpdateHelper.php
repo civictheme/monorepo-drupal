@@ -142,7 +142,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   /**
    * Updated required field configs.
    */
-  public function createConfigs(&$sandbox, array $configs, $config_path) {
+  public function createConfigs(array $configs, $config_path) {
     $source = new FileStorage($config_path);
 
     // Check if field already exported in config/sync.

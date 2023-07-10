@@ -208,8 +208,8 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     'paragraph',
     $bundles,
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $config_path, $new_field_configs) {
-      $helper->createConfigs($sandbox, $new_field_configs, $config_path);
+    function (CivicthemeUpdateHelper $helper) use ($config_path, $new_field_configs) {
+      $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
     function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
@@ -297,8 +297,8 @@ function civictheme_post_update_replace_summary(&$sandbox) {
     'paragraph',
     $bundles,
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $config_path, $new_field_configs) {
-      $helper->createConfigs($sandbox, $new_field_configs, $config_path);
+    function (CivicthemeUpdateHelper $helper) use ($config_path, $new_field_configs) {
+      $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
     function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
@@ -375,8 +375,8 @@ function civictheme_post_update_replace_date(&$sandbox) {
     'node',
     $bundles,
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $config_path, $new_field_configs) {
-      $helper->createConfigs($sandbox, $new_field_configs, $config_path);
+    function (CivicthemeUpdateHelper $helper) use ($config_path, $new_field_configs) {
+      $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
     function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
