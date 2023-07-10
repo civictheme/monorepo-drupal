@@ -123,7 +123,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       // Finiished callback.
       $log = call_user_func($finished_callback, $this);
 
-      $log = new TranslatableMarkup("%finished\n Update results ran in %batches batch(es):\n   Processed: %processed %processed_ids\n   Updated: %updated %updated_ids\n   Skipped: %skipped %skipped_ids\n", [
+      $log = new TranslatableMarkup("%finished\n<br> Update results ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
         '%finished' => $log,
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
@@ -133,7 +133,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
         '%skipped' => count($sandbox['results']['skipped']),
         '%skipped_ids' => count($sandbox['results']['skipped']) ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
       ]);
-      $this->logger->notice($log);
+      $this->logger->info($log);
 
       return $log;
     }
@@ -143,10 +143,6 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * Updated required field configs.
    */
   public function createConfigs(&$sandbox, array $configs, $config_path) {
-    if (isset($sandbox['entities'])) {
-      return;
-    }
-
     $source = new FileStorage($config_path);
 
     // Check if field already exported in config/sync.
@@ -166,17 +162,15 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * Delete field configs after content update.
    */
   public function deleteConfig($sandbox, $configs) {
-    if (!isset($sandbox['#finished']) || $sandbox['#finished'] < 1) {
-      return;
-    }
-
-    // Check if field already exported to config/sync.
-    foreach ($configs as $config => $type) {
-      $storage = $this->entityTypeManager->getStorage($type);
-      $id = substr($config, strpos($config, '.', 6) + 1);
-      $config_read = $storage->load($id);
-      if ($config_read != NULL) {
-        $config_read->delete();
+    if ($sandbox['#finished'] >= 1) {
+      // Check if field already exported to config/sync.
+      foreach ($configs as $config => $type) {
+        $storage = $this->entityTypeManager->getStorage($type);
+        $id = substr($config, strpos($config, '.', 6) + 1);
+        $config_read = $storage->load($id);
+        if ($config_read != NULL) {
+          $config_read->delete();
+        }
       }
     }
   }

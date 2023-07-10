@@ -225,13 +225,11 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
 
       if ($sandbox['#finished'] >= 1) {
         $paragraph_types = array_keys($form_display_config);
-        $log = new TranslatableMarkup("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'.
-          Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.
-          The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %paragraph_types paragraph types.
-          Please re-export your site configuration. \n", [
+        $log = new TranslatableMarkup("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.
+          The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %paragraph_types paragraph types. Please re-export your site configuration. \n", [
             '%paragraph_types' => implode(', ', $paragraph_types),
           ]);
-        \Drupal::logger('update')->notice($log);
+        \Drupal::logger('update')->info($log);
 
         return $log;
       }
@@ -316,12 +314,11 @@ function civictheme_post_update_replace_summary(&$sandbox) {
 
       if ($sandbox['#finished']) {
         $paragraph_types = array_keys($form_display_config);
-        $log = new TranslatableMarkup("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'.
-        The 'field_c_p_summary' field was removed from %paragraph_types paragraph types.
-        Please re-export your site configuration. \n", [
+        $log = new TranslatableMarkup("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'. The 'field_c_p_summary' field was removed from %paragraph_types paragraph types.
+        Please re-export your site configuration.\n", [
           '%paragraph_types' => implode(', ', $paragraph_types),
         ]);
-        \Drupal::logger('update')->notice($log);
+        \Drupal::logger('update')->info($log);
 
         return $log;
       }
@@ -395,12 +392,11 @@ function civictheme_post_update_replace_date(&$sandbox) {
 
       if ($sandbox['#finished']) {
         $entity_types = array_keys($form_display_config);
-        $log = new TranslatableMarkup("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'.
-        The 'field_c_n_date_range' field was removed from %entity_types node types.
-        Please re-export your site configuration. \n", [
+        $log = new TranslatableMarkup("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'. The 'field_c_n_date_range' field was removed from %entity_types node types.
+        Please re-export your site configuration.\n", [
           '%entity_types' => implode(', ', $entity_types),
         ]);
-        \Drupal::logger('update')->notice($log);
+        \Drupal::logger('update')->info($log);
 
         return $log;
       }
