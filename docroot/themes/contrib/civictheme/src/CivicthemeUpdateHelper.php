@@ -83,29 +83,25 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @param callable $finished_callback
    *   Finish callback called when batch finished.
    */
-  public function update(array &$sandbox, $entity_type, array $entity_bundles = [], callable $start_callback = NULL, callable $process_callback = NULL, callable $finished_callback = NULL) {
+  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finished_callback) {
     $storage = $this->entityTypeManager->getStorage($entity_type);
 
     // If the sandbox is empty, initialize it.
     if (!isset($sandbox['entities'])) {
-      if (!is_null($start_callback)) {
-        call_user_func($start_callback, $this);
-        $this->logger->notice('Start callback.');
-      }
-
       $sandbox['batch'] = 0;
       $sandbox['current_entity'] = 0;
       // Query to fetch all the manual_list paragraph ids.
-      $query = $storage->getQuery()->accessCheck(FALSE);
-      if (!empty($entity_bundles)) {
-        $query->condition('type', $entity_bundles, 'in');
-      }
+      $query = $storage->getQuery()->accessCheck(FALSE)
+        ->condition('type', $entity_bundles, 'in');
       $sandbox['entities'] = $query->execute();
-      $sandbox['max'] = $query->count()->execute();
+      $sandbox['max'] = count($sandbox['entities']);
 
       $sandbox['results']['processed'] = [];
       $sandbox['results']['updated'] = [];
       $sandbox['results']['skipped'] = [];
+
+      // Start callback.
+      call_user_func($start_callback, $this);
     }
 
     $sandbox['batch']++;
@@ -115,22 +111,14 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
     foreach ($entities as $entity) {
       $sandbox['results']['processed'][] = $entity->id();
-
-      if (!is_null($process_callback)) {
-        call_user_func($process_callback, $this, $entity);
-      }
-
       $sandbox['current_enity'] = $entity;
+      // Process entity.
+      call_user_func($process_callback, $this, $entity);
     }
 
     $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
     if ($sandbox['#finished'] >= 1) {
-
-      if (!is_null($finished_callback)) {
-        call_user_func($finished_callback, $this);
-      }
-
       $this->logger->notice("Update results ran in %batches batch(es):\n   Processed: %processed %processed_ids\n   Updated: %updated %updated_ids\n   Skipped: %skipped %skipped_ids\n", [
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
@@ -140,6 +128,9 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
         '%skipped' => count($sandbox['results']['skipped']),
         '%skipped_ids' => count($sandbox['results']['skipped']) ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
       ]);
+
+      // Finiished callback.
+      call_user_func($finished_callback, $this);
     }
   }
 
@@ -202,10 +193,10 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     if ($changed) {
       $entity->save();
       $sandbox['results']['updated'][] = $entity->id();
+      return $changed;
     }
-    else {
-      $sandbox['results']['skipped'][] = $entity->id();
-    }
+
+    $sandbox['results']['skipped'][] = $entity->id();
 
     return $changed;
   }
