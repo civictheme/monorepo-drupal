@@ -203,23 +203,22 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   /**
    * Update form and group display.
    */
-  public function updateFormDisplay($entity, $bundle, array $field_config, array $group_config = NULL) {
+  public function updateFormDisplay($entity_type, $bundle, array $field_config, array $group_config = NULL) {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
-      ->load($entity . '.' . $bundle . '.default');
+      ->load($entity_type . '.' . $bundle . '.default');
 
     if ($form_display) {
       foreach ($field_config as $field => $replacements) {
         $component = $form_display->getComponent($field);
-        if ($component) {
-          $component = array_replace_recursive($component, $replacements);
-          $form_display->setComponent($field, $component);
-        }
-        // Update the field groups.
-        $field_group = $form_display->getThirdPartySettings('field_group');
+        $component = $component ? array_replace_recursive($component, $replacements) : $replacements;
+        $form_display->setComponent($field, $component);
 
-        if (!is_null($group_config)) {
+        // Update the field groups.
+        if ($group_config) {
+          $field_group = $form_display->getThirdPartySettings('field_group');
+
           foreach ($group_config as $group_name => $group_config) {
             if (!empty($field_group[$group_name]['children'])) {
               $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config);
