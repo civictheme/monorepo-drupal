@@ -117,7 +117,10 @@ function _civictheme_update_vertical_spacing(Node $node) {
 }
 
 /**
- * Update List components field config.
+ * Update fields machine name and migrate content.
+ *
+ * Field renamed from 'field_c_p_column_count' to 'field_c_p_list_column_count'
+ * and 'field_c_p_fill_width' to 'field_c_p_list_fill_width'.
  */
 function civictheme_post_update_rename_list_fields(&$sandbox) {
   // New field configs.
@@ -140,6 +143,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     'field.field.paragraph.civictheme_automated_list.field_c_p_column_count' => 'field_config',
   ];
 
+  // Form diplay config per bundle.
   $form_display_config = [
     'civictheme_manual_list' => [
       'field_c_p_list_column_count' => [
@@ -179,6 +183,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     ],
   ];
 
+  // Form diplay group config per bundle.
   $form_display_group_config = [
     'civictheme_manual_list' => [
       'group_columns' => [
@@ -230,8 +235,9 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
           The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %paragraph_types paragraph types. Please re-export your site configuration. \n", [
             '%paragraph_types' => implode(', ', $paragraph_types),
           ]);
-        \Drupal::logger('update')->info($log);
+        \Drupal::logger('update')->info(strip_tags($log));
 
+        // Returning log messge to diplay on review log screen after upgrade.
         return $log;
       }
     },
@@ -239,7 +245,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
 }
 
 /**
- * Replace Summary field with Content field.
+ * Replace Summary(field_c_p_summary) field to Content(field_c_p_content) field.
  */
 function civictheme_post_update_replace_summary(&$sandbox) {
   // New field configs.
@@ -308,19 +314,21 @@ function civictheme_post_update_replace_summary(&$sandbox) {
     // Finished callback.
     function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config) {
       $helper->deleteConfig($sandbox, $old_field_configs);
-      // Updated form display setting.
-      foreach ($form_display_config as $bundle => $config) {
-        $helper->updateFormDisplay('paragraph', $bundle, $config);
-      }
 
       if ($sandbox['#finished']) {
+        // Updated form display setting.
+        foreach ($form_display_config as $bundle => $config) {
+          $helper->updateFormDisplay('paragraph', $bundle, $config);
+        }
+
         $paragraph_types = array_keys($form_display_config);
         $log = new TranslatableMarkup("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'. The 'field_c_p_summary' field was removed from %paragraph_types paragraph types.
         Please re-export your site configuration.\n", [
           '%paragraph_types' => implode(', ', $paragraph_types),
         ]);
-        \Drupal::logger('update')->info($log);
+        \Drupal::logger('update')->info(strip_tags($log));
 
+        // Returning log messge to diplay on review log screen after upgrade.
         return $log;
       }
     },
@@ -328,7 +336,9 @@ function civictheme_post_update_replace_summary(&$sandbox) {
 }
 
 /**
- * Rename machine name of date field in Event content type.
+ * Rename date field machine name in Event content type.
+ *
+ * From field_c_n_date to field_c_n_date_range and migrated content.
  */
 function civictheme_post_update_replace_date(&$sandbox) {
   // New field configs.
@@ -343,6 +353,7 @@ function civictheme_post_update_replace_date(&$sandbox) {
     'field.field.node.civictheme_event.field_c_n_date' => 'field_config',
   ];
 
+  // Form display config.
   $form_display_config = [
     'civictheme_event' => [
       'field_c_n_date_range' => [
@@ -355,6 +366,7 @@ function civictheme_post_update_replace_date(&$sandbox) {
     ],
   ];
 
+  // Form difplay group config.
   $form_display_group_config = [
     'civictheme_event' => [
       'group_event' => [
@@ -371,6 +383,7 @@ function civictheme_post_update_replace_date(&$sandbox) {
     'field_c_n_date' => 'field_c_n_date_range',
   ];
 
+  // Call the helper to migrate fields.
   return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
     $sandbox,
     'node',
@@ -386,19 +399,21 @@ function civictheme_post_update_replace_date(&$sandbox) {
     // Finished callback.
     function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config, $form_display_group_config) {
       $helper->deleteConfig($sandbox, $old_field_configs);
-      // Updated form display setting.
-      foreach ($form_display_config as $bundle => $config) {
-        $helper->updateFormDisplay('node', $bundle, $config, $form_display_group_config[$bundle]);
-      }
 
       if ($sandbox['#finished']) {
+        // Updated form display setting.
+        foreach ($form_display_config as $bundle => $config) {
+          $helper->updateFormDisplay('node', $bundle, $config, $form_display_group_config[$bundle]);
+        }
+
         $entity_types = array_keys($form_display_config);
         $log = new TranslatableMarkup("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'. The 'field_c_n_date_range' field was removed from %entity_types node types.
         Please re-export your site configuration.\n", [
           '%entity_types' => implode(', ', $entity_types),
         ]);
-        \Drupal::logger('update')->info($log);
+        \Drupal::logger('update')->info(strip_tags($log));
 
+        // Returning log messge to diplay on review log screen after upgrade.
         return $log;
       }
     },
