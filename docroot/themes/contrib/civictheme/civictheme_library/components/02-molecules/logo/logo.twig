@@ -16,6 +16,7 @@
  *    - breakpoint: [object] Object with 'mobile' and 'desktop' keys:
  *       - url: [string] URL for the logo.
  *       - alt: [string] Image alt text.
+ *       - svg_logo: [content] Svg Logo (Optional).
  * - url: [string] Optional URL that wraps the logo.
  * - title: [string] Optional logo title attribute.
  * - attributes: [string] Additional attributes.
@@ -41,12 +42,16 @@
         <span class="ct-logo__stripe {{ type == 'inline' ? 'hide-xxs show-l' : '' }}"></span>
       {% endif %}
       {% for breakpoint, img in logo %}
-        {% include '@atoms/image/image.twig' with {
-          theme: theme,
-          url: img.url,
-          alt: img.alt,
-          modifier_class: 'ct-logo__image ct-logo__image--' ~ breakpoint ~ ' ' ~ (breakpoint == 'mobile' ? (type == 'inline' and logo_type == 'secondary' ? 'hide-xxs' : 'hide-l') : 'hide-xxs show-l'),
-        } only %}
+        {% if img.svg_logo %}
+          {{ img.svg_logo|raw }}
+        {% else %}
+          {% include '@atoms/image/image.twig' with {
+            theme: theme,
+            url: img.url,
+            alt: img.alt,
+            modifier_class: 'ct-logo__image ct-logo__image--' ~ breakpoint ~ ' ' ~ (breakpoint == 'mobile' ? (type == 'inline' and logo_type == 'secondary' ? 'hide-xxs' : 'hide-l') : 'hide-xxs show-l'),
+          } only %}
+        {% endif %}
       {% endfor %}
     {% endif %}
   {% endfor %}

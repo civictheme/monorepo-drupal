@@ -43,9 +43,26 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
       foreach (['desktop', 'mobile'] as $breakpoint) {
         $logo_image = civictheme_get_theme_config_manager()->load("components.logo.{$type}.{$theme}.{$breakpoint}.path", '');
         if (!empty($logo_image)) {
+          if (is_svg_extension($logo_image)) {
+            $logo_image = '/' . ltrim($logo_image, '/');
+            $modifier_class = 'ct-logo__image ct-logo__image--' . $breakpoint . ' ';
+            if ($breakpoint == 'mobile') {
+              if ($type == 'inline' && $logo_type == 'secondary') {
+                $modifier_class .= 'hide-xxs';
+              }
+              else {
+                $modifier_class .= 'hide-l';
+              }
+            }
+            else {
+              $modifier_class .= 'hide-xxs show-l';
+            }
+            $svg_logo = civictheme_embed_svg($logo_image, [$modifier_class]);
+          }
           $variables['logos'][$type][$breakpoint] = [
-            'url' => '/' . ltrim($logo_image, '/'),
+            'url' => $logo_image,
             'alt' => $logo_alt,
+            'svg_logo' => $svg_logo ?? NULL,
           ];
         }
       }

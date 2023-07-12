@@ -26,6 +26,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function form(&$form, FormStateInterface &$form_state) {
+    $allowed_extensions = $this->imageFactory->getSupportedExtensions();
+    $allowed_extensions[] = 'svg';
     $form['components'] = [
       '#type' => 'vertical_tabs',
       '#title' => $this->t('Components'),
@@ -92,7 +94,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
               '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
             ]),
             '#upload_validators' => [
-              'file_validate_is_image' => [],
+              'file_validate_extensions' => [implode(' ', $allowed_extensions)],
             ],
           ];
         }
@@ -195,7 +197,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
       ]),
       '#upload_validators' => [
-        'file_validate_is_image' => [],
+        'file_validate_extensions' => [implode(' ', $allowed_extensions)],
       ],
     ];
 

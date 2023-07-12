@@ -753,3 +753,17 @@ function _civictheme_feature_optout_flags() {
     'components.link.email' => t('Email links processing'),
   ];
 }
+
+/**
+ * Checks if a file path has the SVG extension.
+ *
+ * @param string $file_path
+ *   File path to check.
+ *
+ * @return bool
+ *   TRUE if the file path has SVG extension, FALSE otherwise.
+ */
+function is_svg_extension($file_path) {
+  $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+  return strtolower($extension) === 'svg';
+}
