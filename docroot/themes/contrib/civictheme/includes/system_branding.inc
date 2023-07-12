@@ -45,7 +45,6 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
         $logo_image = civictheme_get_theme_config_manager()->load("components.logo.{$type}.{$theme}.{$breakpoint}.path", '');
         if (!empty($logo_image)) {
           if (is_svg_extension($logo_image)) {
-            $logo_image = '/' . ltrim($logo_image, '/');
             $modifier_class = 'ct-logo__image ct-logo__image--' . $breakpoint . ' ';
             if ($breakpoint == 'mobile') {
               if ($type == 'inline' && $logo_type == 'secondary') {
@@ -58,10 +57,10 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
             else {
               $modifier_class .= 'hide-xxs show-l';
             }
-            $svg_logo = civictheme_embed_svg($logo_image, [$modifier_class]);
+            $svg_logo = civictheme_embed_svg('/' . ltrim($logo_image, '/'), [$modifier_class]);
           }
           $variables['logos'][$type][$breakpoint] = [
-            'url' => $logo_image,
+            'url' => '/' . ltrim($logo_image, '/'),
             'alt' => $logo_alt,
             'svg_logo' => $svg_logo ?? NULL,
           ];
