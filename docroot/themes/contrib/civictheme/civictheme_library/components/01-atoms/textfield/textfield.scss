@@ -31,7 +31,6 @@
       box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
     }
 
-    &:invalid,
     &.error,
     &.ct-input--error {
       border-color: $ct-input-light-error-border-color;
@@ -55,7 +54,6 @@
       box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-focus-border-color;
     }
 
-    &:invalid,
     &.error,
     &.ct-input--error {
       border-color: $ct-input-dark-error-border-color;

@@ -109,7 +109,7 @@
     flex-wrap: nowrap;
   }
 
-  #{$root}--image-right {
+  &#{$root}--image-right {
     @include ct-breakpoint(m) {
       flex-direction: row-reverse;
     }
