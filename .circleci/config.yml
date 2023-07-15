@@ -52,9 +52,6 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_admin.
   - &deploy_ssh_fingerprint5 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
 
-  # SSH key fingerprint to deploy code to civictheme_migrate.
-  - &deploy_ssh_fingerprint6 "2b:61:1c:7c:d1:f8:9b:63:dc:a7:10:c1:d6:0a:4f:b8"
-
   # SSH key fingerprint to deploy code to Drupal.org
   - &deploy_ssh_fingerprint7 "47:f9:29:8b:9b:1b:e9:66:5d:b3:f6:dd:e7:60:d1:f9"
 
@@ -92,7 +89,6 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
-      DEPLOY_SSH_FINGERPRINT6: *deploy_ssh_fingerprint6
       DEPLOY_SSH_FINGERPRINT7: *deploy_ssh_fingerprint7
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
@@ -252,7 +248,6 @@ job-mirror: &job-mirror
           branches+=(content/corporate)
           branches+=(content/government)
           branches+=(content/highereducation)
-          branches+=(content/migration)
           if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
             for branch in "${branches[@]}"
             do
@@ -400,7 +395,6 @@ jobs:
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
             - *deploy_ssh_fingerprint5
-            - *deploy_ssh_fingerprint6
             - *deploy_ssh_fingerprint7
       - checkout
       - *step_process_codebase
@@ -456,15 +450,6 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
-            ./scripts/deploy-code-release.sh
-          no_output_timeout: 30m
-      - run:
-          name: Deploy release to CivicTheme Migrate repository.
-          command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT6 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_migrate.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_migrate" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:

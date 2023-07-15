@@ -43,7 +43,6 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 5. Enables `civictheme_admin` module for admin UI enhancements.
 6. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
 7. Enables `civictheme_content` module to add default content to installation.
-8. Enables `civictheme_migrate` module to enable migrations.
 
 ## Development
 
@@ -75,7 +74,6 @@ Please refer to [FAQs](FAQs.md).
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
-- [Migrations for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_migrate)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
 
 ---

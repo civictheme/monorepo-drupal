@@ -361,18 +361,6 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
-   * Clear named migrate table.
-   *
-   * @Given I clear :name migration map
-   */
-  public function migrateClearMap($name) {
-    $table_name = 'migrate_map_' . $name;
-    if (\Drupal::database()->schema()->tableExists($table_name)) {
-      \Drupal::database()->query("TRUNCATE TABLE " . $table_name)->execute();
-    }
-  }
-
-  /**
    * Remove menu links by title.
    *
    * Fixed upstream method incorrectly throwing error on non-existing items.

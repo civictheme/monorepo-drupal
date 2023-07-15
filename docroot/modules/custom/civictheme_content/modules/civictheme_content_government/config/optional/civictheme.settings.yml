@@ -113,5 +113,3 @@ colors:
       warning: '#e38444'
       error: '#e75653'
       success: '#12b0ae'
-migration:
-  expose_metadata: false

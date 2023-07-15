@@ -69,8 +69,6 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
 
-  _civictheme_migration_metadata__banner($variables);
-
   // 'type' is internal field and should not be passed to the template.
   unset($variables['type']);
 }

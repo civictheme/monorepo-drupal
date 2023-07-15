@@ -41,7 +41,6 @@ block.block.civictheme_signup
 block.block.civictheme_social_links
 block.block.exposedformcivictheme_testpage_civictheme
 block_content.type.basic
-civictheme_migrate.settings
 coffee.configuration
 comment.*
 config_devel.settings
@@ -126,8 +125,6 @@ media.type.remote_video*
 media.type.video*
 media_library.settings
 menu_ui.settings
-migrate_plus.migration.*
-migrate_plus.migration_group.civictheme_migrate
 node.settings
 node.type.article*
 node.type.page*

@@ -187,7 +187,6 @@
                 "docroot/themes/contrib/civictheme/composer.json",
                 "docroot/modules/custom/civictheme_govcms/composer.json",
                 "docroot/modules/custom/civictheme_admin/composer.json",
-                "docroot/modules/custom/civictheme_migrate/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",
                 "docroot/modules/custom/cs_generated_content/composer.json"
