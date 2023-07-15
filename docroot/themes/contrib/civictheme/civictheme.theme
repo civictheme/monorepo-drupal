@@ -31,7 +31,6 @@ require_once 'includes/media.inc';
 require_once 'includes/menu.inc';
 require_once 'includes/mobile_navigation.inc';
 require_once 'includes/next_step.inc';
-require_once 'includes/migration.inc';
 require_once 'includes/node.inc';
 require_once 'includes/page.inc';
 require_once 'includes/pager.inc';
@@ -151,9 +150,6 @@ function civictheme_preprocess_page(&$variables) {
 
   // Preprocessing for Alerts functionality.
   _civictheme_preprocess_page__civictheme_alert($variables);
-
-  // Preprocessing for migration metadata functionality.
-  _civictheme_migration_metadata__page($variables);
 
   // Add all page variables to the root variables. This is required so that
   // child themes could add page-level variables without have to extend page

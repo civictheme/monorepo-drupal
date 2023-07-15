@@ -59,7 +59,6 @@ COPY scripts /app/scripts
 RUN mkdir -p docroot/themes/contrib/civictheme \
     && mkdir -p docroot/modules/custom/civictheme_govcms \
     && mkdir -p docroot/modules/custom/civictheme_admin \
-    && mkdir -p docroot/modules/custom/civictheme_migrate \
     && mkdir -p docroot/modules/custom/civictheme_content \
     && mkdir -p docroot/modules/custom/civictheme_dev \
     && mkdir -p docroot/modules/custom/cs_generated_content
@@ -76,7 +75,6 @@ COPY composer.json composer.* .env* auth* /app/
 COPY docroot/themes/contrib/civictheme/composer.json /app/docroot/themes/contrib/civictheme/
 COPY docroot/modules/custom/civictheme_govcms/composer.json docroot/modules/custom/civictheme_govcms/
 COPY docroot/modules/custom/civictheme_admin/composer.json docroot/modules/custom/civictheme_admin/
-COPY docroot/modules/custom/civictheme_migrate/composer.json docroot/modules/custom/civictheme_migrate/
 COPY docroot/modules/custom/civictheme_content/composer.json docroot/modules/custom/civictheme_content/
 COPY docroot/modules/custom/civictheme_dev/composer.json docroot/modules/custom/civictheme_dev/
 COPY docroot/modules/custom/cs_generated_content/composer.json docroot/modules/custom/cs_generated_content/

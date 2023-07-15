@@ -113,6 +113,4 @@ colors:
       warning: '#e38444'
       error: '#e85653'
       success: '#14b0ae'
-migration:
-  expose_metadata: false
 optouts: {  }

@@ -35,9 +35,6 @@ fi
 echo "  > Enable development module."
 $drush -y pm-enable civictheme_dev
 
-echo "  > Enable migration modules."
-$drush -y pm-enable civictheme_migrate
-
 if [ "${CIVICTHEME_SKIP_GENERATED_CONTENT_CREATE}" != "1" ]; then
 
   echo "  > Generate test content."
