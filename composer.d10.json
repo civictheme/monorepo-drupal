@@ -139,7 +139,7 @@
         },
         "patches": {
             "drupal/core": {
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2022-11-13/3204271-15-10.1.x.patch"
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
             }
         },
         "drupal-scaffold": {

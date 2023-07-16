@@ -8,6 +8,7 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * Tests the hook_post_update_NAME() implementations on bare database.
  *
  * @group civictheme:functional:update
+ * @group site:functional
  */
 class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
 
