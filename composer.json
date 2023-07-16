@@ -119,7 +119,7 @@
         "patches": {
             "drupal/core": {
                 "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests": "https://www.drupal.org/files/issues/2023-03-30/3249443-d-9-5-43.patch",
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
             }
         },
         "drupal-scaffold": {

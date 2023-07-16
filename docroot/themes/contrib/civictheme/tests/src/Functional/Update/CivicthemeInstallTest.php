@@ -10,6 +10,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests the installation of the Civictheme.
  *
  * @group civictheme:functional
+ * @group site:functional
  */
 class CivicthemeInstallTest extends BrowserTestBase {
 
