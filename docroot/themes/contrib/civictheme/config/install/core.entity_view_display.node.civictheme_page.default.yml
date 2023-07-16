@@ -88,8 +88,6 @@ third_party_settings:
       denylisted_blocks: {  }
       allowlisted_blocks: {  }
       restricted_categories: {  }
-      blacklisted_blocks: {  }
-      whitelisted_blocks: {  }
 id: node.civictheme_page.default
 targetEntityType: node
 bundle: civictheme_page

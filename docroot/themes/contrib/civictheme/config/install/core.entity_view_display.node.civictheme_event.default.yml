@@ -99,8 +99,8 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_layouts: {  }
       restricted_categories: {  }
-      blacklisted_blocks: {  }
-      whitelisted_blocks: {  }
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
 id: node.civictheme_event.default
 targetEntityType: node
 bundle: civictheme_event

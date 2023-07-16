@@ -409,6 +409,7 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
     'visibility' => [],
     'weight' => 0,
   ];
+  unset($settings['label_machine_name']);
 
   $values = [];
   // Remove extra values that do not belong in the settings array.

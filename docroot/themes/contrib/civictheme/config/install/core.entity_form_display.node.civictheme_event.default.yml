@@ -112,7 +112,6 @@ third_party_settings:
         open: false
         description: ''
         required_fields: true
-        formatter: closed
     group_metadata:
       children:
         - field_c_n_topics
