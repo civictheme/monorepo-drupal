@@ -36,6 +36,11 @@ function _civictheme_preprocess_menu_items(&$items) {
       'is_external' => $item['url']->isExternal(),
     ];
 
+    if (!$item["original_link"]->getPluginDefinition()["expanded"]) {
+      $item['below'] = [];
+      $item['is_expanded'] = FALSE;
+    }
+
     if (count($item['below'])) {
       _civictheme_preprocess_menu_items($item['below']);
     }
