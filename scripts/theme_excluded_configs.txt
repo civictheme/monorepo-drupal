@@ -85,11 +85,14 @@ core.entity_view_mode.taxonomy_term.token
 core.entity_view_mode.user.compact
 core.entity_view_mode.user.full
 core.entity_view_mode.user.token
+core.entity_view_mode.webform.token
+core.entity_view_mode.webform_submission.token
 core.extension
 core.menu.static_menu_link_overrides
 dblog.settings
 encrypt.settings
 environment_indicator.settings
+event_log_track.*
 field.field.user.user.field_last_password_reset
 field.field.user.user.field_password_expiration
 field.field.user.user.field_pending_expire_sent
@@ -123,6 +126,7 @@ media.type.document*
 media.type.image*
 media.type.remote_video*
 media.type.video*
+media_file_delete.settings
 media_library.settings
 menu_ui.settings
 node.settings
@@ -146,6 +150,7 @@ simple_sitemap.type.default_hreflang
 simple_sitemap.type.index
 simple_sitemap.types.*
 stage_file_proxy*
+syslog.settings
 system.action*
 system.advisories
 system.authorize

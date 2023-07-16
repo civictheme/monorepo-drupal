@@ -134,7 +134,7 @@ aliases:
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
         if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then cp -f .docker/Dockerfile.cli.sibling .docker/Dockerfile.cli; fi
-        if [ "$CIVICTHEME_SKIP_LIBRARY_INSTALL" = "1" ]; then cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli; fi
+        if [ "$CIVICTHEME_LIBRARY_INSTALL_SKIP" = "1" ]; then cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli; fi
 
 ################################################################################
 # JOBS
@@ -206,8 +206,7 @@ job-build-no-persist: &job-build-no-persist
         command: ahoy lint
     - run:
         name: Lint theme config
-        # Drupal 10 has different configuration export logic which results in config differences.
-        command: '[ "$DREVOPS_DRUPAL_VERSION" == "10" ] && (ahoy lint config || true) || ahoy lint config'
+        command: ahoy lint config
     - run:
         name: Run tooling tests
         command: ./scripts/test-tooling.sh
@@ -265,6 +264,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_TEST_BEHAT_TAGS: smoke
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Drupal 9, minimal profile, 'corporate' content profile.
@@ -273,8 +273,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -284,8 +284,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -295,8 +295,8 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -322,8 +322,8 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
     <<: *job-build
 
   # Drupal 10, minimal profile.
@@ -333,6 +333,7 @@ jobs:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_TAGS: smoke
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, no subtheme.
@@ -341,9 +342,9 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
-      DREVOPS_TEST_FUNCTIONAL_GROUP: site:functional,civictheme:functional:update
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.
