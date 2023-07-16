@@ -80,7 +80,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
             '#default_value' => $this->themeConfigManager->load("components.logo.{$logo_type}.{$theme}.{$breakpoint}.path"),
           ];
 
-
           $allowed_extensions = $this->imageFactory->getSupportedExtensions();
           $allowed_extensions[] = 'svg';
           $form['components']['logo'][$logo_type][$theme][$breakpoint]['upload'] = [
