@@ -26,8 +26,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function form(&$form, FormStateInterface &$form_state) {
-    $allowed_extensions = $this->imageFactory->getSupportedExtensions();
-    $allowed_extensions[] = 'svg';
     $form['components'] = [
       '#type' => 'vertical_tabs',
       '#title' => $this->t('Components'),
@@ -82,6 +80,9 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
             '#default_value' => $this->themeConfigManager->load("components.logo.{$logo_type}.{$theme}.{$breakpoint}.path"),
           ];
 
+
+          $allowed_extensions = $this->imageFactory->getSupportedExtensions();
+          $allowed_extensions[] = 'svg';
           $form['components']['logo'][$logo_type][$theme][$breakpoint]['upload'] = [
             '#type' => 'file',
             '#title' => $this->t('Upload @logo_type @theme logo for @breakpoint', [
@@ -197,7 +198,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
       ]),
       '#upload_validators' => [
-        'file_validate_extensions' => [implode(' ', $allowed_extensions)],
+        'file_validate_is_image' => [],
       ],
     ];
 
