@@ -52,9 +52,6 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_admin.
   - &deploy_ssh_fingerprint5 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
 
-  # SSH key fingerprint to deploy code to Drupal.org
-  - &deploy_ssh_fingerprint7 "47:f9:29:8b:9b:1b:e9:66:5d:b3:f6:dd:e7:60:d1:f9"
-
   # SSH key fingerprint to mirror code.
   - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
 
@@ -89,7 +86,6 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
-      DEPLOY_SSH_FINGERPRINT7: *deploy_ssh_fingerprint7
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
       - image: drevops/ci-builder
@@ -378,8 +374,8 @@ jobs:
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
-  # Deploy tags.
-  deploy_tags: &job_deploy_tags
+  # Deploy artifact.
+  deploy_artifact:
     <<: *container_config
     steps:
       #
@@ -396,62 +392,52 @@ jobs:
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
             - *deploy_ssh_fingerprint5
-            - *deploy_ssh_fingerprint7
       - checkout
       - *step_process_codebase
       - run:
           name: Deploy release to CivicTheme Drupal theme repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
-            ./scripts/deploy-code-release.sh
-          no_output_timeout: 30m
-      - run:
-          name: Deploy release to Drupal.org.
-          command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT7 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=1.x \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Library repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme GovCMS repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Content repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Admin repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT5 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - store_artifacts:
           path: *drevops_test_artifact_dir
@@ -534,23 +520,20 @@ workflows:
               only: /main|master|develop|project\/uno|ci.*|deps\/.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
             tags:
               ignore: /.*/
-      - deploy_tags:
+
+      - deploy_artifact:
           requires:
-            - build-drupal9-govcms
             - build-drupal9-minimal
-            - build-drupal9-minimal-corporate
-            - build-drupal9-minimal-highereducation
-            - build-drupal9-minimal-government
-            - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
+            - build-drupal9-govcms
             - build-drupal10-minimal
             - build-drupal10-minimal-no-subtheme
           filters:
             branches:
-              ignore: /.*/
+              only: develop
             tags:
-              # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
-              only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
+              ignore: /.*/
+
       - mirror-into-content-branches:
           requires:
             - build-drupal9-minimal
