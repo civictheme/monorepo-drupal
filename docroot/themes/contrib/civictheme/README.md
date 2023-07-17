@@ -1,8 +1,10 @@
 # CivicTheme Drupal theme
 
-----
+Drupal 9+ component-based theme.
 
-Version: `{{ VERSION }}`
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/salsadigitalauorg/civictheme/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/salsadigitalauorg/civictheme/tree/master)
+
+----
 
 ## Introduction
 

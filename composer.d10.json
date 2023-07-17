@@ -6,15 +6,10 @@
         "php": ">=8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
-        "drupal/ckeditor": "^1.0",
         "drupal/core-composer-scaffold": "^10",
         "drupal/core-project-message": "^10",
         "drupal/core-recommended": "^10",
         "drupal/core": "10.0",
-        "drupal/jquery_ui": "^1.6",
-        "drupal/jquery_ui_autocomplete": "^2",
-        "drupal/jquery_ui_menu": "^2",
-        "drupal/linkit": "^6.0@beta",
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
@@ -72,19 +67,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/components": {
-            "type": "package",
-            "package": {
-                "name": "drupal/components",
-                "type": "drupal-module",
-                "version": "2.4",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/components.git",
-                    "reference": "8e184d5f98e56370cde9191f2810c913268b3294"
-                }
-            }
-        },
         "drupal/drupal-driver": {
             "type": "vcs",
             "url": "https://github.com/drevops/DrupalDriver"
