@@ -222,6 +222,22 @@ job-build-no-persist: &job-build-no-persist
     - store_artifacts:
         path: *drevops_test_artifact_dir
 
+# Job to run isolated theme build.
+job-build-theme-isolated: &job-build-theme-isolated
+  steps:
+    - checkout
+    - run: mkdir -p ~/project2 && cp -r docroot/themes/contrib/civictheme ~/project2
+    - run: cd ~/project2/civictheme; ./.circleci/build.sh
+    - run: cd ~/project2/civictheme; ./.circleci/lint.sh
+    - run: cd ~/project2/civictheme; ./.circleci/test.sh
+    - run:
+        command: cd ~/project2/civictheme; ./.circleci/process-artifacts.sh
+        when: always
+    - store_test_results:
+        path: /tmp/test_results
+    - store_artifacts:
+        path: /tmp/artifacts
+
 job-mirror: &job-mirror
   steps:
     - attach_workspace:
@@ -253,6 +269,23 @@ job-mirror: &job-mirror
           fi
 
 jobs:
+
+  # Drupal 9, isolated theme build
+  build-theme-isolated-drupal9:
+    working_directory: ~/project
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+      DRUPAL_VERSION: 9.5
+      DRUPAL_PROJECT_SHA: 9.x
+    <<: *job-build-theme-isolated
+
+  build-theme-isolated-drupal10:
+    working_directory: ~/project
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+    <<: *job-build-theme-isolated
 
   # Drupal 9, minimal profile.
   build-drupal9-minimal:
@@ -451,6 +484,21 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
+
+      - build-theme-isolated-drupal9:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+
+      - build-theme-isolated-drupal10:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+
       - build-drupal9-govcms:
           filters:
             branches:
@@ -507,6 +555,8 @@ workflows:
               only: /.*/
       - deploy:
           requires:
+            - build-theme-isolated-drupal9
+            - build-theme-isolated-drupal10
             - build-drupal9-govcms-no-subtheme
             - build-drupal10-minimal-no-subtheme
           filters:
@@ -523,6 +573,8 @@ workflows:
 
       - deploy_artifact:
           requires:
+            - build-theme-isolated-drupal9
+            - build-theme-isolated-drupal10
             - build-drupal9-minimal
             - build-drupal9-govcms-no-subtheme
             - build-drupal9-govcms

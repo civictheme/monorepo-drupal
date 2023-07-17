@@ -23,6 +23,7 @@ echo "  > Running PHPCS."
 build/vendor/bin/phpcs \
   -s \
   -p \
+  --ignore=node_modules/* --ignore=vendor/* \
   --standard=Drupal,DrupalPractice \
   --extensions=module,php,install,inc,test,info.yml,js \
   "${BUILD_DIR}/web/themes/${MODULE}"
