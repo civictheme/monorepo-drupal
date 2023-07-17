@@ -109,6 +109,9 @@ cat <<< "$(jq --indent 4 '.extra["phpcodesniffer-search-depth"] = 10' "${BUILD_D
 echo "  > Merging configuration from theme's composer.json."
 php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('composer.json'), true),json_decode(file_get_contents('${BUILD_DIR}/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" > "${BUILD_DIR}/composer2.json" && mv -f "${BUILD_DIR}/composer2.json" "${BUILD_DIR}/composer.json"
 
+echo "  > Adding custom patches."
+cat <<< "$(jq --indent 4 '.extra.patches = {"drupal/core": {"Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"}}' "${BUILD_DIR}/composer.json")" > "${BUILD_DIR}/composer.json"
+
 echo "  > Creating GitHub authentication token if provided."
 [ -n "${GITHUB_TOKEN:-}" ] && composer config --global github-oauth.github.com "$GITHUB_TOKEN" && echo "Token: " && composer config --global github-oauth.github.com
 
