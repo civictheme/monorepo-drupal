@@ -38,6 +38,13 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   protected $themeManager;
 
   /**
+   * The config importer.
+   *
+   * @var \Drupal\civictheme\CivicthemeConfigImporter
+   */
+  protected $configImporter;
+
+  /**
    * The theme extension list.
    *
    * @var \Drupal\Core\Extension\ThemeExtensionList
