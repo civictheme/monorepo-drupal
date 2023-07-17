@@ -56,7 +56,7 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *
    * @var \Drupal\Core\Lock\LockBackendInterface
    */
-  protected $lock;
+  protected $lockPersistent;
 
   /**
    * The typed config manager.
@@ -122,6 +122,13 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
   protected $logger;
 
   /**
+   * The string translation.
+   *
+   * @var \Drupal\Core\StringTranslation\TranslationInterface
+   */
+  protected $stringTranslation;
+
+  /**
    * Constructor.
    *
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
@@ -130,7 +137,7 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *   The configuration manager.
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
    *   The lock backend.
-   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
    *   The typed configuration manager.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
@@ -140,7 +147,7 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *   The theme handler.
    * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
    *   The string translation service.
-   * @param \Drupal\Core\Extension\ModuleExtensionList $extension_list_module
+   * @param \Drupal\Core\Extension\ModuleExtensionList $module_extension_list
    *   The module extension list.
    * @param \Drupal\Core\Config\StorageInterface $config_storage
    *   The config storage.
@@ -157,12 +164,12 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
     EventDispatcherInterface $event_dispatcher,
     ConfigManagerInterface $config_manager,
     LockBackendInterface $lock,
-    TypedConfigManagerInterface $typed_config,
+    TypedConfigManagerInterface $typed_config_manager,
     ModuleHandlerInterface $module_handler,
     ModuleInstallerInterface $module_installer,
     ThemeHandlerInterface $theme_handler,
     TranslationInterface $string_translation,
-    ModuleExtensionList $extension_list_module,
+    ModuleExtensionList $module_extension_list,
     StorageInterface $config_storage,
     CacheBackendInterface $cache_config,
     MessengerInterface $messenger,
@@ -171,12 +178,12 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
     $this->eventDispatcher = $event_dispatcher;
     $this->configManager = $config_manager;
     $this->lockPersistent = $lock;
-    $this->configTyped = $typed_config;
+    $this->typedConfigManager = $typed_config_manager;
     $this->moduleHandler = $module_handler;
     $this->moduleInstaller = $module_installer;
     $this->themeHandler = $theme_handler;
     $this->stringTranslation = $string_translation;
-    $this->extensionListModule = $extension_list_module;
+    $this->moduleExtensionList = $module_extension_list;
     $this->configStorage = $config_storage;
     $this->cacheConfig = $cache_config;
     $this->messenger = $messenger;
@@ -260,12 +267,12 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
       $this->eventDispatcher,
       $this->configManager,
       $this->lockPersistent,
-      $this->configTyped,
+      $this->typedConfigManager,
       $this->moduleHandler,
       $this->moduleInstaller,
       $this->themeHandler,
       $this->stringTranslation,
-      $this->extensionListModule
+      $this->moduleExtensionList
     );
 
     try {
