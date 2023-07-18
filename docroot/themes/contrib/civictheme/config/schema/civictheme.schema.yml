@@ -368,13 +368,6 @@ civictheme.settings:
                 success:
                   label: Success
                   type: string
-    migration:
-      type: mapping
-      label: Migration
-      mapping:
-        expose_metadata:
-          label: 'Expose migration metadata'
-          type: boolean
     optouts:
       type: mapping
       label: 'Opt-out flags'

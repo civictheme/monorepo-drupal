@@ -59,7 +59,7 @@ Note that wildcards are supported.
     export CIVICTHEME_CONTENT_PROFILE=default
 
     # Prepare content with a clean installation.
-    DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=1 CIVICTHEME_SKIP_GENERATED_CONTENT_CREATE=1 ahoy install-site
+    DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy install-site
 
     # Export content.
     ahoy export-content
@@ -72,11 +72,12 @@ Note that wildcards are supported.
 1. Checkout this repository at the specific release
 2. Update bare database dump:
    ```
-   DREVOPS_DRUPAL_VERSION=10 DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=1 CIVICTHEME_SKIP_LIBRARY_INSTALL=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy build
+   DREVOPS_DRUPAL_VERSION=10 DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 SKIP_GENERATED_CONTENT_CREATE=1 ahoy build
    ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_<Drupal-Version>.minimal.civictheme_<CivicTheme-Version>.bare.php.gz
    ```
 3. Update filled database dump:
    ```
-   DREVOPS_DRUPAL_VERSION=10 DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=1 CIVICTHEME_SKIP_LIBRARY_INSTALL=1 ahoy build
+   DREVOPS_DRUPAL_VERSION=10 DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 ahoy build
+   GENERATED_CONTENT_DELETE_SKIP=1 ahoy pm:uninstall cs_generated_content generated_content -y
    ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_<Drupal-Version>.minimal.civictheme_<CivicTheme-Version>.filled.php.gz
    ```

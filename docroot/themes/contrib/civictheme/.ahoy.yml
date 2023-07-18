@@ -1,0 +1,21 @@
+#
+# Ahoy configuration file.
+# http://www.ahoycli.com/
+#
+# Provides development experience shortcuts.
+---
+ahoyapi: v2
+
+commands:
+
+  build:
+    usage: Build or rebuild the project.
+    cmd: ./.circleci/build.sh
+
+  lint:
+    usage: Lint code.
+    cmd: ./.circleci/lint.sh
+
+  test:
+    usage: Run all tests.
+    cmd: ./.circleci/test.sh

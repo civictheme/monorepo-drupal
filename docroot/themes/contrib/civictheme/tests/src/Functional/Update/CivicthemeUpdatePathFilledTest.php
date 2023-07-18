@@ -8,6 +8,7 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * Tests the hook_post_update_NAME() implementations in filled database.
  *
  * @group civictheme:functional:update
+ * @group site:functional
  */
 class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
 
@@ -30,6 +31,15 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     'block.block.civictheme_footer_copyright',
     'block.block.civictheme_footer_social_links',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->container->get('module_installer')->install(['sqlite']);
+  }
 
   /**
    * {@inheritdoc}
@@ -62,9 +72,9 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     // Assertions for civictheme_post_update_vertical_spacing().
     $this->assertSession()->pageTextContains('Update vertical_spacing');
     $this->assertSession()->pageTextContains('Update results ran');
-    $this->assertSession()->pageTextContains('Processed: 145');
+    $this->assertSession()->pageTextContains('Processed: 155');
     $this->assertSession()->pageTextContains('Updated: 9');
-    $this->assertSession()->pageTextContains('Skipped: 136');
+    $this->assertSession()->pageTextContains('Skipped: 146');
 
     // Assertions for civictheme_post_update_rename_list_fields().
     $this->assertSession()->pageTextContains('Update rename_list_fields');

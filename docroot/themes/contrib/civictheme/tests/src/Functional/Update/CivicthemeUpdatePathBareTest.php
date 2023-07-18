@@ -8,8 +8,14 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * Tests the hook_post_update_NAME() implementations on bare database.
  *
  * @group civictheme:functional:update
+ * @group site:functional
  */
 class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}
@@ -26,7 +32,11 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->container->get('module_installer')->install(['sqlite']);
+  }
 
   /**
    * {@inheritdoc}

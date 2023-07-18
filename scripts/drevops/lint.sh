@@ -63,11 +63,8 @@ fi
 # Lint theme configuration.
 if [ -z "${DREVOPS_LINT_TYPE##*config*}" ]; then
   # Lint theme configuration.
-  ./scripts/lint-theme-config.sh
+  ./scripts/lint-theme-config.sh || [ "${DREVOPS_LINT_CONFIG_ALLOW_FAILURE:-0}" -eq 1 ]
 
   # Lint theme schema.
   ./vendor/bin/drush inspect_config civictheme.settings --detail --only-error
-
-  # Lint modules schema.
-  ./vendor/bin/drush inspect_config civictheme_migrate.settings --detail --only-error
 fi

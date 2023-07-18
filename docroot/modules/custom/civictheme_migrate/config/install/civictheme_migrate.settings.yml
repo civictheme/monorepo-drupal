@@ -1,6 +1,0 @@
-local_domains: {  }
-remote_authentication:
-  type: none
-  basic:
-    username: ''
-    password: ''

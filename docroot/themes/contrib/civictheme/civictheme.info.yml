@@ -89,10 +89,11 @@ components:
 
 ckeditor_stylesheets:
   - dist/civictheme.editor.css
-
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civictheme`.
+# Do not add an empty line before this comment block or the downstream code
+# linting will fail on extra blank line.
 config_devel:
   install:
     - block.block.civictheme_content
