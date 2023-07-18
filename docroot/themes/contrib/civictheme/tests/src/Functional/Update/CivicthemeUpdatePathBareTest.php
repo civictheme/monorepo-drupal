@@ -15,6 +15,11 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $configSchemaCheckerExclusions = [
     // Exclude "broken" schemas provided in the database dumps. When a new
     // version is released - the dump is updated and schemas are fixed - review
@@ -27,7 +32,11 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->container->get('module_installer')->install(['sqlite']);
+  }
 
   /**
    * {@inheritdoc}
