@@ -78,5 +78,6 @@ Note that wildcards are supported.
 3. Update filled database dump:
    ```
    DREVOPS_DRUPAL_VERSION=10 DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 ahoy build
+   GENERATED_CONTENT_DELETE_SKIP=1 ahoy pm:uninstall cs_generated_content generated_content -y
    ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_<Drupal-Version>.minimal.civictheme_<CivicTheme-Version>.filled.php.gz
    ```

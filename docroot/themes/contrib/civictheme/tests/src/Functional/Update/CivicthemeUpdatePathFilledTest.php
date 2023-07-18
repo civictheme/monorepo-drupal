@@ -35,6 +35,15 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->container->get('module_installer')->install(['sqlite']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setDatabaseDumpFiles() {
     $this->databaseDumpFiles = [
       __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.filled.php.gz',
@@ -63,9 +72,9 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     // Assertions for civictheme_post_update_vertical_spacing().
     $this->assertSession()->pageTextContains('Update vertical_spacing');
     $this->assertSession()->pageTextContains('Update results ran');
-    $this->assertSession()->pageTextContains('Processed: 145');
+    $this->assertSession()->pageTextContains('Processed: 155');
     $this->assertSession()->pageTextContains('Updated: 9');
-    $this->assertSession()->pageTextContains('Skipped: 136');
+    $this->assertSession()->pageTextContains('Skipped: 146');
 
     // Assertions for civictheme_post_update_rename_list_fields().
     $this->assertSession()->pageTextContains('Update rename_list_fields');
