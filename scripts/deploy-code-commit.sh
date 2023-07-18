@@ -161,8 +161,9 @@ latest_commit="$(git rev-parse HEAD)"
 latest_commit_msg="$(git log -1 --pretty=%B)"
 latest_commit_author="$(git show -s --format='%an <%ae>' HEAD)"
 
-echo "==> Latest commit: ${latest_commit}."
-echo "==> Latest commit message: ${latest_commit_msg}."
+echo "  > Latest commit:         ${latest_commit}."
+echo "  > Latest commit message: ${latest_commit_msg}."
+echo "  > Latest commit author:  ${latest_commit_author}."
 
 popd >/dev/null || exit 1
 
