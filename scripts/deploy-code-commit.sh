@@ -159,6 +159,7 @@ git reset --hard
 
 latest_commit="$(git rev-parse HEAD)"
 latest_commit_msg="$(git log -1 --pretty=%B)"
+latest_commit_author="$(git show -s --format='%an <%ae>' HEAD)"
 
 echo "==> Latest commit: ${latest_commit}."
 echo "==> Latest commit message: ${latest_commit_msg}."
@@ -209,7 +210,7 @@ if [ -z "${status##*nothing to commit*}" ]; then
 else
   echo "==> Committing new changes."
   git add -A
-  git commit -m "${latest_commit_msg}"
+  git commit -m "${latest_commit_msg}" --author="${latest_commit_author}"
 
   echo "==> Pushing to remote."
   if [ "${DEPLOY_CODE_COMMIT_PUSH_PROCEED}" = "1" ]; then
