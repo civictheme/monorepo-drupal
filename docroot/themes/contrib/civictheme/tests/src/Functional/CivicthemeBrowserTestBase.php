@@ -5,14 +5,11 @@ namespace Drupal\Tests\civictheme\Functional;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Class CivicthemeInstallTest.
+ * Class CivicthemeBrowserTestBase.
  *
- * Tests the installation of the Civictheme.
- *
- * @group civictheme:functional
- * @group site:functional
+ * Base test class for all tests that require CivicTheme to be installed.
  */
-class CivicthemeInstallTest extends BrowserTestBase {
+abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
@@ -83,14 +80,6 @@ class CivicthemeInstallTest extends BrowserTestBase {
         ->set('default', $this->customTheme)
         ->save();
     }
-  }
-
-  /**
-   * Test that a theme can be installed.
-   */
-  public function testThemeInstall() {
-    $adminUser = $this->drupalCreateUser(['administer site configuration']);
-    $this->drupalLogin($adminUser);
   }
 
 }

@@ -19,7 +19,8 @@ abstract class CivicthemeUnitTestBase extends UnitTestCase {
    */
   protected function setUp(): void {
     parent::setUp();
-    require_once 'docroot/themes/contrib/civictheme/civictheme.theme';
+
+    require_once __DIR__ . '/../../../civictheme.theme';
   }
 
 }

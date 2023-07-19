@@ -1,8 +1,10 @@
 # CivicTheme Drupal theme
 
-----
+Drupal 9+ component-based theme.
 
-Version: `{{ VERSION }}`
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/salsadigitalauorg/civictheme/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/salsadigitalauorg/civictheme/tree/master)
+
+----
 
 ## Introduction
 
@@ -16,7 +18,9 @@ The Drupal theme provides full integration with UI kit.
 
 ## Installation
 
-    composer require salsadigitalauorg/civictheme
+```bash
+composer require salsadigitalauorg/civictheme
+```
 
 Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
 already included as a set of compiled assets.
