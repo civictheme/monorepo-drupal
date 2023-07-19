@@ -36,7 +36,7 @@ function _civictheme_preprocess_menu_items(&$items) {
       'is_external' => $item['url']->isExternal(),
     ];
 
-    if (!$item["original_link"]->getPluginDefinition()["expanded"]) {
+    if (empty($item['original_link']->getPluginDefinition()['expanded'])) {
       $item['below'] = [];
       $item['is_expanded'] = FALSE;
     }
