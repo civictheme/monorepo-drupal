@@ -217,6 +217,34 @@ Feature: Components settings are available in the theme settings
     And I check the box "Confirm settings reset"
     And I press "reset_to_defaults"
     Then I should see the text "Theme configuration was reset to defaults."
+  
+  @api
+  Scenario: The CivicTheme theme settings verify custom logo configuration with SVG image upload
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit current theme settings page
+
+    When I attach the file "test_image_logo_svg_light_desktop.svg" to "Upload Primary Light logo for Desktop"
+    And I attach the file "test_image_logo_svg_light_mobile.svg" to "Upload Primary Light logo for Mobile"
+    And I attach the file "test_image_logo_svg_dark_desktop.svg" to "Upload Primary Dark logo for Desktop"
+    And I attach the file "test_image_logo_svg_dark_mobile.svg" to "Upload Primary Dark logo for Mobile"
+    And I select the radio button "Light" with the id "edit-components-header-theme-light"
+    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
+    And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
+    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+
+    And I go to the homepage
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_desktop.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_mobile.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_desktop.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_mobile.svg"
+
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
 
   @api
   Scenario: The CivicTheme theme settings External Links component validation works.
