@@ -27,6 +27,11 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
     'civictheme.settings',
     'core.entity_form_display.node.civictheme_event.default',
     'core.entity_form_display.node.civictheme_page.default',
+    'block.block.civictheme_footer_acknowledgment_of_country',
+    'block.block.civictheme_footer_copyright',
+    'block.block.civictheme_footer_social_links',
+    'simple_sitemap.custom_links.default',
+    'simple_sitemap.custom_links.index',
   ];
 
   /**
@@ -65,6 +70,45 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    */
   public function testUpdates() {
     $this->runUpdates();
+
+    $this->assertSession()->pageTextContains('Update rename_block_banner_blend_mode');
+    $this->assertSession()->pageTextContains("Content from field 'field_c_b_blend_mode' was moved to 'field_c_b_banner_blend_mode'.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update rename_event_date_field');
+    $this->assertSession()->pageTextContains("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'. The 'field_c_n_date_range' field was removed from 'civictheme_event' node type.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update rename_list_fields');
+    $this->assertSession()->pageTextContains("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update rename_node_banner_blend_mode');
+    $this->assertSession()->pageTextContains("Content from field 'field_c_n_blend_mode' was moved to 'field_c_n_banner_blend_mode'.");
+    $this->assertSession()->pageTextContains("The 'field_c_n_blend_mode' field was removed from 'civictheme_page' node type.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update replace_summary_field');
+    $this->assertSession()->pageTextContains("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'. The 'field_c_p_summary' field was removed from civictheme_attachment, civictheme_callout, civictheme_next_step, civictheme_promo paragraph types.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update set_vertical_spacing_empty_value');
+    $this->assertSession()->pageTextContains("Updated values for fields 'field_c_n_vertical_spacing' and 'field_c_p_vertical_spacing'.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
   }
 
 }
