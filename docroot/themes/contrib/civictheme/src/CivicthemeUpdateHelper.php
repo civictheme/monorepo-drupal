@@ -16,11 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
-   * Defines update batch size.
-   */
-  const BATCH_SIZE = 10;
-
-  /**
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -35,26 +30,16 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   protected $logger;
 
   /**
-   * The number of entities to process in each batch.
-   *
-   * @var int
-   */
-  protected $batchSize;
-
-  /**
    * ConfigEntityUpdater constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Psr\Log\LoggerInterface $logger
    *   Logger.
-   * @param int $batch_size
-   *   The number of entities to process in each batch.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, $batch_size) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger) {
     $this->entityTypeManager = $entity_type_manager;
     $this->logger = $logger;
-    $this->batchSize = $batch_size;
   }
 
   /**
@@ -63,8 +48,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('logger.factory')->get('action'),
-      self::BATCH_SIZE
+      $container->get('logger.factory')->get('action')
     );
   }
 
@@ -81,23 +65,20 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Start callback function to call whne batch initialise.
    * @param callable $process_callback
    *   Process callback to process entity.
-   * @param callable $finished_callback
+   * @param callable $finish_callback
    *   Finish callback called when batch finished.
+   * @param int $batch_size
+   *   Batch size. Defaults to 10.
    *
-   * @return string|void
+   * @return string|null
    *   Return log message on the last pass of the update.
    */
-  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finished_callback) {
+  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10): string|null {
     $storage = $this->entityTypeManager->getStorage($entity_type);
 
-    // If the sandbox is empty, initialize it.
     if (!isset($sandbox['entities'])) {
       $sandbox['batch'] = 0;
-      $sandbox['current_entity'] = 0;
-      // Query to fetch all the manual_list paragraph ids.
-      $query = $storage->getQuery()->accessCheck(FALSE)
-        ->condition('type', $entity_bundles, 'in');
-      $sandbox['entities'] = $query->execute();
+      $sandbox['entities'] = $storage->getQuery()->accessCheck(FALSE)->condition('type', $entity_bundles, 'IN')->execute();
       $sandbox['max'] = count($sandbox['entities']);
 
       $sandbox['results']['processed'] = [];
@@ -109,23 +90,24 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
     $sandbox['batch']++;
 
-    /** @var \Drupal\Core\Entity\EntityInterface $entity */
-    $entities = $storage->loadMultiple(array_splice($sandbox['entities'], 0, $this->batchSize));
-
+    /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
+    $entities = $storage->loadMultiple(array_splice($sandbox['entities'], 0, $batch_size));
     foreach ($entities as $entity) {
       $sandbox['results']['processed'][] = $entity->id();
-      $sandbox['current_enity'] = $entity;
 
-      call_user_func($process_callback, $this, $entity);
+      // Process callback may return boolean FALSE to consider this entity as
+      // being skipped during processing.
+      $process_return = call_user_func($process_callback, $this, $entity);
+      $sandbox['results'][$process_return === TRUE ? 'updated' : 'skipped'][] = $entity->id();
     }
 
-    $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
+    $sandbox['#finished'] = !empty($sandbox['entities']) ? ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'] : 1;
 
     if ($sandbox['#finished'] >= 1) {
-      $log = call_user_func($finished_callback, $this);
+      $log = call_user_func($finish_callback, $this);
 
-      $log = new TranslatableMarkup("%finished\n<br> Update results ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
-        '%finished' => $log,
+      $log = new TranslatableMarkup("%finished\n<br> Update ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
+        '%finished' => $log ?? '',
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
         '%processed_ids' => count($sandbox['results']['processed']) ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
@@ -138,6 +120,8 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
       return $log;
     }
+
+    return NULL;
   }
 
   /**
@@ -167,58 +151,19 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   /**
    * Delete field configs after content update.
    *
-   * @param array $sandbox
-   *   Stores information for batch updates.
    * @param array $configs
    *   Array of configs.
    */
-  public function deleteConfig(array $sandbox, array $configs): void {
-    if ($sandbox['#finished'] >= 1) {
-      // Check if field already exported to config/sync.
-      foreach ($configs as $config => $type) {
-        $storage = $this->entityTypeManager->getStorage($type);
-        $id = substr($config, strpos($config, '.', 6) + 1);
-        $config_read = $storage->load($id);
-        if ($config_read != NULL) {
-          $config_read->delete();
-        }
+  public function deleteConfig(array $configs): void {
+    foreach ($configs as $config => $type) {
+      // Check if field already exported to config.
+      $storage = $this->entityTypeManager->getStorage($type);
+      $id = substr($config, strpos($config, '.', 6) + 1);
+      $config_read = $storage->load($id);
+      if ($config_read != NULL) {
+        $config_read->delete();
       }
     }
-  }
-
-  /**
-   * Update field data for a given entity.
-   *
-   * @param array $sandbox
-   *   Stores information for batch updates.
-   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
-   *   Entity to update.
-   * @param array $mappings
-   *   Array of old-to-new field mappings.
-   *
-   * @return bool
-   *   TRUE if the entity was updated, FALSE otherwise.
-   */
-  public function updateFieldContent(array &$sandbox, FieldableEntityInterface $entity, array $mappings): bool {
-    $updated = FALSE;
-
-    foreach ($mappings as $old_field => $new_field) {
-      if ($entity->hasField($new_field) && !is_null(civictheme_get_field_value($entity, $old_field, TRUE))) {
-        $entity->{$new_field} = civictheme_get_field_value($entity, $old_field, TRUE);
-        $updated = TRUE;
-      }
-    }
-
-    if ($updated) {
-      $entity->save();
-      $sandbox['results']['updated'][] = $entity->id();
-
-      return $updated;
-    }
-
-    $sandbox['results']['skipped'][] = $entity->id();
-
-    return $updated;
   }
 
   /**
@@ -233,7 +178,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @param array|null $group_config
    *   Optional array of group configs.
    */
-  public function updateFormDisplay(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
+  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
@@ -260,6 +205,36 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     }
 
     $form_display->save();
+  }
+
+  /**
+   * Copy field content from one field to another.
+   *
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *   Entity to update.
+   * @param array $mappings
+   *   Array of field names with source field names as keys and destination
+   *   field names as values.
+   *
+   * @return bool
+   *   TRUE if the entity was updated, FALSE otherwise.
+   */
+  public function copyFieldContent(FieldableEntityInterface $entity, array $mappings): bool {
+    $updated = FALSE;
+
+    foreach ($mappings as $src_field_name => $dst_field_name) {
+      $src_field_value = civictheme_get_field_value($entity, $src_field_name, TRUE);
+      if ($entity->hasField($dst_field_name) && !is_null($src_field_value)) {
+        $entity->{$dst_field_name} = $src_field_value;
+        $updated = TRUE;
+      }
+    }
+
+    if ($updated) {
+      $entity->save();
+    }
+
+    return $updated;
   }
 
 }

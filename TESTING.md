@@ -17,6 +17,7 @@ Behat configuration uses multiple extensions:
 Add `@skipped` tag to failing tests if you would like to skip them.
 
 ### Authoring schema update tests
+
 > Available from CivicTheme 1.5
 
 CivicTheme provides configuration for content types, fields and site settings.
@@ -24,7 +25,7 @@ These can change with versions of the theme. To ensure that the changes are
 applied correctly in the consumer site's database, we use
 [schema update tests](docroot/themes/contrib/civictheme/tests/src/Functional/Update).
 
-These types of tests tests require a database of the site with the previous
+These types of tests require a database of the site with the previous
 version of the module or theme installed to be available to the test.
 
 In CivicTheme, we use "bare" and "filled" database dumps to test schema updates:
@@ -35,21 +36,33 @@ For simplicity, we only test on the `minimal` profile and the latest Drupal vers
 
 To update the database dumps:
 
-1. Checkout this repository at the specific CivicTheme release (1.3 or newer):
-2. Update bare database dump:
+1. Checkout this repository at the specific CivicTheme release (1.3 or newer).
+   Note that some of the environment variables are only available in the latest
+   version of the repository and you may need to adjust them below to the version
+   you are using (e.g. `SKIP_LIBRARY_INSTALL` was in version `1.3.2` and now is
+   called `CIVICTHEME_LIBRARY_INSTALL_SKIP` in `1.5.0`).
+2. Update "bare" database dump:
    ```bash
    export CIVICTHEME_VERSION=<civictheme_version> # update to your version
    export DREVOPS_DRUPAL_VERSION=10
+   export DREVOPS_DRUPAL_VERSION_FULL=10.0.0-rc1
    export DREVOPS_DRUPAL_PROFILE=minimal
-   CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 GENERATED_CONTENT_CREATE_SKIP=1 ahoy build
-   ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  "docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DREVOPS_DRUPAL_VERSION}.${DREVOPS_DRUPAL_PROFILE}.civictheme_${DREVOPS_DRUPAL_VERSION}.bare.php.gz"
+   DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=1 ahoy build
+   ahoy cli "DREVOPS_DRUPAL_PROFILE=minimal scripts/custom/drupal-install-site-1-enable-modules.sh"
+   mkdir -p docroot/themes/contrib/civictheme/tests/fixtures/updates
+   ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  "docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DREVOPS_DRUPAL_VERSION_FULL}.${DREVOPS_DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.bare.php.gz"
    ```
-3. Update filled database dump:
+3. Update "filled" database dump:
    ```bash
    export CIVICTHEME_VERSION=<civictheme_version> # update to your version
    export DREVOPS_DRUPAL_VERSION=10
+   export DREVOPS_DRUPAL_VERSION_FULL=10.0.0-rc1
    export DREVOPS_DRUPAL_PROFILE=minimal
-   CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 ahoy build
-   GENERATED_CONTENT_DELETE_SKIP=1 ahoy pm:uninstall cs_generated_content generated_content -y
-   ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  "docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DREVOPS_DRUPAL_VERSION}.${DREVOPS_DRUPAL_PROFILE}.civictheme_${DREVOPS_DRUPAL_VERSION}.filled.php.gz"
+   DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=1 ahoy build
+   ahoy cli "DREVOPS_DRUPAL_PROFILE=minimal scripts/custom/drupal-install-site-1-enable-modules.sh"
+   ahoy cli "drush php:eval -v \"require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();\""
+   ahoy cli "GENERATED_CONTENT_CREATE=1 drush pm:enable cs_generated_content -y"
+   ahoy cli "GENERATED_CONTENT_DELETE_SKIP=1 drush pm:uninstall cs_generated_content generated_content -y"
+   mkdir -p docroot/themes/contrib/civictheme/tests/fixtures/updates
+   ahoy cli php docroot/core/scripts/dump-database-d8-mysql.php | gzip >  "docroot/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DREVOPS_DRUPAL_VERSION_FULL}.${DREVOPS_DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.filled.php.gz"
    ```
