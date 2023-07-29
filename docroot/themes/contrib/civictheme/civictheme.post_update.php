@@ -143,7 +143,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     'field.field.paragraph.civictheme_automated_list.field_c_p_column_count' => 'field_config',
   ];
 
-  // Form diplay config per bundle.
+  // Form display config per bundle.
   $form_display_config = [
     'civictheme_manual_list' => [
       'field_c_p_list_column_count' => [
@@ -183,7 +183,7 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
     ],
   ];
 
-  // Form diplay group config per bundle.
+  // Form display group config per bundle.
   $form_display_group_config = [
     'civictheme_manual_list' => [
       'group_columns' => [
@@ -231,13 +231,12 @@ function civictheme_post_update_rename_list_fields(&$sandbox) {
         }
 
         $paragraph_types = array_keys($form_display_config);
-        $log = new TranslatableMarkup("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.
-          The 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %paragraph_types paragraph types. Please re-export your site configuration. \n", [
-            '%paragraph_types' => implode(', ', $paragraph_types),
-          ]);
+        $log = new TranslatableMarkup("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.\nThe 'field_c_p_column_count' and 'field_c_p_fill_width' were removed from %paragraph_types paragraph types. Please re-export your site configuration.\n", [
+          '%paragraph_types' => implode(', ', $paragraph_types),
+        ]);
         \Drupal::logger('update')->info(strip_tags($log));
 
-        // Returning log messge to diplay on review log screen after upgrade.
+        // Returning log message to display on review log screen after upgrade.
         return $log;
       }
     },
@@ -328,7 +327,7 @@ function civictheme_post_update_replace_summary(&$sandbox) {
         ]);
         \Drupal::logger('update')->info(strip_tags($log));
 
-        // Returning log messge to diplay on review log screen after upgrade.
+        // Returning log message to display on review log screen after upgrade.
         return $log;
       }
     },
@@ -413,9 +412,167 @@ function civictheme_post_update_replace_date(&$sandbox) {
         ]);
         \Drupal::logger('update')->info(strip_tags($log));
 
-        // Returning log messge to diplay on review log screen after upgrade.
+        // Returning log message to display on review log screen after upgrade.
         return $log;
       }
     },
+  );
+}
+
+/**
+ * Update fields machine name and migrate content.
+ *
+ * Field renamed from 'field_c_n_blend_mode' to 'field_c_n_banner_blend_mode'.
+ */
+function civictheme_post_update_rename_node_banner_blend_mode(&$sandbox) {
+  // New field configs.
+  $new_field_configs = [
+    'field.storage.node.field_c_n_banner_blend_mode' => 'field_storage_config',
+    'field.field.node.civictheme_page.field_c_n_banner_blend_mode' => 'field_config',
+  ];
+
+  // Old field configs to remove.
+  $old_field_configs = [
+    'field.storage.node.field_c_n_blend_mode' => 'field_storage_config',
+    'field.field.node.civictheme_page.field_c_n_blend_mode' => 'field_config',
+  ];
+
+  // Form display config per bundle.
+  $form_display_config = [
+    'civictheme_page' => [
+      'field_c_n_banner_blend_mode' => [
+        'type' => 'options_select',
+        'weight' => 15,
+        'region' => 'content',
+        'settings' => [],
+        'third_party_settings' => [],
+      ],
+    ],
+  ];
+
+  // Form display group config per bundle.
+  $form_display_group_config = [
+    'civictheme_page' => [
+      'group_banner_background' => [
+        'field_c_n_banner_background',
+        'field_c_n_banner_blend_mode',
+      ],
+    ],
+  ];
+
+  // Obtain configuration from yaml files.
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $bundles = ['civictheme_page'];
+
+  $field_mapping = [
+    'field_c_n_blend_mode' => 'field_c_n_banner_blend_mode',
+    'field_c_b_blend_mode' => 'field_c_b_banner_blend_mode',
+  ];
+
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'node',
+    $bundles,
+    // Start callback.
+    function (CivicthemeUpdateHelper $helper) use ($config_path, $new_field_configs) {
+      $helper->createConfigs($new_field_configs, $config_path);
+    },
+    // Process callback.
+    function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
+      $helper->updateFieldContent($sandbox, $entity, $field_mapping);
+    },
+    // Finished callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config, $form_display_group_config) {
+      $helper->deleteConfig($sandbox, $old_field_configs);
+
+      if ($sandbox['#finished'] >= 1) {
+        // Update form display setting.
+        foreach ($form_display_config as $bundle => $config) {
+          $helper->updateFormDisplay('node', $bundle, $config, $form_display_group_config[$bundle]);
+        }
+
+        $node_types = array_keys($form_display_config);
+        $log = new TranslatableMarkup("Content from field 'field_c_n_blend_mode' was moved to 'field_c_n_banner_blend_mode'.\nThe 'field_c_n_blend_mode' field was removed from %node_types node types.\nPlease re-export your site configuration. \n", [
+          '%node_types' => implode(', ', $node_types),
+        ]);
+        \Drupal::logger('update')->info(strip_tags($log));
+
+        // Returning log message to display on review log screen after upgrade.
+        return $log;
+      }
+    }
+  );
+}
+
+/**
+ * Update fields machine name and migrate content.
+ *
+ * Field renamed from 'field_c_b_blend_mode' to 'field_c_b_banner_blend_mode'.
+ */
+function civictheme_post_update_rename_block_banner_blend_mode(&$sandbox) {
+  // New field configs.
+  $new_field_configs = [
+    'field.storage.block_content.field_c_b_banner_blend_mode' => 'field_storage_config',
+    'field.field.block_content.civictheme_banner.field_c_b_banner_blend_mode' => 'field_config',
+  ];
+
+  // Old field configs to remove.
+  $old_field_configs = [
+    'field.storage.block_content.field_c_b_blend_mode' => 'field_storage_config',
+    'field.field.block_content.civictheme_banner.field_c_b_blend_mode' => 'field_config',
+  ];
+
+  // Form display config per bundle.
+  $form_display_config = [
+    'civictheme_banner' => [
+      'field_c_b_banner_blend_mode' => [
+        'type' => 'options_select',
+        'weight' => 4,
+        'region' => 'content',
+        'settings' => [],
+        'third_party_settings' => [],
+      ],
+    ],
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $bundles = ['civictheme_banner'];
+
+  $field_mapping = [
+    'field_c_b_blend_mode' => 'field_c_b_banner_blend_mode',
+  ];
+
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'block_content',
+    $bundles,
+    // Start callback.
+    function (CivicthemeUpdateHelper $helper) use ($config_path, $new_field_configs) {
+      $helper->createConfigs($new_field_configs, $config_path);
+    },
+    // Process callback.
+    function (CivicthemeUpdateHelper $helper, EntityInterface $entity) use (&$sandbox, $field_mapping) {
+      $helper->updateFieldContent($sandbox, $entity, $field_mapping);
+    },
+    // Finished callback.
+    function (CivicthemeUpdateHelper $helper) use (&$sandbox, $old_field_configs, $form_display_config) {
+      $helper->deleteConfig($sandbox, $old_field_configs);
+
+      if ($sandbox['#finished'] >= 1) {
+        // Update form display setting.
+        foreach ($form_display_config as $bundle => $config) {
+          $helper->updateFormDisplay('block_content', $bundle, $config);
+        }
+
+        $block_types = ['civictheme_banner'];
+        $log = new TranslatableMarkup("Content from field 'field_c_b_blend_mode' was moved to 'field_c_b_banner_blend_mode'.\nThe 'field_c_b_blend_mode' field was removed from %block_types block types.\nPlease re-export your site configuration. \n", [
+          '%block_types' => implode(', ', $block_types),
+        ]);
+        \Drupal::logger('update')->info(strip_tags($log));
+
+        // Returning log message to display on review log screen after upgrade.
+        return $log;
+      }
+    }
   );
 }

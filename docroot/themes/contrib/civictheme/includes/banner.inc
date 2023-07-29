@@ -46,7 +46,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $background_image = civictheme_get_field_value($block, 'field_c_b_background_image', TRUE);
   if (!empty($background_image)) {
     $variables['background_image'] = civictheme_media_image_get_variables($background_image);
-    $variables['background_image_blend_mode'] = civictheme_get_field_value($block, 'field_c_b_blend_mode', TRUE);
+    $variables['background_image_blend_mode'] = civictheme_get_field_value($block, 'field_c_b_banner_blend_mode', TRUE);
   }
 
   $featured_image = civictheme_get_field_value($block, 'field_c_b_featured_image', TRUE);
@@ -96,7 +96,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(&$variables) {
   $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
   if (!empty($background_image)) {
     $variables['background_image'] = civictheme_media_image_get_variables($background_image);
-    $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
+    $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_banner_blend_mode', TRUE);
   }
 
   $featured_image = civictheme_get_field_value($node, 'field_c_n_banner_featured_image', TRUE);

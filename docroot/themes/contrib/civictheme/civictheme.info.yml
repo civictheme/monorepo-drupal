@@ -229,8 +229,8 @@ config_devel:
     - core.entity_view_mode.node.civictheme_slider_slide
     - editor.editor.civictheme_rich_text
     - field.field.block_content.civictheme_banner.field_c_b_background_image
+    - field.field.block_content.civictheme_banner.field_c_b_banner_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_banner_type
-    - field.field.block_content.civictheme_banner.field_c_b_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_featured_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
     - field.field.block_content.civictheme_component_block.field_c_b_components
@@ -271,6 +271,7 @@ config_devel:
     - field.field.node.civictheme_event.field_c_n_topics
     - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - field.field.node.civictheme_page.field_c_n_banner_background
+    - field.field.node.civictheme_page.field_c_n_banner_blend_mode
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
@@ -278,7 +279,6 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
-    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -442,8 +442,8 @@ config_devel:
     - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
+    - field.storage.block_content.field_c_b_banner_blend_mode
     - field.storage.block_content.field_c_b_banner_type
-    - field.storage.block_content.field_c_b_blend_mode
     - field.storage.block_content.field_c_b_bottom
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_featured_image
@@ -467,6 +467,7 @@ config_devel:
     - field.storage.node.field_c_n_alert_type
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
+    - field.storage.node.field_c_n_banner_blend_mode
     - field.storage.node.field_c_n_banner_components
     - field.storage.node.field_c_n_banner_components_bott
     - field.storage.node.field_c_n_banner_featured_image
@@ -474,7 +475,6 @@ config_devel:
     - field.storage.node.field_c_n_banner_theme
     - field.storage.node.field_c_n_banner_title
     - field.storage.node.field_c_n_banner_type
-    - field.storage.node.field_c_n_blend_mode
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
     - field.storage.node.field_c_n_custom_last_updated

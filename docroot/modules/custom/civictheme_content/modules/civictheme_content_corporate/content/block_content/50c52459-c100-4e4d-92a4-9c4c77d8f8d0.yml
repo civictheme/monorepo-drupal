@@ -25,7 +25,7 @@ default:
   field_c_b_banner_type:
     -
       value: default
-  field_c_b_blend_mode:
+  field_c_b_banner_blend_mode:
     -
       value: soft-light
   field_c_b_theme:

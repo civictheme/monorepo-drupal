@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
-   * Defines a batch size 10.
+   * Defines update batch size.
    */
   const BATCH_SIZE = 10;
 
@@ -83,6 +83,9 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Process callback to process entity.
    * @param callable $finished_callback
    *   Finish callback called when batch finished.
+   *
+   * @return string|void
+   *   Return log message on the last pass of the update.
    */
   public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finished_callback) {
     $storage = $this->entityTypeManager->getStorage($entity_type);
@@ -101,7 +104,6 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       $sandbox['results']['updated'] = [];
       $sandbox['results']['skipped'] = [];
 
-      // Start callback.
       call_user_func($start_callback, $this);
     }
 
@@ -113,14 +115,13 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     foreach ($entities as $entity) {
       $sandbox['results']['processed'][] = $entity->id();
       $sandbox['current_enity'] = $entity;
-      // Process entity.
+
       call_user_func($process_callback, $this, $entity);
     }
 
     $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
     if ($sandbox['#finished'] >= 1) {
-      // Finiished callback.
       $log = call_user_func($finished_callback, $this);
 
       $log = new TranslatableMarkup("%finished\n<br> Update results ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
@@ -140,9 +141,14 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   }
 
   /**
-   * Updated required field configs.
+   * Update field configs from path.
+   *
+   * @param array $configs
+   *   Array of configs.
+   * @param string $config_path
+   *   Path to config file.
    */
-  public function createConfigs(array $configs, $config_path) {
+  public function createConfigs(array $configs, string $config_path): void {
     $source = new FileStorage($config_path);
 
     // Check if field already exported in config/sync.
@@ -160,8 +166,13 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
    * Delete field configs after content update.
+   *
+   * @param array $sandbox
+   *   Stores information for batch updates.
+   * @param array $configs
+   *   Array of configs.
    */
-  public function deleteConfig($sandbox, $configs) {
+  public function deleteConfig(array $sandbox, array $configs): void {
     if ($sandbox['#finished'] >= 1) {
       // Check if field already exported to config/sync.
       foreach ($configs as $config => $type) {
@@ -176,59 +187,79 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   }
 
   /**
-   * Update field data for a given Paragraph.
+   * Update field data for a given entity.
+   *
+   * @param array $sandbox
+   *   Stores information for batch updates.
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *   Entity to update.
+   * @param array $mappings
+   *   Array of old-to-new field mappings.
+   *
+   * @return bool
+   *   TRUE if the entity was updated, FALSE otherwise.
    */
-  public function updateFieldContent(&$sandbox, FieldableEntityInterface $entity, array $mappings) {
-    $changed = FALSE;
+  public function updateFieldContent(array &$sandbox, FieldableEntityInterface $entity, array $mappings): bool {
+    $updated = FALSE;
 
     foreach ($mappings as $old_field => $new_field) {
-      // Update fill width field value.
       if ($entity->hasField($new_field) && !is_null(civictheme_get_field_value($entity, $old_field, TRUE))) {
         $entity->{$new_field} = civictheme_get_field_value($entity, $old_field, TRUE);
-        $changed = TRUE;
+        $updated = TRUE;
       }
     }
 
-    if ($changed) {
+    if ($updated) {
       $entity->save();
       $sandbox['results']['updated'][] = $entity->id();
-      return $changed;
+
+      return $updated;
     }
 
     $sandbox['results']['skipped'][] = $entity->id();
 
-    return $changed;
+    return $updated;
   }
 
   /**
    * Update form and group display.
+   *
+   * @param string $entity_type
+   *   Entity type to update.
+   * @param string $bundle
+   *   Bundle to update.
+   * @param array $field_config
+   *   Array of field configs.
+   * @param array|null $group_config
+   *   Optional array of group configs.
    */
-  public function updateFormDisplay($entity_type, $bundle, array $field_config, array $group_config = NULL) {
+  public function updateFormDisplay(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
       ->load($entity_type . '.' . $bundle . '.default');
 
-    if ($form_display) {
-      foreach ($field_config as $field => $replacements) {
-        $component = $form_display->getComponent($field);
-        $component = $component ? array_replace_recursive($component, $replacements) : $replacements;
-        $form_display->setComponent($field, $component);
+    if (!$form_display) {
+      return;
+    }
 
-        // Update the field groups.
-        if ($group_config) {
-          $field_group = $form_display->getThirdPartySettings('field_group');
+    foreach ($field_config as $field => $replacements) {
+      $component = $form_display->getComponent($field);
+      $component = $component ? array_replace_recursive($component, $replacements) : $replacements;
+      $form_display->setComponent($field, $component);
 
-          foreach ($group_config as $group_name => $group_config) {
-            if (!empty($field_group[$group_name]['children'])) {
-              $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config);
-              $form_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
-            }
+      if ($group_config) {
+        $field_group = $form_display->getThirdPartySettings('field_group');
+        foreach ($group_config as $group_name => $group_config_item) {
+          if (!empty($field_group[$group_name]['children'])) {
+            $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config_item);
+            $form_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
           }
         }
       }
-      $form_display->save();
     }
+
+    $form_display->save();
   }
 
 }
