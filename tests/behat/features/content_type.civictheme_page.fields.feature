@@ -67,9 +67,9 @@ Feature: CivicTheme Page content type fields
     And should see an "[name='field_c_n_banner_background[media_library_selection]']" element
 
     And I see field "Banner background blend mode"
-    And should see an "[name='field_c_n_blend_mode']" element
-    And should see an "[name='field_c_n_blend_mode'].required" element
-    And should not see an "[name='field_c_n_blend_mode'][disabled]" element
+    And should see an "[name='field_c_n_banner_blend_mode']" element
+    And should see an "[name='field_c_n_banner_blend_mode'].required" element
+    And should not see an "[name='field_c_n_banner_blend_mode'][disabled]" element
 
     And I should see the text "Banner featured image"
     And should see an "[name='field_c_n_banner_featured_image[media_library_selection]']" element

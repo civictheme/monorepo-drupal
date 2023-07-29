@@ -304,7 +304,7 @@ default:
   field_c_n_banner_type:
     -
       value: large
-  field_c_n_blend_mode:
+  field_c_n_banner_blend_mode:
     -
       value: overlay
   field_c_n_components:
