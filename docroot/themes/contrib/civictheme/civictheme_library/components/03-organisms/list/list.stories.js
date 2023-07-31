@@ -1,11 +1,11 @@
 // phpcs:ignoreFile
 import {
-  boolean, date, number, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 
 import {
   demoImage,
-  randomFormElements, randomName, randomSentence, randomString,
+  randomFormElements, randomInt, randomName, randomSentence, randomString, randomTags,
   randomUrl,
 } from '../../00-base/base.utils';
 
@@ -13,12 +13,13 @@ import CivicThemeGroupFilter
   from '../../02-molecules/group-filter/group-filter.twig';
 import CivicThemeSingleFilter
   from '../../02-molecules/single-filter/single-filter.twig';
-
 import CivicThemeItemGrid from '../../00-base/item-grid/item-grid.twig';
-import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
+import PromoCard
+  from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard
   from '../../02-molecules/navigation-card/navigation-card.twig';
-
+import Snippet
+  from '../../02-molecules/snippet/snippet.twig';
 import CivicThemePagination
   from '../../02-molecules/pagination/pagination.twig';
 import CivicThemeList from './list.twig';
@@ -33,7 +34,7 @@ export default {
 export const List = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const filtersKnobTab = 'Filters';
-  const cardsKnobTab = 'Cards';
+  const itemsKnobTab = 'List items';
 
   const theme = radios(
     'Theme',
@@ -80,7 +81,7 @@ export const List = (knobTab) => {
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   const showFilters = boolean('Show filters', true, generalKnobTab);
-  const showCards = boolean('Show cards', true, generalKnobTab);
+  const showItems = boolean('Show items', true, generalKnobTab);
   const showPager = boolean('Show pager', true, generalKnobTab);
 
   let filtersCount = 0;
@@ -188,7 +189,8 @@ export const List = (knobTab) => {
     });
   }
 
-  if (showCards) {
+  // Build items.
+  if (showItems) {
     const resultNumber = number(
       'Number of results',
       6,
@@ -198,22 +200,23 @@ export const List = (knobTab) => {
         max: 48,
         step: 6,
       },
-      cardsKnobTab,
+      itemsKnobTab,
     );
 
-    // Create empty markup.
+    // Create markup for no results.
     if (resultNumber === 0) {
       generalKnobs.empty = '<p>No results found</p>';
     }
 
     const viewItemAs = radios(
-      'Card type',
+      'Item type',
       {
-        'Promo card': 'promo',
-        'Navigation card': 'navigation',
+        'Promo card': 'promo-card',
+        'Navigation card': 'navigation-card',
+        Snippet: 'snippet',
       },
-      'promo',
-      cardsKnobTab,
+      'promo-card',
+      itemsKnobTab,
     );
 
     const itemsPerPage = number(
@@ -225,55 +228,86 @@ export const List = (knobTab) => {
         max: 48,
         step: 6,
       },
-      cardsKnobTab,
+      itemsKnobTab,
     );
 
-    // Build results / rows.
     if (resultNumber > 0) {
-      const cardsProps = {
-        theme: radios(
-          'Theme',
-          {
-            Light: 'light',
-            Dark: 'dark',
-          },
-          'light',
-          cardsKnobTab,
-        ),
-        title: text('Title', 'Event name which runs across two or three lines', cardsKnobTab),
-        date: date('Date', new Date(), cardsKnobTab),
-        summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
-        url: text('Link URL', 'http://example.com', cardsKnobTab),
-        image: boolean('With image', true, cardsKnobTab) ? {
-          url: demoImage(),
-          alt: 'Image alt text',
-        } : false,
-        size: 'large',
-      };
+      const itemTheme = radios(
+        'Theme',
+        {
+          Light: 'light',
+          Dark: 'dark',
+        },
+        'light',
+        itemsKnobTab,
+      );
+      const itemWithImage = boolean('With image', true, itemsKnobTab);
+      const itemTags = randomTags(number(
+        'Number of tags',
+        2,
+        {
+          range: true,
+          min: 0,
+          max: 10,
+          step: 1,
+        },
+        itemsKnobTab,
+      ), true);
 
-      cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      });
-      const cards = [];
-      const cardsCount = itemsPerPage > resultNumber ? resultNumber : itemsPerPage;
-      const Card = viewItemAs === 'promo' ? PromoCard : NavigationCard;
-      for (let itr = 0; itr < cardsCount; itr += 1) {
-        cards.push(Card(cardsProps));
+      let itemComponentInstance;
+      let columnCount;
+      switch (viewItemAs) {
+        case 'promo-card':
+          itemComponentInstance = PromoCard;
+          columnCount = 3;
+          break;
+        case 'navigation-card':
+          itemComponentInstance = NavigationCard;
+          columnCount = 2;
+          break;
+        case 'snippet':
+          itemComponentInstance = Snippet;
+          columnCount = 1;
+          break;
+        default:
+          itemComponentInstance = PromoCard;
+      }
+
+      const items = [];
+      const itemsCount = itemsPerPage > resultNumber ? resultNumber : itemsPerPage;
+      for (let i = 0; i < itemsCount; i++) {
+        const itemProps = {
+          theme: itemTheme,
+          title: `Title ${randomSentence(randomInt(1, 5))}`,
+          date: new Date().toLocaleDateString('en-uk', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          }),
+          summary: `Summary ${randomSentence(randomInt(15, 25))}`,
+          url: randomUrl(),
+          image: itemWithImage ? {
+            url: demoImage(),
+            alt: 'Image alt text',
+          } : false,
+          size: 'large',
+          tags: itemTags,
+        };
+
+        items.push(itemComponentInstance(itemProps));
       }
 
       generalKnobs.rows = CivicThemeItemGrid({
         theme,
-        items: cards,
-        column_count: viewItemAs === 'promo' ? 3 : 2,
+        items,
+        column_count: columnCount,
         fill_width: false,
         with_background: generalKnobs.with_background,
       });
 
-      generalKnobs.results_count = boolean('With result count', true, generalKnobTab) ? `Showing ${cardsCount} of ${resultNumber}` : null;
-      generalKnobs.rows_above = boolean('With content above rows', true, generalKnobTab) ? 'Example content above rows' : null;
-      generalKnobs.rows_below = boolean('With content below rows', true, generalKnobTab) ? 'Example content below rows' : null;
+      generalKnobs.results_count = boolean('With result count', true, generalKnobTab) ? `Showing ${itemsCount} of ${resultNumber}` : null;
+      generalKnobs.rows_above = boolean('With content above rows', true, generalKnobTab) ? `Example content above rows ${randomSentence(randomInt(10, 75))}` : null;
+      generalKnobs.rows_below = boolean('With content below rows', true, generalKnobTab) ? `Example content below rows${randomSentence(randomInt(10, 75))}` : null;
     }
   }
 
