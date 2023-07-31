@@ -125,7 +125,19 @@
               <div class="container">
                 <div class="row">
                   <div class="col-xxs-12 ct-list__rows-above">
-                      {{ rows_above }}
+                    {% if rows_above is not iterable %}
+                      {% set rows_above = [rows_above] %}
+                    {% endif %}
+                    {% for rows_above_row in rows_above %}
+                      {% if rows_above_row is iterable %}
+                        {{ rows_above_row }}
+                      {% else %}
+                        {% include '@atoms/paragraph/paragraph.twig' with {
+                          content: rows_above_row,
+                          theme: theme,
+                        } only %}
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>
@@ -156,12 +168,20 @@
             {% if rows_below %}
               <div class="container">
                 <div class="row">
-                  <div class="col-xxs-12">
-                    {% include '@atoms/paragraph/paragraph.twig' with {
-                      content: rows_below,
-                      theme: theme,
-                      modifier_class: 'ct-list__rows-below',
-                    } only %}
+                  <div class="col-xxs-12 ct-list__rows-above">
+                    {% if rows_below is not iterable %}
+                      {% set rows_below = [rows_below] %}
+                    {% endif %}
+                    {% for rows_below_row in rows_below %}
+                      {% if rows_below_row is iterable %}
+                        {{ rows_below_row }}
+                      {% else %}
+                        {% include '@atoms/paragraph/paragraph.twig' with {
+                          content: rows_below_row,
+                          theme: theme,
+                        } only %}
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>
@@ -214,9 +234,9 @@
             <div class="container">
               <div class="row">
                 <div class="col-xxs-12">
-                    <div class="ct-list__pager">
-                      {{ pager }}
-                    </div>
+                  <div class="ct-list__pager">
+                    {{ pager }}
+                  </div>
                 </div>
               </div>
             </div>
