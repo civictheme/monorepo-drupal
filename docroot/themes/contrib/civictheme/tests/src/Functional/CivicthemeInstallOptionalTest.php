@@ -3,14 +3,15 @@
 namespace Drupal\Tests\civictheme\Functional;
 
 /**
- * Class CivicthemeInstallTest.
+ * Class CivicthemeInstallOptionalTest.
  *
- * Tests the installation of the Civictheme.
+ * Tests the installation of the CivicTheme with required and optional
+ * dependencies.
  *
  * @group civictheme:functional
  * @group site:functional
  */
-class CivicthemeInstallTest extends CivicthemeBrowserTestBase {
+class CivicthemeInstallOptionalTest extends CivicthemeBrowserTestBase {
 
   /**
    * Test that a theme can be installed.

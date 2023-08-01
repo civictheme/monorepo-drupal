@@ -53,6 +53,46 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
       }
     }
 
+    // Exclude hidden fields added by the optional modules.
+    if (fnmatch('core.entity_view_display.*', $name)) {
+      unset($data['hidden']['search_api_excerpt']);
+    }
+
+    // Exclude processing for some properties of the blocks.
+    if (fnmatch('block.block.civictheme_*', $name)) {
+      // Unset dependencies.
+      unset($data['dependencies']['content']);
+
+      if (!empty($data['dependencies']['module'])) {
+        foreach ($data['dependencies']['module'] as $key => $module_name) {
+          if (in_array($module_name, ['block_content'])) {
+            unset($data['dependencies']['module'][$key]);
+          }
+        }
+        if (empty($data['dependencies']['module'])) {
+          unset($data['dependencies']['module']);
+        }
+      }
+    }
+
+    // Exclude processing for some properties of the views.
+    if (fnmatch('views.view.civictheme_*', $name) && !str_contains($name, 'example') && !str_contains($name, 'test')) {
+      if (!empty($data['display'])) {
+        foreach (array_keys($data['display']) as $display_name) {
+          if (!empty($data['display'][$display_name]['display_options']['display_extenders'])) {
+            foreach (array_keys($data['display'][$display_name]['display_options']['display_extenders']) as $extender_name) {
+              if (str_starts_with($extender_name, 'simple_sitemap')) {
+                unset($data['display'][$display_name]['display_options']['display_extenders'][$extender_name]);
+              }
+            }
+            if (empty($data['display'][$display_name]['display_options']['display_extenders'])) {
+              unset($data['display'][$display_name]['display_options']['display_extenders']);
+            }
+          }
+        }
+      }
+    }
+
     return $data;
   }
 
