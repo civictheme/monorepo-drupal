@@ -1,0 +1,132 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_summary
+    - field.storage.node.field_c_n_components
+    - field.storage.paragraph.field_c_p_content
+    - field.storage.paragraph.field_c_p_summary
+    - field.storage.paragraph.field_c_p_title
+    - search_api.server.civictheme_database
+  module:
+    - paragraphs
+    - node
+    - search_api
+id: civictheme_content
+name: Content
+description: ''
+read_only: false
+field_settings:
+  field_c_n_summary:
+    label: Summary
+    datasource_id: 'entity:node'
+    property_path: field_c_n_summary
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_summary
+  field_c_p_content:
+    label: 'Components » Paragraph » Content » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_content:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_content
+      module:
+        - paragraphs
+  field_c_p_summary:
+    label: 'Components » Paragraph » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_summary
+      module:
+        - paragraphs
+  field_c_p_title:
+    label: 'Components » Paragraph » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_title
+      module:
+        - paragraphs
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected:
+        - civictheme_alert
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_type: {  }
+  ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - field_c_n_summary
+      - field_c_p_content
+      - field_c_p_summary
+      - field_c_p_title
+      - title
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: civictheme_database

@@ -702,15 +702,20 @@ function _civictheme_provision__blocks__search(array $block) {
   $search_path = '/search';
   $fallback_path = '/';
 
-  /** @var \Drupal\path_alias\AliasRepositoryInterface $alias_repository */
-  $alias_repository = \Drupal::service('path_alias.repository');
-  $alias = $alias_repository->lookupByAlias($search_path, \Drupal::languageManager()->getCurrentLanguage()->getId());
-  $uri = 'internal:' . ($alias ? $alias['path'] : $fallback_path);
+  $url_object = \Drupal::service('path.validator')->getUrlIfValid(ltrim($search_path, '/'));
+
+  if (!$url_object instanceof Url) {
+    $search_path = $fallback_path;
+  }
+
+  if (!str_starts_with($search_path, 'internal:')) {
+    $search_path = 'internal:' . $search_path;
+  }
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_link = [
     'title' => 'Search',
-    'uri' => $uri,
+    'uri' => $search_path,
   ];
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());

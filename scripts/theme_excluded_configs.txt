@@ -136,6 +136,10 @@ paragraphs.settings
 pathauto.settings
 rdf.mapping.user.user
 redirect.settings
+search_api.index.civictheme_content
+search_api.server.civictheme_database
+search_api.settings
+search_api_db.settings
 seckit.settings
 securitytxt.settings
 seven.settings
@@ -190,6 +194,7 @@ views.view.archive
 views.view.block_content
 views.view.civictheme_automated_list_examples
 views.view.civictheme_automated_list_test
+views.view.civictheme_search
 views.view.civictheme_table_examples
 views.view.comment
 views.view.comments*

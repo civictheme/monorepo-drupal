@@ -30,6 +30,8 @@ use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\node\Entity\Node;
+use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
 /**
  * Defines application features from the specific context.
@@ -441,6 +443,39 @@ class FeatureContext extends DrupalContext {
       catch (\Exception $exception) {
         continue;
       }
+    }
+  }
+
+  /**
+   * Index a node with all Search API indices.
+   *
+   * @When I index :type :title for search
+   */
+  public function searchApiIndexContent($type, $title) {
+    $nids = $this->contentNodeLoadMultiple($type, [
+      'title' => $title,
+    ]);
+
+    if (empty($nids)) {
+      throw new \RuntimeException(sprintf('Unable to find %s page "%s"', $type, $title));
+    }
+
+    ksort($nids);
+    $nid = end($nids);
+    $node = Node::load($nid);
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $translations = array_keys($node->getTranslationLanguages());
+    $get_ids = function (string $langcode) use ($nid): string {
+      return $nid . ':' . $langcode;
+    };
+    $index_ids = array_map($get_ids, $translations);
+    $item_id = 'entity:node/' . $nid . ':' . reset($translations);
+
+    $indexes = ContentEntity::getIndexesForEntity($node);
+    foreach ($indexes as $index) {
+      $index->trackItemsInserted('entity:node', $index_ids);
+      $index->indexSpecificItems([$item_id => $index->loadItem($item_id)]);
     }
   }
 

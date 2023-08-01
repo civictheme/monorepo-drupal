@@ -24,5 +24,8 @@
         "drupal/redirect": "^1.8",
         "drupal/simple_sitemap": "^4.1",
         "drupal/webform": "^6.1"
+    },
+    "suggest": {
+        "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
     }
 }

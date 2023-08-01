@@ -631,4 +631,9 @@ config_devel:
     - block.block.civictheme_signup
     - linkit.linkit_profile.civictheme
     - media.settings
+    - search_api.index.civictheme_content
+    - search_api.server.civictheme_database
+    - search_api.settings
+    - search_api_db.settings
+    - views.view.civictheme_search
 #;> DEVELOPMENT
