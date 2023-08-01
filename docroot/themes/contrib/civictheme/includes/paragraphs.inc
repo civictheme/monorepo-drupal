@@ -226,14 +226,14 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(&$variables)
 /**
  * Pre-process for Summary node field.
  */
-function _civictheme_preprocess_paragraph__node_field__summary(&$variables, $card_type = NULL) {
+function _civictheme_preprocess_paragraph__node_field__summary(&$variables, $bundle = NULL) {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
     if (!empty($summary)) {
       $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
 
-      $card_name = _civictheme_get_card_name_from_bundle($card_type ?? $variables['paragraph']->bundle() ?? 'none');
+      $card_name = _civictheme_get_card_name_from_bundle($bundle ?? (!empty($variables['paragraph']) && $variables['paragraph']->bundle()) ?? 'none');
       if ($card_name) {
         $length = civictheme_get_theme_config_manager()->loadForComponent($card_name, 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
       }

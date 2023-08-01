@@ -75,6 +75,13 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Snippet type name.
+   */
+  public static function civicthemeSnippetType() {
+    return 'civictheme_snippet';
+  }
+
+  /**
    * Available theme names.
    */
   public static function civicthemeThemes() {
@@ -764,9 +771,9 @@ trait CsGeneratedContentCivicthemeTrait {
       return NULL;
     }
 
-    if (!empty($options['cards']) && count($options['cards']) > 0) {
-      $cards = $options['cards'];
-      unset($options['cards']);
+    if (!empty($options['list_items']) && count($options['list_items']) > 0) {
+      $list_items = $options['list_items'];
+      unset($options['list_items']);
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_manual_list', $node, $field_name, $options);
@@ -776,12 +783,12 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     // Slider slide.
-    if (!empty($cards)) {
-      foreach ($cards as $card_options) {
-        if (!empty($card_options['type'])) {
-          $type = $card_options['type'];
-          unset($card_options['type']);
-          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $card_options, TRUE);
+    if (!empty($list_items)) {
+      foreach ($list_items as $list_item_options) {
+        if (!empty($list_item_options['type'])) {
+          $type = $list_item_options['type'];
+          unset($list_item_options['type']);
+          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $list_item_options, TRUE);
           if (!empty($card)) {
             $paragraph->field_c_p_list_items->appendItem($card);
           }

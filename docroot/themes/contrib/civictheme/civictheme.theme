@@ -44,6 +44,7 @@ require_once 'includes/system_main_block.inc';
 require_once 'includes/site_section.inc';
 require_once 'includes/skip_link.inc';
 require_once 'includes/slider.inc';
+require_once 'includes/snippet.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
 require_once 'includes/table.inc';
