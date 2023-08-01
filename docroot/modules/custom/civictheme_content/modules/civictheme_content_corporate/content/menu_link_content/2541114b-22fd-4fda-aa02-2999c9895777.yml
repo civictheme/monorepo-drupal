@@ -12,7 +12,7 @@ default:
       value: true
   title:
     -
-      value: 'Policies & legislation'
+      value: Policies
   menu_name:
     -
       value: civictheme-primary-navigation
