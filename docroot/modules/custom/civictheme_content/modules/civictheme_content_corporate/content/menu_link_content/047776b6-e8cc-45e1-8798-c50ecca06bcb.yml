@@ -4,8 +4,6 @@ _meta:
   uuid: 047776b6-e8cc-45e1-8798-c50ecca06bcb
   bundle: menu_link_content
   default_langcode: en
-  depends:
-    855f86ae-b6a9-477c-8827-6b13b5c8ff41: node
 default:
   enabled:
     -
@@ -18,7 +16,7 @@ default:
       value: civictheme-secondary-navigation
   link:
     -
-      target_uuid: 855f86ae-b6a9-477c-8827-6b13b5c8ff41
+      uri: 'https://www.civictheme.io/'
       title: ''
       options: {  }
   external:

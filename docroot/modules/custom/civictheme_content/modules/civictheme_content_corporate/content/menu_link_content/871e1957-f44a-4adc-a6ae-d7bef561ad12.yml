@@ -33,7 +33,7 @@ default:
       value: -49
   expanded:
     -
-      value: false
+      value: true
   parent:
     -
       value: 'menu_link_content:0457b4f7-1a43-4719-8493-c1aa9d92464e'

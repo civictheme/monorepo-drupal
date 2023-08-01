@@ -59,6 +59,9 @@ default:
   field_c_n_banner_background:
     -
       entity: 04ee0921-1bea-4795-b670-3b0f75b17645
+  field_c_n_banner_blend_mode:
+    -
+      value: multiply
   field_c_n_banner_components:
     -
       entity:
@@ -269,9 +272,6 @@ default:
   field_c_n_banner_type:
     -
       value: large
-  field_c_n_banner_blend_mode:
-    -
-      value: multiply
   field_c_n_components:
     -
       entity:
