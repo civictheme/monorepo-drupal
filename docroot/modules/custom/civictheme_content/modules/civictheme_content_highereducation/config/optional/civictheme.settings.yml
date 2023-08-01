@@ -9,14 +9,14 @@ components:
     primary:
       light:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_desktop.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_desktop.svg
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_mobile.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_mobile.svg
       dark:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_desktop.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_desktop.svg
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_mobile.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_mobile.svg
     secondary:
       light:
         desktop:
@@ -75,6 +75,25 @@ colors:
       brand2: '#004b51'
       brand3: '#28ccff'
   palette:
+    light:
+      heading: '#033334'
+      body: '#334747'
+      background_light: '#fdfdfd'
+      background: '#eeeeee'
+      background_dark: '#bebebe'
+      border_light: '#b2b2b2'
+      border: '#5f5f5f'
+      border_dark: '#171717'
+      interaction_text: '#fbfbfb'
+      interaction_background: '#088183'
+      interaction_hover_text: '#fbfbfb'
+      interaction_hover_background: '#044d4e'
+      interaction_focus: '#8b5cd7'
+      highlight: '#1da593'
+      information: '#007cbf'
+      warning: '#f5ae5c'
+      error: '#ed6b5e'
+      success: '#1ea593'
     dark:
       heading: '#f3fcfb'
       body: '#dbf7f3'
@@ -94,22 +113,3 @@ colors:
       warning: '#e38444'
       error: '#e85653'
       success: '#12b0ae'
-    light:
-      background: '#eeeeee'
-      border: '#5f5f5f'
-      highlight: '#1da593'
-      heading: '#033334'
-      body: '#334747'
-      background_light: '#fdfdfd'
-      background_dark: '#bebebe'
-      border_light: '#b2b2b2'
-      border_dark: '#171717'
-      interaction_text: '#fbfbfb'
-      interaction_background: '#088183'
-      interaction_hover_text: '#fbfbfb'
-      interaction_hover_background: '#044d4e'
-      interaction_focus: '#8b5cd7'
-      information: '#007cbf'
-      warning: '#f5ae5c'
-      error: '#ed6b5e'
-      success: '#1ea593'
