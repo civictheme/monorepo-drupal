@@ -653,6 +653,13 @@ function _civictheme_provision__blocks__menu_blocks() {
   civictheme_provision_place_block('Side Navigation', 'sidebar', NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
+    'visibility' => [
+      'request_path' => [
+        'id' => 'request_path',
+        'negate' => TRUE,
+        'pages' => '/search',
+      ],
+    ],
   ]);
   civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
     'plugin' => 'menu_block:civictheme-footer',
