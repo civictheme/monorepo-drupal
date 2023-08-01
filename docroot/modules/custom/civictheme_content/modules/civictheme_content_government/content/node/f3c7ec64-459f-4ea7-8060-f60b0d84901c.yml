@@ -38,6 +38,9 @@ default:
       alias: /policy-and-forms
       langcode: en
       pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_components:
     -
       entity:
@@ -57,6 +60,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -79,9 +85,6 @@ default:
   field_c_n_banner_type:
     -
       value: inherit
-  field_c_n_banner_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:
