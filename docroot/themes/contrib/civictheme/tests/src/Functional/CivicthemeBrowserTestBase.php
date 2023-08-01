@@ -14,46 +14,6 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
-    'block',
-    'block_content',
-    'ckeditor',
-    'components',
-    'config',
-    'content_moderation',
-    'datetime_range',
-    'field',
-    'field_group',
-    'file',
-    'help',
-    'image',
-    'inline_form_errors',
-    'layout_builder',
-    'layout_builder_restrictions',
-    'layout_discovery',
-    'layout_test',
-    'linkit',
-    'media',
-    'media_library',
-    'menu_block',
-    'migrate',
-    'node',
-    'options',
-    'paragraphs',
-    'path_alias',
-    'pathauto',
-    'redirect',
-    'rest',
-    'shortcut',
-    'system',
-    'taxonomy',
-    'user',
-    'webform',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
   protected $defaultTheme = 'stark';
 
   /**
@@ -64,11 +24,26 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
   protected $customTheme = 'civictheme';
 
   /**
+   * Whether to install optional dependencies.
+   *
+   * @var bool
+   */
+  protected $optionalDependencies = TRUE;
+
+  /**
    * {@inheritdoc}
    */
   public function setUp(): void {
     parent::setUp();
 
+    $container = $this->container;
+
+    require_once dirname($container->get('theme_handler')->rebuildThemeData()[$this->customTheme]->getPathname()) . '/theme-settings.provision.inc';
+    $modules = _civictheme_get_theme_dependencies($this->customTheme, $this->optionalDependencies);
+    $container->get('module_installer')->install($modules);
+
+    // Refresh container after installing modules.
+    $this->container = \Drupal::getContainer();
     $container = $this->container;
 
     // Ensure the default theme is installed.

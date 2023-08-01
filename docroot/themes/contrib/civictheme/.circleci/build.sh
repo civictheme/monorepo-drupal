@@ -167,17 +167,17 @@ ln -s "$(pwd)"/* "${BUILD_DIR}/web/themes/${THEME}" && rm "${BUILD_DIR}/web/them
 ########################################
 
 echo "  > Enabling theme ${THEME} dependent modules."
-"${BUILD_DIR}/vendor/bin/drush" php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
 
 echo "  > Enabling theme ${THEME}."
 "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" theme:install "${THEME}" -y
 "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" cr
 
 echo "  > Setting theme ${THEME} as default."
-"${BUILD_DIR}/vendor/bin/drush" config:set system.theme default "${THEME}" -y
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" config:set system.theme default "${THEME}" -y
 
 echo "  > Provisioning content from theme defaults."
-"${BUILD_DIR}/vendor/bin/drush" php:eval -v "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_provision_cli();"
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_provision_cli();"
 
 ########################################
 
