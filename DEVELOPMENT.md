@@ -150,5 +150,4 @@ DREVOPS_DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_
 
 # Step 3: Export content and configuration.
 ahoy export-content
-ahoy drush cde civictheme_content_${CIVICTHEME_CONTENT_PROFILE:-default}
 ```
