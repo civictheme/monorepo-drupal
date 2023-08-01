@@ -38,6 +38,9 @@ default:
       alias: /news-and-events/department-citizens-invest-23-million-clinical-trials-brain-cancer
       langcode: en
       pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_components:
     -
       entity:
@@ -82,9 +85,6 @@ default:
   field_c_n_banner_type:
     -
       value: inherit
-  field_c_n_banner_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:
