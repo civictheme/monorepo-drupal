@@ -87,7 +87,7 @@ function civictheme_dev_post_update_update_side_navigation_block() {
   $block->setVisibilityConfig('request_path', [
     'id' => 'request_path',
     'negate' => TRUE,
-    'pages' => "/news-and-events\n\r*civictheme-no-sidebar*",
+    'pages' => "/search\n\r/news-and-events\n\r*civictheme-no-sidebar*",
   ]);
   $block->save();
 }
