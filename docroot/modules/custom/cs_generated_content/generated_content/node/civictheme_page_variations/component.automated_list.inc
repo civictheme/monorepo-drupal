@@ -95,6 +95,46 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
 
+    // All. Snippet.
+    [
+      'title' => 'Page. Component. Automated list, All, View as Snippet, Unlimited, Title, Content, Above link, Below link, Both space, Background',
+      'no_sidebar' => TRUE,
+      'components' => [
+        [
+          'type' => 'automated_list',
+          'title' => 'Automated list title Light',
+          'content' => $helper::staticSentenceFieldValue(),
+          'list_type' => $helper::civicthemeAutomatedListType(),
+          'list_link_above' => $helper::staticLinkFieldValue(),
+          'list_link_below' => $helper::staticLinkFieldValue(),
+          'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeUnlimited(),
+          'list_limit' => 0,
+          'list_column_count' => 1,
+          'list_item_view_as' => $helper::civicthemeSnippetType(),
+          'list_item_theme' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+          'background' => TRUE,
+        ],
+        [
+          'type' => 'automated_list',
+          'title' => 'Automated list title Dark',
+          'content' => $helper::staticSentenceFieldValue(),
+          'list_type' => $helper::civicthemeAutomatedListType(),
+          'list_link_above' => $helper::staticLinkFieldValue(),
+          'list_link_below' => $helper::staticLinkFieldValue(),
+          'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeUnlimited(),
+          'list_limit' => 0,
+          'list_column_count' => 1,
+          'list_item_view_as' => $helper::civicthemeSnippetType(),
+          'list_item_theme' => $helper::civicthemeThemeDark(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+
     // Page. Promo card.
     [
       'title' => 'Page. Component. Automated list, Light, Pages, View as Promo card, Light card, Unlimited, Title, Content, Above link, Below link, Both space, Background',
@@ -119,7 +159,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         ],
       ],
     ],
-
     // Page. Navigation card.
     [
       'title' => 'Page. Component. Automated list, Light, Pages, View as Navigation card, Light card, Unlimited, Title, Content, Above link, Below link, Both space, Background',
@@ -137,6 +176,30 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'list_limit' => 0,
           'list_column_count' => 2,
           'list_item_view_as' => $helper::civicthemeNavigationCardType(),
+          'list_item_theme' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    // Page. Snippet.
+    [
+      'title' => 'Page. Component. Automated list, Light, Pages, View as Snippet, Light card, Unlimited, Title, Content, Above link, Below link, Both space, Background',
+      'no_sidebar' => TRUE,
+      'components' => [
+        [
+          'type' => 'automated_list',
+          'title' => 'Automated list title',
+          'content' => $helper::staticSentenceFieldValue(),
+          'list_type' => $helper::civicthemeAutomatedListType(),
+          'list_link_above' => $helper::staticLinkFieldValue(),
+          'list_link_below' => $helper::staticLinkFieldValue(),
+          'list_content_type' => $helper::civicthemePageContentType(),
+          'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeUnlimited(),
+          'list_limit' => 0,
+          'list_column_count' => 1,
+          'list_item_view_as' => $helper::civicthemeSnippetType(),
           'list_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
@@ -186,6 +249,30 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'list_limit' => 0,
           'list_column_count' => 2,
           'list_item_view_as' => $helper::civicthemeNavigationCardType(),
+          'list_item_theme' => $helper::civicthemeThemeLight(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    // Event. Snippet.
+    [
+      'title' => 'Page. Component. Automated list, Light, Pages, View as Snippet, Light card, Unlimited, Title, Content, Above link, Below link, Both space, Background',
+      'no_sidebar' => TRUE,
+      'components' => [
+        [
+          'type' => 'automated_list',
+          'title' => 'Automated list title',
+          'content' => $helper::staticSentenceFieldValue(),
+          'list_type' => $helper::civicthemeAutomatedListType(),
+          'list_link_above' => $helper::staticLinkFieldValue(),
+          'list_link_below' => $helper::staticLinkFieldValue(),
+          'list_content_type' => $helper::civicthemeEventContentType(),
+          'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeUnlimited(),
+          'list_limit' => 0,
+          'list_column_count' => 1,
+          'list_item_view_as' => $helper::civicthemeSnippetType(),
           'list_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),

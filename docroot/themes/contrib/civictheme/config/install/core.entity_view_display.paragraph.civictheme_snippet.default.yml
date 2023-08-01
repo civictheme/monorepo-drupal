@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_snippet.field_c_p_link
+    - field.field.paragraph.civictheme_snippet.field_c_p_summary
+    - field.field.paragraph.civictheme_snippet.field_c_p_theme
+    - field.field.paragraph.civictheme_snippet.field_c_p_title
+    - field.field.paragraph.civictheme_snippet.field_c_p_topics
+    - paragraphs.paragraphs_type.civictheme_snippet
+  module:
+    - link
+    - options
+id: paragraph.civictheme_snippet.default
+targetEntityType: paragraph
+bundle: civictheme_snippet
+mode: default
+content:
+  field_c_p_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_c_p_summary:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_c_p_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_topics:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }
