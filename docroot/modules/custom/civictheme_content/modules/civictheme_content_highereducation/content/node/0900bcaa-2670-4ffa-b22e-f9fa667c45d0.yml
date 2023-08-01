@@ -39,6 +39,9 @@ default:
   field_c_n_banner_background:
     -
       entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -48,9 +51,6 @@ default:
   field_c_n_banner_type:
     -
       value: default
-  field_c_n_banner_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:
