@@ -36,6 +36,9 @@ default:
       alias: /news-and-events
       langcode: en
       pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_hide_breadcrumb:
     -
       value: false
@@ -45,9 +48,6 @@ default:
   field_c_n_banner_type:
     -
       value: default
-  field_c_n_banner_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:

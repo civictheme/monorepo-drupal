@@ -22,12 +22,12 @@ default:
   field_c_b_background_image:
     -
       entity: e2b603ff-038b-4c31-bf8d-6e4eb7346b72
-  field_c_b_banner_type:
-    -
-      value: default
   field_c_b_banner_blend_mode:
     -
       value: soft-light
+  field_c_b_banner_type:
+    -
+      value: default
   field_c_b_theme:
     -
       value: dark

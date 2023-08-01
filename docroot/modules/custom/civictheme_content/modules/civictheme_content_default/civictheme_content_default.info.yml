@@ -6,3 +6,9 @@ package: CivicTheme
 dependencies:
   - default_content:default_content
   - civictheme_content:civictheme_content
+
+#;< DEVELOPMENT
+config_devel:
+  optional:
+    - civictheme.settings
+#;> DEVELOPMENT
