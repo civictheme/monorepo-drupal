@@ -2,11 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_c_n_summary
     - field.storage.node.field_c_n_components
     - field.storage.paragraph.field_c_p_content
+    - field.storage.paragraph.field_c_p_list_items
+    - field.storage.paragraph.field_c_p_subtitle
     - field.storage.paragraph.field_c_p_summary
     - field.storage.paragraph.field_c_p_title
+    - field.storage.node.field_c_n_summary
     - search_api.server.civictheme_database
   module:
     - paragraphs
@@ -55,6 +57,54 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_title
+      module:
+        - paragraphs
+  manual_list_items_field_c_p_content:
+    label: 'Components » Paragraph » List items » Paragraph » Content » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_list_items:entity:field_c_p_content:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_content
+        - field.storage.paragraph.field_c_p_list_items
+      module:
+        - paragraphs
+  manual_list_items_field_c_p_subtitle:
+    label: 'Components » Paragraph » List items » Paragraph » Subtitle'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_list_items:entity:field_c_p_subtitle'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_list_items
+        - field.storage.paragraph.field_c_p_subtitle
+      module:
+        - paragraphs
+  manual_list_items_field_c_p_summary:
+    label: 'Components » Paragraph » List items » Paragraph » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_list_items:entity:field_c_p_summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_list_items
+        - field.storage.paragraph.field_c_p_summary
+      module:
+        - paragraphs
+  manual_list_items_field_c_p_title:
+    label: 'Components » Paragraph » List items » Paragraph » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_c_n_components:entity:field_c_p_list_items:entity:field_c_p_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_c_n_components
+        - field.storage.paragraph.field_c_p_list_items
         - field.storage.paragraph.field_c_p_title
       module:
         - paragraphs
