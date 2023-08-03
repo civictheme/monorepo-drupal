@@ -20,10 +20,10 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "drevops/behat-format-progress-fail": "^1",
         "drevops/behat-screenshot": "^1",
-        "drevops/behat-steps": "^1",
+        "drevops/behat-steps": "^1.5",
         "drupal/coder": "8.3.16",
         "drupal/core-dev": "^9",
-        "drupal/drupal-extension": "^4",
+        "drupal/drupal-extension": "dev-feature/drupal-10 as 4.2.1-dev",
         "phpcompatibility/php-compatibility": "^9.0",
         "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
@@ -42,7 +42,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.1"
+            "php": "8.1.17"
         },
         "process-timeout": 0,
         "sort-packages": true,
@@ -64,18 +64,13 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/migrate_file": {
-            "type": "package",
-            "package": {
-                "name": "drupal/migrate_file",
-                "type": "drupal-module",
-                "version": "2.1.1",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/issue/migrate_file-3288621.git",
-                    "reference": "9b971e83cc54acc84166bee794a82b577a161804"
-                }
-            }
+        "drupal/drupal-driver": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/DrupalDriver"
+        },
+        "drupal/drupal-extension": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/drupalextension"
         },
         "drupal": {
             "type": "composer",
@@ -114,7 +109,7 @@
             "Utilities\\composer\\DrupalSettings::create"
         ]
     },
-    "minimum-stability": "alpha",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "composer-exit-on-patch-failure": true,
@@ -123,12 +118,8 @@
         },
         "patches": {
             "drupal/core": {
-                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch",
-                "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch"
-            },
-            "drupal/webform": {
-                "PHP 8.1: webform_css_alter warning - https://www.drupal.org/project/webform/issues/3278191#comment-14501334": "https://www.drupal.org/files/issues/2022-05-02/webform-3278191-3.patch"
+                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests": "https://www.drupal.org/files/issues/2023-03-30/3249443-d-9-5-43.patch",
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
             }
         },
         "drupal-scaffold": {
@@ -143,6 +134,7 @@
                 "[web-root]/example.gitignore": false,
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.txt": false,
+                "[web-root]/robots.txt": false,
                 "[web-root]/sites/example.settings.local.php": false,
                 "[web-root]/sites/example.sites.php": false,
                 "[web-root]/web.config": false
@@ -195,7 +187,6 @@
                 "docroot/themes/contrib/civictheme/composer.json",
                 "docroot/modules/custom/civictheme_govcms/composer.json",
                 "docroot/modules/custom/civictheme_admin/composer.json",
-                "docroot/modules/custom/civictheme_migrate/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",
                 "docroot/modules/custom/cs_generated_content/composer.json"

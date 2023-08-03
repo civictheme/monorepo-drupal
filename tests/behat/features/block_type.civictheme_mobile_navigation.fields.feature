@@ -3,7 +3,7 @@ Feature: Mobile Navigation block fields
 
   @api
   Scenario: Fields appear as expected
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "block/add/civictheme_mobile_navigation"
     Then I should see an "[name='field_c_b_top[0][target_id]']" element
     And I should not see an "[name='field_c_b_top[0][target_id]'].required" element

@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_snippet_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_snippet_ref.field_c_p_theme
+    - paragraphs.paragraphs_type.civictheme_snippet_ref
+  module:
+    - options
+id: paragraph.civictheme_snippet_ref.default
+targetEntityType: paragraph
+bundle: civictheme_snippet_ref
+mode: default
+content:
+  field_c_p_reference:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

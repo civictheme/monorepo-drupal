@@ -149,13 +149,13 @@ GENERATEDSETTINGS;
     [
       'default' =>
         [
-          'database' => getenv('MARIADB_DATABASE') ?: (getenv('DREVOPS_MARIADB_DATABASE') ?: '${options['mysql_database']}'),
-          'username' => getenv('MARIADB_USERNAME') ?: (getenv('DREVOPS_MARIADB_USERNAME') ?: '${options['mysql_user']}'),
-          'password' => getenv('MARIADB_PASSWORD') ?: (getenv('DREVOPS_MARIADB_PASSWORD') ?: '${options['mysql_password']}'),
-          'host' => getenv('MARIADB_HOST') ?: (getenv('DREVOPS_MARIADB_HOST') ?: '${options['mysql_host']}'),
-          'port' => getenv('MARIADB_PORT') ?: (getenv('DREVOPS_MARIADB_PORT') ?: '${options['mysql_port']}'),
+          'database' => getenv('MARIADB_DATABASE') ?: (getenv('DREVOPS_MARIADB_DATABASE') ?: '{$options['mysql_database']}'),
+          'username' => getenv('MARIADB_USERNAME') ?: (getenv('DREVOPS_MARIADB_USERNAME') ?: '{$options['mysql_user']}'),
+          'password' => getenv('MARIADB_PASSWORD') ?: (getenv('DREVOPS_MARIADB_PASSWORD') ?: '{$options['mysql_password']}'),
+          'host' => getenv('MARIADB_HOST') ?: (getenv('DREVOPS_MARIADB_HOST') ?: '{$options['mysql_host']}'),
+          'port' => getenv('MARIADB_PORT') ?: (getenv('DREVOPS_MARIADB_PORT') ?: '{$options['mysql_port']}'),
           'driver' => 'mysql',
-          'prefix' => '${options['mysql_prefix']}',
+          'prefix' => '{$options['mysql_prefix']}',
         ],
     ],
 ];

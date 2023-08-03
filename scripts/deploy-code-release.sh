@@ -2,7 +2,7 @@
 ##
 # Deploy code release.
 #
-# Mirror code repository releases to another repository with logs created from
+# Push code repository releases to another repository with logs created from
 # the commits between release tags.
 #
 # Optionally, select which subdirectory in the source repository is copied to

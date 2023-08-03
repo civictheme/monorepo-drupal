@@ -17,6 +17,7 @@ use Drupal\block\Entity\Block;
 use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -409,6 +410,7 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
     'visibility' => [],
     'weight' => 0,
   ];
+  unset($settings['label_machine_name']);
 
   $values = [];
   // Remove extra values that do not belong in the settings array.
@@ -651,6 +653,13 @@ function _civictheme_provision__blocks__menu_blocks() {
   civictheme_provision_place_block('Side Navigation', 'sidebar', NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
+    'visibility' => [
+      'request_path' => [
+        'id' => 'request_path',
+        'negate' => TRUE,
+        'pages' => '/search',
+      ],
+    ],
   ]);
   civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
     'plugin' => 'menu_block:civictheme-footer',
@@ -681,7 +690,7 @@ function _civictheme_provision__blocks__banner(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
   $block_content->field_c_b_theme = 'dark';
-  $block_content->field_c_b_blend_mode = 'soft-light';
+  $block_content->field_c_b_banner_blend_mode = 'soft-light';
   $block_content->field_c_b_banner_type = 'default';
   $block_content->field_c_b_featured_image = civictheme_provision_load_media_by_name("demo_image.jpg");
   $block_content->save();
@@ -701,15 +710,20 @@ function _civictheme_provision__blocks__search(array $block) {
   $search_path = '/search';
   $fallback_path = '/';
 
-  /** @var \Drupal\path_alias\AliasRepositoryInterface $alias_repository */
-  $alias_repository = \Drupal::service('path_alias.repository');
-  $alias = $alias_repository->lookupByAlias($search_path, \Drupal::languageManager()->getCurrentLanguage()->getId());
-  $uri = 'internal:' . ($alias ? $alias['path'] : $fallback_path);
+  $url_object = \Drupal::service('path.validator')->getUrlIfValid(ltrim($search_path, '/'));
+
+  if (!$url_object instanceof Url) {
+    $search_path = $fallback_path;
+  }
+
+  if (!str_starts_with($search_path, 'internal:')) {
+    $search_path = 'internal:' . $search_path;
+  }
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_link = [
     'title' => 'Search',
-    'uri' => $uri,
+    'uri' => $search_path,
   ];
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
@@ -1010,23 +1024,69 @@ function civictheme_provision_permissions_map() {
  */
 
 /**
- * Helper to install modules required by CivicTheme.
+ * Install modules required by CivicTheme.
+ *
+ * This should be run before the theme is installed.
+ *
+ * @code
+ * drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
+ * @endcode
  *
  * @see https://www.drupal.org/node/2652542
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ *
+ * @param bool $include_optional
+ *   Whether to include optional dependencies. Defaults to TRUE.
+ *
+ * @throws \Drupal\Core\Extension\ExtensionNameLengthException
+ * @throws \Drupal\Core\Extension\MissingDependencyException
  */
-function civictheme_enable_modules() {
+function civictheme_enable_modules($include_optional = TRUE) {
+  $dependencies = _civictheme_get_theme_dependencies('civictheme', $include_optional);
+  \Drupal::getContainer()->get('module_installer')->install($dependencies);
+}
+
+/**
+ * Get dependencies of a theme.
+ *
+ * @param string $theme_name
+ *   The name of the theme.
+ * @param bool $include_optional
+ *   Whether to include optional dependencies. Defaults to TRUE.
+ *
+ * @return string[]
+ *   Array of dependency names.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ */
+function _civictheme_get_theme_dependencies(string $theme_name, $include_optional = TRUE) {
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
   $theme_handler = \Drupal::getContainer()->get('theme_handler');
   $theme_data = $theme_handler->rebuildThemeData();
 
-  if (!empty($theme_data['civictheme'])) {
-    $modules = array_keys($theme_data['civictheme']->module_dependencies);
-    /** @var \Drupal\Core\Extension\ModuleInstaller $module_installer */
-    $module_installer = \Drupal::getContainer()->get('module_installer');
-    $module_installer->install($modules);
+  // Merge dependencies from the theme's info file and from the 'optional'
+  // config. We are deliberately not including dependencies from the 'install'
+  // config to make sure that any unlisted required dependencies in the
+  // theme's .info file would trigger an error.
+  $dependencies = array_keys($theme_data['civictheme']->module_dependencies);
+
+  if ($include_optional) {
+    $theme_path = $theme_data[$theme_name]->subpath;
+    $config_storage = new FileStorage($theme_path . '/config/optional');
+
+    foreach ($config_storage->listAll() as $name) {
+      $config_dependencies = $config_storage->read($name)['dependencies'] ?? [];
+      if (!empty($config_dependencies)) {
+        $dependencies = array_merge($dependencies, $config_dependencies['module'] ?? []);
+      }
+    }
   }
 
+  $dependencies = array_unique($dependencies);
+  $dependencies = array_diff($dependencies, [$theme_name]);
+
+  return $dependencies;
 }
 
 /**

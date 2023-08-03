@@ -34,6 +34,9 @@ default:
       alias: /about-us
       langcode: en
       pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: soft-light
   field_c_n_banner_components:
     -
       entity:
@@ -78,9 +81,6 @@ default:
   field_c_n_banner_type:
     -
       value: inherit
-  field_c_n_blend_mode:
-    -
-      value: soft-light
   field_c_n_components:
     -
       entity:

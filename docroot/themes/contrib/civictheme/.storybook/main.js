@@ -5,9 +5,9 @@
 
 // Using Production version of the asset building Webpack configuration to
 // unify the building pipeline.
+const path = require('path');
 const { merge } = require('webpack-merge');
 const webpack = require('webpack');
-const path = require('path');
 const custom = require('../webpack/webpack.prod');
 const scssVariables = require('./importer.scss_variables');
 const iconUtils = require('../components/00-base/icon/icon.utils');

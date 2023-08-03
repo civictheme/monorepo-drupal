@@ -92,6 +92,9 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
+            image_alt:
+              label: 'Logo image "alt" text'
+              type: string
         header:
           type: mapping
           label: 'Header settings'
@@ -249,7 +252,7 @@ civictheme.settings:
           type: mapping
           label: 'Palette colors'
           mapping:
-            theme:
+            light:
               type: mapping
               label: Light
               mapping:
@@ -365,10 +368,6 @@ civictheme.settings:
                 success:
                   label: Success
                   type: string
-    migration:
+    optouts:
       type: mapping
-      label: Migration
-      mapping:
-        expose_metadata:
-          label: 'Expose migration metadata'
-          type: boolean
+      label: 'Opt-out flags'

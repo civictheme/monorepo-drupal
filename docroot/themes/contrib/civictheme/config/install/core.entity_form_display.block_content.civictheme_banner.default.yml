@@ -4,8 +4,8 @@ dependencies:
   config:
     - block_content.type.civictheme_banner
     - field.field.block_content.civictheme_banner.field_c_b_background_image
+    - field.field.block_content.civictheme_banner.field_c_b_banner_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_banner_type
-    - field.field.block_content.civictheme_banner.field_c_b_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_featured_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
   module:
@@ -22,15 +22,15 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
-  field_c_b_banner_type:
+  field_c_b_banner_blend_mode:
     type: options_select
-    weight: 1
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_c_b_blend_mode:
+  field_c_b_banner_type:
     type: options_select
-    weight: 4
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }

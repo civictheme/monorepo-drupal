@@ -9,6 +9,6 @@ Feature: Banner block fields
     And I should see an "[name='field_c_b_banner_type'].required" element
     And I should see an "[name='field_c_b_theme']" element
     And I should see an "[name='field_c_b_background_image[media_library_selection]']" element
-    And I should see an "[name='field_c_b_blend_mode']" element
-    And I should not see an "[name='field_c_b_blend_mode'].required" element
+    And I should see an "[name='field_c_b_banner_blend_mode']" element
+    And I should not see an "[name='field_c_b_banner_blend_mode'].required" element
     And I should see an "[name='field_c_b_featured_image[media_library_selection]']" element

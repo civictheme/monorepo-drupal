@@ -34,17 +34,6 @@ Mono-repo used to maintain CivicTheme and accompanying modules that are automati
 
 Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 
-## Build process
-
-1. Builds fresh site from GovCMS Drupal profile. Use `ahoy install-site` to rebuild.
-2. Enables additional modules required for development by installing `civictheme_dev` module.
-3. Enables `civictheme` theme and imports its configuration.
-4. Creates `civictheme_demo` sub-theme using provided scaffolding script and sets it as a default theme.
-5. Enables `civictheme_admin` module for admin UI enhancements.
-6. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
-7. Enables `civictheme_content` module to add default content to installation.
-8. Enables `civictheme_migrate` module to enable migrations.
-
 ## Development
 
 Please refer to [development documentation](DEVELOPMENT.md).
@@ -71,9 +60,12 @@ Please refer to [FAQs](FAQs.md).
 
 ## More about CivicTheme
 
-- [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme_library)
+- [CivicTheme UI kit](https://github.com/salsadigitalauorg/civictheme_library)
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
-- [Migrations for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_migrate)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
+
+---
+
+For additional information, please refer to the [Documentation site](https://docs.civictheme.io/)

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_banner_blend_mode
+    - node.type.civictheme_page
+  module:
+    - options
+id: node.civictheme_page.field_c_n_banner_blend_mode
+field_name: field_c_n_banner_blend_mode
+entity_type: node
+bundle: civictheme_page
+label: 'Banner background blend  mode'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: normal
+default_value_callback: ''
+settings: {  }
+field_type: list_string

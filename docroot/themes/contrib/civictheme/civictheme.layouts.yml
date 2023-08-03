@@ -16,7 +16,7 @@ civictheme_one_column_contained:
   template: layout--single-column-contained
   default_region: content
   icon_map:
-    - [first, second, second, third]
+    - [ content ]
   regions:
     content:
       label: Main content

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_banner
+    - field.storage.block_content.field_c_b_banner_blend_mode
+  module:
+    - options
+id: block_content.civictheme_banner.field_c_b_banner_blend_mode
+field_name: field_c_b_banner_blend_mode
+entity_type: block_content
+bundle: civictheme_banner
+label: 'Blend mode'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: normal
+default_value_callback: ''
+settings: {  }
+field_type: list_string

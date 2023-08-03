@@ -52,6 +52,9 @@ default:
   field_c_n_banner_background:
     -
       entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  field_c_n_banner_blend_mode:
+    -
+      value: overlay
   field_c_n_banner_components:
     -
       entity:
@@ -304,9 +307,6 @@ default:
   field_c_n_banner_type:
     -
       value: large
-  field_c_n_blend_mode:
-    -
-      value: overlay
   field_c_n_components:
     -
       entity:

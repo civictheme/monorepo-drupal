@@ -43,6 +43,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_components:
     -
       entity:
@@ -62,6 +65,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -94,6 +100,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -122,6 +131,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -149,6 +161,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -176,6 +191,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -203,6 +221,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -227,9 +248,6 @@ default:
   field_c_n_banner_type:
     -
       value: large
-  field_c_n_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:
@@ -249,6 +267,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -334,6 +355,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -366,6 +390,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
@@ -398,6 +425,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
@@ -430,6 +460,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
@@ -471,6 +504,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content:
             -
               value: 'Short summary area for the callout to promote any content.'

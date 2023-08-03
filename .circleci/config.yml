@@ -52,12 +52,6 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_admin.
   - &deploy_ssh_fingerprint5 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
 
-  # SSH key fingerprint to deploy code to civictheme_migrate.
-  - &deploy_ssh_fingerprint6 "2b:61:1c:7c:d1:f8:9b:63:dc:a7:10:c1:d6:0a:4f:b8"
-
-  # SSH key fingerprint to deploy code to Drupal.org
-  - &deploy_ssh_fingerprint7 "47:f9:29:8b:9b:1b:e9:66:5d:b3:f6:dd:e7:60:d1:f9"
-
   # SSH key fingerprint to mirror code.
   - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
 
@@ -92,8 +86,6 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
-      DEPLOY_SSH_FINGERPRINT6: *deploy_ssh_fingerprint6
-      DEPLOY_SSH_FINGERPRINT7: *deploy_ssh_fingerprint7
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
       - image: drevops/ci-builder
@@ -138,7 +130,7 @@ aliases:
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
         if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then cp -f .docker/Dockerfile.cli.sibling .docker/Dockerfile.cli; fi
-        if [ "$CIVICTHEME_SKIP_LIBRARY_INSTALL" = "1" ]; then cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli; fi
+        if [ "$CIVICTHEME_LIBRARY_INSTALL_SKIP" = "1" ]; then cp -f .docker/Dockerfile.cli.onlytheme .docker/Dockerfile.cli; fi
 
 ################################################################################
 # JOBS
@@ -210,7 +202,7 @@ job-build-no-persist: &job-build-no-persist
         command: ahoy lint
     - run:
         name: Lint theme config
-        command: ahoy lint config || true
+        command: ahoy lint config
     - run:
         name: Run tooling tests
         command: ./scripts/test-tooling.sh
@@ -230,6 +222,22 @@ job-build-no-persist: &job-build-no-persist
     - store_artifacts:
         path: *drevops_test_artifact_dir
 
+# Job to run isolated theme build.
+job-build-theme-isolated: &job-build-theme-isolated
+  steps:
+    - checkout
+    - run: mkdir -p ~/project2 && cp -r docroot/themes/contrib/civictheme ~/project2
+    - run: cd ~/project2/civictheme; ./.circleci/build.sh
+    - run: cd ~/project2/civictheme; ./.circleci/lint.sh
+    - run: cd ~/project2/civictheme; ./.circleci/test.sh
+    - run:
+        command: cd ~/project2/civictheme; ./.circleci/process-artifacts.sh
+        when: always
+    - store_test_results:
+        path: /tmp/test_results
+    - store_artifacts:
+        path: /tmp/artifacts
+
 job-mirror: &job-mirror
   steps:
     - attach_workspace:
@@ -247,20 +255,37 @@ job-mirror: &job-mirror
         # are using `develop` branch to build with 'default' profile.
         command: |
           set -x
-          profiles=()
-          profiles+=(content/corporate)
-          profiles+=(content/government)
-          profiles+=(content/highereducation)
+          branches=()
+          branches+=(content/corporate)
+          branches+=(content/government)
+          branches+=(content/highereducation)
           if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
-            for profile in "${profiles[@]}"
+            for branch in "${branches[@]}"
             do
-              GIT_MIRROR_BRANCH_DST="${profile}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
+              GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
               sleep 5
-              DREVOPS_DEPLOY_LAGOON_BRANCH="${profile}" DEPLOY_ACTION=deploy_override_db ahoy deploy
+              DREVOPS_DEPLOY_LAGOON_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ahoy deploy
             done
           fi
 
 jobs:
+
+  # Drupal 9, isolated theme build
+  build-theme-isolated-drupal9:
+    working_directory: ~/project
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+      DRUPAL_VERSION: 9.5
+      DRUPAL_PROJECT_SHA: 9.x
+    <<: *job-build-theme-isolated
+
+  build-theme-isolated-drupal10:
+    working_directory: ~/project
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+    <<: *job-build-theme-isolated
 
   # Drupal 9, minimal profile.
   build-drupal9-minimal:
@@ -268,6 +293,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_TEST_BEHAT_TAGS: smoke
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Drupal 9, minimal profile, 'corporate' content profile.
@@ -276,8 +302,9 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -287,8 +314,9 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -298,8 +326,9 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
@@ -325,8 +354,8 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
     <<: *job-build
 
   # Drupal 10, minimal profile.
@@ -336,6 +365,7 @@ jobs:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_TAGS: smoke
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, no subtheme.
@@ -344,8 +374,9 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_DRUPAL_VERSION: 10
-      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      CIVICTHEME_SKIP_LIBRARY_INSTALL: 1
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.
@@ -379,8 +410,8 @@ jobs:
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
-  # Deploy tags.
-  deploy_tags: &job_deploy_tags
+  # Deploy artifact.
+  deploy_artifact:
     <<: *container_config
     steps:
       #
@@ -397,72 +428,52 @@ jobs:
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
             - *deploy_ssh_fingerprint5
-            - *deploy_ssh_fingerprint6
-            - *deploy_ssh_fingerprint7
       - checkout
       - *step_process_codebase
       - run:
           name: Deploy release to CivicTheme Drupal theme repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
-            ./scripts/deploy-code-release.sh
-          no_output_timeout: 30m
-      - run:
-          name: Deploy release to Drupal.org.
-          command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT7 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=1.x \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Library repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme GovCMS repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Content repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - run:
           name: Deploy release to CivicTheme Admin repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT5 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
-            ./scripts/deploy-code-release.sh
-          no_output_timeout: 30m
-      - run:
-          name: Deploy release to CivicTheme Migrate repository.
-          command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT6 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_migrate.git \
-            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_migrate" \
-            ./scripts/deploy-code-release.sh
+            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=master \
+            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
+            ./scripts/deploy-code-commit.sh
           no_output_timeout: 30m
       - store_artifacts:
           path: *drevops_test_artifact_dir
@@ -476,6 +487,21 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
+
+      - build-theme-isolated-drupal9:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+
+      - build-theme-isolated-drupal10:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+
       - build-drupal9-govcms:
           filters:
             branches:
@@ -532,6 +558,8 @@ workflows:
               only: /.*/
       - deploy:
           requires:
+            - build-theme-isolated-drupal9
+            - build-theme-isolated-drupal10
             - build-drupal9-govcms-no-subtheme
             - build-drupal10-minimal-no-subtheme
           filters:
@@ -545,23 +573,22 @@ workflows:
               only: /main|master|develop|project\/uno|ci.*|deps\/.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
             tags:
               ignore: /.*/
-      - deploy_tags:
+
+      - deploy_artifact:
           requires:
-            - build-drupal9-govcms
+            - build-theme-isolated-drupal9
+            - build-theme-isolated-drupal10
             - build-drupal9-minimal
-            - build-drupal9-minimal-corporate
-            - build-drupal9-minimal-highereducation
-            - build-drupal9-minimal-government
-            - build-drupal9-govcms-sibling
             - build-drupal9-govcms-no-subtheme
+            - build-drupal9-govcms
             - build-drupal10-minimal
             - build-drupal10-minimal-no-subtheme
           filters:
             branches:
-              ignore: /.*/
+              only: develop
             tags:
-              # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
-              only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
+              ignore: /.*/
+
       - mirror-into-content-branches:
           requires:
             - build-drupal9-minimal

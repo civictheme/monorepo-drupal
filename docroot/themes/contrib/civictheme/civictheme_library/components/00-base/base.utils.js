@@ -108,6 +108,9 @@ export const demoImage = (idx) => {
     './assets/images/demo1.jpg',
     './assets/images/demo2.jpg',
     './assets/images/demo3.jpg',
+    './assets/images/demo4.jpg',
+    './assets/images/demo5.jpg',
+    './assets/images/demo6.jpg',
   ];
 
   idx = typeof idx !== 'undefined' ? Math.max(0, Math.min(idx, images.length)) : Math.floor(Math.random() * images.length);

@@ -4,19 +4,19 @@
   "description": "CivicTheme Starter Kit consumer Drupal sub-theme of CivicTheme Drupal theme",
   "license": "proprietary",
   "engines": {
-    "node": ">=16"
+    "node": ">=18.14"
   },
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
-    "build-storybook": "npm run gulp:build && build-storybook -s .storybook/static",
-    "storybook": "npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
-    "storybook-full": "STORYBOOK_FULL=1 npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
+    "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
+    "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && build-storybook -s .storybook/static",
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
+    "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
     "gulp:build": "gulp",
     "gulp:watch": "gulp watch",
     "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
-    "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
+    "dist": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
+    "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "export-colors": "php ../../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
     "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php storybook-static"
   },
@@ -32,7 +32,6 @@
     "@storybook/addons": "^6.1.18",
     "@storybook/html": "^6.3.8",
     "@storybook/preset-scss": "^1.0.3",
-    "@whitespace/storybook-addon-html": "^5.0.0",
     "addon-screen-reader": "^1.8.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",

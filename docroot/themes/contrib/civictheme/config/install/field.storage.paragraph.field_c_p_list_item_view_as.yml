@@ -16,6 +16,9 @@ settings:
     -
       value: civictheme_navigation_card
       label: 'Navigation card'
+    -
+      value: civictheme_snippet
+      label: Snippet
   allowed_values_function: ''
 module: options
 locked: false

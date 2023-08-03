@@ -90,8 +90,7 @@ services:
       dockerfile: .docker/Dockerfile.nginx-drupal
       args:
         CLI_IMAGE: *cli-image
-    <<: *default-volumes
-    <<: *default-user
+    <<: [*default-volumes, *default-user]
     environment:
       <<: *default-environment
     depends_on:
@@ -112,8 +111,7 @@ services:
       dockerfile: .docker/Dockerfile.php
       args:
         CLI_IMAGE: *cli-image
-    <<: *default-volumes
-    <<: *default-user
+    <<: [*default-volumes, *default-user]
     environment:
       <<: *default-environment
     depends_on:
@@ -129,7 +127,7 @@ services:
       context: .
       dockerfile: .docker/Dockerfile.mariadb
       args:
-        IMAGE: "${DREVOPS_DB_DOCKER_IMAGE:-uselagoon/mariadb-drupal:22.4.1}" # Use custom database image (if defined) or fallback to standard database image.
+        IMAGE: "${DREVOPS_DB_DOCKER_IMAGE:-uselagoon/mariadb-drupal:23.3.0}" # Use custom database image (if defined) or fallback to standard database image.
     environment:
       <<: *default-environment
     ports:

@@ -19,6 +19,6 @@ default:
       value: true
   field_c_b_link:
     -
-      uri: 'internal:/'
+      uri: 'internal:/search'
       title: Search
       options: {  }

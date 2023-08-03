@@ -9,6 +9,7 @@ namespace Drupal\Tests\civictheme\Unit;
  * Test cases for processing HTML link.
  *
  * @group CivicTheme
+ * @group site:unit
  */
 class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
 

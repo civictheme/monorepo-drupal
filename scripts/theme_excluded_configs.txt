@@ -41,7 +41,6 @@ block.block.civictheme_signup
 block.block.civictheme_social_links
 block.block.exposedformcivictheme_testpage_civictheme
 block_content.type.basic
-civictheme_migrate.settings
 coffee.configuration
 comment.*
 config_devel.settings
@@ -86,11 +85,14 @@ core.entity_view_mode.taxonomy_term.token
 core.entity_view_mode.user.compact
 core.entity_view_mode.user.full
 core.entity_view_mode.user.token
+core.entity_view_mode.webform.token
+core.entity_view_mode.webform_submission.token
 core.extension
 core.menu.static_menu_link_overrides
 dblog.settings
 encrypt.settings
 environment_indicator.settings
+event_log_track.*
 field.field.user.user.field_last_password_reset
 field.field.user.user.field_password_expiration
 field.field.user.user.field_pending_expire_sent
@@ -124,10 +126,9 @@ media.type.document*
 media.type.image*
 media.type.remote_video*
 media.type.video*
+media_file_delete.settings
 media_library.settings
 menu_ui.settings
-migrate_plus.migration.*
-migrate_plus.migration_group.civictheme_migrate
 node.settings
 node.type.article*
 node.type.page*
@@ -135,6 +136,10 @@ paragraphs.settings
 pathauto.settings
 rdf.mapping.user.user
 redirect.settings
+search_api.index.civictheme_content
+search_api.server.civictheme_database
+search_api.settings
+search_api_db.settings
 seckit.settings
 securitytxt.settings
 seven.settings
@@ -149,6 +154,7 @@ simple_sitemap.type.default_hreflang
 simple_sitemap.type.index
 simple_sitemap.types.*
 stage_file_proxy*
+syslog.settings
 system.action*
 system.advisories
 system.authorize
@@ -188,6 +194,7 @@ views.view.archive
 views.view.block_content
 views.view.civictheme_automated_list_examples
 views.view.civictheme_automated_list_test
+views.view.civictheme_search
 views.view.civictheme_table_examples
 views.view.comment
 views.view.comments*

@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ * Snippet component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot for bottom of Card.
+ * - title: [string] Title.
+ * - summary: [string] Summary.
+ * - link: [object] Link object:
+ *   - text: [string] Text.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - tags: [array] Array of tags.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class:[string] Additional classes.
+ */
+#}
+
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-snippet {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% block content %}
+      <div class="ct-snippet__content">
+        {% block content_top %}
+          {% if content_top is not empty %}
+            <div class="ct-snippet__content-top">
+              {{ content_top }}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block title %}
+          {% if title is not empty %}
+            {% set title_content %}
+              {% if with_link %}
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: title,
+                  url: link.url,
+                  is_new_window: link.is_new_window,
+                  is_external: false,
+                  modifier_class: 'ct-snippet__title__link',
+                } only %}
+              {% else %}
+                {{ title }}
+              {% endif %}
+            {% endset %}
+
+            {% include '@atoms/heading/heading.twig' with {
+              content: title_content,
+              level: 4,
+              theme: theme,
+              modifier_class: 'ct-snippet__title',
+            } only %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content_middle %}
+          {% if content_middle is not empty %}
+            <div class="ct-snippet__content-middle">
+              {{ content_middle }}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block summary %}
+          {% if summary is not empty %}
+            {% include '@atoms/paragraph/paragraph.twig' with {
+              theme: theme,
+              content: summary,
+              allow_html: true,
+              modifier_class: 'ct-snippet__summary',
+            } only %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content_tags %}
+          {% if tags or with_link %}
+            <div class="ct-snippet__tags">
+              {% if tags %}
+                {% include '@molecules/tag-list/tag-list.twig' with {
+                  theme: theme,
+                  tags: tags,
+                } only %}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block content_bottom %}
+          {% if content_bottom is not empty %}
+            <div class="ct-snippet__content-bottom">
+              {{ content_bottom }}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

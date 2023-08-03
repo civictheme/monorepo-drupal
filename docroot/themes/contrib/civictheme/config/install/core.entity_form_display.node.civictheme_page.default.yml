@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.civictheme_page.field_c_n_banner_background
+    - field.field.node.civictheme_page.field_c_n_banner_blend_mode
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
@@ -10,7 +11,6 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
-    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -105,7 +105,7 @@ third_party_settings:
     group_banner_background:
       children:
         - field_c_n_banner_background
-        - field_c_n_blend_mode
+        - field_c_n_banner_blend_mode
       label: Background
       region: content
       parent_name: group_civictheme_banner
@@ -151,7 +151,6 @@ third_party_settings:
         open: false
         description: ''
         required_fields: true
-        formatter: closed
     group_metadata:
       children:
         - field_c_n_topics
@@ -185,6 +184,12 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_c_n_banner_blend_mode:
+    type: options_select
+    weight: 15
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_c_n_banner_components:
     type: paragraphs
@@ -255,12 +260,6 @@ content:
   field_c_n_banner_type:
     type: options_buttons
     weight: 17
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_c_n_blend_mode:
-    type: options_select
-    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }

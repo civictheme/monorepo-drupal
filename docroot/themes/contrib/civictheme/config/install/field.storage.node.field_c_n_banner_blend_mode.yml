@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_c_n_banner_blend_mode
+field_name: field_c_n_banner_blend_mode
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: color
+      label: Color
+    -
+      value: color-burn
+      label: 'Color burn'
+    -
+      value: color-dodge
+      label: 'Color dodge'
+    -
+      value: darken
+      label: Darken
+    -
+      value: difference
+      label: Difference
+    -
+      value: exclusion
+      label: Exclusion
+    -
+      value: hard-light
+      label: 'Hard light'
+    -
+      value: hue
+      label: Hue
+    -
+      value: lighten
+      label: Lighten
+    -
+      value: luminosity
+      label: Luminosity
+    -
+      value: multiply
+      label: Multiply
+    -
+      value: normal
+      label: Normal
+    -
+      value: overlay
+      label: Overlay
+    -
+      value: saturation
+      label: Saturation
+    -
+      value: screen
+      label: Screen
+    -
+      value: soft-light
+      label: 'Soft light'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

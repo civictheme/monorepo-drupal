@@ -76,8 +76,12 @@ commands:
 
   cli:
     usage: Start a shell or run a command inside the CLI service container.
-    # The shell is started if no arguments were provided to this command.
-    cmd: if \[ "${#}" -ne 0 \]; then docker-compose exec -e COMPOSER=${COMPOSER:-} -T cli bash -c "$*"; else docker-compose exec cli bash; fi
+    # This will drop into shell if no arguments are supplied to this command.
+    # If arguments supplied, a new shell with DREVOPS_*, COMPOSE_* and TERM
+    # environment variables will be started. This allows passing of the environment
+    # variables to Ahoy commands which will then be forwarded to the container.
+    # Escape double quotes with \" (slash double-quote) when passing arguments with spaces.
+    cmd: if \[ "${#}" -ne 0 \]; then docker-compose exec $(env | cut -f1 -d= | grep "DREVOPS_\|COMPOSE_\|TERM" | sed 's/^/-e /') -T cli bash -c "$*"; else docker-compose exec cli bash; fi
 
   composer:
     usage: Run Composer commands in the CLI service container.
@@ -116,9 +120,9 @@ commands:
       -e DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=${DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP:-} \
       -e DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB=${DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB:-0} \
       -e DREVOPS_DRUPAL_PROFILE=${DREVOPS_DRUPAL_PROFILE:-standard} \
-      -e CIVICTHEME_SKIP_SUBTHEME_ACTIVATION=${CIVICTHEME_SKIP_SUBTHEME_ACTIVATION:-0} \
-      -e CIVICTHEME_SKIP_SUBTHEME_FE=${CIVICTHEME_SKIP_SUBTHEME_FE:-} \
-      -e CIVICTHEME_SKIP_GENERATED_CONTENT_CREATE=${CIVICTHEME_SKIP_GENERATED_CONTENT_CREATE:-} \
+      -e CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP:-0} \
+      -e CIVICTHEME_SUBTHEME_FE_SKIP=${CIVICTHEME_SUBTHEME_FE_SKIP:-} \
+      -e CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-} \
       -e CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-} \
       -T cli ./scripts/drevops/drupal-install-site.sh
 
@@ -147,13 +151,13 @@ commands:
   fei:
     usage: Install front-end assets.
     cmd: |
-      [ "${CIVICTHEME_SKIP_LIBRARY_INSTALL}" != "1" ] && ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library install"
+      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library install"
       ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
     cmd: |
-      [ "${CIVICTHEME_SKIP_LIBRARY_INSTALL}" != "1" ] && ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library && npm run build"
+      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library && npm run build"
       ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} && npm run build"
 
   lint:
@@ -210,7 +214,9 @@ commands:
     cmd: |
       ahoy cli "./scripts/update-theme-config.sh"
       ahoy drush cde civictheme_dev || true
-      ahoy drush cde cs_generated_content || true
+      if ahoy drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
+        ahoy drush cde cs_generated_content || true
+      fi
 
   export-content:
     usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .

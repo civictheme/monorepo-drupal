@@ -15,7 +15,7 @@ default:
       value: true
   uid:
     -
-      target_id: 18
+      target_id: 1
   name:
     -
       value: Rainforest.jpg

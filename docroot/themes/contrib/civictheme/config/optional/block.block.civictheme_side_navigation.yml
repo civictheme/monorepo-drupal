@@ -5,6 +5,7 @@ dependencies:
     - system.menu.civictheme-primary-navigation
   module:
     - menu_block
+    - system
   theme:
     - civictheme
 id: civictheme_side_navigation
@@ -16,15 +17,19 @@ plugin: 'menu_block:civictheme-primary-navigation'
 settings:
   id: 'menu_block:civictheme-primary-navigation'
   label: 'Side Navigation'
-  label_display: ''
+  label_display: '0'
   provider: menu_block
   follow: false
   follow_parent: child
+  label_link: false
+  label_type: block
   level: 1
   depth: 3
   expand_all_items: false
   parent: 'civictheme-primary-navigation:'
   suggestion: civictheme_primary_navigation
-  label_type: block
-  label_link: false
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /search

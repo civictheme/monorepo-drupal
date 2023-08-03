@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 533dd153-a9ad-48cb-8ddb-97b9050575d7
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: dummy1.txt
+  uri:
+    -
+      value: 'public://documents/2023-06/dummy1.txt'
+  filemime:
+    -
+      value: text/plain
+  filesize:
+    -
+      value: 26
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1687665240

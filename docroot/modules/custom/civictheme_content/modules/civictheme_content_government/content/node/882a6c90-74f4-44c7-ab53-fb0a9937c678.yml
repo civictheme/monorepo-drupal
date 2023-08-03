@@ -64,6 +64,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_address:
             -
               value: 'Citizenship Shire Council'

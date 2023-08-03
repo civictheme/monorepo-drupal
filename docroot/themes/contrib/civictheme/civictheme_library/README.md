@@ -1,6 +1,6 @@
-# CivicTheme component Library
+# CivicTheme UI kit
 
-CivicTheme component library with Storybook integration.
+CivicTheme UI component library with Storybook integration.
 
 ----
 
@@ -40,13 +40,6 @@ This will build:
 
     npm run storybook
 
-## Documentation
+---
 
-Please refer to dedicated [Documentation](docs/README.md).
-
-----
-
-## Other resources
-
-- [CivicTheme Source site](https://github.com/salsadigitalauorg/civictheme_source)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
+For additional information, please refer to the [Documentation site](https://docs.civictheme.io/ui-kit)

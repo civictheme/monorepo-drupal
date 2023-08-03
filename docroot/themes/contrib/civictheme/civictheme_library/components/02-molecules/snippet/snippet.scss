@@ -1,0 +1,34 @@
+//
+// Snippet component.
+//
+
+@use 'sass:map';
+
+.ct-snippet {
+  $root: &;
+
+  position: relative;
+  width: 100%;
+
+  #{$root}__content {
+    padding-top: ct-spacing(1);
+    padding-bottom: ct-spacing(1);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+  }
+
+  #{$root}__tags {
+    display: flex;
+    margin-top: ct-spacing(2);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}

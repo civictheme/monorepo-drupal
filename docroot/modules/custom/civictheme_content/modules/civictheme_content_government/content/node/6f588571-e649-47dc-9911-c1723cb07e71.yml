@@ -38,6 +38,9 @@ default:
       alias: /news-and-events/three-tips-driving-greener-save-money-and-support-more-sustainable-environment
       langcode: en
       pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
   field_c_n_banner_components:
     -
       entity:
@@ -82,9 +85,6 @@ default:
   field_c_n_banner_type:
     -
       value: inherit
-  field_c_n_blend_mode:
-    -
-      value: normal
   field_c_n_components:
     -
       entity:

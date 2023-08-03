@@ -4,8 +4,8 @@ Feature: Table render
   @api @testmode
   Scenario: Views page should show table with correct markup.
     Given civictheme_page content:
-      | title         | status | created              |
-      | [TEST] Page 1 | 1      | [relative:1 second ago] |
+      | title         | status | created                  |
+      | [TEST] Page 1 | 1      | [relative:1 second ago]  |
       | [TEST] Page 2 | 1      | [relative:2 seconds ago] |
       | [TEST] Page 3 | 1      | [relative:3 seconds ago] |
       | [TEST] Page 4 | 1      | [relative:4 seconds ago] |

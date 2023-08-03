@@ -1,4 +1,0 @@
-migration_type: "local"
-remote:
-  auth_type: 'none'
-

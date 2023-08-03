@@ -89,10 +89,11 @@ components:
 
 ckeditor_stylesheets:
   - dist/civictheme.editor.css
-
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civictheme`.
+# Do not add an empty line before this comment block or the downstream code
+# linting will fail on extra blank line.
 config_devel:
   install:
     - block.block.civictheme_content
@@ -158,6 +159,8 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_slider.default
     - core.entity_form_display.paragraph.civictheme_slider_slide.default
     - core.entity_form_display.paragraph.civictheme_slider_slide_ref.default
+    - core.entity_form_display.paragraph.civictheme_snippet.default
+    - core.entity_form_display.paragraph.civictheme_snippet_ref.default
     - core.entity_form_display.paragraph.civictheme_social_icon.default
     - core.entity_form_display.paragraph.civictheme_subject_card.default
     - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
@@ -217,6 +220,8 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_slider.default
     - core.entity_view_display.paragraph.civictheme_slider_slide.default
     - core.entity_view_display.paragraph.civictheme_slider_slide_ref.default
+    - core.entity_view_display.paragraph.civictheme_snippet.default
+    - core.entity_view_display.paragraph.civictheme_snippet_ref.default
     - core.entity_view_display.paragraph.civictheme_social_icon.default
     - core.entity_view_display.paragraph.civictheme_subject_card.default
     - core.entity_view_display.paragraph.civictheme_subject_card_ref.default
@@ -226,10 +231,11 @@ config_devel:
     - core.entity_view_mode.node.civictheme_navigation_card
     - core.entity_view_mode.node.civictheme_promo_card
     - core.entity_view_mode.node.civictheme_slider_slide
+    - core.entity_view_mode.node.civictheme_snippet
     - editor.editor.civictheme_rich_text
     - field.field.block_content.civictheme_banner.field_c_b_background_image
+    - field.field.block_content.civictheme_banner.field_c_b_banner_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_banner_type
-    - field.field.block_content.civictheme_banner.field_c_b_blend_mode
     - field.field.block_content.civictheme_banner.field_c_b_featured_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
     - field.field.block_content.civictheme_component_block.field_c_b_components
@@ -270,6 +276,7 @@ config_devel:
     - field.field.node.civictheme_event.field_c_n_topics
     - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - field.field.node.civictheme_page.field_c_n_banner_background
+    - field.field.node.civictheme_page.field_c_n_banner_blend_mode
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
@@ -277,7 +284,6 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
-    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -428,6 +434,13 @@ config_devel:
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_link_text
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
+    - field.field.paragraph.civictheme_snippet.field_c_p_link
+    - field.field.paragraph.civictheme_snippet.field_c_p_summary
+    - field.field.paragraph.civictheme_snippet.field_c_p_theme
+    - field.field.paragraph.civictheme_snippet.field_c_p_title
+    - field.field.paragraph.civictheme_snippet.field_c_p_topics
+    - field.field.paragraph.civictheme_snippet_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_snippet_ref.field_c_p_theme
     - field.field.paragraph.civictheme_social_icon.field_c_p_icon
     - field.field.paragraph.civictheme_social_icon.field_c_p_link
     - field.field.paragraph.civictheme_subject_card.field_c_p_image
@@ -441,8 +454,8 @@ config_devel:
     - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
+    - field.storage.block_content.field_c_b_banner_blend_mode
     - field.storage.block_content.field_c_b_banner_type
-    - field.storage.block_content.field_c_b_blend_mode
     - field.storage.block_content.field_c_b_bottom
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_featured_image
@@ -466,6 +479,7 @@ config_devel:
     - field.storage.node.field_c_n_alert_type
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
+    - field.storage.node.field_c_n_banner_blend_mode
     - field.storage.node.field_c_n_banner_components
     - field.storage.node.field_c_n_banner_components_bott
     - field.storage.node.field_c_n_banner_featured_image
@@ -473,7 +487,6 @@ config_devel:
     - field.storage.node.field_c_n_banner_theme
     - field.storage.node.field_c_n_banner_title
     - field.storage.node.field_c_n_banner_type
-    - field.storage.node.field_c_n_blend_mode
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
     - field.storage.node.field_c_n_custom_last_updated
@@ -581,6 +594,8 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_slider
     - paragraphs.paragraphs_type.civictheme_slider_slide
     - paragraphs.paragraphs_type.civictheme_slider_slide_ref
+    - paragraphs.paragraphs_type.civictheme_snippet
+    - paragraphs.paragraphs_type.civictheme_snippet_ref
     - paragraphs.paragraphs_type.civictheme_social_icon
     - paragraphs.paragraphs_type.civictheme_subject_card
     - paragraphs.paragraphs_type.civictheme_subject_card_ref
@@ -616,4 +631,9 @@ config_devel:
     - block.block.civictheme_signup
     - linkit.linkit_profile.civictheme
     - media.settings
+    - search_api.index.civictheme_content
+    - search_api.server.civictheme_database
+    - search_api.settings
+    - search_api_db.settings
+    - views.view.civictheme_search
 #;> DEVELOPMENT

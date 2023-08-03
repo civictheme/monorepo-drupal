@@ -30,6 +30,8 @@ use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\node\Entity\Node;
+use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
 /**
  * Defines application features from the specific context.
@@ -358,6 +360,123 @@ class FeatureContext extends DrupalContext {
     $url = Url::fromRoute('system.theme_settings_theme', ['theme' => $name]);
 
     $this->visitPath($url->toString());
+  }
+
+  /**
+   * Remove menu links by title.
+   *
+   * Fixed upstream method incorrectly throwing error on non-existing items.
+   *
+   * Provide menu link titles in the following format:
+   * | Test Menu    |
+   * | ...          |
+   *
+   * @Given no :menu_name menu_links:
+   */
+  public function menuLinksDelete($menu_name, TableNode $table) {
+    foreach ($table->getColumn(0) as $title) {
+      try {
+        $menu_link = $this->loadMenuLinkByTitle($title, $menu_name);
+        if ($menu_link) {
+          $menu_link->delete();
+        }
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
+  /**
+   * Remove block defined by machine name.
+   *
+   * @code
+   * Given no blocks:
+   * | user_login |
+   * @endcode
+   *
+   * @Given no blocks:
+   */
+  public function blockDelete(TableNode $table) {
+    foreach ($table->getColumn(0) as $id) {
+      try {
+        $block = \Drupal::entityTypeManager()
+          ->getStorage('block')
+          ->load($id);
+
+        if (empty($block)) {
+          throw new \Exception(sprintf('Unable to find block "%s"', $id));
+        }
+
+        $block->delete();
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
+  /**
+   * Remove block_content defined by info.
+   *
+   * @code
+   * Given no content blocks:
+   * | Component block |
+   * @endcode
+   *
+   * @Given no content blocks:
+   */
+  public function contentBlockDelete(TableNode $table) {
+    foreach ($table->getColumn(0) as $info) {
+      try {
+        $entities = \Drupal::entityTypeManager()
+          ->getStorage('block_content')
+          ->loadByProperties(['info' => $info]);
+
+        if (empty($entities)) {
+          throw new \Exception(sprintf('Unable to find block_content with info "%s"', $info));
+        }
+
+        $entity = reset($entities);
+        $entity->delete();
+      }
+      catch (\Exception $exception) {
+        continue;
+      }
+    }
+  }
+
+  /**
+   * Index a node with all Search API indices.
+   *
+   * @When I index :type :title for search
+   */
+  public function searchApiIndexContent($type, $title) {
+    $nids = $this->contentNodeLoadMultiple($type, [
+      'title' => $title,
+    ]);
+
+    if (empty($nids)) {
+      throw new \RuntimeException(sprintf('Unable to find %s page "%s"', $type, $title));
+    }
+
+    ksort($nids);
+    $nid = end($nids);
+    $node = Node::load($nid);
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $translations = array_keys($node->getTranslationLanguages());
+    $get_ids = function (string $langcode) use ($nid): string {
+      return $nid . ':' . $langcode;
+    };
+    $index_ids = array_map($get_ids, $translations);
+    $item_id = 'entity:node/' . $nid . ':' . reset($translations);
+
+    $indexes = ContentEntity::getIndexesForEntity($node);
+    foreach ($indexes as $index) {
+      $index->trackItemsInserted('entity:node', $index_ids);
+      $index->indexSpecificItems([$item_id => $index->loadItem($item_id)]);
+    }
   }
 
 }
