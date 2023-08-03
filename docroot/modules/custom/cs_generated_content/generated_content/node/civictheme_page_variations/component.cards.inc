@@ -25,7 +25,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_navigation_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -42,7 +42,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_navigation_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -65,7 +65,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_navigation_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
@@ -79,7 +79,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_navigation_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
@@ -100,7 +100,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_promo_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -136,7 +136,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_promo_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -178,7 +178,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_promo_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
@@ -192,7 +192,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'type' => 'manual_list',
           'column_count' => 2,
           'background' => TRUE,
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_promo_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
@@ -213,7 +213,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_event_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -275,7 +275,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_event_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -343,7 +343,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_event_card_ref',
               'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
@@ -357,7 +357,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'type' => 'manual_list',
           'column_count' => 2,
           'background' => TRUE,
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_event_card_ref',
               'reference' => $helper::staticNode($helper::civicthemeEventContentType())->id(),
@@ -378,7 +378,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_publication_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -402,7 +402,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_publication_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -433,7 +433,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_service_card',
               'title' => $helper::staticSentence(3),
@@ -452,7 +452,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_service_card',
               'title' => $helper::staticSentence(3),
@@ -478,7 +478,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_subject_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -500,7 +500,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_subject_card',
               'image' => $helper->staticMediaItem('civictheme_image'),
@@ -528,7 +528,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_subject_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
@@ -542,7 +542,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__cards() 
           'column_count' => 2,
           'background' => TRUE,
           'type' => 'manual_list',
-          'cards' => [
+          'list_items' => [
             [
               'type' => 'civictheme_subject_card_ref',
               'reference' => $helper::staticNode($helper::civicthemePageContentType())->id(),
