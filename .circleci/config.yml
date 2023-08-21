@@ -88,7 +88,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-builder
+      - image: drevops/ci-builder:23.7.0
         auth:
           username: $DREVOPS_DOCKER_REGISTRY_USERNAME
           password: $DREVOPS_DOCKER_REGISTRY_TOKEN
