@@ -1,7 +1,7 @@
 name: 'CivicTheme GovCMS'
 type: module
 description: 'GovCMS adjustments for CivicTheme theme.'
-core_version_requirement: ^9
+core_version_requirement: ^9 | ^10
 package: CivicTheme
 dependencies:
   - govcms:govcms
