@@ -1,0 +1,59 @@
+{
+    "extends": ["config:base"],
+    "branchPrefix": "deps/",
+    "labels": ["dependencies"],
+    "assignees": [],
+    "ignorePresets": [":prHourlyLimit2"],
+    "rangeStrategy": "update-lockfile",
+    "timezone": "Australia/Melbourne",
+    "enabledManagers": ["composer", "dockerfile", "docker-compose", "github-actions"],
+    "packageRules": [
+        {
+            "matchPackageNames": ["php"],
+            "enabled": false
+        },
+        {
+            "groupName": "Major all - skipped to update manually",
+            "matchDatasources": ["packagist"],
+            "matchUpdateTypes": ["major"],
+            "matchPackagePatterns": [".*"],
+            "enabled": false
+        },
+        {
+            "groupName": "Minor and Patch Contrib",
+            "groupSlug": "drupal-minor-patch-contrib",
+            "matchDatasources": ["packagist"],
+            "separateMinorPatch": false,
+            "matchPackagePatterns": [".*"],
+            "excludePackageNames": [
+                "drupal/core-composer-scaffold",
+                "drupal/core-project-message",
+                "drupal/core-recommended"
+            ]
+        },
+        {
+            "groupName": "Minor and Patch Core",
+            "groupSlug": "drupal-minor-patch-core",
+            "schedule": ["before 2am"],
+            "matchDatasources": ["packagist"],
+            "matchUpdateTypes": ["patch", "minor"],
+            "matchPackageNames": [
+                "drupal/core-composer-scaffold",
+                "drupal/core-project-message",
+                "drupal/core-recommended"
+            ]
+        },
+        {
+            "groupName": "Docker image updates",
+            "groupSlug": "docker",
+            "schedule": ["before 3am"],
+            "matchManagers": ["dockerfile", "docker-compose"]
+        },
+        {
+            "groupName": "GitHub Actions updates",
+            "groupSlug": "github-actions",
+            "schedule": ["before 3am"],
+            "matchManagers": ["github-actions"]
+        }
+    ]
+}

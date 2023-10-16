@@ -72,6 +72,17 @@ aliases:
   # support request with CircleCI to enable this feature.
   - &docker_layer_caching false
 
+  - &renovatebot_repository 'salsadigitalauorg/civictheme_source'
+  # The author details to use for commits made by RenovateBot.
+  - &renovatebot_git_author 'RenovateBot Self Hosted <deployer@salsadigital.com.au>'
+  # The schedule to run RenovateBot on.
+  - &renovatebot_schedule "5 23 * * *"
+  # Set to 'false' (without single quotes) once the setup is complete and
+  # the bot ran at least once without errors.
+  - &renovatebot_dry_run false
+  # The branch to run RenovateBot on.
+  - &renovatebot_branch develop
+
   #-----------------------------------------------------------------------------
 
   # Shared configuration applied to each job.
@@ -478,6 +489,23 @@ jobs:
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
+  renovatebot_self_hosted:
+    docker:
+      - image: renovate/renovate:36.108.0
+        environment:
+          RENOVATE_PLATFORM: 'github'
+          RENOVATE_AUTODISCOVER: false
+          RENOVATE_DEPENDENCY_DASHBOARD: true
+          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
+          RENOVATE_REPOSITORIES: *renovatebot_repository
+          RENOVATE_GIT_AUTHOR: *renovatebot_git_author
+          RENOVATE_DRY_RUN: *renovatebot_dry_run
+          LOG_LEVEL: debug
+    steps:
+      - checkout
+      - run: renovate-config-validator
+      - run: renovate
+
 ################################################################################
 # WORKFLOWS
 ################################################################################
@@ -601,3 +629,14 @@ workflows:
               only: develop
             tags:
               ignore: /.*/
+
+  renovatebot_self_hosted:
+    triggers:
+      - schedule:
+          cron: *renovatebot_schedule
+          filters:
+            branches:
+              only:
+                - *renovatebot_branch
+    jobs:
+      - renovatebot_self_hosted
