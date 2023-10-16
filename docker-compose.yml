@@ -127,7 +127,7 @@ services:
       context: .
       dockerfile: .docker/Dockerfile.mariadb
       args:
-        IMAGE: "${DREVOPS_DB_DOCKER_IMAGE:-uselagoon/mariadb-drupal:23.3.0}" # Use custom database image (if defined) or fallback to standard database image.
+        IMAGE: "${DREVOPS_DB_DOCKER_IMAGE:-uselagoon/mariadb-drupal:23.10.0}" # Use custom database image (if defined) or fallback to standard database image.
     environment:
       <<: *default-environment
     ports:
@@ -149,7 +149,7 @@ services:
 
   # Helper container to wait for services to become available.
   wait_dependencies:
-    image: dadarek/wait-for-dependencies
+    image: drevops/docker-wait-for-dependencies:23.10.0
     depends_on:
       - cli
       - mariadb
