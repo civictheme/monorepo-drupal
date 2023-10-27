@@ -66,7 +66,7 @@ class FeatureContext extends DrupalContext {
   public function iSeeContentInIframe($id) {
     $driver = $this->getSession()->getDriver();
     if (!$driver instanceof Selenium2Driver) {
-      throw new RuntimeException('Unsupported driver for this step');
+      throw new \RuntimeException('Unsupported driver for this step');
     }
 
     $index = NULL;
@@ -88,7 +88,7 @@ class FeatureContext extends DrupalContext {
     $driver->switchToIFrame($index);
 
     if (!$driver->find('//body')) {
-      throw new Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
+      throw new \Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
     }
 
     // Reset frame to the default window.
@@ -477,6 +477,38 @@ class FeatureContext extends DrupalContext {
       $index->trackItemsInserted('entity:node', $index_ids);
       $index->indexSpecificItems([$item_id => $index->loadItem($item_id)]);
     }
+  }
+
+  /**
+   * Set value for WYSIWYG field.
+   *
+   * If used with Selenium driver, it will try to find associated WYSIWYG and
+   * fill it in. If used with webdriver - it will fill in the field as normal.
+   *
+   * @When /^(?:|I )fill in WYSIWYG "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+   */
+  public function wysiwygFillField($field, $value) {
+    $field = $this->wysiwygFixStepArgument($field);
+    $value = $this->wysiwygFixStepArgument($value);
+
+    // Convert ot hyphenated machine name.
+    $field = str_replace('_', '-', $field);
+
+    $this->getSession()
+      ->executeScript(
+        "
+        const domEditableElement = document.querySelector(\"div.form-item--$field-0-value .ck-editor__editable\");
+        if (domEditableElement.ckeditorInstance) {
+          const editorInstance = domEditableElement.ckeditorInstance;
+          if (editorInstance) {
+            editorInstance.setData(\"$value\");
+          } else {
+            throw new Exception('Could not get the editor instance');
+          }
+        } else {
+          throw new Exception('Could not find the element');
+        }
+        ");
   }
 
 }

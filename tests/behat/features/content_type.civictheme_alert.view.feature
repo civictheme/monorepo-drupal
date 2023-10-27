@@ -101,7 +101,8 @@ Feature: CivicTheme Alert content type render
     # Update the content.
     When I edit civictheme_alert "[TEST] Test dismissing alert title all pages"
     And wait 3 second
-    And I fill in WYSIWYG "Message" with "[TEST] Test dismissing alert body all pages updated"
+    And I fill in WYSIWYG "field_c_n_body" with "[TEST] Test dismissing alert body all pages updated"
+    And wait 3 second
     And I press "Save"
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second

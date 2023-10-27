@@ -6,12 +6,13 @@
         "php": ">=8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
-        "drupal/core": "10.0",
-        "drupal/core-composer-scaffold": "^10",
+        "drupal/core": "^10",
+        "drupal/core-composer-scaffold": "10.1.4",
         "drupal/core-project-message": "^10",
-        "drupal/core-recommended": "^10",
-        "drupal/search_api": "^1.29",
+        "drupal/core-recommended": "10.1.4",
+        "drupal/search_api": "1.29",
         "drush/drush": "^11",
+        "egulias/email-validator": "4.0.1 as 3.2.6",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
@@ -21,12 +22,12 @@
     "require-dev": {
         "behat/behat": "^3.7",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-        "drevops/behat-format-progress-fail": "^1.0",
-        "drevops/behat-screenshot": "^1.2",
-        "drevops/behat-steps": "^1.5",
+        "drevops/behat-format-progress-fail": "^1",
+        "drevops/behat-screenshot": "^1",
+        "drevops/behat-steps": "^2",
         "drupal/coder": "8.3.16",
-        "drupal/core-dev": "^10@beta",
-        "drupal/drupal-extension": "dev-feature/drupal-10 as 4.2.1-dev",
+        "drupal/core-dev": "^10",
+        "drupal/drupal-extension": "^5@rc",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpcompatibility/php-compatibility": "^9.0",
         "phpmd/phpmd": "^2.12",
@@ -68,14 +69,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/drupal-driver": {
-            "type": "vcs",
-            "url": "https://github.com/drevops/DrupalDriver"
-        },
-        "drupal/drupal-extension": {
-            "type": "vcs",
-            "url": "https://github.com/drevops/drupalextension"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -189,6 +182,7 @@
         "merge-plugin": {
             "require": [
                 "docroot/themes/contrib/civictheme/composer.json",
+                "docroot/modules/custom/civictheme_govcms/composer.json",
                 "docroot/modules/custom/civictheme_admin/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",

@@ -8,7 +8,7 @@
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "require": {
-        "php": ">=8",
+        "php": ">=8.1",
         "drupal/generated_content": "^1.2"
     }
 }

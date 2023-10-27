@@ -4,7 +4,7 @@ namespace Drupal\civictheme_govcms\Commands;
 
 use Drupal\civictheme_govcms\CivicthemeGovcmsManager;
 use Drush\Commands\DrushCommands;
-use Drush\Log\LogLevel;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class Civictheme Govcms Commands.
@@ -60,7 +60,7 @@ class CivicthemeGovcmsCommands extends DrushCommands {
     // We are suppressing them as they do not have any valuable information
     // and only confuse the user.
     $current = $this->io()->getVerbosity();
-    $this->io()->setVerbosity(LogLevel::ERROR);
+    $this->io()->setVerbosity(OutputInterface::VERBOSITY_QUIET);
 
     $this->govcmsManager->civicthemeGovcmsRemoveConfig($options['preserve']);
 

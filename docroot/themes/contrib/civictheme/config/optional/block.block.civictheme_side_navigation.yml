@@ -17,7 +17,7 @@ plugin: 'menu_block:civictheme-primary-navigation'
 settings:
   id: 'menu_block:civictheme-primary-navigation'
   label: 'Side Navigation'
-  label_display: '0'
+  label_display: ''
   provider: menu_block
   follow: false
   follow_parent: child

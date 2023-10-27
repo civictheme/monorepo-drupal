@@ -10,7 +10,7 @@ archive: false
 id: civictheme_enquiry
 title: Enquiry
 description: ''
-category: ''
+categories: {  }
 elements: |-
   contact_details:
     '#type': fieldset

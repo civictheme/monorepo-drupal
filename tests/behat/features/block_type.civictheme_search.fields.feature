@@ -3,7 +3,7 @@ Feature: Search block fields
 
   @api
   Scenario: Fields appear as expected
-    Given I am logged in as a user with the "Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "block/add/civictheme_search"
     Then the response status code should be 200
     And should see an "[name='field_c_b_link[0][uri]']" element
