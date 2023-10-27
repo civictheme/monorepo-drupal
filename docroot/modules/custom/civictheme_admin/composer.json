@@ -8,6 +8,6 @@
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "require": {
-        "php": ">=8"
+        "php": ">=8.1"
     }
 }

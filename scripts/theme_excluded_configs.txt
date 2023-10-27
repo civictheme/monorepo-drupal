@@ -90,6 +90,7 @@ core.entity_view_mode.webform_submission.token
 core.extension
 core.menu.static_menu_link_overrides
 dblog.settings
+editor.editor.webform*
 encrypt.settings
 environment_indicator.settings
 event_log_track.*
@@ -107,6 +108,7 @@ file.settings
 filter.format.full_html*
 filter.format.plain_text*
 filter.format.restricted_html*
+filter.format.webform_default
 filter.settings
 hal.settings
 honeypot.settings
@@ -161,6 +163,7 @@ system.authorize
 system.cron
 system.date
 system.diff
+system.feature_flags
 system.file
 system.image
 system.image.gd

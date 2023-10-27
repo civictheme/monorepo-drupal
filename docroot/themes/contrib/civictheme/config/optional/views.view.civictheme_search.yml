@@ -235,6 +235,7 @@ display:
     position: 1
     display_options:
       path: search
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:

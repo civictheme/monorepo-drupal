@@ -8,8 +8,8 @@
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "require": {
-        "php": ">=8",
-        "govcms/govcms": ">=2.28"
+        "php": ">=8.1",
+        "govcms/govcms": "^3"
     },
     "extra": {
         "drush": {

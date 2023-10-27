@@ -9,9 +9,9 @@
         "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
     },
     "require": {
-        "php": ">=8",
+        "php": ">=8.1",
         "drupal/ckeditor": "^1",
-        "drupal/components": "^2 || ^3@beta",
+        "drupal/components": "^3@beta",
         "drupal/field_group": "^3.2",
         "drupal/jquery_ui": "^1.6",
         "drupal/jquery_ui_autocomplete": "^2",

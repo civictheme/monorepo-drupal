@@ -23,10 +23,6 @@ $drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handle
 
 echo "  > Enable admin theme and set as default."
 if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
-  # Enable Adminimal theme and set as default admin theme.
-  $drush -y theme-enable adminimal_theme
-  $drush -y config-set system.theme admin adminimal_theme
-
   # Enable stable9 theme and set as default theme.
   # This is required to remove other theme to avoid polluting configuration.
   $drush -y theme-enable stable9

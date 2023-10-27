@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_c_n_summary
     - field.storage.node.field_c_n_components
     - field.storage.paragraph.field_c_p_content
-    - field.storage.paragraph.field_c_p_list_items
-    - field.storage.paragraph.field_c_p_subtitle
     - field.storage.paragraph.field_c_p_summary
     - field.storage.paragraph.field_c_p_title
-    - field.storage.node.field_c_n_summary
+    - field.storage.paragraph.field_c_p_list_items
+    - field.storage.paragraph.field_c_p_subtitle
     - search_api.server.civictheme_database
   module:
     - paragraphs
