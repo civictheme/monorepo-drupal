@@ -32,9 +32,9 @@
     "test-storybook:ci": "concurrently --kill-others --success first --names \"SB,TEST\" --prefix-colors \"magenta,blue\" \"npx http-server storybook-static --port 6006 -a 127.0.0.1 --silent\" \"wait-on --timeout 10000 http://127.0.01:6006 && npm run test-storybook\""
   },
   "devDependencies": {
+    "@alexskrypnyk/scss-variables-extractor": "^0.1.0",
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
-    "@alexskrypnyk/scss-variables-extractor": "^0.1.0",
     "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-knobs": "^6.3.1",
@@ -81,6 +81,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@playwright/test": "^1.39.0",
     "@popperjs/core": "^2.11.6",
     "breakpoint-sass": "^2.7.1",
     "normalize.css": "^8.0.1"
