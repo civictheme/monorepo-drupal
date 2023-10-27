@@ -24,12 +24,6 @@ DREVOPS_DEBUG="${DREVOPS_DEBUG:-}"
 # Print debug information from Docker build.
 DREVOPS_DOCKER_VERBOSE="${DREVOPS_DOCKER_VERBOSE:-}"
 
-# Drupal version custom adjustments.
-if [ "${DREVOPS_DRUPAL_VERSION}" = "10" ]; then
-  export COMPOSER=composer.d10.json
-  export DREVOPS_COMPOSER_VALIDATE_LOCK=0
-fi
-
 echo "==> Building project."
 
 # Suppress any confirmation dialogs in descendant calls.
