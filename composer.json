@@ -6,29 +6,33 @@
         "php": ">=8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
+        "drupal/core": "10.0",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
+        "drupal/search_api": "^1.29",
         "drush/drush": "^11",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
+        "webmozart/path-util": "^2.3",
         "wikimedia/composer-merge-plugin": "^2.0"
     },
     "require-dev": {
         "behat/behat": "^3.7",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-        "drevops/behat-format-progress-fail": "^1",
-        "drevops/behat-screenshot": "^1",
+        "drevops/behat-format-progress-fail": "^1.0",
+        "drevops/behat-screenshot": "^1.2",
         "drevops/behat-steps": "^1.5",
         "drupal/coder": "8.3.16",
-        "drupal/core-dev": "^9",
+        "drupal/core-dev": "^10@beta",
         "drupal/drupal-extension": "dev-feature/drupal-10 as 4.2.1-dev",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpcompatibility/php-compatibility": "^9.0",
         "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
         "pyrech/composer-changelogs": "^1.7",
-        "slevomat/coding-standard": "8.5.2"
+        "slevomat/coding-standard": "7.2.1"
     },
     "autoload": {
         "classmap": [
@@ -42,7 +46,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.1.17"
+            "php": "8.1"
         },
         "process-timeout": 0,
         "sort-packages": true,
@@ -118,7 +122,6 @@
         },
         "patches": {
             "drupal/core": {
-                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests": "https://www.drupal.org/files/issues/2023-03-30/3249443-d-9-5-43.patch",
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
             }
         },
@@ -129,12 +132,13 @@
             "file-mapping": {
                 "[project-root]/.editorconfig": false,
                 "[project-root]/.gitattributes": false,
-                "[web-root]/.htaccess": false,
                 "[web-root]/.ht.router.php": false,
-                "[web-root]/example.gitignore": false,
+                "[web-root]/.htaccess": false,
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.txt": false,
-                "[web-root]/robots.txt": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/sites/default/default.services.yml": false,
+                "[web-root]/sites/default/default.settings.php": false,
                 "[web-root]/sites/example.settings.local.php": false,
                 "[web-root]/sites/example.sites.php": false,
                 "[web-root]/web.config": false
@@ -185,7 +189,6 @@
         "merge-plugin": {
             "require": [
                 "docroot/themes/contrib/civictheme/composer.json",
-                "docroot/modules/custom/civictheme_govcms/composer.json",
                 "docroot/modules/custom/civictheme_admin/composer.json",
                 "docroot/modules/custom/civictheme_content/composer.json",
                 "docroot/modules/custom/civictheme_dev/composer.json",
