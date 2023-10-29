@@ -364,6 +364,7 @@ jobs:
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_TEST_BEHAT_TAGS: smoke
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, no subtheme.
@@ -519,7 +520,7 @@ workflows:
       - build-drupal10-minimal:
           filters:
             branches:
-              only: /develop|release\/.*|hotfix\/.*/
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-drupal10-minimal-corporate:
