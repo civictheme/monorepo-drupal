@@ -281,51 +281,31 @@ job-mirror: &job-mirror
 
 jobs:
 
-  # Isolated theme build.
-  build-theme-isolated-drupal10:
-    working_directory: ~/project
-    docker:
-      - image: cimg/php:8.2-browsers
-    <<: *job-build-theme-isolated
-
-  # Drupal 10, minimal profile.
-  build-drupal10-minimal:
+  build:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
       DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
-      DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
-  # Drupal 10, minimal profile, no subtheme.
-  build-drupal10-minimal-no-subtheme:
+  # No subtheme.
+  build-no-subtheme:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
-  # Drupal 10, GovCMS profile, subtheme. Longest test run.
-  build-drupal10-govcms:
+  # GovCMS profile, subtheme. Longest test run.
+  build-govcms:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
       DREVOPS_TEST_BEHAT_PROFILE: subtheme
     <<: *job-build-no-persist
 
-  # Drupal 10, GovCMS profile, subtheme is a sibling.
-  build-drupal10-govcms-sibling:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: govcms
-      CIVICTHEME_INSTALL_SIBLING: 1
-      DREVOPS_TEST_BEHAT_TAGS: smoke
-    <<: *job-build-no-persist
-
-  # Drupal 10, GovCMS profile, no subtheme.
-  build-drupal10-govcms-no-subtheme:
+  # GovCMS profile, no subtheme.
+  build-govcms-no-subtheme:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
@@ -333,11 +313,19 @@ jobs:
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
     <<: *job-build
 
-  # Drupal 10, minimal profile, 'corporate' content profile.
-  build-drupal10-minimal-corporate:
+  # GovCMS profile, subtheme is a sibling.
+  build-govcms-sibling:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
+      DREVOPS_DRUPAL_PROFILE: govcms
+      CIVICTHEME_INSTALL_SIBLING: 1
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 10, minimal profile, 'corporate' content profile.
+  build-content-corporate:
+    <<: *container_config
+    environment:
       CIVICTHEME_CONTENT_PROFILE: corporate
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
@@ -346,10 +334,9 @@ jobs:
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, 'highereducation' content profile.
-  build-drupal10-minimal-highereducation:
+  build-content-highereducation:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
@@ -358,16 +345,22 @@ jobs:
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, 'government' content profile.
-  build-drupal10-minimal-government:
+  build-content-government:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
+
+  # Isolated theme build.
+  build-theme-isolated:
+    working_directory: ~/project
+    docker:
+      - image: cimg/php:8.2-browsers
+    <<: *job-build-theme-isolated
 
   # Mirror and redeploy content profiles.
   mirror-into-content-branches:
@@ -494,68 +487,68 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-no-subtheme:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-govcms:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-govcms-no-subtheme:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-govcms-sibling:
+          filters:
+            branches:
+              only: /develop|^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-content-corporate:
+          filters:
+            branches:
+              only: /develop|^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-content-highereducation:
+          filters:
+            branches:
+              only: /^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-content-government:
+          filters:
+            branches:
+              only: /^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
 
-      - build-theme-isolated-drupal10:
+      - build-theme-isolated:
           filters:
             branches:
               ignore: /^content\/.*/
-            tags:
-              only: /.*/
-
-      - build-drupal10-minimal:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-minimal-no-subtheme:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-govcms:
-          filters:
-            branches:
-              only: /develop|release\/.*|hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-govcms-sibling:
-          filters:
-            branches:
-              only: /^release\/.*|hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-govcms-no-subtheme:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-minimal-corporate:
-          filters:
-            branches:
-              only: /^release\/.*|hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-minimal-highereducation:
-          filters:
-            branches:
-              only: /^release\/.*|hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-minimal-government:
-          filters:
-            branches:
-              only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
 
       - deploy:
           requires:
-            - build-theme-isolated-drupal10
-            - build-drupal10-govcms-no-subtheme
-            - build-drupal10-minimal-no-subtheme
+            - build
+            - build-govcms
+            - build-govcms-no-subtheme
+            - build-theme-isolated
           filters:
             branches:
               # Allowed branches:
@@ -570,12 +563,11 @@ workflows:
 
       - deploy_artifact:
           requires:
-            - build-theme-isolated-drupal10
-            - build-theme-isolated-drupal10
-            - build-drupal10-minimal
-            - build-drupal10-govcms-no-subtheme
-            - build-drupal10-govcms
-            - build-drupal10-minimal-no-subtheme
+            - build
+            - build-no-subtheme
+            - build-govcms
+            - build-govcms-no-subtheme
+            - build-theme-isolated
           filters:
             branches:
               only: develop
@@ -584,10 +576,10 @@ workflows:
 
       - mirror-into-content-branches:
           requires:
-            - build-drupal10-minimal
-            - build-drupal10-govcms-no-subtheme
-            - build-drupal10-govcms
-            - build-drupal10-minimal-no-subtheme
+            - build
+            - build-no-subtheme
+            - build-govcms-no-subtheme
+            - build-govcms
           filters:
             branches:
               only: develop
