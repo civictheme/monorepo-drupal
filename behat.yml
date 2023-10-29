@@ -51,20 +51,20 @@ default:
 default0:
   gherkin:
     filters:
-      tags: '~@d9only&&~@d10only&&~@subtheme&&~@skipped&&~@p1'
+      tags: '~@subtheme&&~@skipped&&~@p1'
 # Default profile for parallel run with index 1.
 default1:
   gherkin:
     filters:
-      tags: '~@d9only&&~@d10only&&~@subtheme&&~@skipped&&@p1'
+      tags: '~@subtheme&&~@skipped&&@p1'
 
 # Drupal 9 sub-theme profile for parallel run with index 0.
 subtheme0:
   gherkin:
     filters:
-      tags: '~@d10only&&~@skipped&&~@p1'
+      tags: '~@skipped&&~@p1'
 # Drupal 9 sub-theme profile for parallel run with index 1.
 subtheme1:
   gherkin:
     filters:
-      tags: '~@d10only&&~@skipped&&@p1'
+      tags: '~@skipped&&@p1'
