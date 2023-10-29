@@ -288,6 +288,51 @@ jobs:
       - image: cimg/php:8.2-browsers
     <<: *job-build-theme-isolated
 
+  # Drupal 10, minimal profile.
+  build-drupal10-minimal:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 10, minimal profile, no subtheme.
+  build-drupal10-minimal-no-subtheme:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
+    <<: *job-build-no-persist
+
+  # Drupal 10, GovCMS profile, subtheme. Longest test run.
+  build-drupal10-govcms:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
+      DREVOPS_TEST_BEHAT_PROFILE: subtheme
+    <<: *job-build-no-persist
+
+  # Drupal 10, GovCMS profile, subtheme is a sibling.
+  build-drupal10-govcms-sibling:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
+      CIVICTHEME_INSTALL_SIBLING: 1
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+    <<: *job-build-no-persist
+
+  # Drupal 10, GovCMS profile, no subtheme.
+  build-drupal10-govcms-no-subtheme:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: govcms
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+    <<: *job-build
+
   # Drupal 10, minimal profile, 'corporate' content profile.
   build-drupal10-minimal-corporate:
     <<: *container_config
@@ -322,51 +367,6 @@ jobs:
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
-    <<: *job-build-no-persist
-
-  # Drupal 10, GovCMS profile, subtheme. Longest test run.
-  build-drupal10-govcms:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: govcms
-      DREVOPS_TEST_BEHAT_PROFILE: subtheme
-    <<: *job-build-no-persist
-
-  # Drupal 10, GovCMS profile, subtheme is a sibling.
-  build-drupal10-govcms-sibling:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: govcms
-      CIVICTHEME_INSTALL_SIBLING: 1
-      DREVOPS_TEST_BEHAT_TAGS: smoke
-    <<: *job-build-no-persist
-
-  # Drupal 10, GovCMS profile, no subtheme.
-  build-drupal10-govcms-no-subtheme:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: govcms
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
-    <<: *job-build
-
-  # Drupal 10, minimal profile.
-  build-drupal10-minimal:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
-      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
-      DREVOPS_TEST_BEHAT_TAGS: smoke
-    <<: *job-build-no-persist
-
-  # Drupal 10, minimal profile, no subtheme.
-  build-drupal10-minimal-no-subtheme:
-    <<: *container_config
-    environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
-      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # Mirror and redeploy content profiles.
@@ -502,13 +502,31 @@ workflows:
             tags:
               only: /.*/
 
+      - build-drupal10-minimal:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-drupal10-minimal-no-subtheme:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
       - build-drupal10-govcms:
           filters:
             branches:
               only: /develop|release\/.*|hotfix\/.*/
             tags:
               only: /.*/
-      - build-drupal10-minimal:
+      - build-drupal10-govcms-sibling:
+          filters:
+            branches:
+              only: /^release\/.*|hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-drupal10-govcms-no-subtheme:
           filters:
             branches:
               ignore: /^content\/.*/
@@ -532,24 +550,7 @@ workflows:
               only: /^release\/.*|hotfix\/.*/
             tags:
               only: /.*/
-      - build-drupal10-govcms-sibling:
-          filters:
-            branches:
-              only: /^release\/.*|hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-govcms-no-subtheme:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-drupal10-minimal-no-subtheme:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
+
       - deploy:
           requires:
             - build-theme-isolated-drupal10
