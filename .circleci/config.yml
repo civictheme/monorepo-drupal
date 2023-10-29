@@ -281,19 +281,17 @@ job-mirror: &job-mirror
 
 jobs:
 
+  # Isolated theme build.
   build-theme-isolated-drupal10:
     working_directory: ~/project
     docker:
       - image: cimg/php:8.2-browsers
-    environment:
-      DREVOPS_DRUPAL_VERSION: 10
     <<: *job-build-theme-isolated
 
   # Drupal 10, minimal profile, 'corporate' content profile.
   build-drupal10-minimal-corporate:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: corporate
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
@@ -306,7 +304,6 @@ jobs:
   build-drupal10-minimal-highereducation:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: highereducation
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
@@ -319,7 +316,6 @@ jobs:
   build-drupal10-minimal-government:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: government
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
@@ -332,7 +328,6 @@ jobs:
   build-drupal10-govcms:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: govcms
       DREVOPS_TEST_BEHAT_PROFILE: subtheme
     <<: *job-build-no-persist
@@ -341,17 +336,15 @@ jobs:
   build-drupal10-govcms-sibling:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: govcms
-      DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
+      DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
   # Drupal 10, GovCMS profile, no subtheme.
   build-drupal10-govcms-no-subtheme:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: govcms
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
@@ -361,17 +354,15 @@ jobs:
   build-drupal10-minimal:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
-      DREVOPS_TEST_BEHAT_TAGS: smoke
       DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
+      DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
   # Drupal 10, minimal profile, no subtheme.
   build-drupal10-minimal-no-subtheme:
     <<: *container_config
     environment:
-      DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_DRUPAL_PROFILE: minimal
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
