@@ -1,4 +1,4 @@
-@p0 @d9only @civictheme @civictheme_theme_settings @civictheme_vertical_tabs_settings @skipped
+@p0 @civictheme @civictheme_theme_settings @civictheme_vertical_tabs_settings
 Feature: Correct vertical tab does not focus on form validation
 
   @api @javascript
