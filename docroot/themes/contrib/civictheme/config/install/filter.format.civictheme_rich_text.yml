@@ -41,7 +41,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<br> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="ct-text-large ct-text-small text-align-left text-align-center text-align-right"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <table class="ct-table ct-table--striped ct-theme-light"> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid target title class="ct-content-link ct-content-link--external ct-button ct-button--button ct-theme-light ct-theme-dark ct-button--primary ct-button--large ct-button--regular ct-button--secondary"> <span class="ct-visually-hidden"> <svg role viewBox aria-hidden width height class="ct-icon"> <path d>'
+      allowed_html: '<br> <p class="ct-text-large ct-text-small text-align-left text-align-center text-align-right"> <h2 id class> <h3 id class="text-align-left text-align-center text-align-right"> <h4 id class="text-align-left text-align-center text-align-right"> <h5 id class="text-align-left text-align-center text-align-right"> <h6 id class="text-align-left text-align-center text-align-right"> <a class="ct-button ct-theme-light ct-button--primary ct-button--regular ct-button--secondary ct-button--large ct-content-link ct-content-link--external ct-button--button ct-theme-dark" hreflang target title href data-entity-type data-entity-uuid data-entity-substitution> <table class="ct-theme-light ct-table ct-table--striped"> <cite> <dl> <dt> <dd> <img src alt data-entity-type data-entity-uuid> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class="ct-visually-hidden"> <svg role viewbox aria-hidden width height class="ct-icon"> <path d> <blockquote cite> <ul type> <ol type start> <drupal-media title data-entity-type data-entity-uuid alt data-caption data-align> <strong> <em> <u> <s> <sub> <sup> <li> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -75,9 +75,8 @@ filters:
     status: true
     weight: -41
     settings:
-      default_view_mode: default
-      allowed_view_modes:
-        embedded: embedded
+      default_view_mode: embedded
+      allowed_view_modes: {  }
       allowed_media_types:
         civictheme_image: civictheme_image
         civictheme_remote_video: civictheme_remote_video

@@ -47,7 +47,7 @@ libraries-override:
       theme:
         dist/civictheme.variables.css: dist/styles.variables.css
 
-ckeditor_stylesheets:
+ckeditor5-stylesheets:
   - dist/styles.editor.css
 
 components:
