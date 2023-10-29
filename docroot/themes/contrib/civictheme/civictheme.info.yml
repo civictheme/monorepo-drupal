@@ -9,9 +9,9 @@ libraries:
   - 'civictheme/css-variables'
 
 dependencies:
-  - ckeditor:ckeditor
   - components:components
   - drupal:block_content
+  - drupal:ckeditor5
   - drupal:config
   - drupal:content_moderation
   - drupal:datetime_range
@@ -87,7 +87,7 @@ components:
     ct-pages:
       - components/05-pages
 
-ckeditor_stylesheets:
+ckeditor5-stylesheets:
   - dist/civictheme.editor.css
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
