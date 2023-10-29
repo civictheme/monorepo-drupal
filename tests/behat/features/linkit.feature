@@ -26,14 +26,15 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
-    When I click on ".cke_button__drupallink" element
+    When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:
-      | attributes[href] | TEST Page Linkit |
-    Then I press the "up" key on "[name='attributes[href]']"
+      | Link URL | TEST Page Linkit |
+    Then I press the "down" key on ".ck-link-form .ck-input"
     And I wait 2 seconds
+    And save screenshot
     Then I click on ".linkit-result-line.ui-menu-item" element
-    Then I click on ".ui-dialog-buttonpane .js-form-submit" element
+    Then I click on ".ck-button-save" element
     And I wait 2 seconds
     And I check the box "Published"
     And I press "Save"
@@ -49,14 +50,15 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
-    When I click on ".cke_button__drupallink" element
+    When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:
-      | attributes[href] | TEST Event Linkit |
-    Then I press the "up" key on "[name='attributes[href]']"
+      | Link URL | TEST Event Linkit |
+    Then I press the "down" key on ".ck-link-form .ck-input"
     And I wait 2 seconds
+    And save screenshot
     Then I click on ".linkit-result-line.ui-menu-item" element
-    Then I click on ".ui-dialog-buttonpane .js-form-submit" element
+    Then I click on ".ck-button-save" element
     And I wait 2 seconds
     And I check the box "Published"
     And I press "Save"
@@ -72,14 +74,15 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
-    When I click on ".cke_button__drupallink" element
+    When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:
-      | attributes[href] | TEST CivicTheme PDF |
-    Then I press the "up" key on "[name='attributes[href]']"
+      | Link URL | TEST CivicTheme PDF |
+    Then I press the "down" key on ".ck-link-form .ck-input"
     And I wait 2 seconds
+    And save screenshot
     Then I click on ".linkit-result-line.ui-menu-item" element
-    Then I click on ".ui-dialog-buttonpane .js-form-submit" element
+    Then I click on ".ck-button-save" element
     And I wait 2 seconds
     And I check the box "Published"
     And I press "Save"
