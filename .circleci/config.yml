@@ -283,8 +283,6 @@ jobs:
 
   build:
     <<: *container_config
-    environment:
-      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # No subtheme.
@@ -293,7 +291,6 @@ jobs:
     environment:
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
-      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build-no-persist
 
   # GovCMS profile, subtheme. Longest test run.
@@ -301,6 +298,7 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_PROFILE: subtheme
     <<: *job-build-no-persist
 
@@ -311,6 +309,7 @@ jobs:
       DREVOPS_DRUPAL_PROFILE: govcms
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
     <<: *job-build
 
   # GovCMS profile, subtheme is a sibling.
@@ -319,6 +318,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_PROFILE: govcms
       CIVICTHEME_INSTALL_SIBLING: 1
+      DREVOPS_LINT_CONFIG_ALLOW_FAILURE: 1
       DREVOPS_TEST_BEHAT_TAGS: smoke
     <<: *job-build-no-persist
 
