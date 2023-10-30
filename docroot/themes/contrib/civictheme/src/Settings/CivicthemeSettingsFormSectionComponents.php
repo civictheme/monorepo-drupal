@@ -119,7 +119,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#title' => $this->t('Content'),
       '#description' => $this->t('Set the site slogan.'),
       '#type' => 'textfield',
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#min' => 0,
       '#default_value' => $this->themeConfigManager->load('components.site_slogan.content'),
     ];
