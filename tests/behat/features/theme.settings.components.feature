@@ -62,7 +62,7 @@ Feature: Components settings are available in the theme settings
 
     And I should see the text "Content"
     And I should see an "input[name='components[site_slogan][content]']" element
-    And I should see an "#edit-components-site-slogan-content.required" element
+    And I should not see an "#edit-components-site-slogan-content.required" element
 
     And I should see the text "Theme"
     And I should see an "input[name='components[footer][theme]']" element
