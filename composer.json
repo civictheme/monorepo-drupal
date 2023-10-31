@@ -115,7 +115,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch",
+                "CKEditor 5 toolbar items of multi-value field (typically Paragraphs) overflowing on narrow viewports and overlapping with node form's sidebar on wide viewports - 3332416": "https://www.drupal.org/files/issues/2023-10-06/3332416-31.patch"
             }
         },
         "drupal-scaffold": {
