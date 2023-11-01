@@ -1,6 +1,7 @@
 /*
   Overrides Claro layout for node form.
   @see https://www.drupal.org/project/drupal/issues/3184667
+  @see https://www.drupal.org/project/drupal/issues/3332416
 */
 
 @media screen and (min-width: 61rem) {
@@ -16,4 +17,8 @@
 
 .js .layout-region--node-main .form-autocomplete {
   width: 100% !important;
+}
+
+.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items {
+  flex-wrap: wrap !important;
 }
