@@ -1,28 +1,32 @@
 # Replaces standard .gitignore when building a deployment artifact.
 
-# Ignore everything, but some whitelisted files.
+# Ignore all files except those specifically allowed.
 /*
 
-!docroot
-# But still ignore sources.
-docroot/themes/contrib/civictheme/fonts
-docroot/themes/contrib/civictheme/images
-docroot/themes/contrib/civictheme/js
-docroot/themes/contrib/civictheme/scss
-docroot/themes/contrib/civictheme/Gruntfile.js
-docroot/themes/contrib/civictheme/package.json
-docroot/themes/contrib/civictheme/package-lock.json
-docroot/themes/contrib/civictheme/.eslintrc.json
-docroot/themes/contrib/civictheme/node_modules
-docroot/sites/default/settings.generated.php
-docroot/sites/default/default.settings.php
-docroot/sites/default/default.services.yml
-docroot/sites/default/default.settings.local.php
-docroot/sites/default/default.services.local.yml
-docroot/sites/default/files
-
-!composer.json
+# Do not ignore required files.
 !/config/
-!/hooks/
-!/vendor/
 !/scripts/
+!/vendor/
+!composer.json
+!.env
+
+# Do not ignore webroot (manage Drupal scaffold files using the composer.json)
+!web
+# But ignore content files and test artifacts.
+web/sites/default/files
+web/sites/simpletest
+
+# Ignore non-production scaffold files.
+web/sites/default/default.services.local.yml
+web/sites/default/default.settings.local.php
+
+# Ignore custom theme asset sources.
+web/themes/contrib/civictheme/fonts
+web/themes/contrib/civictheme/images
+web/themes/contrib/civictheme/js
+web/themes/contrib/civictheme/scss
+web/themes/contrib/civictheme/Gruntfile.js
+web/themes/contrib/civictheme/package.json
+web/themes/contrib/civictheme/package-lock.json
+web/themes/contrib/civictheme/.eslintrc.json
+web/themes/contrib/civictheme/node_modules

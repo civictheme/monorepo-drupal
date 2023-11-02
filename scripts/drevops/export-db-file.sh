@@ -1,42 +1,50 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2086
 ##
 # Export database as a file.
 #
+# shellcheck disable=SC1090,SC1091,SC2086
 
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+t=$(mktemp) && export -p >"${t}" && set -a && . ./.env && if [ -f ./.env.local ]; then . ./.env.local; fi && set +a && . "${t}" && rm "${t}" && unset t
 
-# Path to the application.
-DREVOPS_APP="${DREVOPS_APP:-/app}"
+set -eu
+[ "${DREVOPS_DEBUG-}" = "1" ] && set -x
 
 # Directory with database dump file.
-DREVOPS_DB_EXPORT_FILE_DIR="${DREVOPS_DB_DIR:-${DREVOPS_DB_DIR}}"
+DREVOPS_DB_EXPORT_FILE_DIR="${DREVOPS_DB_EXPORT_FILE_DIR:-${DREVOPS_DB_DIR:-./.data}}"
 
 # ------------------------------------------------------------------------------
 
-echo "==> Started database file export."
+# @formatter:off
+note() { printf "       %s\n" "${1}"; }
+info() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[34m[INFO] %s\033[0m\n" "${1}" || printf "[INFO] %s\n" "${1}"; }
+pass() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[32m[ OK ] %s\033[0m\n" "${1}" || printf "[ OK ] %s\n" "${1}"; }
+fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[31m[FAIL] %s\033[0m\n" "${1}" || printf "[FAIL] %s\n" "${1}"; }
+# @formatter:on
 
-# Use local or global Drush.
-drush="$(if [ -f "${DREVOPS_APP}/vendor/bin/drush" ]; then echo "${DREVOPS_APP}/vendor/bin/drush"; else command -v drush; fi)"
+info "Started database file export."
 
-# Create directory to store database dump.
-mkdir -p "${DREVOPS_DB_EXPORT_FILE_DIR}"
+drush() { ./vendor/bin/drush -y "$@"; }
 
 # Create dump file name with a timestamp or use the file name provided
 # as a first argument.
-dump_file=$([ "${1}" ] && echo "${DREVOPS_DB_EXPORT_FILE_DIR}/${1}" || echo "${DREVOPS_DB_EXPORT_FILE_DIR}/export_db_$(date +%Y_%m_%d_%H_%M_%S).sql")
+dump_file=$([ "${1:-}" ] && echo "${DREVOPS_DB_EXPORT_FILE_DIR}/${1}" || echo "${DREVOPS_DB_EXPORT_FILE_DIR}/export_db_$(date +%Y%m%d_%H%M%S).sql")
 
-# Dump database into a file. Also, convert relative path to an absolute one, as
-# the result file is relative to Drupal root, but provided paths are relative
-# to the project root.
-$drush sql-dump --skip-tables-key=common --extra-dump=--no-tablespaces --result-file="${dump_file/.\//${DREVOPS_APP}/}" -q
+# If dump file is relative - update it to the parent directory, because the
+# `drush sql:dump` command result file is relative to Drupal root, but provided
+# path is relative to the project root.
+dump_file_drush="${dump_file/#.\//../}"
+
+# Create a directory to store database dump.
+mkdir -p "$(dirname "${dump_file_drush}")"
+
+# Dump database into a file.
+drush sql:dump --skip-tables-key=common --extra-dump=--no-tablespaces --result-file="${dump_file_drush}" -q
 
 # Check that file was saved and output saved dump file name.
 if [ -f "${dump_file}" ] && [ -s "${dump_file}" ]; then
-  echo "  > Exported database dump saved ${dump_file}."
+  note "Exported database dump saved ${dump_file}."
 else
-  echo "ERROR: Unable to save dump file ${dump_file}." && exit 1
+  fail "Unable to save dump file ${dump_file}." && exit 1
 fi
 
-echo "==> Finished database file export."
+pass "Finished database file export."

@@ -7,7 +7,7 @@ set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
 
 # Theme dir.
-THEME_DIR="docroot/themes/contrib/civictheme"
+THEME_DIR="web/themes/contrib/civictheme"
 
 # Config file patterns whose config may change.
 DIFF_EXCLUDE_PATTERNS=(

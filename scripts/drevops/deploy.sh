@@ -5,113 +5,125 @@
 # Deployment may include pushing code, pushing created docker image, notifying
 # remote hosting service via webhook call etc.
 #
-# This is a router script to call relevant deployment scripts based on type.
+# Multiple deployments can be configured by providing a comma-separated list of
+# deployment types in $DREVOPS_DEPLOY_TYPES variable.
 #
-# For required variables based on the deployment type,
-# see ./scripts/drevops/deployment-[type].sh file.
+# This is a router script to call relevant scripts based on type.
+#
+# IMPORTANT! This script runs outside the container on the host system.
+#
+# shellcheck disable=SC1090,SC1091
 
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+t=$(mktemp) && export -p >"${t}" && set -a && . ./.env && if [ -f ./.env.local ]; then . ./.env.local; fi && set +a && . "${t}" && rm "${t}" && unset t
 
-# The type of deployment. Can be a combination of comma-separated values (to
-# support multiple deployments): code, docker, webhook, lagoon.
-DREVOPS_DEPLOY_TYPE="${DREVOPS_DEPLOY_TYPE:-${1}}"
+set -eu
+[ "${DREVOPS_DEBUG-}" = "1" ] && set -x
+
+# The types of deployment.
+#
+# Can be a combination of comma-separated values (to support multiple
+# deployments): code, docker, webhook, lagoon.
+DREVOPS_DEPLOY_TYPES="${DREVOPS_DEPLOY_TYPES:-}"
+
+# Deployment mode.
+#
+# Values can be one of: branch, tag.
+DREVOPS_DEPLOY_MODE="${DREVOPS_DEPLOY_MODE:-branch}"
 
 # Deployment action.
+#
 # Values can be one of: deploy, deploy_override_db, destroy.
-DREVOPS_DEPLOY_ACTION="${DREVOPS_DEPLOY_ACTION:-deploy}"
+# - deploy: Deploy code and preserve database in the environment.
+# - deploy_override_db: Deploy code and override database in the environment.
+# - destroy: Destroy the environment (if the provider supports it).
+DREVOPS_DEPLOY_ACTION="${DREVOPS_DEPLOY_ACTION:-}"
 
-# Deployment pull request number without "pr-" prefix.
+# Deployment branch name.
 DREVOPS_DEPLOY_BRANCH="${DREVOPS_DEPLOY_BRANCH:-}"
 
 # Deployment pull request number without "pr-" prefix.
 DREVOPS_DEPLOY_PR="${DREVOPS_DEPLOY_PR:-}"
 
-# Flag to proceed with deployment. Set to 1 once the deployment configuration
-# is configured in CI and is ready.
+# Flag to proceed with deployment.
+# Usually set to 1 once the deployment configuration is configured in CI and
+# is ready for use.
 DREVOPS_DEPLOY_PROCEED="${DREVOPS_DEPLOY_PROCEED:-}"
 
 # Flag to allow skipping of a deployment using additional flags.
-# Different to DREVOPS_DEPLOY_PROCEED in a way that DREVOPS_DEPLOY_PROCEED is a failsafe
-# to prevent any deployments, while DREVOPS_DEPLOY_SKIP allows to selectively skip
-# certain deployments using 'DREVOPS_DEPLOY_SKIP_PR_<NUMBER>' and
-# 'DREVOPS_DEPLOY_SKIP_BRANCH_<SAFE_BRANCH>' variables.
-DREVOPS_DEPLOY_SKIP="${DREVOPS_DEPLOY_SKIP:-}"
+#
+# Different to $DREVOPS_DEPLOY_PROCEED in a way that $DREVOPS_DEPLOY_PROCEED is
+# a failsafe to prevent any deployments, while $DREVOPS_DEPLOY_SKIP allows to
+# selectively skip certain deployments using `$DREVOPS_DEPLOY_SKIP_PR_<NUMBER>'
+# and `$DREVOPS_DEPLOY_SKIP_BRANCH_<SAFE_BRANCH>` variables.
+DREVOPS_DEPLOY_ALLOW_SKIP="${DREVOPS_DEPLOY_ALLOW_SKIP:-}"
 
 # ------------------------------------------------------------------------------
 
-[ -z "${DREVOPS_DEPLOY_TYPE}" ] && echo "Missing required value for DREVOPS_DEPLOY_TYPE. Must be a combination of comma-separated values (to support multiple deployments): code, docker, webhook, lagoon." && exit 1
+# @formatter:off
+note() { printf "       %s\n" "${1}"; }
+info() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[34m[INFO] %s\033[0m\n" "${1}" || printf "[INFO] %s\n" "${1}"; }
+pass() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[32m[ OK ] %s\033[0m\n" "${1}" || printf "[ OK ] %s\n" "${1}"; }
+fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[31m[FAIL] %s\033[0m\n" "${1}" || printf "[FAIL] %s\n" "${1}"; }
+# @formatter:on
+
+info "Started deployment."
+
+[ -z "${DREVOPS_DEPLOY_TYPES}" ] && fail "Missing required value for DREVOPS_DEPLOY_TYPES. Must be a combination of comma-separated values (to support multiple deployments): code, docker, webhook, lagoon." && exit 1
 
 if [ "${DREVOPS_DEPLOY_PROCEED}" != "1" ]; then
-  echo "Skipping deployment ${DREVOPS_DEPLOY_TYPE}." && exit 0
+  echo "DREVOPS_DEPLOY_PROCEED is not set to 1." && pass "Skipping deployment ${DREVOPS_DEPLOY_TYPES}." && exit 0
 fi
 
-if [ "${DREVOPS_DEPLOY_SKIP}" = "1" ]; then
-  echo "  > Found flag to skip a deployment."
+if [ "${DREVOPS_DEPLOY_ALLOW_SKIP:-}" = "1" ]; then
+  note "Found flag to skip a deployment."
 
   if [ -n "${DREVOPS_DEPLOY_PR}" ]; then
-    # Allow skipping deployment by providing 'DREVOPS_DEPLOY_SKIP_PR_<NUMBER>'
-    # variable with value set to "1", where <NUMBER> is a PR number name with
+    # Allow skipping deployment by providing `$DREVOPS_DEPLOY_SKIP_PR_<NUMBER>`
+    # variable with value set to "1", where `<NUMBER>` is a PR number name with
     # spaces, hyphens and forward slashes replaced with underscores and then
     # capitalised.
     #
     # Example:
-    # For 'pr-123' branch, the variable name is DREVOPS_DEPLOY_SKIP_PR_123
+    # For PR named 'pr-123', the variable name is $DREVOPS_DEPLOY_SKIP_PR_123
     pr_skip_var="DREVOPS_DEPLOY_SKIP_PR_${DREVOPS_DEPLOY_PR}"
     if [ -n "${!pr_skip_var}" ]; then
-      echo "  > Found skip variable $pr_skip_var for PR ${DREVOPS_DEPLOY_PR}."
-      echo "Skipping deployment ${DREVOPS_DEPLOY_TYPE}." && exit 0
+      note "Found skip variable ${pr_skip_var} for PR ${DREVOPS_DEPLOY_PR}."
+      pass "Skipping deployment ${DREVOPS_DEPLOY_TYPES}." && exit 0
     fi
   fi
 
-  if [ -n "${DREVOPS_DEPLOY_BRANCH}" ]; then
+  if [ -n "${DREVOPS_DEPLOY_BRANCH:-}" ]; then
     # Allow skipping deployment by providing 'DREVOPS_DEPLOY_SKIP_BRANCH_<SAFE_BRANCH>'
     # variable with value set to "1", where <SAFE_BRANCH> is a branch name with
     # spaces, hyphens and forward slashes replaced with underscores and then
     # capitalised.
     #
     # Example:
-    # For 'main' branch, the variable name is DREVOPS_DEPLOY_SKIP_BRANCH_MAIN
+    # For 'main' branch, the variable name is $DREVOPS_DEPLOY_SKIP_BRANCH_MAIN
     # For 'feature/my complex feature-123 update' branch, the variable name
-    # is DREVOPS_DEPLOY_SKIP_BRANCH_MY_COMPLEX_FEATURE_123_UPDATE
+    # is $DREVOPS_DEPLOY_SKIP_BRANCH_MY_COMPLEX_FEATURE_123_UPDATE
     safe_branch_name="$(echo "${DREVOPS_DEPLOY_BRANCH}" | tr -d '\n' | tr '[:space:]' '_' | tr '-' '_' | tr '/' '_' | tr -cd '[:alnum:]_' | tr '[:lower:]' '[:upper:]')"
     branch_skip_var="DREVOPS_DEPLOY_SKIP_BRANCH_${safe_branch_name}"
-    if [ -n "${!branch_skip_var}" ]; then
-      echo "  > Found skip variable $branch_skip_var for branch ${DREVOPS_DEPLOY_BRANCH}."
-      echo "Skipping deployment ${DREVOPS_DEPLOY_TYPE}." && exit 0
+    if [ -n "${!branch_skip_var:-}" ]; then
+      note "Found skip variable ${branch_skip_var} for branch ${DREVOPS_DEPLOY_BRANCH}."
+      pass "Skipping deployment ${DREVOPS_DEPLOY_TYPES}." && exit 0
     fi
   fi
 fi
 
-if [ -z "${DREVOPS_DEPLOY_TYPE##*artifact*}" ]; then
-  echo "==> Started 'artifact' deployment."
-  export DREVOPS_DEPLOY_ARTIFACT_SSH_FINGERPRINT="${DREVOPS_DEPLOY_SSH_FINGERPRINT:-${DREVOPS_DEPLOY_ARTIFACT_SSH_FINGERPRINT}}"
-  export DREVOPS_DEPLOY_ARTIFACT_SSH_FILE="${DREVOPS_DEPLOY_SSH_FILE:-${DREVOPS_DEPLOY_ARTIFACT_SSH_FILE}}"
+if [ -z "${DREVOPS_DEPLOY_TYPES##*artifact*}" ]; then
+  [ "${DREVOPS_DEPLOY_MODE}" = "tag" ] && export DREVOPS_DEPLOY_ARTIFACT_DST_BRANCH="deployment/[tags:-]"
   ./scripts/drevops/deploy-artifact.sh
 fi
 
-if [ -z "${DREVOPS_DEPLOY_TYPE##*webhook*}" ]; then
-  echo "==> Started 'webhook' deployment."
+if [ -z "${DREVOPS_DEPLOY_TYPES##*webhook*}" ]; then
   ./scripts/drevops/deploy-webhook.sh
 fi
 
-if [ -z "${DREVOPS_DEPLOY_TYPE##*docker*}" ]; then
-  echo "==> Started 'docker' deployment."
-  export DREVOPS_DEPLOY_DOCKER_REGISTRY_USERNAME="${DREVOPS_DOCKER_REGISTRY_USERNAME:-${DREVOPS_DEPLOY_DOCKER_REGISTRY_USERNAME}}"
-  export DREVOPS_DEPLOY_DOCKER_REGISTRY_TOKEN="${DREVOPS_DOCKER_REGISTRY_TOKEN:-${DREVOPS_DEPLOY_DOCKER_REGISTRY_TOKEN}}"
-  export DREVOPS_DEPLOY_DOCKER_REGISTRY="${DREVOPS_DOCKER_REGISTRY:-${DREVOPS_DEPLOY_DOCKER_REGISTRY}}"
+if [ -z "${DREVOPS_DEPLOY_TYPES##*docker*}" ]; then
   ./scripts/drevops/deploy-docker.sh
 fi
 
-if [ -z "${DREVOPS_DEPLOY_TYPE##*lagoon*}" ]; then
-  echo "==> Started 'lagoon' deployment."
-  export DREVOPS_DEPLOY_LAGOON_SSH_FINGERPRINT="${DREVOPS_DEPLOY_SSH_FINGERPRINT:-${DREVOPS_DEPLOY_LAGOON_SSH_FINGERPRINT}}"
-  export DREVOPS_DEPLOY_LAGOON_SSH_FILE="${DREVOPS_DEPLOY_SSH_FILE:-${DREVOPS_DEPLOY_LAGOON_SSH_FILE}}"
-  export DREVOPS_DEPLOY_LAGOON_PROJECT="${LAGOON_PROJECT:-${DREVOPS_DEPLOY_LAGOON_PROJECT}}"
-  export DREVOPS_DEPLOY_LAGOON_ACTION="${DREVOPS_DEPLOY_ACTION:-${DREVOPS_DEPLOY_LAGOON_ACTION}}"
-  export DREVOPS_DEPLOY_LAGOON_BRANCH="${DREVOPS_DEPLOY_BRANCH:-${DREVOPS_DEPLOY_LAGOON_BRANCH}}"
-  export DREVOPS_DEPLOY_LAGOON_PR="${DREVOPS_DEPLOY_PR:-${DREVOPS_DEPLOY_LAGOON_PR}}"
-  export DREVOPS_DEPLOY_LAGOON_PR_HEAD="${DREVOPS_DEPLOY_PR_HEAD:-${DREVOPS_DEPLOY_LAGOON_PR_HEAD}}"
-  export DREVOPS_DEPLOY_LAGOON_PR_BASE_BRANCH="${DREVOPS_DEPLOY_PR_BASE_BRANCH:-${DREVOPS_DEPLOY_LAGOON_PR_BASE_BRANCH}}"
+if [ -z "${DREVOPS_DEPLOY_TYPES##*lagoon*}" ]; then
   ./scripts/drevops/deploy-lagoon.sh
 fi

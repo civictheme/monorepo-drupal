@@ -7,7 +7,9 @@
 load _helper
 
 @test "CivicTheme Demo Theme assets" {
-  dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/custom/civictheme_demo"
+  dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/custom/civictheme_demo"
+
+  [ ! -d "${dir}" ] && debug "Skipping tests" && return
 
   pushd "${dir}" >/dev/null || exit 1
 

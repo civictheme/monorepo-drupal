@@ -22,7 +22,7 @@ echo "  > Removing users."
 drush entity:delete user
 
 echo "  > Removing existing content files."
-rm -Rf "docroot/modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content/"* || true
+rm -Rf "web/modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content/"* || true
 
 echo "  > Exporting content."
 drush dcer --folder="modules/custom/civictheme_content/modules/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}/content" taxonomy_term
