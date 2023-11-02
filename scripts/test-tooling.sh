@@ -6,14 +6,7 @@
 set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
 
-echo "==> Test BATS helpers."
-bats tests/bats/helpers.bats --tap
-
-echo "==> Test BATS mock."
-bats tests/bats/mock.bats --tap
-
-echo "==> Test Assets mock."
-bats tests/bats/assets.bats --tap
+[ ! -d "tests/bats/node_modules" ] && npm --prefix tests/bats ci
 
 if [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ]; then
   echo "  > Test Library assets."

@@ -16,7 +16,7 @@ set -e
 EXCLUDED_CONFIGS_FILE="scripts/theme_excluded_configs.txt"
 
 # Theme info file.
-THEME_INFO="docroot/themes/contrib/civictheme/civictheme.info.yml"
+THEME_INFO="web/themes/contrib/civictheme/civictheme.info.yml"
 
 # Temp dir.
 TMP_DIR="/tmp/civictheme"

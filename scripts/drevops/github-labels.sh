@@ -6,23 +6,34 @@
 # Interactive prompt:
 # ./github-labels.sh
 #
-# Silent, if $DREVOPS_GITHUB_TOKEN or $GITHUB_TOKEN is set in an environment and
+# Silent, if $GITHUB_TOKEN or $GITHUB_TOKEN is set in an environment and
 # a repository provided as an argument:
-# DREVOPS_GITHUB_TOKEN=ghp_123 DREVOPS_GITHUB_REPO=myorg/myrepo ./github-labels.sh
+# GITHUB_TOKEN=ghp_123 DREVOPS_GITHUB_REPO=myorg/myrepo ./github-labels.sh
 #
-# shellcheck disable=SC2155
+# shellcheck disable=SC1090,SC1091,SC2155
 
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+t=$(mktemp) && export -p >"${t}" && set -a && . ./.env && if [ -f ./.env.local ]; then . ./.env.local; fi && set +a && . "${t}" && rm "${t}" && unset t
 
-# GitHub token to perform operations.
-DREVOPS_GITHUB_TOKEN="${DREVOPS_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
+set -eu
+[ "${DREVOPS_DEBUG-}" = "1" ] && set -x
 
 # GitHub repository as "org/name" to perform operations on.
-DREVOPS_GITHUB_REPO="${DREVOPS_GITHUB_REPO:-$1}"
+DREVOPS_GITHUB_REPO="${DREVOPS_GITHUB_REPO:-${1:-}}"
+
+# GitHub token to perform operations.
+GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 
 # Delete existing labels to mirror the list below.
 DREVOPS_GITHUB_DELETE_EXISTING_LABELS="${DREVOPS_GITHUB_DELETE_EXISTING_LABELS:-1}"
+
+# ------------------------------------------------------------------------------
+
+# @formatter:off
+note() { printf "       %s\n" "${1}"; }
+info() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[34m[INFO] %s\033[0m\n" "${1}" || printf "[INFO] %s\n" "${1}"; }
+pass() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[32m[ OK ] %s\033[0m\n" "${1}" || printf "[ OK ] %s\n" "${1}"; }
+fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\033[31m[FAIL] %s\033[0m\n" "${1}" || printf "[FAIL] %s\n" "${1}"; }
+# @formatter:on
 
 # Array of labels to create. If DELETE_EXISTING_LABELS=1, the labels list will
 # be exactly as below, otherwise labels below will be added to existing ones.
@@ -45,18 +56,18 @@ labels=(
   # "enhancement"         "a2eeef"  "New feature or request"
   # "help wanted"         "008672"  "Extra attention is needed"
   # "good first issue"    "7057ff"  "Good for newcomers"
-  # "invalid"             "e4e669o" "This doesn't seem right"
+  # "invalid"             "e4e669"  "This doesn't seem right"
   # "question"            "d876e3"  "Further information is requested"
   # "wontfix"             "ffffff"  "This will not be worked on"
 )
 
 # ------------------------------------------------------------------------------
 
-main(){
-  echo "==> Processing GitHub labels."
+main() {
+  info "Processing GitHub labels."
 
   echo
-  if [ "${DREVOPS_GITHUB_DELETE_EXISTING_LABELS}" = "1" ]; then
+  if [ "${DREVOPS_GITHUB_DELETE_EXISTING_LABELS:-}" = "1" ]; then
     echo "  This script will remove the default GitHub labels."
   else
     echo "  This script will not remove the default GitHub labels."
@@ -65,43 +76,43 @@ main(){
   echo "  A personal access token is required to access private repositories."
   echo
 
-  if [  "${DREVOPS_GITHUB_REPO}" = "" ]; then
+  if [ "${DREVOPS_GITHUB_REPO}" = "" ]; then
     echo ''
     echo -n 'Enter GitHub Org/Repo (e.g. myorg/myrepo): '
     read -r DREVOPS_GITHUB_REPO
   fi
 
-  [  "${DREVOPS_GITHUB_REPO}" = "" ] && echo "ERROR: GitHub repository name is required" && exit 1
+  [ "${DREVOPS_GITHUB_REPO}" = "" ] && fail "GitHub repository name is required" && exit 1
 
-  if [  "${DREVOPS_GITHUB_TOKEN}" = "" ]; then
+  if [ "${GITHUB_TOKEN}" = "" ]; then
     echo ''
     echo -n 'GitHub Personal Access Token: '
-    read -r -s DREVOPS_GITHUB_TOKEN
+    read -r -s GITHUB_TOKEN
   fi
-  [  "${DREVOPS_GITHUB_TOKEN}" = "" ] && echo "ERROR: GitHub token name is required" && exit 1
+  [ "${GITHUB_TOKEN}" = "" ] && fail "GitHub token is required" && exit 1
 
-  repo_org=$(echo "$DREVOPS_GITHUB_REPO" | cut -f1 -d /)
-  repo_name=$(echo "$DREVOPS_GITHUB_REPO" | cut -f2 -d /)
+  repo_org=$(echo "${DREVOPS_GITHUB_REPO}" | cut -f1 -d /)
+  repo_name=$(echo "${DREVOPS_GITHUB_REPO}" | cut -f2 -d /)
 
   if ! user_has_access; then
-    echo "ERROR: User does not have access to specified repository. Please check your credentials" && exit 1
+    fail "User does not have access to specified repository. Please check your credentials" && exit 1
   fi
 
   echo
-  echo "  > Starting label processing"
+  note "Starting label processing"
   echo
 
   timeout 5
   echo
 
   if [ "${DREVOPS_GITHUB_DELETE_EXISTING_LABELS}" = "1" ]; then
-    echo "  > Checking existing labels"
+    note "Checking existing labels"
     existing_labels_strings="$(label_all)"
     # shellcheck disable=SC2207
-    IFS=$'\n' existing_labels=( $(xargs -n1 <<<"${existing_labels_strings}") )
+    IFS=$'\n' existing_labels=($(xargs -n1 <<<"${existing_labels_strings}"))
     for existing_label_name in "${existing_labels[@]}"; do
       if ! is_provided_label "${existing_label_name}"; then
-        echo "    Removing label \"${existing_label_name}\" as it is not in thr provided list"
+        echo "    Removing label \"${existing_label_name}\" as it is not in the provided list"
         if label_delete "${existing_label_name}"; then
           echo "    DELETED label \"${existing_label_name}\""
         else
@@ -113,14 +124,14 @@ main(){
 
   count=0
   for value in "${labels[@]}"; do
-    if (( count % 3 == 0)); then
+    if ((count % 3 == 0)); then
       name="${value}"
-    elif (( count % 3 == 1)); then
+    elif ((count % 3 == 1)); then
       color="${value}"
     else
       description="${value}"
 
-      echo "  > Processing label \"${name}\""
+      note "Processing label \"${name}\""
       if label_exists "${name}"; then
         if label_update "${name}" "${color}" "${description}"; then
           echo "    UPDATED label \"${name}\""
@@ -136,51 +147,51 @@ main(){
       fi
 
     fi
-    count=$(( count + 1 ))
+    count=$((count + 1))
   done
 
   echo
-  echo "==> Label processing complete"
+  pass "Label processing complete"
   echo
 }
 
-is_provided_label(){
+is_provided_label() {
   label="${1}"
 
   count=0
   for value in "${labels[@]}"; do
-    if (( count % 3 == 0)); then
+    if ((count % 3 == 0)); then
       name="${value}"
       if [ "${label}" = "${name}" ]; then
-        return 0;
+        return 0
       fi
     fi
-    count=$(( count + 1 ))
+    count=$((count + 1))
   done
 
   return 1
 }
 
-user_has_access(){
-  status=$( \
+user_has_access() {
+  status=$(
     curl -s -I \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    --include -H "Accept: application/vnd.github.symmetra-preview+json" \
-    -o /dev/null \
-    -w "%{http_code}" \
-    --request GET \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels" \
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      --include -H "Accept: application/vnd.github.symmetra-preview+json" \
+      -o /dev/null \
+      -w "%{http_code}" \
+      --request GET \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels"
   )
   [ "${status}" = "200" ]
 }
 
-label_all(){
-  response=$( \
+label_all() {
+  response=$(
     curl -s \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    --include -H "Accept: application/vnd.github.symmetra-preview+json" \
-    --request GET \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels" \
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      --include -H "Accept: application/vnd.github.symmetra-preview+json" \
+      --request GET \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels"
   )
   jsonval "${response}" "name"
 }
@@ -188,88 +199,90 @@ label_all(){
 label_exists() {
   local name="${1}"
   local name_encoded=$(uriencode "${name}")
-  status=$( \
+  status=$(
     curl -s -I \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    --include -H "Accept: application/vnd.github.symmetra-preview+json" \
-    -o /dev/null \
-    -w "%{http_code}" \
-    --request GET \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}" \
-    )
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      --include -H "Accept: application/vnd.github.symmetra-preview+json" \
+      -o /dev/null \
+      -w "%{http_code}" \
+      --request GET \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}"
+  )
   [ "${status}" = "200" ]
 }
 
-label_create(){
+label_create() {
   local name="${1}"
   local color="${2}"
   local description="${3}"
-  local status=$(curl -s \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    -H "Accept: application/vnd.github.symmetra-preview+json" \
-    -o /dev/null \
-    -w "%{http_code}" \
-    --request POST \
-    --data "{\"name\":\"${name}\",\"color\":\"${color}\", \"description\":\"${description}\"}" \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels" \
+  local status=$(
+    curl -s \
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      -H "Accept: application/vnd.github.symmetra-preview+json" \
+      -o /dev/null \
+      -w "%{http_code}" \
+      --request POST \
+      --data "{\"name\":\"${name}\",\"color\":\"${color}\", \"description\":\"${description}\"}" \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels"
   )
   [ "${status}" = "201" ]
 }
 
-label_update(){
+label_update() {
   local name="${1}"
   local color="${2}"
   local description="${3}"
   local name_encoded=$(uriencode "${name}")
-  local status=$(curl -s \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    -H "Accept: application/vnd.github.symmetra-preview+json" \
-    -o /dev/null \
-    -w "%{http_code}" \
-    --request PATCH \
-    --data "{\"name\":\"${name}\",\"color\":\"${color}\", \"description\":\"${description}\"}" \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}" \
+  local status=$(
+    curl -s \
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      -H "Accept: application/vnd.github.symmetra-preview+json" \
+      -o /dev/null \
+      -w "%{http_code}" \
+      --request PATCH \
+      --data "{\"name\":\"${name}\",\"color\":\"${color}\", \"description\":\"${description}\"}" \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}"
   )
   [ "${status}" = "200" ]
 }
 
-label_delete(){
-  local name="${1}"
-  local color="${2}"
-  local description="${3}"
+label_delete() {
+  local name="${1:-}"
   local name_encoded=$(uriencode "${name}")
-  local status=$(curl -s \
-    -u "${DREVOPS_GITHUB_TOKEN}":x-oauth-basic \
-    -H "Accept: application/vnd.github.symmetra-preview+json" \
-    -o /dev/null \
-    -w "%{http_code}" \
-    --request DELETE \
-    "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}" \
+  local status=$(
+    curl -s \
+      -u "${GITHUB_TOKEN}":x-oauth-basic \
+      -H "Accept: application/vnd.github.symmetra-preview+json" \
+      -o /dev/null \
+      -w "%{http_code}" \
+      --request DELETE \
+      "https://api.github.com/repos/${repo_org}/${repo_name}/labels/${name_encoded}"
   )
   [ "${status}" = "204" ]
 }
 
-jsonval(){
+jsonval() {
   local json="${1}"
   local prop="${2}"
 
-  temp=$(echo "${json}" \
-    | sed 's/\\\\\//\//g' \
-    | sed 's/[{}]//g'    \
-    | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' \
-    | sed 's/\"\:\"/\|/g' \
-    | sed 's/[\,]/ /g' \
-    | grep -w "${prop}" \
-    | cut -d":" -f2 \
-    | sed -e 's/^ *//g' -e 's/ *$//g' \
+  temp=$(
+    echo "${json}" |
+      sed 's/\\\\\//\//g' |
+      sed 's/[{}]//g' |
+      awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' |
+      sed 's/\"\:\"/\|/g' |
+      sed 's/[\,]/ /g' |
+      grep -w "${prop}" |
+      cut -d":" -f2 |
+      sed -e 's/^ *//g' -e 's/ *$//g'
   )
   temp="${temp//${prop}|/}"
-  temp="$(echo "${temp}"|tr '\r\n' ' ')"
+  temp="$(echo "${temp}" | tr '\r\n' ' ')"
 
   echo "${temp}"
 }
 
-uriencode(){
+uriencode() {
   s="${1//'%'/%25}"
   s="${s//' '/%20}"
   s="${s//'"'/%22}"
@@ -286,15 +299,15 @@ uriencode(){
   s="${s//'@'/%40}"
   s="${s//'['/%5B}"
   s="${s//']'/%5D}"
-  printf %s "$s"
+  printf %s "${s}"
 }
 
-timeout(){
+timeout() {
   local seconds=${1}
   while [ "${seconds}" -gt 0 ]; do
-     echo -ne "Processing will start in $seconds seconds. Press Ctrl+C to abort\033[0K\r"
-     sleep 1
-     : $((seconds--))
+    echo -ne "Processing will start in ${seconds} seconds. Press Ctrl+C to abort\033[0K\r"
+    sleep 1
+    : $((seconds--))
   done
   echo
 }

@@ -11,10 +11,10 @@ jobs:
           node-version: '18.14'
       - name: Install dependencies
         run: npm install && npx playwright install
-        working-directory: docroot/themes/contrib/civictheme/civictheme_library
+        working-directory: web/themes/contrib/civictheme/civictheme_library
       - name: Build Storybook
         run: npm run build-storybook
-        working-directory: docroot/themes/contrib/civictheme/civictheme_library
+        working-directory: web/themes/contrib/civictheme/civictheme_library
       - name: Run tests
         run: npm run test
-        working-directory: docroot/themes/contrib/civictheme/civictheme_library
+        working-directory: web/themes/contrib/civictheme/civictheme_library

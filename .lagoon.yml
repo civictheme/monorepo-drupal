@@ -4,138 +4,63 @@ docker-compose-yaml: docker-compose.yml
 environment_variables:
   git_sha: 'true'
 
-# Uncomment below to login into container registries if using private images.
+# Uncomment to login into container registries if using private images.
 # container-registries:
 #  dockerhub:
-#    username: <dockerhub username>
-#    # Environment variable $DREVOPS_DOCKER_REGISTRY_TOKEN with Docker registry
-#    # password is injected into container via LagoonCLI.
-#    # @see https://docs.lagoon.sh/using-lagoon-advanced/environment-variables/#runtime-environment-variables-lagoon-api
-#    password: DREVOPS_DOCKER_REGISTRY_TOKEN
+#    # Environment variables DOCKER_USER and DOCKER_PASS needs to be set via Lagoon CLI.
+#    username: DOCKER_USER
+#    password: DOCKER_PASS
 
 tasks:
   post-rollout:
     - run:
         name: Show DrevOps variables.
-        command: |
-          env -0  | sort -z | tr '\0' '\n' | grep ^DREVOPS_
+        command: env -0  | sort -z | tr '\0' '\n' | grep ^DREVOPS_ || true
         service: cli
         shell: bash
 
     - run:
-        name: Replace app entrypoint to prevent probes from bootstrapping
+        name: Notify about pre-deployment.
         command: |
-          mv /app/docroot/index.php /tmp/index.php
-          echo "<? exit('ok');" >> /app/docroot/index.php
-        service: nginx-php
-        container: php
-
-    - run:
-        name: Set GitHub deployment status
-        command: |
-          if  [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
-            [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=${LAGOON_PR_HEAD_SHA#origin/} || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme_source" \
-            DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
-            DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="start" \
-            ./scripts/drevops/notify-deployment-github.sh || true
-          fi
+          if [ -n "$LAGOON_PR_NUMBER" ]; then export DREVOPS_NOTIFY_REF=$LAGOON_PR_NUMBER;export DREVOPS_NOTIFY_SHA=${LAGOON_PR_HEAD_SHA#origin/};export DREVOPS_NOTIFY_BRANCH=$LAGOON_PR_HEAD_BRANCH;else export DREVOPS_NOTIFY_REF=$LAGOON_GIT_BRANCH;export DREVOPS_NOTIFY_SHA=$LAGOON_GIT_SHA;export DREVOPS_NOTIFY_BRANCH=$LAGOON_GIT_BRANCH;fi
+          DREVOPS_NOTIFY_PROJECT=$LAGOON_PROJECT \
+          DREVOPS_NOTIFY_ENVIRONMENT_URL=$LAGOON_ROUTE \
+          DREVOPS_NOTIFY_EVENT=pre_deployment ./scripts/drevops/notify.sh || true
         service: cli
         shell: bash
 
     - run:
-        name: Backup DB before deployment in production
+        name: Provision site
         command: |
-          if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
-            echo "==> Running in PRODUCTION environment."
-            DREVOPS_DB_DIR=/app/docroot/sites/default/files/private/pre_deployment_backups ./scripts/drevops/export-db-file.sh
-          fi
-        service: cli
-
-    - run:
-        name: Install site
-        command: |
-          # Read DB dump from the temp location instead of '.data'.
-          export DREVOPS_DB_DIR=/tmp/data
-
-          # Deployments from UI are not able to bypass the value of
-          # DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB set by the deploy-lagoon.sh
-          # during previous deployments (it sets value to '0' to mitigate Lagoon bug
-          # where environment variables cannot be deleted and have to be set to a value).
-          # @see https://github.com/uselagoon/lagoon/issues/1922
-          # Explicitly set DB overwrite flag to the value from .env file for
-          # deployments from the profile.
-          if [ "$DREVOPS_DRUPAL_INSTALL_FROM_PROFILE" = "1" ]; then
-            export DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB="$(cat .env | grep ^DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB | cut -c45-)"
-          fi
-
-          if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
+          if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_LAGOON_PRODUCTION_BRANCH:-main}" ]; then
             echo "==> Running in PRODUCTION environment."
             # Never unblock admin user in production.
-            export DREVOPS_DRUPAL_LOGIN_UNBLOCK_ADMIN=0
-            # Never sanitize DB.
-            export DREVOPS_DRUPAL_INSTALL_DB_SANITIZE_SKIP=1
+            export DRUPAL_UNBLOCK_ADMIN=0
+            # Never sanitize DB in production.
+            export DREVOPS_PROVISION_SANITIZE_DB_SKIP=1
           fi
-
-          # Install site.
-          ./scripts/drevops/drupal-install-site.sh
+          ./scripts/drevops/provision.sh
         service: cli
         shell: bash
-
-    - run:
-        name: Restore app entrypoint
-        command: |
-          rm /app/docroot/index.php
-          mv /tmp/index.php /app/docroot/index.php
-        service: nginx-php
-        container: php
 
     - run:
         name: Send deployment notifications
         command: |
-          [ -n "$LAGOON_PR_NUMBER" ] && GIT_REF=$LAGOON_PR_NUMBER || GIT_REF=$LAGOON_GIT_BRANCH
-          php ./scripts/drevops/notify-deployment-email.php \
-            "CivicTheme Source" \
-            "lagoon-deploy+civictheme_source@salsadigital.com.au" \
-            "p.civictheme+lagoon-deploy.civictheme_source@salsadigital.com.au|CivicTheme group" \
-            "$GIT_REF" \
-            "$LAGOON_ROUTES"
-
-          if [ -n "$NEWRELIC_ENABLED" ] && [ -n "$NEWRELIC_LICENSE" ] && [ -n "$DREVOPS_NOTIFY_NEWRELIC_APIKEY" ]; then
-            [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=${LAGOON_PR_HEAD_SHA#origin/} || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_NEWRELIC_APP_NAME="$LAGOON_PROJECT-$GIT_SHA" \
-            DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
-            ./scripts/drevops/notify-deployment-newrelic.sh
-          fi
-
-          if [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
-            [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=${LAGOON_PR_HEAD_SHA#origin/} || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme_source" \
-            DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
-            DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL="$LAGOON_ROUTE" \
-            DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="finish" \
-            ./scripts/drevops/notify-deployment-github.sh || true
-          fi
-
-          if [ -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_USER}" ] && [ -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_TOKEN}" ]; then
-            [ -n "$LAGOON_PR_NUMBER" ] && GIT_BRANCH=$LAGOON_PR_HEAD_BRANCH || GIT_BRANCH=$LAGOON_GIT_BRANCH
-            DREVOPS_NOTIFY_JIRA_ENDPOINT="${DREVOPS_NOTIFY_JIRA_ENDPOINT:-https://jira.atlassian.com}" \
-            DREVOPS_NOTIFY_DEPLOY_BRANCH="$GIT_BRANCH" \
-            DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL="$LAGOON_ROUTE" \
-            ./scripts/drevops/notify-deployment-jira.sh || true
-          fi
+          if [ -n "$LAGOON_PR_NUMBER" ]; then export DREVOPS_NOTIFY_REF=$LAGOON_PR_NUMBER; export DREVOPS_NOTIFY_SHA=${LAGOON_PR_HEAD_SHA#origin/}; export DREVOPS_NOTIFY_BRANCH=$LAGOON_PR_HEAD_BRANCH; else export DREVOPS_NOTIFY_REF=$LAGOON_GIT_BRANCH; export DREVOPS_NOTIFY_SHA=$LAGOON_GIT_SHA; export DREVOPS_NOTIFY_BRANCH=$LAGOON_GIT_BRANCH; fi
+          DREVOPS_NOTIFY_EVENT=post_deployment \
+          DREVOPS_NOTIFY_PROJECT=$LAGOON_PROJECT \
+          DREVOPS_NOTIFY_ENVIRONMENT_URL=$LAGOON_ROUTE \
+          ./scripts/drevops/notify.sh
         service: cli
         shell: bash
-
 environments:
   # Branch name that represents production environment.
-  master:
+  main:
     cronjobs:
       - name: drush cron
         schedule: '*/15 * * * *'
         command: drush cron --root=/app
         service: cli
-
     routes:
       - nginx-php:
           - default.civictheme.io

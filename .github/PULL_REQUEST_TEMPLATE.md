@@ -1,7 +1,7 @@
 ## Checklist before requesting a review
 
-- [ ] I have formatted the subject to include ticket number as `[CIVIC-123] Verb in past tense with dot at the end.`
-- [ ] I have added a link to the JIRA ticket
+- [ ] I have formatted the subject to include ticket number as `[CS-123] Verb in past tense with dot at the end.`
+- [ ] I have added a link to the issue tracker
 - [ ] I have provided information in `Changed` section about WHY something was done if this was not a normal implementation
 - [ ] I have performed a self-review of my code
 - [ ] I have commented my code, particularly in hard-to-understand areas
@@ -10,6 +10,7 @@
 - [ ] I have provided screenshots, where applicable
 
 ## Changed
+
 1.
 
 ## Screenshots
