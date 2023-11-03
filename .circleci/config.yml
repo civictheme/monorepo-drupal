@@ -558,7 +558,7 @@ workflows:
       - build-govcms-sibling:
           filters:
             branches:
-              only: /develop|^release\/.*|^hotfix\/.*/
+              ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-content-corporate:
