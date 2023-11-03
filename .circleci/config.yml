@@ -134,8 +134,8 @@ aliases:
       command: |
         find . -name "docker-compose.yml" -print0 | xargs -0 -I {} sh -c "sed -i -e ''/###/d'' {} && sed -i -e ''s/##//'' {}"
         # Alter build for an alternative build setup.
-        if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then cp -f .docker/cli.sibling.dockerfile .docker/cli.dockerfile; fi
-        if [ "$CIVICTHEME_LIBRARY_INSTALL_SKIP" = "1" ]; then cp -f .docker/cli.onlytheme.dockerfile .docker/cli.dockerfile; fi
+        if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then echo "Using cli.sibling.dockerfile"; cp -f .docker/cli.sibling.dockerfile .docker/cli.dockerfile; fi
+        if [ "$CIVICTHEME_LIBRARY_INSTALL_SKIP" = "1" ]; then echo "Using cli.onlytheme.dockerfile"; cp -f .docker/cli.onlytheme.dockerfile .docker/cli.dockerfile; fi
 
 ################################################################################
 # JOBS
