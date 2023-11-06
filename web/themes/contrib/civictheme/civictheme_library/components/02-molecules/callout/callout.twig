@@ -63,7 +63,7 @@
 
           {% block links %}
             {% set link_items = [] %}
-            {% for k, link in links %}
+            {% for link in links %}
               {%- set link %}
                 {% include '@atoms/button/button.twig' with {
                   theme: theme,

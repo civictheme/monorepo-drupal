@@ -28,7 +28,7 @@
 #}
 
 {% set with_image = image.url is not empty %}
-{% set with_image_class = with_image ? 'ct-publication-card--with-image': '' %}
+{% set with_image_class = with_image ? 'ct-publication-card--with-image' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, with_link_class, modifier_class|default('')) %}
 

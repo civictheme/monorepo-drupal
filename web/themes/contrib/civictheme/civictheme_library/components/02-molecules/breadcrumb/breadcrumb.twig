@@ -24,7 +24,7 @@
   <nav class="ct-breadcrumb {{ modifier_class }}" aria-label="breadcrumb" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% set link_items = [] %}
 
-    {% for key, link in links %}
+    {% for link in links %}
       {% set link_item %}
         {% set link = {
           text: link.text,
@@ -42,7 +42,7 @@
         {% endif %}
       {% endset %}
 
-      {% set link_items = link_items|merge([ link_item ]) %}
+      {% set link_items = link_items|merge([link_item]) %}
 
       {% if loop.index < links_count %}
         {% set link_item %}
@@ -51,7 +51,7 @@
             modifier_class: 'ct-breadcrumb__links__separator',
           } only %}
         {% endset %}
-        {% set link_items = link_items|merge([ link_item ]) %}
+        {% set link_items = link_items|merge([link_item]) %}
       {% endif %}
 
       {% if loop.index == links_count - 1 %}

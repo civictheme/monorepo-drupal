@@ -28,7 +28,7 @@
  */
 #}
 
-{% set is_decorative_class = is_decorative ? 'ct-banner--decorative': '' %}
+{% set is_decorative_class = is_decorative ? 'ct-banner--decorative' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, is_decorative_class, modifier_class|default('')) %}
 
@@ -155,7 +155,7 @@
             {% include '@atoms/image/image.twig' with {
               theme: theme,
               url: featured_image.url,
-              alt:  featured_image.alt,
+              alt: featured_image.alt,
               modifier_class: 'ct-banner__featured-image',
             } only %}
           </div>

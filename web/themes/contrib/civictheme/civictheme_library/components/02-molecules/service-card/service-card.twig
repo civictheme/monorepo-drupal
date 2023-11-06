@@ -46,7 +46,7 @@
       {% block links %}
         {% if links is not empty %}
           {% set list_items = [] %}
-          {% for key, link in links %}
+          {% for link in links %}
             {% if link.text is not empty %}
               {% set list_item %}
                 {% include '@atoms/link/link.twig' with {
@@ -57,7 +57,7 @@
                   is_external: link.is_external is defined ? link.is_external : false,
                 } only %}
               {% endset %}
-              {% set list_items = list_items|merge([ list_item ]) %}
+              {% set list_items = list_items|merge([list_item]) %}
             {% endif %}
           {% endfor %}
           {% include '@base/item-list/item-list.twig' with {

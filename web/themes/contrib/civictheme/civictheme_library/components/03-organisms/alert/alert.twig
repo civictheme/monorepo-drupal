@@ -18,7 +18,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type|default('information') %}
 {% set type_class = 'ct-alert--%s'|format(type|default('information')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
 {% set icons = {
   information: 'information-mark',

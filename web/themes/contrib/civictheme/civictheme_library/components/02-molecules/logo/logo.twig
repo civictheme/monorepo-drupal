@@ -26,7 +26,7 @@
 {% set type = type in ['default', 'inline', 'stacked', 'inline-stacked'] ? type : 'default' %}
 {% set type_class = 'ct-logo--%s'|format(type|default('default')) %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, type_class,  modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
 {% if logos is not empty %}
   {% if url is not empty %}

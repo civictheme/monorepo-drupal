@@ -20,7 +20,7 @@
 {% set kind_class = kind ? 'ct-chip--%s'|format(kind) : '' %}
 {% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set size_class = 'ct-chip--%s'|format(size) %}
-{% set selected_class =  is_selected ? 'active' : '' %}
+{% set selected_class = is_selected ? 'active' : '' %}
 {% set multiple_class = is_multiple ? 'ct-chip--multiple' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, kind_class, size_class, selected_class, multiple_class, modifier_class|default('')) %}

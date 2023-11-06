@@ -28,7 +28,7 @@
 {% set type_class = type ? 'ct-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'ct-button--%s'|format(kind) : '' %}
 {% set size_class = 'ct-button--%s'|format(size) %}
-{% set dismiss_class =  is_dismissable ? 'ct-button--dismiss' : '' %}
+{% set dismiss_class = is_dismissable ? 'ct-button--dismiss' : '' %}
 {% set is_external = is_external ? 'ct-button--external' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, is_external, modifier_class|default('')) %}
@@ -93,7 +93,7 @@
     type="{{ kind }}"
     class="ct-button {{ modifier_class }}"
     data-component-name="button"
-    value="{{ (is_raw_text ? text|raw : text) |trim }}"
+    value="{{ (is_raw_text ? text|raw : text)|trim }}"
     {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   />
