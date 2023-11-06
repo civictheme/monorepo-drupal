@@ -325,7 +325,7 @@ job-mirror: &job-mirror
             do
               GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
               sleep 5
-              DREVOPS_DEPLOY_LAGOON_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ahoy deploy
+              DREVOPS_DEPLOY_LAGOON_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
             done
           fi
 
