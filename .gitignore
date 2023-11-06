@@ -13,10 +13,12 @@ web/modules/*
 !web/modules/custom/
 !web/themes/
 web/themes/*
-!web/themes/custom/
 !web/themes/contrib/
 web/themes/contrib/*
 !web/themes/contrib/civictheme
+!web/themes/custom/
+web/themes/custom/*
+!web/themes/custom/.gitkeep
 !web/profiles/
 web/profiles/*
 !web/profiles/custom/
@@ -57,9 +59,6 @@ docker-compose.override.yml
 
 # Ignore configuration as this site is installed from profile.
 /config/*
-
-# Ignore generated theme.
-web/themes/custom
 
 # Ignore FE lock files. Do not ignore in distributions as they could be required
 # by the consumer sites.

@@ -18,6 +18,8 @@ web/core
 web/modules/contrib
 web/themes/contrib
 !web/themes/contrib/civictheme
+web/themes/custom
+!web/themes/custom/.gitkeep
 web/profiles/contrib
 web/libraries
 !drush
