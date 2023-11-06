@@ -11,7 +11,7 @@ set -eu
 
 drush() { ./vendor/bin/drush -y "$@"; }
 
-echo "[INFO] Finished provisioning content."
+echo "[INFO] Provisioning content."
 
 if [ -n "${CIVICTHEME_CONTENT_PROFILE:-}" ]; then
   echo "  > Provisioning content from \"${CIVICTHEME_CONTENT_PROFILE}\" content profile."
