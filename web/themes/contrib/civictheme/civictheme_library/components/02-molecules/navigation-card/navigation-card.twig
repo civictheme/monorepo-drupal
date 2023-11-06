@@ -27,9 +27,9 @@
 #}
 
 {% set with_image = image.url is not empty %}
-{% set with_image_class = with_image ? 'ct-navigation-card--with-image': '' %}
+{% set with_image_class = with_image ? 'ct-navigation-card--with-image' : '' %}
 {% set with_link = link is not empty and link.url is defined and link.url is not empty %}
-{% set with_link_class = with_link ? 'ct-navigation-card--with-link': '' %}
+{% set with_link_class = with_link ? 'ct-navigation-card--with-link' : '' %}
 {% set image_as_icon_class = image_as_icon ? 'ct-navigation-card--image-as-icon' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, with_image_class, with_link_class, image_as_icon_class, modifier_class|default('')) %}

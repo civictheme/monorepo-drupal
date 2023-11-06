@@ -43,9 +43,9 @@
           {% endblock %}
 
           {% block filters %}
-            {% set group = 'ct-group-filter--group-' ~ random(1000,9999) %}
+            {% set group = 'ct-group-filter--group-' ~ random(1000, 9999) %}
             {% set filters_items = [] %}
-            {% for key, filter in filters %}
+            {% for filter in filters %}
               {% set filters_item %}
                 {% include '@atoms/popover/popover.twig' with {
                   theme: theme,
@@ -56,7 +56,7 @@
                   group: group,
                 } only %}
               {% endset %}
-              {% set filters_items = filters_items|merge([ filters_item ]) %}
+              {% set filters_items = filters_items|merge([filters_item]) %}
             {% endfor %}
 
             {% if form_attributes is not empty %}

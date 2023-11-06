@@ -31,14 +31,14 @@
     {% block content %}
       {% if tags %}
         {% set tag_items = [] %}
-        {% for key, tag in tags %}
+        {% for tag in tags %}
           {% set tag_item %}
             {% include '@atoms/tag/tag.twig' with {
               theme: theme,
               content: tag,
             } only %}
           {% endset %}
-          {% set tag_items = tag_items|merge([ tag_item ]) %}
+          {% set tag_items = tag_items|merge([tag_item]) %}
         {% endfor %}
         {% include '@base/item-list/item-list.twig' with {
           items: tag_items,

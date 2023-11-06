@@ -70,7 +70,7 @@
 
             {% block links %}
               {% set link_items = [] %}
-              {% for k, file in files %}
+              {% for file in files %}
                 {%- set link %}
                   {% include '@base/icon/icon.twig' with {
                     symbol: file.icon ? file.icon : 'download-file',

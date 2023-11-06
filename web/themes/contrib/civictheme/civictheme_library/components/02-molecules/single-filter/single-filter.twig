@@ -48,7 +48,7 @@
                 {% if item.text is not empty %}
                   {% set item_attributes = item.attributes is defined and item.attributes is not empty ? item.attributes : '' %}
                   {% set item_name = item.name is defined ? item.name : (is_multiple ? 'single-filter-' ~ loop.index : 'single-filter') %}
-                  {% set item_attributes = 'name' not in item_attributes ? item_attributes ~ ' name="' ~  item_name ~ '"' : item_attributes %}
+                  {% set item_attributes = 'name' not in item_attributes ? item_attributes ~ ' name="' ~ item_name ~ '"' : item_attributes %}
                   {% include '@atoms/chip/chip.twig' with {
                     theme: theme,
                     kind: 'input',
@@ -60,7 +60,7 @@
                   } only %}
                 {% endif %}
               {% endset %}
-              {% set filter_items = filter_items|merge([ filter_item ]) %}
+              {% set filter_items = filter_items|merge([filter_item]) %}
             {% endfor %}
 
             {% if form_attributes is not empty %}

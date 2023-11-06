@@ -20,7 +20,7 @@
 #}
 
 {% set text = text|default('') %}
-{% set only_icon_class =  icon is not empty and text is empty ? 'ct-link--only-icon' : '' %}
+{% set only_icon_class = icon is not empty and text is empty ? 'ct-link--only-icon' : '' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set is_external_class = is_external ? 'ct-link--external' : '' %}
 {% set is_active_class = is_active ? 'ct-link--active' : '' %}

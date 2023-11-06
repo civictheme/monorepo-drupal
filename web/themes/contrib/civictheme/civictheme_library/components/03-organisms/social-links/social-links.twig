@@ -25,7 +25,7 @@
 
     {% block items %}
       {% set items_rendered = [] %}
-      {% for k, item in items %}
+      {% for item in items %}
         {%- set item_rendered %}
           {% include '@atoms/button/button.twig' with {
             theme: theme,

@@ -18,7 +18,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if content is not empty %}
-  <figure class="ct-quote {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%}>
+  <figure class="ct-quote {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <blockquote class="ct-quote__content">
       {{ content }}
     </blockquote>
@@ -26,6 +26,6 @@
       <figcaption class="ct-quote__author">
         {{ author }}
       </figcaption>
-    {% endif  -%}
+    {% endif -%}
   </figure>
 {% endif %}

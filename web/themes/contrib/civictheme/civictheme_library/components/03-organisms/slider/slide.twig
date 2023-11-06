@@ -106,7 +106,7 @@
         {% block links %}
           {% if links is not empty %}
             {% set link_items = [] %}
-            {% for key, link in links %}
+            {% for link in links %}
               {% set link_item %}
                 {% include '@atoms/button/button.twig' with {
                   theme: theme,
@@ -118,7 +118,7 @@
                   modifier_class: 'ct-slide__links__link',
                 } only %}
               {% endset %}
-              {% set link_items = link_items|merge([ link_item ]) %}
+              {% set link_items = link_items|merge([link_item]) %}
             {% endfor %}
 
             {% include '@base/item-list/item-list.twig' with {

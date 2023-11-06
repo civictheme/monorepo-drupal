@@ -95,7 +95,7 @@
                 {% block links %}
                   {% if links is not empty %}
                     {% set link_items = [] %}
-                    {% for key, link in links %}
+                    {% for link in links %}
                       {% set link_item %}
                         {% include '@atoms/button/button.twig' with {
                           theme: theme,
@@ -106,7 +106,7 @@
                           is_new_window: link.is_new_window,
                         } only %}
                       {% endset %}
-                      {% set link_items = link_items|merge([ link_item ]) %}
+                      {% set link_items = link_items|merge([link_item]) %}
                     {% endfor %}
 
                     {% include '@base/item-list/item-list.twig' with {
