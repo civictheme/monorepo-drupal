@@ -67,14 +67,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build-php-8.1-legacy:
-          filters:
-            tags:
-              only: /.*/
-      - build-php-8.2-legacy:
-          filters:
-            tags:
-              only: /.*/
       - build-php-8.2-next:
           filters:
             tags:
@@ -83,8 +75,6 @@ workflows:
           requires:
             - build-php-8.1
             - build-php-8.2
-            - build-php-8.1-legacy
-            - build-php-8.2-legacy
             - build-php-8.2-next
           filters:
             tags:
