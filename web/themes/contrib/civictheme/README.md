@@ -1,8 +1,8 @@
 # CivicTheme Drupal theme
 
-Drupal 9+ component-based theme.
+Drupal 10 component-based theme.
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/salsadigitalauorg/civictheme/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/salsadigitalauorg/civictheme/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/salsadigitalauorg/civictheme/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/salsadigitalauorg/civictheme/tree/main)
 
 ----
 
@@ -19,7 +19,7 @@ The Drupal theme provides full integration with UI kit.
 ## Installation
 
 ```bash
-composer require salsadigitalauorg/civictheme
+composer require drupal/civictheme
 ```
 
 Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
@@ -27,7 +27,7 @@ already included as a set of compiled assets.
 
 ## Creating a sub-theme from the CivicTheme theme
 
-See [Sub-theme](https://docs.civictheme.io/drupal-theme/sub-theme)
+See [Sub-theme](https://docs.civictheme.io/development/drupal-theme/sub-theme)
 
 ## Updating CivicTheme
 
@@ -35,7 +35,7 @@ See [Version update](https://docs.civictheme.io/development/drupal-theme/version
 
 ## Managing colors
 
-See [Color selector](https://docs.civictheme.io/drupal-theme/color-selector)
+See [Color selector](https://docs.civictheme.io/development/drupal-theme/color-selector)
 
 ---
 
