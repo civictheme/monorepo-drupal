@@ -16,7 +16,7 @@
  * @return string
  *   The processed string.
  */
-function _civictheme_process__html_content($html, $options = []) {
+function _civictheme_process__html_content($html, array $options = []) {
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
 
@@ -49,7 +49,7 @@ function _civictheme_process__html_content($html, $options = []) {
 /**
  * Preprocess date range field.
  */
-function _civictheme_preprocess_date_range_field(&$variables) {
+function _civictheme_preprocess_date_range_field(array &$variables): void {
   if ($variables['field_name'] !== 'field_c_n_date_range') {
     return;
   }

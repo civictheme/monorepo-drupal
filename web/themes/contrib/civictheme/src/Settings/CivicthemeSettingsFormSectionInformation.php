@@ -14,7 +14,7 @@ class CivicthemeSettingsFormSectionInformation extends CivicthemeSettingsFormSec
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 20;
   }
 
@@ -23,11 +23,11 @@ class CivicthemeSettingsFormSectionInformation extends CivicthemeSettingsFormSec
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
-    $message = $this->t('<div class="messages messages--info">@repository<br/>@design_system<br/>@documentation<br/>@issues</div>', [
-      '@repository' => Link::fromTextAndUrl('Code repository (GitHub)', Url::fromUri('https://github.com/salsadigitalauorg/civictheme'))->toString(),
+  public function form(array &$form, FormStateInterface $form_state): void {
+    $message = $this->t('<div class="messages messages--info">@documentation<br/>@design_system<br/>@repository<br/>@issues</div>', [
+      '@documentation' => Link::fromTextAndUrl('Documentation', Url::fromUri('https://docs.civictheme.io/'))->toString(),
       '@design_system' => Link::fromTextAndUrl('Design system (Figma)', Url::fromUri('https://www.civictheme.io/figma'))->toString(),
-      '@documentation' => Link::fromTextAndUrl('Documentation', Url::fromUri('https://www.civictheme.io/getting-started/developers'))->toString(),
+      '@repository' => Link::fromTextAndUrl('Code repository (GitHub)', Url::fromUri('https://github.com/salsadigitalauorg/civictheme'))->toString(),
       '@issues' => Link::fromTextAndUrl('Report issues', Url::fromUri('https://github.com/salsadigitalauorg/civictheme_source/issues'))->toString(),
     ]);
 

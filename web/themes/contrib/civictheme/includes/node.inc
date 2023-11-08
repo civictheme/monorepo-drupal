@@ -7,11 +7,12 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Template\Attribute;
+use Drupal\node\NodeInterface;
 
 /**
  * Generic pre-process for all view mode of nodes.
  */
-function _civictheme_preprocess_node(&$variables) {
+function _civictheme_preprocess_node(array &$variables): void {
   $node = $variables['node'];
 
   if (!$node) {
@@ -46,10 +47,9 @@ function _civictheme_preprocess_node(&$variables) {
   // Add Tags if hide tags is not set on node.
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
     $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
-    if ($topics) {
+    if (!empty($topics)) {
       $topics = array_map(function ($topic) {
         return $topic->label();
-
       }, $topics);
 
       $variables['content'][] = [
@@ -64,7 +64,7 @@ function _civictheme_preprocess_node(&$variables) {
 /**
  * Pre-process Full view mode of nodes.
  */
-function _civictheme_preprocess_node__full(&$variables) {
+function _civictheme_preprocess_node__full(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $type = $node->getType();
@@ -77,7 +77,7 @@ function _civictheme_preprocess_node__full(&$variables) {
 /**
  * Default view mode fallback preprocessor for nodes.
  */
-function _civictheme_preprocess_node__default(&$variables) {
+function _civictheme_preprocess_node__default(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $type = $node->getType();
@@ -90,7 +90,7 @@ function _civictheme_preprocess_node__default(&$variables) {
 /**
  * Pre-process CivicTheme Alert nodes.
  */
-function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
+function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
@@ -105,10 +105,11 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
 /**
  * Generic page pre-process for all view mode of nodes.
  */
-function _civictheme_preprocess_page__node(&$variables) {
+function _civictheme_preprocess_page__node(array &$variables): void {
   /** @var \Drupal\node\Entity\Node $node */
   $node = civictheme_load_node_or_revision($variables);
 
+  // @phpstan-ignore-next-line
   if (!$node) {
     return;
   }
@@ -125,7 +126,7 @@ function _civictheme_preprocess_page__node(&$variables) {
 /**
  * Determine last updated date for a page.
  */
-function _civictheme_node_get_updated_date($node, $format = 'civictheme_short_date') {
+function _civictheme_node_get_updated_date(NodeInterface $node, string $format = 'civictheme_short_date'): ?string {
   $show_last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
   $custom_updated_value = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
 

@@ -11,21 +11,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CivicTheme settings form manager.
  */
-class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
+final class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
 
   /**
    * Plugin loader.
-   *
-   * @var \Drupal\civictheme\CivicthemePluginLoader
    */
-  protected $pluginLoader;
+  protected CivicthemePluginLoader $pluginLoader;
 
   /**
    * Theme extension list.
-   *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
    */
-  protected $themeExtensionList;
+  protected ThemeExtensionList $themeExtensionList;
 
   /**
    * {@inheritdoc}
@@ -38,8 +34,8 @@ class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemePluginLoader::class),
       $container->get('extension.list.theme')
     );
@@ -48,14 +44,16 @@ class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
+    /** @var \Drupal\civictheme\Settings\CivicthemeSettingsFormSectionBase[] $sections */
     $sections = $this->pluginLoader->load(
       $this->themeExtensionList->get('civictheme')->getPath() . '/src/Settings',
       CivicthemeSettingsFormSectionBase::class
     );
 
     // Sort by weight.
-    usort($sections, function ($a, $b) {
+    usort($sections, function ($a, $b): int {
+      // @phpstan-ignore-next-line
       return strnatcasecmp($a->weight(), $b->weight());
     });
 

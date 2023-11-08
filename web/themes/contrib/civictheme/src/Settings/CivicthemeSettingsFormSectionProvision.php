@@ -12,14 +12,14 @@ class CivicthemeSettingsFormSectionProvision extends CivicthemeSettingsFormSecti
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 50;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     // Programmatically provision content.
     $path = $this->themeExtensionList->getPath('civictheme');
     $provision_file = $path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';

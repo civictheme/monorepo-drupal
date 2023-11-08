@@ -13,21 +13,24 @@ use Drupal\media\Entity\Media;
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_generated_content_generated_content_create_media_civictheme_image_weight() {
+function cs_generated_content_generated_content_create_media_civictheme_image_weight(): int {
   return 12;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_generated_content_generated_content_create_media_civictheme_image_tracking() {
+function cs_generated_content_generated_content_create_media_civictheme_image_tracking(): bool {
   return TRUE;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
+ *
+ * @phpstan-ignore-next-line
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function cs_generated_content_generated_content_create_media_civictheme_image() {
+function cs_generated_content_generated_content_create_media_civictheme_image(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
@@ -51,6 +54,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
       'target_id' => $file->id(),
       'alt' => sprintf('Alt for %s', $name),
     ]);
+    // @phpstan-ignore-next-line
     $media->field_c_m_caption = $helper::staticSentence(2);
 
     $media->save();

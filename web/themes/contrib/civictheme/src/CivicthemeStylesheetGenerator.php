@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CSS variables stylesheet generator.
  */
-class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
+final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
 
   /**
    * Defines CSS variables parts separator.
@@ -26,17 +26,13 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
 
   /**
    * The stylesheet URI.
-   *
-   * @var string
    */
-  protected $stylesheetUri;
+  protected string $stylesheetUri;
 
   /**
    * File system service.
-   *
-   * @var \Drupal\Core\File\FileSystem
    */
-  protected $fileSystem;
+  protected FileSystem $fileSystem;
 
   /**
    * Constructor.
@@ -52,8 +48,8 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('file_system')
     );
   }
@@ -75,7 +71,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    * @return string
    *   Generated stylesheet URI.
    */
-  public function generate(array $variables, array $parent_selectors = ['html'], $prefix = '') {
+  public function generate(array $variables, array $parent_selectors = ['html'], string $prefix = ''): string {
     $filepath = $this->getStylesheetUri();
     if (is_file($filepath) && file_exists($filepath)) {
       return $filepath;
@@ -90,7 +86,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function purge() {
+  public function purge(): static {
     foreach ($this->getAllStylesheetFiles() as $file) {
       $this->fileSystem->delete($file);
     }
@@ -101,7 +97,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
   /**
    * Get stylesheet URI.
    */
-  public function getStylesheetUri() {
+  public function getStylesheetUri(): string {
     return $this->stylesheetUri;
   }
 
@@ -116,8 +112,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function setStylesheetUriSuffix($suffix) {
-    $suffix = is_scalar($suffix) ? $suffix : 'default';
+  public function setStylesheetUriSuffix(string $suffix): static {
     $this->stylesheetUri = self::STYLESHEET_URI_PREFIX . $suffix . '.css';
 
     return $this;
@@ -126,10 +121,10 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
   /**
    * Get all stylesheet files.
    *
-   * @return array
+   * @return array<string>
    *   Array of all found generated stylesheet files.
    */
-  protected function getAllStylesheetFiles() {
+  protected function getAllStylesheetFiles(): array {
     $files = glob($this->fileSystem->realpath(self::STYLESHEET_URI_PREFIX) . '*.css');
 
     return !empty($files) ? $files : [];
@@ -147,21 +142,17 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    *   Optional prefix to add to every generated variables.
    *   Should not include '--' (the CSS variable prefix).
    *
-   * @return string|bool
-   *   URI to a stylesheet file or FALSE if stylesheet cannot be generated.
+   * @return string|null
+   *   URI to a stylesheet file or NULL if stylesheet cannot be generated.
    *
    * @SuppressWarnings(StaticAccess)
    */
-  protected function generateStylesheet(array $variables, array $parent_selectors = ['html'], $prefix = '') {
+  protected function generateStylesheet(array $variables, array $parent_selectors = ['html'], string $prefix = ''): ?string {
     $variables = CivicthemeUtility::flattenArray($variables, self::CSS_VARIABLES_SEPARATOR);
 
     foreach ($variables as $name => $value) {
       $variables['--' . $prefix . self::CSS_VARIABLES_SEPARATOR . str_replace('_', '-', $name)] = (string) $value;
       unset($variables[$name]);
-    }
-
-    if (empty($variables)) {
-      return FALSE;
     }
 
     $content = implode(';', CivicthemeUtility::arrayMergeKeysValues($variables, ':')) . ';';
@@ -179,10 +170,10 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
    * @param string $data
    *   Stylesheet data to save.
    *
-   * @return string|bool
-   *   Path to saved stylesheet or FALSE if unable to save.
+   * @return string|null
+   *   Path to saved stylesheet or NULL if unable to save.
    */
-  protected function saveStylesheet($data) {
+  protected function saveStylesheet($data): ?string {
     $filepath = $this->getStylesheetUri();
     try {
       $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
@@ -190,8 +181,8 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
     }
     catch (\Exception $exception) {
       // Drupal\Core\File\FileSystem handles logging, so simply handle the
-      // exception and assign FALSE.
-      $filepath = FALSE;
+      // exception and assign NULL.
+      $filepath = NULL;
     }
 
     return $filepath;

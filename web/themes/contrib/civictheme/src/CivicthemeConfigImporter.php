@@ -28,105 +28,79 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  *
  * Imports configurations from specified files.
  */
-class CivicthemeConfigImporter implements ContainerInjectionInterface {
+final class CivicthemeConfigImporter implements ContainerInjectionInterface {
 
   /**
    * Array of storages.
    *
-   * @var array
+   * @var array<\Drupal\Core\Config\StorageInterface>
    */
   protected $storages;
 
   /**
    * The event dispatcher used to notify subscribers.
-   *
-   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
    */
-  protected $eventDispatcher;
+  protected EventDispatcherInterface $eventDispatcher;
 
   /**
    * The configuration manager.
-   *
-   * @var \Drupal\Core\Config\ConfigManagerInterface
    */
-  protected $configManager;
+  protected ConfigManagerInterface $configManager;
 
   /**
    * The used lock backend instance.
-   *
-   * @var \Drupal\Core\Lock\LockBackendInterface
    */
-  protected $lockPersistent;
+  protected LockBackendInterface $lockPersistent;
 
   /**
    * The typed config manager.
-   *
-   * @var \Drupal\Core\Config\TypedConfigManagerInterface
    */
-  protected $typedConfigManager;
+  protected TypedConfigManagerInterface $typedConfigManager;
 
   /**
    * The module handler.
-   *
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
-  protected $moduleHandler;
+  protected ModuleHandlerInterface $moduleHandler;
 
   /**
    * The theme handler.
-   *
-   * @var \Drupal\Core\Extension\ThemeHandlerInterface
    */
-  protected $themeHandler;
+  protected ThemeHandlerInterface $themeHandler;
 
   /**
    * The module installer.
-   *
-   * @var \Drupal\Core\Extension\ModuleInstallerInterface
    */
-  protected $moduleInstaller;
+  protected ModuleInstallerInterface $moduleInstaller;
 
   /**
    * The module extension list.
-   *
-   * @var \Drupal\Core\Extension\ModuleExtensionList
    */
-  protected $moduleExtensionList;
+  protected ModuleExtensionList $moduleExtensionList;
 
   /**
    * The module extension list.
-   *
-   * @var \Drupal\Core\Config\StorageInterface
    */
-  protected $configStorage;
+  protected StorageInterface $configStorage;
 
   /**
    * The cache backend.
-   *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
    */
-  protected $cacheConfig;
+  protected CacheBackendInterface $cacheConfig;
 
   /**
    * The messenger.
-   *
-   * @var \Drupal\Core\Messenger\MessengerInterface
    */
-  protected $messenger;
+  protected MessengerInterface $messenger;
 
   /**
    * The logger channel.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
-  protected $logger;
+  protected LoggerChannelInterface $logger;
 
   /**
    * The string translation.
-   *
-   * @var \Drupal\Core\StringTranslation\TranslationInterface
    */
-  protected $stringTranslation;
+  protected TranslationInterface $stringTranslation;
 
   /**
    * Constructor.
@@ -193,8 +167,8 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('event_dispatcher'),
       $container->get('config.manager'),
       $container->get('lock.persistent'),
@@ -219,11 +193,12 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @param array $tokens
    *   Array of tokens to replace within configs while they are importing.
    */
-  public function importConfigs($locations = [], array $tokens = []) {
+  public function importConfigs($locations = [], array $tokens = []): void {
     $locations = is_array($locations) ? $locations : [$locations];
 
     foreach ($locations as $location) {
-      foreach (glob($location . '/*') as $file) {
+      $files = glob($location . '/*') ?: [];
+      foreach ($files as $file) {
         $src = basename($file, '.yml');
         $dst = $this->replaceTokens($src, $tokens);
         $this->importSingleConfig($src, $locations, $dst, $tokens);
@@ -246,7 +221,7 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    * @param array $tokens
    *   Optional array of tokens to replace while importing configuration.
    */
-  public function importSingleConfig($src_name, $locations, $dst_name = NULL, array $tokens = []) {
+  public function importSingleConfig(string $src_name, $locations, $dst_name = NULL, array $tokens = []): void {
     $dst_name = $dst_name ?? $src_name;
 
     $locations = is_array($locations) ? $locations : [$locations];
@@ -304,19 +279,16 @@ class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  public function readConfig($id, array $locations) {
+  public function readConfig(string $id, array $locations) {
     foreach ($locations as $path) {
       if (file_exists($path . DIRECTORY_SEPARATOR . $id . '.yml')) {
         $this->storages[$path] = new FileStorage($path);
-        break;
+
+        return $this->storages[$path]->read($id);
       }
     }
 
-    if (!isset($this->storages[$path])) {
-      throw new \Exception('Configuration does not exist in any provided locations');
-    }
-
-    return $this->storages[$path]->read($id);
+    throw new \Exception('Configuration does not exist in any provided locations');
   }
 
   /**

@@ -12,14 +12,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Since there is no support for services in themes, this plugin loader is used
  * to discover and load "plugins" manually.
  */
-class CivicthemePluginLoader implements ContainerInjectionInterface {
+final class CivicthemePluginLoader implements ContainerInjectionInterface {
 
   /**
    * Class resolver service.
-   *
-   * @var \Drupal\Core\DependencyInjection\ClassResolverInterface
    */
-  protected $classResolver;
+  protected ClassResolverInterface $classResolver;
 
   /**
    * Plugin loader constructor.
@@ -34,8 +32,8 @@ class CivicthemePluginLoader implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('class_resolver')
     );
   }
@@ -48,11 +46,12 @@ class CivicthemePluginLoader implements ContainerInjectionInterface {
    * @param string $parent_class
    *   Lookup path.
    *
-   * @return array
+   * @return array<object>
    *   Array of loaded class instances.
    */
-  public function load($path, $parent_class = NULL) {
-    foreach (glob($path . '/*.php') as $filename) {
+  public function load(string $path, string $parent_class = NULL): array {
+    $files = glob($path . '/*.php') ?: [];
+    foreach ($files as $filename) {
       require_once $filename;
     }
 

@@ -18,20 +18,20 @@ final class CivicthemeUtility {
    * @return string
    *   String value of the array.
    */
-  public static function arrayToMultiline($array, $delimiter = PHP_EOL) {
+  public static function arrayToMultiline($array, $delimiter = PHP_EOL): string {
     return implode($delimiter, array_filter(is_array($array) ? $array : [$array]));
   }
 
   /**
    * Convert multi-line strings to a list of strings.
    *
-   * @param string $string
+   * @param string|array $string
    *   The string to be processed.
    *
-   * @return array
+   * @return array<string>
    *   A list of strings.
    */
-  public static function multilineToArray($string) {
+  public static function multilineToArray(string|array $string): array {
     $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
 
     return array_values(array_filter(array_map('trim', $lines)));
@@ -50,10 +50,11 @@ final class CivicthemeUtility {
    *
    * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
    */
-  public static function camelise($string, $first = FALSE) {
+  public static function camelise($string, $first = FALSE): string {
     $out = '';
 
-    foreach (preg_split('/[\W_]+/', $string) as $k => $part) {
+    $parts = preg_split('/[\W_]+/', $string) ?: [];
+    foreach ($parts as $k => $part) {
       $out .= $k === 0 && !$first ? strtolower($part) : ucfirst(strtolower($part));
     }
 
@@ -66,10 +67,10 @@ final class CivicthemeUtility {
    * @param string $string
    *   String to parse.
    *
-   * @return array
+   * @return array<int|string, mixed>
    *   Array of attributes.
    */
-  public static function htmlAttributesToArray($string) {
+  public static function htmlAttributesToArray(string $string): array {
     $attributes = [];
 
     if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
@@ -88,7 +89,7 @@ final class CivicthemeUtility {
   /**
    * Convert a string to a human-readable label.
    */
-  public static function toLabel($string) {
+  public static function toLabel(string $string): string {
     return ucfirst(str_replace('_', ' ', $string));
   }
 
@@ -102,12 +103,12 @@ final class CivicthemeUtility {
    * @param string $prefix
    *   Key from the previous call. Internal.
    *
-   * @return array
+   * @return array<string, mixed>
    *   Flattened one-dimensional array with keys from other arrays.
    *
    * @SuppressWarnings(ElseExpression)
    */
-  public static function flattenArray(array $array, $separator = '.', $prefix = '') {
+  public static function flattenArray(array $array, string $separator = '.', string $prefix = ''): array {
     $result = [];
 
     foreach ($array as $key => $value) {
@@ -132,10 +133,10 @@ final class CivicthemeUtility {
    * @param string $separator
    *   Optional separator. Defaults to a single space ' '.
    *
-   * @return array
+   * @return array<string>
    *   Array with merged keys and values.
    */
-  public static function arrayMergeKeysValues(array $array, $separator = ' ') {
+  public static function arrayMergeKeysValues(array $array, string $separator = ' '): array {
     $result = [];
 
     foreach ($array as $k => $v) {

@@ -10,14 +10,14 @@ class CivicthemeColorTintFilter extends CivicthemeColorFilterBase {
   /**
    * {@inheritdoc}
    */
-  public static function name() {
+  public static function name(): string {
     return 'tint';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function expectedArgumentsCount() {
+  protected function expectedArgumentsCount(): int {
     return 1;
   }
 
@@ -26,7 +26,7 @@ class CivicthemeColorTintFilter extends CivicthemeColorFilterBase {
    *
    * @SuppressWarnings(StaticAccess)
    */
-  public function filter($color) {
+  public function filter(string $color): string {
     return CivicthemeColorUtility::mix($color, '#fff', $this->arguments[0]);
   }
 

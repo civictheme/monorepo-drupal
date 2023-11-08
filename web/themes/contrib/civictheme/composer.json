@@ -1,6 +1,6 @@
 {
     "name": "drupal/civictheme",
-    "description": "CivicTheme is a Drupal 9 component-based theme.",
+    "description": "CivicTheme is a Drupal 10 component-based theme.",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/salsadigitalauorg/civictheme",

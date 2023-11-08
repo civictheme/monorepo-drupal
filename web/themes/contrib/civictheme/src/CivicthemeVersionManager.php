@@ -10,19 +10,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Get CivicTheme version manager.
  */
-class CivicthemeVersionManager implements ContainerInjectionInterface {
+final class CivicthemeVersionManager implements ContainerInjectionInterface {
+
+  const DEFAULT_VERSION = 'dev';
 
   /**
    * Theme extension list.
-   *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
    */
-  protected $themeExtensionList;
+  protected ThemeExtensionList $themeExtensionList;
 
   /**
    * Array of version information.
    *
-   * @var array
+   * @var array<string>
    */
   protected $info;
 
@@ -36,16 +36,19 @@ class CivicthemeVersionManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('extension.list.theme'),
     );
   }
 
   /**
    * Returns information about version.
+   *
+   * @return array<string>
+   *   Array of version information.
    */
-  public function info() {
+  public function info(): array {
     if (empty($this->info)) {
       $this->info = [
         'version' => $this->parseVersion(),
@@ -60,22 +63,22 @@ class CivicthemeVersionManager implements ContainerInjectionInterface {
   /**
    * Version string.
    */
-  public function version() {
-    return $this->info()['version'];
+  public function version(): string {
+    return $this->info()['version'] ?? self::DEFAULT_VERSION;
   }
 
   /**
    * Source URL string.
    */
-  public function source() {
-    return $this->info()['source'];
+  public function source(): ?string {
+    return $this->info()['source'] ?? NULL;
   }
 
   /**
    * Homepage URL string.
    */
-  public function homepage() {
-    return $this->info()['homepage'];
+  public function homepage(): ?string {
+    return $this->info()['homepage'] ?? NULL;
   }
 
   /**
@@ -83,33 +86,24 @@ class CivicthemeVersionManager implements ContainerInjectionInterface {
    *
    * @param string $selector
    *   CSS selector.
-   * @param string $color
-   *   Optional CSS text color value. Defaults to 'inherit'.
    *
-   * @return array
+   * @return array<string, array<string, string>|string>
    *   Build array.
    */
-  public function render($selector, $color = 'inherit') {
-    $version = $this->version();
-
-    if (!$version) {
-      return [];
-    }
-
+  public function render($selector): array {
     $style = <<<HTML
 <style>
-$selector {
-  position: relative;
-}
 $selector::after {
-  content: 'Version $version';
+  content: 'CivicTheme version: {$this->version()}';
   bottom: 0;
   display: block;
   font-family: sans-serif;
   font-size: x-small;
-  left: 50px;
-  position: absolute;
-  color: $color;
+  right: 0;
+  position: fixed;
+  color: #ffffff;
+  background-color: #000000;
+  padding: 0.25rem 0.5rem;
 }
 </style>
 HTML;
@@ -129,7 +123,7 @@ HTML;
    * @return string|null
    *   Version string or NULL if version could not be discovered.
    */
-  protected function parseVersion() {
+  protected function parseVersion(): ?string {
     $version = NULL;
 
     $theme = $this->themeExtensionList->get('civictheme');
@@ -149,7 +143,7 @@ HTML;
     $readme_file = $theme_path . DIRECTORY_SEPARATOR . 'README.md';
 
     if (file_exists($readme_file)) {
-      $contents = file_get_contents($readme_file);
+      $contents = (string) file_get_contents($readme_file);
       preg_match('/Version: `([0-9]+(?:\.[0-9]+)+(?:-rc[0-9]+)?)`/', $contents, $matches);
       if (!empty($matches[1])) {
         $version = $matches[1];
@@ -165,19 +159,19 @@ HTML;
    * @param string $filename
    *   Composer config file name. Defaults to 'composer.json'.
    *
-   * @return mixed|null
+   * @return array<string, mixed>|null
    *   Decoded Composer config file as an array or NULL if file does not exist.
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function readComposerJson($filename = 'composer.json') {
+  protected function readComposerJson(string $filename = 'composer.json'): ?array {
     $json = NULL;
 
     $theme = $this->themeExtensionList->get('civictheme');
     $composer_json = $theme->getPath() . DIRECTORY_SEPARATOR . $filename;
 
     if (file_exists($composer_json)) {
-      $json = file_get_contents($composer_json);
+      $json = (string) file_get_contents($composer_json);
       $json = Json::decode($json);
     }
 

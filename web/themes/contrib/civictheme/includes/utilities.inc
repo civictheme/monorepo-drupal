@@ -14,6 +14,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
+use Drupal\file\FileInterface;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
@@ -33,7 +34,7 @@ use Drupal\views\ViewExecutable;
  * @return \Drupal\civictheme\CivicthemeConfigManager
  *   The theme config manager.
  */
-function civictheme_get_theme_config_manager() {
+function civictheme_get_theme_config_manager(): CivicthemeConfigManager {
   return \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class);
 }
 
@@ -42,7 +43,7 @@ function civictheme_get_theme_config_manager() {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_load_node_or_revision($variables) {
+function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
   $node = $variables['node'] ?? NULL;
 
   if (is_numeric($node)) {
@@ -50,11 +51,7 @@ function civictheme_load_node_or_revision($variables) {
     /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
     $route_match = \Drupal::service('current_route_match');
     $node_revision = $route_match->getParameter('node_revision');
-    // Handling API change in Drupal 9.3.0.
-    if (is_numeric($node_revision)) {
-      $node = node_revision_load($node_revision);
-    }
-    elseif ($node_revision instanceof NodeInterface) {
+    if ($node_revision instanceof NodeInterface) {
       $node = $node_revision;
     }
   }
@@ -68,14 +65,14 @@ function civictheme_load_node_or_revision($variables) {
  * @param \Drupal\media\MediaInterface $media
  *   Host Media entity for image.
  *
- * @return array|null
+ * @return array<string, mixed>|null
  *   Variables array or NULL if not available.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_get_variables(MediaInterface $media) {
+function civictheme_media_get_variables(MediaInterface $media): ?array {
   $fid = $media->getSource()->getSourceFieldValue($media);
-  /** @var \Drupal\file\FileInterface $file */
+  /** @var \Drupal\file\FileInterface|null $file */
   $file = $fid ? File::load($fid) : NULL;
 
   if (empty($file)) {
@@ -84,7 +81,7 @@ function civictheme_media_get_variables(MediaInterface $media) {
 
   return [
     'name' => t('@name', ['@name' => $file->label()]),
-    'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?? '',
+    'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     'size' => format_size($file->getSize()),
     'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
@@ -101,12 +98,12 @@ function civictheme_media_get_variables(MediaInterface $media) {
  * @param string $image_style
  *   Name of the image style to apply.
  *
- * @return array|null
+ * @return array<string, mixed>|null
  *   Image variables array or NULL if not available.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_image_get_variables(MediaInterface $media, $image_style = NULL) {
+function civictheme_media_image_get_variables(MediaInterface $media, string $image_style = NULL): ?array {
   if (!in_array($media->bundle(), ['civictheme_image', 'civictheme_icon'])) {
     return NULL;
   }
@@ -131,19 +128,19 @@ function civictheme_media_image_get_variables(MediaInterface $media, $image_styl
  *
  * @param \Drupal\media\MediaInterface $media
  *   The media entity to derive the URL from.
- * @param bool $relative
+ * @param bool $is_relative
  *   (optional) Whether the URL should be root-relative, defaults to TRUE.
  *
- * @return string|false
+ * @return string|null
  *   The relative URL for the source file or FALSE if the file was not found.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_media_get_url(MediaInterface $media, $relative = TRUE) {
+function civictheme_media_get_url(MediaInterface $media, bool $is_relative = TRUE): ?string {
   $file = File::load($media->getSource()->getSourceFieldValue($media));
 
-  return $file ? $file->createFileUrl($relative) : FALSE;
+  return $file ? $file->createFileUrl($is_relative) : NULL;
 }
 
 /**
@@ -153,17 +150,17 @@ function civictheme_media_get_url(MediaInterface $media, $relative = TRUE) {
  *   The media entity to derive the URL from.
  * @param string $image_style
  *   (optional) Image style name.
- * @param bool $relative
+ * @param bool $is_relative
  *   (optional) Whether the URL should be root-relative, defaults to TRUE.
  *
- * @return string|false
+ * @return string|null
  *   The relative URL for the source file or FALSE if the file was not found.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function civictheme_media_image_get_url(MediaInterface $media, $image_style = NULL, $relative = TRUE) {
+function civictheme_media_image_get_url(MediaInterface $media, string $image_style = NULL, bool $is_relative = TRUE): ?string {
   $src = NULL;
 
   $file = File::load($media->getSource()->getSourceFieldValue($media));
@@ -174,7 +171,7 @@ function civictheme_media_image_get_url(MediaInterface $media, $image_style = NU
       $src = $style ? $style->buildUrl($file->get('uri')->getString()) : NULL;
     }
     else {
-      $src = $file->createFileUrl($relative);
+      $src = $file->createFileUrl($is_relative);
     }
   }
 
@@ -189,16 +186,16 @@ function civictheme_media_image_get_url(MediaInterface $media, $image_style = NU
  * @param array $css_classes
  *   Array of CSS classes to add.
  *
- * @return string
- *   Loaded SVG or FALSE if unable to load SVG.
+ * @return string|null
+ *   Loaded SVG or NULL if unable to load SVG.
  */
-function civictheme_embed_svg($url, array $css_classes = []) {
+function civictheme_embed_svg(string $url, array $css_classes = []): ?string {
   $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
   if (!file_exists($svg_path)) {
-    return FALSE;
+    return NULL;
   }
 
-  $content = file_get_contents($svg_path);
+  $content = (string) file_get_contents($svg_path);
 
   if (!empty($css_classes)) {
     $content = str_replace('<svg ', '<svg class="' . implode(' ', $css_classes) . '" ', $content);
@@ -215,7 +212,7 @@ function civictheme_embed_svg($url, array $css_classes = []) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_convert_attributes_to_modifier_class(&$variables) {
+function civictheme_convert_attributes_to_modifier_class(array &$variables): void {
   // Allow to skip this conversion.
   if (isset($variables['modifier_class']) && $variables['modifier_class'] === FALSE) {
     return;
@@ -237,16 +234,16 @@ function civictheme_convert_attributes_to_modifier_class(&$variables) {
  *
  * @param string $format_name
  *   Drupal format type.
- * @param mixed $date
+ * @param int|string $date
  *   Timestamp or date as a string.
  *
- * @return mixed
+ * @return string
  *   Formatted date or date range.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_format_date($format_name, $date) {
-  return \Drupal::service('date.formatter')->format(is_numeric($date) ? $date : strtotime($date), $format_name);
+function civictheme_format_date(string $format_name, int|string $date): string {
+  return \Drupal::service('date.formatter')->format(is_numeric($date) ? (int) $date : (strtotime($date) ?: (int) $date), $format_name);
 }
 
 /**
@@ -260,7 +257,7 @@ function civictheme_format_date($format_name, $date) {
  * @return bool
  *   Whether the field exists and is not empty.
  */
-function civictheme_field_has_value(FieldableEntityInterface $entity, $field_name) {
+function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name): bool {
   return $entity->hasField($field_name) && !$entity->get($field_name)->isEmpty();
 }
 
@@ -284,8 +281,9 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE, $default = NULL) {
+function civictheme_get_field_value(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE, mixed $default = NULL): mixed {
   $value = $default;
 
   if (!civictheme_field_has_value($entity, $field_name)) {
@@ -328,7 +326,12 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
     // Field types where we want to return entities.
     case 'entity_reference':
     case 'entity_reference_revisions':
-      $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
+      if ($only_first) {
+        $value = civictheme_get_field_referenced_entity($entity, $field_name);
+      }
+      else {
+        $value = civictheme_get_field_referenced_entities($entity, $field_name);
+      }
       break;
 
     case 'text_long':
@@ -350,44 +353,62 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
 }
 
 /**
- * Gets the entity referenced entities in a field of an entity.
+ * Gets the referenced entities in a field of an entity.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The host entity.
  * @param string $field_name
  *   The entity reference field.
  *
- * @return \Drupal\Core\Entity\EntityInterface[]|EntityInterface|null
- *   Referenced entities, or referenced entity if $only_first is TRUE.
- *
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.ElseExpression)
+ * @return array<int|string, \Drupal\Core\Entity\EntityInterface>
+ *   Referenced entities.
  */
-function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, $field_name, bool $only_first = FALSE) {
-  $entities = NULL;
+function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name): array {
+  $referenced_entities = [];
 
   if (civictheme_field_has_value($entity, $field_name)) {
-    /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
-    $entities = $entity->get($field_name)->referencedEntities();
-    if ($only_first) {
-      $entities = reset($entities);
+    /** @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
+    $referenced_entities = $entity->get($field_name)->referencedEntities();
+    $keyed_entities = [];
+    foreach ($referenced_entities as $referenced_entity) {
+      $keyed_entities[$referenced_entity->id()] = $referenced_entity;
     }
-    else {
-      $keyed_entities = [];
-      foreach ($entities as $entity) {
-        $keyed_entities[$entity->id()] = $entity;
-      }
-      $entities = $keyed_entities;
+    $referenced_entities = $keyed_entities;
+  }
+
+  return $referenced_entities;
+}
+
+/**
+ * Gets the first referenced entity in a field of an entity.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   The host entity.
+ * @param string $field_name
+ *   The entity reference field.
+ *
+ * @return \Drupal\Core\Entity\EntityInterface|null
+ *   Referenced entity.
+ */
+function civictheme_get_field_referenced_entity(FieldableEntityInterface $entity, string $field_name): ?EntityInterface {
+  $referenced_entity = NULL;
+
+  $entities = civictheme_get_field_referenced_entities($entity, $field_name);
+
+  if (!empty($entities)) {
+    $referenced_entity = reset($entities);
+    if (!$referenced_entity instanceof EntityInterface) {
+      $referenced_entity = NULL;
     }
   }
 
-  return $entities;
+  return $referenced_entity;
 }
 
 /**
  * Get the label of referenced entities in a field of an entity.
  *
- * @param \Drupal\Core\Entity\FieldableEntityInterface|null $entity
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The host entity.
  * @param string $field_name
  *   The entity reference field.
@@ -395,7 +416,7 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
  * @return string[]
  *   The label(s).
  */
-function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, $field_name) {
+function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name): array {
   $labels = [];
   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
   foreach ($referenced_entities as $referenced_entity) {
@@ -410,18 +431,18 @@ function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entit
 /**
  * Get raw multivalued field values from the entity.
  *
- * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The entity to get the values from.
  * @param string $field_name
  *   The field name.
  * @param string $value_key
  *   (optional) The value key. Default to 'value'.
  *
- * @return array
+ * @return array<int|string, mixed>
  *   Array of field values. If field does not exist or incorrect $value_key
  *   provided, empty array will be returned.
  */
-function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_name, $value_key = 'value') {
+function civictheme_get_entity_field_key_values(FieldableEntityInterface $entity, string $field_name, string $value_key = 'value'): array {
   $values = [];
 
   if ($entity->hasField($field_name)) {
@@ -438,7 +459,7 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
 /**
  * Get an entity's theme field value.
  *
- * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ * @param \Drupal\Core\Entity\FieldableEntityInterface|null $entity
  *   Entity to check field existence.
  * @param string $default
  *   Optional default theme value. Defaults to NULL.
@@ -447,10 +468,10 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
  *   The theme field value for the entity.
  *   If field does not have a value - $default is returned.
  */
-function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $default = NULL) {
+function civictheme_get_field_theme_value(FieldableEntityInterface|null $entity, string $default = NULL): string {
   $field_name = FALSE;
 
-  if (empty($entity)) {
+  if (!$entity instanceof FieldableEntityInterface) {
     return $default;
   }
 
@@ -468,27 +489,36 @@ function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $def
       break;
   }
 
-  return $field_name ? civictheme_get_field_value($entity, $field_name, TRUE, $default) : $default;
+  return $field_name ? (string) civictheme_get_field_value($entity, $field_name, TRUE, $default) : $default;
 }
 
 /**
  * Theme options suitable for FormAPI.
  *
+ * @param bool $only_keys
+ *   Whether to return only keys or keys and labels.
+ *
+ * @return array<string, string>|array<string>
+ *   Array of theme options.
+ *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_theme_options($keys = FALSE) {
+function civictheme_theme_options(bool $only_keys = FALSE): array {
   $map = [
     CivicthemeConstants::THEME_LIGHT => CivicthemeConstants::THEME_LIGHT_LABEL,
     CivicthemeConstants::THEME_DARK => CivicthemeConstants::THEME_DARK_LABEL,
   ];
 
-  return $keys ? array_keys($map) : $map;
+  return $only_keys ? array_keys($map) : $map;
 }
 
 /**
  * Type options suitable for FormAPI.
+ *
+ * @return array<string, string>
+ *   Array of type options.
  */
-function civictheme_type_options() {
+function civictheme_type_options(): array {
   return [
     'default' => 'Default',
     'stacked' => 'Stacked',
@@ -498,29 +528,11 @@ function civictheme_type_options() {
 }
 
 /**
- * Get the nid that the Automated list block is embedded in.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_get_node_id_from_form_state($form_state) {
-  $nid = $form_state->getUserInput()['nid'] ?? NULL;
-  $nid = is_numeric($nid) ? $nid : NULL;
-  if (!$nid) {
-    $node = \Drupal::routeMatch()->getParameter('node');
-    if ($node) {
-      $nid = $node->id();
-    }
-  }
-
-  return $nid;
-}
-
-/**
  * Get DOMDocument object from HTML content.
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function _civictheme_get_dom_document($content) {
+function _civictheme_get_dom_document(string $content): \DOMDocument {
   $doc = new \DOMDocument();
 
   $doc->loadHTML($content);
@@ -537,7 +549,7 @@ function _civictheme_get_dom_document($content) {
  * @return bool
  *   TRUE if the field is wysiwyg, FALSE otherwise.
  */
-function _civictheme_field_is_wysiwyg(string $field_name) {
+function _civictheme_field_is_wysiwyg(string $field_name): bool {
   $wysiwyg_field_list = [
     'field_c_n_body',
     'field_c_p_content',
@@ -552,7 +564,7 @@ function _civictheme_field_is_wysiwyg(string $field_name) {
 /**
  * File icon symbol provider.
  *
- * @param \Drupal\file\Entity\File $file
+ * @param \Drupal\file\FileInterface $file
  *   File object.
  *
  * @return string
@@ -560,7 +572,7 @@ function _civictheme_field_is_wysiwyg(string $field_name) {
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_get_icon_from_file(File $file) {
+function civictheme_get_icon_from_file(FileInterface $file): string {
   $mime_type = $file->getMimeType();
 
   switch ($mime_type) {
@@ -640,7 +652,7 @@ function civictheme_get_icon_from_file(File $file) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_url_is_external($url, $base_url, array $override_domains = []) {
+function civictheme_url_is_external(string $url, string $base_url, array $override_domains = []): bool {
   if (empty($url) || !UrlHelper::isValid($url)) {
     return FALSE;
   }
@@ -672,11 +684,17 @@ function civictheme_url_is_external($url, $base_url, array $override_domains = [
 
 /**
  * Normalise domain.
+ *
+ * @param string $domain
+ *   The domain to be normalised.
+ *
+ * @return string
+ *   Normalised domain.
  */
-function civictheme_external_link_normalize_domain($domain) {
+function civictheme_external_link_normalize_domain(string $domain): string {
   // Check that the part of the domain before first dot has protocol and
   // add one if it does not.
-  if (!str_contains(substr($domain, 0, strpos($domain, '.')), ':')) {
+  if (!str_contains(substr($domain, 0, strpos($domain, '.') ?: 0), ':')) {
     $domain = 'https://' . (str_starts_with($domain, '//') ? str_replace('//', '', $domain) : $domain);
   }
 
@@ -686,14 +704,14 @@ function civictheme_external_link_normalize_domain($domain) {
 /**
  * Extract card name from card and reference card paragraph bundles.
  */
-function _civictheme_get_card_name_from_bundle($bundle) {
+function _civictheme_get_card_name_from_bundle(string $bundle): ?string {
   if (preg_match('/civictheme_(.*_card).*/', $bundle, $matches)) {
     if (!empty($matches[1])) {
       return $matches[1];
     }
   }
 
-  return FALSE;
+  return NULL;
 }
 
 /**
@@ -709,7 +727,7 @@ function _civictheme_get_card_name_from_bundle($bundle) {
  * @return bool
  *   TRUE if a feature should be opted out, FALSE otherwise.
  */
-function _civictheme_feature_is_optedout($type, $name, $context = NULL) {
+function _civictheme_feature_is_optedout(string $type, string $name, mixed $context = NULL): bool {
   $optedout = FALSE;
 
   switch ($type) {
@@ -746,8 +764,11 @@ function _civictheme_feature_is_optedout($type, $name, $context = NULL) {
 
 /**
  * Map of available opt-out flags.
+ *
+ * @return array<string, string>
+ *   Array of opt-out flags.
  */
-function _civictheme_feature_optout_flags() {
+function _civictheme_feature_optout_flags(): array {
   return [
     'components.link' => t('Links processing'),
     'components.link.email' => t('Email links processing'),

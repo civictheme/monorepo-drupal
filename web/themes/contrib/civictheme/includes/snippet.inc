@@ -10,7 +10,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_snippet(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_snippet(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
   _civictheme_preprocess_paragraph__paragraph_field__link($variables);
@@ -21,7 +21,7 @@ function civictheme_preprocess_paragraph__civictheme_snippet(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_snippet_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_snippet_ref(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables);
   _civictheme_preprocess_paragraph__node_field__link($variables);
@@ -34,7 +34,7 @@ function civictheme_preprocess_paragraph__civictheme_snippet_ref(&$variables) {
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_node__civictheme_snippet(&$variables) {
+function _civictheme_preprocess_node__civictheme_snippet(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables);
   _civictheme_preprocess_paragraph__node_field__link($variables);

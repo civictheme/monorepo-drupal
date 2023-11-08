@@ -10,14 +10,14 @@ use Drupal\user\Entity\User;
 /**
  * Implements hook_install().
  */
-function civictheme_dev_install() {
+function civictheme_dev_install(): void {
   // Assign user 1 the "administrator" role.
   /** @var \Drupal\user\Entity\User $user */
   $user = User::load(1);
-  $user->roles[] = 'administrator';
+  $user->addRole('administrator');
   $user->save();
 
-  module_load_include('php', 'civictheme_dev', 'civictheme_dev.post_update');
+  \Drupal::moduleHandler()->loadInclude('civictheme_dev', 'php', 'civictheme_dev.post_update');
   $functions = get_defined_functions();
 
   // Run all update functions when installing this module.

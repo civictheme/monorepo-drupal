@@ -11,21 +11,24 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics_weight() {
+function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics_weight(): int {
   return 20;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics_tracking() {
+function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics_tracking(): bool {
   return TRUE;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
+ *
+ * @phpstan-ignore-next-line
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics() {
+function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics(): array {
   $total_terms_count = 10;
 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */

@@ -12,7 +12,7 @@ use Drupal\Core\Render\Element;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_wysiwyg_field(&$variables) {
+function _civictheme_preprocess_wysiwyg_field(array &$variables): void {
   if (isset($variables['field_name'])) {
     if (_civictheme_field_is_wysiwyg($variables['field_name'])) {
       foreach (Element::children($variables['items']) as $item) {

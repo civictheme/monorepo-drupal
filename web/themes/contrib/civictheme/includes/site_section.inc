@@ -13,7 +13,7 @@ use Drupal\node\NodeInterface;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_html__site_section(&$variables) {
+function _civictheme_preprocess_html__site_section(array &$variables): void {
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface) {

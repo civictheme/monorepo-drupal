@@ -5,10 +5,13 @@
  * Pager component alterations.
  */
 
+use Drupal\Core\Pager\Pager;
+use Drupal\views\ViewExecutable;
+
 /**
  * Implements template_preprocess_pager().
  */
-function civictheme_preprocess_pager(&$variables) {
+function civictheme_preprocess_pager(array &$variables): void {
   _civictheme_preprocess_pager($variables);
 }
 
@@ -17,7 +20,7 @@ function civictheme_preprocess_pager(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_views_mini_pager(&$variables) {
+function civictheme_preprocess_views_mini_pager(array &$variables): void {
   _civictheme_preprocess_pager($variables);
 }
 
@@ -27,16 +30,15 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
  * Handles all types of pagers.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function _civictheme_preprocess_pager(&$variables) {
+function _civictheme_preprocess_pager(array &$variables): void {
   $element = $variables['pager']['#element'] ?? $variables['element'] ?? NULL;
   if ($element === NULL) {
     return;
   }
 
   $pager = \Drupal::service('pager.manager')->getPager($element);
+  // @phpstan-ignore-next-line
   if (!$pager) {
     return;
   }
@@ -95,8 +97,7 @@ function _civictheme_preprocess_pager(&$variables) {
 /**
  * Helper to preprocess items_per_page in pagination component.
  */
-function _civictheme_preprocess_pager__items_per_page(&$variables, $view, $pager) {
-  /** @var \Drupal\views\ViewExecutable $view */
+function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExecutable $view, Pager $pager): void {
   $view_pager = $view->getPager();
   if (empty($view_pager->options['expose']['items_per_page']) || $view_pager->options['expose']['items_per_page'] !== TRUE) {
     return;
@@ -120,6 +121,8 @@ function _civictheme_preprocess_pager__items_per_page(&$variables, $view, $pager
   $variables['items_per_page_options'] = $items_per_page;
 
   // Render an exposed form and add attributes to the select.
-  $exposed_widgets = $view->display_handler->getPlugin('exposed_form')->renderExposedForm();
+  /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $plugin */
+  $plugin = $view->display_handler->getPlugin('exposed_form');
+  $exposed_widgets = $plugin->renderExposedForm();
   $variables['items_per_page_attributes'] = 'name="items_per_page" form="' . $exposed_widgets['#id'] . '"';
 }

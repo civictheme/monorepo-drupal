@@ -7,25 +7,30 @@
 
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_generated_content_generated_content_create_node_civictheme_event_weight() {
+function cs_generated_content_generated_content_create_node_civictheme_event_weight(): int {
   return 31;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_generated_content_generated_content_create_node_civictheme_event_tracking() {
+function cs_generated_content_generated_content_create_node_civictheme_event_tracking(): bool {
   return TRUE;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
+ *
+ * @phpstan-ignore-next-line
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function cs_generated_content_generated_content_create_node_civictheme_event() {
+function cs_generated_content_generated_content_create_node_civictheme_event(): array {
   $nodes = [];
 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
@@ -40,7 +45,7 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
       require_once __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_event_variations/01.helpers.inc';
       for ($i = 0; $i < 20; $i++) {
         $variations[] = [
-          'title' => sprintf('Event %s. %s', str_pad($i + 1, 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
+          'title' => sprintf('Event %s. %s', str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT), $helper::staticSentence(3)),
           'thumbnail' => $helper::staticMediaItem('civictheme_image'),
           'summary' => 'Summary ' . $helper::staticSentence(20),
           'topics' => $helper::staticTerms('civictheme_topics', 1),
@@ -80,6 +85,7 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
       $node = $helper::variationCreateNode('civictheme_event', $variation, $i, '_cs_generated_content_create_node_civictheme_event__variation_to_fields');
 
       $variation_info = $helper::variationFormatInfo($variation);
+      // @phpstan-ignore-next-line
       $node->revision_log = 'Generated content. ' . $variation_info;
 
       $node->save();
@@ -105,8 +111,12 @@ function cs_generated_content_generated_content_create_node_civictheme_event() {
 
 /**
  * Processor to convert variation values to 'civictheme_event' node fields.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _cs_generated_content_create_node_civictheme_event__variation_to_fields($node, $variation) {
+function _cs_generated_content_create_node_civictheme_event__variation_to_fields(NodeInterface $node, array $variation): void {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 

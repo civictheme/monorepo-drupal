@@ -16,7 +16,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function civictheme_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   _civictheme_form_alter__webform_submission($form, $form_state, $form_id);
   _civictheme_form_alter__non_form_elements($form);
 }
@@ -24,14 +24,14 @@ function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id)
 /**
  * Implements template_preprocess_select().
  */
-function civictheme_preprocess_select(&$variables) {
+function civictheme_preprocess_select(array &$variables): void {
   _civictheme_preprocess_form__theme($variables);
 }
 
 /**
  * Implements template_preprocess_input().
  */
-function civictheme_preprocess_input(&$variables) {
+function civictheme_preprocess_input(array &$variables): void {
   _civictheme_preprocess_form__theme($variables);
 
   $variables['state'] = 'none';
@@ -50,7 +50,7 @@ function civictheme_preprocess_input(&$variables) {
 /**
  * Implements template_preprocess_form_element().
  */
-function civictheme_preprocess_form_element(&$variables) {
+function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form__theme($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
@@ -59,7 +59,7 @@ function civictheme_preprocess_form_element(&$variables) {
 /**
  * Implements template_preprocess_form_element_label().
  */
-function civictheme_preprocess_form_element_label(&$variables) {
+function civictheme_preprocess_form_element_label(array &$variables): void {
   _civictheme_preprocess_form__theme($variables);
   $variables['content'] = $variables['title'] ?? '';
 
@@ -74,21 +74,19 @@ function civictheme_preprocess_form_element_label(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form_alter__webform_submission(&$form, FormStateInterface $form_state, $form_id) {
+function _civictheme_form_alter__webform_submission(array &$form, FormStateInterface $form_state, string $form_id): void {
   if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
     /** @var \Drupal\webform\WebformSubmissionForm $form_object */
     $form_object = $form_state->getFormObject();
 
     /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
     $webform_submission = $form_object->getEntity();
-    if ($webform_submission) {
-      $source = $webform_submission->getSourceEntity();
+    $source = $webform_submission->getSourceEntity();
 
-      $paragraph_id = !empty($source) ? $source->id() : '';
-      if (!empty($paragraph_id) && !empty($form['elements'])) {
-        $theme = civictheme_get_field_theme_value(Paragraph::load($paragraph_id));
-        _civictheme_form__propagate_component_theme($form['elements'], $theme);
-      }
+    $paragraph_id = !empty($source) ? $source->id() : '';
+    if (!empty($paragraph_id) && !empty($form['elements'])) {
+      $theme = civictheme_get_field_theme_value(Paragraph::load($paragraph_id));
+      _civictheme_form__propagate_component_theme($form['elements'], $theme);
     }
   }
 }
@@ -104,7 +102,7 @@ function _civictheme_form_alter__webform_submission(&$form, FormStateInterface $
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form_alter__non_form_elements(&$elements) {
+function _civictheme_form_alter__non_form_elements(array &$elements): void {
   $element_keys = Element::children($elements);
   foreach ($element_keys as $element_key) {
     if (empty($elements[$element_key]['#type'])) {
@@ -129,7 +127,7 @@ function _civictheme_form_alter__non_form_elements(&$elements) {
 /**
  * Alter link elements within forms.
  */
-function _civictheme_form_alter__non_form_elements__link(&$element) {
+function _civictheme_form_alter__non_form_elements__link(array &$element): void {
   // Convert "button" links into CivicTheme button links.
   if (!empty($element['#attributes']['class']) && in_array('button', $element['#attributes']['class'])) {
     $element_theme = _civictheme_form__get_component_theme($element);
@@ -145,7 +143,7 @@ function _civictheme_form_alter__non_form_elements__link(&$element) {
 /**
  * Sets form element theme based on attributes passed from parent components.
  */
-function _civictheme_preprocess_form__theme(&$variables) {
+function _civictheme_preprocess_form__theme(array &$variables): void {
   // Setting theme for form element.
   if (
     isset($variables['element']['#attributes']['#civictheme_theme'])
@@ -169,7 +167,7 @@ function _civictheme_preprocess_form__theme(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_form__hidden_fields($variables) {
+function _civictheme_preprocess_form__hidden_fields(array $variables): void {
   if (empty($variables['form'])) {
     return;
   }
@@ -198,7 +196,7 @@ function _civictheme_preprocess_form__hidden_fields($variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_form_element__classes(&$variables) {
+function _civictheme_preprocess_form_element__classes(array &$variables): void {
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
@@ -224,7 +222,7 @@ function _civictheme_preprocess_form_element__classes(&$variables) {
 /**
  * Preprocesses form element description.
  */
-function _civictheme_preprocess_form_element__description(&$variables) {
+function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
 }
@@ -232,9 +230,15 @@ function _civictheme_preprocess_form_element__description(&$variables) {
 /**
  * Get fields from the form without hidden fields.
  *
+ * @param array $form
+ *   Form array.
+ *
+ * @return array<string, mixed>
+ *   Array of fields.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form__get_fields($form) {
+function _civictheme_form__get_fields(array $form): array {
   $exclude = [
     'form_build_id',
     'form_id',
@@ -250,7 +254,7 @@ function _civictheme_form__get_fields($form) {
 /**
  * Get component theme from the element.
  */
-function _civictheme_form__get_component_theme($element) {
+function _civictheme_form__get_component_theme(array $element): string {
   $theme = CivicthemeConstants::THEME_LIGHT;
   if (isset($element['#attributes']['#civictheme_theme'])
     && in_array($element['#attributes']['#civictheme_theme'], [
@@ -268,7 +272,7 @@ function _civictheme_form__get_component_theme($element) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form__propagate_component_theme(&$elements, $theme) {
+function _civictheme_form__propagate_component_theme(array &$elements, string $theme): void {
   $form_elements = Element::children($elements);
   foreach ($form_elements as $form_element) {
     $elements[$form_element]['#attributes']['#civictheme_theme'] = $theme;
@@ -283,6 +287,6 @@ function _civictheme_form__propagate_component_theme(&$elements, $theme) {
 /**
  * Check if form field is set to have multiple values.
  */
-function _civictheme_form__field_is_multiple(array $field) {
-  return $field['#type'] == 'checkboxes' || ($field['#type'] == 'select' && $field["#multiple"] ?? FALSE);
+function _civictheme_form__field_is_multiple(array $field): bool {
+  return $field['#type'] == 'checkboxes' || ($field['#type'] == 'select' && ($field["#multiple"] ?? FALSE));
 }

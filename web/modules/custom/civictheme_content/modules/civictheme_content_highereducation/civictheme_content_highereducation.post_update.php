@@ -11,7 +11,7 @@ use Drupal\Core\Utility\UpdateException;
 /**
  * Common updates.
  */
-function civictheme_content_highereducation_post_update_common() {
+function civictheme_content_highereducation_post_update_common(): void {
   \Drupal::moduleHandler()->loadInclude('civictheme_content', 'install');
   civictheme_content_post_update_common();
 }
@@ -21,7 +21,7 @@ function civictheme_content_highereducation_post_update_common() {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_content_highereducation_post_update_set_homepage() {
+function civictheme_content_highereducation_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode('Home');
   }

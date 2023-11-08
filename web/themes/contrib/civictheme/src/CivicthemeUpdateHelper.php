@@ -13,21 +13,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * CivicTheme utilities.
  */
-class CivicthemeUpdateHelper implements ContainerInjectionInterface {
+final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * A logger instance.
-   *
-   * @var \Psr\Log\LoggerInterface
    */
-  protected $logger;
+  protected LoggerInterface $logger;
 
   /**
    * ConfigEntityUpdater constructor.
@@ -45,8 +41,8 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('entity_type.manager'),
       $container->get('logger.factory')->get('action')
     );
@@ -73,7 +69,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @return string|null
    *   Return log message on the last pass of the update.
    */
-  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10): string|null {
+  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10): ?string {
     $storage = $this->entityTypeManager->getStorage($entity_type);
 
     if (!isset($sandbox['entities'])) {
@@ -141,7 +137,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       $storage = $this->entityTypeManager->getStorage($type);
       $config_read = $source->read($config);
       $id = substr($config, strpos($config, '.', 6) + 1);
-      if ($storage->load($id) == NULL) {
+      if (is_array($config_read) && $storage->load($id) == NULL) {
         $config_entity = $storage->createFromStorageRecord($config_read);
         $config_entity->save();
       }
@@ -184,6 +180,7 @@ class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       ->getStorage('entity_form_display')
       ->load($entity_type . '.' . $bundle . '.default');
 
+    // @phpstan-ignore-next-line
     if (!$form_display) {
       return;
     }

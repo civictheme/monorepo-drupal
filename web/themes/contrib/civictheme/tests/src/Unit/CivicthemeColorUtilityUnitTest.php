@@ -20,7 +20,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderNormalizeHex
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testNormalizeHex($value, $preserve_hash, $expected) {
+  public function testNormalizeHex(string $value, bool $preserve_hash, string $expected): void {
     $actual = CivicthemeColorUtility::normalizeHex($value, $preserve_hash);
     $this->assertEquals($expected, $actual);
   }
@@ -28,7 +28,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testNormalizeHex().
    */
-  public function dataProviderNormalizeHex() {
+  public function dataProviderNormalizeHex(): array {
     return [
       ['#00698f', FALSE, '00698f'],
       ['#000', FALSE, '000000'],
@@ -44,7 +44,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderMix
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testMix($color, $mixer, $range, $expected) {
+  public function testMix(string $color, string $mixer, int $range, string $expected): void {
     $actual = CivicthemeColorUtility::mix($color, $mixer, $range);
     $this->assertEquals($expected, $actual);
   }
@@ -52,11 +52,11 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testMix().
    */
-  public function dataProviderMix() {
+  public function dataProviderMix(): array {
     return [
-      ['#00698f', '#000', '10', '#005e80'],
-      ['#00698f', '#000', '', '#00698f'],
-      ['#e6e9eb', '#fff', '80', '#fafafb'],
+      ['#00698f', '#000', 10, '#005e80'],
+      ['#00698f', '#000', 0, '#00698f'],
+      ['#e6e9eb', '#fff', 80, '#fafafb'],
     ];
   }
 
@@ -66,7 +66,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderHexToRgb
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testHexToRgb($hex, $expected) {
+  public function testHexToRgb(string $hex, array $expected): void {
     $actual = CivicthemeColorUtility::hexToRgb($hex);
     $this->assertEquals($expected, $actual);
   }
@@ -74,7 +74,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testHexToRgb().
    */
-  public function dataProviderHexToRgb() {
+  public function dataProviderHexToRgb(): array {
     return [
       ['#00698f', [0, 105, 143]],
       ['e6e9eb', [230, 233, 235]],
@@ -87,7 +87,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderIntToHex
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testIntToHex($value, $expected) {
+  public function testIntToHex(int $value, string|int $expected): void {
     $actual = CivicthemeColorUtility::intToHex($value);
     $this->assertEquals($expected, $actual);
   }
@@ -95,7 +95,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testIntToHex().
    */
-  public function dataProviderIntToHex() {
+  public function dataProviderIntToHex(): array {
     return [
       [124, '7c'],
       [250, 'fa'],

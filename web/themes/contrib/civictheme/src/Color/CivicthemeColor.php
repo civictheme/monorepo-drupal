@@ -86,7 +86,7 @@ class CivicthemeColor {
    * @SuppressWarnings(PHPMD.MissingImport)
    * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
    */
-  public function setValue($value, $apply_filters = FALSE) {
+  public function setValue($value, $apply_filters = FALSE): static {
     $val = CivicthemeColorUtility::keywordToHex($value);
     $val = CivicthemeColorUtility::normalizeHex($val);
 
@@ -110,10 +110,12 @@ class CivicthemeColor {
    * @return $this
    *   Instance of the current class.
    */
-  public function setFormula($formula) {
+  public function setFormula(string $formula): static {
     $parsed_formula = $this->parseFormula($formula);
     $this->formula = $formula;
+    // @phpstan-ignore-next-line
     $this->source = $parsed_formula['source'];
+    // @phpstan-ignore-next-line
     $this->filters = $parsed_formula['filters'];
 
     return $this;
@@ -140,7 +142,7 @@ class CivicthemeColor {
    *
    * @SuppressWarnings(BooleanArgumentFlag)
    */
-  public function getValue($with_hash = TRUE) {
+  public function getValue($with_hash = TRUE): string {
     return ($with_hash ? '#' : '') . ltrim($this->value, '#');
   }
 
@@ -170,7 +172,7 @@ class CivicthemeColor {
    * @return string
    *   The color value.
    */
-  public function __toString() {
+  public function __toString(): string {
     return $this->getValue();
   }
 
@@ -185,19 +187,19 @@ class CivicthemeColor {
    *   - arg1..argN - an argument to pass to the filter.
    *   Value is "piped" through filters.
    *
-   * @return array[]
+   * @return array<string, array<int<0, max>,\Drupal\civictheme\Color\CivicthemeColorFilterBase|null>|string>
    *   Array with parsed formula with keys:
    *   - source: (string) The name of the source color.
    *   - filters: (array) Array of initialised color filter objects.
    *
    * @SuppressWarnings(StaticAccess)
    */
-  protected function parseFormula($value) {
+  protected function parseFormula($value): array {
     $formula = [
       'filters' => [],
     ];
 
-    $value = $value ?? '';
+    $value = $value ?: '';
 
     $formula_parts = explode('|', $value);
     $formula['source'] = array_shift($formula_parts);

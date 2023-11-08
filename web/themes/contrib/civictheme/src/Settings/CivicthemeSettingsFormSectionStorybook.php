@@ -12,14 +12,14 @@ class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSecti
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 60;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $theme_name = $this->themeManager->getActiveTheme()->getName();
     $theme_path = $this->themeExtensionList->getPath($theme_name);
 
@@ -37,6 +37,7 @@ class CivicthemeSettingsFormSectionStorybook extends CivicthemeSettingsFormSecti
     $storybook_file = $theme_path . '/storybook-static/index.html';
 
     if (file_exists($storybook_file)) {
+      // @phpstan-ignore-next-line
       $url = \Drupal::service('file_url_generator')->generateAbsoluteString($storybook_file) . '?cachebust=' . time();
       $form['storybook']['link'] = [
         '#type' => 'inline_template',

@@ -22,14 +22,14 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderMain
    * @runInSeparateProcess
    */
-  public function testMain($args, $expected_code, $expected_output) {
+  public function testMain(string|array $args, int $expected_code, string $expected_output): void {
     $args = is_array($args) ? $args : [$args];
     $result = $this->runScript($args, TRUE);
     $this->assertEquals($expected_code, $result['code']);
     $this->assertStringContainsString($expected_output, $result['output']);
   }
 
-  public function dataProviderMain() {
+  public function dataProviderMain(): array {
     return [
       [
         '--help',
@@ -75,11 +75,11 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderCollectVariables
    * @runInSeparateProcess
    */
-  public function testCollectVariables($content, $expected) {
+  public function testCollectVariables(string $content, array $expected): void {
     $this->assertEquals($expected, collect_variables($content));
   }
 
-  public function dataProviderCollectVariables() {
+  public function dataProviderCollectVariables(): array {
     return [
       ['', []],
       // Valid - single.
@@ -193,7 +193,7 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderParseVariableName
    * @runInSeparateProcess
    */
-  public function testParseVariableName($name, $prefix, $expected, $expectExceptionMessage = FALSE) {
+  public function testParseVariableName(string $name, string $prefix, string|array $expected, string $expectExceptionMessage = NULL): void {
     if ($expectExceptionMessage) {
       $this->expectException(\Exception::class);
       $this->expectExceptionMessage($expectExceptionMessage);
@@ -202,7 +202,7 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
     $this->assertEquals($expected, parse_variable_name($name, $prefix));
   }
 
-  public function dataProviderParseVariableName() {
+  public function dataProviderParseVariableName(): array {
     return [
       ['', '', '', 'Empty name provided.'],
 

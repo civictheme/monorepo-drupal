@@ -7,6 +7,8 @@
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Element\DocumentElement;
+use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use DrevOps\BehatSteps\ContentTrait;
 use DrevOps\BehatSteps\DateTrait;
@@ -35,6 +37,9 @@ use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
 /**
  * Defines application features from the specific context.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class FeatureContext extends DrupalContext {
 
@@ -63,7 +68,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Then I see content in iframe with id :id
    */
-  public function iSeeContentInIframe($id) {
+  public function iSeeContentInIframe(string $id): void {
     $driver = $this->getSession()->getDriver();
     if (!$driver instanceof Selenium2Driver) {
       throw new \RuntimeException('Unsupported driver for this step');
@@ -85,7 +90,8 @@ class FeatureContext extends DrupalContext {
       throw new ElementNotFoundException($driver, 'iFrame', $id);
     }
 
-    $driver->switchToIFrame($index);
+    // @phpstan-ignore-next-line
+    $driver->switchToIFrame((int) $index);
 
     if (!$driver->find('//body')) {
       throw new \Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
@@ -100,14 +106,14 @@ class FeatureContext extends DrupalContext {
    *
    * @When I select the filter chip :label
    */
-  public function iSelectFilterChip($label) {
+  public function iSelectFilterChip(string $label): void {
     $element = $this->getSession()->getPage();
     $filter_chip = $element->find('named', [
       'radio',
-      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+      $label,
     ]);
     if ($filter_chip === NULL) {
-      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s.', $label, $this->getSession()->getCurrentUrl()));
     }
 
     $this->clickFilterChip($label, $filter_chip, $element);
@@ -118,23 +124,22 @@ class FeatureContext extends DrupalContext {
    *
    * @Given I check the filter chip :label
    */
-  public function assertCheckFilterChip($label) {
+  public function assertCheckFilterChip(string $label): void {
     $element = $this->getSession()->getPage();
     $filter_chip = $element->find('named', [
       'checkbox',
-      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+      $label,
     ]);
 
     if ($filter_chip === NULL) {
-      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s.', $label, $this->getSession()->getCurrentUrl()));
     }
 
     if ($filter_chip->isChecked()) {
-      throw new \Exception(sprintf('Cannot check filter chip with "%s" because it already checked', $label, $this->getSession()->getCurrentUrl()));
+      throw new \Exception(sprintf('Cannot check filter chip with "%s" because it already checked on the page %s.', $label, $this->getSession()->getCurrentUrl()));
     }
 
     $this->clickFilterChip($label, $filter_chip, $element);
-
   }
 
   /**
@@ -142,33 +147,33 @@ class FeatureContext extends DrupalContext {
    *
    * @Given I uncheck the filter chip :checkbox
    */
-  public function assertUncheckFilterChip($label) {
-    $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', [
+  public function assertUncheckFilterChip(string $label): void {
+    $page = $this->getSession()->getPage();
+    $filter_chip = $page->find('named', [
       'checkbox',
-      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+      $label,
     ]);
 
     if ($filter_chip === NULL) {
-      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s.', $label, $this->getSession()->getCurrentUrl()));
     }
 
     if (!$filter_chip->isChecked()) {
-      throw new \Exception(sprintf('Cannot uncheck filter chip with "%s" because it not checked', $label, $this->getSession()->getCurrentUrl()));
+      throw new \Exception(sprintf('Cannot uncheck filter chip with "%s" because it not checked on the page %s.', $label, $this->getSession()->getCurrentUrl()));
     }
 
-    $this->clickFilterChip($label, $filter_chip, $element);
+    $this->clickFilterChip($label, $filter_chip, $page);
   }
 
   /**
    * Helper to get the filter chip label element which is then clicked.
    */
-  protected function clickFilterChip($label, $filter_chip, $element) {
+  protected function clickFilterChip(string $label, NodeElement $filter_chip, DocumentElement $page): void {
     $filter_chip_id = $filter_chip->getAttribute('id');
-    $label_element = $element->find('css', "label[for='$filter_chip_id']");
-    $labelonpage = $label_element->getText();
-    if ($label != $labelonpage) {
-      throw new \Exception(sprintf("Filter chip with id '%s' has label '%s' instead of '%s' on the page %s", $filter_chip_id, $labelonpage, $label, $this->getSession()->getCurrentUrl()));
+    $label_element = $page->find('css', "label[for='$filter_chip_id']");
+    $label_on_page = $label_element->getText();
+    if ($label != $label_on_page) {
+      throw new \Exception(sprintf("Filter chip with id '%s' has label '%s' instead of '%s' on the page %s", $filter_chip_id, $label_on_page, $label, $this->getSession()->getCurrentUrl()));
     }
 
     $label_element->click();
@@ -184,8 +189,10 @@ class FeatureContext extends DrupalContext {
    * | ...                             | ...                  |
    *
    * @When :field_name in :bundle :entity_type parent :parent_entity_field in :parent_entity_bundle :parent_entity_type with :parent_entity_field_name of :parent_entity_field_identifer delta :delta has :paragraph_type paragraph:
+   *
+   * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
-  public function paragraphsAddToParentEntityWithFields($field_name, $bundle, $entity_type, $parent_entity_field, $parent_entity_bundle, $parent_entity_type, $parent_entity_field_name, $parent_entity_field_identifer, $delta, $paragraph_type, TableNode $fields) {
+  public function paragraphsAddToParentEntityWithFields(string $field_name, string $bundle, string $entity_type, string $parent_entity_field, string $parent_entity_bundle, string $parent_entity_type, string $parent_entity_field_name, string $parent_entity_field_identifer, int $delta, string $paragraph_type, TableNode $fields): void {
     // Get paragraph field name for this entity type.
     $paragraph_node_field_name = $this->paragraphsCheckEntityFieldName($entity_type, $bundle, $field_name);
 
@@ -221,7 +228,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Then /^I scroll to an? element with id "([^"]*)"$/
    */
-  public function iScrollToElementWithId($id) {
+  public function iScrollToElementWithId(string $id): void {
     $this->getSession()->executeScript("
       var element = document.getElementById('" . $id . "');
       element.scrollIntoView( true );
@@ -244,18 +251,16 @@ class FeatureContext extends DrupalContext {
    *
    * @todo Remove with next behat-steps release.
    */
-  public function linkAssertTextHrefNotExists($text, $href, $locator = NULL) {
+  public function linkAssertTextHrefNotExists(string $text, string $href, string $locator = NULL): void {
     /** @var \Behat\Mink\Element\DocumentElement $page */
     $page = $this->getSession()->getPage();
 
+    $element = $page;
     if ($locator) {
       $element = $page->find('css', $locator);
       if (!$element) {
         return;
       }
-    }
-    else {
-      $element = $page;
     }
 
     $link = $element->findLink($text);
@@ -284,7 +289,7 @@ class FeatureContext extends DrupalContext {
    * @When /^(?:|I )fill color in "(?P<field>(?:[^"]|\\")*)" with:$/
    * @When /^(?:|I )fill color in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
    */
-  public function fillColorField($field, $value) {
+  public function fillColorField(string $field, string $value): mixed {
     $js = sprintf(
       'jQuery("%s").val("%s").change();',
       $field,
@@ -299,7 +304,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Then /^color field "(?P<field>(?:[^"]|\\")*)" value is "(?P<value>(?:[^"]|\\")*)"$/
    */
-  public function assertColorFieldHasValue($field, $value) {
+  public function assertColorFieldHasValue(string $field, string $value): void {
     $js = sprintf('jQuery("%s").val();', $field);
 
     $actual = $this->getSession()->evaluateScript($js);
@@ -314,7 +319,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I install :name theme
    */
-  public function installTheme($name) {
+  public function installTheme(string $name): void {
     \Drupal::service('theme_installer')->install([$name]);
   }
 
@@ -323,7 +328,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I uninstall :name theme
    */
-  public function uninstallTheme($name) {
+  public function uninstallTheme(string $name): void {
     try {
       \Drupal::service('theme_installer')->uninstall([$name]);
     }
@@ -337,7 +342,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I set :name theme as default
    */
-  public function setThemeAsDefault($name) {
+  public function setThemeAsDefault(string $name): void {
     \Drupal::service('config.factory')->getEditable('system.theme')
       ->set('default', $name)
       ->save();
@@ -347,8 +352,10 @@ class FeatureContext extends DrupalContext {
    * Visit a settings page of the theme.
    *
    * @When I visit :name theme settings page
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function themeVisitSettings($name = NULL) {
+  public function themeVisitSettings(string $name = NULL): void {
     if (!$name || $name == 'current') {
       $name = \Drupal::theme()->getActiveTheme()->getName();
     }
@@ -373,7 +380,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Given no :menu_name menu_links:
    */
-  public function menuLinksDelete($menu_name, TableNode $table) {
+  public function menuLinksDelete(string $menu_name, TableNode $table): void {
     foreach ($table->getColumn(0) as $title) {
       try {
         $menu_link = $this->loadMenuLinkByTitle($title, $menu_name);
@@ -397,7 +404,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Given no blocks:
    */
-  public function blockDelete(TableNode $table) {
+  public function blockDelete(TableNode $table): void {
     foreach ($table->getColumn(0) as $id) {
       try {
         $block = \Drupal::entityTypeManager()
@@ -426,7 +433,7 @@ class FeatureContext extends DrupalContext {
    *
    * @Given no content blocks:
    */
-  public function contentBlockDelete(TableNode $table) {
+  public function contentBlockDelete(TableNode $table): void {
     foreach ($table->getColumn(0) as $info) {
       try {
         $entities = \Drupal::entityTypeManager()
@@ -450,8 +457,10 @@ class FeatureContext extends DrupalContext {
    * Index a node with all Search API indices.
    *
    * @When I index :type :title for search
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function searchApiIndexContent($type, $title) {
+  public function searchApiIndexContent(string $type, string $title): void {
     $nids = $this->contentNodeLoadMultiple($type, [
       'title' => $title,
     ]);
@@ -487,7 +496,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When /^(?:|I )fill in WYSIWYG "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
    */
-  public function wysiwygFillField($field, $value) {
+  public function wysiwygFillField(string $field, string $value): void {
     $field = $this->wysiwygFixStepArgument($field);
     $value = $this->wysiwygFixStepArgument($value);
 

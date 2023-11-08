@@ -15,10 +15,8 @@ class CivicthemeGovcmsCommands extends DrushCommands {
 
   /**
    * The Govcms Manager service.
-   *
-   * @var \Drupal\civictheme_govcms\CivicthemeGovcmsManager
    */
-  protected $govcmsManager;
+  protected CivicthemeGovcmsManager $govcmsManager;
 
   /**
    * Migration commands constructor.
@@ -54,7 +52,7 @@ class CivicthemeGovcmsCommands extends DrushCommands {
    */
   public function drushCivicthemeGovcmsRemoveConfig(array $options = [
     'preserve' => '',
-  ]) {
+  ]): void {
     // Removing configs will lead to showing warnings about missing bundles,
     // which are only shown due to dependencies resolution concurrency issues.
     // We are suppressing them as they do not have any valuable information

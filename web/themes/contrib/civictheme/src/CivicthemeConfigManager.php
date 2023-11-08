@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * Proxy to deal with any kind of theme configuration.
  */
-class CivicthemeConfigManager implements ContainerInjectionInterface {
+final class CivicthemeConfigManager implements ContainerInjectionInterface {
 
   /**
    * Current active theme.
@@ -25,31 +25,23 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
 
   /**
    * The config factory.
-   *
-   * @var \Drupal\Core\Config\ConfigFactory
    */
-  protected $configFactory;
+  protected ConfigFactory $configFactory;
 
   /**
    * The theme manager.
-   *
-   * @var \Drupal\Core\Theme\ThemeManager
    */
-  protected $themeManager;
+  protected ThemeManager $themeManager;
 
   /**
    * The config importer.
-   *
-   * @var \Drupal\civictheme\CivicthemeConfigImporter
    */
-  protected $configImporter;
+  protected CivicthemeConfigImporter $configImporter;
 
   /**
    * The theme extension list.
-   *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
    */
-  protected $themeExtensionList;
+  protected ThemeExtensionList $themeExtensionList;
 
   /**
    * Constructor.
@@ -74,8 +66,8 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('config.factory'),
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
@@ -131,7 +123,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function save($key, $value) {
+  public function save($key, $value): static {
     // Set site slogan.
     if ($key == 'components.site_slogan.content') {
       $config = $this->configFactory->getEditable('system.site')->set('slogan', $value)->save();
@@ -154,7 +146,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function setTheme(ActiveTheme $theme) {
+  public function setTheme(ActiveTheme $theme): static {
     $this->theme = $theme;
 
     return $this;
@@ -163,7 +155,7 @@ class CivicthemeConfigManager implements ContainerInjectionInterface {
   /**
    * Reset settings to defaults.
    */
-  public function resetToDefaults() {
+  public function resetToDefaults(): void {
     $base_theme_name = 'civictheme';
     $base_theme_path = $this->themeExtensionList->getPath($base_theme_name);
 

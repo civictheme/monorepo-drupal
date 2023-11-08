@@ -10,7 +10,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Preprocess for footer menu block.
  */
-function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
+function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
     return;
   }
@@ -29,7 +29,7 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
 /**
  * Add required element for external link.
  */
-function _civictheme_preprocess_menu_items(&$items) {
+function _civictheme_preprocess_menu_items(array &$items): void {
   foreach ($items as &$item) {
     $item += [
       'is_new_window' => $item['url']->isExternal(),
@@ -50,7 +50,7 @@ function _civictheme_preprocess_menu_items(&$items) {
 /**
  * Preprocess for primary navigation menu block.
  */
-function _civictheme_preprocess_block__navigation(&$variables) {
+function _civictheme_preprocess_block__navigation(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
     return;
   }

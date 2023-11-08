@@ -18,7 +18,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderLinkIsExternal
    */
-  public function testLinkIsExternal($url, $base_url, array $overridden_domains, $expected) {
+  public function testLinkIsExternal(string $url, string $base_url, array $overridden_domains, bool $expected): void {
     $actual = civictheme_url_is_external($url, $base_url, $overridden_domains);
     $this->assertEquals($expected, $actual);
   }
@@ -26,7 +26,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testLinkIsExternal().
    */
-  public function dataProviderLinkIsExternal() {
+  public function dataProviderLinkIsExternal(): array {
     return [
       ['', '', [], FALSE],
       ['', '', ['example.com'], FALSE],
@@ -102,7 +102,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderProcessHtmlLinks
    */
-  public function testProcessHtmlLinks($html, $base_url, $new_window, $external_new_window, array $override_domains, $expected) {
+  public function testProcessHtmlLinks(string $html, string $base_url, bool $new_window, bool $external_new_window, array $override_domains, string $expected): void {
     $actual = _civictheme_process_html_content_links($html, $base_url, $new_window, $external_new_window, $override_domains);
     $this->assertEquals($expected, $actual);
   }
@@ -112,7 +112,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function dataProviderProcessHtmlLinks() {
+  public function dataProviderProcessHtmlLinks(): array {
     return [
       // Empty.
       ['', '', FALSE, FALSE, [], ''],
@@ -275,7 +275,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderEmailRegex
    */
-  public function testEmail($string, $match) {
+  public function testEmail(string $string, string|bool $match): void {
     preg_match(_civictheme_process_html_content_links_get_email_regex(), $string, $matches);
 
     if ($match) {
@@ -292,7 +292,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function dataProviderEmailRegex() {
+  public function dataProviderEmailRegex(): array {
     return [
       ['a@example.com', 'a@example.com'],
       ['a@example2.com', 'a@example2.com'],

@@ -46,7 +46,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setDatabaseDumpFiles() {
+  protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles = [
       __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.bare.php.gz',
     ];
@@ -57,7 +57,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    *
    * This is a smoke test for the hook_update_N() CivicTheme test system itself.
    */
-  public function testDatabaseLoaded() {
+  public function testDatabaseLoaded(): void {
     $this->assertEquals('minimal', \Drupal::config('core.extension')->get('profile'));
     // Ensure that a user can be created and do a basic test that
     // the site is available by logging in.
@@ -68,7 +68,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
   /**
    * Tests updates.
    */
-  public function testUpdates() {
+  public function testUpdates(): void {
     $this->runUpdates();
 
     $this->assertSession()->pageTextContains('Update rename_block_banner_blend_mode');

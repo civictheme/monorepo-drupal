@@ -13,21 +13,24 @@ use Drupal\media\Entity\Media;
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_generated_content_generated_content_create_media_civictheme_document_weight() {
+function cs_generated_content_generated_content_create_media_civictheme_document_weight(): int {
   return 10;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_generated_content_generated_content_create_media_civictheme_document_tracking() {
+function cs_generated_content_generated_content_create_media_civictheme_document_tracking(): bool {
   return TRUE;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
+ *
+ * @phpstan-ignore-next-line
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function cs_generated_content_generated_content_create_media_civictheme_document() {
+function cs_generated_content_generated_content_create_media_civictheme_document(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 

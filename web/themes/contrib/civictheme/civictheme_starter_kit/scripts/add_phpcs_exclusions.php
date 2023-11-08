@@ -39,7 +39,7 @@ define('ERROR_LEVEL', E_USER_WARNING);
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function main(array $argv, $argc) {
+function main(array $argv, int $argc): int {
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help();
 
@@ -67,12 +67,16 @@ function main(array $argv, $argc) {
 
   $files = glob($target_directory . '**/*.js');
 
+  if (empty($files)) {
+    throw new \Exception(sprintf('No files found in directory "%s".', $target_directory_original) . PHP_EOL);
+  }
+
   foreach ($files as $file) {
     if (!file_exists($file)) {
       continue;
     }
 
-    $contents = file_get_contents($file);
+    $contents = file_get_contents($file) ?: '';
     if (str_contains($contents, $template)) {
       print "  > [SKIPPED] $file" . PHP_EOL;
       continue;
@@ -90,7 +94,7 @@ function main(array $argv, $argc) {
 /**
  * Print help.
  */
-function print_help() {
+function print_help(): void {
   print <<<EOF
 Add PHPCS exclusions
 --------------------
@@ -111,7 +115,7 @@ EOF;
 /**
  * Show a verbose message.
  */
-function verbose() {
+function verbose(): void {
   if (getenv('SCRIPT_QUIET') != '1') {
     print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
   }
@@ -130,7 +134,8 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
-  set_error_handler(function ($severity, $message, $file, $line) {
+  // @phpstan-ignore-next-line
+  set_error_handler(function ($severity, $message, $file, $line): void {
     if (!(error_reporting() & $severity)) {
       // This error code is not included in error_reporting.
       return;
@@ -140,9 +145,6 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
 
   try {
     $code = main($argv, $argc);
-    if (is_null($code)) {
-      throw new \Exception('Script exited without providing an exit code.');
-    }
     exit($code);
   }
   catch (\ErrorException $exception) {
