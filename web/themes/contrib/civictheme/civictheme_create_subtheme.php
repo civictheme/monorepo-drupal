@@ -66,8 +66,8 @@ function main(array $argv, int $argc): int {
   $new_theme_description = trim($argv[3]);
   $new_theme_directory = trim($argv[4] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
 
-  // @todo Add check if path is absolute.
-  $new_theme_directory = file_path_canonicalize(__DIR__ . DIRECTORY_SEPARATOR . $new_theme_directory);
+  $new_theme_directory = str_starts_with($new_theme_directory, DIRECTORY_SEPARATOR) ? $new_theme_directory : __DIR__ . DIRECTORY_SEPARATOR . $new_theme_directory;
+  $new_theme_directory = file_path_canonicalize($new_theme_directory);
 
   // Prepare theme stub.
   $stub_path = prepare_stub();
