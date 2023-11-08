@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
  * Base class to unit tests scripts.
  *
  * @group scripts
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 abstract class ScriptUnitTestBase extends TestCase {
 
@@ -43,10 +45,12 @@ abstract class ScriptUnitTestBase extends TestCase {
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.ErrorControlOperator)
    */
   protected function tearDown(): void {
     parent::tearDown();
-    if (!empty($this->tmpDir)) {
+    if (!empty($this->tmpDir) && is_dir($this->tmpDir)) {
       @unlink($this->tmpDir);
     }
   }
@@ -63,6 +67,8 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   Array with the following keys:
    *   - code: (int) Exit code.
    *   - output: (string) Output.
+   *
+   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
    */
   protected function runScript(array $args = [], $verbose = FALSE) {
     putenv('SCRIPT_RUN_SKIP=0');
@@ -83,7 +89,7 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Replace path to a fixture file.
    */
-  protected function fixtureFile($filename) {
+  protected function fixtureFile(string $filename): string {
     $path = 'tests/phpunit/fixtures/drupal_configs/' . $filename;
     if (!is_readable($path)) {
       throw new \RuntimeException(sprintf('Unable to find fixture file %s.', $path));
@@ -95,14 +101,14 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Path to a temporary file.
    */
-  protected function toTmpPath($filename, $prefix = NULL) {
+  protected function toTmpPath(string $filename, string $prefix = NULL): string {
     return $prefix ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
   }
 
   /**
    * Print the contents of the temporary directory.
    */
-  protected function printTempDir() {
+  protected function printTempDir(): void {
     $it = new RecursiveTreeIterator(new RecursiveDirectoryIterator($this->tmpDir, RecursiveDirectoryIterator::SKIP_DOTS));
     print PHP_EOL;
     foreach ($it as $value) {
@@ -113,7 +119,7 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Create a random unique temporary directory.
    */
-  protected function tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts = 1000) {
+  protected function tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
     if (is_null($dir)) {
       $dir = sys_get_temp_dir();
     }
@@ -121,11 +127,11 @@ abstract class ScriptUnitTestBase extends TestCase {
     $dir = rtrim($dir, DIRECTORY_SEPARATOR);
 
     if (!is_dir($dir) || !is_writable($dir)) {
-      return FALSE;
+      throw new \RuntimeException(sprintf('Temporary directory "%s" does not exist or is not writable.', $dir));
     }
 
     if (strpbrk($prefix, '\\/:*?"<>|') !== FALSE) {
-      return FALSE;
+      throw new \RuntimeException(sprintf('Prefix "%s" contains invalid characters.', $prefix));
     }
     $attempts = 0;
 
@@ -143,12 +149,12 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Recursively replace a value in the array using provided callback.
    */
-  protected function arrayReplaceValue($array, $cb) {
+  protected function arrayReplaceValue(array $array, callable|array $cb): array {
     foreach ($array as $k => $item) {
       if (is_array($item)) {
         $array[$k] = $this->arrayReplaceValue($item, $cb);
       }
-      else {
+      elseif (is_callable($cb)) {
         $array[$k] = $cb($item);
       }
     }
@@ -171,7 +177,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   - key: (string) Source path (the key from $file_structure).
    *   - value: (string) Path to a fixture file to use.
    */
-  protected function createTmpFilesFromFixtures(array $fixture_map, $prefix = NULL) {
+  protected function createTmpFilesFromFixtures(array $fixture_map, string $prefix = NULL): array {
     $files = [];
     foreach ($fixture_map as $path => $fixture_file) {
       $tmp_path = $this->toTmpPath($path, $prefix);
@@ -217,8 +223,10 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   Array of created files with the following structure:
    *   - key: (string) Source path (the key from $file_structure).
    *   - value: (string) Path to a fixture file to use.
+   *
+   * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  protected function replaceFixturePaths(array $fixture_map, $prefix = NULL) {
+  protected function replaceFixturePaths(array $fixture_map, string $prefix = NULL): array {
     foreach ($fixture_map as $k => $v) {
       if (is_array($v)) {
         $fixture_map[$k] = $this->replaceFixturePaths($v, $prefix);
@@ -273,8 +281,12 @@ abstract class ScriptUnitTestBase extends TestCase {
    *
    * @return bool
    *   TRUE if the result of copy was successful, FALSE otherwise.
+   *
+   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  public function fileCopyRecursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
+  public function fileCopyRecursively(string $src, string $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE): bool {
     $parent = dirname($dst);
 
     if (!is_dir($parent)) {
@@ -286,9 +298,13 @@ abstract class ScriptUnitTestBase extends TestCase {
       // Changing dir symlink will be relevant to the current destination's file
       // directory.
       $cur_dir = getcwd();
+      if (!$cur_dir) {
+        throw new \RuntimeException('Unable to get current working directory.');
+      }
+
       chdir($parent);
       $ret = TRUE;
-      if (!is_readable(basename($dst))) {
+      if (!is_readable(basename($dst)) && !empty(readlink($src))) {
         $ret = symlink(readlink($src), basename($dst));
       }
       chdir($cur_dir);
@@ -299,7 +315,11 @@ abstract class ScriptUnitTestBase extends TestCase {
     if (is_file($src)) {
       $ret = copy($src, $dst);
       if ($ret) {
-        chmod($dst, fileperms($src));
+        $perms = fileperms($src);
+        if ($perms === FALSE) {
+          throw new \RuntimeException(sprintf('Unable to get permissions for %s.', $src));
+        }
+        chmod($dst, $perms);
       }
 
       return $ret;
@@ -310,14 +330,16 @@ abstract class ScriptUnitTestBase extends TestCase {
     }
 
     $dir = dir($src);
-    while (FALSE !== $entry = $dir->read()) {
+    while ($dir && FALSE !== $entry = $dir->read()) {
       if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
         continue;
       }
       $this->fileCopyRecursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
     }
 
-    $dir->close();
+    if ($dir) {
+      $dir->close();
+    }
 
     return TRUE;
   }

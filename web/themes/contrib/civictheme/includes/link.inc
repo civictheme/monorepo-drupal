@@ -34,15 +34,20 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
     return $html;
   }
 
+  if (empty($html)) {
+    return $html;
+  }
+
   $class_prefix = 'ct-';
   $link_class = 'ct-content-link ct-theme-light';
   $link_external_class = 'ct-content-link--external';
 
   $html = _civictheme_process_html_content_links_emails($html);
 
-  $dom = Html::load($html);
-
-  if (!$dom) {
+  try {
+    $dom = Html::load($html);
+  }
+  catch (\Exception $e) {
     return $html;
   }
 
@@ -108,14 +113,15 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function _civictheme_process_html_content_links_emails($html) {
+function _civictheme_process_html_content_links_emails(string $html): string {
   if (_civictheme_feature_is_optedout('process', 'components.link.email')) {
     return $html;
   }
 
-  $dom = Html::load($html);
-
-  if (!$dom) {
+  try {
+    $dom = Html::load($html);
+  }
+  catch (\Exception $e) {
     return $html;
   }
 
@@ -123,12 +129,18 @@ function _civictheme_process_html_content_links_emails($html) {
 
   $text_nodes = $xpath->query('//text()[not(ancestor::a)]');
 
+  if (!$text_nodes || !$text_nodes->count()) {
+    return $html;
+  }
+
   foreach ($text_nodes as $text_node) {
     if (preg_match_all(_civictheme_process_html_content_links_get_email_regex(), $text_node->nodeValue, $matches)) {
       $emails = $matches[0];
       foreach ($emails as $email) {
         $replacement = $dom->createDocumentFragment();
+        // @phpstan-ignore-next-line
         $replacement->appendXML(str_replace($email, "<a href=\"mailto:$email\">$email</a>", $text_node->textContent));
+        /** @var \DOMChildNode $text_node */
         $text_node->replaceWith($replacement);
       }
     }
@@ -140,6 +152,6 @@ function _civictheme_process_html_content_links_emails($html) {
 /**
  * Email pattern as a regex string.
  */
-function _civictheme_process_html_content_links_get_email_regex() {
+function _civictheme_process_html_content_links_get_email_regex(): string {
   return '/\b[A-Za-z0-9._%+-]+@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+(?:[a-zA-Z]{2,})\b)(?!\.[a-zA-Z0-9]{1,}\b)/';
 }

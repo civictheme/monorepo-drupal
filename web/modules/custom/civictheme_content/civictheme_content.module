@@ -8,7 +8,7 @@
 /**
  * Helper for implementations of hook_module_implements_alter().
  */
-function _civictheme_content_module_implements_alter($module, &$implementations, $hook) {
+function _civictheme_content_module_implements_alter(string $module, array &$implementations, string $hook): void {
   if ($hook == 'modules_installed') {
     $group = $implementations[$module];
     unset($implementations[$module]);
@@ -19,9 +19,9 @@ function _civictheme_content_module_implements_alter($module, &$implementations,
 /**
  * Helper for implementations of hook_modules_installed().
  */
-function _civictheme_content_modules_installed($module, $modules) {
+function _civictheme_content_modules_installed(string $module, array $modules): void {
   if (in_array($module, $modules)) {
-    module_load_include('php', $module, $module . '.post_update');
+    \Drupal::moduleHandler()->loadInclude($module, 'php', $module . '.post_update');
     // Run all post-update functions when installing this module.
     $key_value = \Drupal::keyValue('post_update');
     $executed_updates = $key_value->get('existing_updates', []);

@@ -21,7 +21,7 @@ use Drupal\Core\Link;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_preprocess_block__civictheme_banner(&$variables) {
+function _civictheme_preprocess_block__civictheme_banner(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }
@@ -80,7 +80,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_preprocess_block__civictheme_banner__node(&$variables) {
+function _civictheme_preprocess_block__civictheme_banner__node(array &$variables): void {
   $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
 
   if (empty($node)) {
@@ -148,16 +148,13 @@ function _civictheme_preprocess_block__civictheme_banner__node(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables) {
+function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$variables): void {
   // Disable breadcrumb on homepage.
   if (\Drupal::service('path.matcher')->isFrontPage()) {
     return;
   }
 
   $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
-  if (!$breadcrumb) {
-    return;
-  }
 
   // Always show the last item as a plain text (not a link).
   $variables['breadcrumb']['active_is_link'] = FALSE;

@@ -9,8 +9,13 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
  * Page, Components - Attachment.
+ *
+ * @return array<int, array<string, mixed>>
+ *   Variations.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _cs_generated_content_create_node_civictheme_page__variations__component_attachment() {
+function _cs_generated_content_create_node_civictheme_page__variations__component_attachment(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 

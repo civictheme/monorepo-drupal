@@ -16,7 +16,7 @@ class CsGeneratedContentAssetGenerator extends GeneratedContentAssetGenerator {
   /**
    * {@inheritdoc}
    */
-  protected function getAssetsDirs() {
+  protected function getAssetsDirs(): array {
     $module_path = $this->moduleExtensionList->getPath('cs_generated_content');
 
     return [

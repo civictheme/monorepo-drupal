@@ -12,8 +12,10 @@ use Drupal\user\Entity\User;
 
 /**
  * Creates administrator users.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_dev_post_update_provision_users() {
+function civictheme_dev_post_update_provision_users(): string {
   $emails = [
     'akhil.bhandari@salsa.digital',
     'alan.rako@salsa.digital',
@@ -40,12 +42,16 @@ function civictheme_dev_post_update_provision_users() {
     $user->enforceIsNew();
     $user->save();
   }
+
+  return 'Created ' . count($emails) . ' users.';
 }
 
 /**
  * Creates storybook redirects.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_dev_post_update_provision_storybook_redirects() {
+function civictheme_dev_post_update_provision_storybook_redirects(): string {
   $map = [
     [
       'src' => '/storybook',
@@ -67,12 +73,16 @@ function civictheme_dev_post_update_provision_storybook_redirects() {
     $redirect->setStatusCode(301);
     $redirect->save();
   }
+
+  return 'Created ' . count($map) . ' redirects.';
 }
 
 /**
  * Updates Side Navigation block visibility settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_dev_post_update_update_side_navigation_block() {
+function civictheme_dev_post_update_update_side_navigation_block(): string {
   $entity_type_manager = \Drupal::entityTypeManager();
   $blocks = $entity_type_manager->getStorage('block')->loadByProperties([
     'region' => 'sidebar',
@@ -90,24 +100,29 @@ function civictheme_dev_post_update_update_side_navigation_block() {
     'pages' => "/search\n\r/news-and-events\n\r*civictheme-no-sidebar*",
   ]);
   $block->save();
+
+  return 'Updated Side Navigation block visibility settings.';
 }
 
 /**
  * Updates Testmode module settings.
  */
-function civictheme_dev_post_update_update_testmode_settings() {
+function civictheme_dev_post_update_update_testmode_settings(): string {
+  /** @var \Drupal\Core\Config\Config $config */
   $config = \Drupal::service('config.factory')->getEditable('testmode.settings');
-  $views_list = $config->get('views_node', []);
+  $views_list = $config->get('views_node') ?: [];
   $views_list[] = 'civictheme_automated_list';
   $views_list[] = 'civictheme_automated_list_examples';
   $views_list[] = 'civictheme_automated_list_test';
   $config->set('views_node', $views_list)->save();
+
+  return 'Updated Testmode module settings.';
 }
 
 /**
  * Updates Simple Sitemap configuration to include nodes and views.
  */
-function civictheme_dev_post_update_update_simplesitemap() {
+function civictheme_dev_post_update_update_simplesitemap(): string {
   if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
     \Drupal::service('module_installer')->install(['simple_sitemap']);
   }
@@ -131,6 +146,7 @@ function civictheme_dev_post_update_update_simplesitemap() {
   $type = $type_storage->load('default_hreflang');
 
   if ($type) {
+    // @phpstan-ignore-next-line
     $type->url_generators = [
       'custom',
       'entity',
@@ -141,12 +157,16 @@ function civictheme_dev_post_update_update_simplesitemap() {
 
     $type->save();
   }
+
+  return 'Updated Simple Sitemap configuration to include nodes and views.';
 }
 
 /**
  * Places Listing example view blocks the current theme's regions.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_dev_post_update_place_listing_example_blocks_into_regions() {
+function civictheme_dev_post_update_place_listing_example_blocks_into_regions(): string {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
   if ($theme_name == 'civictheme') {
     return 'Skipping update for the CivicTheme as blocks already exist.';
@@ -164,4 +184,6 @@ function civictheme_dev_post_update_place_listing_example_blocks_into_regions() 
     $child_block = $parent_block->createDuplicateBlock($new_id, $theme_name);
     $child_block->save();
   }
+
+  return 'Placed Listing example view blocks into the current theme\'s regions.';
 }

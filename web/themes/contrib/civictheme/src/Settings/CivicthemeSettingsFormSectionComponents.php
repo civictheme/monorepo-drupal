@@ -15,7 +15,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 30;
   }
 
@@ -25,7 +25,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @SuppressWarnings(PHPMD.StaticAccess)
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $form['components'] = [
       '#type' => 'vertical_tabs',
       '#title' => $this->t('Components'),
@@ -58,6 +58,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       ];
       foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
+          // @phpstan-ignore-next-line
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
             '#title' => $this->t('@logo_type logo @theme @breakpoint', [
@@ -420,11 +421,20 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
   /**
    * Form process callback.
+   *
+   * @param array $element
+   *   Form element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   *
+   * @return array<string, mixed>
+   *   Form element.
    */
-  public function processForm(&$element, FormStateInterface $form_state) {
+  public function processForm(array &$element, FormStateInterface $form_state): array {
     // Vertical tabs do not work correctly with a form element with
     // '#tree' = TRUE. The active tab is set to the element children by JS,
     // so we have to explicitly add it to the values that should be cleaned.
+    // @phpstan-ignore-next-line
     $form_state->addCleanValueKey(['components', 'components__active_tab']);
 
     return $element;
@@ -433,7 +443,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Validate callback for theme settings form of Logo component.
    */
-  public function validateLogo(array &$form, FormStateInterface $form_state) {
+  public function validateLogo(array &$form, FormStateInterface $form_state): void {
     foreach (['primary', 'secondary'] as $logo_type) {
       foreach (civictheme_theme_options(TRUE) as $theme) {
         foreach (['desktop', 'mobile'] as $breakpoint) {
@@ -454,7 +464,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  public function validateFooter(array $form, FormStateInterface &$form_state) {
+  public function validateFooter(array $form, FormStateInterface &$form_state): void {
     $this->validateFileUpload(
       $form,
       $form_state,
@@ -469,7 +479,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function validateLink(array &$form, FormStateInterface $form_state) {
+  public function validateLink(array &$form, FormStateInterface $form_state): void {
     $override_domain_field_name_keys = [
       'components',
       'link',
@@ -509,14 +519,16 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  public function submitLogo(array &$form, FormStateInterface $form_state) {
+  public function submitLogo(array &$form, FormStateInterface $form_state): void {
     foreach (['primary', 'secondary'] as $logo_type) {
       foreach (civictheme_theme_options(TRUE) as $theme) {
         foreach (['desktop', 'mobile'] as $breakpoint) {
           $this->submitFileUpload(
             $form,
             $form_state,
+            // @phpstan-ignore-next-line
             ['components', 'logo', $logo_type, $theme, $breakpoint, 'upload'],
+            // @phpstan-ignore-next-line
             ['components', 'logo', $logo_type, $theme, $breakpoint, 'path']
           );
         }
@@ -529,11 +541,13 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  public function submitFooter(array &$form, FormStateInterface $form_state) {
+  public function submitFooter(array &$form, FormStateInterface $form_state): void {
     $this->submitFileUpload(
       $form,
       $form_state,
+      // @phpstan-ignore-next-line
       ['components', 'footer', 'background_image', 'upload'],
+      // @phpstan-ignore-next-line
       ['components', 'footer', 'background_image', 'path']
     );
   }
@@ -549,7 +563,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function getPathFieldDescription($filename) {
+  protected function getPathFieldDescription(string $filename): string {
     $relative_file = $this->themeManager->getActiveTheme()->getPath() . '/' . $filename;
     $uploaded_file = $this->toFriendlyFilePath($this->getDefaultFileScheme() . '://' . $filename);
 
@@ -562,8 +576,14 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Normalize domain.
    */
-  protected function externalLinkNormalizeDomain($domain) {
-    return civictheme_external_link_normalize_domain($domain);
+  protected function externalLinkNormalizeDomain(string $domain): string {
+    // Check that the part of the domain before first dot has protocol and
+    // add one if it does not.
+    if (!str_contains(substr($domain, 0, strpos($domain, '.') ?: 0), ':')) {
+      $domain = 'https://' . (str_starts_with($domain, '//') ? str_replace('//', '', $domain) : $domain);
+    }
+
+    return $domain;
   }
 
   /**
@@ -571,7 +591,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  public function submitSiteSlogan(array &$form, FormStateInterface $form_state) {
+  public function submitSiteSlogan(array &$form, FormStateInterface $form_state): void {
     $slogan = $form_state->getValue(['components', 'site_slogan', 'content']);
     $this->themeConfigManager->save('components.site_slogan.content', $slogan);
   }

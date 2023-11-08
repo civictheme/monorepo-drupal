@@ -35,7 +35,7 @@ define('ERROR_LEVEL', E_USER_WARNING);
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function main(array $argv, $argc) {
+function main(array $argv, int $argc):int {
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help();
 
@@ -72,7 +72,7 @@ function main(array $argv, $argc) {
  *
  * @SuppressWarnings(PHPMD.UnusedLocalVariable)
  */
-function print_help() {
+function print_help(): void {
   $script_name = basename(__FILE__);
   print <<<EOF
 Extract CSS4 variables into CSV.
@@ -97,18 +97,18 @@ EOF;
  * @param string $content
  *   Variables to collect.
  *
- * @return array
+ * @return array<string>
  *   Array of collected variables as name=>value.
  */
-function collect_variables($content) {
+function collect_variables(string $content): array {
   $vars = [];
 
   $matches = [];
   preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
 
-  array_walk($matches, function ($value) use (&$vars) {
+  array_walk($matches, function (array $value) use (&$vars): void {
     if (!empty($value[1])) {
-      $vars[trim($value[1])] = trim($value[2]) ?? NULL;
+      $vars[trim($value[1])] = trim($value[2] ?? '');
     }
   });
 
@@ -117,9 +117,12 @@ function collect_variables($content) {
 
 /**
  * Filter variables based on a custom criteria.
+ *
+ * @return array<string>
+ *   Array of filtered variables as name=>value.
  */
-function filter_variables($vars) {
-  $vars = array_filter($vars, function ($k) {
+function filter_variables(array $vars): array {
+  $vars = array_filter($vars, function ($k): bool {
     return strpos($k, '--ct') === 0;
   }, ARRAY_FILTER_USE_KEY);
 
@@ -132,10 +135,10 @@ function filter_variables($vars) {
  * @param array $vars
  *   Array of variables with names as keys and values as values.
  *
- * @return array
+ * @return array<int, array<string, mixed>>
  *   Array of parsed variables.
  */
-function parse_variables(array $vars) {
+function parse_variables(array $vars): array {
   $variables = [];
 
   foreach ($vars as $name => $value) {
@@ -170,7 +173,7 @@ function parse_variables(array $vars) {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function output_csv(array $vars, $stream = 'php://output') {
+function output_csv(array $vars, $stream = 'php://output'): void {
   if (empty($vars)) {
     throw new \Exception('No variables found');
   }
@@ -179,6 +182,10 @@ function output_csv(array $vars, $stream = 'php://output') {
   $header = array_keys($header);
 
   $out = fopen($stream, 'w');
+
+  if ($out === FALSE) {
+    throw new \Exception(sprintf('Unable to open stream %s for writing.', $stream));
+  }
 
   fputcsv($out, $header);
   foreach ($vars as $line) {
@@ -223,7 +230,7 @@ function output_csv(array $vars, $stream = 'php://output') {
  * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function parse_variable_name($name, $prefix = NULL) {
+function parse_variable_name(string $name, string $prefix = NULL): array {
   if (empty($name)) {
     throw new \Exception('Empty name provided.');
   }
@@ -246,6 +253,10 @@ function parse_variable_name($name, $prefix = NULL) {
     $parts = array_values($parts);
   }
 
+  if (empty($parts)) {
+    throw new \Exception(sprintf('Incorrectly named variable %s: component name is missing.', $name));
+  }
+
   // Filter by rule - maybe we do not need this variable at all.
   $allowed_rules = [
     'color',
@@ -257,20 +268,23 @@ function parse_variable_name($name, $prefix = NULL) {
     'border-right-color',
   ];
 
-  foreach ($allowed_rules as $k => $allowed_rule) {
-    $allowed_rules[$k] = explode('-', $allowed_rule);
+  foreach ($allowed_rules as $k => $v) {
+    $allowed_rules[$k] = explode('-', $v);
   }
 
-  usort($allowed_rules, function ($a, $b) {
+  // @phpstan-ignore-next-line
+  usort($allowed_rules, function (array $a, array $b): int {
     return count($b) - count($a);
   });
 
-  foreach ($allowed_rules as $k => $allowed_rule) {
+  foreach ($allowed_rules as $allowed_rule) {
+    // @phpstan-ignore-next-line
     if (count($parts) <= count($allowed_rule)) {
       continue;
     }
 
     $matched_count = 0;
+    // @phpstan-ignore-next-line
     $allowed_rule = array_reverse($allowed_rule);
     foreach ($allowed_rule as $allowed_rule_idx => $allowed_rule_part) {
       if ($parts[count($parts) - 1 - $allowed_rule_idx] == $allowed_rule_part) {
@@ -338,7 +352,7 @@ function parse_variable_name($name, $prefix = NULL) {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function verbose() {
+function verbose(): void {
   if (getenv('SCRIPT_QUIET') != '1') {
     print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
   }
@@ -355,7 +369,8 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 }
 
 // Custom error handler to catch errors based on set ERROR_LEVEL.
-set_error_handler(function ($severity, $message, $file, $line) {
+// @phpstan-ignore-next-line
+set_error_handler(function ($severity, $message, $file, $line): void {
   if (!(error_reporting() & $severity)) {
     // This error code is not included in error_reporting.
     return;
@@ -367,9 +382,6 @@ set_error_handler(function ($severity, $message, $file, $line) {
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   try {
     $code = main($argv, $argc);
-    if (is_null($code)) {
-      throw new \Exception('Script exited without providing an exit code.');
-    }
     exit($code);
   }
   catch (\ErrorException $exception) {

@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\civictheme\Traits;
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * Trait CivicthemeTestHelperTrait.
  *
@@ -27,12 +29,14 @@ trait CivicthemeTestHelperTrait {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  protected static function callProtectedMethod($object, $method, array $args = []) {
+  protected static function callProtectedMethod(object|string $object, string $method, array $args = []): mixed {
+    // @phpstan-ignore-next-line
     $class = new \ReflectionClass(is_object($object) ? get_class($object) : $object);
     $method = $class->getMethod($method);
     $method->setAccessible(TRUE);
     $object = $method->isStatic() ? NULL : $object;
 
+    // @phpstan-ignore-next-line
     return $method->invokeArgs($object, $args);
   }
 
@@ -48,7 +52,7 @@ trait CivicthemeTestHelperTrait {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  protected static function setProtectedValue($object, $property, $value) {
+  protected static function setProtectedValue(object $object, string $property, mixed $value): void {
     $class = new \ReflectionClass(get_class($object));
     $property = $class->getProperty($property);
     $property->setAccessible(TRUE);
@@ -69,7 +73,7 @@ trait CivicthemeTestHelperTrait {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  protected static function getProtectedValue($object, $property) {
+  protected static function getProtectedValue(object $object, string $property): mixed {
     $class = new \ReflectionClass(get_class($object));
     $property = $class->getProperty($property);
     $property->setAccessible(TRUE);
@@ -88,24 +92,30 @@ trait CivicthemeTestHelperTrait {
    *   Optional array of constructor arguments. If omitted, a constructor will
    *   not be called.
    *
-   * @return object
+   * @return \PHPUnit\Framework\MockObject\MockObject
    *   Mocked class.
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  protected function prepareMock($class, array $methodsMap = [], array $args = []) {
+  protected function prepareMock(string|object $class, array $methodsMap = [], array $args = []): MockObject {
     $methods = array_keys($methodsMap);
+    // @phpstan-ignore-next-line
     $reflectionClass = new \ReflectionClass($class);
 
-    $mock = $reflectionClass->isAbstract() ? $this->getMockForAbstractClass(
-        $class, $args, '', !empty($args), TRUE, TRUE, $methods
-      ) : $this->getMockForConcreteClass($class, $args, $methods);
+    // @phpstan-ignore-next-line
+    $mock = $reflectionClass->isAbstract() ?
+      // @phpstan-ignore-next-line
+      $this->getMockForAbstractClass($class, $args, '', !empty($args), TRUE, TRUE, $methods)
+      // @phpstan-ignore-next-line
+      : $this->getMockForConcreteClass($class, $args, $methods);
 
     foreach ($methodsMap as $method => $value) {
       // Handle callback values differently.
+      // @phpstan-ignore-next-line
       if (is_object($value) && strpos(get_class($value), 'Callback') !== FALSE) {
         $mock->expects($this->any())
           ->method($method)
+          // @phpstan-ignore-next-line
           ->will($value);
         continue;
       }
@@ -128,12 +138,13 @@ trait CivicthemeTestHelperTrait {
    * @param array $methods
    *   Optional array of methods to be added to mock.
    *
-   * @return object
+   * @return \PHPUnit\Framework\MockObject\MockObject
    *   Mocked class.
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  protected function getMockForConcreteClass($class, array $args = [], array $methods = []) {
+  protected function getMockForConcreteClass(string $class, array $args = [], array $methods = []): MockObject {
+    // @phpstan-ignore-next-line
     $mock = $this->getMockBuilder($class);
     $mock = !empty($args) ? $mock->enableOriginalConstructor()->setConstructorArgs($args) : $mock->disableOriginalConstructor();
     $mock = $mock->addMethods($methods)->getMock();
@@ -144,7 +155,7 @@ trait CivicthemeTestHelperTrait {
   /**
    * Check if testing framework was ran with --debug option.
    */
-  protected function isDebug() {
+  protected function isDebug(): bool {
     return in_array('--debug', $_SERVER['argv'], TRUE);
   }
 

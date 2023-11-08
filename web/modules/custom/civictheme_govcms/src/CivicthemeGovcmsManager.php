@@ -10,21 +10,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Defines a civictheme_govcms govcms manager.
  */
-class CivicthemeGovcmsManager {
+final class CivicthemeGovcmsManager {
 
   /**
    * The list of removal configurations(methods).
    *
-   * @var array
+   * @var array<string, callable>
    */
-  protected $removalList;
+  protected array $removalList;
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * Constructs a GovcmsManager Manager object.
@@ -53,8 +51,8 @@ class CivicthemeGovcmsManager {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('entity_type.manager')
     );
   }
@@ -65,7 +63,7 @@ class CivicthemeGovcmsManager {
    * @param string $preserve
    *   The list of config types to preserve.
    */
-  public function civicthemeGovcmsRemoveConfig(string $preserve = '') {
+  public function civicthemeGovcmsRemoveConfig(string $preserve = ''): void {
     $preserve_list = [];
     if (!empty($preserve)) {
       $preserve_list = explode(',', $preserve);
@@ -80,7 +78,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes vanilla media types.
    */
-  protected function removeGovcmsMediaTypes() {
+  protected function removeGovcmsMediaTypes(): void {
     $names = [
       'audio',
       'document',
@@ -100,7 +98,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes vanilla text formats.
    */
-  protected function removeGovcmsTextFormat() {
+  protected function removeGovcmsTextFormat(): void {
     $names = [
       'plain_text',
       'rich_text',
@@ -116,8 +114,11 @@ class CivicthemeGovcmsManager {
 
   /**
    * Removes GovCMS fields.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function removeGovcmsFields() {
+  protected function removeGovcmsFields(): void {
     // A list of shared fields that should be deleted before deleting
     // types. Non-shared fields will be removed when content types are removed.
     //
@@ -184,7 +185,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS content types.
    */
-  protected function removeGovcmsContentTypes() {
+  protected function removeGovcmsContentTypes(): void {
     $names = [
       'govcms_blog_article',
       'govcms_event',
@@ -204,7 +205,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS vocabularies.
    */
-  protected function removeGovcmsVocabularies() {
+  protected function removeGovcmsVocabularies(): void {
     $names = [
       'govcms_blog_article_categories',
       'govcms_event_categories',
@@ -223,7 +224,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS user roles.
    */
-  protected function removeGovcmsUserRoles() {
+  protected function removeGovcmsUserRoles(): void {
     $names = [
       'govcms_site_administrator',
       'govcms_content_approver',
@@ -241,7 +242,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS menus.
    */
-  protected function removeGovcmsMenus() {
+  protected function removeGovcmsMenus(): void {
     $names = [
       'govcms-about',
       'govcms-community',
@@ -260,7 +261,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS Pathauto patterns.
    */
-  protected function removeGovcmsPathautoPatterns() {
+  protected function removeGovcmsPathautoPatterns(): void {
     $names = [
       'blog_article',
       'event',
@@ -280,7 +281,7 @@ class CivicthemeGovcmsManager {
   /**
    * Removes GovCMS Workflows patterns.
    */
-  protected function removeGovcmsWorkflows() {
+  protected function removeGovcmsWorkflows(): void {
     $names = [
       'editorial',
     ];

@@ -15,7 +15,7 @@ use Drupal\views\Views;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_automated_list(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -70,6 +70,7 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
   // Make component settings available to the processing functions to further
   // alter view settings.
   // @see civictheme_preprocess_views_view()
+  // @phpstan-ignore-next-line
   $view->component_settings = $settings;
 
   // Preprocess view properties based on the settings above.
@@ -163,7 +164,7 @@ function _civictheme_automated_list__get_view(array &$settings) {
  * @SuppressWarnings(PHPMD.MissingImport)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_automated_list__update_view(ViewExecutable $view) {
+function _civictheme_automated_list__update_view(ViewExecutable $view): void {
   if (!isset($view->component_settings)) {
     return;
   }

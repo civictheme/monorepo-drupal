@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function civictheme_admin_form_node_form_alter(&$form, FormStateInterface $form_state) {
+function civictheme_admin_form_node_form_alter(array &$form, FormStateInterface $form_state): void {
   // @see https://www.drupal.org/project/drupal/issues/3184667
   // @see https://www.drupal.org/project/drupal/issues/3332416
   $form['#attached']['library'][] = 'civictheme_admin/claro-node-form-overrides';

@@ -9,8 +9,13 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
  * Event, General.
+ *
+ * @return array<int, array<string, mixed>>
+ *   Variations.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _cs_generated_content_create_node_civictheme_event__variations__general() {
+function _cs_generated_content_create_node_civictheme_event__variations__general(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 

@@ -12,7 +12,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 100;
   }
 
@@ -21,7 +21,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $form['reset'] = [
       '#type' => 'details',
       '#title' => $this->t('Reset to defaults'),
@@ -55,8 +55,16 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
 
   /**
    * Process callback.
+   *
+   * @param array $element
+   *   Form element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   *
+   * @return array<string, mixed>
+   *   Form element.
    */
-  public function processForm(&$element, FormStateInterface $form_state) {
+  public function processForm(array &$element, FormStateInterface $form_state): array {
     $form_state->addCleanValueKey('reset');
 
     return $element;
@@ -68,7 +76,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function resetValidate(array &$form, FormStateInterface $form_state) {
+  public function resetValidate(array &$form, FormStateInterface $form_state): void {
     if (!$form_state->getValue(['reset', 'confirm'])) {
       $form_state->setErrorByName(implode('][', ['reset', 'confirm']), $this->t('Please check the box to confirm theme settings reset.'));
     }
@@ -80,7 +88,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function resetSubmit(array &$form, FormStateInterface $form_state) {
+  public function resetSubmit(array &$form, FormStateInterface $form_state): void {
     $triggering_element = $form_state->getTriggeringElement();
     $button_name = $triggering_element['#name'] ?? '';
 
@@ -89,6 +97,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
         $this->themeConfigManager->resetToDefaults();
       }
       catch (\Exception $exception) {
+        // @phpstan-ignore-next-line
         \Drupal::messenger()->addError($this->t('Unable to reset theme configuration to defaults: @message', [
           '@message' => $exception->getMessage(),
         ]));
@@ -96,6 +105,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
         return;
       }
 
+      // @phpstan-ignore-next-line
       \Drupal::messenger()->addStatus($this->t('Theme configuration was reset to defaults.'));
     }
   }

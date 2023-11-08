@@ -13,21 +13,24 @@ use Drupal\generated_content\Helpers\GeneratedContentHelper;
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_generated_content_generated_content_create_file_file_weight() {
+function cs_generated_content_generated_content_create_file_file_weight(): int {
   return -10;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_generated_content_generated_content_create_file_file_tracking() {
+function cs_generated_content_generated_content_create_file_file_tracking(): bool {
   return TRUE;
 }
 
 /**
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
+ *
+ * @phpstan-ignore-next-line
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function cs_generated_content_generated_content_create_file_file() {
+function cs_generated_content_generated_content_create_file_file(): array {
   /** @var \Drupal\generated_content\Helpers\GeneratedContentHelper $helper */
   $helper = GeneratedContentHelper::getInstance();
 

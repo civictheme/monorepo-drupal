@@ -20,8 +20,9 @@ class CivicthemeInstallRequiredTest extends CivicthemeBrowserTestBase {
   /**
    * Test that a theme can be installed.
    */
-  public function testThemeInstall() {
+  public function testThemeInstall(): void {
     $adminUser = $this->drupalCreateUser(['administer site configuration']);
+    // @phpstan-ignore-next-line
     $this->drupalLogin($adminUser);
   }
 

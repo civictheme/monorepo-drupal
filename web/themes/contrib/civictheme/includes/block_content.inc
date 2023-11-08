@@ -8,7 +8,7 @@
 /**
  * Preprocess for block_content block.
  */
-function _civictheme_preprocess_block__content(&$variables) {
+function _civictheme_preprocess_block__content(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'block_content') {
     return;
   }

@@ -10,7 +10,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Implements template_preprocess_block().
  */
-function civictheme_preprocess_block__civictheme_search(&$variables) {
+function civictheme_preprocess_block__civictheme_search(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }

@@ -23,10 +23,8 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
 
   /**
    * The config ignore plugin manager.
-   *
-   * @var \Drupal\config_filter\Plugin\ConfigFilterPluginManager
    */
-  protected $configFilterPluginManager;
+  protected ConfigFilterPluginManager $configFilterPluginManager;
 
   /**
    * Constructs the ConfigDevelAutoExportSubscriber object.
@@ -51,7 +49,7 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
    * @param \Drupal\config_devel\Event\ConfigDevelSaveEvent $event
    *   The event to process.
    */
-  public function onConfigDevelSave(ConfigDevelSaveEvent $event) {
+  public function onConfigDevelSave(ConfigDevelSaveEvent $event): void {
     $filenames = $event->getFileNames();
 
     if (empty($filenames)) {
@@ -74,6 +72,8 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
+
     $events[ConfigDevelEvents::SAVE][] = ['onConfigDevelSave', 10];
 
     return $events;

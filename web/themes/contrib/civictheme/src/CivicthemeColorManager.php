@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @SuppressWarnings(ExcessiveClassComplexity)
  */
-class CivicthemeColorManager implements ContainerInjectionInterface {
+final class CivicthemeColorManager implements ContainerInjectionInterface {
 
   /**
    * Defines color type 'brand'.
@@ -42,7 +42,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * Using 'matrix' instead of 'colors' to avoid confusion between a structure
    * of colors and the color values.
    *
-   * @var array
+   * @var array<array<array<\Drupal\civictheme\Color\CivicthemeColor>>>
    */
   protected $matrix;
 
@@ -55,38 +55,28 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
 
   /**
    * The plugin manager.
-   *
-   * @var \Drupal\civictheme\CivicthemePluginLoader
    */
-  protected $pluginLoader;
+  protected CivicthemePluginLoader $pluginLoader;
 
   /**
    * The config manager.
-   *
-   * @var \Drupal\civictheme\CivicthemeConfigManager
    */
-  protected $configManager;
+  protected CivicthemeConfigManager $configManager;
 
   /**
    * The stylesheet parser.
-   *
-   * @var \Drupal\civictheme\CivicthemeStylesheetParser
    */
-  protected $stylesheetParser;
+  protected CivicthemeStylesheetParser $stylesheetParser;
 
   /**
    * The stylesheet generator.
-   *
-   * @var \Drupal\civictheme\CivicthemeStylesheetGenerator
    */
-  protected $stylesheetGenerator;
+  protected CivicthemeStylesheetGenerator $stylesheetGenerator;
 
   /**
    * The cache tags invalidator.
-   *
-   * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
    */
-  protected $cacheTagsInvalidator;
+  protected CacheTagsInvalidatorInterface $cacheTagsInvalidator;
 
   /**
    * Constructor.
@@ -103,8 +93,8 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemePluginLoader::class),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetParser::class),
@@ -119,13 +109,13 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @param bool $flatten_groups
    *   Flag to flatten color croups.
    *
-   * @return array|array[]
+   * @return array<string, array<string, array<string, bool|string>|bool|string>>
    *   Array of colors divided in groups. The values are color formulas or FALSE
    *   if the color does not depend on any other colors.
    *
    * @SuppressWarnings(BooleanArgumentFlag)
    */
-  public static function colorPaletteMap($flatten_groups = FALSE) {
+  public static function colorPaletteMap($flatten_groups = FALSE): array {
     $map = [
       CivicthemeConstants::THEME_LIGHT => [
         'typography' => [
@@ -235,16 +225,22 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       self::validateTheme($theme);
     }
 
-    return $type ? ($theme ? $this->matrix[$type][$theme] ?? [] : $this->matrix[$type] ?? self::defaultMatrix()[$type]) : $this->matrix ?? self::defaultMatrix();
+    return $type ?
+      (
+      $theme ?
+        ($this->matrix[$type][$theme] ?? []) :
+        ($this->matrix[$type] ?? self::defaultMatrix()[$type])
+      )
+      : ($this->matrix ?: self::defaultMatrix());
   }
 
   /**
    * Get color as strings.
    *
-   * @return array
+   * @return array<array<array<string>>>
    *   Color matrix keyed by type and theme with colors as values.
    */
-  public function getColorsStrings() {
+  public function getColorsStrings(): array {
     $result = [];
 
     foreach ($this->getColors() as $type => $theme) {
@@ -267,7 +263,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function setColors(array $color_matrix) {
+  public function setColors(array $color_matrix): static {
     self::validateMatrixStructure($color_matrix);
 
     foreach ($color_matrix as $type => $theme_color) {
@@ -291,7 +287,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return string
    *   URI of the stylesheet file.
    */
-  public function stylesheet($file_suffix = 'default') {
+  public function stylesheet(string $file_suffix = 'default'): string {
     return $this->stylesheetGenerator
       ->setStylesheetUriSuffix($file_suffix)
       ->generate($this->getColors(self::COLOR_TYPE_PALETTE), ['html'], self::CSS_VARIABLES_PREFIX);
@@ -306,7 +302,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function setCssColorsFilePath($path) {
+  public function setCssColorsFilePath($path): static {
     if (is_readable($path)) {
       $this->cssColorsFilePath = $path;
     }
@@ -325,7 +321,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(BooleanArgumentFlag)
    */
-  public function save($invalidate_caches = FALSE) {
+  public function save($invalidate_caches = FALSE): static {
     $this->saveMatrixToConfig();
 
     if ($invalidate_caches) {
@@ -341,7 +337,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function invalidateCache() {
+  public function invalidateCache(): static {
     $this->stylesheetGenerator->purge();
 
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
@@ -352,13 +348,13 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * Load color matrix from the CSS file.
    *
-   * @return array|\array[][]
+   * @return array<array<array<string>>>
    *   The color matrix.
    */
-  protected function matrixFromCss() {
+  protected function matrixFromCss(): array {
     $variables = $this->stylesheetParser
       ->setCssVariablePrefix(self::CSS_VARIABLES_PREFIX)
-      ->setContent($this->loadCssVariablesContent())
+      ->setContent((string) $this->loadCssVariablesContent())
       ->variables();
 
     $colors = self::defaultMatrix();
@@ -383,15 +379,15 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * Load content from CSS variables file.
    *
-   * @return string
-   *   Loaded content or FALSE if the file is not readable.
+   * @return string|null
+   *   Loaded content or NULL if the file is not readable.
    */
-  protected function loadCssVariablesContent() {
+  protected function loadCssVariablesContent(): ?string {
     if (!empty($this->cssColorsFilePath) && is_readable($this->cssColorsFilePath)) {
-      return file_get_contents($this->cssColorsFilePath);
+      return (string) file_get_contents($this->cssColorsFilePath);
     }
 
-    return FALSE;
+    return NULL;
   }
 
   /**
@@ -405,7 +401,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  protected function initMatrix() {
+  protected function initMatrix(): static {
     $palette_matrix = [self::COLOR_TYPE_PALETTE => self::colorPaletteMap(TRUE)] + self::defaultMatrix();
     $config_matrix = $this->loadMatrixFromConfig();
     $styles_matrix = $this->matrixFromCss();
@@ -416,6 +412,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
             $name,
             // Config or styles or default color.
             $config_matrix[$type][$theme][$name] ?? $styles_matrix[$type][$theme][$name] ?? self::COLOR_DEFAULT,
+            // @phpstan-ignore-next-line
             $formula
           );
         }
@@ -434,13 +431,13 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *   The color theme.
    * @param string $name
    *   The color name.
-   * @param string $value
+   * @param mixed $value
    *   The color value.
    *
    * @return $this
    *   Instance of the current class.
    */
-  protected function setMatrixColor($type, $theme, $name, $value) {
+  protected function setMatrixColor(string $type, string $theme, string $name, mixed $value): static {
     self::validateType($type);
     self::validateTheme($theme);
 
@@ -451,7 +448,8 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
       }
     }
 
-    $this->matrix[$type][$theme][$name] = $this->matrix[$type][$theme][$name] ?? new CivicthemeColor($name, $value ?? self::COLOR_DEFAULT);
+    // @phpstan-ignore-next-line
+    $this->matrix[$type][$theme][$name] = $this->matrix[$type][$theme][$name] ?: (new CivicthemeColor($name, $value ?: self::COLOR_DEFAULT));
     $this->matrix[$type][$theme][$name]->setValue($value);
 
     return $this;
@@ -460,10 +458,10 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * Get an array of the color dependencies.
    *
-   * @return \Drupal\civictheme\Color\CivicthemeColor[]
+   * @return array<\Drupal\civictheme\Color\CivicthemeColor>
    *   Array of color dependencies.
    */
-  protected function getColorDependencies($theme, $name) {
+  protected function getColorDependencies(string $theme, string $name): array {
     $dependencies = [];
     /** @var \Drupal\civictheme\Color\CivicthemeColor $color */
     foreach ($this->getColors(self::COLOR_TYPE_PALETTE, $theme) as $color) {
@@ -478,7 +476,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
   /**
    * Load matrix from the config.
    *
-   * @return array|\array[][]|mixed
+   * @return array<array<array<string>>>
    *   The color matrix in the expected format.
    */
   protected function loadMatrixFromConfig() {
@@ -507,7 +505,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  protected function saveMatrixToConfig() {
+  protected function saveMatrixToConfig(): static {
     $matrix = $this->getColorsStrings();
 
     $use_brand_colors = FALSE;
@@ -539,7 +537,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(MissingImport)
    */
-  protected static function validateMatrixStructure(array $matrix) {
+  protected static function validateMatrixStructure(array $matrix): void {
     if (!is_array($matrix) || count($matrix) != 2) {
       throw new \Exception(sprintf('Invalid color matrix structure: should be an array with exactly 2 elements keyed by "%s" and "%s"', self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE));
     }
@@ -560,7 +558,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(MissingImport)
    */
-  protected static function validateType($type) {
+  protected static function validateType(string $type): void {
     if (!\in_array($type, [self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE])) {
       throw new \Exception('Invalid color type');
     }
@@ -577,7 +575,7 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(MissingImport)
    */
-  protected static function validateTheme($theme) {
+  protected static function validateTheme(string $theme): void {
     if (!in_array($theme, [
       CivicthemeConstants::THEME_LIGHT,
       CivicthemeConstants::THEME_DARK,
@@ -588,8 +586,11 @@ class CivicthemeColorManager implements ContainerInjectionInterface {
 
   /**
    * Default matrix structure.
+   *
+   * @return array<array<array<string>>>
+   *   The color matrix in the expected format.
    */
-  protected static function defaultMatrix() {
+  protected static function defaultMatrix(): array {
     return [
       static::COLOR_TYPE_BRAND => [
         CivicthemeConstants::THEME_LIGHT => [],

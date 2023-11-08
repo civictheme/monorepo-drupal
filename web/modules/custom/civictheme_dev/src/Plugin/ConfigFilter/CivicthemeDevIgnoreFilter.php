@@ -25,10 +25,15 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-ignore-next-line
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  public function filterWrite($name, array $data) {
+  public function filterWrite($name, array $data): array {
     // Exclude permissions and dependencies for user roles.
     // phpcs:disable Drupal.Functions.DiscouragedFunctions.Discouraged
+    // @phpstan-ignore-next-line
     if (fnmatch('user.role.*', $name)) {
       $role_name = substr($name, strlen('user.role.'));
 
@@ -54,11 +59,13 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
     }
 
     // Exclude hidden fields added by the optional modules.
+    // @phpstan-ignore-next-line
     if (fnmatch('core.entity_view_display.*', $name)) {
       unset($data['hidden']['search_api_excerpt']);
     }
 
     // Exclude processing for some properties of the blocks.
+    // @phpstan-ignore-next-line
     if (fnmatch('block.block.civictheme_*', $name)) {
       // Unset dependencies.
       unset($data['dependencies']['content']);
@@ -76,12 +83,13 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
     }
 
     // Exclude processing for some properties of the views.
+    // @phpstan-ignore-next-line
     if (fnmatch('views.view.civictheme_*', $name) && !str_contains($name, 'example') && !str_contains($name, 'test')) {
       if (!empty($data['display'])) {
         foreach (array_keys($data['display']) as $display_name) {
           if (!empty($data['display'][$display_name]['display_options']['display_extenders'])) {
             foreach (array_keys($data['display'][$display_name]['display_options']['display_extenders']) as $extender_name) {
-              if (str_starts_with($extender_name, 'simple_sitemap')) {
+              if (str_starts_with((string) $extender_name, 'simple_sitemap')) {
                 unset($data['display'][$display_name]['display_options']['display_extenders'][$extender_name]);
               }
             }
@@ -102,10 +110,10 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
    * @param string $role_name
    *   Role machine name.
    *
-   * @return array
+   * @return array<string>
    *   Array of excluded permissions.
    */
-  protected function getExcludedRolePermissions($role_name) {
+  protected function getExcludedRolePermissions(string $role_name): array {
     $permissions = [];
 
     $map = $this->getRolePermissionsMap();
@@ -127,10 +135,10 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
    * @param string $role_name
    *   Role machine name.
    *
-   * @return array
+   * @return array<int, int|string>.
    *   Array of excluded dependency modules.
    */
-  protected function getExcludedRoleDependencyModules($role_name) {
+  protected function getExcludedRoleDependencyModules(string $role_name): array {
     $modules = [];
 
     $map = $this->getRolePermissionsMap();
@@ -150,12 +158,13 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
    * @param array $permissions
    *   Array of permissions.
    *
-   * @return array
+   * @return array<string>
    *   Array of providers.
    */
-  protected function getPermissionsProviders(array $permissions) {
+  protected function getPermissionsProviders(array $permissions): array {
     $modules = [];
 
+    // @phpstan-ignore-next-line
     $permissions_data = \Drupal::service('user.permissions')->getPermissions();
 
     foreach ($permissions as $permission) {
@@ -174,8 +183,12 @@ class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactory
    *
    * This allows to centrally manage additional permissions that may be
    * optionally provisioned for specific roles.
+   *
+   * @return array<string, array<string, array<string>>>
+   *   Array of excluded dependency modules.
    */
-  protected function getRolePermissionsMap() {
+  protected function getRolePermissionsMap(): array {
+    // @phpstan-ignore-next-line
     $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
     $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
     if (!file_exists($provision_file)) {

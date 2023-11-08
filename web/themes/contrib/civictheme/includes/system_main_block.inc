@@ -8,7 +8,7 @@
 /**
  * Preprocess for system_main_block block.
  */
-function _civictheme_preprocess_block__system_main_block(&$variables) {
+function _civictheme_preprocess_block__system_main_block(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'system_main_block') {
     return;
   }

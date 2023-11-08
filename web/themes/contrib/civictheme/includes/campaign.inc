@@ -8,7 +8,7 @@
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_campaign(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_campaign(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);

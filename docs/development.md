@@ -14,7 +14,7 @@ Before starting, ensure you have reviewed the documentation for
 
 The following steps outline the build process:
 
-1. Construct a fresh Drupal 9 site from the GovCMS Drupal profile. Utilize
+1. Construct a fresh Drupal 10 site from the GovCMS Drupal profile. Utilize
    `ahoy install-site` for a rebuild.
 2. Activate additional modules needed for development by installing the
    `civictheme_dev` module.
@@ -34,7 +34,7 @@ the profile, following the order of their numbering.
 
 By default, the site:
 
-- Installs Drupal 9.
+- Installs Drupal 10.
 - Installs the `govcms` profile.
 - Installs the CivicTheme Drupal theme.
 - Creates and installs the CivicTheme Demo sub-theme.

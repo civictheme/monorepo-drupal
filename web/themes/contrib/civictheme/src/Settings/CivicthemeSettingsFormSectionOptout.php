@@ -13,7 +13,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 35;
   }
 
@@ -22,7 +22,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $form['optout_details'] = [
       '#type' => 'details',
       '#title' => $this->t('Opt-out from features'),
@@ -48,7 +48,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
 
     $form['optout_details']['mapping']['content'] = [
       '#theme' => 'item_list',
-      '#items' => array_map(function ($key, $description) {
+      '#items' => array_map(function ($key, $description): FormattableMarkup {
         return new FormattableMarkup('<code>@key</code>: @description', [
           '@key' => $key,
           '@description' => $description,
@@ -60,7 +60,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
   /**
    * Convert element value from multiline string to an array.
    */
-  public static function multilineToArray(array $element, &$form_state) {
+  public static function multilineToArray(array $element, FormStateInterface $form_state): void {
     $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", $element['#value']));
     $form_state->setValueForElement($element, array_values(array_filter(array_map('trim', $lines))));
   }

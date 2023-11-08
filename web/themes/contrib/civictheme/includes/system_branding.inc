@@ -17,7 +17,7 @@ use Drupal\Core\Url;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function civictheme_preprocess_block__system_branding_block(&$variables) {
+function civictheme_preprocess_block__system_branding_block(array &$variables): void {
   $variables['show_site_logo'] = !empty($variables['elements']['#configuration']['use_site_logo']);
   $variables['show_site_name'] = !empty($variables['elements']['#configuration']['use_site_name']);
   $variables['show_site_slogan'] = !empty($variables['elements']['#configuration']['use_site_slogan']);

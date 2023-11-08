@@ -8,7 +8,7 @@
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_callout(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_callout(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__content($variables);
   _civictheme_preprocess_paragraph__paragraph_field__links($variables);

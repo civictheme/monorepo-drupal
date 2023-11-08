@@ -12,7 +12,7 @@ use Drupal\Component\Utility\Html;
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_manual_list(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -34,6 +34,7 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'cache_tags' => $paragraph->getCacheTags(),
   ];
 
+  /** @var \Drupal\Core\Entity\EntityInterface[] $items */
   $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items');
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   if ($items) {

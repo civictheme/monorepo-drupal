@@ -36,18 +36,18 @@ define('ERROR_LEVEL', E_USER_WARNING);
 /**
  * Main functionality.
  */
-function main(array $argv, $argc) {
+function main(array $argv, int $argc): int {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
 
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
-    print_help($default_new_theme_directory);
+    print_command_help($default_new_theme_directory);
 
     return EXIT_SUCCESS;
   }
 
   // Show help if not enough or more than required arguments.
   if ($argc < 4 || $argc > 6) {
-    print_help($default_new_theme_directory);
+    print_command_help($default_new_theme_directory);
 
     return EXIT_ERROR;
   }
@@ -98,9 +98,12 @@ function main(array $argv, $argc) {
 /**
  * Print help.
  *
+ * @param string $default_new_theme_dir
+ *   Default new theme directory.
+ *
  * @SuppressWarnings(PHPMD.UnusedLocalVariable)
  */
-function print_help($default_new_theme_dir) {
+function print_command_help($default_new_theme_dir): void {
   $script_name = basename(__FILE__);
   print <<<EOF
 CivicTheme Starter Kit scaffolding
@@ -129,7 +132,7 @@ EOF;
 /**
  * Print footer.
  */
-function print_footer($name, $machine_name, $path) {
+function print_footer(string $name, string $machine_name, string $path): void {
   print <<<EOF
 
   $name ($machine_name) sub-theme was created successfully in "$path".
@@ -160,7 +163,7 @@ EOF;
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function validate_theme_machine_name($name) {
+function validate_theme_machine_name(string $name): void {
   if (!preg_match('/^[a-z][a-z_0-9]*$/', $name)) {
     throw new \RuntimeException('Invalid machine name. Theme machine name can only start with lowercase letters and contain lowercase letters, numbers and underscores.');
   }
@@ -172,7 +175,7 @@ function validate_theme_machine_name($name) {
  * @return string
  *   Path to stub directory.
  */
-function prepare_stub() {
+function prepare_stub(): string {
   $tmp_dir = file_tempdir();
   $starter_kit_dir = find_starter_kit_dir();
   file_copy_recursively($starter_kit_dir, $tmp_dir, file_ignore_paths());
@@ -185,7 +188,7 @@ function prepare_stub() {
  *
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function process_stub($dir, $options) {
+function process_stub(string $dir, array $options): void {
   $machine_name_hyphenated = str_replace('_', '-', $options['machine_name']);
   // @formatter:off
   // phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
@@ -213,7 +216,7 @@ function process_stub($dir, $options) {
   // Remove 'hidden: true' from the info.
   $info_file = $dir . DIRECTORY_SEPARATOR . $options['machine_name'] . '.info.yml';
   if (file_exists($info_file)) {
-    $content = file_get_contents($info_file);
+    $content = file_get_contents($info_file) ?: '';
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
   }
@@ -238,9 +241,9 @@ function process_stub($dir, $options) {
     $packagejson['civictheme']['homepage'] = $options['packagejson']['homepage'];
     $packagejson['civictheme']['bugs'] = $options['packagejson']['bugs'];
     $packagejson['civictheme']['repository'] = $options['packagejson']['repository'];
-    $packagejson_encoded = preg_replace_callback('/^ +/m', function ($m) {
-      return str_repeat(' ', strlen($m[0]) / 2);
-    }, json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    $packagejson_encoded = preg_replace_callback('/^ +/m', function (array $m): string {
+      return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
+    }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
   }
 
@@ -277,31 +280,43 @@ function find_starter_kit_dir() {
 /**
  * Find composer.json.
  *
+ * @param string $dir
+ *   Directory to search in.
+ *
+ * @return array<string, mixed>
+ *   Decoded composer.json.
+ *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function find_composerjson($dir) {
+function find_composerjson(string $dir): array {
   $filepath = $dir . DIRECTORY_SEPARATOR . 'composer.json';
 
   if (!file_exists($filepath)) {
     throw new \Exception('Unable to find CivicTheme composer.json location.');
   }
 
-  return json_decode(file_get_contents($filepath), TRUE);
+  return json_decode((string) file_get_contents($filepath), TRUE);
 }
 
 /**
  * Find package.json.
  *
+ * @param string $dir
+ *   Directory to search in.
+ *
+ * @return array<string, mixed>
+ *   Decoded package.json.
+ *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function find_packagejson($dir) {
+function find_packagejson(string $dir): array {
   $filepath = $dir . DIRECTORY_SEPARATOR . 'package.json';
 
   if (!file_exists($filepath)) {
     throw new \Exception('Unable to find CivicTheme package.json location.');
   }
 
-  return json_decode(file_get_contents($filepath), TRUE);
+  return json_decode((string) file_get_contents($filepath), TRUE);
 }
 
 // ////////////////////////////////////////////////////////////////////////// //
@@ -331,8 +346,12 @@ function find_packagejson($dir) {
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
+function file_copy_recursively(string $src, string $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE): bool {
   $parent = dirname($dst);
+
+  if (empty($parent)) {
+    throw new \Exception(sprintf('Unable to get parent directory of "%s".', $dst));
+  }
 
   if (!is_dir($parent)) {
     mkdir($parent, $permissions, TRUE);
@@ -343,11 +362,21 @@ function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0
     // Changing dir symlink will be relevant to the current destination's file
     // directory.
     $cur_dir = getcwd();
+
+    if (!$cur_dir) {
+      throw new \Exception(sprintf('Unable to get current working directory.'));
+    }
+
     chdir($parent);
+
     $ret = TRUE;
     if (!is_readable(basename($dst))) {
+      if (empty(readlink($src))) {
+        throw new \Exception(sprintf('Symlink target "%s" does not exist.', $src));
+      }
       $ret = symlink(readlink($src), basename($dst));
     }
+
     chdir($cur_dir);
 
     return $ret;
@@ -356,7 +385,11 @@ function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0
   if (is_file($src)) {
     $ret = copy($src, $dst);
     if ($ret) {
-      chmod($dst, fileperms($src));
+      $perms = fileperms($src);
+      if ($perms === FALSE) {
+        throw new \Exception(sprintf('Unable to get permissions of "%s".', $src));
+      }
+      chmod($dst, $perms);
     }
 
     return $ret;
@@ -367,14 +400,16 @@ function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0
   }
 
   $dir = dir($src);
-  while (FALSE !== $entry = $dir->read()) {
+  while ($dir && FALSE !== $entry = $dir->read()) {
     if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
       continue;
     }
     file_copy_recursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
   }
 
-  $dir->close();
+  if ($dir) {
+    $dir->close();
+  }
 
   return TRUE;
 }
@@ -382,16 +417,16 @@ function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0
 /**
  * Replace file content.
  */
-function file_replace_file_content($needle, $replacement, $filename) {
+function file_replace_file_content(string $needle, string $replacement, string $filename): void {
   if (!is_readable($filename) || file_is_excluded_from_processing($filename)) {
-    return FALSE;
+    return;
   }
 
   $content = file_get_contents($filename);
 
   $replaced = is_regex($needle)
-    ? preg_replace($needle, $replacement, $content)
-    : str_replace($needle, $replacement, $content);
+    ? preg_replace($needle, $replacement, (string) $content)
+    : str_replace($needle, $replacement, (string) $content);
 
   if ($replaced != $content) {
     file_put_contents($filename, $replaced);
@@ -401,7 +436,7 @@ function file_replace_file_content($needle, $replacement, $filename) {
 /**
  * Replace directory content.
  */
-function file_replace_dir_content($needle, $replacement, $dir) {
+function file_replace_dir_content(string $needle, string $replacement, string $dir): void {
   $files = file_scandir_recursive($dir, file_ignore_paths());
   foreach ($files as $filename) {
     file_replace_file_content($needle, $replacement, $filename);
@@ -411,7 +446,7 @@ function file_replace_dir_content($needle, $replacement, $dir) {
 /**
  * Replace a string in the file name.
  */
-function file_replace_string_filename($search, $replace, $dir) {
+function file_replace_string_filename(string $search, string $replace, string $dir): void {
   $files = file_scandir_recursive($dir, file_ignore_paths());
   foreach ($files as $filename) {
     $new_filename = str_replace($search, $replace, $filename);
@@ -428,7 +463,7 @@ function file_replace_string_filename($search, $replace, $dir) {
 /**
  * Remove directory.
  */
-function file_remove_dir($dir) {
+function file_remove_dir(string $dir): void {
   if (is_dir($dir)) {
     $files = file_scandir_recursive($dir, [], TRUE);
     foreach ($files as $file) {
@@ -449,13 +484,23 @@ function file_remove_dir($dir) {
 /**
  * Recursively scan directory for files.
  *
+ * @param string $dir
+ *   Directory to scan.
+ * @param array $ignore_paths
+ *   Optional array of paths to ignore.
+ * @param bool $include_dirs
+ *   Optional flag to include directories in the result.
+ *
+ * @return array<string>
+ *   Array of discovered files.
+ *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE) {
+function file_scandir_recursive(string $dir, array $ignore_paths = [], bool $include_dirs = FALSE): array {
   $discovered = [];
 
   if (is_dir($dir)) {
-    $paths = array_diff(scandir($dir), ['.', '..']);
+    $paths = array_diff(scandir($dir) ?: [], ['.', '..']);
 
     foreach ($paths as $path) {
       $path = $dir . '/' . $path;
@@ -484,8 +529,11 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
 
 /**
  * Ignore path.
+ *
+ * @return array<string>
+ *   Array of paths to ignore.
  */
-function file_ignore_paths() {
+function file_ignore_paths(): array {
   return array_merge([
     '.git',
     '.idea',
@@ -501,15 +549,21 @@ function file_ignore_paths() {
 
 /**
  * Internal paths to ignore.
+ *
+ * @return array<string>
+ *   Array of internal paths.
  */
-function file_internal_paths() {
+function file_internal_paths(): array {
   return [];
 }
 
 /**
  * Example component paths.
+ *
+ * @return array<string>
+ *   Array of example component paths.
  */
-function example_component_paths() {
+function example_component_paths(): array {
   return [
     'components/01-atoms/demo-button',
     'components/02-molecules/navigation-card',
@@ -518,9 +572,9 @@ function example_component_paths() {
 }
 
 /**
- * Check if the file ia excluded from the processing.
+ * Check if the file is excluded from the processing.
  */
-function file_is_excluded_from_processing($filename) {
+function file_is_excluded_from_processing(string $filename): bool {
   $excluded_patterns = [
     '.+\.png',
     '.+\.jpg',
@@ -529,7 +583,7 @@ function file_is_excluded_from_processing($filename) {
     '.+\.tiff',
   ];
 
-  return preg_match('/^(' . implode('|', $excluded_patterns) . ')$/', $filename);
+  return (bool) preg_match('/^(' . implode('|', $excluded_patterns) . ')$/', $filename);
 }
 
 /**
@@ -537,7 +591,7 @@ function file_is_excluded_from_processing($filename) {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts = 1000) {
+function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }
@@ -545,11 +599,11 @@ function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts
   $dir = rtrim($dir, DIRECTORY_SEPARATOR);
 
   if (!is_dir($dir) || !is_writable($dir)) {
-    return FALSE;
+    throw new \RuntimeException(sprintf('Unable to find writable temporary directory "%s".', $dir));
   }
 
   if (strpbrk($prefix, '\\/:*?"<>|') !== FALSE) {
-    return FALSE;
+    throw new \RuntimeException(sprintf('The prefix "%s" contains invalid characters.', $prefix));
   }
   $attempts = 0;
 
@@ -577,7 +631,7 @@ function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts
  * @return string
  *   Relative path between 2 directories.
  */
-function file_get_relative_dir($dir1, $dir2) {
+function file_get_relative_dir(string $dir1, string $dir2): string {
   $dir1 = rtrim($dir1, '/') . '/';
   $dir2 = rtrim($dir2, '/') . '/';
 
@@ -622,7 +676,7 @@ function file_get_relative_dir($dir1, $dir2) {
  * @SuppressWarnings(PHPMD.NPathComplexity)
  * @SuppressWarnings(PHPMD.IfStatementAssignment)
  */
-function file_path_canonicalize($path) {
+function file_path_canonicalize(string $path): string {
   $output = '';
 
   while ($path !== '') {
@@ -647,7 +701,7 @@ function file_path_canonicalize($path) {
       ($prefix = $path) == '/..'
     ) {
       $path = '/' . substr($path, strlen($prefix));
-      $output = substr($output, 0, strrpos($output, '/'));
+      $output = substr($output, 0, (int) strrpos($output, '/'));
       continue;
     }
 
@@ -679,7 +733,7 @@ function file_path_canonicalize($path) {
 /**
  * Check if the provided string is a regular expression.
  */
-function is_regex($str) {
+function is_regex(string $str): bool {
   if (preg_match('/^(.{3,}?)[imsxuADU]*$/', $str, $m)) {
     $start = substr($m[1], 0, 1);
     $end = substr($m[1], -1);
@@ -701,7 +755,7 @@ function is_regex($str) {
 /**
  * Show a verbose message.
  */
-function verbose() {
+function verbose(): void {
   if (getenv('SCRIPT_QUIET') != '1') {
     print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
   }
@@ -720,7 +774,8 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
-  set_error_handler(function ($severity, $message, $file, $line) {
+  // @phpstan-ignore-next-line
+  set_error_handler(function ($severity, $message, $file, $line): void {
     if (!(error_reporting() & $severity)) {
       // This error code is not included in error_reporting.
       return;
@@ -730,9 +785,6 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
 
   try {
     $code = main($argv, $argc);
-    if (is_null($code)) {
-      throw new \Exception('Script exited without providing an exit code.');
-    }
     exit($code);
   }
   catch (\ErrorException $exception) {

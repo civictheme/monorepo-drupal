@@ -14,6 +14,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
@@ -36,7 +37,7 @@ use Drush\Drush;
 /**
  * Theme settings form alter to provision content.
  */
-function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStateInterface $form_state) {
+function _civictheme_form_system_theme_settings_alter_provision(array &$form, FormStateInterface $form_state): void {
   $form['provision_content'] = [
     '#type' => 'details',
     '#title' => t('Content provisioning'),
@@ -81,9 +82,19 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
 /**
  * Process provision form elements.
  *
+ * @param array $element
+ *   Form element.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ * @param array $complete_form
+ *   Complete form.
+ *
+ * @return array<mixed>
+ *   Processed form element.
+ *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
+function _civictheme_form_system_theme_settings_alter_provision_process(array &$element, FormStateInterface $form_state, array &$complete_form): array {
   $form_state->addCleanValueKey('provision_types');
   $form_state->addCleanValueKey('provision_clear_cache');
 
@@ -95,7 +106,7 @@ function _civictheme_form_system_theme_settings_alter_provision_process(&$elemen
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state) {
+function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state): void {
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
@@ -113,7 +124,7 @@ function _civictheme_form_system_theme_settings_provision_validate(array &$form,
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_provision_submit(array &$form, FormStateInterface $form_state) {
+function _civictheme_form_system_theme_settings_provision_submit(array &$form, FormStateInterface $form_state): void {
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
@@ -165,7 +176,7 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
  * @param bool $clear_cache
  *   Optional flag to clear caches. Defaults to TRUE.
  *
- * @return array
+ * @return array<string, mixed>
  *   Array of provision results, keyed by type with the following possible
  *   values:
  *   -  TRUE: (boolean) Provisioning finished successfully for this type.
@@ -178,7 +189,7 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose = FALSE) {
+function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verbose = FALSE): array {
   $results = [];
 
   $callbacks = _civictheme_provision_discover_callbacks();
@@ -197,6 +208,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose =
 
       try {
         $results[$callback_type] = FALSE;
+        // @phpstan-ignore-next-line
         $return = call_user_func($callbacks[$callback_type]);
         // Allow callbacks to not return a value on success.
         // Failure can be returned as FALSE or exception.
@@ -232,9 +244,9 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose =
  * This will exit with a non-zero code if there was at least one provisioning
  * failure.
  */
-function civictheme_provision_cli($types = []) {
+function civictheme_provision_cli(array $types = []): void {
   $results = civictheme_provision($types, TRUE, TRUE);
-  $errors = array_filter($results, function ($value) {
+  $errors = array_filter($results, function ($value): bool {
     return $value !== TRUE;
   });
 
@@ -254,7 +266,7 @@ function civictheme_provision_cli($types = []) {
  * @param string $message
  *   String containing message.
  */
-function civictheme_provision_cli_log($message) {
+function civictheme_provision_cli_log($message): void {
   if (class_exists('\Drush\Drush')) {
     Drush::getContainer()->get('logger')->notice(strip_tags(html_entity_decode($message)));
   }
@@ -269,10 +281,10 @@ function civictheme_provision_cli_log($message) {
 /**
  * Get provision types.
  *
- * @return array
+ * @return array<string>
  *   Array of provision types discovered from the callbacks.
  */
-function civictheme_provision_get_types() {
+function civictheme_provision_get_types(): array {
   return array_keys(_civictheme_provision_discover_callbacks());
 }
 
@@ -294,11 +306,11 @@ function civictheme_provision_get_types() {
  * CivicTheme implements own callbacks for several types to provide sensible
  * default content.
  *
- * @return array
+ * @return array<string, string>
  *   Array of callbacks keyed by type and sorted in the order they are expected
  *   to be called.
  */
-function _civictheme_provision_discover_callbacks() {
+function _civictheme_provision_discover_callbacks(): array {
   $callbacks = [];
 
   $functions = get_defined_functions();
@@ -347,18 +359,18 @@ function _civictheme_provision_discover_callbacks() {
  * @param string $uuid
  *   Block uuid.
  *
- * @return \Drupal\Core\Entity\EntityInterface
+ * @return \Drupal\block_content\BlockContentInterface
  *   An instance of block_content.
  */
-function civictheme_provision_create_block_content($block_type, $info, $uuid) {
+function civictheme_provision_create_block_content($block_type, $info, $uuid): BlockContentInterface {
   $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid);
   if ($block !== NULL) {
     $block->delete();
   }
-  $uuid = $uuid ?? \Drupal::service('uuid')->generate();
+  $uuid = $uuid ?: \Drupal::service('uuid')->generate();
   $info = (string) $info;
 
-  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  /** @var \Drupal\block_content\Entity\BlockContent[] $blocks */
   $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
     'info' => $info,
   ]);
@@ -369,11 +381,14 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid) {
     }
   }
 
-  return \Drupal::entityTypeManager()->getStorage('block_content')->create([
+  /** @var \Drupal\block_content\BlockContentInterface $block_content_entity */
+  $block_content_entity = \Drupal::entityTypeManager()->getStorage('block_content')->create([
     'type' => $block_type,
     'info' => $info,
     'uuid' => $uuid,
   ]);
+
+  return $block_content_entity;
 }
 
 /**
@@ -394,7 +409,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_place_block($label, $region, $uuid = NULL, array $settings = [], $block_type = 'block_content') {
+function civictheme_provision_place_block(string $label, string $region, string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
 
   $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
@@ -453,7 +468,7 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_load_media_by_name($name) {
+function civictheme_provision_load_media_by_name(string $name): ?Media {
   $media = \Drupal::entityTypeManager()
     ->getStorage('media')
     ->loadByProperties(['name' => $name]);
@@ -467,12 +482,12 @@ function civictheme_provision_load_media_by_name($name) {
  * @param string $menu_name
  *   String machine menu name.
  *
- * @return array
+ * @return array<\Drupal\menu_link_content\Entity\MenuLinkContent>
  *   Array of menu items.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_load_menu_items($menu_name) {
+function civictheme_provision_load_menu_items(string $menu_name): array {
   /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
   $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
 
@@ -491,7 +506,7 @@ function civictheme_provision_load_menu_items($menu_name) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_clear_menu($menu_name) {
+function civictheme_provision_clear_menu(string $menu_name): void {
   $menu_items = civictheme_provision_load_menu_items($menu_name);
 
   foreach ($menu_items as $menu_item) {
@@ -515,7 +530,7 @@ function civictheme_provision_clear_menu($menu_name) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision__files() {
+function civictheme_provision__files(): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
@@ -532,7 +547,7 @@ function civictheme_provision__files() {
   $default_file_scheme = \Drupal::config('system.file')->get('default_scheme') . '://';
   foreach ($filepaths as $filepath) {
     if (file_exists($filepath)) {
-      $file_repository->writeData(file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
+      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
       continue;
     }
     throw new \Exception(sprintf('File %s does not exist.', $filepath));
@@ -545,7 +560,7 @@ function civictheme_provision__files() {
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision__media() {
+function civictheme_provision__media(): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
   $filenames_for_media = [
@@ -595,7 +610,7 @@ function civictheme_provision__media() {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision__menu_links() {
+function civictheme_provision__menu_links(): void {
   $menus = [
     'civictheme-primary-navigation' => [
       'Home' => '/',
@@ -631,7 +646,7 @@ function civictheme_provision__menu_links() {
 /**
  * Provision blocks.
  */
-function civictheme_provision__blocks() {
+function civictheme_provision__blocks(): void {
   _civictheme_provision__blocks__menu_blocks();
   $blocks = _civictheme_get_theme_blocks();
   foreach ($blocks as $block) {
@@ -642,7 +657,7 @@ function civictheme_provision__blocks() {
 /**
  * Provision menu blocks.
  */
-function _civictheme_provision__blocks__menu_blocks() {
+function _civictheme_provision__blocks__menu_blocks(): void {
   civictheme_provision_place_block('Primary Navigation', 'header_middle_3', NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
@@ -685,7 +700,7 @@ function _civictheme_provision__blocks__menu_blocks() {
  * @param array $block
  *   Data structure of block.
  */
-function _civictheme_provision__blocks__banner(array $block) {
+function _civictheme_provision__blocks__banner(array $block): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
@@ -705,7 +720,7 @@ function _civictheme_provision__blocks__banner(array $block) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__search(array $block) {
+function _civictheme_provision__blocks__search(array $block): void {
   // Redirect to 'Search' page if the path exists.
   $search_path = '/search';
   $fallback_path = '/';
@@ -735,7 +750,7 @@ function _civictheme_provision__blocks__search(array $block) {
  * @param array $block
  *   Data structure of block.
  */
-function _civictheme_provision__blocks__mobile_navigation(array $block) {
+function _civictheme_provision__blocks__mobile_navigation(array $block): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
   $context_theme = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
@@ -757,7 +772,7 @@ function _civictheme_provision__blocks__mobile_navigation(array $block) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__signup(array $block) {
+function _civictheme_provision__blocks__signup(array $block): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_promo',
@@ -786,7 +801,7 @@ function _civictheme_provision__blocks__signup(array $block) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__social_links(array $block) {
+function _civictheme_provision__blocks__social_links(array $block): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
 
   $paragraph = Paragraph::create([
@@ -835,7 +850,7 @@ function _civictheme_provision__blocks__social_links(array $block) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__acknowledgment_of_country(array $block) {
+function _civictheme_provision__blocks__acknowledgment_of_country(array $block): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
@@ -860,7 +875,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block) 
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__copyright(array $block) {
+function _civictheme_provision__blocks__copyright(array $block): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
@@ -882,7 +897,7 @@ function _civictheme_provision__blocks__copyright(array $block) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision__theme_settings() {
+function civictheme_provision__theme_settings(): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
@@ -906,7 +921,7 @@ function civictheme_provision__theme_settings() {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision__permissions() {
+function civictheme_provision__permissions(): void {
   $map = civictheme_provision_permissions_map();
 
   /** @var \Drupal\user\PermissionHandler $permission_handler */
@@ -936,7 +951,7 @@ function civictheme_provision__permissions() {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision__site_settings() {
+function civictheme_provision__site_settings(): void {
   $config = \Drupal::service('config.factory')->getEditable('system.site');
   $config->set('slogan', 'A design system by Salsa Digital');
   $config->save();
@@ -950,11 +965,11 @@ function civictheme_provision__site_settings() {
  * would not be a part of CivicTheme roles' configurations, but would be
  * expected the roles to have in some Drupal profiles (like GovCMS).
  *
- * @return array
+ * @return array<string, array<string, array<string>>>
  *   Array of with role names as keys and permissions arrays as values, each of
  *   which is keyed by a module.
  */
-function civictheme_provision_permissions_map() {
+function civictheme_provision_permissions_map(): array {
   $map = [
     'civictheme_content_approver' => [
       'honeypot' => [
@@ -1042,7 +1057,7 @@ function civictheme_provision_permissions_map() {
  * @throws \Drupal\Core\Extension\ExtensionNameLengthException
  * @throws \Drupal\Core\Extension\MissingDependencyException
  */
-function civictheme_enable_modules($include_optional = TRUE) {
+function civictheme_enable_modules(bool $include_optional = TRUE): void {
   $dependencies = _civictheme_get_theme_dependencies('civictheme', $include_optional);
   \Drupal::getContainer()->get('module_installer')->install($dependencies);
 }
@@ -1055,12 +1070,12 @@ function civictheme_enable_modules($include_optional = TRUE) {
  * @param bool $include_optional
  *   Whether to include optional dependencies. Defaults to TRUE.
  *
- * @return string[]
+ * @return array<string>
  *   Array of dependency names.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function _civictheme_get_theme_dependencies(string $theme_name, $include_optional = TRUE) {
+function _civictheme_get_theme_dependencies(string $theme_name, bool $include_optional = TRUE): array {
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
   $theme_handler = \Drupal::getContainer()->get('theme_handler');
   $theme_data = $theme_handler->rebuildThemeData();
@@ -1069,9 +1084,11 @@ function _civictheme_get_theme_dependencies(string $theme_name, $include_optiona
   // config. We are deliberately not including dependencies from the 'install'
   // config to make sure that any unlisted required dependencies in the
   // theme's .info file would trigger an error.
+  // @phpstan-ignore-next-line
   $dependencies = array_keys($theme_data['civictheme']->module_dependencies);
 
   if ($include_optional) {
+    // @phpstan-ignore-next-line
     $theme_path = $theme_data[$theme_name]->subpath;
     $config_storage = new FileStorage($theme_path . '/config/optional');
 
@@ -1091,8 +1108,11 @@ function _civictheme_get_theme_dependencies(string $theme_name, $include_optiona
 
 /**
  * Map of blocks to be created.
+ *
+ * @return array<string, array<string, mixed>>
+ *   Array of blocks keyed by block ID.
  */
-function _civictheme_get_theme_blocks() {
+function _civictheme_get_theme_blocks(): array {
   $blocks = [
     'civictheme_banner' =>
       [

@@ -10,7 +10,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Implements template_preprocess_table().
  */
-function civictheme_preprocess_table(&$variables) {
+function civictheme_preprocess_table(array &$variables): void {
   if (!empty($variables['header'])) {
     $rows = [];
     foreach ($variables['header'] as $row) {
@@ -41,7 +41,7 @@ function civictheme_preprocess_table(&$variables) {
 /**
  * Implements template_preprocess_HOOK() for views_view_table.
  */
-function civictheme_preprocess_views_view_table(&$variables) {
+function civictheme_preprocess_views_view_table(array &$variables): void {
   if (_civictheme_feature_is_optedout('views', CivicthemeConstants::OPTOUT_VIEWS_STYLE_TABLE, $variables['view'])) {
     $variables['civictheme_component_optout'] = TRUE;
 

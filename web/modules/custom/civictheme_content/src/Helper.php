@@ -24,8 +24,10 @@ class Helper {
    *
    * @param string $message
    *   String containing message.
+   *
+   * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  public static function log($message) {
+  public static function log(string $message): void {
     if (PHP_SAPI === 'cli') {
       $message = strip_tags(html_entity_decode($message));
       if (class_exists('\Drush\Drush')) {
@@ -53,7 +55,7 @@ class Helper {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public static function loadNodeByTitle($title, $type = NULL) {
+  public static function loadNodeByTitle(string $title, string $type = NULL): ?Node {
     $query = \Drupal::entityQuery('node')->accessCheck(FALSE);
     $query->condition('title', $title);
     if ($type) {
@@ -78,7 +80,7 @@ class Helper {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  public static function setHomepageFromNode($title) {
+  public static function setHomepageFromNode(string $title): void {
     $node = static::loadNodeByTitle($title, 'civictheme_page');
 
     if (!$node) {

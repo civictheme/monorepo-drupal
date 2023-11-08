@@ -2,89 +2,97 @@
 
 namespace Drupal\cs_generated_content;
 
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Trait CsGeneratedContentTrait.
  *
  * Trait for centralised CivicTheme components handling.
+ *
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  */
 trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Light theme name.
    */
-  public static function civicthemeThemeLight() {
+  public static function civicthemeThemeLight(): string {
     return 'light';
   }
 
   /**
    * Dark theme name.
    */
-  public static function civicthemeThemeDark() {
+  public static function civicthemeThemeDark(): string {
     return 'dark';
   }
 
   /**
    * Page content type name.
    */
-  public static function civicthemePageContentType() {
+  public static function civicthemePageContentType(): string {
     return 'civictheme_page';
   }
 
   /**
    * Event content type name.
    */
-  public static function civicthemeEventContentType() {
+  public static function civicthemeEventContentType(): string {
     return 'civictheme_event';
   }
 
   /**
    * Default Automated list view name.
    */
-  public static function civicthemeAutomatedListType() {
+  public static function civicthemeAutomatedListType(): string {
     return 'civictheme_automated_list__block1';
   }
 
   /**
    * Limited type name.
    */
-  public static function civicthemeAutomatedListLimitTypeLimited() {
+  public static function civicthemeAutomatedListLimitTypeLimited(): string {
     return 'limited';
   }
 
   /**
    * Unlimited type name.
    */
-  public static function civicthemeAutomatedListLimitTypeUnlimited() {
+  public static function civicthemeAutomatedListLimitTypeUnlimited(): string {
     return 'unlimited';
   }
 
   /**
    * Promo card type name.
    */
-  public static function civicthemePromoCardType() {
+  public static function civicthemePromoCardType(): string {
     return 'civictheme_promo_card';
   }
 
   /**
    * Navigation card type name.
    */
-  public static function civicthemeNavigationCardType() {
+  public static function civicthemeNavigationCardType(): string {
     return 'civictheme_navigation_card';
   }
 
   /**
    * Snippet type name.
    */
-  public static function civicthemeSnippetType() {
+  public static function civicthemeSnippetType(): string {
     return 'civictheme_snippet';
   }
 
   /**
    * Available theme names.
+   *
+   * @return array<int, string>
+   *   Theme names.
    */
-  public static function civicthemeThemes() {
+  public static function civicthemeThemes(): array {
     return [
       static::civicthemeThemeLight(),
       static::civicthemeThemeDark(),
@@ -94,35 +102,38 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Spacing - none.
    */
-  public static function civicthemeVerticalSpacingTypeNone() {
+  public static function civicthemeVerticalSpacingTypeNone(): string {
     return 'none';
   }
 
   /**
    * Spacing - top.
    */
-  public static function civicthemeVerticalSpacingTypeTop() {
+  public static function civicthemeVerticalSpacingTypeTop(): string {
     return 'top';
   }
 
   /**
    * Spacing - bottom.
    */
-  public static function civicthemeVerticalSpacingTypeBottom() {
+  public static function civicthemeVerticalSpacingTypeBottom(): string {
     return 'bottom';
   }
 
   /**
    * Spacing - both.
    */
-  public static function civicthemeVerticalSpacingTypeBoth() {
+  public static function civicthemeVerticalSpacingTypeBoth(): string {
     return 'both';
   }
 
   /**
    * Types of spaces.
+   *
+   * @return array<int, string>
+   *   Types of spaces.
    */
-  public static function civicthemeVerticalSpacingTypes() {
+  public static function civicthemeVerticalSpacingTypes(): array {
     return [
       static:: civicthemeVerticalSpacingTypeNone(),
       static:: civicthemeVerticalSpacingTypeTop(),
@@ -134,21 +145,24 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Banner type - Default.
    */
-  public static function civicthemeBannerTypeDefault() {
+  public static function civicthemeBannerTypeDefault(): string {
     return 'default';
   }
 
   /**
    * Banner type - Large.
    */
-  public static function civicthemeBannerTypeLarge() {
+  public static function civicthemeBannerTypeLarge(): string {
     return 'large';
   }
 
   /**
    * Types of banner.
+   *
+   * @return array<int, string>
+   *   Types of banner.
    */
-  public static function civicthemeBannerTypes() {
+  public static function civicthemeBannerTypes(): array {
     return [
       static::civicthemeBannerTypeDefault(),
       static::civicthemeBannerTypeLarge(),
@@ -158,49 +172,55 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Image position - left.
    */
-  public static function civicthemeImagePositionLeft() {
+  public static function civicthemeImagePositionLeft(): string {
     return 'left';
   }
 
   /**
    * Image position - right.
    */
-  public static function civicthemeImagePositionRight() {
+  public static function civicthemeImagePositionRight(): string {
     return 'right';
   }
 
   /**
    * Image blend-mode.
    */
-  public static function civicthemeImageBlendMode() {
+  public static function civicthemeImageBlendMode(): string {
     return 'soft-light';
   }
 
   /**
    * Small size name.
    */
-  public static function civicthemeSizeSmall() {
+  public static function civicthemeSizeSmall(): string {
     return 'small';
   }
 
   /**
    * Large size name.
    */
-  public static function civicthemeSizeLarge() {
+  public static function civicthemeSizeLarge(): string {
     return 'large';
   }
 
   /**
    * Static Topics.
+   *
+   * @param int|null $count
+   *   Number of topics to return.
+   *
+   * @return array<int, \Drupal\taxonomy\Entity\Term>
+   *   Array of topics.
    */
-  public static function civicthemeStaticTopics($count = NULL) {
+  public static function civicthemeStaticTopics(int $count = NULL): array {
     return static::staticTerms('civictheme_topics', $count);
   }
 
   /**
    * Static Topic.
    */
-  public static function civicthemeStaticTopic() {
+  public static function civicthemeStaticTopic(): ?Term {
     $entities = static::civicthemeStaticTopics(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;
@@ -208,29 +228,41 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Expose single listing filter type.
+   *
+   * @return array<int, string>
+   *   Filter types.
    */
-  public static function civicThemeExposeSingleFilter() {
+  public static function civicThemeExposeSingleFilter(): array {
     return ['topic'];
   }
 
   /**
    * Expose multiple filter types.
+   *
+   * @return array<int, string>
+   *   Filter types.
    */
-  public static function civicThemeExposeMultipleFilters() {
+  public static function civicThemeExposeMultipleFilters(): array {
     return ['topic', 'type', 'title'];
   }
 
   /**
    * Static Site sections.
+   *
+   * @param int|null $count
+   *   Number of site sections to return.
+   *
+   * @return array<int, \Drupal\taxonomy\Entity\Term>
+   *   Array of site sections.
    */
-  public static function civicthemeStaticSiteSections($count = NULL) {
+  public static function civicthemeStaticSiteSections(int $count = NULL): array {
     return static::staticTerms('civictheme_site_sections', $count);
   }
 
   /**
    * Static Site section.
    */
-  public static function civicthemeStaticSiteSection() {
+  public static function civicthemeStaticSiteSection(): ?Term {
     $entities = static::civicthemeStaticSiteSections(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;
@@ -239,8 +271,8 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Generic component attach helper.
    */
-  public static function civicthemeComponentAttach($node, $field_name, $type, $options) {
-    $method = 'civicthemeParagraph' . str_replace(' ', '', (ucwords(str_replace('_', ' ', $type)))) . 'Attach';
+  public static function civicthemeComponentAttach(NodeInterface $node, string $field_name, string $component_type, array $component_options): void {
+    $method = 'civicthemeParagraph' . str_replace(' ', '', (ucwords(str_replace('_', ' ', $component_type)))) . 'Attach';
 
     if (!method_exists(self::class, $method)) {
       throw new \RuntimeException(sprintf('Method "%s" is not defined in "%s" class.', $method, self::class));
@@ -253,34 +285,34 @@ trait CsGeneratedContentCivicthemeTrait {
       'background' => FALSE,
     ];
 
-    $options += $defaults;
+    $component_options += $defaults;
 
-    if (empty(array_filter($options))) {
-      return NULL;
+    if (empty(array_filter($component_options))) {
+      return;
     }
 
     // Theme.
-    if (!empty($options['theme'])) {
-      $options['theme'] = static::civicthemeValueFromOptions(static::civicthemeThemes(), $options['theme']);
+    if (!empty($component_options['theme'])) {
+      $component_options['theme'] = static::civicthemeValueFromOptions(static::civicthemeThemes(), $component_options['theme']);
     }
 
     // Space.
-    if (!empty($options['vertical_spacing'])) {
-      $options['vertical_spacing'] = static::civicthemeValueFromOptions(static::civicthemeVerticalSpacingTypes(), $options['vertical_spacing']);
+    if (!empty($component_options['vertical_spacing'])) {
+      $component_options['vertical_spacing'] = static::civicthemeValueFromOptions(static::civicthemeVerticalSpacingTypes(), $component_options['vertical_spacing']);
     }
 
     // Background.
-    if (!empty($options['background'])) {
-      $options['background'] = (bool) $options['background'];
+    if (!empty($component_options['background'])) {
+      $component_options['background'] = (bool) $component_options['background'];
     }
 
-    call_user_func([self::class, $method], $node, $field_name, $options);
+    call_user_func([self::class, $method], $node, $field_name, $component_options);
   }
 
   /**
    * Attach Content paragraph to a node.
    */
-  public static function civicthemeParagraphContentAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphContentAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -293,7 +325,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_content', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -303,7 +335,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Accordion paragraph to a node.
    */
-  public static function civicthemeParagraphAccordionAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAccordionAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -313,37 +345,32 @@ trait CsGeneratedContentCivicthemeTrait {
       'expand_all' => FALSE,
     ];
 
-    if (!empty($options['panels']) && count($options['panels']) > 0) {
-      $panels = $options['panels'];
-      unset($options['panels']);
-    }
-    else {
-      // Only create if panels were provided.
+    if (empty($options['panels']) && count($options['panels']) > 0) {
       return;
     }
+
+    $panels = $options['panels'];
+    unset($options['panels']);
 
     if (!empty($options['expand_all'])) {
       $options['expand'] = (bool) $options['expand_all'];
     }
     $paragraph = self::civicthemeParagraphAttach('civictheme_accordion', $node, $field_name, $options);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
-    // Accordion panels.
-    if (!empty($panels)) {
-      foreach ($panels as $panel_options) {
-        $panel_options['content'] = static::civicthemeNormaliseRichTextContentValue($panel_options['content'] ?? '');
+    foreach ($panels as $panel_options) {
+      $panel_options['content'] = static::civicthemeNormaliseRichTextContentValue($panel_options['content'] ?? '');
 
-        if (!empty($panel_options['expand'])) {
-          $panel_options['expand'] = (bool) $panel_options['expand'];
-        }
+      if (!empty($panel_options['expand'])) {
+        $panel_options['expand'] = (bool) $panel_options['expand'];
+      }
 
-        $panel = self::civicthemeParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options, TRUE);
-        if (!empty($panel)) {
-          $paragraph->field_c_p_panels->appendItem($panel);
-        }
+      $panel = self::civicthemeParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options, TRUE);
+      if ($panel instanceof Paragraph) {
+        $paragraph->field_c_p_panels->appendItem($panel);
       }
     }
 
@@ -354,8 +381,11 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Attach paragraph to entity.
+   *
+   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected static function civicthemeParagraphAttach($type, $entity, $field_name, $options, $save = FALSE) {
+  protected static function civicthemeParagraphAttach(string $type, FieldableEntityInterface $entity, string $field_name, array $options, bool $save = FALSE): ?Paragraph {
     if (!$entity->hasField($field_name)) {
       return NULL;
     }
@@ -381,8 +411,14 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Normalise rich text content field.
+   *
+   * @param string|array $value
+   *   Field value.
+   *
+   * @return array<string, string>
+   *   Normalised field value.
    */
-  protected static function civicthemeNormaliseRichTextContentValue($value) {
+  protected static function civicthemeNormaliseRichTextContentValue(string|array $value): array {
     $value = is_array($value) ? $value : ['value' => $value];
     $value += [
       'value' => '',
@@ -395,14 +431,14 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Check that value exists in the provided options or return the first option.
    */
-  protected static function civicthemeValueFromOptions(array $options, $value) {
+  protected static function civicthemeValueFromOptions(array $options, mixed $value): mixed {
     return in_array($value, $options) ? $value : reset($options);
   }
 
   /**
    * Attach Attachment paragraph to a node.
    */
-  public static function civicthemeParagraphAttachmentAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAttachmentAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -416,7 +452,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_attachment', $node, $field_name, $options);
@@ -429,7 +465,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Callout paragraph to a node.
    */
-  public static function civicthemeParagraphCalloutAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphCalloutAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -443,7 +479,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_callout', $node, $field_name, $options);
@@ -456,7 +492,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Campaign paragraph to a node.
    */
-  public static function civicthemeParagraphCampaignAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphCampaignAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -473,12 +509,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_campaign', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -488,7 +524,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Iframe paragraph to a node.
    */
-  public static function civicthemeParagraphIframeAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphIframeAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -500,12 +536,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_iframe', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -515,7 +551,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Map paragraph to a node.
    */
-  public static function civicthemeParagraphMapAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphMapAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -528,12 +564,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_map', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -543,7 +579,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Next Step paragraph to a node.
    */
-  public static function civicthemeParagraphNextStepAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphNextStepAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -557,12 +593,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_next_step', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -572,7 +608,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Promo paragraph to a node.
    */
-  public static function civicthemeParagraphPromoAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphPromoAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -585,12 +621,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_promo', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -600,7 +636,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Quote paragraph to a node.
    */
-  public static function civicthemeParagraphQuoteAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphQuoteAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -613,12 +649,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_quote', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -627,8 +663,10 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Attach Automated list paragraph to a node.
+   *
+   * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  public static function civicthemeParagraphAutomatedListAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAutomatedListAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -656,7 +694,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     if ($options['list_limit_type'] == static::civicthemeAutomatedListLimitTypeLimited()) {
@@ -668,7 +706,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_automated_list', $node, $field_name, $options);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -678,7 +716,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Webform paragraph to a node.
    */
-  public static function civicthemeParagraphWebformAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphWebformAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -690,12 +728,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_webform', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -704,8 +742,10 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Attach Slider paragraph to a node.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  public static function civicthemeParagraphSliderAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphSliderAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -717,7 +757,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     if (!empty($options['slides']) && count($options['slides']) > 0) {
@@ -727,7 +767,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_slider', $node, $field_name, $options);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -738,7 +778,7 @@ trait CsGeneratedContentCivicthemeTrait {
           $type = $slide_options['type'];
           unset($slide_options['type']);
           $slide = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_slides', $slide_options, TRUE);
-          if (!empty($slide)) {
+          if ($slide instanceof Paragraph) {
             $paragraph->field_c_p_slides->appendItem($slide);
           }
         }
@@ -751,8 +791,10 @@ trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Attach Card container paragraph to a node.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  public static function civicthemeParagraphManualListAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphManualListAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -768,7 +810,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     if (!empty($options['list_items']) && count($options['list_items']) > 0) {
@@ -778,7 +820,7 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_manual_list', $node, $field_name, $options);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 
@@ -789,7 +831,7 @@ trait CsGeneratedContentCivicthemeTrait {
           $type = $list_item_options['type'];
           unset($list_item_options['type']);
           $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $list_item_options, TRUE);
-          if (!empty($card)) {
+          if ($card instanceof Paragraph) {
             $paragraph->field_c_p_list_items->appendItem($card);
           }
         }
@@ -803,7 +845,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Search paragraph to a node.
    */
-  public static function civicthemeParagraphSearchAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphSearchAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -818,12 +860,12 @@ trait CsGeneratedContentCivicthemeTrait {
     $options += $defaults;
 
     if (empty(array_filter($options))) {
-      return NULL;
+      return;
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_search', $node, $field_name, $options, TRUE);
 
-    if (empty($paragraph)) {
+    if (!$paragraph instanceof Paragraph) {
       return;
     }
 

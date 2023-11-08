@@ -10,7 +10,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Pre-process for local tasks.
  */
-function _civictheme_preprocess_menu_local_tasks(&$variables) {
+function _civictheme_preprocess_menu_local_tasks(array &$variables): void {
   $local_task_types = ['primary', 'secondary'];
   $context_theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
@@ -31,7 +31,8 @@ function _civictheme_preprocess_menu_local_tasks(&$variables) {
     }
 
     // Sort tabs by weight.
-    array_multisort(array_column($variables['links'][$local_task_type], 'weight'), SORT_ASC, $variables['links'][$local_task_type]);
+    $weights = array_column($variables['links'][$local_task_type], 'weight');
+    array_multisort($weights, SORT_ASC, $variables['links'][$local_task_type]);
     unset($variables[$local_task_type]);
   }
 }

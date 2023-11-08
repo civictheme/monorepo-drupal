@@ -5,10 +5,14 @@
  * CivicTheme Social Links block theme alterations.
  */
 
+use Drupal\link\Plugin\Field\FieldType\LinkItem;
+use Drupal\media\MediaInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+
 /**
  * Pre-process for Social Links block.
  */
-function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
+function _civictheme_preprocess_block__civictheme_social_links(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }
@@ -20,20 +24,22 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
 
   $items = [];
 
-  /** @var \Drupal\paragraphs\Entity\Paragraph[] $paragraphs |null */
-  $social_link_paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons') ?? [];
-  foreach ($social_link_paragraphs as $social_link_paragraph) {
+  $paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons');
+  foreach ($paragraphs as $paragraph) {
+    if (!$paragraph instanceof Paragraph) {
+      continue;
+    }
+
     $item = [];
 
-    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-    $link = civictheme_get_field_value($social_link_paragraph, 'field_c_p_link', TRUE);
-    if ($link) {
+    $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+    if ($link instanceof LinkItem) {
       $item['url'] = $link->getUrl()->toString();
       $item['title'] = $link->get('title')->getString();
     }
 
-    $media = civictheme_get_field_value($social_link_paragraph, 'field_c_p_icon', TRUE);
-    if ($media) {
+    $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
+    if ($media instanceof MediaInterface) {
       $image = civictheme_media_image_get_variables($media);
       if ($image) {
         $item['icon_html'] = civictheme_embed_svg($image['url'], [

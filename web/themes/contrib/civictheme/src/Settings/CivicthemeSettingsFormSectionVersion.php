@@ -23,7 +23,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): static {
     $instance = parent::create($container);
     $instance->setVersionManager($container->get('class_resolver')->getInstanceFromDefinition(CivicthemeVersionManager::class));
 
@@ -33,7 +33,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 10;
   }
 
@@ -42,22 +42,21 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
-    $message = $this->t('<div class="messages messages--info">Your CivicTheme version: @version</div>', [
-      '@version' => Link::fromTextAndUrl('dev', Url::fromUri($this->versionManager->source() . '/tree/develop'))->toString(),
-    ]);
+  public function form(array &$form, FormStateInterface $form_state): void {
+    $version_uri = $this->versionManager->source() . '/tree/develop';
 
-    if ($this->versionManager->version()) {
-      $message = $this->t('<div class="messages messages--info">Your CivicTheme version: @version</div>', [
-        '@version' => Link::fromTextAndUrl($this->versionManager->version(), Url::fromUri($this->versionManager->homepage() . '/releases/tag/' . $this->versionManager->version()))->toString(),
-      ]);
+    $version = $this->versionManager->version();
+    if ($version != CivicthemeVersionManager::DEFAULT_VERSION) {
+      $version_uri = $this->versionManager->homepage() . '/releases/tag/' . $version;
     }
 
     $form['civictheme_version'] = [
       '#type' => 'inline_template',
       '#template' => '{{ content|raw }}',
       '#context' => [
-        'content' => $message,
+        'content' => $this->t('<div class="messages messages--info">Your CivicTheme version: @version</div>', [
+          '@version' => Link::fromTextAndUrl($version, Url::fromUri($version_uri))->toString(),
+        ]),
       ],
       '#weight' => -100,
     ];
@@ -69,7 +68,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
    * @param \Drupal\civictheme\CivicthemeVersionManager $version_manager
    *   Version manager.
    */
-  public function setVersionManager(CivicthemeVersionManager $version_manager) {
+  public function setVersionManager(CivicthemeVersionManager $version_manager): void {
     $this->versionManager = $version_manager;
   }
 

@@ -49,9 +49,9 @@ class CivicthemeColorUtility {
   /**
    * Mix color with another color within a specified percentage range.
    *
-   * @param string $color
+   * @param string|array $color
    *   The origin color.
-   * @param string $mixer
+   * @param string|array $mixer
    *   The color to mix with.
    * @param int $range
    *   Range to apply the mixer color with. From 0 to 100.
@@ -64,7 +64,7 @@ class CivicthemeColorUtility {
    *
    * @SuppressWarnings(MissingImport)
    */
-  public static function mix($color, $mixer, $range) {
+  public static function mix(string|array $color, string|array $mixer, int $range): string {
     $color = static::hexToRgb($color);
     $mixer = static::hexToRgb($mixer);
     $range = max(0, min($range, 100));
@@ -99,7 +99,7 @@ class CivicthemeColorUtility {
    * @SuppressWarnings(MissingImport)
    * @SuppressWarnings(BooleanArgumentFlag)
    */
-  public static function normalizeHex($value, $preserve_hash = FALSE) {
+  public static function normalizeHex($value, $preserve_hash = FALSE): string {
     if (!is_string($value)) {
       throw new \Exception(sprintf('Non-string color value provided: %s', var_export($value, TRUE)));
     }
@@ -124,12 +124,12 @@ class CivicthemeColorUtility {
   }
 
   /**
-   * Convert hexadecimal value to an RGB color rrepresentation.
+   * Convert hexadecimal value to an RGB color representation.
    *
    * @param string|array $hex
    *   The hexadecimal or RGB (array) color value.
    *
-   * @return array
+   * @return array<int>
    *   Array with R, G, B values.
    *
    * @throws \Exception
@@ -138,7 +138,7 @@ class CivicthemeColorUtility {
    * @SuppressWarnings(MissingImport)
    * @SuppressWarnings(ElseExpression)
    */
-  public static function hexToRgb($hex) {
+  public static function hexToRgb(string|array $hex): array {
     $rgb = [];
     if (is_string($hex)) {
       $hex = trim($hex);
@@ -171,8 +171,8 @@ class CivicthemeColorUtility {
    * @return string
    *   Hexadecimal value.
    */
-  public static function intToHex($value) {
-    $hex = dechex(floor($value));
+  public static function intToHex($value): string {
+    $hex = dechex((int) floor($value));
     if (strlen($hex) === 1) {
       $hex = '0' . $hex;
     }

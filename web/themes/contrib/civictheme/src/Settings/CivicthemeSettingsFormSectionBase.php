@@ -22,6 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Abstract Settings section.
  *
  * Allows to split large setting forms into smaller sections.
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionInterface {
 
@@ -29,59 +31,43 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
 
   /**
    * The theme manager.
-   *
-   * @var \Drupal\Core\Theme\ThemeManager
    */
-  protected $themeManager;
+  protected ThemeManager $themeManager;
 
   /**
    * The theme extension list.
-   *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
    */
-  protected $themeExtensionList;
+  protected ThemeExtensionList $themeExtensionList;
 
   /**
    * The file system.
-   *
-   * @var \Drupal\Core\File\FileSystem
    */
-  protected $fileSystem;
+  protected FileSystem $fileSystem;
 
   /**
    * The file URL generator.
-   *
-   * @var \Drupal\Core\File\FileUrlGenerator
    */
-  protected $fileUrlgenerator;
+  protected FileUrlGenerator $fileUrlgenerator;
 
   /**
    * The messenger.
-   *
-   * @var \Drupal\Core\Messenger\Messenger
    */
-  protected $messenger;
+  protected Messenger $messenger;
 
   /**
    * The config manager.
-   *
-   * @var \Drupal\Core\Config\ConfigManager
    */
-  protected $configManager;
+  protected ConfigManager $configManager;
 
   /**
    * The theme config manager.
-   *
-   * @var \Drupal\civictheme\CivicthemeConfigManager
    */
-  protected $themeConfigManager;
+  protected CivicthemeConfigManager $themeConfigManager;
 
   /**
    * The image factory.
-   *
-   * @var \Drupal\Core\Image\ImageFactory
    */
-  protected $imageFactory;
+  protected ImageFactory $imageFactory;
 
   /**
    * Constructor.
@@ -117,7 +103,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): static {
     return new static(
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
@@ -135,12 +121,12 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *
    * Works as hook_form_alter().
    */
-  abstract public function form(&$form, FormStateInterface &$form_state);
+  abstract public function form(array &$form, FormStateInterface $form_state): void;
 
   /**
    * Section weight used to order sections on the form.
    */
-  public function weight() {
+  public function weight(): int {
     return 0;
   }
 
@@ -158,7 +144,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function toFriendlyFilePath($path) {
+  protected function toFriendlyFilePath($path): string {
     if ($path && StreamWrapperManager::getScheme($path) == $this->getDefaultFileScheme()) {
       $path = $this->fileUrlgenerator->generateString($path);
     }
@@ -172,21 +158,21 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    * @return string
    *   Default file scheme, e.g. 'public'.
    */
-  protected function getDefaultFileScheme() {
+  protected function getDefaultFileScheme(): string {
     return $this->configManager->getConfigFactory()->get('system.file')->get('default_scheme');
   }
 
   /**
    * Get URI of the theme settings asset.
    */
-  protected function getCivicthemeThemeSettingsAssetUri($file) {
+  protected function getCivicthemeThemeSettingsAssetUri(string $file): string {
     return '/' . $this->themeExtensionList->getPath('civictheme') . '/theme-settings/assets/' . $file;
   }
 
   /**
    * Destination path for all uploaded theme assets.
    */
-  protected function getUploadedAssetsDestinationPath() {
+  protected function getUploadedAssetsDestinationPath(): string {
     return $this->getDefaultFileScheme() . '://';
   }
 
@@ -195,7 +181,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function validateFileUpload(array &$form, FormStateInterface $form_state, $upload_field_name_key, $path_field_name_key) {
+  protected function validateFileUpload(array &$form, FormStateInterface $form_state, array $upload_field_name_key, array $path_field_name_key): void {
     // Check for a newly uploaded file and save it into the temp file in
     // 'form_values' so we can save it on submit.
     // We want to validate the upload before validating path value to
@@ -239,7 +225,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  protected function submitFileUpload(array &$form, FormStateInterface $form_state, $upload_field_name_key, $path_field_name_key) {
+  protected function submitFileUpload(array &$form, FormStateInterface $form_state, string|array $upload_field_name_key, string|array $path_field_name_key): void {
     $uploaded_file = $form_state->getValue($upload_field_name_key);
     // If upload was provided - move it to the desired location, set the
     // path and remove upload key from form state as we only want the path

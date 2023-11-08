@@ -29,10 +29,10 @@ use Drupal\Core\Installer\Exception\InstallerException;
  *
  * If 'none' is specified - none of the sub-modules will be enabled.
  */
-function civictheme_content_install() {
+function civictheme_content_install(): void {
   $content_profile = 'default';
-  if (!empty(trim(getenv('CIVICTHEME_CONTENT_PROFILE')))) {
-    $content_profile = strtolower(trim(getenv('CIVICTHEME_CONTENT_PROFILE')));
+  if (!empty(trim((string) getenv('CIVICTHEME_CONTENT_PROFILE')))) {
+    $content_profile = strtolower(trim((string) getenv('CIVICTHEME_CONTENT_PROFILE')));
     $content_profile = preg_replace('/[^a-z0-9_]/', '', $content_profile);
   }
 
@@ -42,9 +42,9 @@ function civictheme_content_install() {
     return;
   }
 
-  $existing_content_profiles = array_map(function ($value) {
+  $existing_content_profiles = array_map(function ($value): string {
     return substr($value, strlen('civictheme_content_'));
-  }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules'), ['..', '.']));
+  }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules') ?: [], ['..', '.']));
 
   if (!in_array($content_profile, $existing_content_profiles)) {
     // Show as a warning message, but do not fail the installation.
@@ -71,7 +71,7 @@ function civictheme_content_install() {
 /**
  * Install submodule of this module.
  */
-function _civictheme_content_install_submodule($module) {
+function _civictheme_content_install_submodule(string $module): void {
   $active_theme = \Drupal::theme()->getActiveTheme();
   // Only proceed if current theme is CivicTheme, or it's sub-theme so that
   // content could be applied only to expected configurations.
@@ -96,7 +96,7 @@ function _civictheme_content_install_submodule($module) {
 /**
  * Common updates to be run by all content modules.
  */
-function civictheme_content_post_update_common() {
+function civictheme_content_post_update_common(): void {
   // Site site slogan.
   \Drupal::service('config.factory')->getEditable('system.site')
     ->set('slogan', 'A design system by Salsa Digital')

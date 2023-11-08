@@ -10,7 +10,7 @@
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
   _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
@@ -28,7 +28,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
   _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
@@ -44,11 +44,11 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  /** @var \Drupal\node\NodeInterface $node */
+  /** @var \Drupal\node\NodeInterface|null $node */
   $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE);
   if (empty($node)) {
     return;

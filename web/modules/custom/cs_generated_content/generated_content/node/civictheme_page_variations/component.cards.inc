@@ -9,8 +9,14 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
  * Cards.
+ *
+ * @return array<int, array<string, mixed>>
+ *   Variations.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
-function _cs_generated_content_create_node_civictheme_page__variations__cards() {
+function _cs_generated_content_create_node_civictheme_page__variations__cards(): array {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 

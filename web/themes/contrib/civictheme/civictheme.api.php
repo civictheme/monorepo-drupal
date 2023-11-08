@@ -31,7 +31,7 @@ use Drupal\views\ViewExecutable;
  *   - site_sections: (array) Array of Site section entities.
  *   - cache_tags: (array) Array of the cache tags.
  */
-function hook_civictheme_automated_list_view_info_alter(array &$info, array &$settings) {
+function hook_civictheme_automated_list_view_info_alter(array &$info, array &$settings): void {
   // Change the view name and block based on the conditions set in the
   // Automated list settings.
   if ($settings['content_type'] == 'event') {
@@ -51,7 +51,7 @@ function hook_civictheme_automated_list_view_info_alter(array &$info, array &$se
  * @param array $variables
  *   Array of preprocess variables of the Automated list view.
  */
-function hook_civictheme_automated_list_preprocess_view_alter(array &$variables, ViewExecutable &$view) {
+function hook_civictheme_automated_list_preprocess_view_alter(array &$variables, ViewExecutable &$view): void {
   if ($view->id() == 'civictheme_view_examples') {
     $variables['theme'] = CivicthemeConstants::THEME_DARK;
     $variables['with_background'] = TRUE;

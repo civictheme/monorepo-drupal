@@ -20,7 +20,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderHtmlAttributesToArray
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testHtmlAttributesToArray($string, $expected) {
+  public function testHtmlAttributesToArray(string $string, array $expected): void {
     $actual = CivicthemeUtility::htmlAttributesToArray($string);
 
     $this->assertEquals($expected, $actual);
@@ -29,7 +29,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testHtmlAttributesToArray().
    */
-  public function dataProviderHtmlAttributesToArray() {
+  public function dataProviderHtmlAttributesToArray(): array {
     return [
       // Empty.
       ['', []],
@@ -59,15 +59,15 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderMultilineToArray
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testMultilineToArray($string, $expected) {
-    $actual = $actual = CivicthemeUtility::multilineToArray($string);
+  public function testMultilineToArray(string|array $string, array $expected): void {
+    $actual = CivicthemeUtility::multilineToArray($string);
     $this->assertEquals($expected, $actual);
   }
 
   /**
    * Data provider for testMultilineToArray().
    */
-  public function dataProviderMultilineToArray() {
+  public function dataProviderMultilineToArray(): array {
     return [
       ['', []],
       [' ', []],
@@ -103,7 +103,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderArrayToMultiline
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testArrayToMultiline($array, $expected) {
+  public function testArrayToMultiline(string|array $array, string $expected): void {
     $actual = CivicthemeUtility::arrayToMultiline($array);
     $this->assertEquals($expected, $actual);
   }
@@ -111,7 +111,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testArrayToMultiline().
    */
-  public function dataProviderArrayToMultiline() {
+  public function dataProviderArrayToMultiline(): array {
     return [
       [[], ''],
       [[''], ''],
@@ -136,7 +136,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderArrayMergeKeysValues
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testArrayMergeKeysValues(array $array, $separator, $expected) {
+  public function testArrayMergeKeysValues(array $array, string $separator, array $expected): void {
     $actual = CivicthemeUtility::arrayMergeKeysValues($array, $separator);
     $this->assertEquals($expected, $actual);
   }
@@ -144,7 +144,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testArrayMergeKeysValues().
    */
-  public function dataProviderArrayMergeKeysValues() {
+  public function dataProviderArrayMergeKeysValues(): array {
     return [
       [[], ' ', []],
       [['a', 'b'], ' ', ['0 a', '1 b']],
@@ -159,7 +159,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderToLabel
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testToLabel($string, $expected) {
+  public function testToLabel(string $string, string $expected): void {
     $actual = CivicthemeUtility::toLabel($string);
     $this->assertEquals($expected, $actual);
   }
@@ -167,7 +167,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testToLabel().
    */
-  public function dataProviderToLabel() {
+  public function dataProviderToLabel(): array {
     return [
       ['', ''],
       ['hello', 'Hello'],

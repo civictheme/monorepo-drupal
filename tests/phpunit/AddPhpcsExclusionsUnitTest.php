@@ -22,7 +22,7 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderMain
    * @runInSeparateProcess
    */
-  public function testMain($args, $expected_code, $expected_output) {
+  public function testMain(string|array $args, int $expected_code, string $expected_output): void {
     $args = is_array($args) ? $args : [$args];
     $result = $this->runScript($args, TRUE);
 
@@ -30,7 +30,7 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString($expected_output, $result['output']);
   }
 
-  public function dataProviderMain() {
+  public function dataProviderMain(): array {
     return [
       [
         '--help',

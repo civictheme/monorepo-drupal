@@ -24,7 +24,7 @@ use Drupal\civictheme\CivicthemeConfigManager;
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_library_info_alter__color_selector(&$libraries, $extension) {
+function _civictheme_library_info_alter__color_selector(array &$libraries, string $extension): void {
   // Filter for the current theme or a parent theme (in case if current theme is
   // a sub-theme of a theme that declares libraries).
   $themes = \Drupal::service('theme_handler')->listInfo();

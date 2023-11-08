@@ -16,7 +16,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_promo_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
@@ -30,7 +30,7 @@ function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_promo_card_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_promo_card_ref(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables);
@@ -44,7 +44,7 @@ function civictheme_preprocess_paragraph__civictheme_promo_card_ref(&$variables)
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_node__civictheme_promo_card(&$variables) {
+function _civictheme_preprocess_node__civictheme_promo_card(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
@@ -77,7 +77,7 @@ function _civictheme_preprocess_node__civictheme_promo_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_event_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
@@ -92,7 +92,7 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_event_card_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_event_card_ref(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__location($variables);
@@ -106,7 +106,7 @@ function civictheme_preprocess_paragraph__civictheme_event_card_ref(&$variables)
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_navigation_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
@@ -119,7 +119,7 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(&$variables
 /**
  * Implements template_preprocess_node().
  */
-function _civictheme_preprocess_node__civictheme_navigation_card(&$variables) {
+function _civictheme_preprocess_node__civictheme_navigation_card(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables, 'civictheme_navigation_card');
@@ -131,7 +131,7 @@ function _civictheme_preprocess_node__civictheme_navigation_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_navigation_card_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_navigation_card_ref(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables);
   _civictheme_preprocess_paragraph__node_field__image($variables);
@@ -142,7 +142,7 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card_ref(&$varia
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_publication_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_publication_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
@@ -160,7 +160,7 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_subject_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__image($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__link($variables);
@@ -170,7 +170,7 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_subject_card_ref(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_subject_card_ref(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__link($variables);
@@ -180,7 +180,7 @@ function civictheme_preprocess_paragraph__civictheme_subject_card_ref(&$variable
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_service_card(&$variables) {
+function civictheme_preprocess_paragraph__civictheme_service_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__links($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);

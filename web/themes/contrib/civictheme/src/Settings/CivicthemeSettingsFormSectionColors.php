@@ -24,14 +24,14 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 20;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): static {
     $instance = parent::create($container);
     $instance->setColorManager($container->get('class_resolver')->getInstanceFromDefinition(CivicthemeColorManager::class));
 
@@ -41,7 +41,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * Set color manager service.
    */
-  public function setColorManager(CivicthemeColorManager $color_manager) {
+  public function setColorManager(CivicthemeColorManager $color_manager): void {
     $this->colorManager = $color_manager;
   }
 
@@ -51,7 +51,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * @SuppressWarnings(PHPMD.StaticAccess)
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $values_map = $this->fieldValuesMap();
 
     if (empty($values_map)) {
@@ -143,6 +143,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
 
       foreach ($brand_map as $name) {
         $setting_name = implode('.', ['colors', 'brand', $theme, $name]);
+        // @phpstan-ignore-next-line
         $form['colors']['brand'][$theme][$name] = [
           '#type' => 'color',
           '#title_display' => 'after',
@@ -163,6 +164,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
       ];
 
       foreach ($group as $group_name => $colors) {
+        // @phpstan-ignore-next-line
         $form['colors']['palette'][$theme][$group_name] = [
           '#type' => 'fieldset',
           '#title' => CivicthemeUtility::toLabel($group_name),
@@ -204,7 +206,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function submitColors(array &$form, FormStateInterface $form_state) {
+  public function submitColors(array &$form, FormStateInterface $form_state): void {
     // Remove grouping of Palette color values.
     $colors = $form_state->getValue('colors');
     foreach (civictheme_theme_options(TRUE) as $theme) {
@@ -230,28 +232,32 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * A map of field values based on the field map and discovered CSS colors.
    *
-   * @return array
+   * @return array<string, array<string, array<string, array<string, string|null>>>>.
    *   Map with theme, group and color parent keys and a value of:
    *   - value: (string) Color value.
    *   - formula: (string) Color calculation formula.
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function fieldValuesMap() {
+  protected function fieldValuesMap(): array {
     $field_values = [];
 
     $formula_map = CivicthemeColorManager::colorPaletteMap();
     $colors = $this->colorManager->getColors(CivicthemeColorManager::COLOR_TYPE_PALETTE);
     foreach ($formula_map as $theme_name => $group_theme_map) {
       foreach ($group_theme_map as $group_name => $group) {
+        // @phpstan-ignore-next-line
         foreach (array_keys($group) as $group_color_name) {
           $group_color_name_field = str_replace('-', '_', $group_color_name);
 
           /** @var \Drupal\civictheme\Color\CivicthemeColor $color */
           $color = $colors[$theme_name][$group_color_name] ?? FALSE;
 
+          // @phpstan-ignore-next-line
           $field_values[$theme_name][$group_name][$group_color_name_field] = [
+            // @phpstan-ignore-next-line
             'value' => $color ? $color->getValue() : CivicthemeColorManager::COLOR_DEFAULT,
+            // @phpstan-ignore-next-line
             'formula' => $color && $color->getFormula() ? self::processColorFormula($color->getFormula(), $theme_name) : NULL,
           ];
         }
@@ -264,7 +270,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * Process color formula.
    */
-  protected static function processColorFormula($formula, $theme) {
+  protected static function processColorFormula(string $formula, string $theme): string {
     $parts = explode('|', $formula);
     $name = array_shift($parts);
     $name = "colors[brand][$theme][$name]";

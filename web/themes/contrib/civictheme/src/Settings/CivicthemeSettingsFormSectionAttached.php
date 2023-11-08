@@ -12,14 +12,14 @@ class CivicthemeSettingsFormSectionAttached extends CivicthemeSettingsFormSectio
   /**
    * {@inheritdoc}
    */
-  public function form(&$form, FormStateInterface &$form_state) {
+  public function form(array &$form, FormStateInterface $form_state): void {
     $form['#attached']['library'][] = 'civictheme/theme-settings';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function weight() {
+  public function weight(): int {
     return 0;
   }
 

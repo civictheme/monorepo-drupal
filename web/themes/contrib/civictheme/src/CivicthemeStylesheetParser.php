@@ -35,7 +35,7 @@ class CivicthemeStylesheetParser {
    * @return $this
    *   Instance of the current class.
    */
-  public function setContent($content) {
+  public function setContent(string $content): static {
     $this->content = $content;
 
     return $this;
@@ -50,7 +50,7 @@ class CivicthemeStylesheetParser {
    * @return $this
    *   Instance of the current class.
    */
-  public function setCssVariablePrefix($cssVariablePrefix) {
+  public function setCssVariablePrefix($cssVariablePrefix): static {
     $this->cssVariablePrefix = $cssVariablePrefix;
 
     return $this;
@@ -59,14 +59,14 @@ class CivicthemeStylesheetParser {
   /**
    * Get extracted CSS variables.
    *
-   * @return array
+   * @return array<string, string|null>
    *   Array of CSS variables, keyed by name (with CSS prefix '--' preserved).
    */
-  public function variables() {
+  public function variables(): array {
     $variables = static::parseVariables($this->content);
 
     if ($this->cssVariablePrefix) {
-      $variables = array_filter($variables, function ($key) {
+      $variables = array_filter($variables, function ($key): bool {
         return str_starts_with($key, '--' . $this->cssVariablePrefix);
       }, ARRAY_FILTER_USE_KEY);
     }
@@ -80,10 +80,10 @@ class CivicthemeStylesheetParser {
    * @param string $content
    *   Content to parse.
    *
-   * @return array
+   * @return array<string, string|null>
    *   Array of parsed variables.
    */
-  protected static function parseVariables($content) {
+  protected static function parseVariables($content): array {
     $variables = [];
 
     if (empty(trim($content))) {
@@ -93,9 +93,9 @@ class CivicthemeStylesheetParser {
     $matches = [];
     preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
 
-    array_walk($matches, function ($value) use (&$variables) {
+    array_walk($matches, function (array $value) use (&$variables): void {
       if (!empty($value[1])) {
-        $variables[trim($value[1])] = trim($value[2]) ?? NULL;
+        $variables[trim($value[1])] = !empty($value[2]) ? trim($value[2]) : NULL;
       }
     });
 

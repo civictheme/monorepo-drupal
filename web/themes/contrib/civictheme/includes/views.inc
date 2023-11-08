@@ -15,7 +15,7 @@ use Drupal\views\Views;
 /**
  * Implements template_preprocess_views_view().
  */
-function civictheme_preprocess_views_view(&$variables) {
+function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
 }
@@ -25,12 +25,13 @@ function civictheme_preprocess_views_view(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_views_view__view(&$variables) {
+function _civictheme_preprocess_views_view__view(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
   $variables['attributes']['class'] = !empty($variables['dom_id']) ? 'js-view-dom-id-' . $variables['dom_id'] : Html::getUniqueId('js-view-dom-id');
 
+  // @phpstan-ignore-next-line
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
     if (!empty($view->header['result'])) {
@@ -56,7 +57,7 @@ function _civictheme_preprocess_views_view__view(&$variables) {
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_views_view__pager(&$variables) {
+function _civictheme_preprocess_views_view__pager(array &$variables): void {
   if (empty($variables['pager'])) {
     return;
   }
@@ -88,7 +89,7 @@ function _civictheme_preprocess_views_view__pager(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_views_view_grid(&$variables) {
+function civictheme_preprocess_views_view_grid(array &$variables): void {
   $view = $variables['view'];
 
   $component_settings = $variables['view']->component_settings ?? NULL;
@@ -114,7 +115,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
 /**
  * Implements hook_form_views_exposed_form_alter().
  */
-function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
   $storage = $form_state->getStorage();
   // Pass view ID in attributes to the exposed filter preprocessor.
   // @see civictheme_preprocess_views_exposed_form()
@@ -128,7 +129,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_views_exposed_form(&$variables) {
+function civictheme_preprocess_views_exposed_form(array &$variables): void {
   $view = NULL;
   if (!empty($variables['form']['#attributes']['view_id'])) {
     $view = Views::getView($variables['form']['#attributes']['view_id']);
@@ -153,7 +154,7 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
 /**
  * Preprocess views exposed form to convert it to the Single filter.
  */
-function _civictheme_preprocess_views__exposed_form__single_filter(&$variables) {
+function _civictheme_preprocess_views__exposed_form__single_filter(array &$variables): void {
   $form = $variables['form'] ?? NULL;
   if (empty($form)) {
     return;
@@ -203,7 +204,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(&$variables) 
 /**
  * Preprocess views exposed form to convert it to the Group filter.
  */
-function _civictheme_preprocess_views__exposed_form__group_filter(&$variables) {
+function _civictheme_preprocess_views__exposed_form__group_filter(array &$variables): void {
   $form = $variables['form'] ?? NULL;
   if (empty($form)) {
     return;

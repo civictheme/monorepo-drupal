@@ -10,7 +10,7 @@
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_image(&$variables) {
+function _civictheme_preprocess_image(array &$variables): void {
   if (isset($variables['attributes']['src'])) {
     $variables['url'] = $variables['attributes']['src'];
   }
