@@ -17,7 +17,7 @@ jobs:
           args: --from gfm --to jira --output=/github/workflow/issue.jira /github/workflow/issue.md
 
       - name: Put output to the variable
-        run: |                   
+        run: |
           echo 'JIRA_CONTENT<<EOF' >> $GITHUB_ENV
           cat ${{ runner.temp }}/_github_workflow/issue.jira >> $GITHUB_ENV
           echo >> $GITHUB_ENV
@@ -49,6 +49,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             <br/>
+
             ---
             JIRA: ${{ steps.create.outputs.issue }}
           update-mode: 'append'
