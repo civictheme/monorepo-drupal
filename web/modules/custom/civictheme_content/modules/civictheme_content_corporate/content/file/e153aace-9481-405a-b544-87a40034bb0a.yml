@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: corporate_icon_twitter.svg
+      value: corporate_icon_x.svg
   uri:
     -
-      value: 'public://corporate_icon_twitter.svg'
+      value: 'public://corporate_icon_x.svg'
   filemime:
     -
       value: image/svg+xml
