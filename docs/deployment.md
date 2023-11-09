@@ -23,7 +23,7 @@ When a PR is closed, its environment is automatically removed.
 Content profiles are employed to capture content for industry-specific demo
 sites. Each content profile is automatically deployed to a preview environment
 during development (hosted on this project's Lagoon instance) and to a
-LaunchPad-based Lagoon instance upon release (handled outside of the
+LaunchPad-based Lagoon instance upon release (handled outside the
 CivicTheme team).
 
 The development preview environments are redeployed by the CI on each successful
