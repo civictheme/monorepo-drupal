@@ -22,20 +22,9 @@ Use [Onboarding checklist](docs/onboarding.md) to track the project onboarding p
   - [Ahoy](https://github.com/ahoy-cli/ahoy)
 - Make sure that all local web development services are shut down (Apache/Nginx, Mysql, MAMP etc).
 - Checkout project repository (in one of the [supported Docker directories](https://docs.docker.com/docker-for-mac/osxfs/#access-control)).
-
-
-
 - Authenticate with Lagoon
   1. Create an SSH key and add it to your account in the [Lagoon Dashboard](https://ui-lagoon-master.ch.amazee.io/).
   2. Copy `.env.local.default` to `.env.local`.
-  3. Update `$DREVOPS_DB_DOWNLOAD_SSH_KEY_FILE` environment variable in `.env.local` file
-     with the path to the SSH key.
-
-
-
-
-- `ahoy download-db`
-
 - `pygmy up`
 - `ahoy build`
 
@@ -54,9 +43,8 @@ Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 
 ## Environments
 
-- [PROD](https://default.civictheme.io)
+- [PROD](https://default.civictheme.io) - use this as a reference for the latest stable version
 - [DEV](https://defaultdev.civictheme.io)
-- [LOCAL](http://civictheme-source.docker.amazee.io/)
 
 ### Content profiles
 
@@ -67,8 +55,8 @@ Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 ## More about CivicTheme
 
 - [CivicTheme UI kit](https://github.com/salsadigitalauorg/civictheme_library)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
-- [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
+- [CivicTheme Drupal theme](https://www.drupal.org/project/civictheme)
+- [Default content for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
 
