@@ -342,6 +342,9 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
 
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
+    // Force browser reload by changing the dummy query string.
+    _drupal_flush_css_js();
+
     return $this;
   }
 
