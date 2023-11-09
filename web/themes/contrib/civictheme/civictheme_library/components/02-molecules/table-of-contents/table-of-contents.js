@@ -98,7 +98,7 @@ CivicThemeTableOfContents.prototype.findLinks = function (anchorSelector, scopeS
 };
 
 CivicThemeTableOfContents.prototype.renderTitle = function (title) {
-  return `<div class="ct-table-of-contents__title">${title}</div>`;
+  return `<h2 class="ct-table-of-contents__title">${title}</h2>`;
 };
 
 CivicThemeTableOfContents.prototype.renderLinks = function (links) {
