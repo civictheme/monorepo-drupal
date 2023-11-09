@@ -11,10 +11,6 @@ Mono-repo used to maintain CivicTheme and accompanying modules that are automati
 
 [![DrevOps](https://img.shields.io/badge/DrevOps-develop-blue.svg)](https://github.com/drevops/drevops/tree/develop)
 
-[//]: # (Remove the section below once onboarding is finished)
-## Onboarding
-Use [Onboarding checklist](docs/onboarding.md) to track the project onboarding progress.
-
 ## Local environment setup
 - Make sure that you have latest versions of all required software installed:
   - [Docker](https://www.docker.com/)
