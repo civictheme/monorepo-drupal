@@ -535,9 +535,9 @@ function civictheme_provision__files(): void {
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   $filepaths = [
-    $theme_path . '/assets/images/facebook.svg',
-    $theme_path . '/assets/images/linkedin.svg',
-    $theme_path . '/assets/images/twitter.svg',
+    $theme_path . '/assets/icons/facebook.svg',
+    $theme_path . '/assets/icons/linkedin.svg',
+    $theme_path . '/assets/icons/x.svg',
     $theme_path . "/assets/backgrounds/{$theme_name}_background_1.png",
     $theme_path . "/assets/backgrounds/{$theme_name}_background_2.png",
   ];
@@ -567,7 +567,7 @@ function civictheme_provision__media(): void {
     'icon' => [
       'facebook.svg',
       'linkedin.svg',
-      'twitter.svg',
+      'x.svg',
     ],
     'image' => [
       "{$theme_name}_background_1.png",
@@ -827,10 +827,10 @@ function _civictheme_provision__blocks__social_links(array $block): void {
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
   ]);
-  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('twitter.svg');
+  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('x.svg');
   $paragraph->field_c_p_link = [
     'uri' => 'https://www.twitter.com/',
-    'title' => 'Twitter',
+    'title' => 'X',
   ];
   $block_content->field_c_b_social_icons->appendItem($paragraph);
 

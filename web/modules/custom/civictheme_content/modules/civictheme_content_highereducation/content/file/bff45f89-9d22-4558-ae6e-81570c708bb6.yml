@@ -9,7 +9,7 @@ default:
       target_id: 1
   filename:
     -
-      value: Twitter.svg
+      value: x.svg
   uri:
     -
       value: 'public://icons/Twitter_0.svg'
