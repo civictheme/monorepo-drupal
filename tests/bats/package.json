@@ -1,0 +1,9 @@
+{
+    "name": "civictheme_source-tests",
+    "version": "1.0.0",
+    "description": "Packages used for testing",
+    "license": "GPL-2.0-or-later",
+    "devDependencies": {
+        "bats-helpers": "npm:@drevops/bats-helpers@^1.2"
+    }
+}

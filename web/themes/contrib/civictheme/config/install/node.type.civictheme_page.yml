@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - civictheme-primary-navigation
+    parent: 'civictheme-primary-navigation:'
+name: Page
+type: civictheme_page
+description: "<em>CivicTheme</em>. Use pages for your static content such as an 'About us' page or other informational pages that will always be accessible on the site. These can be simple content pages or pages with a complex layout."
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

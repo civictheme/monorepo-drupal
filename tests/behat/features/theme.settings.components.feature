@@ -62,7 +62,7 @@ Feature: Components settings are available in the theme settings
 
     And I should see the text "Content"
     And I should see an "input[name='components[site_slogan][content]']" element
-    And I should see an "#edit-components-site-slogan-content.required" element
+    And I should not see an "#edit-components-site-slogan-content.required" element
 
     And I should see the text "Theme"
     And I should see an "input[name='components[footer][theme]']" element
@@ -217,7 +217,7 @@ Feature: Components settings are available in the theme settings
     And I check the box "Confirm settings reset"
     And I press "reset_to_defaults"
     Then I should see the text "Theme configuration was reset to defaults."
-  
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with SVG image upload
     Given I am logged in as a user with the "Site Administrator" role

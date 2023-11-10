@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install file for CivicTheme Generated Content.
+ */
+
+use Drupal\Core\Url;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\redirect\Entity\Redirect;
+
+/**
+ * Implements hook_install().
+ */
+function cs_generated_content_install(): void {
+  // Create menu item.
+  $menu_link = MenuLinkContent::create([
+    'menu_name' => 'civictheme-secondary-navigation',
+    'title' => 'Generated content',
+    'link' => [
+      'uri' => Url::fromUserInput('/generated-content')->toUriString(),
+    ],
+  ]);
+  $menu_link->save();
+
+  // Create redirect.
+  $redirect = Redirect::create();
+  $redirect->setSource('/generated-content');
+  $redirect->setRedirect('/generated-content/components');
+  $redirect->setStatusCode(301);
+  $redirect->save();
+}

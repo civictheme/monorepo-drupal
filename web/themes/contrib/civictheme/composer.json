@@ -1,0 +1,28 @@
+{
+    "name": "drupal/civictheme",
+    "description": "CivicTheme is a Drupal 10 component-based theme.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/salsadigitalauorg/civictheme",
+    "support": {
+        "source": "https://github.com/salsadigitalauorg/civictheme_source",
+        "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
+    },
+    "require": {
+        "php": ">=8.1",
+        "drupal/ckeditor": "^1",
+        "drupal/components": "^3@beta",
+        "drupal/field_group": "^3.2",
+        "drupal/layout_builder_restrictions": "^2.13",
+        "drupal/linkit": "^6@beta",
+        "drupal/menu_block": "^1.8",
+        "drupal/paragraphs": "^1.14",
+        "drupal/pathauto": "^1.11",
+        "drupal/redirect": "^1.8",
+        "drupal/simple_sitemap": "^4.1",
+        "drupal/webform": "^6.1"
+    },
+    "suggest": {
+        "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
+    }
+}

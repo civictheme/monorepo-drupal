@@ -1,4 +1,4 @@
-@p1 @civictheme @block_type @block_civictheme_mobile_navigation
+@p1 @civictheme @block_type @block_civictheme_component_block
 Feature: Component block fields
 
   @api

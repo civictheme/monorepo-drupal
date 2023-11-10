@@ -1,0 +1,26 @@
+# CivicTheme library.
+global:
+  css:
+    theme:
+      dist/civictheme.css: {}
+  js:
+    dist/civictheme.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings
+
+# CivicTheme library CSS variables.
+css-variables:
+  css:
+    theme:
+      dist/civictheme.variables.css: {preprocess: false}
+
+# Color-related CivicTheme theme settings.
+theme-settings.colors:
+  css:
+    theme:
+      theme-settings/civictheme.theme-settings.colors.css: {}
+  js:
+    https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js: {}
+    theme-settings/civictheme.theme-settings.colors.js: {}

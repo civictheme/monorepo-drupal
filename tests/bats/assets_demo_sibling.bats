@@ -7,7 +7,7 @@
 load _helper
 
 @test "CivicTheme Demo Sibling Theme assets" {
-  dir="${DREVOPS_EXPORT_CODE_DIR:-$(pwd)}/docroot/themes/contrib/civictheme_demo"
+  dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/contrib/civictheme_demo"
 
   pushd "${dir}" >/dev/null || exit 1
 

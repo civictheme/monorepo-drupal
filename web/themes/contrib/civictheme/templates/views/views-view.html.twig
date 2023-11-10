@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation for view template.
+ */
+#}
+{% extends '@organisms/list/list.twig' %}
+
+{# Override footer block to provide Drupal-specific view properties. #}
+{% block footer %}
+  {% if attachment_after is defined and attachment_after is not empty %}
+    <div class="ct-list__attachment-after">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ attachment_after }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if more is defined and more is not empty %}
+    <div class="ct-list__more">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ more }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if footer %}
+    <footer class="ct-list__footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ footer }}
+          </div>
+        </div>
+      </div>
+    </footer>
+  {% endif %}
+
+  {% if feed_icons is defined and feed_icons is not empty %}
+    <div class="ct-list__feed-icons">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ feed_icons }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

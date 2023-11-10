@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Callout component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] Title text.
+ * - content: [string] Content text.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Open link in the new window.
+ *   - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+<div class="ct-callout {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        <div class="ct-callout__wrapper">
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="ct-callout__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block content %}
+            {% if title is not empty or content is not empty %}
+              <div class="ct-callout__inner">
+                {% if title %}
+                  {% include '@atoms/heading/heading.twig' with {
+                    content: title,
+                    level: 4,
+                    theme: theme,
+                    modifier_class: 'ct-callout__title',
+                  } only %}
+                {% endif %}
+
+                {% if content is not empty %}
+                  {% include '@atoms/paragraph/paragraph.twig' with {
+                    theme: theme,
+                    content: content,
+                    allow_html: true,
+                    modifier_class: 'ct-callout__content',
+                  } only %}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block links %}
+            {% set link_items = [] %}
+            {% for link in links %}
+              {%- set link %}
+                {% include '@atoms/button/button.twig' with {
+                  theme: theme,
+                  kind: 'link',
+                  type: loop.index > 1 ? 'secondary' : 'primary',
+                  text: link.text,
+                  url: link.url,
+                  is_external: link.is_external,
+                  is_new_window: link.is_new_window,
+                } only %}
+              {% endset -%}
+              {% set link_items = link_items|merge([link]) %}
+            {% endfor %}
+
+            {% include '@base/item-list/item-list.twig' with {
+              items: link_items,
+              size: 'small',
+              modifier_class: 'ct-callout__links',
+            } only %}
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="ct-callout__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

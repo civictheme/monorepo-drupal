@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Template for CivicTheme Starter Kit theme.
+ */
+
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_civictheme_automated_list_preprocess_view_alter().
+ */
+function civictheme_starter_kit_civictheme_automated_list_preprocess_view_alter(array &$settings, ViewExecutable &$view): void {
+  if ($view->id() === 'civictheme_automated_list_examples' && $view->getDisplay()->display['id'] === 'civictheme_automated_list_page') {
+    $settings['title'] = '';
+    $settings['theme'] = 'light';
+    $settings['card_theme'] = 'dark';
+    $settings['with_background'] = TRUE;
+    $settings['vertical_spacing'] = 'bottom';
+  }
+}
+
+/**
+ * Implements hook_civictheme_automated_list_preprocess_view_alter().
+ */
+function civictheme_starter_kit_civictheme_automated_list_view_name_alter(string &$view_name, string &$display_id, Paragraph $paragraph): void {
+  // This is an example.
+  if ($paragraph->hasField('field_c_p_content_type') && !$paragraph->get('field_c_p_content_type')->isEmpty()) {
+    if ($paragraph->get('field_c_p_content_type')->getString() == 'civictheme_event') {
+      [$view_name, $display_id] = explode('__', 'civictheme_automated_list_examples__block1');
+    }
+  }
+}

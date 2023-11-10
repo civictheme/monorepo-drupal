@@ -16,8 +16,8 @@ while IFS=  read -r -d $'\0'; do
     targets+=("$REPLY")
 done < <(
   find \
-    "${CUR_DIR}"/docroot/themes/contrib/civictheme/docs \
-    "${CUR_DIR}"/docroot/themes/contrib/civictheme/civictheme_library/docs \
+    "${CUR_DIR}"/web/themes/contrib/civictheme/docs \
+    "${CUR_DIR}"/web/themes/contrib/civictheme/civictheme_library/docs \
     -type f \
     \( -name "*.md" \) \
     -not -path "*vendor*" \

@@ -1,26 +1,35 @@
-# CivicTheme - Development source site
-Mono-repo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.
+<p align="center">
+  <a href="" rel="noopener">
+  <img height=100px src="web/themes/contrib/civictheme/assets/logos/logo_secondary_light_mobile.png" alt="CivicTheme logo"></a>
+</p>
 
+<h1 align="center">CivicTheme - Development source site</h1>
+
+<p>Mono-repo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.</p>
+
+<div align="center">
+
+[![GitHub Issues](https://img.shields.io/github/issues/salsadigitalauorg/civictheme_source.svg)](https://github.com/salsadigitalauorg/civictheme_source/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/salsadigitalauorg/civictheme_source.svg)](https://github.com/salsadigitalauorg/civictheme_source/pulls)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/salsadigitalauorg/civictheme_source)
 [![CircleCI](https://circleci.com/gh/salsadigitalauorg/civictheme_source.svg?style=shield)](https://circleci.com/gh/salsadigitalauorg/civictheme_source)
-![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
+![Drupal 10](https://img.shields.io/badge/Drupal-10-blue.svg)
+![LICENSE](https://img.shields.io/github/license/salsadigitalauorg/civictheme_source)
+[![RenovateBot](https://img.shields.io/badge/RenovateBot-enabled-brightgreen.svg?logo=renovatebot)](https://renovatebot.com)
 
 [//]: # (DO NOT REMOVE THE BADGE BELOW. IT IS USED BY DREVOPS TO TRACK INTEGRATION)
 
-[![DrevOps](https://img.shields.io/badge/DrevOps-9.x-blue.svg)](https://github.com/drevops/drevops/tree/9.x)
+[![DrevOps](https://img.shields.io/badge/DrevOps-1.17.2-blue.svg)](https://github.com/drevops/drevops/tree/1.17.2)
 
-## Environments
+</div>
 
-- [PROD](https://default.civictheme.io)
-- [DEV](https://defaultdev.civictheme.io)
-- [LOCAL](http://civictheme-source.docker.amazee.io/)
+---
 
-### Content profiles
-
-- [Corporate](https://nginx-php.content-corporate.civictheme-source.lagoon.salsa.hosting/)
-- [Government](https://nginx-php.content-government.civictheme-source.lagoon.salsa.hosting/)
-- [Higher Education](https://nginx-php.content-highereducation.civictheme-source.lagoon.salsa.hosting/)
+> [!IMPORTANT]  
+> For Drupal theme installation instructions into your site, see https://docs.civictheme.io/development/drupal-theme
 
 ## Local environment setup
+
 - Make sure that you have latest versions of all required software installed:
   - [Docker](https://www.docker.com/)
   - [Pygmy](https://github.com/pygmystack/pygmy)
@@ -32,40 +41,34 @@ Mono-repo used to maintain CivicTheme and accompanying modules that are automati
 
 ### Apple M1 adjustments
 
-Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
+Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 
-## Development
+## Project documentation
 
-Please refer to [development documentation](DEVELOPMENT.md).
+- [Development](docs/development.md)
+- [FAQs](docs/faqs.md)
+- [Testing](docs/testing.md)
+- [CI](docs/ci.md)
+- [Releasing](docs/releasing.md)
+- [Deployment](docs/deployment.md)
 
-## Testing
+## Environments
 
-Please refer to [testing documentation](TESTING.md).
+- [PROD](https://default.civictheme.io) - use this as a reference for the latest stable version
+- [DEV](https://defaultdev.civictheme.io)
 
-## CI
+### Content profiles
 
-Please refer to [CI documentation](CI.md).
-
-## Deployment
-
-Please refer to [deployment documentation](DEPLOYMENT.md).
-
-## Releasing
-
-Please refer to [releasing documentation](RELEASING.md).
-
-## FAQs
-
-Please refer to [FAQs](FAQs.md).
+- [Corporate](https://nginx-php.content-corporate.civictheme-source.lagoon.salsa.hosting/)
+- [Government](https://nginx-php.content-government.civictheme-source.lagoon.salsa.hosting/)
+- [Higher Education](https://nginx-php.content-highereducation.civictheme-source.lagoon.salsa.hosting/)
 
 ## More about CivicTheme
 
+- [Documentation](https://docs.civictheme.io/)
 - [CivicTheme UI kit](https://github.com/salsadigitalauorg/civictheme_library)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
-- [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
+- [CivicTheme Drupal theme](https://www.drupal.org/project/civictheme)
+- [Default content for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
 
----
-
-For additional information, please refer to the [Documentation site](https://docs.civictheme.io/)

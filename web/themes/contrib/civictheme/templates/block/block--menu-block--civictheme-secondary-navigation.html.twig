@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Secondary Navigation menu block.
+ */
+#}
+{% if in_sidebar %}
+  {% include '@organisms/side-navigation/side-navigation.twig' with {
+    theme,
+    items,
+    modifier_class: 'ct-secondary-navigation',
+  } only %}
+{% else %}
+  {% include '@organisms/navigation/navigation.twig' with {
+    theme,
+    items,
+    dropdown,
+    dropdown_columns,
+    dropdown_columns_fill,
+    is_animated,
+    menu_id,
+    modifier_class: 'ct-secondary-navigation ct-justify-content-end',
+  } only %}
+{% endif %}

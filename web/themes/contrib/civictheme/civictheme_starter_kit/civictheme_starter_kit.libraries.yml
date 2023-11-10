@@ -1,0 +1,10 @@
+global:
+  css:
+    theme:
+      dist/civictheme.css: {}
+  js:
+    dist/civictheme.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings

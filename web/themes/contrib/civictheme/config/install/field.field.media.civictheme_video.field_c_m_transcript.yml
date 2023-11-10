@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_transcript
+    - media.type.civictheme_video
+  module:
+    - text
+id: media.civictheme_video.field_c_m_transcript
+field_name: field_c_m_transcript
+entity_type: media
+bundle: civictheme_video
+label: Transcript
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
