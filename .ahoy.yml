@@ -243,6 +243,21 @@ commands:
         echo "Copy .ahoy.local.example.yml to .ahoy.local.yml and rerun this command.";
       fi
 
+  export-config:
+    usage: Export theme config.
+    cmd: |
+      ahoy cli "./scripts/update-theme-config.sh"
+      ahoy drush cde civictheme_dev || true
+      if ahoy drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
+        ahoy drush cde cs_generated_content || true
+      fi
+
+  export-content:
+    usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
+    cmd: |
+      ahoy confirm "This will uninstall several modules and users. Proceed?" \
+      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update-default-content.sh" || echo "The operation was canceled."
+
   # ----------------------------------------------------------------------------
   # Utilities.
   # ----------------------------------------------------------------------------
