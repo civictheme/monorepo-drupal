@@ -27,7 +27,6 @@ if [ "${DRUPAL_PROFILE}" = "govcms" ]; then
   drush config-set system.theme default stable9
 
   # Remove other themes.
-  drush theme-uninstall claro || true
   drush theme-uninstall govcms_bartik || true
   drush theme-uninstall bartik || true
 elif [ "${DRUPAL_PROFILE}" = "minimal" ]; then
