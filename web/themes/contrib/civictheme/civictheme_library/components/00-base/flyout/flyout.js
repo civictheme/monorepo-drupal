@@ -123,6 +123,11 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
   document.querySelectorAll('[data-flyout-open-trigger]').forEach((trigger) => {
     trigger.setAttribute('aria-expanded', false);
   });
+
+  // Focus on the first trigger.
+  setTimeout(() => {
+    document.querySelector('[data-flyout-open-trigger]')?.focus()
+  }, this.duration);
 };
 
 /**
@@ -137,6 +142,11 @@ CivicThemeFlyout.prototype.expand = function () {
   this.el.setAttribute('data-flyout-expanded', true);
   this.panel.setAttribute('aria-hidden', false);
   document.body.style.overflow = 'hidden';
+
+  // Set focus on first link if available.
+  if (this.panel.querySelector('a.ct-link')) {
+    setTimeout(() => this.panel.querySelector('a.ct-link').focus(), this.duration);
+  }
 };
 
 /**
@@ -150,6 +160,7 @@ CivicThemeFlyout.prototype.collapse = function () {
   setTimeout(() => {
     this.panel.style.visibility = null;
     document.body.style.overflow = null;
+    this.openTrigger.focus();
   }, this.duration);
 };
 

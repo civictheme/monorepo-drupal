@@ -69,6 +69,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-left-style: solid;
       padding: $ct-mobile-navigation-spacing;
       border-radius: 0;
+      background-color: transparent;
 
       .ct-icon {
         @include ct-icon-size();
@@ -123,6 +124,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       padding: 0;
       float: none;
       font-weight: bold;
+      background-color: transparent;
 
       @include ct-typography('label-large');
 
@@ -161,6 +163,10 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
     #{$root}__open-subsection-trigger {
       border-left-color: ct-component-var($root, $theme, menu-divider, border-color);
 
+      &:focus {
+        @include ct-outline-theme($theme);
+      }
+
       .ct-icon {
         @include ct-component-property($root, $theme, subsection-trigger, color);
       }
@@ -169,6 +175,10 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
     #{$root}__close-trigger {
       [data-flyout-close-trigger] {
         color: ct-component-var($root, $theme, subsection-heading, color);
+
+        &:focus {
+          @include ct-outline-theme($theme);
+        }
 
         .ct-icon {
           @include ct-component-property($root, $theme, subsection-heading, icon-color);
@@ -205,6 +215,10 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
+
+    &:focus {
+      @include ct-outline-theme($theme);
+    }
   }
 }
 
