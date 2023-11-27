@@ -82,7 +82,7 @@ settings:
           element: '<a class="ct-button ct-theme-light ct-button--secondary ct-button--regular">'
         -
           label: 'Large primary button'
-          element: '<a class="ct-button ct-theme-light ct-button--secondary ct-button--large">'
+          element: '<a class="ct-button ct-theme-light ct-button--primary ct-button--large">'
         -
           label: 'Large secondary large'
           element: '<a class="ct-button ct-theme-light ct-button--secondary ct-button--large">'

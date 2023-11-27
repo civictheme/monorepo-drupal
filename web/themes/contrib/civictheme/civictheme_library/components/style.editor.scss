@@ -3,22 +3,107 @@
 //
 // stylelint-disable scss/at-import-partial-extension
 
-// Need to add variables outside of scoping class to avoid compilation errors for variables with !global flags.
-@import '00-base/reset/reset';
-@import '00-base/variables';
-@import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
+@use 'sass:meta';
+@use 'sass:map';
+@use '00-base/variables';
 
 // stylelint-disable no-invalid-position-at-import-rule
-.cke_editable {
-  // Include civictheme content css styles for typography
-  @include ct-content();
-  @include ct-content-light();
+.ck-editor__editable {
+  @import '00-base/mixins/reset';
+  @import '00-base/mixins';
+  @import '00-base/variables';
+
+  // Render the variables within this class selector.
+  $colors: map.deep-merge($ct-colors-default, ());
+
+  @each $theme, $colors in $colors {
+    @each $name, $value in $colors {
+      --#{ct-string(ct-join-lists(('ct', 'color', $theme, $name), '-'))}: #{$value};
+    }
+  }
+
+  @each $name, $value in meta.module-variables('variables') {
+    // Only filter by CivicTheme variables.
+    @if str-index($name, 'ct-') {
+      // Only filter by variable names related to color or opacity.
+      @if str-index($name, 'color') or str-index($name, 'opacity') {
+        // Only filter by color or string variables.
+        @if type-of($value) == 'color' or type-of($value) == 'number' or type-of($value) == 'string' {
+          --#{$name}: #{$value};
+        }
+      }
+    }
+  }
 
   // Load all non-stories mixins.
+  @import '02-molecules/basic-content/basic-content';
+  @import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
+
   @import '01-atoms/**/!(*.stories).scss';
   @import '02-molecules/**/!(*.stories|basic-content).scss';
   @import '03-organisms/**/!(*.stories).scss';
   @import '04-templates/**/!(*.stories).scss';
   @import '05-pages/**/!(*.stories).scss';
+
+  // Include civictheme content css styles for typography
+  @extend .ct-basic-content;
+  @include ct-content();
+  @include ct-content-light();
+
+  // Custom styling to match the FE style in ckeditor5.
+  ul, ol {
+    margin-left: 0;
+    margin-right: 0;
+
+    li {
+      list-style: none;
+
+      .ck-list-bogus-paragraph {
+        display: inline-block;
+      }
+    }
+  }
+
+  blockquote {
+    border-left: none !important;
+    font-style: normal !important;
+    padding-left: rem(30px) !important;
+    padding-right: rem(28px) !important;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    @include ct-typography('text-extra-large');
+  }
+
+  figure {
+    &.table {
+      width: 100%;
+    }
+
+    &.drupal-media {
+      figcaption {
+        display: block;
+        padding: 0;
+        caption-side: top;
+        color: var(--ct-color-light-body);
+        outline-offset: 0;
+        background-color: transparent;
+        font-size: rem(16px);
+      }
+    }
+  }
+
+  .table {
+    table {
+      border: none !important;
+
+      td, th {
+        border: none !important;
+      }
+    }
+  }
+
+  a:not(.ct-button) {
+    @include ct-content-link-base();
+  }
 }
 // stylelint-enable no-invalid-position-at-import-rule
