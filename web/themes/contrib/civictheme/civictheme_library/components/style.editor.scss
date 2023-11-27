@@ -13,7 +13,8 @@
   @import '00-base/mixins';
   @import '00-base/variables';
 
-  // Render the variables within this class selector.
+  // Render the variables within this class selector,
+  // replace the 2nd paramater of deep-merge below with the child theme variables if needed.
   $colors: map.deep-merge($ct-colors-default, ());
 
   @each $theme, $colors in $colors {
