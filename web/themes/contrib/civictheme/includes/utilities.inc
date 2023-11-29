@@ -462,13 +462,13 @@ function civictheme_get_entity_field_key_values(FieldableEntityInterface $entity
  * @param \Drupal\Core\Entity\FieldableEntityInterface|null $entity
  *   Entity to check field existence.
  * @param string $default
- *   Optional default theme value. Defaults to NULL.
+ *   Optional default theme value. Defaults to CivicthemeConstants::THEME_LIGHT.
  *
  * @return string
  *   The theme field value for the entity.
  *   If field does not have a value - $default is returned.
  */
-function civictheme_get_field_theme_value(FieldableEntityInterface|null $entity, string $default = NULL): string {
+function civictheme_get_field_theme_value(FieldableEntityInterface|null $entity, string $default = CivicthemeConstants::THEME_LIGHT): string {
   $field_name = FALSE;
 
   if (!$entity instanceof FieldableEntityInterface) {
