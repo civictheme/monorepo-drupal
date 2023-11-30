@@ -63,11 +63,15 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
         'Add PHPCS exclusions',
       ],
 
-      // Validation of path existence.
       [
-        'some/non_existing/storybook-static',
+        'path/to/storybook-static',
         1,
-        'Directory "some/non_existing/storybook-static" is not readable.',
+        'Started adding of PHPCS exclusions to files in directories path/to/storybook-static.',
+      ],
+      [
+        'path/to/storybook-static,path/to/dist',
+        1,
+        'Started adding of PHPCS exclusions to files in directories path/to/storybook-static,path/to/dist.',
       ],
     ];
   }

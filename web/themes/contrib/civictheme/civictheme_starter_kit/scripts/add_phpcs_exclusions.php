@@ -16,6 +16,7 @@
  * Usage:
  * @code
  * php add_phpcs_exclusions.php path/to/storybook-static
+ * php add_phpcs_exclusions.php path/to/storybook-static,path/to/dist
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -55,20 +56,24 @@ function main(array $argv, int $argc): int {
 
   $template = "// phpcs:ignoreFile\n";
 
-  $target_directory = $argv[1];
-  $target_directory_original = $target_directory;
-  $target_directory = getcwd() . '/' . $target_directory;
+  $target_directories = $argv[1];
+  $target_directories_original = $target_directories;
 
-  print "==> Started adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;
+  print "==> Started adding of PHPCS exclusions to files in directories $target_directories_original." . PHP_EOL;
 
-  if (!file_exists($target_directory) || !is_dir($target_directory)) {
-    throw new \Exception(sprintf('Directory "%s" is not readable.', $target_directory_original) . PHP_EOL);
+  $target_directories = explode(',', $target_directories);
+
+  $files = [];
+  foreach ($target_directories as $target_directory) {
+    $target_directory = getcwd() . '/' . $target_directory;
+
+    if (file_exists($target_directory) && is_dir($target_directory)) {
+      $files = array_merge($files, glob($target_directory . '**/*.js') ?: []);
+    }
   }
 
-  $files = glob($target_directory . '**/*.js');
-
   if (empty($files)) {
-    throw new \Exception(sprintf('No files found in directory "%s".', $target_directory_original) . PHP_EOL);
+    throw new \Exception(sprintf('No files found in directories "%s".', $target_directories_original) . PHP_EOL);
   }
 
   foreach ($files as $file) {
@@ -103,7 +108,7 @@ Arguments:
 Options:
   --help                This help.
 Examples:
-  php add_phpcs_exclusions.php path/to/storybook-static
+  php add_phpcs_exclusions.php path/to/storybook-static,path/to/dist
 EOF;
   print PHP_EOL;
 }
