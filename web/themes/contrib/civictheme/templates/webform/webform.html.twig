@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Webform component.
+ *
+ * Variables:
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
+
+<form class="ct-webform {{ modifier_class }}" {{ attributes }}>
+  {{ title_prefix }}
+  {{ children }}
+  {{ title_suffix }}
+</form>
