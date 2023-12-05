@@ -3,41 +3,18 @@
 //
 // stylelint-disable scss/at-import-partial-extension
 
-@use 'sass:meta';
-@use 'sass:map';
-@use '00-base/variables';
+// Need to add variables outside of scoping class to avoid compilation errors for variables with !global flags.
+@import '00-base/mixins';
+@import '00-base/variables';
+
+// Import color variables.
+@import 'style.css_variables.scss';
 
 // stylelint-disable no-invalid-position-at-import-rule
 .ck-editor__editable {
-  @import '00-base/mixins/reset';
-  @import '00-base/mixins';
-  @import '00-base/variables';
-
-  // Render the variables within this class selector,
-  // replace the 2nd paramater of deep-merge below with the child theme variables if needed.
-  $colors: map.deep-merge($ct-colors-default, ());
-
-  @each $theme, $colors in $colors {
-    @each $name, $value in $colors {
-      --#{ct-string(ct-join-lists(('ct', 'color', $theme, $name), '-'))}: #{$value};
-    }
-  }
-
-  @each $name, $value in meta.module-variables('variables') {
-    // Only filter by CivicTheme variables.
-    @if str-index($name, 'ct-') {
-      // Only filter by variable names related to color or opacity.
-      @if str-index($name, 'color') or str-index($name, 'opacity') {
-        // Only filter by color or string variables.
-        @if type-of($value) == 'color' or type-of($value) == 'number' or type-of($value) == 'string' {
-          --#{$name}: #{$value};
-        }
-      }
-    }
-  }
+  @import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
 
   // Load all non-stories mixins.
-  @import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
   @import '01-atoms/**/!(*.stories).scss';
   @import '02-molecules/**/!(*.stories).scss';
   @import '03-organisms/**/!(*.stories).scss';
