@@ -19,7 +19,7 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
-    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist && php civictheme_starter_kit/scripts/add_phpcs_exclusions.php storybook-static && php civictheme_starter_kit/scripts/add_phpcs_exclusions.php civictheme_library/storybook-static && php civictheme_starter_kit/scripts/add_phpcs_exclusions.php civictheme_library/dist || true"
+    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,civictheme_library/storybook-static,civictheme_library/dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
