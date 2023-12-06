@@ -126,7 +126,7 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
 
   // Focus on the first trigger.
   setTimeout(() => {
-    document.querySelector('[data-flyout-open-trigger]')?.focus()
+    document.querySelector('[data-flyout-open-trigger]').focus();
   }, this.duration);
 };
 
