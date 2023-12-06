@@ -4,7 +4,7 @@
 // stylelint-disable scss/at-import-partial-extension
 
 // Need to add variables outside of scoping class to avoid compilation errors for variables with !global flags.
-@import '00-base/mixins';
+@import '00-base/reset/reset';
 @import '00-base/variables';
 
 // Import color variables.
@@ -22,12 +22,12 @@
   @import '05-pages/**/!(*.stories).scss';
 
   // Include civictheme content css styles for typography.
-  @extend .ct-basic-content;
   @include ct-content();
   @include ct-content-light();
 
   // Custom styling to match the FE style in ckeditor5.
-  ul, ol {
+  ul,
+  ol {
     margin-left: 0;
     margin-right: 0;
 
@@ -47,6 +47,7 @@
     padding-right: rem(28px) !important;
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
+
     @include ct-typography('text-extra-large');
   }
 
@@ -72,7 +73,8 @@
     table {
       border: none !important;
 
-      td, th {
+      td,
+      th {
         border: none !important;
       }
     }
@@ -82,4 +84,5 @@
     @include ct-content-link-base();
   }
 }
+
 // stylelint-enable no-invalid-position-at-import-rule
