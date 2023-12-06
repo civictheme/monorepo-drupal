@@ -285,14 +285,9 @@ Feature: Automated list render
     And should see an "input[name='title']" element
     And should not see an "input[name='title'].required" element
 
-  @api @testmode
-  Scenario: Automated list, All filters selected
-    Given "civictheme_page" content:
-      | title          | created            | status |
-      | [TEST] Page 18 | [relative:-5 days] | 1      |
-      | [TEST] Page 19 | [relative:-5 days] | 1      |
-
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+  @api
+  Scenario: Automated list, all filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title            | [TEST] Automated list title |
       | field_c_p_list_limit_type  | unlimited                   |
       | field_c_p_list_filters_exp | title, topic, type          |
@@ -303,14 +298,9 @@ Feature: Automated list render
     And I should see an ".ct-group-filter__filters .ct-form-element--type" element
     And I should see an ".ct-group-filter__filters .ct-form-element--title" element
 
-  @api @testmode
-  Scenario: Automated list, No filters selected
-    Given "civictheme_page" content:
-      | title          | created            | status |
-      | [TEST] Page 20 | [relative:-5 days] | 1      |
-      | [TEST] Page 21 | [relative:-5 days] | 1      |
-
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+  @api
+  Scenario: Automated list, no filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title            | [TEST] Automated list title |
       | field_c_p_list_limit_type  | unlimited                   |
       | field_c_p_list_filters_exp |                             |
@@ -321,14 +311,9 @@ Feature: Automated list render
     And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
     And I should not see an ".ct-group-filter__filters .ct-form-element--title" element
 
-  @api @testmode
-  Scenario: Automated list, Some filters selected
-    Given "civictheme_page" content:
-      | title          | created            | status |
-      | [TEST] Page 22 | [relative:-5 days] | 1      |
-      | [TEST] Page 23 | [relative:-5 days] | 1      |
-
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+  @api
+  Scenario: Automated list, some filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title            | [TEST] Automated list title |
       | field_c_p_list_limit_type  | unlimited                   |
       | field_c_p_list_filters_exp | title, topic                |
