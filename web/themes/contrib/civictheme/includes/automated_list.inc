@@ -194,15 +194,14 @@ function _civictheme_automated_list__update_view(ViewExecutable $view): void {
   }
 
   // Exposed filters.
-  $exposed_filters = explode(', ', $settings['filters_exp']);
-  $show_filters = count($exposed_filters) > 0;
-
+  $exposed_filters = array_filter(explode(', ', $settings['filters_exp'] ?? ''));
+  $show_filters = !empty($exposed_filters);
   if ($show_filters) {
     // Disable filters based on the component settings.
     $view_filters = $view->display_handler->getOption('filters');
-    foreach ($view_filters as $filter_identifier => $filter) {
-      if (!empty($filter['exposed']) && !in_array($filter['expose']['identifier'], $exposed_filters)) {
-        unset($view_filters[$filter_identifier]);
+    foreach ($view_filters as $view_filter_id => $view_filter) {
+      if (!empty($view_filter['exposed']) && !in_array($view_filter['expose']['identifier'], $exposed_filters)) {
+        unset($view_filters[$view_filter_id]);
       }
     }
     $view->display_handler->setOption('filters', $view_filters);
