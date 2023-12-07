@@ -39,7 +39,7 @@ function CivicThemeFlyout(el) {
   this.panel = this.el.querySelector('[data-flyout-panel]');
   this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.duration = this.el.hasAttribute('data-flyout-duration') ? parseInt(this.el.getAttribute('data-flyout-duration'), 10) : 500;
-  this.focus = this.el.hasAttribute('data-flyout-focus') ? this.el.getAttribute('data-flyout-focus').split(',').filter(i => i) : false;
+  this.focusTargets = this.el.hasAttribute('data-flyout-focus') ? this.el.getAttribute('data-flyout-focus').split(',').filter((i) => i) : [];
 
   // Add event listener to element.
   if (this.openTrigger) {
@@ -125,7 +125,7 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
     trigger.setAttribute('aria-expanded', false);
   });
 
-  if (this.focus) {
+  if (this.focusTargets) {
     // Focus on the first trigger.
     setTimeout(() => {
       document.querySelector('[data-flyout-open-trigger]').focus();
@@ -146,19 +146,20 @@ CivicThemeFlyout.prototype.expand = function () {
   this.panel.setAttribute('aria-hidden', false);
   document.body.style.overflow = 'hidden';
 
-  if (this.focus) {
+  if (this.focusTargets) {
     // Focus on the first available target or close button.
-    const focusPoints = [
-      ...this.focus,
+    const focusTargets = [
+      ...this.focusTargets,
       '[data-flyout-close-trigger]',
       '[data-flyout-close-all-trigger]',
     ];
-    for (let i = 0; i < focusPoints.length; i++) {
-      let points = Array.from(this.panel.querySelectorAll(focusPoints[i]));
+
+    for (let i = 0; i < focusTargets.length; i++) {
+      let focusElements = Array.from(this.panel.querySelectorAll(focusTargets[i]));
       // Filter to only focus points found in this panel.
-      points = points.filter((el) => (el.closest('[data-flyout-panel]') === this.panel));
-      if (points.length > 0) {
-        setTimeout(() => points[0].focus(), this.duration);
+      focusElements = focusElements.filter((el) => (el.closest('[data-flyout-panel]') === this.panel));
+      if (focusElements.length > 0) {
+        setTimeout(() => focusElements[0].focus(), this.duration);
         break;
       }
     }
@@ -176,7 +177,7 @@ CivicThemeFlyout.prototype.collapse = function () {
   setTimeout(() => {
     this.panel.style.visibility = null;
     document.body.style.overflow = null;
-    if (this.focus) {
+    if (this.focusTargets) {
       this.openTrigger.focus();
     }
   }, this.duration);
