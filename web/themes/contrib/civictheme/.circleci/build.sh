@@ -111,6 +111,7 @@ php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('
 
 echo "  > Adding custom patches."
 cat <<< "$(jq --indent 4 '.extra.patches = {"drupal/core": {"Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"}}' "${BUILD_DIR}/composer.json")" > "${BUILD_DIR}/composer.json"
+cat <<< "$(jq --indent 4 '.extra.patches += {"drupal/webform": {"webform_default permission": "https://www.drupal.org/files/issues/2023-12-06/webform-post-update-skip-when-format-is-missing-3404493-18.patch"}}' "${BUILD_DIR}/composer.json")" > "${BUILD_DIR}/composer.json"
 
 echo "  > Creating GitHub authentication token if provided."
 [ -n "${GITHUB_TOKEN:-}" ] && composer config --global github-oauth.github.com "$GITHUB_TOKEN" && echo "Token: " && composer config --global github-oauth.github.com
