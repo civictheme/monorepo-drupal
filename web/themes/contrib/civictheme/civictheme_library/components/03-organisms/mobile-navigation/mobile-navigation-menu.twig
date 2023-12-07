@@ -67,7 +67,7 @@ Copied as-is from '@base/menu/menu.twig'.
           title: item.title,
           url: item.url,
           modifier_class: 'ct-menu__item__link',
-          attributes: item.link_attributes|default('') ~ ' data-flyout-focus-in-target',
+          attributes: item.link_attributes|default(''),
           is_new_window: item.is_new_window is defined ? item.is_new_window : false,
           is_external: item.is_external is defined ? item.is_external : false,
         } only %}
@@ -106,7 +106,7 @@ Overrides for generation of child links.
     attributes: 'data-flyout-open-trigger aria-expanded="false" aria-label="Open %s submenu"'|format(parent_item.title),
   } only %}
 
-  <div data-flyout data-flyout-direction="right" data-flyout-focus>
+  <div data-flyout data-flyout-direction="right" data-flyout-focus=".ct-link">
     <div data-flyout-panel>
       {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
