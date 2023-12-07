@@ -653,33 +653,56 @@ function civictheme_get_icon_from_file(FileInterface $file): string {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_url_is_external(string $url, string $base_url, array $override_domains = []): bool {
-  if (empty($url) || !UrlHelper::isValid($url)) {
+  if (!civictheme_url_is_valid($url)) {
     return FALSE;
   }
 
-  $url_parts = parse_url($url);
-  if (!empty($url_parts['scheme']) && empty($url_parts['host'])) {
+  if (!UrlHelper::isExternal($url)) {
     return FALSE;
   }
 
-  if (UrlHelper::isExternal($url)) {
-    $override_domains[] = $base_url;
-    foreach ($override_domains as $override_domain) {
-      $override_domain = civictheme_external_link_normalize_domain($override_domain);
+  $override_domains[] = $base_url;
+  foreach ($override_domains as $override_domain) {
+    $override_domain = civictheme_external_link_normalize_domain($override_domain);
 
-      if (!UrlHelper::isValid($override_domain, TRUE)) {
-        continue;
-      }
+    if (!civictheme_url_is_valid($override_domain, TRUE)) {
+      continue;
+    }
 
+    try {
       if (UrlHelper::externalIsLocal($url, $override_domain)) {
         return FALSE;
       }
     }
-
-    return TRUE;
+    catch (\InvalidArgumentException $exception) {
+      return FALSE;
+    }
   }
 
-  return FALSE;
+  return TRUE;
+}
+
+/**
+ * Check if a URL is valid.
+ *
+ * @param string $url
+ *   The URL to be checked.
+ * @param bool $absolute
+ *   Whether the URL is absolute (beginning with a scheme such as "http:").
+ *
+ * @return bool
+ *   TRUE if the provided URL is valid.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ */
+function civictheme_url_is_valid(string $url, bool $absolute = FALSE) : bool {
+  if (empty($url) || !UrlHelper::isValid($url, $absolute)) {
+    return FALSE;
+  }
+
+  $url_parts = parse_url($url);
+  return !(!empty($url_parts['scheme']) && empty($url_parts['host']));
 }
 
 /**
