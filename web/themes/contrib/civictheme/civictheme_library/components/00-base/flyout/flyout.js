@@ -39,6 +39,7 @@ function CivicThemeFlyout(el) {
   this.panel = this.el.querySelector('[data-flyout-panel]');
   this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.duration = this.el.hasAttribute('data-flyout-duration') ? parseInt(this.el.getAttribute('data-flyout-duration'), 10) : 500;
+  this.focus = this.el.hasAttribute('data-flyout-focus');
 
   // Add event listener to element.
   if (this.openTrigger) {
@@ -124,10 +125,12 @@ CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
     trigger.setAttribute('aria-expanded', false);
   });
 
-  // Focus on the first trigger.
-  setTimeout(() => {
-    document.querySelector('[data-flyout-open-trigger]').focus();
-  }, this.duration);
+  if (this.focus) {
+    // Focus on the first trigger.
+    setTimeout(() => {
+      document.querySelector('[data-flyout-open-trigger]').focus();
+    }, this.duration);
+  }
 };
 
 /**
@@ -143,9 +146,22 @@ CivicThemeFlyout.prototype.expand = function () {
   this.panel.setAttribute('aria-hidden', false);
   document.body.style.overflow = 'hidden';
 
-  // Set focus on first link if available.
-  if (this.panel.querySelector('a.ct-link')) {
-    setTimeout(() => this.panel.querySelector('a.ct-link').focus(), this.duration);
+  if (this.focus) {
+    // Focus on the first available target or close button.
+    const focusPoints = [
+      '[data-flyout-focus-in-target]',
+      '[data-flyout-close-trigger]',
+      '[data-flyout-close-all-trigger]',
+    ];
+    for (let i = 0; i < focusPoints.length; i++) {
+      let points = Array.from(this.panel.querySelectorAll(focusPoints[i]));
+      // Filter to only focus points found in this panel.
+      points = points.filter((el) => (el.closest('[data-flyout-panel]') === this.panel));
+      if (points.length > 0) {
+        setTimeout(() => points[0].focus(), this.duration);
+        break;
+      }
+    }
   }
 };
 
@@ -160,7 +176,9 @@ CivicThemeFlyout.prototype.collapse = function () {
   setTimeout(() => {
     this.panel.style.visibility = null;
     document.body.style.overflow = null;
-    this.openTrigger.focus();
+    if (this.focus) {
+      this.openTrigger.focus();
+    }
   }, this.duration);
 };
 
