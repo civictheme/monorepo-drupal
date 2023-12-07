@@ -137,7 +137,7 @@ Feature: CivicTheme listing renders on views pages with filters
   #     | civictheme-no-sidebar/listing-one-filter-single-select               |
   #     | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block |
 
-    @api @testmode
+  @api @testmode
   Scenario Outline: Listing example - One filter - Multi
     Given I am an anonymous user
     When I go to "<path>"
@@ -162,6 +162,8 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 13"
     And I should not see the text "[TEST] Page 14"
     And I should not see the text "[TEST] Page 15"
+    # @todo Remove once https://www.drupal.org/project/drupal/issues/2900248 is resolved.
+    And the cache has been cleared
 
     Examples:
       | path                                                                |
