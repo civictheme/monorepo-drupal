@@ -16,7 +16,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="ct-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right">
+<div class="ct-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right" data-flyout-focus=".ct-link">
   <div data-flyout-panel class="ct-mobile-navigation__panel">
     {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
