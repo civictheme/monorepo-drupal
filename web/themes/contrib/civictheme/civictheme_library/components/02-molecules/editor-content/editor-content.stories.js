@@ -107,5 +107,5 @@ export const EditorContent = () => {
     ],
   });
 
-  return `<div class="container"><div class="row"><div class="col-xxs-12"><div class="cke_editable">${html}</div></div></div></div></div>`;
+  return `<div class="container"><div class="row"><div class="col-xxs-12"><div class="ck-editor__editable">${html}</div></div></div></div></div>`;
 };
