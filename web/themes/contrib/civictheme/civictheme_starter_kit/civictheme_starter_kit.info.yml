@@ -49,6 +49,7 @@ libraries-override:
 
 ckeditor5-stylesheets:
   - dist/styles.editor.css
+  - dist/styles.variables.css
 
 components:
   namespaces:
