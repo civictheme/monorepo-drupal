@@ -11,7 +11,7 @@
         "php": ">=8.1",
         "drupal/config_devel": "^1.9",
         "drupal/config_filter": "^2.4",
-        "drupal/config_ignore": "^2",
+        "drupal/config_ignore": "^3",
         "drupal/config_inspector": "^2",
         "drupal/environment_indicator": "^4.0",
         "drupal/shield": "^1.7",
