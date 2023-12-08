@@ -91,6 +91,10 @@
     }
   }
 
+  a {
+    @include ct-content-link-base();
+  }
+
   blockquote {
     @include ct-typography('quote');
 
