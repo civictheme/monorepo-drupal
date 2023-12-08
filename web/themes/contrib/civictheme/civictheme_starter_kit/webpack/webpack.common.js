@@ -2,9 +2,10 @@
 
 const path = require('path');
 const glob = require('glob');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// eslint-disable-next-line import/no-useless-path-segments
 const { isOutdated, printHeader } = require('../../../../contrib/civictheme/civictheme_library/webpack/info');
 
 printHeader();
@@ -68,7 +69,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({chunk}) => (chunk.name === 'main' ? 'styles.css' : `styles.${chunk.name}.css`),
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'styles.css' : `styles.${chunk.name}.css`),
     }),
     new CleanWebpackPlugin({
       dry: false,
