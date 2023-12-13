@@ -140,7 +140,7 @@ function print_footer(string $name, string $machine_name, string $path): void {
   NEXT STEPS
   ----------
 
-  Insure that front-end assets can be built:
+  Ensure that front-end assets can be built:
 
     cd $path
     npm install
