@@ -45,13 +45,6 @@ function civictheme_preprocess_input(array &$variables): void {
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
   }
-
-  // Fix htmlentity in submit button text.
-  $element = $variables['element'];
-
-  if (isset($element['#type']) && $element['#type'] == 'submit' && !empty($variables['attributes']['value'])) {
-    $variables['value'] = $variables['attributes']['value'];
-  }
 }
 
 /**
