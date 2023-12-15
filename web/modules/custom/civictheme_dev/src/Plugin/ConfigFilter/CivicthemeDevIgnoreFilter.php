@@ -5,6 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\civictheme_dev\Plugin\ConfigFilter;
 
 use Drupal\config_filter\Plugin\ConfigFilterBase;
+use Drupal\Core\Config\StorageInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Ignore selected config items.
@@ -22,7 +25,43 @@ use Drupal\config_filter\Plugin\ConfigFilterBase;
  *   weight = 100
  * )
  */
-class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
+class CivicthemeDevIgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInterface{
+
+  /**
+   * The active configuration storage service.
+   *
+   * @var StorageInterface
+   */
+  protected StorageInterface $active;
+
+  /**
+   * Constructs a new config filter.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param array $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Config\StorageInterface $active
+   *   The active configuration store with the configuration on the site.
+   */
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, StorageInterface $active) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->active = $active;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('config.storage')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -103,6 +142,21 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
     }
 
     return $data;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function filterCreateCollection($collection) {
+    return new static($this->configuration, $this->pluginId, $this->pluginDefinition, $this->active->createCollection($collection));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function filterGetAllCollectionNames(array $collections) {
+    // Add active collection names as there could be ignored config in them.
+    return array_merge($collections, $this->active->getAllCollectionNames());
   }
 
   /**
