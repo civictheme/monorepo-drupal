@@ -196,7 +196,7 @@
                 "web/modules/custom/cs_generated_content/composer.json"
             ],
             "recurse": true,
-            "replace": true,
+            "replace": false,
             "ignore-duplicates": false,
             "merge-dev": true,
             "merge-extra": false,
