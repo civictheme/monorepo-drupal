@@ -63,7 +63,7 @@
               <form {{ form_attributes }}>
             {% endif %}
 
-            <div class="row row--no-wrap">
+            <div class="row row--no-wrap ct-group-filter__filter-row">
               <div class="col col--no-grow">
                 <div class="ct-align-middle">
                   {% if title %}
@@ -80,7 +80,6 @@
                 <div class="ct-align-middle">
                   {% include '@base/item-list/item-list.twig' with {
                     items: filters_items,
-                    size: 'large',
                     modifier_class: 'ct-group-filter__filters',
                     attributes: 'data-ct-group-filter-filters',
                   } only %}
