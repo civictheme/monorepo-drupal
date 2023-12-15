@@ -25,12 +25,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   weight = 100
  * )
  */
-class CivicthemeDevIgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInterface{
+class CivicthemeDevIgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInterface {
 
   /**
    * The active configuration storage service.
    *
-   * @var StorageInterface
+   * @var \Drupal\Core\Config\StorageInterface
    */
   protected StorageInterface $active;
 
