@@ -7,16 +7,67 @@
   padding-bottom: ct-spacing(3);
   margin-top: ct-spacing(4);
   margin-bottom: ct-spacing(5);
-  padding-left: ct-spacing(4);
-  padding-right: ct-spacing(4);
+
+  @include ct-breakpoint(m) {
+    padding-left: ct-spacing(4);
+    padding-right: ct-spacing(4);
+  }
 
   #{$root}__title {
-    white-space: nowrap;
     margin-bottom: 0;
+
+    @include ct-breakpoint(m) {
+      white-space: nowrap;
+    }
   }
 
   #{$root}__submit {
     white-space: nowrap;
+  }
+
+  #{$root}__filters {
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+
+    @include ct-breakpoint(l) {
+      gap: ct-spacing(4);
+    }
+
+    // No page sidebar.
+    .ct-layout__inner > .ct-layout__main & {
+      @include ct-breakpoint(m) {
+        flex-direction: row;
+      }
+    }
+
+    // With page sidebar.
+    .ct-layout__sidebar + .ct-layout__main & {
+      @include ct-breakpoint(l) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  #{$root}__filter-row {
+    flex-direction: column;
+    gap: ct-spacing(2);
+
+    // No page sidebar.
+    .ct-layout__inner > .ct-layout__main & {
+      @include ct-breakpoint(l) {
+        flex-direction: row;
+        gap: initial;
+      }
+    }
+
+    // With page sidebar.
+    .ct-layout__sidebar + .ct-layout__main & {
+      @include ct-breakpoint(xxl) {
+        flex-direction: row;
+        gap: initial;
+      }
+    }
   }
 
   @include ct-component-theme($root) using($root, $theme) {
