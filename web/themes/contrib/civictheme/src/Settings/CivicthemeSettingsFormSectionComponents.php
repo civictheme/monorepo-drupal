@@ -352,7 +352,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
-      '#default_value' => $this->themeConfigManager->loadForComponent('event_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+      '#default_value' => $this->themeConfigManager->loadForComponent('event_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
     $form['components']['navigation_card'] = [
@@ -368,23 +368,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
-      '#default_value' => $this->themeConfigManager->loadForComponent('navigation_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
-    ];
-
-    $form['components']['publication_card'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Publication card'),
-      '#group' => 'components',
-      '#tree' => TRUE,
-    ];
-
-    $form['components']['publication_card']['summary_length'] = [
-      '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
-      '#type' => 'number',
-      '#required' => TRUE,
-      '#min' => 0,
-      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+      '#default_value' => $this->themeConfigManager->loadForComponent('navigation_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
     $form['components']['promo_card'] = [
@@ -400,7 +384,39 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
-      '#default_value' => $this->themeConfigManager->loadForComponent('promo_card', 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH),
+      '#default_value' => $this->themeConfigManager->loadForComponent('promo_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['publication_card'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Publication card'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['publication_card']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['snippet'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Snippet'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['snippet']['summary_length'] = [
+      '#title' => $this->t('Summary length'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#type' => 'number',
+      '#required' => TRUE,
+      '#min' => 0,
+      '#default_value' => $this->themeConfigManager->loadForComponent('snippet', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
     $form['#process'][] = [$this, 'processForm'];
