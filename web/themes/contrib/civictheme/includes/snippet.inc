@@ -36,7 +36,7 @@ function civictheme_preprocess_paragraph__civictheme_snippet_ref(array &$variabl
  */
 function _civictheme_preprocess_node__civictheme_snippet(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__summary($variables);
+  _civictheme_preprocess_paragraph__node_field__summary($variables, $variables['view_mode'] ?? 'civictheme_snippet');
   _civictheme_preprocess_paragraph__node_field__link($variables);
   _civictheme_preprocess_paragraph__node_field__topics($variables);
   // @see civictheme_preprocess_views_view_grid()

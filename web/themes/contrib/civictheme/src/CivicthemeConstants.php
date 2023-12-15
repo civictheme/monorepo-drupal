@@ -147,7 +147,16 @@ final class CivicthemeConstants {
   const NAVIGATION_DROPDOWN_DRAWER = 'drawer';
 
   /**
+   * Defines component summary length.
+   */
+  const COMPONENT_SUMMARY_DEFAULT_LENGTH = 160;
+
+  /**
    * Defines card summary length.
+   *
+   * @deprecated in civictheme:1.6.2 and is removed from civicthtme:1.8.0.
+   * Replaceed by COMPONENT_SUMMARY_DEFAULT_LENGTH.
+   * @see https://www.drupal.org/project/civictheme/issues/3409009
    */
   const CARD_SUMMARY_DEFAULT_LENGTH = 160;
 

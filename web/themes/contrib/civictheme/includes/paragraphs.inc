@@ -212,11 +212,11 @@ function _civictheme_preprocess_paragraph__paragraph_field__links(array &$variab
 function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$variables): void {
   $summary = civictheme_get_field_value($variables['paragraph'], 'field_c_p_summary', TRUE);
   if (!empty($summary)) {
-    $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
+    $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
-    $card_name = _civictheme_get_card_name_from_bundle($variables['paragraph']->bundle());
-    if ($card_name) {
-      $length = civictheme_get_theme_config_manager()->loadForComponent($card_name, 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+    $component_name = _civictheme_get_configurable_component_name_from_bundle($variables['paragraph']->bundle());
+    if ($component_name) {
+      $length = civictheme_get_theme_config_manager()->loadForComponent($component_name, 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH);
     }
 
     $variables['summary'] = text_summary($summary, NULL, $length);
@@ -231,11 +231,11 @@ function _civictheme_preprocess_paragraph__node_field__summary(array &$variables
   if ($node) {
     $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
     if (!empty($summary)) {
-      $length = CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH;
+      $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
-      $card_name = _civictheme_get_card_name_from_bundle($bundle ?? (!empty($variables['paragraph']) ? $variables['paragraph']->bundle() : 'none'));
-      if ($card_name) {
-        $length = civictheme_get_theme_config_manager()->loadForComponent($card_name, 'summary_length', CivicthemeConstants::CARD_SUMMARY_DEFAULT_LENGTH);
+      $component_name = _civictheme_get_configurable_component_name_from_bundle($bundle ?? (!empty($variables['paragraph']) ? $variables['paragraph']->bundle() : 'none'));
+      if ($component_name) {
+        $length = civictheme_get_theme_config_manager()->loadForComponent($component_name, 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH);
       }
 
       $variables['summary'] = text_summary($summary, NULL, $length);
