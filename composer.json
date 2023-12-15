@@ -115,6 +115,9 @@
         "patches": {
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "drupal/generated_content" : {
+                "Error: Class \"Drupal\\config_ignore\\Plugin\\ConfigFilter\\IgnoreFilter\" not found": "https://www.drupal.org/files/issues/2023-12-15/generated_content-missing-class-3408950-5.patch"
             }
         },
         "drupal-scaffold": {
