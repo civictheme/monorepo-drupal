@@ -208,6 +208,13 @@ civictheme.settings:
             summary_length:
               label: 'Summary length'
               type: integer
+        snippet:
+          type: mapping
+          label: 'Snippet settings'
+          mapping:
+            summary_length:
+              label: 'Summary length'
+              type: integer
     colors:
       type: mapping
       label: Colors
