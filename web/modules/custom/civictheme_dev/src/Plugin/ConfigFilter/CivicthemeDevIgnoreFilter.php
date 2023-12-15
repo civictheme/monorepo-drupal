@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\civictheme_dev\Plugin\ConfigFilter;
 
-use Drupal\config_ignore\Plugin\ConfigFilter\IgnoreFilter;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\config_filter\Plugin\ConfigFilterBase;
 
 /**
  * Ignore selected config items.
@@ -21,7 +22,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  *   weight = 100
  * )
  */
-class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactoryPluginInterface {
+class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
 
   /**
    * {@inheritdoc}
