@@ -9,6 +9,6 @@
     },
     "require": {
         "php": ">=8.1",
-        "drupal/generated_content": "^1.2"
+        "drupal/generated_content": "^1.4"
     }
 }
