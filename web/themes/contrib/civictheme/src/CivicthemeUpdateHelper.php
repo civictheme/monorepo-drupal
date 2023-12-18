@@ -65,17 +65,26 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Finish callback called when batch finished.
    * @param int $batch_size
    *   Batch size. Defaults to 10.
+   * @param int|null $limit
+   *   Limit. Defaults to no limit.
    *
    * @return string|null
    *   Return log message on the last pass of the update.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10): ?string {
+  public function update(array &$sandbox, $entity_type, array $entity_bundles, callable $start_callback, callable $process_callback, callable $finish_callback, int $batch_size = 10, ?int $limit = NULL): ?string {
     $storage = $this->entityTypeManager->getStorage($entity_type);
 
     if (!isset($sandbox['entities'])) {
-      $sandbox['batch'] = 0;
-      $sandbox['entities'] = $storage->getQuery()->accessCheck(FALSE)->condition('type', $entity_bundles, 'IN')->execute();
+      $query = $storage->getQuery()->accessCheck(FALSE)->condition('type', $entity_bundles, 'IN');
+      if ($limit) {
+        $query->range(0, $limit);
+      }
+      $sandbox['entities'] = $query->execute();
+
       $sandbox['max'] = count($sandbox['entities']);
+      $sandbox['batch'] = 0;
 
       $sandbox['results']['processed'] = [];
       $sandbox['results']['updated'] = [];
