@@ -3,7 +3,9 @@ import {
   radios, number, text,
 } from '@storybook/addon-knobs';
 
-import {getSlots, randomFormElements, randomInt, randomName, randomString} from '../../00-base/base.utils';
+import {
+  getSlots, randomFormElements, randomInt, randomString,
+} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter from './group-filter.twig';
 
