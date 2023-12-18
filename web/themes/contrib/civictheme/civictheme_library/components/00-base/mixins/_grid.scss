@@ -125,8 +125,8 @@
 //
 // Do not use directly.
 //
-@mixin _ct-col-factory($thisPrefix) {
-  .col-#{$thisPrefix} {
+@mixin _ct-col-factory($bp) {
+  .col-#{$bp} {
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
@@ -135,59 +135,59 @@
   }
 
   @for $i from 1 through $ct-grid-columns {
-    .col-#{$thisPrefix}-#{$i} {
+    .col-#{$bp}-#{$i} {
       flex-basis: math.div(100%, $ct-grid-columns) * $i;
       max-width: math.div(100%, $ct-grid-columns) * $i;
 
       @include _ct-print-all-gutters();
     }
 
-    .col-#{$thisPrefix}-offset-#{$i} {
+    .col-#{$bp}-offset-#{$i} {
       margin-left: math.div(100%, $ct-grid-columns) * $i;
     }
   }
 
-  .col-#{$thisPrefix}-offset-0 {
+  .col-#{$bp}-offset-0 {
     margin-left: 0;
   }
 
-  .row.start-#{$thisPrefix} {
+  .row.start-#{$bp} {
     justify-content: flex-start;
   }
 
-  .row.center-#{$thisPrefix} {
+  .row.center-#{$bp} {
     justify-content: center;
   }
 
-  .row.end-#{$thisPrefix} {
+  .row.end-#{$bp} {
     justify-content: flex-end;
   }
 
-  .row.top-#{$thisPrefix} {
+  .row.top-#{$bp} {
     align-items: flex-start;
   }
 
-  .row.middle-#{$thisPrefix} {
+  .row.middle-#{$bp} {
     align-items: center;
   }
 
-  .row.bottom-#{$thisPrefix} {
+  .row.bottom-#{$bp} {
     align-items: flex-end;
   }
 
-  .row.around-#{$thisPrefix} {
+  .row.around-#{$bp} {
     justify-content: space-around;
   }
 
-  .row.between-#{$thisPrefix} {
+  .row.between-#{$bp} {
     justify-content: space-between;
   }
 
-  .first-#{$thisPrefix} {
+  .first-#{$bp} {
     order: -1;
   }
 
-  .last-#{$thisPrefix} {
+  .last-#{$bp} {
     order: 1;
   }
 }
