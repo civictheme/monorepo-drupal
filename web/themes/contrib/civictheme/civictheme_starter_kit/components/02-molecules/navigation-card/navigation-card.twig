@@ -65,13 +65,12 @@
   #}
   {% if tags %}
     <div class="ct-navigation-card__tags">
-      {% for tag in tags %}
-        {% include '@atoms/tag/tag.twig' with {
+      {% if tags %}
+        {% include '@molecules/tag-list/tag-list.twig' with {
           theme: theme,
-          text: tag,
-          is_alt: true,
+          tags: tags,
         } only %}
-      {% endfor %}
+      {% endif %}
     </div>
   {% endif %}
 {% endblock %}
