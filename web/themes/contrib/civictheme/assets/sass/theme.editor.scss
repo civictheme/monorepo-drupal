@@ -7,6 +7,7 @@
 @import 'components/00-base/variables';
 @import 'components/00-base/**/mixins/*.scss';
 @import 'components/00-base/**/fonts';
+@import 'components/01-atoms/**/button/*.scss';
 
 .ck-editor__editable {
   @include ct-content();
