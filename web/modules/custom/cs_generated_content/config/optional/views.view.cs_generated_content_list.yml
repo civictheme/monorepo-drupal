@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.node.civictheme_snippet
   module:
     - node
     - user
@@ -162,21 +164,21 @@ display:
             default_group_multiple: {  }
             group_items: {  }
       style:
-        type: html_list
+        type: grid
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          type: ul
-          wrapper_class: item-list
-          class: ''
+          uses_fields: false
+          columns: 1
+          automatic_width: true
+          alignment: horizontal
+          row_class_custom: ''
+          row_class_default: true
+          col_class_custom: ''
+          col_class_default: true
       row:
-        type: fields
+        type: 'entity:node'
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: civictheme_snippet
       query:
         type: views_query
         options:
