@@ -22,6 +22,7 @@
         "drupal/webform": "^6.2"
     },
     "suggest": {
+        "drupal/ckeditor": "CKEditor 4 - WYSIWYG HTML editor",
         "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
     }
 }
