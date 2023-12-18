@@ -20,11 +20,11 @@
     text: attributes.value,
     modifier_class: modifier_class,
     attributes: attributes,
-    kind: 'submit'
+    kind: 'submit',
+    theme: theme
   } only %}
 {% endset %}
 {% include "@molecules/form-element/form-element.twig" with {
   type: 'submit',
   children: children,
 } only %}
-
