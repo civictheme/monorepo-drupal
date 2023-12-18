@@ -1,3 +1,4 @@
+pr del test
 <p align="center">
   <a href="" rel="noopener">
   <img height=100px src="web/themes/contrib/civictheme/assets/logos/logo_secondary_light_mobile.png" alt="CivicTheme logo"></a>
@@ -25,7 +26,7 @@
 
 ---
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > For Drupal theme installation instructions into your site, see https://docs.civictheme.io/development/drupal-theme
 
 ## Local environment setup
