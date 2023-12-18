@@ -3,7 +3,7 @@ import {
   radios, number, text,
 } from '@storybook/addon-knobs';
 
-import { randomFormElements } from '../../00-base/base.utils';
+import {getSlots, randomFormElements} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter from './group-filter.twig';
 
@@ -58,5 +58,9 @@ export const GroupFilter = () => {
   return CivicThemeGroupFilter({
     ...generalKnobs,
     filters,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };
