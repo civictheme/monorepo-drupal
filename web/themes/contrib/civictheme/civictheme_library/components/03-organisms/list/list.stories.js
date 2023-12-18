@@ -134,7 +134,7 @@ export const List = (knobTab) => {
         for (let j = 0; j < filtersCount; j++) {
           filters.push({
             content: randomFormElements(1, generalKnobs.theme, true)[0],
-            title: `Filter ${j + 1}`,
+            title: `Filter ${randomString(randomInt(3, 8))} ${j + 1}`,
           });
         }
       }
