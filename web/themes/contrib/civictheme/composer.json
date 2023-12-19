@@ -10,19 +10,19 @@
     },
     "require": {
         "php": ">=8.1",
-        "drupal/ckeditor": "^1",
         "drupal/components": "^3@beta",
-        "drupal/field_group": "^3.2",
-        "drupal/layout_builder_restrictions": "^2.13",
-        "drupal/linkit": "^6@beta",
-        "drupal/menu_block": "^1.8",
-        "drupal/paragraphs": "^1.14",
-        "drupal/pathauto": "^1.11",
-        "drupal/redirect": "^1.8",
+        "drupal/field_group": "^3.4",
+        "drupal/layout_builder_restrictions": "^2.19",
+        "drupal/linkit": "^6.1",
+        "drupal/menu_block": "^1.10",
+        "drupal/paragraphs": "^1.16",
+        "drupal/pathauto": "^1.12",
+        "drupal/redirect": "^1.9",
         "drupal/simple_sitemap": "^4.1",
-        "drupal/webform": "^6.1"
+        "drupal/webform": "^6.2"
     },
     "suggest": {
+        "drupal/ckeditor": "CKEditor 4 - WYSIWYG HTML editor",
         "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
     }
 }

@@ -91,7 +91,7 @@
     }
   }
 
-  a {
+  a:not(.ct-button) {
     @include ct-content-link-base();
   }
 

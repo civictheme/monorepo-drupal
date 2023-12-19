@@ -20,7 +20,7 @@
 #}
 
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, with_background_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if filters is not empty %}
   {% set title = title|default('Filter results by:') %}
@@ -63,7 +63,7 @@
               <form {{ form_attributes }}>
             {% endif %}
 
-            <div class="row row--no-wrap ct-group-filter__filter-row">
+            <div class="row row--no-wrap ct-group-filter__row">
               <div class="col col--no-grow">
                 <div class="ct-align-middle">
                   {% if title %}

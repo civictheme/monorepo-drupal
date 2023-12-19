@@ -3,6 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeBasicContent from './basic-content.twig';
 import CivicThemeContentLink from '../../01-atoms/content-link/content-link.twig';
+import CivicThemeButton from '../../01-atoms/button/button.twig';
 import CivicThemeTable from '../../01-atoms/table/table.twig';
 import CivicThemeFigure from '../figure/figure.twig';
 import CivicThemeVideoPlayer from '../video-player/video-player.twig';
@@ -58,6 +59,28 @@ export const BasicContent = (knobTab) => {
     url: 'https://example.com',
   })} nisi anim.</p>
     <p>Deserunt in ex dolore. <sup>Super cupidatat esse.</sup> <sub>Sub do mollit aute labore.</sub></p>
+    <p>Primary button link within text mollit in minim ut non ${CivicThemeButton({
+    theme,
+    kind: 'link',
+    type: 'primary',
+    text: 'Primary button text',
+    url: 'https://example.com',
+  })} nisi anim.</p>
+    <p>Secondary button link within text mollit in minim ut non ${CivicThemeButton({
+    theme,
+    kind: 'link',
+    type: 'secondary',
+    text: 'Secondary button text',
+    url: 'https://example.com',
+  })} nisi anim.</p>
+    <p>Tertiary button link within text mollit in minim ut non ${CivicThemeButton({
+    theme,
+    kind: 'link',
+    type: 'tertiary',
+    text: 'Tertiary button text',
+    url: 'https://example.com',
+  })} nisi anim.</p>
+    <p>Sed aute in sed consequat veniam excepteur minim mollit.</p>
   `;
 
   // Blockquote.
