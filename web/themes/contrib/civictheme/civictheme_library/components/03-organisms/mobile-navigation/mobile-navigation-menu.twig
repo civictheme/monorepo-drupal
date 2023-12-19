@@ -99,21 +99,21 @@ Overrides for generation of child links.
 
   {% include '@atoms/button/button.twig' with {
     theme: theme,
-    kind: 'link',
+    kind: 'button',
     icon: 'right-arrow-2',
     size: 'regular',
     modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
     attributes: 'data-flyout-open-trigger aria-expanded="false" aria-label="Open %s submenu"'|format(parent_item.title),
   } only %}
 
-  <div data-flyout data-flyout-direction="right">
+  <div data-flyout data-flyout-direction="right" data-flyout-focus=".ct-link">
     <div data-flyout-panel>
       {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
       <div class="ct-mobile-navigation__close-trigger">
         {% include '@atoms/button/button.twig' with {
           theme: theme,
-          kind: 'link',
+          kind: 'button',
           icon: 'left-arrow-outline',
           icon_placement: 'before',
           size: 'regular',

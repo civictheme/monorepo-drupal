@@ -284,3 +284,42 @@ Feature: Automated list render
     And I see field "Title"
     And should see an "input[name='title']" element
     And should not see an "input[name='title'].required" element
+
+  @api
+  Scenario: Automated list, all filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+      | field_c_p_title            | [TEST] Automated list title |
+      | field_c_p_list_limit_type  | unlimited                   |
+      | field_c_p_list_filters_exp | title, topic, type          |
+
+    When I visit "civictheme_page" "Test page with Automated list content"
+    Then I should see an ".ct-list__filters" element
+    And I should see an ".ct-group-filter__filters .ct-form-element--topic" element
+    And I should see an ".ct-group-filter__filters .ct-form-element--type" element
+    And I should see an ".ct-group-filter__filters .ct-form-element--title" element
+
+  @api
+  Scenario: Automated list, no filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+      | field_c_p_title            | [TEST] Automated list title |
+      | field_c_p_list_limit_type  | unlimited                   |
+      | field_c_p_list_filters_exp |                             |
+
+    When I visit "civictheme_page" "Test page with Automated list content"
+    Then I should not see an ".ct-list__filters" element
+    And I should not see an ".ct-group-filter__filters .ct-form-element--topic" element
+    And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
+    And I should not see an ".ct-group-filter__filters .ct-form-element--title" element
+
+  @api
+  Scenario: Automated list, some filters shown
+    Given "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+      | field_c_p_title            | [TEST] Automated list title |
+      | field_c_p_list_limit_type  | unlimited                   |
+      | field_c_p_list_filters_exp | title, topic                |
+
+    When I visit "civictheme_page" "Test page with Automated list content"
+    Then I should see an ".ct-list__filters" element
+    And I should see an ".ct-group-filter__filters .ct-form-element--topic" element
+    And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
+    And I should see an ".ct-group-filter__filters .ct-form-element--title" element

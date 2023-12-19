@@ -49,6 +49,11 @@ libraries-override:
 
 ckeditor5-stylesheets:
   - dist/styles.editor.css
+  - dist/styles.variables.css
+  # Using colors from the Color Selector is not supported until the issue
+  # below is resolved.
+  # @see https://www.drupal.org/project/drupal/issues/3406959
+  # - /sites/default/files/css-variables.civictheme_starter_kit.css
 
 components:
   namespaces:

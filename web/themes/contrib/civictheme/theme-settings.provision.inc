@@ -881,7 +881,7 @@ function _civictheme_provision__blocks__copyright(array $block): void {
     'type' => 'civictheme_content',
   ]);
   $paragraph->field_c_p_content = [
-    'value' => "<p class=\"text-align-right ct-text-small\">©2022 Commonwealth of Australia</p>\r\n",
+    'value' => "<p class=\"text-align-right ct-text-small\">©2024 Commonwealth of Australia</p>\r\n",
     'format' => 'civictheme_rich_text',
   ];
   $paragraph->field_c_p_theme = 'dark';

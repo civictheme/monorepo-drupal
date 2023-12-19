@@ -20,7 +20,7 @@ import {
 } from '../../00-base/base.utils';
 
 export default {
-  title: 'Molecules/Card/Navigation Card',
+  title: 'Molecules/Navigation Card',
   parameters: {
     layout: 'centered',
   },
@@ -39,23 +39,18 @@ export const NavigationCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    size: radios(
-      'Size',
-      {
-        Large: 'large',
-        Small: 'small',
-      },
-      'large',
-      generalKnobTab,
-    ),
     title: text('Title', 'Navigation card heading which runs across two or three lines', generalKnobTab),
-    summary: text('Summary', '', generalKnobTab),
-    url: text('URL', randomUrl(), generalKnobTab),
-    is_external: boolean('Is external', false, generalKnobTab),
+    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
+    link: {
+      url: text('Link URL', randomUrl(), generalKnobTab),
+      is_external: boolean('Link is external', false, generalKnobTab),
+      is_new_window: boolean('Open in a new window', false, generalKnobTab),
+    },
     image: boolean('With image', true, generalKnobTab) ? {
       url: demoImage(),
       alt: 'Image alt text',
     } : false,
+    image_as_icon: boolean('Image as icon', false, generalKnobTab),
     // This is a new property added for this extended component.
     tags: randomTags(number(
       'Number of tags',
@@ -68,16 +63,17 @@ export const NavigationCard = (knobTab) => {
       },
       generalKnobTab,
     ), true),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
-  const withIcon = boolean('With icon', false, iconKnobTab);
+  const withIcon = boolean('With icon', false, generalKnobTab);
   const iconKnobs = {
     icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
   };
 
-  const html = CivicThemeNavigationCard({
+  return CivicThemeNavigationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([
@@ -87,6 +83,4 @@ export const NavigationCard = (knobTab) => {
       'content_bottom',
     ]),
   });
-
-  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };

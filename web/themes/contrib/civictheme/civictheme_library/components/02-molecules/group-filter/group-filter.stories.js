@@ -3,7 +3,9 @@ import {
   radios, number, text,
 } from '@storybook/addon-knobs';
 
-import { randomFormElements } from '../../00-base/base.utils';
+import {
+  getSlots, randomFormElements, randomInt, randomString,
+} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter from './group-filter.twig';
 
@@ -50,7 +52,7 @@ export const GroupFilter = () => {
     for (let i = 0; i < generalKnobs.filter_number; i++) {
       filters.push({
         content: randomFormElements(1, generalKnobs.theme, true)[0],
-        title: `Filter ${i + 1}`,
+        title: `Filter ${randomString(randomInt(3, 8))} ${i + 1}`,
       });
     }
   }
@@ -58,5 +60,9 @@ export const GroupFilter = () => {
   return CivicThemeGroupFilter({
     ...generalKnobs,
     filters,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };

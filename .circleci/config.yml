@@ -92,7 +92,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:23.10.0
+      - image: drevops/ci-runner:23.11.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS

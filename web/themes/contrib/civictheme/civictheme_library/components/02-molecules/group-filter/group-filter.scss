@@ -15,6 +15,24 @@
     margin-bottom: 0;
   }
 
+  #{$root}__row {
+    flex-direction: column;
+    gap: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+      gap: initial;
+    }
+  }
+
+  #{$root}__filters {
+    flex-direction: column;
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+    }
+  }
+
   #{$root}__submit {
     white-space: nowrap;
   }
