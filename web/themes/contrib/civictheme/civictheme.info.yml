@@ -94,7 +94,6 @@ ckeditor5-stylesheets:
   # below is resolved.
   # @see https://www.drupal.org/project/drupal/issues/3406959
   # - /sites/default/files/css-variables.civictheme.css
-
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civictheme`.
