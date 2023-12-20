@@ -25,7 +25,6 @@ use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\user\Entity\Role;
 use Drush\Drush;
 
 /**
@@ -929,7 +928,8 @@ function civictheme_provision__permissions(): void {
   $all_permissions = array_keys($permission_handler->getPermissions());
 
   foreach ($map as $role_name => $permissions_map) {
-    $role = Role::load($role_name);
+    /** @var \Drupal\user\RoleInterface|null $role */
+    $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_name);
     if (!$role) {
       continue;
     }
