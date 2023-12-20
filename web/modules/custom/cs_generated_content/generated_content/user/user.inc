@@ -8,7 +8,6 @@
 use Drupal\Core\Link;
 use Drupal\Core\Utility\Error;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
-use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -59,7 +58,9 @@ function cs_generated_content_generated_content_create_user_user(): array {
           \Drupal::entityTypeManager()->getStorage('user')->load($existing_user->id())->delete();
         }
 
-        if (Role::load($role_id)) {
+        /** @var \Drupal\user\RoleInterface|null $role */
+        $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_id);
+        if ($role) {
           $user = User::create();
           $user->setUsername($name);
           $user->setEmail($name);

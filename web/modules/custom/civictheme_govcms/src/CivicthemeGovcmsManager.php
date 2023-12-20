@@ -232,6 +232,7 @@ final class CivicthemeGovcmsManager {
     ];
 
     foreach ($names as $name) {
+      /** @var \Drupal\user\RoleInterface|null $entity */
       $entity = $this->entityTypeManager->getStorage('user_role')->load($name);
       if ($entity) {
         $entity->delete();
