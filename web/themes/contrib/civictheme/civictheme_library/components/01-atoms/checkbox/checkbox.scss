@@ -58,7 +58,7 @@
       }
     }
 
-    &:focus,
+    &:focus-visible,
     &:hover {
       & + .ct-checkbox__state {
         &::before {
@@ -98,7 +98,7 @@
         }
       }
 
-      &:focus {
+      &:focus-visible {
         & + .ct-checkbox__state {
           &::before {
             @include ct-outline();
@@ -186,7 +186,7 @@
         }
       }
 
-      &:focus {
+      &:focus-visible {
         & + .ct-checkbox__state {
           &::before {
             @include ct-outline(true);

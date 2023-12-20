@@ -64,7 +64,7 @@
         box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-border-color;
       }
 
-      &:focus {
+      &:focus-visible {
         background-color: $ct-input-light-focus-background-color;
         color: $ct-input-light-focus-color;
         outline: $ct-input-light-focus-outline-color;

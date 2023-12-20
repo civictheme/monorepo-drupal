@@ -163,7 +163,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-left-color: ct-component-var($root, $theme, menu-divider, border-color);
       background-color: transparent;
 
-      &:focus {
+      &:focus-visible {
         @include ct-outline-theme($theme);
       }
 
@@ -176,7 +176,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       [data-flyout-close-trigger] {
         color: ct-component-var($root, $theme, subsection-heading, color);
 
-        &:focus {
+        &:focus-visible {
           @include ct-outline-theme($theme);
         }
 
@@ -216,7 +216,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
   @include ct-component-theme($root) using($root, $theme) {
     @include ct-component-property($root, $theme, color);
 
-    &:focus {
+    &:focus-visible {
       @include ct-outline-theme($theme);
     }
   }

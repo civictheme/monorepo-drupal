@@ -15,7 +15,7 @@
 
   &.ct-focusable {
     &:active,
-    &:focus,
+    &:focus-visible,
     &:hover {
       position: static !important;
       overflow: visible;

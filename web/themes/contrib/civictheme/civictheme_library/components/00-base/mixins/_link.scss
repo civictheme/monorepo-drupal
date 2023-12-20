@@ -29,7 +29,7 @@
   }
 
   @if $focus != false {
-    &:focus {
+    &:focus-visible {
       color: $focus;
     }
   }
@@ -61,7 +61,7 @@
   }
 
   @if $focus != false {
-    &:focus {
+    &:focus-visible {
       background-color: $focus;
     }
   }
@@ -97,7 +97,7 @@
     }
   }
 
-  &:focus {
+  &:focus-visible {
     @if $underline-focus {
       text-decoration: underline;
     }
@@ -120,7 +120,7 @@
 @mixin ct-link-no-outline() {
   outline: 0;
 
-  &:focus {
+  &:focus-visible {
     outline: 0;
   }
 }

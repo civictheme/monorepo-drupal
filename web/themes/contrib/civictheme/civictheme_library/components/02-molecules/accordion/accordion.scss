@@ -79,7 +79,7 @@
       @include ct-component-property($root, $theme, button, background-color);
       @include ct-component-property($root, $theme, button, color);
 
-      &:focus {
+      &:focus-visible {
         @include ct-outline-theme($theme);
       }
 

@@ -48,7 +48,7 @@
       }
     }
 
-    &:focus,
+    &:focus-visible,
     &:hover {
       & + .ct-radio__state {
         &::before {
@@ -88,7 +88,7 @@
         }
       }
 
-      &:focus {
+      &:focus-visible {
         & + .ct-radio__state {
           &::before {
             @include ct-outline();
@@ -172,7 +172,7 @@
         }
       }
 
-      &:focus {
+      &:focus-visible {
         & + .ct-radio__state {
           &::before {
             @include ct-outline(true);

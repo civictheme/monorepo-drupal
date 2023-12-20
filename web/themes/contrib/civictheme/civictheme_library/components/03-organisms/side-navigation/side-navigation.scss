@@ -68,7 +68,7 @@
         border-radius: 0 $ct-side-navigation-link-active-border-radius $ct-side-navigation-link-active-border-radius 0;
       }
 
-      &:focus {
+      &:focus-visible {
         z-index: 1;
       }
     }
@@ -97,7 +97,7 @@
       background-color: $stripe-color;
     }
 
-    &:focus {
+    &:focus-visible {
       @include ct-outline();
     }
   }
@@ -122,7 +122,7 @@
           );
 
           &:hover,
-          &:focus {
+          &:focus-visible {
             @include _ct-side-navigation-print-menu-item(
               ct-component-var($root, $theme, link, child, hover, background-color),
               ct-component-var($root, $theme, link, child, hover, border-color),
@@ -146,7 +146,7 @@
             }
 
             &:hover,
-            &:focus {
+            &:focus-visible {
               @include _ct-side-navigation-print-menu-item(
                 ct-component-var($root, $theme, link, child, hover, background-color),
                 ct-component-var($root, $theme, link, child, hover, border-color),
@@ -167,7 +167,7 @@
             );
 
             &:hover,
-            &:focus {
+            &:focus-visible {
               @include _ct-side-navigation-print-menu-item(
                 ct-component-var($root, $theme, link, parent, hover, background-color),
                 ct-component-var($root, $theme, link, parent, hover, border-color),
@@ -191,7 +191,7 @@
               }
 
               &:hover,
-              &:focus {
+              &:focus-visible {
                 @include _ct-side-navigation-print-menu-item(
                   ct-component-var($root, $theme, link, parent, hover, background-color),
                   ct-component-var($root, $theme, link, parent, hover, border-color),

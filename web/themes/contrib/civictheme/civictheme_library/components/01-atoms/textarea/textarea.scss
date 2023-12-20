@@ -27,7 +27,7 @@
     }
 
     &:active,
-    &:focus {
+    &:focus-visible {
       border-color: $ct-input-light-focus-border-color;
       box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
     }
@@ -47,7 +47,7 @@
     }
 
     &:active,
-    &:focus {
+    &:focus-visible {
       border-color: $ct-input-dark-focus-border-color;
       box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-focus-border-color;
     }
