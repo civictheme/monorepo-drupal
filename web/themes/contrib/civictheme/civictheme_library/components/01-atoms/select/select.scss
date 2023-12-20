@@ -44,7 +44,7 @@
       box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-hover-border-color;
     }
 
-    &:focus {
+    &:focus-visible {
       border-color: $ct-select-light-focus-border-color;
       box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-focus-border-color;
     }
@@ -79,7 +79,7 @@
       box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-hover-border-color;
     }
 
-    &:focus {
+    &:focus-visible {
       border-color: $ct-select-dark-focus-border-color;
       box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-focus-border-color;
     }

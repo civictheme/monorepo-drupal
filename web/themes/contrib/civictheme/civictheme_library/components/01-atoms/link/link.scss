@@ -12,7 +12,7 @@
   padding: ct-spacing(0.375) 0 ct-spacing(0.25);
   word-break: break-word;
 
-  &:focus {
+  &:focus-visible {
     @include ct-outline();
     @include ct-outline-border();
   }

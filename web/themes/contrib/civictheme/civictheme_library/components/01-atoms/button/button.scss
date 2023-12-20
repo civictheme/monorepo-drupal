@@ -230,7 +230,7 @@
     transition: all $ct-animation-duration ease;
   }
 
-  &:focus,
+  &:focus-visible,
   &:hover,
   &:active {
     text-decoration: none;
@@ -267,14 +267,8 @@
           }
         }
         @else if $type-kind == 'focus' {
-          &:focus,
-          &.focus,
-          &:focus:hover,
-          &.focus:hover,
-          &:focus:active,
-          &.focus:active,
-          &:focus:hover:active,
-          &.focus:hover:active {
+          &:focus-visible,
+          &.focus {
             @include _ct-button-print-rules($type-kind-values);
           }
         }
@@ -369,7 +363,7 @@
   &--tertiary {
     @include ct-button-type('tertiary');
 
-    &:focus,
+    &:focus-visible,
     &:hover,
     &:active {
       text-decoration: none;

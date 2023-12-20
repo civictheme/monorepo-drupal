@@ -126,7 +126,7 @@
     #{$root}__button {
       @include ct-component-property($root, $theme, icon, color);
 
-      &:focus {
+      &:focus-visible {
         @include ct-outline-theme($theme);
       }
     }

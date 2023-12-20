@@ -44,7 +44,7 @@
     }
   }
 
-  &:focus,
+  &:focus-visible,
   &:hover {
     & + .ct-#{$type}__state {
       &::before {
@@ -70,7 +70,7 @@
       }
     }
 
-    &:focus {
+    &:focus-visible {
       & + .ct-#{$type}__state {
         &::before {
           @include ct-outline();
@@ -148,7 +148,7 @@
       }
     }
 
-    &:focus {
+    &:focus-visible {
       & + .ct-#{$type}__state {
         &::before {
           @include ct-outline();

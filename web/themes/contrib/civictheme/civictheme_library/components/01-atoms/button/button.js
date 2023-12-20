@@ -11,10 +11,14 @@ function CivicThemeButton(el) {
   this.el = el;
   this.el.setAttribute('data-button', 'true');
   this.dismissButton = this.el.querySelector('[data-button-dismiss]');
+  this.keyboardFocused = false;
 
   this.el.addEventListener('click', this.clickEvent.bind(this));
   this.el.addEventListener('focusin', this.focusinEvent.bind(this));
   this.el.addEventListener('focusout', this.focusoutEvent.bind(this));
+
+  document.addEventListener('mousedown', this.mousedownEvent.bind(this));
+  document.addEventListener('keydown', this.keydownEvent.bind(this));
 
   if (this.dismissButton) {
     this.dismissButton.addEventListener('click', this.dismissClickEvent.bind(this));
@@ -47,6 +51,22 @@ CivicThemeButton.prototype.clickEvent = function (e) {
 };
 
 /**
+ * Keydown event handler.
+ */
+CivicThemeButton.prototype.keydownEvent = function (e) {
+  if (e.key === 'Tab' || e.key.indexOf('Arrow') === 0) {
+    this.keyboardFocused = true;
+  }
+};
+
+/**
+ * Keydown event handler.
+ */
+CivicThemeButton.prototype.mousedownEvent = function () {
+  this.keyboardFocused = false;
+};
+
+/**
  * Set the checked value.
  */
 CivicThemeButton.prototype.setChecked = function (input, check) {
@@ -67,7 +87,7 @@ CivicThemeButton.prototype.setChecked = function (input, check) {
  */
 CivicThemeButton.prototype.focusinEvent = function (e) {
   const button = this.findButton(e.target);
-  if (button && !button.hasAttribute('disabled')) {
+  if (button && !button.hasAttribute('disabled') && this.keyboardFocused) {
     button.classList.add('focus');
   }
 };

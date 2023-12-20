@@ -13,7 +13,7 @@
 
   #{$root}__button {
     &,
-    &:focus,
+    &:focus-visible,
     &:active,
     &:visited,
     &:hover {

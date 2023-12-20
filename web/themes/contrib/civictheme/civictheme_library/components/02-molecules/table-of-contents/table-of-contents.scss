@@ -73,7 +73,7 @@
       border-radius: 0 $ct-table-of-contents-link-active-border-radius $ct-table-of-contents-link-active-border-radius 0;
     }
 
-    &:focus {
+    &:focus-visible {
       z-index: 1;
     }
   }
@@ -92,7 +92,7 @@
       }
 
       &:hover,
-      &:focus,
+      &:focus-visible,
       &:active {
         @include ct-component-property($root, $theme, link, hover, background-color);
         @include ct-component-property($root, $theme, link, hover, color);
@@ -111,7 +111,7 @@
         padding-bottom: ct-spacing(1 - 0.125);
       }
 
-      &:focus {
+      &:focus-visible {
         @include ct-outline-theme($theme);
       }
     }
