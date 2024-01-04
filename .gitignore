@@ -59,7 +59,3 @@ docker-compose.override.yml
 
 # Ignore configuration as this site is installed from profile.
 /config/*
-
-# Ignore FE lock files. Do not ignore in distributions as they could be required
-# by the consumer sites.
-package-lock.json
