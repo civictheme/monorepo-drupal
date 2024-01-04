@@ -24,6 +24,10 @@ DEPLOY_CODE_COMMIT_REMOTE_REPO="${DEPLOY_CODE_COMMIT_REMOTE_REPO:-}"
 # Remote repository branch to push commits to.
 DEPLOY_CODE_COMMIT_REMOTE_BRANCH="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH:-}"
 
+# Remote repository branch to start from if the specified DEPLOY_CODE_COMMIT_REMOTE_BRANCH does not exist.
+# Defaults to "main".
+DEPLOY_CODE_COMMIT_REMOTE_BRANCH_FALLBACK="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH_FALLBACK:-main}"
+
 # Absolute path to the directory to copy files from.
 # Defaults to the current directory.
 DEPLOY_CODE_COMMIT_SRC_DIR="${DEPLOY_CODE_COMMIT_SRC_DIR:-${CURDIR}}"
@@ -179,7 +183,14 @@ git init -q
 echo "==> Checking out remote branch ${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}."
 git remote add destination "${DEPLOY_CODE_COMMIT_REMOTE_REPO}"
 git fetch --all
-git checkout -b "${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}" "destination/${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}"
+
+if git show-ref --verify --quiet "refs/remotes/destination/${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}"; then
+    echo "    > Creating a branch from existing remote branch ${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}."
+    git checkout -b "${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}" "destination/${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}"
+else
+    echo "    > Creating a branch from a fallback remote branch ${DEPLOY_CODE_COMMIT_REMOTE_BRANCH_FALLBACK}."
+    git checkout -b "${DEPLOY_CODE_COMMIT_REMOTE_BRANCH}" "destination/${DEPLOY_CODE_COMMIT_REMOTE_BRANCH_FALLBACK}"
+fi
 
 # Clear files before adding new files to make sure that only the contents of
 # the source repository at the latest version is present.
