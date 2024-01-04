@@ -3,7 +3,6 @@
 # Not used in Lagoon.
 #
 # - Installs Composer dependencies
-# - Installs CivicTheme Library dependencies and builds assets
 # - Installs CivicTheme dependencies and builds assets
 # - Creates sub-theme as a sibling, installs dependencies and builds assets
 #
@@ -23,6 +22,9 @@ ARG WEBROOT=web
 
 ARG GITHUB_TOKEN=""
 ENV GITHUB_TOKEN=${GITHUB_TOKEN}
+
+ARG CIVICTHEME_UIKIT_REF=""
+ENV CIVICTHEME_UIKIT_REF=${CIVICTHEME_UIKIT_REF}
 
 # Set default values for environment variables.
 # These values will be overridden if set in docker-compose.yml or .env file
@@ -85,13 +87,6 @@ RUN if [ -n "${GITHUB_TOKEN}" ]; then export COMPOSER_AUTH="{\"github-oauth\": {
     COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --optimize-autoloader
 
 # Install NodeJS dependencies.
-# Note that package-lock.json is not explicitly copied, allowing to run the
-# stack without existing lock file (this is not advisable, but allows to build
-# using latest versions of packages). package-lock.json should be comitted to
-# the repository.
-# File Gruntfile.sj is copied into image as it is required to generate
-# front-end assets.
-COPY web/themes/contrib/civictheme/civictheme_library/package.json web/themes/contrib/civictheme/civictheme_library/package* /app/web/themes/contrib/civictheme/civictheme_library/
 COPY web/themes/contrib/civictheme/ web/themes/contrib/civictheme/package* /app/web/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.

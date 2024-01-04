@@ -149,11 +149,9 @@ echo
 # are already compiled as a part of the Docker build.
 if [ -n "${DRUPAL_THEME:-}" ] && [ -z "${CI:-}" ]; then
   info "Installing front-end dependencies."
-  docker compose exec ${dcopts[@]} cli bash -c 'npm --prefix ${DREVOPS_WEBROOT}/themes/contrib/${DRUPAL_THEME}/civictheme_library install' >"${npm_verbose_output}"
   docker compose exec ${dcopts[@]} cli bash -c 'npm --prefix ${DREVOPS_WEBROOT}/themes/contrib/${DRUPAL_THEME} install' >"${npm_verbose_output}"
   pass "Installed front-end dependencies."
 
-  docker compose exec ${dcopts[@]} cli bash -c 'cd ${DREVOPS_WEBROOT}/themes/contrib/${DRUPAL_THEME}/civictheme_library && npm run build' >"${npm_verbose_output}"
   docker compose exec ${dcopts[@]} cli bash -c 'cd ${DREVOPS_WEBROOT}/themes/contrib/${DRUPAL_THEME} && npm run build' >"${npm_verbose_output}"
   pass "Compiled front-end dependencies."
 
