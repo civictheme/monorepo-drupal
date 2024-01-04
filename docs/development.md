@@ -46,8 +46,6 @@ Override the default behavior using these environment variables:
   For Drupal 10, this becomes the enforced default.
 - `CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1` - Omits activation of the demo
   sub-theme.
-- `CIVICTHEME_LIBRARY_INSTALL_SKIP=1` - Bypasses the UI kit library
-  installation. The pre-compiled assets are utilized instead.
 - `CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1` - Skips the creation of demo
   content.
 
@@ -60,7 +58,7 @@ Example:
 ```bash
 # Install Drupal site using `minimal` profile with CivicTheme.
 # Do not create a sub-theme and do not provision demo content.
-CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_LIBRARY_INSTALL_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy install-site
+CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy install-site
 ```
 
 ## Compiling theme assets

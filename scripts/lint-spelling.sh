@@ -17,7 +17,6 @@ while IFS=  read -r -d $'\0'; do
 done < <(
   find \
     "${CUR_DIR}"/web/themes/contrib/civictheme/docs \
-    "${CUR_DIR}"/web/themes/contrib/civictheme/civictheme_library/docs \
     -type f \
     \( -name "*.md" \) \
     -not -path "*vendor*" \

@@ -40,8 +40,7 @@ To update the database dumps:
 1. Checkout this repository at the specific CivicTheme release (1.3 or newer).
    Note that some of the environment variables are only available in the latest
    version of the repository and you may need to adjust them below to the version
-   you are using (e.g. `SKIP_LIBRARY_INSTALL` was in version `1.3.2` and now is
-   called `CIVICTHEME_LIBRARY_INSTALL_SKIP` in `1.5.0`).
+   you are using.
 2. Update "bare" database dump:
    ```bash
    export CIVICTHEME_VERSION=<civictheme_version> # update to your version

@@ -145,15 +145,11 @@ commands:
 
   fei:
     usage: Install front-end assets.
-    cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME}/civictheme_library install"
-      ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
+    cmd: ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
-    cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd web/themes/contrib/${DRUPAL_THEME}/civictheme_library && npm run build"
-      ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
+    cmd: ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
 
   lint:
     usage: Lint back-end and front-end code.
