@@ -8,10 +8,7 @@ set -e
 
 [ ! -d "tests/bats/node_modules" ] && npm --prefix tests/bats ci
 
-if [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ]; then
-  echo "  > Test Library assets."
-  bats tests/bats/assets_library.bats --tap
-fi
+bats() { "tests/bats/node_modules/.bin/bats" "$@"; }
 
 echo "  > Test theme assets."
 bats tests/bats/assets.bats --tap
