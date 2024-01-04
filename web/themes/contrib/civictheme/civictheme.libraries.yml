@@ -1,4 +1,3 @@
-# CivicTheme library.
 global:
   css:
     theme:
@@ -10,7 +9,6 @@ global:
     - core/once
     - core/drupalSettings
 
-# CivicTheme library CSS variables.
 css-variables:
   css:
     theme:

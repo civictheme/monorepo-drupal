@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // eslint-disable-next-line import/no-useless-path-segments
-const { isOutdated, printHeader } = require('../../../../contrib/civictheme/civictheme_library/webpack/info');
+const { isOutdated, printHeader } = require('../../../../contrib/civictheme/lib/uikit/webpack/info');
 
 printHeader();
 

@@ -19,7 +19,9 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
-    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,civictheme_library/storybook-static,civictheme_library/dist"
+    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit/storybook-static,lib/uikit/dist",
+    "update-uikit": "rm -Rf lib/uikit > /dev/null 2>&1 || true && mkdir -p lib/uikit &&  [ \"${CIVICTHEME_UIKIT_REF}\" != \"${CIVICTHEME_UIKIT_REF#*[0-9]}\" ] && path=tags/v${CIVICTHEME_UIKIT_REF}.tar.gz || path=heads/${CIVICTHEME_UIKIT_REF:-main}.tar.gz && curl -LSs https://github.com/civictheme/uikit/archive/refs/${path} | tar -xz --strip-components=1 -C lib/uikit",
+    "postinstall": "npm run update-uikit"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

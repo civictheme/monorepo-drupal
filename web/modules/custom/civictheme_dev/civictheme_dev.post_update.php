@@ -55,7 +55,7 @@ function civictheme_dev_post_update_provision_storybook_redirects(): string {
   $map = [
     [
       'src' => '/storybook',
-      'dst' => '/themes/contrib/civictheme/civictheme_library/storybook-static/index.html',
+      'dst' => '/themes/contrib/civictheme/lib/uikit/storybook-static/index.html',
     ],
     [
       'src' => '/storybook-drupal',
