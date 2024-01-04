@@ -96,7 +96,11 @@ RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress 
 # overridden.
 COPY . /app
 
-# Create a subtheme in the same directory as CivicTheme.
+# Compile front-end assets. Running this after copying all files as we need
+# sources to compile assets.
+RUN cd /app/web/themes/contrib/civictheme && npm run build
+
+# Create a sub-theme in the same directory as CivicTheme.
 RUN cd /app/web/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
 
