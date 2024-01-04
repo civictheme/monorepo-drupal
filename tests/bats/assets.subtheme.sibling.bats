@@ -1,19 +1,17 @@
 #!/usr/bin/env bats
 #
-# Test for assets.
+# Test for sub-theme sibling Drupal theme assets.
 #
 # shellcheck disable=SC2030,SC2031,SC2129
 
 load _helper
 
-@test "CivicTheme Demo Sibling Theme assets" {
+@test "Sub-theme sibling Drupal theme assets" {
   dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/contrib/civictheme_demo"
 
   pushd "${dir}" >/dev/null || exit 1
 
-  [ ! -d "dist" ] && npm run build
-
-  # Files managed by the developer.
+  # Files managed by the CivicTheme Drupal sub-theme consumer site developer.
   assert_dir_exists "assets"
   assert_dir_exists "assets/backgrounds"
   assert_dir_exists "assets/fonts"
@@ -30,7 +28,8 @@ load _helper
   assert_file_exists "assets/videos/demo_poster.png"
   assert_file_exists "assets/favicon.ico"
 
-  # Files managed by distribution build.
+  # Files managed by the CivicTheme Drupal sub-theme consumer site CI build.
+  # This is replicated by the CI build in this monorepo for testing purposes.
   assert_dir_exists "dist"
 
   assert_file_exists "dist/styles.css"
@@ -55,7 +54,6 @@ load _helper
   assert_dir_exists "dist/assets/videos"
   assert_dir_not_exists "dist/assets/api"
 
-  # Files managed by static Storybook build.
   assert_dir_exists "storybook-static"
   assert_file_exists "storybook-static/index.html"
   assert_file_exists "storybook-static/iframe.html"
