@@ -100,6 +100,6 @@ COPY . /app
 RUN cd /app/web/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
 
-# Compile subtheme assets.
+# Compile sub-theme assets.
 RUN npm --prefix web/themes/contrib/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/contrib/civictheme_demo && npm run build

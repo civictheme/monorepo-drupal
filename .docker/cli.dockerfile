@@ -97,10 +97,10 @@ COPY . /app
 # sources to compile assets.
 RUN cd /app/web/themes/contrib/civictheme && npm run build
 
-# Create subtheme.
+# Create sub-theme.
 RUN cd /app/web/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
-# Compile subtheme assets.
+# Compile sub-theme assets.
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
