@@ -10,15 +10,15 @@ set -e
 
 bats() { "tests/bats/node_modules/.bin/bats" "$@"; }
 
-echo "  > Test theme assets."
-bats tests/bats/assets.bats --tap
+echo "  > Test base theme assets."
+bats tests/bats/assets.basetheme.bats --tap
 
 if [ "${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP}" != "1" ]; then
   if [ "${CIVICTHEME_INSTALL_SIBLING}" = "1" ]; then
-    echo "  > Test Sub-theme sibling assets."
-    bats tests/bats/assets_demo_sibling.bats --tap
+    echo "  > Test sub-theme sibling assets."
+    bats tests/bats/assets.subtheme.sibling.bats --tap
   else
-    echo "  > Test Sub-theme custom assets."
-    bats tests/bats/assets_demo_custom.bats --tap
+    echo "  > Test sub-theme custom assets."
+    bats tests/bats/assets.subtheme.custom.bats --tap
   fi
 fi
