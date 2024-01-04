@@ -60,6 +60,8 @@ x-environment: &default-environment
   DRUPAL_SHIELD_PASS: ${DRUPAL_SHIELD_PASS:-}
   # Lagoon environment type.
   LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
+  # CivicTheme UIKit version or branch to bake into the Drupal theme.
+  CIVICTHEME_UIKIT_REF: ${CIVICTHEME_UIKIT_REF:-}
 
 # ------------------------------------------------------------------------------
 # Services.
@@ -74,6 +76,7 @@ services:
       args:
         WEBROOT: "${DREVOPS_WEBROOT:-web}"
         GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
+        CIVICTHEME_UIKIT_REF: "${CIVICTHEME_UIKIT_REF:-}"
     image: &cli-image ${COMPOSE_PROJECT_NAME:-example_site}
     <<: *default-volumes
     user: root

@@ -34,6 +34,6 @@ List of `--preserve` options:
 ## Other resources
 
 - [CivicTheme Source site](https://github.com/salsadigitalauorg/civictheme_source)
-- [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme_library)
+- [CivicTheme UI Kit](https://github.com/civictheme/uikit)
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)

@@ -25,7 +25,7 @@
 
 ---
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > For Drupal theme installation instructions into your site, see https://docs.civictheme.io/development/drupal-theme
 
 ## Local environment setup
@@ -66,7 +66,7 @@ Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 ## More about CivicTheme
 
 - [Documentation](https://docs.civictheme.io/)
-- [CivicTheme UI kit](https://github.com/salsadigitalauorg/civictheme_library)
+- [CivicTheme UI kit](https://github.com/civictheme/uikit)
 - [CivicTheme Drupal theme](https://www.drupal.org/project/civictheme)
 - [Default content for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_content)
 - [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)

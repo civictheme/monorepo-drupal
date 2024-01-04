@@ -17,7 +17,7 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
-    "export-colors": "php ../../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
+    "export-colors": "php ../../../contrib/civictheme/lib/uikit/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
     "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php dist,storybook-static"
   },
   "devDependencies": {

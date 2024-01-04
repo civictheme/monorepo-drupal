@@ -5,7 +5,7 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { isOutdated, printHeader } = require('../civictheme_library/webpack/info');
+const { isOutdated, printHeader } = require('../lib/uikit/webpack/info');
 
 printHeader();
 

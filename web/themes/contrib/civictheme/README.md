@@ -2,8 +2,6 @@
 
 Drupal 10 component-based theme.
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/salsadigitalauorg/civictheme/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/salsadigitalauorg/civictheme/tree/main)
-
 ----
 
 ## Introduction
@@ -11,7 +9,7 @@ Drupal 10 component-based theme.
 CivicTheme theme, the Drupal theme built using a UI kit, provides components
 and data structures to enhance editorial experiences out-of-the-box.
 
-The [UI kit](https://github.com/salsadigitalauorg/civictheme_library)
+The [UI kit](https://github.com/civictheme/uikit)
 is a CMS-agnostic HTML/CSS/JS framework based on Atomic Design principles.
 
 The Drupal theme provides full integration with UI kit.

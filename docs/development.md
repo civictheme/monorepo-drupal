@@ -68,7 +68,7 @@ To compile all assets in all themes: `ahoy fe`
 ```bash
 
 # UI kit
-cd web/themes/contrib/civictheme/civictheme_library
+cd web/themes/contrib/civictheme/lib/uikit
 npm run build
 
 # CivicTheme Drupal theme

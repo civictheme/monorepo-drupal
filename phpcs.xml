@@ -29,8 +29,10 @@
     <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
 
-    <!-- Exclude CivicTheme library files. -->
-    <exclude-pattern>civictheme_library/*</exclude-pattern>
+    <!-- Exclude CivicTheme UIKit files. -->
+    <exclude-pattern>civictheme\/lib\/*</exclude-pattern>
+
+    <!-- Exclude CivicTheme FE assets. -->
     <exclude-pattern>storybook-static/*</exclude-pattern>
     <exclude-pattern>.storybook/*</exclude-pattern>
     <exclude-pattern>webpack/*</exclude-pattern>
