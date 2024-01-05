@@ -11,9 +11,6 @@ pushd "build" >/dev/null || exit 1
 echo "  > Running PHPCS."
 vendor/bin/phpcs
 
-echo "  > Running PHPMD."
-vendor/bin/phpmd . text phpmd.xml
-
 echo "  > Running TWIGCS."
 vendor/bin/twigcs
 
@@ -22,5 +19,8 @@ vendor/bin/phpstan
 
 echo "  > Running Drupal Rector."
 vendor/bin/rector --dry-run --debug
+
+echo "  > Running PHPMD."
+vendor/bin/phpmd . text phpmd.xml
 
 popd >/dev/null || exit 1
