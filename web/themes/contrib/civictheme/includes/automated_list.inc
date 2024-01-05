@@ -5,6 +5,8 @@
  * Automated list paragraph component.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\views\ViewExecutable;

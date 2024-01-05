@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\civictheme\CivicthemeConfigManager;
@@ -157,13 +159,13 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
     if (!empty($path)) {
       $path = $this->toFriendlyFilePath($path);
       if ($path === '' || $path === '0') {
-        $form_state->setErrorByName(implode('][', $path_field_name_key), $this->t('The file path is invalid.'));
+        $form_state->setErrorByName(implode('][', $path_field_name_key), (string) $this->t('The file path is invalid.'));
 
         return;
       }
 
       if (!file_exists($path)) {
-        $form_state->setErrorByName(implode('][', $path_field_name_key), $this->t('The file at provided path does not exist.'));
+        $form_state->setErrorByName(implode('][', $path_field_name_key), (string) $this->t('The file at provided path does not exist.'));
 
         return;
       }

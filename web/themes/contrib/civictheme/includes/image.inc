@@ -5,6 +5,8 @@
  * Image related functions.
  */
 
+declare(strict_types=1);
+
 /**
  * Generic image pre-processing.
  *

@@ -83,4 +83,11 @@
     <rule ref="Generic.PHP.UpperCaseConstant.Found">
         <exclude-pattern>\.js</exclude-pattern>
     </rule>
+
+   <!-- Force declare(strict_types=1); in all PHP files. -->
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
+        </properties>
+    </rule>
 </ruleset>

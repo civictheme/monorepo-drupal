@@ -5,6 +5,8 @@
  * CivicTheme libraries processing.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConfigManager;
 

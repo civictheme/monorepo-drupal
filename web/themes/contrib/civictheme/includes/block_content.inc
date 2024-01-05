@@ -5,6 +5,8 @@
  * Block content related functions.
  */
 
+declare(strict_types=1);
+
 /**
  * Preprocess for block_content block.
  */

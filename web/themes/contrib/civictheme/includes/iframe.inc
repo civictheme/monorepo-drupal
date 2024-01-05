@@ -5,6 +5,8 @@
  * CivicTheme iFrame paragraph component.
  */
 
+declare(strict_types=1);
+
 /**
  * Implements template_preprocess_paragraph().
  */

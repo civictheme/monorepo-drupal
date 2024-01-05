@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -100,7 +102,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     if ($sandbox['#finished'] >= 1) {
       $log = call_user_func($finish_callback, $this);
 
-      $log = new TranslatableMarkup("%finished\n<br> Update ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
+      $log = (string) new FormattableMarkup("%finished\n<br> Update ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
         '%finished' => $log ?? '',
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),

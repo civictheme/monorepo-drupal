@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -78,7 +80,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
    */
   public function resetValidate(array &$form, FormStateInterface $form_state): void {
     if (!$form_state->getValue(['reset', 'confirm'])) {
-      $form_state->setErrorByName(implode('][', ['reset', 'confirm']), $this->t('Please check the box to confirm theme settings reset.'));
+      $form_state->setErrorByName(implode('][', ['reset', 'confirm']), (string) $this->t('Please check the box to confirm theme settings reset.'));
     }
   }
 

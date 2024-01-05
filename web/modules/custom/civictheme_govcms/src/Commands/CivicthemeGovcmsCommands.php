@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_govcms\Commands;
 
 use Drupal\civictheme_govcms\CivicthemeGovcmsManager;

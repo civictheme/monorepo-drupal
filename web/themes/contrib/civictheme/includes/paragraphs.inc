@@ -10,6 +10,8 @@
  * and sorted alphabetically.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 
 /**
