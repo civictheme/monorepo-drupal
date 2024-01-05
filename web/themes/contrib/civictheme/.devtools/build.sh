@@ -105,6 +105,7 @@ else
 fi
 
 echo "  > Updating scaffold."
+composer --working-dir="build" config allow-plugins.php-http/discovery true
 cat <<< "$(jq --indent 4 '.extra["enable-patching"] = true' "build/composer.json")" > "build/composer.json"
 cat <<< "$(jq --indent 4 '.extra["phpcodesniffer-search-depth"] = 10' "build/composer.json")" > "build/composer.json"
 
