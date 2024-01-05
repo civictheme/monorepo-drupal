@@ -13,6 +13,7 @@ use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
@@ -89,8 +90,8 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     'size' => format_size($file->getSize()),
-    'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
-    'changed' => civictheme_format_date('civictheme_short_date', $media->getChangedTime()),
+    'created' => civictheme_format_datetime($media->getCreatedTime(), 'civictheme_short_date'),
+    'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
   ];
 }
@@ -235,20 +236,77 @@ function civictheme_convert_attributes_to_modifier_class(array &$variables): voi
 }
 
 /**
+ * Format date and time.
+ *
+ * This is a centralized function for formatting dates in CivicTheme.
+ *
+ * @param int|string|\Drupal\Core\Datetime\DrupalDateTime $datetime
+ *   Timestamp, date as a string or DrupalDateTime object.
+ * @param string $format_or_type
+ *   CivicTheme format type (starting with 'civictheme_') or actual PHP's
+ *   date format string. Defaults to 'civictheme_short_date_and_time'.
+ *
+ * @return string
+ *   Formatted date and time.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_format_datetime(int|string|DrupalDateTime $datetime, string $format_or_type = 'civictheme_short_date_and_time'): string {
+  $type = 'custom';
+  $format = $format_or_type;
+
+  if (str_starts_with($format_or_type, 'civictheme_')) {
+    $type = $format_or_type;
+    $format = '';
+  }
+
+  if ($datetime instanceof DrupalDateTime) {
+    $datetime = $datetime->getTimestamp();
+  }
+  elseif (is_string($datetime)) {
+    $datetime = (int) strtotime($datetime);
+  }
+
+  return \Drupal::service('date.formatter')->format($datetime, $type, $format);
+}
+
+/**
+ * Format date and time in ISO format.
+ *
+ * @param int|string|\Drupal\Core\Datetime\DrupalDateTime $datetime
+ *   Timestamp, date as a string or DrupalDateTime object.
+ *
+ * @return string
+ *   Formatted date and time.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_format_datetime_iso(int|string|DrupalDateTime $datetime): string {
+  return civictheme_format_datetime($datetime, 'c');
+}
+
+/**
  * Format date.
  *
- * @param string $format_name
- *   Drupal format type.
- * @param int|string $date
+ * @param string $format_or_type
+ *   CivicTheme format type (starting with 'civictheme_') or actual PHP's
+ *   date format string.
+ * @param int|string|\Drupal\Core\Datetime\DrupalDateTime $datetime
  *   Timestamp or date as a string.
  *
  * @return string
  *   Formatted date or date range.
  *
+ * @deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use
+ * civictheme_format_datetime() instead.
+ * @see https://www.drupal.org/project/civictheme/issues/3412647
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ErrorControlOperator)
  */
-function civictheme_format_date(string $format_name, int|string $date): string {
-  return \Drupal::service('date.formatter')->format(is_numeric($date) ? (int) $date : (strtotime($date) ?: (int) $date), $format_name);
+function civictheme_format_date(string $format_or_type, int|string|DrupalDateTime $datetime): string {
+  @trigger_error('civictheme_format_date() is deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use civictheme_format_datetime() instead. See https://www.drupal.org/project/civictheme/issues/3412647', E_USER_DEPRECATED);
+  return civictheme_format_datetime($datetime, $format_or_type);
 }
 
 /**

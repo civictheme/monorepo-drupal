@@ -135,10 +135,10 @@ function _civictheme_node_get_updated_date(NodeInterface $node, string $format =
   $date = NULL;
 
   if ($show_last_updated && !empty($custom_updated_value)) {
-    $date = civictheme_format_date($format, $custom_updated_value->get('value')->getDateTime());
+    $date = civictheme_format_datetime($custom_updated_value->get('value')->getDateTime(), $format);
   }
   elseif ($show_last_updated) {
-    $date = civictheme_format_date($format, $node->getChangedTime());
+    $date = civictheme_format_datetime($node->getChangedTime(), $format);
   }
 
   return $date;
