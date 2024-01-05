@@ -16,6 +16,9 @@
   <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
   <config name="testVersion" value="8.1"/>
 
+  <!-- Exclude CivicTheme UIKit files. -->
+  <exclude-pattern>civictheme\/lib\/*</exclude-pattern>
+
   <!-- Exclude theme assets. -->
   <exclude-pattern>web\/themes\/custom\/.*\/build\/.*</exclude-pattern>
   <exclude-pattern>web\/themes\/custom\/.*\/fonts\/.*</exclude-pattern>
