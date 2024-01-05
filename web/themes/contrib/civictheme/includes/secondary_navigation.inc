@@ -23,11 +23,11 @@ function civictheme_preprocess_block__menu_block__civictheme_secondary_navigatio
   $block = Block::load($variables['elements']['#id']);
   $region = $block->getRegion();
 
-  if (strpos($region, 'header') === 0) {
+  if (str_starts_with($region, 'header')) {
     $variables['modifier_class'] = 'ct-justify-content-end';
   }
 
-  if (strpos($region, 'sidebar') === 0) {
+  if (str_starts_with($region, 'sidebar')) {
     $variables['in_sidebar'] = TRUE;
   }
 }

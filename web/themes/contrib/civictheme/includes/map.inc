@@ -15,7 +15,7 @@ function civictheme_preprocess_paragraph__civictheme_map(array &$variables): voi
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_embed_url', TRUE);
-  if ($link) {
+  if ($link !== NULL) {
     $variables['url'] = $link->getUrl()->toString();
   }
 

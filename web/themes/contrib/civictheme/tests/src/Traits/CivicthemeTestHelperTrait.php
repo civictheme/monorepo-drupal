@@ -31,9 +31,10 @@ trait CivicthemeTestHelperTrait {
    */
   protected static function callProtectedMethod(object|string $object, string $method, array $args = []): mixed {
     // @phpstan-ignore-next-line
-    $class = new \ReflectionClass(is_object($object) ? get_class($object) : $object);
+    $class = new \ReflectionClass(is_object($object) ? $object::class : $object);
     $method = $class->getMethod($method);
     $method->setAccessible(TRUE);
+
     $object = $method->isStatic() ? NULL : $object;
 
     // @phpstan-ignore-next-line
@@ -53,7 +54,7 @@ trait CivicthemeTestHelperTrait {
    * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function setProtectedValue(object $object, string $property, mixed $value): void {
-    $class = new \ReflectionClass(get_class($object));
+    $class = new \ReflectionClass($object::class);
     $property = $class->getProperty($property);
     $property->setAccessible(TRUE);
 
@@ -74,7 +75,7 @@ trait CivicthemeTestHelperTrait {
    * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function getProtectedValue(object $object, string $property): mixed {
-    $class = new \ReflectionClass(get_class($object));
+    $class = new \ReflectionClass($object::class);
     $property = $class->getProperty($property);
     $property->setAccessible(TRUE);
 
@@ -112,13 +113,14 @@ trait CivicthemeTestHelperTrait {
     foreach ($methodsMap as $method => $value) {
       // Handle callback values differently.
       // @phpstan-ignore-next-line
-      if (is_object($value) && strpos(get_class($value), 'Callback') !== FALSE) {
+      if (is_object($value) && str_contains($value::class, 'Callback')) {
         $mock->expects($this->any())
           ->method($method)
           // @phpstan-ignore-next-line
           ->will($value);
         continue;
       }
+
       $mock->expects($this->any())
         ->method($method)
         ->willReturn($value);
@@ -146,10 +148,9 @@ trait CivicthemeTestHelperTrait {
   protected function getMockForConcreteClass(string $class, array $args = [], array $methods = []): MockObject {
     // @phpstan-ignore-next-line
     $mock = $this->getMockBuilder($class);
-    $mock = !empty($args) ? $mock->enableOriginalConstructor()->setConstructorArgs($args) : $mock->disableOriginalConstructor();
-    $mock = $mock->addMethods($methods)->getMock();
+    $mock = empty($args) ? $mock->disableOriginalConstructor() : $mock->enableOriginalConstructor()->setConstructorArgs($args);
 
-    return $mock;
+    return $mock->addMethods($methods)->getMock();
   }
 
   /**

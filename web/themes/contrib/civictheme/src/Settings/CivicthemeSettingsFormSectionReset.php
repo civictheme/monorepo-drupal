@@ -41,8 +41,8 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
       '#type' => 'submit',
       '#value' => $this->t('Reset to defaults'),
       '#name' => 'reset_to_defaults',
-      '#validate' => [[$this, 'resetValidate']],
-      '#submit' => [[$this, 'resetSubmit']],
+      '#validate' => [$this->resetValidate(...)],
+      '#submit' => [$this->resetSubmit(...)],
       '#states' => [
         'enabled' => [
           'input[name="reset[confirm]"' => ['checked' => TRUE],
@@ -50,7 +50,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
       ],
     ];
 
-    $form['#process'][] = [$this, 'processForm'];
+    $form['#process'][] = $this->processForm(...);
   }
 
   /**

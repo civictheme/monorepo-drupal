@@ -59,6 +59,7 @@ abstract class CivicthemeColorFilterBase {
     if (count($arguments) != $this->expectedArgumentsCount()) {
       throw new \Exception(sprintf('Invalid number of arguments passed to the color filter: passed %s but expedted %s.', count($arguments), $this->expectedArgumentsCount()));
     }
+
     $this->arguments = $arguments;
   }
 

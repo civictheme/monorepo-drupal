@@ -40,7 +40,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__date(array &$variabl
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
   if ($date) {
     $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+    $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
   }
 }
 
@@ -51,7 +51,7 @@ function _civictheme_preprocess_paragraph__node_field__date(array &$variables): 
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
-    $variables['date_iso'] = date('c', strtotime($node->getChangedTime()));
+    $variables['date_iso'] = date('c', strtotime((string) $node->getChangedTime()) ?: NULL);
   }
 }
 
@@ -62,10 +62,10 @@ function _civictheme_preprocess_paragraph__paragraph_field__date_range(array &$v
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
   if ($date) {
     $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+    $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
     if ($date->get('end_value')->getDateTime()) {
       $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime());
-      $variables['date_end_iso'] = date('c', strtotime($date->get('end_value')->getDateTime()));
+      $variables['date_end_iso'] = date('c', strtotime((string) $date->get('end_value')->getDateTime()) ?: NULL);
     }
   }
 }
@@ -79,10 +79,10 @@ function _civictheme_preprocess_paragraph__node_field__date_range(array &$variab
     $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
     if ($date) {
       $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
-      $variables['date_iso'] = date('c', strtotime($date->get('value')->getDateTime()));
+      $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
       if ($date->get('end_value')->getDateTime()) {
         $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime());
-        $variables['date_end_iso'] = date('c', strtotime($date->get('end_value')->getDateTime()));
+        $variables['date_end_iso'] = date('c', strtotime((string) $date->get('end_value')->getDateTime()) ?: NULL);
       }
     }
   }
@@ -131,7 +131,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__image_position(array
 function _civictheme_preprocess_paragraph__paragraph_field__link(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_link', TRUE);
-  if ($link) {
+  if ($link !== NULL) {
     $variables['link'] = [
       'text' => $link->get('title')->getString(),
       'url' => $link->getUrl()->toString(),
@@ -147,7 +147,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__link(array &$variabl
 function _civictheme_preprocess_paragraph__paragraph_field__link_above(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_link_above', TRUE);
-  if ($link) {
+  if ($link !== NULL) {
     $variables['link_above'] = [
       'text' => $link->get('title')->getString(),
       'url' => $link->getUrl()->toString(),
@@ -163,7 +163,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__link_above(array &$v
 function _civictheme_preprocess_paragraph__paragraph_field__link_below(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_list_link_below', TRUE);
-  if ($link) {
+  if ($link !== NULL) {
     $variables['link_below'] = [
       'text' => $link->get('title')->getString(),
       'url' => $link->getUrl()->toString(),
@@ -233,7 +233,7 @@ function _civictheme_preprocess_paragraph__node_field__summary(array &$variables
     if (!empty($summary)) {
       $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
-      $component_name = _civictheme_get_configurable_component_name_from_bundle($bundle ?? (!empty($variables['paragraph']) ? $variables['paragraph']->bundle() : 'none'));
+      $component_name = _civictheme_get_configurable_component_name_from_bundle($bundle ?? (empty($variables['paragraph']) ? 'none' : $variables['paragraph']->bundle()));
       if ($component_name) {
         $length = civictheme_get_theme_config_manager()->loadForComponent($component_name, 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH);
       }

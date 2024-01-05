@@ -50,6 +50,7 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
 
     $items[] = $item;
   }
+
   $variables['items'] = $items;
 
   $variables['theme'] = civictheme_get_field_theme_value($entity);

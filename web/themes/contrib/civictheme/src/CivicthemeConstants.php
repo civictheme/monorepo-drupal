@@ -33,8 +33,11 @@ final class CivicthemeConstants {
   const THEME_DARK_LABEL = 'Dark';
 
   const VERTICAL_SPACING_NONE = 'none';
+
   const VERTICAL_SPACING_TOP = 'top';
+
   const VERTICAL_SPACING_BOTTOM = 'bottom';
+
   const VERTICAL_SPACING_BOTH = 'both';
 
   // For per-component 'theme' default values we are relying on the defaults set

@@ -16,6 +16,7 @@ function civictheme_preprocess_table(array &$variables): void {
     foreach ($variables['header'] as $row) {
       $rows[] = $row['content'];
     }
+
     $variables['header'] = $rows;
   }
 

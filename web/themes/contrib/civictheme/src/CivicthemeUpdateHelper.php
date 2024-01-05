@@ -16,26 +16,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
-   * The entity type manager.
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
-   * A logger instance.
-   */
-  protected LoggerInterface $logger;
-
-  /**
    * ConfigEntityUpdater constructor.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
    * @param \Psr\Log\LoggerInterface $logger
    *   Logger.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger) {
-    $this->entityTypeManager = $entity_type_manager;
-    $this->logger = $logger;
+  public function __construct(protected EntityTypeManagerInterface $entityTypeManager, protected LoggerInterface $logger) {
   }
 
   /**
@@ -81,6 +69,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       if ($limit) {
         $query->range(0, $limit);
       }
+
       $sandbox['entities'] = $query->execute();
 
       $sandbox['max'] = count($sandbox['entities']);
@@ -93,7 +82,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       call_user_func($start_callback, $this);
     }
 
-    $sandbox['batch']++;
+    ++$sandbox['batch'];
 
     /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
     $entities = $storage->loadMultiple(array_splice($sandbox['entities'], 0, $batch_size));
@@ -106,7 +95,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       $sandbox['results'][$process_return === TRUE ? 'updated' : 'skipped'][] = $entity->id();
     }
 
-    $sandbox['#finished'] = !empty($sandbox['entities']) ? ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'] : 1;
+    $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
     if ($sandbox['#finished'] >= 1) {
       $log = call_user_func($finish_callback, $this);
@@ -115,11 +104,11 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
         '%finished' => $log ?? '',
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
-        '%processed_ids' => count($sandbox['results']['processed']) ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
+        '%processed_ids' => count($sandbox['results']['processed']) > 0 ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
         '%updated' => count($sandbox['results']['updated']),
-        '%updated_ids' => count($sandbox['results']['updated']) ? '(' . implode(', ', $sandbox['results']['updated']) . ')' : '',
+        '%updated_ids' => count($sandbox['results']['updated']) > 0 ? '(' . implode(', ', $sandbox['results']['updated']) . ')' : '',
         '%skipped' => count($sandbox['results']['skipped']),
-        '%skipped_ids' => count($sandbox['results']['skipped']) ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
+        '%skipped_ids' => count($sandbox['results']['skipped']) > 0 ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
       ]);
       $this->logger->info($log);
 

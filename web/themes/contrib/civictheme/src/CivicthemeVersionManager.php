@@ -15,11 +15,6 @@ final class CivicthemeVersionManager implements ContainerInjectionInterface {
   const DEFAULT_VERSION = 'dev';
 
   /**
-   * Theme extension list.
-   */
-  protected ThemeExtensionList $themeExtensionList;
-
-  /**
    * Array of version information.
    *
    * @var array<string>
@@ -29,8 +24,12 @@ final class CivicthemeVersionManager implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public function __construct(ThemeExtensionList $theme_extension_list) {
-    $this->themeExtensionList = $theme_extension_list;
+  public function __construct(
+    /**
+     * Theme extension list.
+     */
+    protected ThemeExtensionList $themeExtensionList
+  ) {
   }
 
   /**
@@ -93,7 +92,7 @@ final class CivicthemeVersionManager implements ContainerInjectionInterface {
   public function render($selector): array {
     $style = <<<HTML
 <style>
-$selector::after {
+{$selector}::after {
   content: 'CivicTheme version: {$this->version()}';
   bottom: 0;
   display: block;
@@ -134,7 +133,7 @@ HTML;
     }
 
     // Discover from the composer.json.
-    if (!empty($this->readComposerJson()['version']) && preg_match('/([0-9]+(?:\.[0-9]+)+(?:-rc[0-9]+)?)/', $this->readComposerJson()['version'])) {
+    if (!empty($this->readComposerJson()['version']) && preg_match('/(\d+(?:\.\d+)+(?:-rc\d+)?)/', (string) $this->readComposerJson()['version'])) {
       return $this->readComposerJson()['version'];
     }
 
@@ -144,7 +143,7 @@ HTML;
 
     if (file_exists($readme_file)) {
       $contents = (string) file_get_contents($readme_file);
-      preg_match('/Version: `([0-9]+(?:\.[0-9]+)+(?:-rc[0-9]+)?)`/', $contents, $matches);
+      preg_match('/Version: `(\d+(?:\.\d+)+(?:-rc\d+)?)`/', $contents, $matches);
       if (!empty($matches[1])) {
         $version = $matches[1];
       }

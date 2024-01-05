@@ -24,42 +24,18 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
   protected $theme;
 
   /**
-   * The config factory.
-   */
-  protected ConfigFactory $configFactory;
-
-  /**
-   * The theme manager.
-   */
-  protected ThemeManager $themeManager;
-
-  /**
-   * The config importer.
-   */
-  protected CivicthemeConfigImporter $configImporter;
-
-  /**
-   * The theme extension list.
-   */
-  protected ThemeExtensionList $themeExtensionList;
-
-  /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactory $config_factory
+   * @param \Drupal\Core\Config\ConfigFactory $configFactory
    *   The config factory.
-   * @param \Drupal\Core\Theme\ThemeManager $theme_manager
+   * @param \Drupal\Core\Theme\ThemeManager $themeManager
    *   The theme manager.
-   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
+   * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   The extension list.
-   * @param \Drupal\civictheme\CivicthemeConfigImporter $config_importer
+   * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
    */
-  public function __construct(ConfigFactory $config_factory, ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, CivicthemeConfigImporter $config_importer) {
-    $this->configFactory = $config_factory;
-    $this->themeManager = $theme_manager;
-    $this->themeExtensionList = $theme_extension_list;
-    $this->configImporter = $config_importer;
+  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter) {
     $this->setTheme($this->themeManager->getActiveTheme());
   }
 
@@ -86,7 +62,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
    */
-  public function load($key, $default = NULL) {
+  public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
     if ($key == 'components.site_slogan.content') {
       return $this->configFactory->getEditable('system.site')->get('slogan');
@@ -108,8 +84,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
    */
-  public function loadForComponent($name, $key, $default = NULL) {
-    return $this->load("components.{$name}.{$key}", $default);
+  public function loadForComponent($name, $key, mixed $default = NULL) {
+    return $this->load(sprintf('components.%s.%s', $name, $key), $default);
   }
 
   /**
@@ -123,15 +99,16 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    */
-  public function save($key, $value): static {
+  public function save($key, mixed $value): static {
     // Set site slogan.
     if ($key == 'components.site_slogan.content') {
       $config = $this->configFactory->getEditable('system.site')->set('slogan', $value)->save();
+
       return $this;
     }
 
     $theme_name = $this->theme->getName();
-    $config = $this->configFactory->getEditable("$theme_name.settings");
+    $config = $this->configFactory->getEditable($theme_name . '.settings');
     $config->set($key, $value)->save();
 
     return $this;
@@ -174,7 +151,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
     $this->configImporter->importSingleConfig(
       'civictheme.settings',
       $base_theme_path . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'install',
-      "$theme_name.settings",
+      $theme_name . '.settings',
       $tokens
     );
   }

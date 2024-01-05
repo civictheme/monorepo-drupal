@@ -48,8 +48,8 @@ function _civictheme_preprocess_node(array &$variables): void {
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
     $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
     if (!empty($topics)) {
-      $topics = array_map(function ($topic) {
-        return $topic->label();
+      $topics = array_map(static function ($topic) {
+          return $topic->label();
       }, $topics);
 
       $variables['content'][] = [
