@@ -1,3 +1,3 @@
-This directory contains scripts for running isolated tests in CI.
+This directory contains development tools to help with building and testing.
 
-These scripts are agonsitc to the build system and can be run from any directory.
+These can be used locally and in the CI environment.
