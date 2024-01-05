@@ -17,7 +17,7 @@
   <config name="testVersion" value="8.1"/>
 
   <exclude-pattern>build</exclude-pattern>
-  <exclude-pattern>lib</exclude-pattern>
+  <exclude-pattern>lib\/</exclude-pattern>
   <exclude-pattern>components</exclude-pattern>
   <exclude-pattern>.storybook</exclude-pattern>
   <exclude-pattern>webpack</exclude-pattern>
@@ -52,4 +52,10 @@
     <exclude-pattern>*.TestBase\.php</exclude-pattern>
   </rule>
 
+  <!-- Force declare(strict_types=1); in all PHP files. -->
+  <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+    <properties>
+      <property name="spacesCountAroundEqualsSign" value="0"/>
+    </properties>
+  </rule>
 </ruleset>

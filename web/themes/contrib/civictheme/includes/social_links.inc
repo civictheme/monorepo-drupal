@@ -5,6 +5,8 @@
  * CivicTheme Social Links block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\Entity\Paragraph;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_dev\EventSubscriber;
 
 use Drupal\config_devel\Event\ConfigDevelEvents;

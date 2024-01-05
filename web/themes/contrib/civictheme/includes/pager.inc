@@ -5,6 +5,8 @@
  * Pager component alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Pager\Pager;
 use Drupal\views\ViewExecutable;
 

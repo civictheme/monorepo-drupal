@@ -5,6 +5,8 @@
  * CivicTheme Drupal context for Behat testing.
  */
 
+declare(strict_types=1);
+
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\DocumentElement;

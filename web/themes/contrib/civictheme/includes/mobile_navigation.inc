@@ -5,6 +5,8 @@
  * CivicTheme mobile menu block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\BlockInterface;
 use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConstants;

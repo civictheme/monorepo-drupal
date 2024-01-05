@@ -5,6 +5,8 @@
  * Form alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;

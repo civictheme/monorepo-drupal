@@ -5,6 +5,8 @@
  * Create generated users.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\Core\Utility\Error;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;

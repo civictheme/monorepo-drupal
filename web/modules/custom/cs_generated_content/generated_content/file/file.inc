@@ -5,6 +5,8 @@
  * Create generated files.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;

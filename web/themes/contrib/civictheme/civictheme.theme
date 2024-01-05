@@ -5,6 +5,8 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 
 require_once __DIR__ . '/includes/utilities.inc';
