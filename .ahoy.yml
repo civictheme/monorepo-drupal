@@ -178,8 +178,8 @@ commands:
   lint-fix:
     usage: Fix lint issues of back-end and front-end code.
     cmd: |
+      ahoy cli vendor/bin/rector --debug
       ahoy cli vendor/bin/phpcbf
-      ahoy cli vendor/bin/rector process .
 
   test:
     usage: Run all tests.
