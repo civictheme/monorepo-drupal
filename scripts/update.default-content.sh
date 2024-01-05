@@ -3,11 +3,11 @@
 # Update default content from the current site.
 #
 # Usage:
-# ./scripts/update-theme-config.sh
+# ./scripts/update.default-content.sh
 #
 
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+set -eu
+[ -n "${DREVOPS_DEBUG:-}" ] && set -x
 
 CIVICTHEME_CONTENT_PROFILE="${CIVICTHEME_CONTENT_PROFILE:-default}"
 

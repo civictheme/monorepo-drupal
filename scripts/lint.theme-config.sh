@@ -3,8 +3,8 @@
 # Lint theme configuration
 #
 
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+set -eu
+[ -n "${DREVOPS_DEBUG:-}" ] && set -x
 
 # Theme dir.
 THEME_DIR="web/themes/contrib/civictheme"
@@ -39,37 +39,37 @@ echo "==> Comparing configuration files"
 [ ! -d "${THEME_CONFIG_DIR}" ] && "ERROR: ${THEME_DIR} does not exist"
 
 # Remove temp directories that may exist from the previous run.
-rm -Rf "${TMP_DIR_CURRENT:?}" > /dev/null || true
-rm -Rf "${TMP_DIR_EXPORTED:?}" > /dev/null || true
+rm -Rf "${TMP_DIR_CURRENT:?}" >/dev/null || true
+rm -Rf "${TMP_DIR_EXPORTED:?}" >/dev/null || true
 
 # Create temp dirs.
-mkdir -p "${TMP_DIR_CURRENT}" > /dev/null
-mkdir -p "${TMP_DIR_EXPORTED}" > /dev/null
+mkdir -p "${TMP_DIR_CURRENT}" >/dev/null
+mkdir -p "${TMP_DIR_EXPORTED}" >/dev/null
 
 # Copy current config into a temp dir for comparison.
-cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_CURRENT}" > /dev/null
+cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_CURRENT}" >/dev/null
 
 # Remove config dir.
-rm -Rf "${THEME_CONFIG_DIR:?}"/* > /dev/null
+rm -Rf "${THEME_CONFIG_DIR:?}"/* >/dev/null
 
 # Export config.
-drush cde civictheme > /dev/null
+drush cde civictheme >/dev/null
 
 # Copy exported config into a temp dir for comparison.
-cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_EXPORTED}" > /dev/null
+cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_EXPORTED}" >/dev/null
 
 # Put back original config.
-rm -Rf "${THEME_CONFIG_DIR:?}"/* > /dev/null
-cp -R "${TMP_DIR_CURRENT}"/* "${THEME_CONFIG_DIR}" > /dev/null
+rm -Rf "${THEME_CONFIG_DIR:?}"/* >/dev/null
+cp -R "${TMP_DIR_CURRENT}"/* "${THEME_CONFIG_DIR}" >/dev/null
 
 # Create options array for diff with exclusion patterns.
 diff_opts=(-ar)
 for exclude_pattern in "${DIFF_EXCLUDE_PATTERNS[@]}"; do
-  diff_opts+=( -x "${exclude_pattern}")
-done;
+  diff_opts+=(-x "${exclude_pattern}")
+done
 
 # Compare directories.
-diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || ( echo "ERROR: Configuration is not consistent. Are all configuration entries present in civictheme.info.yml?" && exit 1 )
+diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || (echo "ERROR: Configuration is not consistent. Are all configuration entries present in civictheme.info.yml?" && exit 1)
 
 echo "  > OK: Configuration is consistent."
 

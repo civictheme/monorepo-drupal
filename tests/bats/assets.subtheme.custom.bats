@@ -6,7 +6,7 @@
 
 load _helper
 
-@test "Sub-theme Drupal theme assets" {
+@test "Drupal sub-theme assets" {
   dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/custom/civictheme_demo"
 
   pushd "${dir}" >/dev/null || exit 1
