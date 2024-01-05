@@ -34,7 +34,9 @@ parameters:
       # Hook implementations do not provide docblocks for parameters, so there
       # is no way to provide this information.
       message: '#.* with no value type specified in iterable type array#'
-
     -
       # Allow using Drupal::service() in Drush commands.
       message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+    -
+      # Deprecations are manually handled in the codebase.
+      message: '#\Call to deprecated function#'
