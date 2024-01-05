@@ -6,36 +6,21 @@
 set -eu
 [ -n "${DEBUG:-}" ] && set -x
 
-#-------------------------------------------------------------------------------
-# Variables (passed from environment; provided for reference only).
-#-------------------------------------------------------------------------------
+pushd "build" >/dev/null || exit 1
 
-# Directory where Drupal site will be built.
-BUILD_DIR="${BUILD_DIR:-build}"
-
-# Module name, taken from .info file.
-MODULE="$(basename -s .info.yml -- ./*.info.yml)"
-
-#-------------------------------------------------------------------------------
-
-echo "==> Lint code for module $MODULE."
 echo "  > Running PHPCS."
-build/vendor/bin/phpcs \
-  -s \
-  -p \
-  --ignore=node_modules/* --ignore=vendor/* \
-  --standard=Drupal,DrupalPractice \
-  --extensions=module,php,install,inc,test,info.yml,js \
-  "${BUILD_DIR}/web/themes/${MODULE}"
+vendor/bin/phpcs
 
-echo "  > Running drupal-check."
-build/vendor/bin/drupal-check \
-  --drupal-root=build/web \
-  "${BUILD_DIR}/web/themes/${MODULE}" || true
+echo "  > Running PHPMD."
+vendor/bin/phpmd . text phpmd.xml
+
+echo "  > Running TWIGCS."
+vendor/bin/twigcs
+
+echo "  > Running phpstan."
+vendor/bin/phpstan
 
 echo "  > Running Drupal Rector."
-pushd "${BUILD_DIR}" >/dev/null || exit 1
-vendor/bin/rector process \
-  "web/themes/${MODULE}" \
-  --dry-run
+vendor/bin/rector --dry-run --debug
+
 popd >/dev/null || exit 1
