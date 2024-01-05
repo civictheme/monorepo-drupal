@@ -37,4 +37,5 @@ See [Color selector](https://docs.civictheme.io/development/drupal-theme/color-s
 
 ---
 
-For additional information, please refer to the [Documentation site](https://docs.civictheme.io/drupal-theme)
+For additional information, please refer to
+the [Documentation site](https://docs.civictheme.io/drupal-theme)

@@ -241,8 +241,8 @@ function process_stub(string $dir, array $options): void {
     $packagejson['civictheme']['homepage'] = $options['packagejson']['homepage'];
     $packagejson['civictheme']['bugs'] = $options['packagejson']['bugs'];
     $packagejson['civictheme']['repository'] = $options['packagejson']['repository'];
-    $packagejson_encoded = preg_replace_callback('/^ +/m', static function (array $m) : string {
-        return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
+    $packagejson_encoded = preg_replace_callback('/^ +/m', static function (array $m): string {
+      return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
     }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
   }
@@ -781,13 +781,13 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
   // @phpstan-ignore-next-line
-  set_error_handler(static function ($severity, $message, $file, $line) : void {
+  set_error_handler(static function ($severity, $message, $file, $line): void {
     if ((error_reporting() & $severity) === 0) {
       // This error code is not included in error_reporting.
       return;
     }
 
-      throw new ErrorException($message, 0, $severity, $file, $line);
+    throw new ErrorException($message, 0, $severity, $file, $line);
   });
 
   try {

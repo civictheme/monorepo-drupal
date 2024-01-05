@@ -17,13 +17,7 @@ final class CivicthemeSettingsFormManager implements ContainerInjectionInterface
    * {@inheritdoc}
    */
   public function __construct(
-    /**
-     * Plugin loader.
-     */
     protected CivicthemePluginLoader $pluginLoader,
-    /**
-     * Theme extension list.
-     */
     protected ThemeExtensionList $themeExtensionList
   ) {
   }

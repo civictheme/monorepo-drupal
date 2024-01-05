@@ -115,7 +115,7 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
   if (!empty($variation['alias'])) {
     // Replace tokens in an alias.
     $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, static function ($value) {
-        return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
+      return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
     });
 
     $node->set('path', [
