@@ -22,6 +22,7 @@ use Rector\CodingStyle\Rector\FuncCall\CountArrayToEmptyArrayComparisonRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector;
 use Rector\Set\ValueObject\SetList;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 
@@ -65,6 +66,7 @@ return static function (RectorConfig $rectorConfig): void {
     NewlineAfterStatementRector::class,
     NewlineBeforeNewAssignSetRector::class,
     PostIncDecToPreIncDecRector::class,
+    RemoveAlwaysTrueIfConditionRector::class,
     SimplifyEmptyCheckOnEmptyArrayRector::class,
     // Dependencies.
     '*/vendor/*',
