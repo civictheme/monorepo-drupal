@@ -7,7 +7,7 @@
     "node": ">=18.14"
   },
   "scripts": {
-    "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
+    "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet && npm run add-lint-exclusions",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && build-storybook -s .storybook/static",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
     "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
@@ -17,7 +17,6 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
-    "export-colors": "php ../../../contrib/civictheme/lib/uikit/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
     "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php dist,storybook-static"
   },
   "devDependencies": {
