@@ -160,8 +160,8 @@ function civictheme_preprocess_page(array &$variables): void {
   //
   // IMPORTANT! Do not add anything below this line or components will not be
   // able to discover variables.
-  $page_variables = array_filter($variables['page'], static function ($key) : bool {
-      return !str_starts_with($key, '#');
+  $page_variables = array_filter($variables['page'], static function ($key): bool {
+    return !str_starts_with($key, '#');
   }, ARRAY_FILTER_USE_KEY);
   $variables += $page_variables;
 }

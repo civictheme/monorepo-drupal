@@ -52,9 +52,7 @@ class CivicthemeColor implements \Stringable {
    *   Optional color formula. Defaults to NULL meaning that the color is not
    *   produced from any other colors.
    */
-  public function __construct(/**
-                               * The color name.
-                               */
+  public function __construct(
     protected $name,
     $value,
     $formula = NULL) {

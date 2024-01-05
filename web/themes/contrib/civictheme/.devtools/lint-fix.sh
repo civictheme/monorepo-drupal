@@ -6,9 +6,17 @@
 set -eu
 [ -n "${DEBUG:-}" ] && set -x
 
+BUILD_DIR="${BUILD_DIR:-build}"
+
+echo
+echo "-------------------------------"
+echo " Fixing theme code             "
+echo "-------------------------------"
+echo
+
 echo "  > Running Drupal Rector fixer."
-build/vendor/bin/rector process --debug
+"${BUILD_DIR}"/vendor/bin/rector process
 
 echo "  > Running PHPCS fixer."
-build/vendor/bin/phpcbf
+"${BUILD_DIR}"/vendor/bin/phpcbf
 

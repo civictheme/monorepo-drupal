@@ -140,13 +140,13 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
   // @phpstan-ignore-next-line
-  set_error_handler(static function ($severity, $message, $file, $line) : void {
+  set_error_handler(static function ($severity, $message, $file, $line): void {
     if ((error_reporting() & $severity) === 0) {
       // This error code is not included in error_reporting.
       return;
     }
 
-      throw new ErrorException($message, 0, $severity, $file, $line);
+    throw new ErrorException($message, 0, $severity, $file, $line);
   });
 
   try {

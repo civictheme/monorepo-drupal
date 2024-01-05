@@ -49,7 +49,7 @@ function _civictheme_preprocess_node(array &$variables): void {
     $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
     if (!empty($topics)) {
       $topics = array_map(static function ($topic) {
-          return $topic->label();
+        return $topic->label();
       }, $topics);
 
       $variables['content'][] = [
