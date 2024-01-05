@@ -5,6 +5,8 @@
  * WYSIWYG preprocessing.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Render\Element;
 
 /**

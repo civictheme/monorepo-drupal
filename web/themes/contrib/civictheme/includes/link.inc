@@ -5,6 +5,8 @@
  * Link related functions.
  */
 
+declare(strict_types=1);
+
 use Drupal\Component\Utility\Html;
 
 /**

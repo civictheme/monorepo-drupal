@@ -5,6 +5,8 @@
  * Menu related functions.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 
 /**

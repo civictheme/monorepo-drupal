@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\civictheme\Unit;
 
 use Drupal\civictheme\CivicthemeUtility;

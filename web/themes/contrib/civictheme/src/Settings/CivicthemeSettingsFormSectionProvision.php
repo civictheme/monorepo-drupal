@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\Core\Form\FormStateInterface;

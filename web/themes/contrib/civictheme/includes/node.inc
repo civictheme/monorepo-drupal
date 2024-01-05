@@ -5,6 +5,8 @@
  * Node related functions.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;

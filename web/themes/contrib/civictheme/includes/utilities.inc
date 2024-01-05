@@ -7,6 +7,8 @@
  * @todo Move all functions to CivicthemeUtility class.
  */
 
+declare(strict_types=1);
+
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
@@ -408,14 +410,14 @@ function civictheme_get_field_referenced_entity(FieldableEntityInterface $entity
 }
 
 /**
- * Get the label of referenced entities in a field of an entity.
+ * Get labels of the referenced entities.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The host entity.
  * @param string $field_name
  *   The entity reference field.
  *
- * @return string[]
+ * @return array<int,string>
  *   The label(s).
  */
 function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name): array {
@@ -423,7 +425,7 @@ function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entit
   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
   foreach ($referenced_entities as $referenced_entity) {
     if ($referenced_entity instanceof EntityInterface) {
-      $labels[] = $referenced_entity->label();
+      $labels[] = (string) $referenced_entity->label();
     }
   }
 
@@ -736,7 +738,7 @@ function _civictheme_feature_is_optedout(string $type, string $name, mixed $cont
 /**
  * Map of available opt-out flags.
  *
- * @return array<string, string>
+ * @return array<string,\Drupal\Core\StringTranslation\TranslatableMarkup>
  *   Array of opt-out flags.
  */
 function _civictheme_feature_optout_flags(): array {

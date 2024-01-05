@@ -5,6 +5,8 @@
  * CivicTheme default content module.
  */
 
+declare(strict_types=1);
+
 /**
  * Helper for implementations of hook_module_implements_alter().
  */

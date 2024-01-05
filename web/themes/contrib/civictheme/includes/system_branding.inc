@@ -5,6 +5,8 @@
  * System branding block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Xss;

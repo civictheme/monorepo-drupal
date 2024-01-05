@@ -5,6 +5,8 @@
  * Banner component alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
@@ -171,6 +173,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   $current_route_match = \Drupal::routeMatch();
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
   if (!empty($title)) {
+    $title = (string) (is_array($title) ? reset($title) : $title);
     $breadcrumb_links = $breadcrumb->getLinks();
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');

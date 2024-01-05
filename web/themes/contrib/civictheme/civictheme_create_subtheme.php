@@ -22,6 +22,8 @@
  * phpcs:disable DrupalPractice.Commenting.CommentEmptyLine.SpacingAfter
  */
 
+declare(strict_types=1);
+
 /**
  * Defines exit codes.
  */

@@ -5,6 +5,8 @@
  * Post-updates for CivicTheme.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUpdateHelper;
 use Drupal\Core\Entity\EntityInterface;

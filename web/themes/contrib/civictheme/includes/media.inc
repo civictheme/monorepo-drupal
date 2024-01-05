@@ -5,6 +5,9 @@
  * Media theme alterations.
  */
 
+declare(strict_types=1);
+
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
@@ -126,7 +129,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
   }
 
   $transcript_attributes = new Attribute();
-  $transcript_attributes->setAttribute('aria-label', t('View transcript @label', [
+  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript @label', [
     '@label' => $media->label(),
   ]));
   // Transcript link points to the video if the transcript is empty or

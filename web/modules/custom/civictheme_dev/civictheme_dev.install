@@ -5,6 +5,8 @@
  * Install file for core.
  */
 
+declare(strict_types=1);
+
 use Drupal\user\Entity\User;
 
 /**

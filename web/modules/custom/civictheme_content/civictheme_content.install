@@ -17,6 +17,8 @@
  * of CIVICTHEME_CONTENT_PROFILE to 'none'.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Installer\Exception\InstallerException;

@@ -13,6 +13,8 @@
  * production.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConfigImporter;
@@ -114,7 +116,7 @@ function _civictheme_form_system_theme_settings_provision_validate(array &$form,
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     if (empty($types)) {
-      $form_state->setErrorByName('provision_types', t('At least one provision type must be selected.'));
+      $form_state->setErrorByName('provision_types', (string) t('At least one provision type must be selected.'));
     }
   }
 }
@@ -201,7 +203,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
   foreach (array_keys($callbacks) as $callback_type) {
     if (in_array($callback_type, $types)) {
       if ($verbose) {
-        civictheme_provision_cli_log(t('Started provisioning @type.', [
+        civictheme_provision_cli_log((string) t('Started provisioning @type.', [
           '@type' => $callback_type,
         ]));
       }
@@ -221,7 +223,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
       }
 
       if ($verbose) {
-        civictheme_provision_cli_log(t('Finished provisioning @type: @message', [
+        civictheme_provision_cli_log((string) t('Finished provisioning @type: @message', [
           '@type' => $callback_type,
           '@message' => $results[$callback_type] === TRUE ? t('Success') : t('ERROR: @error', [
             '@error' => is_string($results[$callback_type]) ? $results[$callback_type] : t('Unknown.'),

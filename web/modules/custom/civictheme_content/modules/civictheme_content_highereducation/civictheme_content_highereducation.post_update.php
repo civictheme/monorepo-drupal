@@ -5,6 +5,8 @@
  * Post update hooks for CivicTheme Higher Education Content.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Utility\UpdateException;
 

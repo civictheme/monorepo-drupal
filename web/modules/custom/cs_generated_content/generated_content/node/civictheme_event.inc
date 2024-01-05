@@ -5,6 +5,8 @@
  * Create generated Event nodes.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\node\NodeInterface;

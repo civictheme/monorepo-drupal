@@ -5,6 +5,8 @@
  * Webform theme alterations.
  */
 
+declare(strict_types=1);
+
 /**
  * Pre-process for Webform paragraph.
  */

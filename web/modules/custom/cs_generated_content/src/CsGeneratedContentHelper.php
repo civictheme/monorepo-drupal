@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\Core\Entity\EntityInterface;

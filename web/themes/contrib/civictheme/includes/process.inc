@@ -5,6 +5,8 @@
  * Theme generic process functions.
  */
 
+declare(strict_types=1);
+
 /**
  * Process an HTML content string by applying several processors.
  *
