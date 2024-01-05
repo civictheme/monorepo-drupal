@@ -53,7 +53,9 @@ final class CivicthemePluginLoader implements ContainerInjectionInterface {
 
     if ($parent_class) {
       foreach (get_declared_classes() as $class) {
-        $children[] = $this->classResolver->getInstanceFromDefinition($class);
+        if (is_subclass_of($class, $parent_class)) {
+          $children[] = $this->classResolver->getInstanceFromDefinition($class);
+        }
       }
     }
 
