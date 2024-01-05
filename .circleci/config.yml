@@ -136,7 +136,7 @@ job-build: &job-build
     - *step_setup_docker_network
     - run:
         name: Lint docs spelling
-        command: ./scripts/lint-spelling.sh
+        command: ./scripts/lint.spelling.sh
     - run:
         name: Build site
         command: ./scripts/drevops/build.sh
@@ -161,13 +161,13 @@ job-build: &job-build
         command: docker compose exec -T cli bash -c "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint" || [ "${DREVOPS_CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme configuration
-        command: docker compose exec -T cli bash -c "./scripts/lint-theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli bash -c "./scripts/lint.theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme schema
         command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
     - run:
-        name: Run tooling tests
-        command: ./scripts/test-tooling.sh
+        name: Run assets tests
+        command: ./scripts/test.assets.sh
     - run:
         name: Test with PHPUnit
         command: |
@@ -370,34 +370,34 @@ jobs:
           name: Deploy release to CivicTheme Drupal theme repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH:-main}" \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
-            ./scripts/deploy-code-commit.sh
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
+            ./scripts/push.code.sh
       - run:
           name: Deploy release to civictheme_govcms module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH:-main}" \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_govcms" \
-            ./scripts/deploy-code-commit.sh
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_govcms" \
+            ./scripts/push.code.sh
       - run:
           name: Deploy release to civictheme_content module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH:-main}" \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_content" \
-            ./scripts/deploy-code-commit.sh
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_content" \
+            ./scripts/push.code.sh
       - run:
           name: Deploy release to civictheme_admin module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH="${DEPLOY_CODE_COMMIT_REMOTE_BRANCH:-main}" \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_admin" \
-            ./scripts/deploy-code-commit.sh
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_admin" \
+            ./scripts/push.code.sh
       - store_artifacts:
           path: /tmp/artifacts
 

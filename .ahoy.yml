@@ -176,7 +176,7 @@ commands:
   lint-config:
     usage: Lint config
     cmd: |
-      ahoy cli ./scripts/lint-theme-config.sh
+      ahoy cli ./scripts/lint.theme-config.sh
       ahoy cli "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
 
   lint-fix:
@@ -208,7 +208,7 @@ commands:
 
   test-bats:
     usage: Run Bats tests (host only).
-    cmd: ./scripts/test-tooling.sh
+    cmd: ./scripts/test.assets.sh
 
   debug:
     usage: Enable PHP Xdebug.
@@ -247,7 +247,7 @@ commands:
   export-config:
     usage: Export theme config.
     cmd: |
-      ahoy cli "./scripts/update-theme-config.sh"
+      ahoy cli "./scripts/update.theme-config.sh"
       ahoy drush cde civictheme_dev || true
       if ahoy drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
         ahoy drush cde cs_generated_content || true
@@ -257,7 +257,7 @@ commands:
     usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
     cmd: |
       ahoy confirm "This will uninstall several modules and users. Proceed?" \
-      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update-default-content.sh" || echo "The operation was canceled."
+      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update.default-content.sh" || echo "The operation was canceled."
 
   # ----------------------------------------------------------------------------
   # Utilities.
