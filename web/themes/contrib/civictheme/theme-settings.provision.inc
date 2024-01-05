@@ -811,11 +811,11 @@ function _civictheme_provision__blocks__social_links(array $block): void {
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
   ]);
-  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('facebook.svg');
-  $paragraph->field_c_p_link = [
+  $paragraph->set('field_c_p_icon', civictheme_provision_load_media_by_name('facebook.svg'));
+  $paragraph->set('field_c_p_link', [
     'uri' => 'https://www.facebook.com/',
     'title' => 'Facebook',
-  ];
+  ]);
   $block_content->get('field_c_b_social_icons')->appendItem($paragraph);
 
   $paragraph = Paragraph::create([

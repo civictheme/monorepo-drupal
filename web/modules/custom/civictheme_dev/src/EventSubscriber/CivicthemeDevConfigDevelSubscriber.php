@@ -2,6 +2,7 @@
 
 namespace Drupal\civictheme_dev\EventSubscriber;
 
+use Drupal\config_devel\Event\ConfigDevelEvents;
 use Drupal\config_devel\Event\ConfigDevelSaveEvent;
 use Drupal\config_devel\EventSubscriber\ConfigDevelSubscriberBase;
 use Drupal\config_filter\Plugin\ConfigFilterPluginManager;
@@ -65,7 +66,11 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    return [['onConfigDevelSave', 10]];
+    $events = [];
+
+    $events[ConfigDevelEvents::SAVE][] = ['onConfigDevelSave', 10];
+
+    return $events;
   }
 
 }

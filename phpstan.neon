@@ -6,6 +6,9 @@
 # @see https://github.com/mglaman/phpstan-drupal
 #
 # Paths are passed as CLI arguments.
+#
+# CivicTheme base theme (web/themes/contrib/civictheme) scanning is not included
+# in this file. See web/themes/contrib/civictheme/phpstan.neon for the basetheme.
 
 parameters:
 
@@ -18,11 +21,19 @@ parameters:
     - web/sites/default/includes
     - tests
 
+  # Include the base theme files in the scan to make the functions available
+  # for discovery when used in non-theme code (modules, tests).
+  scanDirectories:
+    - web/themes/contrib/civictheme
+
   excludePaths:
-    - vendor/*
-    - node_modules/*
-    - ../*/vendor/*
-    - ../*/node_modules/*
+    analyse:
+      - web/themes/contrib/civictheme
+    analyseAndScan:
+      - vendor/*
+      - node_modules/*
+      - ../*/vendor/*
+      - ../*/node_modules/*
 
   drupal:
     drupal_root: web

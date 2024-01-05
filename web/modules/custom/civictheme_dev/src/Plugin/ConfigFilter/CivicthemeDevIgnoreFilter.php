@@ -194,6 +194,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
 
     require_once $provision_file;
 
+    // @phpstan-ignore-next-line
     return civictheme_provision_permissions_map();
   }
 
