@@ -13,10 +13,8 @@ function _civictheme_preprocess_block__content(array &$variables): void {
     return;
   }
 
-  switch ($variables['elements']['#configuration']['label']) {
-    case 'Copyright':
-      $variables['attributes']['class'][] = 'copyright';
-      $variables['attributes']['class'][] = 'ct-text-regular';
-      break;
+  if ($variables['elements']['#configuration']['label'] === 'Copyright') {
+    $variables['attributes']['class'][] = 'copyright';
+    $variables['attributes']['class'][] = 'ct-text-regular';
   }
 }

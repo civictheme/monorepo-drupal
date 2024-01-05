@@ -112,7 +112,7 @@ function _civictheme_automated_list__get_view(array &$settings) {
   // it in hook_civictheme_automated_list_view_info().
   if (!empty($settings)) {
     // View name and display separated by '__' in the field value.
-    $parts = explode('__', $settings['type']);
+    $parts = explode('__', (string) $settings['type']);
     $info = [
       'view_name' => $parts[0],
       'display_name' => $parts[1] ?? 'default',
@@ -132,7 +132,7 @@ function _civictheme_automated_list__get_view(array &$settings) {
 
   // Get view instance.
   $view = Views::getView($info['view_name']);
-  if (!$view) {
+  if ($view === NULL) {
     \Drupal::logger('civictheme')->error(sprintf('Unable to use Automated list view "%s".', $info['view_name']));
 
     // Do not render this element if the view does not exist.
@@ -165,7 +165,7 @@ function _civictheme_automated_list__get_view(array &$settings) {
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_automated_list__update_view(ViewExecutable $view): void {
-  if (!isset($view->component_settings)) {
+  if (!property_exists($view, 'component_settings') || $view->component_settings === NULL) {
     return;
   }
 
@@ -175,9 +175,9 @@ function _civictheme_automated_list__update_view(ViewExecutable $view): void {
   // First view argument - content types.
   $view_args[] = $settings['content_type'] ?? 'all';
   // Second view argument - Topics.
-  $view_args[] = !empty($settings['topics']) ? implode('+', array_keys($settings['topics'])) : 'all';
+  $view_args[] = empty($settings['topics']) ? 'all' : implode('+', array_keys($settings['topics']));
   // Third view argument - Site Sections.
-  $view_args[] = !empty($settings['site_sections']) ? implode('+', array_keys($settings['site_sections'])) : 'all';
+  $view_args[] = empty($settings['site_sections']) ? 'all' : implode('+', array_keys($settings['site_sections']));
   $view->setArguments($view_args);
 
   // Title.
@@ -204,6 +204,7 @@ function _civictheme_automated_list__update_view(ViewExecutable $view): void {
         unset($view_filters[$view_filter_id]);
       }
     }
+
     $view->display_handler->setOption('filters', $view_filters);
   }
   else {

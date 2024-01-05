@@ -196,7 +196,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
       }
     }
 
-    $form['#submit'][] = [$this, 'submitColors'];
+    $form['#submit'][] = $this->submitColors(...);
     $form['#attached']['library'][] = 'civictheme/theme-settings.colors';
   }
 
@@ -248,12 +248,11 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
       foreach ($group_theme_map as $group_name => $group) {
         // @phpstan-ignore-next-line
         foreach (array_keys($group) as $group_color_name) {
-          $group_color_name_field = str_replace('-', '_', $group_color_name);
+          $group_color_name_field = str_replace('-', '_', (string) $group_color_name);
 
           /** @var \Drupal\civictheme\Color\CivicthemeColor $color */
           $color = $colors[$theme_name][$group_color_name] ?? FALSE;
 
-          // @phpstan-ignore-next-line
           $field_values[$theme_name][$group_name][$group_color_name_field] = [
             // @phpstan-ignore-next-line
             'value' => $color ? $color->getValue() : CivicthemeColorManager::COLOR_DEFAULT,
@@ -273,7 +272,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   protected static function processColorFormula(string $formula, string $theme): string {
     $parts = explode('|', $formula);
     $name = array_shift($parts);
-    $name = "colors[brand][$theme][$name]";
+    $name = sprintf('colors[brand][%s][%s]', $theme, $name);
     array_unshift($parts, $name);
 
     return implode('|', $parts);

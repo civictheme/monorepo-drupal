@@ -7,6 +7,7 @@
  * @todo Move all functions to CivicthemeUtility class.
  */
 
+use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\UrlHelper;
@@ -17,7 +18,9 @@ use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -140,7 +143,7 @@ function civictheme_media_image_get_variables(MediaInterface $media, string $ima
 function civictheme_media_get_url(MediaInterface $media, bool $is_relative = TRUE): ?string {
   $file = File::load($media->getSource()->getSourceFieldValue($media));
 
-  return $file ? $file->createFileUrl($is_relative) : NULL;
+  return $file !== NULL ? $file->createFileUrl($is_relative) : NULL;
 }
 
 /**
@@ -165,10 +168,10 @@ function civictheme_media_image_get_url(MediaInterface $media, string $image_sty
 
   $file = File::load($media->getSource()->getSourceFieldValue($media));
 
-  if ($file) {
+  if ($file !== NULL) {
     if ($image_style) {
       $style = ImageStyle::load($image_style);
-      $src = $style ? $style->buildUrl($file->get('uri')->getString()) : NULL;
+      $src = $style !== NULL ? $style->buildUrl($file->get('uri')->getString()) : NULL;
     }
     else {
       $src = $file->createFileUrl($is_relative);
@@ -190,7 +193,7 @@ function civictheme_media_image_get_url(MediaInterface $media, string $image_sty
  *   Loaded SVG or NULL if unable to load SVG.
  */
 function civictheme_embed_svg(string $url, array $css_classes = []): ?string {
-  $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
+  $svg_path = DRUPAL_ROOT . (str_starts_with($url, 'http') ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
   if (!file_exists($svg_path)) {
     return NULL;
   }
@@ -299,8 +302,6 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       break;
 
     case 'integer':
-      $value = (integer) $field->getString();
-      break;
 
     case 'list_integer':
       $value = (int) $field->getString();
@@ -341,7 +342,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
         $field = $field->first();
         $field_value = $field->get('value')->getString();
         $field_format = $field->get('format')->getString();
-        $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
+        $value = empty($field_format) ? $field_value : check_markup($field_value, $field_format);
         break;
       }
 
@@ -373,6 +374,7 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
     foreach ($referenced_entities as $referenced_entity) {
       $keyed_entities[$referenced_entity->id()] = $referenced_entity;
     }
+
     $referenced_entities = $keyed_entities;
   }
 
@@ -475,16 +477,16 @@ function civictheme_get_field_theme_value(FieldableEntityInterface|null $entity,
     return $default;
   }
 
-  switch (get_class($entity)) {
-    case 'Drupal\paragraphs\Entity\Paragraph':
+  switch ($entity::class) {
+    case Paragraph::class:
       $field_name = 'field_c_p_theme';
       break;
 
-    case 'Drupal\node\Entity\Node':
+    case Node::class:
       $field_name = 'field_c_n_banner_theme';
       break;
 
-    case 'Drupal\block_content\Entity\BlockContent':
+    case BlockContent::class:
       $field_name = 'field_c_b_theme';
       break;
   }
@@ -554,11 +556,7 @@ function _civictheme_field_is_wysiwyg(string $field_name): bool {
     'field_c_n_body',
     'field_c_p_content',
   ];
-  if (in_array($field_name, $wysiwyg_field_list)) {
-    return TRUE;
-  }
-
-  return FALSE;
+  return in_array($field_name, $wysiwyg_field_list);
 }
 
 /**
@@ -575,65 +573,13 @@ function _civictheme_field_is_wysiwyg(string $field_name): bool {
 function civictheme_get_icon_from_file(FileInterface $file): string {
   $mime_type = $file->getMimeType();
 
-  switch ($mime_type) {
-    // Word document types.
-    case 'application/msword':
-    case 'application/vnd.ms-word.document.macroEnabled.12':
-    case 'application/vnd.oasis.opendocument.text':
-    case 'application/vnd.oasis.opendocument.text-template':
-    case 'application/vnd.oasis.opendocument.text-master':
-    case 'application/vnd.oasis.opendocument.text-web':
-    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-    case 'application/vnd.stardivision.writer':
-    case 'application/vnd.sun.xml.writer':
-    case 'application/vnd.sun.xml.writer.template':
-    case 'application/vnd.sun.xml.writer.global':
-    case 'application/vnd.wordperfect':
-    case 'application/x-abiword':
-    case 'application/x-applix-word':
-    case 'application/x-kword':
-    case 'application/x-kword-crypt':
-      return 'word-file';
-
-    // Spreadsheet document types.
-    case 'application/vnd.ms-excel':
-    case 'application/vnd.ms-excel.sheet.macroEnabled.12':
-    case 'application/vnd.oasis.opendocument.spreadsheet':
-    case 'application/vnd.oasis.opendocument.spreadsheet-template':
-    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-    case 'application/vnd.stardivision.calc':
-    case 'application/vnd.sun.xml.calc':
-    case 'application/vnd.sun.xml.calc.template':
-    case 'application/vnd.lotus-1-2-3':
-    case 'application/x-applix-spreadsheet':
-    case 'application/x-gnumeric':
-    case 'application/x-kspread':
-    case 'application/x-kspread-crypt':
-      return 'download-file';
-
-    // Presentation document types.
-    case 'application/vnd.ms-powerpoint':
-    case 'application/vnd.ms-powerpoint.presentation.macroEnabled.12':
-    case 'application/vnd.oasis.opendocument.presentation':
-    case 'application/vnd.oasis.opendocument.presentation-template':
-    case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-    case 'application/vnd.stardivision.impress':
-    case 'application/vnd.sun.xml.impress':
-    case 'application/vnd.sun.xml.impress.template':
-    case 'application/x-kpresenter':
-      return 'download-file';
-
-    // PDF types.
-    case 'application/pdf':
-    case 'application/x-pdf':
-    case 'applications/vnd.pdf':
-    case 'text/pdf':
-    case 'text/x-pdf':
-      return 'pdf-file';
-
-    default:
-      return 'download-file';
-  }
+  return match ($mime_type) {
+    'application/msword', 'application/vnd.ms-word.document.macroEnabled.12', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.text-template', 'application/vnd.oasis.opendocument.text-master', 'application/vnd.oasis.opendocument.text-web', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.stardivision.writer', 'application/vnd.sun.xml.writer', 'application/vnd.sun.xml.writer.template', 'application/vnd.sun.xml.writer.global', 'application/vnd.wordperfect', 'application/x-abiword', 'application/x-applix-word', 'application/x-kword', 'application/x-kword-crypt' => 'word-file',
+      'application/vnd.ms-excel', 'application/vnd.ms-excel.sheet.macroEnabled.12', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.oasis.opendocument.spreadsheet-template', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.stardivision.calc', 'application/vnd.sun.xml.calc', 'application/vnd.sun.xml.calc.template', 'application/vnd.lotus-1-2-3', 'application/x-applix-spreadsheet', 'application/x-gnumeric', 'application/x-kspread', 'application/x-kspread-crypt' => 'download-file',
+      'application/vnd.ms-powerpoint', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12', 'application/vnd.oasis.opendocument.presentation', 'application/vnd.oasis.opendocument.presentation-template', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.stardivision.impress', 'application/vnd.sun.xml.impress', 'application/vnd.sun.xml.impress.template', 'application/x-kpresenter' => 'download-file',
+      'application/pdf', 'application/x-pdf', 'applications/vnd.pdf', 'text/pdf', 'text/x-pdf' => 'pdf-file',
+      default => 'download-file',
+  };
 }
 
 /**
@@ -674,7 +620,7 @@ function civictheme_url_is_external(string $url, string $base_url, array $overri
         return FALSE;
       }
     }
-    catch (\InvalidArgumentException $exception) {
+    catch (\InvalidArgumentException) {
       return FALSE;
     }
   }
@@ -730,10 +676,8 @@ function civictheme_external_link_normalize_domain(string $domain): string {
 function _civictheme_get_configurable_component_name_from_bundle(string $bundle): ?string {
   // Accommodate for existing and additional components that could be added in
   // the sub-themes.
-  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches)) {
-    if (!empty($matches[1])) {
-      return $matches[1];
-    }
+  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches) && !empty($matches[1])) {
+    return $matches[1];
   }
 
   return NULL;
@@ -761,7 +705,7 @@ function _civictheme_feature_is_optedout(string $type, string $name, mixed $cont
       if (!empty($context) && $context instanceof ViewExecutable) {
         $view = $context;
         $tags = $view->storage->get('tag');
-        $tags = !empty($tags) ? explode(',', $tags) : [];
+        $tags = empty($tags) ? [] : explode(',', (string) $tags);
         $tags = array_map('trim', $tags);
 
         if (in_array($name, $tags)) {
@@ -779,7 +723,7 @@ function _civictheme_feature_is_optedout(string $type, string $name, mixed $cont
           $optedout = in_array($name, $optouts);
         }
       }
-      catch (\Exception $e) {
+      catch (\Exception) {
         $optedout = FALSE;
       }
   }

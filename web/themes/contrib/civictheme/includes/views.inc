@@ -29,7 +29,7 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
-  $variables['attributes']['class'] = !empty($variables['dom_id']) ? 'js-view-dom-id-' . $variables['dom_id'] : Html::getUniqueId('js-view-dom-id');
+  $variables['attributes']['class'] = empty($variables['dom_id']) ? Html::getUniqueId('js-view-dom-id') : 'js-view-dom-id-' . $variables['dom_id'];
 
   // @phpstan-ignore-next-line
   if (!empty($view->header) && is_array($view->header)) {
@@ -69,18 +69,16 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
   if ($view->total_rows <= (int) $view_pager['options']['items_per_page']) {
     unset($variables['pager']);
   }
-  else {
+  elseif ($view->getPager()->getPluginId() === 'mini') {
     // Attach view to pager to be available for processing.
     //
     // Mini and full pagers have different theme implementations, so we need to
     // pass the view on different properties to be accessible in the preprocess
     // functions.
-    if ($view->getPager()->getPluginId() === 'mini') {
-      $variables['pager']['#view'] = $view;
-    }
-    else {
-      $variables['pager']['#attributes']['#view'] = $view;
-    }
+    $variables['pager']['#view'] = $view;
+  }
+  else {
+    $variables['pager']['#attributes']['#view'] = $view;
   }
 }
 

@@ -54,40 +54,15 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
   protected $cssColorsFilePath;
 
   /**
-   * The plugin manager.
-   */
-  protected CivicthemePluginLoader $pluginLoader;
-
-  /**
-   * The config manager.
-   */
-  protected CivicthemeConfigManager $configManager;
-
-  /**
-   * The stylesheet parser.
-   */
-  protected CivicthemeStylesheetParser $stylesheetParser;
-
-  /**
-   * The stylesheet generator.
-   */
-  protected CivicthemeStylesheetGenerator $stylesheetGenerator;
-
-  /**
-   * The cache tags invalidator.
-   */
-  protected CacheTagsInvalidatorInterface $cacheTagsInvalidator;
-
-  /**
    * Constructor.
    */
-  public function __construct(CivicthemePluginLoader $plugin_loader, CivicthemeConfigManager $config_manager, CivicthemeStylesheetParser $stylesheet_parser, CivicthemeStylesheetGenerator $stylesheet_generator, CacheTagsInvalidatorInterface $cache_tags_invalidator) {
-    $this->pluginLoader = $plugin_loader;
-    $this->configManager = $config_manager;
-    $this->stylesheetParser = $stylesheet_parser;
-    $this->stylesheetGenerator = $stylesheet_generator;
+  public function __construct(
+    protected CivicthemePluginLoader $pluginLoader,
+    protected CivicthemeConfigManager $configManager,
+    protected CivicthemeStylesheetParser $stylesheetParser,
+    protected CivicthemeStylesheetGenerator $stylesheetGenerator,
+    protected CacheTagsInvalidatorInterface $cacheTagsInvalidator) {
     $this->pluginLoader->load(__DIR__ . '/Color');
-    $this->cacheTagsInvalidator = $cache_tags_invalidator;
   }
 
   /**
@@ -192,6 +167,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
           }
         }
       }
+
       $map = $new_map;
     }
 
@@ -221,6 +197,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     if ($type) {
       self::validateType($type);
     }
+
     if ($theme) {
       self::validateTheme($theme);
     }
@@ -368,9 +345,10 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
       try {
         self::validateTheme($theme);
       }
-      catch (\Exception $exception) {
+      catch (\Exception) {
         continue;
       }
+
       $colors[self::COLOR_TYPE_PALETTE][$theme][implode(CivicthemeStylesheetParser::CSS_VARIABLES_SEPARATOR, $parts)] = $value;
     }
 

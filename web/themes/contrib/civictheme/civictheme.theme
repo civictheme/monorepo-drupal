@@ -7,50 +7,50 @@
 
 use Drupal\civictheme\CivicthemeConstants;
 
-require_once 'includes/utilities.inc';
-require_once 'includes/process.inc';
-require_once 'includes/accordion.inc';
-require_once 'includes/alert.inc';
-require_once 'includes/attachment.inc';
-require_once 'includes/banner.inc';
-require_once 'includes/block_content.inc';
-require_once 'includes/callout.inc';
-require_once 'includes/campaign.inc';
-require_once 'includes/content.inc';
-require_once 'includes/manual_list.inc';
-require_once 'includes/cards.inc';
-require_once 'includes/form.inc';
-require_once 'includes/iframe.inc';
-require_once 'includes/image.inc';
-require_once 'includes/link.inc';
-require_once 'includes/automated_list.inc';
-require_once 'includes/local_tasks.inc';
-require_once 'includes/libraries.inc';
-require_once 'includes/map.inc';
-require_once 'includes/media.inc';
-require_once 'includes/menu.inc';
-require_once 'includes/mobile_navigation.inc';
-require_once 'includes/next_step.inc';
-require_once 'includes/node.inc';
-require_once 'includes/page.inc';
-require_once 'includes/pager.inc';
-require_once 'includes/paragraphs.inc';
-require_once 'includes/primary_navigation.inc';
-require_once 'includes/promo.inc';
-require_once 'includes/quote.inc';
-require_once 'includes/search.inc';
-require_once 'includes/secondary_navigation.inc';
-require_once 'includes/system_main_block.inc';
-require_once 'includes/site_section.inc';
-require_once 'includes/skip_link.inc';
-require_once 'includes/slider.inc';
-require_once 'includes/snippet.inc';
-require_once 'includes/social_links.inc';
-require_once 'includes/system_branding.inc';
-require_once 'includes/table.inc';
-require_once 'includes/views.inc';
-require_once 'includes/wysiwyg.inc';
-require_once 'includes/webform.inc';
+require_once __DIR__ . '/includes/utilities.inc';
+require_once __DIR__ . '/includes/process.inc';
+require_once __DIR__ . '/includes/accordion.inc';
+require_once __DIR__ . '/includes/alert.inc';
+require_once __DIR__ . '/includes/attachment.inc';
+require_once __DIR__ . '/includes/banner.inc';
+require_once __DIR__ . '/includes/block_content.inc';
+require_once __DIR__ . '/includes/callout.inc';
+require_once __DIR__ . '/includes/campaign.inc';
+require_once __DIR__ . '/includes/content.inc';
+require_once __DIR__ . '/includes/manual_list.inc';
+require_once __DIR__ . '/includes/cards.inc';
+require_once __DIR__ . '/includes/form.inc';
+require_once __DIR__ . '/includes/iframe.inc';
+require_once __DIR__ . '/includes/image.inc';
+require_once __DIR__ . '/includes/link.inc';
+require_once __DIR__ . '/includes/automated_list.inc';
+require_once __DIR__ . '/includes/local_tasks.inc';
+require_once __DIR__ . '/includes/libraries.inc';
+require_once __DIR__ . '/includes/map.inc';
+require_once __DIR__ . '/includes/media.inc';
+require_once __DIR__ . '/includes/menu.inc';
+require_once __DIR__ . '/includes/mobile_navigation.inc';
+require_once __DIR__ . '/includes/next_step.inc';
+require_once __DIR__ . '/includes/node.inc';
+require_once __DIR__ . '/includes/page.inc';
+require_once __DIR__ . '/includes/pager.inc';
+require_once __DIR__ . '/includes/paragraphs.inc';
+require_once __DIR__ . '/includes/primary_navigation.inc';
+require_once __DIR__ . '/includes/promo.inc';
+require_once __DIR__ . '/includes/quote.inc';
+require_once __DIR__ . '/includes/search.inc';
+require_once __DIR__ . '/includes/secondary_navigation.inc';
+require_once __DIR__ . '/includes/system_main_block.inc';
+require_once __DIR__ . '/includes/site_section.inc';
+require_once __DIR__ . '/includes/skip_link.inc';
+require_once __DIR__ . '/includes/slider.inc';
+require_once __DIR__ . '/includes/snippet.inc';
+require_once __DIR__ . '/includes/social_links.inc';
+require_once __DIR__ . '/includes/system_branding.inc';
+require_once __DIR__ . '/includes/table.inc';
+require_once __DIR__ . '/includes/views.inc';
+require_once __DIR__ . '/includes/wysiwyg.inc';
+require_once __DIR__ . '/includes/webform.inc';
 
 /**
  * Implements hook_theme().
@@ -94,7 +94,7 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
   // Add theme suggestions to all blocks whose bundle starts with 'civictheme_'.
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
     $entity = $variables['elements']['content']['#block_content'] ?? NULL;
-    if ($entity && strpos($entity->bundle(), 'civictheme_') === 0) {
+    if ($entity && str_starts_with((string) $entity->bundle(), 'civictheme_')) {
       $suggestions[] = 'block__' . $entity->bundle() . '__default';
     }
   }
@@ -160,8 +160,8 @@ function civictheme_preprocess_page(array &$variables): void {
   //
   // IMPORTANT! Do not add anything below this line or components will not be
   // able to discover variables.
-  $page_variables = array_filter($variables['page'], function ($key): bool {
-    return strpos($key, '#') !== 0;
+  $page_variables = array_filter($variables['page'], static function ($key) : bool {
+      return !str_starts_with($key, '#');
   }, ARRAY_FILTER_USE_KEY);
   $variables += $page_variables;
 }

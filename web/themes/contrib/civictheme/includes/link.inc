@@ -47,12 +47,12 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   try {
     $dom = Html::load($html);
   }
-  catch (\Exception $e) {
+  catch (\Exception) {
     return $html;
   }
 
   $anchors = $dom->getElementsByTagName('a');
-  if (!$anchors->count()) {
+  if ($anchors->count() === 0) {
     return $html;
   }
 
@@ -80,9 +80,11 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
       if (!$anchor->hasAttribute('target')) {
         $anchor->setAttribute('target', '_blank');
       }
+
       if (!$anchor->hasAttribute('aria-label')) {
         $anchor->setAttribute('aria-label', 'Opens in a new tab');
       }
+
       $span = $dom->createElement('span', '(Opens in a new tab/window)');
       $span->setAttribute('class', 'ct-visually-hidden');
       $anchor->appendChild($span);
@@ -121,7 +123,7 @@ function _civictheme_process_html_content_links_emails(string $html): string {
   try {
     $dom = Html::load($html);
   }
-  catch (\Exception $e) {
+  catch (\Exception) {
     return $html;
   }
 
@@ -139,7 +141,7 @@ function _civictheme_process_html_content_links_emails(string $html): string {
       foreach ($emails as $email) {
         $replacement = $dom->createDocumentFragment();
         // @phpstan-ignore-next-line
-        $replacement->appendXML(str_replace($email, "<a href=\"mailto:$email\">$email</a>", $text_node->textContent));
+        $replacement->appendXML(str_replace($email, sprintf('<a href="mailto:%s">%s</a>', $email, $email), $text_node->textContent));
         /** @var \DOMChildNode $text_node */
         $text_node->replaceWith($replacement);
       }

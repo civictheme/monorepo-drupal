@@ -35,12 +35,12 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function setUp(): void {
+  protected function setUp(): void {
     parent::setUp();
 
     $container = $this->container;
 
-    require_once dirname($container->get('theme_handler')->rebuildThemeData()[$this->customTheme]->getPathname()) . '/theme-settings.provision.inc';
+    require_once dirname((string) $container->get('theme_handler')->rebuildThemeData()[$this->customTheme]->getPathname()) . '/theme-settings.provision.inc';
     $modules = _civictheme_get_theme_dependencies($this->customTheme, $this->optionalDependencies);
     $container->get('module_installer')->install($modules);
 

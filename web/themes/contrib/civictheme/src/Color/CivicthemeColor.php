@@ -7,14 +7,7 @@ namespace Drupal\civictheme\Color;
  *
  * Representation of the color value and formulas to produce it.
  */
-class CivicthemeColor {
-
-  /**
-   * The color name.
-   *
-   * @var string
-   */
-  protected $name;
+class CivicthemeColor implements \Stringable {
 
   /**
    * The color value.
@@ -59,11 +52,16 @@ class CivicthemeColor {
    *   Optional color formula. Defaults to NULL meaning that the color is not
    *   produced from any other colors.
    */
-  public function __construct($name, $value, $formula = NULL) {
-    $this->name = $name;
+  public function __construct(/**
+                               * The color name.
+                               */
+    protected $name,
+    $value,
+    $formula = NULL) {
     if ($formula) {
       $this->setFormula($formula);
     }
+
     $this->setValue($value);
   }
 

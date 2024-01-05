@@ -18,7 +18,7 @@
  */
 function _civictheme_process__html_content($html, array $options = []) {
   $request = \Drupal::service('request_stack')->getCurrentRequest();
-  $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
+  $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
 
   // Process links.
   $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
@@ -40,7 +40,7 @@ function _civictheme_process__html_content($html, array $options = []) {
     // .ct-button.ct-theme-light.ct-button--primary.ct-button--regular
     // if the component is dark we str_replace the theme class and replace.
     // @todo We may need to implement this in a different way.
-    $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], $html);
+    $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], (string) $html);
   }
 
   return $html;
