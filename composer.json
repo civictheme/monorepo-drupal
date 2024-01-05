@@ -116,6 +116,9 @@
         "patches": {
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "mglaman/phpstan-drupal": {
+                "Allow to provide drupal_root via an environment variable.": "https://github.com/mglaman/phpstan-drupal/pull/702.patch"
             }
         },
         "drupal-scaffold": {

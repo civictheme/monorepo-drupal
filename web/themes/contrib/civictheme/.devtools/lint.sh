@@ -6,21 +6,25 @@
 set -eu
 [ -n "${DEBUG:-}" ] && set -x
 
-pushd "build" >/dev/null || exit 1
+BUILD_DIR="${BUILD_DIR:-build}"
+
+echo
+echo "-------------------------------"
+echo " Linting theme code            "
+echo "-------------------------------"
+echo
 
 echo "  > Running PHPCS."
-vendor/bin/phpcs
+"${BUILD_DIR}"/vendor/bin/phpcs
 
 echo "  > Running TWIGCS."
-vendor/bin/twigcs
+"${BUILD_DIR}"/vendor/bin/twigcs
 
 echo "  > Running phpstan."
-vendor/bin/phpstan
+"${BUILD_DIR}"/vendor/bin/phpstan
 
 echo "  > Running Drupal Rector."
-vendor/bin/rector --dry-run --debug
+"${BUILD_DIR}"/vendor/bin/rector --dry-run --debug
 
 echo "  > Running PHPMD."
-vendor/bin/phpmd . text phpmd.xml
-
-popd >/dev/null || exit 1
+"${BUILD_DIR}"/vendor/bin/phpmd . text phpmd.xml
