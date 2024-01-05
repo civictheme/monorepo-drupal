@@ -41,8 +41,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__content(array &$vari
 function _civictheme_preprocess_paragraph__paragraph_field__date(array &$variables): void {
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date', TRUE);
   if ($date) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
+    $variables['date'] = civictheme_format_datetime($date->get('value')->getDateTime(), 'civictheme_short_date');
+    $variables['date_iso'] = civictheme_format_datetime_iso($date->get('value')->getDateTime());
   }
 }
 
@@ -52,8 +52,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__date(array &$variabl
 function _civictheme_preprocess_paragraph__node_field__date(array &$variables): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date', $node->getChangedTime());
-    $variables['date_iso'] = date('c', strtotime((string) $node->getChangedTime()) ?: NULL);
+    $variables['date'] = civictheme_format_datetime($node->getChangedTime(), 'civictheme_short_date');
+    $variables['date_iso'] = civictheme_format_datetime_iso($node->getChangedTime());
   }
 }
 
@@ -63,11 +63,11 @@ function _civictheme_preprocess_paragraph__node_field__date(array &$variables): 
 function _civictheme_preprocess_paragraph__paragraph_field__date_range(array &$variables): void {
   $date = civictheme_get_field_value($variables['paragraph'], 'field_c_p_date_range', TRUE);
   if ($date) {
-    $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
-    $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
+    $variables['date'] = civictheme_format_datetime($date->get('value')->getDateTime());
+    $variables['date_iso'] = civictheme_format_datetime_iso($date->get('value')->getDateTime());
     if ($date->get('end_value')->getDateTime()) {
-      $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime());
-      $variables['date_end_iso'] = date('c', strtotime((string) $date->get('end_value')->getDateTime()) ?: NULL);
+      $variables['date_end'] = civictheme_format_datetime($date->get('end_value')->getDateTime());
+      $variables['date_end_iso'] = civictheme_format_datetime_iso($date->get('end_value')->getDateTime());
     }
   }
 }
@@ -80,11 +80,11 @@ function _civictheme_preprocess_paragraph__node_field__date_range(array &$variab
   if ($node) {
     $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
     if ($date) {
-      $variables['date'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('value')->getDateTime());
-      $variables['date_iso'] = date('c', strtotime((string) $date->get('value')->getDateTime()) ?: NULL);
+      $variables['date'] = civictheme_format_datetime($date->get('value')->getDateTime());
+      $variables['date_iso'] = civictheme_format_datetime_iso($date->get('value')->getDateTime());
       if ($date->get('end_value')->getDateTime()) {
-        $variables['date_end'] = civictheme_format_date('civictheme_short_date_and_time', $date->get('end_value')->getDateTime());
-        $variables['date_end_iso'] = date('c', strtotime((string) $date->get('end_value')->getDateTime()) ?: NULL);
+        $variables['date_end'] = civictheme_format_datetime($date->get('end_value')->getDateTime());
+        $variables['date_end_iso'] = civictheme_format_datetime_iso($date->get('end_value')->getDateTime());
       }
     }
   }
