@@ -140,8 +140,20 @@ composer --working-dir="build" require --dev \
   palantirnet/drupal-rector:^0.18 \
   friendsoftwig/twigcs:^6.2
 
-echo "  > Copying tools configuration files."
+echo "  > Copying tools configuration files to the build root directory."
 cp phpcs.xml phpstan.neon phpmd.xml rector.php .twig_cs.php "build/"
+
+echo "  > Symlinking theme code."
+rm -rf "build/web/themes/custom" > /dev/null && mkdir -p "build/web/themes/custom/${theme}"
+ln -s "$(pwd)"/* "build/web/themes/custom/${theme}" && rm "build/web/themes/custom/${theme}/build"
+
+if [ -f "build/web/themes/custom/${theme}/package-lock.json" ]; then
+  pushd "build/web/themes/custom/${theme}/" > /dev/null || exit 1
+  echo "  > Installing theme assets."
+  [ -f ".nvm" ] && nvm use || true
+  [ ! -d "node_modules" ] && npm ci || true
+  popd > /dev/null || exit 1
+fi
 
 echo "-------------------------------"
 echo " Starting builtin PHP server   "
@@ -166,10 +178,6 @@ echo "-------------------------------"
 echo "  > Installing Drupal into SQLite database ${db_file}."
 drush si "${DRUPAL_PROFILE}" -y --db-url "sqlite://${db_file}" --account-name=admin install_configure_form.enable_update_status_theme=NULL install_configure_form.enable_update_status_emails=NULL
 drush status
-
-echo "  > Symlinking theme code."
-rm -rf "build/web/themes/custom" > /dev/null && mkdir -p "build/web/themes/custom/${theme}"
-ln -s "$(pwd)"/* "build/web/themes/custom/${theme}" && rm "build/web/themes/custom/${theme}/build"
 
 ########################################
 

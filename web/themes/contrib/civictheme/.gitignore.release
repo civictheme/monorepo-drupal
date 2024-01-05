@@ -1,6 +1,6 @@
 # This file is used by the release publishing script to replace current
 # .gitignore in order to selectively include and exclude directories that
 # are going into release.
-node_modules
-lib/uikit/.gitignore.release
+.devtools
 build
+node_modules
