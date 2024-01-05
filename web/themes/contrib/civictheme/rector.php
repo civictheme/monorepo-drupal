@@ -29,7 +29,7 @@ use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 
 return static function (RectorConfig $rectorConfig): void {
   $rectorConfig->paths([
-    __DIR__ . '/web/themes/custom/civictheme/**',
+    __DIR__ . '/**',
   ]);
 
   $rectorConfig->sets([
@@ -71,15 +71,8 @@ return static function (RectorConfig $rectorConfig): void {
     '*/vendor/*',
     '*/node_modules/*',
     '*/lib/*',
-    // Core and contribs.
-    '*/core/*',
-    '*/modules/contrib/*',
-    '*/profiles/contrib/*',
-    // Files.
-    '*/sites/simpletest/*',
-    '*/sites/default/files/*',
-    // Composer scripts.
-    '*/scripts/composer/*',
+    // Build.
+    '*/build/*',
   ]);
 
   $rectorConfig->fileExtensions([

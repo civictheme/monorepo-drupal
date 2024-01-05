@@ -143,10 +143,10 @@ job-build: &job-build
         no_output_timeout: 30m
     - run:
         name: Lint code with PHPCS
-        command: docker compose exec -T cli vendor/bin/phpcs || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli vendor/bin/phpcs -v || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint code with PHPStan
-        command: docker compose exec -T cli vendor/bin/phpstan || [ "${DREVOPS_CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli vendor/bin/phpstan --debug || [ "${DREVOPS_CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint code with Rector
         command: docker compose exec -T cli vendor/bin/rector process --dry-run --debug . || [ "${DREVOPS_CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]

@@ -140,9 +140,6 @@ composer --working-dir="build" require --dev \
   palantirnet/drupal-rector:^0.18 \
   friendsoftwig/twigcs:^6.2
 
-echo "  > Copying tools configuration files to the build root directory."
-cp phpcs.xml phpstan.neon phpmd.xml rector.php .twig_cs.php "build/"
-
 echo "  > Symlinking theme code."
 rm -rf "build/web/themes/custom" > /dev/null && mkdir -p "build/web/themes/custom/${theme}"
 ln -s "$(pwd)"/* "build/web/themes/custom/${theme}" && rm "build/web/themes/custom/${theme}/build"

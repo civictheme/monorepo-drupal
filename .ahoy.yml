@@ -155,18 +155,22 @@ commands:
     usage: Lint back-end and front-end code.
     cmd: ahoy lint-be && ahoy lint-fe
 
+  # Base theme has own tooling config files - use them with tools installed in
+  # the project root. This allows to lint base theme code without installing
+  # tools in the base theme directory. But it also allows to link the base theme
+  # when the theme is tested in isolated mode.
   lint-be:
     usage: Lint back-end code.
     cmd: |
+      ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && BUILD_DIR=/app DRUPAL_ROOT=/app/web .devtools/lint.sh"
       ahoy cli vendor/bin/phpcs
       ahoy cli vendor/bin/phpstan --debug
       ahoy cli vendor/bin/rector process --dry-run
       ahoy cli vendor/bin/phpmd . text phpmd.xml
 
   lint-fe:
-    usage: Lint front-end code.
+    usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
-      ahoy cli vendor/bin/twigcs
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
 
   lint-config:

@@ -2,7 +2,7 @@
 <ruleset name="custom">
   <description>Custom PHPCS Standard, based on Drupal standards.</description>
 
-  <file>web/themes/custom</file>
+  <file>.</file>
 
   <rule ref="Drupal"/>
   <rule ref="DrupalPractice"/>
@@ -16,15 +16,12 @@
   <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
   <config name="testVersion" value="8.1"/>
 
-  <!-- Exclude CivicTheme UIKit files. -->
-  <exclude-pattern>civictheme\/lib\/*</exclude-pattern>
-
-  <!-- Exclude theme assets. -->
-  <exclude-pattern>web\/themes\/custom\/.*\/build\/.*</exclude-pattern>
-  <exclude-pattern>web\/themes\/custom\/.*\/fonts\/.*</exclude-pattern>
-  <exclude-pattern>web\/themes\/custom\/.*\/images\/.*</exclude-pattern>
-  <exclude-pattern>web\/themes\/custom\/.*\/node_modules\/.*</exclude-pattern>
-  <exclude-pattern>*\.min\.*</exclude-pattern>
+  <exclude-pattern>build</exclude-pattern>
+  <exclude-pattern>lib</exclude-pattern>
+  <exclude-pattern>components</exclude-pattern>
+  <exclude-pattern>.storybook</exclude-pattern>
+  <exclude-pattern>webpack</exclude-pattern>
+  <exclude-pattern>gulpfile.js</exclude-pattern>
 
   <!-- Force no empty lines after function opening brace. -->
   <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace">
@@ -45,14 +42,14 @@
   <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses.IncorrectlyOrderedUses">
     <exclude-pattern>*.Test\.php</exclude-pattern>
     <exclude-pattern>*.TestCase\.php</exclude-pattern>
-    <exclude-pattern>*.test</exclude-pattern>
+    <exclude-pattern>*.TestBase\.php</exclude-pattern>
   </rule>
 
   <!-- Allow long array lines in tests. -->
   <rule ref="Drupal.Arrays.Array.LongLineDeclaration">
     <exclude-pattern>*.Test\.php</exclude-pattern>
     <exclude-pattern>*.TestCase\.php</exclude-pattern>
-    <exclude-pattern>*.test</exclude-pattern>
+    <exclude-pattern>*.TestBase\.php</exclude-pattern>
   </rule>
 
 </ruleset>
