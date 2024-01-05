@@ -75,7 +75,7 @@ final class CivicthemeUtility {
 
     if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
       $counter = count($matches[0]);
-      for ($i = 0; $i < $counter; ++$i) {
+      for ($i = 0; $i < $counter; $i++) {
         if ($matches[3][$i]) {
           $attributes[$matches[3][$i]] = NULL;
           continue;

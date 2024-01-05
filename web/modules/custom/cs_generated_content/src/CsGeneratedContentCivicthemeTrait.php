@@ -420,12 +420,11 @@ trait CsGeneratedContentCivicthemeTrait {
    */
   protected static function civicthemeNormaliseRichTextContentValue(string|array $value): array {
     $value = is_array($value) ? $value : ['value' => $value];
-    $value += [
+
+    return $value + [
       'value' => '',
       'format' => 'civictheme_rich_text',
     ];
-
-    return $value;
   }
 
   /**

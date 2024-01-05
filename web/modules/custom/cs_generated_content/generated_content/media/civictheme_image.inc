@@ -41,7 +41,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image():
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_JPG);
     $name = sprintf('Generated static Image media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 

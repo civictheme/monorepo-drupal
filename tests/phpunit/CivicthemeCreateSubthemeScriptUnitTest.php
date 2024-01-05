@@ -270,7 +270,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    *   Path to created SUT codebase.
    */
   protected function prepareSut($path = NULL): string {
-    $sut_dir = $this->tmpDir . (!empty($path) ? '/' . $path : '');
+    $sut_dir = $this->tmpDir . (empty($path) ? '' : '/' . $path);
     mkdir($sut_dir, 0755, TRUE);
 
     $this->fileCopyRecursively(getcwd() . '/' . $this->civicthemeDir, $sut_dir, [

@@ -30,7 +30,7 @@ class Helper {
   public static function log(string $message): void {
     if (PHP_SAPI === 'cli') {
       $message = strip_tags(html_entity_decode($message));
-      if (class_exists('\Drush\Drush')) {
+      if (class_exists('\\' . Drush::class)) {
         Drush::getContainer()->get('logger')->log(LogLevel::INFO, $message);
       }
       else {
@@ -83,7 +83,7 @@ class Helper {
   public static function setHomepageFromNode(string $title): void {
     $node = static::loadNodeByTitle($title, 'civictheme_page');
 
-    if (!$node) {
+    if (!$node instanceof Node) {
       throw new \Exception('Unable to find homepage node.');
     }
 

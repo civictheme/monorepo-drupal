@@ -41,7 +41,7 @@ function cs_generated_content_generated_content_create_media_civictheme_icon(): 
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_SVG);
     $name = sprintf('Generated static Icon media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 

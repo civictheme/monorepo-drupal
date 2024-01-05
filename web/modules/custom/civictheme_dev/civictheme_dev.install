@@ -22,7 +22,7 @@ function civictheme_dev_install(): void {
 
   // Run all update functions when installing this module.
   foreach ($functions['user'] as $function) {
-    if (strpos($function, 'civictheme_dev_update_') === 0) {
+    if (str_starts_with($function, 'civictheme_dev_update_')) {
       $sandbox = [];
       call_user_func($function, $sandbox);
     }
@@ -32,7 +32,7 @@ function civictheme_dev_install(): void {
   $key_value = \Drupal::keyValue('post_update');
   $executed_updates = $key_value->get('existing_updates', []);
   foreach ($executed_updates as $function) {
-    if (strpos($function, 'civictheme_dev_post_update_') === 0) {
+    if (str_starts_with((string) $function, 'civictheme_dev_post_update_')) {
       $sandbox = [];
       call_user_func($function, $sandbox);
     }

@@ -41,7 +41,7 @@ function cs_generated_content_generated_content_create_media_civictheme_video():
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_MP4);
     $name = sprintf('Generated static video media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 

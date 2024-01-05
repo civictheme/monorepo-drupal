@@ -126,8 +126,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   if (!empty($variation['alias'])) {
     // Replace tokens in an alias.
-    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, function ($value) {
-      return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
+    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, static function ($value) {
+        return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
     });
 
     $node->set('path', [
@@ -174,7 +174,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   // Locations.
   if (!empty($variation['location']) && $node->hasField('field_c_n_location')) {
-    for ($i = 0; $i < count($variation['location']); $i++) {
+    $counter = count($variation['location']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['location'][$i]['type'];
       // Remove component type and passthrough properties.
@@ -185,7 +186,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   // Attachments.
   if (!empty($variation['attachments']) && $node->hasField('field_c_n_attachments')) {
-    for ($i = 0; $i < count($variation['attachments']); $i++) {
+    $counter = count($variation['attachments']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['attachments'][$i]['type'];
       // Remove component type and passthrough properties.
