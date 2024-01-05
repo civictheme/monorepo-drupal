@@ -17,6 +17,7 @@ use DrupalRector\Set\Drupal10SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
 use Rector\CodeQuality\Rector\Empty_\SimplifyEmptyCheckOnEmptyArrayRector;
+use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
 use Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector;
 use Rector\CodingStyle\Rector\FuncCall\CountArrayToEmptyArrayComparisonRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
@@ -61,6 +62,7 @@ return static function (RectorConfig $rectorConfig): void {
     CountArrayToEmptyArrayComparisonRector::class,
     DisallowedEmptyRuleFixerRector::class,
     NewlineAfterStatementRector::class,
+    NewlineBeforeNewAssignSetRector::class,
     PostIncDecToPreIncDecRector::class,
     SimplifyEmptyCheckOnEmptyArrayRector::class,
     // Dependencies.
