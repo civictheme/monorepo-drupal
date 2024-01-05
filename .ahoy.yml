@@ -164,7 +164,7 @@ commands:
     cmd: |
       ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && BUILD_DIR=/app DRUPAL_ROOT=/app/web .devtools/lint.sh"
       ahoy cli vendor/bin/phpcs
-      ahoy cli vendor/bin/phpstan --debug
+      ahoy cli vendor/bin/phpstan
       ahoy cli vendor/bin/rector process --dry-run
       ahoy cli vendor/bin/phpmd . text phpmd.xml
 
@@ -182,7 +182,7 @@ commands:
   lint-fix:
     usage: Fix lint issues of back-end and front-end code.
     cmd: |
-      ahoy cli vendor/bin/rector --debug
+      ahoy cli vendor/bin/rector
       ahoy cli vendor/bin/phpcbf
 
   test:

@@ -24,7 +24,7 @@ echo "  > Running phpstan."
 "${BUILD_DIR}"/vendor/bin/phpstan
 
 echo "  > Running Drupal Rector."
-"${BUILD_DIR}"/vendor/bin/rector --dry-run --debug
+"${BUILD_DIR}"/vendor/bin/rector --dry-run
 
 echo "  > Running PHPMD."
 "${BUILD_DIR}"/vendor/bin/phpmd . text phpmd.xml
