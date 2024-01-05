@@ -25,7 +25,7 @@ function civictheme_content_corporate_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode('Protecting the environment');
   }
-  catch (\Exception $e) {
-    throw new UpdateException($e->getMessage());
+  catch (\Exception $exception) {
+    throw new UpdateException($exception->getMessage());
   }
 }

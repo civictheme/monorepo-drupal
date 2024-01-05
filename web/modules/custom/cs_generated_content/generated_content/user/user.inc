@@ -60,7 +60,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
         /** @var \Drupal\user\RoleInterface|null $role */
         $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_id);
-        if ($role) {
+        if ($role !== NULL) {
           $user = User::create();
           $user->setUsername($name);
           $user->setEmail($name);

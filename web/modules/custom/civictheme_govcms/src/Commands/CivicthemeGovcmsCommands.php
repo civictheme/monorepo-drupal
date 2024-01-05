@@ -14,18 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CivicthemeGovcmsCommands extends DrushCommands {
 
   /**
-   * The Govcms Manager service.
-   */
-  protected CivicthemeGovcmsManager $govcmsManager;
-
-  /**
    * Migration commands constructor.
    *
-   * @param \Drupal\civictheme_govcms\CivicthemeGovcmsManager $govcms_manager
+   * @param \Drupal\civictheme_govcms\CivicthemeGovcmsManager $govcmsManager
    *   The govcms manager service.
    */
-  public function __construct(CivicthemeGovcmsManager $govcms_manager) {
-    $this->govcmsManager = $govcms_manager;
+  public function __construct(protected CivicthemeGovcmsManager $govcmsManager) {
   }
 
   /**

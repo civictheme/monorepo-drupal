@@ -42,8 +42,8 @@ function civictheme_content_install(): void {
     return;
   }
 
-  $existing_content_profiles = array_map(function ($value): string {
-    return substr($value, strlen('civictheme_content_'));
+  $existing_content_profiles = array_map(static function ($value) : string {
+      return substr($value, strlen('civictheme_content_'));
   }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules') ?: [], ['..', '.']));
 
   if (!in_array($content_profile, $existing_content_profiles)) {

@@ -25,7 +25,7 @@ function civictheme_content_highereducation_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode('Home');
   }
-  catch (\Exception $e) {
-    throw new UpdateException($e->getMessage());
+  catch (\Exception $exception) {
+    throw new UpdateException($exception->getMessage());
   }
 }
