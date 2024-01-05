@@ -2,8 +2,8 @@
 ##
 # Mirror git repo branch.
 #
-set -e
-[ -n "${DREVOPS_DEBUG}" ] && set -x
+set -eu
+[ -n "${DREVOPS_DEBUG:-}" ] && set -x
 
 GIT_MIRROR_BRANCH="${GIT_MIRROR_BRANCH:-$1}"
 GIT_MIRROR_BRANCH_DST="${GIT_MIRROR_BRANCH_DST:-${GIT_MIRROR_BRANCH}}"
@@ -30,8 +30,8 @@ echo "==> Started code mirroring."
 # Use custom deploy key if fingerprint is provided.
 if [ -n "${GIT_MIRROR_SSH_FINGERPRINT}" ]; then
   echo "==> Custom deployment key is provided."
-  GIT_MIRROR_SSH_FILE="${GIT_MIRROR_SSH_FINGERPRINT//:}"
-  GIT_MIRROR_SSH_FILE="${HOME}/.ssh/id_rsa_${GIT_MIRROR_SSH_FILE//\"}"
+  GIT_MIRROR_SSH_FILE="${GIT_MIRROR_SSH_FINGERPRINT//:/}"
+  GIT_MIRROR_SSH_FILE="${HOME}/.ssh/id_rsa_${GIT_MIRROR_SSH_FILE//\"/}"
 fi
 
 [ ! -f "${GIT_MIRROR_SSH_FILE}" ] && echo "ERROR: SSH key file ${GIT_MIRROR_SSH_FILE} does not exist." && exit 1
@@ -41,7 +41,7 @@ if ssh-add -l | grep -q "${GIT_MIRROR_SSH_FILE}"; then
 else
   echo "==> SSH agent does not have default key loaded. Trying to load."
   # Remove all other keys and add SSH key from provided fingerprint into SSH agent.
-  ssh-add -D > /dev/null
+  ssh-add -D >/dev/null
   ssh-add "${GIT_MIRROR_SSH_FILE}"
 fi
 
@@ -60,7 +60,7 @@ git reset --hard
 
 # Checkout the branch, but only if the current branch is not the same.
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
-if [ "${GIT_MIRROR_BRANCH}" != "${current_branch}" ] ;then
+if [ "${GIT_MIRROR_BRANCH}" != "${current_branch}" ]; then
   git checkout -b "${GIT_MIRROR_BRANCH}" "${GIT_MIRROR_REMOTE}/${GIT_MIRROR_BRANCH}" || git switch "${GIT_MIRROR_BRANCH}" || true
 fi
 
