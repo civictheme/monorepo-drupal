@@ -16,12 +16,17 @@
   <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
   <config name="testVersion" value="8.1"/>
 
-  <exclude-pattern>build</exclude-pattern>
-  <exclude-pattern>lib\/</exclude-pattern>
+  <!-- Exclude dependencies directories. -->
+  <exclude-pattern>node_modules/*</exclude-pattern>
+  <exclude-pattern>vendor/*</exclude-pattern>
+
+  <exclude-pattern>\.storybook</exclude-pattern>
+  <exclude-pattern>build\/</exclude-pattern>
   <exclude-pattern>components</exclude-pattern>
-  <exclude-pattern>.storybook</exclude-pattern>
-  <exclude-pattern>webpack</exclude-pattern>
+  <exclude-pattern>dist\/</exclude-pattern>
   <exclude-pattern>gulpfile.js</exclude-pattern>
+  <exclude-pattern>lib\/</exclude-pattern>
+  <exclude-pattern>webpack</exclude-pattern>
 
   <!-- Force no empty lines after function opening brace. -->
   <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace">
