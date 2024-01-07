@@ -294,13 +294,13 @@ jobs:
 
   # Isolated theme build within a vanilla Drupal installation.
   # This replicates (to a degree) what Drupal CI would do.
-  build-theme-isolated-php-81:
+  build-isolated-php-81:
     <<: *runner_config
     docker:
       - image: cimg/php:8.1-browsers
     <<: *job-build-isolated
 
-  build-theme-isolated-php-82:
+  build-isolated-php-82:
     <<: *runner_config
     docker:
       - image: cimg/php:8.2-browsers
@@ -420,13 +420,13 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build-theme-isolated-php-81:
+      - build-isolated-php-81:
           filters:
             branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
-      - build-theme-isolated-php-82:
+      - build-isolated-php-82:
           filters:
             branches:
               ignore: /^content\/.*/
@@ -434,8 +434,8 @@ workflows:
               only: /.*/
       - build-minimal:
           requires:
-            - build-theme-isolated-php-81
-            - build-theme-isolated-php-82
+            - build-isolated-php-81
+            - build-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -443,8 +443,8 @@ workflows:
               only: /.*/
       - build-minimal-subtheme:
           requires:
-            - build-theme-isolated-php-81
-            - build-theme-isolated-php-82
+            - build-isolated-php-81
+            - build-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -452,8 +452,8 @@ workflows:
               only: /.*/
       - build-govcms:
           requires:
-            - build-theme-isolated-php-81
-            - build-theme-isolated-php-82
+            - build-isolated-php-81
+            - build-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -461,8 +461,8 @@ workflows:
               only: /.*/
       - build-govcms-subtheme:
           requires:
-            - build-theme-isolated-php-81
-            - build-theme-isolated-php-82
+            - build-isolated-php-81
+            - build-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -470,8 +470,8 @@ workflows:
               only: /.*/
       - build-govcms-subtheme-sibling:
           requires:
-            - build-theme-isolated-php-81
-            - build-theme-isolated-php-82
+            - build-isolated-php-81
+            - build-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
