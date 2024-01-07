@@ -200,6 +200,23 @@ job-build: &job-build
         paths:
           - code
 
+job-build-isolated: &job-build-isolated
+  steps:
+    # Workspace now contains previously built application code artifact.
+    - attach_workspace:
+        at: /tmp/workspace
+    - checkout
+    - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
+    - run:
+        command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
+        when: always
+    - store_test_results:
+        path: /tmp/test_results
+    - store_artifacts:
+        path: /tmp/artifacts
+
 jobs:
 
   # Used to pass the built code down the pipeline.
@@ -277,25 +294,17 @@ jobs:
 
   # Isolated theme build within a vanilla Drupal installation.
   # This replicates (to a degree) what Drupal CI would do.
-  build-theme-isolated:
+  build-theme-isolated-php-81:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.1-browsers
+    <<: *job-build-isolated
+
+  build-theme-isolated-php-82:
     <<: *runner_config
     docker:
       - image: cimg/php:8.2-browsers
-    steps:
-      # Workspace now contains previously built application code artifact.
-      - attach_workspace:
-          at: /tmp/workspace
-      - checkout
-      - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
-      - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
-      - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
-      - run:
-          command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
-          when: always
-      - store_test_results:
-          path: /tmp/test_results
-      - store_artifacts:
-          path: /tmp/artifacts
+    <<: *job-build-isolated
 
   # Mirror and redeploy content profiles.
   mirror-into-content-branches:
@@ -411,7 +420,13 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build-theme-isolated:
+      - build-theme-isolated-php-81:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-theme-isolated-php-82:
           filters:
             branches:
               ignore: /^content\/.*/
@@ -419,7 +434,8 @@ workflows:
               only: /.*/
       - build-minimal:
           requires:
-            - build-theme-isolated
+            - build-theme-isolated-php-81
+            - build-theme-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -427,7 +443,8 @@ workflows:
               only: /.*/
       - build-minimal-subtheme:
           requires:
-            - build-theme-isolated
+            - build-theme-isolated-php-81
+            - build-theme-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -435,7 +452,8 @@ workflows:
               only: /.*/
       - build-govcms:
           requires:
-            - build-theme-isolated
+            - build-theme-isolated-php-81
+            - build-theme-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -443,7 +461,8 @@ workflows:
               only: /.*/
       - build-govcms-subtheme:
           requires:
-            - build-theme-isolated
+            - build-theme-isolated-php-81
+            - build-theme-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
@@ -451,7 +470,8 @@ workflows:
               only: /.*/
       - build-govcms-subtheme-sibling:
           requires:
-            - build-theme-isolated
+            - build-theme-isolated-php-81
+            - build-theme-isolated-php-82
           filters:
             branches:
               ignore: /^content\/.*/
