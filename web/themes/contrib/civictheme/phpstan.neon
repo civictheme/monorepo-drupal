@@ -40,3 +40,4 @@ parameters:
     -
       # Deprecations are manually handled in the codebase.
       message: '#\Call to deprecated function#'
+      reportUnmatched: false
