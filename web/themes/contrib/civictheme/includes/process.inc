@@ -18,7 +18,7 @@ declare(strict_types=1);
  * @return string
  *   The processed string.
  */
-function _civictheme_process__html_content($html, array $options = []) {
+function _civictheme_process__html_content(string $html, array $options = []): string {
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
 
@@ -27,8 +27,8 @@ function _civictheme_process__html_content($html, array $options = []) {
   $html = _civictheme_process_html_content_links(
     $html,
     $base_url,
-    $link_settings['new_window'] ?? FALSE,
-    $link_settings['external_new_window'] ?? FALSE,
+    (bool) ($link_settings['new_window'] ?? FALSE),
+    (bool) ($link_settings['external_new_window'] ?? FALSE),
     $link_settings['external_override_domains'] ?? []
   );
 

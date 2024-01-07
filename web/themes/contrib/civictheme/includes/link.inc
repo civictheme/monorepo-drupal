@@ -31,7 +31,7 @@ use Drupal\Component\Utility\Html;
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
+function _civictheme_process_html_content_links(string $html, string $base_url, bool $new_window = FALSE, bool $external_new_window = FALSE, array $override_domains = []): string {
   if (_civictheme_feature_is_optedout('process', 'components.link')) {
     return $html;
   }
