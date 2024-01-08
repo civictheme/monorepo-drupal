@@ -14,10 +14,7 @@
 set -eu
 [ -n "${DREVOPS_DEBUG:-}" ] && set -x
 
-CURDIR="$(
-  cd "$(dirname "$1")"
-  pwd -P
-)/$(basename "$1")"
+CURDIR="$(pwd)"
 
 # Remote repository URL.
 PUSH_CODE_REMOTE_REPO="${PUSH_CODE_REMOTE_REPO:-}"

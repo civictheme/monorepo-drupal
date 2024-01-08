@@ -50,7 +50,7 @@ SRC_TMPDIR=$(mktemp -d)
 
 echo "==> Copying files from the source repository to ${SRC_TMPDIR}."
 rsync -a --keep-dirlinks ./. "${SRC_TMPDIR}"
-[ -n "${DREVOPS_DEBUG}" ] && tree -L 4 "${SRC_TMPDIR}"
+[ -n "${DREVOPS_DEBUG:-}" ] && tree -L 4 "${SRC_TMPDIR}"
 
 # Move to the temp source repo directory.
 pushd "${SRC_TMPDIR}" >/dev/null || exit 1
