@@ -53,7 +53,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
       if (!empty($role_id)) {
 
-        $name = sprintf('p.civictheme+%s_%s@salsadigital.com.au', str_replace('civictheme_', '', $role_id), $i);
+        $name = sprintf('p.civictheme+%s_%s@salsa.digital', str_replace('civictheme_', '', $role_id), $i);
 
         $existing_user = user_load_by_name($name);
         if ($existing_user) {

@@ -1,11 +1,11 @@
 {
-    "name": "salsadigitalauorg/civictheme_govcms",
+    "name": "civictheme/civictheme_govcms",
     "description": "GovCMS adjustments for CivicTheme Drupal theme.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "support": {
-        "source": "https://github.com/salsadigitalauorg/civictheme_source",
-        "issues": "https://github.com/salsadigitalauorg/civictheme_source/issues"
+        "source": "https://github.com/civictheme/monorepo-drupal",
+        "issues": "https://github.com/civictheme/monorepo-drupal/issues"
     },
     "require": {
         "php": ">=8.1",

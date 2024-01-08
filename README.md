@@ -9,12 +9,12 @@
 
 <div align="center">
 
-[![GitHub Issues](https://img.shields.io/github/issues/salsadigitalauorg/civictheme_source.svg)](https://github.com/salsadigitalauorg/civictheme_source/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/salsadigitalauorg/civictheme_source.svg)](https://github.com/salsadigitalauorg/civictheme_source/pulls)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/salsadigitalauorg/civictheme_source)
-[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civictheme_source.svg?style=shield)](https://circleci.com/gh/salsadigitalauorg/civictheme_source)
+[![GitHub Issues](https://img.shields.io/github/issues/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/pulls)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/civictheme/monorepo-drupal)
+[![CircleCI](https://circleci.com/gh/civictheme/monorepo-drupal.svg?style=shield)](https://circleci.com/gh/civictheme/monorepo-drupal)
 ![Drupal 10](https://img.shields.io/badge/Drupal-10-blue.svg)
-![LICENSE](https://img.shields.io/github/license/salsadigitalauorg/civictheme_source)
+![LICENSE](https://img.shields.io/github/license/civictheme/monorepo-drupal)
 [![RenovateBot](https://img.shields.io/badge/RenovateBot-enabled-brightgreen.svg?logo=renovatebot)](https://renovatebot.com)
 
 [//]: # (DO NOT REMOVE THE BADGE BELOW. IT IS USED BY DREVOPS TO TRACK INTEGRATION)
@@ -59,16 +59,16 @@ Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 
 ### Content profiles
 
-- [Corporate](https://nginx-php.content-corporate.civictheme-source.lagoon.salsa.hosting/)
-- [Government](https://nginx-php.content-government.civictheme-source.lagoon.salsa.hosting/)
-- [Higher Education](https://nginx-php.content-highereducation.civictheme-source.lagoon.salsa.hosting/)
+- [Corporate](https://nginx-php.content-corporate.monorepo-drupal.lagoon.salsa.hosting/)
+- [Government](https://nginx-php.content-government.monorepo-drupal.lagoon.salsa.hosting/)
+- [Higher Education](https://nginx-php.content-highereducation.monorepo-drupal.lagoon.salsa.hosting/)
 
 ## More about CivicTheme
 
 - [Documentation](https://docs.civictheme.io/)
 - [CivicTheme UI kit](https://github.com/civictheme/uikit)
 - [CivicTheme Drupal theme](https://www.drupal.org/project/civictheme)
-- [Default content for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_content)
-- [Admin adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_admin)
-- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
+- [Default content for CivicTheme Drupal theme](https://github.com/civictheme/civictheme_content)
+- [Admin adjustments for CivicTheme Drupal theme](https://github.com/civictheme/civictheme_admin)
+- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/civictheme/civictheme_govcms)
 

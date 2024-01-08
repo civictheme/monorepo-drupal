@@ -1,5 +1,5 @@
 {
-    "name": "salsadigitalauorg/civictheme_source",
+    "name": "civictheme/monorepo-drupal",
     "description": "Drupal 10 implementation of CivicTheme Source for Salsa Digital",
     "license": "proprietary",
     "require": {
