@@ -28,7 +28,7 @@ aliases:
   - &deploy_ssh_fingerprint "bc:87:4a:74:cf:e0:02:4e:34:aa:16:b5:c3:6f:89:cd"
 
   # SSH key fingerprint to deploy code to civictheme.
-  - &deploy_ssh_fingerprint1 "b7:05:38:98:47:28:c7:1f:d8:6d:7a:75:3c:13:5b:af"
+  - &deploy_ssh_fingerprint1 "47:f9:29:8b:9b:1b:e9:66:5d:b3:f6:dd:e7:60:d1:f9"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
   - &deploy_ssh_fingerprint2 "a9:33:24:68:20:f9:91:24:b8:38:c5:f3:b6:4b:34:5d"
@@ -397,8 +397,8 @@ jobs:
           name: Deploy release to CivicTheme Drupal theme repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
-            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_dst_test.git \
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-1.x}" \
+            PUSH_CODE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
             PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
             ./scripts/push.code.sh
       - run:
