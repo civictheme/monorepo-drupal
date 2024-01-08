@@ -398,7 +398,7 @@ jobs:
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
             PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
-            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_dst_test.git \
             PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
             ./scripts/push.code.sh
       - run:
@@ -406,7 +406,7 @@ jobs:
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
             PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
-            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_govcms.git \
             PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_govcms" \
             ./scripts/push.code.sh
       - run:
@@ -414,7 +414,7 @@ jobs:
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
             PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
-            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_content.git \
             PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_content" \
             ./scripts/push.code.sh
       - run:
@@ -422,7 +422,7 @@ jobs:
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
             PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
-            PUSH_CODE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_admin.git \
             PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_admin" \
             ./scripts/push.code.sh
       - store_artifacts:

@@ -6,7 +6,7 @@ Version: `{{ VERSION }}`
 
 ## Installation
 
-    composer require salsadigitalauorg/civictheme_content
+    composer require civictheme/civictheme_content
 
     drush en civictheme_content # Content from 'default' profile
     # or
@@ -16,7 +16,7 @@ Version: `{{ VERSION }}`
 
 ## Other resources
 
-- [CivicTheme Source site](https://github.com/salsadigitalauorg/civictheme_source)
+- [CivicTheme Source site](https://github.com/civictheme/monorepo-drupal)
 - [CivicTheme CMS-agnostic library](https://github.com/civictheme/uikit)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
-- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
+- [CivicTheme Drupal theme](https://github.com/civictheme/civictheme)
+- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/civictheme/civictheme_govcms)

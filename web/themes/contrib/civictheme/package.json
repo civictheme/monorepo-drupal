@@ -3,9 +3,9 @@
   "version": "1.6.2",
   "private": true,
   "description": "CivicTheme Drupal theme.",
-  "homepage": "https://github.com/salsadigitalauorg/civictheme",
-  "bugs": "https://github.com/salsadigitalauorg/civictheme_source/issues",
-  "repository": "https://github.com/salsadigitalauorg/civictheme_source.git",
+  "homepage": "https://github.com/civictheme/civictheme",
+  "bugs": "https://github.com/civictheme/monorepo-drupal/issues",
+  "repository": "https://github.com/civictheme/monorepo-drupal.git",
   "license": "GPL-2.0",
   "engines": {
     "node": ">=18.14"
