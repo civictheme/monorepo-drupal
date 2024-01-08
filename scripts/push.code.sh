@@ -154,7 +154,7 @@ SRC_TMPDIR=$(mktemp -d)
 
 echo "==> Copying files from the source repository to ${SRC_TMPDIR}."
 rsync -a --keep-dirlinks ./. "${SRC_TMPDIR}"
-[ -n "${DREVOPS_DEBUG}" ] && tree -L 4 "${SRC_TMPDIR}"
+[ -n "${DREVOPS_DEBUG:-}" ] && tree -L 4 "${SRC_TMPDIR}"
 
 # Move to the temp source repo directory.
 pushd "${SRC_TMPDIR}" >/dev/null || exit 1
@@ -200,7 +200,7 @@ git ls-tree -d --name-only --full-name -r HEAD "${PUSH_CODE_DST_DIR}/" | xargs r
 git ls-tree --full-tree --name-only -r HEAD "${PUSH_CODE_DST_DIR}/" | xargs rm -Rf
 
 echo "==> Copying files from ${PUSH_CODE_SRC_DIR} to ${PUSH_CODE_DST_DIR}."
-[ -n "${DREVOPS_DEBUG}" ] && tree -L 4 "${PUSH_CODE_SRC_DIR}"
+[ -n "${DREVOPS_DEBUG:-}" ] && tree -L 4 "${PUSH_CODE_SRC_DIR}"
 # Copy all files, but preserve .git directory.
 mv ".git" ".git.bak"
 rsync -a --keep-dirlinks "${PUSH_CODE_SRC_DIR}/." "${PUSH_CODE_DST_DIR}"
