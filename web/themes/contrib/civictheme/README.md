@@ -6,13 +6,14 @@ Drupal 10 component-based theme.
 
 ## Introduction
 
-CivicTheme theme, the Drupal theme built using a UI kit, provides components
-and data structures to enhance editorial experiences out-of-the-box.
+CivicTheme theme, the Drupal theme with the UI Kit integration, provides
+components and data structures to enhance end-user and editorial experiences
+out-of-the-box.
 
 The [UI kit](https://github.com/civictheme/uikit)
 is a CMS-agnostic HTML/CSS/JS framework based on Atomic Design principles.
 
-The Drupal theme provides full integration with UI kit.
+The Drupal theme provides full integration and ships with the UI Kit.
 
 ## Installation
 

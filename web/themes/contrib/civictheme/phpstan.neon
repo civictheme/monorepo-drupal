@@ -18,6 +18,7 @@ parameters:
     - build
     - '*/vendor/*'
     - '*/node_modules/*'
+    - '*/lib/*'
 
   drupal:
     drupal_root: build
