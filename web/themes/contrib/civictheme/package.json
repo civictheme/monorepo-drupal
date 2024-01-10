@@ -19,7 +19,7 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
-    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit/storybook-static,lib/uikit/dist",
+    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit",
     "uikit-install": "rm -Rf lib/uikit > /dev/null 2>&1 && mkdir -p lib/uikit && cp -R node_modules/@civictheme/uikit lib",
     "postinstall": "npm run uikit-install"
   },
