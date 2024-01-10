@@ -21,10 +21,10 @@
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
     "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit",
     "uikit-install": "rm -Rf lib/uikit > /dev/null 2>&1 && mkdir -p lib/uikit && cp -R node_modules/@civictheme/uikit lib",
-    "postinstall": "npm run uikit-install"
+    "postinstall": "npm run uikit-install && npm run add-lint-exclusions"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#v1.7.0"
+    "@civictheme/uikit": "github:civictheme/uikit#v1.7.2"
   },
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.0",
