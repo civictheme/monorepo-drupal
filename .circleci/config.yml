@@ -125,6 +125,23 @@ aliases:
 ################################################################################
 
 # Reusable job configuration.
+job-build-isolated: &job-build-isolated
+  steps:
+    # Workspace now contains previously built application code artifact.
+    - attach_workspace:
+        at: /tmp/workspace
+    - checkout
+    - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
+    - run:
+        command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
+        when: always
+    - store_test_results:
+        path: /tmp/test_results
+    - store_artifacts:
+        path: /tmp/artifacts
+
 job-build: &job-build
   parallelism: 2
   steps:
@@ -200,24 +217,39 @@ job-build: &job-build
         paths:
           - code
 
-job-build-isolated: &job-build-isolated
-  steps:
-    # Workspace now contains previously built application code artifact.
-    - attach_workspace:
-        at: /tmp/workspace
-    - checkout
-    - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
-    - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
-    - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
-    - run:
-        command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
-        when: always
-    - store_test_results:
-        path: /tmp/test_results
-    - store_artifacts:
-        path: /tmp/artifacts
-
 jobs:
+
+  # Isolated theme build within a vanilla Drupal installation.
+  # This replicates (to a degree) what Drupal CI would do.
+  build-isolated-php-81:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.1-browsers
+    <<: *job-build-isolated
+
+  build-isolated-php-82:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.2-browsers
+    <<: *job-build-isolated
+
+  build-isolated-php-81-legacy:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.1-browsers
+    environment:
+      DRUPAL_VERSION: 10.1
+      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
+    <<: *job-build-isolated
+
+  build-isolated-php-82-legacy:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+      DRUPAL_VERSION: 10.1
+      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
+    <<: *job-build-isolated
 
   # Used to pass the built code down the pipeline.
   build-minimal:
@@ -292,70 +324,6 @@ jobs:
       DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
     <<: *job-build
 
-  # Isolated theme build within a vanilla Drupal installation.
-  # This replicates (to a degree) what Drupal CI would do.
-  build-isolated-php-81:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.1-browsers
-    <<: *job-build-isolated
-
-  build-isolated-php-82:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.2-browsers
-    <<: *job-build-isolated
-
-  build-isolated-php-81-legacy:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.1-browsers
-    environment:
-      DRUPAL_VERSION: 10.1
-      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
-    <<: *job-build-isolated
-
-  build-isolated-php-82-legacy:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.2-browsers
-    environment:
-      DRUPAL_VERSION: 10.1
-      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
-    <<: *job-build-isolated
-
-  # Mirror and redeploy content profiles.
-  mirror-into-content-branches:
-    <<: *runner_config
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - add_ssh_keys:
-          fingerprints:
-            - *deploy_ssh_fingerprint
-            - *git_mirror_ssh_fingerprint
-      - checkout
-      - *step_process_codebase
-      - checkout
-      - run:
-          name: Re-deploy environment.
-          # We do not have a standalone branch for 'default' profile because we
-          # are using `develop` branch to build with 'default' profile.
-          command: |
-            set -x
-            branches=()
-            branches+=(content/corporate)
-            branches+=(content/government)
-            branches+=(content/highereducation)
-            if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
-              for branch in "${branches[@]}"
-              do
-                GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
-                sleep 5
-                DREVOPS_DEPLOY_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
-              done
-            fi
-
   # Deploy primary branches.
   deploy: &job_deploy
     <<: *runner_config
@@ -427,6 +395,35 @@ jobs:
             ./scripts/push.code.sh
       - store_artifacts:
           path: /tmp/artifacts
+
+  # Mirror and redeploy content profiles.
+  mirror-into-content-branches:
+    <<: *runner_config
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - *deploy_ssh_fingerprint
+            - *git_mirror_ssh_fingerprint
+      - checkout
+      - *step_process_codebase
+      - run:
+          name: Re-deploy environment.
+          # We do not have a standalone branch for 'default' profile because we
+          # are using `develop` branch to build with 'default' profile.
+          command: |
+            set -x
+            branches=()
+            branches+=(content/corporate)
+            branches+=(content/government)
+            branches+=(content/highereducation)
+            if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
+              for branch in "${branches[@]}"
+              do
+                GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
+                sleep 5
+                DREVOPS_DEPLOY_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
+              done
+            fi
 
 ################################################################################
 # WORKFLOWS
