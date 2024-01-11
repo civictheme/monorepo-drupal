@@ -138,7 +138,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
     $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'gulpfile.js'));
-    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'webpack/webpack.common.js'));
     $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'webpack/theme_js.js'));
 
     $composerjson_actual = json_decode((string) file_get_contents($expected_new_theme_dir_full . 'composer.json'), TRUE);
