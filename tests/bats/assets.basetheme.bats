@@ -17,16 +17,8 @@ load _helper
   assert_dir_exists "assets/fonts"
   assert_dir_exists "assets/icons"
   assert_dir_exists "assets/logos"
-  assert_dir_exists "assets/images"
-  assert_file_exists "assets/images/demo1.jpg"
-  assert_file_exists "assets/images/demo2.jpg"
-  assert_file_exists "assets/images/demo3.jpg"
-  assert_dir_exists "assets/videos"
-  assert_file_exists "assets/videos/demo.avi"
-  assert_file_exists "assets/videos/demo.mp4"
-  assert_file_exists "assets/videos/demo.webm"
-  assert_file_exists "assets/videos/demo_poster.png"
-  assert_file_exists "assets/favicon.ico"
+  assert_dir_not_exists "assets/images"
+  assert_dir_not_exists "assets/videos"
 
   assert_dir_exists "components"
 

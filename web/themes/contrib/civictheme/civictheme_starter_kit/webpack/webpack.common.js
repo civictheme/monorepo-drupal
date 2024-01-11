@@ -5,10 +5,6 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// eslint-disable-next-line import/no-useless-path-segments
-const { isOutdated, printHeader } = require('../../../../contrib/civictheme/lib/uikit/webpack/info');
-
-printHeader();
 
 module.exports = {
   entry: (function (pattern) {
@@ -108,7 +104,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';`,
+              additionalData: `$ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';`,
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

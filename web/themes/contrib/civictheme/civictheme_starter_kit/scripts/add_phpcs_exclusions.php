@@ -58,6 +58,8 @@ function main(array $argv, int $argc): int {
 
   $template = "// phpcs:ignoreFile\n";
 
+  $extensions = ['js'];
+
   $target_directories = $argv[1];
   $target_directories_original = $target_directories;
 
@@ -70,7 +72,14 @@ function main(array $argv, int $argc): int {
     $target_directory = getcwd() . '/' . $target_directory;
 
     if (file_exists($target_directory) && is_dir($target_directory)) {
-      $files = array_merge($files, glob($target_directory . '**/*.js') ?: []);
+      $directory = new RecursiveDirectoryIterator($target_directory);
+      $iterator = new RecursiveIteratorIterator($directory);
+      /** @var \SplFileInfo $file */
+      foreach ($iterator as $file) {
+        if (in_array($file->getExtension(), $extensions)) {
+          $files[] = $file->getPathname();
+        }
+      }
     }
   }
 

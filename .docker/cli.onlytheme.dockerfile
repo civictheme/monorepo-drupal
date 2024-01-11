@@ -22,9 +22,6 @@ ARG WEBROOT=web
 ARG GITHUB_TOKEN=""
 ENV GITHUB_TOKEN=${GITHUB_TOKEN}
 
-ARG CIVICTHEME_UIKIT_REF=""
-ENV CIVICTHEME_UIKIT_REF=${CIVICTHEME_UIKIT_REF}
-
 # Set default values for environment variables.
 # These values will be overridden if set in docker-compose.yml or .env file
 # during build stage.
