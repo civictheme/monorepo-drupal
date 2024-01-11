@@ -12,10 +12,13 @@ declare(strict_types=1);
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
@@ -89,7 +92,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'name' => t('@name', ['@name' => $file->label()]),
     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
-    'size' => format_size($file->getSize()),
+    'size' => DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.2.0', static fn() => format_size($file->getSize()), static fn(): TranslatableMarkup => ByteSizeMarkup::create($file->getSize())),
     'created' => civictheme_format_datetime($media->getCreatedTime(), 'civictheme_short_date'),
     'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
