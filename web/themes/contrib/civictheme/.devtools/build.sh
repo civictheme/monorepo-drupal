@@ -132,8 +132,6 @@ done
 echo "  > Installing other dev dependencies."
 composer --working-dir="build" config allow-plugins.phpstan/extension-installer true
 composer --working-dir="build" require --dev \
-  phpstan/phpstan:1.10.47 \
-  rector/rector:0.18.13 \
   dealerdirect/phpcodesniffer-composer-installer \
   phpspec/prophecy-phpunit:^2 \
   phpstan/extension-installer \
