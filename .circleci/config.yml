@@ -519,18 +519,36 @@ workflows:
               only: /.*/
 
       - build-content-corporate:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
               only: /^develop$|^release\/.*|^hotfix\/.*/
             tags:
               only: /.*/
       - build-content-highereducation:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
               only: /^develop$|^release\/.*|^hotfix\/.*/
             tags:
               only: /.*/
       - build-content-government:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
               only: /^develop$|^release\/.*|^hotfix\/.*/
@@ -573,11 +591,6 @@ workflows:
 
       - mirror-into-content-branches:
           requires:
-            - build-minimal
-            - build-minimal-subtheme
-            - build-govcms
-            - build-govcms-subtheme
-            - build-govcms-subtheme-sibling
             - build-content-corporate
             - build-content-highereducation
             - build-content-government
