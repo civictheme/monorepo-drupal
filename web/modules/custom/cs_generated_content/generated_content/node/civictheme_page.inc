@@ -128,60 +128,60 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
 
   // General.
   if (!empty($variation['summary']) && $node->hasField('field_c_n_summary')) {
-    $node->field_c_n_summary = $variation['summary'];
+    $node->set('field_c_n_summary', $variation['summary']);
   }
 
   if (!empty($variation['thumbnail']) && $node->hasField('field_c_n_thumbnail')) {
-    $node->field_c_n_thumbnail = $variation['thumbnail'];
+    $node->set('field_c_n_thumbnail', $variation['thumbnail']);
   }
 
   if (!empty($variation['topics']) && $node->hasField('field_c_n_topics')) {
-    $node->field_c_n_topics = $variation['topics'];
+    $node->set('field_c_n_topics', $variation['topics']);
   }
 
   if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
-    $node->field_c_n_site_section = $variation['site_section'];
+    $node->set('field_c_n_site_section', $variation['site_section']);
   }
 
   if (isset($variation['vertical_spacing']) && $node->hasField('field_c_n_vertical_spacing')) {
-    $node->field_c_n_vertical_spacing = $variation['vertical_spacing'];
+    $node->set('field_c_n_vertical_spacing', $variation['vertical_spacing']);
   }
 
   if (isset($variation['show_last_updated']) && $node->hasField('field_c_n_show_last_updated')) {
-    $node->field_c_n_show_last_updated = $variation['show_last_updated'];
+    $node->set('field_c_n_show_last_updated', $variation['show_last_updated']);
   }
 
   if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
-    $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
+    $node->set('field_c_n_custom_last_updated', $variation['custom_updated_date']);
   }
 
   // Banner.
   if (!empty($variation['banner_type']) && $node->hasField('field_c_n_banner_type')) {
-    $node->field_c_n_banner_type = $variation['banner_type'];
+    $node->set('field_c_n_banner_type', $variation['banner_type']);
   }
 
   if (!empty($variation['banner_theme']) && $node->hasField('field_c_n_banner_theme')) {
-    $node->field_c_n_banner_theme = $variation['banner_theme'];
+    $node->set('field_c_n_banner_theme', $variation['banner_theme']);
   }
 
   if (!empty($variation['banner_background']) && $node->hasField('field_c_n_banner_background')) {
-    $node->field_c_n_banner_background = $variation['banner_background'];
+    $node->set('field_c_n_banner_background', $variation['banner_background']);
   }
 
   if (!empty($variation['blend_mode']) && $node->hasField('field_c_n_banner_blend_mode')) {
-    $node->field_c_n_banner_blend_mode = $variation['blend_mode'];
+    $node->set('field_c_n_banner_blend_mode', $variation['blend_mode']);
   }
 
   if (!empty($variation['banner_featured_image']) && $node->hasField('field_c_n_banner_featured_image')) {
-    $node->field_c_n_banner_featured_image = $variation['banner_featured_image'];
+    $node->set('field_c_n_banner_featured_image', $variation['banner_featured_image']);
   }
 
   if (!empty($variation['banner_hide_breadcrumb']) && $node->hasField('field_c_n_banner_hide_breadcrumb')) {
-    $node->field_c_n_banner_hide_breadcrumb = $variation['banner_hide_breadcrumb'];
+    $node->set('field_c_n_banner_hide_breadcrumb', $variation['banner_hide_breadcrumb']);
   }
 
   if (!empty($variation['banner_title']) && $node->hasField('field_c_n_banner_title')) {
-    $node->field_c_n_banner_title = $variation['banner_title'];
+    $node->set('field_c_n_banner_title', $variation['banner_title']);
   }
 
   // Components.

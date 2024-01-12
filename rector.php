@@ -35,6 +35,7 @@ return static function (RectorConfig $rectorConfig): void {
     // Provided by Rector.
     SetList::PHP_80,
     SetList::PHP_81,
+    SetList::PHP_82,
     SetList::CODE_QUALITY,
     SetList::CODING_STYLE,
     SetList::DEAD_CODE,
