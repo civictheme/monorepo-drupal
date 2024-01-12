@@ -5,6 +5,8 @@
  * CivicTheme libraries processing.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeColorManager;
 use Drupal\civictheme\CivicthemeConfigManager;
 
@@ -57,6 +59,7 @@ function _civictheme_library_info_alter__color_selector(array &$libraries, strin
         if (!empty($overrides[$active_theme->getPath()]['civictheme/css-variables']['css']['theme'])) {
           $css_filepath = reset($overrides[$active_theme->getPath()]['civictheme/css-variables']['css']['theme']);
         }
+
         $color_manager->setCssColorsFilePath($active_theme->getPath() . DIRECTORY_SEPARATOR . $css_filepath);
       }
 
@@ -65,7 +68,7 @@ function _civictheme_library_info_alter__color_selector(array &$libraries, strin
 
       // Stylesheet generation may fail if, for example, no CSS styles or
       // config provided - only proceed if we have a valid stylesheet path.
-      if ($stylesheet_path) {
+      if ($stylesheet_path !== '' && $stylesheet_path !== '0') {
         // Replace existing stylesheet with dynamically generated styles and
         // exclude from pre-processing.
         $libraries['css-variables']['css']['theme'] = [

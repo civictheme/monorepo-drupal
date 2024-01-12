@@ -5,6 +5,8 @@
  * Post-updates for CivicTheme.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUpdateHelper;
 use Drupal\Core\Entity\EntityInterface;
@@ -12,7 +14,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\node\Entity\Node;
 
-require_once 'includes/utilities.inc';
+require_once __DIR__ . '/includes/utilities.inc';
 
 /**
  * Updates vertical spacing on nodes and components where it has not been set.
@@ -25,17 +27,16 @@ function civictheme_post_update_set_vertical_spacing_empty_value(array &$sandbox
     'node',
     ['civictheme_page'],
     // Start callback.
-    function (CivicthemeUpdateHelper $helper): void {
+    static function (CivicthemeUpdateHelper $helper): void {
       // Noop.
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, EntityInterface $entity): bool {
+    static function (CivicthemeUpdateHelper $helper, EntityInterface $entity): bool {
       if (!$entity instanceof Node) {
         return FALSE;
       }
 
       $updated = FALSE;
-
       // Update vertical spacing for node.
       if (is_null(civictheme_get_field_value($entity, 'field_c_n_vertical_spacing', TRUE))) {
         // @phpstan-ignore-next-line
@@ -49,7 +50,6 @@ function civictheme_post_update_set_vertical_spacing_empty_value(array &$sandbox
         'field_c_n_banner_components',
         'field_c_n_banner_components_bott',
       ];
-
       foreach ($field_names as $field_name) {
         $components = civictheme_get_field_value($entity, $field_name);
 
@@ -72,7 +72,7 @@ function civictheme_post_update_set_vertical_spacing_empty_value(array &$sandbox
       return $updated;
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper): TranslatableMarkup {
       return new TranslatableMarkup("Updated values for fields 'field_c_n_vertical_spacing' and 'field_c_p_vertical_spacing'.\n");
     },
   );
@@ -166,18 +166,17 @@ function civictheme_post_update_rename_list_fields(array &$sandbox): ?string {
     'paragraph',
     array_keys($new_form_display_config),
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
       $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
       return $helper->copyFieldContent($entity, $field_mapping);
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
-
       foreach ($new_form_display_config as $bundle => $config) {
         $helper->updateFormDisplayConfig('paragraph', $bundle, $config, $new_form_display_group_config[$bundle]);
       }
@@ -243,18 +242,17 @@ function civictheme_post_update_replace_summary_field(array &$sandbox): ?string 
     'paragraph',
     array_keys($new_form_display_config),
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
       $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
       return $helper->copyFieldContent($entity, $field_mapping);
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
-
       foreach ($new_form_display_config as $bundle => $config) {
         $helper->updateFormDisplayConfig('paragraph', $bundle, $config);
       }
@@ -309,18 +307,17 @@ function civictheme_post_update_rename_event_date_field(array &$sandbox): ?strin
     'node',
     ['civictheme_event'],
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
       $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
       return $helper->copyFieldContent($entity, $field_mapping);
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
-
       foreach ($new_form_display_config as $bundle => $config) {
         $helper->updateFormDisplayConfig('node', $bundle, $config, $new_form_display_group_config[$bundle]);
       }
@@ -375,18 +372,17 @@ function civictheme_post_update_rename_node_banner_blend_mode(array &$sandbox): 
     'node',
     ['civictheme_page'],
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
       $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
       return $helper->copyFieldContent($entity, $field_mapping);
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config, $new_form_display_group_config): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
-
       foreach ($new_form_display_config as $bundle => $config) {
         $helper->updateFormDisplayConfig('node', $bundle, $config, $new_form_display_group_config[$bundle]);
       }
@@ -431,18 +427,17 @@ function civictheme_post_update_rename_block_banner_blend_mode(array &$sandbox):
     'block_content',
     ['civictheme_banner'],
     // Start callback.
-    function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
       $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity) use ($field_mapping): bool {
       return $helper->copyFieldContent($entity, $field_mapping);
     },
     // Finished callback.
-    function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config): TranslatableMarkup {
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs, $new_form_display_config): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
-
       foreach ($new_form_display_config as $bundle => $config) {
         $helper->updateFormDisplayConfig('block_content', $bundle, $config);
       }

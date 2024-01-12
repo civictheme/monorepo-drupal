@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<ruleset name="custom">
+  <description>Custom PHPCS Standard, based on Drupal standards.</description>
+
+  <file>.</file>
+
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+  <rule ref="Generic.Debug.ESLint"/>
+  <rule ref="PHPCompatibility"/>
+
+  <arg name="extensions" value="inc,info,install,module,php,profile,test,theme,js"/>
+  <arg name="colors"/>
+  <arg value="sp"/>
+  <arg name="parallel" value="75"/>
+  <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
+  <config name="testVersion" value="8.1"/>
+
+  <!-- Exclude dependencies directories. -->
+  <exclude-pattern>node_modules/*</exclude-pattern>
+  <exclude-pattern>vendor/*</exclude-pattern>
+
+  <exclude-pattern>\.storybook</exclude-pattern>
+  <exclude-pattern>build\/</exclude-pattern>
+  <exclude-pattern>components</exclude-pattern>
+  <exclude-pattern>dist\/</exclude-pattern>
+  <exclude-pattern>gulpfile.js</exclude-pattern>
+  <exclude-pattern>lib\/</exclude-pattern>
+  <exclude-pattern>webpack</exclude-pattern>
+
+  <!-- Force no empty lines after function opening brace. -->
+  <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace">
+    <type>warning</type>
+  </rule>
+
+  <!-- Force no empty lines before control structure closing. -->
+  <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose">
+    <type>warning</type>
+  </rule>
+
+  <!-- Force no empty lines after control structure closing. -->
+  <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose">
+    <type>warning</type>
+  </rule>
+
+  <!-- Allow incorrectly sorted namespaces in tests. -->
+  <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses.IncorrectlyOrderedUses">
+    <exclude-pattern>*.Test\.php</exclude-pattern>
+    <exclude-pattern>*.TestCase\.php</exclude-pattern>
+    <exclude-pattern>*.TestBase\.php</exclude-pattern>
+  </rule>
+
+  <!-- Allow long array lines in tests. -->
+  <rule ref="Drupal.Arrays.Array.LongLineDeclaration">
+    <exclude-pattern>*.Test\.php</exclude-pattern>
+    <exclude-pattern>*.TestCase\.php</exclude-pattern>
+    <exclude-pattern>*.TestBase\.php</exclude-pattern>
+  </rule>
+
+  <!-- Force declare(strict_types=1); in all PHP files. -->
+  <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+    <properties>
+      <property name="spacesCountAroundEqualsSign" value="0"/>
+    </properties>
+  </rule>
+</ruleset>

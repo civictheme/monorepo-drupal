@@ -145,45 +145,46 @@ commands:
 
   fei:
     usage: Install front-end assets.
-    cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME}/civictheme_library install"
-      ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
+    cmd: ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
-    cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd web/themes/contrib/${DRUPAL_THEME}/civictheme_library && npm run build"
-      ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
+    cmd: ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
 
   lint:
     usage: Lint back-end and front-end code.
     cmd: ahoy lint-be && ahoy lint-fe
 
+  # Base theme has own tooling config files - use them with tools installed in
+  # the project root. This allows to lint base theme code without installing
+  # tools in the base theme directory. But it also allows to link the base theme
+  # when the theme is tested in isolated mode.
   lint-be:
     usage: Lint back-end code.
     cmd: |
+      ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && BUILD_DIR=/app DRUPAL_ROOT=/app/web .devtools/lint.sh"
       ahoy cli vendor/bin/phpcs
       ahoy cli vendor/bin/phpstan
-      ahoy cli vendor/bin/rector process --dry-run .
+      ahoy cli vendor/bin/rector process --dry-run
       ahoy cli vendor/bin/phpmd . text phpmd.xml
 
   lint-fe:
-    usage: Lint front-end code.
+    usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
-      ahoy cli vendor/bin/twigcs
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
 
   lint-config:
     usage: Lint config
     cmd: |
-      ahoy cli ./scripts/lint-theme-config.sh
+      ahoy cli ./scripts/lint.theme-config.sh
       ahoy cli "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
 
   lint-fix:
     usage: Fix lint issues of back-end and front-end code.
     cmd: |
+      ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && BUILD_DIR=/app DRUPAL_ROOT=/app/web .devtools/lint-fix.sh"
+      ahoy cli vendor/bin/rector
       ahoy cli vendor/bin/phpcbf
-      ahoy cli vendor/bin/rector process .
 
   test:
     usage: Run all tests.
@@ -207,7 +208,7 @@ commands:
 
   test-bats:
     usage: Run Bats tests (host only).
-    cmd: ./scripts/test-tooling.sh
+    cmd: ./scripts/test.assets.sh
 
   debug:
     usage: Enable PHP Xdebug.
@@ -246,7 +247,7 @@ commands:
   export-config:
     usage: Export theme config.
     cmd: |
-      ahoy cli "./scripts/update-theme-config.sh"
+      ahoy cli "./scripts/update.theme-config.sh"
       ahoy drush cde civictheme_dev || true
       if ahoy drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
         ahoy drush cde cs_generated_content || true
@@ -256,7 +257,7 @@ commands:
     usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
     cmd: |
       ahoy confirm "This will uninstall several modules and users. Proceed?" \
-      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update-default-content.sh" || echo "The operation was canceled."
+      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update.default-content.sh" || echo "The operation was canceled."
 
   # ----------------------------------------------------------------------------
   # Utilities.

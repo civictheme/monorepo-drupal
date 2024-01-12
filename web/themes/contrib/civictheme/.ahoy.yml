@@ -10,12 +10,16 @@ commands:
 
   build:
     usage: Build or rebuild the project.
-    cmd: ./.circleci/build.sh
+    cmd: ./.devtools/build.sh
 
   lint:
     usage: Lint code.
-    cmd: ./.circleci/lint.sh
+    cmd: ./.devtools/lint.sh
+
+  lint-fix:
+    usage: Lint code.
+    cmd: ./.devtools/lint-fix.sh
 
   test:
     usage: Run all tests.
-    cmd: ./.circleci/test.sh
+    cmd: ./.devtools/test.sh

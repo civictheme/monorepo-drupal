@@ -5,6 +5,8 @@
  * Alert related functions.
  */
 
+declare(strict_types=1);
+
 /**
  * Page pre-process to support showing of alerts.
  */

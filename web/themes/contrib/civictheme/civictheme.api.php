@@ -5,6 +5,8 @@
  * Hooks related to the CivicTheme theme.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\views\ViewExecutable;
 

@@ -1,0 +1,44 @@
+##
+# Configuration file for PHPStan static code checking, see https://phpstan.org .
+#
+# Note that drupal-specific rules are automatically included by phpstan/extension-installer
+# from vendor/mglaman/phpstan-drupal/extension.neon and vendor/mglaman/phpstan-drupal/rules.neon
+# @see https://github.com/mglaman/phpstan-drupal
+#
+# Paths are passed as CLI arguments.
+
+parameters:
+
+  level: 7
+
+  paths:
+    - .
+
+  excludePaths:
+    - build
+    - '*/vendor/*'
+    - '*/node_modules/*'
+    - '*/lib/*'
+
+  drupal:
+    drupal_root: build
+
+  ignoreErrors:
+    -
+      # Since tests and data providers do not have to have parameter docblocks,
+      # it is not possible to specify the type of the parameter, so we ignore
+      # this error.
+      message: '#.*no value type specified in iterable type array.#'
+      paths:
+        - ./tests/*
+    -
+      # Hook implementations do not provide docblocks for parameters, so there
+      # is no way to provide this information.
+      message: '#.* with no value type specified in iterable type array#'
+    -
+      # Allow using Drupal::service() in Drush commands.
+      message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+    -
+      # Deprecations are manually handled in the codebase.
+      message: '#\Call to deprecated function#'
+      reportUnmatched: false

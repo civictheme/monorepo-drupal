@@ -5,6 +5,8 @@
  * Pager component alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Pager\Pager;
 use Drupal\views\ViewExecutable;
 
@@ -38,7 +40,6 @@ function _civictheme_preprocess_pager(array &$variables): void {
   }
 
   $pager = \Drupal::service('pager.manager')->getPager($element);
-  // @phpstan-ignore-next-line
   if (!$pager) {
     return;
   }
@@ -108,7 +109,7 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
 
   // List of items per page from the view settings.
   $items_per_page = [];
-  $items_per_page_options = explode(',', $view_pager->options['expose']['items_per_page_options']);
+  $items_per_page_options = explode(',', (string) $view_pager->options['expose']['items_per_page_options']);
   $current_items_per_page = (int) $pager->getLimit();
   foreach ($items_per_page_options as $value) {
     $items_per_page[] = [
@@ -118,6 +119,7 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
       'selected' => (int) $value === $current_items_per_page,
     ];
   }
+
   $variables['items_per_page_options'] = $items_per_page;
 
   // Render an exposed form and add attributes to the select.

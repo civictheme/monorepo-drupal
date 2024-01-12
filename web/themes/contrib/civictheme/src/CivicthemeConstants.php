@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 /**
@@ -33,8 +35,11 @@ final class CivicthemeConstants {
   const THEME_DARK_LABEL = 'Dark';
 
   const VERTICAL_SPACING_NONE = 'none';
+
   const VERTICAL_SPACING_TOP = 'top';
+
   const VERTICAL_SPACING_BOTTOM = 'bottom';
+
   const VERTICAL_SPACING_BOTH = 'both';
 
   // For per-component 'theme' default values we are relying on the defaults set
@@ -154,8 +159,8 @@ final class CivicthemeConstants {
   /**
    * Defines card summary length.
    *
-   * @deprecated in civictheme:1.6.2 and is removed from civicthtme:1.8.0.
-   * Replaceed by COMPONENT_SUMMARY_DEFAULT_LENGTH.
+   * @deprecated in civictheme:1.6.2 and is removed from civictheme:1.8.0.
+   * Replaced by COMPONENT_SUMMARY_DEFAULT_LENGTH.
    * @see https://www.drupal.org/project/civictheme/issues/3409009
    */
   const CARD_SUMMARY_DEFAULT_LENGTH = 160;

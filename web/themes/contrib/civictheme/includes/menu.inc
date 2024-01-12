@@ -5,6 +5,8 @@
  * Menu related functions.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 
 /**
@@ -41,7 +43,7 @@ function _civictheme_preprocess_menu_items(array &$items): void {
       $item['is_expanded'] = FALSE;
     }
 
-    if (count($item['below'])) {
+    if (count($item['below']) > 0) {
       _civictheme_preprocess_menu_items($item['below']);
     }
   }
@@ -62,10 +64,10 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
     // Set menu theme as per footer theme.
     $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
     $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['dropdown'] = civictheme_get_theme_config_manager()->load("components.navigation.$key.dropdown", $menu_name == 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
-    $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load("components.navigation.$key.dropdown_columns", 4);
-    $variables['dropdown_columns_fill'] = civictheme_get_theme_config_manager()->load("components.navigation.$key.dropdown_columns_fill", FALSE);
-    $variables['is_animated'] = civictheme_get_theme_config_manager()->load("components.navigation.$key.is_animated", FALSE);
+    $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name == 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
+    $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
+    $variables['dropdown_columns_fill'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
+    $variables['is_animated'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);
     _civictheme_preprocess_menu_items($variables['items']);
   }
 }

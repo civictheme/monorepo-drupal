@@ -6,6 +6,9 @@
 # @see https://github.com/mglaman/phpstan-drupal
 #
 # Paths are passed as CLI arguments.
+#
+# CivicTheme base theme (web/themes/contrib/civictheme) scanning is not included
+# in this file. See web/themes/contrib/civictheme/phpstan.neon for the basetheme.
 
 parameters:
 
@@ -14,16 +17,23 @@ parameters:
   paths:
     - web/modules/custom
     - web/themes/custom
-    - web/themes/contrib/civictheme
     - web/sites/default/settings.php
     - web/sites/default/includes
     - tests
 
+  # Include the base theme files in the scan to make the functions available
+  # for discovery when used in non-theme code (modules, tests).
+  scanDirectories:
+    - web/themes/contrib/civictheme
+
   excludePaths:
-    - vendor/*
-    - node_modules/*
-    - ../*/vendor/*
-    - ../*/node_modules/*
+    analyse:
+      - web/themes/contrib/civictheme
+    analyseAndScan:
+      - vendor/*
+      - node_modules/*
+      - ../*/vendor/*
+      - ../*/node_modules/*
 
   drupal:
     drupal_root: web
@@ -39,7 +49,6 @@ parameters:
       # this error.
       message: '#.*no value type specified in iterable type array.#'
       paths:
-        - web/themes/contrib/civictheme/tests/*
         - tests/phpunit/*
     -
       # Hook implementations do not provide docblocks for parameters, so there
@@ -48,7 +57,6 @@ parameters:
       paths:
         - web/modules/custom/*
         - web/themes/custom/*
-        - web/themes/contrib/civictheme/*
     -
       # Included settings files are not aware about global variables.
       message: '#Variable .* might not be defined.#'
@@ -58,15 +66,9 @@ parameters:
       # Allow using Drupal::service() in tests and Drush commands.
       message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
       paths:
-        - web/themes/contrib/civictheme/src/Drush/Commands
         - tests/behat
     -
       # Allow using direct callable calls for generated content.
       message: '#Parameter \#1 \$callback of function call_user_func expects callable.*#'
       paths:
         - web/modules/custom/cs_generated_content/src/CsGeneratedContentCivicthemeTrait.php
-    -
-      # Allow using direct assignment to fields.
-      message: '#Property.*does not accept.*#'
-      paths:
-        - web/themes/contrib/civictheme/

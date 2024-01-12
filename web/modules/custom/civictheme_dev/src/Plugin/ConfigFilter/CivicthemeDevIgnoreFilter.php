@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\civictheme_dev\Plugin\ConfigFilter;
 
@@ -73,7 +73,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
 
       if (!empty($data['dependencies']['module'])) {
         foreach ($data['dependencies']['module'] as $key => $module_name) {
-          if (in_array($module_name, ['block_content'])) {
+          if ($module_name == 'block_content') {
             unset($data['dependencies']['module'][$key]);
           }
         }
@@ -85,18 +85,16 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
 
     // Exclude processing for some properties of the views.
     // @phpstan-ignore-next-line
-    if (fnmatch('views.view.civictheme_*', $name) && !str_contains($name, 'example') && !str_contains($name, 'test')) {
-      if (!empty($data['display'])) {
-        foreach (array_keys($data['display']) as $display_name) {
-          if (!empty($data['display'][$display_name]['display_options']['display_extenders'])) {
-            foreach (array_keys($data['display'][$display_name]['display_options']['display_extenders']) as $extender_name) {
-              if (str_starts_with((string) $extender_name, 'simple_sitemap')) {
-                unset($data['display'][$display_name]['display_options']['display_extenders'][$extender_name]);
-              }
+    if (fnmatch('views.view.civictheme_*', $name) && !str_contains($name, 'example') && !str_contains($name, 'test') && !empty($data['display'])) {
+      foreach (array_keys($data['display']) as $display_name) {
+        if (!empty($data['display'][$display_name]['display_options']['display_extenders'])) {
+          foreach (array_keys($data['display'][$display_name]['display_options']['display_extenders']) as $extender_name) {
+            if (str_starts_with((string) $extender_name, 'simple_sitemap')) {
+              unset($data['display'][$display_name]['display_options']['display_extenders'][$extender_name]);
             }
-            if (empty($data['display'][$display_name]['display_options']['display_extenders'])) {
-              unset($data['display'][$display_name]['display_options']['display_extenders']);
-            }
+          }
+          if (empty($data['display'][$display_name]['display_options']['display_extenders'])) {
+            unset($data['display'][$display_name]['display_options']['display_extenders']);
           }
         }
       }
@@ -174,9 +172,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
       }
     }
 
-    $modules = array_unique($modules);
-
-    return $modules;
+    return array_unique($modules);
   }
 
   /**
@@ -198,6 +194,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
 
     require_once $provision_file;
 
+    // @phpstan-ignore-next-line
     return civictheme_provision_permissions_map();
   }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\civictheme\CivicthemeConfigManager;
@@ -30,74 +32,26 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
   use StringTranslationTrait;
 
   /**
-   * The theme manager.
-   */
-  protected ThemeManager $themeManager;
-
-  /**
-   * The theme extension list.
-   */
-  protected ThemeExtensionList $themeExtensionList;
-
-  /**
-   * The file system.
-   */
-  protected FileSystem $fileSystem;
-
-  /**
-   * The file URL generator.
-   */
-  protected FileUrlGenerator $fileUrlgenerator;
-
-  /**
-   * The messenger.
-   */
-  protected Messenger $messenger;
-
-  /**
-   * The config manager.
-   */
-  protected ConfigManager $configManager;
-
-  /**
-   * The theme config manager.
-   */
-  protected CivicthemeConfigManager $themeConfigManager;
-
-  /**
-   * The image factory.
-   */
-  protected ImageFactory $imageFactory;
-
-  /**
    * Constructor.
    *
-   * @param \Drupal\Core\Theme\ThemeManager $theme_manager
+   * @param \Drupal\Core\Theme\ThemeManager $themeManager
    *   Theme manager service.
-   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
+   * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   Theme extension list service.
-   * @param \Drupal\Core\File\FileSystem $file_system
+   * @param \Drupal\Core\File\FileSystem $fileSystem
    *   File system service.
-   * @param \Drupal\Core\File\FileUrlGenerator $file_url_generator
+   * @param \Drupal\Core\File\FileUrlGenerator $fileUrlgenerator
    *   File URL generator.
    * @param \Drupal\Core\Messenger\Messenger $messenger
    *   Messenger.
-   * @param \Drupal\Core\Config\ConfigManager $config_manager
+   * @param \Drupal\Core\Config\ConfigManager $configManager
    *   Config manager.
-   * @param \Drupal\civictheme\CivicthemeConfigManager $civictheme_config_manager
+   * @param \Drupal\civictheme\CivicthemeConfigManager $themeConfigManager
    *   Theme config manager.
-   * @param \Drupal\Core\Image\ImageFactory $image_factory
+   * @param \Drupal\Core\Image\ImageFactory $imageFactory
    *   The image factory.
    */
-  public function __construct(ThemeManager $theme_manager, ThemeExtensionList $theme_extension_list, FileSystem $file_system, FileUrlGenerator $file_url_generator, Messenger $messenger, ConfigManager $config_manager, CivicthemeConfigManager $civictheme_config_manager, ImageFactory $image_factory) {
-    $this->themeManager = $theme_manager;
-    $this->themeExtensionList = $theme_extension_list;
-    $this->fileSystem = $file_system;
-    $this->fileUrlgenerator = $file_url_generator;
-    $this->messenger = $messenger;
-    $this->configManager = $config_manager;
-    $this->themeConfigManager = $civictheme_config_manager;
-    $this->imageFactory = $image_factory;
+  public function __construct(protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected FileSystem $fileSystem, protected FileUrlGenerator $fileUrlgenerator, protected Messenger $messenger, protected ConfigManager $configManager, protected CivicthemeConfigManager $themeConfigManager, protected ImageFactory $imageFactory) {
   }
 
   /**
@@ -149,7 +103,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
       $path = $this->fileUrlgenerator->generateString($path);
     }
 
-    return $path ? ltrim($path, '/') : $path;
+    return $path !== '' && $path !== '0' ? ltrim($path, '/') : $path;
   }
 
   /**
@@ -204,14 +158,14 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
 
     if (!empty($path)) {
       $path = $this->toFriendlyFilePath($path);
-      if (!$path) {
-        $form_state->setErrorByName(implode('][', $path_field_name_key), $this->t('The file path is invalid.'));
+      if ($path === '' || $path === '0') {
+        $form_state->setErrorByName(implode('][', $path_field_name_key), (string) $this->t('The file path is invalid.'));
 
         return;
       }
 
       if (!file_exists($path)) {
-        $form_state->setErrorByName(implode('][', $path_field_name_key), $this->t('The file at provided path does not exist.'));
+        $form_state->setErrorByName(implode('][', $path_field_name_key), (string) $this->t('The file at provided path does not exist.'));
 
         return;
       }
@@ -236,11 +190,12 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
         $this->getUploadedAssetsDestinationPath()
       );
 
-      if ($copied_filepath) {
+      if ($copied_filepath !== '' && $copied_filepath !== '0') {
         $copied_filepath = $this->toFriendlyFilePath($copied_filepath);
         $form_state->setValue($path_field_name_key, $copied_filepath);
       }
     }
+
     $form_state->unsetValue($upload_field_name_key);
   }
 

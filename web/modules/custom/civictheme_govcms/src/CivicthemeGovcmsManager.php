@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_govcms;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -20,20 +22,14 @@ final class CivicthemeGovcmsManager {
   protected array $removalList;
 
   /**
-   * The entity type manager.
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
    * Constructs a GovcmsManager Manager object.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
    */
   public function __construct(
-    EntityTypeManagerInterface $entity_type_manager
+    protected EntityTypeManagerInterface $entityTypeManager
   ) {
-    $this->entityTypeManager = $entity_type_manager;
     $this->removalList = [
       // Item name in CLI => callable.
       'media_types' => [static::class, 'removeGovcmsMediaTypes'],
@@ -89,7 +85,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('media_type')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -106,7 +102,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('filter_format')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -156,12 +152,12 @@ final class CivicthemeGovcmsManager {
         try {
           field_entity_bundle_delete($entity_type, $bundle);
         }
-        catch (\Exception $e) {
+        catch (\Exception) {
           // Do nothing - try to remove fields manually below.
         }
         foreach ($field_names as $field_name) {
           $field_config = FieldConfig::loadByName($entity_type, $bundle, $field_name);
-          if ($field_config) {
+          if ($field_config !== NULL) {
             $field_config->delete();
           }
         }
@@ -172,7 +168,7 @@ final class CivicthemeGovcmsManager {
       foreach ($field_info as $field_names) {
         foreach ($field_names as $field_name) {
           $field_storage = FieldStorageConfig::loadByName($entity_type, $field_name);
-          if ($field_storage) {
+          if ($field_storage !== NULL) {
             $field_storage->delete();
           }
         }
@@ -196,7 +192,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('node_type')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -215,7 +211,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('taxonomy_vocabulary')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -234,7 +230,7 @@ final class CivicthemeGovcmsManager {
     foreach ($names as $name) {
       /** @var \Drupal\user\RoleInterface|null $entity */
       $entity = $this->entityTypeManager->getStorage('user_role')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -253,7 +249,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('menu')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -273,7 +269,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('pathauto_pattern')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }
@@ -289,7 +285,7 @@ final class CivicthemeGovcmsManager {
 
     foreach ($names as $name) {
       $entity = $this->entityTypeManager->getStorage('workflow')->load($name);
-      if ($entity) {
+      if ($entity !== NULL) {
         $entity->delete();
       }
     }

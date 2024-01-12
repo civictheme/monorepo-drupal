@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -106,9 +108,8 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
    */
   public static function staticRichText($paragraphs = 4, $prefix = ''): string {
     $content = parent::staticRichText($paragraphs, $prefix);
-    $content .= '<a href="' . self::staticUrl() . '">' . self::staticSentence(2) . '</a>';
 
-    return $content;
+    return $content . ('<a href="' . self::staticUrl() . '">' . self::staticSentence(2) . '</a>');
   }
 
   /**

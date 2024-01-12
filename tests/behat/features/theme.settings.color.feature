@@ -222,7 +222,7 @@ Feature: Color settings are available in the theme settings
 
   @api @subtheme
   Scenario: Assert that generating a CSS variable file has different suffix per theme.
-    # This test will only succeed if the subtheme was created from the starter kit.
+    # This test will only succeed if the sub-theme was created from the starter kit.
     Given I am logged in as a user with the "Site Administrator" role
 
     # Reset settings.

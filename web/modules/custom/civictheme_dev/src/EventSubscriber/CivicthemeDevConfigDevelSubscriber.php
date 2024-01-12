@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_dev\EventSubscriber;
 
 use Drupal\config_devel\Event\ConfigDevelEvents;
@@ -22,25 +24,19 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase implements EventSubscriberInterface {
 
   /**
-   * The config ignore plugin manager.
-   */
-  protected ConfigFilterPluginManager $configFilterPluginManager;
-
-  /**
    * Constructs the ConfigDevelAutoExportSubscriber object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory.
    * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
    *   The configuration manager.
-   * @param \Drupal\config_filter\Plugin\ConfigFilterPluginManager $config_filter_plugin_manager
+   * @param \Drupal\config_filter\Plugin\ConfigFilterPluginManager $configFilterPluginManager
    *   The config ignore plugin manager.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, ConfigManagerInterface $config_manager, ConfigFilterPluginManager $config_filter_plugin_manager) {
+  public function __construct(ConfigFactoryInterface $config_factory, ConfigManagerInterface $config_manager, protected ConfigFilterPluginManager $configFilterPluginManager) {
     parent::__construct($config_factory, $config_manager);
     $this->configFactory = $config_factory;
     $this->configManager = $config_manager;
-    $this->configFilterPluginManager = $config_filter_plugin_manager;
   }
 
   /**
@@ -57,7 +53,7 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
     }
 
     $filename = reset($filenames);
-    $name = basename($filename, '.yml');
+    $name = basename((string) $filename, '.yml');
     $data = $event->getData();
 
     /** @var \Drupal\civictheme_dev\Plugin\ConfigFilter\CivicthemeDevIgnoreFilter $plugin */

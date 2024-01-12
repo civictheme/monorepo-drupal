@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_content;
 
 use Drupal\node\Entity\Node;
@@ -22,15 +24,15 @@ class Helper {
    * commands have side effects where messages are displayed only after the
    * command has finished rather than during the command run.
    *
-   * @param string $message
+   * @param string|\Stringable $message
    *   String containing message.
    *
    * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  public static function log(string $message): void {
+  public static function log(string|\Stringable $message): void {
     if (PHP_SAPI === 'cli') {
-      $message = strip_tags(html_entity_decode($message));
-      if (class_exists('\Drush\Drush')) {
+      $message = strip_tags(html_entity_decode((string) $message));
+      if (class_exists('\\' . Drush::class)) {
         Drush::getContainer()->get('logger')->log(LogLevel::INFO, $message);
       }
       else {
@@ -38,7 +40,7 @@ class Helper {
       }
     }
     else {
-      \Drupal::messenger()->addMessage($message);
+      \Drupal::messenger()->addMessage((string) $message);
     }
   }
 
@@ -83,7 +85,7 @@ class Helper {
   public static function setHomepageFromNode(string $title): void {
     $node = static::loadNodeByTitle($title, 'civictheme_page');
 
-    if (!$node) {
+    if (!$node instanceof Node) {
       throw new \Exception('Unable to find homepage node.');
     }
 

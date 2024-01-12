@@ -42,7 +42,7 @@ ENV WEBROOT=${WEBROOT} \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023c-r1 \
+    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023d-r0 \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
@@ -83,17 +83,9 @@ RUN if [ -n "${GITHUB_TOKEN}" ]; then export COMPOSER_AUTH="{\"github-oauth\": {
     COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --optimize-autoloader
 
 # Install NodeJS dependencies.
-# Note that package-lock.json is not explicitly copied, allowing to run the
-# stack without existing lock file (this is not advisable, but allows to build
-# using latest versions of packages). package-lock.json should be comitted to
-# the repository.
-# File Gruntfile.sj is copied into image as it is required to generate
-# front-end assets.
 COPY web/themes/contrib/civictheme/ web/themes/contrib/civictheme/package* /app/web/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.
-# Since Drupal does not use NodeJS for production, it does not matter if we
-# install development dependencies here - they are not exposed in any way.
 RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always

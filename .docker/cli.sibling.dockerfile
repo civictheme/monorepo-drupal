@@ -3,7 +3,6 @@
 # Not used in Lagoon.
 #
 # - Installs Composer dependencies
-# - Installs CivicTheme Library dependencies and builds assets
 # - Installs CivicTheme dependencies and builds assets
 # - Creates sub-theme as a sibling, installs dependencies and builds assets
 #
@@ -44,7 +43,7 @@ ENV WEBROOT=${WEBROOT} \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023c-r1 \
+    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023d-r0 \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
@@ -85,13 +84,6 @@ RUN if [ -n "${GITHUB_TOKEN}" ]; then export COMPOSER_AUTH="{\"github-oauth\": {
     COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --optimize-autoloader
 
 # Install NodeJS dependencies.
-# Note that package-lock.json is not explicitly copied, allowing to run the
-# stack without existing lock file (this is not advisable, but allows to build
-# using latest versions of packages). package-lock.json should be comitted to
-# the repository.
-# File Gruntfile.sj is copied into image as it is required to generate
-# front-end assets.
-COPY web/themes/contrib/civictheme/civictheme_library/package.json web/themes/contrib/civictheme/civictheme_library/package* /app/web/themes/contrib/civictheme/civictheme_library/
 COPY web/themes/contrib/civictheme/ web/themes/contrib/civictheme/package* /app/web/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.
@@ -101,10 +93,14 @@ RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress 
 # overridden.
 COPY . /app
 
-# Create a subtheme in the same directory as CivicTheme.
+# Compile front-end assets. Running this after copying all files as we need
+# sources to compile assets.
+RUN cd /app/web/themes/contrib/civictheme && npm run build
+
+# Create a sub-theme in the same directory as CivicTheme.
 RUN cd /app/web/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
 
-# Compile subtheme assets.
+# Compile sub-theme assets.
 RUN npm --prefix web/themes/contrib/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/contrib/civictheme_demo && npm run build

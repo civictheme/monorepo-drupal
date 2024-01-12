@@ -13,6 +13,8 @@
  * production.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConfigImporter;
@@ -51,6 +53,7 @@ function _civictheme_form_system_theme_settings_alter_provision(array &$form, Fo
   foreach (civictheme_provision_get_types() as $type) {
     $options[$type] = ucfirst(str_replace('_', ' ', $type));
   }
+
   ksort($options);
   $form['provision_content']['provision_types'] = [
     '#type' => 'checkboxes',
@@ -113,7 +116,7 @@ function _civictheme_form_system_theme_settings_provision_validate(array &$form,
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     if (empty($types)) {
-      $form_state->setErrorByName('provision_types', t('At least one provision type must be selected.'));
+      $form_state->setErrorByName('provision_types', (string) t('At least one provision type must be selected.'));
     }
   }
 }
@@ -200,7 +203,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
   foreach (array_keys($callbacks) as $callback_type) {
     if (in_array($callback_type, $types)) {
       if ($verbose) {
-        civictheme_provision_cli_log(t('Started provisioning @type.', [
+        civictheme_provision_cli_log((string) t('Started provisioning @type.', [
           '@type' => $callback_type,
         ]));
       }
@@ -220,7 +223,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
       }
 
       if ($verbose) {
-        civictheme_provision_cli_log(t('Finished provisioning @type: @message', [
+        civictheme_provision_cli_log((string) t('Finished provisioning @type: @message', [
           '@type' => $callback_type,
           '@message' => $results[$callback_type] === TRUE ? t('Success') : t('ERROR: @error', [
             '@error' => is_string($results[$callback_type]) ? $results[$callback_type] : t('Unknown.'),
@@ -245,7 +248,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
  */
 function civictheme_provision_cli(array $types = []): void {
   $results = civictheme_provision($types, TRUE, TRUE);
-  $errors = array_filter($results, function ($value): bool {
+  $errors = array_filter($results, static function ($value): bool {
     return $value !== TRUE;
   });
 
@@ -266,7 +269,7 @@ function civictheme_provision_cli(array $types = []): void {
  *   String containing message.
  */
 function civictheme_provision_cli_log($message): void {
-  if (class_exists('\Drush\Drush')) {
+  if (class_exists(Drush::class)) {
     Drush::getContainer()->get('logger')->notice(strip_tags(html_entity_decode($message)));
   }
   elseif (PHP_SAPI === 'cli') {
@@ -274,6 +277,7 @@ function civictheme_provision_cli_log($message): void {
 
     return;
   }
+
   \Drupal::messenger()->addMessage($message);
 }
 
@@ -315,21 +319,22 @@ function _civictheme_provision_discover_callbacks(): array {
   $functions = get_defined_functions();
   foreach ($functions['user'] as $function) {
     // Callbacks from CivicTHeme.
-    if (is_string($function) && strpos($function, 'civictheme_provision__') === 0) {
+    if (is_string($function) && str_starts_with($function, 'civictheme_provision__')) {
       $type = substr($function, strlen('civictheme_provision__'));
       // Allow custom callbacks to take precedence.
       if (empty($callbacks[$type])) {
         $callbacks[$type] = $function;
       }
     }
+
     // Custom callbacks in form PREFIX_civictheme_provision__TYPE
     // will override existing callbacks by type.
     // This allows child themes to alter existing provisioning scripts.
-    if (is_string($function) && strpos($function, '_civictheme_provision__') !== FALSE) {
+    if (is_string($function) && str_contains($function, '_civictheme_provision__')) {
       $type = substr($function, strpos($function, '_civictheme_provision__') + strlen('_civictheme_provision__'));
       // Additionally, filter-out more callback helpers in a format
       // PREFIX_civictheme_provision__TYPE__more_specific_helper.
-      if (strpos($type, '__') === FALSE) {
+      if (!str_contains($type, '__')) {
         $callbacks[$type] = $function;
       }
     }
@@ -366,6 +371,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
   if ($block !== NULL) {
     $block->delete();
   }
+
   $uuid = $uuid ?: \Drupal::service('uuid')->generate();
   $info = (string) $info;
 
@@ -436,18 +442,19 @@ function civictheme_provision_place_block(string $label, string $region, string 
   foreach (array_keys($values['visibility']) as $id) {
     $values['visibility'][$id]['id'] = $id;
   }
+
   $values['settings'] = $settings;
 
   // Remove block if it already exists.
   $block = Block::load($values['id']);
-  if ($block) {
+  if ($block !== NULL) {
     $block->delete();
   }
 
   // Special case: remove existing blocks created by the base theme to avoid
   // duplicated blocks.
   $block = Block::load($base_theme_id);
-  if ($block) {
+  if ($block !== NULL) {
     $block->delete();
   }
 
@@ -472,7 +479,7 @@ function civictheme_provision_load_media_by_name(string $name): ?Media {
     ->getStorage('media')
     ->loadByProperties(['name' => $name]);
 
-  return !empty($media) ? reset($media) : NULL;
+  return empty($media) ? NULL : reset($media);
 }
 
 /**
@@ -490,11 +497,9 @@ function civictheme_provision_load_menu_items(string $menu_name): array {
   /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
   $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
 
-  $menu_items = $storage->loadByProperties([
+  return $storage->loadByProperties([
     'menu_name' => $menu_name,
   ]);
-
-  return $menu_items;
 }
 
 /**
@@ -537,8 +542,8 @@ function civictheme_provision__files(): void {
     $theme_path . '/assets/icons/facebook.svg',
     $theme_path . '/assets/icons/linkedin.svg',
     $theme_path . '/assets/icons/x.svg',
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_1.png",
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_2.png",
+    $theme_path . sprintf('/assets/backgrounds/%s_background_1.png', $theme_name),
+    $theme_path . sprintf('/assets/backgrounds/%s_background_2.png', $theme_name),
   ];
 
   /** @var \Drupal\file\FileRepositoryInterface $file_repository */
@@ -549,6 +554,7 @@ function civictheme_provision__files(): void {
       $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
       continue;
     }
+
     throw new \Exception(sprintf('File %s does not exist.', $filepath));
   }
 }
@@ -569,8 +575,8 @@ function civictheme_provision__media(): void {
       'x.svg',
     ],
     'image' => [
-      "{$theme_name}_background_1.png",
-      "{$theme_name}_background_2.png",
+      $theme_name . '_background_1.png',
+      $theme_name . '_background_2.png',
     ],
   ];
 
@@ -629,6 +635,7 @@ function civictheme_provision__menu_links(): void {
       // @todo Refactor to support conditional items removal based on the flag.
       continue;
     }
+
     foreach ($links as $title => $uri) {
       $menu_link = MenuLinkContent::create([
         'menu_name' => $menu_name,
@@ -702,11 +709,11 @@ function _civictheme_provision__blocks__menu_blocks(): void {
 function _civictheme_provision__blocks__banner(array $block): void {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
-  $block_content->field_c_b_theme = 'dark';
-  $block_content->field_c_b_banner_blend_mode = 'soft-light';
-  $block_content->field_c_b_banner_type = 'default';
-  $block_content->field_c_b_featured_image = civictheme_provision_load_media_by_name("demo_image.jpg");
+  $block_content->set('field_c_b_background_image', civictheme_provision_load_media_by_name($theme_name . '_background_1.png'));
+  $block_content->set('field_c_b_theme', 'dark');
+  $block_content->set('field_c_b_banner_blend_mode', 'soft-light');
+  $block_content->set('field_c_b_banner_type', 'default');
+  $block_content->set('field_c_b_featured_image', civictheme_provision_load_media_by_name('demo_image.jpg'));
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -735,10 +742,10 @@ function _civictheme_provision__blocks__search(array $block): void {
   }
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_link = [
+  $block_content->set('field_c_b_link', [
     'title' => 'Search',
     'uri' => $search_path,
-  ];
+  ]);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -755,10 +762,10 @@ function _civictheme_provision__blocks__mobile_navigation(array $block): void {
   $context_theme = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_top = "{$theme_name}_primary_navigation";
-  $block_content->field_c_b_bottom = "{$theme_name}_secondary_navigation";
-  $block_content->field_c_b_trigger_text = 'Menu';
-  $block_content->field_c_b_trigger_theme = $context_theme;
+  $block_content->set('field_c_b_top', $theme_name . '_primary_navigation');
+  $block_content->set('field_c_b_bottom', $theme_name . '_secondary_navigation');
+  $block_content->set('field_c_b_trigger_text', 'Menu');
+  $block_content->set('field_c_b_trigger_theme', $context_theme);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -776,18 +783,18 @@ function _civictheme_provision__blocks__signup(array $block): void {
   $paragraph = Paragraph::create([
     'type' => 'civictheme_promo',
   ]);
-  $paragraph->field_c_p_title = 'Sign up';
-  $paragraph->field_c_p_content = [
+  $paragraph->set('field_c_p_title', 'Sign up');
+  $paragraph->set('field_c_p_content', [
     'value' => 'Sign up for news and updates from our agency.',
     'format' => 'civictheme_rich_text',
-  ];
-  $paragraph->field_c_p_link = [
+  ]);
+  $paragraph->set('field_c_p_link', [
     'uri' => 'internal:/subscribe',
     'title' => 'Sign up',
-  ];
-  $paragraph->field_c_p_theme = 'dark';
-  $paragraph->field_c_p_vertical_spacing = 'top';
-  $block_content->field_c_b_components->appendItem($paragraph);
+  ]);
+  $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
+  $paragraph->set('field_c_p_vertical_spacing', CivicthemeConstants::VERTICAL_SPACING_TOP);
+  $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -806,35 +813,35 @@ function _civictheme_provision__blocks__social_links(array $block): void {
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
   ]);
-  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('facebook.svg');
-  $paragraph->field_c_p_link = [
+  $paragraph->set('field_c_p_icon', civictheme_provision_load_media_by_name('facebook.svg'));
+  $paragraph->set('field_c_p_link', [
     'uri' => 'https://www.facebook.com/',
     'title' => 'Facebook',
-  ];
-  $block_content->field_c_b_social_icons->appendItem($paragraph);
+  ]);
+  $block_content->get('field_c_b_social_icons')->appendItem($paragraph);
 
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
   ]);
-  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('linkedin.svg');
-  $paragraph->field_c_p_link = [
+  $paragraph->set('field_c_p_icon', civictheme_provision_load_media_by_name('linkedin.svg'));
+  $paragraph->set('field_c_p_link', [
     'uri' => 'https://www.linkedin.com/',
     'title' => 'LinkedIn',
-  ];
-  $block_content->field_c_b_social_icons->appendItem($paragraph);
+  ]);
+  $block_content->get('field_c_b_social_icons')->appendItem($paragraph);
 
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
   ]);
-  $paragraph->field_c_p_icon = civictheme_provision_load_media_by_name('x.svg');
-  $paragraph->field_c_p_link = [
+  $paragraph->set('field_c_p_icon', civictheme_provision_load_media_by_name('x.svg'));
+  $paragraph->set('field_c_p_link', [
     'uri' => 'https://www.twitter.com/',
     'title' => 'X',
-  ];
-  $block_content->field_c_b_social_icons->appendItem($paragraph);
+  ]);
+  $block_content->get('field_c_b_social_icons')->appendItem($paragraph);
 
-  $block_content->field_c_b_theme = 'dark';
-  $block_content->field_c_b_with_border = TRUE;
+  $block_content->set('field_c_b_theme', CivicthemeConstants::THEME_DARK);
+  $block_content->set('field_c_b_with_border', TRUE);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
     'label_machine_name' => 'footer_social_links',
@@ -854,12 +861,12 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block):
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
   ]);
-  $paragraph->field_c_p_content = [
+  $paragraph->set('field_c_p_content', [
     'value' => "<p class=\"ct-text-small\">We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n",
     'format' => 'civictheme_rich_text',
-  ];
-  $paragraph->field_c_p_theme = 'dark';
-  $block_content->field_c_b_components->appendItem($paragraph);
+  ]);
+  $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
+  $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
     'label_machine_name' => 'footer_acknowledgment_of_country',
@@ -879,12 +886,12 @@ function _civictheme_provision__blocks__copyright(array $block): void {
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
   ]);
-  $paragraph->field_c_p_content = [
+  $paragraph->set('field_c_p_content', [
     'value' => "<p class=\"text-align-right ct-text-small\">©2024 Commonwealth of Australia</p>\r\n",
     'format' => 'civictheme_rich_text',
-  ];
-  $paragraph->field_c_p_theme = 'dark';
-  $block_content->field_c_b_components->appendItem($paragraph);
+  ]);
+  $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
+  $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
     'label_machine_name' => 'footer_copyright',
@@ -907,7 +914,7 @@ function civictheme_provision__theme_settings(): void {
   $config_importer->importSingleConfig(
     'civictheme.settings',
     \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'install',
-    "$theme_name.settings",
+    $theme_name . '.settings',
     [
       'themes/contrib/civictheme' => $theme_path,
       'civictheme' => $theme_name,
@@ -930,7 +937,7 @@ function civictheme_provision__permissions(): void {
   foreach ($map as $role_name => $permissions_map) {
     /** @var \Drupal\user\RoleInterface|null $role */
     $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_name);
-    if (!$role) {
+    if ($role === NULL) {
       continue;
     }
 
@@ -942,6 +949,7 @@ function civictheme_provision__permissions(): void {
         }
       }
     }
+
     $role->save();
   }
 }
@@ -970,7 +978,7 @@ function civictheme_provision__site_settings(): void {
  *   which is keyed by a module.
  */
 function civictheme_provision_permissions_map(): array {
-  $map = [
+  return [
     'civictheme_content_approver' => [
       'honeypot' => [
         'bypass honeypot protection',
@@ -1030,8 +1038,6 @@ function civictheme_provision_permissions_map(): array {
       ],
     ],
   ];
-
-  return $map;
 }
 
 /**
@@ -1101,9 +1107,8 @@ function _civictheme_get_theme_dependencies(string $theme_name, bool $include_op
   }
 
   $dependencies = array_unique($dependencies);
-  $dependencies = array_diff($dependencies, [$theme_name]);
 
-  return $dependencies;
+  return array_diff($dependencies, [$theme_name]);
 }
 
 /**
@@ -1113,7 +1118,7 @@ function _civictheme_get_theme_dependencies(string $theme_name, bool $include_op
  *   Array of blocks keyed by block ID.
  */
 function _civictheme_get_theme_blocks(): array {
-  $blocks = [
+  return [
     'civictheme_banner' =>
       [
         'name' => 'Banner',
@@ -1171,6 +1176,4 @@ function _civictheme_get_theme_blocks(): array {
         'type' => 'civictheme_component_block',
       ],
   ];
-
-  return $blocks;
 }

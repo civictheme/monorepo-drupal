@@ -1,5 +1,5 @@
 {
-    "name": "salsadigitalauorg/civictheme_source",
+    "name": "civictheme/monorepo-drupal",
     "description": "Drupal 10 implementation of CivicTheme Source for Salsa Digital",
     "license": "proprietary",
     "require": {
@@ -30,7 +30,7 @@
         "drupal/drupal-extension": "^5",
         "friendsoftwig/twigcs": "^6.2",
         "mglaman/phpstan-drupal": "^1.2",
-        "palantirnet/drupal-rector": "dev-main",
+        "palantirnet/drupal-rector": "^0.19",
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpmd/phpmd": "^2.13",
@@ -116,6 +116,9 @@
         "patches": {
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "mglaman/phpstan-drupal": {
+                "Allow to provide drupal_root via an environment variable.": "https://github.com/mglaman/phpstan-drupal/pull/702.patch"
             }
         },
         "drupal-scaffold": {

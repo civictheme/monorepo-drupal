@@ -5,6 +5,8 @@
  * CivicTheme Social Links block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -50,6 +52,7 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
 
     $items[] = $item;
   }
+
   $variables['items'] = $items;
 
   $variables['theme'] = civictheme_get_field_theme_value($entity);

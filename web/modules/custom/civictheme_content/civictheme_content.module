@@ -5,6 +5,8 @@
  * CivicTheme default content module.
  */
 
+declare(strict_types=1);
+
 /**
  * Helper for implementations of hook_module_implements_alter().
  */
@@ -26,7 +28,7 @@ function _civictheme_content_modules_installed(string $module, array $modules): 
     $key_value = \Drupal::keyValue('post_update');
     $executed_updates = $key_value->get('existing_updates', []);
     foreach ($executed_updates as $function) {
-      if (strpos($function, $module . '_post_update_') === 0) {
+      if (str_starts_with((string) $function, $module . '_post_update_')) {
         $sandbox = [];
         call_user_func($function, $sandbox);
       }

@@ -5,6 +5,8 @@
  * System branding block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Xss;
@@ -41,10 +43,10 @@ function civictheme_preprocess_block__system_branding_block(array &$variables): 
 
     foreach (['primary', 'secondary'] as $type) {
       foreach (['desktop', 'mobile'] as $breakpoint) {
-        $logo_image = civictheme_get_theme_config_manager()->load("components.logo.{$type}.{$theme}.{$breakpoint}.path", '');
+        $logo_image = civictheme_get_theme_config_manager()->load(sprintf('components.logo.%s.%s.%s.path', $type, $theme, $breakpoint), '');
         if (!empty($logo_image)) {
           $variables['logos'][$type][$breakpoint] = [
-            'url' => '/' . ltrim($logo_image, '/'),
+            'url' => '/' . ltrim((string) $logo_image, '/'),
             'alt' => $logo_alt,
           ];
         }

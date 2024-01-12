@@ -5,6 +5,8 @@
  * Create generated documents.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
@@ -45,7 +47,7 @@ function cs_generated_content_generated_content_create_media_civictheme_document
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_PDF);
     $name = sprintf('Generated static Document media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 

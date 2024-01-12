@@ -5,6 +5,8 @@
  * Theme generic process functions.
  */
 
+declare(strict_types=1);
+
 /**
  * Process an HTML content string by applying several processors.
  *
@@ -16,17 +18,17 @@
  * @return string
  *   The processed string.
  */
-function _civictheme_process__html_content($html, array $options = []) {
+function _civictheme_process__html_content(string $html, array $options = []): string {
   $request = \Drupal::service('request_stack')->getCurrentRequest();
-  $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
+  $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
 
   // Process links.
   $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $html = _civictheme_process_html_content_links(
     $html,
     $base_url,
-    $link_settings['new_window'] ?? FALSE,
-    $link_settings['external_new_window'] ?? FALSE,
+    (bool) ($link_settings['new_window'] ?? FALSE),
+    (bool) ($link_settings['external_new_window'] ?? FALSE),
     $link_settings['external_override_domains'] ?? []
   );
 
@@ -40,7 +42,7 @@ function _civictheme_process__html_content($html, array $options = []) {
     // .ct-button.ct-theme-light.ct-button--primary.ct-button--regular
     // if the component is dark we str_replace the theme class and replace.
     // @todo We may need to implement this in a different way.
-    $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], $html);
+    $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], (string) $html);
   }
 
   return $html;

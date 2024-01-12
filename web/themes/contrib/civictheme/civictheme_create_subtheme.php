@@ -22,6 +22,8 @@
  * phpcs:disable DrupalPractice.Commenting.CommentEmptyLine.SpacingAfter
  */
 
+declare(strict_types=1);
+
 /**
  * Defines exit codes.
  */
@@ -53,17 +55,17 @@ function main(array $argv, int $argc): int {
   }
 
   // Optional remove example flag.
-  $remove_examples = array_search('--remove-examples', $argv);
+  $remove_examples = array_search('--remove-examples', $argv, TRUE);
   if ($remove_examples) {
     unset($argv[$remove_examples]);
     $argv = array_values($argv);
   }
 
   // Collect and validate values from arguments.
-  $new_theme_machine_name = trim($argv[1]);
+  $new_theme_machine_name = trim((string) $argv[1]);
   validate_theme_machine_name($new_theme_machine_name);
-  $new_theme_name = trim($argv[2]);
-  $new_theme_description = trim($argv[3]);
+  $new_theme_name = trim((string) $argv[2]);
+  $new_theme_description = trim((string) $argv[3]);
   $new_theme_directory = trim($argv[4] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
 
   $new_theme_directory = str_starts_with($new_theme_directory, DIRECTORY_SEPARATOR) ? $new_theme_directory : __DIR__ . DIRECTORY_SEPARATOR . $new_theme_directory;
@@ -114,16 +116,16 @@ Arguments:
   name                   New theme human-readable name.
   description            New theme description.
   new_theme_directory    Optional new theme directory, including theme machine
-                         name. Defaults to $default_new_theme_dir/machine_name.
+                         name. Defaults to {$default_new_theme_dir}/machine_name.
 
 Options:
   --help                 This help.
   --remove-examples      Remove example component from generated theme.
 
 Examples:
-  php $script_name civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php {$script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
-  php $script_name civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
+  php {$script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
 
 EOF;
   print PHP_EOL;
@@ -135,14 +137,14 @@ EOF;
 function print_footer(string $name, string $machine_name, string $path): void {
   print <<<EOF
 
-  $name ($machine_name) sub-theme was created successfully in "$path".
+  {$name} ({$machine_name}) sub-theme was created successfully in "{$path}".
 
   NEXT STEPS
   ----------
 
   Ensure that front-end assets can be built:
 
-    cd $path
+    cd {$path}
     npm install
     npm run build
     npm run storybook
@@ -151,8 +153,8 @@ function print_footer(string $name, string $machine_name, string $path): void {
 
     drush theme:enable civictheme -y
     drush config-set system.theme default civictheme
-    drush theme:enable $machine_name -y
-    drush config-set system.theme default $machine_name
+    drush theme:enable {$machine_name} -y
+    drush config-set system.theme default {$machine_name}
 
 EOF;
   print PHP_EOL;
@@ -189,7 +191,7 @@ function prepare_stub(): string {
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function process_stub(string $dir, array $options): void {
-  $machine_name_hyphenated = str_replace('_', '-', $options['machine_name']);
+  $machine_name_hyphenated = str_replace('_', '-', (string) $options['machine_name']);
   // @formatter:off
   // phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:disable Drupal.WhiteSpace.Comma.TooManySpaces
@@ -241,7 +243,7 @@ function process_stub(string $dir, array $options): void {
     $packagejson['civictheme']['homepage'] = $options['packagejson']['homepage'];
     $packagejson['civictheme']['bugs'] = $options['packagejson']['bugs'];
     $packagejson['civictheme']['repository'] = $options['packagejson']['repository'];
-    $packagejson_encoded = preg_replace_callback('/^ +/m', function (array $m): string {
+    $packagejson_encoded = preg_replace_callback('/^ +/m', static function (array $m): string {
       return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
     }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
@@ -364,7 +366,7 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
     $cur_dir = getcwd();
 
     if (!$cur_dir) {
-      throw new \Exception(sprintf('Unable to get current working directory.'));
+      throw new \Exception('Unable to get current working directory.');
     }
 
     chdir($parent);
@@ -374,6 +376,7 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
       if (empty(readlink($src))) {
         throw new \Exception(sprintf('Symlink target "%s" does not exist.', $src));
       }
+
       $ret = symlink(readlink($src), basename($dst));
     }
 
@@ -389,6 +392,7 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
       if ($perms === FALSE) {
         throw new \Exception(sprintf('Unable to get permissions of "%s".', $src));
       }
+
       chmod($dst, $perms);
     }
 
@@ -404,6 +408,7 @@ function file_copy_recursively(string $src, string $dst, array $exclude = [], $p
     if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
       continue;
     }
+
     file_copy_recursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
   }
 
@@ -455,6 +460,7 @@ function file_replace_string_filename(string $search, string $replace, string $d
       if (!is_dir($new_dir)) {
         mkdir($new_dir, 0777, TRUE);
       }
+
       rename($filename, $new_filename);
     }
   }
@@ -507,7 +513,7 @@ function file_scandir_recursive(string $dir, array $ignore_paths = [], bool $inc
 
       foreach ($ignore_paths as $ignore_path) {
         // Exclude based on sub-path match.
-        if (strpos($path, $ignore_path) !== FALSE) {
+        if (str_contains($path, (string) $ignore_path)) {
           continue(2);
         }
       }
@@ -516,6 +522,7 @@ function file_scandir_recursive(string $dir, array $ignore_paths = [], bool $inc
         if ($include_dirs) {
           $discovered[] = $path;
         }
+
         $discovered = array_merge($discovered, file_scandir_recursive($path, $ignore_paths, $include_dirs));
         continue;
       }
@@ -605,6 +612,7 @@ function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0
   if (strpbrk($prefix, '\\/:*?"<>|') !== FALSE) {
     throw new \RuntimeException(sprintf('The prefix "%s" contains invalid characters.', $prefix));
   }
+
   $attempts = 0;
 
   do {
@@ -712,7 +720,7 @@ function file_path_canonicalize(string $path): string {
 
     $pos = strpos($path, '/');
     if ($pos === 0) {
-      $pos = strpos($path, '/', $pos + 1);
+      $pos = strpos($path, '/', 1);
     }
 
     if ($pos === FALSE) {
@@ -757,7 +765,7 @@ function is_regex(string $str): bool {
  */
 function verbose(): void {
   if (getenv('SCRIPT_QUIET') != '1') {
-    print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
+    print sprintf(...func_get_args()) . PHP_EOL;
   }
 }
 
@@ -775,11 +783,12 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
   // @phpstan-ignore-next-line
-  set_error_handler(function ($severity, $message, $file, $line): void {
-    if (!(error_reporting() & $severity)) {
+  set_error_handler(static function ($severity, $message, $file, $line): void {
+    if ((error_reporting() & $severity) === 0) {
       // This error code is not included in error_reporting.
       return;
     }
+
     throw new ErrorException($message, 0, $severity, $file, $line);
   });
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal;
 
 use PHPUnit\Framework\TestCase;
@@ -141,10 +143,10 @@ abstract class SettingsTestCase extends TestCase {
     foreach ($this->envVars as $name => $value) {
       // Unset the variable if it has a value of NULL.
       if (is_null($value)) {
-        putenv("$name");
+        putenv($name);
       }
       else {
-        putenv("$name=$value");
+        putenv(sprintf('%s=%s', $name, $value));
       }
     }
   }
@@ -161,14 +163,13 @@ abstract class SettingsTestCase extends TestCase {
   protected static function getRealEnvVarsFilteredNoValues(array $prefixes = []): array {
     $vars = getenv();
 
-    $vars = array_filter(array_keys($vars), function ($key) use ($prefixes): bool {
+    $vars = array_filter(array_keys($vars), static function ($key) use ($prefixes) : bool {
       foreach ($prefixes as $prefix) {
         if (str_starts_with($key, $prefix)) {
           return TRUE;
         }
       }
-
-      return FALSE;
+        return FALSE;
     });
 
     return array_fill_keys($vars, NULL);
@@ -179,7 +180,7 @@ abstract class SettingsTestCase extends TestCase {
    */
   protected function unsetEnvVars(): void {
     foreach (array_keys($this->envVars) as $name) {
-      putenv("$name");
+      putenv($name);
     }
   }
 
@@ -292,7 +293,7 @@ abstract class SettingsTestCase extends TestCase {
    */
   protected function assertArraySubset(array $subset, array $haystack, string $message = ''): void {
     foreach ($subset as $key => $value) {
-      $this->assertTrue(array_key_exists($key, $haystack), $message . ": Key {$key} does not exist.");
+      $this->assertTrue(array_key_exists($key, $haystack), $message . sprintf(': Key %s does not exist.', $key));
 
       if (is_array($value)) {
         $this->assertArraySubset($value, $haystack[$key], $message);
@@ -323,7 +324,7 @@ abstract class SettingsTestCase extends TestCase {
         continue;
       }
 
-      $this->assertFalse(array_key_exists($key, $haystack), $message . ": Key {$key} exists at the deepest level.");
+      $this->assertFalse(array_key_exists($key, $haystack), $message . sprintf(': Key %s exists at the deepest level.', $key));
     }
   }
 
@@ -341,7 +342,7 @@ abstract class SettingsTestCase extends TestCase {
    *   Message to display on failure.
    */
   protected function assertArrayContainsKeysTypes(array $subset, array $haystack, string $message = ''): void {
-    $message = !empty($message) ? $message . ': ' : $message;
+    $message = empty($message) ? $message : $message . ': ';
     foreach ($subset as $key => $value) {
       $this->assertArrayHasKey($key, $haystack, $message . 'Keys of key-only values match');
       $this->assertEquals(gettype($value), gettype($haystack[$key]), $message . 'Types of key-only values match');

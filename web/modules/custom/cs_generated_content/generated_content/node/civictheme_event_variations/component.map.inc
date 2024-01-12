@@ -5,6 +5,8 @@
  * Variations for CivicTheme Event nodes.
  */
 
+declare(strict_types=1);
+
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**

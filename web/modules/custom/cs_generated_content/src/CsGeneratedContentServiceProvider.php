@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -19,7 +21,7 @@ class CsGeneratedContentServiceProvider extends ServiceProviderBase {
    */
   public function alter(ContainerBuilder $container): void {
     $definition = $container->getDefinition('generated_content.asset_generator');
-    $definition->setClass('Drupal\cs_generated_content\CsGeneratedContentAssetGenerator');
+    $definition->setClass(CsGeneratedContentAssetGenerator::class);
   }
 
 }

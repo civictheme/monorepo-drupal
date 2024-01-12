@@ -5,6 +5,8 @@
  * Create generated Page nodes.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\node\NodeInterface;
@@ -114,7 +116,7 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
 
   if (!empty($variation['alias'])) {
     // Replace tokens in an alias.
-    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, function ($value) {
+    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, static function ($value) {
       return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
     });
 
@@ -184,7 +186,8 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
 
   // Components.
   if (!empty($variation['components']) && $node->hasField('field_c_n_components')) {
-    for ($i = 0; $i < count($variation['components']); $i++) {
+    $counter = count($variation['components']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['components'][$i]['type'];
       // Remove component type and passthrough properties.
@@ -195,7 +198,8 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
 
   // Banner Components.
   if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
-    for ($i = 0; $i < count($variation['banner_components']); $i++) {
+    $counter = count($variation['banner_components']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['banner_components'][$i]['type'];
       // Remove component type and passthrough properties.
@@ -206,7 +210,8 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
 
   // Banner Components Bottom.
   if (!empty($variation['banner_components_bott']) && $node->hasField('field_c_n_banner_components_bott')) {
-    for ($i = 0; $i < count($variation['banner_components_bott']); $i++) {
+    $counter = count($variation['banner_components_bott']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['banner_components_bott'][$i]['type'];
       // Remove component type and passthrough properties.
