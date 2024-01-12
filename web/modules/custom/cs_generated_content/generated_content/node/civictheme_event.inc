@@ -139,39 +139,39 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
   }
 
   if (!empty($variation['summary']) && $node->hasField('field_c_n_summary')) {
-    $node->field_c_n_summary = $variation['summary'];
+    $node->set('field_c_n_summary', $variation['summary']);
   }
 
   if (!empty($variation['body']) && $node->hasField('field_c_n_body')) {
-    $node->field_c_n_body = $variation['body'];
+    $node->set('field_c_n_body', $variation['body']);
   }
 
   if (!empty($variation['thumbnail']) && $node->hasField('field_c_n_thumbnail')) {
-    $node->field_c_n_thumbnail = $variation['thumbnail'];
+    $node->set('field_c_n_thumbnail', $variation['thumbnail']);
   }
 
   if (!empty($variation['topics']) && $node->hasField('field_c_n_topics')) {
-    $node->field_c_n_topics = $variation['topics'];
+    $node->set('field_c_n_topics', $variation['topics']);
   }
 
   if (!empty($variation['date_range']) && $node->hasField('field_c_n_date_range')) {
-    $node->field_c_n_date_range = $variation['date_range'];
+    $node->set('field_c_n_date_range', $variation['date_range']);
   }
 
   if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
-    $node->field_c_n_site_section = $variation['site_section'];
+    $node->set('field_c_n_site_section', $variation['site_section']);
   }
 
   if (isset($variation['vertical_spacing']) && $node->hasField('field_c_n_vertical_spacing')) {
-    $node->field_c_n_vertical_spacing = $variation['vertical_spacing'];
+    $node->set('field_c_n_vertical_spacing', $variation['vertical_spacing']);
   }
 
   if (isset($variation['show_last_updated']) && $node->hasField('field_c_n_show_last_updated')) {
-    $node->field_c_n_show_last_updated = $variation['show_last_updated'];
+    $node->set('field_c_n_show_last_updated', $variation['show_last_updated']);
   }
 
   if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
-    $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
+    $node->set('field_c_n_custom_last_updated', $variation['custom_updated_date']);
   }
 
   // Locations.

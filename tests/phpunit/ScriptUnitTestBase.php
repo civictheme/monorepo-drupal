@@ -72,7 +72,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *
    * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
    */
-  protected function runScript(array $args = [], $verbose = FALSE) {
+  protected function runScript(array $args = [], $verbose = FALSE): array {
     putenv('SCRIPT_RUN_SKIP=0');
     if ($verbose) {
       putenv('SCRIPT_QUIET=0');
@@ -111,7 +111,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    * Print the contents of the temporary directory.
    */
   protected function printTempDir(): void {
-    $it = new RecursiveTreeIterator(new RecursiveDirectoryIterator($this->tmpDir, RecursiveDirectoryIterator::SKIP_DOTS));
+    $it = new RecursiveTreeIterator(new RecursiveDirectoryIterator($this->tmpDir, RecursiveDirectoryIterator::SKIP_DOTS | \FilesystemIterator::SKIP_DOTS));
     print PHP_EOL;
     foreach ($it as $value) {
       print $value . PHP_EOL;
