@@ -150,7 +150,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: Search
+            label: 'Search keywords'
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -168,8 +168,9 @@ display:
               anonymous: '0'
               administrator: '0'
             expose_fields: false
-            placeholder: ''
+            placeholder: 'Enter search keywords...'
             searched_fields_id: search_api_fulltext_searched_fields
+            value_maxlength: 128
           is_grouped: false
           group_info:
             label: ''
@@ -215,7 +216,20 @@ display:
           preserve_facet_query_args: false
           query_tags: {  }
       relationships: {  }
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: '<h3 class="ct-heading ct-list__title">Search results...</h3>'
+            format: civictheme_rich_text
+          tokenize: false
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -234,8 +248,8 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      path: search
       display_extenders: {  }
+      path: search
     cache_metadata:
       max-age: -1
       contexts:

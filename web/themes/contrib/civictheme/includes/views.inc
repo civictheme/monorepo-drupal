@@ -20,6 +20,7 @@ use Drupal\views\Views;
 function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
+  _civictheme_preprocess_views_view__search_page($variables);
 }
 
 /**
@@ -233,4 +234,16 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 
   // Mark this as a Group filter.
   $variables['group_filter'] = TRUE;
+}
+
+/**
+ * Preprocess for a search page.
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
+function _civictheme_preprocess_views_view__search_page(array &$variables): void {
+  $view = $variables['view'];
+  if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
+    $variables['vertical_spacing'] = 'top';
+  }
 }
