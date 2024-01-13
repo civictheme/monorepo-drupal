@@ -17833,16 +17833,16 @@
         },
         {
             "name": "palantirnet/drupal-rector",
-            "version": "0.19.0",
+            "version": "0.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/palantirnet/drupal-rector.git",
-                "reference": "aa11559a77bda0331d9d331345e1209e3ab234c4"
+                "reference": "0617aa123f17002a65eb162590a9af93c0422892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/drupal-rector/zipball/aa11559a77bda0331d9d331345e1209e3ab234c4",
-                "reference": "aa11559a77bda0331d9d331345e1209e3ab234c4",
+                "url": "https://api.github.com/repos/palantirnet/drupal-rector/zipball/0617aa123f17002a65eb162590a9af93c0422892",
+                "reference": "0617aa123f17002a65eb162590a9af93c0422892",
                 "shasum": ""
             },
             "require": {
@@ -17905,9 +17905,9 @@
                 "rector"
             ],
             "support": {
-                "source": "https://github.com/palantirnet/drupal-rector/tree/0.19.0"
+                "source": "https://github.com/palantirnet/drupal-rector/tree/0.19.1"
             },
-            "time": "2024-01-11T21:12:22+00:00"
+            "time": "2024-01-12T09:56:43+00:00"
         },
         {
             "name": "pdepend/pdepend",
