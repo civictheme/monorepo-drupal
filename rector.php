@@ -12,7 +12,6 @@
 declare(strict_types=1);
 
 use DrupalFinder\DrupalFinder;
-use DrupalRector\Set\Drupal10SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
 use Rector\CodeQuality\Rector\ClassMethod\InlineArrayReturnAssignRector;
@@ -45,7 +44,6 @@ return static function (RectorConfig $rectorConfig): void {
     // Provided by Drupal Rector.
     Drupal8SetList::DRUPAL_8,
     Drupal9SetList::DRUPAL_9,
-    Drupal10SetList::DRUPAL_10,
   ]);
 
   $drupalFinder = new DrupalFinder();
