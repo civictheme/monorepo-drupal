@@ -5,11 +5,10 @@
 
 <h1 align="center">CivicTheme - Development source site</h1>
 
-<p>Mono-repo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.</p>
+<p>Monorepo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.</p>
 
 <div align="center">
 
-[![GitHub Issues](https://img.shields.io/github/issues/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/pulls)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/civictheme/monorepo-drupal)
 [![CircleCI](https://circleci.com/gh/civictheme/monorepo-drupal.svg?style=shield)](https://circleci.com/gh/civictheme/monorepo-drupal)
@@ -25,25 +24,13 @@
 
 ---
 
+> [!Tip]
+> For support, see [Getting help](https://docs.civictheme.io/getting-help) documentation
+
 > [!IMPORTANT]
 > For Drupal theme installation instructions into your site, see https://docs.civictheme.io/development/drupal-theme
 
-## Local environment setup
-
-- Make sure that you have latest versions of all required software installed:
-  - [Docker](https://www.docker.com/)
-  - [Pygmy](https://github.com/pygmystack/pygmy)
-  - [Ahoy](https://github.com/ahoy-cli/ahoy)
-- Make sure that all local web development services are shut down (Apache/Nginx, Mysql, MAMP etc).
-- Checkout project repository (in one of the [supported Docker directories](https://docs.docker.com/docker-for-mac/osxfs/#access-control)).
-- `pygmy up`
-- `ahoy build`
-
-### Apple M1 adjustments
-
-Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
-
-## Project documentation
+## Monorepo documentation
 
 - [Development](docs/development.md)
 - [FAQs](docs/faqs.md)
