@@ -32,6 +32,7 @@ tasks:
     - run:
         name: Provision site
         command: |
+          drush cr
           if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_LAGOON_PRODUCTION_BRANCH:-main}" ]; then
             echo "==> Running in PRODUCTION environment."
             # Never unblock admin user in production.
