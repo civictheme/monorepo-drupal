@@ -92,8 +92,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'name' => t('@name', ['@name' => $file->label()]),
     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
-    // @phpstan-ignore-next-line
-    'size' => DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.2.0', static fn(): TranslatableMarkup => ByteSizeMarkup::create($file->getSize()), static fn() => format_size($file->getSize())),
+    'size' => DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.2.0', static fn(): TranslatableMarkup => ByteSizeMarkup::create($file->getSize()), static fn() => format_size($file->getSize())), // @phpstan-ignore-line
     'created' => civictheme_format_datetime($media->getCreatedTime(), 'civictheme_short_date'),
     'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
