@@ -12,6 +12,7 @@
 declare(strict_types=1);
 
 use DrupalFinder\DrupalFinder;
+use DrupalRector\Set\Drupal10SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
 use Rector\CodeQuality\Rector\ClassMethod\InlineArrayReturnAssignRector;
@@ -47,10 +48,7 @@ return static function (RectorConfig $rectorConfig): void {
     Drupal10SetList::DRUPAL_10,
   ]);
 
-  $drupalFinder = new DrupalFinder();
-  $drupalFinder->locateRoot(__DIR__);
-
-  $drupalRoot = $drupalFinder->getDrupalRoot();
+  $drupalRoot = realpath(__DIR__ . '/web');
   $rectorConfig->autoloadPaths([
     $drupalRoot . '/core',
     $drupalRoot . '/modules',
@@ -85,6 +83,8 @@ return static function (RectorConfig $rectorConfig): void {
     '*/update.php',
     // Composer scripts.
     '*/scripts/composer/*',
+    // Build files.
+    '*/build/*',
   ]);
 
   $rectorConfig->fileExtensions([

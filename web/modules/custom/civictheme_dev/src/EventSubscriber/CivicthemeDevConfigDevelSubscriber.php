@@ -67,7 +67,7 @@ class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase imple
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     $events = [];
 
     $events[ConfigDevelEvents::SAVE][] = ['onConfigDevelSave', 10];
