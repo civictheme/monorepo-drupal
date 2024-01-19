@@ -21,7 +21,10 @@ parameters:
     - '*/lib/*'
 
   drupal:
-    drupal_root: build
+    drupal_root: build/web
+
+  # Do not report on ignored errors that do not occur in the results.
+  reportUnmatchedIgnoredErrors: false
 
   ignoreErrors:
     -
