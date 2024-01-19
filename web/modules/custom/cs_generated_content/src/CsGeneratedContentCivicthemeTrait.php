@@ -7,7 +7,7 @@ namespace Drupal\cs_generated_content;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Trait CsGeneratedContentTrait.
@@ -222,7 +222,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Static Topic.
    */
-  public static function civicthemeStaticTopic(): ?Term {
+  public static function civicthemeStaticTopic(): ?TermInterface {
     $entities = static::civicthemeStaticTopics(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;
@@ -264,7 +264,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Static Site section.
    */
-  public static function civicthemeStaticSiteSection(): ?Term {
+  public static function civicthemeStaticSiteSection(): ?TermInterface {
     $entities = static::civicthemeStaticSiteSections(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;

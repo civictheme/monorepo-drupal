@@ -10,6 +10,7 @@ declare(strict_types=1);
 use Drupal\Core\Link;
 use Drupal\Core\Utility\Error;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
+use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -40,7 +41,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
   $users = [];
 
-  $roles = user_roles();
+  $roles = Role::loadMultiple();
   foreach ($roles as $role) {
     if (in_array($role->id(), [
       'anonymous', 'authenticated',
