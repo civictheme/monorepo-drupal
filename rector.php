@@ -44,6 +44,7 @@ return static function (RectorConfig $rectorConfig): void {
     // Provided by Drupal Rector.
     Drupal8SetList::DRUPAL_8,
     Drupal9SetList::DRUPAL_9,
+    Drupal10SetList::DRUPAL_10,
   ]);
 
   $drupalFinder = new DrupalFinder();
