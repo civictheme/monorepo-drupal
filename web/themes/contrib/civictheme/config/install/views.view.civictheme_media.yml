@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - image.style.thumbnail
@@ -13,7 +13,7 @@ id: civictheme_media
 label: Media
 module: views
 description: 'Find and manage media.'
-tag: ''
+tag: CivicTheme
 base_table: media_field_data
 base_field: mid
 display:
@@ -937,7 +937,6 @@ display:
         - url.query_args
         - user
         - user.permissions
-      tags: {  }
   media_page_list:
     id: media_page_list
     display_title: Media
@@ -965,4 +964,3 @@ display:
         - url.query_args
         - user
         - user.permissions
-      tags: {  }
