@@ -1197,7 +1197,7 @@ function civictheme_provision__media_view(): void {
   $config_importer = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class);
   $config_importer->importSingleConfig(
     'views.view.civictheme_media',
-    \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'optional',
+    \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'install',
     'views.view.civictheme_media',
     [
       'themes/contrib/civictheme' => $theme_path,

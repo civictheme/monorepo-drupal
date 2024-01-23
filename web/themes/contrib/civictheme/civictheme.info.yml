@@ -627,6 +627,7 @@ config_devel:
     - user.role.civictheme_site_administrator
     - views.view.civictheme_alerts
     - views.view.civictheme_automated_list
+    - views.view.civictheme_media
     - webform.webform.civictheme_enquiry
   optional:
     - block.block.civictheme_banner
@@ -649,6 +650,5 @@ config_devel:
     - search_api.server.civictheme_database
     - search_api.settings
     - search_api_db.settings
-    - views.view.civictheme_media
     - views.view.civictheme_search
 #;> DEVELOPMENT
