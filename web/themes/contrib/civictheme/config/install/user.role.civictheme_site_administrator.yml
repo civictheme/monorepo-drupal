@@ -18,6 +18,7 @@ dependencies:
     - node.type.civictheme_alert
     - node.type.civictheme_event
     - node.type.civictheme_page
+    - taxonomy.vocabulary.civictheme_media_tags
     - taxonomy.vocabulary.civictheme_topics
   module:
     - block
@@ -89,6 +90,7 @@ permissions:
   - 'create civictheme_social_links block content'
   - 'create civictheme_video media'
   - 'create media'
+  - 'create terms in civictheme_media_tags'
   - 'create terms in civictheme_topics'
   - 'create url aliases'
   - 'create webform'
@@ -131,6 +133,7 @@ permissions:
   - 'delete own civictheme_video media'
   - 'delete own webform'
   - 'delete own webform submission'
+  - 'delete terms in civictheme_media_tags'
   - 'delete terms in civictheme_topics'
   - 'edit any civictheme_alert content'
   - 'edit any civictheme_audio media'
@@ -159,6 +162,7 @@ permissions:
   - 'edit own civictheme_video media'
   - 'edit own webform'
   - 'edit own webform submission'
+  - 'edit terms in civictheme_media_tags'
   - 'edit terms in civictheme_topics'
   - 'edit webform assets'
   - 'edit webform source'

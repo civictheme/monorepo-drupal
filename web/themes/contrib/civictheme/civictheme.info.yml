@@ -170,6 +170,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_subject_card.default
     - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
     - core.entity_form_display.paragraph.civictheme_webform.default
+    - core.entity_form_display.taxonomy_term.civictheme_media_tags.default
     - core.entity_form_display.taxonomy_term.civictheme_site_sections.default
     - core.entity_view_display.block_content.civictheme_banner.default
     - core.entity_view_display.block_content.civictheme_component_block.default
@@ -254,13 +255,19 @@ config_devel:
     - field.field.block_content.civictheme_social_links.field_c_b_theme
     - field.field.block_content.civictheme_social_links.field_c_b_with_border
     - field.field.media.civictheme_audio.field_c_m_audio_file
+    - field.field.media.civictheme_audio.field_c_m_media_tags
     - field.field.media.civictheme_document.field_c_m_document
+    - field.field.media.civictheme_document.field_c_m_media_tags
     - field.field.media.civictheme_icon.field_c_m_icon
+    - field.field.media.civictheme_icon.field_c_m_media_tags
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
+    - field.field.media.civictheme_remote_video.field_c_m_media_tags
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
+    - field.field.media.civictheme_video.field_c_m_media_tags
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
@@ -476,6 +483,7 @@ config_devel:
     - field.storage.media.field_c_m_document
     - field.storage.media.field_c_m_icon
     - field.storage.media.field_c_m_image
+    - field.storage.media.field_c_m_media_tags
     - field.storage.media.field_c_m_oembed_video
     - field.storage.media.field_c_m_transcript
     - field.storage.media.field_c_m_transcript_link
@@ -611,6 +619,7 @@ config_devel:
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
+    - taxonomy.vocabulary.civictheme_media_tags
     - taxonomy.vocabulary.civictheme_site_sections
     - taxonomy.vocabulary.civictheme_topics
     - user.role.civictheme_content_approver
@@ -640,5 +649,7 @@ config_devel:
     - search_api.server.civictheme_database
     - search_api.settings
     - search_api_db.settings
+    - views.view.civictheme_media
+    - views.view.civictheme_media_library
     - views.view.civictheme_search
 #;> DEVELOPMENT

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.civictheme_remote_video.field_c_m_media_tags
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
@@ -18,13 +19,23 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_c_m_media_tags:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_c_m_oembed_video:
     type: oembed_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
@@ -32,7 +43,7 @@ content:
     third_party_settings: {  }
   field_c_m_transcript:
     type: text_textarea
-    weight: 4
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -40,7 +51,7 @@ content:
     third_party_settings: {  }
   field_c_m_transcript_link:
     type: link_default
-    weight: 5
+    weight: 3
     region: content
     settings:
       placeholder_url: ''
@@ -56,20 +67,20 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS

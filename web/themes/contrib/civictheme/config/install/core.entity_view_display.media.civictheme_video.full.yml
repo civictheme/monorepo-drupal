@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.full
+    - field.field.media.civictheme_video.field_c_m_media_tags
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
@@ -37,6 +38,7 @@ content:
     region: content
 hidden:
   created: true
+  field_c_m_media_tags: true
   field_c_m_transcript_link: true
   name: true
   thumbnail: true

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.media.civictheme_icon.field_c_m_icon
+    - field.field.media.civictheme_icon.field_c_m_media_tags
     - media.type.civictheme_icon
   module:
     - file
@@ -12,12 +13,20 @@ bundle: civictheme_icon
 mode: default
 content:
   field_c_m_icon:
+    type: file_default
     label: visually_hidden
-    weight: 0
     settings:
       use_description_as_link_text: false
     third_party_settings: {  }
-    type: file_default
+    weight: 0
+    region: content
+  field_c_m_media_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   created: true
