@@ -937,6 +937,7 @@ display:
         - url.query_args
         - user
         - user.permissions
+      tags: {  }
   media_page_list:
     id: media_page_list
     display_title: Media
@@ -944,7 +945,6 @@ display:
     position: 1
     display_options:
       display_description: ''
-      display_extenders: {  }
       path: admin/content/media
       menu:
         type: tab
@@ -964,3 +964,4 @@ display:
         - url.query_args
         - user
         - user.permissions
+      tags: {  }

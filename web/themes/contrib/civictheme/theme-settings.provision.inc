@@ -1193,6 +1193,6 @@ function civictheme_provision__media_view(): void {
   // Enable the 'views.view.civictheme_media' view.
   \Drupal::configFactory()
     ->getEditable('views.view.civictheme_media')
-    ->set('status', FALSE)
+    ->set('status', TRUE)
     ->save();
 }

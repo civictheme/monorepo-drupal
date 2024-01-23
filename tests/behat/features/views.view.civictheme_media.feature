@@ -17,7 +17,7 @@ Feature: CivicTheme media renders on views pages with filters
       | [TEST] CivicTheme Image 2 | test_image.jpg  | [TEST] Tag 1, [TEST] Tag 2 |
     
   @api
-  Scenario: Color fields are present.
+  Scenario: Filter fields are present.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/content/media"
     Then the response status code should be 200
