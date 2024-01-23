@@ -650,6 +650,5 @@ config_devel:
     - search_api.settings
     - search_api_db.settings
     - views.view.civictheme_media
-    - views.view.civictheme_media_library
     - views.view.civictheme_search
 #;> DEVELOPMENT

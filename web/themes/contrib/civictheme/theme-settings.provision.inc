@@ -1177,3 +1177,31 @@ function _civictheme_get_theme_blocks(): array {
       ],
   ];
 }
+
+/**
+ * Provision Media View.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_provision__media_view(): void {
+  $theme_name = \Drupal::config('system.theme')->get('default');
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+
+  // Disable the 'views.view.media' view.
+  \Drupal::configFactory()
+    ->getEditable('views.view.media')
+    ->set('status', FALSE)
+    ->save();
+
+  /** @var \Drupal\civictheme\CivicthemeConfigImporter $config_importer */
+  $config_importer = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class);
+  $config_importer->importSingleConfig(
+    'views.view.civictheme_media',
+    \Drupal::service('extension.list.theme')->getPath('civictheme') . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'optional',
+    'views.view.civictheme_media',
+    [
+      'themes/contrib/civictheme' => $theme_path,
+      'civictheme' => $theme_name,
+    ]
+  );
+}
