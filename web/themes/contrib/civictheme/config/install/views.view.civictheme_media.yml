@@ -938,8 +938,8 @@ display:
         - user
         - user.permissions
       tags: {  }
-  media_page_list:
-    id: media_page_list
+  page_1:
+    id: page_1
     display_title: Media
     display_plugin: page
     position: 1
