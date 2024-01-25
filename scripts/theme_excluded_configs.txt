@@ -197,6 +197,7 @@ views.view.archive
 views.view.block_content
 views.view.civictheme_automated_list_examples
 views.view.civictheme_automated_list_test
+views.view.civictheme_media
 views.view.civictheme_search
 views.view.civictheme_table_examples
 views.view.comment
