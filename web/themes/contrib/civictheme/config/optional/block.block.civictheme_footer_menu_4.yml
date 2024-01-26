@@ -16,12 +16,12 @@ plugin: 'menu_block:civictheme-footer'
 settings:
   id: 'menu_block:civictheme-footer'
   label: 'Footer menu 4'
-  label_display: ''
+  label_display: visible
   provider: menu_block
   follow: false
   follow_parent: child
   label_link: false
-  label_type: block
+  label_type: fixed
   level: 1
   depth: 1
   expand_all_items: false
