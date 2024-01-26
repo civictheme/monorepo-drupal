@@ -220,4 +220,3 @@ views.view.who_s_online
 webform.settings
 webform.webform.contact
 webform.webform_options*
-workflows.workflow.editorial
