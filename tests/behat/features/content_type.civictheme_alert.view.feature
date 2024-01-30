@@ -3,15 +3,15 @@ Feature: CivicTheme Alert content type render
 
   Background:
     Given civictheme_alert content:
-      | nid    | title                                        | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                              | field_c_n_date_range:value      | field_c_n_date_range:end_value   |
-      | 999991 | [TEST] Test alert title Homepage only        | 1      | information          | /                               | [TEST] Test alert body Homepage only        | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
-      | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
-      | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
-      | 999994 | [TEST] Test alert title all pages future     | 1      | error                |                                 | [TEST] Test alert body all pages future     | [relative:+2 days#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] |
+      | nid    | title                                        | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                              | field_c_n_date_range:value      | field_c_n_date_range:end_value   | moderation_state |
+      | 999991 | [TEST] Test alert title Homepage only        | 1      | information          | /                               | [TEST] Test alert body Homepage only        | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] | published        |
+      | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] | published        |
+      | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] | published        |
+      | 999994 | [TEST] Test alert title all pages future     | 1      | error                |                                 | [TEST] Test alert body all pages future     | [relative:+2 days#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] | published        |
 
     Given civictheme_page content:
-      | title                       | status |
-      | [TEST] Test alerts on pages | 1      |
+      | title                       | status | moderation_state |
+      | [TEST] Test alerts on pages | 1      | published        |
 
   @api @javascript
   Scenario: Alerts can be viewed on homepage

@@ -9,10 +9,10 @@ Feature: Navigation reference card render
       | [TEST] Topic 3 |
 
     And "civictheme_page" content:
-      | title                      | status | field_c_n_summary | field_c_n_topics               |
-      | [TEST] Page with container | 1      |                   |                                |
-      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Topic 1                 |
-      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Topic 2, [TEST] Topic 3 |
+      | title                      | status | field_c_n_summary | field_c_n_topics               | moderation_state |
+      | [TEST] Page with container | 1      |                   |                                | published        |
+      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Topic 1                 | published        |
+      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Topic 2, [TEST] Topic 3 | published        |
 
   @api
   Scenario: Anonymous user can view Navigation reference card

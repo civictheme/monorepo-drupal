@@ -6,11 +6,11 @@ Feature: Search API
   @api
   Scenario: User searches for Page content
     Given civictheme_page content:
-      | title                                     | status | field_c_n_summary                   |
-      | [TEST] Search result 1 firstuniquestring  | 1      | Summary 1 firstuniquestringsummary  |
-      | [TEST] Search result 2 seconduniquestring | 1      | Summary 2 seconduniquestringsummary |
-      | [TEST] Search result 3 thirduniquestring  | 1      | Summary 3 thirduniquestringsummary  |
-      | [TEST] Search result 4 forthuniquestring  | 1      | Summary 4 forthuniquestringsummary  |
+      | title                                     | status | field_c_n_summary                   | moderation_state |
+      | [TEST] Search result 1 firstuniquestring  | 1      | Summary 1 firstuniquestringsummary  | published        |
+      | [TEST] Search result 2 seconduniquestring | 1      | Summary 2 seconduniquestringsummary | published        |
+      | [TEST] Search result 3 thirduniquestring  | 1      | Summary 3 thirduniquestringsummary  | published        |
+      | [TEST] Search result 4 forthuniquestring  | 1      | Summary 4 forthuniquestringsummary  | published        |
 
     # Page 1, 3 searchable strings: 2 unique and 1 shared.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Search result 1 firstuniquestring" has "civictheme_content" paragraph:

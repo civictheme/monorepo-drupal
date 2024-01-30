@@ -8,12 +8,12 @@ Feature: Event Card render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state | status |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
 
     And "civictheme_page" content:
-      | title                          | status |
-      | [TEST] Page - Event cards test | 1      |
+      | title                          | status | moderation_state |
+      | [TEST] Page - Event cards test | 1      | published        |
 
     And "civictheme_topics" terms:
       | name           |

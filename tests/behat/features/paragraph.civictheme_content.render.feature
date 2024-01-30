@@ -3,8 +3,8 @@ Feature: Content render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status |
-      | [TEST] Page content test | 1      |
+      | title                    | status | moderation_state |
+      | [TEST] Page content test | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with content light without background

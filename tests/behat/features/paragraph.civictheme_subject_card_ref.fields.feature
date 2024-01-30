@@ -3,18 +3,18 @@ Feature: subject reference card render
 
   Background:
     Given managed file:
-      | filename       | uri                                     | path           |
-      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
+      | filename       | uri                                     | path           | status |
+      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg | 1      |
 
     And "civictheme_image" media:
-      | name           | field_c_m_image |
-      | [TEST] Image 1 | test_image.jpg  |
+      | name           | field_c_m_image | moderation_state |
+      | [TEST] Image 1 | test_image.jpg  | published        |
 
     And "civictheme_page" content:
-      | title                      | status | field_c_n_summary | field_c_n_thumbnail |
-      | [TEST] Page with container | 1      |                   |                     |
-      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Image 1      |
-      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Image 1      |
+      | title                      | status | field_c_n_summary | field_c_n_thumbnail | moderation_state |
+      | [TEST] Page with container | 1      |                   |                     | published        |
+      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Image 1      | published        |
+      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Image 1      | published        |
 
   @api
   Scenario: Anonymous user can view subject reference card

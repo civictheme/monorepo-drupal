@@ -8,14 +8,14 @@ Feature: Banner render
       | image.jpg      | public://civictheme_test/image.jpg      | image.jpg      |
 
     And "civictheme_image" media:
-      | name                            | field_c_m_image |
-      | [TEST] CivicTheme Block Image   | test_image.jpg  |
-      | [TEST] CivicTheme Content Image | image.jpg       |
+      | name                            | field_c_m_image | moderation_state | status |
+      | [TEST] CivicTheme Block Image   | test_image.jpg  | published        | 1      |   
+      | [TEST] CivicTheme Content Image | image.jpg       | published        | 1      |
 
     And "civictheme_page" content:
-      | title                            | status | field_c_n_banner_type | field_c_n_banner_featured_image |
-      | [TEST] Page banner test          | 1      |                       |                                 |
-      | [TEST] Page banner override test | 1      | large                 | [TEST] CivicTheme Content Image |
+      | title                            | status | field_c_n_banner_type | field_c_n_banner_featured_image | moderation_state |
+      | [TEST] Page banner test          | 1      |                       |                                 | published        |
+      | [TEST] Page banner override test | 1      | large                 | [TEST] CivicTheme Content Image | published        |
 
   @api
   Scenario: CivicTheme Page banner with default values.

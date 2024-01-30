@@ -9,12 +9,12 @@ Feature: Accordion render
       | test_pdf.pdf   | public://civictheme_test/test_pdf.pdf   | test_pdf.pdf   |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state | status |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
 
     And "civictheme_page" content:
-      | title                      | status |
-      | [TEST] Page accordion test | 1      |
+      | title                      | status | moderation_state |
+      | [TEST] Page accordion test | 1      | published        |
 
   @api
   Scenario: Accordion light without background

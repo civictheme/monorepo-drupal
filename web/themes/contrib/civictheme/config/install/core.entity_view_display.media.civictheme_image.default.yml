@@ -13,25 +13,26 @@ bundle: civictheme_image
 mode: default
 content:
   field_c_m_caption:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_c_m_image:
+    type: image
     label: visually_hidden
-    weight: 0
     settings:
-      image_style: ''
       image_link: ''
+      image_style: ''
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    type: image
+    weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   name: true
   thumbnail: true

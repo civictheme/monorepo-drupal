@@ -3,9 +3,9 @@ Feature: IFrame render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status |
-      | [TEST] Page iframe test  | 1      |
-      | [TEST] Page iframe test2 | 1      |
+      | title                    | status | moderation_state |
+      | [TEST] Page iframe test  | 1      | published        |
+      | [TEST] Page iframe test2 | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with iframe light without background

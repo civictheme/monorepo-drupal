@@ -12,14 +12,15 @@ bundle: civictheme_icon
 mode: default
 content:
   field_c_m_icon:
+    type: file_default
     label: visually_hidden
-    weight: 0
     settings:
       use_description_as_link_text: false
     third_party_settings: {  }
-    type: file_default
+    weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   name: true
   thumbnail: true

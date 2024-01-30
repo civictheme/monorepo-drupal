@@ -3,9 +3,9 @@ Feature: Map render
 
   Background:
     Given "civictheme_page" content:
-      | title                 | status |
-      | [TEST] Page map test  | 1      |
-      | [TEST] Page map test2 | 1      |
+      | title                 | status | moderation_state |
+      | [TEST] Page map test  | 1      | published        |
+      | [TEST] Page map test2 | 1      | published        |
 
   @api
   Scenario: Map light without background

@@ -7,8 +7,8 @@ Feature: Promo reference card render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name           | field_c_m_image |
-      | [TEST] Image 1 | test_image.jpg  |
+      | name           | field_c_m_image | moderation_state | status |
+      | [TEST] Image 1 | test_image.jpg  | published        | 1      |
 
     And "civictheme_topics" terms:
       | name            |
@@ -18,10 +18,10 @@ Feature: Promo reference card render
       | [TEST] Topic 22 |
 
     And "civictheme_page" content:
-      | title                      | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics                 |
-      | [TEST] Page with container | 1      |                   |                     |                                  |
-      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 11, [TEST] Topic 12 |
-      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 21, [TEST] Topic 22 |
+      | title                      | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics                 | moderation_state |
+      | [TEST] Page with container | 1      |                   |                     |                                  | published        |
+      | [TEST] Referenced Page 1   | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 11, [TEST] Topic 12 | published        |
+      | [TEST] Referenced Page 2   | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 21, [TEST] Topic 22 | published        |
 
   @api
   Scenario: Anonymous user can view Promo reference card

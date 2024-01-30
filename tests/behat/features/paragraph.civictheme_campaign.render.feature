@@ -7,8 +7,8 @@ Feature: Campaign render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state | status |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
 
     And "civictheme_topics" terms:
       | name           |
@@ -16,9 +16,9 @@ Feature: Campaign render
       | [TEST] Topic 2 |
 
     And "civictheme_page" content:
-      | title                       | status |
-      | [TEST] Page Campaign test 1 | 1      |
-      | [TEST] Page Campaign test 2 | 1      |
+      | title                       | status | moderation_state |
+      | [TEST] Page Campaign test 1 | 1      | published        |
+      | [TEST] Page Campaign test 2 | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Campaign light with vertical spacing and right image

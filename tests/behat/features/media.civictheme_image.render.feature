@@ -8,11 +8,11 @@ Feature: CivicTheme image
       | filename       | uri                                     | path           |
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
     And "civictheme_image" media:
-      | name                    | field_c_m_image | uuid                                 |
-      | [TEST] CivicTheme Image | test_image.jpg  | 5dfa9d25-2f42-7r41-9e89-a4548dc1df26 |
+      | name                    | field_c_m_image | uuid                                 | moderation_state | status |
+      | [TEST] CivicTheme Image | test_image.jpg  | 5dfa9d25-2f42-7r41-9e89-a4548dc1df26 | published        | 1      |
     And "civictheme_page" content:
-      | title                  | status |
-      | [TEST] CivicTheme Page | 1      |
+      | title                  | status | moderation_state |
+      | [TEST] CivicTheme Page | 1      | published        |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] CivicTheme Page" has "civictheme_accordion" paragraph:
       | field_c_p_theme      | light |
       | field_c_p_background | 1     |

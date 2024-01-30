@@ -4,8 +4,8 @@ Feature: Content links processing
   @api
   Scenario: Links in content have correct classes assigned.
     Given "civictheme_page" content:
-      | title         | status |
-      | [TEST] Page 1 | 1      |
+      | title         | status | moderation_state |
+      | [TEST] Page 1 | 1      | published        |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
       | field_c_p_content:value  | <a href="/internal-relative-light-link">Internal relative light link</a> |
       | field_c_p_content:format | civictheme_rich_text                                                     |

@@ -17,14 +17,15 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: civictheme_medium
       image_link: ''
+      image_style: civictheme_medium
       image_loading:
         attribute: lazy
-    weight: 0
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   field_c_m_document: true
   name: true
