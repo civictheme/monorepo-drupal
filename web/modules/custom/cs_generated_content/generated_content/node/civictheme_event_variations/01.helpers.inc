@@ -29,6 +29,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__post_pr
   foreach ($variations as &$variation) {
     $variation += [
       'status' => TRUE,
+      'moderation_state' => 'published',
       'alias' => '/generated-content/civictheme_event/{title}',
       'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeNone(),
     ];

@@ -50,6 +50,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image():
     $media = Media::create([
       'bundle' => 'civictheme_image',
       'name' => $name,
+      'moderation_state' => 'published',
     ]);
 
     $media->field_c_m_image->setValue([

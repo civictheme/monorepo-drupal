@@ -9,7 +9,7 @@ Feature: Banner render
 
     And "civictheme_image" media:
       | name                            | field_c_m_image | moderation_state | status |
-      | [TEST] CivicTheme Block Image   | test_image.jpg  | published        | 1      |   
+      | [TEST] CivicTheme Block Image   | test_image.jpg  | published        | 1      |
       | [TEST] CivicTheme Content Image | image.jpg       | published        | 1      |
 
     And "civictheme_page" content:

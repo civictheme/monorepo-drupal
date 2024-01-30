@@ -50,6 +50,7 @@ function cs_generated_content_generated_content_create_media_civictheme_video():
     $media = Media::create([
       'bundle' => 'civictheme_video',
       'name' => $name,
+      'moderation_state' => 'published',
     ]);
 
     $media->field_c_m_video_file->setValue([
