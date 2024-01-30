@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_theme_settings @civictheme_theme_settings_components
+@p1 @civictheme @civictheme_theme_settings @civictheme_theme_settings_components
 Feature: Components settings are available in the theme settings
 
   Background:
