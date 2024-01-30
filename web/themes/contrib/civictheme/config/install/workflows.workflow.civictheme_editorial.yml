@@ -18,7 +18,7 @@ dependencies:
     - node.type.civictheme_page
   module:
     - content_moderation
-id: editorial
+id: civictheme_editorial
 label: Editorial
 type: content_moderation
 type_settings:

@@ -618,8 +618,9 @@ config_devel:
     - user.role.civictheme_site_administrator
     - views.view.civictheme_alerts
     - views.view.civictheme_automated_list
+    - views.view.civictheme_moderated_content
     - webform.webform.civictheme_enquiry
-    - workflows.workflow.editorial
+    - workflows.workflow.civictheme_editorial
   optional:
     - block.block.civictheme_banner
     - block.block.civictheme_footer_acknowledgment_of_country
