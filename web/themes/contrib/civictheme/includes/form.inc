@@ -49,8 +49,8 @@ function civictheme_preprocess_input(array &$variables): void {
   // Fix htmlentity in submit button text.
   $element = $variables['element'];
 
-  if (isset($element['#type']) && $element['#type'] == 'submit' && !empty($variables['attributes']['value'])) {
-    $variables['value'] = $variables['attributes']['value'];
+  if (isset($element['#type']) && in_array($element['#type'], ['submit', 'button'])) {
+    $variables['value'] = $variables['attributes']['value'] ?? 'Submit';
   }
 }
 
