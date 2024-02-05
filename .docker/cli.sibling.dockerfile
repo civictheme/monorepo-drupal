@@ -43,7 +43,7 @@ ENV WEBROOT=${WEBROOT} \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023d-r0 \
+    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2024a-r0 \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
