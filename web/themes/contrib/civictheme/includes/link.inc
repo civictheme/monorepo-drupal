@@ -138,7 +138,7 @@ function _civictheme_process_html_content_links_emails(string $html): string {
   }
 
   foreach ($text_nodes as $text_node) {
-    if (preg_match_all(_civictheme_process_html_content_links_get_email_regex(), $text_node->nodeValue, $matches)) {
+    if (preg_match_all(_civictheme_process_html_content_links_get_email_regex(), (string) $text_node->nodeValue, $matches)) {
       $emails = $matches[0];
       foreach ($emails as $email) {
         $replacement = $dom->createDocumentFragment();
