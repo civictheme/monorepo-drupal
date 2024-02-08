@@ -277,7 +277,7 @@ class FeatureContext extends DrupalContext {
     $pattern = '/' . preg_quote($href, '/') . '/';
     // Support for simplified wildcard using '*'.
     $pattern = str_contains($href, '*') ? str_replace('\*', '.*', $pattern) : $pattern;
-    if (preg_match($pattern, $link->getAttribute('href'))) {
+    if (preg_match($pattern, (string) $link->getAttribute('href'))) {
       throw new \Exception(sprintf('The link href "%s" matches the specified href "%s" but should not', $link->getAttribute('href'), $href));
     }
   }
