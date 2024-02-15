@@ -16,22 +16,22 @@ Feature: CivicTheme listing renders on views pages with filters
       | [TEST] Topic 4 |
 
     And "civictheme_page" content:
-      | title          | created                | status | field_c_n_topics                               |
-      | [TEST] Page 1  | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
-      | [TEST] Page 2  | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
-      | [TEST] Page 3  | [relative:-3 minutes]  | 1      | [TEST] Topic 1                                 |
-      | [TEST] Page 4  | [relative:-4 minutes]  | 1      | [TEST] Topic 1                                 |
-      | [TEST] Page 5  | [relative:-5 minutes]  | 1      | [TEST] Topic 2                                 |
-      | [TEST] Page 6  | [relative:-6 minutes]  | 1      | [TEST] Topic 2                                 |
-      | [TEST] Page 7  | [relative:-7 minutes]  | 1      | [TEST] Topic 3                                 |
-      | [TEST] Page 8  | [relative:-8 minutes]  | 1      | [TEST] Topic 3                                 |
-      | [TEST] Page 9  | [relative:-9 minutes]  | 1      |                                                |
-      | [TEST] Page 10 | [relative:-10 minutes] | 1      |                                                |
-      | [TEST] Page 11 | [relative:-11 minutes] | 0      |                                                |
-      | [TEST] Page 12 | [relative:-12 minutes] | 0      | [TEST] Topic 3                                 |
-      | [TEST] Page 13 | [relative:-13 minutes] | 1      |                                                |
-      | [TEST] Page 14 | [relative:-14 minutes] | 1      |                                                |
-      | [TEST] Page 15 | [relative:-15 minutes] | 1      |                                                |
+      | title          | created                | status | field_c_n_topics                               | moderation_state |
+      | [TEST] Page 1  | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | published        |
+      | [TEST] Page 2  | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | published        |
+      | [TEST] Page 3  | [relative:-3 minutes]  | 1      | [TEST] Topic 1                                 | published        |
+      | [TEST] Page 4  | [relative:-4 minutes]  | 1      | [TEST] Topic 1                                 | published        |
+      | [TEST] Page 5  | [relative:-5 minutes]  | 1      | [TEST] Topic 2                                 | published        |
+      | [TEST] Page 6  | [relative:-6 minutes]  | 1      | [TEST] Topic 2                                 | published        |
+      | [TEST] Page 7  | [relative:-7 minutes]  | 1      | [TEST] Topic 3                                 | published        |
+      | [TEST] Page 8  | [relative:-8 minutes]  | 1      | [TEST] Topic 3                                 | published        |
+      | [TEST] Page 9  | [relative:-9 minutes]  | 1      |                                                | published        |
+      | [TEST] Page 10 | [relative:-10 minutes] | 1      |                                                | published        |
+      | [TEST] Page 11 | [relative:-11 minutes] | 0      |                                                | draft            |
+      | [TEST] Page 12 | [relative:-12 minutes] | 0      | [TEST] Topic 3                                 | draft            |
+      | [TEST] Page 13 | [relative:-13 minutes] | 1      |                                                | published        |
+      | [TEST] Page 14 | [relative:-14 minutes] | 1      |                                                | published        |
+      | [TEST] Page 15 | [relative:-15 minutes] | 1      |                                                | published        |
 
   @api @testmode
   Scenario: Listing example - no filters
