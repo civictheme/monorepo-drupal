@@ -628,6 +628,7 @@ config_devel:
     - views.view.civictheme_alerts
     - views.view.civictheme_automated_list
     - webform.webform.civictheme_enquiry
+    - webform.webform.civictheme_feedback
   optional:
     - block.block.civictheme_banner
     - block.block.civictheme_footer_acknowledgment_of_country

@@ -2,8 +2,14 @@
 /**
  * @file
  * CivicTheme implementation to display a 'submit' form element.
+ *
+ * Variables:
+ * - value: [string] value.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
+
 {% if 'secondary' in modifier_class %}
   {% set type = 'secondary' %}
 {% else %}
@@ -12,7 +18,7 @@
 {% set children %}
   {% include "@atoms/button/button.twig" with {
     type: type,
-    text: attributes.value,
+    text: value,
     modifier_class: modifier_class,
     attributes: attributes,
     kind: 'submit',
@@ -23,3 +29,4 @@
   type: 'submit',
   children: children,
 } only %}
+
