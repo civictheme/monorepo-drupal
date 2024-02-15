@@ -1,0 +1,86 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 1
+template: false
+archive: false
+id: civictheme_feedback
+title: 'General form'
+description: 'A simple multi-step form.'
+categories: {  }
+elements: |-
+  personal_information:
+    '#type': webform_wizard_page
+    '#title': 'Personal information'
+    '#prev_button_label': '< Previous'
+    '#next_button_label': 'Next >'
+    name:
+      '#type': textfield
+      '#title': 'Your Name'
+      '#required': true
+    email:
+      '#type': email
+      '#title': 'Your Email'
+      '#required': true
+    message:
+      '#type': textarea
+      '#title': 'Your Message'
+      '#rows': 5
+      '#required': true
+  additional_information:
+    '#type': webform_wizard_page
+    '#title': 'Additional information'
+    '#prev_button_label': '< Previous'
+    '#next_button_label': 'Next >'
+    reason:
+      '#type': select
+      '#title': 'Reason for Contacting'
+      '#options':
+        general: 'General Inquiry'
+        support: 'Technical Support'
+        feedback: Feedback
+      '#required': true
+    support_ticket_number:
+      '#type': textfield
+      '#title': 'Support Ticket Number'
+      '#states':
+        visible:
+          ':input[name="reason"]':
+            value: support
+      '#required_states':
+        visible:
+          ':input[name="reason"]':
+            value: support
+    how_did_you_hear:
+      '#type': textfield
+      '#title': 'How did you hear about us?'
+      '#states':
+        visible:
+          ':input[name="reason"]':
+            value: general
+    subscription:
+      '#type': checkboxes
+      '#title': 'Subscribe to Newsletter'
+      '#options':
+        newsletter: Newsletter
+        promotions: Promotions
+    preferred_contact_method:
+      '#type': radios
+      '#title': 'Preferred Contact Method'
+      '#options':
+        email: Email
+        phone: Phone
+        mail: Mail
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Submit
+css: ''
+javascript: ''
+settings: {  }
+access: {  }
+handlers: {  }
+variants: {  }
