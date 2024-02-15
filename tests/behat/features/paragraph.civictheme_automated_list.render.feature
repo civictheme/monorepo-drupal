@@ -7,8 +7,8 @@ Feature: Automated list render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name           | field_c_m_image |
-      | [TEST] Image 1 | test_image.jpg  |
+      | name           | field_c_m_image | moderation_state | status |
+      | [TEST] Image 1 | test_image.jpg  | published        | 1      |
 
     And "civictheme_topics" terms:
       | name           |
@@ -18,29 +18,29 @@ Feature: Automated list render
       | [TEST] Topic 4 |
 
     And "civictheme_page" content:
-      | title                                 | created                | status | field_c_n_topics                               |
-      | Test page with Automated list content |                        | 1      |                                                |
-      | [TEST] Page 1                         | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
-      | [TEST] Page 2                         | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
-      | [TEST] Page 3                         | [relative:-3 minutes]  | 1      | [TEST] Topic 1                                 |
-      | [TEST] Page 4                         | [relative:-4 minutes]  | 1      | [TEST] Topic 1                                 |
-      | [TEST] Page 5                         | [relative:-5 minutes]  | 1      | [TEST] Topic 2                                 |
-      | [TEST] Page 6                         | [relative:-6 minutes]  | 1      | [TEST] Topic 2                                 |
-      | [TEST] Page 7                         | [relative:-7 minutes]  | 1      | [TEST] Topic 3                                 |
-      | [TEST] Page 8                         | [relative:-8 minutes]  | 1      | [TEST] Topic 3                                 |
-      | [TEST] Page 9                         | [relative:-9 minutes]  | 1      |                                                |
-      | [TEST] Page 10                        | [relative:-10 minutes] | 1      |                                                |
-      | [TEST] Page 11                        | [relative:-11 minutes] | 0      |                                                |
-      | [TEST] Page 12                        | [relative:-12 minutes] | 0      | [TEST] Topic 3                                 |
-      | [TEST] Page 13                        | [relative:-13 minutes] | 1      |                                                |
-      | [TEST] Page 14                        | [relative:-14 minutes] | 1      |                                                |
-      | [TEST] Page 15                        | [relative:-15 minutes] | 1      |                                                |
+      | title                                 | created                | status | field_c_n_topics                               | moderation_state |
+      | Test page with Automated list content |                        | 1      |                                                | published        |
+      | [TEST] Page 1                         | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | published        |
+      | [TEST] Page 2                         | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 | published        |
+      | [TEST] Page 3                         | [relative:-3 minutes]  | 1      | [TEST] Topic 1                                 | published        |
+      | [TEST] Page 4                         | [relative:-4 minutes]  | 1      | [TEST] Topic 1                                 | published        |
+      | [TEST] Page 5                         | [relative:-5 minutes]  | 1      | [TEST] Topic 2                                 | published        |
+      | [TEST] Page 6                         | [relative:-6 minutes]  | 1      | [TEST] Topic 2                                 | published        |
+      | [TEST] Page 7                         | [relative:-7 minutes]  | 1      | [TEST] Topic 3                                 | published        |
+      | [TEST] Page 8                         | [relative:-8 minutes]  | 1      | [TEST] Topic 3                                 | published        |
+      | [TEST] Page 9                         | [relative:-9 minutes]  | 1      |                                                | published        |
+      | [TEST] Page 10                        | [relative:-10 minutes] | 1      |                                                | published        |
+      | [TEST] Page 11                        | [relative:-11 minutes] | 0      |                                                | draft            |
+      | [TEST] Page 12                        | [relative:-12 minutes] | 0      | [TEST] Topic 3                                 | draft            |
+      | [TEST] Page 13                        | [relative:-13 minutes] | 1      |                                                | published        |
+      | [TEST] Page 14                        | [relative:-14 minutes] | 1      |                                                | published        |
+      | [TEST] Page 15                        | [relative:-15 minutes] | 1      |                                                | published        |
 
     And "civictheme_event" content:
-      | title                     | created                | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics               | field_c_n_date_range:value | field_c_n_date_range:end_value |
-      | [TEST] Referenced Event 1 | [relative:-16 minutes] | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 1, [TEST] Topic 2 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            |
-      | [TEST] Referenced Event 2 | [relative:-17 minutes] | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 3, [TEST] Topic 4 | 2023-07-01T09:45:00        | 2023-08-14T11:30:00            |
-      | [TEST] Referenced Event 3 | [relative:-18 minutes] | 1      | Summary 3         | [TEST] Image 1      | [TEST] Topic 3, [TEST] Topic 4 | 2024-07-01T09:45:00        | 2025-08-14T11:30:00            |
+      | title                     | created                | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics               | field_c_n_date_range:value | field_c_n_date_range:end_value | moderation_state |
+      | [TEST] Referenced Event 1 | [relative:-16 minutes] | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 1, [TEST] Topic 2 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            | published        |
+      | [TEST] Referenced Event 2 | [relative:-17 minutes] | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 3, [TEST] Topic 4 | 2023-07-01T09:45:00        | 2023-08-14T11:30:00            | published        |
+      | [TEST] Referenced Event 3 | [relative:-18 minutes] | 1      | Summary 3         | [TEST] Image 1      | [TEST] Topic 3, [TEST] Topic 4 | 2024-07-01T09:45:00        | 2025-08-14T11:30:00            | published        |
 
   @api @testmode
   Scenario: Automated list, All results (limited to a large number to fit on the page)
@@ -238,9 +238,9 @@ Feature: Automated list render
   @api @testmode
   Scenario: Automated list, different view from listing type field
     Given "civictheme_page" content:
-      | title          | created            | status |
-      | [TEST] Page 16 | [relative:-5 days] | 1      |
-      | [TEST] Page 17 | [relative:-5 days] | 1      |
+      | title          | created            | status | moderation_state |
+      | [TEST] Page 16 | [relative:-5 days] | 1      | published        |
+      | [TEST] Page 17 | [relative:-5 days] | 1      | published        |
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title            | [TEST] Automated list title |
