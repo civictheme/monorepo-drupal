@@ -7,15 +7,15 @@ Feature: Subject card render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image | moderation_state | status |
-      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Subject cards
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section | moderation_state |
-      | [TEST] Page Subject cards test | 1      |                        | published        |
+      | title                          | status | field_c_n_site_section |
+      | [TEST] Page Subject cards test | 1      |                        |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Subject cards test" has "civictheme_manual_list" paragraph:
       | field_c_p_title             | [TEST] Subject manual list                         |
       | field_c_p_list_column_count | 3                                                  |

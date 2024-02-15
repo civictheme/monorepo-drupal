@@ -9,12 +9,12 @@ Feature: Attachment render
       | test_pdf.pdf   | public://civictheme_test/test_pdf.pdf   | test_pdf.pdf   |
 
     And "civictheme_document" media:
-      | name                  | field_c_m_document | moderation_state | status |
-      | [TEST] CivicTheme PDF | test_pdf.pdf       | published        | 1      |
+      | name                  | field_c_m_document |
+      | [TEST] CivicTheme PDF | test_pdf.pdf       |
 
     And "civictheme_page" content:
-      | title                       | status | moderation_state |
-      | [TEST] Page attachment test | 1      | published        |
+      | title                       | status |
+      | [TEST] Page attachment test | 1      |
 
   @api
   Scenario: Attachment light without background

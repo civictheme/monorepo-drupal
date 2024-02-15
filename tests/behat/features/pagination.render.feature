@@ -4,32 +4,32 @@ Feature: Pagination
 
   Background:
     Given civictheme_page content:
-      | title          | status | moderation_state |
-      | [TEST] Page 1  | 1      | published        |
-      | [TEST] Page 2  | 1      | published        |
-      | [TEST] Page 3  | 1      | published        |
-      | [TEST] Page 4  | 1      | published        |
-      | [TEST] Page 5  | 1      | published        |
-      | [TEST] Page 6  | 1      | published        |
-      | [TEST] Page 7  | 1      | published        |
-      | [TEST] Page 8  | 1      | published        |
-      | [TEST] Page 9  | 1      | published        |
-      | [TEST] Page 10 | 1      | published        |
-      | [TEST] Page 11 | 1      | published        |
-      | [TEST] Page 12 | 1      | published        |
-      | [TEST] Page 13 | 1      | published        |
-      | [TEST] Page 14 | 1      | published        |
-      | [TEST] Page 15 | 1      | published        |
-      | [TEST] Page 16 | 1      | published        |
-      | [TEST] Page 17 | 1      | published        |
-      | [TEST] Page 18 | 1      | published        |
-      | [TEST] Page 19 | 1      | published        |
-      | [TEST] Page 20 | 1      | published        |
-      | [TEST] Page 21 | 1      | published        |
-      | [TEST] Page 22 | 1      | published        |
-      | [TEST] Page 23 | 1      | published        |
-      | [TEST] Page 24 | 1      | published        |
-      | [TEST] Page 25 | 1      | published        |
+      | title          | status |
+      | [TEST] Page 1  | 1      |
+      | [TEST] Page 2  | 1      |
+      | [TEST] Page 3  | 1      |
+      | [TEST] Page 4  | 1      |
+      | [TEST] Page 5  | 1      |
+      | [TEST] Page 6  | 1      |
+      | [TEST] Page 7  | 1      |
+      | [TEST] Page 8  | 1      |
+      | [TEST] Page 9  | 1      |
+      | [TEST] Page 10 | 1      |
+      | [TEST] Page 11 | 1      |
+      | [TEST] Page 12 | 1      |
+      | [TEST] Page 13 | 1      |
+      | [TEST] Page 14 | 1      |
+      | [TEST] Page 15 | 1      |
+      | [TEST] Page 16 | 1      |
+      | [TEST] Page 17 | 1      |
+      | [TEST] Page 18 | 1      |
+      | [TEST] Page 19 | 1      |
+      | [TEST] Page 20 | 1      |
+      | [TEST] Page 21 | 1      |
+      | [TEST] Page 22 | 1      |
+      | [TEST] Page 23 | 1      |
+      | [TEST] Page 24 | 1      |
+      | [TEST] Page 25 | 1      |
 
   @api @testmode
   Scenario: Views page with full pager and items per page should render and function correctly

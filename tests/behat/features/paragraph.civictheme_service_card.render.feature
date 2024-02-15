@@ -3,8 +3,8 @@ Feature: Service card render
 
   Background:
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section | moderation_state |
-      | [TEST] Page Service cards test | 1      |                        | published        |
+      | title                          | status | field_c_n_site_section |
+      | [TEST] Page Service cards test | 1      |                        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Service cards

@@ -3,9 +3,9 @@ Feature: Slider render
 
   Background:
     Given "civictheme_image" media:
-      | name                 | field_c_m_image | moderation_state | status |
-      | [TEST] Image Slide 1 | test_image.jpg  | published        | 1      |
-      | [TEST] Image Slide 2 | test_image.jpg  | published        | 1      |
+      | name                 | field_c_m_image |
+      | [TEST] Image Slide 1 | test_image.jpg  |
+      | [TEST] Image Slide 2 | test_image.jpg  |
 
     And "civictheme_topics" terms:
       | name            |
@@ -15,15 +15,15 @@ Feature: Slider render
       | [TEST] Topic 22 |
 
     And "civictheme_page" content:
-      | title                   | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  | moderation_state |
-      | [TEST] Page slider test | 1      |            |                        |                                  |                      | published        |
-      | [TEST] Page slider ref  | 1      |            |                        |                                  |                      | published        |
-      | [TEST] Page slider 1    | 1      | 2021-05-29 | [TEST] Summary slide 1 | [TEST] Topic 11, [TEST] Topic 12 | [TEST] Image Slide 1 | published        |
-      | [TEST] Page slider 2    | 1      | 2021-05-30 | [TEST] Summary slide 2 | [TEST] Topic 21, [TEST] Topic 22 | [TEST] Image Slide 2 | published        |
+      | title                   | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  |
+      | [TEST] Page slider test | 1      |            |                        |                                  |                      |
+      | [TEST] Page slider ref  | 1      |            |                        |                                  |                      |
+      | [TEST] Page slider 1    | 1      | 2021-05-29 | [TEST] Summary slide 1 | [TEST] Topic 11, [TEST] Topic 12 | [TEST] Image Slide 1 |
+      | [TEST] Page slider 2    | 1      | 2021-05-30 | [TEST] Summary slide 2 | [TEST] Topic 21, [TEST] Topic 22 | [TEST] Image Slide 2 |
 
     And "civictheme_event" content:
-      | title              | status | changed                | field_c_n_summary      | field_c_n_thumbnail  | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value | moderation_state |
-      | [TEST] Event 1 ref | 1      | [relative:-16 minutes] | [TEST] Summary slide 1 | [TEST] Image Slide 1 | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            | published        |
+      | title              | status | changed                | field_c_n_summary      | field_c_n_thumbnail  | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value |
+      | [TEST] Event 1 ref | 1      | [relative:-16 minutes] | [TEST] Summary slide 1 | [TEST] Image Slide 1 | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            |
 
 
   @api @javascript
@@ -131,7 +131,7 @@ Feature: Slider render
 
   @api @javascript
   Scenario: Slider, Reference Event slide light, background
-  Given I am logged in as a user with the "Site Administrator" role
+    Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page slider ref" has "civictheme_slider" paragraph:
       | field_c_p_title            | [TEST] Slider ref |
       | field_c_p_theme            | light             |
@@ -142,13 +142,7 @@ Feature: Slider render
       | field_c_p_reference      | [TEST] Event 1 ref |
       | field_c_p_image_position | right              |
 
-    When I edit "civictheme_page" "[TEST] Page slider ref"
-    And wait 3 second
-    And I select "Published" from "edit-moderation-state-0-state"
-    And I press "Save"
-
-    Given I am an anonymous user
-    Then I visit "civictheme_page" "[TEST] Page slider ref"
+    When I visit "civictheme_page" "[TEST] Page slider ref"
     And I wait 5 second
 
     Then I should see the text "[TEST] Event 1 ref"

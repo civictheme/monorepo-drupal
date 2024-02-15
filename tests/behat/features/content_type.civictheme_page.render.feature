@@ -7,8 +7,8 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page revisions can be viewed without error
     Given I am logged in as a user with the "Site Administrator" role
     And "civictheme_page" content:
-      | title                     | status | field_c_n_site_section | moderation_state |
-      | [TEST] Page Revision test | 1      |                        | published        |
+      | title                     | status | field_c_n_site_section |
+      | [TEST] Page Revision test | 1      |                        |
     When I edit "civictheme_page" "[TEST] Page Revision test"
     And I fill in "Title" with "[TEST] Page New Revision test"
     And I press "Save"
@@ -20,9 +20,9 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page can configure sidebar display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                       | status | field_c_n_hide_sidebar | moderation_state |
-      | [TEST] Page with sidebar    | 1      | 0                      | published        |
-      | [TEST] Page without sidebar | 1      | 1                      | published        |
+      | title                       | status | field_c_n_hide_sidebar |
+      | [TEST] Page with sidebar    | 1      | 0                      |
+      | [TEST] Page without sidebar | 1      | 1                      |
 
     When I visit "civictheme_page" "[TEST] Page with sidebar"
     And I should see the text "[TEST] Page with sidebar"
@@ -40,9 +40,9 @@ Feature: CivicTheme Page content type render
       | [TEST] Topic 2 |
 
     And "civictheme_page" content:
-      | title                    | status | field_c_n_hide_tags | field_c_n_topics               | moderation_state |
-      | [TEST] Page with tags    | 1      | 0                   | [TEST] Topic 1, [TEST] Topic 2 | published        |
-      | [TEST] Page without tags | 1      | 1                   | [TEST] Topic 2, [TEST] Topic 2 | published        |
+      | title                    | status | field_c_n_hide_tags | field_c_n_topics               |
+      | [TEST] Page with tags    | 1      | 0                   | [TEST] Topic 1, [TEST] Topic 2 |
+      | [TEST] Page without tags | 1      | 1                   | [TEST] Topic 2, [TEST] Topic 2 |
 
     When I visit "civictheme_page" "[TEST] Page with tags"
     And I should see the text "[TEST] Page with tags"
@@ -59,9 +59,9 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page breadcrumb theme can be overridden
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                        | status | field_c_n_banner_theme | moderation_state |
-      | [TEST] Page breadcrumb light | 1      | light                  | published        |
-      | [TEST] Page breadcrumb dark  | 1      | dark                   | published        |
+      | title                        | status | field_c_n_banner_theme |
+      | [TEST] Page breadcrumb light | 1      | light                  |
+      | [TEST] Page breadcrumb dark  | 1      | dark                   |
 
     When I visit "civictheme_page" "[TEST] Page breadcrumb light"
     And I should see the text "[TEST] Page breadcrumb light"
@@ -76,10 +76,10 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                                      | status | field_c_n_show_last_updated | field_c_n_custom_last_updated | moderation_state |
-      | [TEST] Page with date                      | 1      | 1                           | 2022-07-01                    | published        |
-      | [TEST] Page with last updated date checked | 1      | 1                           |                               | published        |
-      | [TEST] Page without date                   | 1      | 0                           | 2022-07-14                    | published        |
+      | title                                      | status | field_c_n_show_last_updated | field_c_n_custom_last_updated |
+      | [TEST] Page with date                      | 1      | 1                           | 2022-07-01                    |
+      | [TEST] Page with last updated date checked | 1      | 1                           |                               |
+      | [TEST] Page without date                   | 1      | 0                           | 2022-07-14                    |
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
@@ -97,9 +97,9 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                    | status | field_c_n_show_last_updated | moderation_state |
-      | [TEST] Page with date    | 1      | 1                           | published        |
-      | [TEST] Page without date | 1      | 0                           | published        |
+      | title                    | status | field_c_n_show_last_updated |
+      | [TEST] Page with date    | 1      | 1                           |
+      | [TEST] Page without date | 1      | 0                           |
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
@@ -113,9 +113,9 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page can configure breadcrumb display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                          | status | field_c_n_banner_hide_breadcrumb | moderation_state |
-      | [TEST] Page with breadcrumb    | 1      | 0                                | published        |
-      | [TEST] Page without breadcrumb | 1      | 1                                | published        |
+      | title                          | status | field_c_n_banner_hide_breadcrumb |
+      | [TEST] Page with breadcrumb    | 1      | 0                                |
+      | [TEST] Page without breadcrumb | 1      | 1                                |
 
     When I visit "civictheme_page" "[TEST] Page with breadcrumb"
     And I should see an ".ct-banner__breadcrumb" element
@@ -126,9 +126,9 @@ Feature: CivicTheme Page content type render
   Scenario: CivicTheme page content type page can override banner title.
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                            | status | field_c_n_banner_title  | moderation_state |
-      | [TEST] Page with Banner title    | 1      | [OVERRIDE] Banner title | published        |
-      | [TEST] Page without Banner title | 1      |                         | published        |
+      | title                            | status | field_c_n_banner_title  |
+      | [TEST] Page with Banner title    | 1      | [OVERRIDE] Banner title |
+      | [TEST] Page without Banner title | 1      |                         |
 
     When I visit "civictheme_page" "[TEST] Page with Banner title"
     Then I should not see "[TEST] Page with Banner title" in the ".ct-banner__title" element
@@ -142,9 +142,9 @@ Feature: CivicTheme Page content type render
       | name                  |
       | [TEST] Site Section 1 |
     And "civictheme_page" content:
-      | title                            | status | field_c_n_site_section | moderation_state |
-      | [TEST] Page with Site section    | 1      | [TEST] Site Section 1  | published        |
-      | [TEST] Page without Site section | 1      |                        | published        |
+      | title                            | status | field_c_n_site_section |
+      | [TEST] Page with Site section    | 1      | [TEST] Site Section 1  |
+      | [TEST] Page without Site section | 1      |                        |
     And I am an anonymous user
     When I visit "civictheme_page" "[TEST] Page with Site section"
     And I should see the text "[TEST] Page with Site section"

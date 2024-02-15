@@ -8,10 +8,6 @@ Feature: Components settings are available in the theme settings
       | logo_light_mobile.jpg       | public://civictheme_test/logo_light_mobile.jpg       | test_image.jpg |
       | logo_dark_desktop.jpg       | public://civictheme_test/logo_dark_desktop.jpg       | test_image.jpg |
       | logo_dark_mobile.jpg        | public://civictheme_test/logo_dark_mobile.jpg        | test_image.jpg |
-      | logo_light_desktop.svg      | public://civictheme_test/logo_light_desktop.svg      | test_svg.svg   |
-      | logo_light_mobile.svg       | public://civictheme_test/logo_light_mobile.svg       | test_svg.svg   |
-      | logo_dark_desktop.svg       | public://civictheme_test/logo_dark_desktop.svg       | test_svg.svg   |
-      | logo_dark_mobile.svg        | public://civictheme_test/logo_dark_mobile.svg        | test_svg.svg   |
       | footer_background_image.jpg | public://civictheme_test/footer_background_image.jpg | test_image.jpg |
 
   @api
@@ -201,35 +197,6 @@ Feature: Components settings are available in the theme settings
     Then I should see the text "Theme configuration was reset to defaults."
 
   @api
-  Scenario: The CivicTheme theme settings verify custom Svg logo configuration with a stream wrapper
-    Given I am logged in as a user with the "Site Administrator" role
-    And I visit current theme settings page
-
-    When I fill in "Image path for Primary Light logo for Desktop" with "public://civictheme_test/logo_light_desktop.svg"
-    And I fill in "Image path for Primary Light logo for Mobile" with "public://civictheme_test/logo_light_mobile.svg"
-    And I fill in "Image path for Primary Dark logo for Desktop" with "public://civictheme_test/logo_dark_desktop.svg"
-    And I fill in "Image path for Primary Dark logo for Mobile" with "public://civictheme_test/logo_dark_mobile.svg"
-    And I select the radio button "Light" with the id "edit-components-header-theme-light"
-    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
-    And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
-    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
-    And I fill in "Footer background image path" with "public://civictheme_test/footer_background_image.jpg"
-    And I press "Save configuration"
-
-    Then I should see the text "The configuration options have been saved."
-    And I go to the homepage
-    And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.svg"
-    And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.svg"
-    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.svg"
-    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.svg"
-
-    # Reset settings.
-    When I visit current theme settings page
-    And I check the box "Confirm settings reset"
-    And I press "reset_to_defaults"
-    Then I should see the text "Theme configuration was reset to defaults."
-
-  @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
     Given I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
@@ -250,7 +217,7 @@ Feature: Components settings are available in the theme settings
     And I check the box "Confirm settings reset"
     And I press "reset_to_defaults"
     Then I should see the text "Theme configuration was reset to defaults."
-  
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with SVG image upload
     Given I am logged in as a user with the "Site Administrator" role
@@ -266,6 +233,12 @@ Feature: Components settings are available in the theme settings
     And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
+
+    And I go to the homepage
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_desktop.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_mobile.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_desktop.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_mobile.svg"
 
     # Reset settings.
     When I visit current theme settings page

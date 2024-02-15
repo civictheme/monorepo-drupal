@@ -620,8 +620,8 @@ config_devel:
     - views.view.civictheme_automated_list
     - views.view.civictheme_moderated_content
     - webform.webform.civictheme_enquiry
-    - workflows.workflow.civictheme_editorial
     - webform.webform.civictheme_feedback
+    - workflows.workflow.civictheme_editorial
   optional:
     - block.block.civictheme_banner
     - block.block.civictheme_footer_acknowledgment_of_country

@@ -3,8 +3,8 @@ Feature: Quote render
 
   Background:
     Given "civictheme_page" content:
-      | title                  | status | moderation_state |
-      | [TEST] Page quote test | 1      | published        |
+      | title                  | status |
+      | [TEST] Page quote test | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with quote light

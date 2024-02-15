@@ -7,16 +7,16 @@ Feature: Linkit works correctly on pages
       | test_pdf.pdf | public://civictheme_test/test_pdf.pdf | test_pdf.pdf |
 
     And "civictheme_document" media:
-      | name                | field_c_m_document | moderation_state | status |
-      | TEST CivicTheme PDF | test_pdf.pdf       | published        | 1      |
+      | name                | field_c_m_document |
+      | TEST CivicTheme PDF | test_pdf.pdf       |
 
     And "civictheme_page" content:
-      | title            | status | moderation_state |
-      | TEST Page Linkit | 1      | published        |
+      | title            | status |
+      | TEST Page Linkit | 1      |
 
     And "civictheme_event" content:
-      | title             | status | moderation_state |
-      | TEST Event Linkit | 1      | published        |
+      | title             | status |
+      | TEST Event Linkit | 1      |
 
   @api @javascript
   Scenario: Check if Linkit can lookup for Page Content.
@@ -36,7 +36,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I select "Published" from "edit-moderation-state-0-state"
+    And I check the box "Published"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Page linkit render"
@@ -60,7 +60,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I select "Published" from "edit-moderation-state-0-state"
+    And I check the box "Published"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Event linkit render"
@@ -84,7 +84,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I select "Published" from "edit-moderation-state-0-state"
+    And I check the box "Published"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Document Media linkit render"

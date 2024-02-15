@@ -3,8 +3,8 @@ Feature: Snippet render
 
   Background:
     Given "civictheme_page" content:
-      | title                     | status | moderation_state |
-      | [TEST] Page Snippets test | 1      | published        |
+      | title                     | status |
+      | [TEST] Page Snippets test | 1      |
 
     And "civictheme_topics" terms:
       | name           |

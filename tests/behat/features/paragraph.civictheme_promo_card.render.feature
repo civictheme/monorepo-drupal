@@ -8,12 +8,12 @@ Feature: Promo card render
       | test_svg.svg   | public://civictheme_test/test_svg.svg   | test_svg.svg   |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image | moderation_state | status |
-      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
 
     And "civictheme_page" content:
-      | title                        | status | field_c_n_site_section | moderation_state |
-      | [TEST] Page Promo cards test | 1      |                        | published        |
+      | title                        | status | field_c_n_site_section |
+      | [TEST] Page Promo cards test | 1      |                        |
 
     And "civictheme_topics" terms:
       | name           |

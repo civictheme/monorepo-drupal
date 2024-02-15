@@ -3,8 +3,8 @@ Feature: Callout render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status | moderation_state |
-      | [TEST] Page callout test | 1      | published        |
+      | title                    | status |
+      | [TEST] Page callout test | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with callout light

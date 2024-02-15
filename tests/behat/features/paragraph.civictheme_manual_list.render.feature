@@ -7,17 +7,17 @@ Feature: Manual list render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image | moderation_state | status |
-      | [TEST] CivicTheme Image | test_image.jpg  | published        | 1      |
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
 
     And "civictheme_page" content:
-      | title                           | status | moderation_state |
-      | [TEST] Page Manual list content | 1      | published        |
-      | [TEST] Referenced Page          | 1      | published        |
+      | title                           | status |
+      | [TEST] Page Manual list content | 1      |
+      | [TEST] Referenced Page          | 1      |
 
     And "civictheme_event" content:
-      | title                   | status | moderation_state |
-      | [TEST] Referenced Event | 1      | published        |
+      | title                   | status |
+      | [TEST] Referenced Event | 1      |
 
   @api
   Scenario: Manual list, Cards

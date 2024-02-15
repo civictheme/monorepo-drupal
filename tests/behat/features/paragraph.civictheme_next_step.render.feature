@@ -3,9 +3,9 @@ Feature: Next step render
 
   Background:
     Given "civictheme_page" content:
-      | title                        | status | moderation_state |
-      | [TEST] Page Next step test   | 1      | published        |
-      | [TEST] Page Next step test 1 | 1      | published        |
+      | title                        | status |
+      | [TEST] Page Next step test   | 1      |
+      | [TEST] Page Next step test 1 | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Next step light with vertical spacing

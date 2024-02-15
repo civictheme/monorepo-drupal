@@ -3,9 +3,9 @@ Feature: Promo render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status | moderation_state |
-      | [TEST] Page Promo test 1 | 1      | published        |
-      | [TEST] Page Promo test 2 | 1      | published        |
+      | title                    | status |
+      | [TEST] Page Promo test 1 | 1      |
+      | [TEST] Page Promo test 2 | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Promo light with vertical spacing

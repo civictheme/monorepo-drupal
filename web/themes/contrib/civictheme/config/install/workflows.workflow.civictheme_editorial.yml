@@ -113,4 +113,4 @@ type_settings:
       - civictheme_alert
       - civictheme_event
       - civictheme_page
-  default_moderation_state: draft
+  default_moderation_state: published

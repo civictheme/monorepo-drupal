@@ -7,8 +7,8 @@ Feature: Event reference card render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name           | field_c_m_image | moderation_state | status |
-      | [TEST] Image 1 | test_image.jpg  | published        | 1      |
+      | name           | field_c_m_image |
+      | [TEST] Image 1 | test_image.jpg  |
 
     And "civictheme_topics" terms:
       | name            |
@@ -18,13 +18,13 @@ Feature: Event reference card render
       | [TEST] Topic 22 |
 
     And "civictheme_page" content:
-      | title                      | status | moderation_state |
-      | [TEST] Page with container | 1      | published        |
+      | title                      | status |
+      | [TEST] Page with container | 1      |
 
     And "civictheme_event" content:
-      | title                     | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value | moderation_state |
-      | [TEST] Referenced Event 1 | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            | published        |
-      | [TEST] Referenced Event 2 | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 21, [TEST] Topic 22 | 2023-07-01T09:45:00        | 2023-08-14T11:30:00            | published        |
+      | title                     | status | field_c_n_summary | field_c_n_thumbnail | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value |
+      | [TEST] Referenced Event 1 | 1      | Summary 1         | [TEST] Image 1      | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            |
+      | [TEST] Referenced Event 2 | 1      | Summary 2         | [TEST] Image 1      | [TEST] Topic 21, [TEST] Topic 22 | 2023-07-01T09:45:00        | 2023-08-14T11:30:00            |
 
   @api
   Scenario: Anonymous user can view Event reference card
