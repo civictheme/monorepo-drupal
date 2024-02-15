@@ -16,6 +16,7 @@ dependencies:
   - drupal:content_moderation
   - drupal:datetime_range
   - drupal:help
+  - drupal:image
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
@@ -25,6 +26,8 @@ dependencies:
   - drupal:rest
   - drupal:shortcut
   - drupal:taxonomy
+  - drupal:user
+  - drupal:views
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - linkit:linkit
