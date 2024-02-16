@@ -61,6 +61,11 @@ function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form__theme($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
+
+  // Unset checkbox and radio label.
+  if (isset($variables['type']) && in_array($variables['type'], ['checkbox', 'radio'])) {
+    unset($variables['label']);
+  }
 }
 
 /**
@@ -298,4 +303,24 @@ function _civictheme_form__propagate_component_theme(array &$elements, string $t
  */
 function _civictheme_form__field_is_multiple(array $field): bool {
   return $field['#type'] == 'checkboxes' || ($field['#type'] == 'select' && ($field["#multiple"] ?? FALSE));
+}
+
+/**
+ * Implements template_preprocess_input().
+ */
+function civictheme_preprocess_input__checkbox(array &$variables): void {
+  $element = $variables['element'];
+
+  // Add inline label.
+  $variables['content'] = $element['#title'];
+}
+
+/**
+ * Implements template_preprocess_input().
+ */
+function civictheme_preprocess_input__radio(array &$variables): void {
+  $element = $variables['element'];
+
+  // Add inline label.
+  $variables['content'] = $element['#title'];
 }
