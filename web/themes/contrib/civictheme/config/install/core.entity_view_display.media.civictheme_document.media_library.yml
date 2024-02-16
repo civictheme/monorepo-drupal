@@ -4,6 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.media_library
     - field.field.media.civictheme_document.field_c_m_document
+    - field.field.media.civictheme_document.field_c_m_media_tags
     - image.style.civictheme_medium
     - media.type.civictheme_document
   module:
@@ -17,15 +18,16 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: civictheme_medium
       image_link: ''
+      image_style: civictheme_medium
       image_loading:
         attribute: lazy
-    weight: 0
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   created: true
   field_c_m_document: true
+  field_c_m_media_tags: true
   name: true
   uid: true

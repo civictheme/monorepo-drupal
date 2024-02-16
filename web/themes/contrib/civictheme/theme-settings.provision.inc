@@ -1177,3 +1177,22 @@ function _civictheme_get_theme_blocks(): array {
       ],
   ];
 }
+
+/**
+ * Provision Media View.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_provision__media_view(): void {
+  // Disable the 'views.view.media' view.
+  \Drupal::configFactory()
+    ->getEditable('views.view.media')
+    ->set('status', FALSE)
+    ->save();
+
+  // Enable the 'views.view.civictheme_media' view.
+  \Drupal::configFactory()
+    ->getEditable('views.view.civictheme_media')
+    ->set('status', TRUE)
+    ->save();
+}
