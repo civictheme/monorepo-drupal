@@ -59,7 +59,7 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
    *
    * This is a smoke test for the hook_update_N() CivicTheme test system itself.
    */
-  public function testDatabaseLoaded(): void {
+  protected function testDatabaseLoaded(): void {
     $this->assertEquals('minimal', \Drupal::config('core.extension')->get('profile'));
     // Ensure that a user can be created and do a basic test that
     // the site is available by logging in.

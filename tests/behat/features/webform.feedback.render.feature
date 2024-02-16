@@ -14,9 +14,9 @@ Feature: Webform render
     And I fill in "Your Name" with "[TEST] Name"
     And I fill in "Your Email" with "test@email.com"
     And I fill in "edit-message" with "[TEST] Message"
-    And I should see the button "Next"
-    And I should not see the "Previous" button
-    And I press the "Next" button
+    And I should see the button "Next >"
+    And I should not see the "< Previous" button
+    And I press the "Next >" button
     And I should not see an "[name='name']" element
     And I should not see an "[name='email']" element
     And I should not see an "[name='message']" element
@@ -24,8 +24,8 @@ Feature: Webform render
     And I should see the text "Reason for Contacting"
     And I should see the text "Subscribe to Newsletter"
     And I should see the text "Preferred Contact Method"
-    And I should not see the "Next" button
-    And I should see the button "Previous"
+    And I should not see the "Next >" button
+    And I should see the button "< Previous"
     Then I select "support" from "reason"
     And I should see an "[name='support_ticket_number']" element
     And I should not see a visible "[name='how_did_you_hear']" element

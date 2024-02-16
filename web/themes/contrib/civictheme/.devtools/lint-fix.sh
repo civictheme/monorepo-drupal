@@ -15,7 +15,7 @@ echo "-------------------------------"
 echo
 
 echo "  > Running Drupal Rector fixer."
-"${BUILD_DIR}"/vendor/bin/rector process
+"${BUILD_DIR}"/vendor/bin/rector --clear-cache
 
 echo "  > Running PHPCS fixer."
 "${BUILD_DIR}"/vendor/bin/phpcbf

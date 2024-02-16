@@ -15,8 +15,8 @@ elements: |-
   personal_information:
     '#type': webform_wizard_page
     '#title': 'Personal information'
-    '#prev_button_label': Previous
-    '#next_button_label': Next
+    '#prev_button_label': '< Previous'
+    '#next_button_label': 'Next >'
     name:
       '#type': textfield
       '#title': 'Your Name'
@@ -33,6 +33,8 @@ elements: |-
   additional_information:
     '#type': webform_wizard_page
     '#title': 'Additional information'
+    '#prev_button_label': '< Previous'
+    '#next_button_label': 'Next >'
     reason:
       '#type': select
       '#title': 'Reason for Contacting'
@@ -72,6 +74,10 @@ elements: |-
         email: Email
         phone: Phone
         mail: Mail
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Submit
 css: ''
 javascript: ''
 settings: {  }
