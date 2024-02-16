@@ -945,6 +945,7 @@ display:
     position: 1
     display_options:
       display_description: ''
+      display_extenders: {  }
       path: admin/content/media
       menu:
         type: tab
