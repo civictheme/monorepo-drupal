@@ -162,8 +162,8 @@
     },
     initLines: function ($source, $destination, context) {
       var self = this;
-      var name = $source.attr('name') + '-show-arrows';
-      var $checkbox = $source.siblings('[name="' + name + '"]');
+      var name = $source.attr('name').replace('-show-arrows', '') + '-show-arrows';
+      var $checkbox = $('[name="' + name + '"]');
       if (!$checkbox.length) {
         var id = 'id-' + Date.now() + Math.floor(Math.random() * 26);
         var $wrapper = $('<div class="js-show-dependants-container"><input type="checkbox" id="' + id + '" name="' + name + '"><label for="' + id + '">Show dependants</label></div>').insertBefore($source);
