@@ -59,6 +59,10 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
         ->set('default', $this->customTheme)
         ->save();
     }
+
+    // Reset all caches to ensure that the newly enabled modules, themes and
+    // configurations are picked up.
+    $this->resetAll();
   }
 
 }
