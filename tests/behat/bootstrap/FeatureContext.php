@@ -522,4 +522,19 @@ class FeatureContext extends DrupalContext {
         ");
   }
 
+  /**
+   * @Then /^I should see the text "([^"]*)" in the same row as "([^"]*)"$/
+   */
+  public function iShouldSeeTheTextInTheSameRowAs($text1, $text2)
+  {
+      $page = $this->getSession()->getPage();
+      $rowXpath = "//td[contains(., '$text1')]/ancestor::tr[contains(., '$text2')]";
+
+      $row = $page->find('xpath', $rowXpath);
+
+      if (!$row) {
+          throw new \Exception("Row containing '$text1' and '$text2' not found.");
+      }
+  }
+
 }

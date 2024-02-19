@@ -10,8 +10,7 @@ Feature: Publishing workflow
     And I press "Save"
 
     When I visit "/admin/content/moderated"
-    And I should see the text "TEST Page Publishing workflow"
-    And I should see the text "Draft"
+    Then I should see the text "TEST Page Publishing workflow" in the same row as "Draft"
     And I click "TEST Page Publishing workflow"
     And I select "needs_review" from "edit-new-state"
     And I press "Apply"
@@ -22,8 +21,7 @@ Feature: Publishing workflow
 
     Given I am logged in as a user with the "Content Approver" role
     When I visit "/admin/content/moderated"
-    And I should see the text "TEST Page Publishing workflow"
-    And I should see the text "Needs review"
+    Then I should see the text "TEST Page Publishing workflow" in the same row as "Needs Review"
     And I click "TEST Page Publishing workflow"
     And I select "published" from "edit-new-state"
     And I press "Apply"
