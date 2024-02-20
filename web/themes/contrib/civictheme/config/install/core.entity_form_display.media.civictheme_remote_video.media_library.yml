@@ -27,6 +27,7 @@ hidden:
   field_c_m_oembed_video: true
   field_c_m_transcript: true
   field_c_m_transcript_link: true
+  moderation_state: true
   path: true
   status: true
   uid: true

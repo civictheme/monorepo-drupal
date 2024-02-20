@@ -55,6 +55,7 @@ function cs_generated_content_generated_content_create_media_civictheme_document
       'bundle' => 'civictheme_document',
       'name' => $name,
       'status' => $variation['status'],
+      'moderation_state' => 'published',
     ]);
 
     $media->field_c_m_document->setValue($file->id());

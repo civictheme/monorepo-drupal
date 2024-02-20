@@ -13,6 +13,9 @@ settings:
     -
       value: civictheme_automated_list__block1
       label: Default
+    -
+      value: civictheme_automated_list_test__block_test_1
+      label: Test
   allowed_values_function: ''
 module: options
 locked: false

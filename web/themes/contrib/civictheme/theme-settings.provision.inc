@@ -391,6 +391,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
     'type' => $block_type,
     'info' => $info,
     'uuid' => $uuid,
+    'moderation_state' => 'published',
   ]);
 
   return $block_content_entity;
@@ -596,6 +597,7 @@ function civictheme_provision__media(): void {
           Media::create([
             'bundle' => 'civictheme_icon',
             'field_c_m_icon' => $file,
+            'moderation_state' => 'published',
           ])->save();
           break;
 
@@ -603,6 +605,7 @@ function civictheme_provision__media(): void {
           Media::create([
             'bundle' => 'civictheme_image',
             'field_c_m_image' => $file,
+            'moderation_state' => 'published',
           ])->save();
           break;
       }

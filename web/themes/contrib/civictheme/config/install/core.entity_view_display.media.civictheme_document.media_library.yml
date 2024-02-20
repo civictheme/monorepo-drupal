@@ -26,6 +26,7 @@ content:
     weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   field_c_m_document: true
   field_c_m_media_tags: true

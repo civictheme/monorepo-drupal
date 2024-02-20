@@ -27,6 +27,7 @@ content:
     weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   field_c_m_caption: true
   field_c_m_image: true

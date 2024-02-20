@@ -23,6 +23,7 @@ hidden:
   created: true
   field_c_m_icon: true
   field_c_m_media_tags: true
+  moderation_state: true
   path: true
   status: true
   uid: true

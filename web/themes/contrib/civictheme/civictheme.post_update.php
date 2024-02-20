@@ -446,3 +446,13 @@ function civictheme_post_update_rename_block_banner_blend_mode(array &$sandbox):
     }
   );
 }
+
+/**
+ * Disable the default moderated_content view.
+ */
+function civictheme_post_update_disable_moderated_content_view(): void {
+  \Drupal::configFactory()
+    ->getEditable('views.view.moderated_content')
+    ->set('status', FALSE)
+    ->save();
+}
