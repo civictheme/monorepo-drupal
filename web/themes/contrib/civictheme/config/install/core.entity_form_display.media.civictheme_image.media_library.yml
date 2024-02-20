@@ -5,6 +5,7 @@ dependencies:
     - core.entity_form_mode.media.media_library
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - image.style.civictheme_thumbnail
     - media.type.civictheme_image
   module:
@@ -16,7 +17,7 @@ mode: media_library
 content:
   field_c_m_image:
     type: image_image
-    weight: 1
+    weight: 5
     region: content
     settings:
       progress_indicator: throbber
@@ -33,6 +34,7 @@ content:
 hidden:
   created: true
   field_c_m_caption: true
+  field_c_m_media_tags: true
   moderation_state: true
   path: true
   status: true

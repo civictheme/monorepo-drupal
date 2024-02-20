@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - media.type.civictheme_image
   module:
     - image
@@ -30,6 +31,14 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_c_m_media_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   content_moderation_control: true

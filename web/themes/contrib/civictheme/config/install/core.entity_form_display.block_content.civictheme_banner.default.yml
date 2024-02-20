@@ -8,7 +8,9 @@ dependencies:
     - field.field.block_content.civictheme_banner.field_c_b_banner_type
     - field.field.block_content.civictheme_banner.field_c_b_featured_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
+    - workflows.workflow.civictheme_editorial
   module:
+    - content_moderation
     - media_library
 id: block_content.civictheme_banner.default
 targetEntityType: block_content
@@ -54,5 +56,11 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

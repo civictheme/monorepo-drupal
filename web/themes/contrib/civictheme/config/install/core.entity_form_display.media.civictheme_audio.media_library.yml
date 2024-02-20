@@ -4,6 +4,7 @@ dependencies:
   config:
     - core.entity_form_mode.media.media_library
     - field.field.media.civictheme_audio.field_c_m_audio_file
+    - field.field.media.civictheme_audio.field_c_m_media_tags
     - media.type.civictheme_audio
 id: media.civictheme_audio.media_library
 targetEntityType: media
@@ -21,6 +22,7 @@ content:
 hidden:
   created: true
   field_c_m_audio_file: true
+  field_c_m_media_tags: true
   moderation_state: true
   path: true
   status: true

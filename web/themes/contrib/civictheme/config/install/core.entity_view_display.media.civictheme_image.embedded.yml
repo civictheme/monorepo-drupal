@@ -5,6 +5,7 @@ dependencies:
     - core.entity_view_mode.media.embedded
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - media.type.civictheme_image
   module:
     - image
@@ -41,5 +42,6 @@ hidden:
   content_moderation_control: true
   created: true
   field_c_m_image: true
+  field_c_m_media_tags: true
   name: true
   uid: true

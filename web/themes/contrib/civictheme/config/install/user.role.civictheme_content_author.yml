@@ -13,6 +13,7 @@ dependencies:
     - node.type.civictheme_alert
     - node.type.civictheme_event
     - node.type.civictheme_page
+    - taxonomy.vocabulary.civictheme_media_tags
     - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
@@ -25,6 +26,7 @@ dependencies:
     - path
     - shortcut
     - system
+    - taxonomy
 id: civictheme_content_author
 label: 'Content Author'
 weight: -8
@@ -47,6 +49,7 @@ permissions:
   - 'create civictheme_remote_video media'
   - 'create civictheme_video media'
   - 'create media'
+  - 'create terms in civictheme_media_tags'
   - 'create url aliases'
   - 'delete all revisions'
   - 'delete any civictheme_alert content'
@@ -72,6 +75,7 @@ permissions:
   - 'delete own civictheme_page content'
   - 'delete own civictheme_remote_video media'
   - 'delete own civictheme_video media'
+  - 'delete terms in civictheme_media_tags'
   - 'edit any civictheme_alert content'
   - 'edit any civictheme_audio media'
   - 'edit any civictheme_document media'
@@ -90,6 +94,7 @@ permissions:
   - 'edit own civictheme_page content'
   - 'edit own civictheme_remote_video media'
   - 'edit own civictheme_video media'
+  - 'edit terms in civictheme_media_tags'
   - 'revert all revisions'
   - 'revert civictheme_alert revisions'
   - 'revert civictheme_event revisions'
