@@ -86,6 +86,10 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
   $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
 
   if (empty($node)) {
+    // Disable cache for the block so that it's not cached without a node for
+    // the next page views that could have a node.
+    $variables['#cache']['max-age'] = 0;
+
     return;
   }
 
