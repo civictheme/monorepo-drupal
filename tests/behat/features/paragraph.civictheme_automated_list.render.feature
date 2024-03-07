@@ -323,3 +323,22 @@ Feature: Automated list render
     And I should see an ".ct-group-filter__filters .ct-form-element--topic" element
     And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
     And I should see an ".ct-group-filter__filters .ct-form-element--title" element
+
+  @api @testmode
+  Scenario: Automated list, is not self referenced
+    Given "civictheme_page" content:
+      | title                                             | status | moderation_state | path/pathauto | path/alias        |
+      | Test page content in list                         | 1      | published        | 0             | /automated-link-1 |
+      | Test page with Automated list non self referenced | 1      | published        | 0             | /automated-link-2 |
+    
+    And I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list non self referenced" has "civictheme_automated_list" paragraph:
+      | field_c_p_title           | [TEST] Automated list title |
+      | field_c_p_list_limit_type | unlimited                   |
+      | field_c_p_list_limit      | 0                           |
+    When I visit "civictheme_page" "Test page with Automated list non self referenced"
+    Then I should see a ".ct-list" element
+    And I should see a ".ct-list.ct-theme-light" element
+    And the response should contain "ct-automated-list-"
+    And the ".ct-list .ct-promo-card__title__link" element should contain "Test page content in list"
+    And the ".ct-list .ct-promo-card__title__link" element should not contain "Test page with Automated list non self referenced"
