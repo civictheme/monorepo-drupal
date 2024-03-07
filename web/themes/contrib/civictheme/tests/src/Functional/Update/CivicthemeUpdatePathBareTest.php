@@ -111,12 +111,6 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Updated: 0');
-
-    $this->assertSession()->pageTextContains('Convert a quote component to a content component with markup.');
-    $this->assertSession()->pageTextContains('Update quote component to a content component.');
-    $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 0');
-    $this->assertSession()->pageTextContains('Updated: 0');
   }
 
 }

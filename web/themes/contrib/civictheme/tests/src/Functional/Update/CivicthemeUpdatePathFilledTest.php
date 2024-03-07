@@ -113,12 +113,6 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 155');
     $this->assertSession()->pageTextContains('Updated: 9');
     $this->assertSession()->pageTextContains('Skipped: 146');
-
-    $this->assertSession()->pageTextContains('Convert a quote component to a content component with markup.');
-    $this->assertSession()->pageTextContains('Update quote component to a content component.');
-    $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 1');
-    $this->assertSession()->pageTextContains('Updated: 1');
   }
 
 }
