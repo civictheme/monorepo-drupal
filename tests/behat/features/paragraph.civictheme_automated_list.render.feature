@@ -327,9 +327,9 @@ Feature: Automated list render
   @api @testmode
   Scenario: Automated list, is not self referenced
     Given "civictheme_page" content:
-      | title                                             | status | moderation_state | path/pathauto | path/alias        |
-      | Test page content in list                         | 1      | published        | 0             | /automated-link-1 |
-      | Test page with Automated list non self referenced | 1      | published        | 0             | /automated-link-2 |
+      | title                                             | status | moderation_state |
+      | Test page content in list                         | 1      | published        |
+      | Test page with Automated list non self referenced | 1      | published        |
     
     And I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list non self referenced" has "civictheme_automated_list" paragraph:
