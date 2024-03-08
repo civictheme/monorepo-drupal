@@ -30,7 +30,7 @@ Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
 The following steps outline the build process:
 
 1. Construct a fresh Drupal 10 site from the GovCMS Drupal profile. Utilize
-   `ahoy install-site` for a rebuild.
+   `ahoy provision` for a rebuild.
 2. Activate additional modules needed for development by installing the
    `civictheme_dev` module.
 3. Enable the `civictheme` theme and import its configuration.
@@ -64,7 +64,7 @@ Override the default behavior using these environment variables:
 - `CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1` - Skips the creation of demo
   content.
 
-These variables can be set prior to the `ahoy install-site` command or added
+These variables can be set prior to the `ahoy provision` command or added
 to `.env.local` file to preserve this behavior (run `ahoy up` to apply
 without full rebuild).
 
@@ -73,7 +73,7 @@ Example:
 ```bash
 # Install Drupal site using `minimal` profile with CivicTheme.
 # Do not create a sub-theme and do not provision demo content.
-CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy install-site
+CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
 ```
 
 ## Compiling theme assets
@@ -151,7 +151,7 @@ These steps are captured below:
 ```bash
 # Step 1: Install a site with the desired content profile.
 export CIVICTHEME_CONTENT_PROFILE=default
-DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy install-site
+DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
 
 # Step 2: Make changes.
 # ...
