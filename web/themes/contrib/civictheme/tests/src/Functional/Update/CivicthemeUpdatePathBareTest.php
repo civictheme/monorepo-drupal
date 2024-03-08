@@ -50,7 +50,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles = [
-      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.bare.php.gz',
+      __DIR__ . '/../../../fixtures/updates/drupal_10.1.8.minimal.civictheme_1.63.bare.php.gz',
     ];
   }
 
@@ -107,6 +107,13 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
 
     $this->assertSession()->pageTextContains('Update set_vertical_spacing_empty_value');
     $this->assertSession()->pageTextContains("Updated values for fields 'field_c_n_vertical_spacing' and 'field_c_p_vertical_spacing'.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update convert_quote_to_content_component');
+    $this->assertSession()->pageTextContains("Updated quote component to a content component.");
     $this->assertSession()->pageTextContains('Update ran in');
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Processed: 0');
