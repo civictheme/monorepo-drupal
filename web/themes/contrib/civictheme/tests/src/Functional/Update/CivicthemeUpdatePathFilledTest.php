@@ -89,7 +89,8 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.");
     $this->assertSession()->pageTextContains('Update ran in');
     $this->assertSession()->pageTextContains('Processed: 24');
-    $this->assertSession()->pageTextContains('Updated: 24');
+    $this->assertSession()->pageTextContains('Updated: 23');
+    $this->assertSession()->pageTextContains('Skipped: 1');
 
     $this->assertSession()->pageTextContains('Update rename_node_banner_blend_mode');
     $this->assertSession()->pageTextContains("Content from field 'field_c_n_blend_mode' was moved to 'field_c_n_banner_blend_mode'.");
@@ -113,6 +114,13 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 155');
     $this->assertSession()->pageTextContains('Updated: 9');
     $this->assertSession()->pageTextContains('Skipped: 146');
+
+    $this->assertSession()->pageTextContains('Update convert_quote_to_content_component');
+    $this->assertSession()->pageTextContains("Updated quote component to a content component.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 155');
+    $this->assertSession()->pageTextContains('Updated: 0');
+    $this->assertSession()->pageTextContains('Skipped: 155');
   }
 
 }
