@@ -99,7 +99,7 @@ RUN cd /app/web/themes/contrib/civictheme && npm run build
 
 # Create a sub-theme in the same directory as CivicTheme.
 RUN cd /app/web/themes/contrib/civictheme \
-  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
+  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo --remove-examples
 
 # Compile sub-theme assets.
 RUN npm --prefix web/themes/contrib/civictheme_demo install --no-audit --no-progress --unsafe-perm \
