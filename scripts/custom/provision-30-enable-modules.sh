@@ -12,6 +12,7 @@ set -eu
 drush() { ./vendor/bin/drush -y "$@"; }
 
 echo "[INFO] Enabling additional modules."
+[ "${CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP:-}" = "1" ] && echo "[ OK ] Skipping additional modules activation" && return
 
 if [ "${DRUPAL_PROFILE:-}" = "govcms" ]; then
   echo "  > Remove GovCMS configs."
