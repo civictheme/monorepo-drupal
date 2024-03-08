@@ -47,8 +47,8 @@ To update the database dumps:
    export DRUPAL_VERSION=10
    export DRUPAL_VERSION_FULL=10.0.0-rc1
    export DRUPAL_PROFILE=minimal
-   DREVOPS_PROVISION_POST_OPERATIONS_SKIP=1 ahoy build
-   ahoy cli "DRUPAL_PROFILE=minimal scripts/custom/drupal-install-site-1-enable-modules.sh"
+   ahoy build
+   ahoy cli "DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 scripts/drevops/provision.sh"
    mkdir -p web/themes/contrib/civictheme/tests/fixtures/updates
    ahoy cli php web/core/scripts/dump-database-d8-mysql.php | gzip > "web/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DRUPAL_VERSION_FULL}.${DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.bare.php.gz"
    ```
@@ -58,10 +58,8 @@ To update the database dumps:
    export DRUPAL_VERSION=10
    export DRUPAL_VERSION_FULL=10.0.0-rc1
    export DRUPAL_PROFILE=minimal
-   DREVOPS_PROVISION_POST_OPERATIONS_SKIP=1 ahoy build
-   ahoy cli "DRUPAL_PROFILE=minimal scripts/custom/drupal-install-site-1-enable-modules.sh"
-   ahoy cli "drush php:eval -v \"require_once '/app/web/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();\""
-   ahoy cli "GENERATED_CONTENT_CREATE=1 drush pm:enable cs_generated_content -y"
+   ahoy build
+   ahoy cli "DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP=1 scripts/drevops/provision.sh"
    ahoy cli "GENERATED_CONTENT_DELETE_SKIP=1 drush pm:uninstall cs_generated_content generated_content -y"
    mkdir -p web/themes/contrib/civictheme/tests/fixtures/updates
    ahoy cli php web/core/scripts/dump-database-d8-mysql.php | gzip > "web/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DRUPAL_VERSION_FULL}.${DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.filled.php.gz"
