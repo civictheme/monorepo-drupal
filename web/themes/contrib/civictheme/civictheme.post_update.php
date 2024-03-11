@@ -500,14 +500,13 @@ function civictheme_post_update_convert_quote_to_content_component(array &$sandb
           if ($component->bundle() == 'civictheme_quote') {
             $content = civictheme_get_field_value($component, 'field_c_p_content', TRUE);
             $author = civictheme_get_field_value($component, 'field_c_p_author', TRUE);
-            $theme = civictheme_get_field_theme_value($component);
             $paragraph_values = [
               'type' => 'civictheme_content',
               'field_c_p_content' => [
-                'value' => '<blockquote class="ct-quote ct-theme-' . $theme . '">' . $content . (empty($author) ? '' : '<cite> ' . $author . ' </cite>') . '</blockquote>',
+                'value' => '<blockquote>' . $content . (empty($author) ? '' : '<cite> ' . $author . ' </cite>') . '</blockquote>',
                 'format' => 'civictheme_rich_text',
               ],
-              'field_c_p_theme' => $theme,
+              'field_c_p_theme' => civictheme_get_field_theme_value($component),
               'field_c_p_vertical_spacing' => civictheme_get_field_value($component, 'field_c_p_vertical_spacing', TRUE, CivicthemeConstants::VERTICAL_SPACING_NONE),
             ];
             $paragraph = $helper->createContentParagraph($paragraph_values);
