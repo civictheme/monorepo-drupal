@@ -62,7 +62,7 @@ settings:
         - '<span class="ct-visually-hidden">'
         - '<svg role viewbox aria-hidden width height class="ct-icon">'
         - '<path d>'
-        - '<blockquote class="ct-quote ct-theme-light ct-theme-dark" cite>'
+        - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
         - '<h2 id class>'
