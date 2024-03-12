@@ -31,20 +31,24 @@ function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables)
 /**
  * Add required element for external link.
  */
-function _civictheme_preprocess_menu_items(array &$items): void {
+function _civictheme_preprocess_menu_items(array &$items, bool $expand_all_items = FALSE): void {
   foreach ($items as &$item) {
     $item += [
       'is_new_window' => $item['url']->isExternal(),
       'is_external' => $item['url']->isExternal(),
     ];
 
-    if (empty($item['original_link']->getPluginDefinition()['expanded'])) {
+    if (empty($item['original_link']->getPluginDefinition()['expanded']) && !$expand_all_items) {
       $item['below'] = [];
       $item['is_expanded'] = FALSE;
     }
 
+    if ($expand_all_items) {
+      $item['is_expanded'] = TRUE;
+    }
+
     if (count($item['below']) > 0) {
-      _civictheme_preprocess_menu_items($item['below']);
+      _civictheme_preprocess_menu_items($item['below'], $expand_all_items);
     }
   }
 }
@@ -68,6 +72,7 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
     $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
     $variables['dropdown_columns_fill'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
     $variables['is_animated'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);
-    _civictheme_preprocess_menu_items($variables['items']);
+    $expand_all_items = $variables['elements']['#configuration']['expand_all_items'] ?? FALSE;
+    _civictheme_preprocess_menu_items($variables['items'], $expand_all_items);
   }
 }
