@@ -8,7 +8,7 @@
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
- * Page, Components - Quote.
+ * Page, Components - Content Quote.
  *
  * @return array<int, array<string, mixed>>
  *   Variations.
@@ -22,40 +22,36 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   $page = [
     'components' => [
       [
-        'type' => 'quote',
-        'content' => 'Light, Content, ' . $helper::staticSentence(3),
+        'type' => 'content',
+        'content' => '<blockquote>Light, Content, ' . $helper::staticSentence(3) . '</blockquote>',
         'theme' => $helper::civicthemeThemeLight(),
       ],
       [
-        'type' => 'quote',
-        'content' => 'Dark, Content, ' . $helper::staticSentence(3),
+        'type' => 'content',
+        'content' => '<blockquote>Dark, Content, ' . $helper::staticSentence(3) . '</blockquote>',
         'theme' => $helper::civicthemeThemeDark(),
       ],
 
       [
-        'type' => 'quote',
-        'content' => 'Light, Content, Author, ' . $helper::staticSentence(3),
-        'author' => $helper::staticName(),
+        'type' => 'content',
+        'content' => '<blockquote>Light, Content, Author, ' . $helper::staticSentence(3) . '<cite>' . $helper::staticName() . '</cite></blockquote>',
         'theme' => $helper::civicthemeThemeLight(),
       ],
       [
-        'type' => 'quote',
-        'content' => 'Dark, Content, Author, ' . $helper::staticSentence(3),
-        'author' => $helper::staticName(),
+        'type' => 'content',
+        'content' => '<blockquote>Dark, Content, Author, ' . $helper::staticSentence(3) . '<cite>' . $helper::staticName() . '</cite></blockquote>',
         'theme' => $helper::civicthemeThemeDark(),
       ],
 
       [
-        'type' => 'quote',
-        'content' => 'Light, Content, Author, Vertical spacing, ' . $helper::staticSentence(3),
-        'author' => $helper::staticName(),
+        'type' => 'content',
+        'content' => '<blockquote>Light, Content, Author, Vertical spacing, ' . $helper::staticSentence(3) . '<cite>' . $helper::staticName() . '</cite></blockquote>',
         'theme' => $helper::civicthemeThemeLight(),
         'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       ],
       [
-        'type' => 'quote',
-        'content' => 'Dark, Content, Author, Vertical spacing, ' . $helper::staticSentence(3),
-        'author' => $helper::staticName(),
+        'type' => 'content',
+        'content' => '<blockquote>Dark, Content, Author, Vertical spacing, ' . $helper::staticSentence(3) . '<cite>' . $helper::staticName() . '</cite></blockquote>',
         'theme' => $helper::civicthemeThemeDark(),
         'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeBoth(),
       ],
@@ -63,9 +59,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
   ];
 
   return [
-    $page + ['title' => 'Page. Component. Quote, sidebar'],
+    $page + ['title' => 'Page. Component. Content, Quote, sidebar'],
     $page + [
-      'title' => 'Page. Component. Quote, no sidebar',
+      'title' => 'Page. Component. Content, Quote, no sidebar',
       'alias' => '/generated-content/civictheme_page/civictheme-no-sidebar/{title}',
     ],
   ];

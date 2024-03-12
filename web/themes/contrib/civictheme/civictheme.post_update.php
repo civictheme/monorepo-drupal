@@ -13,6 +13,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\ParagraphInterface;
 
 require_once __DIR__ . '/includes/utilities.inc';
 
@@ -455,4 +456,79 @@ function civictheme_post_update_disable_moderated_content_view(): void {
     ->getEditable('views.view.moderated_content')
     ->set('status', FALSE)
     ->save();
+}
+
+/**
+ * Convert a quote component to a content component with markup.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function civictheme_post_update_convert_quote_to_content_component(array &$sandbox): ?string {
+  $old_field_configs = [
+    'field.storage.paragraph.field_c_p_author' => 'field_storage_config',
+    'field.field.paragraph.civictheme_quote.field_c_p_author' => 'field_config',
+    'field.field.paragraph.civictheme_quote.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_quote.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_quote.field_c_p_vertical_spacing' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_quote.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_quote.default' => 'entity_view_display',
+    'paragraphs.paragraphs_type.civictheme_quote' => 'paragraphs_type',
+  ];
+
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'node',
+    ['civictheme_page'],
+    // Start callback.
+    static function (CivicthemeUpdateHelper $helper): void {
+      // Noop.
+    },
+    // Process callback.
+    static function (CivicthemeUpdateHelper $helper, EntityInterface $entity): bool {
+      if (!$entity instanceof Node) {
+        return FALSE;
+      }
+
+      $updated = FALSE;
+
+      // Update quote component to a content component.
+      $field_name = 'field_c_n_components';
+      $components = civictheme_get_field_value($entity, $field_name);
+
+      if (!empty($components)) {
+        foreach ($components as $key => $component) {
+          if ($component->bundle() == 'civictheme_quote') {
+            $content = civictheme_get_field_value($component, 'field_c_p_content', TRUE);
+            $author = civictheme_get_field_value($component, 'field_c_p_author', TRUE);
+            $paragraph_values = [
+              'type' => 'civictheme_content',
+              'field_c_p_content' => [
+                'value' => '<blockquote>' . $content . (empty($author) ? '' : '<cite> ' . $author . ' </cite>') . '</blockquote>',
+                'format' => 'civictheme_rich_text',
+              ],
+              'field_c_p_theme' => civictheme_get_field_theme_value($component),
+              'field_c_p_vertical_spacing' => civictheme_get_field_value($component, 'field_c_p_vertical_spacing', TRUE, CivicthemeConstants::VERTICAL_SPACING_NONE),
+            ];
+            $paragraph = $helper->createContentParagraph($paragraph_values);
+            if ($paragraph instanceof ParagraphInterface) {
+              $components[$key] = $paragraph;
+              $updated = TRUE;
+            }
+          }
+        }
+      }
+
+      if ($updated) {
+        $entity->set('field_c_n_components', $components);
+        $entity->save();
+      }
+
+      return $updated;
+    },
+    // Finished callback.
+    static function (CivicthemeUpdateHelper $helper) use ($old_field_configs): TranslatableMarkup {
+      $helper->deleteConfig($old_field_configs);
+      return new TranslatableMarkup("Updated quote component to a content component.\n");
+    },
+  );
 }
