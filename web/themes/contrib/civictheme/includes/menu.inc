@@ -33,24 +33,20 @@ function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables)
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function _civictheme_preprocess_menu_items(array &$items, bool $expand_all_items = FALSE): void {
+function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FALSE): void {
   foreach ($items as &$item) {
     $item += [
       'is_new_window' => $item['url']->isExternal(),
       'is_external' => $item['url']->isExternal(),
     ];
 
-    if (empty($item['original_link']->getPluginDefinition()['expanded']) && !$expand_all_items) {
-      $item['below'] = [];
-      $item['is_expanded'] = FALSE;
-    }
+    // Set as expanded based on $expand_all or item's own value or FALSE.
+    $item['is_expanded'] = $expand_all || ($item['is_expanded'] ?? FALSE);
+    // Initialize 'below' as an empty array if not set.
+    $item['below'] = $item['below'] ?? [];
 
-    if ($expand_all_items) {
-      $item['is_expanded'] = TRUE;
-    }
-
-    if (count($item['below']) > 0) {
-      _civictheme_preprocess_menu_items($item['below'], $expand_all_items);
+    if (!empty($item['below'])) {
+      _civictheme_preprocess_menu_items($item['below'], $expand_all);
     }
   }
 }

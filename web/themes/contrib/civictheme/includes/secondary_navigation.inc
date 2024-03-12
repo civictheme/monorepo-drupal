@@ -32,5 +32,5 @@ function civictheme_preprocess_block__menu_block__civictheme_secondary_navigatio
     $expand_all_items = $variables['configuration']['expand_all_items'] ?? FALSE;
   }
 
-  _civictheme_preprocess_menu_items($variables['items'], ($expand_all_items ?? FALSE));
+  _civictheme_preprocess_menu_items($variables['items'], $expand_all_items ?? FALSE);
 }
