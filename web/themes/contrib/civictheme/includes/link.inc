@@ -8,6 +8,28 @@
 declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
+use Drupal\filter\FilterPluginCollection;
+
+/**
+ * Process HTML content to replace URLs with links.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_process_html_content_urls_to_links(string $html): string {
+  // Although URL to link conversion is not technically a link processing,
+  // we reuse link's opt-out feature flag namespace for simplicity.
+  if (_civictheme_feature_is_optedout('process', 'components.link.urls')) {
+    return $html;
+  }
+
+  // Convert URLs to links using core filter_url.
+  $filter_manager = \Drupal::service('plugin.manager.filter');
+  $filter_collection = new FilterPluginCollection($filter_manager, []);
+  $filter = $filter_collection->get('filter_url');
+
+  return _filter_url($html, $filter);
+}
 
 /**
  * Process HTML links within an HTML content string.

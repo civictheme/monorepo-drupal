@@ -17,13 +17,17 @@ declare(strict_types=1);
  *
  * @return string
  *   The processed string.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_process__html_content(string $html, array $options = []): string {
+  // Process links.
+  $html = _civictheme_process_html_content_urls_to_links($html);
+
+  $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
 
-  // Process links.
-  $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $html = _civictheme_process_html_content_links(
     $html,
     $base_url,
