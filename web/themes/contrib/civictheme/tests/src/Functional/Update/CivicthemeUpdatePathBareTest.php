@@ -28,7 +28,9 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
     // this list and remove items.
     'civictheme.settings',
     'core.entity_form_display.node.civictheme_event.default',
+    'core.entity_view_display.node.civictheme_event.default',
     'core.entity_form_display.node.civictheme_page.default',
+    'core.entity_view_display.node.civictheme_page.default',
     'block.block.civictheme_footer_acknowledgment_of_country',
     'block.block.civictheme_footer_copyright',
     'block.block.civictheme_footer_social_links',
@@ -50,7 +52,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles = [
-      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.bare.php.gz',
+      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.4.0.bare.php.gz',
     ];
   }
 
