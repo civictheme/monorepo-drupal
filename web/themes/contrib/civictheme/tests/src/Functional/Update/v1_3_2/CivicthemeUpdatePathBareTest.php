@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\civictheme\Functional\Update;
+namespace Drupal\Tests\civictheme\Functional\Update\v1_3_2;
 
 use Drupal\FunctionalTests\Update\UpdatePathTestBase;
 
 /**
- * Tests the hook_post_update_NAME() implementations in filled database.
+ * Tests the hook_post_update_NAME() implementations on bare database.
  *
  * @group civictheme:functional:update
  * @group site:functional
  */
-class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
+class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
 
   /**
    * {@inheritdoc}
@@ -50,7 +50,7 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles = [
-      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.filled.php.gz',
+      __DIR__ . '/../../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.bare.php.gz',
     ];
   }
 
@@ -76,8 +76,8 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Update rename_block_banner_blend_mode');
     $this->assertSession()->pageTextContains("Content from field 'field_c_b_blend_mode' was moved to 'field_c_b_banner_blend_mode'.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 1');
-    $this->assertSession()->pageTextContains('Updated: 1');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
 
     $this->assertSession()->pageTextContains('Update rename_event_date_field');
     $this->assertSession()->pageTextContains("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'. The 'field_c_n_date_range' field was removed from 'civictheme_event' node type.");
@@ -88,38 +88,36 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Update rename_list_fields');
     $this->assertSession()->pageTextContains("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 24');
-    $this->assertSession()->pageTextContains('Updated: 24');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
 
     $this->assertSession()->pageTextContains('Update rename_node_banner_blend_mode');
     $this->assertSession()->pageTextContains("Content from field 'field_c_n_blend_mode' was moved to 'field_c_n_banner_blend_mode'.");
     $this->assertSession()->pageTextContains("The 'field_c_n_blend_mode' field was removed from 'civictheme_page' node type.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 155');
-    $this->assertSession()->pageTextContains('Updated: 155');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
 
     $this->assertSession()->pageTextContains('Update replace_summary_field');
     $this->assertSession()->pageTextContains("Content from field 'field_c_p_summary' was moved to 'field_c_p_content'. The 'field_c_p_summary' field was removed from civictheme_attachment, civictheme_callout, civictheme_next_step, civictheme_promo paragraph types.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 48');
-    // Disable assertion for the intermittently failing test.
-    // @code
-    // $this->assertSession()->pageTextContains('Updated: 39');
-    // $this->assertSession()->pageTextContains('Skipped: 9');
-    // @endcode
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
     $this->assertSession()->pageTextContains('Update set_vertical_spacing_empty_value');
     $this->assertSession()->pageTextContains("Updated values for fields 'field_c_n_vertical_spacing' and 'field_c_p_vertical_spacing'.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 155');
-    $this->assertSession()->pageTextContains('Updated: 9');
-    $this->assertSession()->pageTextContains('Skipped: 146');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
 
     $this->assertSession()->pageTextContains('Update convert_quote_to_content_component');
     $this->assertSession()->pageTextContains("Updated quote component to a content component.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 155');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Updated: 0');
-    $this->assertSession()->pageTextContains('Skipped: 155');
   }
 
 }
