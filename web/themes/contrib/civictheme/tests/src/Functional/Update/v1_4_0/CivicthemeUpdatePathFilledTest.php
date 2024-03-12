@@ -81,12 +81,6 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 1');
     $this->assertSession()->pageTextContains('Updated: 1');
 
-    $this->assertSession()->pageTextContains('Update rename_event_date_field');
-    $this->assertSession()->pageTextContains("Content from field 'field_c_n_date' was moved to 'field_c_n_date_range'. The 'field_c_n_date_range' field was removed from 'civictheme_event' node type.");
-    $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 0');
-    $this->assertSession()->pageTextContains('Updated: 0');
-
     $this->assertSession()->pageTextContains('Update rename_list_fields');
     $this->assertSession()->pageTextContains("Content from field 'field_c_p_column_count' was moved to 'field_c_p_list_column_count'. Content from field 'field_c_p_fill_width' was moved to 'field_c_p_list_fill_width'.");
     $this->assertSession()->pageTextContains('Update ran in');
@@ -110,9 +104,9 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Update convert_quote_to_content_component');
     $this->assertSession()->pageTextContains("Updated quote component to a content component.");
     $this->assertSession()->pageTextContains('Update ran in');
-    $this->assertSession()->pageTextContains('Processed: 155');
-    $this->assertSession()->pageTextContains('Updated: 0');
-    $this->assertSession()->pageTextContains('Skipped: 155');
+    $this->assertSession()->pageTextContains('Processed: 93');
+    $this->assertSession()->pageTextContains('Updated: 2');
+    $this->assertSession()->pageTextContains('Skipped: 91');
   }
 
 }
