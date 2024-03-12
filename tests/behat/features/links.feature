@@ -58,6 +58,10 @@ Feature: Content links processing
       | field_c_p_content:value  | person@test.com      |
       | field_c_p_content:format | civictheme_rich_text |
       | field_c_p_theme          | dark                 |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
+      | field_c_p_content:value  | http://www.test-link.com |
+      | field_c_p_content:format | civictheme_rich_text     |
+      | field_c_p_theme          | dark                     |
 
     And I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
@@ -118,3 +122,9 @@ Feature: Content links processing
     And I should not see an ".ct-basic-content a[href='///C:/Users/civictheme/invalid'].ct-content-link.ct-content-link--external" element
 
     And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element
+
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link" element
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-theme-dark" element
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'][target='_blank'].ct-content-link" element
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link.ct-content-link--external" element
+
