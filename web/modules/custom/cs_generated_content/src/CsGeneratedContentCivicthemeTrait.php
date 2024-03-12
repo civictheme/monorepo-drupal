@@ -642,18 +642,13 @@ trait CsGeneratedContentCivicthemeTrait {
       return;
     }
 
-    $defaults = [
-      'content' => '',
-      'author' => '',
-    ];
-
-    $options += $defaults;
-
-    if (empty(array_filter($options))) {
+    if (empty($options['content'])) {
       return;
     }
 
-    $paragraph = self::civicthemeParagraphAttach('civictheme_quote', $node, $field_name, $options, TRUE);
+    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content']);
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_content', $node, $field_name, $options, TRUE);
 
     if (!$paragraph instanceof Paragraph) {
       return;

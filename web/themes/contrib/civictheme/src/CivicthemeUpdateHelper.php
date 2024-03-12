@@ -9,6 +9,7 @@ use Drupal\Core\Config\FileStorage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\paragraphs\ParagraphInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -232,6 +233,24 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     }
 
     return $updated;
+  }
+
+  /**
+   * Create a paragraph.
+   *
+   * @param array $paragraph_values
+   *   The content string.
+   *
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   Created paragraph.
+   */
+  public function createContentParagraph(array $paragraph_values): ?ParagraphInterface {
+    $paragraph = $this->entityTypeManager->getStorage('paragraph')->create($paragraph_values);
+    $paragraph->save();
+    if ($paragraph instanceof ParagraphInterface) {
+      return $paragraph;
+    }
+    return NULL;
   }
 
 }
