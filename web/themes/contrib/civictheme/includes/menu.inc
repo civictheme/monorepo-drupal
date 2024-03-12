@@ -30,6 +30,8 @@ function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables)
 
 /**
  * Add required element for external link.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_preprocess_menu_items(array &$items, bool $expand_all_items = FALSE): void {
   foreach ($items as &$item) {
