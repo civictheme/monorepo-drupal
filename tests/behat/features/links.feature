@@ -127,4 +127,3 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-theme-dark" element
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'][target='_blank'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link.ct-content-link--external" element
-

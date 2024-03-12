@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\filter\FilterPluginCollection;
-
 /**
  * Process an HTML content string by applying several processors.
  *
@@ -23,17 +21,12 @@ use Drupal\filter\FilterPluginCollection;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_process__html_content(string $html, array $options = []): string {
+  // Process links.
+  $html = _civictheme_process_html_content_urls_to_links($html);
+
+  $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
-
-  // Process links.
-  $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
-
-  // Convert URLs to links using core filter_url.
-  $filter_manager = \Drupal::service('plugin.manager.filter');
-  $filter_collection = new FilterPluginCollection($filter_manager, []);
-  $filter = $filter_collection->get('filter_url');
-  $html = _filter_url($html, $filter);
 
   $html = _civictheme_process_html_content_links(
     $html,
