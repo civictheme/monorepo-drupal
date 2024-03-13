@@ -35,7 +35,6 @@ Feature: Attachment render
     And I should see an ".ct-attachment__content" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Content text"
-    And I should see the text "test_pdf.pdf"
     And I should see the text "(PDF"
     And I should see the text "[TEST] CivicTheme PDF"
     And I should not see the text "test_pdf.pdf"
@@ -59,7 +58,6 @@ Feature: Attachment render
     And I should see an ".ct-attachment__content" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Content text"
-    And I should see the text "test_pdf.pdf"
     And I should see the text "(PDF"
     And I should see the text "[TEST] CivicTheme PDF"
     And I should not see the text "test_pdf.pdf"
