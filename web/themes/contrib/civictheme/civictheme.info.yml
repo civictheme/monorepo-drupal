@@ -76,8 +76,6 @@ components:
       - components/03-organisms
     templates:
       - components/04-templates
-    pages:
-      - components/05-pages
     ct-base:
       - components/00-base
     ct-atoms:
@@ -88,8 +86,6 @@ components:
       - components/03-organisms
     ct-templates:
       - components/04-templates
-    ct-pages:
-      - components/05-pages
 
 ckeditor5-stylesheets:
   - dist/civictheme.editor.css
