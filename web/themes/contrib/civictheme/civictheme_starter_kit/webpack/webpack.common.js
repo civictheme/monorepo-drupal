@@ -158,13 +158,11 @@ module.exports = {
       '@molecules': path.resolve(__dirname, '../components_combined/02-molecules'),
       '@organisms': path.resolve(__dirname, '../components_combined/03-organisms'),
       '@templates': path.resolve(__dirname, '../components_combined/04-templates'),
-      '@pages': path.resolve(__dirname, '../components_combined/05-pages'),
       '@ct-base': path.resolve(__dirname, '../.components-civictheme/00-base'),
       '@ct-atoms': path.resolve(__dirname, '../.components-civictheme/01-atoms'),
       '@ct-molecules': path.resolve(__dirname, '../.components-civictheme/02-molecules'),
       '@ct-organisms': path.resolve(__dirname, '../.components-civictheme/03-organisms'),
       '@ct-templates': path.resolve(__dirname, '../.components-civictheme/04-templates'),
-      '@ct-pages': path.resolve(__dirname, '../.components-civictheme/05-pages'),
     },
   },
   stats: {

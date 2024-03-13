@@ -158,7 +158,6 @@ module.exports = {
       '@molecules': path.resolve(__dirname, '../components/02-molecules'),
       '@organisms': path.resolve(__dirname, '../components/03-organisms'),
       '@templates': path.resolve(__dirname, '../components/04-templates'),
-      '@pages': path.resolve(__dirname, '../components/05-pages'),
     },
   },
   stats: {
