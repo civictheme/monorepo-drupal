@@ -37,6 +37,8 @@ Feature: Attachment render
     And I should see the text "Content text"
     And I should see the text "test_pdf.pdf"
     And I should see the text "(PDF"
+    And I should see the text "[TEST] CivicTheme PDF"
+    And I should not see the text "test_pdf.pdf"
 
   @api
   Scenario: Attachment dark with background
@@ -59,3 +61,5 @@ Feature: Attachment render
     And I should see the text "Content text"
     And I should see the text "test_pdf.pdf"
     And I should see the text "(PDF"
+    And I should see the text "[TEST] CivicTheme PDF"
+    And I should not see the text "test_pdf.pdf"
