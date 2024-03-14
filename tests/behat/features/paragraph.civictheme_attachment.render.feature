@@ -66,7 +66,7 @@ Feature: Attachment render
   Scenario: Attachment dark with background & Disabled Use name of media
     Given I am logged in as a user with the "Site Administrator" role
     When I visit current theme settings page
-    And I uncheck the box "edit-components-attachement-use-media-name"
+    And I uncheck the box "edit-components-attachment-use-media-name"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     Given I am an anonymous user
