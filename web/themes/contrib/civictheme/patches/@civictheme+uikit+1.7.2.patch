@@ -1,0 +1,47 @@
+diff --git a/node_modules/@civictheme/uikit/components/00-base/collapsible/collapsible.js b/node_modules/@civictheme/uikit/components/00-base/collapsible/collapsible.js
+index 101d12a..cd7d1df 100644
+--- a/node_modules/@civictheme/uikit/components/00-base/collapsible/collapsible.js
++++ b/node_modules/@civictheme/uikit/components/00-base/collapsible/collapsible.js
+@@ -255,7 +255,7 @@ CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
+   }
+ 
+   if (evt && evt.target) {
+-    if (evt.currentTarget !== t.el) {
++    if (evt.currentTarget !== t.el || evt.target !== t.el) {
+       return;
+     }
+   }
+diff --git a/node_modules/@civictheme/uikit/components/00-base/flyout/.flyout.js.swp b/node_modules/@civictheme/uikit/components/00-base/flyout/.flyout.js.swp
+new file mode 100644
+index 0000000..8b84f57
+Binary files /dev/null and b/node_modules/@civictheme/uikit/components/00-base/flyout/.flyout.js.swp differ
+diff --git a/node_modules/@civictheme/uikit/components/00-base/flyout/flyout.js b/node_modules/@civictheme/uikit/components/00-base/flyout/flyout.js
+index ac27f20..d7cb874 100644
+--- a/node_modules/@civictheme/uikit/components/00-base/flyout/flyout.js
++++ b/node_modules/@civictheme/uikit/components/00-base/flyout/flyout.js
+@@ -59,6 +59,25 @@ function CivicThemeFlyout(el) {
+     });
+   }
+ 
++  // Add event listener to handle keydown events
++  document.addEventListener('keydown', function(event) {
++    if (event.key === 'Tab') {
++      const flyoutElements = document.querySelectorAll('[data-flyout]');
++      flyoutElements.forEach(function(flyout) {
++        const focusableElements = flyout.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
++        const firstFocusable = focusableElements[0];
++        const lastFocusable = focusableElements[focusableElements.length - 1];
++        if (document.activeElement === lastFocusable && !event.shiftKey) {
++          event.preventDefault();
++          firstFocusable.focus();
++        } else if (document.activeElement === firstFocusable && event.shiftKey) {
++          event.preventDefault();
++          lastFocusable.focus();
++        }
++      });
++    }
++  });
++
+   // Mark as initialized.
+   this.el.setAttribute('data-flyout', 'true');
+ }
