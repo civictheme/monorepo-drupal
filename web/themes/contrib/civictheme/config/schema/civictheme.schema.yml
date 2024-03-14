@@ -215,9 +215,9 @@ civictheme.settings:
             summary_length:
               label: 'Summary length'
               type: integer
-        attachement:
+        attachment:
           type: mapping
-          label: 'Attachement settings'
+          label: 'Attachment settings'
           mapping:
             use_media_name:
               label: 'Use name of media'

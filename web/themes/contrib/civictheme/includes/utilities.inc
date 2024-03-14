@@ -88,7 +88,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     return NULL;
   }
 
-  if (civictheme_get_theme_config_manager()->load('components.attachement.use_media_name', TRUE)) {
+  if (civictheme_get_theme_config_manager()->load('components.attachment.use_media_name', TRUE)) {
     $media_name = $media->label();
   }
 

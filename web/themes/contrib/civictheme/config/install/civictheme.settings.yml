@@ -64,7 +64,7 @@ components:
     summary_length: 160
   snippet:
     summary_length: 160
-  attachement:
+  attachment:
     use_media_name: true
 colors:
   use_color_selector: true
