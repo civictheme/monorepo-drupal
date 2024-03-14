@@ -429,7 +429,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $form['components']['attachement']['use_media_name'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Use name of media'),
-      '#description' => $this->t('Use name of media rather than file name on attachment component'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
       '#default_value' => $this->themeConfigManager->loadForComponent('attachement', 'use_media_name', TRUE),
     ];
 
