@@ -403,6 +403,13 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
+    $form['components']['publication_card']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'use_media_name', TRUE),
+    ];
+
     $form['components']['snippet'] = [
       '#type' => 'details',
       '#title' => $this->t('Snippet'),

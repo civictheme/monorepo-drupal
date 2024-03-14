@@ -66,7 +66,7 @@ Feature: Attachment render
   Scenario: Attachment dark with background & Disabled Use name of media
     Given I am logged in as a user with the "Site Administrator" role
     When I visit current theme settings page
-    And I uncheck the box "Use name of media"
+    And I uncheck the box "edit-components-attachement-use-media-name"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     Given I am an anonymous user
@@ -89,3 +89,10 @@ Feature: Attachment render
     And I should see the text "(PDF"
     And I should not see the text "[TEST] CivicTheme PDF"
     And I should see the text "test_pdf.pdf"
+
+    # Reset settings.
+    Given I am logged in as a user with the "Site Administrator" role
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."
