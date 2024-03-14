@@ -88,8 +88,12 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     return NULL;
   }
 
+  if (civictheme_get_theme_config_manager()->load('components.attachement.use_media_name', TRUE)) {
+    $media_name = $media->label();
+  }
+
   return [
-    'name' => t('@name', ['@name' => $media->label() ?? $file->label()]),
+    'name' => t('@name', ['@name' => $media_name ?? $file->label()]),
     'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     // @phpstan-ignore-next-line

@@ -419,6 +419,20 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('snippet', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
+    $form['components']['attachement'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Attachement'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['attachement']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('attachement', 'use_media_name', TRUE),
+    ];
+
     $form['#process'][] = $this->processForm(...);
 
     // Auto-discover per-component validation and submit handlers.
