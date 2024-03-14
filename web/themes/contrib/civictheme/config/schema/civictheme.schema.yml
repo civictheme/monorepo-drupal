@@ -208,6 +208,9 @@ civictheme.settings:
             summary_length:
               label: 'Summary length'
               type: integer
+            use_media_name:
+              label: 'Use name of media'
+              type: boolean
         snippet:
           type: mapping
           label: 'Snippet settings'
@@ -215,6 +218,13 @@ civictheme.settings:
             summary_length:
               label: 'Summary length'
               type: integer
+        attachment:
+          type: mapping
+          label: 'Attachment settings'
+          mapping:
+            use_media_name:
+              label: 'Use name of media'
+              type: boolean
     colors:
       type: mapping
       label: Colors

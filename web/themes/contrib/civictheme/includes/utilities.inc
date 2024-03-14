@@ -90,6 +90,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
 
   return [
     'name' => t('@name', ['@name' => $file->label()]),
+    'media_name' => t('@name', ['@name' => $media->label()]),
     'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     // @phpstan-ignore-next-line

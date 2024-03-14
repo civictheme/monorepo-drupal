@@ -154,6 +154,9 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(array &$va
   if ($document) {
     $vars = civictheme_media_get_variables($document);
     if ($vars) {
+      if (civictheme_get_theme_config_manager()->load('components.publication_card.use_media_name', TRUE)) {
+        $vars['name'] = $vars['media_name'];
+      }
       $variables['file'] = $vars;
     }
   }

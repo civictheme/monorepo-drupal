@@ -403,6 +403,13 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
+    $form['components']['publication_card']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'use_media_name', TRUE),
+    ];
+
     $form['components']['snippet'] = [
       '#type' => 'details',
       '#title' => $this->t('Snippet'),
@@ -417,6 +424,20 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#required' => TRUE,
       '#min' => 0,
       '#default_value' => $this->themeConfigManager->loadForComponent('snippet', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
+    ];
+
+    $form['components']['attachment'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Attachment'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['attachment']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('attachment', 'use_media_name', TRUE),
     ];
 
     $form['#process'][] = $this->processForm(...);

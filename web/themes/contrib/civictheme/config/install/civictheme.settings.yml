@@ -62,8 +62,11 @@ components:
     summary_length: 160
   publication_card:
     summary_length: 160
+    use_media_name: true
   snippet:
     summary_length: 160
+  attachment:
+    use_media_name: true
 colors:
   use_color_selector: true
   use_brand_colors: true
