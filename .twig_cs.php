@@ -10,4 +10,4 @@ return Twigcs\Config\Config::create()
   ->setReporter('console')
   ->setRuleSet(Twigcs\Ruleset\Official::class)
   ->addFinder(Twigcs\Finder\TemplateFinder::create()->in(__DIR__ . '/web/modules/custom'))
-  ->addFinder(Twigcs\Finder\TemplateFinder::create()->in(__DIR__ . '/web/themes/custom'));
+  ->addFinder(Twigcs\Finder\TemplateFinder::create()->in(__DIR__ . '/web/themes/contrib/civictheme/templates'));
