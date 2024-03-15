@@ -24,7 +24,7 @@
     "postinstall": "npm run uikit-install && npm run add-lint-exclusions"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#v1.7.2"
+    "@civictheme/uikit": "github:civictheme/uikit#main"
   },
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.0",
