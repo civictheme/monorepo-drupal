@@ -148,8 +148,8 @@ ln -s "$(pwd)"/* "build/web/themes/custom/${theme}" && rm "build/web/themes/cust
 if [ -f "build/web/themes/custom/${theme}/package-lock.json" ]; then
   pushd "build/web/themes/custom/${theme}/" > /dev/null || exit 1
   echo "  > Installing theme assets."
-  [ -f ".nvm" ] && nvm use || true
-  [ ! -d "node_modules" ] && npm ci || true
+  if [ -f ".nvmrc" ]; then nvm use; fi
+  if [ ! -d "node_modules" ]; then npm ci; fi
   popd > /dev/null || exit 1
 fi
 
