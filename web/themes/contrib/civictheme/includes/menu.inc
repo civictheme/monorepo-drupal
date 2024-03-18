@@ -18,7 +18,7 @@ function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables)
   }
 
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
-  if ($menu_name == 'civictheme_footer') {
+  if ($menu_name === 'civictheme_footer') {
     // Set menu theme as per footer theme.
     $variables['theme'] = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
     $variables['items'] = $variables['content']['#items'] ?? [];
@@ -61,12 +61,12 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
 
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
 
-  if ($menu_name == 'civictheme_primary_navigation' || $menu_name == 'civictheme_secondary_navigation') {
+  if ($menu_name === 'civictheme_primary_navigation' || $menu_name === 'civictheme_secondary_navigation') {
     $key = substr($menu_name, strlen('civictheme_'));
     // Set menu theme as per footer theme.
     $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
     $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name == 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
+    $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name === 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
     $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
     $variables['dropdown_columns_fill'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
     $variables['is_animated'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);

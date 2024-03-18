@@ -11,7 +11,7 @@ declare(strict_types=1);
  * Helper for implementations of hook_module_implements_alter().
  */
 function _civictheme_content_module_implements_alter(string $module, array &$implementations, string $hook): void {
-  if ($hook == 'modules_installed') {
+  if ($hook === 'modules_installed') {
     $group = $implementations[$module];
     unset($implementations[$module]);
     $implementations[$module] = $group;
