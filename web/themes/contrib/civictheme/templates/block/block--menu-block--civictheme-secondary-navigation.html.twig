@@ -14,7 +14,7 @@
   {% include '@organisms/navigation/navigation.twig' with {
     theme,
     items,
-    dropdown,
+    type: dropdown == 'none' ? 'inline' : dropdown,
     dropdown_columns,
     dropdown_columns_fill,
     is_animated,
