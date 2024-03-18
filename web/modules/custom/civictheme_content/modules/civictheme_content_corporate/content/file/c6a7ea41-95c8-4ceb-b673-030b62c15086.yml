@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 1f1a4e3d-78a0-45af-a8c8-8eb593fc6268
+  uuid: c6a7ea41-95c8-4ceb-b673-030b62c15086
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: corporate_icon_linkedin.svg
+      value: generic.png
   uri:
     -
-      value: 'public://corporate_icon_linkedin.svg'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: image/svg+xml
+      value: image/png
   filesize:
     -
-      value: 1901
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1642742837
+      value: 1710755880

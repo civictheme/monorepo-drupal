@@ -29,6 +29,9 @@ default:
   revision_translation_affected:
     -
       value: true
+  moderation_state:
+    -
+      value: published
   path:
     -
       alias: /alerts/thunderstorm-asthma-alert
