@@ -143,7 +143,7 @@ function verbose(): void {
 
 ini_set('display_errors', 1);
 
-if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
+if (PHP_SAPI !== 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 

@@ -358,7 +358,7 @@ class FeatureContext extends DrupalContext {
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function themeVisitSettings(string $name = NULL): void {
-    if (!$name || $name == 'current') {
+    if (!$name || $name === 'current') {
       $name = \Drupal::theme()->getActiveTheme()->getName();
     }
 

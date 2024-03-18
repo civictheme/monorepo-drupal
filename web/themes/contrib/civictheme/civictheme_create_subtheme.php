@@ -689,31 +689,31 @@ function file_path_canonicalize(string $path): string {
 
   while ($path !== '') {
     if (
-      ($prefix = substr($path, 0, 3)) == '../' ||
-      ($prefix = substr($path, 0, 2)) == './'
+      ($prefix = substr($path, 0, 3)) === '../' ||
+      ($prefix = substr($path, 0, 2)) === './'
     ) {
       $path = substr($path, strlen($prefix));
       continue;
     }
 
     if (
-      ($prefix = substr($path, 0, 3)) == '/./' ||
-      ($prefix = $path) == '/.'
+      ($prefix = substr($path, 0, 3)) === '/./' ||
+      ($prefix = $path) === '/.'
     ) {
       $path = '/' . substr($path, strlen($prefix));
       continue;
     }
 
     if (
-      ($prefix = substr($path, 0, 4)) == '/../' ||
-      ($prefix = $path) == '/..'
+      ($prefix = substr($path, 0, 4)) === '/../' ||
+      ($prefix = $path) === '/..'
     ) {
       $path = '/' . substr($path, strlen($prefix));
       $output = substr($output, 0, (int) strrpos($output, '/'));
       continue;
     }
 
-    if ($path == '.' || $path == '..') {
+    if ($path === '.' || $path === '..') {
       $path = '';
       continue;
     }
@@ -775,7 +775,7 @@ function verbose(): void {
 
 ini_set('display_errors', 1);
 
-if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
+if (PHP_SAPI !== 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 

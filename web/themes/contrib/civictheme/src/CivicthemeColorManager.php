@@ -424,7 +424,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     self::validateType($type);
     self::validateTheme($theme);
 
-    if ($type == self::COLOR_TYPE_BRAND) {
+    if ($type === self::COLOR_TYPE_BRAND) {
       $dependents = $this->getColorDependencies($theme, $name);
       foreach ($dependents as $dependent) {
         $dependent->setValue($value, TRUE);
