@@ -4,15 +4,13 @@ _meta:
   uuid: hhh6ae32-3h1b-495a-8263-a08302a80a32
   bundle: menu_link_content
   default_langcode: en
-  depends:
-    c9a1fe64-f6d1-4492-ac7f-6444698cfb12: node
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'Storybook'
+      value: Storybook
   menu_name:
     -
       value: civictheme-secondary-navigation
@@ -26,7 +24,7 @@ default:
       value: false
   rediscover:
     -
-      value: false
+      value: true
   weight:
     -
       value: -1
