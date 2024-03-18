@@ -138,7 +138,7 @@ composer --working-dir="build" require --dev \
   phpcompatibility/php-compatibility \
   phpmd/phpmd \
   mglaman/phpstan-drupal:^1.2 \
-  palantirnet/drupal-rector:^0.19 \
+  palantirnet/drupal-rector:^0.20 \
   friendsoftwig/twigcs:^6.2
 
 echo "  > Symlinking theme code."
