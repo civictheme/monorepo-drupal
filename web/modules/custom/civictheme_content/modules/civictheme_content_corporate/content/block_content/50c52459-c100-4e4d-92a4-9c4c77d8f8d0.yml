@@ -19,6 +19,9 @@ default:
   revision_translation_affected:
     -
       value: true
+  moderation_state:
+    -
+      value: published
   field_c_b_background_image:
     -
       entity: 26820d38-aabc-4c1d-a6df-09fa62a3fe8a
