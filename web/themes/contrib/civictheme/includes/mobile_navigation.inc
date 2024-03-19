@@ -17,6 +17,7 @@ use Drupal\Core\Menu\MenuTreeParameters;
  * Pre-process for Mobile Navigation block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
