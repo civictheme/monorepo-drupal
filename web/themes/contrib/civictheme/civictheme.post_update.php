@@ -532,3 +532,49 @@ function civictheme_post_update_convert_quote_to_content_component(array &$sandb
     },
   );
 }
+
+/**
+ * Add Background field to Promo Component.
+ */
+function civictheme_post_update_add_background_promo_component(array &$sandbox): ?string {
+  $new_field_configs = [
+    'field.field.paragraph.civictheme_promo.field_c_p_background' => 'field_config',
+  ];
+
+  $new_form_display_config = [
+    'civictheme_promo' => [
+      'field_c_p_background' => [
+        'type' => 'boolean_checkbox',
+        'weight' => 6,
+        'region' => 'content',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'third_party_settings' => [],
+      ],
+    ],
+  ];
+
+  return \Drupal::classResolver(CivicthemeUpdateHelper::class)->update(
+    $sandbox,
+    'paragraph',
+    ['civictheme_promo'],
+    // Start callback.
+    static function (CivicthemeUpdateHelper $helper) use ($new_field_configs): void {
+      $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+      $helper->createConfigs($new_field_configs, $config_path);
+    },
+    // Process callback.
+    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity): bool {
+      return TRUE;
+    },
+    // Finished callback.
+    static function (CivicthemeUpdateHelper $helper) use ($new_form_display_config): TranslatableMarkup {
+      foreach ($new_form_display_config as $bundle => $config) {
+        $helper->updateFormDisplayConfig('paragraph', $bundle, $config);
+      }
+
+      return new TranslatableMarkup("Added Background field to Promo Component.\n");
+    }
+  );
+}
