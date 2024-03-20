@@ -17,6 +17,7 @@ use Drupal\Core\Menu\MenuTreeParameters;
  * Pre-process for Mobile Navigation block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -55,7 +56,12 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
       $menu_name = str_replace('menu_block:', '', (string) $block_settings['id']);
       $root = empty(str_replace($menu_name . ':', '', $block_settings['parent'] ?? '')) ? '' : $block_settings['parent'];
 
+      $expand_all_items = $block_settings['expand_all_items'] ?? FALSE;
       $menu_parameters = new MenuTreeParameters();
+      if (!$expand_all_items) {
+        $menu_tree = \Drupal::menuTree();
+        $menu_parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
+      }
       // Only set max depth if the depth was provided (greater than 0).
       if ($block_settings['depth'] ?? 0) {
         $menu_parameters->setMaxDepth($block_settings['depth']);
@@ -74,7 +80,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
       $build = $menu_tree_service->build($tree);
       $variables[$menu_key] = $build['#items'] ?? [];
 
-      _civictheme_preprocess_menu_items($variables[$menu_key]);
+      _civictheme_preprocess_menu_items($variables[$menu_key], $expand_all_items);
 
       $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build));
       $cacheability = $cacheability->addCacheTags($entity_cache_tags);
