@@ -565,8 +565,8 @@ function civictheme_post_update_add_background_promo_component(array &$sandbox):
       $helper->createConfigs($new_field_configs, $config_path);
     },
     // Process callback.
-    static function (CivicthemeUpdateHelper $helper, FieldableEntityInterface $entity): bool {
-      return TRUE;
+    static function (CivicthemeUpdateHelper $helper): void {
+      // Noop.
     },
     // Finished callback.
     static function (CivicthemeUpdateHelper $helper) use ($new_form_display_config): TranslatableMarkup {
