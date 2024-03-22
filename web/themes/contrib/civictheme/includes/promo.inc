@@ -16,4 +16,5 @@ function civictheme_preprocess_paragraph__civictheme_promo(array &$variables): v
   _civictheme_preprocess_paragraph__paragraph_field__link($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
   _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 }

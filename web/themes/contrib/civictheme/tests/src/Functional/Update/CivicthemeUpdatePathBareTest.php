@@ -120,6 +120,9 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update add_background_promo_component');
+    $this->assertSession()->pageTextContains("Added Background field to Promo Component.");
   }
 
 }

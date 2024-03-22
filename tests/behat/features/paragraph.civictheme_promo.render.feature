@@ -8,7 +8,7 @@ Feature: Promo render
       | [TEST] Page Promo test 2 | 1      |
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with Promo light with vertical spacing
+  Scenario: CivicTheme page content type page can be viewed by anonymous with Promo light with vertical spacing without background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Promo test 1" has "civictheme_promo" paragraph:
       | field_c_p_title            | [TEST] Promo title                              |
@@ -22,6 +22,7 @@ Feature: Promo render
     And I should see an ".ct-promo" element
     And I should see an ".ct-promo.ct-theme-light" element
     And I should see an ".ct-promo.ct-vertical-spacing--both" element
+    And I should not see an ".ct-promo--with-background" element
     And I should see the text "[TEST] Promo title"
     And I should see the text "[TEST] Content text"
     And I should see an ".ct-promo__title" element
@@ -30,7 +31,7 @@ Feature: Promo render
     And the response should contain "https://example.com/link1"
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with promo dark without vertical space
+  Scenario: CivicTheme page content type page can be viewed by anonymous with promo dark without vertical space with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Promo test 2" has "civictheme_promo" paragraph:
       | field_c_p_title            | [TEST] Promo title                              |
@@ -38,6 +39,7 @@ Feature: Promo render
       | field_c_p_content:value    | [TEST] Content text                             |
       | field_c_p_content:format   | civictheme_rich_text                            |
       | field_c_p_vertical_spacing | 0                                               |
+      | field_c_p_background       | 1                                               |
       | field_c_p_link             | 0: [TEST] link 2 - 1: https://example.com/link2 |
 
     When I visit "civictheme_page" "[TEST] Page Promo test 2"
@@ -45,6 +47,7 @@ Feature: Promo render
     And I should not see an ".ct-promo.ct-theme-light" element
     And I should see an ".ct-promo.ct-theme-dark" element
     And I should not see an ".ct-promo.ct-vertical-spacing--both" element
+    And I should see an ".ct-promo--with-background" element
     And I should see the text "[TEST] Promo title"
     And I should see the text "[TEST] Content text"
     And I should see an ".ct-promo__title" element

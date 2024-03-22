@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_promo.field_c_p_background
     - field.field.paragraph.civictheme_promo.field_c_p_content
     - field.field.paragraph.civictheme_promo.field_c_p_link
     - field.field.paragraph.civictheme_promo.field_c_p_theme
@@ -17,6 +18,16 @@ targetEntityType: paragraph
 bundle: civictheme_promo
 mode: default
 content:
+  field_c_p_background:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_c_p_content:
     type: text_default
     label: above

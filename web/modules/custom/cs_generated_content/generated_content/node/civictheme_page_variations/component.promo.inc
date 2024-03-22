@@ -36,6 +36,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
 
       [
         'type' => 'promo',
+        'title' => 'Light, BG, ' . $helper::staticSentence(3),
+        'link' => $helper::staticLinkFieldValue(),
+        'theme' => $helper::civicthemeThemeLight(),
+        'background' => TRUE,
+      ],
+      [
+        'type' => 'promo',
+        'title' => 'Dark, BG, ' . $helper::staticSentence(3),
+        'link' => $helper::staticLinkFieldValue(),
+        'theme' => $helper::civicthemeThemeDark(),
+        'background' => TRUE,
+      ],
+
+      [
+        'type' => 'promo',
         'title' => 'Light, Content, Vertical spacing, ' . $helper::staticSentence(3),
         'content' => $helper::staticSentence(8),
         'link' => $helper::staticLinkFieldValue(),
