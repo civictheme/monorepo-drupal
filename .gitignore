@@ -16,6 +16,7 @@ web/themes/*
 !web/themes/contrib/
 web/themes/contrib/*
 !web/themes/contrib/civictheme
+web/themes/contrib/civictheme/lib/uikit
 !web/themes/custom/
 web/themes/custom/*
 !web/themes/custom/.gitkeep
@@ -59,7 +60,3 @@ docker-compose.override.yml
 
 # Ignore configuration as this site is installed from profile.
 /config/*
-
-# Ignore FE lock files. Do not ignore in distributions as they could be required
-# by the consumer sites.
-package-lock.json

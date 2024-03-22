@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Trait CsGeneratedContentTrait.
@@ -210,7 +212,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * @param int|null $count
    *   Number of topics to return.
    *
-   * @return array<int, \Drupal\taxonomy\Entity\Term>
+   * @return array<int, \Drupal\taxonomy\TermInterface>
    *   Array of topics.
    */
   public static function civicthemeStaticTopics(int $count = NULL): array {
@@ -220,7 +222,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Static Topic.
    */
-  public static function civicthemeStaticTopic(): ?Term {
+  public static function civicthemeStaticTopic(): ?TermInterface {
     $entities = static::civicthemeStaticTopics(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;
@@ -252,7 +254,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * @param int|null $count
    *   Number of site sections to return.
    *
-   * @return array<int, \Drupal\taxonomy\Entity\Term>
+   * @return array<int, \Drupal\taxonomy\TermInterface>
    *   Array of site sections.
    */
   public static function civicthemeStaticSiteSections(int $count = NULL): array {
@@ -262,7 +264,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Static Site section.
    */
-  public static function civicthemeStaticSiteSection(): ?Term {
+  public static function civicthemeStaticSiteSection(): ?TermInterface {
     $entities = static::civicthemeStaticSiteSections(1);
 
     return count($entities) > 0 ? reset($entities) : NULL;
@@ -420,12 +422,11 @@ trait CsGeneratedContentCivicthemeTrait {
    */
   protected static function civicthemeNormaliseRichTextContentValue(string|array $value): array {
     $value = is_array($value) ? $value : ['value' => $value];
-    $value += [
+
+    return $value + [
       'value' => '',
       'format' => 'civictheme_rich_text',
     ];
-
-    return $value;
   }
 
   /**
@@ -641,18 +642,13 @@ trait CsGeneratedContentCivicthemeTrait {
       return;
     }
 
-    $defaults = [
-      'content' => '',
-      'author' => '',
-    ];
-
-    $options += $defaults;
-
-    if (empty(array_filter($options))) {
+    if (empty($options['content'])) {
       return;
     }
 
-    $paragraph = self::civicthemeParagraphAttach('civictheme_quote', $node, $field_name, $options, TRUE);
+    $options['content'] = static::civicthemeNormaliseRichTextContentValue($options['content']);
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_content', $node, $field_name, $options, TRUE);
 
     if (!$paragraph instanceof Paragraph) {
       return;

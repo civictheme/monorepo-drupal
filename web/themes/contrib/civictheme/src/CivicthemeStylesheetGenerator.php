@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -30,18 +32,12 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   protected string $stylesheetUri;
 
   /**
-   * File system service.
-   */
-  protected FileSystem $fileSystem;
-
-  /**
    * Constructor.
    *
-   * @param \Drupal\Core\File\FileSystem $file_system
+   * @param \Drupal\Core\File\FileSystem $fileSystem
    *   File system discovery service.
    */
-  public function __construct(FileSystem $file_system) {
-    $this->fileSystem = $file_system;
+  public function __construct(protected FileSystem $fileSystem) {
     $this->setStylesheetUriSuffix('default');
   }
 
@@ -127,7 +123,7 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   protected function getAllStylesheetFiles(): array {
     $files = glob($this->fileSystem->realpath(self::STYLESHEET_URI_PREFIX) . '*.css');
 
-    return !empty($files) ? $files : [];
+    return empty($files) ? [] : $files;
   }
 
   /**
@@ -158,7 +154,7 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
     $content = implode(';', CivicthemeUtility::arrayMergeKeysValues($variables, ':')) . ';';
 
     foreach ($parent_selectors as $parent_selector) {
-      $content = "$parent_selector { $content }";
+      $content = sprintf('%s { %s }', $parent_selector, $content);
     }
 
     return $this->saveStylesheet($content);
@@ -179,7 +175,7 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
       $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
       $this->fileSystem->chmod($filepath);
     }
-    catch (\Exception $exception) {
+    catch (\Exception) {
       // Drupal\Core\File\FileSystem handles logging, so simply handle the
       // exception and assign NULL.
       $filepath = NULL;

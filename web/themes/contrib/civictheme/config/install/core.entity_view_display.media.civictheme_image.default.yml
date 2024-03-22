@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - media.type.civictheme_image
   module:
     - image
@@ -13,25 +14,34 @@ bundle: civictheme_image
 mode: default
 content:
   field_c_m_caption:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_c_m_image:
+    type: image
     label: visually_hidden
-    weight: 0
     settings:
-      image_style: ''
       image_link: ''
+      image_style: ''
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    type: image
+    weight: 0
+    region: content
+  field_c_m_media_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   name: true
   thumbnail: true

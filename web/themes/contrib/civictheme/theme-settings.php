@@ -5,6 +5,8 @@
  * Theme settings form for CivicTheme theme.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeSettingsFormManager;
 use Drupal\Core\Form\FormStateInterface;
 

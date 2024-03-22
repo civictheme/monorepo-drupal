@@ -5,6 +5,8 @@
  * Variations for CivicTheme Event nodes.
  */
 
+declare(strict_types=1);
+
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 
 /**
@@ -19,7 +21,7 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $variations = [
+  return [
     [
       'title' => 'Event. Default values',
     ],
@@ -111,6 +113,4 @@ function _cs_generated_content_create_node_civictheme_event__variations__general
       'body' => $helper::staticRichTextFieldValue(3),
     ],
   ];
-
-  return $variations;
 }

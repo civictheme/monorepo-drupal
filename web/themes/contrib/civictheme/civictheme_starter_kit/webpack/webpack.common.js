@@ -5,10 +5,6 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// eslint-disable-next-line import/no-useless-path-segments
-const { isOutdated, printHeader } = require('../../../../contrib/civictheme/civictheme_library/webpack/info');
-
-printHeader();
 
 module.exports = {
   entry: (function (pattern) {
@@ -108,7 +104,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';`,
+              additionalData: `$ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';`,
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -162,13 +158,11 @@ module.exports = {
       '@molecules': path.resolve(__dirname, '../components_combined/02-molecules'),
       '@organisms': path.resolve(__dirname, '../components_combined/03-organisms'),
       '@templates': path.resolve(__dirname, '../components_combined/04-templates'),
-      '@pages': path.resolve(__dirname, '../components_combined/05-pages'),
       '@ct-base': path.resolve(__dirname, '../.components-civictheme/00-base'),
       '@ct-atoms': path.resolve(__dirname, '../.components-civictheme/01-atoms'),
       '@ct-molecules': path.resolve(__dirname, '../.components-civictheme/02-molecules'),
       '@ct-organisms': path.resolve(__dirname, '../.components-civictheme/03-organisms'),
       '@ct-templates': path.resolve(__dirname, '../.components-civictheme/04-templates'),
-      '@ct-pages': path.resolve(__dirname, '../.components-civictheme/05-pages'),
     },
   },
   stats: {

@@ -1,9 +1,9 @@
 {
-    "name": "civictheme_source-tests",
+    "name": "monorepo-drupal-tests",
     "version": "1.0.0",
-    "description": "Packages used for testing",
+    "description": "Package used for testing",
     "license": "GPL-2.0-or-later",
     "devDependencies": {
-        "bats-helpers": "npm:@drevops/bats-helpers@^1.2"
+        "bats-helpers": "npm:@drevops/bats-helpers@^1.3"
     }
 }

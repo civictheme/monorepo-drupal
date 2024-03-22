@@ -5,6 +5,8 @@
  * Post update hooks for core.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\redirect\Entity\Redirect;
@@ -55,7 +57,7 @@ function civictheme_dev_post_update_provision_storybook_redirects(): string {
   $map = [
     [
       'src' => '/storybook',
-      'dst' => '/themes/contrib/civictheme/civictheme_library/storybook-static/index.html',
+      'dst' => '/themes/custom/civictheme_demo/storybook-static/index.html',
     ],
     [
       'src' => '/storybook-drupal',
@@ -145,7 +147,7 @@ function civictheme_dev_post_update_update_simplesitemap(): string {
   $type_storage = \Drupal::entityTypeManager()->getStorage('simple_sitemap_type');
   $type = $type_storage->load('default_hreflang');
 
-  if ($type) {
+  if ($type !== NULL) {
     // @phpstan-ignore-next-line
     $type->url_generators = [
       'custom',
@@ -180,10 +182,10 @@ function civictheme_dev_post_update_place_listing_example_blocks_into_regions():
 
   foreach ($block_ids as $block_id) {
     $parent_block = Block::load($block_id);
-    $new_id = str_replace('civictheme', $theme_name, $parent_block->get('id'));
+    $new_id = str_replace('civictheme', $theme_name, (string) $parent_block->get('id'));
     $child_block = $parent_block->createDuplicateBlock($new_id, $theme_name);
     $child_block->save();
   }
 
-  return 'Placed Listing example view blocks into the current theme\'s regions.';
+  return "Placed Listing example view blocks into the current theme's regions.";
 }

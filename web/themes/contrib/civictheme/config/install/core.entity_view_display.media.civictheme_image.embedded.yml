@@ -5,40 +5,43 @@ dependencies:
     - core.entity_view_mode.media.embedded
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - media.type.civictheme_image
   module:
     - image
     - layout_builder
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: media.civictheme_image.embedded
 targetEntityType: media
 bundle: civictheme_image
 mode: embedded
 content:
   field_c_m_caption:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   thumbnail:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: ''
       image_link: ''
+      image_style: ''
       image_loading:
         attribute: lazy
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
+  content_moderation_control: true
   created: true
   field_c_m_image: true
+  field_c_m_media_tags: true
   name: true
   uid: true

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
@@ -20,7 +22,7 @@ class CsGeneratedContentAssetGenerator extends GeneratedContentAssetGenerator {
     $module_path = $this->moduleExtensionList->getPath('cs_generated_content');
 
     return [
-      $module_path . DIRECTORY_SEPARATOR . rtrim(static::ASSETS_DIRECTORY, DIRECTORY_SEPARATOR),
+      $module_path . DIRECTORY_SEPARATOR . rtrim((string) static::ASSETS_DIRECTORY, DIRECTORY_SEPARATOR),
     ];
   }
 

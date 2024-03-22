@@ -19,7 +19,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $variations = [
+  return [
     [
       'title' => 'Page. Default values',
     ],
@@ -90,6 +90,4 @@ function _cs_generated_content_create_node_civictheme_page__variations__general(
       'components' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
     ],
   ];
-
-  return $variations;
 }

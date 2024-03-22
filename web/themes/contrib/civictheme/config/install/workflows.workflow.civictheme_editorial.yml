@@ -1,0 +1,116 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_banner
+    - block_content.type.civictheme_component_block
+    - block_content.type.civictheme_mobile_navigation
+    - block_content.type.civictheme_search
+    - block_content.type.civictheme_social_links
+    - media.type.civictheme_audio
+    - media.type.civictheme_document
+    - media.type.civictheme_icon
+    - media.type.civictheme_image
+    - media.type.civictheme_remote_video
+    - media.type.civictheme_video
+    - node.type.civictheme_alert
+    - node.type.civictheme_event
+    - node.type.civictheme_page
+  module:
+    - content_moderation
+id: civictheme_editorial
+label: Editorial
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      label: Archived
+      weight: 1
+      published: false
+      default_revision: true
+    draft:
+      label: Draft
+      weight: -2
+      published: false
+      default_revision: false
+    needs_review:
+      label: 'Needs Review'
+      weight: -1
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+  transitions:
+    archive:
+      label: Archive
+      from:
+        - published
+      to: archived
+      weight: 2
+    create_new_draft:
+      label: 'Create New Draft'
+      from:
+        - draft
+        - published
+      to: draft
+      weight: -2
+    needs_review:
+      label: 'Needs Review'
+      from:
+        - draft
+      to: needs_review
+      weight: -1
+    publish:
+      label: Publish
+      from:
+        - draft
+        - needs_review
+        - published
+      to: published
+      weight: 1
+    restore:
+      label: Restore
+      from:
+        - archived
+      to: published
+      weight: 5
+    restore_to_draft:
+      label: 'Restore to Draft'
+      from:
+        - archived
+      to: draft
+      weight: 3
+    restore_to_needs_review:
+      label: 'Restore to Needs Review'
+      from:
+        - archived
+      to: needs_review
+      weight: 4
+    send_back_to_draft:
+      label: 'Send back to Draft'
+      from:
+        - needs_review
+      to: draft
+      weight: 0
+  entity_types:
+    block_content:
+      - civictheme_banner
+      - civictheme_component_block
+      - civictheme_mobile_navigation
+      - civictheme_search
+      - civictheme_social_links
+    media:
+      - civictheme_audio
+      - civictheme_document
+      - civictheme_icon
+      - civictheme_image
+      - civictheme_remote_video
+      - civictheme_video
+    node:
+      - civictheme_alert
+      - civictheme_event
+      - civictheme_page
+  default_moderation_state: published

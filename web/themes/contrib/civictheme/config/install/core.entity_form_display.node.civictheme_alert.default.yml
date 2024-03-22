@@ -7,7 +7,9 @@ dependencies:
     - field.field.node.civictheme_alert.field_c_n_body
     - field.field.node.civictheme_alert.field_c_n_date_range
     - node.type.civictheme_alert
+    - workflows.workflow.civictheme_editorial
   module:
+    - content_moderation
     - datetime_range
     - path
     - text

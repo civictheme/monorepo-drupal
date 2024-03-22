@@ -5,6 +5,8 @@
  * CivicTheme Government Content module.
  */
 
+declare(strict_types=1);
+
 /**
  * Implements hook_module_implements_alter().
  */

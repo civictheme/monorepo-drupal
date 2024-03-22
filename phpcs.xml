@@ -2,9 +2,13 @@
 <ruleset name="custom">
     <description>Custom PHPCS Standard, based on Drupal standards.</description>
 
+    <!--
+    CivicTheme base theme (web/themes/contrib/civictheme) scanning is not
+    included in this file. See web/themes/contrib/civictheme/phpcs.xml for
+    the basetheme's configuration.
+    -->
     <file>web/modules/custom</file>
     <file>web/themes/custom</file>
-    <file>web/themes/contrib/civictheme</file>
     <file>web/sites/default/settings.php</file>
     <file>web/sites/default/includes</file>
     <file>tests</file>
@@ -19,7 +23,7 @@
     <arg value="sp"/>
     <arg name="parallel" value="75"/>
     <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
-    <config name="testVersion" value="8.1"/>
+    <config name="testVersion" value="8.2"/>
 
     <!-- Exclude CircleCI config files. -->
     <exclude-pattern>circle\.yml</exclude-pattern>
@@ -29,17 +33,14 @@
     <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
 
-    <!-- Exclude CivicTheme library files. -->
-    <exclude-pattern>civictheme_library/*</exclude-pattern>
-    <exclude-pattern>storybook-static/*</exclude-pattern>
-    <exclude-pattern>.storybook/*</exclude-pattern>
-    <exclude-pattern>webpack/*</exclude-pattern>
-    <exclude-pattern>*\.min\.js</exclude-pattern>
+    <!-- Exclude FE assets. -->
     <exclude-pattern>*\.css</exclude-pattern>
-    <exclude-pattern>*dist\/*\.js</exclude-pattern>
+    <exclude-pattern>*\.min\.js</exclude-pattern>
 
-    <!-- Exclude CivicTheme isolated build files. -->
-    <exclude-pattern>civictheme/build/*</exclude-pattern>
+    <exclude-pattern>*\/dist\/*\.js</exclude-pattern>
+    <exclude-pattern>\.storybook/*</exclude-pattern>
+    <exclude-pattern>storybook-static/*</exclude-pattern>
+    <exclude-pattern>webpack/*</exclude-pattern>
 
     <!-- Exclude array-heavy files without any logic. -->
     <exclude-pattern>web\/modules\/custom\/cs_generated_content\/generated_content\/node\/civictheme_page_variations\/.*</exclude-pattern>
@@ -82,5 +83,12 @@
     <!-- @see https://www.drupal.org/project/coder/issues/3309040 -->
     <rule ref="Generic.PHP.UpperCaseConstant.Found">
         <exclude-pattern>\.js</exclude-pattern>
+    </rule>
+
+   <!-- Force declare(strict_types=1); in all PHP files. -->
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
+        </properties>
     </rule>
 </ruleset>

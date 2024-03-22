@@ -5,6 +5,8 @@
  * Create generated images.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
@@ -41,13 +43,14 @@ function cs_generated_content_generated_content_create_media_civictheme_image():
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_JPG);
     $name = sprintf('Generated static Image media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 
     $media = Media::create([
       'bundle' => 'civictheme_image',
       'name' => $name,
+      'moderation_state' => 'published',
     ]);
 
     $media->field_c_m_image->setValue([

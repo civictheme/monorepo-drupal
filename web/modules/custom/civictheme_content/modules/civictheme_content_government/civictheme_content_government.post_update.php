@@ -5,6 +5,8 @@
  * Post update hooks for CivicTheme Government Content.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Utility\UpdateException;
 
@@ -25,7 +27,7 @@ function civictheme_content_government_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode('Home');
   }
-  catch (\Exception $e) {
-    throw new UpdateException($e->getMessage());
+  catch (\Exception $exception) {
+    throw new UpdateException($exception->getMessage());
   }
 }

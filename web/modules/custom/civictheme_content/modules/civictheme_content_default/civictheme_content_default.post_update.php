@@ -5,6 +5,8 @@
  * Post update hooks for CivicTheme Default Demo Content.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Utility\UpdateException;
 
@@ -25,7 +27,7 @@ function civictheme_content_default_post_update_set_homepage(): void {
   try {
     Helper::setHomepageFromNode("Your organisation's tagline");
   }
-  catch (\Exception $e) {
-    throw new UpdateException($e->getMessage());
+  catch (\Exception $exception) {
+    throw new UpdateException($exception->getMessage());
   }
 }

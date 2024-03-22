@@ -77,8 +77,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
               '@breakpoint' => ucfirst($breakpoint),
               '@logo_type' => ucfirst($logo_type),
             ]),
-            '#description' => $this->getPathFieldDescription("logo-{$logo_type}-{$theme}-{$breakpoint}.svg"),
-            '#default_value' => $this->themeConfigManager->load("components.logo.{$logo_type}.{$theme}.{$breakpoint}.path"),
+            '#description' => $this->getPathFieldDescription(sprintf('logo-%s-%s-%s.svg', $logo_type, $theme, $breakpoint)),
+            '#default_value' => $this->themeConfigManager->load(sprintf('components.logo.%s.%s.%s.path', $logo_type, $theme, $breakpoint)),
           ];
 
           $allowed_extensions = $this->imageFactory->getSupportedExtensions();
@@ -90,7 +90,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
               '@breakpoint' => ucfirst($breakpoint),
               '@logo_type' => ucfirst($logo_type),
             ]),
-            '#name' => "files[components_logo_{$logo_type}_{$theme}_{$breakpoint}_upload]",
+            '#name' => sprintf('files[components_logo_%s_%s_%s_upload]', $logo_type, $theme, $breakpoint),
             '#description' => $this->t("Uploading a file will replace the image path above. File will be uploaded into <code>@public</code> directory and will replace an existing file with the same name.", [
               '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
             ]),
@@ -244,7 +244,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
           'dropdown' => $this->t('Dropdown'),
           'drawer' => $this->t('Drawer'),
         ],
-        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown", $navigation_defaults['dropdown']),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.navigation.%s.dropdown', $navigation_name), $navigation_defaults['dropdown']),
       ];
 
       $form['components']['navigation'][$navigation_name]['dropdown_columns'] = [
@@ -253,7 +253,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#type' => 'number',
         '#min' => 1,
         '#max' => 4,
-        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown_columns", $navigation_defaults['dropdown_columns']),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.navigation.%s.dropdown_columns', $navigation_name), $navigation_defaults['dropdown_columns']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER],
@@ -265,7 +265,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#title' => $this->t('Fill width of the last drawer column'),
         '#description' => $this->t('Fill the width of the last column in the drawer. Useful for large menus.'),
         '#type' => 'checkbox',
-        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.dropdown_columns_fill", $navigation_defaults['dropdown_columns_fill']),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.navigation.%s.dropdown_columns_fill', $navigation_name), $navigation_defaults['dropdown_columns_fill']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER],
@@ -277,7 +277,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#title' => $this->t('Animate'),
         '#description' => $this->t('Animate transitions.'),
         '#type' => 'checkbox',
-        '#default_value' => $this->themeConfigManager->load("components.navigation.$navigation_name.is_animated", $navigation_defaults['is_animated']),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.navigation.%s.is_animated', $navigation_name), $navigation_defaults['is_animated']),
         '#states' => [
           'visible' => [
             ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => [
@@ -403,6 +403,13 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
+    $form['components']['publication_card']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('publication_card', 'use_media_name', TRUE),
+    ];
+
     $form['components']['snippet'] = [
       '#type' => 'details',
       '#title' => $this->t('Snippet'),
@@ -419,16 +426,30 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('snippet', 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH),
     ];
 
-    $form['#process'][] = [$this, 'processForm'];
+    $form['components']['attachment'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Attachment'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['attachment']['use_media_name'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use name of media'),
+      '#description' => $this->t('Use name of media rather than file name on attachment component.'),
+      '#default_value' => $this->themeConfigManager->loadForComponent('attachment', 'use_media_name', TRUE),
+    ];
+
+    $form['#process'][] = $this->processForm(...);
 
     // Auto-discover per-component validation and submit handlers.
     foreach (array_keys($form['components']) as $component_name) {
-      $validate = CivicthemeUtility::camelise("validate_$component_name");
+      $validate = CivicthemeUtility::camelise('validate_' . $component_name);
       if (is_callable([$this, $validate])) {
         $form['#validate'][] = [$this, $validate];
       }
 
-      $submit = CivicthemeUtility::camelise("submit_$component_name");
+      $submit = CivicthemeUtility::camelise('submit_' . $component_name);
       if (is_callable([$this, $submit])) {
         $form['#submit'][] = [$this, $submit];
       }
@@ -503,6 +524,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     ];
     $domains = $form_state->getValue($override_domain_field_name_keys, '');
     $domains = CivicthemeUtility::multilineToArray($domains);
+
     $invalid_domains = [];
     foreach ($domains as $domain) {
       // Allow to enter 'example.com' instead of 'http://example.com'.
@@ -542,9 +564,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
           $this->submitFileUpload(
             $form,
             $form_state,
-            // @phpstan-ignore-next-line
             ['components', 'logo', $logo_type, $theme, $breakpoint, 'upload'],
-            // @phpstan-ignore-next-line
             ['components', 'logo', $logo_type, $theme, $breakpoint, 'path']
           );
         }
@@ -561,9 +581,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $this->submitFileUpload(
       $form,
       $form_state,
-      // @phpstan-ignore-next-line
       ['components', 'footer', 'background_image', 'upload'],
-      // @phpstan-ignore-next-line
       ['components', 'footer', 'background_image', 'path']
     );
   }

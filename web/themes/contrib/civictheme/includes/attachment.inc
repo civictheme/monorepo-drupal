@@ -5,6 +5,8 @@
  * CivicTheme Attachment paragraph component.
  */
 
+declare(strict_types=1);
+
 /**
  * Implements template_preprocess_paragraph().
  */
@@ -19,6 +21,9 @@ function civictheme_preprocess_paragraph__civictheme_attachment(array &$variable
   foreach ($attachments as $attachment) {
     $vars = civictheme_media_get_variables($attachment);
     if ($vars) {
+      if (civictheme_get_theme_config_manager()->load('components.attachment.use_media_name', TRUE)) {
+        $vars['name'] = $vars['media_name'];
+      }
       $variables['files'][] = $vars;
     }
   }

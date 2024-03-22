@@ -21,6 +21,9 @@ default:
   revision_translation_affected:
     -
       value: true
+  moderation_state:
+    -
+      value: published
   field_c_b_social_icons:
     -
       entity:

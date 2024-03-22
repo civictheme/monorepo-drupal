@@ -73,7 +73,35 @@ Feature: Publication card render
     And I should see the text "Publication card title 2"
     And I should see the text "Publication card title 3"
     And I should see the text "Publication card title 4"
+    And I should not see the text "test_pdf1.pdf"
+    And I should not see the text "test_pdf2.pdf"
+    And I should not see the text "test_pdf3.pdf"
+    And I should not see the text "test_pdf4.pdf"
+    And I should see the text "[TEST] Document 1"
+    And I should see the text "[TEST] Document 2"
+    And I should see the text "[TEST] Document 3"
+    And I should see the text "[TEST] Document 4"
+
+    Given I am logged in as a user with the "Site Administrator" role
+    When I visit current theme settings page
+    And I uncheck the box "edit-components-publication-card-use-media-name"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+
+    When I visit "civictheme_page" "[TEST] Page Publication cards test"
+    Then I should see the text "[TEST] Publication card manual list"
+    And I should see the link "View all publication cards" with "https://example.com" in '.ct-list'
     And I should see the text "test_pdf1.pdf"
     And I should see the text "test_pdf2.pdf"
     And I should see the text "test_pdf3.pdf"
     And I should see the text "test_pdf4.pdf"
+    And I should not see the text "[TEST] Document 1"
+    And I should not see the text "[TEST] Document 2"
+    And I should not see the text "[TEST] Document 3"
+    And I should not see the text "[TEST] Document 4"
+
+    # Reset settings.
+    When I visit current theme settings page
+    And I check the box "Confirm settings reset"
+    And I press "reset_to_defaults"
+    Then I should see the text "Theme configuration was reset to defaults."

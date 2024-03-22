@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 use Drupal\civictheme\Settings\CivicthemeSettingsFormSectionBase;
@@ -14,21 +16,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class CivicthemeSettingsFormManager implements ContainerInjectionInterface {
 
   /**
-   * Plugin loader.
-   */
-  protected CivicthemePluginLoader $pluginLoader;
-
-  /**
-   * Theme extension list.
-   */
-  protected ThemeExtensionList $themeExtensionList;
-
-  /**
    * {@inheritdoc}
    */
-  public function __construct(CivicthemePluginLoader $plugin_loader, ThemeExtensionList $theme_extension_list) {
-    $this->pluginLoader = $plugin_loader;
-    $this->themeExtensionList = $theme_extension_list;
+  public function __construct(
+    protected CivicthemePluginLoader $pluginLoader,
+    protected ThemeExtensionList $themeExtensionList
+  ) {
   }
 
   /**
@@ -52,9 +45,8 @@ final class CivicthemeSettingsFormManager implements ContainerInjectionInterface
     );
 
     // Sort by weight.
-    usort($sections, function ($a, $b): int {
-      // @phpstan-ignore-next-line
-      return strnatcasecmp($a->weight(), $b->weight());
+    usort($sections, static function ($a, $b): int {
+      return strnatcasecmp((string) $a->weight(), (string) $b->weight());
     });
 
     foreach ($sections as $section) {

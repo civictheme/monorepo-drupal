@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.full
+    - field.field.media.civictheme_remote_video.field_c_m_media_tags
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
@@ -27,7 +28,9 @@ content:
     weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
+  field_c_m_media_tags: true
   field_c_m_oembed_video: true
   field_c_m_transcript_link: true
   name: true

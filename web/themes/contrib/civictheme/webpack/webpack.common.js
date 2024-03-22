@@ -5,9 +5,6 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { isOutdated, printHeader } = require('../civictheme_library/webpack/info');
-
-printHeader();
 
 module.exports = {
   entry: (function (pattern) {
@@ -107,7 +104,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: '/themes/contrib/civictheme/dist/assets/';`,
+              additionalData: `$ct-assets-directory: '/themes/contrib/civictheme/dist/assets/';`,
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -161,7 +158,6 @@ module.exports = {
       '@molecules': path.resolve(__dirname, '../components/02-molecules'),
       '@organisms': path.resolve(__dirname, '../components/03-organisms'),
       '@templates': path.resolve(__dirname, '../components/04-templates'),
-      '@pages': path.resolve(__dirname, '../components/05-pages'),
     },
   },
   stats: {

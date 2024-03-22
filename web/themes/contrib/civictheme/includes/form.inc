@@ -5,6 +5,8 @@
  * Form alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
@@ -36,14 +38,19 @@ function civictheme_preprocess_input(array &$variables): void {
 
   $variables['state'] = 'none';
 
-  if (isset($variables['attributes']['class'])) {
-    if (in_array('error', $variables['attributes']['class'])) {
-      $variables['state'] = 'error';
-    }
+  if (isset($variables['attributes']['class']) && in_array('error', $variables['attributes']['class'])) {
+    $variables['state'] = 'error';
   }
 
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
+  }
+
+  // Fix htmlentity in submit button text.
+  $element = $variables['element'];
+
+  if (isset($element['#type']) && in_array($element['#type'], ['submit', 'button'])) {
+    $variables['value'] = $variables['attributes']['value'] ?? 'Submit';
   }
 }
 
@@ -75,7 +82,7 @@ function civictheme_preprocess_form_element_label(array &$variables): void {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_form_alter__webform_submission(array &$form, FormStateInterface $form_state, string $form_id): void {
-  if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
+  if (!empty($form_id) && str_starts_with($form_id, 'webform_submission_')) {
     /** @var \Drupal\webform\WebformSubmissionForm $form_object */
     $form_object = $form_state->getFormObject();
 
@@ -83,7 +90,7 @@ function _civictheme_form_alter__webform_submission(array &$form, FormStateInter
     $webform_submission = $form_object->getEntity();
     $source = $webform_submission->getSourceEntity();
 
-    $paragraph_id = !empty($source) ? $source->id() : '';
+    $paragraph_id = empty($source) ? '' : $source->id();
     if (!empty($paragraph_id) && !empty($form['elements'])) {
       $theme = civictheme_get_field_theme_value(Paragraph::load($paragraph_id));
       _civictheme_form__propagate_component_theme($form['elements'], $theme);
@@ -108,10 +115,12 @@ function _civictheme_form_alter__non_form_elements(array &$elements): void {
     if (empty($elements[$element_key]['#type'])) {
       continue;
     }
+
     $nested_elements = Element::children($elements[$element_key]);
     if (!empty($nested_elements)) {
       _civictheme_form_alter__non_form_elements($elements[$element_key]);
     }
+
     // Add elements to modify to this switch.
     switch ($elements[$element_key]['#type']) {
       case 'link':

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.civictheme_video.field_c_m_media_tags
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
@@ -15,6 +16,14 @@ targetEntityType: media
 bundle: civictheme_video
 mode: default
 content:
+  field_c_m_media_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_c_m_transcript:
     type: text_default
     label: above
@@ -49,6 +58,7 @@ content:
     weight: 0
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   name: true
   thumbnail: true

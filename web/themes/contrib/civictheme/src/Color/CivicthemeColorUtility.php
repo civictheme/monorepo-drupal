@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Color;
 
 /**
@@ -14,7 +16,7 @@ class CivicthemeColorUtility {
    *
    * @see https://www.w3.org/TR/css-color-3/
    */
-  const KEYWORDS = [
+  final const KEYWORDS = [
     'black' => '#000000',
     'silver' => '#C0C0C0',
     'gray' => '#808080',
@@ -76,9 +78,7 @@ class CivicthemeColorUtility {
       (1 - $percentage) * $color[2] + $percentage * $mixer[2],
     ];
 
-    $result = '#' . self::intToHex($result[0]) . self::intToHex($result[1]) . self::intToHex($result[2]);
-
-    return $result;
+    return '#' . self::intToHex($result[0]) . self::intToHex($result[1]) . self::intToHex($result[2]);
   }
 
   /**
@@ -146,6 +146,7 @@ class CivicthemeColorUtility {
       if (str_starts_with($hex, '#')) {
         $hex = static::normalizeHex($hex);
       }
+
       $rgb[] = hexdec($hex[0] . $hex[1]);
       $rgb[] = hexdec($hex[2] . $hex[3]);
       $rgb[] = hexdec($hex[4] . $hex[5]);

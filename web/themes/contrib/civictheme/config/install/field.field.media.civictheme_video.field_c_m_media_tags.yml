@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_media_tags
+    - media.type.civictheme_video
+    - taxonomy.vocabulary.civictheme_media_tags
+id: media.civictheme_video.field_c_m_media_tags
+field_name: field_c_m_media_tags
+entity_type: media
+bundle: civictheme_video
+label: 'Media tags'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      civictheme_media_tags: civictheme_media_tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

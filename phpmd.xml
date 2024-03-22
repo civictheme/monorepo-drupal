@@ -11,6 +11,7 @@
     <exclude-pattern>*/web/core/*</exclude-pattern>
     <exclude-pattern>*/web/profiles/contrib/*</exclude-pattern>
     <exclude-pattern>*/web/modules/contrib/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/*</exclude-pattern>
     <exclude-pattern>*/web/sites/*</exclude-pattern>
     <exclude-pattern>*/scripts/*</exclude-pattern>
     <exclude-pattern>*/tests/*Test.php</exclude-pattern>

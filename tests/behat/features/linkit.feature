@@ -36,7 +36,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I check the box "Published"
+    And I select "Published" from "edit-moderation-state-0-state"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Page linkit render"
@@ -60,7 +60,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I check the box "Published"
+    And I select "Published" from "edit-moderation-state-0-state"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Event linkit render"
@@ -84,7 +84,7 @@ Feature: Linkit works correctly on pages
     Then I click on ".linkit-result-line.ui-menu-item" element
     Then I click on ".ck-button-save" element
     And I wait 2 seconds
-    And I check the box "Published"
+    And I select "Published" from "edit-moderation-state-0-state"
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Document Media linkit render"

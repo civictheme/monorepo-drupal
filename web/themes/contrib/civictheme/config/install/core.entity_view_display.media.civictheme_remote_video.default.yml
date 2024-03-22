@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.civictheme_remote_video.field_c_m_media_tags
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
@@ -15,6 +16,14 @@ targetEntityType: media
 bundle: civictheme_remote_video
 mode: default
 content:
+  field_c_m_media_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_c_m_oembed_video:
     type: oembed
     label: visually_hidden
@@ -31,7 +40,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_c_m_transcript_link:
     type: link
@@ -43,9 +52,10 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
 hidden:
+  content_moderation_control: true
   created: true
   name: true
   thumbnail: true

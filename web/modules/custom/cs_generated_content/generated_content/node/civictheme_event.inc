@@ -5,6 +5,8 @@
  * Create generated Event nodes.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\node\NodeInterface;
@@ -126,7 +128,7 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   if (!empty($variation['alias'])) {
     // Replace tokens in an alias.
-    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, function ($value) {
+    $variation['alias'] = $helper::replaceTokens($variation['alias'], $variation, static function ($value) {
       return is_string($value) ? \Drupal::service('pathauto.alias_cleaner')->cleanString($value) : $value;
     });
 
@@ -137,44 +139,45 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
   }
 
   if (!empty($variation['summary']) && $node->hasField('field_c_n_summary')) {
-    $node->field_c_n_summary = $variation['summary'];
+    $node->set('field_c_n_summary', $variation['summary']);
   }
 
   if (!empty($variation['body']) && $node->hasField('field_c_n_body')) {
-    $node->field_c_n_body = $variation['body'];
+    $node->set('field_c_n_body', $variation['body']);
   }
 
   if (!empty($variation['thumbnail']) && $node->hasField('field_c_n_thumbnail')) {
-    $node->field_c_n_thumbnail = $variation['thumbnail'];
+    $node->set('field_c_n_thumbnail', $variation['thumbnail']);
   }
 
   if (!empty($variation['topics']) && $node->hasField('field_c_n_topics')) {
-    $node->field_c_n_topics = $variation['topics'];
+    $node->set('field_c_n_topics', $variation['topics']);
   }
 
   if (!empty($variation['date_range']) && $node->hasField('field_c_n_date_range')) {
-    $node->field_c_n_date_range = $variation['date_range'];
+    $node->set('field_c_n_date_range', $variation['date_range']);
   }
 
   if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
-    $node->field_c_n_site_section = $variation['site_section'];
+    $node->set('field_c_n_site_section', $variation['site_section']);
   }
 
   if (isset($variation['vertical_spacing']) && $node->hasField('field_c_n_vertical_spacing')) {
-    $node->field_c_n_vertical_spacing = $variation['vertical_spacing'];
+    $node->set('field_c_n_vertical_spacing', $variation['vertical_spacing']);
   }
 
   if (isset($variation['show_last_updated']) && $node->hasField('field_c_n_show_last_updated')) {
-    $node->field_c_n_show_last_updated = $variation['show_last_updated'];
+    $node->set('field_c_n_show_last_updated', $variation['show_last_updated']);
   }
 
   if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
-    $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
+    $node->set('field_c_n_custom_last_updated', $variation['custom_updated_date']);
   }
 
   // Locations.
   if (!empty($variation['location']) && $node->hasField('field_c_n_location')) {
-    for ($i = 0; $i < count($variation['location']); $i++) {
+    $counter = count($variation['location']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['location'][$i]['type'];
       // Remove component type and passthrough properties.
@@ -185,7 +188,8 @@ function _cs_generated_content_create_node_civictheme_event__variation_to_fields
 
   // Attachments.
   if (!empty($variation['attachments']) && $node->hasField('field_c_n_attachments')) {
-    for ($i = 0; $i < count($variation['attachments']); $i++) {
+    $counter = count($variation['attachments']);
+    for ($i = 0; $i < $counter; $i++) {
       // Extract component type.
       $component_type = $variation['attachments'][$i]['type'];
       // Remove component type and passthrough properties.

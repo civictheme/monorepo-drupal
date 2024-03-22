@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -48,7 +50,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
 
     $form['optout_details']['mapping']['content'] = [
       '#theme' => 'item_list',
-      '#items' => array_map(function ($key, $description): FormattableMarkup {
+      '#items' => array_map(static function ($key, $description): FormattableMarkup {
         return new FormattableMarkup('<code>@key</code>: @description', [
           '@key' => $key,
           '@description' => $description,
@@ -61,7 +63,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
    * Convert element value from multiline string to an array.
    */
   public static function multilineToArray(array $element, FormStateInterface $form_state): void {
-    $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", $element['#value']));
+    $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", (string) $element['#value']));
     $form_state->setValueForElement($element, array_values(array_filter(array_map('trim', $lines))));
   }
 

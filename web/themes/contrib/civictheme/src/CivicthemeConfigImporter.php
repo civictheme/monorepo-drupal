@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 use Drupal\Component\Serialization\Json;
@@ -38,94 +40,29 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
   protected $storages;
 
   /**
-   * The event dispatcher used to notify subscribers.
-   */
-  protected EventDispatcherInterface $eventDispatcher;
-
-  /**
-   * The configuration manager.
-   */
-  protected ConfigManagerInterface $configManager;
-
-  /**
-   * The used lock backend instance.
-   */
-  protected LockBackendInterface $lockPersistent;
-
-  /**
-   * The typed config manager.
-   */
-  protected TypedConfigManagerInterface $typedConfigManager;
-
-  /**
-   * The module handler.
-   */
-  protected ModuleHandlerInterface $moduleHandler;
-
-  /**
-   * The theme handler.
-   */
-  protected ThemeHandlerInterface $themeHandler;
-
-  /**
-   * The module installer.
-   */
-  protected ModuleInstallerInterface $moduleInstaller;
-
-  /**
-   * The module extension list.
-   */
-  protected ModuleExtensionList $moduleExtensionList;
-
-  /**
-   * The module extension list.
-   */
-  protected StorageInterface $configStorage;
-
-  /**
-   * The cache backend.
-   */
-  protected CacheBackendInterface $cacheConfig;
-
-  /**
-   * The messenger.
-   */
-  protected MessengerInterface $messenger;
-
-  /**
-   * The logger channel.
-   */
-  protected LoggerChannelInterface $logger;
-
-  /**
-   * The string translation.
-   */
-  protected TranslationInterface $stringTranslation;
-
-  /**
    * Constructor.
    *
-   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $eventDispatcher
    *   The event dispatcher used to notify subscribers of config import events.
-   * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
+   * @param \Drupal\Core\Config\ConfigManagerInterface $configManager
    *   The configuration manager.
-   * @param \Drupal\Core\Lock\LockBackendInterface $lock
+   * @param \Drupal\Core\Lock\LockBackendInterface $lockPersistent
    *   The lock backend.
-   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typedConfigManager
    *   The typed configuration manager.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   The module handler.
-   * @param \Drupal\Core\Extension\ModuleInstallerInterface $module_installer
+   * @param \Drupal\Core\Extension\ModuleInstallerInterface $moduleInstaller
    *   The module installer.
-   * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
+   * @param \Drupal\Core\Extension\ThemeHandlerInterface $themeHandler
    *   The theme handler.
-   * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
+   * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   The string translation service.
-   * @param \Drupal\Core\Extension\ModuleExtensionList $module_extension_list
+   * @param \Drupal\Core\Extension\ModuleExtensionList $moduleExtensionList
    *   The module extension list.
-   * @param \Drupal\Core\Config\StorageInterface $config_storage
+   * @param \Drupal\Core\Config\StorageInterface $configStorage
    *   The config storage.
-   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_config
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cacheConfig
    *   The cache backend.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The messenger.
@@ -134,34 +71,7 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
-  public function __construct(
-    EventDispatcherInterface $event_dispatcher,
-    ConfigManagerInterface $config_manager,
-    LockBackendInterface $lock,
-    TypedConfigManagerInterface $typed_config_manager,
-    ModuleHandlerInterface $module_handler,
-    ModuleInstallerInterface $module_installer,
-    ThemeHandlerInterface $theme_handler,
-    TranslationInterface $string_translation,
-    ModuleExtensionList $module_extension_list,
-    StorageInterface $config_storage,
-    CacheBackendInterface $cache_config,
-    MessengerInterface $messenger,
-    LoggerChannelInterface $logger
-  ) {
-    $this->eventDispatcher = $event_dispatcher;
-    $this->configManager = $config_manager;
-    $this->lockPersistent = $lock;
-    $this->typedConfigManager = $typed_config_manager;
-    $this->moduleHandler = $module_handler;
-    $this->moduleInstaller = $module_installer;
-    $this->themeHandler = $theme_handler;
-    $this->stringTranslation = $string_translation;
-    $this->moduleExtensionList = $module_extension_list;
-    $this->configStorage = $config_storage;
-    $this->cacheConfig = $cache_config;
-    $this->messenger = $messenger;
-    $this->logger = $logger;
+  public function __construct(protected EventDispatcherInterface $eventDispatcher, protected ConfigManagerInterface $configManager, protected LockBackendInterface $lockPersistent, protected TypedConfigManagerInterface $typedConfigManager, protected ModuleHandlerInterface $moduleHandler, protected ModuleInstallerInterface $moduleInstaller, protected ThemeHandlerInterface $themeHandler, protected TranslationInterface $stringTranslation, protected ModuleExtensionList $moduleExtensionList, protected StorageInterface $configStorage, protected CacheBackendInterface $cacheConfig, protected MessengerInterface $messenger, protected LoggerChannelInterface $logger) {
   }
 
   /**
@@ -259,6 +169,7 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
         $this->logger->error($error);
         $this->messenger->addError($error);
       }
+
       throw $exception;
     }
   }
@@ -305,10 +216,10 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  protected function replaceTokens($data, array $tokens = []) {
+  protected function replaceTokens(mixed $data, array $tokens = []) {
     foreach ($tokens as $k => $v) {
       $key = str_replace('/', '\/', $k);
-      $value = $v ? str_replace('/', '\/', $v) : $v;
+      $value = $v ? str_replace('/', '\/', (string) $v) : $v;
       unset($tokens[$k]);
       $tokens[$key] = $value;
     }

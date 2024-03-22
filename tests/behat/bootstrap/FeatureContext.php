@@ -5,6 +5,8 @@
  * CivicTheme Drupal context for Behat testing.
  */
 
+declare(strict_types=1);
+
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\DocumentElement;
@@ -170,7 +172,7 @@ class FeatureContext extends DrupalContext {
    */
   protected function clickFilterChip(string $label, NodeElement $filter_chip, DocumentElement $page): void {
     $filter_chip_id = $filter_chip->getAttribute('id');
-    $label_element = $page->find('css', "label[for='$filter_chip_id']");
+    $label_element = $page->find('css', sprintf("label[for='%s']", $filter_chip_id));
     $label_on_page = $label_element->getText();
     if ($label != $label_on_page) {
       throw new \Exception(sprintf("Filter chip with id '%s' has label '%s' instead of '%s' on the page %s", $filter_chip_id, $label_on_page, $label, $this->getSession()->getCurrentUrl()));
@@ -258,13 +260,13 @@ class FeatureContext extends DrupalContext {
     $element = $page;
     if ($locator) {
       $element = $page->find('css', $locator);
-      if (!$element) {
+      if ($element === NULL) {
         return;
       }
     }
 
     $link = $element->findLink($text);
-    if (!$link) {
+    if ($link === NULL) {
       return;
     }
 
@@ -274,8 +276,8 @@ class FeatureContext extends DrupalContext {
 
     $pattern = '/' . preg_quote($href, '/') . '/';
     // Support for simplified wildcard using '*'.
-    $pattern = strpos($href, '*') !== FALSE ? str_replace('\*', '.*', $pattern) : $pattern;
-    if (preg_match($pattern, $link->getAttribute('href'))) {
+    $pattern = str_contains($href, '*') ? str_replace('\*', '.*', $pattern) : $pattern;
+    if (preg_match($pattern, (string) $link->getAttribute('href'))) {
       throw new \Exception(sprintf('The link href "%s" matches the specified href "%s" but should not', $link->getAttribute('href'), $href));
     }
   }
@@ -332,7 +334,7 @@ class FeatureContext extends DrupalContext {
     try {
       \Drupal::service('theme_installer')->uninstall([$name]);
     }
-    catch (UnknownExtensionException $exception) {
+    catch (UnknownExtensionException) {
       print sprintf('The "%s" theme is not installed.', $name);
     }
   }
@@ -356,7 +358,7 @@ class FeatureContext extends DrupalContext {
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function themeVisitSettings(string $name = NULL): void {
-    if (!$name || $name == 'current') {
+    if (!$name || $name === 'current') {
       $name = \Drupal::theme()->getActiveTheme()->getName();
     }
 
@@ -388,7 +390,7 @@ class FeatureContext extends DrupalContext {
           $menu_link->delete();
         }
       }
-      catch (\Exception $exception) {
+      catch (\Exception) {
         continue;
       }
     }
@@ -417,7 +419,7 @@ class FeatureContext extends DrupalContext {
 
         $block->delete();
       }
-      catch (\Exception $exception) {
+      catch (\Exception) {
         continue;
       }
     }
@@ -447,7 +449,7 @@ class FeatureContext extends DrupalContext {
         $entity = reset($entities);
         $entity->delete();
       }
-      catch (\Exception $exception) {
+      catch (\Exception) {
         continue;
       }
     }
@@ -475,7 +477,7 @@ class FeatureContext extends DrupalContext {
 
     /** @var \Drupal\node\NodeInterface $node */
     $translations = array_keys($node->getTranslationLanguages());
-    $get_ids = function (string $langcode) use ($nid): string {
+    $get_ids = static function (string $langcode) use ($nid) : string {
       return $nid . ':' . $langcode;
     };
     $index_ids = array_map($get_ids, $translations);
@@ -501,16 +503,16 @@ class FeatureContext extends DrupalContext {
     $value = $this->wysiwygFixStepArgument($value);
 
     // Convert ot hyphenated machine name.
-    $field = str_replace('_', '-', $field);
+    $field = str_replace('_', '-', (string) $field);
 
     $this->getSession()
       ->executeScript(
         "
-        const domEditableElement = document.querySelector(\"div.form-item--$field-0-value .ck-editor__editable\");
+        const domEditableElement = document.querySelector(\"div.form-item--{$field}-0-value .ck-editor__editable\");
         if (domEditableElement.ckeditorInstance) {
           const editorInstance = domEditableElement.ckeditorInstance;
           if (editorInstance) {
-            editorInstance.setData(\"$value\");
+            editorInstance.setData(\"{$value}\");
           } else {
             throw new Exception('Could not get the editor instance');
           }

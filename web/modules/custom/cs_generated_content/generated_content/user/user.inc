@@ -5,9 +5,12 @@
  * Create generated users.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\Core\Utility\Error;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
+use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -38,7 +41,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
   $users = [];
 
-  $roles = user_roles();
+  $roles = Role::loadMultiple();
   foreach ($roles as $role) {
     if (in_array($role->id(), [
       'anonymous', 'authenticated',
@@ -51,7 +54,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
       if (!empty($role_id)) {
 
-        $name = sprintf('p.civictheme+%s_%s@salsadigital.com.au', str_replace('civictheme_', '', $role_id), $i);
+        $name = sprintf('p.civictheme+%s_%s@salsa.digital', str_replace('civictheme_', '', $role_id), $i);
 
         $existing_user = user_load_by_name($name);
         if ($existing_user) {
@@ -60,7 +63,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
         /** @var \Drupal\user\RoleInterface|null $role */
         $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_id);
-        if ($role) {
+        if ($role !== NULL) {
           $user = User::create();
           $user->setUsername($name);
           $user->setEmail($name);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 use Drupal\Core\DependencyInjection\ClassResolverInterface;
@@ -15,18 +17,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class CivicthemePluginLoader implements ContainerInjectionInterface {
 
   /**
-   * Class resolver service.
-   */
-  protected ClassResolverInterface $classResolver;
-
-  /**
    * Plugin loader constructor.
    *
-   * @param \Drupal\Core\DependencyInjection\ClassResolverInterface $class_resolver
+   * @param \Drupal\Core\DependencyInjection\ClassResolverInterface $classResolver
    *   Class resolver.
    */
-  public function __construct(ClassResolverInterface $class_resolver) {
-    $this->classResolver = $class_resolver;
+  public function __construct(protected ClassResolverInterface $classResolver) {
   }
 
   /**

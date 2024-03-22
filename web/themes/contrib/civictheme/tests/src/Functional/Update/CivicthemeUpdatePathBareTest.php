@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\civictheme\Functional\Update;
 
 use Drupal\FunctionalTests\Update\UpdatePathTestBase;
@@ -26,7 +28,9 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
     // this list and remove items.
     'civictheme.settings',
     'core.entity_form_display.node.civictheme_event.default',
+    'core.entity_view_display.node.civictheme_event.default',
     'core.entity_form_display.node.civictheme_page.default',
+    'core.entity_view_display.node.civictheme_page.default',
     'block.block.civictheme_footer_acknowledgment_of_country',
     'block.block.civictheme_footer_copyright',
     'block.block.civictheme_footer_social_links',
@@ -48,7 +52,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles = [
-      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.3.2.bare.php.gz',
+      __DIR__ . '/../../../fixtures/updates/drupal_10.0.0-rc1.minimal.civictheme_1.4.0.bare.php.gz',
     ];
   }
 
@@ -57,7 +61,7 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
    *
    * This is a smoke test for the hook_update_N() CivicTheme test system itself.
    */
-  public function testDatabaseLoaded(): void {
+  protected function testDatabaseLoaded(): void {
     $this->assertEquals('minimal', \Drupal::config('core.extension')->get('profile'));
     // Ensure that a user can be created and do a basic test that
     // the site is available by logging in.
@@ -105,6 +109,13 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
 
     $this->assertSession()->pageTextContains('Update set_vertical_spacing_empty_value');
     $this->assertSession()->pageTextContains("Updated values for fields 'field_c_n_vertical_spacing' and 'field_c_p_vertical_spacing'.");
+    $this->assertSession()->pageTextContains('Update ran in');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Processed: 0');
+    $this->assertSession()->pageTextContains('Updated: 0');
+
+    $this->assertSession()->pageTextContains('Update convert_quote_to_content_component');
+    $this->assertSession()->pageTextContains("Updated quote component to a content component.");
     $this->assertSession()->pageTextContains('Update ran in');
     $this->assertSession()->pageTextContains('Processed: 0');
     $this->assertSession()->pageTextContains('Processed: 0');

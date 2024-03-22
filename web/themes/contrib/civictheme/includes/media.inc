@@ -5,6 +5,9 @@
  * Media theme alterations.
  */
 
+declare(strict_types=1);
+
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
@@ -54,6 +57,7 @@ function civictheme_preprocess_media__civictheme_video(array &$variables): void 
     if (!$video_file instanceof FileInterface) {
       continue;
     }
+
     $variables['sources'][] = [
       'url' => $video_file->createFileUrl(),
       'type' => $video_file->getMimeType(),
@@ -104,7 +108,7 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
     _civictheme_preprocess_media__civictheme_video_links($variables);
     _civictheme_preprocess_media__civictheme_video_transcript($variables);
   }
-  catch (Exception $e) {
+  catch (Exception) {
     // Handling any oEmbed exceptions in rendering remote video.
   }
 }
@@ -125,7 +129,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
   }
 
   $transcript_attributes = new Attribute();
-  $transcript_attributes->setAttribute('aria-label', t('View transcript @label', [
+  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript @label', [
     '@label' => $media->label(),
   ]));
   // Transcript link points to the video if the transcript is empty or
@@ -141,7 +145,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
     /** @var \Drupal\link\LinkItemInterface $link */
     $link = $media->get('field_c_m_transcript_link')->first();
     $variables['transcript_link'] = [
-      'text' => !empty($link->get('title')->getValue()) ? $link->get('title')->getValue() : t('View transcript'),
+      'text' => empty($link->get('title')->getValue()) ? t('View transcript') : $link->get('title')->getValue(),
       'url' => $link->getUrl()->toString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
@@ -157,9 +161,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(array &$variables): void {
   // Show transcript on the media landing page.
-  if ($variables['view_mode'] == 'full') {
-    if (!empty($variables['content']['field_c_m_transcript'])) {
-      $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
-    }
+  if ($variables['view_mode'] == 'full' && !empty($variables['content']['field_c_m_transcript'])) {
+    $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
   }
 }

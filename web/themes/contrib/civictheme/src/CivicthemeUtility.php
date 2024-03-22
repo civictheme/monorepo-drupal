@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 /**
@@ -74,11 +76,13 @@ final class CivicthemeUtility {
     $attributes = [];
 
     if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
-      for ($i = 0; $i < count($matches[0]); $i++) {
+      $counter = count($matches[0]);
+      for ($i = 0; $i < $counter; $i++) {
         if ($matches[3][$i]) {
           $attributes[$matches[3][$i]] = NULL;
           continue;
         }
+
         $attributes[$matches[1][$i]] = $matches[2][$i];
       }
     }
@@ -113,7 +117,7 @@ final class CivicthemeUtility {
 
     foreach ($array as $key => $value) {
       if (is_array($value)) {
-        $result = $result + self::flattenArray($value, $separator, $prefix . $key . $separator);
+        $result += self::flattenArray($value, $separator, $prefix . $key . $separator);
       }
       else {
         $result[$prefix . $key] = $value;
@@ -143,6 +147,7 @@ final class CivicthemeUtility {
       if (!is_scalar($v)) {
         continue;
       }
+
       $result[] = $k . $separator . $v;
     }
 

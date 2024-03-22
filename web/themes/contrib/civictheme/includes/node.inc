@@ -5,6 +5,8 @@
  * Node related functions.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;
@@ -48,7 +50,7 @@ function _civictheme_preprocess_node(array &$variables): void {
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
     $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
     if (!empty($topics)) {
-      $topics = array_map(function ($topic) {
+      $topics = array_map(static function ($topic) {
         return $topic->label();
       }, $topics);
 
@@ -94,7 +96,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = _civictheme_process__html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
+  $variables['description'] = _civictheme_process__html_content((string) civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
     // Force dark theme to make sure that text colour has enough contrast with
     // a background.
     'theme' => CivicthemeConstants::THEME_DARK,
@@ -133,10 +135,10 @@ function _civictheme_node_get_updated_date(NodeInterface $node, string $format =
   $date = NULL;
 
   if ($show_last_updated && !empty($custom_updated_value)) {
-    $date = civictheme_format_date($format, $custom_updated_value->get('value')->getDateTime());
+    $date = civictheme_format_datetime($custom_updated_value->get('value')->getDateTime(), $format);
   }
   elseif ($show_last_updated) {
-    $date = civictheme_format_date($format, $node->getChangedTime());
+    $date = civictheme_format_datetime($node->getChangedTime(), $format);
   }
 
   return $date;

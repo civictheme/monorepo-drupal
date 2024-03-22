@@ -17,6 +17,9 @@ default:
   revision_translation_affected:
     -
       value: true
+  moderation_state:
+    -
+      value: published
   field_c_b_bottom:
     -
       target_id: civictheme_secondary_navigation

@@ -15,9 +15,9 @@ echo "[INFO] Activating sub-theme."
 [ "${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP:-}" = "1" ] && echo "[ OK ] Skipping sub-theme activation" && return
 
 if [ ! -d /app/web/themes/custom/civictheme_demo ]; then
-  echo "  > Creating civictheme_demo subtheme."
+  echo "  > Creating civictheme_demo sub-theme."
   pushd /app/web/themes/contrib/civictheme >/dev/null || exit 1
-  php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." --remove-examples
   [ ! -d /app/web/themes/custom/civictheme_demo ] && echo "[ERROR] Failed to create civictheme_demo sub-theme." && exit 1
   popd >/dev/null || exit 1
 fi

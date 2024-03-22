@@ -37,6 +37,9 @@ default:
   revision_translation_affected:
     -
       value: true
+  moderation_state:
+    -
+      value: published
   path:
     -
       alias: /our-award-winning-researchers
@@ -231,7 +234,7 @@ default:
                       options: {  }
                   field_c_p_summary:
                     -
-                      value: 'My University researchers have made a breakthrough in chemotherapy that will increase a patient''s life expectancy by 20%. '
+                      value: "My University researchers have made a breakthrough in chemotherapy that will increase a patient's life expectancy by 20%. "
                   field_c_p_theme:
                     -
                       value: light

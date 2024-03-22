@@ -24,6 +24,8 @@
  * phpcs:disable DrupalPractice.Commenting.CommentEmptyLine.SpacingAfter
  */
 
+declare(strict_types=1);
+
 /**
  * Defines exit codes.
  */
@@ -56,19 +58,28 @@ function main(array $argv, int $argc): int {
 
   $template = "// phpcs:ignoreFile\n";
 
+  $extensions = ['js'];
+
   $target_directories = $argv[1];
   $target_directories_original = $target_directories;
 
-  print "==> Started adding of PHPCS exclusions to files in directories $target_directories_original." . PHP_EOL;
+  print sprintf('==> Started adding of PHPCS exclusions to files in directories %s.', $target_directories_original) . PHP_EOL;
 
-  $target_directories = explode(',', $target_directories);
+  $target_directories = explode(',', (string) $target_directories);
 
   $files = [];
   foreach ($target_directories as $target_directory) {
     $target_directory = getcwd() . '/' . $target_directory;
 
     if (file_exists($target_directory) && is_dir($target_directory)) {
-      $files = array_merge($files, glob($target_directory . '**/*.js') ?: []);
+      $directory = new RecursiveDirectoryIterator($target_directory);
+      $iterator = new RecursiveIteratorIterator($directory);
+      /** @var \SplFileInfo $file */
+      foreach ($iterator as $file) {
+        if (in_array($file->getExtension(), $extensions)) {
+          $files[] = $file->getPathname();
+        }
+      }
     }
   }
 
@@ -83,15 +94,15 @@ function main(array $argv, int $argc): int {
 
     $contents = file_get_contents($file) ?: '';
     if (str_contains($contents, $template)) {
-      print "  > [SKIPPED] $file" . PHP_EOL;
+      print '  > [SKIPPED] ' . $file . PHP_EOL;
       continue;
     }
 
     file_put_contents($file, $template . $contents);
-    print "  > [ADDED] $file" . PHP_EOL;
+    print '  > [ADDED] ' . $file . PHP_EOL;
   }
 
-  print "==> Finished adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;
+  print sprintf('==> Finished adding of PHPCS exclusions to files in directory %s.', $target_directory) . PHP_EOL;
 
   return EXIT_SUCCESS;
 }
@@ -122,7 +133,7 @@ EOF;
  */
 function verbose(): void {
   if (getenv('SCRIPT_QUIET') != '1') {
-    print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
+    print sprintf(...func_get_args()) . PHP_EOL;
   }
 }
 
@@ -132,7 +143,7 @@ function verbose(): void {
 
 ini_set('display_errors', 1);
 
-if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
+if (PHP_SAPI !== 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
@@ -140,11 +151,12 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   // Custom error handler to catch errors based on set ERROR_LEVEL.
   // @phpstan-ignore-next-line
-  set_error_handler(function ($severity, $message, $file, $line): void {
-    if (!(error_reporting() & $severity)) {
+  set_error_handler(static function ($severity, $message, $file, $line): void {
+    if ((error_reporting() & $severity) === 0) {
       // This error code is not included in error_reporting.
       return;
     }
+
     throw new ErrorException($message, 0, $severity, $file, $line);
   });
 

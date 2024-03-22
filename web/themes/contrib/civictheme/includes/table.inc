@@ -5,6 +5,8 @@
  * Table theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\civictheme\CivicthemeConstants;
 
 /**
@@ -16,6 +18,7 @@ function civictheme_preprocess_table(array &$variables): void {
     foreach ($variables['header'] as $row) {
       $rows[] = $row['content'];
     }
+
     $variables['header'] = $rows;
   }
 

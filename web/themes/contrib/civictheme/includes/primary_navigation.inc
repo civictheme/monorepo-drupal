@@ -5,6 +5,8 @@
  * Primary navigation block theme alterations.
  */
 
+declare(strict_types=1);
+
 use Drupal\block\Entity\Block;
 use Drupal\civictheme\CivicthemeConstants;
 
@@ -18,16 +20,17 @@ function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(
   $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
-  _civictheme_preprocess_menu_items($variables['items']);
-
   $block = Block::load($variables['elements']['#id']);
   $region = $block->getRegion();
 
-  if (strpos($region, 'header') === 0) {
+  if (str_starts_with($region, 'header')) {
     $variables['modifier_class'] = 'ct-justify-content-end';
   }
 
-  if (strpos($region, 'sidebar') === 0) {
+  if (str_starts_with($region, 'sidebar')) {
     $variables['in_sidebar'] = TRUE;
+    $expand_all_items = $variables['configuration']['expand_all_items'] ?? FALSE;
   }
+
+  _civictheme_preprocess_menu_items($variables['items'], $expand_all_items ?? FALSE);
 }

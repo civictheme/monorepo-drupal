@@ -5,6 +5,7 @@ dependencies:
     - core.entity_form_mode.media.media_library
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
+    - field.field.media.civictheme_image.field_c_m_media_tags
     - image.style.civictheme_thumbnail
     - media.type.civictheme_image
   module:
@@ -15,24 +16,26 @@ bundle: civictheme_image
 mode: media_library
 content:
   field_c_m_image:
+    type: image_image
     weight: 5
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: civictheme_thumbnail
     third_party_settings: {  }
-    type: image_image
-    region: content
   name:
     type: string_textfield
+    weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
-    weight: 0
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   field_c_m_caption: true
+  field_c_m_media_tags: true
+  moderation_state: true
   path: true
   status: true
   uid: true

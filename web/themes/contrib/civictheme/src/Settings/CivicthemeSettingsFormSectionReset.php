@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -41,8 +43,8 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
       '#type' => 'submit',
       '#value' => $this->t('Reset to defaults'),
       '#name' => 'reset_to_defaults',
-      '#validate' => [[$this, 'resetValidate']],
-      '#submit' => [[$this, 'resetSubmit']],
+      '#validate' => [$this->resetValidate(...)],
+      '#submit' => [$this->resetSubmit(...)],
       '#states' => [
         'enabled' => [
           'input[name="reset[confirm]"' => ['checked' => TRUE],
@@ -50,7 +52,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
       ],
     ];
 
-    $form['#process'][] = [$this, 'processForm'];
+    $form['#process'][] = $this->processForm(...);
   }
 
   /**
@@ -78,7 +80,7 @@ class CivicthemeSettingsFormSectionReset extends CivicthemeSettingsFormSectionBa
    */
   public function resetValidate(array &$form, FormStateInterface $form_state): void {
     if (!$form_state->getValue(['reset', 'confirm'])) {
-      $form_state->setErrorByName(implode('][', ['reset', 'confirm']), $this->t('Please check the box to confirm theme settings reset.'));
+      $form_state->setErrorByName(implode('][', ['reset', 'confirm']), (string) $this->t('Please check the box to confirm theme settings reset.'));
     }
   }
 

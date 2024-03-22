@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
 /**
@@ -10,7 +12,7 @@ class CivicthemeStylesheetParser {
   /**
    * Defines CSS variables parts separator.
    */
-  const CSS_VARIABLES_SEPARATOR = '-';
+  final const CSS_VARIABLES_SEPARATOR = '-';
 
   /**
    * The content to parse.
@@ -65,7 +67,7 @@ class CivicthemeStylesheetParser {
   public function variables(): array {
     $variables = static::parseVariables($this->content);
 
-    if ($this->cssVariablePrefix) {
+    if ($this->cssVariablePrefix !== '' && $this->cssVariablePrefix !== '0') {
       $variables = array_filter($variables, function ($key): bool {
         return str_starts_with($key, '--' . $this->cssVariablePrefix);
       }, ARRAY_FILTER_USE_KEY);
@@ -93,9 +95,9 @@ class CivicthemeStylesheetParser {
     $matches = [];
     preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
 
-    array_walk($matches, function (array $value) use (&$variables): void {
+    array_walk($matches, static function (array $value) use (&$variables): void {
       if (!empty($value[1])) {
-        $variables[trim($value[1])] = !empty($value[2]) ? trim($value[2]) : NULL;
+        $variables[trim($value[1])] = empty($value[2]) ? NULL : trim($value[2]);
       }
     });
 

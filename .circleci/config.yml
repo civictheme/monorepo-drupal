@@ -6,16 +6,13 @@
 # run commands defined in this file. Application Docker containers defined in
 # docker-compose.yml run on a *remote* Docker server controlled by CircleCI.
 # The "runner" container uses Docker client to control the remote Docker server.
-#
-# current paragraph) are explaining DrevOps inner workings and can be safely
-# removed for your project. They are automatically removed when installing or
-# updating DrevOps.
 version: '2.1'
 
 ################################################################################
 # VARIABLES
 ################################################################################
 # For YAML support of anchors and references, see http://blog.daemonl.com/2016/02/yaml.html
+
 aliases:
   #-----------------------------------------------------------------------------
   # Per-project variables.
@@ -30,20 +27,17 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "bc:87:4a:74:cf:e0:02:4e:34:aa:16:b5:c3:6f:89:cd"
 
-  # SSH key fingerprint to deploy code to civictheme.
-  - &deploy_ssh_fingerprint1 "b7:05:38:98:47:28:c7:1f:d8:6d:7a:75:3c:13:5b:af"
-
-  # SSH key fingerprint to deploy code to civictheme_library.
-  - &deploy_ssh_fingerprint2 "12:06:0e:75:93:10:3b:b4:59:fe:11:75:11:22:20:dd"
+  # SSH key fingerprint to deploy code to civictheme at Drupal.org.
+  - &deploy_ssh_fingerprint1 "3d:ac:b0:f2:1b:8f:19:16:f2:98:e9:3d:53:2a:77:67"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
-  - &deploy_ssh_fingerprint3 "a9:33:24:68:20:f9:91:24:b8:38:c5:f3:b6:4b:34:5d"
+  - &deploy_ssh_fingerprint2 "a9:33:24:68:20:f9:91:24:b8:38:c5:f3:b6:4b:34:5d"
 
   # SSH key fingerprint to deploy code to civictheme_content.
-  - &deploy_ssh_fingerprint4 "a3:41:d1:47:85:4c:5d:12:9c:4c:1f:a2:67:d3:a5:3f"
+  - &deploy_ssh_fingerprint3 "a3:41:d1:47:85:4c:5d:12:9c:4c:1f:a2:67:d3:a5:3f"
 
   # SSH key fingerprint to deploy code to civictheme_admin.
-  - &deploy_ssh_fingerprint5 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
+  - &deploy_ssh_fingerprint4 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
 
   # SSH key fingerprint to mirror code.
   - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
@@ -65,34 +59,21 @@ aliases:
   # support request with CircleCI to enable this feature.
   - &docker_layer_caching false
 
-  - &renovatebot_repository 'salsadigitalauorg/civictheme_source'
-  # The author details to use for commits made by RenovateBot.
-  - &renovatebot_git_author 'RenovateBot Self Hosted <deployer@salsadigital.com.au>'
-  # The schedule to run RenovateBot on.
-  - &renovatebot_schedule "5 23 * * *"
-  # Set to 'false' (without single quotes) once the setup is complete and
-  # the bot ran at least once without errors.
-  - &renovatebot_dry_run false
-  # The branch to run RenovateBot on.
-  - &renovatebot_branch develop
-
   #-----------------------------------------------------------------------------
 
-  # Shared configuration applied to each job.
-  - &container_config
-    #
+  # Shared runner container configuration applied to each job.
+  - &runner_config
     # Location of checked-out files within "runner" container.
-    working_directory: &working_directory /root/project
+    working_directory: &working_directory ~/project
     environment:
       DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
       DEPLOY_SSH_FINGERPRINT1: *deploy_ssh_fingerprint1
       DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
-      DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:23.11.0
+      - image: drevops/ci-runner:24.3.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -108,7 +89,7 @@ aliases:
           # Check only minimal stack requirements.
           DREVOPS_DOCTOR_CHECK_MINIMAL: 1
           # Directory to store code exported between jobs.
-          DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
+          DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /tmp/workspace/code
           # Directory to use for artifact deployments.
           DREVOPS_DEPLOY_ARTIFACT_SRC: *drevops_build_export_dir
           # Source code location for artifact deployments.
@@ -133,39 +114,59 @@ aliases:
       name: Process codebase to run in CI
       command: |
         find . -name "docker-compose.yml" -print0 | xargs -0 -I {} sh -c "sed -i -e ''/###/d'' {} && sed -i -e ''s/##//'' {}"
+        # Always create a workspace directory used across multiple jobs.
+        mkdir -p /tmp/workspace/code
         # Alter build for an alternative build setup.
-        if [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ]; then echo "Using cli.sibling.dockerfile"; cp -f .docker/cli.sibling.dockerfile .docker/cli.dockerfile; fi
-        if [ "$CIVICTHEME_LIBRARY_INSTALL_SKIP" = "1" ]; then echo "Using cli.onlytheme.dockerfile"; cp -f .docker/cli.onlytheme.dockerfile .docker/cli.dockerfile; fi
+        if [ "${CIVICTHEME_INSTALL_SIBLING}" = "1" ]; then echo "Using cli.sibling.dockerfile"; cp -f .docker/cli.sibling.dockerfile .docker/cli.dockerfile; fi
+        if [ "${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP}" = "1" ]; then echo "Using cli.onlytheme.dockerfile"; cp -f .docker/cli.onlytheme.dockerfile .docker/cli.dockerfile; fi
 
 ################################################################################
 # JOBS
 ################################################################################
 
+# Reusable job configuration.
+job-build-isolated: &job-build-isolated
+  steps:
+    # Workspace now contains previously built application code artifact.
+    - attach_workspace:
+        at: /tmp/workspace
+    - checkout
+    - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
+    - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
+    - run:
+        command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
+        when: always
+    - store_test_results:
+        path: /tmp/test_results
+    - store_artifacts:
+        path: /tmp/artifacts
+
 job-build: &job-build
   parallelism: 2
   steps:
     - attach_workspace:
-        at: /workspace
+        at: /tmp/workspace
     - checkout
     - *step_process_codebase
     - *step_setup_remote_docker
     - *step_setup_docker_network
     - run:
         name: Lint docs spelling
-        command: ./scripts/lint-spelling.sh
+        command: ./scripts/lint.spelling.sh
     - run:
         name: Build site
         command: ./scripts/drevops/build.sh
         no_output_timeout: 30m
     - run:
         name: Lint code with PHPCS
-        command: docker compose exec -T cli vendor/bin/phpcs || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli vendor/bin/phpcs -v || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint code with PHPStan
         command: docker compose exec -T cli vendor/bin/phpstan || [ "${DREVOPS_CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint code with Rector
-        command: docker compose exec -T cli vendor/bin/rector process --dry-run . || [ "${DREVOPS_CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli vendor/bin/rector process --dry-run || [ "${DREVOPS_CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint code with PHPMD
         command: docker compose exec -T cli vendor/bin/phpmd . text phpmd.xml || [ "${DREVOPS_CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
@@ -177,13 +178,13 @@ job-build: &job-build
         command: docker compose exec -T cli bash -c "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint" || [ "${DREVOPS_CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme configuration
-        command: docker compose exec -T cli bash -c "./scripts/lint-theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: docker compose exec -T cli bash -c "./scripts/lint.theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme schema
         command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
     - run:
-        name: Run tooling tests
-        command: ./scripts/test-tooling.sh
+        name: Run assets tests
+        command: ./scripts/test.assets.sh
     - run:
         name: Test with PHPUnit
         command: |
@@ -212,219 +213,123 @@ job-build: &job-build
     - store_artifacts:
         path: *artifacts
     - persist_to_workspace:
-        root: /workspace
+        root: /tmp/workspace
         paths:
           - code
 
-# Exactly as above, but no persisting of the code at the end of the build.
-# @see https://github.com/yaml/yaml/issues/35
-job-build-no-persist: &job-build-no-persist
-  parallelism: 2
-  steps:
-    - attach_workspace:
-        at: /workspace
-    - checkout
-    - *step_process_codebase
-    - *step_setup_remote_docker
-    - *step_setup_docker_network
-    - run:
-        name: Lint docs spelling
-        command: ./scripts/lint-spelling.sh
-    - run:
-        name: Build site
-        command: ./scripts/drevops/build.sh
-        no_output_timeout: 30m
-    - run:
-        name: Lint code with PHPCS
-        command: docker compose exec -T cli vendor/bin/phpcs || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint code with PHPStan
-        command: docker compose exec -T cli vendor/bin/phpstan || [ "${DREVOPS_CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint code with PHPMD
-        command: docker compose exec -T cli vendor/bin/phpmd . text phpmd.xml || [ "${DREVOPS_CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint code with Twigcs
-        command: docker compose exec -T cli vendor/bin/twigcs || [ "${DREVOPS_CI_TWIGCS_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint code with NPM linters
-        command: docker compose exec -T cli bash -c "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint" || [ "${DREVOPS_CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint Drupal theme configuration
-        command: docker compose exec -T cli bash -c "./scripts/lint-theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
-    - run:
-        name: Lint Drupal theme schema
-        command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
-    - run:
-        name: Run tooling tests
-        command: ./scripts/test-tooling.sh
-    - run:
-        name: Test with PHPUnit
-        command: |
-          XDEBUG_ENABLE=true docker compose up -d cli php nginx # Restart stack with XDEBUG enabled for coverage.
-          docker compose exec -T -e XDEBUG_MODE=coverage cli vendor/bin/phpunit || [ "${DREVOPS_CI_PHPUNIT_IGNORE_FAILURE:-0}" -eq 1 ]
-          docker compose up -d cli php nginx # Restart stack without XDEBUG enabled for coverage.
-    - run:
-        name: Test with Behat
-        command: |
-          if [ "${CIRCLE_NODE_TOTAL:-1}" -gt 1 ]; then export DREVOPS_CI_BEHAT_PROFILE="${DREVOPS_CI_BEHAT_PROFILE:-p${CIRCLE_NODE_INDEX}}"; fi
-          echo "Running with ${DREVOPS_CI_BEHAT_PROFILE:-default} profile"
-          docker compose exec -T cli php -d memory_limit=-1 vendor/bin/behat --colors --strict --profile="${DREVOPS_CI_BEHAT_PROFILE:-default}" || \
-            docker compose exec -T cli php -d memory_limit=-1 vendor/bin/behat --colors --strict --rerun --profile="${DREVOPS_CI_BEHAT_PROFILE:-default}" || \
-            [ "${DREVOPS_CI_BEHAT_IGNORE_FAILURE:-0}" -eq 1 ]
-        no_output_timeout: 30m
-    - run:
-        name: Process test logs and artifacts
-        command: |
-          if docker compose ps --services --filter "status=running" | grep -q cli; then
-            mkdir -p "${DREVOPS_CI_TEST_RESULTS}" && docker compose cp cli:/app/.logs/test_results/. "${DREVOPS_CI_TEST_RESULTS}/"
-            mkdir -p "${DREVOPS_CI_ARTIFACTS}" && docker compose cp cli:/app/.logs/. "${DREVOPS_CI_ARTIFACTS}/"
-          fi
-        when: always
-    - store_test_results:
-        path: *test_results
-    - store_artifacts:
-        path: *artifacts
-
-# Job to run isolated theme build.
-job-build-theme-isolated: &job-build-theme-isolated
-  steps:
-    - checkout
-    - run: mkdir -p ~/project2 && cp -r web/themes/contrib/civictheme ~/project2
-    - run: cd ~/project2/civictheme; ./.circleci/build.sh
-    - run: cd ~/project2/civictheme; ./.circleci/lint.sh
-    - run: cd ~/project2/civictheme; ./.circleci/test.sh
-    - run:
-        command: cd ~/project2/civictheme; ./.circleci/process-artifacts.sh
-        when: always
-    - store_test_results:
-        path: /tmp/test_results
-    - store_artifacts:
-        path: /tmp/artifacts
-
-job-mirror: &job-mirror
-  steps:
-    - attach_workspace:
-        at: /workspace
-    - add_ssh_keys:
-        fingerprints:
-          - *deploy_ssh_fingerprint
-          - *git_mirror_ssh_fingerprint
-    - checkout
-    - *step_process_codebase
-    - checkout
-    - run:
-        name: Re-deploy environment.
-        # We do not have a standalone branch for 'default' profile because we
-        # are using `develop` branch to build with 'default' profile.
-        command: |
-          set -x
-          branches=()
-          branches+=(content/corporate)
-          branches+=(content/government)
-          branches+=(content/highereducation)
-          if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
-            for branch in "${branches[@]}"
-            do
-              GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
-              sleep 5
-              DREVOPS_DEPLOY_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
-            done
-          fi
-
 jobs:
 
-  build:
-    <<: *container_config
-    <<: *job-build-no-persist
+  # Isolated theme build within a vanilla Drupal installation.
+  # This replicates (to a degree) what Drupal CI would do.
+  build-isolated-php-81:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.1-browsers
+    <<: *job-build-isolated
 
-  # No subtheme.
-  build-no-subtheme:
-    <<: *container_config
+  build-isolated-php-82:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.2-browsers
+    <<: *job-build-isolated
+
+  build-isolated-php-81-legacy:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.1-browsers
+    environment:
+      DRUPAL_VERSION: 10.1
+      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
+    <<: *job-build-isolated
+
+  build-isolated-php-82-legacy:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.2-browsers
+    environment:
+      DRUPAL_VERSION: 10.1
+      DRUPAL_PROJECT_SHA: a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b
+    <<: *job-build-isolated
+
+  # Used to pass the built code down the pipeline.
+  build-minimal:
+    <<: *runner_config
     environment:
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
-    <<: *job-build-no-persist
-
-  # GovCMS profile, subtheme. Longest test run.
-  build-govcms:
-    <<: *container_config
-    environment:
-      DRUPAL_PROFILE: govcms
-      DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
-    <<: *job-build-no-persist
-
-  # GovCMS profile, no subtheme.
-  build-govcms-no-subtheme:
-    <<: *container_config
-    environment:
-      DRUPAL_PROFILE: govcms
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
-      DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
     <<: *job-build
 
-  # GovCMS profile, subtheme is a sibling.
-  build-govcms-sibling:
-    <<: *container_config
+  build-minimal-subtheme:
+    <<: *runner_config
+    environment:
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
+
+  # GovCMS profile, no sub-theme.
+  build-govcms:
+    <<: *runner_config
+    environment:
+      DRUPAL_PROFILE: govcms
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
+
+  # GovCMS profile, sub-theme. Longest test run.
+  build-govcms-subtheme:
+    <<: *runner_config
+    environment:
+      DRUPAL_PROFILE: govcms
+      DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
+
+  # GovCMS profile, sub-theme is a sibling.
+  build-govcms-subtheme-sibling:
+    <<: *runner_config
     environment:
       DRUPAL_PROFILE: govcms
       CIVICTHEME_INSTALL_SIBLING: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_CI_BEHAT_PROFILE: smoke
-    <<: *job-build-no-persist
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
 
-  # Drupal 10, minimal profile, 'corporate' content profile.
   build-content-corporate:
-    <<: *container_config
+    <<: *runner_config
     environment:
       CIVICTHEME_CONTENT_PROFILE: corporate
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_CI_BEHAT_PROFILE: smoke
-    <<: *job-build-no-persist
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
 
-  # Drupal 10, minimal profile, 'highereducation' content profile.
   build-content-highereducation:
-    <<: *container_config
+    <<: *runner_config
     environment:
       CIVICTHEME_CONTENT_PROFILE: highereducation
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_CI_BEHAT_PROFILE: smoke
-    <<: *job-build-no-persist
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
 
-  # Drupal 10, minimal profile, 'government' content profile.
   build-content-government:
-    <<: *container_config
+    <<: *runner_config
     environment:
       CIVICTHEME_CONTENT_PROFILE: government
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
-      CIVICTHEME_LIBRARY_INSTALL_SKIP: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_CI_BEHAT_PROFILE: smoke
-    <<: *job-build-no-persist
-
-  # Isolated theme build.
-  build-theme-isolated:
-    working_directory: ~/project
-    docker:
-      - image: cimg/php:8.2-browsers
-    <<: *job-build-theme-isolated
-
-  # Mirror and redeploy content profiles.
-  mirror-into-content-branches:
-    <<: *container_config
-    <<: *job-mirror
+      DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
+    <<: *job-build
 
   # Deploy primary branches.
   deploy: &job_deploy
-    <<: *container_config
+    <<: *runner_config
     steps:
       - attach_workspace:
-          at: /workspace
+          at: /tmp/workspace
       - add_ssh_keys:
           fingerprints:
             - *deploy_ssh_fingerprint
@@ -442,160 +347,218 @@ jobs:
 
   # Deploy artifact.
   deploy_artifact:
-    <<: *container_config
+    <<: *runner_config
     steps:
-      #
       # Workspace now contains previously built application code artifact.
       - attach_workspace:
-          at: /workspace
-      #
-      # Add SSH key into "runner" container to have "push" access to remote
-      # repository.
+          at: /tmp/workspace
+      # Add SSH key into "runner" container to have "push" access to remote repository.
       - add_ssh_keys:
           fingerprints:
             - *deploy_ssh_fingerprint1
             - *deploy_ssh_fingerprint2
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
-            - *deploy_ssh_fingerprint5
       - checkout
       - *step_process_codebase
       - run:
-          name: Deploy release to CivicTheme Drupal theme repository.
+          name: Deploy release to CivicTheme Drupal theme repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=main \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
-            ./scripts/deploy-code-commit.sh
-          no_output_timeout: 30m
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-1.x}" \
+            PUSH_CODE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme" \
+            ./scripts/push.code.sh
       - run:
-          name: Deploy release to CivicTheme Library repository.
+          name: Deploy release to civictheme_govcms module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=main \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/themes/contrib/civictheme/civictheme_library" \
-            ./scripts/deploy-code-commit.sh
-          no_output_timeout: 30m
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_govcms.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_govcms" \
+            ./scripts/push.code.sh
       - run:
-          name: Deploy release to CivicTheme GovCMS repository.
+          name: Deploy release to civictheme_content module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=main \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_govcms" \
-            ./scripts/deploy-code-commit.sh
-          no_output_timeout: 30m
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_content.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_content" \
+            ./scripts/push.code.sh
       - run:
-          name: Deploy release to CivicTheme Content repository.
+          name: Deploy release to civictheme_admin module repository
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=main \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_content" \
-            ./scripts/deploy-code-commit.sh
-          no_output_timeout: 30m
-      - run:
-          name: Deploy release to CivicTheme Admin repository.
-          command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT5 \
-            DEPLOY_CODE_COMMIT_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
-            DEPLOY_CODE_COMMIT_REMOTE_BRANCH=main \
-            DEPLOY_CODE_COMMIT_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_admin" \
-            ./scripts/deploy-code-commit.sh
-          no_output_timeout: 30m
+            PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+            PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_admin.git \
+            PUSH_CODE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/web/modules/custom/civictheme_admin" \
+            ./scripts/push.code.sh
       - store_artifacts:
           path: /tmp/artifacts
 
-  renovatebot_self_hosted:
-    docker:
-      - image: renovate/renovate:36.108.0
-        environment:
-          RENOVATE_PLATFORM: 'github'
-          RENOVATE_AUTODISCOVER: false
-          RENOVATE_DEPENDENCY_DASHBOARD: true
-          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
-          RENOVATE_REPOSITORIES: *renovatebot_repository
-          RENOVATE_GIT_AUTHOR: *renovatebot_git_author
-          RENOVATE_DRY_RUN: *renovatebot_dry_run
-          LOG_LEVEL: debug
+  # Mirror and redeploy content profiles.
+  mirror-into-content-branches:
+    <<: *runner_config
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - *deploy_ssh_fingerprint
+            - *git_mirror_ssh_fingerprint
       - checkout
-      - run: renovate-config-validator
-      - run: renovate
+      - *step_process_codebase
+      - run:
+          name: Re-deploy environment.
+          # We do not have a standalone branch for 'default' profile because we
+          # are using `develop` branch to build with 'default' profile.
+          command: |
+            set -x
+            branches=()
+            branches+=(content/corporate)
+            branches+=(content/government)
+            branches+=(content/highereducation)
+            if [ "$MIRROR_CONTENT_BRANCHES_PROCEED" == "1" ]; then
+              for branch in "${branches[@]}"
+              do
+                GIT_MIRROR_BRANCH_DST="${branch}" GIT_MIRROR_BRANCH=develop ./scripts/git-mirror.sh
+                sleep 5
+                DREVOPS_DEPLOY_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
+              done
+            fi
 
 ################################################################################
 # WORKFLOWS
 ################################################################################
+
 workflows:
   version: 2
   #
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build:
+      - build-isolated-php-81:
           filters:
             branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
-      - build-no-subtheme:
+      - build-isolated-php-82:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-isolated-php-81-legacy:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-isolated-php-82-legacy:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-minimal:
+          requires:
+            - build-isolated-php-81
+            - build-isolated-php-81-legacy
+            - build-isolated-php-82
+            - build-isolated-php-82-legacy
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-minimal-subtheme:
+          requires:
+            - build-isolated-php-81
+            - build-isolated-php-81-legacy
+            - build-isolated-php-82
+            - build-isolated-php-82-legacy
           filters:
             branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
       - build-govcms:
+          requires:
+            - build-isolated-php-81
+            - build-isolated-php-81-legacy
+            - build-isolated-php-82
+            - build-isolated-php-82-legacy
           filters:
             branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
-      - build-govcms-no-subtheme:
+      - build-govcms-subtheme:
+          requires:
+            - build-isolated-php-81
+            - build-isolated-php-81-legacy
+            - build-isolated-php-82
+            - build-isolated-php-82-legacy
           filters:
             branches:
               ignore: /^content\/.*/
             tags:
               only: /.*/
-      - build-govcms-sibling:
+      - build-govcms-subtheme-sibling:
+          requires:
+            - build-isolated-php-81
+            - build-isolated-php-81-legacy
+            - build-isolated-php-82
+            - build-isolated-php-82-legacy
           filters:
             branches:
               ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-content-corporate:
-          filters:
-            branches:
-              only: /develop|^release\/.*|^hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-content-highereducation:
-          filters:
-            branches:
-              only: /^release\/.*|^hotfix\/.*/
-            tags:
-              only: /.*/
-      - build-content-government:
-          filters:
-            branches:
-              only: /^release\/.*|^hotfix\/.*/
             tags:
               only: /.*/
 
-      - build-theme-isolated:
+      - build-content-corporate:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
-              ignore: /^content\/.*/
+              only: /^develop$|^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-content-highereducation:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
+          filters:
+            branches:
+              only: /^develop$|^release\/.*|^hotfix\/.*/
+            tags:
+              only: /.*/
+      - build-content-government:
+          requires:
+            - build-minimal
+            - build-minimal-subtheme
+            - build-govcms
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
+          filters:
+            branches:
+              only: /^develop$|^release\/.*|^hotfix\/.*/
             tags:
               only: /.*/
 
       - deploy:
           requires:
-            - build
+            - build-minimal
+            - build-minimal-subtheme
             - build-govcms
-            - build-govcms-no-subtheme
-            - build-theme-isolated
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
               # Allowed branches:
@@ -612,36 +575,24 @@ workflows:
 
       - deploy_artifact:
           requires:
-            - build
-            - build-no-subtheme
+            - build-minimal
+            - build-minimal-subtheme
             - build-govcms
-            - build-govcms-no-subtheme
-            - build-theme-isolated
+            - build-govcms-subtheme
+            - build-govcms-subtheme-sibling
           filters:
             branches:
-              only: develop
+              only: /^develop$|^ci-.*|feature\/move\-uikit/
             tags:
               ignore: /.*/
 
       - mirror-into-content-branches:
           requires:
-            - build
-            - build-no-subtheme
-            - build-govcms-no-subtheme
-            - build-govcms
+            - build-content-corporate
+            - build-content-highereducation
+            - build-content-government
           filters:
             branches:
               only: develop
             tags:
               ignore: /.*/
-
-  renovatebot_self_hosted:
-    triggers:
-      - schedule:
-          cron: *renovatebot_schedule
-          filters:
-            branches:
-              only:
-                - *renovatebot_branch
-    jobs:
-      - renovatebot_self_hosted
