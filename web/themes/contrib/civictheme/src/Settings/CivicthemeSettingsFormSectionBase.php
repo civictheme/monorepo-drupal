@@ -9,7 +9,6 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Form\FormStateInterface;
@@ -38,7 +37,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *   Theme manager service.
    * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   Theme extension list service.
-   * @param \Drupal\Core\File\FileSystem $fileSystem
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
    *   File system service.
    * @param \Drupal\Core\File\FileUrlGenerator $fileUrlgenerator
    *   File URL generator.
@@ -51,7 +50,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    * @param \Drupal\Core\Image\ImageFactory $imageFactory
    *   The image factory.
    */
-  public function __construct(protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected FileSystem $fileSystem, protected FileUrlGenerator $fileUrlgenerator, protected Messenger $messenger, protected ConfigManager $configManager, protected CivicthemeConfigManager $themeConfigManager, protected ImageFactory $imageFactory) {
+  public function __construct(protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected FileSystemInterface $fileSystem, protected FileUrlGenerator $fileUrlgenerator, protected Messenger $messenger, protected ConfigManager $configManager, protected CivicthemeConfigManager $themeConfigManager, protected ImageFactory $imageFactory) {
   }
 
   /**
