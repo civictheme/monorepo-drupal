@@ -55,7 +55,7 @@ class CivicthemeColorUtility {
    *   The origin color.
    * @param string|array $mixer
    *   The color to mix with.
-   * @param int $range
+   * @param string|int $range
    *   Range to apply the mixer color with. From 0 to 100.
    *
    * @return string
@@ -66,7 +66,13 @@ class CivicthemeColorUtility {
    *
    * @SuppressWarnings(MissingImport)
    */
-  public static function mix(string|array $color, string|array $mixer, int $range): string {
+  public static function mix(string|array $color, string|array $mixer, string|int $range): string {
+    if (!is_numeric($range)) {
+      throw new \Exception(sprintf('Numeric value is expected for range, but %s provided.', $range));
+    }
+
+    $range = (int) $range;
+
     $color = static::hexToRgb($color);
     $mixer = static::hexToRgb($mixer);
     $range = max(0, min($range, 100));
