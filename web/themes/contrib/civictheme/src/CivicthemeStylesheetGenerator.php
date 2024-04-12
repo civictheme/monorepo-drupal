@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\civictheme;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -34,10 +33,10 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\File\FileSystem $fileSystem
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
    *   File system discovery service.
    */
-  public function __construct(protected FileSystem $fileSystem) {
+  public function __construct(protected FileSystemInterface $fileSystem) {
     $this->setStylesheetUriSuffix('default');
   }
 
