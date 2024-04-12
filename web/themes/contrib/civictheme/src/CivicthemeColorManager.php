@@ -521,7 +521,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
    * @SuppressWarnings(MissingImport)
    */
   protected static function validateMatrixStructure(array $matrix): void {
-    if (!is_array($matrix) || count($matrix) != 2) {
+    if (count($matrix) != 2) {
       throw new \Exception(sprintf('Invalid color matrix structure: should be an array with exactly 2 elements keyed by "%s" and "%s"', self::COLOR_TYPE_BRAND, self::COLOR_TYPE_PALETTE));
     }
 
