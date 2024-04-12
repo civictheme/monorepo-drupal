@@ -29,7 +29,7 @@ class CivicthemeColorTintFilter extends CivicthemeColorFilterBase {
    * @SuppressWarnings(StaticAccess)
    */
   public function filter(string $color): string {
-    return CivicthemeColorUtility::mix($color, '#fff', (int) $this->arguments[0]);
+    return CivicthemeColorUtility::mix($color, '#fff', $this->arguments[0]);
   }
 
 }

@@ -46,7 +46,12 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
    * @dataProvider dataProviderMix
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function testMix(string $color, string $mixer, int $range, string $expected): void {
+  public function testMix(string $color, string $mixer, string|int $range, string $expected, string|null $expected_exception_message = NULL): void {
+    if ($expected_exception_message) {
+      $this->expectException(\Exception::class);
+      $this->expectExceptionMessage($expected_exception_message);
+    }
+
     $actual = CivicthemeColorUtility::mix($color, $mixer, $range);
     $this->assertEquals($expected, $actual);
   }
@@ -59,6 +64,8 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
       ['#00698f', '#000', 10, '#005e80'],
       ['#00698f', '#000', 0, '#00698f'],
       ['#e6e9eb', '#fff', 80, '#fafafb'],
+      ['#e6e9eb', '#fff', '80', '#fafafb'],
+      ['#00698f', '#000', 'alpha', '#005e80', 'Numeric value is expected for range, but alpha provided.'],
     ];
   }
 
