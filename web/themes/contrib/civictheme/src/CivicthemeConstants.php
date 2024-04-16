@@ -175,4 +175,15 @@ final class CivicthemeConstants {
    */
   const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
 
+  /**
+   * Defines the image style constants.
+   */
+  const PROMO_IMAGE_STYLE = 'civictheme_promo_card';
+  const NAVIGATION_IMAGE_STYLE = 'civictheme_navigation_card';
+  const PUBLICATION_IMAGE_STYLE = 'civictheme_thumbnail';
+  const SUBJECT_IMAGE_STYLE = 'civictheme_thumbnail';
+  const SLIDER_IMAGE_STYLE = 'civictheme_thumbnail';
+  const CAMPAIGN_IMAGE_STYLE = 'civictheme_thumbnail';
+  const EVENT_IMAGE_STYLE = 'civictheme_thumbnail';
+
 }

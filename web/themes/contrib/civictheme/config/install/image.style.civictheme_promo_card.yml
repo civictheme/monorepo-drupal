@@ -1,14 +1,16 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: civictheme_promo_card
 label: 'Promo card'
 effects:
-  be9e65ef-2aa0-46f9-a42e-53694e9e5f5b:
-    uuid: be9e65ef-2aa0-46f9-a42e-53694e9e5f5b
-    id: image_scale_and_crop
-    weight: 1
+  6549b68e-52d6-4bbd-b186-1425e10f2c59:
+    uuid: 6549b68e-52d6-4bbd-b186-1425e10f2c59
+    id: focal_point_scale_and_crop
+    weight: 2
     data:
       width: 376
       height: 240
-      anchor: center-center
+      crop_type: focal_point

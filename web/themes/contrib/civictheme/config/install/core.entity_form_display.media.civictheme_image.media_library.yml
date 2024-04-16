@@ -9,19 +9,21 @@ dependencies:
     - image.style.civictheme_thumbnail
     - media.type.civictheme_image
   module:
-    - image
+    - focal_point
 id: media.civictheme_image.media_library
 targetEntityType: media
 bundle: civictheme_image
 mode: media_library
 content:
   field_c_m_image:
-    type: image_image
+    type: image_focal_point
     weight: 5
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: civictheme_thumbnail
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
   name:
     type: string_textfield

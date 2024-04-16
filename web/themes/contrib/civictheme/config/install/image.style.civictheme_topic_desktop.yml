@@ -1,14 +1,16 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: civictheme_topic_desktop
 label: 'Topic desktop'
 effects:
-  b871b9ed-7922-4361-9034-9b29e4cd2239:
-    uuid: b871b9ed-7922-4361-9034-9b29e4cd2239
-    id: image_scale_and_crop
-    weight: 1
+  66f42c49-2741-4203-95e9-ca75b00a9705:
+    uuid: 66f42c49-2741-4203-95e9-ca75b00a9705
+    id: focal_point_scale_and_crop
+    weight: 2
     data:
       width: 276
       height: 224
-      anchor: center-center
+      crop_type: focal_point

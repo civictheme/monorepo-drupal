@@ -15,6 +15,7 @@ dependencies:
   - drupal:config
   - drupal:content_moderation
   - drupal:datetime_range
+  - drupal:focal_point
   - drupal:help
   - drupal:image
   - drupal:inline_form_errors

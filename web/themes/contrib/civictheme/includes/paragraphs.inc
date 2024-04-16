@@ -100,22 +100,22 @@ function _civictheme_preprocess_paragraph__paragraph_field__fill_width(array &$v
 /**
  * Pre-process for Image paragraph field.
  */
-function _civictheme_preprocess_paragraph__paragraph_field__image(array &$variables): void {
+function _civictheme_preprocess_paragraph__paragraph_field__image(array &$variables, string $image_style = NULL): void {
   $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image', TRUE);
   if ($media) {
-    $variables['image'] = civictheme_media_image_get_variables($media);
+    $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
   }
 }
 
 /**
  * Pre-process for Thumbnail node field.
  */
-function _civictheme_preprocess_paragraph__node_field__image(array &$variables): void {
+function _civictheme_preprocess_paragraph__node_field__image(array &$variables, string $image_style = NULL): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
     if ($media) {
-      $variables['image'] = civictheme_media_image_get_variables($media);
+      $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
     }
   }
 }

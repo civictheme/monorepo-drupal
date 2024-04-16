@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+use Drupal\civictheme\CivicthemeConstants;
+
 /**
  * Implements template_preprocess_paragraph().
  *
@@ -31,7 +33,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variables): void {
-  _civictheme_preprocess_paragraph__paragraph_field__image($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__image($variables, CivicthemeConstants::SLIDER_IMAGE_STYLE);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
   _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
@@ -58,7 +60,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$va
 
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__topics($variables);
-  _civictheme_preprocess_paragraph__node_field__image($variables);
+  _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::SLIDER_IMAGE_STYLE);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
