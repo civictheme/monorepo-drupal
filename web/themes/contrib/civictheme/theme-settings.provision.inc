@@ -1188,14 +1188,18 @@ function _civictheme_get_theme_blocks(): array {
  */
 function civictheme_provision__media_view(): void {
   // Disable the 'views.view.media' view.
-  \Drupal::configFactory()
-    ->getEditable('views.view.media')
-    ->set('status', FALSE)
-    ->save();
+  $config = \Drupal::configFactory()
+    ->getEditable('views.view.media');
+  if (!$config->isNew()) {
+    $config->set('status', FALSE)
+      ->save();
+  }
 
   // Enable the 'views.view.civictheme_media' view.
-  \Drupal::configFactory()
-    ->getEditable('views.view.civictheme_media')
-    ->set('status', TRUE)
-    ->save();
+  $config = \Drupal::configFactory()
+    ->getEditable('views.view.civictheme_media');
+  if (!$config->isNew()) {
+    $config->set('status', TRUE)
+      ->save();
+  }
 }
