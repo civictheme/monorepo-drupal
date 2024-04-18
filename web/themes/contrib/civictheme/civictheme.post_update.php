@@ -578,3 +578,40 @@ function civictheme_post_update_add_background_promo_component(array &$sandbox):
     }
   );
 }
+
+/**
+ * Enable focal_point and set configurations.
+ */
+function civictheme_post_update_enable_focal_point_configurations(): void {
+  \Drupal::getContainer()->get('module_installer')->install(['focal_point']);
+
+  $new_form_config = [
+    'field_c_m_image' => [
+      'type' => 'image_focal_point',
+      'region' => 'content',
+      'settings' => [
+        'progress_indicator' => 'throbber',
+        'preview_image_style' => 'civictheme_thumbnail',
+        'preview_link' => TRUE,
+        'offsets' => '50,50',
+      ],
+    ],
+  ];
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateFormDisplayConfig('media', 'civictheme_image', $new_form_config);
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateFormDisplayConfig('media', 'civictheme_image', $new_form_config, NULL, 'media_library');
+
+  $image_field_configs = [
+    'image.style.civictheme_medium' => 'image_style',
+    'image.style.civictheme_navigation_card' => 'image_style',
+    'image.style.civictheme_promo_card' => 'image_style',
+    'image.style.civictheme_promo_banner' => 'image_style',
+    'image.style.civictheme_thumbnail' => 'image_style',
+    'image.style.civictheme_topic_desktop' => 'image_style',
+    'image.style.civictheme_topic_mobile' => 'image_style',
+  ];
+
+  // @todo find alternative as this unsets display preview.
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->deleteConfig($image_field_configs);
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($image_field_configs, $config_path);
+}

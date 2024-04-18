@@ -174,12 +174,14 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Array of field configs.
    * @param array|null $group_config
    *   Optional array of group configs.
+   * @param string $view_mode
+   *   View mode to update.
    */
-  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
+  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
-      ->load($entity_type . '.' . $bundle . '.default');
+      ->load($entity_type . '.' . $bundle . '.' . $view_mode);
 
     // @phpstan-ignore-next-line
     if (!$form_display) {

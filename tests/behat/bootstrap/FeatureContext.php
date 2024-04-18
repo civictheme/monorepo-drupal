@@ -522,4 +522,43 @@ class FeatureContext extends DrupalContext {
         ");
   }
 
+  /**
+   * Assert element with wildcard pattern exists.
+   *
+   * An element with selector and attribute with a value exists,
+   * matching a wildcard pattern.
+   *
+   * @Then I( should) see the :selector element with the :attribute attribute like :pattern
+   */
+  public function elementAssertAttributeLikePattern(string $selector, string $attribute, string $pattern): void {
+    $page = $this->getSession()->getPage();
+    $elements = $page->findAll('css', $selector);
+
+    if (empty($elements)) {
+      throw new \Exception(sprintf('The "%s" element was not found on the page.', $selector));
+    }
+
+    $attr_found = FALSE;
+    $attr_pattern_matched = FALSE;
+
+    foreach ($elements as $element) {
+      $attr = $element->getAttribute($attribute);
+      if (!empty($attr)) {
+        $attr_found = TRUE;
+        if (preg_match('/' . preg_quote($pattern, '/') . '/', $attr)) {
+          $attr_pattern_matched = TRUE;
+          break;
+        }
+      }
+    }
+
+    if (!$attr_found) {
+      throw new \Exception(sprintf('The "%s" attribute was not found on the element "%s".', $attribute, $selector));
+    }
+
+    if (!$attr_pattern_matched) {
+      throw new \Exception(sprintf('No element with "%s" attribute matching the pattern "%s" found.', $attribute, $pattern));
+    }
+  }
+
 }
