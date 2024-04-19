@@ -528,9 +528,9 @@ class FeatureContext extends DrupalContext {
    * An element with selector and attribute with a value exists,
    * matching a wildcard pattern.
    *
-   * @Then I( should) see the :selector element with the :attribute attribute like :pattern
+   * @Then I( should) see the :selector element with a(n) :attribute attribute containing :value
    */
-  public function elementAssertAttributeLikePattern(string $selector, string $attribute, string $pattern): void {
+  public function elementAssertAttributeContains(string $selector, string $attribute, string $pattern): void {
     $page = $this->getSession()->getPage();
     $elements = $page->findAll('css', $selector);
 

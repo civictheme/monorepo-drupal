@@ -58,4 +58,4 @@ Feature: Navigation card render
     And I should see the text "Navigation card title 1"
     And I should see the text "Navigation card title 2"
     And I should see the text "Navigation card title 3"
-    And I should see the ".ct-navigation-card__image img.ct-image" element with the "src" attribute like "/sites/default/files/styles/civictheme_navigation_card/public/"
+    And I should see the ".ct-navigation-card__image img.ct-image" element with a "src" attribute containing "/sites/default/files/styles/civictheme_navigation_card/public/"

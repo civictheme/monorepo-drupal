@@ -178,12 +178,12 @@ final class CivicthemeConstants {
   /**
    * Defines the image style constants.
    */
-  const PROMO_IMAGE_STYLE = 'civictheme_promo_card';
-  const NAVIGATION_IMAGE_STYLE = 'civictheme_navigation_card';
-  const PUBLICATION_IMAGE_STYLE = 'civictheme_thumbnail';
-  const SUBJECT_IMAGE_STYLE = 'civictheme_thumbnail';
-  const SLIDER_IMAGE_STYLE = 'civictheme_thumbnail';
-  const CAMPAIGN_IMAGE_STYLE = 'civictheme_thumbnail';
-  const EVENT_IMAGE_STYLE = 'civictheme_thumbnail';
+  const PROMO_CARD_IMAGE_STYLE = 'civictheme_promo_card';
+  const NAVIGATION_CARD_IMAGE_STYLE = 'civictheme_navigation_card';
+  const PUBLICATION_CARD_IMAGE_STYLE = 'civictheme_publication_card';
+  const SUBJECT_CARD_IMAGE_STYLE = 'civictheme_subject_card';
+  const SLIDER_SLIDE_IMAGE_STYLE = 'civictheme_slider_slide';
+  const CAMPAIGN_IMAGE_STYLE = 'civictheme_campaign';
+  const EVENT_CARD_IMAGE_STYLE = 'civictheme_event_card';
 
 }
