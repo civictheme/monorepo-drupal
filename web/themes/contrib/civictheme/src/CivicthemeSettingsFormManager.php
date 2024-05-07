@@ -20,7 +20,7 @@ final class CivicthemeSettingsFormManager implements ContainerInjectionInterface
    */
   public function __construct(
     protected CivicthemePluginLoader $pluginLoader,
-    protected ThemeExtensionList $themeExtensionList
+    protected ThemeExtensionList $themeExtensionList,
   ) {
   }
 
