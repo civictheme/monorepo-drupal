@@ -63,7 +63,8 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     protected CivicthemeConfigManager $configManager,
     protected CivicthemeStylesheetParser $stylesheetParser,
     protected CivicthemeStylesheetGenerator $stylesheetGenerator,
-    protected CacheTagsInvalidatorInterface $cacheTagsInvalidator) {
+    protected CacheTagsInvalidatorInterface $cacheTagsInvalidator,
+  ) {
     $this->pluginLoader->load(__DIR__ . '/Color');
   }
 

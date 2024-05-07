@@ -27,7 +27,7 @@ final class CivicthemeVersionManager implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function __construct(
-    protected ThemeExtensionList $themeExtensionList
+    protected ThemeExtensionList $themeExtensionList,
   ) {
   }
 
