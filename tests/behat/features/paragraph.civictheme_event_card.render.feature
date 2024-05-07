@@ -93,3 +93,4 @@ Feature: Event Card render
     And I should see the text "29 Apr 2021"
     And I should see the text "29 May 2022"
     And I should see the text "29 Jun 2023"
+    And I should see the ".ct-event-card__image img.ct-image" element with a "src" attribute containing "/sites/default/files/styles/civictheme_event_card/public/"

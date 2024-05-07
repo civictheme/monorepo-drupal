@@ -83,3 +83,4 @@ Feature: Promo card render
     And I should see the text "[TEST] Topic 1"
     And I should see the text "[TEST] Topic 2"
     And I should see the text "[TEST] Topic 3"
+    And I should see the ".ct-promo-card__image img.ct-image" element with a "src" attribute containing "/sites/default/files/styles/civictheme_promo_card/public/"

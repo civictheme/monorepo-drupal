@@ -5,12 +5,12 @@ dependencies:
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
     - field.field.media.civictheme_image.field_c_m_media_tags
-    - image.style.civictheme_thumbnail
+    - image.style.civictheme_medium
     - media.type.civictheme_image
     - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
-    - image
+    - focal_point
     - path
 id: media.civictheme_image.default
 targetEntityType: media
@@ -32,12 +32,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_c_m_image:
-    type: image_image
+    type: image_focal_point
     weight: 1
     region: content
     settings:
       progress_indicator: throbber
-      preview_image_style: civictheme_thumbnail
+      preview_image_style: civictheme_medium
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
   field_c_m_media_tags:
     type: entity_reference_autocomplete

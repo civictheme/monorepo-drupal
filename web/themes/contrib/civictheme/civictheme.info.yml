@@ -15,6 +15,7 @@ dependencies:
   - drupal:config
   - drupal:content_moderation
   - drupal:datetime_range
+  - drupal:focal_point
   - drupal:help
   - drupal:image
   - drupal:inline_form_errors
@@ -561,11 +562,15 @@ config_devel:
     - field.storage.paragraph.field_c_p_width
     - filter.format.civictheme_plain_text
     - filter.format.civictheme_rich_text
+    - image.style.civictheme_campaign
+    - image.style.civictheme_event_card
     - image.style.civictheme_medium
     - image.style.civictheme_navigation_card
     - image.style.civictheme_promo_banner
     - image.style.civictheme_promo_card
-    - image.style.civictheme_thumbnail
+    - image.style.civictheme_publication_card
+    - image.style.civictheme_slider_slide
+    - image.style.civictheme_subject_card
     - image.style.civictheme_topic_desktop
     - image.style.civictheme_topic_mobile
     - media.type.civictheme_audio

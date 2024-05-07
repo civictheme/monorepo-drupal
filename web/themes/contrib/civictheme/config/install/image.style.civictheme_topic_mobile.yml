@@ -1,14 +1,16 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: civictheme_topic_mobile
 label: 'Topic mobile'
 effects:
-  f2e908d5-26ff-4a5a-a971-97e44e8d2c6a:
-    uuid: f2e908d5-26ff-4a5a-a971-97e44e8d2c6a
-    id: image_scale_and_crop
-    weight: 1
+  51a9c965-4ec0-4438-94c8-6fb37dfe3594:
+    uuid: 51a9c965-4ec0-4438-94c8-6fb37dfe3594
+    id: focal_point_scale_and_crop
+    weight: 2
     data:
       width: 213
       height: 200
-      anchor: center-center
+      crop_type: focal_point

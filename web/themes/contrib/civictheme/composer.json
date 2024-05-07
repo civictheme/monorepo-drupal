@@ -12,6 +12,7 @@
         "php": ">=8.1",
         "drupal/components": "^3@beta",
         "drupal/field_group": "^3.4",
+        "drupal/focal_point": "^2.0",
         "drupal/layout_builder_restrictions": "^2.19",
         "drupal/linkit": "^6.1",
         "drupal/menu_block": "^1.10",
