@@ -73,7 +73,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:24.3.0
+      - image: drevops/ci-runner:24.4.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -102,7 +102,7 @@ aliases:
   - &step_setup_remote_docker
     setup_remote_docker:
       docker_layer_caching: *docker_layer_caching
-      version: 20.10.18
+      version: default
 
   # Set up Docker network.
   - &step_setup_docker_network
