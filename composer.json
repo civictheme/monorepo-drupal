@@ -38,37 +38,6 @@
         "phpstan/extension-installer": "^1.3",
         "pyrech/composer-changelogs": "^1.8"
     },
-    "autoload": {
-        "classmap": [
-            "scripts/composer/"
-        ]
-    },
-    "autoload-dev": {
-        "classmap": [
-            "tests/phpunit/"
-        ]
-    },
-    "config": {
-        "platform": {
-            "php": "8.2.13"
-        },
-        "process-timeout": 0,
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/installers": true,
-            "cweagans/composer-patches": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "drupal/console-extend-plugin": true,
-            "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true,
-            "oomphinc/composer-installers-extender": true,
-            "phpstan/extension-installer": true,
-            "pyrech/composer-changelogs": true,
-            "wikimedia/composer-merge-plugin": true,
-            "php-http/discovery": true,
-            "ergebnis/composer-normalize": true
-        }
-    },
     "conflict": {
         "drupal/drupal": "*"
     },
@@ -85,8 +54,8 @@
             "type": "package",
             "package": {
                 "name": "dropzone/dropzone",
-                "version": "v5.7.2",
                 "type": "drupal-library",
+                "version": "v5.7.2",
                 "dist": {
                     "type": "zip",
                     "url": "https://github.com/dropzone/dropzone/archive/refs/tags/v5.7.2.zip"
@@ -94,50 +63,56 @@
             }
         }
     },
-    "scripts": {
-        "pre-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "pre-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ],
-        "post-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ]
-    },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/phpunit/"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/console-extend-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "ergebnis/composer-normalize": true,
+            "oomphinc/composer-installers-extender": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "pyrech/composer-changelogs": true,
+            "wikimedia/composer-merge-plugin": true
+        },
+        "platform": {
+            "php": "8.2.13"
+        },
+        "process-timeout": 0,
+        "sort-packages": true
+    },
     "extra": {
         "composer-exit-on-patch-failure": true,
-        "patchLevel": {
-            "drupal/core": "-p2"
-        },
-        "patches": {
-            "drupal/core": {
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
-            },
-            "mglaman/phpstan-drupal": {
-                "Allow to provide drupal_root via an environment variable.": "https://github.com/mglaman/phpstan-drupal/pull/702.patch"
-            }
-        },
         "drupal-scaffold": {
-            "locations": {
-                "web-root": "./web"
-            },
             "file-mapping": {
                 "[project-root]/.editorconfig": false,
                 "[project-root]/.gitattributes": false,
-                "[web-root]/.htaccess": false,
                 "[web-root]/.ht.router.php": false,
-                "[web-root]/example.gitignore": false,
+                "[web-root]/.htaccess": false,
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.txt": false,
+                "[web-root]/example.gitignore": false,
                 "[web-root]/sites/example.settings.local.php": false,
                 "[web-root]/sites/example.sites.php": false,
                 "[web-root]/web.config": false
+            },
+            "locations": {
+                "web-root": "./web"
             }
         },
         "enable-patching": true,
@@ -174,6 +149,35 @@
             "npm-asset",
             "drupal-library"
         ],
+        "merge-plugin": {
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-replace": true,
+            "merge-scripts": false,
+            "recurse": true,
+            "replace": true,
+            "require": [
+                "web/themes/contrib/civictheme/composer.json",
+                "web/modules/custom/civictheme_govcms/composer.json",
+                "web/modules/custom/civictheme_admin/composer.json",
+                "web/modules/custom/civictheme_content/composer.json",
+                "web/modules/custom/civictheme_dev/composer.json",
+                "web/modules/custom/cs_generated_content/composer.json"
+            ]
+        },
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "mglaman/phpstan-drupal": {
+                "Allow to provide drupal_root via an environment variable.": "https://github.com/mglaman/phpstan-drupal/pull/702.patch"
+            }
+        },
         "preserve-paths": [
             "web/modules/custom",
             "web/themes/custom",
@@ -188,24 +192,20 @@
             "web/sites/default/files",
             "web/robots.txt",
             "web/.htaccess"
+        ]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
-        "merge-plugin": {
-            "require": [
-                "web/themes/contrib/civictheme/composer.json",
-                "web/modules/custom/civictheme_govcms/composer.json",
-                "web/modules/custom/civictheme_admin/composer.json",
-                "web/modules/custom/civictheme_content/composer.json",
-                "web/modules/custom/civictheme_dev/composer.json",
-                "web/modules/custom/cs_generated_content/composer.json"
-            ],
-            "recurse": true,
-            "replace": true,
-            "ignore-duplicates": false,
-            "merge-dev": true,
-            "merge-extra": false,
-            "merge-extra-deep": false,
-            "merge-replace": true,
-            "merge-scripts": false
-        }
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
     }
 }
