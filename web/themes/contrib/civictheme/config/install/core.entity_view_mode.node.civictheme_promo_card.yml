@@ -5,5 +5,6 @@ dependencies:
     - node
 id: node.civictheme_promo_card
 label: 'Promo Card'
+description: ''
 targetEntityType: node
 cache: true
