@@ -262,13 +262,13 @@ Feature: Automated list render
     # Add a Test view as a list type.
     # This view only shows items older than 2 days and has a Title filter exposed.
     When I am logged in as a user with the "Administrator" role
-    And I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields/paragraph.civictheme_automated_list.field_c_p_list_type/storage"
-    And I fill in "Allowed values list" with:
-      """
-      civictheme_automated_list__block1|Default
-      civictheme_automated_list_test__block_test_1|Test
-      """
-    And I press "Save field settings"
+    And I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields/paragraph.civictheme_automated_list.field_c_p_list_type"
+    And I fill in the following:
+      | field_storage[subform][settings][allowed_values][table][0][item][label] | Default                                      |
+      | field_storage[subform][settings][allowed_values][table][0][item][key]   | civictheme_automated_list__block1            |
+      | field_storage[subform][settings][allowed_values][table][1][item][label] | Test                                         |
+      | field_storage[subform][settings][allowed_values][table][1][item][key]   | civictheme_automated_list_test__block_test_1 |
+    And I press "Save settings"
 
     # Select newly added list type Test.
     And I edit civictheme_page "Test page with Automated list content"
