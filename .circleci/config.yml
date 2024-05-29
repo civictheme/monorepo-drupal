@@ -131,16 +131,86 @@ job-build-isolated: &job-build-isolated
     - attach_workspace:
         at: /tmp/workspace
     - checkout
-    - run: cd web/themes/contrib/civictheme && ./.devtools/build.sh
-    - run: cd web/themes/contrib/civictheme && ./.devtools/lint.sh
-    - run: cd web/themes/contrib/civictheme && ./.devtools/test.sh
+
     - run:
-        command: cd web/themes/contrib/civictheme && ./.devtools/process-artifacts.sh
-        when: always
+        name: Upgrade sqlite3
+        command: |
+          wget https://www.sqlite.org/2024/sqlite-autoconf-3450300.tar.gz -O /tmp/sqlite.tar.gz
+          tar -xzf /tmp/sqlite.tar.gz -C /tmp
+          cd /tmp/sqlite-autoconf-3450300
+          ./configure CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1" --prefix=/usr/local
+          make && sudo make install
+          sudo ldconfig
+          echo "export LD_LIBRARY_PATH=/usr/local/lib" >> $BASH_ENV
+
+    - run:
+        name: Install PCOV
+        command: |
+          sudo pecl install pcov
+          echo "extension=pcov.so" | sudo tee -a /usr/local/etc/php/conf.d/pcov.ini
+          echo "pcov.enabled=1" | sudo tee -a /usr/local/etc/php/conf.d/pcov.ini
+
+    - run:
+        name: Assemble the codebase
+        command: .devtools/assemble.sh
+        working_directory: web/themes/contrib/civictheme
+
+    - run:
+        name: Start built-in PHP server
+        command: .devtools/start.sh
+        working_directory: web/themes/contrib/civictheme
+
+    - run:
+        name: Provision site
+        command: .devtools/provision.sh
+        working_directory: web/themes/contrib/civictheme
+
+    - run:
+        name: Lint code with PHPCS
+        command: vendor/bin/phpcs || [ "${CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
+    - run:
+        name: Lint code with PHPStan
+        command: vendor/bin/phpstan || [ "${CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
+    - run:
+        name: Lint code with Rector
+        command: vendor/bin/rector --clear-cache --dry-run || [ "${CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
+    - run:
+        name: Lint code with PHPMD
+        command: vendor/bin/phpmd . text phpmd.xml || [ "${CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
+    - run:
+        name: Lint code with Twig CS Fixer
+        command: vendor/bin/twig-cs-fixer || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
+    - run:
+        name: Run tests
+        command: vendor/bin/phpunit || [ "${CI_TEST_IGNORE_FAILURE:-0}" -eq 1 ]
+        working_directory: web/themes/contrib/civictheme/build
+
     - store_test_results:
-        path: /tmp/test_results
+        path: web/themes/contrib/civictheme/.logs/test_results
+
     - store_artifacts:
-        path: /tmp/artifacts
+        path: web/themes/contrib/civictheme/build/web/sites/simpletest/browser_output
+
+    - store_artifacts:
+        path: web/themes/contrib/civictheme/.logs/coverage
+
+    - run:
+        name: Upload code coverage reports to Codecov
+        command: |
+          if [ -z "${CIRCLE_TAG-}" ] && [ -n "${CODECOV_TOKEN-}" ] && [ -d .logs/coverage/phpunit ]; then
+            curl -Os https://cli.codecov.io/latest/linux/codecov && sudo chmod +x codecov
+            ./codecov --verbose upload-process --fail-on-error -n "circleci-$CIRCLE_JOB" -s web/themes/contrib/civictheme/.logs/coverage
+          fi
 
 job-build: &job-build
   parallelism: 2
@@ -262,8 +332,8 @@ jobs:
     docker:
       - image: cimg/php:8.3-browsers
     environment:
-      DRUPAL_VERSION: 11@alpha
-      DRUPAL_PROJECT_SHA: 11.x
+      DRUPAL_VERSION: 10@beta
+      DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 
   # Used to pass the built code down the pipeline.
