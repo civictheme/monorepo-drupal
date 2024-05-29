@@ -18,7 +18,7 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'web/themes/contrib/civictheme/civictheme_starter_kit/scripts/add_phpcs_exclusions.php';
+  protected $script = 'themes/contrib/civictheme/civictheme_starter_kit/scripts/add_phpcs_exclusions.php';
 
   /**
    * @dataProvider dataProviderMain

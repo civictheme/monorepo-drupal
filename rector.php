@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-use DrupalFinder\DrupalFinder;
+use DrupalFinder\DrupalFinderComposerRuntime;
 use DrupalRector\Set\Drupal10SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
@@ -26,10 +26,24 @@ use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector;
 use Rector\Set\ValueObject\SetList;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
 
 return static function (RectorConfig $rectorConfig): void {
+  $drupalFinder = new DrupalFinderComposerRuntime();
+  $drupalRoot = $drupalFinder->getDrupalRoot();
+  $rectorConfig->autoloadPaths([
+    $drupalRoot . '/core',
+    $drupalRoot . '/modules',
+    $drupalRoot . '/themes',
+    $drupalRoot . '/profiles',
+  ]);
+
   $rectorConfig->paths([
-    __DIR__,
+    $drupalRoot . '/modules/custom',
+    $drupalRoot . '/themes/custom',
+    $drupalRoot . '/sites/default/settings.php',
+    $drupalRoot . '/sites/default/includes',
+    __DIR__ . '/tests',
   ]);
 
   $rectorConfig->sets([
@@ -48,13 +62,7 @@ return static function (RectorConfig $rectorConfig): void {
     Drupal10SetList::DRUPAL_10,
   ]);
 
-  $drupalRoot = realpath(__DIR__ . '/web');
-  $rectorConfig->autoloadPaths([
-    $drupalRoot . '/core',
-    $drupalRoot . '/modules',
-    $drupalRoot . '/themes',
-    $drupalRoot . '/profiles',
-  ]);
+  $rectorConfig->rule(DeclareStrictTypesRector::class);
 
   $rectorConfig->skip([
     // Rules added by Rector's rule sets.

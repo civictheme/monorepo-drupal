@@ -28,7 +28,7 @@ final class CivicthemeGovcmsManager {
    *   The entity type manager.
    */
   public function __construct(
-    protected EntityTypeManagerInterface $entityTypeManager
+    protected EntityTypeManagerInterface $entityTypeManager,
   ) {
     $this->removalList = [
       // Item name in CLI => callable.
