@@ -49,8 +49,10 @@ settings:
         - heading5
         - heading6
     ckeditor5_list:
-      reversed: false
-      startIndex: true
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<cite>'
@@ -60,7 +62,7 @@ settings:
         - '<img src alt data-entity-type data-entity-uuid>'
         - '<drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
         - '<span class="ct-visually-hidden">'
-        - '<svg role viewbox aria-hidden width height class="ct-icon">'
+        - '<svg role viewBox aria-hidden width height class="ct-icon">'
         - '<path d>'
         - '<blockquote cite>'
         - '<ul type>'
