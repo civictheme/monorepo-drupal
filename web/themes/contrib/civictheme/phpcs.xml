@@ -2,23 +2,25 @@
 <ruleset name="custom">
     <description>Custom PHPCS Standard, based on Drupal standards.</description>
 
-    <file>.</file>
+    <file>web/modules/custom</file>
+    <file>web/themes/custom</file>
 
     <rule ref="Drupal"/>
     <rule ref="DrupalPractice"/>
     <rule ref="Generic.Debug.ESLint"/>
     <rule ref="PHPCompatibility"/>
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
 
     <arg name="extensions" value="inc,info,install,module,php,profile,test,theme,js"/>
     <arg name="colors"/>
     <arg value="sp"/>
     <arg name="parallel" value="75"/>
     <!-- Lint code against platform version specified in composer.json key "config.platform.php". -->
-    <config name="testVersion" value="8.1"/>
+    <config name="testVersion" value="8.2"/>
 
-    <!-- Exclude dependencies directories. -->
-    <exclude-pattern>node_modules/*</exclude-pattern>
-    <exclude-pattern>vendor/*</exclude-pattern>
+    <!-- Exclude CircleCI config files. -->
+    <exclude-pattern>circle\.yml</exclude-pattern>
+    <exclude-pattern>\.circle\/config\.yml</exclude-pattern>
 
     <exclude-pattern>\.storybook</exclude-pattern>
     <exclude-pattern>build\/</exclude-pattern>
@@ -27,6 +29,13 @@
     <exclude-pattern>gulpfile.js</exclude-pattern>
     <exclude-pattern>lib\/</exclude-pattern>
     <exclude-pattern>webpack</exclude-pattern>
+
+    <!-- Exclude theme assets. -->
+    <exclude-pattern>web\/themes\/custom\/.*\/build\/.*</exclude-pattern>
+    <exclude-pattern>web\/themes\/custom\/.*\/fonts\/.*</exclude-pattern>
+    <exclude-pattern>web\/themes\/custom\/.*\/images\/.*</exclude-pattern>
+    <exclude-pattern>web\/themes\/custom\/.*\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>*\.min\.*</exclude-pattern>
 
     <!-- Force no empty lines after function opening brace. -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace">
@@ -48,6 +57,7 @@
         <exclude-pattern>*.Test\.php</exclude-pattern>
         <exclude-pattern>*.TestCase\.php</exclude-pattern>
         <exclude-pattern>*.TestBase\.php</exclude-pattern>
+        <exclude-pattern>*.test</exclude-pattern>
     </rule>
 
     <!-- Allow long array lines in tests. -->
@@ -55,12 +65,6 @@
         <exclude-pattern>*.Test\.php</exclude-pattern>
         <exclude-pattern>*.TestCase\.php</exclude-pattern>
         <exclude-pattern>*.TestBase\.php</exclude-pattern>
-    </rule>
-
-    <!-- Force declare(strict_types=1); in all PHP files. -->
-    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
-        <properties>
-            <property name="spacesCountAroundEqualsSign" value="0"/>
-        </properties>
+        <exclude-pattern>*.test</exclude-pattern>
     </rule>
 </ruleset>

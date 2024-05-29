@@ -12,36 +12,30 @@ parameters:
   level: 7
 
   paths:
-    - .
+    - web/modules/custom
+    - web/themes/custom
 
   excludePaths:
-    - build
     - '*/vendor/*'
     - '*/node_modules/*'
     - '*/lib/*'
 
   drupal:
-    drupal_root: build/web
-
-  # Do not report on ignored errors that do not occur in the results.
-  reportUnmatchedIgnoredErrors: false
+    drupal_root: web
 
   ignoreErrors:
-    -
-      # Since tests and data providers do not have to have parameter docblocks,
-      # it is not possible to specify the type of the parameter, so we ignore
-      # this error.
-      message: '#.*no value type specified in iterable type array.#'
+    - # Hook implementations do not provide docblocks for parameters, so there
+      # is no way to provide this information.
+      messages:
+        - '#.* no value type specified in iterable type array#'
+        - '#.* has no return type specified#'
       paths:
-        - ./tests/*
-    -
-      # Hook implementations do not provide docblocks for parameters, so there
+        - web/modules/custom/*
+        - web/themes/custom/*
+      reportUnmatched: false
+    - # Hook implementations do not provide docblocks for parameters, so there
       # is no way to provide this information.
       message: '#.* with no value type specified in iterable type array#'
-    -
-      # Allow using Drupal::service() in Drush commands.
-      message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
-    -
-      # Deprecations are manually handled in the codebase.
-      message: '#\Call to deprecated function#'
       reportUnmatched: false
+    - # Allow using Drupal::service() in Drush commands.
+      message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Drupal\civictheme;
 
 use Drupal\civictheme\Color\CivicthemeColor;
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\DrupalKernel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -316,6 +318,8 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
    *
    * @return $this
    *   Instance of the current class.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function invalidateCache(): static {
     $this->stylesheetGenerator->purge();
@@ -323,7 +327,11 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
     // Force browser reload by changing the dummy query string.
-    _drupal_flush_css_js();
+    DeprecationHelper:: backwardsCompatibleCall(\Drupal::VERSION, '11.0.0', static function () {
+      \Drupal::service('asset.query_string')->reset();
+    }, static function () {
+      _drupal_flush_css_js();
+    });
 
     return $this;
   }
@@ -501,9 +509,9 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     }
 
     $values = $matrix + [
-      'use_color_selector' => TRUE,
-      'use_brand_colors' => $use_brand_colors,
-    ];
+        'use_color_selector' => TRUE,
+        'use_brand_colors' => $use_brand_colors,
+      ];
 
     $this->configManager->save('colors', $values);
 
