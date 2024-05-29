@@ -332,6 +332,12 @@ Feature: Automated list render
       | Test page with Automated list non self referenced | 1      | published        |
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list non self referenced" has "civictheme_automated_list" paragraph:
+      | field_c_p_theme          | light                                         |
+      | field_c_p_content:value  | <h2 id="scroll-here">[TEST] Page content</h2> |
+      | field_c_p_content:format | civictheme_rich_text                          |
+      | field_c_p_background     | 0                                             |
+
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list non self referenced" has "civictheme_automated_list" paragraph:
       | field_c_p_title           | [TEST] Automated list title |
       | field_c_p_list_limit_type | unlimited                   |
       | field_c_p_list_limit      | 0                           |
@@ -341,5 +347,6 @@ Feature: Automated list render
     Then I should see a ".ct-list" element
     And I should see a ".ct-list.ct-theme-light" element
     And the response should contain "ct-automated-list-"
+    Then I save screenshot
     And the ".ct-list .ct-promo-card__title__link" element should contain "Test page content in list"
     And the ".ct-list .ct-promo-card__title__link" element should not contain "Test page with Automated list non self referenced"
