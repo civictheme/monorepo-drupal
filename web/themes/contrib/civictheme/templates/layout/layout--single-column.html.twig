@@ -16,11 +16,13 @@
 {% if content %}
   <div class="layout">
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
-      {% include '@base/layout/content-layout--single-column.twig' with {
-        content: content.content,
-        modifier_class: modifier_class,
-        is_contained: is_contained,
-      } %}
+      <div class="ct-layout--single-column">
+        {% block content %}
+          <div class="ct-layout__content {{ modifier_class }}">
+            {{ content }}
+          </div>
+        {% endblock %}
+      </div>
     </div>
   </div>
 {% endif %}
