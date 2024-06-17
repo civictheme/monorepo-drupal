@@ -1,20 +1,9 @@
 {#
 /**
  * @file
- * CivicTheme implementation for a 'checkboxes' #type form element.
+ * CivicTheme implementation for a 'checkboxes' type form element.
+ *
+ * The main template for checkboxes is located in the Field component.
  */
 #}
-{# Manually adding in fieldset as we need to remove preRender form markup for civictheme filter system. #}
-{% embed '@atoms/fieldset/fieldset.twig' with {
-  legend: fieldset_legend,
-  legend_span: fieldset_legend_span,
-  modifier_class: modifier_class,
-  legend_span_attributes: fieldset_legend_span_attributes,
-  attributes: attributes,
-  required: required,
-  errors: errors,
-} %}
-  {% block children %}
-    <div class="form-checkboxes">{{ children }}</div>
-  {% endblock %}
-{% endembed %}
+{{ children }}

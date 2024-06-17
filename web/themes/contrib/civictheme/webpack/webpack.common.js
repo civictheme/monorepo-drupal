@@ -9,9 +9,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: (function (pattern) {
     // Splitting entries into three chunks:
-    // main: all styles used in components and drupal theme -> output: civictheme.css
-    // variables: CSS variables -> output: civictheme.variables.css
-    // editor: nested styles used in editor -> output: civictheme.editor.css
+    // - main: all styles used in components and Drupal theme -> civictheme.css
+    // - variables: CSS variables -> civictheme.variables.css
+    // - editor: nested styles used in editor -> civictheme.editor.css
     const entries = {
       main: [],
       variables: [],
@@ -134,7 +134,7 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components\/[^/]+\/(?!.*\.(stories|component|utils|test)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',

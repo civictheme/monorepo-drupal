@@ -21,6 +21,15 @@ Based on [CivicTheme](https://www.drupal.org/project/civictheme) Drupal theme.
 
 See [Version update](https://docs.civictheme.io/drupal-theme/version-update)
 
+## Maintenance
+
+### Updating minor dependencies
+
+```bash
+npm install -g npm-check-updates
+npx npm-check-updates -u --target minor
+```
+
 ---
 
 For additional information, please refer to

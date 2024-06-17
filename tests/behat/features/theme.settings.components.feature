@@ -223,10 +223,10 @@ Feature: Components settings are available in the theme settings
     Given I am logged in as a user with the "Site Administrator" role
     And I visit current theme settings page
 
-    When I attach the file "test_image_logo_svg_light_desktop.svg" to "Upload Primary Light logo for Desktop"
-    And I attach the file "test_image_logo_svg_light_mobile.svg" to "Upload Primary Light logo for Mobile"
-    And I attach the file "test_image_logo_svg_dark_desktop.svg" to "Upload Primary Dark logo for Desktop"
-    And I attach the file "test_image_logo_svg_dark_mobile.svg" to "Upload Primary Dark logo for Mobile"
+    When I attach the file "test_image_logo_svg_light_desktop.png" to "Upload Primary Light logo for Desktop"
+    And I attach the file "test_image_logo_svg_light_mobile.png" to "Upload Primary Light logo for Mobile"
+    And I attach the file "test_image_logo_svg_dark_desktop.png" to "Upload Primary Dark logo for Desktop"
+    And I attach the file "test_image_logo_svg_dark_mobile.png" to "Upload Primary Dark logo for Mobile"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
     And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
@@ -235,10 +235,10 @@ Feature: Components settings are available in the theme settings
     Then I should see the text "The configuration options have been saved."
 
     And I go to the homepage
-    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_desktop.svg"
-    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_mobile.svg"
-    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_desktop.svg"
-    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_mobile.svg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_desktop.png"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_light_mobile.png"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_desktop.png"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_svg_dark_mobile.png"
 
     # Reset settings.
     When I visit current theme settings page
