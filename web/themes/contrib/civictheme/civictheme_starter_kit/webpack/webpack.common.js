@@ -16,6 +16,7 @@ module.exports = {
       main: [],
       variables: [],
       editor: [],
+      layout: [],
     };
 
     // Scan for all JS.
@@ -35,6 +36,9 @@ module.exports = {
 
     // Add explicitly editor.scss
     entries.editor.push(path.resolve(__dirname, 'editor_css.js'));
+
+    // Add explicitly layout.scss
+    entries.layout.push(path.resolve(__dirname, 'layout_css.js'));
 
     return entries;
   }(path.resolve(__dirname, '../components_combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
@@ -56,6 +60,11 @@ module.exports = {
           name: 'editor',
           chunks: (chunk) => (chunk.name === 'editor'),
         },
+        layout: {
+          test: 'css/mini-extract',
+          name: 'layout',
+          chunks: (chunk) => (chunk.name === 'layout'),
+        },
       },
     },
   },
@@ -75,6 +84,8 @@ module.exports = {
         '../dist/scripts-variables.js.map',
         '../dist/scripts-editor.js',
         '../dist/scripts-editor.js.map',
+        '../dist/scripts-layout.js',
+        '../dist/scripts-layout.js.map',
       ],
     }),
   ],

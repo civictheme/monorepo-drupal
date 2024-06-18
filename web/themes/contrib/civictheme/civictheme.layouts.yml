@@ -1,5 +1,6 @@
 civictheme_one_column:
   label: 'Single column - edge to edge content'
+  library: civictheme/layouts
   category: 'CivicTheme Layouts'
   path: templates/layout/
   template: layout--single-column
@@ -11,6 +12,7 @@ civictheme_one_column:
       label: Main content
 civictheme_one_column_contained:
   label: 'Single column - contained content'
+  library: civictheme/layouts
   category: 'CivicTheme Layouts'
   path: templates/layout/
   template: layout--single-column-contained
