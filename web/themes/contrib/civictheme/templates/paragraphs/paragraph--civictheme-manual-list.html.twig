@@ -9,13 +9,15 @@
 {% block rows %}
   {% if rows -%}
     <div class="ct-list__rows">
-      {% include '@base/item-grid/item-grid.twig' with {
+      {% include '@base/grid/grid.twig' with {
+        theme: theme,
         title: title,
-        column_count: column_count,
+        template_column_count: column_count,
         fill_width: fill_width,
         items: rows,
         theme: theme,
-        with_background: with_background
+        with_background: with_background,
+        row_class: 'row--equal-heights-content row--vertically-spaced'
       } only %}
     </div>
   {% endif %}
