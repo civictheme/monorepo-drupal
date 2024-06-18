@@ -16,6 +16,7 @@
     "gulp:watch": "gulp watch",
     "lint": "eslint --no-error-on-unmatched-pattern ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
     "lint-fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
+    "postinstall": "patch-package",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
     "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n"
   },
@@ -65,6 +66,7 @@
     "lorem-ipsum": "^2.0.8",
     "mini-css-extract-plugin": "^1.6.2",
     "node-sass-magic-importer": "^5.3.3",
+    "patch-package": "^8.0.0",
     "react": "^17",
     "react-dom": "^17",
     "sass": "^1.77.6",
