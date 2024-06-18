@@ -63,8 +63,9 @@ function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form_element__description($variables);
 
   // @todo Remove this centralized processing is implemented.
-  if($variables['element']['#type'] == 'select') {
+  if ($variables['element']['#type'] == 'select') {
     $variables['options'] = form_select_options($variables['element']);
+    $variables['is_multiple'] = $variables['element']['#multiple'] ?? FALSE;
   }
 }
 
