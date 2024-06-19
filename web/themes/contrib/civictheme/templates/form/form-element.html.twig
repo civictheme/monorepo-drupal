@@ -18,7 +18,7 @@
 {% if element['#type'] not in ['checkbox', 'radio'] %}
   {% set control = [{
     attributes: control_attributes,
-    name: element['#attributes']['name']|default(''),
+    name: element['#attributes']['name']|default(element['#name']|default('')),
     value: element['#value']|default(''),
     id: element['#id']|default(''),
     options: options,
