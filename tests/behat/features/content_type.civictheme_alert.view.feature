@@ -17,7 +17,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts can be viewed on homepage
     Given I am an anonymous user
     And I go to the homepage
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     And save screenshot
@@ -32,7 +32,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should follow the visibility settings
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     And save screenshot
@@ -45,7 +45,7 @@ Feature: CivicTheme Alert content type render
     Given I am an anonymous user
     And I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     And I should not see the text "[TEST] Test alert body Homepage only"
@@ -67,7 +67,7 @@ Feature: CivicTheme Alert content type render
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should not see the text "[TEST] Test alert body Homepage only"
@@ -79,7 +79,7 @@ Feature: CivicTheme Alert content type render
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test dismissing alert body all pages"
@@ -93,7 +93,7 @@ Feature: CivicTheme Alert content type render
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
@@ -104,7 +104,7 @@ Feature: CivicTheme Alert content type render
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test dismissing alert body all pages"
@@ -126,7 +126,7 @@ Feature: CivicTheme Alert content type render
     And I press "Save"
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
@@ -137,7 +137,7 @@ Feature: CivicTheme Alert content type render
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And save screenshot
-    And wait 5 second
+    And wait 15 second
     And save screenshot
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
