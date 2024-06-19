@@ -51,7 +51,6 @@ regions:
   content_top: 'Content Top'
   content: 'Content'
   content_bottom: 'Content Bottom'
-  sidebar: 'Sidebar' # Deprecated and will be removed in 1.9
   sidebar_top_left: 'Sidebar Top Left'
   sidebar_bottom_left: 'Sidebar Bottom Left'
   sidebar_top_right: 'Sidebar Top Right'

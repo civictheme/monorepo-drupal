@@ -122,10 +122,8 @@ function _civictheme_preprocess_page__node(array &$variables): void {
 
   $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
 
-  // Hide sidebar_top_left check.
+  // @todo Add support for hiding of the right sidebar.
   $variables['hide_sidebar_left'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
-  // @deprecated prop 'hide_sidebar'. Will be removed in 1.9.
-  $variables['hide_sidebar'] = $variables['hide_sidebar_left'];
 }
 
 /**
