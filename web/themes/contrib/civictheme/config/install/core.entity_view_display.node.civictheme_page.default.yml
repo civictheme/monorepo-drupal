@@ -38,14 +38,14 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: civictheme_one_column
+        layout_id: civictheme_three_columns
         layout_settings:
-          label: 'CivicTheme Single Column'
+          label: 'CivicTheme Three Columns'
           context_mapping: {  }
         components:
-          fe1eb2ca-740e-4c33-b576-503ba383f7bc:
-            uuid: fe1eb2ca-740e-4c33-b576-503ba383f7bc
-            region: content
+          e1164245-8b1a-4a3f-8b30-30b00be44144:
+            uuid: e1164245-8b1a-4a3f-8b30-30b00be44144
+            region: main
             configuration:
               id: 'field_block:node:civictheme_page:field_c_n_components'
               label: Components
@@ -84,7 +84,9 @@ third_party_settings:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
       allowed_layouts:
+        - civictheme_three_columns
         - civictheme_one_column
+        - civictheme_one_column_contained
       denylisted_blocks: {  }
       allowlisted_blocks: {  }
       restricted_categories: {  }

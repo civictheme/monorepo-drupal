@@ -77,6 +77,8 @@ function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
  *
  * @return bool
  *   TRUE if the Layout Builder is enabled for the node, FALSE otherwise.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_is_layout_builder_enabled(NodeInterface $node, $view_mode = 'default') {
   $entity_type = $node->getEntityTypeId();

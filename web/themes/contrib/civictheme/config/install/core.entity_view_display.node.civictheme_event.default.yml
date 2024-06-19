@@ -30,7 +30,7 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: civictheme_one_column_contained
+        layout_id: civictheme_three_columns
         layout_settings:
           label: Main
           context_mapping: {  }
