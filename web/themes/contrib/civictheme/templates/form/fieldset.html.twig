@@ -7,6 +7,9 @@
 
 {% if element is defined and (element["#type"] == "checkboxes" or element["#type"] == "radios") %}
   {# TODO: Move these to a preprocess. #}
+
+  {% set field_type = element["#type"] == "checkboxes" ? "checkbox" : "radio" %}
+
   {% set control_filtered_attributes = element['#attributes']|filter((v, k) => k starts with 'data' or k in ['size', 'maxlength', 'autocomplete']) %}
   {% set control_attributes = control_filtered_attributes|map((v, k) => k ~ '="' ~ v ~ '"')|join(' ') %}
   {% set control_modifier_class = element['#attributes']['class']|default([]) %}
@@ -15,9 +18,10 @@
   {% set control = [] %}
 
   {% for key, option in element['#options'] %}
+    {% set control_name = element['#attributes']['name']|default(element['#name']|default('')) %}
     {% set control = control|merge([{
       attributes: control_attributes,
-      name: element['#name'],
+      name: field_type == "checkbox" ? control_name ~ '[' ~ key ~ ']' : control_name,
       value: key,
       id: element['#id'] ~ '-' ~ key,
       label: option,
@@ -35,8 +39,9 @@
 
   {% include "@molecules/field/field.twig" with {
     label: legend.title,
-    type: element["#type"] == "checkboxes" ? "checkbox" : "radio",
+    type: field_type,
     orientation: orientation is defined ? orientation : 'vertical',
+    is_inline: element['#options_display'] is defined and (element['#options_display'] == "inline" or element['#options_display'] == "side_by_side") ? 'horizontal' : 'vertical',
     is_required: is_required,
     is_disabled: is_disabled,
     description: description,
