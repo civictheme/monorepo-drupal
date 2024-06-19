@@ -5220,7 +5220,7 @@
             "extra": {
                 "drupal": {
                     "version": "2.0.3",
-                    "datestamp": "1710483189",
+                    "datestamp": "1718776206",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
