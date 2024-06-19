@@ -12,13 +12,12 @@ declare(strict_types=1);
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
@@ -66,6 +65,30 @@ function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
   }
 
   return $node;
+}
+
+/**
+ * Check if the Layout Builder is enabled for a node.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The node to check.
+ * @param string $view_mode
+ *   (optional) The view mode to check. Defaults to 'default'.
+ *
+ * @return bool
+ *   TRUE if the Layout Builder is enabled for the node, FALSE otherwise.
+ */
+function civictheme_is_layout_builder_enabled(NodeInterface $node, $view_mode = 'default') {
+  $entity_type = $node->getEntityTypeId();
+  $bundle = $node->bundle();
+
+  $view_display = EntityViewDisplay::load("{$entity_type}.{$bundle}.{$view_mode}");
+
+  if ($view_display) {
+    return $view_display->getThirdPartySetting('layout_builder', 'enabled', FALSE);
+  }
+
+  return FALSE;
 }
 
 /**
@@ -310,6 +333,7 @@ function civictheme_format_datetime_iso(int|string|DrupalDateTime $datetime): st
  */
 function civictheme_format_date(string $format_or_type, int|string|DrupalDateTime $datetime): string {
   @trigger_error('civictheme_format_date() is deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use civictheme_format_datetime() instead. See https://www.drupal.org/project/civictheme/issues/3412647', E_USER_DEPRECATED);
+
   return civictheme_format_datetime($datetime, $format_or_type);
 }
 

@@ -105,28 +105,6 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
 }
 
 /**
- * Generic page pre-process for all view mode of nodes.
- */
-function _civictheme_preprocess_page__node(array &$variables): void {
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = civictheme_load_node_or_revision($variables);
-
-  // @phpstan-ignore-next-line
-  if (!$node) {
-    return;
-  }
-
-  // Layout determines whether a node is contained and what it's layout is.
-  $variables['page']['content_contained'] = FALSE;
-  $variables['page']['is_contained'] = FALSE;
-
-  $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
-
-  // @todo Add support for hiding of the right sidebar.
-  $variables['hide_sidebar_left'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
-}
-
-/**
  * Determine last updated date for a page.
  */
 function _civictheme_node_get_updated_date(NodeInterface $node, string $format = 'civictheme_short_date'): ?string {
