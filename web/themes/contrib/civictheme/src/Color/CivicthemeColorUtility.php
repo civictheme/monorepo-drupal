@@ -172,7 +172,7 @@ class CivicthemeColorUtility {
   /**
    * Convert integer into hexadecimal string value.
    *
-   * @param int $value
+   * @param int|float $value
    *   Integer value.
    *
    * @return string
