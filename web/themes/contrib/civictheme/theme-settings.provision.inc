@@ -1085,9 +1085,9 @@ function civictheme_enable_modules(bool $include_optional = TRUE): void {
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_get_theme_dependencies(string $theme_name, bool $include_optional = TRUE): array {
-  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
-  $theme_handler = \Drupal::getContainer()->get('theme_handler');
-  $theme_data = $theme_handler->rebuildThemeData();
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $extension_list */
+  $extension_list = \Drupal::getContainer()->get('extension.list.theme');
+  $theme_data = $extension_list->reset()->getList();
 
   // Merge dependencies from the theme's info file and from the 'optional'
   // config. We are deliberately not including dependencies from the 'install'

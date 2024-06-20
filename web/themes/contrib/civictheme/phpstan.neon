@@ -39,3 +39,6 @@ parameters:
       reportUnmatched: false
     - # Allow using Drupal::service() in Drush commands.
       message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+    - # Skip deprecation until upgrade to 10.3.
+      # @see https://www.drupal.org/node/3426517
+      message: '#Fetching deprecated class constant EXISTS_REPLACE#'
