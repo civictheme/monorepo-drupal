@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Cache\Cache;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -59,4 +60,37 @@ function hook_civictheme_automated_list_preprocess_view_alter(array &$variables,
     $variables['with_background'] = TRUE;
     $variables['vertical_spacing'] = 'both';
   }
+
+  /**
+   * Allow to suppress page regions for pages with Layout Builder enabled.
+   *
+   * @param array $variables
+   *   Array of variables passed to the page template.
+   * @param array $context
+   *   Array of context data.
+   *   - node: The node object.
+   *   - layout_builder_settings_per_view_mode: An array of the layout builder
+   *     settings keyed by view mode.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  function hook_civictheme_layout_suppress_page_regions_alter(array &$variables, array $context): void {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $variables['node'];
+    if ($node->bundle() == 'civictheme_page' && $context['layout_builder_settings_per_view_mode']['full']['enabled']) {
+      $variables['page']['sidebar_top_left'] = [];
+      $variables['page']['sidebar_bottom_left'] = [];
+      $variables['page']['sidebar_top_right'] = [];
+      $variables['page']['sidebar_bottom_right'] = [];
+
+      // Do not forget to merge the cache contexts.
+      $variables['#cache']['contexts'] = Cache::mergeContexts(
+        $variables['#cache']['contexts'] ?? [],
+        [
+          'user.roles:authenticated',
+        ]
+      );
+    }
+  }
+
 }
