@@ -53,7 +53,7 @@ class CircleCiConfigTest extends TestCase {
   /**
    * Data provider for testDeployBranchRegex().
    */
-  public function dataProviderDeployBranchRegex(): array {
+  public static function dataProviderDeployBranchRegex(): array {
     return [
       // Positive branches.
       ['main'],
