@@ -3,5 +3,5 @@ status: true
 dependencies: {  }
 id: civictheme_social_links
 label: 'Social Links'
-revision: 0
+revision: false
 description: 'List social link icons'

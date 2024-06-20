@@ -3,5 +3,5 @@ status: true
 dependencies: {  }
 id: civictheme_banner
 label: Banner
-revision: 0
+revision: false
 description: ''
