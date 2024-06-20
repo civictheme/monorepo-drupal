@@ -32,7 +32,7 @@ class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString($expected_output, $result['output']);
   }
 
-  public function dataProviderMain(): array {
+  public static function dataProviderMain(): array {
     return [
       [
         '--help',

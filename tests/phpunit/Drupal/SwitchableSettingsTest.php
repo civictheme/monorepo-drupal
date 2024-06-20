@@ -36,7 +36,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
   /**
    * Data provider for testEntityPrint().
    */
-  public function dataProviderEnvironmentIndicator(): array {
+  public static function dataProviderEnvironmentIndicator(): array {
     return [
       [
         static::ENVIRONMENT_LOCAL,
@@ -100,7 +100,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
   /**
    * Data provider for testShield().
    */
-  public function dataProviderShield(): array {
+  public static function dataProviderShield(): array {
     return [
       [
         static::ENVIRONMENT_LOCAL,

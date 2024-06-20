@@ -38,7 +38,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString($expected_output, $result['output']);
   }
 
-  public function dataProviderMain(): array {
+  public static function dataProviderMain(): array {
     return [
       [
         '--help',
@@ -158,7 +158,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
-  public function dataProviderTestLocation(): array {
+  public static function dataProviderTestLocation(): array {
     return [
       // CivicTheme in 'contrib', new theme in 'custom' dir.
       // No new_theme_directory specified - use default one.
@@ -293,7 +293,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertEquals($expected, file_get_relative_dir($from, $to));
   }
 
-  public function dataProviderFileGetRelativeDir(): array {
+  public static function dataProviderFileGetRelativeDir(): array {
     return [
       ['/a/b/c/d', '/a/b/c/d', './'],
       ['/a/b/c/d', '/a/b/c', '../'],
@@ -323,7 +323,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertEquals($expected, file_path_canonicalize($path));
   }
 
-  public function dataProviderFilePathCanonicalize(): array {
+  public static function dataProviderFilePathCanonicalize(): array {
     return [
       ['', ''],
       ['a', 'a'],
