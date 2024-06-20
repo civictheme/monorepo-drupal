@@ -43,6 +43,21 @@ third_party_settings:
           label: 'CivicTheme Three Columns'
           context_mapping: {  }
         components:
+          5cf72ad7-c313-4cf3-9d4e-0573bbfa84a0:
+            uuid: 5cf72ad7-c313-4cf3-9d4e-0573bbfa84a0
+            region: main
+            configuration:
+              id: 'extra_field_block:node:civictheme_page:content_moderation_control'
+              label: 'Moderation control'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
           e1164245-8b1a-4a3f-8b30-30b00be44144:
             uuid: e1164245-8b1a-4a3f-8b30-30b00be44144
             region: main
@@ -60,11 +75,11 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 0
+            weight: 2
             additional: {  }
           c1f9f850-f470-4069-8711-9c7edaffde7e:
             uuid: c1f9f850-f470-4069-8711-9c7edaffde7e
-            region: content
+            region: main
             configuration:
               id: 'field_block:node:civictheme_page:field_c_n_custom_last_updated'
               label_display: '0'
@@ -77,7 +92,7 @@ third_party_settings:
                   timezone_override: ''
                   format_type: medium
                 third_party_settings: {  }
-            weight: 1
+            weight: 3
             additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
@@ -95,6 +110,11 @@ targetEntityType: node
 bundle: civictheme_page
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_c_n_banner_hide_breadcrumb:
     type: boolean
     label: above
