@@ -26,7 +26,7 @@ function _civictheme_preprocess_menu_local_tasks(array &$variables): void {
           'url' => $link['#link']['url']->toString(),
           'is_new_window' => FALSE,
           'is_external' => $link['#link']['url']->isExternal(),
-          'modifier_class' => $link['#active'] ? 'selected' : '',
+          'modifier_class' => $link['#active'] ? 'ct-tabs__tab--selected selected' : '',
           'weight' => $link['#weight'] ?? 0,
         ];
       }
