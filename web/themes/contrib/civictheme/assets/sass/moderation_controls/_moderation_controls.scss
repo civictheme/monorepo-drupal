@@ -1,0 +1,26 @@
+//
+// Drupal moderation controls.
+//
+@use 'sass:math';
+@import 'components/00-base/variables';
+
+main.ct-layout.ct-vertical-spacing--top {
+  .entity-moderation-form {
+    margin-top: 0;
+  }
+}
+
+.entity-moderation-form {
+  $_label-size: 'label-small';
+  $_label-font-size: ct-typography-rule($_label-size, 'font-size', 'm');
+  $_label-line_height: ct-typography-rule($_label-size, 'line-height', 'm');
+
+  .entity-moderation-form__item {
+    margin-top: ct-particle(0.5);
+    margin-bottom: ct-particle(2);
+  }
+
+  input.ct-button--submit {
+    margin-top: math.max($_label-font-size, $_label-line_height) + 0.5rem;
+  }
+}
