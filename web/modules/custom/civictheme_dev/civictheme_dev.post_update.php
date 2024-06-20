@@ -87,7 +87,7 @@ function civictheme_dev_post_update_provision_storybook_redirects(): string {
 function civictheme_dev_post_update_update_side_navigation_block(): string {
   $entity_type_manager = \Drupal::entityTypeManager();
   $blocks = $entity_type_manager->getStorage('block')->loadByProperties([
-    'region' => 'sidebar',
+    'region' => 'sidebar_top_left',
   ]);
 
   if (empty($blocks)) {
