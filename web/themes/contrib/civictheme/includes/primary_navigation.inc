@@ -24,7 +24,7 @@ function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(
   $region = $block->getRegion();
 
   if (str_starts_with($region, 'header')) {
-    $variables['modifier_class'] = 'ct-justify-content-end';
+    $variables['modifier_class'] = 'ct-flex-justify-content-end';
   }
 
   if (str_starts_with($region, 'sidebar')) {

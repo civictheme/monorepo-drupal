@@ -79,9 +79,11 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
     // pass the view on different properties to be accessible in the preprocess
     // functions.
     $variables['pager']['#view'] = $view;
+    $variables['pagination'] = $variables['pager'];
   }
   else {
     $variables['pager']['#attributes']['#view'] = $view;
+    $variables['pagination'] = $variables['pager'];
   }
 }
 
@@ -181,6 +183,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
   foreach ($field['#options'] as $value => $title) {
     $attributes = [];
     $attributes['value'] = $value;
+
     // Build name, including handling for the multiple values.
     $attributes['name'] = $field['#name'] ? ($is_multiple ? $field['#name'] . '[]' : $field['#name']) : NULL;
     $attributes = new Attribute($attributes);

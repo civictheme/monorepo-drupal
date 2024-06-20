@@ -1,9 +1,12 @@
 root: true
 extends:
   - airbnb
+plugins:
+  - import-newlines
 env:
-  es6: false
+  es6: true
   browser: true
+  jest: true
 globals:
   BACKGROUNDS: true
   Drupal: true
@@ -12,18 +15,19 @@ globals:
   SCSS_VARIABLES: true
   Set: true
 rules:
+  func-names: 0
+  guard-for-in: 0
+  import-newlines/enforce: [2, { "items": 100, "forceSingleLine": true, "max-len": 10000, "maxLen": 10000 }]
   import/no-extraneous-dependencies: 0
   import/no-unresolved: 0
   import/prefer-default-export: 0
-  func-names: 0
-  guard-for-in: 0
-  max-len: [ 2, { "code": 1024, "comments": 120, "tabWidth": 4, "ignoreUrls": true } ]
+  max-len: ["error", { "code": 10000, "comments": 80 }]
   no-continue: 0
-  no-ignore-lines: 0
   no-nested-ternary: 0
   no-new: 0
   no-param-reassign: 0
   no-plusplus: 0
   no-restricted-syntax: 0
+  object-curly-newline: [2, { "ImportDeclaration": "never"}]
   quotes: [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
   strict: 0
