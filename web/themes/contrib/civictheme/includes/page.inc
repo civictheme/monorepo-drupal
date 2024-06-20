@@ -22,4 +22,6 @@ function _civictheme_preprocess_page(array &$variables): void {
   // For nodes this is set to false via _civictheme_preprocess_page_node as
   // layout is controlled via layout templates.
   $variables['page']['content_contained'] = $variables['page']['content_contained'] ?? TRUE;
+  $variables['page']['is_contained'] = $variables['page']['content_contained'] ?? TRUE;
+  $variables['page']['is_contained'] = $variables['page']['is_contained'] ?? TRUE;
 }

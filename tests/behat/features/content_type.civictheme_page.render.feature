@@ -26,10 +26,11 @@ Feature: CivicTheme Page content type render
 
     When I visit "civictheme_page" "[TEST] Page with sidebar"
     And I should see the text "[TEST] Page with sidebar"
-    And I should see an "aside.ct-layout__sidebar" element
+    And I should see a "aside.ct-layout__sidebar_top_left" element
     When I visit "civictheme_page" "[TEST] Page without sidebar"
     And I should see the text "[TEST] Page without sidebar"
-    And I should not see an "aside.ct-layout__sidebar" element
+    And I should not see an "aside.ct-layout__sidebar_top_left" element
+    And I should not see an "aside.ct-layout__sidebar_bottom_left" element
 
   @api
   Scenario: CivicTheme page content type page can configure tags display

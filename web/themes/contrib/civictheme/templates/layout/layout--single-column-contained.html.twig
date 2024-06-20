@@ -14,19 +14,14 @@
 #}
 
 {% if content %}
-  <div class="layout">
+  <main class="layout ct-layout container">
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
-      <div class="ct-layout--single-column">
-        <div class="container">
-          <div class="row">
-            {% block content %}
-              <div class="ct-layout__content col-m-12 col-xxs-12 {{ modifier_class }}">
-                {{ content }}
-              </div>
-            {% endblock %}
-          </div>
-        </div>
-      </div>
+      {% block content %}
+        <section class="ct-layout__main ct-layout__content {{ modifier_class }}">
+          {{ content }}
+        </section>
+      {% endblock %}
     </div>
-  </div>
+  </main>
 {% endif %}
+
