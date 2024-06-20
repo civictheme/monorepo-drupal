@@ -9,14 +9,14 @@ components:
     primary:
       light:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_desktop.svg
+          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_desktop.png
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_mobile.svg
+          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_mobile.png
       dark:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_desktop.svg
+          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_desktop.png
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_mobile.svg
+          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_mobile.png
     secondary:
       light:
         desktop:

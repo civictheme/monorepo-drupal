@@ -35,7 +35,7 @@ require_once __DIR__ . '/includes/mobile_navigation.inc';
 require_once __DIR__ . '/includes/next_step.inc';
 require_once __DIR__ . '/includes/node.inc';
 require_once __DIR__ . '/includes/page.inc';
-require_once __DIR__ . '/includes/pager.inc';
+require_once __DIR__ . '/includes/pagination.inc';
 require_once __DIR__ . '/includes/paragraphs.inc';
 require_once __DIR__ . '/includes/primary_navigation.inc';
 require_once __DIR__ . '/includes/promo.inc';

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a 'radios' form element.
+ */
+#}
+{# Manually adding in fieldset as we need to remove preRender form markup for civictheme filter system. #}
+{% embed '@atoms/fieldset/fieldset.twig' with {
+  legend: fieldset_legend,
+  legend_span: fieldset_legend_span,
+  modifier_class: modifier_class,
+  legend_span_attributes: fieldset_legend_span_attributes,
+  attributes: attributes,
+  required: required,
+  errors: errors,
+} %}
+  {% block children %}
+    <div class="form-radios">{{ children }}</div>
+  {% endblock %}
+{% endembed %}

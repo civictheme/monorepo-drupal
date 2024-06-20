@@ -10,7 +10,7 @@ dependencies:
     - civictheme
 id: civictheme_side_navigation
 theme: civictheme
-region: sidebar
+region: sidebar_top_left
 weight: 0
 provider: null
 plugin: 'menu_block:civictheme-primary-navigation'

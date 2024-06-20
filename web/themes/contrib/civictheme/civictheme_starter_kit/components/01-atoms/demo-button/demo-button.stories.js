@@ -26,7 +26,7 @@ import './demo-button';
 //
 // @code
 // {
-//   title: '(Atoms|Molecules|Organisms|Templates|Pages)/<Component Name | Component grouping>'
+//   title: '(Atoms|Molecules|Organisms|Templates|Pages)/<Component Name>'
 //   parameters: {
 //     layout: '(centered|fullscreen)'
 //   }

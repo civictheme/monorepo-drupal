@@ -9,13 +9,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: (function (pattern) {
     // Splitting entries into three chunks:
-    // main: all styles used in components and drupal theme -> output: civictheme.css
-    // variables: CSS variables -> output: civictheme.variables.css
-    // editor: nested styles used in editor -> output: civictheme.editor.css
+    // - main: all styles used in components and Drupal theme -> civictheme.css
+    // - variables: CSS variables -> civictheme.variables.css
+    // - editor: nested styles used in editor -> civictheme.editor.css
     const entries = {
       main: [],
       variables: [],
       editor: [],
+      layout: [],
     };
 
     // Scan for all JS.
@@ -35,6 +36,9 @@ module.exports = {
 
     // Add explicitly editor.scss
     entries.editor.push(path.resolve(__dirname, 'editor_css.js'));
+
+    // Add explicitly layout.scss
+    entries.layout.push(path.resolve(__dirname, 'layout_css.js'));
 
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
@@ -56,6 +60,11 @@ module.exports = {
           name: 'editor',
           chunks: (chunk) => (chunk.name === 'editor'),
         },
+        layout: {
+          test: 'css/mini-extract',
+          name: 'layout',
+          chunks: (chunk) => (chunk.name === 'layout'),
+        },
       },
     },
   },
@@ -75,6 +84,8 @@ module.exports = {
         '../dist/civictheme-variables.js.map',
         '../dist/civictheme-editor.js',
         '../dist/civictheme-editor.js.map',
+        '../dist/scripts-layout.js',
+        '../dist/scripts-layout.js.map',
       ],
     }),
   ],
@@ -134,7 +145,7 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components\/[^/]+\/(?!.*\.(stories|component|utils|test)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
