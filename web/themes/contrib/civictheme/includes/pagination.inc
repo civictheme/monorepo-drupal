@@ -126,5 +126,8 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
   /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $plugin */
   $plugin = $view->display_handler->getPlugin('exposed_form');
   $exposed_widgets = $plugin->renderExposedForm();
-  $variables['items_per_page_attributes'] = 'name="items_per_page" form="' . $exposed_widgets['#id'] . '"';
+
+  $variables['items_per_page_name'] = 'items_per_page';
+  $variables['items_per_page_id'] = $exposed_widgets['#id'] ?? 0;
+  $variables['items_per_page_attributes'] = 'form="' . ($exposed_widgets['#id'] ?? 0) . '"';
 }

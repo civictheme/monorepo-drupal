@@ -7,6 +7,8 @@ import { setupTwig } from './setupTwig';
 
 // Add support for running scripts wrapped in Drupal.behaviours.
 import './drupal_behaviors';
+import { decoratorStoryLayout } from '../components_combined/00-base/storybook/storybook.layout.utils';
+import { decoratorDocs } from '../components_combined/00-base/storybook/storybook.docs.utils';
 
 // Call attaching of behaviours.
 addDecorator((storyFn) => {
@@ -18,11 +20,51 @@ addDecorator((storyFn) => {
 setupTwig(Twig);
 
 const storyOrder = [
+  'Welcome',
+  'About CivicTheme',
   'Base',
   [
     'Colors',
+    'Fonts',
+    'Typography',
+    'Icon',
+    'Background',
+    'Elevation',
+    'Grid',
+    'Layout',
+    'Spacing',
+    'Item List',
+    'Utilities',
+    'Storybook',
+    [
+      'Overview',
+      '*',
+    ],
+  ],
+  '*',
+  'Atoms',
+  [
+    '*',
+    'Form Controls',
+  ],
+  '*',
+  'Molecules',
+  [
+    '*',
+    'List',
+    [
+      'Single Filter',
+      'Group Filter',
+      'Pagination',
+      '*',
+      'Snippet',
+    ],
     '*',
   ],
+  '*',
+  'Organisms',
+  '*',
+  'Templates',
   '*',
 ];
 
@@ -44,7 +86,7 @@ export const parameters = {
     values: [
       {
         name: 'White',
-        value: '#fff',
+        value: '#ffffff',
       },
       {
         name: 'Light',
@@ -106,6 +148,31 @@ export const parameters = {
         },
         type: 'desktop',
       },
+    },
+  },
+};
+
+export const decorators = [decoratorStoryLayout, decoratorDocs];
+
+export const globalTypes = {
+  resizer: {
+    name: 'Resizer',
+    description: 'Resize component wrapper',
+    defaultValue: false,
+    toolbar: {
+      icon: 'component',
+      items: [
+        {
+          value: true,
+          title: 'Enabled',
+          type: 'item',
+        },
+        {
+          value: false,
+          title: 'Disabled',
+          type: 'reset',
+        },
+      ],
     },
   },
 };

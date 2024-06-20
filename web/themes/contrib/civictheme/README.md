@@ -109,6 +109,13 @@ Note that this change would need to be reverted before merging the PR in the
 Drupal theme so that the released version of the Drupal theme would use a
 versioned release of the UI Kit.
 
+### Updating minor dependencies
+
+```bash
+npm install -g npm-check-updates
+npx npm-check-updates -u --target minor
+```
+
 ---
 
 For additional information, please refer to
