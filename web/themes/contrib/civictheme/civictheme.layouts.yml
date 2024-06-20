@@ -1,3 +1,26 @@
+civictheme_three_columns:
+  label: 'Three columns'
+  path: templates/layout/
+  template: layout--three-columns
+  library: civictheme/layouts
+  category: 'CivicTheme Layouts'
+  default_region: content
+  icon_map:
+    - [first_above, main, second_above]
+    - [first_below, main, second_below]
+  regions:
+    sidebar_top_left:
+      label: 'Sidebar Top Left'
+    sidebar_bottom_left:
+      label: 'Sidebar Bottom Left'
+    main:
+      label: Main content
+    sidebar_top_right:
+      label: 'Sidebar Top Right'
+    sidebar_bottom_right:
+      label: 'Sidebar Bottom Right'
+
+# Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
 civictheme_one_column:
   label: 'Single column - edge to edge content'
   library: civictheme/layouts
@@ -10,6 +33,8 @@ civictheme_one_column:
   regions:
     content:
       label: Main content
+
+# Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
 civictheme_one_column_contained:
   label: 'Single column - contained content'
   library: civictheme/layouts
