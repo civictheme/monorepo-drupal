@@ -30,14 +30,29 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: civictheme_one_column_contained
+        layout_id: civictheme_three_columns
         layout_settings:
           label: Main
           context_mapping: {  }
         components:
+          93c254ec-abeb-461a-b464-5247fd0083da:
+            uuid: 93c254ec-abeb-461a-b464-5247fd0083da
+            region: main
+            configuration:
+              id: 'extra_field_block:node:civictheme_event:content_moderation_control'
+              label: 'Moderation control'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
           693c2dc9-0290-4122-842b-3f1b9cd69380:
             uuid: 693c2dc9-0290-4122-842b-3f1b9cd69380
-            region: content
+            region: main
             configuration:
               id: 'field_block:node:civictheme_event:field_c_n_date_range'
               label: Date
@@ -54,11 +69,11 @@ third_party_settings:
                   format_type: medium
                   separator: '-'
                 third_party_settings: {  }
-            weight: 0
+            weight: 1
             additional: {  }
           2c1b19b3-bdd8-4b90-b5ef-ddcc0026bee4:
             uuid: 2c1b19b3-bdd8-4b90-b5ef-ddcc0026bee4
-            region: content
+            region: main
             configuration:
               id: 'field_block:node:civictheme_event:field_c_n_body'
               label: Body
@@ -72,11 +87,11 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           06e90499-3555-4df7-b29e-89198edfd431:
             uuid: 06e90499-3555-4df7-b29e-89198edfd431
-            region: content
+            region: main
             configuration:
               id: 'field_block:node:civictheme_event:field_c_n_location'
               label: Locations
@@ -91,21 +106,26 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
       allowed_layouts: {  }
-      restricted_categories: {  }
       denylisted_blocks: {  }
       allowlisted_blocks: {  }
+      restricted_categories: {  }
 id: node.civictheme_event.default
 targetEntityType: node
 bundle: civictheme_event
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_c_n_body:
     type: text_default
     label: above
