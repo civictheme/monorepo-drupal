@@ -68,29 +68,43 @@ function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
 }
 
 /**
- * Check if the Layout Builder is enabled for a node.
+ * Get Layout Builder settings for all view modes of an entity.
  *
- * @param \Drupal\node\NodeInterface $node
- *   The node to check.
- * @param string $view_mode
- *   (optional) The view mode to check. Defaults to 'default'.
+ * @param string $entity_type_id
+ *   Entity type ID.
+ * @param string $bundle
+ *   Bundle name.
+ * @param bool $only_enabled
+ *   (optional) Whether to return settings only for when the Layout Builder
+ *   is enabled for the view mode. Defaults to TRUE.
  *
- * @return bool
- *   TRUE if the Layout Builder is enabled for the node, FALSE otherwise.
+ * @return array<string, mixed>
+ *   An array of Layout Builder settings keyed by view mode.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_is_layout_builder_enabled(NodeInterface $node, $view_mode = 'default') {
-  $entity_type = $node->getEntityTypeId();
-  $bundle = $node->bundle();
+function civictheme_get_layout_builder_settings_per_view_mode(string $entity_type_id, string $bundle, $only_enabled = TRUE): array {
+  $settings_per_mode = [];
 
-  $view_display = EntityViewDisplay::load("{$entity_type}.{$bundle}.{$view_mode}");
+  /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository */
+  $entity_display_repository = \Drupal::service('entity_display.repository');
+  $view_modes = array_keys($entity_display_repository->getViewModes($entity_type_id));
+  array_unshift($view_modes, 'default');
 
-  if ($view_display) {
-    return $view_display->getThirdPartySetting('layout_builder', 'enabled', FALSE);
+  foreach ($view_modes as $view_mode) {
+    $view_display = EntityViewDisplay::load("$entity_type_id.$bundle.$view_mode");
+    if ($view_display) {
+      $lb_settings = $view_display->getThirdPartySettings('layout_builder');
+      if ($only_enabled && empty($lb_settings['enabled'])) {
+        continue;
+      }
+
+      $settings_per_mode[$view_mode] = $lb_settings;
+    }
   }
 
-  return FALSE;
+  return $settings_per_mode;
 }
 
 /**
