@@ -2,6 +2,47 @@
 /**
  * @file
  * CivicTheme implementation to display a form element.
+ *
+ * All field elements are expected to be rendered by this component for a
+ * consistent look and feel.
  */
 #}
-{% include '@molecules/form-element/form-element.twig' %}
+
+{# TODO: Move these to a preprocess. #}
+{% set control_filtered_attributes = element['#attributes'] is not empty and element['#attributes'] is iterable ? element['#attributes']|filter((v, k) => k starts with 'data' or k in ['size', 'maxlength', 'autocomplete']) : [] %}
+{% set control_attributes = control_filtered_attributes|map((v, k) => k ~ '="' ~ v ~ '"')|join(' ') %}
+{% set control_modifier_class = element['#attributes']['class']|default([]) %}
+{% set control_modifier_class = control_modifier_class is iterable ? control_modifier_class|join(' ') : control_modifier_class %}
+
+{% set control = [] %}
+{% if element['#type'] not in ['checkbox', 'radio'] %}
+  {% set control = [{
+    attributes: control_attributes,
+    name: element['#attributes']['name']|default(element['#name']|default('')),
+    value: element['#value']|default(''),
+    id: element['#id']|default(''),
+    options: options,
+    is_multiple: is_multiple is defined ? is_multiple : false,
+  }] %}
+{% endif %}
+
+{% set type = element['#type']|default('input') %}
+{% set is_required = element['#required']|default(false) %}
+{% set is_disabled = element['#attributes']['disabled'] is defined %}
+{% set label = element['#title']|default('') %}
+{% set description = element['#description']|default('') %}
+
+{% include "@molecules/field/field.twig" with {
+  theme: theme ? theme : 'light',
+  label: label,
+  type: type,
+  orientation: orientation is defined ? orientation : 'vertical',
+  is_required: is_required,
+  is_disabled: is_disabled,
+  description: description,
+  message: element['#errors'] is defined ? element['#errors']|raw : '',
+  is_invalid: element['#errors'] is defined and element['#errors'] is not empty,
+  control: control,
+  attributes: attributes,
+  modifier_class: modifier_class,
+} only %}

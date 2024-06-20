@@ -14,6 +14,11 @@ css-variables:
     theme:
       dist/civictheme.variables.css: {preprocess: false}
 
+layouts:
+  css:
+    theme:
+      dist/civictheme.layout.css: {}
+
 # Color-related CivicTheme theme settings.
 theme-settings.colors:
   css:

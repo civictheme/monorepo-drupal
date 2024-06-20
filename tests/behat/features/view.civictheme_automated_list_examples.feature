@@ -61,7 +61,7 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     # Pager should be visible.
-    And I should see a ".ct-list__pager" element
+    And I should see a ".ct-list__pagination" element
 
   # Uncomment when filters are fixed.
   @api @testmode
@@ -95,7 +95,7 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
      # Pager should be visible.
-    And I should see a ".ct-pager" element
+    And I should see a ".ct-pagination" element
 
     Examples:
       | path                                                                 | filter_element    |
@@ -106,7 +106,7 @@ Feature: CivicTheme listing renders on views pages with filters
       | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter  |
       | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter  |
 
-  @api @testmode @skipped
+  # @api @testmode @skipped
   # Fix later - the step definition assertion itself fails.
   # Scenario Outline: Listing example - One filter - Single
   #   Given I am an anonymous user

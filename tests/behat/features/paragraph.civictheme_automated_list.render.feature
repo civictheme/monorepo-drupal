@@ -77,12 +77,12 @@ Feature: Automated list render
 
     And I should see a ".ct-list__rows" element
     # 16 items = 15 pages - 2 pages unpublished + 3 events
-    And I should see 16 ".ct-item-grid__item" elements
-    And I should see 13 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should see 3 ".ct-item-grid__item .ct-event-card.ct-theme-light" elements
+    And I should see 16 ".ct-promo-card, .ct-event-card" elements
+    And I should see 13 ".ct-promo-card.ct-theme-light" elements
+    And I should see 3 ".ct-event-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
     # Pager is not visible since there is not enough items (less than a set limit of 96) on the page.
-    And I should not see an ".ct-list__pager" element
+    And I should not see an ".ct-list__pagination" element
 
   @api @testmode
   Scenario: Automated list, unlimited with no limit
@@ -97,20 +97,20 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 12 ".ct-item-grid__item" elements
-    And I should see 12 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
+    And I should see 12 ".ct-promo-card" elements
+    And I should see 12 ".ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
 
     # 'Show x of y' is visible.
     And I should see an ".ct-list__results-count" element
 
     # Pager is visible and set to a number of pages in the view.
-    And I should see an ".ct-list__pager" element
+    And I should see an ".ct-list__pagination" element
     # Items per page is visible.
-    And I should see an ".ct-list__pager .ct-pager__items_per_page" element
+    And I should see an ".ct-list__pagination .ct-pagination__items_per_page" element
     # Go to a second page and assert that the content is still present there (pager did not interfere with the pagination links).
     When I click "2"
-    Then I should see 4 ".ct-item-grid__item" elements
+    Then I should see 4 ".ct-promo-card, .ct-event-card" elements
 
   @api @testmode
   Scenario: Automated list, unlimited with limit
@@ -125,20 +125,20 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 6 ".ct-item-grid__item" elements
-    And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
+    And I should see 6 ".ct-promo-card" elements
+    And I should see 6 ".ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
 
     # 'Show x of y' is visible.
     And I should see an ".ct-list__results-count" element
 
     # Pager is visible and set to a custom number of pages.
-    And I should see an ".ct-list__pager" element
+    And I should see an ".ct-list__pagination" element
     # Items per page is not visible since it is a custom number not from the list of available 'items per page' values.
-    And I should not see an ".ct-list__pager .ct-pager__items_per_page" element
+    And I should not see an ".ct-list__pagination .ct-pagination__items_per_page" element
     # Go to a second page and assert that the content is still present there (pager did not interfere with the pagination links).
     When I click "2"
-    Then I should see 6 ".ct-item-grid__item" elements
+    Then I should see 6 ".ct-promo-card" elements
 
   @api @testmode
   Scenario: Automated list, limited with limit
@@ -156,11 +156,11 @@ Feature: Automated list render
     # 'Show x of y' is not visible.
     And I should not see an ".ct-list__results-count" element
 
-    And I should see 6 ".ct-item-grid__item" elements
-    And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
+    And I should see 6 ".ct-promo-card" elements
+    And I should see 6 ".ct-promo-card.ct-theme-light" elements
     And I should not see an ".ct-list__filters" element
     # Pager is not visible since there is a hard limit of 6 items was set.
-    And I should not see an ".ct-list__pager" element
+    And I should not see an ".ct-list__pagination" element
 
   @api @testmode
   Scenario: Automated list, topics
@@ -174,10 +174,10 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 7 ".ct-item-grid__item" elements
-    And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should see 1 ".ct-item-grid__item .ct-event-card.ct-theme-light" elements
-    And I should not see an ".ct-list__pager" element
+    And I should see 7 ".ct-promo-card, .ct-event-card" elements
+    And I should see 6 ".ct-promo-card.ct-theme-light" elements
+    And I should see 1 ".ct-event-card.ct-theme-light" elements
+    And I should not see an ".ct-list__pagination" element
     And I should not see an ".ct-list__filters" element
 
   @api @testmode
@@ -194,29 +194,29 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 2 ".ct-item-grid__item" elements
-    And I should see 2 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should see an ".ct-list__pager" element
+    And I should see 2 ".ct-promo-card" elements
+    And I should see 2 ".ct-promo-card.ct-theme-light" elements
+    And I should see an ".ct-list__pagination" element
     # Items per page is not visible since it is a custom number not from the list of available 'items per page' values.
-    And I should not see an ".ct-list__pager .ct-pager__items_per_page" element
+    And I should not see an ".ct-list__pagination .ct-pagination__items_per_page" element
 
-    And I should not see "First" in the ".ct-list__results-below .ct-pager" element
-    And I should see "Previous" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element
-    And I should see "Last" in the ".ct-list__results-below .ct-pager" element
+    And I should not see "First" in the ".ct-list__results-below .ct-pagination" element
+    And I should see "Previous" in the ".ct-list__results-below .ct-pagination .ct-pagination__link[disabled]" element
+    And I should see "Last" in the ".ct-list__results-below .ct-pagination" element
 
     When I click "2"
-    Then I should see 2 ".ct-item-grid__item" elements
-    And I should see 2 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should see an ".ct-list__pager" element
+    Then I should see 2 ".ct-promo-card" elements
+    And I should see 2 ".ct-promo-card.ct-theme-light" elements
+    And I should see an ".ct-list__pagination" element
     # Items per page is not visible since it is a custom number not from the list of available 'items per page' values.
-    And I should not see an ".ct-list__pager .ct-pager__items_per_page" element
-    And I should see "Last" in the ".ct-list__results-below .ct-pager" element
-    And I should see "First" in the ".ct-list__results-below .ct-pager" element
+    And I should not see an ".ct-list__pagination .ct-pagination__items_per_page" element
+    And I should see "Last" in the ".ct-list__results-below .ct-pagination" element
+    And I should see "First" in the ".ct-list__results-below .ct-pagination" element
 
     When I click "Last"
-    And I should not see "Last" in the ".ct-list__results-below .ct-pager" element
-    And I should see "First" in the ".ct-list__results-below .ct-pager" element
-    And I should see "Next" in the ".ct-list__results-below .ct-pager .ct-pager__link[disabled]" element
+    And I should not see "Last" in the ".ct-list__results-below .ct-pagination" element
+    And I should see "First" in the ".ct-list__results-below .ct-pagination" element
+    And I should see "Next" in the ".ct-list__results-below .ct-pagination .ct-pagination__link[disabled]" element
 
   @api @testmode
   Scenario: Automated list, Event
@@ -230,9 +230,9 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 3 ".ct-item-grid__item" elements
-    And I should see 3 ".ct-item-grid__item .ct-event-card.ct-theme-light" elements
-    And I should not see an ".ct-list__pager" element
+    And I should see 3 ".ct-event-card" elements
+    And I should see 3 ".ct-event-card.ct-theme-light" elements
+    And I should not see an ".ct-list__pagination" element
     And I should not see an ".ct-list__filters" element
 
   @api @testmode
@@ -254,9 +254,9 @@ Feature: Automated list render
     And the response should contain "ct-automated-list-"
     And I should see the text "[TEST] Automated list title"
 
-    And I should see 6 ".ct-item-grid__item" elements
-    And I should see 6 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should see an ".ct-list__pager" element
+    And I should see 6 ".ct-promo-card" elements
+    And I should see 6 ".ct-promo-card.ct-theme-light" elements
+    And I should see an ".ct-list__pagination" element
     And I should see an ".ct-list__filters" element
 
     # Add a Test view as a list type.
@@ -276,9 +276,9 @@ Feature: Automated list render
     And I select "Test" from "edit-field-c-n-components-0-subform-field-c-p-list-type"
     And I press "Save"
 
-    And I should see 2 ".ct-item-grid__item" elements
-    And I should see 2 ".ct-item-grid__item .ct-promo-card.ct-theme-light" elements
-    And I should not see an ".ct-list__pager" element
+    And I should see 2 ".ct-promo-card" elements
+    And I should see 2 ".ct-promo-card.ct-theme-light" elements
+    And I should not see an ".ct-list__pagination" element
 
     And I should see an ".ct-list__filters" element
     And I see field "Title"
@@ -294,9 +294,9 @@ Feature: Automated list render
 
     When I visit "civictheme_page" "Test page with Automated list content"
     Then I should see an ".ct-list__filters" element
-    And I should see an ".ct-group-filter__filters .ct-form-element--topic" element
-    And I should see an ".ct-group-filter__filters .ct-form-element--type" element
-    And I should see an ".ct-group-filter__filters .ct-form-element--title" element
+    And I should see an ".ct-group-filter__filters select[name='topic[]']" element
+    And I should see an ".ct-group-filter__filters select[name=type]" element
+    And I should see an ".ct-group-filter__filters input[name=title]" element
 
   @api
   Scenario: Automated list, no filters shown
@@ -307,9 +307,9 @@ Feature: Automated list render
 
     When I visit "civictheme_page" "Test page with Automated list content"
     Then I should not see an ".ct-list__filters" element
-    And I should not see an ".ct-group-filter__filters .ct-form-element--topic" element
-    And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
-    And I should not see an ".ct-group-filter__filters .ct-form-element--title" element
+    And I should not see an ".ct-group-filter__filters select[name=topic]" element
+    And I should not see an ".ct-group-filter__filters select[name=type]" element
+    And I should not see an ".ct-group-filter__filters input[name=title]" element
 
   @api
   Scenario: Automated list, some filters shown
@@ -320,9 +320,9 @@ Feature: Automated list render
 
     When I visit "civictheme_page" "Test page with Automated list content"
     Then I should see an ".ct-list__filters" element
-    And I should see an ".ct-group-filter__filters .ct-form-element--topic" element
-    And I should not see an ".ct-group-filter__filters .ct-form-element--type" element
-    And I should see an ".ct-group-filter__filters .ct-form-element--title" element
+    And I should see an ".ct-group-filter__filters select[name='topic[]']" element
+    And I should not see an ".ct-group-filter__filters select[name=type]" element
+    And I should see an ".ct-group-filter__filters input[name=title]" element
 
   @api
   Scenario: Automated list, is not self referenced
