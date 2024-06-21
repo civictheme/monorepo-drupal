@@ -331,8 +331,11 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, string $fi
 /**
  * Gets values from fields that CivicTheme regularly uses.
  *
- * It is not a replacement for the field api system for getting values. It gets
- * commonly required types of values by CivicTheme.
+ * This function complements the field API system, providing a convenient way to
+ * retrieve commonly used field values specific to CivicTheme.
+ *
+ * If a field type is not listed, and you need to retrieve its value, consider
+ * using the field API system directly.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   Entity to check field existence.
@@ -400,8 +403,11 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       break;
 
     case 'text_long':
-      // Opinionated. We want to render field if single or allow view() to
-      // handle it if it's all values.
+    case 'text_with_summary':
+      // Opinionated.
+      // This implementation renders the field if it has a single value.
+      // If the field contains multiple values, it relies on view() to handle
+      // the rendering.
       if ($only_first) {
         $field = $field->first();
         $field_value = $field->get('value')->getString();
