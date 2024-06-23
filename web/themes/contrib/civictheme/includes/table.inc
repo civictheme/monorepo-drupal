@@ -28,9 +28,10 @@ function civictheme_preprocess_table(array &$variables): void {
 
     if (!empty($variables[$section])) {
       foreach ($variables[$section] as $row_key => $row) {
-        foreach ($row['columns'] as $cell) {
+        $row_cells = $row['cells'] ?? $row['columns'] ?? [];
+        foreach ($row_cells as $cell) {
           $cell = $cell['content'] ?? '';
-          $cell = (string) \Drupal::service('renderer')->render($cell);
+          $cell = civictheme_render($cell);
           $cell = _civictheme_process__html_content($cell);
           $rows[$row_key][] = $cell;
         }

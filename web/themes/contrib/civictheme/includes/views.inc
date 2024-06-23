@@ -222,7 +222,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $filters = [];
   foreach ($fields as $field) {
     $filter = [
-      'content' => \Drupal::service('renderer')->render($field),
+      'content' => civictheme_render($field),
       'title' => $field['#title'],
     ];
 
