@@ -31,7 +31,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testHtmlAttributesToArray().
    */
-  public function dataProviderHtmlAttributesToArray(): array {
+  public static function dataProviderHtmlAttributesToArray(): array {
     return [
       // Empty.
       ['', []],
@@ -69,7 +69,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testMultilineToArray().
    */
-  public function dataProviderMultilineToArray(): array {
+  public static function dataProviderMultilineToArray(): array {
     return [
       ['', []],
       [' ', []],
@@ -113,7 +113,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testArrayToMultiline().
    */
-  public function dataProviderArrayToMultiline(): array {
+  public static function dataProviderArrayToMultiline(): array {
     return [
       [[], ''],
       [[''], ''],
@@ -146,7 +146,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testArrayMergeKeysValues().
    */
-  public function dataProviderArrayMergeKeysValues(): array {
+  public static function dataProviderArrayMergeKeysValues(): array {
     return [
       [[], ' ', []],
       [['a', 'b'], ' ', ['0 a', '1 b']],
@@ -169,7 +169,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testToLabel().
    */
-  public function dataProviderToLabel(): array {
+  public static function dataProviderToLabel(): array {
     return [
       ['', ''],
       ['hello', 'Hello'],

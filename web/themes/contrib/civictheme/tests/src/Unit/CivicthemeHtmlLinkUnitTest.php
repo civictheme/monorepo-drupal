@@ -28,7 +28,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testLinkIsExternal().
    */
-  public function dataProviderLinkIsExternal(): array {
+  public static function dataProviderLinkIsExternal(): array {
     return [
       ['', '', [], FALSE],
       ['', '', ['example.com'], FALSE],
@@ -114,7 +114,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function dataProviderProcessHtmlLinks(): array {
+  public static function dataProviderProcessHtmlLinks(): array {
     return [
       // Empty.
       ['', '', FALSE, FALSE, [], ''],
@@ -294,7 +294,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function dataProviderEmailRegex(): array {
+  public static function dataProviderEmailRegex(): array {
     return [
       ['a@example.com', 'a@example.com'],
       ['a@example2.com', 'a@example2.com'],
