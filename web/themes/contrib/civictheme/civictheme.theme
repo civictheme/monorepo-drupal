@@ -21,6 +21,7 @@ require_once __DIR__ . '/includes/campaign.inc';
 require_once __DIR__ . '/includes/content.inc';
 require_once __DIR__ . '/includes/manual_list.inc';
 require_once __DIR__ . '/includes/cards.inc';
+require_once __DIR__ . '/includes/form_element.inc';
 require_once __DIR__ . '/includes/form.inc';
 require_once __DIR__ . '/includes/iframe.inc';
 require_once __DIR__ . '/includes/image.inc';
