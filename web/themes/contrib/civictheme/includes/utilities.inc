@@ -290,30 +290,6 @@ function civictheme_format_datetime_iso(int|string|DrupalDateTime $datetime): st
 }
 
 /**
- * Format date.
- *
- * @param string $format_or_type
- *   CivicTheme format type (starting with 'civictheme_') or actual PHP's
- *   date format string.
- * @param int|string|\Drupal\Core\Datetime\DrupalDateTime $datetime
- *   Timestamp or date as a string.
- *
- * @return string
- *   Formatted date or date range.
- *
- * @deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use
- * civictheme_format_datetime() instead.
- * @see https://www.drupal.org/project/civictheme/issues/3412647
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ErrorControlOperator)
- */
-function civictheme_format_date(string $format_or_type, int|string|DrupalDateTime $datetime): string {
-  @trigger_error('civictheme_format_date() is deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use civictheme_format_datetime() instead. See https://www.drupal.org/project/civictheme/issues/3412647', E_USER_DEPRECATED);
-  return civictheme_format_datetime($datetime, $format_or_type);
-}
-
-/**
  * Checks whether the field exists and has a value on a given entity.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
