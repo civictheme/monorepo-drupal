@@ -4,18 +4,18 @@
  * Layout component.
  *
  * Variables:
- * - content_top: Content top slot.
- * - sidebar_top_left: Top left sidebar slot.
- * - sidebar_top_left_attributes: Top left sidebar attributes.
- * - sidebar_top_right: Top right sidebar slot.
- * - sidebar_top_right_attributes: Top right sidebar attributes.
- * - content: Content slot.
+ * - content.content_top: Content top slot.
+ * - content.sidebar_top_left: Top left sidebar slot.
+ * - content.sidebar_top_left_attributes: Top left sidebar attributes.
+ * - content.sidebar_top_right: Top right sidebar slot.
+ * - content.sidebar_top_right_attributes: Top right sidebar attributes.
+ * - content.main: Content slot.
  * - content_attributes: Content attributes.
- * - sidebar_bottom_left: Bottom left sidebar slot.
- * - sidebar_bottom_left_attributes: Bottom left sidebar attributes.
- * - sidebar_bottom_right: Bottom right sidebar slot.
- * - sidebar_bottom_right_attributes: Bottom right sidebar attributes.
- * - content_bottom: Content bottom slot.
+ * - content.sidebar_bottom_left: Bottom left sidebar slot.
+ * - content.sidebar_bottom_left_attributes: Bottom left sidebar attributes.
+ * - content.sidebar_bottom_right: Bottom right sidebar slot.
+ * - content.sidebar_bottom_right_attributes: Bottom right sidebar attributes.
+ * - content.content_bottom: Content bottom slot.
  * - hide_sidebar_left: Whether to force hide the left sidebar.
  * - hide_sidebar_right: Whether to force hide the right sidebar.
  * - is_contained: Whether the page is to be contained.
@@ -46,58 +46,58 @@
 {% set modifier_class = modifier_class|trim %}
 
 {% if content %}
-  <main class="ct-layout {{ modifier_class }}" role="main" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <main class="ct-layout {{ modifier_class -}}" role="main" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
     {% block content_top %}
-      {% if content_top is not empty %}
-        {{ content_top }}
+      {% if content.content_top is not empty %}
+        {{- content.content_top|raw -}}
       {% endif %}
     {% endblock %}
 
     <div class="ct-layout__inner {{ is_contained_class }}">
       {% if content.main is not empty %}
         {% block content %}
-          <section class="ct-layout__main" {% if content_attributes is not empty %}{{ content_attributes|raw }}{% endif %}>
-            {{ content.main }}
+          <section class="ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes|raw -}}{% endif %}>
+            {{- content.main|raw -}}
           </section>
         {% endblock %}
       {% endif %}
 
       {% if content.sidebar_top_left is not empty and has_sidebar_left %}
         {% block sidebar_top_left %}
-          <aside class="ct-layout__sidebar_top_left" {% if content.sidebar_top_left_attributes is not empty %}{{ content.sidebar_top_left_attributes|raw }}{% endif %}>
-            {{ content.sidebar_top_left }}
+          <aside class="ct-layout__sidebar_top_left" {% if content.sidebar_top_left_attributes is not empty %}{{- content.sidebar_top_left_attributes|raw -}}{% endif %}>
+            {{- content.sidebar_top_left|raw -}}
           </aside>
         {% endblock %}
       {% endif %}
 
       {% if content.sidebar_top_right is not empty and has_sidebar_right %}
         {% block sidebar_top_right %}
-          <aside class="ct-layout__sidebar_top_right" {% if content.sidebar_top_right_attributes is not empty %}{{ content.sidebar_top_right_attributes|raw }}{% endif %}>
-            {{ content.sidebar_top_right }}
+          <aside class="ct-layout__sidebar_top_right" {% if content.sidebar_top_right_attributes is not empty %}{{- content.sidebar_top_right_attributes|raw -}}{% endif %}>
+            {{- content.sidebar_top_right|raw -}}
           </aside>
         {% endblock %}
       {% endif %}
 
       {% if content.sidebar_bottom_left is not empty and has_sidebar_left %}
         {% block sidebar_bottom_left %}
-          <aside class="ct-layout__sidebar_bottom_left" {% if content.sidebar_bottom_left_attributes is not empty %}{{ content.sidebar_bottom_left_attributes|raw }}{% endif %}>
-            {{ content.sidebar_bottom_left }}
+          <aside class="ct-layout__sidebar_bottom_left" {% if content.sidebar_bottom_left_attributes is not empty %}{{- content.sidebar_bottom_left_attributes|raw -}}{% endif %}>
+            {{- content.sidebar_bottom_left|raw -}}
           </aside>
         {% endblock %}
       {% endif %}
 
       {% if content.sidebar_bottom_right is not empty and has_sidebar_right %}
         {% block sidebar_bottom_right %}
-          <aside class="ct-layout__sidebar_bottom_right" {% if content.sidebar_bottom_right_attributes is not empty %}{{ content.sidebar_bottom_right_attributes|raw }}{% endif %}>
-            {{ content.sidebar_bottom_right }}
+          <aside class="ct-layout__sidebar_bottom_right" {% if content.sidebar_bottom_right_attributes is not empty %}{{- content.sidebar_bottom_right_attributes|raw -}}{% endif %}>
+            {{- content.sidebar_bottom_right|raw -}}
           </aside>
         {% endblock %}
       {% endif %}
     </div>
 
     {% block content_bottom %}
-      {% if content_bottom is not empty %}
-        {{ content_bottom }}
+      {% if content.content_bottom is not empty %}
+        {{- content.content_bottom|raw -}}
       {% endif %}
     {% endblock %}
   </main>

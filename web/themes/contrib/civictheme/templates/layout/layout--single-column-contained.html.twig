@@ -15,8 +15,8 @@
 #}
 
 {% if content %}
-  <main class="layout ct-layout container">
-    <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
+  <main class="ct-layout">
+    <div class="ct-layout__inner container">
       {% block content %}
         <section class="ct-layout__main ct-layout__content {{ modifier_class }}">
           {{ content }}
