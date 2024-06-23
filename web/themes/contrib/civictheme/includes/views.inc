@@ -144,7 +144,7 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
     return;
   }
 
-  $field_count = count(_civictheme_form__get_fields($variables['form']));
+  $field_count = count(_civictheme_form_get_form_elements($variables['form']));
 
   if ($field_count == 1) {
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
@@ -163,7 +163,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
     return;
   }
 
-  $fields = _civictheme_form__get_fields($form);
+  $fields = _civictheme_form_get_form_elements($form);
   if (empty($fields)) {
     return;
   }
@@ -177,7 +177,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
     return;
   }
 
-  $is_multiple = _civictheme_form__field_is_multiple($field);
+  $is_multiple = _civictheme_form_element_is_multiple($field);
 
   // Collect filter from options.
   foreach ($field['#options'] as $value => $title) {
@@ -199,7 +199,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
-  _civictheme_preprocess_form__hidden_fields($variables);
+  _civictheme_form_preprocess_hidden_form_elements($variables);
 
   // Mark this as a Single filter.
   $variables['single_filter'] = TRUE;
@@ -214,7 +214,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
     return;
   }
 
-  $fields = _civictheme_form__get_fields($form);
+  $fields = _civictheme_form_get_form_elements($form);
   if (empty($fields)) {
     return;
   }
@@ -233,7 +233,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
-  _civictheme_preprocess_form__hidden_fields($variables);
+  _civictheme_form_preprocess_hidden_form_elements($variables);
 
   // Mark this as a Group filter.
   $variables['group_filter'] = TRUE;
