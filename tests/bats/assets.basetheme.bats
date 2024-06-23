@@ -66,6 +66,9 @@ load _helper
   assert_file_exists "dist/civictheme.layout.css"
   assert_file_contains "dist/civictheme.layout.css" "ct-layout"
 
+  assert_file_exists "dist/civictheme.admin.css"
+  assert_file_contains "dist/civictheme.admin.css" "path-admin"
+
   assert_file_exists "dist/civictheme.js"
   assert_file_not_exists "dist/civictheme-variables.js"
   assert_file_not_exists "dist/civictheme-editor.js"

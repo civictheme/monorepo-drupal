@@ -233,3 +233,15 @@ function civictheme_preprocess_field(array &$variables): void {
 function civictheme_library_info_alter(array &$libraries, string $extension): void {
   _civictheme_library_info_alter__color_selector($libraries, $extension);
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_page_attachments_alter(array &$attachments) {
+  $current_user = \Drupal::currentUser();
+  if ($current_user->isAuthenticated()) {
+    $attachments['#attached']['library'][] = 'civictheme/admin';
+  }
+}
