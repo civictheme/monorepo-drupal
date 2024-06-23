@@ -617,16 +617,17 @@ function civictheme_type_options(): array {
 /**
  * Render a render array to string.
  *
- * @param array $array
- *   Array to render.
+ * @param mixed $render
+ *   Array or an object to render.
  *
  * @return string
  *   Rendered string.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_render(array $array): string {
-  return (string) \Drupal::service('renderer')->render($array);
+function civictheme_render(mixed $render): string {
+  $render = is_array($render) ? $render : ['#markup' => $render];
+  return (string) \Drupal::service('renderer')->render($render);
 }
 
 /**
