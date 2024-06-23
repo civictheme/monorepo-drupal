@@ -22,7 +22,7 @@ civictheme_three_columns:
 
 # Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
 civictheme_one_column:
-  label: 'Single column - edge to edge content'
+  label: 'Deprecated. Single column - edge to edge content.'
   library: civictheme/layouts
   category: 'CivicTheme Layouts'
   path: templates/layout/
@@ -36,7 +36,7 @@ civictheme_one_column:
 
 # Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
 civictheme_one_column_contained:
-  label: 'Single column - contained content'
+  label: 'Deprecated. Single column - contained content'
   library: civictheme/layouts
   category: 'CivicTheme Layouts'
   path: templates/layout/
