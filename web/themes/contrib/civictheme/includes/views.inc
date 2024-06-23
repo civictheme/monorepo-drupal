@@ -38,13 +38,13 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
     if (!empty($view->header['result'])) {
-      $variables['results_count'] = $view->header['result']->render();
+      $variables['results_count'] = civictheme_render($view->header['result']->render());
       unset($view->header['result']);
     }
 
     // Render the rest of the header.
     foreach ($view->header as $header_item) {
-      $variables['rows_above'][] = $header_item->render();
+      $variables['rows_above'][] = civictheme_render($header_item->render());
     }
   }
 
