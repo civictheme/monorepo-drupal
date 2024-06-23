@@ -627,6 +627,7 @@ function civictheme_type_options(): array {
  */
 function civictheme_render(mixed $render): string {
   $render = is_array($render) ? $render : ['#markup' => $render];
+
   return (string) \Drupal::service('renderer')->render($render);
 }
 
