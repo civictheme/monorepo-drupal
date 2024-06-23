@@ -615,6 +615,21 @@ function civictheme_type_options(): array {
 }
 
 /**
+ * Render a render array to string.
+ *
+ * @param array $array
+ *   Array to render.
+ *
+ * @return string
+ *   Rendered string.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_render(array $array): string {
+  return (string) \Drupal::service('renderer')->render($array);
+}
+
+/**
  * Get DOMDocument object from HTML content.
  *
  * @SuppressWarnings(PHPMD.MissingImport)
