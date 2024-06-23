@@ -17,6 +17,7 @@ module.exports = {
       variables: [],
       editor: [],
       layout: [],
+      admin: [],
     };
 
     // Scan for all JS.
@@ -39,6 +40,9 @@ module.exports = {
 
     // Add explicitly layout.scss
     entries.layout.push(path.resolve(__dirname, 'layout_css.js'));
+
+    // Add explicitly admin.scss
+    entries.admin.push(path.resolve(__dirname, 'admin_css.js'));
 
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
@@ -65,6 +69,11 @@ module.exports = {
           name: 'layout',
           chunks: (chunk) => (chunk.name === 'layout'),
         },
+        admin: {
+          test: 'css/mini-extract',
+          name: 'admin',
+          chunks: (chunk) => (chunk.name === 'admin'),
+        },
       },
     },
   },
@@ -86,6 +95,8 @@ module.exports = {
         '../dist/civictheme-editor.js.map',
         '../dist/scripts-layout.js',
         '../dist/scripts-layout.js.map',
+        '../dist/admin-layout.js',
+        '../dist/admin-layout.js.map',
       ],
     }),
   ],
