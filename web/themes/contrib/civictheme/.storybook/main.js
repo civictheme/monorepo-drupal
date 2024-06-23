@@ -43,7 +43,7 @@ module.exports = {
       customPlugin,
     ];
     // Special case: override whatever loader is used to load styles with a
-    // style-loader in oder to have styles injected during the runtime.
+    // style-loader in order to have styles injected during the runtime.
     custom.module.rules[1].use[0] = 'style-loader';
 
     // Override assets location for Storybook.
