@@ -162,6 +162,6 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
 function _civictheme_preprocess_media__civictheme_video_transcript(array &$variables): void {
   // Show transcript on the media landing page.
   if ($variables['view_mode'] == 'full' && !empty($variables['content']['field_c_m_transcript'])) {
-    $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
+    $variables['content'] = civictheme_render($variables['content']['field_c_m_transcript']);
   }
 }

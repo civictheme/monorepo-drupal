@@ -25,7 +25,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
   $variables['next_label'] = t('Next');
 
   if (!empty($variables['content']['field_c_p_slides'])) {
-    $variables['slides'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_slides']);
+    $variables['slides'] = civictheme_render($variables['content']['field_c_p_slides']);
   }
 }
 

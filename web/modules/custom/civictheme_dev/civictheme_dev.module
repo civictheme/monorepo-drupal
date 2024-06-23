@@ -30,3 +30,12 @@ function civictheme_dev_preprocess_html(array &$variables): void {
   $version_manager = \Drupal::classResolver(CivicthemeVersionManager::class);
   $variables['page_bottom']['civictheme_version'] = $version_manager->render('body');
 }
+
+/**
+ * Implements hook_styleguide_alter().
+ */
+function civictheme_dev_styleguide_alter(array &$items): void {
+  // Remove password_confirm field from the form as CivicTheme does not support
+  // it.
+  unset($items['form']['content']['password_confirm']);
+}
