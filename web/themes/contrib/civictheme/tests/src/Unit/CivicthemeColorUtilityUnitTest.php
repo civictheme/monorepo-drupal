@@ -30,7 +30,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testNormalizeHex().
    */
-  public function dataProviderNormalizeHex(): array {
+  public static function dataProviderNormalizeHex(): array {
     return [
       ['#00698f', FALSE, '00698f'],
       ['#000', FALSE, '000000'],
@@ -59,7 +59,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testMix().
    */
-  public function dataProviderMix(): array {
+  public static function dataProviderMix(): array {
     return [
       ['#00698f', '#000', 10, '#005e80'],
       ['#00698f', '#000', 0, '#00698f'],
@@ -83,7 +83,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testHexToRgb().
    */
-  public function dataProviderHexToRgb(): array {
+  public static function dataProviderHexToRgb(): array {
     return [
       ['#00698f', [0, 105, 143]],
       ['e6e9eb', [230, 233, 235]],
@@ -104,7 +104,7 @@ class CivicthemeColorUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testIntToHex().
    */
-  public function dataProviderIntToHex(): array {
+  public static function dataProviderIntToHex(): array {
     return [
       [124, '7c'],
       [250, 'fa'],
