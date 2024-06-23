@@ -199,7 +199,7 @@ function _civictheme_preprocess_form__hidden_fields(array $variables): void {
   foreach (Element::children($form) as $field_name) {
     if (in_array($field_name, $field_names)) {
       $els = [$form[$field_name]];
-      $output .= \Drupal::service('renderer')->render($els);
+      $output .= civictheme_render($els);
     }
   }
 
