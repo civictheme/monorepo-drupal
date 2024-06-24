@@ -5,18 +5,5 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.2"
-    },
-    "require-dev": {
-        "vincentlanglet/twig-cs-fixer": "^2.8"
-    },
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    },
-    "scripts": {
-        "lint": "vendor/bin/twig-cs-fixer --no-cache",
-        "lint-fix": "vendor/bin/twig-cs-fixer --no-cache --fix"
     }
 }
