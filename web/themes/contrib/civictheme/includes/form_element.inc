@@ -2,7 +2,88 @@
 
 /**
  * @file
- * Form alterations.
+ * Form elements.
+ *
+ * Drupal uses 'form element' as a unit of rendering for form elements: it is
+ * a wrapper around specific form controls (input, select, textarea, etc.).
+ *
+ * For some form elements, like checkboxes and radios, the form element is
+ * rendered as a fieldset element first, and then the actual form controls are
+ * rendered inside the fieldset element.
+ *
+ * CivicTheme uses slightly different approach to render form elements: it uses
+ * a centralised template (factory) called "Field" which is responsible for
+ * rendering form elements in a consistent way - this allows to strictly align
+ * form elements with the design system.
+ *
+ * The code below implements the necessary preprocessors to redirect rendering
+ * to the dedicated form element template and allow to preprocess form elements
+ * based on their type.
+ *
+ * Note that sub-themes can opt-out from this behavior by implementing
+ * hook_theme_suggestions_form_element_alter() and
+ * hook_theme_suggestions_fieldset_alter() and removing the suggestions
+ * added here based on the required conditions.
+ *
+ * A render pipeline for form_element and fieldset looks like this:
+ *
+ * +-------------------------------------------------+
+ * | civictheme_theme_suggestions_form_element_alter |
+ * | civictheme_theme_suggestions_fieldset_alter     |
+ * |    - Check element type                         |
+ * |    - Add suggestions                            |
+ * +-------------------------------------------------+
+ *          |
+ *          v
+ * +----------------------------------------------------+
+ * | Theme Hook Suggestions Generated                   |
+ * | - form_element__civictheme_field                   |
+ * | - form_element__civictheme_field__<type>           |
+ * | - fieldset__form_element__civictheme_field         |
+ * | - fieldset__form_element__civictheme_field__<type> |
+ * +----------------------------------------------------+
+ *          |
+ *          v
+ * +-----------------------------------------------------+
+ * | Sub-theme hook_theme_suggestions_form_element_alter |
+ * |    - Check opt-out condition                        |
+ * |    - Remove custom suggestions if opted out         |
+ * +-----------------------------------------------------+
+ *          |                             |
+ *          v                             v
+ * +------------------------+   +------------------------+      +------------------------+
+ * | Not Opted-out          |   | Opted-out Condition    |  ->  | Core Template Render   |
+ * | - Use custom templates |   | - Use core templates   |      | - form-element         |
+ * +------------------------+   +------------------------+      | - fieldset             |
+ *          |                                                   | - input--submit        |
+ *          |                                                   +------------------------+
+ *          v
+ * +--------------------------------------------------------------------------+
+ * | Preprocess Function Selection                                            |
+ * | - form_element__civictheme_field                                         |
+ * | - form_element__civictheme_field__<type>                                 |
+ * | - civictheme_preprocess_fieldset__form_element__civictheme_field         |
+ * | - civictheme_preprocess_fieldset__form_element__civictheme_field__<type> |
+ * +--------------------------------------------------------------------------+
+ *          |
+ *          v
+ * +----------------------------------------------------------------+
+ * | Custom Template Render                                         |
+ * |                                                                |
+ * | - form-element--civictheme-field.html.twig                     |
+ * |   All non-group components using CivicTheme's Field component. |
+ * |                                                                |
+ * | - form-element--civictheme-field--<type>.html.twig             |
+ * |   Reserved for sub-theme overrides to allow using custom       |
+ * |   components that may or may not be bases of CivicTheme's      |
+ * |   Field component.                                             |
+ * |                                                                |
+ * | - fieldset--form-element--civictheme-field.html.twig           |
+ * |   All group components using CivicTheme's Field component.     |
+ * |                                                                |
+ * | - fieldset.html.twig                                           |
+ * |   <fieldset> using CivicTheme's Fieldset component.            |
+ * +----------------------------------------------------------------+
  */
 
 declare(strict_types=1);
@@ -12,62 +93,236 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 
 /**
+ * Implements hook_theme_suggestions_form_element_alter().
+ */
+function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+  // Redirect rendering to a dedicated form element template and allow to
+  // preprocess form elements based on their type.
+  //
+  // Note that sub-themes can opt-out from this behavior by implementing
+  // hook_theme_suggestions_form_element_alter() and removing the suggestions
+  // added here based on some conditions.
+  $suggestions[] = 'form_element__civictheme_field';
+  $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+}
+
+/**
+ * Implements hook_theme_suggestions_fieldset_alter().
+ */
+function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  // Checkboxes and radios are rendered through a fieldset element. We need to
+  // redirect the rendering to a dedicated form element template, but only for
+  // supported types to preserve the default rendering for other types of
+  // a fieldset.
+  //
+  // Note that sub-themes can opt-out from this behavior by implementing
+  // hook_theme_suggestions_fieldset_alter() and removing the suggestions
+  // added here based on some conditions.
+  $supported_types = ['checkboxes', 'radios'];
+  if (isset($variables['element']['#type']) && in_array($variables['element']['#type'], $supported_types)) {
+    $suggestions[] = 'fieldset__form_element__civictheme_field';
+    $suggestions[] = 'fieldset__form_element__civictheme_field__' . $variables['element']['#type'];
+  }
+}
+
+/**
  * Implements template_preprocess_form_element().
  */
-function civictheme_preprocess_form_element(array &$variables): void {
+function civictheme_preprocess_form_element__civictheme_field(array &$variables): void {
+  _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__theme($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
-
-  // @todo Remove this centralized processing is implemented.
-  if ($variables['element']['#type'] == 'select') {
-    $variables['options'] = form_select_options($variables['element']);
-    $variables['is_multiple'] = $variables['element']['#multiple'] ?? FALSE;
-  }
+  _civictheme_preprocess_form_element__control($variables);
 }
 
 /**
- * Implements template_preprocess_form_element_label().
+ * Implements template_preprocess_form_element().
  */
-function civictheme_preprocess_form_element_label(array &$variables): void {
-  _civictheme_preprocess_form_element__theme($variables);
-  $variables['content'] = $variables['title'] ?? '';
-
-  // Adding in core template classes.
-  if (!empty($variables['required'])) {
-    $variables['attributes']['class'][] = 'js-form-required';
-  }
+function civictheme_preprocess_form_element__civictheme_field__select(array &$variables): void {
+  $variables['control'][0]['options'] = form_select_options($variables['element']);
+  $variables['control'][0]['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
 }
 
 /**
- * Implements template_preprocess_select().
+ * Implements template_preprocess_form_element().
  */
-function civictheme_preprocess_select(array &$variables): void {
+function civictheme_preprocess_form_element__civictheme_field__checkbox(array &$variables): void {
+  $variables['options'] = form_select_options($variables['element']);
+  $variables['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
+}
+
+/**
+ * Implements template_preprocess_fieldset().
+ */
+function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$variables): void {
+  _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_preprocess_form_element__classes($variables);
+  _civictheme_preprocess_form_element__description($variables);
+  _civictheme_preprocess_form_element__control($variables);
+}
+
+/**
+ * Implements template_preprocess_fieldset().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_fieldset__form_element__civictheme_field__checkboxes(array &$variables): void {
+  $element = $variables['element'];
+
+  // Retrieve attributes and modifier class populated by other preprocessors.
+  $attributes = $variables['control'][0]['attributes'] ?? '';
+  $modifier_class = $variables['control'][0]['modifier_class'] ?? '';
+
+  // Prepare control array.
+  $control = [];
+  foreach ($element['#options'] as $value => $label) {
+    $name = isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : '');
+    $control[] = [
+      'label' => $label,
+      'value' => $value,
+      'name' => $name . '[' . $value . ']',
+      'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
+      'is_checked' => is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value,
+      'is_disabled' => isset($element['#attributes']['disabled']),
+      'attributes' => $attributes,
+      'modifier_class' => $modifier_class,
+    ];
+  }
+
+  $variables['control'] = $control;
+
+  $is_horizontal = isset($element['#options_display']) && $element['#options_display'] == 'inline';
+  $is_inline = isset($element['#options_display']) && ($element['#options_display'] == 'side_by_side' || $element['#options_display'] == 'buttons_horizontal');
+
+  $variables['orientation'] = $is_horizontal ? 'horizontal' : 'vertical';
+  $variables['is_inline'] = $is_inline;
+
+  $variables['type'] = 'checkbox';
+}
+
+/**
+ * Implements template_preprocess_fieldset().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ */
+function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(array &$variables): void {
+  $element = $variables['element'];
+
+  // Retrieve attributes and modifier class populated by other preprocessors.
+  $attributes = $variables['control'][0]['attributes'] ?? '';
+  $modifier_class = $variables['control'][0]['modifier_class'] ?? '';
+
+  // Prepare control array.
+  $control = [];
+  foreach ($element['#options'] as $value => $label) {
+    $name = isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : '');
+    $control[] = [
+      'label' => $label,
+      'value' => $value,
+      'name' => $name,
+      'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
+      'is_checked' => isset($element['#default_value']) ? (is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value) : FALSE,
+      'is_disabled' => isset($element['#attributes']['disabled']),
+      'attributes' => $attributes,
+      'modifier_class' => $modifier_class,
+    ];
+  }
+
+  $variables['control'] = $control;
+
+  $is_horizontal = isset($element['#options_display']) && $element['#options_display'] == 'inline';
+  $is_inline = isset($element['#options_display']) && ($element['#options_display'] == 'side_by_side' || $element['#options_display'] == 'buttons_horizontal');
+
+  $variables['orientation'] = $is_horizontal ? 'horizontal' : 'vertical';
+  $variables['is_inline'] = $is_inline;
+
+  $variables['type'] = 'radio';
+}
+
+/**
+ * Implements template_preprocess_fieldset().
+ */
+function civictheme_preprocess_fieldset(array &$variables): void {
+  $element = $variables['element'];
+
+  if ($element['#type'] !== 'fieldset') {
+    return;
+  }
+
+  _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_preprocess_form_element__classes($variables);
+  _civictheme_preprocess_form_element__description($variables);
 }
 
 /**
  * Implements template_preprocess_input().
  */
-function civictheme_preprocess_input(array &$variables): void {
+function civictheme_preprocess_input__submit(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
 
-  $variables['state'] = 'none';
-
-  if (isset($variables['attributes']['class']) && in_array('error', $variables['attributes']['class'])) {
-    $variables['state'] = 'error';
+  $type = 'primary';
+  if (is_array($variables['attributes']['class']) && in_array('secondary', $variables['attributes']['class'])) {
+    $type = 'secondary';
   }
+  $variables['type'] = $type;
 
-  if (isset($variables['attributes']['#civictheme_theme'])) {
-    unset($variables['attributes']['#civictheme_theme']);
-  }
+  $variables['value'] = $variables['attributes']['value'] ?? t('Submit');
+}
 
-  // Fix htmlentity in submit button text.
+/**
+ * Preprocesses a generic form element.
+ */
+function _civictheme_preprocess_form_element__generic(array &$variables): void {
+  $element = $variables['element'];
+  $variables['label'] = isset($element['#title']) ? $element['#title'] : '';
+  $variables['type'] = isset($element['#type']) ? $element['#type'] : 'input';
+  $variables['orientation'] = isset($variables['orientation']) ? $variables['orientation'] : 'vertical';
+  $variables['is_required'] = isset($element['#required']) ? $element['#required'] : FALSE;
+  $variables['is_disabled'] = isset($element['#attributes']['disabled']);
+  $variables['description'] = isset($element['#description']) ? $element['#description'] : '';
+  $variables['message'] = isset($element['#errors']) ? $element['#errors'] : '';
+  $variables['is_invalid'] = isset($element['#errors']) && !empty($element['#errors']);
+}
+
+/**
+ * Preprocesses a form element control.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ */
+function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
 
-  if (isset($element['#type']) && in_array($element['#type'], ['submit', 'button'])) {
-    $variables['value'] = $variables['attributes']['value'] ?? 'Submit';
+  $allowed_attributes = ['size', 'maxlength', 'autocomplete'];
+
+  $attributes = '';
+  if (!empty($element['#attributes']) && is_iterable($element['#attributes'])) {
+    $attributes = [];
+    foreach ($element['#attributes'] as $key => $value) {
+      if (str_starts_with($key, 'data') || in_array($key, $allowed_attributes)) {
+        $attributes[] = $key . '="' . (is_array($value) ? implode(' ', $value) : $value) . '"';
+      }
+    }
+    $attributes = implode(' ', $attributes);
   }
+
+  $modifier_class = isset($element['#attributes']['class']) ? $element['#attributes']['class'] : [];
+  if (is_array($modifier_class)) {
+    $modifier_class = implode(' ', $modifier_class);
+  }
+
+  $variables['control'][] = [
+    'name' => isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : ''),
+    'value' => isset($element['#value']) ? $element['#value'] : '',
+    'id' => isset($element['#id']) ? $element['#id'] : '',
+    'options' => $variables['options'] ?? [],
+    'is_multiple' => isset($variables['is_multiple']) ? $variables['is_multiple'] : FALSE,
+    'attributes' => $attributes,
+    'modifier_class' => $modifier_class,
+  ];
 }
 
 /**

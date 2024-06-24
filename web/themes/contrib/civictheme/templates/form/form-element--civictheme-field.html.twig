@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a form element.
+ */
+#}
+
+{% include "@molecules/field/field.twig" with {
+  theme: theme,
+  label: label,
+  type: type,
+  orientation: orientation,
+  is_required: is_required,
+  is_disabled: is_disabled,
+  description: description,
+  message: message,
+  is_invalid: is_invalid,
+  control: control,
+  attributes: attributes,
+  modifier_class: modifier_class,
+} only %}
