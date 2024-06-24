@@ -1,5 +1,4 @@
 node_modules
-vendor
 # Remove all lines below and commit the Storybook assets if your build system
 # does not allow to run NodeJS scripts.
 storybook-static
