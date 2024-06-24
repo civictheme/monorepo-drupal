@@ -12,6 +12,7 @@ module.exports = {
     // - main: all styles used in components and Drupal theme -> styles.css
     // - variables: CSS variables -> styles.variables.css
     // - editor: nested styles used in editor -> styles.editor.css
+    // - layout: styles used in layout -> styles.layout.css
     const entries = {
       main: [],
       variables: [],
