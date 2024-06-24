@@ -17,10 +17,8 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts can be viewed on homepage
     Given I am an anonymous user
     And I go to the homepage
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
-    And save screenshot
     And I should see the text "[TEST] Test alert title Homepage only"
     And I should see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert title all pages"
@@ -32,10 +30,8 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should follow the visibility settings
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
-    And save screenshot
     Then I should not see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert body all pages"
     And I should see the text "[TEST] Test dismissing alert body all pages"
@@ -44,9 +40,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should be dismissed and not shown in the same session
     Given I am an anonymous user
     And I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     And I should not see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert body all pages"
@@ -57,18 +51,14 @@ Feature: CivicTheme Alert content type render
     And I should not see the text "[TEST] Test dismissing alert body all pages"
     # Revisit same page - the banner should remain dismissed.
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
     And wait 3 seconds
-    And save screenshot
     Then I should not see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert body all pages"
     And I should not see the text "[TEST] Test dismissing alert body all pages"
     # New session - the alert should be visible.
     Given I am an anonymous user
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should not see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert body all pages"
@@ -78,9 +68,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should be dismissed and not shown in same session for logged in user
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test dismissing alert body all pages"
     And I should see the text "[TEST] Test alert body all pages"
@@ -92,9 +80,7 @@ Feature: CivicTheme Alert content type render
     # New session - the alert should not be visible for logged in user.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
     And I should not see the text "[TEST] Test dismissing alert body all pages"
@@ -103,9 +89,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should be dismissed and shown if their content was updated
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test dismissing alert body all pages"
     And I should see the text "[TEST] Test alert body all pages"
@@ -116,18 +100,12 @@ Feature: CivicTheme Alert content type render
     And I should not see the text "[TEST] Test dismissing alert body all pages"
     # Update the content.
     When I edit civictheme_alert "[TEST] Test dismissing alert title all pages"
-    And save screenshot
     And wait 3 second
-    And save screenshot
     And I fill in WYSIWYG "field_c_n_body" with "[TEST] Test dismissing alert body all pages updated"
-    And save screenshot
     And wait 3 second
-    And save screenshot
     And I press "Save"
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
     And I should see the text "[TEST] Test dismissing alert body all pages updated"
@@ -136,9 +114,7 @@ Feature: CivicTheme Alert content type render
   Scenario: Alerts should not be shown if the date range is not today
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
-    And save screenshot
-    And wait 15 second
-    And save screenshot
+    And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
     And I should not see the text "[TEST] Test alert body all pages future"
