@@ -36,7 +36,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
       '#type' => 'textarea',
       '#title' => $this->t('Opt-out flags'),
       '#rows' => 3,
-      '#description' => $this->t('Add opt-out feature flags to disable CivicTheme features. One per line. Expand the fieldset below to get a list of available flags.'),
+      '#description' => $this->t('Add opt-out feature flags to disable CivicTheme features. One per line. Expand the fieldset below to get a list of all available flags.'),
       '#element_validate' => [[self::class, 'multilineToArray']],
       '#default_value' => implode("\n", $this->themeConfigManager->load('optouts', [])),
     ];
