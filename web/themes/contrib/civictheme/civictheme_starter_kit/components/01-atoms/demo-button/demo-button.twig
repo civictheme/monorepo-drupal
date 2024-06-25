@@ -14,4 +14,6 @@
  * - modifier_class: [string] Classes to modify the default component styling.
  */
 #}
-<button class="ct-button {{ modifier_class }}" data-component-name="demo-button" {{ disabled ? 'disabled' }}>Example button: {{ text }}</button>
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+<button class="ct-button ct-button--primary {{ modifier_class }}" data-component-name="demo-button" {{ disabled ? 'disabled' }}>Example button: {{ text }}</button>
