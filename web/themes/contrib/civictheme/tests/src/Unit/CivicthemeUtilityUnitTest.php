@@ -179,4 +179,80 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
     ];
   }
 
+  /**
+   * Test for civictheme_add_modifier_class().
+   *
+   * @dataProvider dataProviderAddModifierClass
+   */
+  public function testAddModifierClass(array $variables, array|string $classes, array $expected): void {
+    civictheme_add_modifier_class($variables, $classes);
+    $this->assertEquals($expected, $variables);
+  }
+
+  /**
+   * Data provider for testAddModifierClass().
+   */
+  public function dataProviderAddModifierClass() {
+    return [
+      'add single class' => [
+        ['modifier_class' => 'class1'],
+        'class2',
+        ['modifier_class' => 'class1 class2'],
+      ],
+      'add multiple classes' => [
+        ['modifier_class' => 'class1'],
+        ['class2', 'class3'],
+        ['modifier_class' => 'class1 class2 class3'],
+      ],
+      'add to empty class' => [
+        [],
+        'class1',
+        ['modifier_class' => 'class1'],
+      ],
+      'add existing class' => [
+        ['modifier_class' => 'class1'],
+        'class1',
+        ['modifier_class' => 'class1'],
+      ],
+    ];
+  }
+
+  /**
+   * Test for civictheme_remove_modifier_class().
+   *
+   * @dataProvider dataProviderRemoveModifierClass
+   */
+  public function testRemoveModifierClass(array $variables, array|string $classes, array $expected): void {
+    civictheme_remove_modifier_class($variables, $classes);
+    $this->assertEquals($expected, $variables);
+  }
+
+  /**
+   * Data provider for testRemoveModifierClass().
+   */
+  public function dataProviderRemoveModifierClass() {
+    return [
+      'remove single class' => [
+        ['modifier_class' => 'class1 class2'],
+        'class1',
+        ['modifier_class' => 'class2'],
+      ],
+      'remove multiple classes' => [
+        ['modifier_class' => 'class1 class2 class3'],
+        ['class1', 'class2'],
+        ['modifier_class' => 'class3'],
+      ],
+      'remove non-existent class' => [
+        ['modifier_class' => 'class1'],
+        'class2',
+        ['modifier_class' => 'class1'],
+      ],
+      'remove from empty class' => [
+        [],
+        'class1',
+        [],
+      ],
+    ];
+  }
+
 }
