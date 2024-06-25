@@ -9,14 +9,14 @@ components:
     primary:
       light:
         desktop:
-          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_desktop.png
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_desktop.svg
         mobile:
-          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_mobile.png
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_light_mobile.svg
       dark:
         desktop:
-          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_desktop.png
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_desktop.svg
         mobile:
-          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_mobile.png
+          path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_mobile.svg
     secondary:
       light:
         desktop:
