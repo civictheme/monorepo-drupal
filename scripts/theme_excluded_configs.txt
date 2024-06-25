@@ -89,8 +89,6 @@ core.entity_view_mode.webform.token
 core.entity_view_mode.webform_submission.token
 core.extension
 core.menu.static_menu_link_overrides
-crop.settings
-crop.type.focal_point
 dblog.settings
 editor.editor.webform*
 encrypt.settings
@@ -112,7 +110,6 @@ filter.format.plain_text*
 filter.format.restricted_html*
 filter.format.webform_default
 filter.settings
-focal_point.settings
 hal.settings
 honeypot.settings
 image.settings

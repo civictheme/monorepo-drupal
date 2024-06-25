@@ -20,11 +20,13 @@ settings:
   provider: menu_block
   follow: false
   follow_parent: child
-  label_link: false
-  label_type: fixed
   level: 1
   depth: 1
   expand_all_items: false
   parent: 'civictheme-footer:menu_link_content:49fb8cd6-a1cd-4a47-9b9a-db4685a5f9cd'
+  render_parent: false
   suggestion: civictheme_footer
+  label_type: fixed
+  label_link: false
+  hide_on_nonactive: false
 visibility: {  }
