@@ -254,6 +254,39 @@ function civictheme_embed_svg(string $url, array $css_classes = []): ?string {
 }
 
 /**
+ * Add modifier class to the variables array, preserving existing classes.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param string|array $classes
+ *   Classes to add.
+ */
+function civictheme_add_modifier_class(array &$variables, string|array $classes): void {
+  $classes = is_array($classes) ? $classes : [$classes];
+  $existing_classes = explode(' ', $variables['modifier_class'] ?? '');
+  $new_classes = array_merge($existing_classes, $classes);
+  $variables['modifier_class'] = trim(implode(' ', array_unique($new_classes)));
+}
+
+/**
+ * Remove modifier class from the variables array, preserving existing classes.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param string|array $classes
+ *   Classes to remove.
+ */
+function civictheme_remove_modifier_class(array &$variables, string|array $classes): void {
+  if (!isset($variables['modifier_class'])) {
+    return;
+  }
+  $classes = is_array($classes) ? $classes : [$classes];
+  $existing_classes = explode(' ', $variables['modifier_class']);
+  $remaining_classes = array_diff($existing_classes, $classes);
+  $variables['modifier_class'] = trim(implode(' ', $remaining_classes));
+}
+
+/**
  * Preprocess 'attribute' classes variables into 'modifier_class'.
  *
  * Preprocessors can set $variables['modifier_class'] = FALSE to disable this
@@ -272,7 +305,8 @@ function civictheme_convert_attributes_to_modifier_class(array &$variables): voi
   }
 
   $attributes = new Attribute($variables['attributes']);
-  $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+  civictheme_add_modifier_class($variables, $attributes->getClass()->value());
+
   // Remove class from attributes to avoid duplicated 'class' attribute on
   // the element.
   unset($variables['attributes']['class']);

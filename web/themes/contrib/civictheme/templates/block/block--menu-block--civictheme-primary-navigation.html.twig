@@ -12,7 +12,7 @@
   {% include '@organisms/side-navigation/side-navigation.twig' with {
     theme: 'light',
     items,
-    modifier_class: 'ct-primary-navigation',
+    modifier_class: 'ct-primary-navigation ' ~ modifier_class|default(''),
   } only %}
 {% else %}
   {% include '@organisms/navigation/navigation.twig' with {
@@ -23,6 +23,6 @@
     dropdown_columns_fill,
     is_animated,
     menu_id,
-    modifier_class: 'ct-primary-navigation ct-flex-justify-content-end',
+    modifier_class: 'ct-primary-navigation ' ~ modifier_class|default(''),
   } only %}
 {% endif %}
