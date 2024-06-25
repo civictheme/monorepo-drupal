@@ -6,5 +6,10 @@
 #}
 {% include '@molecules/basic-content/basic-content.twig' with {
   theme: component_theme,
-  content: content
+  content: content,
+  vertical_spacing: vertical_spacing,
+  is_contained: is_contained,
+  with_background: with_background,
+  attributes: attributes,
+  modifier_class: modifier_class,
 } only %}

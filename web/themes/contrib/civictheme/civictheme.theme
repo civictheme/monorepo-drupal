@@ -73,6 +73,11 @@ function civictheme_theme(): array {
       'variables' => [
         'component_theme' => CivicthemeConstants::THEME_LIGHT,
         'content' => '',
+        'vertical_spacing' => NULL,
+        'is_contained' => TRUE,
+        'with_background' => FALSE,
+        'attributes' => NULL,
+        'modifier_class' => NULL,
       ],
       'template' => 'misc/basic-content',
     ],
