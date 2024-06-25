@@ -1,5 +1,4 @@
 **/*.min.js
 node_modules
-vendor
 storybook-static
 .storybook/drupal_behaviors.js

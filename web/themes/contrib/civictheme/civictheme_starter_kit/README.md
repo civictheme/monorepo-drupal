@@ -11,7 +11,7 @@ Based on [CivicTheme](https://www.drupal.org/project/civictheme) Drupal theme.
 
     npm run lint
 
-    npm run lint:fix
+    npm run lint-fix
 
 ## Starting a local Storybook instance
 
