@@ -9,14 +9,14 @@ components:
     primary:
       light:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_desktop.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_desktop.svg
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_mobile.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_light_mobile.svg
       dark:
         desktop:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_desktop.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_desktop.svg
         mobile:
-          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_mobile.png
+          path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_mobile.svg
     secondary:
       light:
         desktop:
