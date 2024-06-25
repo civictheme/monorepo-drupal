@@ -127,7 +127,7 @@ module.exports = {
       },
       // Load all assets files to be available for distributions and Storybook.
       {
-        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|webm|avi|mp4)$/,
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|otf|webm|avi|mp4)$/,
         use: {
           loader: 'file-loader',
           options: {
@@ -146,7 +146,7 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components_combined\/[^/]+\/(?!.*\.(stories|component|utils|test)\.js$).*\.js$/,
+        test: /components_combined\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
