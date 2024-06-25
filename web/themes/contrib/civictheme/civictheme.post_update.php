@@ -586,16 +586,13 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
   \Drupal::getContainer()->get('module_installer')->install(['focal_point']);
 
   $image_field_configs = [
+    'image.style.civictheme_campaign' => 'image_style',
+    'image.style.civictheme_event_card' => 'image_style',
     'image.style.civictheme_navigation_card' => 'image_style',
     'image.style.civictheme_promo_card' => 'image_style',
-    'image.style.civictheme_promo_banner' => 'image_style',
-    'image.style.civictheme_topic_desktop' => 'image_style',
-    'image.style.civictheme_topic_mobile' => 'image_style',
     'image.style.civictheme_publication_card' => 'image_style',
-    'image.style.civictheme_subject_card' => 'image_style',
     'image.style.civictheme_slider_slide' => 'image_style',
-    'image.style.civictheme_event_card' => 'image_style',
-    'image.style.civictheme_campaign' => 'image_style',
+    'image.style.civictheme_subject_card' => 'image_style',
   ];
 
   \Drupal::classResolver(CivicthemeUpdateHelper::class)->deleteConfig($image_field_configs);

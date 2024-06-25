@@ -166,6 +166,17 @@ final class CivicthemeConstants {
   const CARD_SUMMARY_DEFAULT_LENGTH = 160;
 
   /**
+   * Defines the image style constants.
+   */
+  const CAMPAIGN_IMAGE_STYLE = 'civictheme_campaign';
+  const EVENT_CARD_IMAGE_STYLE = 'civictheme_event_card';
+  const NAVIGATION_CARD_IMAGE_STYLE = 'civictheme_navigation_card';
+  const PROMO_CARD_IMAGE_STYLE = 'civictheme_promo_card';
+  const PUBLICATION_CARD_IMAGE_STYLE = 'civictheme_publication_card';
+  const SLIDER_SLIDE_IMAGE_STYLE = 'civictheme_slider_slide';
+  const SUBJECT_CARD_IMAGE_STYLE = 'civictheme_subject_card';
+
+  /**
    * Defines an optout string for views exposed filters.
    */
   const OPTOUT_VIEWS_EXPOSED_FILTER = 'CivicThemeOptoutViewsExposedFilter';
@@ -174,16 +185,5 @@ final class CivicthemeConstants {
    * Defines an optout string for views table style.
    */
   const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
-
-  /**
-   * Defines the image style constants.
-   */
-  const PROMO_CARD_IMAGE_STYLE = 'civictheme_promo_card';
-  const NAVIGATION_CARD_IMAGE_STYLE = 'civictheme_navigation_card';
-  const PUBLICATION_CARD_IMAGE_STYLE = 'civictheme_publication_card';
-  const SUBJECT_CARD_IMAGE_STYLE = 'civictheme_subject_card';
-  const SLIDER_SLIDE_IMAGE_STYLE = 'civictheme_slider_slide';
-  const CAMPAIGN_IMAGE_STYLE = 'civictheme_campaign';
-  const EVENT_CARD_IMAGE_STYLE = 'civictheme_event_card';
 
 }
