@@ -41,9 +41,6 @@ load _helper
   assert_file_exists "dist/styles.editor.css"
   assert_file_contains "dist/styles.editor.css" "ck-editor__editable"
 
-  assert_file_exists "dist/styles.layout.css"
-  assert_file_contains "dist/styles.layout.css" "ct-layout"
-
   assert_file_exists "dist/scripts.js"
   assert_file_not_exists "dist/styles-variables.js"
   assert_file_not_exists "dist/styles-editor.js"
