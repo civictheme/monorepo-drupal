@@ -46,9 +46,9 @@
 
 ### Content profiles
 
-- [Corporate](https://nginx-php.content-corporate.monorepo-drupal.lagoon.salsa.hosting/)
-- [Government](https://nginx-php.content-government.monorepo-drupal.lagoon.salsa.hosting/)
-- [Higher Education](https://nginx-php.content-highereducation.monorepo-drupal.lagoon.salsa.hosting/)
+- [Corporate](https://nginx-php.content-corporate.civictheme-monorepo-drupal.lagoon.salsa.hosting/)
+- [Government](https://nginx-php.content-government.civictheme-monorepo-drupal.lagoon.salsa.hosting/)
+- [Higher Education](https://nginx-php.content-highereducation.civictheme-monorepo-drupal.lagoon.salsa.hosting/)
 
 ## More about CivicTheme
 
