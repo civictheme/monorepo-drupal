@@ -42,6 +42,9 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
           field_c_p_link:
             -
               uri: 'internal:/subscribe'
