@@ -205,11 +205,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
 
   $variables['control'] = $control;
 
-  $is_horizontal = isset($element['#options_display']) && $element['#options_display'] == 'inline';
-  $is_inline = isset($element['#options_display']) && ($element['#options_display'] == 'side_by_side' || $element['#options_display'] == 'buttons_horizontal');
-
-  $variables['orientation'] = $is_horizontal ? 'horizontal' : 'vertical';
-  $variables['is_inline'] = $is_inline;
+  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] == 'inline' || $element['#options_display'] == 'buttons_horizontal');
 
   $variables['type'] = 'checkbox';
 }
@@ -245,11 +241,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
 
   $variables['control'] = $control;
 
-  $is_horizontal = isset($element['#options_display']) && $element['#options_display'] == 'inline';
-  $is_inline = isset($element['#options_display']) && ($element['#options_display'] == 'side_by_side' || $element['#options_display'] == 'buttons_horizontal');
-
-  $variables['orientation'] = $is_horizontal ? 'horizontal' : 'vertical';
-  $variables['is_inline'] = $is_inline;
+  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] == 'inline' || $element['#options_display'] == 'buttons_horizontal');
 
   $variables['type'] = 'radio';
 }
@@ -286,17 +278,32 @@ function civictheme_preprocess_input__submit(array &$variables): void {
 
 /**
  * Preprocesses a generic form element.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $element = $variables['element'];
-  $variables['label'] = isset($element['#title']) ? $element['#title'] : '';
   $variables['type'] = isset($element['#type']) ? $element['#type'] : 'input';
-  $variables['orientation'] = isset($variables['orientation']) ? $variables['orientation'] : 'vertical';
+
+  $variables['title'] = isset($element['#title']) ? $element['#title'] : '';
+
+  $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
+  $title_display = $title_display == 'none' ? 'hidden' : $title_display;
+  $title_display = $title_display == 'visually_hidden' ? 'invisible' : $title_display;
+  if (empty($variables['title'])) {
+    $title_display = 'hidden';
+  }
+  $variables['title_display'] = $title_display;
+
+  $variables['orientation'] = $variables['orientation'] ?? $title_display == 'inline' ? 'horizontal' : 'vertical';
+
   $variables['is_required'] = isset($element['#required']) ? $element['#required'] : FALSE;
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['description'] = isset($element['#description']) ? $element['#description'] : '';
   $variables['message'] = isset($element['#errors']) ? $element['#errors'] : '';
   $variables['is_invalid'] = isset($element['#errors']) && !empty($element['#errors']);
+  $variables['placeholder'] = isset($element['#placeholder']) ? $element['#placeholder'] : '';
 }
 
 /**
