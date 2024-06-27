@@ -7,15 +7,16 @@
 
 {% include "@molecules/field/field.twig" with {
   theme: theme,
-  label: label,
+  title: title,
+  title_display: title_display,
   type: type,
   orientation: orientation,
   is_inline: is_inline,
   is_required: is_required,
   is_disabled: is_disabled,
+  is_invalid: is_invalid,
   description: description,
   message: message,
-  is_invalid: is_invalid,
   control: control,
   attributes: attributes,
   modifier_class: modifier_class,

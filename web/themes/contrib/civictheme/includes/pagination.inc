@@ -105,7 +105,7 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
   }
 
   // Label from the view settings.
-  $variables['items_per_page_label'] = $view_pager->options['expose']['items_per_page_label'];
+  $variables['items_per_page_title'] = $view_pager->options['expose']['items_per_page_label'];
 
   // List of items per page from the view settings.
   $items_per_page = [];
