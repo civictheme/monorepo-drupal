@@ -100,6 +100,7 @@ entrypoint:
   - -e
   - |
     extension="$(basename -s .info.yml -- ./*.info.yml)"
+    export BROWSERTEST_OUTPUT_DIRECTORY="${TMPDIR:-/tmp}"
     export SIMPLETEST_BASE_URL=http://${WEBSERVER_HOST:-localhost}:${WEBSERVER_PORT:-8000}
     export SIMPLETEST_DB=sqlite://localhost/drupal_test_${extension}.sqlite
     bash -e -c "$0" "$@"

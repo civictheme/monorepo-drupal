@@ -1,8 +1,8 @@
 name: CivicTheme
 type: theme
 base theme: false
-description: CivicTheme is a Drupal 10 component-based theme.
-core_version_requirement: ^10
+description: CivicTheme is a Drupal component-based theme.
+core_version_requirement: ^10 || ^11
 
 libraries:
   - 'civictheme/global'

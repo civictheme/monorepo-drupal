@@ -127,9 +127,6 @@ aliases:
 # Reusable job configuration.
 job-build-isolated: &job-build-isolated
   steps:
-    # Workspace now contains previously built application code artifact.
-    - attach_workspace:
-        at: /tmp/workspace
     - checkout
 
     - run:
@@ -194,6 +191,8 @@ job-build-isolated: &job-build-isolated
         name: Run tests
         command: vendor/bin/phpunit || [ "${CI_TEST_IGNORE_FAILURE:-0}" -eq 1 ]
         working_directory: web/themes/contrib/civictheme/build
+        environment:
+          BROWSERTEST_OUTPUT_DIRECTORY: /tmp
 
     - store_test_results:
         path: web/themes/contrib/civictheme/.logs/test_results

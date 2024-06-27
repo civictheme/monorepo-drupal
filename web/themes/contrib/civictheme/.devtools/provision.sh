@@ -54,6 +54,7 @@ fi
 db_file="/tmp/site_${extension}.sqlite"
 
 info "Installing Drupal into SQLite database ${db_file}."
+drush sql:drop -y || true >/dev/null
 drush site-install "${DRUPAL_PROFILE}" -y --db-url="sqlite://localhost/${db_file}" --account-name=admin install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
 
 pass "Drupal installed."

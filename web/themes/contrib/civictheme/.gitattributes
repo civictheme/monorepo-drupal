@@ -1,14 +1,16 @@
-.ahoy.yml           export-ignore
-.devtools           export-ignore
-.editorconfig       export-ignore
-.gitattributes      export-ignore
-.github             export-ignore
-.gitignore          export-ignore
-.gitignore.release  export-ignore
-.twig_cs.php        export-ignore
-phpcs.xml           export-ignore
-phpmd.xml           export-ignore
-phpstan.neon        export-ignore
-rector.php          export-ignore
-renovate.json       export-ignore
-tests               export-ignore
+# Ignore files for distribution archives.
+
+.ahoy.yml          export-ignore
+.circleci          export-ignore
+.devtools          export-ignore
+.editorconfig      export-ignore
+.gitattributes     export-ignore
+.github            export-ignore
+.gitignore         export-ignore
+.twig-cs-fixer.php export-ignore
+composer.dev.json  export-ignore
+phpcs.xml          export-ignore
+phpmd.xml          export-ignore
+phpstan.neon       export-ignore
+rector.php         export-ignore
+tests              export-ignore
