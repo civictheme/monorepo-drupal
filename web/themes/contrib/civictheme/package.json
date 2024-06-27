@@ -6,7 +6,7 @@
   "homepage": "https://github.com/civictheme/civictheme",
   "bugs": "https://github.com/civictheme/monorepo-drupal/issues",
   "repository": "https://github.com/civictheme/monorepo-drupal.git",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-or-later",
   "engines": {
     "node": ">=18.14"
   },

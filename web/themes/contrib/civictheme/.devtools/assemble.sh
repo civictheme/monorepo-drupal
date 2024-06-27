@@ -107,8 +107,16 @@ php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('
 info "Merging configuration from extension's composer.json."
 php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('composer.json'), true),json_decode(file_get_contents('build/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
 
+# Asset Packagist sometimes fails, so we remove it by default. If it's needed,
+# the lines below can be commented out.
 info "Remove asset-packagist"
 composer --working-dir="build" config --unset repositories.1 || true
+
+if [ -d "patches" ]; then
+  info "Copying patches."
+  mkdir -p "build/patches"
+  cp -r patches/* "build/patches/"
+fi
 
 if [ -n "${GITHUB_TOKEN:-}" ]; then
   info "Adding GitHub authentication token if provided."
@@ -133,7 +141,21 @@ for composer_suggest in $composer_suggests; do
 done
 pass "Suggested dependencies installed."
 
+# If front-end dependencies are used in the project, package-lock.json is
+# expected to be committed to the repository.
+if [ -f "package-lock.json" ]; then
+  info "Installing front-end dependencies."
+  if [ -f ".nvmrc" ]; then nvm use || true; fi
+  if [ ! -d "node_modules" ]; then npm ci; fi
+
+  echo "> Building front-end dependencies."
+  if [ ! -f ".skip_npm_build" ]; then npm run build; fi
+  pass "Front-end dependencies installed."
+fi
+
 info "Copying tools configuration files."
+# Not every tool correctly resolves the path to the configuration file if it is
+# symlinked, so we copy them instead.
 cp phpcs.xml phpstan.neon phpmd.xml rector.php .twig-cs-fixer.php phpunit.xml "build/"
 pass "Tools configuration files copied."
 
@@ -141,22 +163,6 @@ info "Symlinking extension's code."
 rm -rf "build/web/${type}/custom" >/dev/null && mkdir -p "build/web/${type}/custom/${extension}"
 ln -s "$(pwd)"/* "build/web/${type}/custom/${extension}" && rm "build/web/${type}/custom/${extension}/build"
 pass "Extension's code symlinked."
-
-# If front-end dependencies are used in the project, package-lock.json is
-# expected to be committed to the repository.
-if [ -f "build/web/${type}/custom/${extension}/package-lock.json" ]; then
-  pushd "build/web/${type}/custom/${extension}" >/dev/null || exit 1
-
-  info "Installing front-end dependencies."
-  if [ -f ".nvmrc" ]; then nvm use; fi
-  if [ ! -d "node_modules" ]; then npm ci; fi
-  # Disable building front-end dependencies for now.
-  # echo "> Build front-end dependencies."
-  # npm run build
-  pass "Front-end dependencies installed."
-
-  popd >/dev/null || exit 1
-fi
 
 echo
 echo "==============================="

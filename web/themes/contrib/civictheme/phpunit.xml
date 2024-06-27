@@ -12,8 +12,8 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutChangesToGlobalState="true"
          failOnWarning="true"
+         printerClass="\Drupal\Tests\Listeners\HtmlOutputPrinter"
          cacheResult="false"
-         testdox="true"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
     <php>
         <!-- Set error reporting to E_ALL. -->
@@ -25,6 +25,14 @@
         <!-- Example SIMPLETEST_DB value: mysql://username:password@localhost/databasename#table_prefix -->
         <env name="SIMPLETEST_DB" value="sqlite://localhost/drupal_test_extension.sqlite"/>
         <!-- Example BROWSERTEST_OUTPUT_DIRECTORY value: /path/to/webroot/sites/simpletest/browser_output -->
+        <!-- In Drupal < 11, the location for the HTML files is hardcoded to
+        'sites/simpletest/browser_output' so the value of BROWSERTEST_OUTPUT_DIRECTORY
+        is not used. However, in order to trigger the output of the HTML files,
+        the value of BROWSERTEST_OUTPUT_DIRECTORY must be set to an existing
+        directory so that BrowserHtmlDebugTrait::initBrowserOutputFile() can
+        initialize the hardcoded output directory.
+        @see https://www.drupal.org/node/2992069
+        -->
         <env name="BROWSERTEST_OUTPUT_DIRECTORY" value=""/>
         <!-- By default, browser tests will output links that use the base URL set
          in SIMPLETEST_BASE_URL. However, if your SIMPLETEST_BASE_URL is an internal
