@@ -98,11 +98,15 @@ branches and can be switched to during the development of the Drupal theme.
 ```bash
 # Switch to a `main` branch
 npm install --no-dev civictheme/uikit.git#main
+# Run postinstall script if it has not run.
+npm run postinstall
 ```
 
 ```bash
 # Switch to a feature branch feature/my-branch
 npm install --no-dev civictheme/uikit.git#feature/my-branch
+# Run postinstall script if it has not run.
+npm run postinstall
 ```
 
 Note that this change would need to be reverted before merging the PR in the
