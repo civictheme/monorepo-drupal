@@ -141,6 +141,18 @@ function civictheme_preprocess_form_element__civictheme_field(array &$variables)
  */
 function civictheme_preprocess_form_element__civictheme_field__select(array &$variables): void {
   $variables['control'][0]['options'] = form_select_options($variables['element']);
+
+  foreach ($variables['control'][0]['options'] as &$option) {
+    if (isset($option['selected'])) {
+      $option['is_selected'] = $option['selected'];
+      unset($option['selected']);
+    }
+    if (isset($option['disabled'])) {
+      $option['is_disabled'] = $option['disabled'];
+      unset($option['disabled']);
+    }
+  }
+
   $variables['control'][0]['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
 }
 
