@@ -157,19 +157,12 @@ function civictheme_preprocess_form_element__civictheme_field__select(array &$va
 }
 
 /**
- * Implements template_preprocess_form_element().
- */
-function civictheme_preprocess_form_element__civictheme_field__checkbox(array &$variables): void {
-  $variables['options'] = form_select_options($variables['element']);
-  $variables['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
-}
-
-/**
  * Implements template_preprocess_fieldset().
  */
 function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$variables): void {
   _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_preprocess_form_element__wrapper_classes($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
   _civictheme_preprocess_form_element__control($variables);
@@ -315,18 +308,30 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
 
-  $allowed_attributes = ['size', 'maxlength', 'autocomplete'];
+  $allowed_attributes = ['size', 'maxlength', 'rows', 'autocomplete'];
 
-  $attributes = '';
+  $attributes = [];
+
+  $allowed_attributes_map = array_map(function ($attribute) {
+    return '#' . $attribute;
+  }, $allowed_attributes);
+
+  foreach ($allowed_attributes_map as $key) {
+    if (isset($element[$key])) {
+      $attributes[substr($key, 1)] = $element[$key];
+    }
+  }
+
   if (!empty($element['#attributes']) && is_iterable($element['#attributes'])) {
-    $attributes = [];
     foreach ($element['#attributes'] as $key => $value) {
       if (str_starts_with($key, 'data') || in_array($key, $allowed_attributes)) {
-        $attributes[] = $key . '="' . (is_array($value) ? implode(' ', $value) : $value) . '"';
+        $attributes[$key] = is_array($value) ? implode(' ', $value) : $value;
       }
     }
-    $attributes = implode(' ', $attributes);
   }
+  $attributes_string = implode(' ', array_map(function ($key, $value) {
+    return $key . '="' . $value . '"';
+  }, array_keys($attributes), $attributes));
 
   $modifier_class = isset($element['#attributes']['class']) ? $element['#attributes']['class'] : [];
   if (is_array($modifier_class)) {
@@ -339,9 +344,13 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
     'id' => isset($element['#id']) ? $element['#id'] : '',
     'options' => $variables['options'] ?? [],
     'is_multiple' => isset($variables['is_multiple']) ? $variables['is_multiple'] : FALSE,
-    'attributes' => $attributes,
+    'attributes' => $attributes_string,
     'modifier_class' => $modifier_class,
   ];
+
+  if ($element['#type'] == 'checkbox') {
+    $variables['control'][0]['is_checked'] = isset($element['#default_value']) ? $element['#default_value'] : FALSE;
+  }
 }
 
 /**
@@ -389,6 +398,9 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
   if (!empty($variables['name'])) {
     $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['name']);
   }
+  elseif (!empty($variables['element']['#name'])) {
+    $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['element']['#name']);
+  }
 
   if (!empty($variables['errors'])) {
     $variables['attributes']['class'][] = 'js-form-item--error';
@@ -401,6 +413,15 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
 function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
+}
+
+/**
+ * Preprocesses form element wrapper classes.
+ */
+function _civictheme_preprocess_form_element__wrapper_classes(array &$variables){
+  if (!empty($variables['element']['#wrapper_attributes'])) {
+    $variables['attributes'] = $variables['element']['#wrapper_attributes'];
+  }
 }
 
 /**
