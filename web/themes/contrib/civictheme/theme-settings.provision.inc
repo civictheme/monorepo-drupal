@@ -468,6 +468,7 @@ function civictheme_provision_place_block(string $label, string $region, string 
   // Remove block if it already exists.
   $block = Block::load($values['id']);
   if ($block !== NULL) {
+    $values['uuid'] = $block->uuid();
     $block->delete();
   }
 
