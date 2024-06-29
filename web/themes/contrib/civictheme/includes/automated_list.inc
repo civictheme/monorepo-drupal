@@ -63,8 +63,14 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   unset($settings['paragraph']);
 
   // Get view with already set display.
-  /** @var \Drupal\views\ViewExecutable $view */
-  $view = _civictheme_automated_list__get_view($settings);
+  try {
+    /** @var \Drupal\views\ViewExecutable $view */
+    $view = _civictheme_automated_list__get_view($settings);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('civictheme')->error($e->getMessage());
+    return;
+  }
 
   $settings['view_id'] = $view->id();
   $settings['view_display'] = $view->current_display;
@@ -95,14 +101,16 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
  * @param array $settings
  *   View alteration settings passed by reference.
  *
- * @return \Drupal\views\ViewExecutable|null
- *   Loaded view object with set display or NULL.
+ * @return \Drupal\views\ViewExecutable
+ *   Loaded view object with set display.
  *
+ * @throws \Exception
+ *   If view information is missing or view is not found.
  * @see hook_civictheme_automated_list_view_info_alter()
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_automated_list__get_view(array &$settings) {
+function _civictheme_automated_list__get_view(array &$settings): ViewExecutable {
   // Get information about a view and a display that will be used produce
   // the results.
   $info = [
@@ -127,26 +135,18 @@ function _civictheme_automated_list__get_view(array &$settings) {
 
   // Validate that resulting information has correct structure.
   if (empty($info) || !is_array($info) || empty($info['view_name']) || empty($info['display_name'])) {
-    \Drupal::logger('civictheme')->error('Missing view_name or display_name information for Automated list view.');
-
-    return NULL;
+    throw new \Exception('Missing view_name or display_name information for Automated list view.');
   }
 
   // Get view instance.
   $view = Views::getView($info['view_name']);
   if ($view === NULL) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to use Automated list view "%s".', $info['view_name']));
-
-    // Do not render this element if the view does not exist.
-    return NULL;
+    throw new \Exception(sprintf('Unable to use Automated list view "%s".', $info['view_name']));
   }
 
   // Set display.
   if (!$view->setDisplay($info['display_name'])) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to use Automated list view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
-
-    // Do not render this element if the display does not exist.
-    return NULL;
+    throw new \Exception(sprintf('Unable to use Automated list view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
   }
 
   return $view;
