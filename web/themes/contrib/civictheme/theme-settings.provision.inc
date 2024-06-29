@@ -200,6 +200,8 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
     $types = array_keys($callbacks);
   }
 
+  // Run callbacks in the order they are expected to be called and filter by
+  // the provided types.
   foreach (array_keys($callbacks) as $callback_type) {
     if (in_array($callback_type, $types)) {
       if ($verbose) {
@@ -245,8 +247,25 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
  *
  * This will exit with a non-zero code if there was at least one provisioning
  * failure.
+ *
+ * @param array $include_types
+ *   Optional array of types to include in provisioning. If not provided - all
+ *  types will be provisioned.
+ * @param array $exclude_types
+ *   Optional array of types to exclude from provisioning. If not provided - no
+ *   types will be excluded.
  */
-function civictheme_provision_cli(array $types = []): void {
+function civictheme_provision_cli(array $include_types = [], array $exclude_types = []): void {
+  $types = civictheme_provision_get_types();
+
+  if (!empty($include_types)) {
+    $types = array_intersect($types, $include_types);
+  }
+
+  if (!empty($exclude_types)) {
+    $types = array_diff($types, $exclude_types);
+  }
+
   $results = civictheme_provision($types, TRUE, TRUE);
   $errors = array_filter($results, static function ($value): bool {
     return $value !== TRUE;
