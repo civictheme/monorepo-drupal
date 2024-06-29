@@ -88,8 +88,8 @@ Switching to a new version of the UI Kit usually take place during the release
 of the Drupal theme.
 
 ```bash
-# Switch to a new version v1.7.1
-npm install --no-dev civictheme/uikit.git#v1.7.1
+# Switch to a new version v1.8.0
+npm install --no-dev civictheme/uikit.git#v1.8.0
 ```
 
 The development versions of the UI Kit are available as `main` or feature
