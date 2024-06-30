@@ -33,6 +33,7 @@ third_party_settings:
         layout_id: civictheme_three_columns
         layout_settings:
           label: Main
+          is_contained: false
           context_mapping: {  }
         components:
           93c254ec-abeb-461a-b464-5247fd0083da:
