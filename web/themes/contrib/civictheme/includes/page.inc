@@ -23,8 +23,6 @@ function _civictheme_preprocess_page(array &$variables): void {
   // For nodes this is set to false via _civictheme_preprocess_page_node as
   // layout is controlled via layout templates.
   $variables['page']['content_contained'] = $variables['page']['content_contained'] ?? TRUE;
-  $variables['page']['is_contained'] = $variables['page']['content_contained'] ?? TRUE;
-  $variables['page']['is_contained'] = $variables['page']['is_contained'] ?? TRUE;
 }
 
 /**
@@ -41,10 +39,6 @@ function _civictheme_preprocess_page__node(array &$variables): void {
     return;
   }
 
-  // Layout determines whether a node is contained and what it's layout is.
-  $variables['page']['content_contained'] = FALSE;
-  $variables['page']['is_contained'] = FALSE;
-
   $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
 
   // @todo Add support for hiding of the right sidebar through a node field.
@@ -52,6 +46,11 @@ function _civictheme_preprocess_page__node(array &$variables): void {
 
   $layout_builder_settings_per_view_mode = civictheme_get_layout_builder_settings_per_view_mode($node->getEntityTypeId(), $node->bundle());
   if (!empty($layout_builder_settings_per_view_mode)) {
+    // Layout builder determines whether a node is contained and what it's
+    // layout is, so we set as not contained to allow layout builder to
+    // span edge-to-edge.
+    $variables['page']['content_contained'] = FALSE;
+
     $variables['#cache']['contexts'] = Cache::mergeContexts(
       $variables['#cache']['contexts'] ?? [],
       $node->getCacheContexts(),
