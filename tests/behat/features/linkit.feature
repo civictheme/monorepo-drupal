@@ -26,6 +26,7 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
+    And I scroll to an element with id "edit-field-c-n-show-toc-value"
     When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:
@@ -50,6 +51,7 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
+    And I scroll to an element with id "edit-field-c-n-show-toc-value"
     When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:
@@ -74,6 +76,7 @@ Feature: Linkit works correctly on pages
     When I press the "field_c_n_components_civictheme_content_add_more" button
     And I wait for AJAX to finish
 
+    And I scroll to an element with id "edit-field-c-n-show-toc-value"
     When I click on "[data-cke-tooltip-text^=Link]" element
     And I wait 2 seconds
     And I fill in the following:

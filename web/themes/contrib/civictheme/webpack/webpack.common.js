@@ -9,13 +9,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: (function (pattern) {
     // Splitting entries into three chunks:
-    // main: all styles used in components and drupal theme -> output: civictheme.css
-    // variables: CSS variables -> output: civictheme.variables.css
-    // editor: nested styles used in editor -> output: civictheme.editor.css
+    // - main: all styles used in components and Drupal theme -> civictheme.css
+    // - variables: CSS variables -> civictheme.variables.css
+    // - editor: nested styles used in editor -> civictheme.editor.css
     const entries = {
       main: [],
       variables: [],
       editor: [],
+      layout: [],
+      admin: [],
     };
 
     // Scan for all JS.
@@ -35,6 +37,12 @@ module.exports = {
 
     // Add explicitly editor.scss
     entries.editor.push(path.resolve(__dirname, 'editor_css.js'));
+
+    // Add explicitly layout.scss
+    entries.layout.push(path.resolve(__dirname, 'layout_css.js'));
+
+    // Add explicitly admin.scss
+    entries.admin.push(path.resolve(__dirname, 'admin_css.js'));
 
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
@@ -56,6 +64,16 @@ module.exports = {
           name: 'editor',
           chunks: (chunk) => (chunk.name === 'editor'),
         },
+        layout: {
+          test: 'css/mini-extract',
+          name: 'layout',
+          chunks: (chunk) => (chunk.name === 'layout'),
+        },
+        admin: {
+          test: 'css/mini-extract',
+          name: 'admin',
+          chunks: (chunk) => (chunk.name === 'admin'),
+        },
       },
     },
   },
@@ -75,6 +93,10 @@ module.exports = {
         '../dist/civictheme-variables.js.map',
         '../dist/civictheme-editor.js',
         '../dist/civictheme-editor.js.map',
+        '../dist/civictheme-layout.js',
+        '../dist/civictheme-layout.js.map',
+        '../dist/civictheme-admin.js',
+        '../dist/civictheme-admin.js.map',
       ],
     }),
   ],
@@ -115,7 +137,7 @@ module.exports = {
       },
       // Load all assets files to be available for distributions and Storybook.
       {
-        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|webm|avi|mp4)$/,
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|otf|webm|avi|mp4)$/,
         use: {
           loader: 'file-loader',
           options: {

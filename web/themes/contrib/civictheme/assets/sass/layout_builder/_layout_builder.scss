@@ -1,0 +1,60 @@
+//
+// Drupal layout builder.
+//
+.path-admin {
+  #layout-builder {
+    padding: 1.5em 1.5em 0.5em;
+    border: 3px solid #2f91da;
+    background-color: #fff;
+
+    div[data-layout-builder-highlight-id^='section-'] {
+      width: 100%;
+      margin-bottom: 1.5em;
+      padding: 1.5em 0;
+      text-align: center;
+      outline: 2px dashed #979797;
+      background-color: #f7f7f7;
+    }
+
+    div[role='group'] {
+      margin-bottom: 1.5em;
+
+      main[data-layout-builder-highlight-id^='section-update-'] {
+        .ct-layout__inner.container {
+          section[class^='ct-layout__'],
+          aside[class^='ct-layout__'] {
+            outline: 2px dashed #2f91da;
+
+            div[aria-hidden] {
+              display: none;
+            }
+
+            .block.block-layout-builder {
+              padding: 1.5em;
+              cursor: move;
+              background-color: #fff;
+              position: relative;
+
+              div.contextual {
+                display: contents;
+
+                ul {
+                  border: 1px solid;
+
+                  li {
+                    list-style: none;
+                    display: list-item;
+                  }
+                }
+              }
+            }
+
+            .block.block-layout-builder [tabindex='-1'] {
+              pointer-events: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

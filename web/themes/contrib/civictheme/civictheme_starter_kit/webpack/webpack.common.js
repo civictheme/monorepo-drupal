@@ -9,9 +9,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: (function (pattern) {
     // Splitting entries into three chunks:
-    // main: all styles used in components and drupal theme -> output: styles.css
-    // variables: CSS variables -> output: styles.variables.css
-    // editor: nested styles used in editor -> output: styles.editor.css
+    // - main: all styles used in components and Drupal theme -> styles.css
+    // - variables: CSS variables -> styles.variables.css
+    // - editor: nested styles used in editor -> styles.editor.css
     const entries = {
       main: [],
       variables: [],
@@ -115,7 +115,7 @@ module.exports = {
       },
       // Load all assets files to be available for distributions and Storybook.
       {
-        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|webm|avi|mp4)$/,
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|otf|webm|avi|mp4)$/,
         use: {
           loader: 'file-loader',
           options: {

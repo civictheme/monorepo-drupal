@@ -38,13 +38,13 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
     if (!empty($view->header['result'])) {
-      $variables['results_count'] = $view->header['result']->render();
+      $variables['results_count'] = civictheme_render($view->header['result']->render());
       unset($view->header['result']);
     }
 
     // Render the rest of the header.
     foreach ($view->header as $header_item) {
-      $variables['rows_above'][] = $header_item->render();
+      $variables['rows_above'][] = civictheme_render($header_item->render());
     }
   }
 
@@ -79,9 +79,11 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
     // pass the view on different properties to be accessible in the preprocess
     // functions.
     $variables['pager']['#view'] = $view;
+    $variables['pagination'] = $variables['pager'];
   }
   else {
     $variables['pager']['#attributes']['#view'] = $view;
+    $variables['pagination'] = $variables['pager'];
   }
 }
 
@@ -142,7 +144,7 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
     return;
   }
 
-  $field_count = count(_civictheme_form__get_fields($variables['form']));
+  $field_count = count(_civictheme_form_get_form_elements($variables['form']));
 
   if ($field_count == 1) {
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
@@ -161,7 +163,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
     return;
   }
 
-  $fields = _civictheme_form__get_fields($form);
+  $fields = _civictheme_form_get_form_elements($form);
   if (empty($fields)) {
     return;
   }
@@ -175,12 +177,13 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
     return;
   }
 
-  $is_multiple = _civictheme_form__field_is_multiple($field);
+  $is_multiple = _civictheme_form_element_is_multiple($field);
 
   // Collect filter from options.
   foreach ($field['#options'] as $value => $title) {
     $attributes = [];
     $attributes['value'] = $value;
+
     // Build name, including handling for the multiple values.
     $attributes['name'] = $field['#name'] ? ($is_multiple ? $field['#name'] . '[]' : $field['#name']) : NULL;
     $attributes = new Attribute($attributes);
@@ -196,7 +199,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
-  _civictheme_preprocess_form__hidden_fields($variables);
+  _civictheme_form_preprocess_hidden_form_elements($variables);
 
   // Mark this as a Single filter.
   $variables['single_filter'] = TRUE;
@@ -211,7 +214,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
     return;
   }
 
-  $fields = _civictheme_form__get_fields($form);
+  $fields = _civictheme_form_get_form_elements($form);
   if (empty($fields)) {
     return;
   }
@@ -219,7 +222,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $filters = [];
   foreach ($fields as $field) {
     $filter = [
-      'content' => \Drupal::service('renderer')->render($field),
+      'content' => civictheme_render($field),
       'title' => $field['#title'],
     ];
 
@@ -230,7 +233,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
-  _civictheme_preprocess_form__hidden_fields($variables);
+  _civictheme_form_preprocess_hidden_form_elements($variables);
 
   // Mark this as a Group filter.
   $variables['group_filter'] = TRUE;

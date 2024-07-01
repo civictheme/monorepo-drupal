@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: civictheme_event_card
+label: 'Event Card'
+effects:
+  14a3c5a2-905e-44b1-a1ce-597a189fa83d:
+    uuid: 14a3c5a2-905e-44b1-a1ce-597a189fa83d
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 600
+      crop_type: focal_point

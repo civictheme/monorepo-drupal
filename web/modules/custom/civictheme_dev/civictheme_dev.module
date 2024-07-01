@@ -10,6 +10,8 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeVersionManager;
 use Drupal\Core\Site\Settings;
 
+require_once __DIR__ . '/styleguide.inc';
+
 /**
  * Implements hook_mail_alter().
  */
@@ -29,4 +31,20 @@ function civictheme_dev_preprocess_html(array &$variables): void {
   /** @var \Drupal\civictheme\CivicthemeVersionManager $version_manager */
   $version_manager = \Drupal::classResolver(CivicthemeVersionManager::class);
   $variables['page_bottom']['civictheme_version'] = $version_manager->render('body');
+}
+
+/**
+ * Implements hook_styleguide_alter().
+ */
+function civictheme_dev_styleguide_alter(array &$items): void {
+  // Remove password_confirm field from the form as CivicTheme does not support
+  // it.
+  unset($items['form']['content']['password_confirm']);
+
+  _civictheme_dev_styleguide__form_test__textfield($items);
+  _civictheme_dev_styleguide__form_test__textarea($items);
+  _civictheme_dev_styleguide__form_test__select($items);
+  _civictheme_dev_styleguide__form_test__checkbox($items);
+  _civictheme_dev_styleguide__form_test__checkboxes($items);
+  _civictheme_dev_styleguide__form_test__radios($items);
 }

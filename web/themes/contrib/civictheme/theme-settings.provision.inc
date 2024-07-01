@@ -200,6 +200,8 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
     $types = array_keys($callbacks);
   }
 
+  // Run callbacks in the order they are expected to be called and filter by
+  // the provided types.
   foreach (array_keys($callbacks) as $callback_type) {
     if (in_array($callback_type, $types)) {
       if ($verbose) {
@@ -245,8 +247,25 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
  *
  * This will exit with a non-zero code if there was at least one provisioning
  * failure.
+ *
+ * @param array $include_types
+ *   Optional array of types to include in provisioning. If not provided - all
+ *  types will be provisioned.
+ * @param array $exclude_types
+ *   Optional array of types to exclude from provisioning. If not provided - no
+ *   types will be excluded.
  */
-function civictheme_provision_cli(array $types = []): void {
+function civictheme_provision_cli(array $include_types = [], array $exclude_types = []): void {
+  $types = civictheme_provision_get_types();
+
+  if (!empty($include_types)) {
+    $types = array_intersect($types, $include_types);
+  }
+
+  if (!empty($exclude_types)) {
+    $types = array_diff($types, $exclude_types);
+  }
+
   $results = civictheme_provision($types, TRUE, TRUE);
   $errors = array_filter($results, static function ($value): bool {
     return $value !== TRUE;
@@ -449,6 +468,7 @@ function civictheme_provision_place_block(string $label, string $region, string 
   // Remove block if it already exists.
   $block = Block::load($values['id']);
   if ($block !== NULL) {
+    $values['uuid'] = $block->uuid();
     $block->delete();
   }
 
@@ -674,7 +694,7 @@ function _civictheme_provision__blocks__menu_blocks(): void {
   civictheme_provision_place_block('Secondary Navigation', 'header_top_3', NULL, [
     'plugin' => 'menu_block:civictheme-secondary-navigation',
   ]);
-  civictheme_provision_place_block('Side Navigation', 'sidebar', NULL, [
+  civictheme_provision_place_block('Side Navigation', 'sidebar_top_left', NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
     'visibility' => [
@@ -1085,9 +1105,9 @@ function civictheme_enable_modules(bool $include_optional = TRUE): void {
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_get_theme_dependencies(string $theme_name, bool $include_optional = TRUE): array {
-  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
-  $theme_handler = \Drupal::getContainer()->get('theme_handler');
-  $theme_data = $theme_handler->rebuildThemeData();
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $extension_list */
+  $extension_list = \Drupal::getContainer()->get('extension.list.theme');
+  $theme_data = $extension_list->reset()->getList();
 
   // Merge dependencies from the theme's info file and from the 'optional'
   // config. We are deliberately not including dependencies from the 'install'
@@ -1188,14 +1208,18 @@ function _civictheme_get_theme_blocks(): array {
  */
 function civictheme_provision__media_view(): void {
   // Disable the 'views.view.media' view.
-  \Drupal::configFactory()
-    ->getEditable('views.view.media')
-    ->set('status', FALSE)
-    ->save();
+  $config = \Drupal::configFactory()
+    ->getEditable('views.view.media');
+  if (!$config->isNew()) {
+    $config->set('status', FALSE)
+      ->save();
+  }
 
   // Enable the 'views.view.civictheme_media' view.
-  \Drupal::configFactory()
-    ->getEditable('views.view.civictheme_media')
-    ->set('status', TRUE)
-    ->save();
+  $config = \Drupal::configFactory()
+    ->getEditable('views.view.civictheme_media');
+  if (!$config->isNew()) {
+    $config->set('status', TRUE)
+      ->save();
+  }
 }

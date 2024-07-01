@@ -42,7 +42,7 @@ abstract class CivicthemeBrowserTestBase extends BrowserTestBase {
 
     $container = $this->container;
 
-    require_once dirname((string) $container->get('theme_handler')->rebuildThemeData()[$this->customTheme]->getPathname()) . '/theme-settings.provision.inc';
+    require_once dirname((string) $container->get('extension.list.theme')->reset()->getList()[$this->customTheme]->getPathname()) . '/theme-settings.provision.inc';
     $modules = _civictheme_get_theme_dependencies($this->customTheme, $this->optionalDependencies);
     $container->get('module_installer')->install($modules);
 

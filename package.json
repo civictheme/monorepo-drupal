@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@civictheme/uikit": "github:civictheme/uikit#main"
+  }
+}

@@ -5,5 +5,6 @@ dependencies:
     - node
 id: node.civictheme_slider_slide
 label: 'Slider slide'
+description: ''
 targetEntityType: node
 cache: true

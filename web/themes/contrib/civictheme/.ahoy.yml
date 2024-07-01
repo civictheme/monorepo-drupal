@@ -1,8 +1,5 @@
-#
 # Ahoy configuration file.
 # http://www.ahoycli.com/
-#
-# Provides development experience shortcuts.
 ---
 ahoyapi: v2
 
@@ -10,16 +7,102 @@ commands:
 
   build:
     usage: Build or rebuild the project.
-    cmd: ./.devtools/build.sh
+    cmd: |
+      ahoy stop > /dev/null 2>&1 || true
+      ahoy assemble
+      ahoy start
+      ahoy provision
+
+  assemble:
+    usage: Assemble a codebase using project code and all required dependencies.
+    cmd: ./.devtools/assemble.sh
+
+  start:
+    usage: Start development environment.
+    cmd: ./.devtools/start.sh
+
+  stop:
+    usage: Stop development environment.
+    cmd: ./.devtools/stop.sh
+
+  provision:
+    usage: Provision application within assembled codebase.
+    cmd: ./.devtools/provision.sh
+
+  drush:
+    usage: Run Drush command.
+    cmd: build/vendor/bin/drush -l http://${WEBSERVER_HOST:-localhost}:${WEBSERVER_PORT:-8000} $*
+
+  login:
+    usage: Login to a website.
+    cmd: ahoy drush uli
 
   lint:
-    usage: Lint code.
-    cmd: ./.devtools/lint.sh
+    usage: Check coding standards for violations.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpcs
+      vendor/bin/phpstan
+      vendor/bin/rector --clear-cache --dry-run
+      vendor/bin/phpmd . text phpmd.xml
+      vendor/bin/twig-cs-fixer
+      popd >/dev/null || exit 1
 
   lint-fix:
-    usage: Lint code.
-    cmd: ./.devtools/lint-fix.sh
+    usage: Fix violations in coding standards.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/rector --clear-cache
+      vendor/bin/phpcbf
+      vendor/bin/twig-cs-fixer --no-cache --fix
+      popd >/dev/null || exit 1
 
   test:
-    usage: Run all tests.
-    cmd: ./.devtools/test.sh
+    usage: Run tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit
+      popd >/dev/null || exit 1
+
+  test-unit:
+    usage: Run unit tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite unit
+      popd >/dev/null || exit 1
+
+  test-kernel:
+    usage: Run kernel tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite kernel
+      popd >/dev/null || exit 1
+
+  test-functional:
+    usage: Run functional tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite functional
+      popd >/dev/null || exit 1
+
+  reset:
+    usage: Reset project to the default state.
+    cmd: |
+      killall -9 php >/dev/null 2>&1 || true
+      chmod -Rf 777 build > /dev/null
+      rm -Rf build > /dev/null || true
+      rm -Rf .logs > /dev/null || true
+
+# Override entrypoint to alter default behaviour of Ahoy.
+entrypoint:
+  - bash
+  - -c
+  - -e
+  - |
+    extension="$(basename -s .info.yml -- ./*.info.yml)"
+    export BROWSERTEST_OUTPUT_DIRECTORY="${TMPDIR:-/tmp}"
+    export SIMPLETEST_BASE_URL=http://${WEBSERVER_HOST:-localhost}:${WEBSERVER_PORT:-8000}
+    export SIMPLETEST_DB=sqlite://localhost/drupal_test_${extension}.sqlite
+    bash -e -c "$0" "$@"
+  - '{{cmd}}'
+  - '{{name}}'

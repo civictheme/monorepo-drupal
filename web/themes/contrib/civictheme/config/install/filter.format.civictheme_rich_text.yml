@@ -44,12 +44,6 @@ filters:
       allowed_html: '<br> <p class="ct-text-large ct-text-small text-align-left text-align-center text-align-right"> <h2 id class> <h3 id class="text-align-left text-align-center text-align-right"> <h4 id class="text-align-left text-align-center text-align-right"> <h5 id class="text-align-left text-align-center text-align-right"> <h6 id class="text-align-left text-align-center text-align-right"> <a class="ct-button ct-theme-light ct-button--primary ct-button--regular ct-button--secondary ct-button--large ct-content-link ct-content-link--external ct-button--button ct-theme-dark" hreflang target title href data-entity-type data-entity-uuid data-entity-substitution> <table class="ct-theme-light ct-table ct-table--striped"> <cite> <dl> <dt> <dd> <img src alt data-entity-type data-entity-uuid> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class="ct-visually-hidden"> <svg role viewbox aria-hidden width height class="ct-icon"> <path d> <blockquote cite> <ul type> <ol type start> <drupal-media title data-entity-type data-entity-uuid alt data-caption data-align> <strong> <em> <u> <s> <sub> <sup> <li> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
       filter_html_help: true
       filter_html_nofollow: false
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: false
-    weight: -42
-    settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -62,6 +56,12 @@ filters:
     status: false
     weight: -43
     settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
   filter_url:
     id: filter_url
     provider: filter
@@ -69,6 +69,13 @@ filters:
     weight: -44
     settings:
       filter_url_length: 72
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 0
+    settings:
+      title: true
   media_embed:
     id: media_embed
     provider: media
@@ -81,10 +88,3 @@ filters:
         civictheme_image: civictheme_image
         civictheme_remote_video: civictheme_remote_video
         civictheme_video: civictheme_video
-  linkit:
-    id: linkit
-    provider: linkit
-    status: true
-    weight: 0
-    settings:
-      title: true

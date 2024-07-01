@@ -12,13 +12,12 @@ declare(strict_types=1);
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
@@ -69,6 +68,46 @@ function civictheme_load_node_or_revision(array $variables): ?NodeInterface {
 }
 
 /**
+ * Get Layout Builder settings for all view modes of an entity.
+ *
+ * @param string $entity_type_id
+ *   Entity type ID.
+ * @param string $bundle
+ *   Bundle name.
+ * @param bool $only_enabled
+ *   (optional) Whether to return settings only for when the Layout Builder
+ *   is enabled for the view mode. Defaults to TRUE.
+ *
+ * @return array<string, mixed>
+ *   An array of Layout Builder settings keyed by view mode.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ */
+function civictheme_get_layout_builder_settings_per_view_mode(string $entity_type_id, string $bundle, $only_enabled = TRUE): array {
+  $settings_per_mode = [];
+
+  /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository */
+  $entity_display_repository = \Drupal::service('entity_display.repository');
+  $view_modes = array_keys($entity_display_repository->getViewModes($entity_type_id));
+  array_unshift($view_modes, 'default');
+
+  foreach ($view_modes as $view_mode) {
+    $view_display = EntityViewDisplay::load("$entity_type_id.$bundle.$view_mode");
+    if ($view_display) {
+      $lb_settings = $view_display->getThirdPartySettings('layout_builder');
+      if ($only_enabled && empty($lb_settings['enabled'])) {
+        continue;
+      }
+
+      $settings_per_mode[$view_mode] = $lb_settings;
+    }
+  }
+
+  return $settings_per_mode;
+}
+
+/**
  * Get variables from media.
  *
  * @param \Drupal\media\MediaInterface $media
@@ -93,8 +132,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'media_name' => t('@name', ['@name' => $media->label()]),
     'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
-    // @phpstan-ignore-next-line
-    'size' => DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.2.0', static fn(): TranslatableMarkup => ByteSizeMarkup::create($file->getSize()), static fn() => format_size($file->getSize())),
+    'size' => ByteSizeMarkup::create($file->getSize()),
     'created' => civictheme_format_datetime($media->getCreatedTime(), 'civictheme_short_date'),
     'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
@@ -120,6 +158,10 @@ function civictheme_media_image_get_variables(MediaInterface $media, string $ima
   }
 
   $variables = civictheme_media_get_variables($media);
+
+  if($variables['ext'] == 'svg') {
+    $image_style = NULL;
+  }
 
   $variables['url'] = civictheme_media_image_get_url($media, $image_style);
 
@@ -216,6 +258,39 @@ function civictheme_embed_svg(string $url, array $css_classes = []): ?string {
 }
 
 /**
+ * Add modifier class to the variables array, preserving existing classes.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param string|array $classes
+ *   Classes to add.
+ */
+function civictheme_add_modifier_class(array &$variables, string|array $classes): void {
+  $classes = is_array($classes) ? $classes : [$classes];
+  $existing_classes = explode(' ', $variables['modifier_class'] ?? '');
+  $new_classes = array_merge($existing_classes, $classes);
+  $variables['modifier_class'] = trim(implode(' ', array_unique($new_classes)));
+}
+
+/**
+ * Remove modifier class from the variables array, preserving existing classes.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param string|array $classes
+ *   Classes to remove.
+ */
+function civictheme_remove_modifier_class(array &$variables, string|array $classes): void {
+  if (!isset($variables['modifier_class'])) {
+    return;
+  }
+  $classes = is_array($classes) ? $classes : [$classes];
+  $existing_classes = explode(' ', $variables['modifier_class']);
+  $remaining_classes = array_diff($existing_classes, $classes);
+  $variables['modifier_class'] = trim(implode(' ', $remaining_classes));
+}
+
+/**
  * Preprocess 'attribute' classes variables into 'modifier_class'.
  *
  * Preprocessors can set $variables['modifier_class'] = FALSE to disable this
@@ -234,7 +309,8 @@ function civictheme_convert_attributes_to_modifier_class(array &$variables): voi
   }
 
   $attributes = new Attribute($variables['attributes']);
-  $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+  civictheme_add_modifier_class($variables, $attributes->getClass()->value());
+
   // Remove class from attributes to avoid duplicated 'class' attribute on
   // the element.
   unset($variables['attributes']['class']);
@@ -291,30 +367,6 @@ function civictheme_format_datetime_iso(int|string|DrupalDateTime $datetime): st
 }
 
 /**
- * Format date.
- *
- * @param string $format_or_type
- *   CivicTheme format type (starting with 'civictheme_') or actual PHP's
- *   date format string.
- * @param int|string|\Drupal\Core\Datetime\DrupalDateTime $datetime
- *   Timestamp or date as a string.
- *
- * @return string
- *   Formatted date or date range.
- *
- * @deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use
- * civictheme_format_datetime() instead.
- * @see https://www.drupal.org/project/civictheme/issues/3412647
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ErrorControlOperator)
- */
-function civictheme_format_date(string $format_or_type, int|string|DrupalDateTime $datetime): string {
-  @trigger_error('civictheme_format_date() is deprecated in civictheme:1.7.0 and is removed from civictheme:1.8.0. Use civictheme_format_datetime() instead. See https://www.drupal.org/project/civictheme/issues/3412647', E_USER_DEPRECATED);
-  return civictheme_format_datetime($datetime, $format_or_type);
-}
-
-/**
  * Checks whether the field exists and has a value on a given entity.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
@@ -332,8 +384,11 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, string $fi
 /**
  * Gets values from fields that CivicTheme regularly uses.
  *
- * It is not a replacement for the field api system for getting values. It gets
- * commonly required types of values by CivicTheme.
+ * This function complements the field API system, providing a convenient way to
+ * retrieve commonly used field values specific to CivicTheme.
+ *
+ * If a field type is not listed, and you need to retrieve its value, consider
+ * using the field API system directly.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   Entity to check field existence.
@@ -401,8 +456,11 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       break;
 
     case 'text_long':
-      // Opinionated. We want to render field if single or allow view() to
-      // handle it if it's all values.
+    case 'text_with_summary':
+      // Opinionated.
+      // This implementation renders the field if it has a single value.
+      // If the field contains multiple values, it relies on view() to handle
+      // the rendering.
       if ($only_first) {
         $field = $field->first();
         $field_value = $field->get('value')->getString();
@@ -592,6 +650,23 @@ function civictheme_type_options(): array {
     'inline' => 'Inline',
     'inline_stacked' => 'Inline Stacked',
   ];
+}
+
+/**
+ * Render a render array to string.
+ *
+ * @param mixed $render
+ *   Array or an object to render.
+ *
+ * @return string
+ *   Rendered string.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_render(mixed $render): string {
+  $render = is_array($render) ? $render : ['#markup' => $render];
+
+  return (string) \Drupal::service('renderer')->render($render);
 }
 
 /**

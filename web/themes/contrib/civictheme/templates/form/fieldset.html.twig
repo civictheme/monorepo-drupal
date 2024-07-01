@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a fieldset.
+ */
+#}
+
+{% include "@atoms/fieldset/fieldset.twig" with {
+  theme: theme,
+  legend: legend.title,
+  description: description,
+  description_display: description_display,
+  message: errors,
+  message_type: message_type,
+  fields: children,
+  is_required: required,
+  prefix: prefix,
+  suffix: suffix,
+  attributes: attributes,
+  modifier_class: modifier_class,
+} only %}

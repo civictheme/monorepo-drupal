@@ -26,5 +26,7 @@ settings:
   depth: 1
   expand_all_items: false
   parent: 'civictheme-footer:menu_link_content:a29bbfc3-74a7-4f20-b2fb-afc695b5604d'
+  render_parent: false
   suggestion: civictheme_footer
+  hide_on_nonactive: false
 visibility: {  }

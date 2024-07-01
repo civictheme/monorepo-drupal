@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: civictheme_publication_card
+label: 'Publication Card'
+effects:
+  f4003087-2cd4-4a11-9187-1b7272544544:
+    uuid: f4003087-2cd4-4a11-9187-1b7272544544
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 600
+      crop_type: focal_point

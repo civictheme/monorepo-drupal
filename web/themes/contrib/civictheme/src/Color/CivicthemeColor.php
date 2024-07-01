@@ -57,7 +57,8 @@ class CivicthemeColor implements \Stringable {
   public function __construct(
     protected $name,
     $value,
-    $formula = NULL) {
+    $formula = NULL,
+  ) {
     if ($formula) {
       $this->setFormula($formula);
     }

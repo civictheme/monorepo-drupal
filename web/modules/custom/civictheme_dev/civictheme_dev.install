@@ -35,8 +35,12 @@ function civictheme_dev_install(): void {
   $executed_updates = $key_value->get('existing_updates', []);
   foreach ($executed_updates as $function) {
     if (str_starts_with((string) $function, 'civictheme_dev_post_update_')) {
+      print sprintf('Running post-update function: %s%s', $function, PHP_EOL);
       $sandbox = [];
-      call_user_func($function, $sandbox);
+      $ret = call_user_func($function, $sandbox);
+      if (is_string($ret)) {
+        print $ret . PHP_EOL;
+      }
     }
   }
 }

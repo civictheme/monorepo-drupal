@@ -388,3 +388,11 @@ civictheme.settings:
     optouts:
       type: mapping
       label: 'Opt-out flags'
+
+layout_plugin.settings.civictheme_three_columns:
+  type: layout_plugin.settings
+  label: 'CivicTheme Three Columns Layout Settings'
+  mapping:
+    is_contained:
+      type: boolean
+      label: 'Is Contained'

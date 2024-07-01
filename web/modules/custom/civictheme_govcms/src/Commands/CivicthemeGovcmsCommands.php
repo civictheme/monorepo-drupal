@@ -46,9 +46,9 @@ class CivicthemeGovcmsCommands extends DrushCommands {
    * - menus
    * - pathauto_patterns
    */
-  public function drushCivicthemeGovcmsRemoveConfig(array $options = [
-    'preserve' => '',
-  ]): void {
+  public function drushCivicthemeGovcmsRemoveConfig(array $options = []): void {
+    $options += ['preserve' => ''];
+
     // Removing configs will lead to showing warnings about missing bundles,
     // which are only shown due to dependencies resolution concurrency issues.
     // We are suppressing them as they do not have any valuable information

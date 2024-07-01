@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: civictheme_campaign
+label: Campaign
+effects:
+  dd0cef2a-f164-4c8e-ab0c-3898ec0f139b:
+    uuid: dd0cef2a-f164-4c8e-ab0c-3898ec0f139b
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 600
+      crop_type: focal_point

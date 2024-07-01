@@ -21,6 +21,7 @@ require_once __DIR__ . '/includes/campaign.inc';
 require_once __DIR__ . '/includes/content.inc';
 require_once __DIR__ . '/includes/manual_list.inc';
 require_once __DIR__ . '/includes/cards.inc';
+require_once __DIR__ . '/includes/form_element.inc';
 require_once __DIR__ . '/includes/form.inc';
 require_once __DIR__ . '/includes/iframe.inc';
 require_once __DIR__ . '/includes/image.inc';
@@ -35,7 +36,7 @@ require_once __DIR__ . '/includes/mobile_navigation.inc';
 require_once __DIR__ . '/includes/next_step.inc';
 require_once __DIR__ . '/includes/node.inc';
 require_once __DIR__ . '/includes/page.inc';
-require_once __DIR__ . '/includes/pager.inc';
+require_once __DIR__ . '/includes/pagination.inc';
 require_once __DIR__ . '/includes/paragraphs.inc';
 require_once __DIR__ . '/includes/primary_navigation.inc';
 require_once __DIR__ . '/includes/promo.inc';
@@ -72,6 +73,11 @@ function civictheme_theme(): array {
       'variables' => [
         'component_theme' => CivicthemeConstants::THEME_LIGHT,
         'content' => '',
+        'vertical_spacing' => NULL,
+        'is_contained' => TRUE,
+        'with_background' => FALSE,
+        'attributes' => NULL,
+        'modifier_class' => NULL,
       ],
       'template' => 'misc/basic-content',
     ],
@@ -231,4 +237,16 @@ function civictheme_preprocess_field(array &$variables): void {
  */
 function civictheme_library_info_alter(array &$libraries, string $extension): void {
   _civictheme_library_info_alter__color_selector($libraries, $extension);
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_page_attachments_alter(array &$attachments) {
+  $current_user = \Drupal::currentUser();
+  if ($current_user->isAuthenticated()) {
+    $attachments['#attached']['library'][] = 'civictheme/admin';
+  }
 }
