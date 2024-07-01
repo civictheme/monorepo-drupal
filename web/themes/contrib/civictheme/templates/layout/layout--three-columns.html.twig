@@ -28,7 +28,7 @@
 {% set has_sidebar_left = (content.sidebar_top_left is not empty or content.sidebar_bottom_left is not empty) and not hide_sidebar_left|default(false) %}
 {% set has_sidebar_right = (content.sidebar_top_right is not empty or content.sidebar_bottom_right is not empty) and not hide_sidebar_right|default(false) %}
 
-{% set is_contained = is_contained|default(true) %}
+{% set is_contained = settings.is_contained %}
 {% set is_contained = is_contained or has_sidebar_left or has_sidebar_right %}
 
 {% set vertical_spacing = has_sidebar_left or has_sidebar_right ? 'top' : vertical_spacing %}
@@ -46,7 +46,7 @@
 {% set modifier_class = modifier_class|trim %}
 
 {% if content %}
-  <main class="ct-layout {{ modifier_class -}}" role="main" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+  <main class="ct-layout {{ modifier_class -}}" role="main" data-layout-builder-layout="true" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
     {% block content_top %}
       {% if content.content_top is not empty %}
         {{- content.content_top|raw -}}

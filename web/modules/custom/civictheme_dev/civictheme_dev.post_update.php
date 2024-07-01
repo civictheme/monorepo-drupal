@@ -94,14 +94,14 @@ function civictheme_dev_post_update_update_side_navigation_block(): string {
     throw new UpdateException('Unable to find Side Navigation block.');
   }
 
-  $block = reset($blocks);
-
-  $block->setVisibilityConfig('request_path', [
-    'id' => 'request_path',
-    'negate' => TRUE,
-    'pages' => "/search\n\r/news-and-events\n\r*civictheme-no-sidebar*",
-  ]);
-  $block->save();
+  foreach ($blocks as $block) {
+    $block->setVisibilityConfig('request_path', [
+      'id' => 'request_path',
+      'negate' => TRUE,
+      'pages' => "/search\n\r/news-and-events\n\r*civictheme-no-sidebar*",
+    ]);
+    $block->save();
+  }
 
   return 'Updated Side Navigation block visibility settings.';
 }
