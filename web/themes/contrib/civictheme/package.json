@@ -25,7 +25,7 @@
     "uikit-install": "rm -Rf lib/uikit > /dev/null 2>&1 && mkdir -p lib/uikit && cp -R node_modules/@civictheme/uikit lib && rm -Rf lib/uikit/dist lib/uikit/storybook-static > /dev/null 2>&1"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#main"
+    "@civictheme/uikit": "github:civictheme/uikit#v1.8.1"
   },
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.1",
