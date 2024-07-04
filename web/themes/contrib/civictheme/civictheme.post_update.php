@@ -619,3 +619,115 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
   ];
   \Drupal::classResolver(CivicthemeUpdateHelper::class)->deleteConfig($old_field_configs);
 }
+
+/**
+ * Updates blocks from 'sidebar' region to 'sidebar_top_left'.
+ */
+function civictheme_post_update_move_blocks_to_sidebar_top_left(&$sandbox) {
+  // Load the block manager service.
+  $block_manager = \Drupal::service('plugin.manager.block');
+
+  // Civictheme
+  // Get all block instances.
+  $blocks = \Drupal::entityTypeManager()
+    ->getStorage('block')
+    ->loadByProperties(['theme' => 'civictheme', 'region' => 'sidebar']);
+  if ($blocks) {
+    foreach ($blocks as $block) {
+      // Update the region to 'sidebar_top_left'.
+      $block->setRegion('sidebar_top_left');
+      $block->save();
+    }
+  }
+
+  // Check if civictheme_side_navigation block exists.
+  $sideNavigationBlock = \Drupal::entityTypeManager()
+    ->getStorage('block')
+    ->loadByProperties(['theme' => 'civictheme', 'id' => 'civictheme_side_navigation']);
+  if ($sideNavigationBlock) {
+    foreach ($sideNavigationBlock as $block) {
+      // Update the region to 'sidebar_top_left'.
+      $block->setRegion('sidebar_top_left');
+      $block->set('status', TRUE);
+      $block->save();
+    }
+  }
+
+  // Civictheme Subtheme
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  $active_theme_name = $active_theme->getName();
+
+  if ($active_theme_name != 'civictheme') {
+    $blocks = \Drupal::entityTypeManager()
+    ->getStorage('block')
+    ->loadByProperties(['theme' => $active_theme_name, 'region' => 'sidebar']);
+    if ($blocks) {
+      foreach ($blocks as $block) {
+        // Update the region to 'sidebar_top_left'.
+        $block->setRegion('sidebar_top_left');
+        $block->save();
+      }
+    }
+  }
+
+  // Check if <theme_name>_side_navigation block exists.
+  $sideNavigationBlock = \Drupal::entityTypeManager()
+    ->getStorage('block')
+    ->loadByProperties(['theme' => $active_theme_name, 'id' => $active_theme_name . '_side_navigation']);
+  if ($sideNavigationBlock) {
+    foreach ($sideNavigationBlock as $block) {
+      // Update the region to 'sidebar_top_left'.
+      $block->setRegion('sidebar_top_left');
+      $block->set('status', TRUE);
+      $block->save();
+    }
+  }
+
+  // Provide a message to indicate completion.
+  \Drupal::messenger()->addMessage('All blocks in the "sidebar" region have been moved to "sidebar_top_left".');
+}
+
+/**
+ * Enables "3 column" layout for the Page content type.
+ */
+function civictheme_post_update_enable_three_column_layout(&$sandbox) {
+  // Load the current display configuration for the Page content type.
+  $entity_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->load('node.civictheme_page.default');
+
+  // Check if the display is already set to use the "3 column" layout.
+  if ($entity_display) {
+    $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', []);
+    if (!empty($entity_view_mode_restriction['allowed_layouts']) && !in_array('civictheme_three_columns', $entity_view_mode_restriction['allowed_layouts'])){
+      // Update the configuration to use the "3 column" layout.
+      $entity_view_mode_restriction['allowed_layouts'][] = 'civictheme_three_columns';
+      $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+      $entity_display->save();
+      \Drupal::messenger()->addMessage('Enabled "3 column" layout for the Page content type.');
+      
+      $update_config = TRUE;
+      if (!empty($entity_view_mode_restriction['allowlisted_blocks'])) {
+        $update_config = FALSE;
+      }
+
+      if ($update_config){
+        $theme_config_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+        $theme_config_file = $theme_config_path . '/config/install/core.entity_view_display.node.civictheme_page.default.yml';
+        
+        if (file_exists($theme_config_file)) {
+          $theme_config = \Drupal::service('config.factory')->getEditable('core.entity_view_display.node.civictheme_page.default');
+          $theme_config->setData(yaml_parse_file($theme_config_file));
+          $theme_config->save();
+          \Drupal::messenger()->addMessage('Cannot Update Page content type to use the "3 column" layout as the original layout was modified.');
+        }
+      } else {
+        \Drupal::messenger()->addMessage('Updated Page content type to use the "3 column" layout.');
+      }
+
+    }
+    else {
+      \Drupal::messenger()->addMessage('The "3 column" layout is already enabled for the Page content type.');
+    }
+  }
+}
