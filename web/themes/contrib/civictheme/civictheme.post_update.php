@@ -14,6 +14,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\ParagraphInterface;
+use Symfony\Component\Yaml\Yaml;
 
 require_once __DIR__ . '/includes/utilities.inc';
 
@@ -622,11 +623,11 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
 
 /**
  * Updates blocks from 'sidebar' region to 'sidebar_top_left'.
+ * 
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_move_blocks_to_sidebar_top_left(&$sandbox) {
-  // Load the block manager service.
-  $block_manager = \Drupal::service('plugin.manager.block');
-
+function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
   // Civictheme
   // Get all block instances.
   $blocks = \Drupal::entityTypeManager()
@@ -689,8 +690,11 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(&$sandbox) {
 
 /**
  * Enables "3 column" layout for the Page content type.
+ * 
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_enable_three_column_layout(&$sandbox) {
+function civictheme_post_update_enable_three_column_layout(): void {
   // Load the current display configuration for the Page content type.
   $entity_display = \Drupal::entityTypeManager()
     ->getStorage('entity_view_display')
@@ -700,11 +704,6 @@ function civictheme_post_update_enable_three_column_layout(&$sandbox) {
   if ($entity_display) {
     $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', []);
     if (!empty($entity_view_mode_restriction['allowed_layouts']) && !in_array('civictheme_three_columns', $entity_view_mode_restriction['allowed_layouts'])){
-      // Update the configuration to use the "3 column" layout.
-      $entity_view_mode_restriction['allowed_layouts'][] = 'civictheme_three_columns';
-      $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
-      $entity_display->save();
-      \Drupal::messenger()->addMessage('Enabled "3 column" layout for the Page content type.');
       
       $update_config = TRUE;
       if (!empty($entity_view_mode_restriction['allowlisted_blocks'])) {
@@ -712,17 +711,26 @@ function civictheme_post_update_enable_three_column_layout(&$sandbox) {
       }
 
       if ($update_config){
+
+        // Update the configuration to use the "3 column" layout.
+        $entity_view_mode_restriction['allowed_layouts'] = [];
+        $entity_view_mode_restriction['allowed_layouts'][] = 'civictheme_three_columns';
+        $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+        $entity_display->save();
+        \Drupal::messenger()->addMessage('Enabled "3 column" layout for the Page content type.');
+
         $theme_config_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
         $theme_config_file = $theme_config_path . '/config/install/core.entity_view_display.node.civictheme_page.default.yml';
         
         if (file_exists($theme_config_file)) {
           $theme_config = \Drupal::service('config.factory')->getEditable('core.entity_view_display.node.civictheme_page.default');
-          $theme_config->setData(yaml_parse_file($theme_config_file));
+          $yaml_data = Yaml::parseFile($theme_config_file);
+          $theme_config->setData($yaml_data);
           $theme_config->save();
-          \Drupal::messenger()->addMessage('Cannot Update Page content type to use the "3 column" layout as the original layout was modified.');
+          \Drupal::messenger()->addMessage('Updated Page content type to use the "3 column" layout.');
         }
       } else {
-        \Drupal::messenger()->addMessage('Updated Page content type to use the "3 column" layout.');
+        \Drupal::messenger()->addMessage('Cannot Update Page content type to use the "3 column" layout as the original layout was modified.');
       }
 
     }
