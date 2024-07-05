@@ -623,68 +623,43 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
 
 /**
  * Updates blocks from 'sidebar' region to 'sidebar_top_left'.
- * 
+ *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
-  // Civictheme
-  // Get all block instances.
-  $blocks = \Drupal::entityTypeManager()
-    ->getStorage('block')
-    ->loadByProperties(['theme' => 'civictheme', 'region' => 'sidebar']);
-  if ($blocks) {
-    foreach ($blocks as $block) {
-      // Update the region to 'sidebar_top_left'.
-      $block->setRegion('sidebar_top_left');
-      $block->save();
-    }
-  }
-
-  // Check if civictheme_side_navigation block exists.
-  $sideNavigationBlock = \Drupal::entityTypeManager()
-    ->getStorage('block')
-    ->loadByProperties(['theme' => 'civictheme', 'id' => 'civictheme_side_navigation']);
-  if ($sideNavigationBlock) {
-    foreach ($sideNavigationBlock as $block) {
-      // Update the region to 'sidebar_top_left'.
-      $block->setRegion('sidebar_top_left');
-      $block->set('status', TRUE);
-      $block->save();
-    }
-  }
-
-  // Civictheme Subtheme
+  $themes = ['civictheme'];
   $active_theme = \Drupal::theme()->getActiveTheme();
   $active_theme_name = $active_theme->getName();
+  if ($active_theme_name !== 'civictheme') {
+    $themes[] = $active_theme_name;
+  }
 
-  if ($active_theme_name != 'civictheme') {
+  foreach ($themes as $theme) {
     $blocks = \Drupal::entityTypeManager()
-    ->getStorage('block')
-    ->loadByProperties(['theme' => $active_theme_name, 'region' => 'sidebar']);
+      ->getStorage('block')
+      ->loadByProperties(['theme' => $theme, 'region' => 'sidebar']);
     if ($blocks) {
       foreach ($blocks as $block) {
+        $block->setRegion('sidebar_top_left');
+        $block->set('status', TRUE);
+        $block->save();
+      }
+    }
+    // Check if <theme_name>_side_navigation block exists.
+    $sideNavigationBlock = \Drupal::entityTypeManager()
+      ->getStorage('block')
+      ->loadByProperties(['theme' => $theme, 'id' => $theme . '_side_navigation']);
+    if ($sideNavigationBlock) {
+      foreach ($sideNavigationBlock as $block) {
         // Update the region to 'sidebar_top_left'.
         $block->setRegion('sidebar_top_left');
+        $block->set('status', TRUE);
         $block->save();
       }
     }
   }
 
-  // Check if <theme_name>_side_navigation block exists.
-  $sideNavigationBlock = \Drupal::entityTypeManager()
-    ->getStorage('block')
-    ->loadByProperties(['theme' => $active_theme_name, 'id' => $active_theme_name . '_side_navigation']);
-  if ($sideNavigationBlock) {
-    foreach ($sideNavigationBlock as $block) {
-      // Update the region to 'sidebar_top_left'.
-      $block->setRegion('sidebar_top_left');
-      $block->set('status', TRUE);
-      $block->save();
-    }
-  }
-
-  // Provide a message to indicate completion.
   \Drupal::messenger()->addMessage('All blocks in the "sidebar" region have been moved to "sidebar_top_left".');
 }
 
