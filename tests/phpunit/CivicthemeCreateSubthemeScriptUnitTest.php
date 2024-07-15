@@ -130,7 +130,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
-    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
     $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
     $this->assertFileExists($expected_new_theme_dir_full . 'composer.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
@@ -246,7 +245,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
-    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
     $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');

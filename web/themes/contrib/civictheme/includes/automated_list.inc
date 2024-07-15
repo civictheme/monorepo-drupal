@@ -39,11 +39,19 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 
   // Views settings.
-  // We want to have a single place to gather all the view settings to pass
+  // We want to have a single place to gather all initial view settings to pass
   // them further in the pipeline. There should not be any other places to
   // access these fields variables directly (separation of concerns). Only
   // these settings should be used.
+  // Consumer sites can alter these settings in
+  // hook_civictheme_automated_list_view_alter().
   $settings = [];
+  // Store paragraph entity in the settings to allow accessing the values of
+  // fields that may be added in the consumer sites (in addition to the fields
+  // provided by the CivicTheme Automated List paragraph).
+  $settings['paragraph'] = $paragraph;
+  $settings['cache_tags'] = $paragraph->getCacheTags();
+  // Settings provided by the CivicTheme Automated List paragraph's fields.
   $settings['type'] = civictheme_get_field_value($paragraph, 'field_c_p_list_type');
   $settings['content_type'] = civictheme_get_field_value($paragraph, 'field_c_p_list_content_type');
   $settings['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit');
@@ -53,14 +61,10 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   $settings['item_theme'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme');
   $settings['topics'] = civictheme_get_field_value($paragraph, 'field_c_p_list_topics');
   $settings['site_sections'] = civictheme_get_field_value($paragraph, 'field_c_p_list_site_sections');
-  $settings['cache_tags'] = $paragraph->getCacheTags();
-  // Use existing value getters to populate settings.
-  $settings['paragraph'] = $paragraph;
   _civictheme_preprocess_paragraph__paragraph_field__theme($settings);
   _civictheme_preprocess_paragraph__paragraph_field__title($settings);
   _civictheme_preprocess_paragraph__paragraph_field__column_count($settings);
   _civictheme_preprocess_paragraph__paragraph_field__fill_width($settings);
-  unset($settings['paragraph']);
 
   // Get view with already set display.
   try {
@@ -128,7 +132,7 @@ function _civictheme_automated_list__get_view(array &$settings): ViewExecutable 
       'display_name' => $parts[1] ?? 'default',
     ];
 
-    // Allow to alter view information to modules and themes.
+    // Allow modules and themes to alter view information.
     \Drupal::moduleHandler()->alter('civictheme_automated_list_view_info', $info, $settings);
     \Drupal::service('theme.manager')->alter('civictheme_automated_list_view_info', $info, $settings);
   }
@@ -251,6 +255,10 @@ function _civictheme_automated_list__update_view(ViewExecutable $view): void {
       $view->display_handler->setOption('pager', $view_pager);
     }
   }
+
+  // Allow modules and themes to alter view based on settings.
+  \Drupal::moduleHandler()->alter('civictheme_automated_list_view', $view);
+  \Drupal::service('theme.manager')->alter('civictheme_automated_list_view', $view);
 
   // Mark these settings.
   $view->component_settings['processed'] = TRUE;

@@ -7,8 +7,10 @@
 
 declare(strict_types=1);
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeVersionManager;
 use Drupal\Core\Site\Settings;
+use Drupal\views\ViewExecutable;
 
 require_once __DIR__ . '/styleguide.inc';
 
@@ -47,4 +49,45 @@ function civictheme_dev_styleguide_alter(array &$items): void {
   _civictheme_dev_styleguide__form_test__checkbox($items);
   _civictheme_dev_styleguide__form_test__checkboxes($items);
   _civictheme_dev_styleguide__form_test__radios($items);
+}
+
+/**
+ * Implements hook_civictheme_automated_list_view_info_alter().
+ */
+function civictheme_dev_civictheme_automated_list_view_info_alter(array &$info, array $settings): void {
+  if ($settings['content_type'] == 'civictheme_event') {
+    // Use a different view and display for 'civictheme_event' content type.
+    $info['view_name'] = 'civictheme_automated_list_examples';
+    $info['display_name'] = 'page_multiple_filters';
+  }
+}
+
+/**
+ * Implements hook_civictheme_automated_list_view_alter().
+ */
+function civictheme_dev_civictheme_automated_list_view_alter(ViewExecutable $view): void {
+  if ($view->id() === 'civictheme_automated_list_test') {
+    if (!property_exists($view, 'component_settings') || $view->component_settings === NULL) {
+      return;
+    }
+
+    $view->component_settings['theme'] = CivicthemeConstants::THEME_LIGHT;
+    $view->component_settings['item_theme'] = CivicthemeConstants::THEME_DARK;
+
+    // Example of setting view arguments based on the expected contextual
+    // filters of this specific view.
+    $view_args = [];
+    // First view argument - content types.
+    $view_args[] = $view->component_settings['content_type'] ?? 'all';
+    // Second view argument - Topics.
+    $view_args[] = empty($view->component_settings['topics']) ? 'all' : implode('+', array_keys($view->component_settings['topics']));
+    // Third view argument - Site Sections.
+    $view_args[] = empty($view->component_settings['site_sections']) ? 'all' : implode('+', array_keys($view->component_settings['site_sections']));
+    // Fourth view argument - Content ID value.
+    $view_args[] = 'all';
+    // Fifth view argument - Vertical Spacing value (used as an example).
+    $view_args[] = CivicthemeConstants::VERTICAL_SPACING_TOP;
+
+    $view->setArguments($view_args);
+  }
 }
