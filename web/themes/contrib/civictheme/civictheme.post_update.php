@@ -631,7 +631,7 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
   $themes = ['civictheme'];
   $installed_themes = \Drupal::service('theme_handler')->listInfo();
   foreach ($installed_themes as $theme_name => $theme_info) {
-    if (isset($theme_info->base_themes) && in_array('civictheme', $theme_info->base_themes)) {
+    if (isset($theme_info->base_theme) && $theme_info->base_theme == 'civictheme') {
       $themes[] = $theme_name;
     }
   }
