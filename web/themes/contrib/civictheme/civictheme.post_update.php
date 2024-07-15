@@ -629,10 +629,11 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
  */
 function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
   $themes = ['civictheme'];
-  $active_theme = \Drupal::theme()->getActiveTheme();
-  $active_theme_name = $active_theme->getName();
-  if ($active_theme_name !== 'civictheme') {
-    $themes[] = $active_theme_name;
+  $installed_themes = \Drupal::service('theme_handler')->listInfo();
+  foreach ($installed_themes as $theme_name => $theme_info) {
+    if (isset($theme_info->base_themes) && in_array('civictheme', $theme_info->base_themes)) {
+      $themes[] = $theme_name;
+    }
   }
 
   foreach ($themes as $theme) {
@@ -647,11 +648,11 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
       }
     }
     // Check if <theme_name>_side_navigation block exists.
-    $sideNavigationBlock = \Drupal::entityTypeManager()
+    $side_navigation_block = \Drupal::entityTypeManager()
       ->getStorage('block')
       ->loadByProperties(['theme' => $theme, 'id' => $theme . '_side_navigation']);
-    if ($sideNavigationBlock) {
-      foreach ($sideNavigationBlock as $block) {
+    if ($side_navigation_block) {
+      foreach ($side_navigation_block as $block) {
         // Update the region to 'sidebar_top_left'.
         $block->setRegion('sidebar_top_left');
         $block->set('status', TRUE);
@@ -665,7 +666,7 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): void {
 
 /**
  * Enables "3 column" layout for the Page content type.
- * 
+ *
  * @SuppressWarnings(PHPMD.ElseExpression)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
@@ -679,13 +680,13 @@ function civictheme_post_update_enable_three_column_layout(): void {
   if ($entity_display) {
     $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', []);
     if (!empty($entity_view_mode_restriction['allowed_layouts']) && !in_array('civictheme_three_columns', $entity_view_mode_restriction['allowed_layouts'])){
-      
+
       $update_config = TRUE;
       if (!empty($entity_view_mode_restriction['allowlisted_blocks'])) {
         $update_config = FALSE;
       }
 
-      if ($update_config){
+      if ($update_config) {
 
         // Update the configuration to use the "3 column" layout.
         $entity_view_mode_restriction['allowed_layouts'] = [];
@@ -696,15 +697,17 @@ function civictheme_post_update_enable_three_column_layout(): void {
 
         $theme_config_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
         $theme_config_file = $theme_config_path . '/config/install/core.entity_view_display.node.civictheme_page.default.yml';
-        
+
         if (file_exists($theme_config_file)) {
           $theme_config = \Drupal::service('config.factory')->getEditable('core.entity_view_display.node.civictheme_page.default');
           $yaml_data = Yaml::parseFile($theme_config_file);
-          $theme_config->setData($yaml_data);
+          $layout_settings = $yaml_data['third_party_settings']['layout_builder']['settings'];
+          $theme_config->set('third_party_settings.layout_builder.settings', $layout_settings);
           $theme_config->save();
           \Drupal::messenger()->addMessage('Updated Page content type to use the "3 column" layout.');
         }
-      } else {
+      }
+      else {
         \Drupal::messenger()->addMessage('Cannot Update Page content type to use the "3 column" layout as the original layout was modified.');
       }
 
