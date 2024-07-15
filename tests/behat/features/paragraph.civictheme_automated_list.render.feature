@@ -238,9 +238,11 @@ Feature: Automated list render
   @api @testmode
   Scenario: Automated list, different view from listing type field
     Given "civictheme_page" content:
-      | title          | created            | status | moderation_state |
-      | [TEST] Page 16 | [relative:-5 days] | 1      | published        |
-      | [TEST] Page 17 | [relative:-5 days] | 1      | published        |
+      | title          | created            | status | moderation_state | field_c_n_vertical_spacing |
+      | [TEST] Page 16 | [relative:-5 days] | 1      | published        | both                       |
+      | [TEST] Page 17 | [relative:-5 days] | 1      | published        | both                       |
+      | [TEST] Page 18 | [relative:-5 days] | 1      | published        | top                        |
+      | [TEST] Page 19 | [relative:-5 days] | 1      | published        | top                        |
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
       | field_c_p_title            | [TEST] Automated list title |
@@ -260,7 +262,9 @@ Feature: Automated list render
     And I should see an ".ct-list__filters" element
 
     # Add a Test view as a list type.
-    # This view only shows items older than 2 days and has a Title filter exposed.
+    # This view only shows items older than 2 days, having a 'top' vertical
+    # spacing (to assert the adjustems via preprocess hook) and has a Title
+    # filter exposed.
     When I am logged in as a user with the "Administrator" role
     And I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields/paragraph.civictheme_automated_list.field_c_p_list_type"
     And I fill in the following:
@@ -277,7 +281,8 @@ Feature: Automated list render
     And I press "Save"
 
     And I should see 2 ".ct-promo-card" elements
-    And I should see 2 ".ct-promo-card.ct-theme-light" elements
+    # Preprocess hook overrides the 'item_theme' to be 'dark'.
+    And I should see 2 ".ct-promo-card.ct-theme-dark" elements
     And I should not see an ".ct-list__pagination" element
 
     And I should see an ".ct-list__filters" element
