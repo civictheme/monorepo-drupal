@@ -28,7 +28,7 @@
 > For support, see [Getting help](https://docs.civictheme.io/getting-help) documentation
 
 > [!IMPORTANT]
-> For Drupal theme installation instructions into your site, see https://docs.civictheme.io/development/drupal-theme
+> For Drupal theme installation instructions, see https://docs.civictheme.io/development/drupal-theme
 
 ## Monorepo documentation
 
