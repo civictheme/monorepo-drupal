@@ -12,6 +12,8 @@ use Drupal\civictheme\CivicthemeUpdateHelper;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Utility\UpdateException;
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\ParagraphInterface;
 
@@ -528,6 +530,7 @@ function civictheme_post_update_convert_quote_to_content_component(array &$sandb
     // Finished callback.
     static function (CivicthemeUpdateHelper $helper) use ($old_field_configs): TranslatableMarkup {
       $helper->deleteConfig($old_field_configs);
+
       return new TranslatableMarkup("Updated quote component to a content component.\n");
     },
   );
@@ -618,4 +621,141 @@ function civictheme_post_update_enable_focal_point_configurations_2(): void {
     'image.style.civictheme_thumbnail' => 'image_style',
   ];
   \Drupal::classResolver(CivicthemeUpdateHelper::class)->deleteConfig($old_field_configs);
+}
+
+/**
+ * Moves blocks from 'sidebar' to 'sidebar_top_left' region.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_move_blocks_to_sidebar_top_left(): string {
+  $region_from = 'sidebar';
+  $region_to = 'sidebar_top_left';
+
+  /** @var \Drupal\Core\Theme\ActiveTheme $theme */
+  $theme = \Drupal::service('theme.manager')->getActiveTheme();
+
+  if (!in_array('civictheme', $theme->getBaseThemeExtensions()) && $theme->getName() !== 'civictheme') {
+    return (string)(new TranslatableMarkup('The active theme is not CivicTheme or based on CivicTheme. No blocks were moved.'));
+  }
+
+  // Stop the update if the theme does not have a region that needs to be added
+  // manually to the .info.yml file.
+  if (in_array($region_to, $theme->getRegions())) {
+    throw new UpdateException((string) (new TranslatableMarkup("The @theme_name theme does not have a @region region defined in their .info.yml file. Update the file and re-run the updates.", [
+      '@theme_name' => $theme->getName(),
+      '@region' => $region_to,
+    ])));
+  }
+
+  /** @var \Drupal\block\BlockInterface[] $blocks */
+  $blocks = \Drupal::entityTypeManager()
+    ->getStorage('block')
+    ->loadByProperties([
+      'theme' => $theme->getName(),
+      'region' => $region_from,
+    ]);
+
+  $updated_block_ids = [];
+  foreach ($blocks as $block) {
+    $block->setRegion($region_to);
+    $block->save();
+    $updated_block_ids[] = $block->id();
+  }
+
+  if (!empty($updated_block_ids)) {
+    return (string) (new TranslatableMarkup('Theme @theme_name block(s) @blocks_ids were moved from @region_from to @region_to.', [
+      '@theme_name' => $theme->getName(),
+      '@blocks_ids' => implode(', ', $updated_block_ids),
+      '@region_from' => $region_from,
+      '@region_to' => $region_to,
+    ]));
+  }
+
+  return (string) (new TranslatableMarkup('No blocks were moved.'));
+}
+
+/**
+ * Enables "civictheme_three_columns" layout for the Page/Event content type.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_enable_three_column_layout(): string {
+  $outdated_layouts = [
+    'civictheme_one_column',
+    'civictheme_one_column_contained',
+  ];
+
+  $messages = [];
+
+  $entity_displays = LayoutBuilderEntityViewDisplay::loadMultiple();
+
+  $updated_entity_displays = [];
+  foreach ($entity_displays as $entity_display) {
+    if (!$entity_display->isLayoutBuilderEnabled()) {
+      continue;
+    }
+
+    // Updated 'allowed layouts' settings.
+    $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction');
+    if (!empty($entity_view_mode_restriction['allowed_layouts'])) {
+      $allowed_layouts = $entity_view_mode_restriction['allowed_layouts'];
+
+      foreach ($allowed_layouts as $layout_name) {
+        if (in_array($layout_name, $outdated_layouts)) {
+          unset($allowed_layouts[$layout_name]);
+        }
+      }
+
+      if (count($entity_view_mode_restriction['allowed_layouts']) != count($allowed_layouts)) {
+        $allowed_layouts[] = 'civictheme_three_columns';
+
+        $entity_view_mode_restriction['allowed_layouts'] = array_values($allowed_layouts);
+        $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+
+        $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+      }
+    }
+
+    // Replace layouts in sections.
+    /** @var \Drupal\layout_builder\Section[] $layout_builder_sections */
+    $layout_builder_sections = $entity_display->getThirdPartySetting('layout_builder', 'sections');
+    if (!empty($layout_builder_sections)) {
+      foreach ($layout_builder_sections as $index => $section) {
+        $layout_name = $section->getLayoutId();
+
+        if (in_array($layout_name, $outdated_layouts)) {
+          $section_as_array = $section->toArray();
+
+          $section_as_array['layout_id'] = 'civictheme_three_columns';
+          $section_as_array['layout_settings']['label'] = 'CivicTheme Three Columns';
+          $section_as_array['layout_settings']['is_contained'] = ($layout_name === 'civictheme_one_column_contained');
+
+          // Move all components to 'main' region because three column use
+          // 'main' region, not 'content' region as one column.
+          foreach ($section_as_array['components'] as &$component) {
+            if ($component['region'] === 'content') {
+              $component['region'] = 'main';
+            }
+          }
+
+          $layout_builder_sections[$index] = \Drupal\layout_builder\Section::fromArray($section_as_array);
+
+          $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+        }
+      }
+
+      $entity_display->setThirdPartySetting('layout_builder', 'sections', $layout_builder_sections);
+    }
+
+    if (in_array($entity_display->id(), $updated_entity_displays)) {
+      $entity_display->save();
+      $messages[] = (string) (new TranslatableMarkup('Updated @display_id display to use the "civictheme_three_columns" layout.', [
+        '@display_id' => $entity_display->id(),
+      ]));
+    }
+  }
+
+  return implode("\n", $messages);
 }
