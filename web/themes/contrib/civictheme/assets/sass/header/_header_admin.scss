@@ -1,0 +1,11 @@
+//
+// Drupal Header component.
+//
+
+.user-logged-in {
+  .ct-header {
+    .ct-navigation.contextual-region {
+      position: unset;
+    }
+  }
+}
