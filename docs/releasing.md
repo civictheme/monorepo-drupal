@@ -7,10 +7,10 @@ manage releases.
 
 1. Release branch exists as `release/X.Y.Z` in GitHub repository.
 2. Release tag exists as `X.Y.Z` in GitHub repository.
-3. The `HEAD` of the `master` branch has `X.Y.Z` tag.
-4. The hash of the `HEAD` of the `master` branch exists in the `develop` branch.
-   This is to ensure that everything pushed to `master` exists in `develop` (in
-   case if `master` had any hot-fixes that not yet have been merged
+3. The `HEAD` of the `main` branch has `X.Y.Z` tag.
+4. The hash of the `HEAD` of the `main` branch exists in the `develop` branch.
+   This is to ensure that everything pushed to `main` exists in `develop` (in
+   case if `main` had any hot-fixes that not yet have been merged
    to `develop`).
 5. There are no PRs in GitHub related to the release.
 
@@ -45,3 +45,16 @@ all the packages that are published from this repository.
 Parts of the release log can then be manually copied to the release logs of
 published repositories.
 
+## Releasing to Drupal.org
+
+Releases to Drupal.org are done manually.
+
+Every commit merged to the `develop` is pushed to Drupal.org to the `1.x-dev`
+branch, meaning that every commit may be used in a new release. This was done
+on purpose to avoid accidental releases done in GitHub (it is not possible to
+delete releases in Drupal.org).
+
+**The tags from this repository are not pushed to Drupal.org.**
+
+When a release is published as a tag in GitHub, the release version must be
+manually created in Drupal.org.
