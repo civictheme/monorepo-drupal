@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Url;
 
 /**
  * Preprocess for footer menu block.
@@ -36,8 +37,8 @@ function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables)
 function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FALSE): void {
   foreach ($items as &$item) {
     $item += [
-      'is_new_window' => $item['url']->isExternal(),
-      'is_external' => $item['url']->isExternal(),
+      'is_new_window' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
+      'is_external' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
     ];
 
     // Set as expanded based on $expand_all or item's own value or FALSE.
