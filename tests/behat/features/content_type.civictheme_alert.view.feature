@@ -8,10 +8,12 @@ Feature: CivicTheme Alert content type render
       | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
       | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
       | 999994 | [TEST] Test alert title all pages future     | 1      | error                |                                 | [TEST] Test alert body all pages future     | [relative:+2 days#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] |
+      | 999995 | [TEST] Test alert title visibility           | 1      | error                |                                 | [TEST] Test alert body visibility           | [relative:-1 day#Y-m-d\TH:i:s]  | [relative:+10 days#Y-m-d\TH:i:s] |
 
     Given civictheme_page content:
-      | title                       | status |
-      | [TEST] Test alerts on pages | 1      |
+      | title                        | status |
+      | [TEST] Test alerts on pages  | 1      |
+      | [TEST] Test alert visibility | 1      |
 
   @api @javascript
   Scenario: Alerts can be viewed on homepage
@@ -118,3 +120,60 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
     And I should not see the text "[TEST] Test alert body all pages future"
+
+  @api @javascript
+  Scenario: Alerts visibility
+    Given I am logged in as a user with the "Site Administrator" role
+    When I edit civictheme_alert "[TEST] Test alert title visibility"
+    And I fill in "Page visibility" with:
+      """
+      /test-alert/*
+      /test-alert-page
+      /test-random-alert-page
+      """
+    And I press "Save"
+    When I edit civictheme_page "[TEST] Test alert visibility"
+    And I uncheck the box "Generate automatic URL alias"
+    Then I fill in the following:
+      | edit-path-0-alias | /test-alert/test-1 |
+    And I press "Save"
+    When I visit "/test-alert/test-1"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should see the text "[TEST] Test alert body visibility"
+    When I edit civictheme_page "[TEST] Test alert visibility"
+    And I uncheck the box "Generate automatic URL alias"
+    Then I fill in the following:
+      | edit-path-0-alias | /test-alert/test-2 |
+    And I press "Save"
+    When I visit "/test-alert/test-2"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should see the text "[TEST] Test alert body visibility"
+    When I edit civictheme_page "[TEST] Test alert visibility"
+    And I uncheck the box "Generate automatic URL alias"
+    Then I fill in the following:
+      | edit-path-0-alias | /test-alert-page |
+    And I press "Save"
+    When I visit "/test-alert-page"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should see the text "[TEST] Test alert body visibility"
+    When I edit civictheme_page "[TEST] Test alert visibility"
+    And I uncheck the box "Generate automatic URL alias"
+    Then I fill in the following:
+      | edit-path-0-alias | /test-alerts |
+    And I press "Save"
+    When I visit "/test-alerts"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should not see the text "[TEST] Test alert body visibility"
+    When I edit civictheme_page "[TEST] Test alert visibility"
+    And I uncheck the box "Generate automatic URL alias"
+    Then I fill in the following:
+      | edit-path-0-alias | /test-random-alert-page |
+    And I press "Save"
+    When I visit "/test-random-alert-page"
+    And wait 5 second
+    And I wait for AJAX to finish
+    Then I should see the text "[TEST] Test alert body visibility"
