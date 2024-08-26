@@ -759,3 +759,15 @@ function civictheme_post_update_enable_three_column_layout(): string {
 
   return implode("\n", $messages);
 }
+
+/**
+ * Update alert api view to strip tags from visibility validation.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_alert_visibility_validation(): string {
+  $view_config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
+  $view_config->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
+  $view_config->save();
+  return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+}
