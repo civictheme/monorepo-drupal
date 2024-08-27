@@ -167,8 +167,7 @@ else
       fi
 
       note "Redeploying environment: project ${LAGOON_PROJECT}, PR: ${DREVOPS_DEPLOY_PR}."
-      lagoon --force --skip-update-check -i "${DREVOPS_DEPLOY_SSH_FILE}" -l "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" deploy pullrequest -p "${LAGOON_PROJECT}" -n "${DREVOPS_DEPLOY_PR}" --baseBranchName "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" -R "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" -H "${DREVOPS_DEPLOY_BRANCH}" -M "${DREVOPS_DEPLOY_PR_HEAD}" -t "${deploy_pr_full}"
-
+      lagoon deploy pullrequest --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
       if [ "${DREVOPS_DEPLOY_ACTION:-}" = "deploy_override_db" ]; then
         note "Waiting for deployment to be queued."
         sleep 10
@@ -183,7 +182,7 @@ else
     else
       # If PR deployments are not configured in Lagoon - it will filter it out and will not deploy.
       note "Deploying environment: project ${LAGOON_PROJECT}, PR: ${DREVOPS_DEPLOY_PR}."
-      lagoon --force --skip-update-check -i "${DREVOPS_DEPLOY_SSH_FILE}" -l "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" deploy pullrequest -p "${LAGOON_PROJECT}" -n "${DREVOPS_DEPLOY_PR}" --baseBranchName "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" -R "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" -H "${DREVOPS_DEPLOY_BRANCH}" -M "${DREVOPS_DEPLOY_PR_HEAD}" -t "${deploy_pr_full}"
+      lagoon deploy pullrequest --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
     fi
 
   # Deploy branch.
