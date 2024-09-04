@@ -818,7 +818,7 @@ function civictheme_external_link_normalize_domain(string $domain): string {
 function _civictheme_get_configurable_component_name_from_bundle(string $bundle): ?string {
   // Accommodate for existing and additional components that could be added in
   // the sub-themes.
-  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches) && !empty($matches[1])) {
+  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches)) {
     return $matches[1];
   }
 
