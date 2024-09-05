@@ -133,7 +133,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     'size' => ByteSizeMarkup::create($file->getSize()),
-    'created' => civictheme_format_datetime($media->getCreatedTime(), 'civictheme_short_date'),
+    'created' => civictheme_format_datetime((int) $media->getCreatedTime(), 'civictheme_short_date'),
     'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
   ];
@@ -818,7 +818,7 @@ function civictheme_external_link_normalize_domain(string $domain): string {
 function _civictheme_get_configurable_component_name_from_bundle(string $bundle): ?string {
   // Accommodate for existing and additional components that could be added in
   // the sub-themes.
-  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches) && !empty($matches[1])) {
+  if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches)) {
     return $matches[1];
   }
 

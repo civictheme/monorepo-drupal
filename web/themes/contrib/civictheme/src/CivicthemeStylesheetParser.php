@@ -96,9 +96,7 @@ class CivicthemeStylesheetParser {
     preg_match_all('/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/i', $content, $matches, PREG_SET_ORDER);
 
     array_walk($matches, static function (array $value) use (&$variables): void {
-      if (!empty($value[1])) {
-        $variables[trim($value[1])] = empty($value[2]) ? NULL : trim($value[2]);
-      }
+      $variables[trim($value[1])] = empty($value[2]) ? NULL : trim($value[2]);
     });
 
     return $variables;
