@@ -122,6 +122,8 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
 
     $this->assertSession()->pageTextContains('Update add_background_promo_component');
     $this->assertSession()->pageTextContains("Added Background field to Promo Component.");
+
+    $this->assertSession()->pageTextContains('Update import_subject_card_view_mode');
   }
 
 }
