@@ -17,6 +17,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\File\Exception\InvalidStreamWrapperException;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
@@ -187,13 +188,20 @@ function civictheme_media_image_get_variables(MediaInterface $media, string $ima
  * @return string|null
  *   The relative URL for the source file or FALSE if the file was not found.
  *
+ * @throws \Drupal\Core\File\Exception\InvalidStreamWrapperException
+ *   If a stream wrapper could not be found to generate an external URL.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function civictheme_media_get_url(MediaInterface $media, bool $is_relative = TRUE): ?string {
   $file = File::load($media->getSource()->getSourceFieldValue($media));
-
-  return $file !== NULL ? $file->createFileUrl($is_relative) : NULL;
+  try {
+    return $file !== NULL ? $file->createFileUrl($is_relative) : NULL;
+  }
+  catch (InvalidStreamWrapperException $e) {
+    return NULL;
+  }
 }
 
 /**
