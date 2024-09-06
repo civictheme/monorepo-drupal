@@ -74,7 +74,6 @@
         </testsuite>
         <testsuite name="functional">
             <directory>web/modules/custom/*/tests/src/Functional</directory>
-            <directory>web/themes/contrib/civictheme/tests/src/Functional</directory>
             <directory>web/themes/custom/*/tests/src/Functional</directory>
         </testsuite>
 
