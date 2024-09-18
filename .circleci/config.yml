@@ -31,16 +31,16 @@ aliases:
   - &deploy_ssh_fingerprint1 "35:d1:4e:5b:bc:c0:43:78:30:67:69:da:b4:01:49:91"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
-  - &deploy_ssh_fingerprint2 "a9:33:24:68:20:f9:91:24:b8:38:c5:f3:b6:4b:34:5d"
+  - &deploy_ssh_fingerprint2 "77:a4:7a:c3:af:38:f6:2e:80:71:6b:a6:7e:2b:86:8a"
 
   # SSH key fingerprint to deploy code to civictheme_content.
-  - &deploy_ssh_fingerprint3 "a3:41:d1:47:85:4c:5d:12:9c:4c:1f:a2:67:d3:a5:3f"
+  - &deploy_ssh_fingerprint3 "68:3c:13:25:00:1e:5e:2e:f5:a2:1c:db:ea:f3:99:71"
 
   # SSH key fingerprint to deploy code to civictheme_admin.
-  - &deploy_ssh_fingerprint4 "ab:76:65:9f:76:02:c2:b9:2a:bc:81:db:a0:c6:37:59"
+  - &deploy_ssh_fingerprint4 "a8:5e:36:41:cb:b7:f8:ec:69:ba:c6:f4:83:c5:40:3d"
 
   # SSH key fingerprint to mirror code.
-  - &git_mirror_ssh_fingerprint "88:48:44:13:07:7a:a7:da:8c:fb:5e:a7:62:45:73:c4"
+  - &git_mirror_ssh_fingerprint "3c:ff:01:e7:02:01:cd:96:ff:cf:43:ea:38:19:72:39"
 
   #-----------------------------------------------------------------------------
   # Optional variables.
