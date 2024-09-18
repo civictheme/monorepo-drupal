@@ -308,25 +308,11 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
 
-  $allowed_attributes = ['size', 'maxlength', 'rows', 'autocomplete'];
-
   $attributes = [];
-
-  $allowed_attributes_map = array_map(function ($attribute) {
-    return '#' . $attribute;
-  }, $allowed_attributes);
-
-  foreach ($allowed_attributes_map as $key) {
-    if (isset($element[$key])) {
-      $attributes[substr($key, 1)] = $element[$key];
-    }
-  }
 
   if (!empty($element['#attributes']) && is_iterable($element['#attributes'])) {
     foreach ($element['#attributes'] as $key => $value) {
-      if (str_starts_with($key, 'data') || in_array($key, $allowed_attributes)) {
-        $attributes[$key] = is_array($value) ? implode(' ', $value) : $value;
-      }
+      $attributes[$key] = is_array($value) ? implode(' ', $value) : $value;
     }
   }
   $attributes_string = implode(' ', array_map(function ($key, $value) {
