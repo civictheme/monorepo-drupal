@@ -64,10 +64,12 @@
         <testsuite name="unit">
             <directory>tests/phpunit</directory>
             <directory>web/modules/custom/*/tests/src/Unit</directory>
+            <directory>web/themes/contrib/civictheme/tests/src/Unit</directory>
             <directory>web/themes/custom/*/tests/src/Unit</directory>
         </testsuite>
         <testsuite name="kernel">
             <directory>web/modules/custom/*/tests/src/Kernel</directory>
+            <directory>web/themes/contrib/civictheme/tests/src/Kernel</directory>
             <directory>web/themes/custom/*/tests/src/Kernel</directory>
         </testsuite>
         <testsuite name="functional">
