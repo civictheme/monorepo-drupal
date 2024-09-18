@@ -28,7 +28,7 @@ aliases:
   - &deploy_ssh_fingerprint "62:69:fb:89:f9:20:e2:24:dd:bd:47:7d:a0:2c:d8:38"
 
   # SSH key fingerprint to deploy code to civictheme at Drupal.org.
-  - &deploy_ssh_fingerprint1 "35:d1:4e:5b:bc:c0:43:78:30:67:69:da:b4:01:49:91"
+  - &deploy_ssh_fingerprint1 "fb:3d:43:5a:fe:77:5e:82:e3:c2:2a:d0:a5:02:b4:b1"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
   - &deploy_ssh_fingerprint2 "77:a4:7a:c3:af:38:f6:2e:80:71:6b:a6:7e:2b:86:8a"
