@@ -25,7 +25,7 @@ aliases:
   # Generate a separate SSH key for a user who has push permissions to
   # $DREVOPS_DEPLOY_ARTIFACT_GIT_REMOTE repo with `ssh-keygen -m PEM -t rsa -C "deployer@example.com"
   # command and add private key under "SSH Permissions" in CircleCI UI.
-  - &deploy_ssh_fingerprint "bc:87:4a:74:cf:e0:02:4e:34:aa:16:b5:c3:6f:89:cd"
+  - &deploy_ssh_fingerprint "62:69:fb:89:f9:20:e2:24:dd:bd:47:7d:a0:2c:d8:38"
 
   # SSH key fingerprint to deploy code to civictheme at Drupal.org.
   - &deploy_ssh_fingerprint1 "3d:ac:b0:f2:1b:8f:19:16:f2:98:e9:3d:53:2a:77:67"
