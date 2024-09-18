@@ -121,9 +121,9 @@ if ! command -v lagoon >/dev/null || [ -n "${DREVOPS_DEPLOY_LAGOON_LAGOONCLI_FOR
   export PATH="${PATH}:${DREVOPS_DEPLOY_LAGOON_LAGOONCLI_BIN_PATH}"
 fi
 
-note "Configuring Lagoon instance."
-lagoon config add --force -l "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" -g "${DREVOPS_DEPLOY_LAGOON_INSTANCE_GRAPHQL}" -H "${DREVOPS_DEPLOY_LAGOON_INSTANCE_HOSTNAME}" -P "${DREVOPS_DEPLOY_LAGOON_INSTANCE_PORT}"
-
+note "Configuring Lagoon instance"
+note "DREVOPS_DEPLOY_LAGOON_INSTANCE=${DREVOPS_DEPLOY_LAGOON_INSTANCE} DREVOPS_DEPLOY_LAGOON_INSTANCE_GRAPHQL: ${DREVOPS_DEPLOY_LAGOON_INSTANCE_GRAPHQL} DREVOPS_DEPLOY_LAGOON_INSTANCE_HOSTNAME: ${DREVOPS_DEPLOY_LAGOON_INSTANCE_HOSTNAME} DREVOPS_DEPLOY_LAGOON_INSTANCE_PORT: ${DREVOPS_DEPLOY_LAGOON_INSTANCE_PORT}"
+lagoon config add --force --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --graphql "${DREVOPS_DEPLOY_LAGOON_INSTANCE_GRAPHQL}" --hostname "${DREVOPS_DEPLOY_LAGOON_INSTANCE_HOSTNAME}" --port "${DREVOPS_DEPLOY_LAGOON_INSTANCE_PORT}"
 # ACTION: 'destroy'
 # Explicitly specifying "destroy" action as a failsafe.
 if [ "${DREVOPS_DEPLOY_ACTION}" = "destroy" ]; then
@@ -167,7 +167,7 @@ else
       fi
 
       note "Redeploying environment: project ${LAGOON_PROJECT}, PR: ${DREVOPS_DEPLOY_PR}."
-      lagoon deploy pullrequest --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
+      lagoon deploy pullrequest --force --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
       if [ "${DREVOPS_DEPLOY_ACTION:-}" = "deploy_override_db" ]; then
         note "Waiting for deployment to be queued."
         sleep 10
@@ -182,7 +182,7 @@ else
     else
       # If PR deployments are not configured in Lagoon - it will filter it out and will not deploy.
       note "Deploying environment: project ${LAGOON_PROJECT}, PR: ${DREVOPS_DEPLOY_PR}."
-      lagoon deploy pullrequest --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
+      lagoon deploy pullrequest --force --ssh-key "${DREVOPS_DEPLOY_SSH_FILE}" --lagoon "${DREVOPS_DEPLOY_LAGOON_INSTANCE}" --project "${LAGOON_PROJECT}" --number "${DREVOPS_DEPLOY_PR}" --base-branch-name "${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --base-branch-ref "origin/${DREVOPS_DEPLOY_PR_BASE_BRANCH}" --head-branch-name "${DREVOPS_DEPLOY_BRANCH}" --head-branch-ref "${DREVOPS_DEPLOY_PR_HEAD}" --title "${deploy_pr_full}"
     fi
 
   # Deploy branch.
