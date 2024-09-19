@@ -295,7 +295,7 @@ jobs:
     docker:
       - image: cimg/php:8.2-browsers
     environment:
-      DRUPAL_VERSION: 10.1
+      DRUPAL_VERSION: 10.2
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 
@@ -304,7 +304,7 @@ jobs:
     docker:
       - image: cimg/php:8.2-browsers
     environment:
-      DRUPAL_VERSION: 10.1
+      DRUPAL_VERSION: 10.2
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 
