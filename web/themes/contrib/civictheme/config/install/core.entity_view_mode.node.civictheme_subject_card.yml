@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.civictheme_subject_card
+label: 'Subject Card'
+description: ''
+targetEntityType: node
+cache: true
