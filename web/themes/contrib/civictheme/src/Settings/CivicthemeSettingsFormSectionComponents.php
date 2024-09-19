@@ -6,6 +6,8 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\system\Entity\Menu;
+use Drupal\system\MenuInterface;
 
 /**
  * CivicTheme settings section to display components.
@@ -175,6 +177,20 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.footer.logo_type', CivicthemeConstants::LOGO_TYPE_DEFAULT),
     ];
 
+    $menu_options = array_map(function (MenuInterface $menu) {
+      return $menu->label();
+    }, Menu::loadMultiple());
+    asort($menu_options);
+
+    $form['components']['footer']['default_menu'] = [
+      '#title' => $this->t('Default Menu'),
+      '#description' => $this->t('Select the menu to use as the default for this navigation.'),
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => $menu_options,
+      '#default_value' => $this->themeConfigManager->load('components.footer.default_menu', CivicthemeConstants::FOOTER_DEFAULT_MENU),
+    ];
+
     $form['components']['footer']['background_image'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Footer background image'),
@@ -216,6 +232,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         'dropdown_columns' => 4,
         'dropdown_columns_fill' => FALSE,
         'is_animated' => FALSE,
+        'default_menu' => CivicthemeConstants::PRIMARY_NAVIGATION_DEFAULT_MENU,
       ],
       'secondary_navigation' => [
         'title' => $this->t('Secondary navigation'),
@@ -223,6 +240,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         'dropdown_columns' => 4,
         'dropdown_columns_fill' => FALSE,
         'is_animated' => FALSE,
+        'default_menu' => CivicthemeConstants::SECONDARY_NAVIGATION_DEFAULT_MENU,
       ],
     ];
 
@@ -232,6 +250,15 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         '#title' => $navigation_defaults['title'],
         '#tree' => TRUE,
         '#open' => TRUE,
+      ];
+
+      $form['components']['navigation'][$navigation_name]['default_menu'] = [
+        '#title' => $this->t('Default Menu'),
+        '#description' => $this->t('Select the menu to use as the default for this navigation.'),
+        '#type' => 'select',
+        '#required' => TRUE,
+        '#options' => $menu_options,
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.navigation.%s.default_menu', $navigation_name), $navigation_defaults['default_menu']),
       ];
 
       $form['components']['navigation'][$navigation_name]['dropdown'] = [

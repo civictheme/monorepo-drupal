@@ -125,6 +125,9 @@ civictheme.settings:
                 is_animated:
                   label: 'Animate transition'
                   type: boolean
+                default_menu:
+                  label: 'Default Menu'
+                  type: string
             secondary_navigation:
               type: mapping
               label: 'Secondary navigation settings'
@@ -141,6 +144,9 @@ civictheme.settings:
                 is_animated:
                   label: 'Animate transition'
                   type: boolean
+                default_menu:
+                  label: 'Default Menu'
+                  type: string
         footer:
           type: mapping
           label: 'Footer settings'
@@ -158,6 +164,9 @@ civictheme.settings:
                 path:
                   label: 'Footer background image path'
                   type: string
+            default_menu:
+              label: 'Default Menu'
+              type: string
         link:
           type: mapping
           label: 'Link settings'
