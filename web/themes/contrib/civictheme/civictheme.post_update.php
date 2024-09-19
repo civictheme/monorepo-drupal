@@ -761,6 +761,18 @@ function civictheme_post_update_enable_three_column_layout(): string {
 }
 
 /**
+ * Import the missing subject card view mode configuration.
+ */
+function civictheme_post_update_import_subject_card_view_mode(): void {
+  $view_mode_configs = [
+    'core.entity_view_mode.node.civictheme_subject_card' => 'entity_view_mode',
+  ];
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($view_mode_configs, $config_path);
+
+}
+
+/**
  * Update alert api view to strip tags from visibility validation.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
