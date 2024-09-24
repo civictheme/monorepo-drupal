@@ -771,3 +771,15 @@ function civictheme_post_update_import_subject_card_view_mode(): void {
   \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($view_mode_configs, $config_path);
 
 }
+
+/**
+ * Update alert api view to strip tags from visibility validation.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_alert_visibility_validation(): string {
+  $view_config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
+  $view_config->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
+  $view_config->save();
+  return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+}
