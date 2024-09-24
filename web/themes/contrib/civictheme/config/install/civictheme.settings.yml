@@ -38,19 +38,16 @@ components:
       dropdown_columns: 4
       dropdown_columns_fill: false
       is_animated: true
-      default_menu: 'civictheme-primary-navigation'
     secondary_navigation:
       dropdown: dropdown
       dropdown_columns: 4
       dropdown_columns_fill: false
       is_animated: true
-      default_menu: 'civictheme-secondary-navigation'
   footer:
     theme: dark
     logo_type: inline_stacked
     background_image:
       path: ''
-    default_menu: 'civictheme-footer'
   link:
     new_window: false
     external_new_window: true
