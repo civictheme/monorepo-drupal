@@ -102,49 +102,63 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
   // Note that sub-themes can opt-out from this behavior by implementing
   // hook_theme_suggestions_form_element_alter() and removing the suggestions
   // added here based on some conditions.
-  $supported_types = [
+  // @see _civictheme_supported_form_element() for a list of supported types.
+
+  if (isset($variables['element']['#type']) && _civictheme_supported_form_element($variables['element']['#type'])) {
+    $suggestions[] = 'form_element__civictheme_field';
+    $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+  }
+}
+
+/**
+ * Check whether form render element is supported directly by CivicTheme.
+ *
+ * @param string $form_element_type
+ *   The form element type.
+ *
+ * @see \Drupal\Core\Render\Element\FormElement for a list of form elements.
+ *
+ * @return bool
+ */
+function _civictheme_supported_form_element(string $form_element_type): bool {
+  $supported_core_types = [
     'button',
     'checkbox',
     'checkboxes',
     'color',
-    //@todo: test formats of date form element.
     'date',
     'email',
     'entity_autocomplete',
     'file',
     'image_button',
-    // @todo: need testing of validation
     'machine_name',
     'password',
-    // @todo needs testing.
     'path',
     'radio',
     'radios',
-    // @todo requires testing.
     'search',
     'select',
-    // @todo requires testing.
     'tableselect',
     'textarea',
     'textfield',
     'url',
     'weight',
   ];
-  $not_supported_types = [
-    'datelist',
-    'datetime',
-    'item',
-    'password_confirm',
-    'range',
+  // Create a list of supported webform types
+  $supported_webform_types = [
+    'webform_date',
+    'webform_email',
+    'webform_number',
+    'webform_phone',
+    'webform_select',
+    'webform_textarea',
+    'webform_time',
+    'webform_url',
   ];
-  if (isset($variables['element']['#type']) && in_array($variables['element']['#type'], $not_supported_types)) {
-    $x = 1;
-  }
 
-  if (isset($variables['element']['#type']) && !in_array($variables['element']['#type'], $not_supported_types)) {
-    $suggestions[] = 'form_element__civictheme_field';
-    $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
-  }
+  $supported_types = array_merge($supported_core_types, $supported_webform_types);
+
+  return in_array($form_element_type, $supported_types);
 }
 
 /**
