@@ -31,7 +31,8 @@
 {% set is_contained = settings.is_contained %}
 {% set is_contained = is_contained or has_sidebar_left or has_sidebar_right %}
 
-{% set vertical_spacing = has_sidebar_left or has_sidebar_right ? 'top' : vertical_spacing %}
+{% set vertical_spacing = vertical_spacing ? vertical_spacing : settings.vertical_spacing %}
+{% set vertical_spacing = vertical_spacing ? vertical_spacing : has_sidebar_left or has_sidebar_right ? 'top' : '' %}
 
 {% set no_sidebar_left_class = hide_sidebar_left ? 'ct-layout--no-sidebar-left' : '' %}
 {% set no_sidebar_right_class = hide_sidebar_right ? 'ct-layout--no-sidebar-right' : '' %}
