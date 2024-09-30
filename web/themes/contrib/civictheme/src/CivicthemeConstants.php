@@ -186,4 +186,19 @@ final class CivicthemeConstants {
    */
   const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
 
+  /**
+   * Defines Tooter Navigation Menu "default_menu" value.
+   */
+  const FOOTER_DEFAULT_MENU = 'civictheme-footer';
+
+  /**
+   * Defines Primary Navigation Menu "default_menu" value.
+   */
+  const PRIMARY_NAVIGATION_DEFAULT_MENU = 'civictheme-primary-navigation';
+
+  /**
+   * Defines Secondary Navigation Menu "default_menu" value.
+   */
+  const SECONDARY_NAVIGATION_DEFAULT_MENU = 'civictheme-secondary-navigation';
+
 }
