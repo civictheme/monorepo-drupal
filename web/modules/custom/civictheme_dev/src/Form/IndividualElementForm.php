@@ -1,21 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_dev\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Individual Element Form.
+ */
 class IndividualElementForm extends FormBase {
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
-  public function getFormId() {
+  public function getFormId(): string {
     return 'individual_element_form';
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['test'] = [
@@ -24,10 +29,10 @@ class IndividualElementForm extends FormBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // TODO: Implement submitForm() method.
+    // @todo Implement submitForm() method.
   }
 
 }

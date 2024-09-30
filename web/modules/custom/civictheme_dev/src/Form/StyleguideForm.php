@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme_dev\Form;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
-use Drupal\node\Entity\NodeType;
+use Drupal\Core\Render\ElementInfoManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Styleguide form.
@@ -13,27 +18,51 @@ use Drupal\node\Entity\NodeType;
 class StyleguideForm extends FormBase {
 
   /**
+   * StyleguideForm constructor.
+   *
+   * @param \Drupal\Core\Render\ElementInfoManager $elementInfoManager
+   *   Element info manager service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   Entity type manager service.
+   * @param \Drupal\Core\Extension\ThemeHandlerInterface $themeHandler
+   *   The theme handler.
+   */
+  public function __construct(protected ElementInfoManager $elementInfoManager, protected EntityTypeManagerInterface $entityTypeManager, protected ThemeHandlerInterface $themeHandler) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): static {
+    return new static(
+      $container->get('plugin.manager.element_info'),
+      $container->get('entity_type.manager'),
+      $container->get('theme_handler'),
+    );
+  }
+
+  /**
    * {@inheritDoc}
    */
-  public function getFormId() {
+  public function getFormId(): string {
     return 'styleguide_form';
   }
 
   /**
    * {@inheritDoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state): array {
     // Getting form element plugin manager.
-    $plugin_manager = \Drupal::service('plugin.manager.element_info');
+    $plugin_manager = $this->elementInfoManager;
 
     // Getting all defaults form element types.
     $element_types = $plugin_manager->getDefinitions();
-    $element_types = array_filter($element_types, function ($element) {
-      return $element['provider'] === 'core';
+    $element_types = array_filter($element_types, static function (array $element) : bool {
+        return $element['provider'] === 'core';
     });
     ksort($element_types);
     // Creating form fields for each element.
-    foreach ($element_types as $id => $element_type) {
+    foreach (array_keys($element_types) as $id) {
       $element = $plugin_manager->createInstance($id);
       if (!$element instanceof FormElement) {
         continue;
@@ -49,8 +78,8 @@ class StyleguideForm extends FormBase {
    *
    * @param string $id
    *   Element id.
-   * @param array $info
-   *   Element info.
+   * @param array $element
+   *   Actual element.
    *
    * @return array
    *   Form element.
@@ -59,37 +88,42 @@ class StyleguideForm extends FormBase {
     $form_element = [
       '#type' => $id,
       '#title' => ucwords(str_replace('_', ' ', $id)) . ' (' . $id . ')',
-      '#description' => 'Test of ' . $id . ' element.',
+      '#description' => $this->t('Test of @id element.', ['@id' => $id]),
     ];
 
     switch ($id) {
       case 'entity_autocomplete':
         $form_element = $this->createEntityAutoCompleteFormElement($form_element, $element);
         break;
+
       case 'radios':
       case 'checkboxes':
         $form_element = $this->createOptionsFormElement($form_element, $element);
         break;
+
       case 'tableselect':
       case 'table':
         $form_element = $this->createTableFormElement($form_element, $element);
         break;
+
       case 'image_button':
         $form_element = $this->createImageButton($form_element, $element);
         break;
+
       case 'button':
       case 'submit':
         $form_element = $this->createButton($form_element, $element);
         break;
+
       case 'machine_name':
         $form_element += [
           '#default_value' => '',
-          '#machine_name' => array(
-            'exists' => function($value) {
-              return NodeType::load($value) !== null;
+          '#machine_name' => [
+            'exists' => function ($value) : bool {
+              return $this->entityTypeManager->getStorage('node_type')->load($value) !== NULL;
             },
-          ),
-          '#description' => t("A unique machine-readable name. Can only contain lowercase letters, numbers, and underscores."),
+          ],
+          '#description' => $this->t("A unique machine-readable name. Can only contain lowercase letters, numbers, and underscores."),
         ];
         break;
     }
@@ -105,11 +139,6 @@ class StyleguideForm extends FormBase {
 
   /**
    * Generates entity autocomplete form element.
-   *
-   * @param array $form_element
-   * @param \Drupal\Core\Render\Element\FormElement $element
-   *
-   * @return array
    */
   protected function createEntityAutoCompleteFormElement(array $form_element, FormElement $element): array {
     $form_element['#type'] = 'entity_autocomplete';
@@ -123,11 +152,6 @@ class StyleguideForm extends FormBase {
 
   /**
    * Generates options-style form elements.
-   *
-   * @param array $form_element
-   * @param \Drupal\Core\Render\Element\FormElement $element
-   *
-   * @return array
    */
   protected function createOptionsFormElement(array $form_element, FormElement $element): array {
     $form_element['#options'] = [
@@ -139,6 +163,9 @@ class StyleguideForm extends FormBase {
     return $form_element;
   }
 
+  /**
+   * Create table form element helper.
+   */
   protected function createTableFormElement(array $form_element, FormElement $element): array {
     $form_element['#header'] = ['Header 1', 'Header 2', 'Header 3'];
     if ($element->getPluginId() === 'tableselect') {
@@ -161,19 +188,24 @@ class StyleguideForm extends FormBase {
     return $form_element;
   }
 
+  /**
+   * Create image button helper.
+   */
   protected function createImageButton(array $form_element, FormElement $element): array {
-    /** @var \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler */
-    $theme_handler = \Drupal::service('theme_handler');
-    $theme_path = $theme_handler->getTheme('civictheme')->getPath();
+    $theme_path = $this->themeHandler->getTheme('civictheme')->getPath();
     $icon_path = '/' . $theme_path . '/assets/icons/download.svg';
     $form_element['#src'] = $icon_path;
 
     return $this->createButton($form_element, $element);
   }
 
+  /**
+   * Create button helper.
+   */
   protected function createButton(array $form_element, FormElement $element): array {
     $form_element['#value'] = $form_element['#title'];
-    $form_element = [
+
+    return [
       [
         '#type' => 'html_tag',
         '#tag' => 'h6',
@@ -181,8 +213,6 @@ class StyleguideForm extends FormBase {
       ],
       $form_element,
     ];
-
-    return $form_element;
   }
 
 }
