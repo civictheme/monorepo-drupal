@@ -122,6 +122,9 @@ class CivicthemeUpdatePathFilledTest extends UpdatePathTestBase {
 
     $this->assertSession()->pageTextContains('Update add_background_promo_component');
     $this->assertSession()->pageTextContains("Added Background field to Promo Component.");
+
+    $this->assertSession()->pageTextContains('Update alert_visibility_validation');
+    $this->assertSession()->pageTextContains("Updated alert api view to strip tags from visibility validation.");
   }
 
 }

@@ -10,22 +10,43 @@ Before starting, ensure you have reviewed the documentation for
 [UI kit](https://docs.civictheme.io/ui-kit) and
 [Drupal theme](https://docs.civictheme.io/drupal-theme).
 
-## Local environment setup
 
-- Make sure that you have latest versions of all required software installed:
-  - [Docker](https://www.docker.com/)
-  - [Pygmy](https://github.com/pygmystack/pygmy)
-  - [Ahoy](https://github.com/ahoy-cli/ahoy)
-- Make sure that all local web development services are shut down (Apache/Nginx, Mysql, MAMP etc).
-- Checkout project repository (in one of the [supported Docker directories](https://docs.docker.com/docker-for-mac/osxfs/#access-control)).
-- `pygmy up`
-- `ahoy build`
+## Build types
 
-### Apple M1 adjustments
+There are 2 types of the build that can be run locally (same runs in CI):
 
-Copy `docker-compose.override.default.yml` to `docker-compose.override.yml`.
+1. **Isolated** - installs the theme code on a fresh bare Drupal site using the build scripts from https://github.com/AlexSkrypnyk/drupal_extension_scaffold
+2. **Full build** - runs as if the theme code was installed on a `minimnal` or `govcms` profile with all custom modules enabled using the build scripts from https://github.com/drevops/scaffold
 
-## Build process
+## Isolated
+
+The isolated build is used to test the theme code on a fresh Drupal site without
+any additional modules or themes. This build is useful to ensure that the theme
+code is compatible with the latest Drupal version and does not have any
+dependencies on other modules or themes.
+
+To run the isolated build, use the following command:
+
+```bash
+cd web/themes/contrib/civictheme
+ahoy build
+```
+
+This will assemble the full Drupal codebase in `web/themes/contrib/civictheme/build`
+directory and will symlink the CivicTheme theme files into the
+`web/themes/contrib/civictheme/build/web/themes/custom/civictheme` directory.
+
+**This does not use Docker and does not require a running Docker stack.**
+
+Important: make sure to removed `web/themes/contrib/civictheme/build` directory
+before running the `Full build` build to avoid any conflicts.
+
+## Full build (Docker build)
+
+The full build is used to test the theme code on a full Drupal site with all
+custom modules and themes enabled. This build is useful to ensure that the theme
+code is compatible with the latest Drupal version and the latest GovCMS version
+as well as with all custom modules.
 
 The following steps outline the build process:
 
@@ -76,7 +97,7 @@ Example:
 CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
 ```
 
-## Compiling theme assets
+### Compiling theme assets
 
 To compile all assets in all themes: `ahoy fe`
 
@@ -95,13 +116,17 @@ cd web/themes/custom/civictheme_demo
 npm run build
 ```
 
-## Working with configurations
+Refer to the [theme's Readme](web/themes/contrib/civictheme/README.md) for more
+information about switching of the UIKit version and other theme-specific
+details.
+
+### Working with configurations
 
 Configuration is captured using [Config Devel](https://www.drupal.org/project/config_devel) module for:
 - CivicTheme theme into `config/install` and `config/optional` directories.
 - Development `civictheme_dev` module's `config/install` and `config/optional` directories.
 
-### Exporting configurations
+#### Exporting configurations
 
 ```bash
 ahoy export-config
@@ -121,7 +146,7 @@ Exclude certain configuration from automatically be added to `civictheme.info.ym
 by adding records to [theme_excluded_configs.txt](./scripts/theme_excluded_configs.txt).
 Note that wildcards are supported.
 
-### Validating configurations
+#### Validating configurations
 
 Configuration validation allows to ensure that all configuration is captured
 correctly and that there is no conflicting or duplicating configuration was
@@ -131,7 +156,7 @@ added to the codebase.
 ahoy lint-config
 ```
 
-## Working with content profiles
+### Working with content profiles
 
 Content profiles are used to capture content for the industry-specific demo
 sites. Each content profile is a separate submodule of `civictheme_content`
@@ -139,7 +164,7 @@ module that contains content and configuration required to build a demo site.
 
 See main [README.md](README.md#content-profiles) for a list of demo site URLs.
 
-### Updating content
+#### Updating content
 
 The workflow to update the content within a content profile consists of 3 steps:
 

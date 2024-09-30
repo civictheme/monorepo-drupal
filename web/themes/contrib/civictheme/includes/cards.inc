@@ -173,6 +173,17 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(array &$variab
 }
 
 /**
+ * Implements template_preprocess_node().
+ */
+function _civictheme_preprocess_node__civictheme_subject_card(array &$variables): void {
+  _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::SUBJECT_CARD_IMAGE_STYLE);
+  _civictheme_preprocess_paragraph__node_field__title($variables);
+  _civictheme_preprocess_paragraph__node_field__link($variables);
+  // @see civictheme_preprocess_views_view_grid()
+  $variables['theme'] = $variables['node']->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+}
+
+/**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_subject_card_ref(array &$variables): void {

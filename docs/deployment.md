@@ -2,7 +2,7 @@
 
 This project is deployed to the Salsa Digital hosting Lagoon instance.
 Deployments are initiated by the Continuous Integration (CI) process on each
-push to the `master`, `develop`, `release/*`, and `feature/*` branches,
+push to the `main`, `develop`, `release/*`, and `feature/*` branches,
 provided all tests pass.
 
 ## Pull Request (PR) Environments
