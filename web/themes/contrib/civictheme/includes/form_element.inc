@@ -91,6 +91,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_theme_suggestions_form_element_alter().
@@ -384,14 +385,21 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
       }
     }
   }
-  $attributes_string = implode(' ', array_map(function ($key, $value) {
-    return $key . '="' . $value . '"';
-  }, array_keys($attributes), $attributes));
 
-  $modifier_class = isset($element['#attributes']['class']) ? $element['#attributes']['class'] : [];
+  $modifier_class = $element['#attributes']['class'] ?? [];
+  $modifier_class[] = 'form-element';
+  $modifier_class[] = 'form-element--type-' . $variables['type'];
+  $modifier_class[] = 'form-element--api-' . $element['#type'];
+  $modifier_class[] = 'form-control';
+  if (in_array($variables['type'], ['checkbox', 'radio'])) {
+    $modifier_class[] = 'form-boolean';
+    $modifier_class[] = Html::getClass('form-boolean--type-' . $variables['type']);
+  }
   if (is_array($modifier_class)) {
     $modifier_class = implode(' ', $modifier_class);
   }
+
+  $attributes = new Attribute($attributes);
 
   $variables['control'][] = [
     'name' => isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : ''),
@@ -399,7 +407,7 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
     'id' => isset($element['#id']) ? $element['#id'] : '',
     'options' => $variables['options'] ?? [],
     'is_multiple' => isset($variables['is_multiple']) ? $variables['is_multiple'] : FALSE,
-    'attributes' => $attributes_string,
+    'attributes' => $attributes,
     'modifier_class' => $modifier_class,
   ];
 
@@ -444,17 +452,25 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
   // Note that we are only adding JS classes for 3rd-parties to bind to. Any
   // other classes added by core or contrib modules may affect the look and feel
   // of the form.
+
+  $variables['attributes']['class'][] = 'form-item';
+
   $variables['attributes']['class'][] = 'js-form-item';
 
   if (!empty($variables['type'])) {
     $variables['attributes']['class'][] = 'js-form-type-' . Html::getClass($variables['type']);
+    $variables['attributes']['class'][] = 'form-type-' . Html::getClass($variables['type']);
+    $variables['attributes']['class'][] = 'form-type--' . Html::getClass($variables['type']);
   }
 
   if (!empty($variables['name'])) {
     $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['name']);
+    $variables['attributes']['class'][] = 'form-item-' . Html::getClass($variables['name']);
+    $variables['attributes']['class'][] = 'form-item--' . Html::getClass($variables['name']);
   }
   elseif (!empty($variables['element']['#name'])) {
     $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['element']['#name']);
+    $variables['attributes']['class'][] = 'form-item-' . Html::getClass($variables['element']['#name']);
   }
 
   if (!empty($variables['errors'])) {
