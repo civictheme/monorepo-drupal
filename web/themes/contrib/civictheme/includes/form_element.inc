@@ -360,6 +360,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
