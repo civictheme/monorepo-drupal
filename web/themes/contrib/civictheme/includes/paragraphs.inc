@@ -13,6 +13,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Unicode;
 
 /**
  * Pre-process for With background paragraph field.
@@ -221,7 +222,13 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
       $length = civictheme_get_theme_config_manager()->loadForComponent($component_name, 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH);
     }
 
-    $variables['summary'] = text_summary($summary, NULL, $length);
+    $summary_trimmed = text_summary($summary);
+
+    if (!_civictheme_feature_is_optedout('process', CivicthemeConstants::OPTOUT_SUMMARY_HIDE_ELLIPSIS)) {
+      $summary_trimmed = Unicode::truncate($summary_trimmed, $length, TRUE, TRUE);
+    }
+
+    $variables['summary'] = $summary_trimmed;
   }
 }
 
@@ -240,7 +247,13 @@ function _civictheme_preprocess_paragraph__node_field__summary(array &$variables
         $length = civictheme_get_theme_config_manager()->loadForComponent($component_name, 'summary_length', CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH);
       }
 
-      $variables['summary'] = text_summary($summary, NULL, $length);
+      $summary_trimmed = text_summary($summary);
+
+      if (!_civictheme_feature_is_optedout('process', CivicthemeConstants::OPTOUT_SUMMARY_HIDE_ELLIPSIS)) {
+        $summary_trimmed = Unicode::truncate($summary_trimmed, $length, TRUE, TRUE);
+      }
+
+      $variables['summary'] = $summary_trimmed;
     }
   }
 }

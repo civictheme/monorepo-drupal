@@ -888,8 +888,10 @@ function _civictheme_feature_is_optedout(string $type, string $name, mixed $cont
  *   Array of opt-out flags.
  */
 function _civictheme_feature_optout_flags(): array {
-  return [
+  $flags = [
     'components.link' => t('Links processing'),
     'components.link.email' => t('Email links processing'),
   ];
+  $flags[CivicthemeConstants::OPTOUT_SUMMARY_HIDE_ELLIPSIS] = t('Hide card summary ellipsis');
+  return $flags;
 }

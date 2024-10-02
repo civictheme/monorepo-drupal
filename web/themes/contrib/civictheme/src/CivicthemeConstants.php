@@ -186,4 +186,9 @@ final class CivicthemeConstants {
    */
   const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
 
+  /**
+   * Defines an optout string for card summary ellipsis.
+   */
+  const OPTOUT_SUMMARY_HIDE_ELLIPSIS = 'CivicThemeOptoutSummaryHideEllipsis';
+
 }
