@@ -211,6 +211,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__links(array &$variab
 
 /**
  * Pre-process for Summary paragraph field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$variables): void {
   $summary = civictheme_get_field_value($variables['paragraph'], 'field_c_p_summary', TRUE);
@@ -234,6 +236,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
 
 /**
  * Pre-process for Summary node field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, string $bundle = NULL): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
