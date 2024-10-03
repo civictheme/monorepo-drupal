@@ -12,5 +12,5 @@ declare(strict_types=1);
  */
 function civictheme_preprocess_layout__three_columns(array &$variables): void {
   $variables['is_contained'] = $variables['settings']['is_contained'] ?? FALSE;
-  $variables['vertical_spacing'] = $variables['settings']['vertical_spacing'] ?? 'none';
+  $variables['vertical_spacing'] = $variables['settings']['vertical_spacing'] ?? 'auto';
 }

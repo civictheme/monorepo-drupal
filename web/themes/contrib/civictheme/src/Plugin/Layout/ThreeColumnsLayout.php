@@ -37,6 +37,7 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
         'top' => $this->t('Top'),
         'bottom' => $this->t('Bottom'),
         'both' => $this->t('Both'),
+        'auto' => $this->t('Automatic'),
       ],
     ];
 
