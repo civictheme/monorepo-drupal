@@ -12,17 +12,3 @@ civictheme_dev.admin_styleguide_form:
     _title: 'Styleguide Form'
   requirements:
     _permission: 'view the administration theme'
-civictheme_dev.styleguide_element_form:
-  path: '/styleguide-element-test-form'
-  defaults:
-    _form: 'Drupal\civictheme_dev\Form\IndividualElementForm'
-    _title: 'Test Individual Element Form'
-  requirements:
-    _permission: 'access content'
-civictheme_dev.admin_element_styleguide_form:
-  path: '/admin/structure/styleguide-element-test-form'
-  defaults:
-    _form: 'Drupal\civictheme_dev\Form\IndividualElementForm'
-    _title: 'Test Individual Element Form'
-  requirements:
-    _permission: 'view the administration theme'

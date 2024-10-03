@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\civictheme_dev\Form;
 
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Form\FormBase;
@@ -15,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Styleguide form.
  */
-class StyleguideForm extends FormBase {
+class StyleguideForm extends FormBase implements ContainerInjectionInterface {
 
   /**
    * StyleguideForm constructor.
@@ -34,6 +35,7 @@ class StyleguideForm extends FormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): static {
+    // @phpstan-ignore-next-line
     return new static(
       $container->get('plugin.manager.element_info'),
       $container->get('entity_type.manager'),
@@ -50,6 +52,8 @@ class StyleguideForm extends FormBase {
 
   /**
    * {@inheritDoc}
+   *
+   * @phpstan-ignore-next-line
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     // Getting form element plugin manager.
@@ -78,10 +82,10 @@ class StyleguideForm extends FormBase {
    *
    * @param string $id
    *   Element id.
-   * @param array $element
+   * @param \Drupal\Core\Render\Element\FormElement $element
    *   Actual element.
    *
-   * @return array
+   * @return array<int|string, mixed>
    *   Form element.
    */
   protected function createFormElement(string $id, FormElement $element): array {
@@ -133,12 +137,22 @@ class StyleguideForm extends FormBase {
 
   /**
    * {@inheritDoc}
+   *
+   * @phpstan-ignore-next-line
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
   }
 
   /**
    * Generates entity autocomplete form element.
+   *
+   * @param array $form_element
+   *   Form element.
+   * @param \Drupal\Core\Render\Element\FormElement $element
+   *   Form element.
+   *
+   * @return array<string, mixed>
+   *   Form element.
    */
   protected function createEntityAutoCompleteFormElement(array $form_element, FormElement $element): array {
     $form_element['#type'] = 'entity_autocomplete';
@@ -152,6 +166,14 @@ class StyleguideForm extends FormBase {
 
   /**
    * Generates options-style form elements.
+   *
+   * @param array $form_element
+   *   Form element.
+   * @param \Drupal\Core\Render\Element\FormElement $element
+   *   Form element.
+   *
+   * @return array<string, mixed>
+   *   Form element.
    */
   protected function createOptionsFormElement(array $form_element, FormElement $element): array {
     $form_element['#options'] = [
@@ -165,6 +187,14 @@ class StyleguideForm extends FormBase {
 
   /**
    * Create table form element helper.
+   *
+   * @param array $form_element
+   *   Form element.
+   * @param \Drupal\Core\Render\Element\FormElement $element
+   *   Form element.
+   *
+   * @return array<string, mixed>
+   *   Form element.
    */
   protected function createTableFormElement(array $form_element, FormElement $element): array {
     $form_element['#header'] = ['Header 1', 'Header 2', 'Header 3'];
@@ -190,6 +220,16 @@ class StyleguideForm extends FormBase {
 
   /**
    * Create image button helper.
+   *
+   * @param array $form_element
+   *   Form element.
+   * @param \Drupal\Core\Render\Element\FormElement $element
+   *   Form element.
+   *
+   * @return array<int, array>
+   *   Form element.
+   *
+   * @phpstan-ignore-next-line
    */
   protected function createImageButton(array $form_element, FormElement $element): array {
     $theme_path = $this->themeHandler->getTheme('civictheme')->getPath();
@@ -201,6 +241,16 @@ class StyleguideForm extends FormBase {
 
   /**
    * Create button helper.
+   *
+   * @param array $form_element
+   *   Form element.
+   * @param \Drupal\Core\Render\Element\FormElement $element
+   *   Form element.
+   *
+   * @return array<int, array>
+   *   Form element.
+   *
+   * @phpstan-ignore-next-line
    */
   protected function createButton(array $form_element, FormElement $element): array {
     $form_element['#value'] = $form_element['#title'];
