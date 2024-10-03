@@ -87,6 +87,8 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
    *
    * @return array<int|string, mixed>
    *   Form element.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   protected function createFormElement(string $id, FormElement $element): array {
     $form_element = [
@@ -153,6 +155,8 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
    *
    * @return array<string, mixed>
    *   Form element.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
   protected function createEntityAutoCompleteFormElement(array $form_element, FormElement $element): array {
     $form_element['#type'] = 'entity_autocomplete';
@@ -174,6 +178,8 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
    *
    * @return array<string, mixed>
    *   Form element.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
   protected function createOptionsFormElement(array $form_element, FormElement $element): array {
     $form_element['#options'] = [
@@ -195,6 +201,8 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
    *
    * @return array<string, mixed>
    *   Form element.
+   *
+   * @SuppressWarnings(PHPMD.ElseExpression)
    */
   protected function createTableFormElement(array $form_element, FormElement $element): array {
     $form_element['#header'] = ['Header 1', 'Header 2', 'Header 3'];
@@ -251,6 +259,7 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
    *   Form element.
    *
    * @phpstan-ignore-next-line
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
   protected function createButton(array $form_element, FormElement $element): array {
     $form_element['#value'] = $form_element['#title'];
