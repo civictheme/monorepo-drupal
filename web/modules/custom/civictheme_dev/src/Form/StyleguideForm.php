@@ -62,11 +62,17 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
     // Getting all defaults form element types.
     $element_types = $plugin_manager->getDefinitions();
     $element_types = array_filter($element_types, static function (array $element) : bool {
-        return $element['provider'] === 'core';
+        $provider_list = [
+          'core',
+          'linkit',
+          // 'webform', WebformInterface is not available in this context.
+        ];
+        return in_array($element['provider'], $provider_list);
     });
     ksort($element_types);
     // Creating form fields for each element.
     foreach (array_keys($element_types) as $id) {
+      var_dump($id);
       $element = $plugin_manager->createInstance($id);
       if (!$element instanceof FormElement) {
         continue;
