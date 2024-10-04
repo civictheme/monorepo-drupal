@@ -6,4 +6,5 @@
 //
 // These overrides will not be visible in the Storybook.
 // @todo Refactor webpack config to use direct import from the CivicTheme theme.
+@import 'page/page';
 @import 'block/local-tasks';
