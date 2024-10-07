@@ -28,10 +28,9 @@
 {% set has_sidebar_left = (content.sidebar_top_left is not empty or content.sidebar_bottom_left is not empty) and not hide_sidebar_left|default(false) %}
 {% set has_sidebar_right = (content.sidebar_top_right is not empty or content.sidebar_bottom_right is not empty) and not hide_sidebar_right|default(false) %}
 
-{% set is_contained = settings.is_contained %}
 {% set is_contained = is_contained or has_sidebar_left or has_sidebar_right %}
 
-{% set vertical_spacing = has_sidebar_left or has_sidebar_right ? 'top' : vertical_spacing %}
+{% set vertical_spacing = vertical_spacing != 'auto' ? vertical_spacing : has_sidebar_left or has_sidebar_right ? 'top' : '' %}
 
 {% set no_sidebar_left_class = hide_sidebar_left ? 'ct-layout--no-sidebar-left' : '' %}
 {% set no_sidebar_right_class = hide_sidebar_right ? 'ct-layout--no-sidebar-right' : '' %}
