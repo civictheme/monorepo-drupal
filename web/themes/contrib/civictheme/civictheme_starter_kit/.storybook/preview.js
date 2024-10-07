@@ -12,7 +12,7 @@ import { decoratorDocs } from '../components_combined/00-base/storybook/storyboo
 
 // Call attaching of behaviours.
 addDecorator((storyFn) => {
-  useEffect(() => Drupal.attachBehaviors(), []);
+  useEffect(() => Drupal.attachBehaviors());
   return storyFn();
 });
 
