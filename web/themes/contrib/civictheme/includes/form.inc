@@ -100,7 +100,7 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form_preprocess_hidden_form_elements(array $variables): void {
+function _civictheme_form_preprocess_hidden_form_elements(array &$variables): void {
   if (empty($variables['form'])) {
     return;
   }

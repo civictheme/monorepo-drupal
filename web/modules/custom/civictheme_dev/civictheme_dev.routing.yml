@@ -1,0 +1,14 @@
+civictheme_dev.styleguide_form:
+  path: '/styleguide-test-form'
+  defaults:
+    _form: 'Drupal\civictheme_dev\Form\StyleguideForm'
+    _title: 'Styleguide Form'
+  requirements:
+    _permission: 'access content'
+civictheme_dev.admin_styleguide_form:
+  path: '/admin/structure/styleguide-test-form'
+  defaults:
+    _form: 'Drupal\civictheme_dev\Form\StyleguideForm'
+    _title: 'Styleguide Form'
+  requirements:
+    _permission: 'view the administration theme'
