@@ -28,6 +28,19 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
       '#description' => $this->t('Check if the layout elements should be contained. Leave unchecked for edge-to-edge width. If sidebar regions are present - the layout will be contained regardless of this setting.'),
     ];
 
+    $form['vertical_spacing'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Vertical spacing'),
+      '#default_value' => $this->configuration['vertical_spacing'],
+      '#options' => [
+        'none' => $this->t('None'),
+        'top' => $this->t('Top'),
+        'bottom' => $this->t('Bottom'),
+        'both' => $this->t('Both'),
+        'auto' => $this->t('Automatic'),
+      ],
+    ];
+
     return parent::buildConfigurationForm($form, $form_state);
   }
 
@@ -37,6 +50,7 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     parent::submitConfigurationForm($form, $form_state);
     $this->configuration['is_contained'] = $form_state->getValue('is_contained');
+    $this->configuration['vertical_spacing'] = $form_state->getValue('vertical_spacing');
   }
 
 }
