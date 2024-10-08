@@ -191,6 +191,8 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
       'is_checked' => is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value,
       'is_disabled' => isset($element['#attributes']['disabled']),
+      // Checkboxes controls with a group cannot be required by definition.
+      'is_required' => FALSE,
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
     ];
