@@ -9,6 +9,8 @@
   "scripts": {
     "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php dist,storybook-static",
     "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet && npm run add-lint-exclusions",
+    "build:new": "node build.js",
+    "build:watch:new": "node build.js build watch",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && build-storybook -s .storybook/static",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
