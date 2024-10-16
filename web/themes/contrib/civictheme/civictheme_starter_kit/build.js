@@ -167,7 +167,6 @@ function build(options = {}) {
       getStyleImport(STYLE_THEME_FILE_IN, PATH),
     ].join('\n')
 
-    // Compile the styles.
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
     fs.writeFileSync(STYLE_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Component styles`)
@@ -235,7 +234,7 @@ function build(options = {}) {
 
   // --------------------------------------------------------------------------- ASSETS
   if (config.assets) {
-    runCommand(`rsync -a --delete --exclude js --exclude sass ${DIR_ASSETS_IN} ${DIR_ASSETS_OUT}`)
+    runCommand(`rsync -a --delete --exclude js --exclude sass ${DIR_ASSETS_IN}/ ${DIR_ASSETS_OUT}/`)
   }
 
   // --------------------------------------------------------------------------- FINISH
