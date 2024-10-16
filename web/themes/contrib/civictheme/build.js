@@ -150,7 +150,7 @@ function build(options = {}) {
     fs.mkdirSync(DIR_OUT)
   }
 
-  // --------------------------------------------------------------------------- GULP
+  // --------------------------------------------------------------------------- COMBINED FOLDER
   if (config.combine && !config.base) {
     runCommand(`rsync -a --delete ${DIR_UIKIT_COMPONENTS_IN}/ ${DIR_UIKIT_COPY_OUT}/`)
     runCommand(`rsync -a --delete ${DIR_UIKIT_COPY_OUT}/ ${DIR_COMPONENTS_OUT}/`)
