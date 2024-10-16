@@ -51,10 +51,6 @@ function getStyleImport(path, cwd) {
   return globSync(path, { cwd }).sort((a, b) => a.localeCompare(b)).map(i => `@import "${i}";`).join('\n')
 }
 
-function getStyleImports(paths, cwd) {
-  return paths.map(path => getStyleImport(path, cwd)).join('\n')
-}
-
 function loadStyle(path, cwd) {
   const result = []
   let data = fs.readFileSync(path, 'utf-8')
