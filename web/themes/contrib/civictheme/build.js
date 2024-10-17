@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /*
 Civictheme build - version 0.0.1 (alpha).
 
@@ -119,6 +120,8 @@ const DIR_ASSETS_IN           = fullPath('./assets/')
 const DIR_ASSETS_OUT          = fullPath('./dist/assets/')
 
 const COMPONENT_DIR           = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
+const STYLE_NAME              = config.base ? 'civictheme' : 'styles'
+const SCRIPT_NAME             = config.base ? 'civictheme' : 'scripts'
 
 const STYLE_FILE_IN           = `${COMPONENT_DIR}/style.scss`
 const STYLE_VARIABLE_FILE_IN  = `${COMPONENT_DIR}/style.css_variables.scss`
@@ -126,15 +129,15 @@ const STYLE_THEME_FILE_IN     = `${DIR_ASSETS_IN}/sass/theme.scss`
 const STYLE_EDITOR_FILE_IN    = `${DIR_ASSETS_IN}/sass/theme.editor.scss`
 const STYLE_ADMIN_FILE_IN     = `${DIR_ASSETS_IN}/sass/theme.admin.scss`
 const STYLE_LAYOUT_FILE_IN    = `${DIR_ASSETS_IN}/sass/theme.layout.scss`
-const STYLE_FILE_OUT          = `${DIR_OUT}/styles.css`
-const STYLE_EDITOR_FILE_OUT   = `${DIR_OUT}/styles.editor.css`
-const STYLE_VARIABLE_FILE_OUT = `${DIR_OUT}/styles.variables.css`
-const STYLE_ADMIN_FILE_OUT    = `${DIR_OUT}/styles.admin.css`
-const STYLE_LAYOUT_FILE_OUT   = `${DIR_OUT}/styles.layout.css`
+const STYLE_FILE_OUT          = `${DIR_OUT}/${STYLE_NAME}.css`
+const STYLE_EDITOR_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.editor.css`
+const STYLE_VARIABLE_FILE_OUT = `${DIR_OUT}/${STYLE_NAME}.variables.css`
+const STYLE_ADMIN_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.admin.css`
+const STYLE_LAYOUT_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 
 const VAR_CT_ASSETS_DIRECTORY = `$ct-assets-directory: '/themes/custom/${THEME_NAME}/dist/assets/';`
 
-const JS_FILE_OUT             = `${DIR_OUT}/scripts.js`
+const JS_FILE_OUT             = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_CIVIC_IMPORTS        = `${COMPONENT_DIR}/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js`
 const JS_LIB_IMPORTS          = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
 const JS_ASSET_IMPORTS        = [
@@ -165,6 +168,10 @@ function build(options = {}) {
       loadStyle(STYLE_FILE_IN, COMPONENT_DIR),
       getStyleImport(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR),
       getStyleImport(STYLE_THEME_FILE_IN, PATH),
+      config.base ? [
+        getStyleImport(STYLE_ADMIN_FILE_IN, PATH),
+        loadStyle(STYLE_LAYOUT_FILE_IN, PATH),
+      ].join('\n') : ''
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
@@ -246,26 +253,14 @@ if (config.build) {
 }
 
 if (config.watch) {
-  console.log(`Watching: ${path.relative(PATH, DIR_COMPONENTS_IN)}`)
+  console.log(`Watching: ${path.relative(PATH, DIR_COMPONENTS_IN)}/`)
   const supportedExtensions = ['scss', 'js', 'twig']
-  let lastModified = 0
   let timeout = null
   const watcher = fs.watch(DIR_COMPONENTS_IN, { recursive: true }, (event, filename) => {
     const ext = filename.split('.').pop()
     if (supportedExtensions.indexOf(ext) >= 0) {
-      lastModified = new Date().getTime()
-      waitToProcess()
+      clearTimeout(timeout)
+      timeout = setTimeout(build, 300)
     }
   })
-  function waitToProcess() {
-    const processStart = lastModified
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      // If last modified has changed, wait again.
-      (processStart !== lastModified) ? waitToProcess() : processWatch()
-    }, 300)
-  }
-  function processWatch () {
-    build()
-  }
 }
