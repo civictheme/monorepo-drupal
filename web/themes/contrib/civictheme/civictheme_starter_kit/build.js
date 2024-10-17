@@ -145,7 +145,7 @@ const JS_ASSET_IMPORTS        = [
   `${DIR_ASSETS_IN}/js/**/*.js`,
 ]
 
-function build(options = {}) {
+function build() {
   const startTime = new Date().getTime()
 
   // --------------------------------------------------------------------------- CREATE DIR
