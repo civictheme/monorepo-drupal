@@ -56,25 +56,26 @@ function _civictheme_form_alter__webform_submission(array &$form, FormStateInter
  */
 function _civictheme_form_alter__non_form_elements(array &$elements): void {
   $element_keys = Element::children($elements);
-
   foreach ($element_keys as $element_key) {
-    if (empty($elements[$element_key]['#type'])) {
-      continue;
+    $element_type = $elements[$element_key]['#type'] ?? NULL;
+    if (is_array($elements[$element_key])) {
+      $nested_elements = Element::children($elements[$element_key]);
+      if (!empty($nested_elements)) {
+        _civictheme_form_alter__non_form_elements($elements[$element_key]);
+      }
     }
-
-    $nested_elements = Element::children($elements[$element_key]);
-    if (!empty($nested_elements)) {
-      _civictheme_form_alter__non_form_elements($elements[$element_key]);
-    }
-
-    // Add elements to modify to this switch.
-    switch ($elements[$element_key]['#type']) {
-      case 'link':
-        _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
-        break;
-
-      default:
-        continue 2;
+    if ($element_type !== NULL) {
+      // Add elements to modify to this switch.
+      switch ($elements[$element_key]['#type']) {
+        case 'link':
+          _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
+          break;
+        case 'processed_text':
+          _civictheme_form_element__non_form_elements__markup($elements[$element_key]);
+          break;
+        default:
+          continue 2;
+      }
     }
   }
 }
@@ -92,6 +93,12 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
       'ct-button--secondary',
       'ct-theme-' . $element_theme,
     ]);
+  }
+}
+
+function _civictheme_form_element__non_form_elements__markup(array &$element): void {
+  if (empty($element['#text']) || empty($element['#format'])) {
+    return;
   }
 }
 

@@ -104,8 +104,8 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
   // hook_theme_suggestions_form_element_alter() and removing the suggestions
   // added here based on some conditions.
   // @see _civictheme_supported_form_element() for a list of supported types.
-
-  if (isset($variables['element']['#type']) && _civictheme_supported_form_element($variables['element']['#type'])) {
+  $supported_form_element = isset($variables['element']['#type']) && _civictheme_supported_form_element($variables['element']['#type']);
+  if ($supported_form_element) {
     $suggestions[] = 'form_element__civictheme_field';
     $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
   }
@@ -145,7 +145,7 @@ function _civictheme_supported_form_element(string $form_element_type): bool {
     'url',
     'weight',
   ];
-  // Create a list of supported webform types
+
   $supported_webform_types = [
     'webform_date',
     'webform_email',
@@ -365,6 +365,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
 
+  $excluded_attributes = ['class'];
   $allowed_attributes = ['size', 'maxlength', 'rows', 'autocomplete'];
 
   $attributes = [];
