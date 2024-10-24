@@ -70,9 +70,12 @@ function _civictheme_form_alter__non_form_elements(array &$elements): void {
         case 'link':
           _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
           break;
+
+        case 'html_tag':
         case 'processed_text':
           _civictheme_form_element__non_form_elements__markup($elements[$element_key]);
           break;
+
         default:
           continue 2;
       }
@@ -93,13 +96,21 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
       'ct-button--secondary',
       'ct-theme-' . $element_theme,
     ]);
-  }
-}
-
-function _civictheme_form_element__non_form_elements__markup(array &$element): void {
-  if (empty($element['#text']) || empty($element['#format'])) {
     return;
   }
+  $element['#attributes']['class'][] = 'ct-link';
+}
+
+/**
+ * Preprocesses markup render elements rendered in forms.
+ */
+function _civictheme_form_element__non_form_elements__markup(array &$element): void {
+  $element = [
+    '#content' => $element,
+    '#component_theme' => _civictheme_form_element_get_component_theme($element),
+    '#vertical_spacing' => 'none',
+    '#theme' => 'civictheme_basic_content',
+  ];
 }
 
 /**

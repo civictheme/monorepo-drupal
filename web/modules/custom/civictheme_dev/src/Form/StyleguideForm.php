@@ -72,13 +72,18 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
     ksort($element_types);
     // Creating form fields for each element.
     foreach (array_keys($element_types) as $id) {
-      var_dump($id);
       $element = $plugin_manager->createInstance($id);
       if (!$element instanceof FormElement) {
         continue;
       }
       $form[$id] = $this->createFormElement($id, $element);
     }
+
+    $form['link'] = [
+      '#type' => 'link',
+      '#title' => $this->t('Examples'),
+      '#url' => \Drupal\Core\Url::fromUri('https://www.drupal.org/docs/8/api/form-api/examples'),
+    ];
 
     return $form;
   }
