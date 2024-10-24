@@ -147,10 +147,10 @@ function _civictheme_supported_form_element(string $form_element_type): bool {
   ];
 
   $supported_webform_types = [
+    'tel',
     'webform_date',
     'webform_email',
     'webform_number',
-    'webform_phone',
     'webform_select',
     'webform_textarea',
     'webform_time',

@@ -73,6 +73,7 @@ function _civictheme_form_alter__non_form_elements(array &$elements): void {
 
         case 'html_tag':
         case 'processed_text':
+        case 'webform_markup':
           _civictheme_form_element__non_form_elements__markup($elements[$element_key]);
           break;
 
