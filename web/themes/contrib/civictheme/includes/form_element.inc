@@ -353,6 +353,8 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $variables['message'] = isset($element['#errors']) ? $element['#errors'] : '';
   $variables['is_invalid'] = isset($element['#errors']) && !empty($element['#errors']);
   $variables['placeholder'] = isset($element['#placeholder']) ? $element['#placeholder'] : '';
+  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
 }
 
 /**
