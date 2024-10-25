@@ -21,6 +21,18 @@ function civictheme_form_alter(array &$form, FormStateInterface $form_state, str
   _civictheme_form_alter__non_form_elements($form);
 }
 
+function civictheme_preprocess_container(array &$variables): void {
+  if (!empty($variables['has_parent'])) {
+      $variables['attributes']['class'][] = 'js-form-wrapper';
+      $variables['attributes']['class'][] = 'form-wrapper';
+  }
+  $variables['theme'] = 'light';
+  $variables['vertical_spacing'] = 'bottom';
+  $variables['with_background'] = FALSE;
+  $variables['is_contained'] = TRUE;
+  $variables['content'] = $variables['children'] ?? [];
+}
+
 /**
  * Form alter for webform submission form.
  *
