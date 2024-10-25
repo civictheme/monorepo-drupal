@@ -181,6 +181,33 @@ function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array 
   }
 }
 
+
+/**
+ * Implements hook_theme_suggestions_container_alter().
+ */
+function civictheme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  $is_webform_container = !empty($variables['element']['#webform'] ?? NULL);
+  if ($is_webform_container) {
+    $suggestions[] = 'container__civictheme_webform';
+  }
+}
+
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function civictheme_preprocess_container__civictheme_webform(array &$variables): void {
+  if (!empty($variables['has_parent'])) {
+    $variables['attributes']['class'][] = 'js-form-wrapper';
+    $variables['attributes']['class'][] = 'form-wrapper';
+  }
+  $variables['theme'] = 'light';
+  $variables['vertical_spacing'] = 'bottom';
+  $variables['with_background'] = FALSE;
+  $variables['is_contained'] = TRUE;
+  $variables['content'] = $variables['children'] ?? [];
+}
+
 /**
  * Implements template_preprocess_form_element().
  */
