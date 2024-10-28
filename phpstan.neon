@@ -72,6 +72,3 @@ parameters:
       message: '#Parameter \#1 \$callback of function call_user_func expects callable.*#'
       paths:
         - web/modules/custom/cs_generated_content/src/CsGeneratedContentCivicthemeTrait.php
-    - # Skip deprecation until upgrade to 10.3.
-      # @see https://www.drupal.org/node/3426517
-      message: '#Fetching deprecated class constant EXISTS_REPLACE#'
