@@ -92,7 +92,7 @@
             "tbachert/spi": true
         },
         "platform": {
-            "php": "8.2.13"
+            "php": "8.3.8"
         },
         "process-timeout": 0,
         "sort-packages": true
