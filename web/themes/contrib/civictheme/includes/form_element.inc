@@ -201,8 +201,8 @@ function civictheme_preprocess_container__civictheme_webform(array &$variables):
     $variables['attributes']['class'][] = 'js-form-wrapper';
     $variables['attributes']['class'][] = 'form-wrapper';
   }
-  $variables['theme'] = 'light';
-  $variables['vertical_spacing'] = 'bottom';
+  $variables['theme'] = CivicthemeConstants::THEME_LIGHT;
+  $variables['vertical_spacing'] = CivicthemeConstants::VERTICAL_SPACING_BOTTOM;
   $variables['with_background'] = FALSE;
   $variables['is_contained'] = TRUE;
   $variables['content'] = $variables['children'] ?? [];
