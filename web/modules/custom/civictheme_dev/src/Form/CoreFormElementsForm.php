@@ -11,12 +11,13 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
 use Drupal\Core\Render\ElementInfoManager;
+use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Styleguide form.
+ * Form used for displaying core form elements.
  */
-class StyleguideForm extends FormBase implements ContainerInjectionInterface {
+class CoreFormElementsForm extends FormBase implements ContainerInjectionInterface {
 
   /**
    * StyleguideForm constructor.
@@ -65,24 +66,45 @@ class StyleguideForm extends FormBase implements ContainerInjectionInterface {
         $provider_list = [
           'core',
           'linkit',
-          // 'webform', WebformInterface is not available in this context.
         ];
         return in_array($element['provider'], $provider_list);
     });
     ksort($element_types);
-    // Creating form fields for each element.
-    foreach (array_keys($element_types) as $id) {
-      $element = $plugin_manager->createInstance($id);
-      if (!$element instanceof FormElement) {
-        continue;
+    $form_element_groups = array_chunk($element_types, 5);
+    foreach ($form_element_groups as $key => $form_element_group) {
+      $group_id = 'form_element_group_' . $key;
+      $form[$group_id] = [
+        '#type' => 'container',
+        '#civictheme_form_element' => TRUE,
+      ];
+      // Creating form fields for each element.
+      foreach ($form_element_group as $form_element_type) {
+        $form_element_id = $form_element_type['id'] ?? NULL;
+        if ($form_element_id === NULL) {
+          continue;
+        }
+        $element = $plugin_manager->createInstance($form_element_id);
+        if (!$element instanceof FormElement) {
+          continue;
+        }
+        $form[$group_id][$form_element_id] = $this->createFormElement($form_element_id, $element);
       }
-      $form[$id] = $this->createFormElement($id, $element);
     }
 
-    $form['link'] = [
+    // Test non-form element html elements in form.
+    // Add more types as we support more non-form elements in forms.
+    // @see _civictheme_form_alter__non_form_elements.
+    $form['non_form_elements'] = [
+      '#type' => 'container',
+    ];
+    $form['non_form_elements']['markup'] = [
+      '#type' => 'markup',
+      '#markup' => '<h2>Markup within a form</h2><p>Test content 1</p><ul><li>List Item 1</li><li>List Item 2</li><li>List Item 3</li></ul>',
+    ];
+    $form['non_form_elements']['link'] = [
       '#type' => 'link',
       '#title' => $this->t('Examples'),
-      '#url' => \Drupal\Core\Url::fromUri('https://www.drupal.org/docs/8/api/form-api/examples'),
+      '#url' => Url::fromUri('https://www.drupal.org/docs/8/api/form-api/examples'),
     ];
 
     return $form;

@@ -191,4 +191,9 @@ final class CivicthemeConstants {
    */
   const OPTOUT_SUMMARY_HIDE_ELLIPSIS = 'CivicThemeOptoutSummaryHideEllipsis';
 
+  /**
+   * Form property to add to opt-in a form element for rendering by CivicTheme.
+   */
+  const CIVICTHEME_FORM_ELEMENT_PROPERTY = '#civictheme_form_element';
+
 }
