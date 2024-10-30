@@ -148,7 +148,10 @@ elements: |-
     checkboxes:
       '#type': checkboxes
       '#title': Checkboxes
-      '#options': gender
+      '#options':
+        'Test Option 1': 'Test Option 1'
+        'Test Option 2': 'Test Option 2'
+        'Test Option 3': 'Test Option 3'
       '#options_randomize': true
       '#options_all': true
       '#options_none': true
