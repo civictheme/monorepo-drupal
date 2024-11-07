@@ -55,6 +55,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * {@inheritDoc}
    *
    * @phpstan-ignore-next-line
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     // Getting form element plugin manager.
