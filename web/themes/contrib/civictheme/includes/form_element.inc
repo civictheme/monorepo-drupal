@@ -114,8 +114,8 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
 /**
  * Check whether form render element is supported directly by CivicTheme.
  *
- * @param string $form_element_type
- *   The form element type.
+ * @param array $form_element
+ *   The form element.
  *
  *   This list has been derived with testing elements that extend
  *   \Drupal\Core\Render\Element\FormElement.
