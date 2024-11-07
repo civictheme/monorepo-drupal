@@ -53,6 +53,7 @@ function _civictheme_form_alter__webform_submission(array &$form, FormStateInter
  * if required.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_form_alter__non_form_elements(array &$elements): void {
   $element_keys = Element::children($elements);

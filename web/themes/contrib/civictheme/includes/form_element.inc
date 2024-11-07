@@ -407,7 +407,6 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
 
-  $excluded_attributes = ['class'];
   $allowed_attributes = ['size', 'maxlength', 'rows', 'autocomplete'];
 
   $attributes = [];
