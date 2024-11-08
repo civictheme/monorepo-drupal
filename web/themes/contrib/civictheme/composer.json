@@ -9,7 +9,7 @@
         "issues": "https://github.com/civictheme/monorepo-drupal/issues"
     },
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "drupal/components": "^3@beta",
         "drupal/field_group": "^3.4",
         "drupal/focal_point": "^2.0",

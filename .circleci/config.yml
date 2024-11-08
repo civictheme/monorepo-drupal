@@ -290,39 +290,21 @@ jobs:
 
   # Isolated theme build within a vanilla Drupal installation.
   # This replicates (to a degree) what Drupal CI would do.
-  build-isolated-php-82:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.2-browsers
-    environment:
-      DRUPAL_VERSION: 10.2
-      DRUPAL_PROJECT_SHA: 10.x
-    <<: *job-build-isolated
-
-  build-isolated-php-82-legacy:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.2-browsers
-    environment:
-      DRUPAL_VERSION: 10.2
-      DRUPAL_PROJECT_SHA: 10.x
-    <<: *job-build-isolated
-
-  build-isolated-php-82-next:
-    <<: *runner_config
-    docker:
-      - image: cimg/php:8.2-browsers
-    environment:
-      DRUPAL_VERSION: 10@beta
-      DRUPAL_PROJECT_SHA: 10.x
-    <<: *job-build-isolated
-
   build-isolated-php-83:
     <<: *runner_config
     docker:
       - image: cimg/php:8.3-browsers
     environment:
-      DRUPAL_VERSION: stable
+      DRUPAL_VERSION: 10.3
+      DRUPAL_PROJECT_SHA: 10.x
+    <<: *job-build-isolated
+
+  build-isolated-php-83-legacy:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.3-browsers
+    environment:
+      DRUPAL_VERSION: 10.3
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 
@@ -330,6 +312,24 @@ jobs:
     <<: *runner_config
     docker:
       - image: cimg/php:8.3-browsers
+    environment:
+      DRUPAL_VERSION: 10@beta
+      DRUPAL_PROJECT_SHA: 10.x
+    <<: *job-build-isolated
+
+  build-isolated-php-84:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.4-browsers
+    environment:
+      DRUPAL_VERSION: stable
+      DRUPAL_PROJECT_SHA: 10.x
+    <<: *job-build-isolated
+
+  build-isolated-php-84-next:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.4-browsers
     environment:
       DRUPAL_VERSION: 10@beta
       DRUPAL_PROJECT_SHA: 10.x
@@ -519,25 +519,13 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build-isolated-php-82:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-isolated-php-82-legacy:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
-      - build-isolated-php-82-next:
-          filters:
-            branches:
-              ignore: /^content\/.*/
-            tags:
-              only: /.*/
       - build-isolated-php-83:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-isolated-php-83-legacy:
           filters:
             branches:
               ignore: /^content\/.*/
@@ -549,13 +537,25 @@ workflows:
               ignore: /^content\/.*/
             tags:
               only: /.*/
+      - build-isolated-php-84:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-isolated-php-84-next:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
       - build-minimal:
           requires:
-            - build-isolated-php-82
-            - build-isolated-php-82-legacy
-            - build-isolated-php-82-next
             - build-isolated-php-83
+            - build-isolated-php-83-legacy
             - build-isolated-php-83-next
+            - build-isolated-php-84
+            - build-isolated-php-84-next
           filters:
             branches:
               ignore: /^content\/.*/
@@ -563,11 +563,11 @@ workflows:
               only: /.*/
       - build-minimal-subtheme:
           requires:
-            - build-isolated-php-82
-            - build-isolated-php-82-legacy
-            - build-isolated-php-82-next
             - build-isolated-php-83
+            - build-isolated-php-83-legacy
             - build-isolated-php-83-next
+            - build-isolated-php-84
+            - build-isolated-php-84-next
           filters:
             branches:
               ignore: /^content\/.*/
@@ -575,11 +575,11 @@ workflows:
               only: /.*/
       - build-govcms:
           requires:
-            - build-isolated-php-82
-            - build-isolated-php-82-legacy
-            - build-isolated-php-82-next
             - build-isolated-php-83
+            - build-isolated-php-83-legacy
             - build-isolated-php-83-next
+            - build-isolated-php-84
+            - build-isolated-php-84-next
           filters:
             branches:
               ignore: /^content\/.*/
@@ -587,11 +587,11 @@ workflows:
               only: /.*/
       - build-govcms-subtheme:
           requires:
-            - build-isolated-php-82
-            - build-isolated-php-82-legacy
-            - build-isolated-php-82-next
             - build-isolated-php-83
+            - build-isolated-php-83-legacy
             - build-isolated-php-83-next
+            - build-isolated-php-84
+            - build-isolated-php-84-next
           filters:
             branches:
               ignore: /^content\/.*/
@@ -599,11 +599,11 @@ workflows:
               only: /.*/
       - build-govcms-subtheme-sibling:
           requires:
-            - build-isolated-php-82
-            - build-isolated-php-82-legacy
-            - build-isolated-php-82-next
             - build-isolated-php-83
+            - build-isolated-php-83-legacy
             - build-isolated-php-83-next
+            - build-isolated-php-84
+            - build-isolated-php-84-next
           filters:
             branches:
               ignore: /^content\/.*/
