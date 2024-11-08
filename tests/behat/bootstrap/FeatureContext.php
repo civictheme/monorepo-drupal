@@ -253,7 +253,7 @@ class FeatureContext extends DrupalContext {
    *
    * @todo Remove with next behat-steps release.
    */
-  public function linkAssertTextHrefNotExists(string $text, string $href, string $locator = NULL): void {
+  public function linkAssertTextHrefNotExists(string $text, string $href, ?string $locator = NULL): void {
     /** @var \Behat\Mink\Element\DocumentElement $page */
     $page = $this->getSession()->getPage();
 
@@ -357,7 +357,7 @@ class FeatureContext extends DrupalContext {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function themeVisitSettings(string $name = NULL): void {
+  public function themeVisitSettings(?string $name = NULL): void {
     if (!$name || $name === 'current') {
       $name = \Drupal::theme()->getActiveTheme()->getName();
     }

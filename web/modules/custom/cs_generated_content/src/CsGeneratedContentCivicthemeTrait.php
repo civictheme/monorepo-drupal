@@ -215,7 +215,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * @return array<int, \Drupal\taxonomy\TermInterface>
    *   Array of topics.
    */
-  public static function civicthemeStaticTopics(int $count = NULL): array {
+  public static function civicthemeStaticTopics(?int $count = NULL): array {
     return static::staticTerms('civictheme_topics', $count);
   }
 
@@ -257,7 +257,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * @return array<int, \Drupal\taxonomy\TermInterface>
    *   Array of site sections.
    */
-  public static function civicthemeStaticSiteSections(int $count = NULL): array {
+  public static function civicthemeStaticSiteSections(?int $count = NULL): array {
     return static::staticTerms('civictheme_site_sections', $count);
   }
 

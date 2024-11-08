@@ -39,7 +39,7 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
    * @return string
    *   URL with a path.
    */
-  public static function staticUrl(string $domain = NULL): string {
+  public static function staticUrl(?string $domain = NULL): string {
     $parts = [];
     $parts[] = 'https://';
     $parts[] = $domain ? rtrim($domain, '/') : 'www.example.com';
