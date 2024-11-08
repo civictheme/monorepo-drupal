@@ -28,8 +28,25 @@ Feature: CivicTheme Page content type access
 
     Examples:
       | role                          | view | view_unpublished | add | edit | delete |
-      | anonymous user                | 200  | 403              | 403 | 403  | 403    |
       | authenticated user            | 200  | 403              | 403 | 403  | 403    |
       | civictheme_content_author     | 200  | 200              | 200 | 200  | 200    |
       | civictheme_content_approver   | 200  | 200              | 403 | 403  | 403    |
       | civictheme_site_administrator | 200  | 200              | 200 | 200  | 200    |
+
+  @api
+  Scenario: CivicTheme page content type access anonymous user
+    Given I am an anonymous user
+    When I go to "node/add/civictheme_page"
+    Then the response status code should be 403
+
+    When I visit civictheme_page "[TEST] Test Published CivicTheme Page 1"
+    Then I should get a 200 HTTP response
+
+    When I visit civictheme_page "[TEST] Test Unpublished CivicTheme Page 1"
+    Then I should get a 403 HTTP response
+
+    When I edit civictheme_page "[TEST] Test Published CivicTheme Page 1"
+    Then the response status code should be 403
+
+    When I delete civictheme_page "[TEST] Test Published CivicTheme Page 1"
+    And I should get a 403 HTTP response
