@@ -160,7 +160,7 @@ function civictheme_media_image_get_variables(MediaInterface $media, string $ima
 
   $variables = civictheme_media_get_variables($media);
 
-  if($variables['ext'] == 'svg') {
+  if ($variables['ext'] == 'svg') {
     $image_style = NULL;
   }
 
