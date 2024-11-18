@@ -129,9 +129,8 @@ function _civictheme_supported_form_element(array $form_element): bool {
   if (!empty($form_element[CivicthemeConstants::CIVICTHEME_FORM_ELEMENT_PROPERTY])) {
     return TRUE;
   }
-  // This is not a definitive list of form elements that CivicTheme
-  // works with but give enough coverage to render most form elements.
-  // This list may change with changes to Drupal.
+  // This is a list of form elements that CivicTheme works with currently
+  // This list may change with changes to Drupal and updates to CivicTheme.
   $form_element_type = $form_element['#type'];
   $supported_core_types = [
     'button',
@@ -192,31 +191,6 @@ function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array 
     $suggestions[] = 'fieldset__form_element__civictheme_field';
     $suggestions[] = 'fieldset__form_element__civictheme_field__' . $variables['element']['#type'];
   }
-}
-
-/**
- * Implements hook_theme_suggestions_container_alter().
- */
-function civictheme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
-  $is_civictheme_themed = !empty($variables['element']['#webform'] ?? NULL) || !empty($variables['element'][CivicthemeConstants::CIVICTHEME_FORM_ELEMENT_PROPERTY] ?? NULL);
-  if ($is_civictheme_themed) {
-    $suggestions[] = 'container__form_element__civictheme';
-  }
-}
-
-/**
- * Implements template_preprocess_HOOK().
- */
-function civictheme_preprocess_container__form_element__civictheme(array &$variables): void {
-  if (!empty($variables['has_parent'])) {
-    $variables['attributes']['class'][] = 'js-form-wrapper';
-    $variables['attributes']['class'][] = 'form-wrapper';
-  }
-  $variables['theme'] = CivicthemeConstants::THEME_LIGHT;
-  $variables['vertical_spacing'] = CivicthemeConstants::VERTICAL_SPACING_BOTTOM;
-  $variables['with_background'] = FALSE;
-  $variables['is_contained'] = TRUE;
-  $variables['content'] = $variables['children'] ?? [];
 }
 
 /**
