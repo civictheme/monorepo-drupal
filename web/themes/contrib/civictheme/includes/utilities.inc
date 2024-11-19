@@ -24,6 +24,7 @@ use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\OEmbedInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -125,11 +126,13 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'created' => civictheme_format_datetime((int) $media->getCreatedTime(), 'civictheme_short_date'),
     'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
   ];
-
-  if ($media->bundle() === 'civictheme_remote_video') {
+  $source = $media->getSource();
+  if ($source instanceof OEmbedInterface) {
     $variables['name'] = t('@name', ['@name' => $media->label()]);
-    $variables['url'] = \Drupal::service('media.oembed.url_resolver')
-      ->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value']);
+    $url = $source->getMetadata($media, 'url');
+    if (!empty($url)) {
+      $variables['url'] = $url;
+    }
     return $variables;
   }
 
