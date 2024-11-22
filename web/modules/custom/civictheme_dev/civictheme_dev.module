@@ -39,10 +39,6 @@ function civictheme_dev_preprocess_html(array &$variables): void {
  * Implements hook_styleguide_alter().
  */
 function civictheme_dev_styleguide_alter(array &$items): void {
-  // Remove password_confirm field from the form as CivicTheme does not support
-  // it.
-  unset($items['form']['content']['password_confirm']);
-
   _civictheme_dev_styleguide__form_test__textfield($items);
   _civictheme_dev_styleguide__form_test__textarea($items);
   _civictheme_dev_styleguide__form_test__select($items);

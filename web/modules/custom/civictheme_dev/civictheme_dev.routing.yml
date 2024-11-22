@@ -1,0 +1,14 @@
+civictheme_dev.styleguide_form:
+  path: '/civictheme-core-form-elements'
+  defaults:
+    _form: 'Drupal\civictheme_dev\Form\CoreFormElementsForm'
+    _title: 'CivicTheme Core Form Elements Form'
+  requirements:
+    _permission: 'access content'
+civictheme_dev.admin_styleguide_form:
+  path: '/admin/structure/civictheme-core-form-elements'
+  defaults:
+    _form: 'Drupal\civictheme_dev\Form\CoreFormElementsForm'
+    _title: 'Core Form Elements Form (Admin Theme)'
+  requirements:
+    _permission: 'view the administration theme'
