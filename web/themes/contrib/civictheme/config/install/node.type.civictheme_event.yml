@@ -11,7 +11,7 @@ third_party_settings:
 name: Event
 type: civictheme_event
 description: '<em>CivicTheme</em>. Use Event pages to describe event information.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false
