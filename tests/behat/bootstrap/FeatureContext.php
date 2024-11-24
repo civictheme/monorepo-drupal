@@ -21,7 +21,6 @@ use DrevOps\BehatSteps\JsTrait;
 use DrevOps\BehatSteps\LinkTrait;
 use DrevOps\BehatSteps\MediaTrait;
 use DrevOps\BehatSteps\MenuTrait;
-use DrevOps\BehatSteps\OverrideTrait;
 use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
@@ -54,7 +53,6 @@ class FeatureContext extends DrupalContext {
   use LinkTrait;
   use MediaTrait;
   use MenuTrait;
-  use OverrideTrait;
   use PathTrait;
   use ParagraphsTrait;
   use SelectTrait;
@@ -253,7 +251,7 @@ class FeatureContext extends DrupalContext {
    *
    * @todo Remove with next behat-steps release.
    */
-  public function linkAssertTextHrefNotExists(string $text, string $href, string $locator = NULL): void {
+  public function linkAssertTextHrefNotExists(string $text, string $href, ?string $locator = NULL): void {
     /** @var \Behat\Mink\Element\DocumentElement $page */
     $page = $this->getSession()->getPage();
 
@@ -357,7 +355,7 @@ class FeatureContext extends DrupalContext {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function themeVisitSettings(string $name = NULL): void {
+  public function themeVisitSettings(?string $name = NULL): void {
     if (!$name || $name === 'current') {
       $name = \Drupal::theme()->getActiveTheme()->getName();
     }

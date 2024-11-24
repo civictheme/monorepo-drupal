@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Element\FormElementBase;
 use Drupal\Core\Render\ElementInfoManager;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -85,7 +85,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
           continue;
         }
         $element = $plugin_manager->createInstance($form_element_id);
-        if (!$element instanceof FormElement) {
+        if (!$element instanceof FormElementBase) {
           continue;
         }
         $form[$group_id][$form_element_id] = $this->createFormElement($form_element_id, $element);
@@ -116,7 +116,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param string $id
    *   Element id.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Actual element.
    *
    * @return array<int|string, mixed>
@@ -124,7 +124,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  protected function createFormElement(string $id, FormElement $element): array {
+  protected function createFormElement(string $id, FormElementBase $element): array {
     $form_element = [
       '#type' => $id,
       '#title' => ucwords(str_replace('_', ' ', $id)) . ' (' . $id . ')',
@@ -184,7 +184,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param array $form_element
    *   Form element.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Form element.
    *
    * @return array<string, mixed>
@@ -192,7 +192,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  protected function createEntityAutoCompleteFormElement(array $form_element, FormElement $element): array {
+  protected function createEntityAutoCompleteFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#type'] = 'entity_autocomplete';
     $form_element['#target_type'] = 'node';
     $form_element['#selection_settings'] = [
@@ -207,7 +207,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param array $form_element
    *   Form element.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Form element.
    *
    * @return array<string, mixed>
@@ -215,7 +215,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  protected function createOptionsFormElement(array $form_element, FormElement $element): array {
+  protected function createOptionsFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#options'] = [
       'option1' => 'Option 1',
       'option2' => 'Option 2',
@@ -230,7 +230,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param array $form_element
    *   Form element.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Form element.
    *
    * @return array<string, mixed>
@@ -238,7 +238,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  protected function createTableFormElement(array $form_element, FormElement $element): array {
+  protected function createTableFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#header'] = ['Header 1', 'Header 2', 'Header 3'];
     if ($element->getPluginId() === 'tableselect') {
       $form_element['#options'] = [
@@ -265,7 +265,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param array $form_element
    *   Form element.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Form element.
    *
    * @return array<int, array>
@@ -273,7 +273,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @phpstan-ignore-next-line
    */
-  protected function createImageButton(array $form_element, FormElement $element): array {
+  protected function createImageButton(array $form_element, FormElementBase $element): array {
     $theme_path = $this->themeHandler->getTheme('civictheme')->getPath();
     $icon_path = '/' . $theme_path . '/assets/icons/download.svg';
     $form_element['#src'] = $icon_path;
@@ -286,7 +286,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *
    * @param array $form_element
    *   Form element.
-   * @param \Drupal\Core\Render\Element\FormElement $element
+   * @param \Drupal\Core\Render\Element\FormElementBase $element
    *   Form element.
    *
    * @return array<int, array>
@@ -295,7 +295,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @phpstan-ignore-next-line
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
-  protected function createButton(array $form_element, FormElement $element): array {
+  protected function createButton(array $form_element, FormElementBase $element): array {
     $form_element['#value'] = $form_element['#title'];
 
     return [
