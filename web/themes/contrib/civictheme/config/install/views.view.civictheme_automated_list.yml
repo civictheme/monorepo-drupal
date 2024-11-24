@@ -75,6 +75,7 @@ display:
         type: full
         options:
           offset: 0
+
           items_per_page: 12
           total_pages: null
           id: 0
@@ -92,6 +93,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 5
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
