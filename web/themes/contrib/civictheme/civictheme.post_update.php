@@ -290,7 +290,7 @@ function civictheme_post_update_rename_event_date_field(array &$sandbox): ?strin
       'field_c_n_date_range' => [
         'type' => 'daterange_default',
         'weight' => 13,
-        'region' => 'content',
+        'region' => 'main',
         'settings' => [],
         'third_party_settings' => [],
       ],

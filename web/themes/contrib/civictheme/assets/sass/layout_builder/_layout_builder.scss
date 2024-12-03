@@ -34,19 +34,6 @@
               cursor: move;
               background-color: #fff;
               position: relative;
-
-              div.contextual {
-                display: contents;
-
-                ul {
-                  border: 1px solid;
-
-                  li {
-                    list-style: none;
-                    display: list-item;
-                  }
-                }
-              }
             }
 
             .block.block-layout-builder [tabindex='-1'] {

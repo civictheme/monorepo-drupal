@@ -53,28 +53,35 @@ function _civictheme_form_alter__webform_submission(array &$form, FormStateInter
  * if required.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_form_alter__non_form_elements(array &$elements): void {
   $element_keys = Element::children($elements);
-
   foreach ($element_keys as $element_key) {
-    if (empty($elements[$element_key]['#type'])) {
-      continue;
+    $element_type = $elements[$element_key]['#type'] ?? NULL;
+    if (is_array($elements[$element_key])) {
+      $nested_elements = Element::children($elements[$element_key]);
+      if (!empty($nested_elements)) {
+        _civictheme_form_alter__non_form_elements($elements[$element_key]);
+      }
     }
+    if ($element_type !== NULL) {
+      // Add elements to modify to this switch.
+      switch ($elements[$element_key]['#type']) {
+        case 'link':
+          _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
+          break;
 
-    $nested_elements = Element::children($elements[$element_key]);
-    if (!empty($nested_elements)) {
-      _civictheme_form_alter__non_form_elements($elements[$element_key]);
-    }
+        case 'html_tag':
+        case 'markup':
+        case 'processed_text':
+        case 'webform_markup':
+          _civictheme_form_element__non_form_elements__markup($elements[$element_key]);
+          break;
 
-    // Add elements to modify to this switch.
-    switch ($elements[$element_key]['#type']) {
-      case 'link':
-        _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
-        break;
-
-      default:
-        continue 2;
+        default:
+          continue 2;
+      }
     }
   }
 }
@@ -92,7 +99,21 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
       'ct-button--secondary',
       'ct-theme-' . $element_theme,
     ]);
+    return;
   }
+  $element['#attributes']['class'][] = 'ct-link';
+}
+
+/**
+ * Preprocesses markup render elements rendered in forms.
+ */
+function _civictheme_form_element__non_form_elements__markup(array &$element): void {
+  $element = [
+    '#content' => $element,
+    '#component_theme' => _civictheme_form_element_get_component_theme($element),
+    '#vertical_spacing' => 'none',
+    '#theme' => 'civictheme_basic_content',
+  ];
 }
 
 /**
@@ -100,7 +121,7 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form_preprocess_hidden_form_elements(array $variables): void {
+function _civictheme_form_preprocess_hidden_form_elements(array &$variables): void {
   if (empty($variables['form'])) {
     return;
   }

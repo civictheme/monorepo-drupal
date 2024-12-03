@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\civictheme;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -171,7 +172,7 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   protected function saveStylesheet($data): ?string {
     $filepath = $this->getStylesheetUri();
     try {
-      $this->fileSystem->saveData($data, $filepath, FileSystemInterface::EXISTS_REPLACE);
+      $this->fileSystem->saveData($data, $filepath, FileExists::Replace);
       $this->fileSystem->chmod($filepath);
     }
     catch (\Exception) {

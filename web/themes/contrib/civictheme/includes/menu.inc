@@ -66,6 +66,8 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
     $key = substr($menu_name, strlen('civictheme_'));
     // Set menu theme as per footer theme.
     $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+    // Set name for aria-label of <nav> element.
+    $variables['name'] = strtr($key, '_navigation', '');
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name === 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
     $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);

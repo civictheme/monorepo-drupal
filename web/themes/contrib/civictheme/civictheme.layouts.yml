@@ -5,7 +5,7 @@ civictheme_three_columns:
   library: civictheme/layouts
   category: 'CivicTheme Layouts'
   class: '\Drupal\civictheme\Plugin\Layout\ThreeColumnsLayout'
-  default_region: content
+  default_region: main
   icon_map:
     - [first_above, main, second_above]
     - [first_below, main, second_below]
