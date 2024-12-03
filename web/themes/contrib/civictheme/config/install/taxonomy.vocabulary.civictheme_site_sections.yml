@@ -5,3 +5,4 @@ name: 'Site sections'
 vid: civictheme_site_sections
 description: 'Site sections used to group content.'
 weight: 0
+new_revision: false

@@ -91,6 +91,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_theme_suggestions_form_element_alter().
@@ -102,8 +103,75 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
   // Note that sub-themes can opt-out from this behavior by implementing
   // hook_theme_suggestions_form_element_alter() and removing the suggestions
   // added here based on some conditions.
-  $suggestions[] = 'form_element__civictheme_field';
-  $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+  // @see _civictheme_supported_form_element() for a list of supported types.
+  $supported_form_element = isset($variables['element']['#type']) && _civictheme_supported_form_element($variables['element']);
+  if ($supported_form_element) {
+    $suggestions[] = 'form_element__civictheme_field';
+    $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+  }
+}
+
+/**
+ * Check whether form render element is supported directly by CivicTheme.
+ *
+ * @param array $form_element
+ *   The form element.
+ *
+ *   This list has been derived with testing elements that extend
+ *   \Drupal\Core\Render\Element\FormElement.
+ *
+ * @return bool
+ *   Whether the form element is directly supported by CivicTheme.
+ */
+function _civictheme_supported_form_element(array $form_element): bool {
+  // Form elements can be explictly opted with `#civictheme_form_element`
+  // property.
+  if (!empty($form_element[CivicthemeConstants::CIVICTHEME_FORM_ELEMENT_PROPERTY])) {
+    return TRUE;
+  }
+  // This is a list of form elements that CivicTheme works with currently
+  // This list may change with changes to Drupal and updates to CivicTheme.
+  $form_element_type = $form_element['#type'];
+  $supported_core_types = [
+    'button',
+    'checkbox',
+    'checkboxes',
+    'color',
+    'date',
+    'email',
+    'entity_autocomplete',
+    'file',
+    'image_button',
+    'linkit',
+    'machine_name',
+    'number',
+    'password',
+    'path',
+    'radio',
+    'radios',
+    'search',
+    'select',
+    'tableselect',
+    'textarea',
+    'textfield',
+    'url',
+    'weight',
+  ];
+
+  $supported_webform_types = [
+    'tel',
+    'webform_date',
+    'webform_email',
+    'webform_number',
+    'webform_select',
+    'webform_textarea',
+    'webform_time',
+    'webform_url',
+  ];
+
+  $supported_types = array_merge($supported_core_types, $supported_webform_types);
+
+  return in_array($form_element_type, $supported_types);
 }
 
 /**
@@ -183,7 +251,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
   // Prepare control array.
   $control = [];
   foreach ($element['#options'] as $value => $label) {
-    $name = isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : '');
+    $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
     $control[] = [
       'label' => $label,
       'value' => $value,
@@ -191,6 +259,8 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
       'is_checked' => is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value,
       'is_disabled' => isset($element['#attributes']['disabled']),
+      // Checkboxes controls with a group cannot be required by definition.
+      'is_required' => FALSE,
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
     ];
@@ -219,7 +289,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
   // Prepare control array.
   $control = [];
   foreach ($element['#options'] as $value => $label) {
-    $name = isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : '');
+    $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
     $control[] = [
       'label' => $label,
       'value' => $value,
@@ -277,9 +347,9 @@ function civictheme_preprocess_input__submit(array &$variables): void {
  */
 function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $element = $variables['element'];
-  $variables['type'] = isset($element['#type']) ? $element['#type'] : 'input';
+  $variables['type'] = $element['#type'] ?? 'input';
 
-  $variables['title'] = isset($element['#title']) ? $element['#title'] : '';
+  $variables['title'] = $element['#title'] ?? '';
 
   $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
   $title_display = $title_display == 'none' ? 'hidden' : $title_display;
@@ -291,12 +361,14 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 
   $variables['orientation'] = $variables['orientation'] ?? $title_display == 'inline' ? 'horizontal' : 'vertical';
 
-  $variables['is_required'] = isset($element['#required']) ? $element['#required'] : FALSE;
+  $variables['is_required'] = $element['#required'] ?? FALSE;
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
-  $variables['description'] = isset($element['#description']) ? $element['#description'] : '';
-  $variables['message'] = isset($element['#errors']) ? $element['#errors'] : '';
+  $variables['description'] = $element['#description'] ?? '';
+  $variables['message'] = $element['#errors'] ?? '';
   $variables['is_invalid'] = isset($element['#errors']) && !empty($element['#errors']);
-  $variables['placeholder'] = isset($element['#placeholder']) ? $element['#placeholder'] : '';
+  $variables['placeholder'] = $element['#placeholder'] ?? '';
+  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
 }
 
 /**
@@ -304,6 +376,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_form_element__control(array &$variables): void {
   $element = $variables['element'];
@@ -329,27 +402,34 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
       }
     }
   }
-  $attributes_string = implode(' ', array_map(function ($key, $value) {
-    return $key . '="' . $value . '"';
-  }, array_keys($attributes), $attributes));
 
-  $modifier_class = isset($element['#attributes']['class']) ? $element['#attributes']['class'] : [];
+  $modifier_class = $element['#attributes']['class'] ?? [];
+  $modifier_class[] = 'form-element';
+  $modifier_class[] = 'form-element--type-' . $variables['type'];
+  $modifier_class[] = 'form-element--api-' . $element['#type'];
+  $modifier_class[] = 'form-control';
+  if (in_array($variables['type'], ['checkbox', 'radio'])) {
+    $modifier_class[] = 'form-boolean';
+    $modifier_class[] = Html::getClass('form-boolean--type-' . $variables['type']);
+  }
   if (is_array($modifier_class)) {
     $modifier_class = implode(' ', $modifier_class);
   }
 
+  $attributes = new Attribute($attributes);
+
   $variables['control'][] = [
-    'name' => isset($element['#attributes']['name']) ? $element['#attributes']['name'] : (isset($element['#name']) ? $element['#name'] : ''),
-    'value' => isset($element['#value']) ? $element['#value'] : '',
-    'id' => isset($element['#id']) ? $element['#id'] : '',
+    'name' => $element['#attributes']['name'] ?? ($element['#name'] ?? ''),
+    'value' => $element['#value'] ?? '',
+    'id' => $element['#id'] ?? '',
     'options' => $variables['options'] ?? [],
-    'is_multiple' => isset($variables['is_multiple']) ? $variables['is_multiple'] : FALSE,
-    'attributes' => $attributes_string,
+    'is_multiple' => $variables['is_multiple'] ?? FALSE,
+    'attributes' => $attributes,
     'modifier_class' => $modifier_class,
   ];
 
   if ($element['#type'] == 'checkbox') {
-    $variables['control'][0]['is_checked'] = isset($element['#default_value']) ? $element['#default_value'] : FALSE;
+    $variables['control'][0]['is_checked'] = $element['#default_value'] ?? FALSE;
   }
 }
 
@@ -389,17 +469,24 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
   // Note that we are only adding JS classes for 3rd-parties to bind to. Any
   // other classes added by core or contrib modules may affect the look and feel
   // of the form.
+  $variables['attributes']['class'][] = 'form-item';
+
   $variables['attributes']['class'][] = 'js-form-item';
 
   if (!empty($variables['type'])) {
     $variables['attributes']['class'][] = 'js-form-type-' . Html::getClass($variables['type']);
+    $variables['attributes']['class'][] = 'form-type-' . Html::getClass($variables['type']);
+    $variables['attributes']['class'][] = 'form-type--' . Html::getClass($variables['type']);
   }
 
   if (!empty($variables['name'])) {
     $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['name']);
+    $variables['attributes']['class'][] = 'form-item-' . Html::getClass($variables['name']);
+    $variables['attributes']['class'][] = 'form-item--' . Html::getClass($variables['name']);
   }
   elseif (!empty($variables['element']['#name'])) {
     $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['element']['#name']);
+    $variables['attributes']['class'][] = 'form-item-' . Html::getClass($variables['element']['#name']);
   }
 
   if (!empty($variables['errors'])) {
@@ -418,7 +505,7 @@ function _civictheme_preprocess_form_element__description(array &$variables): vo
 /**
  * Preprocesses form element wrapper classes.
  */
-function _civictheme_preprocess_form_element__wrapper_classes(array &$variables){
+function _civictheme_preprocess_form_element__wrapper_classes(array &$variables) {
   if (!empty($variables['element']['#wrapper_attributes'])) {
     $variables['attributes'] = $variables['element']['#wrapper_attributes'];
   }

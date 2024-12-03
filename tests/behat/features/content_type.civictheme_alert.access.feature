@@ -28,8 +28,26 @@ Feature: CivicTheme Alert content type access
 
     Examples:
       | role                          | view | view_unpublished | add | edit | delete |
-      | anonymous user                | 200  | 403              | 403 | 403  | 403    |
       | authenticated user            | 200  | 403              | 403 | 403  | 403    |
       | civictheme_content_author     | 200  | 200              | 200 | 200  | 200    |
       | civictheme_content_approver   | 200  | 200              | 403 | 403  | 403    |
       | civictheme_site_administrator | 200  | 200              | 200 | 200  | 200    |
+
+  @api
+  Scenario: CivicTheme alert content type access anonymous user
+    Given I am an anonymous user
+    When I go to "node/add/civictheme_alert"
+    Then the response status code should be 403
+
+    When I visit civictheme_alert "[TEST] Test Published CivicTheme Alert 1"
+    Then I should get a 200 HTTP response
+
+    When I visit civictheme_alert "[TEST] Test Unpublished CivicTheme Alert 1"
+    Then I should get a 403 HTTP response
+
+    When I edit civictheme_alert "[TEST] Test Published CivicTheme Alert 1"
+    Then the response status code should be 403
+
+    When I delete civictheme_alert "[TEST] Test Published CivicTheme Alert 1"
+    And I should get a 403 HTTP response
+
