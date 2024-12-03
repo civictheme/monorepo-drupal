@@ -319,9 +319,6 @@ function civictheme_convert_attributes_to_modifier_class(array &$variables): voi
   $attributes = new Attribute($variables['attributes']);
   civictheme_add_modifier_class($variables, $attributes->getClass()->value());
 
-  // Remove class from attributes to avoid duplicated 'class' attribute on
-  // the element.
-  unset($variables['attributes']['class']);
 }
 
 /**
