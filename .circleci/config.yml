@@ -232,6 +232,9 @@ job-build: &job-build
         command: ./scripts/drevops/build.sh
         no_output_timeout: 30m
     - run:
+        name: Audit code with shipshape
+        command: docker compose exec -T cli /usr/local/bin/shipshape
+    - run:
         name: Lint code with PHPCS
         command: docker compose exec -T cli vendor/bin/phpcs -v || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
