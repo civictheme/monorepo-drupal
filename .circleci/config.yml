@@ -171,7 +171,7 @@ job-build-isolated: &job-build-isolated
 
     - run:
         name: Audit code with shipshape
-        command: /usr/local/bin/shipshape
+        command: /usr/local/bin/shipshape -f shipshape.yml
 
     - run:
         name: Lint code with PHPCS
