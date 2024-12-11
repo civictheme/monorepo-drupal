@@ -163,6 +163,10 @@ job-build-isolated: &job-build-isolated
         working_directory: web/themes/contrib/civictheme
 
     - run:
+        name: Audit code with shipshape
+        command: /usr/local/bin/shipshape
+
+    - run:
         name: Lint code with PHPCS
         command: vendor/bin/phpcs || [ "${CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
         working_directory: web/themes/contrib/civictheme/build
