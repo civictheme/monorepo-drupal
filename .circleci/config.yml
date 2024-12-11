@@ -171,7 +171,7 @@ job-build-isolated: &job-build-isolated
 
     - run:
         name: Audit code with shipshape
-        command: /usr/local/bin/shipshape -f shipshape.yml
+        command: /usr/local/bin/shipshape run
 
     - run:
         name: Lint code with PHPCS
@@ -240,7 +240,7 @@ job-build: &job-build
         no_output_timeout: 30m
     - run:
         name: Audit code with shipshape
-        command: docker compose exec -T cli /usr/local/bin/shipshape
+        command: docker compose exec -T cli /usr/local/bin/shipshape run
     - run:
         name: Lint code with PHPCS
         command: docker compose exec -T cli vendor/bin/phpcs -v || [ "${DREVOPS_CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
