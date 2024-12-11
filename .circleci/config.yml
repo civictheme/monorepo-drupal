@@ -152,7 +152,7 @@ job-build-isolated: &job-build-isolated
         command: |
           curl -L -o shipshape https://github.com/salsadigitalauorg/shipshape/releases/download/v1.0.0-alpha.1.3.1/shipshape-Linux-x86_64
           chmod +x shipshape
-          mv shipshape /usr/local/bin/shipshape
+          sudo mv shipshape /usr/local/bin/shipshape
 
     - run:
         name: Assemble the codebase
