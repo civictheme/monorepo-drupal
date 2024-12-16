@@ -187,6 +187,16 @@ final class CivicthemeConstants {
   const OPTOUT_VIEWS_STYLE_TABLE = 'CivicThemeOptoutViewsStyleTable';
 
   /**
+   * Defines an optout string for card summary ellipsis.
+   */
+  const OPTOUT_SUMMARY_HIDE_ELLIPSIS = 'CivicThemeOptoutSummaryHideEllipsis';
+
+  /**
+   * Form property to add to opt-in a form element for rendering by CivicTheme.
+   */
+  const CIVICTHEME_FORM_ELEMENT_PROPERTY = '#civictheme_form_element';
+
+  /**
    * Defines Tooter Navigation Menu "default_menu" value.
    */
   const FOOTER_DEFAULT_MENU = 'civictheme-footer';

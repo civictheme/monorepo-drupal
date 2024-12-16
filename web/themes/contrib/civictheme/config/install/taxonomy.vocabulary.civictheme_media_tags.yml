@@ -3,5 +3,6 @@ status: true
 dependencies: {  }
 name: 'Media tags'
 vid: civictheme_media_tags
-description: ''
+description: null
 weight: 0
+new_revision: false

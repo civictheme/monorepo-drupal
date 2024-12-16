@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Serialization\Yaml;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class CircleCiConfigTest.
@@ -35,7 +35,7 @@ class CircleCiConfigTest extends TestCase {
     if (!$file) {
       throw new \RuntimeException('Unable to read CircleCI config file.');
     }
-    $this->config = Yaml::decode($file);
+    $this->config = Yaml::parse($file);
   }
 
   /**

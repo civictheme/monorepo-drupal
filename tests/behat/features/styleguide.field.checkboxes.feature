@@ -19,7 +19,7 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-1 input[id='edit-test-checkboxes-1-option-3']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-1 input[id='edit-test-checkboxes-1-option-4']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-1 input[id='edit-test-checkboxes-1-option-5']" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-1 input[required]" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-1.ct-field--required input" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-1 input[disabled]" element
 
     # Validate: Checkboxes, Title visible, default value, no description, no error, required, with attributes
@@ -49,8 +49,8 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-2 input[id='edit-test-checkboxes-2-option-5']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-2 input[id='edit-test-checkboxes-2-option-5'][data-test='test-attribute-value']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-2 input[id='edit-test-checkboxes-2-option-5'].test-class" element
-    And I should see a ".ct-field.js-form-item-test-checkboxes-2 input[required]" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-2 input[disabled]" element
+    And I should see a ".ct-field.js-form-item-test-checkboxes-2.ct-field--required input" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-2.ct-field--disabled input[disabled]" element
 
     # Validate: Checkboxes, Title visually hidden, default value, description, no error
     And I should see an ".ct-field.js-form-item-test-checkboxes-3" element
@@ -64,8 +64,8 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 input[id='edit-test-checkboxes-3-option-3']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 input[id='edit-test-checkboxes-3-option-4']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 input[id='edit-test-checkboxes-3-option-5']" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-3 input[required]" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-3 input[disabled]" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-3.ct-field--required input" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-3.ct-field--disabled input[disabled]" element
 
     # Validate: Checkboxes, Title hidden, no default value, description, required, error
     And I should see an ".ct-field.js-form-item-test-checkboxes-4" element
@@ -78,8 +78,8 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-4 input[id='edit-test-checkboxes-4-option-3']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-4 input[id='edit-test-checkboxes-4-option-4']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-4 input[id='edit-test-checkboxes-4-option-5']" element
-    And I should see a ".ct-field.js-form-item-test-checkboxes-4 input[required]" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-4 input[disabled]" element
+    And I should see a ".ct-field.js-form-item-test-checkboxes-4.ct-field--required input" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-4.ct-field--disabled input[disabled]" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-4 .ct-field-message:contains('This is an error message')" element
 
     # Validate: Checkboxes, Title visible, default value, no description, disabled
@@ -94,5 +94,5 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-5 input[id='edit-test-checkboxes-5-option-3']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-5 input[id='edit-test-checkboxes-5-option-4']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-5 input[id='edit-test-checkboxes-5-option-5']" element
-    And I should not see a ".ct-field.js-form-item-test-checkboxes-5 input[required]" element
-    And I should see a ".ct-field.js-form-item-test-checkboxes-5 input[disabled]" element
+    And I should not see a ".ct-field.js-form-item-test-checkboxes-5.ct-field--required input" element
+    And I should see a ".ct-field.js-form-item-test-checkboxes-5.ct-field--disabled input[disabled]" element

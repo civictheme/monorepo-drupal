@@ -21,7 +21,7 @@ use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Config\FileStorage;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
@@ -572,7 +572,7 @@ function civictheme_provision__files(): void {
   $default_file_scheme = \Drupal::config('system.file')->get('default_scheme') . '://';
   foreach ($filepaths as $filepath) {
     if (file_exists($filepath)) {
-      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
+      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileExists::Replace);
       continue;
     }
 

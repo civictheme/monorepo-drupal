@@ -57,7 +57,7 @@ class Helper {
    *
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public static function loadNodeByTitle(string $title, string $type = NULL): ?Node {
+  public static function loadNodeByTitle(string $title, ?string $type = NULL): ?Node {
     $query = \Drupal::entityQuery('node')->accessCheck(FALSE);
     $query->condition('title', $title);
     if ($type) {
