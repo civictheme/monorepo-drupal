@@ -24,6 +24,7 @@ use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\OEmbedInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -120,6 +121,21 @@ function civictheme_get_layout_builder_settings_per_view_mode(string $entity_typ
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_media_get_variables(MediaInterface $media): ?array {
+  $variables = [
+    'media_name' => t('@name', ['@name' => $media->label()]),
+    'created' => civictheme_format_datetime((int) $media->getCreatedTime(), 'civictheme_short_date'),
+    'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
+  ];
+  $source = $media->getSource();
+  if ($source instanceof OEmbedInterface) {
+    $variables['name'] = t('@name', ['@name' => $media->label()]);
+    $url = $source->getMetadata($media, 'url');
+    if (!empty($url)) {
+      $variables['url'] = $url;
+    }
+    return $variables;
+  }
+
   $fid = $media->getSource()->getSourceFieldValue($media);
   /** @var \Drupal\file\FileInterface|null $file */
   $file = $fid ? File::load($fid) : NULL;
@@ -128,16 +144,15 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     return NULL;
   }
 
-  return [
+  $variables += [
     'name' => t('@name', ['@name' => $file->label()]),
-    'media_name' => t('@name', ['@name' => $media->label()]),
     'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
     'size' => ByteSizeMarkup::create($file->getSize()),
-    'created' => civictheme_format_datetime((int) $media->getCreatedTime(), 'civictheme_short_date'),
-    'changed' => civictheme_format_datetime($media->getChangedTime(), 'civictheme_short_date'),
     'icon' => civictheme_get_icon_from_file($file),
   ];
+
+  return $variables;
 }
 
 /**
