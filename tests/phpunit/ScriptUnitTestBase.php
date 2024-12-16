@@ -104,7 +104,7 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Path to a temporary file.
    */
-  protected function toTmpPath(string $filename, string $prefix = NULL): string {
+  protected function toTmpPath(string $filename, ?string $prefix = NULL): string {
     return $prefix ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
   }
 
@@ -122,7 +122,7 @@ abstract class ScriptUnitTestBase extends TestCase {
   /**
    * Create a random unique temporary directory.
    */
-  protected function tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+  protected function tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
     if (is_null($dir)) {
       $dir = sys_get_temp_dir();
     }
@@ -180,7 +180,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   - key: (string) Source path (the key from $file_structure).
    *   - value: (string) Path to a fixture file to use.
    */
-  protected function createTmpFilesFromFixtures(array $fixture_map, string $prefix = NULL): array {
+  protected function createTmpFilesFromFixtures(array $fixture_map, ?string $prefix = NULL): array {
     $files = [];
     foreach ($fixture_map as $path => $fixture_file) {
       $tmp_path = $this->toTmpPath($path, $prefix);
@@ -229,7 +229,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    *
    * @SuppressWarnings(PHPMD.ElseExpression)
    */
-  protected function replaceFixturePaths(array $fixture_map, string $prefix = NULL): array {
+  protected function replaceFixturePaths(array $fixture_map, ?string $prefix = NULL): array {
     foreach ($fixture_map as $k => $v) {
       if (is_array($v)) {
         $fixture_map[$k] = $this->replaceFixturePaths($v, $prefix);

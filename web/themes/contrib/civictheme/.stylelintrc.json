@@ -33,6 +33,7 @@
     "declaration-block-no-redundant-longhand-properties": null,
     "max-line-length": null,
     "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
     "scss/at-mixin-argumentless-call-parentheses": "always",
     "scss/at-mixin-pattern": "^_?ct-[a-z0-9\\-]+$",
     "scss/at-else-closing-brace-newline-after": null,
