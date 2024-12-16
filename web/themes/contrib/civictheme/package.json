@@ -13,6 +13,8 @@
   "scripts": {
     "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit",
     "build": "npm run dist && export STORYBOOK_FULL=1 && npm run build-storybook -- --quiet && npm run add-lint-exclusions",
+    "build:new": "node build.js base build styles styles_editor styles_admin styles_layout styles_variables js assets",
+    "build:watch:new": "node build.js base build watch styles styles_editor styles_admin styles_layout styles_variables js assets",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook -s .storybook/static",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
