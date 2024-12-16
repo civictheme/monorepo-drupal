@@ -14,7 +14,7 @@ Feature: Correct vertical tab does not focus on form validation
     And I scroll to an element with id "edit-components-footer"
     Then I click on ".vertical-tabs__menu-item a[href='#edit-components-footer']" element
     And I fill in "Footer background image path" with "dummy-text"
-    Then I click on ".vertical-tabs__menu-item a[href='#edit-components-navigation']" element
+    Then I click on ".vertical-tabs__menu-item a[href='#edit-components-skip-link']" element
     And I press "Save configuration"
 
     And I scroll to an element with id "edit-components-footer"

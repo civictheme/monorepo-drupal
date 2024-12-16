@@ -196,4 +196,19 @@ final class CivicthemeConstants {
    */
   const CIVICTHEME_FORM_ELEMENT_PROPERTY = '#civictheme_form_element';
 
+  /**
+   * Defines Tooter Navigation Menu "default_menu" value.
+   */
+  const FOOTER_DEFAULT_MENU = 'civictheme-footer';
+
+  /**
+   * Defines Primary Navigation Menu "default_menu" value.
+   */
+  const PRIMARY_NAVIGATION_DEFAULT_MENU = 'civictheme-primary-navigation';
+
+  /**
+   * Defines Secondary Navigation Menu "default_menu" value.
+   */
+  const SECONDARY_NAVIGATION_DEFAULT_MENU = 'civictheme-secondary-navigation';
+
 }
