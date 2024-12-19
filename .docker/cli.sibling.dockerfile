@@ -63,6 +63,9 @@ RUN mkdir -p web/themes/contrib/civictheme \
     && mkdir -p web/modules/custom/civictheme_dev \
     && mkdir -p web/modules/custom/cs_generated_content
 
+# Add shipshape binary so that we can execute audits.
+COPY --from=ghcr.io/salsadigitalauorg/shipshape:latest /usr/local/bin/shipshape /usr/local/bin/shipshape
+
 # Copy files required for PHP dependencies resolution.
 # Note that composer.lock is not explicitly copied, allowing to run the stack
 # without existing lock file (this is not advisable, but allows to build

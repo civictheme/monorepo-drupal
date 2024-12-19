@@ -65,6 +65,10 @@ aliases:
   - &runner_config
     # Location of checked-out files within "runner" container.
     working_directory: &working_directory ~/project
+    parameters:
+      shipshape_run_audit:
+        default: false
+        type: boolean
     environment:
       DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
       DEPLOY_SSH_FINGERPRINT1: *deploy_ssh_fingerprint1
@@ -269,6 +273,13 @@ job-build: &job-build
             docker compose exec -T cli php -d memory_limit=-1 vendor/bin/behat --colors --strict --rerun --profile="${DREVOPS_CI_BEHAT_PROFILE:-default}" || \
             [ "${DREVOPS_CI_BEHAT_IGNORE_FAILURE:-0}" -eq 1 ]
         no_output_timeout: 30m
+    # Optionally run Shipshape audit.
+    - when:
+        condition: << parameters.shipshape_run_audit >>
+        steps:
+          - run:
+              name: Audit code with shipshape
+              command: docker compose exec -T cli sh -c "/usr/local/bin/shipshape -e -o junit > /app/.logs/test_results/shipshape-results.xml" || [ "${DREVOPS_CI_SHIPSHAPE_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Process test logs and artifacts
         command: |
@@ -360,6 +371,10 @@ jobs:
   # GovCMS profile, no sub-theme.
   build-govcms:
     <<: *runner_config
+    parameters:
+      shipshape_run_audit:
+        default: true
+        type: boolean
     environment:
       DRUPAL_PROFILE: govcms
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
@@ -370,6 +385,10 @@ jobs:
   # GovCMS profile, sub-theme. Longest test run.
   build-govcms-subtheme:
     <<: *runner_config
+    parameters:
+      shipshape_run_audit:
+        default: true
+        type: boolean
     environment:
       DRUPAL_PROFILE: govcms
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
