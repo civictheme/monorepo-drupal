@@ -4,17 +4,6 @@ checks:
       severity: high
       path: web/themes/contrib/civictheme
       disallowed-pattern: '^(adminer|phpmyadmin|bigdump)?\.php$'
-#    - name: '[FILE] Executable files'
-#      severity: normal
-#      path: ./
-#      disallowed-pattern: '.*\.(bin|deb|dmg|elf|exe|msi|sh)+$'
-#      exclude-pattern: '^(vendor|web/core|web/modules/contrib)+.*'
-#    - name: '[FILE] Sensitive public files'
-#      path: web/sites/default/files
-#      disallowed-pattern: '.*\.(sql|php|sh|py|bz2|gz|tar|tgz|zip)+$'
-#      exclude-pattern: '.*\.(css|js)\.gz?$'
-#      skip-dir:
-#        - private
     - name: '[FILE] Executable files'
       severity: normal
       path: web/themes/contrib/civictheme
@@ -30,249 +19,105 @@ checks:
       skip-dir:
         - node_modules/.cache/storybook
         - tests
-  yaml:
-    - name: '[FILE] Validate install profile'
-      file: core.extension.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: profile
-          value: govcms
-    - name: '[FILE] Disallowed permissions'
-      severity: high
-      pattern: user.role.*.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: is_admin
-          value: false
-          truthy: true
-          optional: true
-        - key: permissions
-          is-list: true
-          optional: true
-          disallowed:
-            - administer config permissions
-            - administer modules
-            - administer permissions
-            - administer seckit
-            - administer site configuration
-            - administer software updates
-            - import configuration
-            - synchronize configuration
-            - use PHP for google analytics tracking visibility
-    - name: '[FILE] Disallowed permissions for anonymous role'
-      file: user.role.anonymous.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: permissions
-          is-list: true
-          optional: true
-          disallowed:
-            - 'access administration pages'
-            - 'access content overview'
-            - 'access site reports'
-            - 'access user profiles'
-            - 'administer account settings'
-            - 'administer blocks'
-            - 'administer comment types'
-            - 'administer comments'
-            - 'administer contact forms'
-            - 'administer content types'
-            - 'administer filters'
-            - 'administer image styles'
-            - 'administer menu'
-            - 'administer nodes'
-            - 'administer search'
-            - 'administer shortcuts'
-            - 'administer taxonomy'
-            - 'administer themes'
-            - 'administer url aliases'
-            - 'administer users'
-            - 'administer views'
-            - 'bypass node access'
-            - 'create url aliases'
-            - 'delete all revisions'
-            - 'revert all revisions'
-            - 'view all revisions'
-            - 'view the administration theme'
-            - 'view user email addresses'
-#    - name: '[FILE] Validate TFA config'
-#      severity: high
-#      file: tfa.settings.yml
+#  yaml:
+#    - name: '[FILE] Validate install profile'
+#      file: core.extension.yml
 #      ignore-missing: true
 #      path: config/default
 #      values:
-#        - key: enabled
-#          value: true
-#          truthy: true
-#        - key: required_roles.authenticated
-#          value: authenticated
-    - name: '[FILE] Ensure only admins can register accounts'
-      file: user.settings.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: register
-          value: admin_only
-    - name: '[FILE] Ensure CSS & JS aggregations are enabled'
-      file: system.performance.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: css.preprocess
-          value: true
-          truthy: true
-        - key: js.preprocess
-          value: true
-          truthy: true
-    - name: '[FILE] Ensure no error log displayed'
-      file: system.logging.yml
-      ignore-missing: true
-      path: config/default
-      values:
-        - key: error_level
-          value: hide
-    - name: '[FILE] Detect module files in theme folder'
-      pattern: '.*.info.yml'
-      ignore-missing: true
-      path: 'themes'
-      values:
-        - key: type
-          value: theme
-  drush-yaml:
-    - name: '[DATABASE] Validate active install profile'
-      command: 'config:get --include-overridden core.extension'
-      config-name: core.extension
-      values:
-        - key: profile
-          value: govcms
-#    - name: '[DATABASE] Validate active TFA'
+#        - key: profile
+#          value: govcms
+#    - name: '[FILE] Disallowed permissions'
 #      severity: high
-#      command: 'config:get --include-overridden tfa.settings'
-#      config-name: tfa.settings
-#      values:
-#        - key: enabled
-#          value: true
-#          truthy: true
-#        - key: required_roles.authenticated
-#          value: authenticated
-    - name: '[DATABASE] Ensure only admins can register accounts'
-      command: 'config:get --include-overridden user.settings'
-      config-name: user.settings
-      values:
-        - key: register
-          value: admin_only
-    - name: '[DATABASE] Ensure CSS & JS aggregations are enabled'
-      command: 'config:get --include-overridden system.performance'
-      config-name: system.performance
-      values:
-        - key: css.preprocess
-          value: true
-          truthy: true
-        - key: js.preprocess
-          value: true
-          truthy: true
-    - name: '[DATABASE] Ensure no error log displayed'
-      command: 'config:get --include-overridden system.logging'
-      config-name: user.settings
-      values:
-        - key: error_level
-          value: hide
-#  drupal-file-module:
-#    - name: '[FILE] Verify enabled modules'
-#      severity: high
+#      pattern: user.role.*.yml
+#      ignore-missing: true
 #      path: config/default
-#      required:
-#        - govcms_security
-#        - httpav
-#        - lagoon_logs
-#        - tfa
-#      disallowed:
-#        - clamav
-#        - dblog
-#        - devel
-#        - module_permissions_ui
-#        - statistics
-#        - update
-#        - redirect_404
-    - name: '[FILE] Deprecated modules'
-      path: config/default
-      required: []
-      disallowed:
-        - redirect_404
-#  drupal-db-module:
-#    - name: '[DATABASE] Active modules audit'
+#      values:
+#        - key: is_admin
+#          value: false
+#          truthy: true
+#          optional: true
+#        - key: permissions
+#          is-list: true
+#          optional: true
+#          disallowed:
+#            - administer config permissions
+#            - administer modules
+#            - administer permissions
+#            - administer seckit
+#            - administer site configuration
+#            - administer software updates
+#            - import configuration
+#            - synchronize configuration
+#            - use PHP for google analytics tracking visibility
+#    - name: '[FILE] Disallowed permissions for anonymous role'
+#      file: user.role.anonymous.yml
+#      ignore-missing: true
+#      path: config/default
+#      values:
+#        - key: permissions
+#          is-list: true
+#          optional: true
+#          disallowed:
+#            - 'access administration pages'
+#            - 'access content overview'
+#            - 'access site reports'
+#            - 'access user profiles'
+#            - 'administer account settings'
+#            - 'administer blocks'
+#            - 'administer comment types'
+#            - 'administer comments'
+#            - 'administer contact forms'
+#            - 'administer content types'
+#            - 'administer filters'
+#            - 'administer image styles'
+#            - 'administer menu'
+#            - 'administer nodes'
+#            - 'administer search'
+#            - 'administer shortcuts'
+#            - 'administer taxonomy'
+#            - 'administer themes'
+#            - 'administer url aliases'
+#            - 'administer users'
+#            - 'administer views'
+#            - 'bypass node access'
+#            - 'create url aliases'
+#            - 'delete all revisions'
+#            - 'revert all revisions'
+#            - 'view all revisions'
+#            - 'view the administration theme'
+#            - 'view user email addresses'
+#    - name: '[FILE] Ensure only admins can register accounts'
+#      file: user.settings.yml
+#      ignore-missing: true
+#      path: config/default
+#      values:
+#        - key: register
+#          value: admin_only
+#    - name: '[FILE] Ensure no error log displayed'
+#      file: system.logging.yml
+#      ignore-missing: true
+#      path: config/default
+#      values:
+#        - key: error_level
+#          value: hide
+#    - name: '[FILE] Detect module files in theme folder'
+#      pattern: '.*.info.yml'
+#      ignore-missing: true
+#      path: 'themes'
+#      values:
+#        - key: type
+#          value: theme
+#  yamllint:
+#    - name: '[FILE] Yaml lint platform files'
 #      severity: high
-#      required:
-#        - govcms_security
-#        - httpav
-#        - lagoon_logs
-#        - tfa
-#      disallowed:
-#        - clamav
-#        - dblog
-#        - devel
-#        - module_permissions_ui
-#        - statistics
-#        - update
-#        - redirect_404
-    - name: '[DATABASE] Deprecated modules'
-      required: []
-      disallowed:
-        - redirect_404
-  drupal-db-permissions:
-    - name: '[DATABASE] Disallowed permissions on active site'
-      severity: high
-      disallowed:
-        - administer config permissions
-        - administer modules
-        - administer permissions
-        - administer seckit
-        - administer site configuration
-        - administer software updates
-        - import configuration
-        - synchronize configuration
-        - use PHP for google analytics tracking visibility
-#  drupal-role-permissions:
-#    - name: '[DATABASE] Authenticated role check'
+#      files:
+#        - .lagoon.yml
+#        - docker-compose.yml
+#      ignore-missing: true
+#    - name: '[FILE] Yaml lint theme files'
 #      severity: high
-#      rid: 'authenticated'
-#      required-permissions:
-#        - 'setup own tfa'
-  drupal-admin-user:
-    - name: '[DATABASE] Active user roles admin check'
-      severity: high
-  drupal-user-forbidden:
-    - name: '[DATABASE] Active User 1 check'
-  yamllint:
-    - name: '[FILE] Yaml lint platform files'
-      severity: high
-      files:
-        - .lagoon.yml
-        - docker-compose.yml
-      ignore-missing: true
-    - name: '[FILE] Yaml lint theme files'
-      severity: high
-      path: web/themes/contrib/civictheme
-      pattern: ".*.yml"
-      exclude-pattern: node_modules
-      ignore-missing: true
-#    - name: '[FILE] Yaml lint theme files (no web prefix)'
-#      severity: high
-#      path: themes
+#      path: web/themes/contrib/civictheme
 #      pattern: ".*.yml"
 #      exclude-pattern: node_modules
 #      ignore-missing: true
-  phpstan:
-    - name: '[FILE] Banned PHP functions and methods list'
-      configuration: ./phpstan-govcms.neon
-      paths:
-        - web/themes/contrib/civictheme
-#    - name: '[FILE] Banned PHP methods and classes'
-#      severity: low
-#      configuration: vendor/govcms/scaffold-tooling/phpstan-extra.neon
-#      paths:
-#        - web/themes/custom
-#        - themes
