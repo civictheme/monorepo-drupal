@@ -1,4 +1,6 @@
 parameters:
+  paths:
+      - web/themes/contrib
   # Disable all phpstan rules.
   customRulesetUsed: true
   fileExtensions:

@@ -189,7 +189,6 @@ commands:
     cmd: |
       ahoy cli sh -c "/usr/local/bin/shipshape -e"
       ahoy cli vendor/bin/phpstan --configuration=/app/phpstan-govcms.neon
-      ahoy cli vendor/bin/phpstan --configuration=vendor/govcms/scaffold-tooling/phpstan-extra.neon
 
   test:
     usage: Run all tests.
