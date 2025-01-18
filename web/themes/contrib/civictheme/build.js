@@ -24,11 +24,17 @@ Notes:
 - Watch does not trigger on a directory change, only on a (scss, twig, js) file change.
 */
 
-const fs = require('fs')
-const path = require('path')
-const { globSync } = require('node:fs')
-const { execSync } = require('child_process')
-const sass = require('sass')
+import fs from 'fs'
+import path from 'path'
+// import { globSync } from 'node:fs'
+import { globSync } from 'glob' // Remove this and use the above when node 22 becomes available.
+import { execSync, spawn } from 'child_process'
+import * as sass from 'sass'
+
+import scssVariableImporter from './.storybook/importer.scss_variables.js'
+import iconUtils from './components/00-base/icon/icon.utils.js'
+import backgroundUtils from './components/00-base/background/background.utils.js'
+import logoUtils from './components/02-molecules/logo/logo.utils.js'
 
 // ----------------------------------------------------------------------------- UTILITIES
 
@@ -65,6 +71,10 @@ function loadStyle(path, cwd) {
   return result.join('\n')
 }
 
+function stripJS(js) {
+  return js.replace(/\/\/# sourceMappingURL=.*\.(map|json)/gi, '')
+}
+
 function fullPath(filepath) {
   return path.resolve(PATH, filepath)
 }
@@ -73,41 +83,51 @@ function fullPath(filepath) {
 const config = {
   build: false,
   watch: false,
+  cli: false,
   combine: false,
   styles: false,
   styles_editor: false,
   styles_admin: false,
   styles_layout: false,
   styles_variables: false,
-  js: false,
+  styles_stories: false,
+  js_drupal: false,
+  js_storybook: false,
   assets: false,
+  constants: false,
   base: false,
+  storybook: false,
 }
 
 const flags = process.argv.slice(2)
-const buildType = ['build', 'watch']
-const buildWatchFlagCount = flags.filter(f => buildType.indexOf(f) >= 0).length
+if (flags[0] !== 'cli') {
+  const buildType = ['build', 'watch']
+  const buildWatchFlagCount = flags?.filter(f => buildType.indexOf(f) >= 0).length
 
-if (flags.length <= 2 && buildWatchFlagCount <= 2) {
-  // If build and/or watch, or neither..
-  config.build = buildWatchFlagCount === 0 || flags.indexOf('build') >= 0
-  config.watch = flags.indexOf('watch') >= 0
-  config.combine = true
-  config.styles = true
-  config.styles_editor = true
-  config.styles_variables = true
-  config.js = true
-  config.assets = true
+  if (flags.length <= 2 && buildWatchFlagCount <= 2) {
+    // If build and/or watch, or neither..
+    config.build = buildWatchFlagCount === 0 || flags.indexOf('build') >= 0
+    config.watch = flags.indexOf('watch') >= 0
+    config.combine = true
+    config.styles = true
+    config.styles_editor = true
+    config.styles_variables = true
+    config.js_drupal = true
+    config.js_storybook = true
+    config.assets = true
+  } else {
+    // Fully configured from command line - everything disabled by default.
+    flags.forEach((flag) => {
+      config[flag] = true
+    })
+  }
 } else {
-  // Fully configured from command line - everything disabled by default.
-  flags.forEach((flag) => {
-    config[flag] = true
-  })
+  config.cli = true
 }
 
 // ----------------------------------------------------------------------------- PATHS
 
-const PATH = __dirname
+const PATH = import.meta.dirname
 
 const THEME_NAME              = PATH.split('/').reverse()[0]
 const DIR_CIVICTHEME          = fullPath('../../contrib/civictheme/')
@@ -125,6 +145,7 @@ const SCRIPT_NAME             = config.base ? 'civictheme' : 'scripts'
 
 const STYLE_FILE_IN           = `${COMPONENT_DIR}/style.scss`
 const STYLE_VARIABLE_FILE_IN  = `${COMPONENT_DIR}/style.css_variables.scss`
+const STYLE_STORIES_FILE_IN   = `${COMPONENT_DIR}/style.stories.scss`
 const STYLE_THEME_FILE_IN     = `${DIR_ASSETS_IN}/sass/theme.scss`
 const STYLE_EDITOR_FILE_IN    = `${DIR_ASSETS_IN}/sass/theme.editor.scss`
 const STYLE_ADMIN_FILE_IN     = `${DIR_ASSETS_IN}/sass/theme.admin.scss`
@@ -134,11 +155,13 @@ const STYLE_EDITOR_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.editor.css`
 const STYLE_VARIABLE_FILE_OUT = `${DIR_OUT}/${STYLE_NAME}.variables.css`
 const STYLE_ADMIN_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.admin.css`
 const STYLE_LAYOUT_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.layout.css`
+const STYLE_STORIES_FILE_OUT  = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 
 const VAR_CT_ASSETS_DIRECTORY = `$ct-assets-directory: '/themes/custom/${THEME_NAME}/dist/assets/';`
 
 const JS_FILE_OUT             = `${DIR_OUT}/${SCRIPT_NAME}.js`
-const JS_CIVIC_IMPORTS        = `${COMPONENT_DIR}/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js`
+const JS_STORYBOOK_FILE_OUT   = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
+const JS_CIVIC_IMPORTS        = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
 const JS_LIB_IMPORTS          = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
 const JS_ASSET_IMPORTS        = [
   `${DIR_CIVICTHEME}/assets/js/**/*.js`,
@@ -166,16 +189,17 @@ function build() {
     const stylecss = [
       VAR_CT_ASSETS_DIRECTORY,
       loadStyle(STYLE_FILE_IN, COMPONENT_DIR),
-      getStyleImport(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR),
+      config.styles_variables ? getStyleImport(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR) : '',
       getStyleImport(STYLE_THEME_FILE_IN, PATH),
       config.base ? [
-        getStyleImport(STYLE_ADMIN_FILE_IN, PATH),
-        loadStyle(STYLE_LAYOUT_FILE_IN, PATH),
-      ].join('\n') : ''
+        config.styles_admin ? getStyleImport(STYLE_ADMIN_FILE_IN, PATH) : '',
+        config.styles_layout ? loadStyle(STYLE_LAYOUT_FILE_IN, PATH) : '',
+      ].join('\n') : '',
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
-    fs.writeFileSync(STYLE_FILE_OUT, compiled.css, 'utf-8')
+    const compiledImportAtTop = compiled.css.split('\n').sort(a => a.indexOf('@import') === 0 ? -1 : 0).join('\n')
+    fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
     console.log(`Saved: Component styles`)
   }
 
@@ -213,35 +237,77 @@ function build() {
     console.log(`Saved: Variable styles`)
   }
 
+  if (config.styles_stories) {
+    const storybookcss = [
+      VAR_CT_ASSETS_DIRECTORY,
+      loadStyle(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
+    ].join('\n')
+
+    const compiled = sass.compileString(storybookcss, { loadPaths: [COMPONENT_DIR, PATH] })
+    fs.writeFileSync(STYLE_STORIES_FILE_OUT, compiled.css, 'utf-8')
+    console.log(`Saved: Stories styles`)
+  }
+
   // --------------------------------------------------------------------------- SCRIPTS
-  if (config.js) {
+  if (config.js_drupal || config.js_storybook) {
+    const jsComponents = []
     const jsOutData = []
 
     // Third party imports.
     JS_LIB_IMPORTS.forEach(filename => {
-      jsOutData.push(fs.readFileSync(filename, 'utf-8'))
+      jsOutData.push(stripJS(fs.readFileSync(filename, 'utf-8')))
     })
 
     // Civictheme asset imports.
     globSync(JS_ASSET_IMPORTS).forEach(filename => {
-      jsOutData.push(fs.readFileSync(filename, 'utf-8'))
+      jsOutData.push(stripJS(fs.readFileSync(filename, 'utf-8')))
     })
 
     // Civictheme component imports.
     globSync(JS_CIVIC_IMPORTS).forEach(filename => {
       const name = `${THEME_NAME}_${filename.split('/').reverse()[0].replace('.js', '').replace(/-/g, '_')}`
       const body = fs.readFileSync(filename, 'utf-8')
-      const outBody = `Drupal.behaviors.${name} = {attach: function (context, settings) {\n${body}\n}};`
-      jsOutData.push(outBody)
+      jsComponents.push({ name, body })
     })
 
-    fs.writeFileSync(JS_FILE_OUT, jsOutData.join('\n'), 'utf-8')
-    console.log(`Saved: Compiled javascript`)
+    // Write JS file with drupal behaviour wrapper.
+    if (config.js_drupal) {
+      fs.writeFileSync(JS_FILE_OUT, [
+        ...jsOutData,
+        ...jsComponents.map(i => {
+          return `Drupal.behaviors.${i.name} = {attach: function (context, settings) {\n${i.body}\n}};`
+        })
+      ].join('\n'), 'utf-8')
+      console.log(`Saved: Compiled javascript (drupal)`)
+    }
+
+    // Write JS file with dom content loaded wrapper.
+    if (config.js_storybook) {
+      fs.writeFileSync(JS_STORYBOOK_FILE_OUT, [
+        ...jsOutData,
+        ...jsComponents.map(i => {
+          return `document.addEventListener('DOMContentLoaded', () => {\n${i.body}\n});`
+        })
+      ].join('\n'), 'utf-8')
+      console.log(`Saved: Compiled javascript (storybook)`)
+    }
   }
 
   // --------------------------------------------------------------------------- ASSETS
   if (config.assets) {
     runCommand(`rsync -a --delete --exclude js --exclude sass ${DIR_ASSETS_IN}/ ${DIR_ASSETS_OUT}/`)
+  }
+
+  // --------------------------------------------------------------------------- CONSTANTS
+  if (config.constants) {
+    const constants = {
+      BACKGROUNDS: backgroundUtils.getBackgrounds(),
+      ICONS: iconUtils.getIcons(),
+      LOGOS: logoUtils.getLogos(),
+      SCSS_VARIABLES: scssVariableImporter.getVariables(),
+    }
+    fs.writeFileSync('./dist/constants.json', JSON.stringify(constants, null, 2), 'utf-8')
+    console.log(`Saved: Compiled constants`)
   }
 
   // --------------------------------------------------------------------------- FINISH
@@ -263,4 +329,18 @@ if (config.watch) {
       timeout = setTimeout(build, 300)
     }
   })
+}
+
+// ----------------------------------------------------------------------------- PARALLEL CLI
+if (config.cli) {
+  const scripts = flags.slice(1)
+  console.log(`Running npm commands: ${scripts.join(' && ')}`)
+  scripts.forEach((script, idx) => {
+    const child = spawn('npm', ['run', script])
+    child.stdout.on('data', (data) => {
+      const color = `\x1b[3${Math.min(idx, 3) + 3}m`
+      const sData = data.toString().replaceAll(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '') // strip ANSI colours
+      process.stdout.write(`${color}${sData}`)
+    });
+  });
 }
