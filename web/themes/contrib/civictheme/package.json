@@ -19,7 +19,7 @@
     "dist:watch": "node build.js base build styles styles_editor styles_admin styles_layout styles_variables styles_stories js_drupal js_storybook assets constants watch",
     "lint": "eslint ./components ./.storybook && stylelint '{components,assets/sass}/**/*.scss'",
     "lint-fix": "eslint ./components ./.storybook --fix && stylelint 'components/**/*.scss' --fix",
-    "postinstall": "npm run uikit-install && npm run add-lint-exclusions",
+    "postinstall": "npm run uikit-install && npm run build",
     "reset": "rm -rf node_modules > /dev/null; rm -rf components > /dev/null",
     "storybook": "storybook dev -p 6006",
     "storybook-build": "npm run dist && storybook build",
