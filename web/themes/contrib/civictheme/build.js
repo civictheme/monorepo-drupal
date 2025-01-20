@@ -91,7 +91,6 @@ const config = {
   assets: false,
   constants: false,
   base: false,
-  storybook: false,
 }
 
 const flags = process.argv.slice(2)
@@ -305,7 +304,8 @@ async function build() {
 
   // --------------------------------------------------------------------------- ASSETS
   if (config.assets) {
-    runCommand(`rsync -a --delete --exclude js --exclude sass ${DIR_ASSETS_IN}/ ${DIR_ASSETS_OUT}/`)
+    runCommand(`rsync -a --delete --prune-empty-dirs --exclude .gitkeep --exclude js --exclude sass ${DIR_ASSETS_IN}/ ${DIR_ASSETS_OUT}/`)
+    console.log(`Saved: Assets ${time()}`)
   }
 
   // --------------------------------------------------------------------------- CONSTANTS
