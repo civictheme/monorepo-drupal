@@ -136,6 +136,8 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
+    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
+
     $composerjson_actual = json_decode((string) file_get_contents($expected_new_theme_dir_full . 'composer.json'), TRUE);
     $this->assertStringContainsString($composerjson['version'], $composerjson_actual['extra']['civictheme']['version']);
     $this->assertStringContainsString($composerjson['homepage'], $composerjson_actual['extra']['civictheme']['homepage']);
@@ -246,6 +248,8 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
+
+    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
 
     // Examples assertions.
     $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
