@@ -780,6 +780,9 @@ function civictheme_post_update_import_subject_card_view_mode(): void {
 function civictheme_post_update_alert_visibility_validation(): string {
   $config_name = 'views.view.civictheme_alerts';
   $config_entity_type = 'view';
+  // Get Remove the config prefix, so can get the id.
+  // @see Drupal\civictheme\CivicthemeUpdateHelper::deleteConfig().
+  // @see Drupal\Core\Config\Entity\ConfigEntityStorage\ConfigEntityStorage::getIDFromConfigName().
   $id = substr($config_name, strpos($config_name, '.', 6) + 1);
   $config_read = \Drupal::service('entity_type.manager')->getStorage($config_entity_type)->load($id);
   // Only update config if it already exists.
