@@ -141,11 +141,6 @@ job-build-isolated: &job-build-isolated
           echo "export LD_LIBRARY_PATH=/usr/local/lib" >> $BASH_ENV
 
     - run:
-        name: Install RSYNC
-        command: |
-          sudo apt install rsync
-
-    - run:
         name: Install PCOV
         command: |
           sudo pecl install pcov
