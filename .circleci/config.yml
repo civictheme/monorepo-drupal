@@ -326,6 +326,15 @@ jobs:
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 
+  build-isolated-php-83-next-version:
+    <<: *runner_config
+    docker:
+      - image: cimg/php:8.3-browsers
+    environment:
+      DRUPAL_VERSION: 11.1
+      DRUPAL_PROJECT_SHA: 11.x
+    <<: *job-build-isolated
+
   # build-isolated-php-84:
   #   <<: *runner_config
   #   docker:
