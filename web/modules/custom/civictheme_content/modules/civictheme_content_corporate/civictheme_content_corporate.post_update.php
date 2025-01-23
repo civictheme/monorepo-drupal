@@ -7,8 +7,8 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Utility\UpdateException;
 use Drupal\civictheme_content\Helper;
+use Drupal\Core\Utility\UpdateException;
 
 /**
  * Common updates.
