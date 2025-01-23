@@ -561,6 +561,12 @@ workflows:
               ignore: /^content\/.*/
             tags:
               only: /.*/
+      - build-isolated-php-83-next-version:
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
       # - build-isolated-php-84:
       #     filters:
       #       branches:
