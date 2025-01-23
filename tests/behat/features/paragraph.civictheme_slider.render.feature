@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_slider
+@p0 @civictheme @civictheme_slider @test1
 Feature: Slider render
 
   Background:
@@ -18,6 +18,7 @@ Feature: Slider render
       | title                   | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  |
       | [TEST] Page slider test | 1      |            |                        |                                  |                      |
       | [TEST] Page slider ref  | 1      |            |                        |                                  |                      |
+      | [TEST] Event slider ref | 1      |            |                        |                                  |                      |
       | [TEST] Page slider 1    | 1      | 2021-05-29 | [TEST] Summary slide 1 | [TEST] Topic 11, [TEST] Topic 12 | [TEST] Image Slide 1 |
       | [TEST] Page slider 2    | 1      | 2021-05-30 | [TEST] Summary slide 2 | [TEST] Topic 21, [TEST] Topic 22 | [TEST] Image Slide 2 |
 
@@ -132,7 +133,7 @@ Feature: Slider render
   @api @javascript
   Scenario: Slider, Reference Event slide light, background
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page slider ref" has "civictheme_slider" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Event slider ref" has "civictheme_slider" paragraph:
       | field_c_p_title            | [TEST] Slider ref |
       | field_c_p_theme            | light             |
       | field_c_p_vertical_spacing | both              |
@@ -142,7 +143,7 @@ Feature: Slider render
       | field_c_p_reference      | [TEST] Event 1 ref |
       | field_c_p_image_position | right              |
 
-    When I visit "civictheme_page" "[TEST] Page slider ref"
+    When I visit "civictheme_page" "[TEST] Event slider ref"
     And I wait 5 second
 
     Then I should see the text "[TEST] Event 1 ref"
