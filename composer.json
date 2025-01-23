@@ -88,8 +88,10 @@
             "php-http/discovery": true,
             "phpstan/extension-installer": true,
             "pyrech/composer-changelogs": true,
-            "wikimedia/composer-merge-plugin": true,
-            "tbachert/spi": true
+            "simplesamlphp/composer-module-installer": true,
+            "simplesamlphp/composer-xmlprovider-installer": true,
+            "tbachert/spi": true,
+            "wikimedia/composer-merge-plugin": true
         },
         "platform": {
             "php": "8.3.8"

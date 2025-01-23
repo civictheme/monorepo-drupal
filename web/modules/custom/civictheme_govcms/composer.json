@@ -9,7 +9,7 @@
     },
     "require": {
         "php": ">=8.1",
-        "govcms/govcms": "^3"
+        "govcms/govcms": "dev-3.x-develop"
     },
     "extra": {
         "drush": {
