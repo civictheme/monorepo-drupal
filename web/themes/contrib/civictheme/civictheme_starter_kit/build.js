@@ -7,17 +7,8 @@ This is a simplified build system for civictheme, designed to:
 - Speed up build time
 - Improve auditability by reducing dependencies / external code
 
-Build by calling:
-
-  npm run dist
-
-Build and watch by calling:
-
-  npm run dist:watch
-
 Notes:
 
-- Requires Node version 22 (for the built in glob feature).
 - No Windows support (unless through WSL).
 - This relies on command line rsync.
 - This does not support uglify or minifying JS / CSS code.
@@ -26,55 +17,12 @@ Notes:
 
 import fs from 'fs'
 import path from 'path'
-// import { globSync } from 'node:fs'
-import { globSync } from 'glob' // Remove this and use the above when node 22 becomes available.
+import { globSync } from 'glob'
 import { execSync, spawn } from 'child_process'
 import * as sass from 'sass'
 
-// ----------------------------------------------------------------------------- UTILITIES
+// ----------------------------------------------------------------------------- BOOTSTRAP
 
-function runCommand(command) {
-  execSync(command, (error, stdout, stderr) => {
-    if (error) {
-      console.log(`error: ${error.message}`)
-      return
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`)
-      return
-    }
-    if (stdout) {
-      console.log(stdout)
-    }
-  })
-}
-
-function getStyleImport(path, cwd) {
-  return globSync(path, { cwd }).sort((a, b) => a.localeCompare(b)).map(i => `@import "${i}";`).join('\n')
-}
-
-function loadStyle(path, cwd) {
-  const result = []
-  let data = fs.readFileSync(path, 'utf-8')
-
-  data.split('\n').forEach(line => {
-    // Only glob imports with *!()| characters.
-    const match = /@import '(.*[\*!()|].*)'/.exec(line)
-    result.push(match ? getStyleImport(match[1], cwd) : line)
-  })
-
-  return result.join('\n')
-}
-
-function stripJS(js) {
-  return js.replace(/\/\/# sourceMappingURL=.*\.(map|json)/gi, '')
-}
-
-function fullPath(filepath) {
-  return path.resolve(PATH, filepath)
-}
-
-// ----------------------------------------------------------------------------- CONFIGURATION
 const config = {
   build: false,
   watch: false,
@@ -91,7 +39,6 @@ const config = {
   assets: false,
   constants: false,
   base: false,
-  storybook: false,
 }
 
 const flags = process.argv.slice(2)
@@ -122,7 +69,8 @@ if (flags[0] !== 'cli') {
   config.cli = true
 }
 
-// ----------------------------------------------------------------------------- PATHS
+let startTime = new Date().getTime()
+let lastTime = null
 
 const PATH = import.meta.dirname
 
@@ -171,39 +119,45 @@ const CONSTANTS_BACKGROUND_UTIL   = `${COMPONENT_DIR}/00-base/background/backgro
 const CONSTANTS_ICON_UTIL         = `${COMPONENT_DIR}/00-base/icon/icon.utils.js`
 const CONSTANTS_LOGO_UTIL         = `${COMPONENT_DIR}/02-molecules/logo/logo.utils.js`
 
-async function build() {
-  const startTime = new Date().getTime()
-  let lastTime = startTime
-  const time = (full) => {
-    const now = new Date().getTime()
-    const rtn = now - (full ? startTime : lastTime)
-    lastTime = now
-    return `[ ${rtn} ms ]`
-  }
+if (config.build) {
+  build()
+}
 
-  // --------------------------------------------------------------------------- CREATE DIR
+if (config.watch) {
+  watch()
+}
+
+if (config.cli) {
+  cli()
+}
+
+// ----------------------------------------------------------------------------- BUILD STEPS
+
+function buildOutDirectory() {
   if (!fs.existsSync(DIR_OUT)) {
     fs.mkdirSync(DIR_OUT)
   }
+}
 
-  // --------------------------------------------------------------------------- COMBINED FOLDER
+function buildCombineDirectories() {
   if (config.combine && !config.base) {
     runCommand(`rsync -a --delete ${DIR_UIKIT_COMPONENTS_IN}/ ${DIR_UIKIT_COPY_OUT}/`)
     runCommand(`rsync -a --delete ${DIR_UIKIT_COPY_OUT}/ ${DIR_COMPONENTS_OUT}/`)
     runCommand(`rsync -a ${DIR_COMPONENTS_IN}/ ${DIR_COMPONENTS_OUT}/`)
     console.log(`Saved: Combined folders ${time()}`)
   }
+}
 
-  // --------------------------------------------------------------------------- STYLES
+function buildStyles() {
   if (config.styles) {
     const stylecss = [
       VAR_CT_ASSETS_DIRECTORY,
-      loadStyle(STYLE_FILE_IN, COMPONENT_DIR),
-      config.styles_variables ? getStyleImport(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR) : '',
-      getStyleImport(STYLE_THEME_FILE_IN, PATH),
+      loadStyleFile(STYLE_FILE_IN, COMPONENT_DIR),
+      config.styles_variables ? getImportsFromGlob(STYLE_VARIABLE_FILE_IN, COMPONENT_DIR) : '',
+      getImportsFromGlob(STYLE_THEME_FILE_IN, PATH),
       config.base ? [
-        config.styles_admin ? getStyleImport(STYLE_ADMIN_FILE_IN, PATH) : '',
-        config.styles_layout ? loadStyle(STYLE_LAYOUT_FILE_IN, PATH) : '',
+        config.styles_admin ? getImportsFromGlob(STYLE_ADMIN_FILE_IN, PATH) : '',
+        config.styles_layout ? loadStyleFile(STYLE_LAYOUT_FILE_IN, PATH) : '',
       ].join('\n') : '',
     ].join('\n')
 
@@ -212,53 +166,64 @@ async function build() {
     fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
     console.log(`Saved: Component styles ${time()}`)
   }
+}
 
+function buildStylesEditor() {
   if (config.styles_editor) {
     const editorcss = [
       VAR_CT_ASSETS_DIRECTORY,
-      loadStyle(STYLE_EDITOR_FILE_IN, PATH),
+      loadStyleFile(STYLE_EDITOR_FILE_IN, PATH),
     ].join('\n')
 
     const compiled = sass.compileString(editorcss, { loadPaths: [PATH] })
     fs.writeFileSync(STYLE_EDITOR_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Editor styles ${time()}`)
   }
+}
 
+function buildStylesAdmin() {
   if (config.styles_admin) {
     const compiled = sass.compile(STYLE_ADMIN_FILE_IN, { loadPaths: [PATH] })
     fs.writeFileSync(STYLE_ADMIN_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Admin styles ${time()}`)
   }
+}
 
+function buildStylesLayout() {
   if (config.styles_layout) {
     const layoutcss = [
       VAR_CT_ASSETS_DIRECTORY,
-      loadStyle(STYLE_LAYOUT_FILE_IN, PATH),
+      loadStyleFile(STYLE_LAYOUT_FILE_IN, PATH),
     ].join('\n')
 
     const compiled = sass.compileString(layoutcss, { loadPaths: [PATH] })
     fs.writeFileSync(STYLE_LAYOUT_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Layout styles ${time()}`)
   }
+}
 
+function buildStylesVariables() {
   if (config.styles_variables) {
     const compiled = sass.compile(STYLE_VARIABLE_FILE_IN, { loadPaths: [COMPONENT_DIR] })
     fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Variable styles ${time()}`)
   }
+}
 
+function buildStylesStories() {
   if (config.styles_stories) {
     const storybookcss = [
       VAR_CT_ASSETS_DIRECTORY,
-      loadStyle(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
+      loadStyleFile(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
     ].join('\n')
 
     const compiled = sass.compileString(storybookcss, { loadPaths: [COMPONENT_DIR, PATH] })
     fs.writeFileSync(STYLE_STORIES_FILE_OUT, compiled.css, 'utf-8')
     console.log(`Saved: Stories styles ${time()}`)
   }
+}
 
-  // --------------------------------------------------------------------------- SCRIPTS
+function buildJavascript() {
   if (config.js_drupal || config.js_storybook) {
     const jsComponents = []
     const jsOutData = []
@@ -302,14 +267,16 @@ async function build() {
       console.log(`Saved: Compiled javascript (storybook) ${time()}`)
     }
   }
+}
 
-  // --------------------------------------------------------------------------- ASSETS
+function buildAssetsDirectory() {
   if (config.assets) {
     runCommand(`rsync -a --delete --prune-empty-dirs --exclude .gitkeep --exclude js --exclude sass ${DIR_ASSETS_IN}/ ${DIR_ASSETS_OUT}/`)
     console.log(`Saved: Assets ${time()}`)
   }
+}
 
-  // --------------------------------------------------------------------------- CONSTANTS
+async function buildConstants() {
   if (config.constants) {
     const { default: scssVariableImporter } = await import(CONSTANTS_SCSS_IMPORTER);
     const { default: backgroundUtils } = await import(CONSTANTS_BACKGROUND_UTIL);
@@ -325,16 +292,30 @@ async function build() {
     fs.writeFileSync(CONSTANTS_FILE_OUT, JSON.stringify(constants, null, 2), 'utf-8')
     console.log(`Saved: Compiled constants ${time()}`)
   }
+}
 
-  // --------------------------------------------------------------------------- FINISH
+// ----------------------------------------------------------------------------- CORE FEATURES
+
+async function build() {
+  startTime = new Date().getTime()
+  lastTime = startTime
+
+  buildOutDirectory()
+  buildCombineDirectories()
+  buildStyles()
+  buildStylesEditor()
+  buildStylesAdmin()
+  buildStylesLayout()
+  buildStylesVariables()
+  buildStylesStories()
+  buildJavascript()
+  buildAssetsDirectory()
+  await buildConstants()
+
   console.log(`Time taken: ${time(true)}`)
 }
 
-if (config.build) {
-  build()
-}
-
-if (config.watch) {
+function watch() {
   console.log(`Watching: ${path.relative(PATH, DIR_COMPONENTS_IN)}/`)
   const supportedExtensions = ['scss', 'js', 'twig']
   let timeout = null
@@ -347,8 +328,7 @@ if (config.watch) {
   })
 }
 
-// ----------------------------------------------------------------------------- PARALLEL CLI
-if (config.cli) {
+function cli() {
   const scripts = flags.slice(1)
   console.log(`Running npm commands: ${scripts.join(' && ')}`)
   scripts.forEach((script, idx) => {
@@ -357,6 +337,56 @@ if (config.cli) {
       const color = `\x1b[3${Math.min(idx, 3) + 3}m`
       const sData = data.toString().replaceAll(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '') // strip ANSI colours
       process.stdout.write(`${color}${sData}`)
-    });
-  });
+    })
+  })
+}
+
+// ----------------------------------------------------------------------------- UTILITIES
+
+function runCommand(command) {
+  execSync(command, (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`)
+      return
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`)
+      return
+    }
+    if (stdout) {
+      console.log(stdout)
+    }
+  })
+}
+
+function getImportsFromGlob(path, cwd) {
+  return globSync(path, { cwd }).sort((a, b) => a.localeCompare(b)).map(i => `@import "${i}";`).join('\n')
+}
+
+function loadStyleFile(path, cwd) {
+  const result = []
+  let data = fs.readFileSync(path, 'utf-8')
+
+  data.split('\n').forEach(line => {
+    // Only glob imports with *!()| characters.
+    const match = /@import '(.*[\*!()|].*)'/.exec(line)
+    result.push(match ? getImportsFromGlob(match[1], cwd) : line)
+  })
+
+  return result.join('\n')
+}
+
+function stripJS(js) {
+  return js.replace(/\/\/# sourceMappingURL=.*\.(map|json)/gi, '')
+}
+
+function fullPath(filepath) {
+  return path.resolve(PATH, filepath)
+}
+
+function time(full) {
+  const now = new Date().getTime()
+  const rtn = now - (full ? startTime : lastTime)
+  lastTime = now
+  return `[ ${rtn} ms ]`
 }
