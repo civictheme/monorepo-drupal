@@ -21,7 +21,7 @@ import { globSync } from 'glob'
 import { execSync, spawn } from 'child_process'
 import * as sass from 'sass'
 
-// ----------------------------------------------------------------------------- BOOTSTRAP
+// ----------------------------------------------------------------------------- CONFIG AND START
 
 const config = {
   build: false,
@@ -74,50 +74,50 @@ let lastTime = null
 
 const PATH = import.meta.dirname
 
-const THEME_NAME                  = PATH.split('/').reverse()[0]
-const DIR_CIVICTHEME              = fullPath('../../contrib/civictheme/')
-const DIR_COMPONENTS_IN           = fullPath('./components/')
-const DIR_COMPONENTS_OUT          = fullPath('./components_combined/')
-const DIR_UIKIT_COMPONENTS_IN     = `${DIR_CIVICTHEME}/components/`
-const DIR_UIKIT_COPY_OUT          = fullPath('./.components-civictheme/')
-const DIR_OUT                     = fullPath('./dist/')
-const DIR_ASSETS_IN               = fullPath('./assets/')
-const DIR_ASSETS_OUT              = fullPath('./dist/assets/')
+const THEME_NAME                = PATH.split('/').reverse()[0]
+const DIR_CIVICTHEME            = fullPath('../../contrib/civictheme/')
+const DIR_COMPONENTS_IN         = fullPath('./components/')
+const DIR_COMPONENTS_OUT        = fullPath('./components_combined/')
+const DIR_UIKIT_COMPONENTS_IN   = `${DIR_CIVICTHEME}/components/`
+const DIR_UIKIT_COPY_OUT        = fullPath('./.components-civictheme/')
+const DIR_OUT                   = fullPath('./dist/')
+const DIR_ASSETS_IN             = fullPath('./assets/')
+const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 
-const COMPONENT_DIR               = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
-const STYLE_NAME                  = config.base ? 'civictheme' : 'styles'
-const SCRIPT_NAME                 = config.base ? 'civictheme' : 'scripts'
+const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
+const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
+const SCRIPT_NAME               = config.base ? 'civictheme' : 'scripts'
 
-const STYLE_FILE_IN               = `${COMPONENT_DIR}/style.scss`
-const STYLE_VARIABLE_FILE_IN      = `${COMPONENT_DIR}/style.css_variables.scss`
-const STYLE_STORIES_FILE_IN       = `${COMPONENT_DIR}/style.stories.scss`
-const STYLE_THEME_FILE_IN         = `${DIR_ASSETS_IN}/sass/theme.scss`
-const STYLE_EDITOR_FILE_IN        = `${DIR_ASSETS_IN}/sass/theme.editor.scss`
-const STYLE_ADMIN_FILE_IN         = `${DIR_ASSETS_IN}/sass/theme.admin.scss`
-const STYLE_LAYOUT_FILE_IN        = `${DIR_ASSETS_IN}/sass/theme.layout.scss`
-const STYLE_FILE_OUT              = `${DIR_OUT}/${STYLE_NAME}.css`
-const STYLE_EDITOR_FILE_OUT       = `${DIR_OUT}/${STYLE_NAME}.editor.css`
-const STYLE_VARIABLE_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.variables.css`
-const STYLE_ADMIN_FILE_OUT        = `${DIR_OUT}/${STYLE_NAME}.admin.css`
-const STYLE_LAYOUT_FILE_OUT       = `${DIR_OUT}/${STYLE_NAME}.layout.css`
-const STYLE_STORIES_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.stories.css`
+const STYLE_FILE_IN             = `${COMPONENT_DIR}/style.scss`
+const STYLE_VARIABLE_FILE_IN    = `${COMPONENT_DIR}/style.css_variables.scss`
+const STYLE_STORIES_FILE_IN     = `${COMPONENT_DIR}/style.stories.scss`
+const STYLE_THEME_FILE_IN       = `${DIR_ASSETS_IN}/sass/theme.scss`
+const STYLE_EDITOR_FILE_IN      = `${DIR_ASSETS_IN}/sass/theme.editor.scss`
+const STYLE_ADMIN_FILE_IN       = `${DIR_ASSETS_IN}/sass/theme.admin.scss`
+const STYLE_LAYOUT_FILE_IN      = `${DIR_ASSETS_IN}/sass/theme.layout.scss`
+const STYLE_FILE_OUT            = `${DIR_OUT}/${STYLE_NAME}.css`
+const STYLE_EDITOR_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.editor.css`
+const STYLE_VARIABLE_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.variables.css`
+const STYLE_ADMIN_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.admin.css`
+const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
+const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 
-const VAR_CT_ASSETS_DIRECTORY     = `$ct-assets-directory: '/themes/custom/${THEME_NAME}/dist/assets/';`
+const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '/themes/custom/${THEME_NAME}/dist/assets/';`
 
-const JS_FILE_OUT                 = `${DIR_OUT}/${SCRIPT_NAME}.js`
-const JS_STORYBOOK_FILE_OUT       = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
-const JS_CIVIC_IMPORTS            = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
-const JS_LIB_IMPORTS              = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
-const JS_ASSET_IMPORTS            = [
+const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
+const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
+const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
+const JS_LIB_IMPORTS            = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
+const JS_ASSET_IMPORTS          = [
                                     `${DIR_CIVICTHEME}/assets/js/**/*.js`,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
                                   ]
 
-const CONSTANTS_FILE_OUT          = `${DIR_OUT}/constants.json`
-const CONSTANTS_SCSS_IMPORTER     = fullPath(`./.storybook/importer.scss_variables.js`)
-const CONSTANTS_BACKGROUND_UTIL   = `${COMPONENT_DIR}/00-base/background/background.utils.js`
-const CONSTANTS_ICON_UTIL         = `${COMPONENT_DIR}/00-base/icon/icon.utils.js`
-const CONSTANTS_LOGO_UTIL         = `${COMPONENT_DIR}/02-molecules/logo/logo.utils.js`
+const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
+const CONSTANTS_SCSS_IMPORTER   = fullPath(`./.storybook/importer.scss_variables.js`)
+const CONSTANTS_BACKGROUND_UTIL = `${COMPONENT_DIR}/00-base/background/background.utils.js`
+const CONSTANTS_ICON_UTIL       = `${COMPONENT_DIR}/00-base/icon/icon.utils.js`
+const CONSTANTS_LOGO_UTIL       = `${COMPONENT_DIR}/02-molecules/logo/logo.utils.js`
 
 if (config.build) {
   build()
