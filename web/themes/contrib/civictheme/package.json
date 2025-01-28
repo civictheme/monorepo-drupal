@@ -24,7 +24,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook-build": "npm run dist && storybook build",
     "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\"",
-    "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
+    "uikit-install": "node build.js install"
   },
   "dependencies": {
     "@civictheme/uikit": "github:civictheme/uikit#feature/CIVIC-1947-storybook-upgrade",
