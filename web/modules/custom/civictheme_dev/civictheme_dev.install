@@ -57,12 +57,12 @@ function civictheme_dev_update_10001() {
   echo "Current Charset: $charset", PHP_EOL;
   echo "Current Collation: $collation", PHP_EOL;
 
-  // Retrieve and display the default character set and collation for the database
+  // Retrieve and display the default character set and collation for the database.
   $defaultSettings = $database->query('SELECT @@character_set_database AS charset, @@collation_database AS collation')->fetchAssoc();
   echo "Default Character Set: {$defaultSettings['charset']}", PHP_EOL;
   echo "Default Collation: {$defaultSettings['collation']}", PHP_EOL;
 
-  // Retrieve tables with different collation
+  // Retrieve tables with different collation.
   $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation])->fetchAllAssoc('Name');
   $tableCount = count($tables);
 
@@ -71,28 +71,31 @@ function civictheme_dev_update_10001() {
     foreach (array_keys($tables) as $table_name) {
       echo '- Altering table ', $table_name, PHP_EOL;
       try {
-        // Perform the collation change
+        // Perform the collation change.
         $database->query('ALTER TABLE `' . $table_name . '` CONVERT TO CHARACTER SET ' . $charset . ' COLLATE ' . $collation . ';');
         echo "Success: $table_name collation changed to $collation", PHP_EOL;
-      } catch (\Exception $e) {
-        // Catch and display any errors during the ALTER TABLE operation
+      }
+      catch (\Exception $e) {
+        // Catch and display any errors during the ALTER TABLE operation.
         echo "Error altering table $table_name: ", $e->getMessage(), PHP_EOL;
       }
     }
 
-    // Check again for any tables not using the specified collation
+    // Check again for any tables not using the specified collation.
     $leftover_tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation])->fetchAllAssoc('Name');
     $leftoverCount = count($leftover_tables);
 
     if (!$leftoverCount) {
       echo 'DONE: All tables are using the collation ', $collation, PHP_EOL;
-    } else {
+    }
+    else {
       echo $leftoverCount, ' tables not using the collation ', $collation, PHP_EOL;
       foreach (array_keys($leftover_tables) as $table_name) {
         echo ' - ', $table_name, ' still not converted.', PHP_EOL;
       }
     }
-  } else {
+  }
+  else {
     echo 'No action needed: All tables are already using the collation ', $collation, PHP_EOL;
   }
 
@@ -106,7 +109,7 @@ function civictheme_dev_update_10002() {
   $database = \Drupal::database();
   $target_collation = 'utf8mb4_general_ci';
 
-  // Retrieve and display tables with different collation
+  // Retrieve and display tables with different collation.
   $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation])->fetchAll();
 
   echo PHP_EOL;
@@ -136,7 +139,7 @@ function civictheme_dev_requirements($phase) {
     $database = \Drupal::database();
     $target_collation = 'utf8mb4_general_ci';
 
-    // Retrieve tables with different collation
+    // Retrieve tables with different collation.
     $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation])->fetchAll();
     $tableCount = count($tables);
 
