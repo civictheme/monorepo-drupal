@@ -57,7 +57,7 @@ function civictheme_dev_update_10001() {
   echo "Current Charset: $charset", PHP_EOL;
   echo "Current Collation: $collation", PHP_EOL;
 
-  // Retrieve and display the default character set and collation for the database.
+  // Retrieve and display the default character set and collation.
   $defaultSettings = $database->query('SELECT @@character_set_database AS charset, @@collation_database AS collation')->fetchAssoc();
   echo "Default Character Set: {$defaultSettings['charset']}", PHP_EOL;
   echo "Default Collation: {$defaultSettings['collation']}", PHP_EOL;
