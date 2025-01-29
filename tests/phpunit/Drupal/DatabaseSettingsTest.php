@@ -36,13 +36,15 @@ class DatabaseSettingsTest extends SettingsTestCase {
         [
           'default' => [
             'default' => [
-              'database' => 'drupal',
-              'username' => 'drupal',
-              'password' => 'drupal',
+              'database' => 'lagoon',
+              'username' => 'lagoon',
+              'password' => 'lagoon',
               'host' => 'localhost',
               'port' => '',
               'driver' => 'mysql',
               'prefix' => '',
+              'charset' => 'utf8mb4',
+              'collation' => 'utf8mb4_general_ci',
             ],
           ],
         ],
@@ -66,6 +68,8 @@ class DatabaseSettingsTest extends SettingsTestCase {
               'port' => 'test_db_port',
               'driver' => 'mysql',
               'prefix' => '',
+              'charset' => 'utf8mb4',
+              'collation' => 'utf8mb4_general_ci',
             ],
           ],
         ],

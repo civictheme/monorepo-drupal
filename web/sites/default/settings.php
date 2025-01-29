@@ -114,13 +114,15 @@ $databases = [
     [
       'default' =>
         [
-          'database' => getenv('MARIADB_DATABASE') ?: 'drupal',
-          'username' => getenv('MARIADB_USERNAME') ?: 'drupal',
-          'password' => getenv('MARIADB_PASSWORD') ?: 'drupal',
-          'host' => getenv('MARIADB_HOST') ?: 'localhost',
+          'database' => getenv('MARIADB_DATABASE') ?: 'lagoon',
+          'username' => getenv('MARIADB_USERNAME') ?: 'lagoon',
+          'password' => getenv('MARIADB_PASSWORD') ?: 'lagoon',
+          'host' => getenv('MARIADB_HOST') ?: 'mariadb',
           'port' => getenv('MARIADB_PORT') ?: '',
           'prefix' => '',
           'driver' => 'mysql',
+          'charset' => 'utf8mb4',
+          'collation' => 'utf8mb4_general_ci',
         ],
     ],
 ];

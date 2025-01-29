@@ -8,7 +8,7 @@
 # @see https://github.com/drevops/mariadb-drupal-data
 #
 # The ARG value will be updated with a value passed from docker-compose.yml
-ARG IMAGE=uselagoon/mariadb-drupal:24.5.1
+ARG IMAGE=uselagoon/mysql-8.0:25.1.0
 
 # hadolint ignore=DL3006
 FROM ${IMAGE}
@@ -16,5 +16,9 @@ FROM ${IMAGE}
 USER root
 COPY ./.docker/config/mariadb/my.cnf /etc/my.cnf.d/server.cnf
 RUN fix-permissions /etc/my.cnf.d/
+
+# Set MySQL configuration environment variables
+ENV MYSQL_COLLATION=utf8mb4_general_ci \
+    MYSQL_INNODB_BUFFER_POOL_SIZE=512M
 
 USER mysql
