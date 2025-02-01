@@ -162,7 +162,10 @@ function buildStyles() {
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
-    const compiledImportAtTop = compiled.css.split('\n').sort(a => a.indexOf('@import') === 0 ? -1 : 0).join('\n')
+    let compiledImportAtTop = compiled.css.split('\n')
+      .sort(a => a.indexOf('@import') === 0 ? -1 : 0)
+      .sort(a => a.indexOf('@charset') === 0 ? -1 : 0)
+      .join('\n')
     fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
     console.log(`Saved: Component styles ${time()}`)
   }
