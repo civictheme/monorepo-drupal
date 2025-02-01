@@ -162,7 +162,7 @@ function buildStyles() {
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
-    let compiledImportAtTop = compiled.css.split('\n')
+    const compiledImportAtTop = compiled.css.split('\n')
       .sort(a => a.indexOf('@import') === 0 ? -1 : 0)
       .sort(a => a.indexOf('@charset') === 0 ? -1 : 0)
       .join('\n')
