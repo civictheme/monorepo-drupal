@@ -19,7 +19,7 @@ import fs from 'fs'
 import path from 'path'
 import { globSync } from 'glob'
 import { execSync, spawn } from 'child_process'
-import * as sass from 'sass'
+import * as sass from 'sass-embedded'
 
 // ----------------------------------------------------------------------------- CONFIG AND START
 
