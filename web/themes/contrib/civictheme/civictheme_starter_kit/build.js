@@ -27,6 +27,7 @@ const config = {
   build: false,
   watch: false,
   cli: false,
+  lintex: false,
   combine: false,
   styles: false,
   styles_editor: false,
@@ -42,7 +43,9 @@ const config = {
 }
 
 const flags = process.argv.slice(2)
-if (flags[0] !== 'cli') {
+if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
+  config[flags[0]] = true
+} else {
   const buildType = ['build', 'watch']
   const buildWatchFlagCount = flags?.filter(f => buildType.indexOf(f) >= 0).length
 
@@ -65,8 +68,6 @@ if (flags[0] !== 'cli') {
       config[flag] = true
     })
   }
-} else {
-  config.cli = true
 }
 
 let startTime = new Date().getTime()
@@ -112,6 +113,7 @@ const JS_ASSET_IMPORTS          = [
                                     `${DIR_CIVICTHEME}/assets/js/**/*.js`,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
                                   ]
+const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
 
 const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
 const CONSTANTS_SCSS_IMPORTER   = fullPath(`./.storybook/importer.scss_variables.js`)
@@ -129,6 +131,10 @@ if (config.watch) {
 
 if (config.cli) {
   cli()
+}
+
+if (config.lintex) {
+  lintExclusions()
 }
 
 // ----------------------------------------------------------------------------- BUILD STEPS
@@ -230,6 +236,9 @@ function buildJavascript() {
   if (config.js_drupal || config.js_storybook) {
     const jsComponents = []
     const jsOutData = []
+
+    // Add header.
+    jsOutData.push(JS_LINT_EXCLUSION_HEADER)
 
     // Third party imports.
     JS_LIB_IMPORTS.forEach(filename => {
@@ -341,6 +350,18 @@ function cli() {
       const sData = data.toString().replaceAll(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '') // strip ANSI colours
       process.stdout.write(`${color}${sData}`)
     })
+  })
+}
+
+function lintExclusions() {
+  const storybookStaticPath = fullPath('./storybook-static/**/*.js')
+  console.log(`Applying lint exclusions: ${storybookStaticPath}`)
+  const header = `${JS_LINT_EXCLUSION_HEADER}\n`
+  globSync(storybookStaticPath).forEach(filename => {
+    const data = fs.readFileSync(filename, 'utf-8')
+    if (data.substr(0, header.length) !== header) {
+      fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
+    }
   })
 }
 

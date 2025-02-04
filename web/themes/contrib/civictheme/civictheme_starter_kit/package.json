@@ -8,7 +8,7 @@
     "node": ">=22.6.0"
   },
   "scripts": {
-    "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php dist,storybook-static",
+    "add-lint-exclusions": "node build.js lintex",
     "build": "npm run dist && storybook build && npm run add-lint-exclusions",
     "dist": "node build.js",
     "dist:dev": "npm run dist",

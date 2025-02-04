@@ -12,7 +12,7 @@
     "node": ">=22.6.0"
   },
   "scripts": {
-    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static",
+    "add-lint-exclusions": "node build.js lintex",
     "build": "npm run dist && storybook build && npm run add-lint-exclusions",
     "dist": "node build.js base build styles styles_editor styles_admin styles_layout styles_variables styles_stories js_drupal js_storybook assets constants",
     "dist:dev": "npm run dist",
