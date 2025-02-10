@@ -465,6 +465,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
 
     case 'text_long':
     case 'text_with_summary':
+    case 'text':
       // Opinionated.
       // This implementation renders the field if it has a single value.
       // If the field contains multiple values, it relies on view() to handle
