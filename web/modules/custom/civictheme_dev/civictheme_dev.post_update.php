@@ -7,8 +7,8 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Utility\UpdateException;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Utility\UpdateException;
 use Drupal\redirect\Entity\Redirect;
 use Drupal\user\Entity\User;
 
