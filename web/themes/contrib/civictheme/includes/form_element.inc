@@ -257,7 +257,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
       'value' => $value,
       'name' => $name . '[' . $value . ']',
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value,
+      'is_checked' => is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value,
       'is_disabled' => isset($element['#attributes']['disabled']),
       // Checkboxes controls with a group cannot be required by definition.
       'is_required' => FALSE,
@@ -295,7 +295,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
       'value' => $value,
       'name' => $name,
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => isset($element['#default_value']) ? (is_array($element['#default_value']) ? in_array($value, $element['#default_value']) : $element['#default_value'] == $value) : FALSE,
+      'is_checked' => isset($element['#value']) ? (is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value) : FALSE,
       'is_disabled' => isset($element['#attributes']['disabled']),
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
@@ -428,8 +428,9 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
     'modifier_class' => $modifier_class,
   ];
 
-  if ($element['#type'] == 'checkbox') {
-    $variables['control'][0]['is_checked'] = $element['#default_value'] ?? FALSE;
+  if ($element['#type'] === 'checkbox') {
+    $variables['control'][0]['is_checked'] = $element['#value'] ?? FALSE;
+    $variables['control'][0]['is_checked'] = (bool) $variables['control'][0]['is_checked'];
   }
 }
 
