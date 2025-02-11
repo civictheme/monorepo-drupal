@@ -328,6 +328,9 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
 
     // Force browser reload by changing the dummy query string.
     DeprecationHelper:: backwardsCompatibleCall(\Drupal::VERSION, '11.0.0', static function () {
+      /**
+       * @phpstan-ignore-next-line
+       */
       \Drupal::service('asset.query_string')->reset();
     }, static function () {
       _drupal_flush_css_js();
