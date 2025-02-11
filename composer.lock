@@ -5059,7 +5059,7 @@
                     "email": "nacho@isholgueras.com"
                 },
                 {
-                    "name": "Lullabot",
+                    "name": "lullabot",
                     "homepage": "https://www.drupal.org/user/3815489"
                 },
                 {
@@ -6140,7 +6140,7 @@
                     "homepage": "https://www.drupal.org/user/748208"
                 },
                 {
-                    "name": "Jeff Cardwell",
+                    "name": "jeff cardwell",
                     "homepage": "https://www.drupal.org/user/2913129"
                 },
                 {
@@ -7906,7 +7906,7 @@
             ],
             "authors": [
                 {
-                    "name": "Berdir",
+                    "name": "berdir",
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
@@ -7914,7 +7914,7 @@
                     "homepage": "https://www.drupal.org/user/53892"
                 },
                 {
-                    "name": "Kristen Pol",
+                    "name": "kristen pol",
                     "homepage": "https://www.drupal.org/user/8389"
                 },
                 {
@@ -8859,21 +8859,24 @@
         },
         {
             "name": "drupal/testmode",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/testmode.git",
-                "reference": "2.5.0"
+                "reference": "2.6.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/testmode-2.5.0.zip",
-                "reference": "2.5.0",
-                "shasum": "a6ea9f31d1a6d812aa95a1b6772adf872b9c5b77"
+                "url": "https://ftp.drupal.org/files/projects/testmode-2.6.0.zip",
+                "reference": "2.6.0",
+                "shasum": "62324042d517aa18db127e6d26bdb62ecd3c33ec"
             },
             "require": {
-                "drupal/core": "^9 || ^10 || ^11",
-                "php": ">=8.1"
+                "drupal/core": "^10 || ^11",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "drupal/autologout": "^2"
             },
             "suggest": {
                 "drupal/search_api": "^1.25"
@@ -8881,8 +8884,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.5.0",
-                    "datestamp": "1719822317",
+                    "version": "2.6.0",
+                    "datestamp": "1732698068",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -9827,44 +9830,44 @@
             },
             "type": "drupal-profile",
             "extra": {
+                "patches": {
+                    "drupal/tfa": {
+                        "Create Email one-time-code Validation Plugin & related Setup Plugin - https://www.drupal.org/project/tfa/issues/2930541": "https://www.drupal.org/files/issues/2023-07-19/tfa-2930541-81.patch"
+                    }
+                },
                 "drupal-scaffold": {
                     "locations": {
                         "web-root": "web/"
                     }
                 },
+                "enable-patching": true,
                 "installer-paths": {
                     "web/core": [
                         "type:drupal-core"
                     ],
-                    "web/modules/contrib/{$name}": [
-                        "type:drupal-module"
-                    ],
-                    "web/modules/custom/{$name}": [
-                        "type:drupal-custom-module"
-                    ],
                     "web/profiles/{$name}": [
                         "type:drupal-profile"
                     ],
-                    "web/themes/contrib/{$name}": [
-                        "type:drupal-theme"
-                    ],
-                    "web/themes/custom/{$name}": [
-                        "type:drupal-custom-theme"
+                    "drush/contrib/{$name}": [
+                        "type:drupal-drush"
                     ],
                     "web/libraries/{$name}": [
                         "type:drupal-library"
                     ],
-                    "drush/contrib/{$name}": [
-                        "type:drupal-drush"
+                    "web/themes/custom/{$name}": [
+                        "type:drupal-custom-theme"
+                    ],
+                    "web/modules/custom/{$name}": [
+                        "type:drupal-custom-module"
+                    ],
+                    "web/themes/contrib/{$name}": [
+                        "type:drupal-theme"
+                    ],
+                    "web/modules/contrib/{$name}": [
+                        "type:drupal-module"
                     ]
                 },
-                "enable-patching": true,
-                "composer-exit-on-patch-failure": true,
-                "patches": {
-                    "drupal/tfa": {
-                        "Create Email one-time-code Validation Plugin & related Setup Plugin - https://www.drupal.org/project/tfa/issues/2930541": "https://www.drupal.org/files/issues/2023-07-19/tfa-2930541-81.patch"
-                    }
-                }
+                "composer-exit-on-patch-failure": true
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
