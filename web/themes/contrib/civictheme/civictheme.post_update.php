@@ -794,3 +794,27 @@ function civictheme_post_update_alert_visibility_validation(): string {
   }
   return (string) (new TranslatableMarkup('Update to alert api view skipped, view does not exist.'));
 }
+
+/**
+ * Update the view mode 'civictheme_snippet' to 'civictheme_navigation_card'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref(): string {
+  // Get the config factory.
+  $config_factory = \Drupal::configFactory();
+
+  // Load the configuration.
+  $config = $config_factory->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
+
+  // Check if the view mode needs to be updated.
+  if ($config->get('content.field_c_p_reference.settings.view_mode') === 'civictheme_snippet') {
+    // Update the view mode.
+    $config->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
+    $config->save();
+
+    return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+  }
+
+  return (string) new TranslatableMarkup('No update needed for view mode.');
+}
