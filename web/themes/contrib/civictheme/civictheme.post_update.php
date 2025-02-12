@@ -800,21 +800,13 @@ function civictheme_post_update_alert_visibility_validation(): string {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref(): string {
-  // Get the config factory.
-  $config_factory = \Drupal::configFactory();
-
-  // Load the configuration.
-  $config = $config_factory->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
-
-  // Check if the view mode needs to be updated.
-  if ($config->get('content.field_c_p_reference.settings.view_mode') === 'civictheme_snippet') {
-    // Update the view mode.
-    $config->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
-    $config->save();
-
-    return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_1(): string {
+  $config_read = \Drupal::service('entity_type.manager')->getStorage('entity_view_display')->load('paragraph.civictheme_navigation_card_ref.default');
+  // Only update config if it already exists.
+  if ($config_read) {
+    $config_object = \Drupal::configFactory()->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
+    $config_object->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
+    $config_object->save();return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
   }
-
   return (string) new TranslatableMarkup('No update needed for view mode.');
 }
