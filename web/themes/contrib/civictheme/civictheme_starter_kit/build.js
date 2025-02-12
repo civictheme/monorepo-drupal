@@ -90,6 +90,7 @@ const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
 const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
 const SCRIPT_NAME               = config.base ? 'civictheme' : 'scripts'
+const DRUPAL_THEME_FOLDER       = config.base ? 'contrib' : 'custom'
 
 const STYLE_FILE_IN             = `${COMPONENT_DIR}/style.scss`
 const STYLE_VARIABLE_FILE_IN    = `${COMPONENT_DIR}/style.css_variables.scss`
@@ -106,10 +107,10 @@ const STYLE_ADMIN_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.admin.css`
 const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 
-const DIR_CT_ASSETS             = `/themes/custom/${THEME_NAME}/dist/assets/`
+const DIR_CT_ASSETS             = `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}/dist/assets/`
 const DIR_SB_ASSETS             = `/assets/`
-const VAR_CT_ASSETS_DIRECTORY   = `$civic-assets-directory: '${DIR_CT_ASSETS}';`
-const VAR_SB_ASSETS_DIRECTORY   = `$civic-assets-directory: '${DIR_SB_ASSETS}';`
+const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_CT_ASSETS}';`
+const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
 
 const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
@@ -332,6 +333,7 @@ async function build() {
   buildCombineDirectories()
   buildStyles()
   buildStylesStorybook()
+  buildStylesEditor()
   buildStylesAdmin()
   buildStylesLayout()
   buildStylesVariables()
