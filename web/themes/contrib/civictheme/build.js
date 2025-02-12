@@ -107,8 +107,9 @@ const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 
 const DIR_CT_ASSETS             = `/themes/custom/${THEME_NAME}/dist/assets/`
-const DIR_STORYBOOK_ASSETS      = `/assets/`
+const DIR_SB_ASSETS             = `/assets/`
 const VAR_CT_ASSETS_DIRECTORY   = `$civic-assets-directory: '${DIR_CT_ASSETS}';`
+const VAR_SB_ASSETS_DIRECTORY   = `$civic-assets-directory: '${DIR_SB_ASSETS}';`
 
 const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
@@ -186,7 +187,7 @@ function buildStylesStorybook() {
   if (config.styles && config.styles_storybook) {
     // Replace the asset path.
     let file = fs.readFileSync(STYLE_FILE_OUT, 'utf-8')
-    file = file.replaceAll(DIR_CT_ASSETS, DIR_STORYBOOK_ASSETS)
+    file = file.replaceAll(DIR_CT_ASSETS, DIR_SB_ASSETS)
     fs.writeFileSync(STYLE_STORYBOOK_FILE_OUT, file, 'utf-8')
     console.log(`Saved: Component styles (storybook) ${time()}`)
   }
@@ -237,7 +238,7 @@ function buildStylesVariables() {
 function buildStylesStories() {
   if (config.styles_stories) {
     const storybookcss = [
-      VAR_CT_ASSETS_DIRECTORY,
+      VAR_SB_ASSETS_DIRECTORY,
       loadStyleFile(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
     ].join('\n')
 
