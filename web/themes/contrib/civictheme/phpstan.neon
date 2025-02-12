@@ -20,9 +20,6 @@ parameters:
     - '*/node_modules/*'
     - '*/lib/*'
 
-  drupal:
-    drupal_root: web
-
   ignoreErrors:
     -
       # Hook implementations do not provide docblocks for parameters, so there
@@ -38,5 +35,3 @@ parameters:
       # is no way to provide this information.
       message: '#.* with no value type specified in iterable type array#'
       reportUnmatched: false
-    - # Allow using Drupal::service() in Drush commands.
-      message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
