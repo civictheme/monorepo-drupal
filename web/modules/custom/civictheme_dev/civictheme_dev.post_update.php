@@ -31,7 +31,7 @@ function civictheme_dev_post_update_provision_users(): string {
     'nick.georgiou@salsa.digital',
     'phillipa.martin@salsa.digital',
     'richard.gaunt@salsa.digital',
-    'sonam.chaturvedi@salsa.digital',
+    'daniel.grynenko@salsa.digital',
   ];
 
   foreach ($emails as $email) {
