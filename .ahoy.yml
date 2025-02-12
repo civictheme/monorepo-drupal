@@ -184,6 +184,12 @@ commands:
       ahoy cli vendor/bin/rector --clear-cache
       ahoy cli vendor/bin/phpcbf
 
+  lint-govcms:
+    usage: Lint with shipshape.
+    cmd: |
+      ahoy cli sh -c "/usr/local/bin/shipshape -e"
+      ahoy cli vendor/bin/phpstan --configuration=/app/phpstan-govcms.neon
+
   test:
     usage: Run all tests.
     cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
