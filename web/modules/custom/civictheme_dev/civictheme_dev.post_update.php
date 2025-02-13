@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 use Drupal\Core\Utility\UpdateException;
 use Drupal\block\Entity\Block;
-use Drupal\redirect\Entity\Redirect;
 use Drupal\user\Entity\User;
 
 /**
@@ -32,7 +31,7 @@ function civictheme_dev_post_update_provision_users(): string {
     'nick.georgiou@salsa.digital',
     'phillipa.martin@salsa.digital',
     'richard.gaunt@salsa.digital',
-    'sonam.chaturvedi@salsa.digital',
+    'daniel.grynenko@salsa.digital',
   ];
 
   foreach ($emails as $email) {
@@ -46,37 +45,6 @@ function civictheme_dev_post_update_provision_users(): string {
   }
 
   return 'Created ' . count($emails) . ' users.';
-}
-
-/**
- * Creates storybook redirects.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function civictheme_dev_post_update_provision_storybook_redirects(): string {
-  $map = [
-    [
-      'src' => '/storybook',
-      'dst' => '/themes/custom/civictheme_demo/storybook-static/index.html',
-    ],
-    [
-      'src' => '/storybook-drupal',
-      'dst' => '/themes/contrib/civictheme/storybook-static/index.html',
-    ], [
-      'src' => '/storybook-drupal-demo',
-      'dst' => '/themes/custom/civictheme_demo/storybook-static/index.html',
-    ],
-  ];
-
-  foreach ($map as $item) {
-    $redirect = Redirect::create();
-    $redirect->setSource($item['src']);
-    $redirect->setRedirect($item['dst']);
-    $redirect->setStatusCode(301);
-    $redirect->save();
-  }
-
-  return 'Created ' . count($map) . ' redirects.';
 }
 
 /**
