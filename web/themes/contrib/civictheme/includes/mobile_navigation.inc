@@ -39,6 +39,9 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
     'bottom_menu' => 'field_c_b_bottom',
   ];
 
+  // Retrieve the search link.
+  $search_link = _civictheme_search_link();
+
   // Get primary and secondary menu links by building menu tree based on
   // menu block settings.
   $entity_cache_tags = $entity->getCacheTags();
@@ -79,6 +82,19 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
 
       $build = $menu_tree_service->build($tree);
       $variables[$menu_key] = $build['#items'] ?? [];
+
+      // Add search link to end of top menu.
+      if ($menu_key === 'top_menu' && $search_link) {
+        $variables[$menu_key][] = [
+          'url' => $search_link['url'],
+          'title' => $search_link['text'],
+          'is_new_window' => FALSE,
+          'is_external' => FALSE,
+          'is_expanded' => FALSE,
+          'icon' => 'magnifier',
+          'below' => [],
+        ];
+      }
 
       _civictheme_preprocess_menu_items($variables[$menu_key], $expand_all_items);
 

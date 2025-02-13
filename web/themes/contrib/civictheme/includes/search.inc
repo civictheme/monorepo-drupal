@@ -28,6 +28,15 @@ function civictheme_preprocess_block__civictheme_search(array &$variables): void
   if ($link !== NULL) {
     $variables['url'] = $link->getUrl()->toString();
     $variables['text'] = $link->get('title')->getString();
+    if ($entity->hasField('field_show_mobile_menu') && civictheme_get_field_value($entity, 'field_show_mobile_menu')) {
+      // Hide search block on mobile view.
+      $variables['hide_on_mobile'] = TRUE;
+      $search_link = [
+        'url' => $link->getUrl()->toString(),
+        'text' => $link->get('title')->getString(),
+      ];
+      _civictheme_search_link($search_link);
+    }
   }
 
   $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
