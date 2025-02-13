@@ -1,0 +1,101 @@
+parameters:
+  paths:
+      - web/themes/contrib
+  # Disable all phpstan rules.
+  customRulesetUsed: true
+  fileExtensions:
+    - php
+    - theme
+    - inc
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    - message: '#^Calling debug_backtrace\(\) is forbidden, please change the code$#'
+      count: 1
+      path: /app/web/themes/custom/bootstrap/src/Bootstrap.php
+    - message: '#^Calling print_r\(\) is forbidden, please change the code$#'
+      count: 1
+      path: /app/web/themes/custom/bootstrap/src/Bootstrap.php
+  disallowedFunctionCalls:
+    - function: 'curl_exec()'
+      message: 'please change the code'
+    - function: 'curl_init()'
+      message: 'please change the code'
+    - function: 'curl_multi_exec()'
+      message: 'please change the code'
+    - function: 'db_*()'
+      message: 'please change the code'
+    - function: 'dd()'
+      message: 'please change the code'
+    - function: 'debug_backtrace()'
+      message: 'please change the code'
+    - function: 'dump()'
+      message: 'please change the code'
+    - function: 'escapeshellcmd()'
+      message: 'please change the code'
+    - function: 'eval()'
+      message: 'please change the code'
+    - function: 'exec()'
+      message: 'please change the code'
+    - function: 'ftp_*()'
+      message: 'please change the code'
+    - function: 'mysql_*()'
+      message: 'please change the code'
+    - function: 'mysqli_*()'
+      message: 'please change the code'
+    - function: 'passthru()'
+      message: 'please change the code'
+    - function: 'pcntl_*()'
+      message: 'please change the code'
+    - function: 'phpinfo()'
+      message: 'please change the code'
+    - function: 'popen()'
+      message: 'please change the code'
+    - function: 'posix_getpwuid()'
+      message: 'please change the code'
+    - function: 'posix_kill()'
+      message: 'please change the code'
+    - function: 'posix_mkfifo()'
+      message: 'please change the code'
+    - function: 'posix_setpgid()'
+      message: 'please change the code'
+    - function: 'posix_setsid()'
+      message: 'please change the code'
+    - function: 'posix_setuid()'
+      message: 'please change the code'
+    - function: 'posix_uname()'
+      message: 'please change the code'
+    - function: 'print_r()'
+      message: 'please change the code'
+    - function: 'proc_open()'
+      message: 'please change the code'
+    - function: 'proc_get_status()'
+      message: 'please change the code'
+    - function: 'proc_terminate()'
+      message: 'please change the code'
+    - function: 'proc_close()'
+      message: 'please change the code'
+    - function: 'proc_nice()'
+      message: 'please change the code'
+    - function: 'shell_exec()'
+      message: 'please change the code'
+    - function: 'sleep()'
+      message: 'please change the code'
+    - function: 'system()'
+      message: 'please change the code'
+    - function: 'var_dump()'
+      message: 'please change the code'
+  disallowedMethodCalls:
+    - method: 'mysqli::*()'
+      message: 'please change the code'
+    - method: 'SQLite3::*()'
+      message: 'please change the code'
+    - method: 'SQLite3Stmt::*()'
+      message: 'please change the code'
+    - method: 'SQLite3Result::*()'
+      message: 'please change the code'
+  disallowedStaticCalls:
+    - method: 'Drupal::httpClient()'
+      message: 'please change the code'
+  disallowedNamespaces:
+    - class: 'GuzzleHttp\Client'
+      message: 'please change the code'

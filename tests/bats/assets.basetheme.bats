@@ -6,29 +6,6 @@
 
 load _helper
 
-@test "UIKit assets" {
-  dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/contrib/civictheme/lib/uikit"
-
-  pushd "${dir}" >/dev/null || exit 1
-
-  # Files stored in the UIKit git repo and baked into the Drupal theme.
-  assert_dir_exists "assets"
-  assert_dir_exists "assets/backgrounds"
-  assert_dir_exists "assets/fonts"
-  assert_dir_exists "assets/icons"
-  assert_dir_exists "assets/logos"
-  assert_dir_not_exists "assets/images"
-  assert_dir_not_exists "assets/videos"
-
-  assert_dir_exists "components"
-
-  # Files produced by UIKit CI build and not baked into the Drupal theme.
-  assert_dir_not_exists "dist"
-  assert_dir_not_exists "storybook-static"
-
-  popd >/dev/null
-}
-
 @test "Base Drupal theme assets" {
   dir="${DREVOPS_EXPORT_CODE_DIR:-${CUR_DIR}}/web/themes/contrib/civictheme"
 
@@ -56,6 +33,8 @@ load _helper
 
   assert_file_exists "dist/civictheme.css"
   assert_file_not_contains "dist/civictheme.css" "ck-editor__editable"
+
+  assert_file_exists "dist/civictheme.storybook.css"
 
   assert_file_exists "dist/civictheme.variables.css"
   assert_file_contains "dist/civictheme.variables.css" "--ct"

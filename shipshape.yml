@@ -1,0 +1,123 @@
+checks:
+  file:
+    - name: '[FILE] Illegal files'
+      severity: high
+      path: web/themes/contrib/civictheme
+      disallowed-pattern: '^(adminer|phpmyadmin|bigdump)?\.php$'
+    - name: '[FILE] Executable files'
+      severity: normal
+      path: web/themes/contrib/civictheme
+      disallowed-pattern: '.*\.(bin|deb|dmg|elf|exe|msi|sh)+$'
+      exclude-pattern: '^(vendor|web/core|web/modules/contrib)+.*'
+      skip-dir:
+      - node_modules
+      - .devtools
+    - name: '[FILE] Sensitive public files'
+      path: web/themes/contrib/civictheme
+      disallowed-pattern: '.*\.(sql|gz|tar|tgz|zip)+$'
+      exclude-pattern: '.*\.(css|js)\.gz?$'
+      skip-dir:
+        - node_modules/.cache/storybook
+        - tests
+  yaml:
+    - name: '[FILE] Validate install profile'
+      file: core.extension.yml
+      ignore-missing: true
+      path: config/default
+      values:
+        - key: profile
+          value: govcms
+    - name: '[FILE] Disallowed permissions'
+      severity: high
+      pattern: user.role.*.yml
+      ignore-missing: true
+      path: config/default
+      values:
+        - key: is_admin
+          value: false
+          truthy: true
+          optional: true
+        - key: permissions
+          is-list: true
+          optional: true
+          disallowed:
+            - administer config permissions
+            - administer modules
+            - administer permissions
+            - administer seckit
+            - administer site configuration
+            - administer software updates
+            - import configuration
+            - synchronize configuration
+            - use PHP for google analytics tracking visibility
+    - name: '[FILE] Disallowed permissions for anonymous role'
+      file: user.role.anonymous.yml
+      ignore-missing: true
+      path: config/default
+      values:
+        - key: permissions
+          is-list: true
+          optional: true
+          disallowed:
+            - 'access administration pages'
+            - 'access content overview'
+            - 'access site reports'
+            - 'access user profiles'
+            - 'administer account settings'
+            - 'administer blocks'
+            - 'administer comment types'
+            - 'administer comments'
+            - 'administer contact forms'
+            - 'administer content types'
+            - 'administer filters'
+            - 'administer image styles'
+            - 'administer menu'
+            - 'administer nodes'
+            - 'administer search'
+            - 'administer shortcuts'
+            - 'administer taxonomy'
+            - 'administer themes'
+            - 'administer url aliases'
+            - 'administer users'
+            - 'administer views'
+            - 'bypass node access'
+            - 'create url aliases'
+            - 'delete all revisions'
+            - 'revert all revisions'
+            - 'view all revisions'
+            - 'view the administration theme'
+            - 'view user email addresses'
+    - name: '[FILE] Ensure only admins can register accounts'
+      file: user.settings.yml
+      ignore-missing: true
+      path: config/default
+      values:
+        - key: register
+          value: admin_only
+    - name: '[FILE] Ensure no error log displayed'
+      file: system.logging.yml
+      ignore-missing: true
+      path: config/default
+      values:
+        - key: error_level
+          value: hide
+    - name: '[FILE] Detect module files in theme folder'
+      pattern: '.*.info.yml'
+      ignore-missing: true
+      path: 'themes'
+      values:
+        - key: type
+          value: theme
+  yamllint:
+    - name: '[FILE] Yaml lint platform files'
+      severity: high
+      files:
+        - .lagoon.yml
+        - docker-compose.yml
+      ignore-missing: true
+    - name: '[FILE] Yaml lint theme files'
+      severity: high
+      path: web/themes/contrib/civictheme
+      pattern: ".*.yml"
+      exclude-pattern: node_modules
+      ignore-missing: true
