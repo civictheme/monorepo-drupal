@@ -4,6 +4,7 @@ dependencies:
   config:
     - block_content.type.civictheme_search
     - field.field.block_content.civictheme_search.field_c_b_link
+    - field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu
   module:
     - link
 id: block_content.civictheme_search.default
@@ -27,5 +28,15 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_c_b_link_in_mobile_menu:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden: {  }
