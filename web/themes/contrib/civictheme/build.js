@@ -30,6 +30,7 @@ const config = {
   lintex: false,
   combine: false,
   styles: false,
+  styles_storybook: false,
   styles_editor: false,
   styles_admin: false,
   styles_layout: false,
@@ -55,6 +56,7 @@ if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
     config.watch = flags.indexOf('watch') >= 0
     config.combine = true
     config.styles = true
+    config.styles_storybook = true
     config.styles_editor = true
     config.styles_variables = true
     config.styles_stories = true
@@ -88,6 +90,7 @@ const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
 const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
 const SCRIPT_NAME               = config.base ? 'civictheme' : 'scripts'
+const DRUPAL_THEME_FOLDER       = config.base ? 'contrib' : 'custom'
 
 const STYLE_FILE_IN             = `${COMPONENT_DIR}/style.scss`
 const STYLE_VARIABLE_FILE_IN    = `${COMPONENT_DIR}/style.css_variables.scss`
@@ -97,13 +100,17 @@ const STYLE_EDITOR_FILE_IN      = `${DIR_ASSETS_IN}/sass/theme.editor.scss`
 const STYLE_ADMIN_FILE_IN       = `${DIR_ASSETS_IN}/sass/theme.admin.scss`
 const STYLE_LAYOUT_FILE_IN      = `${DIR_ASSETS_IN}/sass/theme.layout.scss`
 const STYLE_FILE_OUT            = `${DIR_OUT}/${STYLE_NAME}.css`
+const STYLE_STORYBOOK_FILE_OUT  = `${DIR_OUT}/${STYLE_NAME}.storybook.css`
 const STYLE_EDITOR_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.editor.css`
 const STYLE_VARIABLE_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.variables.css`
 const STYLE_ADMIN_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.admin.css`
 const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 
-const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '/themes/custom/${THEME_NAME}/dist/assets/';`
+const DIR_CT_ASSETS             = `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}/dist/assets/`
+const DIR_SB_ASSETS             = `/assets/`
+const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_CT_ASSETS}';`
+const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
 
 const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
@@ -177,6 +184,16 @@ function buildStyles() {
   }
 }
 
+function buildStylesStorybook() {
+  if (config.styles && config.styles_storybook) {
+    // Replace the asset path.
+    let file = fs.readFileSync(STYLE_FILE_OUT, 'utf-8')
+    file = file.replaceAll(DIR_CT_ASSETS, DIR_SB_ASSETS)
+    fs.writeFileSync(STYLE_STORYBOOK_FILE_OUT, file, 'utf-8')
+    console.log(`Saved: Component styles (storybook) ${time()}`)
+  }
+}
+
 function buildStylesEditor() {
   if (config.styles_editor) {
     const editorcss = [
@@ -222,7 +239,7 @@ function buildStylesVariables() {
 function buildStylesStories() {
   if (config.styles_stories) {
     const storybookcss = [
-      VAR_CT_ASSETS_DIRECTORY,
+      VAR_SB_ASSETS_DIRECTORY,
       loadStyleFile(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
     ].join('\n')
 
@@ -315,6 +332,7 @@ async function build() {
   buildOutDirectory()
   buildCombineDirectories()
   buildStyles()
+  buildStylesStorybook()
   buildStylesEditor()
   buildStylesAdmin()
   buildStylesLayout()

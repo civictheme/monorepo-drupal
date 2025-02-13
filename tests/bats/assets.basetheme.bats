@@ -34,6 +34,8 @@ load _helper
   assert_file_exists "dist/civictheme.css"
   assert_file_not_contains "dist/civictheme.css" "ck-editor__editable"
 
+  assert_file_exists "dist/civictheme.storybook.css"
+
   assert_file_exists "dist/civictheme.variables.css"
   assert_file_contains "dist/civictheme.variables.css" "--ct"
 
