@@ -37,7 +37,7 @@ if [ "${CIVICTHEME_SUBTHEME_FE_BUILD_SKIP:-}" != "1" ] && command -v npm &> /dev
   fi
 
   echo "  > Building FE assets."
-  npm run build
+  npm run dist
 
   popd >/dev/null || exit 1
 fi
