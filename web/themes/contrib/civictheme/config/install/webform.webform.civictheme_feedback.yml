@@ -117,33 +117,33 @@ settings:
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
-  form_access_denied_attributes: { }
+  form_access_denied_attributes: {  }
   form_file_limit: ''
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
-  share_page_body_attributes: { }
+  share_page_body_attributes: {  }
   submission_label: ''
   submission_log: false
-  submission_views: { }
-  submission_views_replace: { }
-  submission_user_columns: { }
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
   submission_user_duplicate: false
   submission_access_denied: default
   submission_access_denied_title: ''
   submission_access_denied_message: ''
-  submission_access_denied_attributes: { }
+  submission_access_denied_attributes: {  }
   submission_exception_message: ''
   submission_locked_message: ''
-  submission_excluded_elements: { }
+  submission_excluded_elements: {  }
   submission_exclude_empty: false
   submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
   autofill_message: ''
-  autofill_excluded_elements: { }
+  autofill_excluded_elements: {  }
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
@@ -166,8 +166,8 @@ settings:
   preview_label: ''
   preview_title: ''
   preview_message: ''
-  preview_attributes: { }
-  preview_excluded_elements: { }
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
   preview_exclude_empty: true
   preview_exclude_empty_checkbox: false
   draft: none
@@ -181,10 +181,10 @@ settings:
   confirmation_title: ''
   confirmation_message: ''
   confirmation_url: ''
-  confirmation_attributes: { }
+  confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
-  confirmation_back_attributes: { }
+  confirmation_back_attributes: {  }
   confirmation_exclude_query: false
   confirmation_exclude_token: false
   confirmation_update: false
@@ -211,7 +211,7 @@ settings:
   serial_disabled: false
   form_method: ''
   form_action: ''
-  form_attributes: { }
+  form_attributes: {  }
 access: {  }
 handlers: {  }
 variants: {  }
