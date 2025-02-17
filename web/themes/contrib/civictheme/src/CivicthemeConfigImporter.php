@@ -17,6 +17,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ModuleInstallerInterface;
+use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
@@ -68,10 +69,12 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
    *   The messenger.
    * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   The logger.
+   * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
+   *   The theme extension list.
    *
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
-  public function __construct(protected EventDispatcherInterface $eventDispatcher, protected ConfigManagerInterface $configManager, protected LockBackendInterface $lockPersistent, protected TypedConfigManagerInterface $typedConfigManager, protected ModuleHandlerInterface $moduleHandler, protected ModuleInstallerInterface $moduleInstaller, protected ThemeHandlerInterface $themeHandler, protected TranslationInterface $stringTranslation, protected ModuleExtensionList $moduleExtensionList, protected StorageInterface $configStorage, protected CacheBackendInterface $cacheConfig, protected MessengerInterface $messenger, protected LoggerChannelInterface $logger) {
+  public function __construct(protected EventDispatcherInterface $eventDispatcher, protected ConfigManagerInterface $configManager, protected LockBackendInterface $lockPersistent, protected TypedConfigManagerInterface $typedConfigManager, protected ModuleHandlerInterface $moduleHandler, protected ModuleInstallerInterface $moduleInstaller, protected ThemeHandlerInterface $themeHandler, protected TranslationInterface $stringTranslation, protected ModuleExtensionList $moduleExtensionList, protected StorageInterface $configStorage, protected CacheBackendInterface $cacheConfig, protected MessengerInterface $messenger, protected LoggerChannelInterface $logger, protected ThemeExtensionList $themeExtensionList) {
   }
 
   /**
@@ -91,7 +94,8 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
       $container->get('config.storage'),
       $container->get('cache.config'),
       $container->get('messenger'),
-      $container->get('logger.factory')->get(CivicthemeConfigImporter::class)
+      $container->get('logger.factory')->get(CivicthemeConfigImporter::class),
+      $container->get('extension.list.theme')
     );
   }
 
@@ -157,7 +161,8 @@ final class CivicthemeConfigImporter implements ContainerInjectionInterface {
       $this->moduleInstaller,
       $this->themeHandler,
       $this->stringTranslation,
-      $this->moduleExtensionList
+      $this->moduleExtensionList,
+      $this->themeExtensionList
     );
 
     try {
