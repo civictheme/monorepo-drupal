@@ -4,7 +4,7 @@ Feature: Webform render
   @api @javascript
   Scenario: Form inputs are correctly validated
     Given I am an anonymous user
-    When I visit "/form/civictheme-feedback"
+    When I visit "/feedback"
     And I should see 3 ".progress-step" elements
     And I should see the text "Personal information"
     And I should see the text "Additional information"

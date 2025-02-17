@@ -80,7 +80,7 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-4 input[id='edit-test-checkboxes-4-option-5']" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-4.ct-field--required input" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-4.ct-field--disabled input[disabled]" element
-    And I should see a ".ct-field.js-form-item-test-checkboxes-4 .ct-field-message:contains('This is an error message')" element
+    And I should see a ".ct-field.js-form-item-test-checkboxes-4 .ct-field-message:contains('Field Checkboxes, Title hidden, no default value, description, required, error has an error ')" element
 
     # Validate: Checkboxes, Title visible, default value, no description, disabled
     And I should see an ".ct-field.js-form-item-test-checkboxes-5" element

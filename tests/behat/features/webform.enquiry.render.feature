@@ -6,7 +6,7 @@ Feature: Webform render
     Given I am an anonymous user
     When I visit "/enquiry"
     Then I press the "Send" button
-    And I should see "First name field is required."
+    And I should see "Your first name is required."
     And I should see "Last name field is required."
     And I should see "Phone number field is required."
     And I should see "Email field is required."
