@@ -66,7 +66,7 @@ class FeatureContext extends DrupalContext {
   /**
    * Keep track of drush output.
    *
-   * @var string|boolean
+   * @var string|bool
    */
   protected $drushOutput;
 
@@ -481,7 +481,7 @@ class FeatureContext extends DrupalContext {
     $node = Node::load($nid);
 
     /** @var \Drupal\node\NodeInterface $node */
-    $translations = array_keys($node?->getTranslationLanguages());
+    $translations = array_keys($node->getTranslationLanguages());
     $get_ids = static function (string $langcode) use ($nid) : string {
       return $nid . ':' . $langcode;
     };
@@ -571,9 +571,9 @@ class FeatureContext extends DrupalContext {
    *
    * @Given I run drush :command :arguments
    */
-  public function assertDrushCommandWithArgument($command, $arguments) {
+  public function assertDrushCommandWithArgument(string $command, string $arguments): void {
     $this->drushOutput = $this->getDriver('drush')->$command($this->fixStepArgument($arguments));
-    if (!isset($this->drushOutput)) {
+    if (!empty($this->drushOutput)) {
       $this->drushOutput = TRUE;
     }
   }
