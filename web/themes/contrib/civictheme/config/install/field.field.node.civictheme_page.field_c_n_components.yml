@@ -13,7 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
-    - paragraphs.paragraphs_type.civictheme_message
+    - paragraphs.paragraphs_type.civictheme_content_message
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
     - paragraphs.paragraphs_type.civictheme_slider
@@ -43,7 +43,7 @@ settings:
       civictheme_iframe: civictheme_iframe
       civictheme_manual_list: civictheme_manual_list
       civictheme_map: civictheme_map
-      civictheme_message: civictheme_message
+      civictheme_content_message: civictheme_content_message
       civictheme_next_step: civictheme_next_step
       civictheme_promo: civictheme_promo
       civictheme_slider: civictheme_slider
@@ -86,7 +86,7 @@ settings:
       civictheme_map:
         weight: -53
         enabled: true
-      civictheme_message:
+      civictheme_content_message:
         weight: -52
         enabled: true
       civictheme_navigation_card:
