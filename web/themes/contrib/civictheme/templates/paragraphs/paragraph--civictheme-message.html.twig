@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display an message.
+ */
+#}
+{% include '@organisms/content-message/content-message.twig' with {
+  theme: theme,
+  type: type,
+  title: title,
+  content: content|render,
+  vertical_spacing: vertical_spacing,
+  with_background: with_background,
+} only %}
