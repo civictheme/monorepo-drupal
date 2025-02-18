@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies: {  }
 id: civictheme_content_message
-label: Content message
+label: 'Content message'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'A content message paragraph component.'
 behavior_plugins: {  }

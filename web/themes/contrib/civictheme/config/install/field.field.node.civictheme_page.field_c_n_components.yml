@@ -10,10 +10,10 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_campaign
     - paragraphs.paragraphs_type.civictheme_content
+    - paragraphs.paragraphs_type.civictheme_content_message
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
-    - paragraphs.paragraphs_type.civictheme_content_message
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
     - paragraphs.paragraphs_type.civictheme_slider
@@ -40,10 +40,10 @@ settings:
       civictheme_automated_list: civictheme_automated_list
       civictheme_callout: civictheme_callout
       civictheme_campaign: civictheme_campaign
+      civictheme_content_message: civictheme_content_message
       civictheme_iframe: civictheme_iframe
       civictheme_manual_list: civictheme_manual_list
       civictheme_map: civictheme_map
-      civictheme_content_message: civictheme_content_message
       civictheme_next_step: civictheme_next_step
       civictheme_promo: civictheme_promo
       civictheme_slider: civictheme_slider
@@ -71,6 +71,9 @@ settings:
       civictheme_content:
         weight: -61
         enabled: true
+      civictheme_content_message:
+        weight: -55
+        enabled: true
       civictheme_event_card:
         weight: -41
         enabled: false
@@ -78,15 +81,12 @@ settings:
         weight: -40
         enabled: false
       civictheme_iframe:
-        weight: -55
-        enabled: true
-      civictheme_manual_list:
         weight: -54
         enabled: true
-      civictheme_map:
+      civictheme_manual_list:
         weight: -53
         enabled: true
-      civictheme_content_message:
+      civictheme_map:
         weight: -52
         enabled: true
       civictheme_navigation_card:
@@ -120,10 +120,16 @@ settings:
         weight: -47
         enabled: false
       civictheme_slider_slide_ref:
+        weight: -34
+        enabled: false
+      civictheme_snippet:
+        weight: -33
+        enabled: false
+      civictheme_snippet_ref:
         weight: -32
         enabled: false
       civictheme_social_icon:
-        weight: -34
+        weight: -35
         enabled: false
       civictheme_subject_card:
         weight: -38
