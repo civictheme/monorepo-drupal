@@ -80,7 +80,7 @@ Feature: Field, Radios
     And I should see a ".ct-field.js-form-item-test-radios-4 input[id='edit-test-radios-4-option-5']" element
     And I should see a ".ct-field.js-form-item-test-radios-4 input[required]" element
     And I should not see a ".ct-field.js-form-item-test-radios-4 input[disabled]" element
-    And I should see a ".ct-field.js-form-item-test-radios-4 .ct-field-message:contains('Field Radios, Title hidden, no default value, description, required, error has an error ')" element
+    And I should see a ".ct-field.js-form-item-test-radios-4 .ct-field-message:contains('This is an error message')" element
 
     # Validate: Radios, Title visible, default value, no description, disabled
     And I should see an ".ct-field.js-form-item-test-radios-5" element
