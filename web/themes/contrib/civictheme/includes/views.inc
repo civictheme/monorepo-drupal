@@ -34,6 +34,8 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
 
   $variables['attributes']['class'] = empty($variables['dom_id']) ? Html::getUniqueId('js-view-dom-id') : 'js-view-dom-id-' . $variables['dom_id'];
 
+  $variables['theme'] = $view->component_settings['theme'];
+
   // @phpstan-ignore-next-line
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
@@ -50,6 +52,7 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
 
   // Render 'exposed' as Filters component.
   if (!empty($variables['exposed'])) {
+    $variables['exposed']['#attributes']['#civictheme_theme'] = $variables['theme'];
     $variables['filters'] = $variables['exposed'];
     unset($variables['exposed']);
   }
@@ -144,7 +147,15 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
     return;
   }
 
-  $field_count = count(_civictheme_form_get_form_elements($variables['form']));
+  $fields = _civictheme_form_get_form_elements($variables['form']);
+  $field_count = count($fields);
+
+  // Apply theme on fields.
+  if ($field_count > 0) {
+    foreach ($fields as $key => $value) {
+      $variables['form'][$key]['#attributes']['#civictheme_theme'] = $variables['attributes']['#civictheme_theme'];
+    }
+  }
 
   if ($field_count == 1) {
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
@@ -197,7 +208,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
 
   $variables['is_multiple'] = $is_multiple;
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
-  $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
+  $variables['theme'] = $variables['attributes']['#civictheme_theme'];
 
   _civictheme_form_preprocess_hidden_form_elements($variables);
 
@@ -231,7 +242,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 
   $variables['filters'] = $filters;
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
-  $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
+  $variables['theme'] = $variables['attributes']['#civictheme_theme'];
 
   _civictheme_form_preprocess_hidden_form_elements($variables);
 
