@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\civictheme_dev\EventSubscriber;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Config\ConfigManagerInterface;
 use Drupal\config_devel\Event\ConfigDevelEvents;
 use Drupal\config_devel\Event\ConfigDevelSaveEvent;
 use Drupal\config_devel\EventSubscriber\ConfigDevelSubscriberBase;
 use Drupal\config_filter\Plugin\ConfigFilterPluginManager;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\ConfigManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
