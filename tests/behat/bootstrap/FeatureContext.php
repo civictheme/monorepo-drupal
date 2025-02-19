@@ -509,7 +509,7 @@ class FeatureContext extends DrupalContext {
     $value = $this->wysiwygFixStepArgument($value);
 
     // Convert ot hyphenated machine name.
-    $field = str_replace('_', '-', (string) $field);
+    $field = str_replace('_', '-', $field);
 
     $this->getSession()
       ->executeScript(
