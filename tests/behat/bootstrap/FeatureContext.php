@@ -33,6 +33,7 @@ use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
@@ -391,7 +392,7 @@ class FeatureContext extends DrupalContext {
     foreach ($table->getColumn(0) as $title) {
       try {
         $menu_link = $this->loadMenuLinkByTitle($title, $menu_name);
-        if ($menu_link) {
+        if ($menu_link instanceof MenuLinkContent) {
           $menu_link->delete();
         }
       }
