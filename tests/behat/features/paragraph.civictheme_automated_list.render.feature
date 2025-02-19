@@ -353,5 +353,5 @@ Feature: Automated list render
     And I should see a ".ct-list.ct-theme-light" element
     And the response should contain "ct-automated-list-"
     Then I save screenshot
-    And the ".ct-list .ct-promo-card__title__link" element should contain "Test page content in list"
-    And the ".ct-list .ct-promo-card__title__link" element should not contain "Test page with Automated list non self referenced"
+    And the ".ct-list .ct-list__rows" element should contain "Test page content in list"
+    And the ".ct-list .ct-list__rows" element should not contain "Test page with Automated list non self referenced"
