@@ -2,18 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_c_n_summary
     - field.storage.node.field_c_n_components
+    - field.storage.node.field_c_n_summary
     - field.storage.paragraph.field_c_p_content
-    - field.storage.paragraph.field_c_p_summary
-    - field.storage.paragraph.field_c_p_title
     - field.storage.paragraph.field_c_p_list_items
     - field.storage.paragraph.field_c_p_subtitle
+    - field.storage.paragraph.field_c_p_summary
+    - field.storage.paragraph.field_c_p_title
     - search_api.server.civictheme_database
   module:
-    - paragraphs
     - node
-    - search_api
+    - paragraphs
 id: civictheme_content
 name: Content
 description: ''
@@ -184,4 +183,5 @@ options:
   cron_limit: 50
   index_directly: true
   track_changes_in_references: true
+  delete_on_fail: true
 server: civictheme_database

@@ -64,6 +64,13 @@ class FeatureContext extends DrupalContext {
   use VisibilityTrait;
 
   /**
+   * Keep track of drush output.
+   *
+   * @var string|bool
+   */
+  protected $drushOutput;
+
+  /**
    * Assert that content is present in an iframe.
    *
    * @Then I see content in iframe with id :id
@@ -205,7 +212,7 @@ class FeatureContext extends DrupalContext {
       'entity_type' => $parent_entity_type,
     ]);
 
-    $referenceItem = $node->get($parent_entity_field)->get($delta);
+    $referenceItem = $node?->get($parent_entity_field)->get($delta);
     if (!$referenceItem) {
       throw new \Exception(sprintf('Unable to find entity that matches delta: "%s"', print_r($delta, TRUE)));
     }
@@ -557,6 +564,31 @@ class FeatureContext extends DrupalContext {
     if (!$attr_pattern_matched) {
       throw new \Exception(sprintf('No element with "%s" attribute matching the pattern "%s" found.', $attribute, $pattern));
     }
+  }
+
+  /**
+   * Step to run drush commands.
+   *
+   * @Given I run drush :command :arguments
+   */
+  public function assertDrushCommandWithArgument(string $command, string $arguments): void {
+    $this->drushOutput = $this->getDriver('drush')->$command($this->fixStepArgument($arguments));
+    if (!empty($this->drushOutput)) {
+      $this->drushOutput = TRUE;
+    }
+  }
+
+  /**
+   * Returns fixed step argument (with \\" replaced back to ").
+   *
+   * @param string $argument
+   *   Argument to update.
+   *
+   * @return string
+   *   Modified step argument.
+   */
+  protected function fixStepArgument($argument): string {
+    return str_replace('\\"', '"', $argument);
   }
 
 }
