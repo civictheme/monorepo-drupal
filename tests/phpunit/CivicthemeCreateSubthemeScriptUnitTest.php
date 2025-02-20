@@ -18,14 +18,14 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'themes/contrib/civictheme/civictheme_create_subtheme.php';
+  protected $script = './web/themes/contrib/civictheme/civictheme_create_subtheme.php';
 
   /**
    * CivicTheme dir.
    *
    * @var string
    */
-  protected $civicthemeDir = 'themes/contrib/civictheme';
+  protected $civicthemeDir = './web/themes/contrib/civictheme';
 
   /**
    * @dataProvider dataProviderMain
