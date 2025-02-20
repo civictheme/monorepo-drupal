@@ -218,7 +218,11 @@ class FeatureContext extends DrupalContext {
       throw new \Exception(sprintf('Unable to find entity that matches delta: "%s"', print_r($delta, TRUE)));
     }
 
-    $entity = $referenceItem->entity ?? NULL;
+    /**
+     * @var \Drupal\entity_reference_revisions\Plugin\DataType\EntityReferenceRevisions $entity
+     */
+    $entity = $referenceItem->get('entity');
+    $entity = $entity->getTarget()?->getValue();
 
     // Get fields from scenario, parse them and expand values according to
     // field tables.
