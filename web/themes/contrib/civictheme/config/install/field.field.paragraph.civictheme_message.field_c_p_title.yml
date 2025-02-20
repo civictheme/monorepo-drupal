@@ -3,11 +3,11 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_title
-    - paragraphs.paragraphs_type.civictheme_content_message
-id: paragraph.civictheme_content_message.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_message
+id: paragraph.civictheme_message.field_c_p_title
 field_name: field_c_p_title
 entity_type: paragraph
-bundle: civictheme_content_message
+bundle: civictheme_message
 label: Title
 description: ''
 required: false

@@ -10,7 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_campaign
     - paragraphs.paragraphs_type.civictheme_content
-    - paragraphs.paragraphs_type.civictheme_content_message
+    - paragraphs.paragraphs_type.civictheme_message
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
@@ -40,7 +40,7 @@ settings:
       civictheme_automated_list: civictheme_automated_list
       civictheme_callout: civictheme_callout
       civictheme_campaign: civictheme_campaign
-      civictheme_content_message: civictheme_content_message
+      civictheme_message: civictheme_message
       civictheme_iframe: civictheme_iframe
       civictheme_manual_list: civictheme_manual_list
       civictheme_map: civictheme_map
@@ -71,9 +71,6 @@ settings:
       civictheme_content:
         weight: -61
         enabled: true
-      civictheme_content_message:
-        weight: -55
-        enabled: true
       civictheme_event_card:
         weight: -41
         enabled: false
@@ -81,12 +78,15 @@ settings:
         weight: -40
         enabled: false
       civictheme_iframe:
-        weight: -54
+        weight: -55
         enabled: true
       civictheme_manual_list:
-        weight: -53
+        weight: -54
         enabled: true
       civictheme_map:
+        weight: -53
+        enabled: true
+      civictheme_message:
         weight: -52
         enabled: true
       civictheme_navigation_card:

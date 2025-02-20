@@ -151,12 +151,12 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_callout.default
     - core.entity_form_display.paragraph.civictheme_campaign.default
     - core.entity_form_display.paragraph.civictheme_content.default
-    - core.entity_form_display.paragraph.civictheme_content_message.default
     - core.entity_form_display.paragraph.civictheme_event_card.default
     - core.entity_form_display.paragraph.civictheme_event_card_ref.default
     - core.entity_form_display.paragraph.civictheme_iframe.default
     - core.entity_form_display.paragraph.civictheme_manual_list.default
     - core.entity_form_display.paragraph.civictheme_map.default
+    - core.entity_form_display.paragraph.civictheme_message.default
     - core.entity_form_display.paragraph.civictheme_navigation_card.default
     - core.entity_form_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_form_display.paragraph.civictheme_next_step.default
@@ -213,12 +213,12 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_callout.default
     - core.entity_view_display.paragraph.civictheme_campaign.default
     - core.entity_view_display.paragraph.civictheme_content.default
-    - core.entity_view_display.paragraph.civictheme_content_message.default
     - core.entity_view_display.paragraph.civictheme_event_card.default
     - core.entity_view_display.paragraph.civictheme_event_card_ref.default
     - core.entity_view_display.paragraph.civictheme_iframe.default
     - core.entity_view_display.paragraph.civictheme_manual_list.default
     - core.entity_view_display.paragraph.civictheme_map.default
+    - core.entity_view_display.paragraph.civictheme_message.default
     - core.entity_view_display.paragraph.civictheme_navigation_card.default
     - core.entity_view_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_view_display.paragraph.civictheme_next_step.default
@@ -362,12 +362,6 @@ config_devel:
     - field.field.paragraph.civictheme_content.field_c_p_content
     - field.field.paragraph.civictheme_content.field_c_p_theme
     - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
-    - field.field.paragraph.civictheme_content_message.field_c_p_background
-    - field.field.paragraph.civictheme_content_message.field_c_p_content
-    - field.field.paragraph.civictheme_content_message.field_c_p_message_type
-    - field.field.paragraph.civictheme_content_message.field_c_p_theme
-    - field.field.paragraph.civictheme_content_message.field_c_p_title
-    - field.field.paragraph.civictheme_content_message.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_event_card.field_c_p_date_range
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
@@ -401,6 +395,12 @@ config_devel:
     - field.field.paragraph.civictheme_map.field_c_p_theme
     - field.field.paragraph.civictheme_map.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_map.field_c_p_view_link
+    - field.field.paragraph.civictheme_message.field_c_p_background
+    - field.field.paragraph.civictheme_message.field_c_p_content
+    - field.field.paragraph.civictheme_message.field_c_p_message_type
+    - field.field.paragraph.civictheme_message.field_c_p_theme
+    - field.field.paragraph.civictheme_message.field_c_p_title
+    - field.field.paragraph.civictheme_message.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
@@ -598,13 +598,13 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_campaign
-    - paragraphs.paragraphs_type.civictheme_content_message
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_event_card
     - paragraphs.paragraphs_type.civictheme_event_card_ref
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
+    - paragraphs.paragraphs_type.civictheme_message
     - paragraphs.paragraphs_type.civictheme_navigation_card
     - paragraphs.paragraphs_type.civictheme_navigation_card_ref
     - paragraphs.paragraphs_type.civictheme_next_step
