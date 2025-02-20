@@ -152,7 +152,7 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
 
   // Apply theme on fields.
   if ($field_count > 0) {
-    foreach ($fields as $key => $value) {
+    foreach (array_keys($fields) as $key) {
       $variables['form'][$key]['#attributes']['#civictheme_theme'] = $variables['attributes']['#civictheme_theme'];
     }
   }
