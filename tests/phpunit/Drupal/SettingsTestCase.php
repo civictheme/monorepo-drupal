@@ -192,6 +192,7 @@ abstract class SettingsTestCase extends TestCase {
     if (empty($app_root)) {
       throw new \RuntimeException('Could not determine application root.');
     }
+    $app_root .= '/web/';
     $site_path = 'sites/default';
     $config = [];
     $settings = [];
