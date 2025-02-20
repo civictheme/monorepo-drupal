@@ -150,10 +150,12 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   $fields = _civictheme_form_get_form_elements($variables['form']);
   $field_count = count($fields);
 
-  // Apply theme on fields.
+  // Apply theme to exposed filter and fields.
+  $theme = $variables['attributes']['#civictheme_theme'] ?? CivicthemeConstants::THEME_LIGHT;
+  $variables['theme'] = $theme;
   if ($field_count > 0) {
     foreach (array_keys($fields) as $key) {
-      $variables['form'][$key]['#attributes']['#civictheme_theme'] = $variables['attributes']['#civictheme_theme'];
+      $variables['form'][$key]['#attributes']['#civictheme_theme'] = $theme;
     }
   }
 
@@ -208,7 +210,6 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
 
   $variables['is_multiple'] = $is_multiple;
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
-  $variables['theme'] = $variables['attributes']['#civictheme_theme'];
 
   _civictheme_form_preprocess_hidden_form_elements($variables);
 
@@ -242,7 +243,6 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 
   $variables['filters'] = $filters;
   $variables['filter_title'] = $field['#description'] ?? t('Filter search results');
-  $variables['theme'] = $variables['attributes']['#civictheme_theme'];
 
   _civictheme_form_preprocess_hidden_form_elements($variables);
 
