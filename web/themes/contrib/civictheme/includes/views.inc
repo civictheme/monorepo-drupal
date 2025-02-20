@@ -34,7 +34,7 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
 
   $variables['attributes']['class'] = empty($variables['dom_id']) ? Html::getUniqueId('js-view-dom-id') : 'js-view-dom-id-' . $variables['dom_id'];
 
-  $variables['theme'] = $view->component_settings['theme'];
+  $variables['theme'] = $view->component_settings['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 
   // @phpstan-ignore-next-line
   if (!empty($view->header) && is_array($view->header)) {
