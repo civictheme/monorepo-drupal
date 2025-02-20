@@ -37,7 +37,7 @@ abstract class ScriptUnitTestBase extends TestCase {
     putenv('SCRIPT_QUIET=1');
     $path = './web' . DIRECTORY_SEPARATOR . $this->script;
     if (!is_readable($path)) {
-      throw new \RuntimeException(sprintf('Unable to include script file %s.', $this->script));
+      throw new \RuntimeException(sprintf('Unable to include script file %s. Current directory: %s', $this->script, getcwd()));
     }
     require_once $path;
 
