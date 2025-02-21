@@ -33,6 +33,7 @@ use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
@@ -201,23 +202,27 @@ class FeatureContext extends DrupalContext {
    */
   public function paragraphsAddToParentEntityWithFields(string $field_name, string $bundle, string $entity_type, string $parent_entity_field, string $parent_entity_bundle, string $parent_entity_type, string $parent_entity_field_name, string $parent_entity_field_identifer, int $delta, string $paragraph_type, TableNode $fields): void {
     // Get paragraph field name for this entity type.
-    $paragraph_node_field_name = $this->paragraphsCheckEntityFieldName($entity_type, $bundle, $field_name);
+    $this->paragraphsValidateEntityFieldName($entity_type, $bundle, $field_name);
 
     // Find previously created entity by entity_type, bundle and identifying
     // field value.
-    $node = $this->paragraphsFindEntity([
-      'field_value' => $parent_entity_field_identifer,
-      'field_name' => $parent_entity_field_name,
-      'bundle' => $parent_entity_bundle,
-      'entity_type' => $parent_entity_type,
-    ]);
+    $node = $this->paragraphsFindEntity(
+      $parent_entity_type,
+      $parent_entity_bundle,
+      $parent_entity_field_name,
+      $parent_entity_field_identifer,
+    );
 
     $referenceItem = $node?->get($parent_entity_field)->get($delta);
     if (!$referenceItem) {
       throw new \Exception(sprintf('Unable to find entity that matches delta: "%s"', print_r($delta, TRUE)));
     }
 
-    $entity = $referenceItem->get('entity')->getTarget()->getValue();
+    /**
+     * @var \Drupal\entity_reference_revisions\Plugin\DataType\EntityReferenceRevisions $entity
+     */
+    $entity = $referenceItem->get('entity');
+    $entity = $entity->getTarget()?->getValue();
 
     // Get fields from scenario, parse them and expand values according to
     // field tables.
@@ -227,7 +232,7 @@ class FeatureContext extends DrupalContext {
     $this->paragraphsExpandEntityFields('paragraph', $stub);
 
     // Attach paragraph from stub to node.
-    $this->paragraphsAttachFromStubToEntity($entity, $paragraph_node_field_name, $paragraph_type, $stub);
+    $this->paragraphsAttachFromStubToEntity($entity, $field_name, $paragraph_type, $stub);
   }
 
   /**
@@ -391,7 +396,7 @@ class FeatureContext extends DrupalContext {
     foreach ($table->getColumn(0) as $title) {
       try {
         $menu_link = $this->loadMenuLinkByTitle($title, $menu_name);
-        if ($menu_link) {
+        if ($menu_link instanceof MenuLinkContent) {
           $menu_link->delete();
         }
       }
@@ -468,7 +473,7 @@ class FeatureContext extends DrupalContext {
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function searchApiIndexContent(string $type, string $title): void {
-    $nids = $this->contentNodeLoadMultiple($type, [
+    $nids = $this->contentLoadMultiple($type, [
       'title' => $title,
     ]);
 
@@ -508,7 +513,7 @@ class FeatureContext extends DrupalContext {
     $value = $this->wysiwygFixStepArgument($value);
 
     // Convert ot hyphenated machine name.
-    $field = str_replace('_', '-', (string) $field);
+    $field = str_replace('_', '-', $field);
 
     $this->getSession()
       ->executeScript(
