@@ -10,10 +10,10 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_campaign
     - paragraphs.paragraphs_type.civictheme_content
-    - paragraphs.paragraphs_type.civictheme_message
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
+    - paragraphs.paragraphs_type.civictheme_message
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
     - paragraphs.paragraphs_type.civictheme_slider
