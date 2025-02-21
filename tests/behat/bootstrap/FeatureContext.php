@@ -207,10 +207,10 @@ class FeatureContext extends DrupalContext {
     // Find previously created entity by entity_type, bundle and identifying
     // field value.
     $node = $this->paragraphsFindEntity(
-      $parent_entity_field_identifer,
-      $parent_entity_field_name,
-      $parent_entity_bundle,
       $parent_entity_type,
+      $parent_entity_bundle,
+      $parent_entity_field_name,
+      $parent_entity_field_identifer,
     );
 
     $referenceItem = $node?->get($parent_entity_field)->get($delta);
