@@ -203,60 +203,60 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
       ],
     ];
   }
-//
-//  /**
-//   * @runInSeparateProcess
-//   */
-//  public function testExamplesRemoval(): void {
-//    $civictheme_dir = 'web/themes/contrib/civictheme';
-//    $newtheme_rel_dir = '';
-//    $newtheme_name = 'new_theme';
-//    $expected_newtheme_dir = 'web/themes/custom/new_theme';
-//    $expected_rel_path = '../../contrib/civictheme/';
-//
-//    $this->prepareSut($civictheme_dir);
-//    $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
-//
-//    $result = $this->runScript([
-//      $newtheme_name,
-//      $newtheme_name,
-//      $newtheme_name,
-//      $newtheme_rel_dir,
-//      '--remove-examples',
-//    ], TRUE);
-//    $this->assertEquals(0, $result['code']);
-//    $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
-//    $this->assertStringContainsString($expected_new_theme_dir_full, $result['output']);
-//
-//    $expected_new_theme_dir_full .= '/';
-//    $this->assertDirectoryExists($expected_new_theme_dir_full);
-//
-//    // Standard assertions.
-//    $this->assertDirectoryExists($expected_new_theme_dir_full . '.storybook');
-//    $this->assertDirectoryExists($expected_new_theme_dir_full . 'assets');
-//    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components');
-//    $this->assertDirectoryExists($expected_new_theme_dir_full . 'templates');
-//    $this->assertFileExists($expected_new_theme_dir_full . '.eslintignore');
-//    $this->assertFileExists($expected_new_theme_dir_full . '.eslintrc.yml');
-//    $this->assertFileExists($expected_new_theme_dir_full . '.gitignore');
-//    $this->assertFileExists($expected_new_theme_dir_full . '.nvmrc');
-//    $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
-//    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
-//    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
-//    $this->assertFileExists($expected_new_theme_dir_full . 'build.js');
-//    $this->assertFileExists($expected_new_theme_dir_full . 'vite.config.js');
-//    $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
-//    $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
-//    $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
-//
-//    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
-//
-//    // Examples assertions.
-//    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
-//    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
-//    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/03-organisms/header');
-//  }
-//
+
+  /**
+   * @runInSeparateProcess
+   */
+  public function testExamplesRemoval(): void {
+    $civictheme_dir = 'web/themes/contrib/civictheme';
+    $newtheme_rel_dir = '';
+    $newtheme_name = 'new_theme';
+    $expected_newtheme_dir = 'web/themes/custom/new_theme';
+    $expected_rel_path = '../../contrib/civictheme/';
+
+    $this->prepareSut($civictheme_dir);
+    $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
+
+    $result = $this->runScript([
+      $newtheme_name,
+      $newtheme_name,
+      $newtheme_name,
+      $newtheme_rel_dir,
+      '--remove-examples',
+    ], TRUE);
+    $this->assertEquals(0, $result['code']);
+    $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
+    $this->assertStringContainsString($expected_new_theme_dir_full, $result['output']);
+
+    $expected_new_theme_dir_full .= '/';
+    $this->assertDirectoryExists($expected_new_theme_dir_full);
+
+    // Standard assertions.
+    $this->assertDirectoryExists($expected_new_theme_dir_full . '.storybook');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'assets');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'templates');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintrc.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . '.gitignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.nvmrc');
+    $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . 'build.js');
+    $this->assertFileExists($expected_new_theme_dir_full . 'vite.config.js');
+    $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
+    $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
+    $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
+
+    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
+
+    // Examples assertions.
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/03-organisms/header');
+  }
+
   /**
    * Prepare SUT codebase.
    *
@@ -281,97 +281,97 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
     return $sut_dir;
   }
-//
-//  /**
-//   * @dataProvider dataProviderFileGetRelativeDir
-//   * @runInSeparateProcess
-//   */
-//  public function testFileGetRelativeDir(string $from, string $to, string $expected): void {
-//    $this->assertEquals($expected, file_get_relative_dir($from, $to));
-//  }
-//
-//  public static function dataProviderFileGetRelativeDir(): array {
-//    return [
-//      ['/a/b/c/d', '/a/b/c/d', './'],
-//      ['/a/b/c/d', '/a/b/c', '../'],
-//      ['/a/b/c/d', '/a/b', '../../'],
-//      ['/a/b/c/d', '/a/b/c/other', '../other/'],
-//      ['/a/b/c/d', '/a/b/other2', '../../other2/'],
-//
-//      ['/a/b/c/d', '/a/b/c/d/', './'],
-//      ['/a/b/c/d', '/a/b/c/', '../'],
-//      ['/a/b/c/d', '/a/b/', '../../'],
-//      ['/a/b/c/d', '/a/b/c/other/', '../other/'],
-//      ['/a/b/c/d', '/a/b/other2/', '../../other2/'],
-//
-//      ['/a/b/c/d/', '/a/b/c/d/', './'],
-//      ['/a/b/c/d/', '/a/b/c/', '../'],
-//      ['/a/b/c/d/', '/a/b/', '../../'],
-//      ['/a/b/c/d/', '/a/b/c/other/', '../other/'],
-//      ['/a/b/c/d/', '/a/b/other2/', '../../other2/'],
-//    ];
-//  }
-//
-//  /**
-//   * @dataProvider dataProviderFilePathCanonicalize
-//   * @runInSeparateProcess
-//   */
-//  public function testFilePathCanonicalize(string $path, string $expected): void {
-//    $this->assertEquals($expected, file_path_canonicalize($path));
-//  }
-//
-//  public static function dataProviderFilePathCanonicalize(): array {
-//    return [
-//      ['', ''],
-//      ['a', 'a'],
-//
-//      // Absolute.
-//      ['/a', '/a'],
-//      ['/a/b', '/a/b'],
-//
-//      ['/a/b/.', '/a/b/'],
-//      ['/a/b/..', '/a/'],
-//      ['/a/b/c/..', '/a/b/'],
-//      ['/a/b/c/../d/', '/a/b/d/'],
-//      ['/a/b/c/../../d/', '/a/d/'],
-//      ['/a/b/c/../.././d/', '/a/d/'],
-//      ['/a/b/c/./../.././d/', '/a/d/'],
-//      ['/a/b/c/././././.././././.././d/', '/a/d/'],
-//      ['/a/././././b/c/././././.././././.././d/', '/a/d/'],
-//
-//      ['/a/././././', '/a/'],
-//      ['/a/./', '/a/'],
-//      ['/a/./../', '/'],
-//      ['/a/./../.', '/'],
-//      ['/a/./.././', '/'],
-//
-//      ['/a/./../../', '/'],
-//      ['/a/./../../.', '/'],
-//      ['/a/./../.././../', '/'],
-//      ['/a/./../.././../.', '/'],
-//
-//      // Relative.
-//      ['a', 'a'],
-//      ['a/b', 'a/b'],
-//
-//      ['a/b/.', 'a/b/'],
-//      ['a/b/..', 'a/'],
-//      ['a/b/c/..', 'a/b/'],
-//      ['a/b/c/../d/', 'a/b/d/'],
-//      ['a/b/c/../../d/', 'a/d/'],
-//      ['a/b/c/../.././d/', 'a/d/'],
-//      ['a/b/c/./../.././d/', 'a/d/'],
-//      ['a/b/c/././././.././././.././d/', 'a/d/'],
-//      ['a/././././b/c/././././.././././.././d/', 'a/d/'],
-//
-//      ['a/././././', 'a/'],
-//      ['a/./', 'a/'],
-//      ['a/./../', '/'],
-//      ['a/./../.', '/'],
-//      ['a/./.././', '/'],
-//
-//      ['a/./../../', '/'],
-//    ];
-//  }
+
+  /**
+   * @dataProvider dataProviderFileGetRelativeDir
+   * @runInSeparateProcess
+   */
+  public function testFileGetRelativeDir(string $from, string $to, string $expected): void {
+    $this->assertEquals($expected, file_get_relative_dir($from, $to));
+  }
+
+  public static function dataProviderFileGetRelativeDir(): array {
+    return [
+      ['/a/b/c/d', '/a/b/c/d', './'],
+      ['/a/b/c/d', '/a/b/c', '../'],
+      ['/a/b/c/d', '/a/b', '../../'],
+      ['/a/b/c/d', '/a/b/c/other', '../other/'],
+      ['/a/b/c/d', '/a/b/other2', '../../other2/'],
+
+      ['/a/b/c/d', '/a/b/c/d/', './'],
+      ['/a/b/c/d', '/a/b/c/', '../'],
+      ['/a/b/c/d', '/a/b/', '../../'],
+      ['/a/b/c/d', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d', '/a/b/other2/', '../../other2/'],
+
+      ['/a/b/c/d/', '/a/b/c/d/', './'],
+      ['/a/b/c/d/', '/a/b/c/', '../'],
+      ['/a/b/c/d/', '/a/b/', '../../'],
+      ['/a/b/c/d/', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d/', '/a/b/other2/', '../../other2/'],
+    ];
+  }
+
+  /**
+   * @dataProvider dataProviderFilePathCanonicalize
+   * @runInSeparateProcess
+   */
+  public function testFilePathCanonicalize(string $path, string $expected): void {
+    $this->assertEquals($expected, file_path_canonicalize($path));
+  }
+
+  public static function dataProviderFilePathCanonicalize(): array {
+    return [
+      ['', ''],
+      ['a', 'a'],
+
+      // Absolute.
+      ['/a', '/a'],
+      ['/a/b', '/a/b'],
+
+      ['/a/b/.', '/a/b/'],
+      ['/a/b/..', '/a/'],
+      ['/a/b/c/..', '/a/b/'],
+      ['/a/b/c/../d/', '/a/b/d/'],
+      ['/a/b/c/../../d/', '/a/d/'],
+      ['/a/b/c/../.././d/', '/a/d/'],
+      ['/a/b/c/./../.././d/', '/a/d/'],
+      ['/a/b/c/././././.././././.././d/', '/a/d/'],
+      ['/a/././././b/c/././././.././././.././d/', '/a/d/'],
+
+      ['/a/././././', '/a/'],
+      ['/a/./', '/a/'],
+      ['/a/./../', '/'],
+      ['/a/./../.', '/'],
+      ['/a/./.././', '/'],
+
+      ['/a/./../../', '/'],
+      ['/a/./../../.', '/'],
+      ['/a/./../.././../', '/'],
+      ['/a/./../.././../.', '/'],
+
+      // Relative.
+      ['a', 'a'],
+      ['a/b', 'a/b'],
+
+      ['a/b/.', 'a/b/'],
+      ['a/b/..', 'a/'],
+      ['a/b/c/..', 'a/b/'],
+      ['a/b/c/../d/', 'a/b/d/'],
+      ['a/b/c/../../d/', 'a/d/'],
+      ['a/b/c/../.././d/', 'a/d/'],
+      ['a/b/c/./../.././d/', 'a/d/'],
+      ['a/b/c/././././.././././.././d/', 'a/d/'],
+      ['a/././././b/c/././././.././././.././d/', 'a/d/'],
+
+      ['a/././././', 'a/'],
+      ['a/./', 'a/'],
+      ['a/./../', '/'],
+      ['a/./../.', '/'],
+      ['a/./.././', '/'],
+
+      ['a/./../../', '/'],
+    ];
+  }
 
 }
