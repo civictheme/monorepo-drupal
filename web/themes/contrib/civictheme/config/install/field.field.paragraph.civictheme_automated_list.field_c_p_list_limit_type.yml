@@ -11,7 +11,7 @@ field_name: field_c_p_list_limit_type
 entity_type: paragraph
 bundle: civictheme_automated_list
 label: 'Limit type'
-description: 'Use <em>Unlimited</em> to show all results split into pages or <em>Limited</em> to reduce number of results to a specified <em>Limit</em>.'
+description: 'Use <em>Limited</em> to show a limited number of results in the list, according to the number you add in the <em>Limit</em> field. Use <em>Unlimited</em> to show all results, split into pages using pagination.'
 required: true
 translatable: false
 default_value:
