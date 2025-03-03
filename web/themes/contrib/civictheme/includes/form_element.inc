@@ -220,7 +220,7 @@ function civictheme_preprocess_form_element__civictheme_field__select(array &$va
       unset($option['disabled']);
     }
   }
-
+  unset($option);
   $variables['control'][0]['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
 }
 
@@ -251,13 +251,14 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
   // Prepare control array.
   $control = [];
   foreach ($element['#options'] as $value => $label) {
+    $is_checked = is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value;
     $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
     $control[] = [
       'label' => $label,
       'value' => $value,
       'name' => $name . '[' . $value . ']',
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value,
+      'is_checked' => $is_checked,
       'is_disabled' => isset($element['#attributes']['disabled']),
       // Checkboxes controls with a group cannot be required by definition.
       'is_required' => FALSE,
@@ -268,8 +269,8 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
 
   $variables['control'] = $control;
 
-  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] == 'inline' || $element['#options_display'] == 'buttons_horizontal');
-
+  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] === 'inline' || $element['#options_display'] === 'buttons_horizontal');
+  $variables['attributes']['id'] = $variables['element']['#id'] ?? '';
   $variables['type'] = 'checkbox';
 }
 
@@ -290,12 +291,15 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
   $control = [];
   foreach ($element['#options'] as $value => $label) {
     $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
+    $selected_value = $element['#value'] ?? NULL;
+    // Cannot do strict value check as integer values returned as string.
+    $is_checked = $value == $selected_value;
     $control[] = [
       'label' => $label,
       'value' => $value,
       'name' => $name,
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => isset($element['#value']) ? (is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value) : FALSE,
+      'is_checked' => $is_checked,
       'is_disabled' => isset($element['#attributes']['disabled']),
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
@@ -304,8 +308,13 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
 
   $variables['control'] = $control;
 
-  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] == 'inline' || $element['#options_display'] == 'buttons_horizontal');
-
+  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] === 'inline' || $element['#options_display'] === 'buttons_horizontal');
+  // We do not use the inner div element for radios and checkboxes.
+  // For error messages anchors we need to use the wrapper id and not the
+  // wrapper.
+  if (!empty($variables['attributes']['id']) && str_ends_with($variables['attributes']['id'], '--wrapper')) {
+    $variables['attributes']['id'] = str_replace('--wrapper', '', $variables['attributes']['id']);
+  }
   $variables['type'] = 'radio';
 }
 
@@ -352,20 +361,29 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $variables['title'] = $element['#title'] ?? '';
 
   $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
-  $title_display = $title_display == 'none' ? 'hidden' : $title_display;
-  $title_display = $title_display == 'visually_hidden' ? 'invisible' : $title_display;
+  $title_display = $title_display === 'none' ? 'hidden' : $title_display;
+  $title_display = $title_display === 'visually_hidden' ? 'invisible' : $title_display;
   if (empty($variables['title'])) {
     $title_display = 'hidden';
   }
   $variables['title_display'] = $title_display;
 
-  $variables['orientation'] = $variables['orientation'] ?? $title_display == 'inline' ? 'horizontal' : 'vertical';
+  $variables['orientation'] = $variables['orientation'] ?? $title_display === 'inline' ? 'horizontal' : 'vertical';
 
   $variables['is_required'] = $element['#required'] ?? FALSE;
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['description'] = $element['#description'] ?? '';
-  $variables['message'] = $element['#errors'] ?? '';
-  $variables['is_invalid'] = isset($element['#errors']) && !empty($element['#errors']);
+  $variables['is_invalid'] = !empty($element['#errors']);
+  if ($variables['is_invalid']) {
+    $variables['attributes']['aria-invalid'] = 'true';
+    $variables['message']['content'] = $element['#errors'] ?? '';
+    $element_id = $element['#id'] ?? $element['#attributes']['data-drupal-selector'] ?? '';
+    if (!empty($element_id)) {
+      $element_id .= '--error-message';
+      $variables['message']['attributes'] = new Attribute(['id' => $element_id]);
+      $variables['attributes']['aria-describedby'] = $element_id;
+    }
+  }
   $variables['placeholder'] = $element['#placeholder'] ?? '';
   $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
   $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
@@ -506,7 +524,7 @@ function _civictheme_preprocess_form_element__description(array &$variables): vo
 /**
  * Preprocesses form element wrapper classes.
  */
-function _civictheme_preprocess_form_element__wrapper_classes(array &$variables) {
+function _civictheme_preprocess_form_element__wrapper_classes(array &$variables): void {
   if (!empty($variables['element']['#wrapper_attributes'])) {
     $variables['attributes'] = $variables['element']['#wrapper_attributes'];
   }

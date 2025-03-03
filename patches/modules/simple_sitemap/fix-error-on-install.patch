@@ -1,0 +1,37 @@
+From 6384045dfa72932125c74ad93ef6a1708fe2ecec Mon Sep 17 00:00:00 2001
+From: Richard Gaunt <richard.gaunt@protonmail.com>
+Date: Wed, 19 Feb 2025 22:32:26 +1100
+Subject: [PATCH] Issue #3507718: Updated configuration route name to fix error
+ on installation.
+
+---
+ modules/simple_sitemap_views/simple_sitemap_views.info.yml    | 2 +-
+ modules/simple_sitemap_views/simple_sitemap_views.routing.yml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/modules/simple_sitemap_views/simple_sitemap_views.info.yml b/modules/simple_sitemap_views/simple_sitemap_views.info.yml
+index e8ac717d..deb8a9bd 100755
+--- a/modules/simple_sitemap_views/simple_sitemap_views.info.yml
++++ b/modules/simple_sitemap_views/simple_sitemap_views.info.yml
+@@ -1,7 +1,7 @@
+ name: 'Simple XML Sitemap (Views)'
+ type: module
+ description: 'Provides integration of the Simple XML Sitemap module with the Views module.'
+-configure: simple_sitemap.settings_views
++configure: simple_sitemap_views.settings
+ package: SEO
+ core_version_requirement: ^10.3 || ^11
+ dependencies:
+diff --git a/modules/simple_sitemap_views/simple_sitemap_views.routing.yml b/modules/simple_sitemap_views/simple_sitemap_views.routing.yml
+index 650cf71b..1f77f508 100755
+--- a/modules/simple_sitemap_views/simple_sitemap_views.routing.yml
++++ b/modules/simple_sitemap_views/simple_sitemap_views.routing.yml
+@@ -1,4 +1,4 @@
+-simple_sitemap.views:
++simple_sitemap_views.settings:
+   path: '/admin/config/search/simplesitemap/views'
+   defaults:
+     _controller: '\Drupal\simple_sitemap_views\Controller\SimpleSitemapViewsController::content'
+--
+GitLab
+
