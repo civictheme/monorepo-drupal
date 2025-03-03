@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Database\Database;
+use Drupal\Core\Database\StatementInterface;
 use Drupal\user\Entity\User;
 
 /**
@@ -47,45 +49,61 @@ function civictheme_dev_install(): void {
 
 /**
  * Update database charset and collation to utf8mb4.
+ *
+ * @return string
+ *   A message indicating completion of the update.
+ *
+ * @throws \Exception
  */
-function civictheme_dev_update_10001() {
-  $database = \Drupal::database();
+function civictheme_dev_update_10001(): string {
+  /** @var \Drupal\Core\Database\Connection $database */
+  $database = Database::getConnection();
   $charset = $database->getConnectionOptions()['charset'] ?? 'utf8mb4';
   $collation = $database->getConnectionOptions()['collation'] ?? 'utf8mb4_general_ci';
 
   echo PHP_EOL;
-  echo "Current Charset: $charset", PHP_EOL;
-  echo "Current Collation: $collation", PHP_EOL;
+  echo 'Current Charset: ' . $charset, PHP_EOL;
+  echo 'Current Collation: ' . $collation, PHP_EOL;
 
   // Retrieve and display the default character set and collation.
-  $defaultSettings = $database->query('SELECT @@character_set_database AS charset, @@collation_database AS collation')->fetchAssoc();
-  echo "Default Character Set: {$defaultSettings['charset']}", PHP_EOL;
-  echo "Default Collation: {$defaultSettings['collation']}", PHP_EOL;
+  $query = $database->query('SELECT @@character_set_database AS charset, @@collation_database AS collation');
+  assert($query instanceof StatementInterface);
+  $defaultSettings = $query->fetchAssoc();
+  if ($defaultSettings !== FALSE && is_array($defaultSettings)) {
+    echo 'Default Character Set: ' . $defaultSettings['charset'], PHP_EOL;
+    echo 'Default Collation: ' . $defaultSettings['collation'], PHP_EOL;
+  }
 
   // Retrieve tables with different collation.
-  $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation])->fetchAllAssoc('Name');
+  $query = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation]);
+  assert($query instanceof StatementInterface);
+  /** @var array<string, array<string, mixed>> $tables */
+  $tables = $query->fetchAllAssoc('Name');
   $tableCount = count($tables);
 
-  if ($tableCount) {
+  if ($tableCount !== 0) {
     echo 'Converting collation of ', $tableCount, ' tables to ', $collation, PHP_EOL;
     foreach (array_keys($tables) as $table_name) {
       echo '- Altering table ', $table_name, PHP_EOL;
       try {
         // Perform the collation change.
         $database->query('ALTER TABLE `' . $table_name . '` CONVERT TO CHARACTER SET ' . $charset . ' COLLATE ' . $collation . ';');
-        echo "Success: $table_name collation changed to $collation", PHP_EOL;
+        echo sprintf('Success: %s collation changed to %s', $table_name, $collation), PHP_EOL;
       }
       catch (\Exception $e) {
         // Catch and display any errors during the ALTER TABLE operation.
-        echo "Error altering table $table_name: ", $e->getMessage(), PHP_EOL;
+        echo sprintf('Error altering table %s: ', $table_name), $e->getMessage(), PHP_EOL;
       }
     }
 
     // Check again for any tables not using the specified collation.
-    $leftover_tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation])->fetchAllAssoc('Name');
+    $query = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $collation]);
+    assert($query instanceof StatementInterface);
+    /** @var array<string, array<string, mixed>> $leftover_tables */
+    $leftover_tables = $query->fetchAllAssoc('Name');
     $leftoverCount = count($leftover_tables);
 
-    if (!$leftoverCount) {
+    if ($leftoverCount === 0) {
       echo 'DONE: All tables are using the collation ', $collation, PHP_EOL;
     }
     else {
@@ -99,25 +117,34 @@ function civictheme_dev_update_10001() {
     echo 'No action needed: All tables are already using the collation ', $collation, PHP_EOL;
   }
 
-  return t('Database charset and collation update completed.');
+  return (string) t('Database charset and collation update completed.');
 }
 
 /**
  * Display tables that don't use utf8mb4_general_ci collation.
+ *
+ * @return string
+ *   A message indicating completion of the check.
+ *
+ * @throws \Exception
  */
-function civictheme_dev_update_10002() {
-  $database = \Drupal::database();
+function civictheme_dev_update_10002(): string {
+  /** @var \Drupal\Core\Database\Connection $database */
+  $database = Database::getConnection();
   $target_collation = 'utf8mb4_general_ci';
 
   // Retrieve and display tables with different collation.
-  $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation])->fetchAll();
+  $query = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation]);
+  assert($query instanceof StatementInterface);
+  /** @var array<int, object{Name: string, Collation: string}> $tables */
+  $tables = $query->fetchAll();
 
   echo PHP_EOL;
-  echo "Tables not using $target_collation collation:", PHP_EOL;
+  echo sprintf('Tables not using %s collation:', $target_collation), PHP_EOL;
   echo "----------------------------------------", PHP_EOL;
 
   if (empty($tables)) {
-    echo "All tables are using $target_collation collation.", PHP_EOL;
+    echo sprintf('All tables are using %s collation.', $target_collation), PHP_EOL;
   }
   else {
     echo sprintf("Found %d tables with different collation:", count($tables)), PHP_EOL;
@@ -126,21 +153,32 @@ function civictheme_dev_update_10002() {
     }
   }
 
-  return t('Database collation check completed.');
+  return (string) t('Database collation check completed.');
 }
 
 /**
  * Implements hook_requirements().
+ *
+ * @phpstan-return array<string, array{
+ *   title: string,
+ *   value: string,
+ *   severity: int,
+ *   description?: string
+ * }>
  */
-function civictheme_dev_requirements($phase) {
+function civictheme_dev_requirements(string $phase): array {
   $requirements = [];
 
-  if ($phase == 'runtime') {
-    $database = \Drupal::database();
+  if ($phase === 'runtime') {
+    /** @var \Drupal\Core\Database\Connection $database */
+    $database = Database::getConnection();
     $target_collation = 'utf8mb4_general_ci';
 
     // Retrieve tables with different collation.
-    $tables = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation])->fetchAll();
+    $query = $database->query('SHOW TABLE STATUS WHERE Collation <> :collation', [':collation' => $target_collation]);
+    assert($query instanceof StatementInterface);
+    /** @var array<int, object{Name: string, Collation: string}> $tables */
+    $tables = $query->fetchAll();
     $tableCount = count($tables);
 
     if (empty($tables)) {
@@ -161,10 +199,10 @@ function civictheme_dev_requirements($phase) {
     }
 
     $requirements['civictheme_dev_database_collation'] = [
-      'title' => t('Database Tables Collation'),
+      'title' => (string) t('Database Tables Collation'),
       'value' => $status,
       'severity' => $severity,
-      'description' => t('All database tables should use utf8mb4_general_ci collation for optimal compatibility.'),
+      'description' => (string) t('All database tables should use utf8mb4_general_ci collation for optimal compatibility.'),
     ];
   }
 
