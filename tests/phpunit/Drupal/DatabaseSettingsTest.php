@@ -39,7 +39,7 @@ class DatabaseSettingsTest extends SettingsTestCase {
               'database' => 'lagoon',
               'username' => 'lagoon',
               'password' => 'lagoon',
-              'host' => 'localhost',
+              'host' => 'mariadb',
               'port' => '',
               'driver' => 'mysql',
               'prefix' => '',
