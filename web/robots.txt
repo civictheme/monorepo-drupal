@@ -46,6 +46,7 @@ Disallow: /composer/Template/README.txt
 Disallow: /modules/README.txt
 Disallow: /sites/README.txt
 Disallow: /themes/README.txt
+Disallow: /web.config
 # Paths (clean URLs)
 Disallow: /admin/
 Disallow: /comment/reply/

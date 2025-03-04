@@ -53,12 +53,12 @@ class CivicthemeGovcmsCommands extends DrushCommands {
     // which are only shown due to dependencies resolution concurrency issues.
     // We are suppressing them as they do not have any valuable information
     // and only confuse the user.
-    $current = $this->output()->getVerbosity();
-    $this->output()->setVerbosity(OutputInterface::VERBOSITY_QUIET);
+    $current = $this->io()->getVerbosity();
+    $this->io()->setVerbosity(OutputInterface::VERBOSITY_QUIET);
 
     $this->govcmsManager->civicthemeGovcmsRemoveConfig($options['preserve']);
 
-    $this->output()->setVerbosity($current);
+    $this->io()->setVerbosity($current);
   }
 
 }

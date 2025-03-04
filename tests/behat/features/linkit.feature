@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_linkit @skipped
+@p0 @civictheme @civictheme_linkit
 Feature: Linkit works correctly on pages
 
   Background:

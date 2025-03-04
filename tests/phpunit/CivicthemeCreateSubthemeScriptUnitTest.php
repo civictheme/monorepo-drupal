@@ -18,14 +18,14 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'web/themes/contrib/civictheme/civictheme_create_subtheme.php';
+  protected $script = 'themes/contrib/civictheme/civictheme_create_subtheme.php';
 
   /**
    * CivicTheme dir.
    *
    * @var string
    */
-  protected $civicthemeDir = '/web/themes/contrib/civictheme';
+  protected $civicthemeDir = 'themes/contrib/civictheme';
 
   /**
    * @dataProvider dataProviderMain
@@ -270,7 +270,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $sut_dir = $this->tmpDir . (empty($path) ? '' : '/' . $path);
     mkdir($sut_dir, 0755, TRUE);
 
-    $this->fileCopyRecursively(getcwd() . $this->civicthemeDir, $sut_dir, [
+    $this->fileCopyRecursively(getcwd() . '/' . $this->civicthemeDir, $sut_dir, [
       'node_modules',
       'vendor',
       'storybook-static',
