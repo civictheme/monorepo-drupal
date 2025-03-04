@@ -36,10 +36,10 @@ class DatabaseSettingsTest extends SettingsTestCase {
         [
           'default' => [
             'default' => [
-              'database' => 'lagoon',
-              'username' => 'lagoon',
-              'password' => 'lagoon',
-              'host' => 'mariadb',
+              'database' => 'drupal',
+              'username' => 'drupal',
+              'password' => 'drupal',
+              'host' => 'database',
               'port' => '',
               'driver' => 'mysql',
               'prefix' => '',

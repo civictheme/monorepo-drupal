@@ -35,7 +35,7 @@ ENV MYSQL_DATABASE=drupal \
 ENV WEBROOT=${WEBROOT} \
     COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_CACHE_DIR=/tmp/.composer/cache \
-    SIMPLETEST_DB=mysql://lagoon:lagoon@mariadb/lagoon \
+    SIMPLETEST_DB=mysql://drupal:drupal@database/drupal \
     SIMPLETEST_BASE_URL=http://nginx:8080 \
     SYMFONY_DEPRECATIONS_HELPER=disabled
 
