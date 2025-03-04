@@ -25,6 +25,10 @@ ARG WEBROOT=web
 ARG GITHUB_TOKEN=""
 ENV GITHUB_TOKEN=${GITHUB_TOKEN}
 
+ENV MYSQL_DATABASE=drupal \
+    MYSQL_USER=drupal \
+    MYSQL_PASSWORD=drupal
+
 # Set default values for environment variables.
 # These values will be overridden if set in docker-compose.yml or .env file
 # during build stage.
