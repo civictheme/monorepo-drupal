@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#3505451--update-field-message-props"
+    "@civictheme/uikit": "github:civictheme/uikit#release/1.10"
   }
 }
