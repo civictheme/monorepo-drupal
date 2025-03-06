@@ -4,4 +4,4 @@ dependencies: {  }
 id: civictheme_social_links
 label: 'Social Links'
 revision: false
-description: 'List social link icons'
+description: 'Provides a block type to implement social link icons'
