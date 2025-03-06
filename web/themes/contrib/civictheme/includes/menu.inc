@@ -35,6 +35,8 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
 
 /**
  * Preprocess for primary navigation menu block.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__navigation(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
