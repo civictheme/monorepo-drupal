@@ -48,5 +48,24 @@
     "stylelint-config-standard-scss": "^2.0.1",
     "vite": "^5.4.8",
     "vite-plugin-twig-drupal": "^1.4.2"
+  },
+  "optionalDependencies": {
+    "sass-embedded-android-arm": "1.77.5",
+    "sass-embedded-android-arm64": "1.77.5",
+    "sass-embedded-android-ia32": "1.77.5",
+    "sass-embedded-android-x64": "1.77.5",
+    "sass-embedded-darwin-arm64": "1.77.5",
+    "sass-embedded-darwin-x64": "1.77.5",
+    "sass-embedded-linux-arm": "1.77.5",
+    "sass-embedded-linux-arm64": "1.77.5",
+    "sass-embedded-linux-ia32": "1.77.5",
+    "sass-embedded-linux-musl-arm": "1.77.5",
+    "sass-embedded-linux-musl-arm64": "1.77.5",
+    "sass-embedded-linux-musl-ia32": "1.77.5",
+    "sass-embedded-linux-musl-x64": "1.77.5",
+    "sass-embedded-linux-x64": "1.77.5",
+    "sass-embedded-win32-arm64": "1.77.5",
+    "sass-embedded-win32-ia32": "1.77.5",
+    "sass-embedded-win32-x64": "1.77.5"
   }
 }
