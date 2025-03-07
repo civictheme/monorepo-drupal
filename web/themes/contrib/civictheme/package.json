@@ -11,6 +11,17 @@
   "engines": {
     "node": ">=22.6.0"
   },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm",
+    "arm64",
+    "ia32"
+  ],
   "scripts": {
     "add-lint-exclusions": "node build.js lintex",
     "build": "npm run dist && storybook build && npm run add-lint-exclusions",
