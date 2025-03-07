@@ -911,22 +911,3 @@ function _civictheme_feature_optout_flags(): array {
   $flags[CivicthemeConstants::OPTOUT_SUMMARY_HIDE_ELLIPSIS] = t('Hide card summary ellipsis');
   return $flags;
 }
-
-/**
- * Helper function to store and retrieve the search link.
- *
- * @param array|null $link
- *   The link array to store, or NULL to retrieve the stored link.
- *
- * @return array|null
- *   The stored link array, or NULL if no link is stored.
- */
-function _civictheme_search_link(array $link = NULL): ?array {
-  static $stored_link = NULL;
-
-  if ($link !== NULL) {
-    $stored_link = $link;
-  }
-
-  return $stored_link;
-}

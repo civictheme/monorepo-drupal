@@ -39,8 +39,29 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
     'bottom_menu' => 'field_c_b_bottom',
   ];
 
-  // Retrieve the search link.
-  $search_link = _civictheme_search_link();
+  // Load all blocks of type 'civictheme_search'
+  $block_storage = \Drupal::entityTypeManager()->getStorage('block_content');
+  $blocks = $block_storage->loadByProperties(['type' => 'civictheme_search']);
+
+  // Initialize an empty array to store the search link.
+  $search_link = [];
+
+  // Iterate through the blocks and do something with them.
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  foreach ($blocks as $block) {
+    // Get the field values directly from the block content entity.
+    $link_in_mobile_menu = $block->get('field_c_b_link_in_mobile_menu')->value ?? FALSE;
+
+    if ($link_in_mobile_menu) {
+      $link = civictheme_get_field_value($block, 'field_c_b_link', TRUE);
+      if ($link !== NULL) {
+        $search_link = [
+          'url' => $link->getUrl()->toString(),
+          'text' => $link->get('title')->getString(),
+        ];
+      }
+    }
+  }
 
   // Get primary and secondary menu links by building menu tree based on
   // menu block settings.
@@ -84,7 +105,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
       $variables[$menu_key] = $build['#items'] ?? [];
 
       // Add search link to end of top menu.
-      if ($menu_key === 'top_menu' && $search_link) {
+      if ($menu_key === 'top_menu' && !empty($search_link)) {
         $variables[$menu_key][] = [
           'url' => $search_link['url'],
           'title' => $search_link['text'],

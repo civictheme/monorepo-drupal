@@ -28,14 +28,9 @@ function civictheme_preprocess_block__civictheme_search(array &$variables): void
   if ($link !== NULL) {
     $variables['url'] = $link->getUrl()->toString();
     $variables['text'] = $link->get('title')->getString();
-    if ($entity->hasField('field_c_b_link_in_mobile_menu') && civictheme_get_field_value($entity, 'field_c_b_link_in_mobile_menu')) {
+    if (civictheme_get_field_value($entity, 'field_c_b_link_in_mobile_menu')) {
       // Hide search block on mobile view.
       $variables['modifier_class'] = 'hide-xxs show-m-flex';
-      $search_link = [
-        'url' => $link->getUrl()->toString(),
-        'text' => $link->get('title')->getString(),
-      ];
-      _civictheme_search_link($search_link);
     }
   }
 

@@ -6,7 +6,7 @@ dependencies:
 id: civictheme_mobile_navigation
 theme: civictheme
 region: header_middle_3
-weight: 0
+weight: -1
 provider: null
 plugin: 'block_content:b7f36176-620f-4178-aadd-9b448c610986'
 settings:
