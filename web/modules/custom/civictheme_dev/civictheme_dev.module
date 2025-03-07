@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Site\Settings;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeVersionManager;
+use Drupal\Core\Site\Settings;
 use Drupal\views\ViewExecutable;
 
 require_once __DIR__ . '/styleguide.inc';

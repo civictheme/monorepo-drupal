@@ -6,11 +6,13 @@
         "php": ">=8.2",
         "composer/installers": "^2.1",
         "cweagans/composer-patches": "^1.7",
-        "drupal/core-composer-scaffold": "^10.3",
-        "drupal/core-project-message": "^10",
-        "drupal/core-recommended": "^10.3",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-project-message": "^11",
+        "drupal/core-recommended": "^11",
+        "drupal/mysql57": "^1.0",
         "drupal/search_api": "^1.30",
-        "drush/drush": "^12",
+        "drush/drush": "^13",
+        "mglaman/composer-drupal-lenient": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
@@ -19,13 +21,13 @@
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "behat/mink": "1.10",
-        "behat/mink-selenium2-driver": "1.6",
+        "behat/mink": "^1.12",
+        "behat/mink-selenium2-driver": "*",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "drevops/behat-format-progress-fail": "^1",
         "drevops/behat-screenshot": "^1",
         "drevops/behat-steps": "^2",
-        "drupal/core-dev": "^10.2",
+        "drupal/core-dev": "^11",
         "drupal/drupal-extension": "^5",
         "ergebnis/composer-normalize": "^2.42",
         "friendsoftwig/twigcs": "^6.2",
@@ -84,12 +86,13 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "ergebnis/composer-normalize": true,
+            "mglaman/composer-drupal-lenient": true,
             "oomphinc/composer-installers-extender": true,
             "php-http/discovery": true,
             "phpstan/extension-installer": true,
             "pyrech/composer-changelogs": true,
-            "wikimedia/composer-merge-plugin": true,
-            "tbachert/spi": true
+            "tbachert/spi": true,
+            "wikimedia/composer-merge-plugin": true
         },
         "platform": {
             "php": "8.3.8"
@@ -161,7 +164,6 @@
             "replace": true,
             "require": [
                 "web/themes/contrib/civictheme/composer.json",
-                "web/modules/custom/civictheme_govcms/composer.json",
                 "web/modules/custom/civictheme_admin/composer.json",
                 "web/modules/custom/civictheme_content/composer.json",
                 "web/modules/custom/civictheme_dev/composer.json",
@@ -174,6 +176,12 @@
         "patches": {
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "drupal/simple_sitemap": {
+                "Error on installing / enabling simple_sitemap in D11: https://www.drupal.org/project/simple_sitemap/issues/3507718": "./patches/modules/simple_sitemap/fix-error-on-install.patch"
+            },
+            "drupal/styleguide": {
+                "Create Drupal 11 test release: https://www.drupal.org/project/styleguide/issues/3505640": "https://git.drupalcode.org/project/styleguide/-/merge_requests/23.patch"
             }
         },
         "preserve-paths": [
@@ -190,7 +198,10 @@
             "web/sites/default/files",
             "web/robots.txt",
             "web/.htaccess"
-        ]
+        ],
+        "drupal-lenient": {
+            "allowed-list": ["drupal/styleguide"]
+        }
     },
     "scripts": {
         "pre-install-cmd": [

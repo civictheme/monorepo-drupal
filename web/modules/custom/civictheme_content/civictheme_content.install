@@ -19,9 +19,9 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Installer\Exception\InstallerException;
 use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme_content\Helper;
+use Drupal\Core\Installer\Exception\InstallerException;
 
 /**
  * Implements hook_install().

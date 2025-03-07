@@ -1,9 +1,9 @@
 langcode: en
 status: open
 dependencies: {  }
-weight: 0
 open: null
 close: null
+weight: 0
 uid: 1
 template: false
 archive: false

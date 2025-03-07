@@ -40,7 +40,7 @@ dependencies:
 id: civictheme_site_administrator
 label: 'Site Administrator'
 weight: -6
-is_admin: null
+is_admin: false
 permissions:
   - 'access administration pages'
   - 'access any webform configuration'

@@ -4,4 +4,4 @@ dependencies: {  }
 id: civictheme_search
 label: Search
 revision: false
-description: ''
+description: 'Provides a block type to implement CivicTheme search.'

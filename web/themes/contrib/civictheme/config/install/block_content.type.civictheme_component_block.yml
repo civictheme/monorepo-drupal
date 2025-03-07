@@ -4,4 +4,4 @@ dependencies: {  }
 id: civictheme_component_block
 label: Component
 revision: false
-description: ''
+description: 'Provides a block type to place CivicTheme components in blocks'

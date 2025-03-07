@@ -83,6 +83,10 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
           $allowed_extensions = $this->imageFactory->getSupportedExtensions();
           $allowed_extensions[] = 'svg';
+          $allowed_extensions = implode(' ', $allowed_extensions);
+          $upload_validators = [
+            'FileExtension' => ['extensions' => $allowed_extensions],
+          ];
           $form['components']['logo'][$logo_type][$theme][$breakpoint]['upload'] = [
             '#type' => 'file',
             '#title' => $this->t('Upload @logo_type @theme logo for @breakpoint', [
@@ -94,9 +98,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
             '#description' => $this->t("Uploading a file will replace the image path above. File will be uploaded into <code>@public</code> directory and will replace an existing file with the same name.", [
               '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
             ]),
-            '#upload_validators' => [
-              'file_validate_extensions' => [implode(' ', $allowed_extensions)],
-            ],
+            '#upload_validators' => $upload_validators,
           ];
         }
       }
