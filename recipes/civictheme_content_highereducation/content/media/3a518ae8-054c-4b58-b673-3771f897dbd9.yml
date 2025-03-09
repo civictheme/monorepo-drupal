@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 3a518ae8-054c-4b58-b673-3771f897dbd9
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    f127cb9b-1d16-4213-acb1-021e8842e49d: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Iconschool of biomedical sciences.svg'
+  created:
+    -
+      value: 1667536259
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: f127cb9b-1d16-4213-acb1-021e8842e49d
+      alt: 'Icon School of Biomedical Sciences'
+      title: ''
+      width: 0
+      height: 0

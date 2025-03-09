@@ -1,0 +1,40 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4603fcc8-7b0c-4698-aba9-2a43508b1038
+  bundle: civictheme_document
+  default_langcode: en
+  depends:
+    533dd153-a9ad-48cb-8ddb-97b9050575d7: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Dummy text file 1'
+  created:
+    -
+      value: 1687665219
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_document:
+    -
+      entity: 533dd153-a9ad-48cb-8ddb-97b9050575d7
+      display: true
+      description: ''

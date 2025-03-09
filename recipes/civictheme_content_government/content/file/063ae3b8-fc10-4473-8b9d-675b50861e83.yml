@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 063ae3b8-fc10-4473-8b9d-675b50861e83
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Linkedin.svg
+  uri:
+    -
+      value: 'public://icons/Linkedin.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1901
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1647509766

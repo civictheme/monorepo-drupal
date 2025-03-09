@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d40603f6-cf19-40da-812d-fbee32d8696d
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    8f3322b9-86c2-4ee9-8862-9af7890e436c: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of economics.svg'
+  created:
+    -
+      value: 1667535879
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 8f3322b9-86c2-4ee9-8862-9af7890e436c
+      alt: 'Icon Department of Education'
+      title: ''
+      width: 0
+      height: 0

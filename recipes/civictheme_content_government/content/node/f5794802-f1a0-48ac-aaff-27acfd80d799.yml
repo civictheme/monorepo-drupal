@@ -1,0 +1,154 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: f5794802-f1a0-48ac-aaff-27acfd80d799
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    37c33114-06dc-43a2-a6d0-6b6befc11fa2: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+    75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Clinical trials for brain cancer'
+  created:
+    -
+      value: 1666868692
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news-and-events/department-citizens-invest-23-million-clinical-trials-brain-cancer
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ced63488-3ec8-49ff-ba5b-5daf6b0a984e
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666868729
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>The Department of Citizens is investing $23 million into clinical trials for brain cancer. We’re inviting Australia’s best researchers to apply for grant opportunities. The funding is to improve early detection and develop new treatment options to improve the quality of life for brain cancer patients.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0ede0081-c396-4629-8627-ea199bb0d590
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666868742
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>The Department of Citizens is investing $23 million into clinical trials for brain cancer. There are over 40 major types of brain cancer, grouped into benign and malignant categories, with a five-year survival rate of 22%.</p>\r\n\r\n<p>We’re inviting Australia’s best researchers to apply for grant opportunities. The funding is to improve early detection and develop new treatment options to improve the quality of life for brain cancer patients.</p>\r\n\r\n<p>The funding will also address significant gaps in current research or knowledge in brain cancer in the hope that a national screening program for brain cancer can become available in Australia.</p>\r\n\r\n<p>Over 40,000 cases of rare cancer forms are diagnosed in Australia each year. It’s estimated that 1,946 new cases of brain cancer will be diagnosed in Australia in 2023.</p>\r\n\r\n<p>For further information on how to apply for the grant round, go to <a href=\"https://government.civictheme.io/about-template-website\"><strong>CitizenGrant</strong></a>.</p>\r\n\r\n<p>The Department of Citizens continually invests in the health of Australians and supports medical research for a sustainable health system.</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"37c33114-06dc-43a2-a6d0-6b6befc11fa2\" data-view-mode=\"\"></drupal-media>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_custom_last_updated:
+    -
+      value: '2023-02-15'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'The Department of Citizens is investing $23 million into clinical trials for brain cancer. We’re inviting Australia’s best researchers to apply for a grant.'
+  field_c_n_thumbnail:
+    -
+      entity: 37c33114-06dc-43a2-a6d0-6b6befc11fa2
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+    -
+      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
+  field_c_n_vertical_spacing:
+    -
+      value: both

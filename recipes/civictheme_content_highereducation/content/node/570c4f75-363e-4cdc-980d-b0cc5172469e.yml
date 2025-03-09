@@ -1,0 +1,1031 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 570c4f75-363e-4cdc-980d-b0cc5172469e
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+    b1142872-23be-4b62-a4a8-37cdcd453bb6: media
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
+    33025cb8-4e76-4122-8e56-48c04cb12c8f: media
+    7a47a1a3-d8c3-40e6-bb92-9fdea76de772: media
+    519c4e0c-acd5-4233-9628-8335ee7ce51f: media
+    1a1cbd4b-36f6-45ca-b71f-89bccb5d2e83: media
+    405e6f34-e721-473c-b3da-49d618e92105: media
+    b2960675-19ac-4689-8fca-fd717c4b8163: media
+    6e092085-4a97-4bd5-9711-ef0005ecdf4a: media
+    e71dbfa0-a672-4c84-a4b7-3b7863e6268c: media
+    fd86cf0a-1055-4ae7-8358-0bf198723fe2: media
+    d40603f6-cf19-40da-812d-fbee32d8696d: media
+    e4f38f37-1947-4b47-8e9f-3b85ab96614a: media
+    02c5cb96-7bf6-4362-ad5a-0a562e996632: media
+    286955ac-256e-480d-b914-dcad37fa96ff: media
+    2e4ffce7-2f27-4196-9def-763b2657d951: media
+    b7711963-ecc5-41b8-923f-692f4416f7d2: media
+    143fe51b-83b1-4e43-a0d0-40476540abc3: media
+    4a661a2b-f6cc-480c-99ed-1f9911b5d405: media
+    ff9dd1cc-ab2e-468c-9b71-174b04ff3707: media
+    d6d58799-0fe0-47c8-8bda-153a48694b1b: media
+    3a518ae8-054c-4b58-b673-3771f897dbd9: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Departments and schools'
+  created:
+    -
+      value: 1666094555
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /departments-and-schools
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c76879f7-913f-4a62-8319-693102b80190
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666106568
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University is broken into the following departments.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 348e62fb-f693-4ded-a03e-1667a8214231
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1667535381
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>My University is broken into the following departments:</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5d024b1d-a397-4f97-8902-c248afe8f426
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: b1142872-23be-4b62-a4a8-37cdcd453bb6
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Art'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Art '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Art'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 35e17835-3f9d-482f-9068-dd40c59b3ef0
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 33025cb8-4e76-4122-8e56-48c04cb12c8f
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Architecture'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: ' Department of Architecture'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Architecture'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 93483c92-c781-4203-a132-6a6184d7c4c7
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 7a47a1a3-d8c3-40e6-bb92-9fdea76de772
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'School of Social Sciences'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: ' School of Social Sciences'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Social Sciences'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: aea713f0-da33-43ed-b2a5-f7ca8775a282
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 519c4e0c-acd5-4233-9628-8335ee7ce51f
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'School of English and Creative Writing'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: ' School of English and Creative Writing'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of English and Creative Writing'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5ae2a6e5-33e3-47eb-8931-770f1d94c92c
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 1a1cbd4b-36f6-45ca-b71f-89bccb5d2e83
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ' School of Media and Journalism'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'School of Media and Journalism'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Media and Journalism'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e6f2e21b-eb75-4ff7-8e8b-1916d968bf7e
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 405e6f34-e721-473c-b3da-49d618e92105
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ' School of Languages'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'School of Languages'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Languages'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8109033b-4ae9-47e5-b67e-0c6ec8898d26
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: b2960675-19ac-4689-8fca-fd717c4b8163
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Banking, Finance and Accounting'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Banking, Finance and Accounting'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Banking, Finance and Accounting'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 728135f0-fe98-4a37-9a66-722eda3582bd
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 6e092085-4a97-4bd5-9711-ef0005ecdf4a
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Marketing'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Marketing'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Marketing'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ed96e318-88d9-423b-b9c0-6ac30bb84056
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: e71dbfa0-a672-4c84-a4b7-3b7863e6268c
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Economics'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Economics'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Economics'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 302a6173-e506-4607-8e2d-8c44c685798d
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: fd86cf0a-1055-4ae7-8358-0bf198723fe2
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Political Science'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Political Science'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Political Science'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d34bb773-df76-4863-b54a-fc969aec74bf
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d40603f6-cf19-40da-812d-fbee32d8696d
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Education'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Education'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Education'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 25fc27a9-8053-4da8-b39f-76093ce676f7
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: e4f38f37-1947-4b47-8e9f-3b85ab96614a
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Chemical Engineering'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Chemical Engineering'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Chemical Engineering'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2a6971f5-04ff-4251-8322-6149e025c094
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 02c5cb96-7bf6-4362-ad5a-0a562e996632
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Mechanical Engineering'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Mechanical Engineering'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Mechanical Engineering'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 283429c2-b724-4927-9394-ce92607c511e
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 286955ac-256e-480d-b914-dcad37fa96ff
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Structural Engineering'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Structural Engineering'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Structural Engineering'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: dc665afb-9032-45ea-8b28-4f00ccb94029
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 2e4ffce7-2f27-4196-9def-763b2657d951
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Civil Engineering'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Civil Engineering'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Civil Engineering'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fc41a658-9a48-4962-a87a-cf6a57cde09f
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: b7711963-ecc5-41b8-923f-692f4416f7d2
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Software Systems'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Software Systems'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Software Systems'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c579ace6-44ed-464b-9f14-f8df8afe64ff
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 143fe51b-83b1-4e43-a0d0-40476540abc3
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Cyber Security'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Cyber Security'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Cyber Security'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 19dd559d-b44e-4739-a46f-75baf0145e5e
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 4a661a2b-f6cc-480c-99ed-1f9911b5d405
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'Department of Emerging Technologies'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Department of Emerging Technologies'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Department of Emerging Technologies'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b21421d4-f152-48d0-ac11-a11ee8a2c1e5
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: ff9dd1cc-ab2e-468c-9b71-174b04ff3707
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'School of Law'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'School of Law'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Law'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3d1b3508-c03c-462e-b014-2a624013c821
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d6d58799-0fe0-47c8-8bda-153a48694b1b
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'School of Medicine'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'School of Medicine'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Medicine'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7413eb0e-ed17-4be7-99b3-ccb21f1663f9
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1667535409
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 3a518ae8-054c-4b58-b673-3771f897dbd9
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: 'School of Biomedical Sciences'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'School of Biomedical Sciences'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'School of Biomedical Sciences'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: true
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: top

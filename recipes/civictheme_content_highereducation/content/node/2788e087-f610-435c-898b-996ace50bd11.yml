@@ -1,0 +1,103 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2788e087-f610-435c-898b-996ace50bd11
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    e5120032-950d-422c-9d6e-3d562e633858: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Mental health day'
+  created:
+    -
+      value: 1666109404
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/mental-health-day
+      langcode: en
+      pathauto: 1
+  field_c_n_body:
+    -
+      value: "<p>Mental health day</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2023-02-26T22:30:00'
+      end_value: '2023-02-27T07:00:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: db5a8deb-bf76-4798-b7ef-f33f04438df1
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1669029062
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Online event</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: "My University mental health day. An annual campaign to raise awareness.\r\n"
+  field_c_n_thumbnail:
+    -
+      entity: e5120032-950d-422c-9d6e-3d562e633858
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

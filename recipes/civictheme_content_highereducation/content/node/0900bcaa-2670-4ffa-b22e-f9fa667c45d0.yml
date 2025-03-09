@@ -1,0 +1,106 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0900bcaa-2670-4ffa-b22e-f9fa667c45d0
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'AI and open data for COVID'
+  created:
+    -
+      value: 1662819237
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news-and-events/ai-and-open-data-covid
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2e07abd0-a7d4-4d54-b48b-f0b86045a272
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666108467
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p dir=\"ltr\"><span>Our COVID risk app helps people make informed decisions regarding the COVID risk at specific locations. It uses AI and open data to calculate a risk index, and also gives users relevant information such as population density and real-time traffic.</span></p>\r\n\r\n<h2 dir=\"ltr\"><span>Real-time COVID-19 risk assessment</span></h2>\r\n\r\n<p dir=\"ltr\"><span>Imagine if you could check an app or website before you headed to a particular location, and get a real-time risk assessment of COVID-19 exposure. That’s the vision behind a new joint project from the Department of Emerging Technologies and School of Biomedical Sciences.&nbsp;</span></p>\r\n\r\n<h2 dir=\"ltr\"><span>How it works</span></h2>\r\n\r\n<p dir=\"ltr\"><span>Users can type in an address or the name of a location to see the real-time risk assessment for that particular place. The risk index number is calculated by artificial intelligence (AI) based on data from a number of sources. Users can then decide whether to visit the location. For example, you may want to look at risk assessments for different local supermarkets to decide which supermarket to visit.</span></p>\r\n\r\n<h2 dir=\"ltr\"><span>The open data</span></h2>\r\n\r\n<p dir=\"ltr\"><span>The tool uses a variety of open data, including:</span></p>\r\n\r\n<ul>\r\n\t<li dir=\"ltr\"><span>Number of confirmed COVID-19 cases, new cases, deaths and the fatality rates, sourcing data from the World Health Organization, Centers for Disease Control and Prevention, state and county government websites</span></li>\r\n\t<li dir=\"ltr\"><span>Data from the US Census Bureau on population</span></li>\r\n\t<li dir=\"ltr\"><span>Traffic/mobility data to measure how busy a location is</span></li>\r\n\t<li dir=\"ltr\"><span>User data from social media (Reddit) to get an idea of public perception toward COVID-19 in that location (if users are not very aware or don’t believe it’s serious, the risk of going to that location is higher)</span></li>\r\n</ul>\r\n\r\n<p><strong>Note:&nbsp;</strong><span>The article above is based on one of Salsa Digital’s&nbsp; ‘Digital Transformation in Government’ blogs, which showcases α-satellite, a project from Case Western Reserve University (CWRU) in Cleveland, Ohio.&nbsp;</span></p>\r\n\r\n<p>&nbsp;</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -19,7 +19,7 @@ function _civictheme_preprocess_menu_local_tasks(array &$variables): void {
   foreach ($local_task_types as $local_task_type) {
     $variables['links'][$local_task_type] = [];
     foreach ($variables[$local_task_type] as $link) {
-      if (!empty($link['#access']) && $link['#access']->isAllowed()) {
+      if (!empty($link['#access']) && ($link['#access'] === TRUE || $link['#access']->isAllowed())) {
         $variables['links'][$local_task_type][] = [
           'theme' => $context_theme,
           'text' => $link['#link']['title'],

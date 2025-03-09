@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 35a65b40-b6a0-428d-bce3-3bd7c918f84b
+  bundle: civictheme_icon
+  default_langcode: en
+  depends:
+    4c54f9b2-ae04-442f-b830-4cbeed050d75: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Facebook.svg
+  created:
+    -
+      value: 1666996274
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_icon:
+    -
+      entity: 4c54f9b2-ae04-442f-b830-4cbeed050d75
+      display: false
+      description: ''

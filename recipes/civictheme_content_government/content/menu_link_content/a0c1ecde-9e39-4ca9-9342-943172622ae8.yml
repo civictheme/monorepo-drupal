@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: a0c1ecde-9e39-4ca9-9342-943172622ae8
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    5affe220-42a6-4bab-86ce-c64cd9490cf7: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Online services'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      uri: 'https://civictheme.io'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -50
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:5affe220-42a6-4bab-86ce-c64cd9490cf7'
+  revision_translation_affected:
+    -
+      value: true

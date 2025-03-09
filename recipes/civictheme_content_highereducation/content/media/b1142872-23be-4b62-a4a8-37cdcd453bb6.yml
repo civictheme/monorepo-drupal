@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: b1142872-23be-4b62-a4a8-37cdcd453bb6
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    04f13054-5b92-4d9b-b2e5-4ccb7776cdf8: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of art.svg'
+  created:
+    -
+      value: 1667535174
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 04f13054-5b92-4d9b-b2e5-4ccb7776cdf8
+      alt: 'Icon Department of Art'
+      title: ''
+      width: 0
+      height: 0

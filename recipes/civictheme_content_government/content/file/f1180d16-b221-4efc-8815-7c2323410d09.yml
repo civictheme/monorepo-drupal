@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f1180d16-b221-4efc-8815-7c2323410d09
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: parliament-building-in-the-evening.png
+  uri:
+    -
+      value: 'public://images/2022-10/parliament-building-in-the-evening.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 503327
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666866935

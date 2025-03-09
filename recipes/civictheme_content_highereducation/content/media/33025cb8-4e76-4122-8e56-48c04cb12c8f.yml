@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 33025cb8-4e76-4122-8e56-48c04cb12c8f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    dc5c94dc-faea-4b7c-a079-3f8d9267e713: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of architecture.svg'
+  created:
+    -
+      value: 1667535207
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: dc5c94dc-faea-4b7c-a079-3f8d9267e713
+      alt: 'Icon Department of Architecture'
+      title: ''
+      width: 0
+      height: 0

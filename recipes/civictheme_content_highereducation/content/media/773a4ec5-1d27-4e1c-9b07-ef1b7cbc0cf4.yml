@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    52cf5a8d-97bf-48cf-b106-e2249e2e705e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'The Pine Island Glacier 1.png'
+  created:
+    -
+      value: 1666102491
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 52cf5a8d-97bf-48cf-b106-e2249e2e705e
+      alt: 'The Pine Island Glacier'
+      title: ''
+      width: 381
+      height: 172

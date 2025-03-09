@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 65559b88-1418-471a-908d-6f440aa939b7
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: office_building.jpg
+  uri:
+    -
+      value: 'public://images/2022-12/office_building.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 236137
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1670274172

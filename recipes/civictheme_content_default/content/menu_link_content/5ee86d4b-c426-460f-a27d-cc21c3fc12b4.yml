@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 5ee86d4b-c426-460f-a27d-cc21c3fc12b4
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    db8e6781-f356-497d-9aba-ef0994b6268c: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'News & events'
+  menu_name:
+    -
+      value: civictheme-secondary-navigation
+  link:
+    -
+      target_uuid: db8e6781-f356-497d-9aba-ef0994b6268c
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

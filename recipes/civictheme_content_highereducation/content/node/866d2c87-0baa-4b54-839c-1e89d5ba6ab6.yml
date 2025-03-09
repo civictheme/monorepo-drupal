@@ -1,0 +1,264 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 866d2c87-0baa-4b54-839c-1e89d5ba6ab6
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+    70debdf1-8d42-4ac2-94d3-3b1781181833: media
+    0900bcaa-2670-4ffa-b22e-f9fa667c45d0: node
+    773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4: media
+    11575ae4-d804-4b68-a9e2-528dde78ca5e: node
+    d4bd31b4-651a-4120-a7bf-e6d6832f722c: media
+    2e309b77-8d77-40e8-95bb-1c1475955e67: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Our award-winning researchers'
+  created:
+    -
+      value: 1666096377
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /our-award-winning-researchers
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0af72333-a977-4973-a500-3925a56eb235
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666107841
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University’s researchers are leaders in their fields. As well as being widely published in academic journals, their discoveries also often make the news.&nbsp;</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0e5ea554-7f85-44a2-802d-52541dce86af
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666107868
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_fill_width:
+            -
+              value: true
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b75e17c0-fce1-46b6-af52-97ce50242b5f
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666107884
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 70debdf1-8d42-4ac2-94d3-3b1781181833
+                  field_c_p_link:
+                    -
+                      target_uuid: 0900bcaa-2670-4ffa-b22e-f9fa667c45d0
+                      title: ''
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Our COVID risk app helps people make informed decisions regarding the COVID risk at specific locations. It uses AI and open data to calculate a risk index, and also gives users relevant information such as population density and real-time traffic.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'AI and open data for COVID'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 391018bb-bde0-4646-bad9-9a78aa113bd3
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666107916
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 773a4ec5-1d27-4e1c-9b07-ef1b7cbc0cf4
+                  field_c_p_link:
+                    -
+                      target_uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+                      title: ''
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Our new research looks at the most recent figures on the Pine Island Glacier’s retreat and models different scenarios.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'The Pine Island Glacier'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 185cf699-1b18-4bf4-89c7-6ca42b677f6b
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666107950
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d4bd31b4-651a-4120-a7bf-e6d6832f722c
+                  field_c_p_link:
+                    -
+                      target_uuid: 2e309b77-8d77-40e8-95bb-1c1475955e67
+                      title: ''
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: "My University researchers have made a breakthrough in chemotherapy that will increase a patient's life expectancy by 20%. "
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'New chemotherapy breakthrough'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

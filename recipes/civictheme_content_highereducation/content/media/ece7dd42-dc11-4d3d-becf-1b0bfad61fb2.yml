@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ece7dd42-dc11-4d3d-becf-1b0bfad61fb2
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    7c3adf49-2497-4781-a6d7-6caa16a5b9ab: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: deloitte.png
+  created:
+    -
+      value: 1666103719
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 7c3adf49-2497-4781-a6d7-6caa16a5b9ab
+      alt: Deloitte
+      title: ''
+      width: 1000
+      height: 669

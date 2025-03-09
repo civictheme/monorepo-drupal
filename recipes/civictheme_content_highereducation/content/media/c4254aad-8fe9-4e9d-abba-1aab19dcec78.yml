@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: c4254aad-8fe9-4e9d-abba-1aab19dcec78
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    cac181f2-fa1e-4a8e-9e30-6dc57124f8bc: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Alzheimer’s Association.png'
+  created:
+    -
+      value: 1666104163
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: cac181f2-fa1e-4a8e-9e30-6dc57124f8bc
+      alt: 'Alzheimer’s Association'
+      title: ''
+      width: 1000
+      height: 669

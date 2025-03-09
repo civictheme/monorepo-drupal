@@ -1,0 +1,45 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 17896e42-63c2-46db-bda4-a326904295b3
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    a11c8970-147e-4977-bff1-074882279be0: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'The Hon Adam Bontz MP'
+  created:
+    -
+      value: 1668772838
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'The Hon Adam Bontz MP'
+  field_c_m_image:
+    -
+      entity: a11c8970-147e-4977-bff1-074882279be0
+      alt: 'The Hon Adam Bontz MP'
+      title: ''
+      width: 1524
+      height: 844

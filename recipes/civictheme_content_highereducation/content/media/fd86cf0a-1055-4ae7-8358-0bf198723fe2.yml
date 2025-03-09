@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: fd86cf0a-1055-4ae7-8358-0bf198723fe2
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    b934d372-e59b-4e7d-a0f1-d5c818ea4cef: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of political science.svg'
+  created:
+    -
+      value: 1667535840
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: b934d372-e59b-4e7d-a0f1-d5c818ea4cef
+      alt: 'Icon Department of Political Science'
+      title: ''
+      width: 0
+      height: 0

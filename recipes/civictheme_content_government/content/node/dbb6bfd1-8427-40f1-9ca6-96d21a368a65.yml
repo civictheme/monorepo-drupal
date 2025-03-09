@@ -1,0 +1,103 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: dbb6bfd1-8427-40f1-9ca6-96d21a368a65
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    16a68379-553e-4cd5-a2a1-d7539d15c2ba: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Spotlight on Dementia webinar'
+  created:
+    -
+      value: 1676437441
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/spotlight-dementia-webinar
+      langcode: en
+      pathauto: 1
+  field_c_n_body:
+    -
+      value: "<p>The Department of Citizens is investing $176.2 million to improve the care and quality of life for those living with dementia.</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2023-02-27T23:00:00'
+      end_value: '2023-02-28T00:00:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3acedd94-7f83-4855-acd7-71e10d939182
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668752048
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Online webinar</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'The Department of Citizens is investing $176.2 million to improve the care and quality of life for those living with dementia.'
+  field_c_n_thumbnail:
+    -
+      entity: 16a68379-553e-4cd5-a2a1-d7539d15c2ba
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ff9dd1cc-ab2e-468c-9b71-174b04ff3707
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    0eb831f5-9400-4563-9c0a-7fe15e48359b: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Iconschool of law.svg'
+  created:
+    -
+      value: 1667536193
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 0eb831f5-9400-4563-9c0a-7fe15e48359b
+      alt: 'Icon School of Law'
+      title: ''
+      width: 0
+      height: 0

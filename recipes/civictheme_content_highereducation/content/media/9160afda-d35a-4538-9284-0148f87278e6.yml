@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9160afda-d35a-4538-9284-0148f87278e6
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    3e2f531a-7aa3-4f8c-92bb-4d2dfe886dac: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: strategicplan.png
+  created:
+    -
+      value: 1666097457
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 3e2f531a-7aa3-4f8c-92bb-4d2dfe886dac
+      alt: 'New strategic plan available'
+      title: ''
+      width: 376
+      height: 240

@@ -1,0 +1,592 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d82c4982-b334-43ed-bfad-32ce5e63cba6
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    af43a085-7e4f-40d4-a8d7-79ddd18fbcf0: media
+    4df3f04c-7529-4335-a9d2-0d48cc074376: media
+    21d11ae0-2874-4663-9937-a48ce30a7ad7: node
+    ccd6cc0e-c403-45a3-949d-216804250433: media
+    3e31f933-303c-4fd1-bac7-4faab8100c1d: media
+    e343a613-0b38-49f4-a4b5-f000b171b10d: media
+    e0c710e3-6eeb-4ea5-b656-0fa728b389b8: media
+    9a81d79d-79da-4bc4-8584-27c411248d3e: media
+    02831341-01cd-4d7d-80b7-20f01feb950b: node
+    e7acc411-519a-4735-80a6-c0bc7dfb61f3: media
+    9e389925-f1f6-4d1c-8aee-03e4a91f6eb4: media
+    0d96ff66-61ff-44fc-a9e4-a8b174f6da95: node
+    fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Home
+  created:
+    -
+      value: 1668728887
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /home
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: af43a085-7e4f-40d4-a8d7-79ddd18fbcf0
+  field_c_n_banner_blend_mode:
+    -
+      value: overlay
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e14b3428-bdcd-49db-9fe3-080155b2730f
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668729016
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>We manage national affairs for Australian citizens and immigrants. We deliver programs, services and funding that benefit our community.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-dark\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8\" href=\"/node/6\">More about the Department of Citizens</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_components_bott:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3e266ff5-d968-4c91-a632-34c54004173e
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668986062
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 4
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a943c0c8-a1d9-4e9f-ab9f-c03f4c45099a
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986075
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 4df3f04c-7529-4335-a9d2-0d48cc074376
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'We can help you find and keep a job through employment training services. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Employment and education'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a7887f4c-df42-4a6f-a890-1499f72d8fe7
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986188
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: ccd6cc0e-c403-45a3-949d-216804250433
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'We help immigrants settle in Australia and run the citizenship process and ceremonies. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Immigration and citizenship'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8d63babf-7c4c-4469-bf6f-badca2a3ae4a
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986217
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 3e31f933-303c-4fd1-bac7-4faab8100c1d
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'We offer support to people with disabilities and older Australians who need a little bit of help. '
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Health and disability'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4b0416b6-d180-4cef-89d5-33de5dd13aed
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668986242
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e343a613-0b38-49f4-a4b5-f000b171b10d
+                  field_c_p_link:
+                    -
+                      target_uuid: 21d11ae0-2874-4663-9937-a48ce30a7ad7
+                      title: 'About this template website'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'We manage emergency situations and can also help you with funding during natural disasters.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Emergency relief services'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_featured_image:
+    -
+      entity: e0c710e3-6eeb-4ea5-b656-0fa728b389b8
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: true
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_title:
+    -
+      value: 'Department of Citizens. Making Australia a safe place to live.'
+  field_c_n_banner_type:
+    -
+      value: large
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 362a89c5-d7fe-4b5e-b9d7-d138a0f4a0e4
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668729331
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9ff5010f-23e1-457a-ba42-21210410a648
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668729339
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 9a81d79d-79da-4bc4-8584-27c411248d3e
+                  field_c_p_link:
+                    -
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+                      title: 'Health and aged card home support services'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: 'We provide support services to help during times of illness or to support older citizens to stay in their homes.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Health and aged care home support services'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c721b613-b48a-4ec7-aad3-60ecaa29fe1e
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668729390
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: e7acc411-519a-4735-80a6-c0bc7dfb61f3
+                  field_c_p_link:
+                    -
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+                      title: '24 hour translation service'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: 'Our telephone translation service is available 24 hours a day, 7 days a week, including public holidays. It provides access to phone and on-site interpreting services in over 150 languages.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: '24-hour translation service'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 33bc906e-d482-4c78-9692-b23d03031506
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1668729543
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
+                  field_c_p_link:
+                    -
+                      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+                      title: 'Employment assistance services'
+                      options: {  }
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: 'We offer a range of tools and services to help you find and keep a job. We also provide short-term payments if you’re looking for a job or unable to work. '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Employment assistance services'
+          field_c_p_list_link_above:
+            -
+              target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+              title: 'View all'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Our services'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0494a6db-5c05-4a85-9714-b55856522ccd
+          bundle: civictheme_automated_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668730097
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_content_type:
+            -
+              value: all
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_item_theme:
+            -
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 3
+          field_c_p_list_limit_type:
+            -
+              value: limited
+          field_c_p_list_link_above:
+            -
+              target_uuid: 0d96ff66-61ff-44fc-a9e4-a8b174f6da95
+              title: 'View all'
+              options: {  }
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'News and events'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f657cde9-71ab-4692-a08c-e2210ee1e4fc
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668729114
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: "<p>A citizenship ceremony is the final step in the journey to becoming an Australian. During the ceremony you pledge your commitment to Australia.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Find your nearest ceremony</a></p>\r\n\r\n<p>&nbsp;</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_date:
+            -
+              value: '2022-11-24'
+          field_c_p_image:
+            -
+              entity: fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Australian citizenship ceremony 2022 — what you need to know'
+          field_c_p_topics:
+            -
+              entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+          field_c_p_vertical_spacing:
+            -
+              value: top
+  field_c_n_hide_sidebar:
+    -
+      value: true
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: top

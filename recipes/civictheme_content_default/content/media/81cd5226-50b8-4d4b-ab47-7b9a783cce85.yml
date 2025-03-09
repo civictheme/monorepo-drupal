@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 81cd5226-50b8-4d4b-ab47-7b9a783cce85
+  bundle: civictheme_icon
+  default_langcode: en
+  depends:
+    063ae3b8-fc10-4473-8b9d-675b50861e83: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Linkedin.svg
+  created:
+    -
+      value: 1666996274
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_icon:
+    -
+      entity: 063ae3b8-fc10-4473-8b9d-675b50861e83
+      display: false
+      description: ''

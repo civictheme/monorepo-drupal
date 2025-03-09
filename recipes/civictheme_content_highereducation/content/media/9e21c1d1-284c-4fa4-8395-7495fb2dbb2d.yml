@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9e21c1d1-284c-4fa4-8395-7495fb2dbb2d
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    9cea8871-e46e-4671-abf0-f2183a98e6bf: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Melbourne Flinders Street'
+  created:
+    -
+      value: 1670203051
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 9cea8871-e46e-4671-abf0-f2183a98e6bf
+      alt: 'Melbourne Flinders Street'
+      title: ''
+      width: 458
+      height: 305

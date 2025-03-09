@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 75453091-c74a-4b07-b57a-e381d34c65de
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Pfizer.png
+  uri:
+    -
+      value: 'public://images/2022-10/Pfizer.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 127119
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666103689

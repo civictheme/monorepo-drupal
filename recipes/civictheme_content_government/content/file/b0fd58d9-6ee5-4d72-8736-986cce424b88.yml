@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b0fd58d9-6ee5-4d72-8736-986cce424b88
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: aged-man-hugs-aged-woman.png
+  uri:
+    -
+      value: 'public://images/2022-10/aged-man-hugs-aged-woman.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 93687
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666918298

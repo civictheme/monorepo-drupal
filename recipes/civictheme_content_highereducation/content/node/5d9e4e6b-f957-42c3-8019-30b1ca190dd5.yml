@@ -1,0 +1,154 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 5d9e4e6b-f957-42c3-8019-30b1ca190dd5
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+    2cf05e2f-5d05-4e88-ae27-7248a11978c4: media
+    9160afda-d35a-4538-9284-0148f87278e6: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'New strategic plan available'
+  created:
+    -
+      value: 1666108579
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news-and-events/new-strategic-plan-available
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c3926a03-6eb7-464d-ba2d-6939fc964a83
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666108607
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p dir="ltr"><span>My University’s Strategic Plan 2022-2032 is now available.&nbsp;</span></p><p dir="ltr"><span>Our Strategic Plan highlights current areas we’re focusing on, including:&nbsp;</span></p><ul><li dir="ltr"><span>Expanding existing campus</span></li><li dir="ltr"><span>Opening 2 campuses in Europe</span></li><li dir="ltr"><span>Continuing to rank in the top 50 universities globally, with the goal to consistently rank in the top 30 by 2032</span></li><li dir="ltr"><span>Expansion of our emerging technologies and emerging science area</span></li><li dir="ltr"><span>More scholarships for postgraduate students</span></li></ul>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a714d5ce-0cef-41a0-9145-2998fe58805c
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666108629
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Download Strategic Plan 2022-2032'
+          field_c_p_vertical_spacing:
+            -
+              value: top
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'My University’s Strategic Plan 2022-2032 is now available. Includes MU’s vision for the future and its goals and objectives.'
+  field_c_n_thumbnail:
+    -
+      entity: 9160afda-d35a-4538-9284-0148f87278e6
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+  field_c_n_vertical_spacing:
+    -
+      value: both

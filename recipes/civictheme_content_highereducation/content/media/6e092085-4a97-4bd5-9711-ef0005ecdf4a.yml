@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 6e092085-4a97-4bd5-9711-ef0005ecdf4a
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    39d33114-a7ca-4960-8b72-0c616bcd57bc: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of marketing.svg'
+  created:
+    -
+      value: 1667535752
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 39d33114-a7ca-4960-8b72-0c616bcd57bc
+      alt: 'Icon Department of Marketing'
+      title: ''
+      width: 0
+      height: 0

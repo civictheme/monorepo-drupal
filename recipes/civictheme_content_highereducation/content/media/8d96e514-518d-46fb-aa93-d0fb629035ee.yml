@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 8d96e514-518d-46fb-aa93-d0fb629035ee
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    a2c9a5f4-bdff-46c3-86dc-dde0b7108e6b: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Postgraduate courses icon.svg'
+  created:
+    -
+      value: 1666094777
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: a2c9a5f4-bdff-46c3-86dc-dde0b7108e6b
+      alt: 'Postgraduate courses icon'
+      title: ''
+      width: 0
+      height: 0

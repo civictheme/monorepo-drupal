@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 70debdf1-8d42-4ac2-94d3-3b1781181833
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    eb8db1e8-1ccc-4c99-9a85-75b29eae4de6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'AI and open data for COVID 1.png'
+  created:
+    -
+      value: 1666102375
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: eb8db1e8-1ccc-4c99-9a85-75b29eae4de6
+      alt: 'AI and open data for COVID'
+      title: ''
+      width: 381
+      height: 172

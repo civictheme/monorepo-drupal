@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: a139973f-f02a-4838-bcb4-3a7e0e0c1556
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    b7d04e5e-eb1d-4e7e-bb2e-a5fffa073a81: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'frankie-lopez-lXy07zu3NN4-unsplash 1.png'
+  created:
+    -
+      value: 1666109519
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: b7d04e5e-eb1d-4e7e-bb2e-a5fffa073a81
+      alt: 'My Univeristy sport'
+      title: ''
+      width: 376
+      height: 240

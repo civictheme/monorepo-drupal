@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 052ab323-9e65-4c7b-8c5c-e16277731a30
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    fbbda862-b3ed-4b06-b8d7-b548a628a60f: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Smithsonian Institute.png'
+  created:
+    -
+      value: 1666104124
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: fbbda862-b3ed-4b06-b8d7-b548a628a60f
+      alt: 'Smithsonian Institute'
+      title: ''
+      width: 1000
+      height: 669

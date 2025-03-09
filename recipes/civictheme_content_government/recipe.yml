@@ -1,0 +1,5 @@
+name: 'CivicTheme Government Content'
+description: 'Install civictheme government profile content'
+type: 'Theme'
+install:
+  - civictheme_content

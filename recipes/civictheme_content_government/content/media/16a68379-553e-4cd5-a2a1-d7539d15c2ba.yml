@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 16a68379-553e-4cd5-a2a1-d7539d15c2ba
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    ea71543e-bcb9-4407-8b95-8035ed2c336b: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Aged woman smiles'
+  created:
+    -
+      value: 1668751454
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: ea71543e-bcb9-4407-8b95-8035ed2c336b
+      alt: 'Aged woman smiles'
+      title: ''
+      width: 376
+      height: 240

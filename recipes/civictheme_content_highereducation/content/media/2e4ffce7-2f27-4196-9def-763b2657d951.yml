@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 2e4ffce7-2f27-4196-9def-763b2657d951
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    28ab7204-ffc3-4dfa-bae8-b15ff3eb806d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of civil engineering.svg'
+  created:
+    -
+      value: 1667536053
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 28ab7204-ffc3-4dfa-bae8-b15ff3eb806d
+      alt: 'Icon Department of Civil Engineering'
+      title: ''
+      width: 0
+      height: 0

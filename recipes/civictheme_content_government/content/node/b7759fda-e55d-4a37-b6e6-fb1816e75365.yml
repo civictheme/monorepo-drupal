@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: b7759fda-e55d-4a37-b6e6-fb1816e75365
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Careers
+  created:
+    -
+      value: 1666875866
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /careers
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: overlay
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cd8b7f0b-010b-4400-ac18-bf7621fcc819
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666916306
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>The Department of Citizens is committed to a diverse and inclusive organisation. We embrace culture and offer flexibility in our mission to make our community a safe and secure place to live for all.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ce22e1c2-6991-41ad-b5ff-2b571dfa869a
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666875907
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2 id=\"work-with-us\">Work with us</h2>\r\n\r\n<p>The Department of Citizens is committed to a diverse and inclusive organisation. We embrace culture and offer flexibility in our mission to make our community a safe and secure place to live for all.</p>\r\n\r\n<p>If you enjoy a challenge and want to invest in an inspiring future career that offers a range of benefits, see our current vacancies below or&nbsp;<a href=\"/about-this-template-website\">sign up for job notifications</a>.</p>\r\n\r\n<p>We also offer a variety of school-leaver and mature-age traineeships, apprenticeships, and employment placement programs to help you step into an exciting career with the Department of Citizens.</p>\r\n\r\n<p><a href=\"/careers#current-traineeships-apprenticeships-and-employment-placement-opportunities\">See our traineeship, apprenticeship and employment placement programs</a></p>\r\n\r\n<h2 id=\"current-vacancies\">Current vacancies</h2>\r\n\r\n<p><strong>People and Operational Advisor</strong><br />\r\n<strong>Department:&nbsp;</strong>Education and Employment<br />\r\n<strong>Type:&nbsp;</strong>Full-time<br />\r\n<strong>Classification:&nbsp;</strong>DPC level 5<br />\r\n<strong>Location:&nbsp;</strong>Sydney, NSW</p>\r\n\r\n<p>We’re looking for an experienced and motivated People and Operational Advisor to join our expanding People and Operations team in our Department of Citizens’ Sydney office.</p>\r\n\r\n<p>As the People and Operational Advisor, reporting to the Director of People and Operations, your role is to deliver operational support to your team. You will also be responsible for HR duties of recruitment, learning and development, performance management, HR policy and process advice, and supportive culture practices for the department leaders, employees and relevant stakeholders.</p>\r\n\r\n<p>This is a fantastic opportunity to join a supportive team and advance your HR career.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">View People and Operational Advisor job description</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Administrative Officer</strong><br />\r\nDepartment of Citizens head office<br />\r\n<strong>Type:&nbsp;</strong>Full-time<br />\r\n<strong>Classification:&nbsp;</strong>DPC level 3<br />\r\n<strong>Location:&nbsp;</strong>Canberra, ACT</p>\r\n\r\n<p>Are you an enthusiastic Administrative Officer looking to develop and expand your skill set? As part of the Department of Citizens’ administrative team, there are plenty of ongoing opportunities to learn and work on a variety of projects across all departmental areas.</p>\r\n\r\n<p>You will work under the general direction of the Administration Coordinator and undertake procedural administrative and clerical operational tasks. Your role will also include research and analytical activities to support our ministers.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">View Administrative Officer job description</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Grant Support Officer</strong><br />\r\n<strong>Department:</strong>&nbsp;Health and Disability<br />\r\n<strong>Type:</strong>&nbsp;Part-time 0.6<br />\r\n<strong>Classification:&nbsp;</strong>DPC level 4<br />\r\n<strong>Location:&nbsp;</strong>Melbourne, VIC</p>\r\n\r\n<p>The Grant Support Officer will support the Department of Citizens’ Health and Disability Grants team.</p>\r\n\r\n<p>Duties will include operational and administrative tasks and customer service for relevant stakeholders and members of the public. The customer service requirements are in person, via written correspondence and telephone.</p>\r\n\r\n<p>Our ideal candidate is a high-performing team member with demonstrated administrative skills, a customer service focus, and a passion for contributing to better health and disability services across Australia.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">View Grant Support Officer job description</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2 id=\"current-traineeships-apprenticeships-and-employment-placement-opportunities\">Current traineeships, apprenticeships and employment placement opportunities</h2>\r\n\r\n<p><strong>DPC Trainee Program</strong><br />\r\n<strong>Duration:&nbsp;</strong>12 months<br />\r\n<strong>Location:</strong>&nbsp;Australia wide<br />\r\n<strong>Applications close:</strong>&nbsp;10 October 2022</p>\r\n\r\n<p>The DPC Trainee Program is an excellent opportunity for school leavers or mature-age workers looking for an exciting career change to gain valuable experience by joining the Department of Citizens.</p>\r\n\r\n<p>Over the 12-month trainee program, participants will have the opportunity to learn and grow their skills, capabilities and confidence with on-the-job training across all sectors of the Department of Citizens.</p>\r\n\r\n<p>Upon completion of the program, participants will receive a Certificate III in Citizens, a formal and recognised qualification.</p>\r\n\r\n<p>The trainee program is an exciting opportunity to begin a long-term career with the Department of Citizens and to contribute towards making Australia a better place to live.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See more about the DPC Trainee Program and how to apply</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Employment Experience Placement Program (EEPP)</strong><br />\r\n<strong>Duration:&nbsp;</strong>8 weeks<br />\r\n<strong>Location:&nbsp;</strong>Australia wide<br />\r\n<strong>Applications close:</strong>&nbsp;1 November 2022</p>\r\n\r\n<p>The 8-week Employment Experience Placement Program (EEPP) allows participants to gain real-world experience in the workforce. Placements are available across a variety of sectors in the Department of Citizens.&nbsp;</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"9a1eb8cd-8972-4bac-9e8b-cf41e1f86275\" href=\"/programs-and-services\" title=\"Programs and services\">See more about the EEPP and how to apply</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -1,0 +1,480 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bbd57889-e07c-4c4f-a223-868f9a441035
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Campuses
+  created:
+    -
+      value: 1666104406
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /campuses
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b0460f3a-bf81-4b1c-87a5-a32fdd468fe0
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104434
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University was established in 1912 in Melbourne, Australia. It now has 10 campuses around the world, making it one of the first truly global universities.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c5899f9f-66fe-48e0-95d8-276b475c661d
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104447
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Our campuses are based in:</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3a322518-0514-4261-8d43-af3f0ddecc42
+          bundle: civictheme_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666104455
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 59cf5f58-5a17-4794-9d40-d98fdbdacf59
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Just 10 minutes from Melbourne’s city centre, the Melbourne campus is My University’s largest campus by number of students.</p>\r\n\r\n<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Melbourne Highway, Melbourne, Victoria 3001&nbsp;&nbsp;<br />\r\nPhone: (03) 9123 1234&nbsp;&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@mumelbourne.vic.edu.au\">contact@mumelbourne.vic.edu.au</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Melbourne campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Library</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Student services</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Parking</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Security</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Childcare</a>&nbsp;<br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Melbourne campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"9e21c1d1-284c-4fa4-8395-7495fb2dbb2d\"></drupal-media>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Melbourne, Australia'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c695fb44-85e2-49aa-bef8-81352fc0bf00
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Perth Highway, Perth, WA 3001&nbsp;<br />\r\nPhone: (08) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@muperth.wa.edu.au\">contact@muperth.wa.edu.au</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Perth campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Perth campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Perth, Australia'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8e787023-b7fc-49a4-963f-f7731d80426e
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, London, England&nbsp;<br />\r\nPhone: (020) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@mulondon.edu\">contact@mulondon.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the London campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the London campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'London, England'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 716fc4b9-19ee-4f0c-a137-2e5b1fcc5e32
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, New York, England&nbsp;<br />\r\nPhone: 1 (212) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@munewyork.edu\">contact@munewyork.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the New York campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the New York campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'New York, US'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f9147db4-1f35-4d50-9260-3e82b8ae90e2
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Seoul, South Korea&nbsp;<br />\r\nPhone: (82) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@museoul.edu.kr\">contact@museoul.edu.kr</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Seoul campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Seoul campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Seoul, South Korea'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: aab73933-dc86-4d6d-935a-4e2d856f6c50
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Bern, Switzerland&nbsp;<br />\r\nPhone: (41) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@mubern.edu\">contact@mubern.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Bern campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Bern campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Bern, Switzerland'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1eaf3646-3d1e-4f14-a57c-e218c791a624
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Auckland, New Zealand&nbsp;<br />\r\nPhone: (64) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@muauckland.edu\">contact@muauckland.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Auckland campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Auckland campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Auckland, New Zealand'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9198d591-674b-458d-af63-5a37d3c7a331
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Singapore&nbsp;<br />\r\nPhone: (65) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@musingapore.edu\">contact@musingapore.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Singapore campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Singapore campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Singapore
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e68807b5-48d0-4623-9eb4-5a5affaacd9c
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Hong Kong&nbsp;<br />\r\nPhone: (852) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@muhongkong.edu\">contact@muhongkong.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Hong Kong campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Hong Kong campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Hong Kong'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7eec8710-31b7-455a-92e9-5b1fdbcd9fc0
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666104455
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Address and contact</strong></p>\r\n\r\n<p>123 Main St, Kuala Lumpur, Malaysia&nbsp;<br />\r\nPhone: (60) 9123 1234&nbsp;<br />\r\nEmail: <a href=\"mailto:contact@mukualalumpur.edu\">contact@mukualalumpur.edu</a></p>\r\n\r\n<p><strong>Facilities</strong></p>\r\n\r\n<p>Explore the facilities at the Kuala Lumpur campus</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Accommodation</a><br />\r\n<a href=\"/about-this-template-website\">Library</a><br />\r\n<a href=\"/about-this-template-website\">Student services</a><br />\r\n<a href=\"/about-this-template-website\">Parking</a><br />\r\n<a href=\"/about-this-template-website\">Security</a><br />\r\n<a href=\"/about-this-template-website\">Shopping and food</a><br />\r\n<a href=\"/about-this-template-website\">Childcare</a><br />\r\n<a href=\"/about-this-template-website\">Health and wellbeing</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Explore the Kuala Lumpur campus</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--regular ct-button--secondary ct-theme-light\" href=\"/about-this-template-website\">View campus map</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Kuala Lumpur, Malaysia'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

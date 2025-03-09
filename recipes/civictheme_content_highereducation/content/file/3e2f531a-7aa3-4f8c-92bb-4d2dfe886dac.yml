@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3e2f531a-7aa3-4f8c-92bb-4d2dfe886dac
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: strategicplan.png
+  uri:
+    -
+      value: 'public://images/2022-10/strategicplan.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 156558
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666097457

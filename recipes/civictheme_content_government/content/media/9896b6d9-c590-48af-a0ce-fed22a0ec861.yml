@@ -1,0 +1,40 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9896b6d9-c590-48af-a0ce-fed22a0ec861
+  bundle: civictheme_document
+  default_langcode: en
+  depends:
+    38de3cdb-63b6-40f1-b60d-110c30a8a9fc: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Dummy docx file 2'
+  created:
+    -
+      value: 1687665281
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_document:
+    -
+      entity: 38de3cdb-63b6-40f1-b60d-110c30a8a9fc
+      display: true
+      description: ''

@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 23f6802d-c3bc-4fb0-ba17-9c5285aa95f5
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    02831341-01cd-4d7d-80b7-20f01feb950b: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Programs and services'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -67
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7d218cdd-73aa-4253-8e46-59c94197a943
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Iconschool of english and creative writing.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of english and creative writing.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2161
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535261

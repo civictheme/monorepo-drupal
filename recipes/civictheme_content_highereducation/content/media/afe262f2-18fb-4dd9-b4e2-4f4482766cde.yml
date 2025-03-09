@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: afe262f2-18fb-4dd9-b4e2-4f4482766cde
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    75453091-c74a-4b07-b57a-e381d34c65de: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Pfizer.png
+  created:
+    -
+      value: 1666103689
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 75453091-c74a-4b07-b57a-e381d34c65de
+      alt: Pfizer
+      title: ''
+      width: 1000
+      height: 669

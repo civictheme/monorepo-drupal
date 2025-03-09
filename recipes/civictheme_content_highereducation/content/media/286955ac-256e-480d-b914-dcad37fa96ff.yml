@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 286955ac-256e-480d-b914-dcad37fa96ff
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    2280ddcf-ec73-49ae-8a02-3d6c69579504: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of structural engineering.svg'
+  created:
+    -
+      value: 1667536014
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 2280ddcf-ec73-49ae-8a02-3d6c69579504
+      alt: 'Icon Department of Structural Engineering'
+      title: ''
+      width: 0
+      height: 0

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 7d8c80cb-6e45-4ba2-aad6-8e9bc132f88f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    74f3530d-17b6-45a6-be26-22204601cfce: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: doubledegrees.png
+  created:
+    -
+      value: 1666096580
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 74f3530d-17b6-45a6-be26-22204601cfce
+      alt: 'Double degrees'
+      title: ''
+      width: 376
+      height: 240
