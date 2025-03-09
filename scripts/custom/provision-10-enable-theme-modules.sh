@@ -15,7 +15,7 @@ drush() { ./vendor/bin/drush -y "$@"; }
 echo "  > Removing all site files."
 rm -Rf /app/web/sites/default/files/* >/dev/null || true
 
-if [[ "$DRUPAL_PROFILE" != recipes/* ]] || [[ "$DRUPAL_PROFILE" != "recipes/civictheme_site_install" ]]; then
+if [[ "$DRUPAL_PROFILE" != /app/recipes/* ]] || [[ "$DRUPAL_PROFILE" != "/app/recipes/civictheme_site_install" ]]; then
 echo "[INFO] Enabling theme modules."
   if [ "${DRUPAL_PROFILE}" = "govcms" ]; then
     echo "  > Enable admin theme and set as default."
@@ -33,7 +33,7 @@ echo "[INFO] Enabling theme modules."
     drush config-set node.settings use_admin_theme 1
   fi
 
-  if [[ "$DRUPAL_PROFILE" != recipes/* ]] || [[ "$DRUPAL_PROFILE" != "recipes/civictheme_site_install" ]]; then
+  if [[ "$DRUPAL_PROFILE" != /app/recipes/* ]] || [[ "$DRUPAL_PROFILE" != "/app/recipes/civictheme_site_install" ]]; then
     echo "  > Enable CivicTheme theme and set as default."
     drush theme-enable civictheme
     drush config-set system.theme default civictheme
