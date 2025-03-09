@@ -15,7 +15,7 @@ echo "[INFO] Provisioning content."
 
 if [ -n "${CIVICTHEME_CONTENT_PROFILE:-}" ]; then
   echo "  > Provisioning content from \"${CIVICTHEME_CONTENT_PROFILE}\" content profile."
-  drush recipe /app/recipes/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}
+  drush recipe recipes/civictheme_content_${CIVICTHEME_CONTENT_PROFILE}
 else
   echo "  > Provisioning content from theme defaults."
   drush php:eval -v "require_once '/app/web/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
