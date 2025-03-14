@@ -21,6 +21,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
   _civictheme_preprocess_views_view__search_page($variables);
+  _civictheme_preprocess_views__selected_filters($variables);
 }
 
 /**
@@ -251,6 +252,20 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 }
 
 /**
+ * Preprocess views selected filters from the query params.
+ */
+function _civictheme_preprocess_views__selected_filters(array &$variables): void {
+  $variables['selected_filters'] = _civictheme_automated_list__selected_filters();
+
+  if (!empty($variables['selected_filters'])) {
+    $variables['selected_filters_clear_link'] = [
+      'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query([]),
+      'text' => t('Clear all'),
+      'attributes' => 'aria-label="' . t('Clear all filters') . '"',
+    ];
+  }
+}
+/**
  * Preprocess for a search page.
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
@@ -260,4 +275,76 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
   if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
     $variables['vertical_spacing'] = 'top';
   }
+}
+
+/**
+ * Get an array of the active filters and format them for the selected filters.
+ */
+function _civictheme_automated_list__selected_filters(): array {
+  $query_params = \Drupal::request()->query->all();
+  $current_values = array_filter($query_params, function ($value) {
+    return !empty($value);
+  });
+
+  // Prevent other query params from being used in the selected filters.
+  $permitted_keys = [
+    'type',
+    'topic',
+    'title',
+    'items_per_page',
+  ]; // Change this to get from $view there is an exposed input field or something that gives allowed exposed filters, pass $view in as argument to this function
+  // this function should be called after the hook for changing view
+    $selected_filters = [];
+  foreach ($current_values as $key => $value) {
+    if (!in_array($key, $permitted_keys)) {
+      continue;
+    }
+    $new_query_params = $query_params;
+    if (is_string($value)) {
+      unset($new_query_params[$key]);
+      $selected_filters[$key] = [
+        'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($new_query_params),
+        'text' => _civictheme_automated_list__create_filter_label($key, $value),
+      ];
+      continue;
+    }
+    if (is_array($value)) {
+      foreach ($value as $value_key => $item) {
+        if (!empty($item)) {
+          $temp_query_params = $query_params;
+          unset($temp_query_params[$key][$value_key]);
+          if (empty($temp_query_params[$key])) {
+            unset($temp_query_params[$key]);
+          }
+          $selected_filters[$key . '_' . $item . '_' . $value_key] = [
+            'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($temp_query_params),
+            'text' => _civictheme_automated_list__create_filter_label($key, $item, $value_key),
+          ];
+        }
+      }
+    }
+  }
+  return $selected_filters;
+}
+
+/**
+ * Create the label correctly for each of the selected filters.
+ */
+function _civictheme_automated_list__create_filter_label(string $key, $value, $value_key = NULL): string {
+  // Get the value label.
+  switch ($key) {
+    case 'type':
+      // Get the type label from the node type.
+      $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($value);
+      $value_label = $node_type ? $node_type->label() : $value;
+      break;
+    case 'topic':
+      // Get the topic label from the topic term.
+      $topic_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($value);
+      $value_label = $topic_term ? $topic_term->label() : $value;
+      break;
+    default:
+      $value_label = $value;
+  }
+  return ucfirst(str_replace('_', ' ', $key)) . ': ' . $value_label;
 }
