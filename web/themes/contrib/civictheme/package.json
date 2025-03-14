@@ -38,7 +38,7 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#v1.10.0",
+    "@civictheme/uikit": "github:civictheme/uikit#feature/497-Selected-filters",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
