@@ -318,7 +318,7 @@ function _civictheme_automated_list__selected_filters(): array {
           }
           $selected_filters[$key . '_' . $item . '_' . $value_key] = [
             'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($temp_query_params),
-            'text' => _civictheme_automated_list__create_filter_label($key, $item, $value_key),
+            'text' => _civictheme_automated_list__create_filter_label($key, $item),
           ];
         }
       }
@@ -329,8 +329,16 @@ function _civictheme_automated_list__selected_filters(): array {
 
 /**
  * Create the label correctly for each of the selected filters.
+ *
+ * @param string $key
+ *   The filter key.
+ * @param string|int $value
+ *   The filter value.
+ *
+ * @return string
+ *   The formatted filter label.
  */
-function _civictheme_automated_list__create_filter_label(string $key, $value, $value_key = NULL): string {
+function _civictheme_automated_list__create_filter_label(string $key, string|int $value): string {
   // Get the value label.
   switch ($key) {
     case 'type':
