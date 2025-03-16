@@ -20,17 +20,17 @@ use Drupal\Core\Menu\MenuTreeParameters;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
-  if ($variables['base_plugin_id'] != 'block_content') {
+  if ($variables['base_plugin_id'] !== 'block_content') {
     return;
   }
 
-  $entity = $variables['elements']['content']['#block_content'];
+  $entity = $variables['elements']['content']['#block_content'] ?? NULL;
 
   if (!$entity instanceof BlockContentInterface) {
     return;
   }
 
-  if ($entity->bundle() != 'civictheme_mobile_navigation') {
+  if ($entity->bundle() !== 'civictheme_mobile_navigation') {
     return;
   }
 
@@ -39,23 +39,20 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
     'bottom_menu' => 'field_c_b_bottom',
   ];
 
-  // Load all blocks of type 'civictheme_search'
+  // If we have multiple search blocks, they can all add links to the mobile
+  // menu.
   $block_storage = \Drupal::entityTypeManager()->getStorage('block_content');
   $blocks = $block_storage->loadByProperties(['type' => 'civictheme_search']);
 
-  // Initialize an empty array to store the search link.
-  $search_link = [];
-
-  // Iterate through the blocks and do something with them.
+  $search_links = [];
   /** @var \Drupal\block_content\Entity\BlockContent $block */
   foreach ($blocks as $block) {
-    // Get the field values directly from the block content entity.
-    $link_in_mobile_menu = $block->get('field_c_b_link_in_mobile_menu')->value ?? FALSE;
+    $link_in_mobile_menu = civictheme_get_field_value($block, 'field_c_b_link_in_mobile_menu') ?? FALSE;
 
     if ($link_in_mobile_menu) {
       $link = civictheme_get_field_value($block, 'field_c_b_link', TRUE);
       if ($link !== NULL) {
-        $search_link = [
+        $search_links[] = [
           'url' => $link->getUrl()->toString(),
           'text' => $link->get('title')->getString(),
         ];
@@ -104,17 +101,19 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
       $build = $menu_tree_service->build($tree);
       $variables[$menu_key] = $build['#items'] ?? [];
 
-      // Add search link to end of top menu.
-      if ($menu_key === 'top_menu' && !empty($search_link)) {
-        $variables[$menu_key][] = [
-          'url' => $search_link['url'],
-          'title' => $search_link['text'],
-          'is_new_window' => FALSE,
-          'is_external' => FALSE,
-          'is_expanded' => FALSE,
-          'icon' => 'magnifier',
-          'below' => [],
-        ];
+      // Add search links to end of top menu.
+      if ($menu_key === 'top_menu' && !empty($search_links)) {
+        foreach ($search_links as $search_link) {
+          $variables[$menu_key][] = [
+            'url' => $search_link['url'],
+            'title' => $search_link['text'],
+            'is_new_window' => FALSE,
+            'is_external' => FALSE,
+            'is_expanded' => FALSE,
+            'icon' => 'magnifier',
+            'below' => [],
+          ];
+        }
       }
 
       _civictheme_preprocess_menu_items($variables[$menu_key], $expand_all_items);

@@ -1,7 +1,7 @@
 @p1 @civictheme @block_type @block_civictheme_search
 Feature: Search block fields
 
-  @api
+  @api @wip
   Scenario: Fields appear as expected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "block/add/civictheme_search"
@@ -10,3 +10,4 @@ Feature: Search block fields
     And should see an "[name='field_c_b_link[0][uri]'].required" element
     And should see an "[name='field_c_b_link[0][title]']" element
     And should see an "[name='field_c_b_link[0][title]'].required" element
+    And should see an "[name='field_c_b_link_in_mobile_menu[value]']" element
