@@ -93,6 +93,8 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
  *   Preprocess variables.
  * @param string $menu_key
  *   Menu key.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_top_mobile_menu(array &$variables, string $menu_key): void {
   if ($menu_key !== 'top_menu') {
@@ -121,6 +123,8 @@ function _civictheme_preprocess_top_mobile_menu(array &$variables, string $menu_
  *
  * @return array<array>
  *   Search links to append to mobile navigation top menu.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_get_mobile_search_links(): array {
   // If we have multiple search blocks, they can all add links to the mobile
