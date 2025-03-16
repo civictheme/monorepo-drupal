@@ -146,6 +146,11 @@ function _civictheme_get_mobile_search_links(): array {
         $search_links['items'][] = [
           'url' => $link->getUrl()->toString(),
           'text' => $link->get('title')->getString(),
+          'is_new_window' => FALSE,
+          'is_external' => FALSE,
+          'is_expanded' => FALSE,
+          'icon' => 'magnifier',
+          'below' => [],
         ];
       }
     }
