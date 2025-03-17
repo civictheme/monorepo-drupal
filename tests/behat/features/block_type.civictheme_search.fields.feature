@@ -1,7 +1,7 @@
 @p1 @civictheme @block_type @block_civictheme_search
 Feature: Search block fields
 
-  @api @wip
+  @api
   Scenario: Fields appear as expected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "block/add/civictheme_search"

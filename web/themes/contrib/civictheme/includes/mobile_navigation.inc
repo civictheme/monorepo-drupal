@@ -12,6 +12,7 @@ use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\menu_block\Plugin\Block\MenuBlock;
 
 /**
  * Pre-process for Mobile Navigation block.
@@ -37,11 +38,11 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
   foreach ($menu_fields as $menu_key => $menu_field) {
     $menu_block = civictheme_get_field_referenced_entity($entity, $menu_field);
 
-    if (!$menu_block instanceof BlockInterface || !str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
+    if (!$menu_block instanceof MenuBlock) {
       continue;
     }
 
-    $block_settings = (array) $menu_block->get('settings');
+    $block_settings = $menu_block->getConfiguration();
 
     $menu_name = str_replace('menu_block:', '', (string) $block_settings['id']);
     $root = empty(str_replace($menu_name . ':', '', $block_settings['parent'] ?? '')) ? '' : $block_settings['parent'];
@@ -146,11 +147,6 @@ function _civictheme_get_mobile_search_links(): array {
         $search_links['items'][] = [
           'url' => $link->getUrl()->toString(),
           'text' => $link->get('title')->getString(),
-          'is_new_window' => FALSE,
-          'is_external' => FALSE,
-          'is_expanded' => FALSE,
-          'icon' => 'magnifier',
-          'below' => [],
         ];
       }
     }
