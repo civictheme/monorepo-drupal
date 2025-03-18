@@ -27,7 +27,7 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#13e708ba7dfc42ad6ed75f78ae6f80cacfe73751",
+    "@civictheme/uikit": "github:civictheme/uikit#16aaff9a17a9b530168beeffb10a175450e4e20b",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
