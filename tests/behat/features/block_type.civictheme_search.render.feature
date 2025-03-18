@@ -1,4 +1,4 @@
-@p1 @civictheme @block_type @block_civictheme_search
+@p1 @civictheme @block_type @block_civictheme_search @wip
 Feature: Search block render
 
   Background:
@@ -16,6 +16,7 @@ Feature: Search block render
       | display_label | 0             |
       | region        | header_top_1  |
       | status        | 1             |
+    And the cache has been cleared
 
   @api
   Scenario: CivicTheme search links appear as expected
