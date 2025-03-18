@@ -12,7 +12,6 @@ use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Menu\MenuTreeParameters;
-use Drupal\menu_block\Plugin\Block\MenuBlock;
 
 /**
  * Pre-process for Mobile Navigation block.
@@ -42,7 +41,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
       continue;
     }
 
-    $block_settings = (array) $menu_block->get('settings');
+    $block_settings = $menu_block->get('settings');
 
     $menu_name = str_replace('menu_block:', '', (string) $block_settings['id']);
     $root = empty(str_replace($menu_name . ':', '', $block_settings['parent'] ?? '')) ? '' : $block_settings['parent'];
