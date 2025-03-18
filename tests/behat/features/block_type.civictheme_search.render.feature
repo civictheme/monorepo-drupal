@@ -1,4 +1,4 @@
-@p1 @civictheme @block_type @block_civictheme_search @wip
+@p1 @civictheme @block_type @block_civictheme_search
 Feature: Search block render
 
   Background:
