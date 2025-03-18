@@ -38,11 +38,11 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
   foreach ($menu_fields as $menu_key => $menu_field) {
     $menu_block = civictheme_get_field_referenced_entity($entity, $menu_field);
 
-    if (!$menu_block instanceof MenuBlock) {
+    if (!$menu_block instanceof BlockInterface || !str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
       continue;
     }
 
-    $block_settings = $menu_block->getConfiguration();
+    $block_settings = (array) $menu_block->get('settings');
 
     $menu_name = str_replace('menu_block:', '', (string) $block_settings['id']);
     $root = empty(str_replace($menu_name . ':', '', $block_settings['parent'] ?? '')) ? '' : $block_settings['parent'];

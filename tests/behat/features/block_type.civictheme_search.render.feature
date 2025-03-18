@@ -34,4 +34,5 @@ Feature: Search block render
     And I should see "[TEST] Non-Mobile Search link" in the "a[href='http://example2.com']" element
     Then I should see an ".ct-menu__item a[href='http://example.com'][title='[TEST] Search link'].ct-menu__item__link" element
     And I should see "[TEST] Search link" in the ".ct-menu__item a[href='http://example.com'][title='[TEST] Search link'].ct-menu__item__link" element
+    And I should see ".ct-menu__item a[href='http://example.com'][title='[TEST] Search link'].ct-menu__item__link svg.ct-icon.ct-link__icon" element
     And I should not see an ".ct-menu__item a[href='http://example2.com'][title='[TEST] Non-Mobile Search link']" element

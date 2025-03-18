@@ -15,7 +15,7 @@ content:
   content_moderation_control:
     settings: {  }
     third_party_settings: {  }
-    weight: -20
+    weight: 0
     region: content
   field_c_b_link:
     type: link
@@ -27,16 +27,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 0
-    region: content
-  field_c_b_link_in_mobile_menu:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_c_b_link_in_mobile_menu: true
