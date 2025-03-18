@@ -4,4 +4,4 @@ dependencies: {  }
 id: civictheme_mobile_navigation
 label: 'Mobile Navigation'
 revision: false
-description: ''
+description: 'Provides a block type to setup the mobile navigation'
