@@ -197,6 +197,9 @@ commands:
   test-unit:
     usage: Run PhpUnit unit tests.
     cmd: ahoy cli vendor/bin/phpunit --testsuite=unit "$@"
+  test-sdc:
+    usage: Run PhpUnit sdc unit tests.
+    cmd: ahoy cli vendor/bin/phpunit --testsuite=sdc-unit "$@"
 
   test-kernel:
     usage: Run PhpUnit kernel tests.
