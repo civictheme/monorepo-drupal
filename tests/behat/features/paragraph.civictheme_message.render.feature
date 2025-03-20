@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_message
+@p1 @civictheme @civictheme_message @wip
 Feature: Message render
 
   Background:
@@ -13,7 +13,7 @@ Feature: Message render
       | field_c_p_title          | [TEST] message title                                                                               |
       | field_c_p_theme          | light                                                                                              |
       | field_c_p_content:value  | Content text                                                                                       |
-      | field_c_p_content:format | civictheme_rich_text                                                                              |
+      | field_c_p_content:format | civictheme_rich_text                                                                               |
       | field_c_p_message_type   | information                                                                                        |
       | field_c_p_background     | 1                                                                                                  |
 
@@ -25,6 +25,7 @@ Feature: Message render
     And I should see an ".ct-message__content" element
     And I should see the text "[TEST] message title"
     And I should see the text "Content text"
+    And save screenshot
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with message dark
@@ -33,7 +34,7 @@ Feature: Message render
       | field_c_p_title        | [TEST] message title |
       | field_c_p_theme        | dark                 |
       | field_c_p_content      | Content text         |
-      | field_c_p_message_type | warning             |
+      | field_c_p_message_type | warning              |
       | field_c_p_background   | 0                    |
 
     When I visit "civictheme_page" "[TEST] Page message test"
@@ -44,3 +45,4 @@ Feature: Message render
     And I should see an ".ct-message__content" element
     And I should see the text "[TEST] message title"
     And I should see the text "Content text"
+    And save screenshot
