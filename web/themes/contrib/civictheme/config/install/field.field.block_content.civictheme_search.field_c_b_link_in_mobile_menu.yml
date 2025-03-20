@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_search
+    - field.storage.block_content.field_c_b_link_in_mobile_menu
+id: block_content.civictheme_search.field_c_b_link_in_mobile_menu
+field_name: field_c_b_link_in_mobile_menu
+entity_type: block_content
+bundle: civictheme_search
+label: 'Show link in mobile menu'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

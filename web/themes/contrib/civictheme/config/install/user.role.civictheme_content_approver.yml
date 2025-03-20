@@ -17,7 +17,7 @@ dependencies:
 id: civictheme_content_approver
 label: 'Content Approver'
 weight: -7
-is_admin: null
+is_admin: false
 permissions:
   - 'access content overview'
   - 'access contextual links'

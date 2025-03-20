@@ -256,6 +256,7 @@ config_devel:
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
     - field.field.block_content.civictheme_search.field_c_b_link
+    - field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu
     - field.field.block_content.civictheme_social_links.field_c_b_social_icons
     - field.field.block_content.civictheme_social_links.field_c_b_theme
     - field.field.block_content.civictheme_social_links.field_c_b_with_border
@@ -480,6 +481,7 @@ config_devel:
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_featured_image
     - field.storage.block_content.field_c_b_link
+    - field.storage.block_content.field_c_b_link_in_mobile_menu
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_top
