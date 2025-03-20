@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_message @wip
+@p1 @civictheme @civictheme_message
 Feature: Message render
 
   Background:
