@@ -810,3 +810,76 @@ function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_
   }
   return (string) new TranslatableMarkup('No update needed for view mode.');
 }
+
+/**
+ * Add field_c_b_link_in_mobile_menu field config and update form view.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_search_link_field_to_search_component(): string {
+  \Drupal::getContainer()->get('module_installer')->install(['focal_point']);
+
+  $image_field_configs = [
+    'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
+    'field.storage.block_content.field_c_b_link_in_mobile_menu' => 'field_storage_config',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($image_field_configs, $config_path);
+
+  $new_form_config = [
+    'field_c_b_link_in_mobile_menu' => [
+      'type' => 'boolean_checkbox',
+      'weight' => 2,
+      'region' => 'content',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+    ],
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateFormDisplayConfig('block_content', 'civictheme_search', $new_form_config);
+
+  return (string) new TranslatableMarkup('Added field_c_b_link_in_mobile_menu field config and updated form view.');
+}
+
+/**
+ * Update editor config for D11 requirement (remove duplicate settings).
+ */
+function civictheme_post_update_update_editor_allowed_field(): string {
+  $config_name = 'editor.editor.civictheme_rich_text';
+  $config_object = \Drupal::configFactory()->getEditable($config_name);
+
+  // Fetch the existing allowed tags.
+  $allowed_tags = $config_object->get('settings.allowed_html');
+
+  // Remove the specific tags.
+  $allowed_tags = str_replace('<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">', '', $allowed_tags);
+
+  // Update the configuration with the modified allowed tags.
+  $config_object->set('settings.allowed_html', $allowed_tags);
+  $config_object->save();
+
+  return (string) new TranslatableMarkup('Updated editor allowed field.');
+}
+
+/**
+ * Update civictheme_navigation_card_ref entity view mode.
+ */
+function civictheme_post_update_update_navigation_card_ref_view_mode(): string {
+  $updated_view_display = [
+    'field_c_p_reference' => [
+      'type' => 'entity_reference_entity_view',
+      'region' => 'content',
+      'label' => 'hidden',
+      'settings' => [
+        'view_mode' => 'civictheme_navigation_card',
+        'link' => FALSE,
+      ],
+    ],
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateViewDisplayConfig('paragraph', 'civictheme_navigation_card_ref', $updated_view_display);
+
+  return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card" for navigation card reference paragraph.');
+}
