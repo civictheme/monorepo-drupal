@@ -818,15 +818,13 @@ function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_add_search_link_field_to_search_component(): string {
-  \Drupal::getContainer()->get('module_installer')->install(['focal_point']);
-
-  $image_field_configs = [
+  $block_field_configs = [
     'field.storage.block_content.field_c_b_link_in_mobile_menu' => 'field_storage_config',
     'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
   ];
 
   $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
-  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($image_field_configs, $config_path);
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($block_field_configs, $config_path);
 
   $new_form_config = [
     'field_c_b_link_in_mobile_menu' => [
@@ -852,14 +850,16 @@ function civictheme_post_update_update_editor_allowed_field(): string {
   $config_object = \Drupal::configFactory()->getEditable($config_name);
 
   // Fetch the existing allowed tags.
-  $allowed_tags = $config_object->get('settings.allowed_html');
+  $allowed_tags = $config_object->get('settings.plugins.ckeditor5_sourceEditing.allowed_tags');
+  if (is_array($allowed_tags)) {
+    $allowed_tags = array_filter($allowed_tags, function ($tag) {
+      return $tag !== '<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">';
+    });
+    $config_object->set('settings.plugins.ckeditor5_sourceEditing.allowed_tags', $allowed_tags);
 
-  // Remove the specific tags.
-  $allowed_tags = str_replace('<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">', '', $allowed_tags);
-
-  // Update the configuration with the modified allowed tags.
-  $config_object->set('settings.allowed_html', $allowed_tags);
-  $config_object->save();
-
-  return (string) new TranslatableMarkup('Updated editor allowed field.');
+    // Update the configuration with the modified allowed tags.
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated editor allowed field.');
+  }
+  return (string) new TranslatableMarkup('Allowed tags setting not set, aborting update.');
 }
