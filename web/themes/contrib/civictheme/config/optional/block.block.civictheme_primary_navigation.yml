@@ -10,7 +10,7 @@ dependencies:
 id: civictheme_primary_navigation
 theme: civictheme
 region: header_middle_3
-weight: 0
+weight: -3
 provider: null
 plugin: 'menu_block:civictheme-primary-navigation'
 settings:

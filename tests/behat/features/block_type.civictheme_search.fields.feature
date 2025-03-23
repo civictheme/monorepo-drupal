@@ -10,3 +10,4 @@ Feature: Search block fields
     And should see an "[name='field_c_b_link[0][uri]'].required" element
     And should see an "[name='field_c_b_link[0][title]']" element
     And should see an "[name='field_c_b_link[0][title]'].required" element
+    And should see an "[name='field_c_b_link_in_mobile_menu[value]']" element

@@ -190,7 +190,7 @@ function buildStylesStorybook() {
     let file = fs.readFileSync(STYLE_FILE_OUT, 'utf-8')
     file = file.replaceAll(DIR_CT_ASSETS, DIR_SB_ASSETS)
     fs.writeFileSync(STYLE_STORYBOOK_FILE_OUT, file, 'utf-8')
-    console.log(`Saved: Component styles (storybook) ${time()}`)
+    successReporter(`Saved: Component styles (storybook) ${time()}`)
   }
 }
 
