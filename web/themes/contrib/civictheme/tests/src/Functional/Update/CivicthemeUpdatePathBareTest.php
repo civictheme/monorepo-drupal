@@ -126,6 +126,15 @@ class CivicthemeUpdatePathBareTest extends UpdatePathTestBase {
 
     $this->assertSession()->pageTextContains('Update alert_visibility_validation');
     $this->assertSession()->pageTextContains("Updated alert api view to strip tags from visibility validation.");
+
+    $this->assertSession()->pageTextContains('Update update_view_mode_civictheme_navigation_card_ref_1');
+    $this->assertSession()->pageTextContains('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+
+    $this->assertSession()->pageTextContains('Update add_search_link_field_to_search_component');
+    $this->assertSession()->pageTextContains('Update Added field_c_b_link_in_mobile_menu field config and updated form view.');
+
+    $this->assertSession()->pageTextContains('Update update_editor_allowed_field');
+    $this->assertSession()->pageTextContains('Updated editor allowed field.');
   }
 
 }

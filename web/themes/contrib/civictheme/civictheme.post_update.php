@@ -806,7 +806,8 @@ function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_
   if ($config_read) {
     $config_object = \Drupal::configFactory()->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
     $config_object->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
-    $config_object->save();return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
   }
   return (string) new TranslatableMarkup('No update needed for view mode.');
 }
@@ -820,8 +821,8 @@ function civictheme_post_update_add_search_link_field_to_search_component(): str
   \Drupal::getContainer()->get('module_installer')->install(['focal_point']);
 
   $image_field_configs = [
-    'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
     'field.storage.block_content.field_c_b_link_in_mobile_menu' => 'field_storage_config',
+    'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
   ];
 
   $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
@@ -861,25 +862,4 @@ function civictheme_post_update_update_editor_allowed_field(): string {
   $config_object->save();
 
   return (string) new TranslatableMarkup('Updated editor allowed field.');
-}
-
-/**
- * Update civictheme_navigation_card_ref entity view mode.
- */
-function civictheme_post_update_update_navigation_card_ref_view_mode(): string {
-  $updated_view_display = [
-    'field_c_p_reference' => [
-      'type' => 'entity_reference_entity_view',
-      'region' => 'content',
-      'label' => 'hidden',
-      'settings' => [
-        'view_mode' => 'civictheme_navigation_card',
-        'link' => FALSE,
-      ],
-    ],
-  ];
-
-  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateViewDisplayConfig('paragraph', 'civictheme_navigation_card_ref', $updated_view_display);
-
-  return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card" for navigation card reference paragraph.');
 }
