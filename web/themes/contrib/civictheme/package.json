@@ -1,6 +1,6 @@
 {
   "name": "civictheme-theme",
-  "version": "1.8.0",
+  "version": "1.10.0",
   "private": true,
   "description": "CivicTheme Drupal theme.",
   "homepage": "https://github.com/civictheme/civictheme",
@@ -38,7 +38,7 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#16aaff9a17a9b530168beeffb10a175450e4e20b",
+    "@civictheme/uikit": "github:civictheme/uikit#v1.10.0",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {

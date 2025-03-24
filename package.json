@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#release/1.10"
+    "@civictheme/uikit": "github:civictheme/uikit#main"
   }
 }
