@@ -21,7 +21,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
   _civictheme_preprocess_views_view__search_page($variables);
-  _civictheme_preprocess_views__selected_filters($variables);
+  _civictheme_preprocess_views_view__selected_filters($variables);
 }
 
 /**
@@ -254,8 +254,8 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 /**
  * Preprocess views selected filters from the query params.
  */
-function _civictheme_preprocess_views__selected_filters(array &$variables): void {
-  $variables['selected_filters'] = _civictheme_automated_list__selected_filters();
+function _civictheme_preprocess_views_view__selected_filters(array &$variables): void {
+  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list();
 
   if (!empty($variables['selected_filters'])) {
     $variables['selected_filters_clear_link'] = [
@@ -278,9 +278,9 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
 }
 
 /**
- * Get an array of the active filters and format them for the selected filters.
+ * Preprocess the selected filters list.
  */
-function _civictheme_automated_list__selected_filters(): array {
+function _civictheme_preprocess_views_view__selected_filters_list(): array {
   $query_params = \Drupal::request()->query->all();
   $current_values = array_filter($query_params, function ($value) {
     return !empty($value);
@@ -292,9 +292,9 @@ function _civictheme_automated_list__selected_filters(): array {
     'topic',
     'title',
     'items_per_page',
-  ]; // Change this to get from $view there is an exposed input field or something that gives allowed exposed filters, pass $view in as argument to this function
-  // this function should be called after the hook for changing view
-    $selected_filters = [];
+  ];
+  $selected_filters = [];
+
   foreach ($current_values as $key => $value) {
     if (!in_array($key, $permitted_keys)) {
       continue;
@@ -304,7 +304,7 @@ function _civictheme_automated_list__selected_filters(): array {
       unset($new_query_params[$key]);
       $selected_filters[$key] = [
         'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($new_query_params),
-        'text' => _civictheme_automated_list__create_filter_label($key, $value),
+        'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value),
       ];
       continue;
     }
@@ -318,7 +318,7 @@ function _civictheme_automated_list__selected_filters(): array {
           }
           $selected_filters[$key . '_' . $item . '_' . $value_key] = [
             'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($temp_query_params),
-            'text' => _civictheme_automated_list__create_filter_label($key, $item),
+            'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $item),
           ];
         }
       }
@@ -338,8 +338,7 @@ function _civictheme_automated_list__selected_filters(): array {
  * @return string
  *   The formatted filter label.
  */
-function _civictheme_automated_list__create_filter_label(string $key, string|int $value): string {
-  // Get the value label.
+function _civictheme_preprocess_views_view__selected_filters_list__create_filter_label(string $key, string|int $value): string {
   switch ($key) {
     case 'type':
       // Get the type label from the node type.
