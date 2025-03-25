@@ -226,7 +226,7 @@ settings:
   form_disable_back: false
   form_submit_back: false
   form_disable_autocomplete: false
-  form_novalidate: false
+  form_novalidate: true
   form_disable_inline_errors: false
   form_required: false
   form_autofocus: false

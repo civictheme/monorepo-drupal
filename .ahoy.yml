@@ -184,6 +184,12 @@ commands:
       ahoy cli vendor/bin/rector --clear-cache
       ahoy cli vendor/bin/phpcbf
 
+  lint-govcms:
+    usage: Lint with shipshape.
+    cmd: |
+      ahoy cli sh -c "/usr/local/bin/shipshape -e"
+      ahoy cli vendor/bin/phpstan --configuration=/app/phpstan-govcms.neon
+
   test:
     usage: Run all tests.
     cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
@@ -231,6 +237,20 @@ commands:
     cmd: |
       ahoy confirm "Some committed files may become overwritten. Proceed?" &&
       ./scripts/drevops/update-drevops.sh $@
+
+  bump-uikit:
+    usage: Update CivicTheme UIKit to latest commit hash
+    cmd: |
+      export LATEST_UIKIT_HASH=$(curl -s https://api.github.com/repos/civictheme/uikit/commits/main | jq -r .sha)
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
+      sed -i 's|git+ssh://git@github.com/civictheme/uikit.git#[a-f0-9]\{40\}|git+ssh://git@github.com/civictheme/uikit.git#'$LATEST_UIKIT_HASH'|' package-lock.json
+      npm install
+      pushd web/themes/contrib/civictheme/
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package-lock.json
+      npm install
+      popd
+      echo "Bumped to latest commit on uikit#main https://github.com/civictheme/uikit/commit/${LATEST_UIKIT_HASH}"
 
   local:
     usage: Custom local commands. See `ahoy local help`.

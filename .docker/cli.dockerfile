@@ -10,7 +10,7 @@
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
 #
 # hadolint global ignore=DL3018
-FROM uselagoon/php-8.3-cli-drupal:24.10.0
+FROM uselagoon/php-8.3-cli-drupal:25.1.0
 
 # Add missing variables.
 # @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
@@ -45,7 +45,7 @@ ENV WEBROOT=${WEBROOT} \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv python3 make gcc g++ diffutils ncurses pv tzdata \
+    && apk add pv python3 make gcc g++ diffutils ncurses pv tzdata rsync \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
@@ -62,6 +62,9 @@ RUN mkdir -p web/themes/contrib/civictheme \
     && mkdir -p web/modules/custom/civictheme_content \
     && mkdir -p web/modules/custom/civictheme_dev \
     && mkdir -p web/modules/custom/cs_generated_content
+
+# Add shipshape binary so that we can execute audits.
+COPY --from=ghcr.io/salsadigitalauorg/shipshape:latest /usr/local/bin/shipshape /usr/local/bin/shipshape
 
 # Copy files required for PHP dependencies resolution.
 # Note that composer.lock is not explicitly copied, allowing to run the stack

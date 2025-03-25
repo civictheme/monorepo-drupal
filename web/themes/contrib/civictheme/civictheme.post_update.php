@@ -778,8 +778,88 @@ function civictheme_post_update_import_subject_card_view_mode(): void {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_alert_visibility_validation(): string {
-  $view_config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
-  $view_config->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
-  $view_config->save();
-  return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+  $config_name = 'views.view.civictheme_alerts';
+  $config_entity_type = 'view';
+  // Get Remove the config prefix, so can get the id.
+  // @see Drupal\civictheme\CivicthemeUpdateHelper::deleteConfig().
+  // @see Drupal\Core\Config\Entity\ConfigEntityStorage\ConfigEntityStorage::getIDFromConfigName().
+  $id = substr($config_name, strpos($config_name, '.', 6) + 1);
+  $config_read = \Drupal::service('entity_type.manager')->getStorage($config_entity_type)->load($id);
+  // Only update config if it already exists.
+  if ($config_read) {
+    $config_object = \Drupal::configFactory()->getEditable($config_name);
+    $config_object->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
+    $config_object->save();
+    return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+  }
+  return (string) (new TranslatableMarkup('Update to alert api view skipped, view does not exist.'));
+}
+
+/**
+ * Update the view mode 'civictheme_snippet' to 'civictheme_navigation_card'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_1(): string {
+  $config_read = \Drupal::service('entity_type.manager')->getStorage('entity_view_display')->load('paragraph.civictheme_navigation_card_ref.default');
+  // Only update config if it already exists.
+  if ($config_read) {
+    $config_object = \Drupal::configFactory()->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
+    $config_object->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+  }
+  return (string) new TranslatableMarkup('No update needed for view mode.');
+}
+
+/**
+ * Add field_c_b_link_in_mobile_menu field config and update form view.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_search_link_field_to_search_component(): string {
+  $block_field_configs = [
+    'field.storage.block_content.field_c_b_link_in_mobile_menu' => 'field_storage_config',
+    'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($block_field_configs, $config_path);
+
+  $new_form_config = [
+    'field_c_b_link_in_mobile_menu' => [
+      'type' => 'boolean_checkbox',
+      'weight' => 2,
+      'region' => 'content',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+    ],
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateFormDisplayConfig('block_content', 'civictheme_search', $new_form_config);
+
+  return (string) new TranslatableMarkup('Added field_c_b_link_in_mobile_menu field config and updated form view.');
+}
+
+/**
+ * Update editor config for D11 requirement (remove duplicate settings).
+ */
+function civictheme_post_update_update_editor_allowed_field(): string {
+  $config_name = 'editor.editor.civictheme_rich_text';
+  $config_object = \Drupal::configFactory()->getEditable($config_name);
+
+  // Fetch the existing allowed tags.
+  $allowed_tags = $config_object->get('settings.plugins.ckeditor5_sourceEditing.allowed_tags');
+  if (is_array($allowed_tags)) {
+    $allowed_tags = array_filter($allowed_tags, function ($tag) {
+      return $tag !== '<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">';
+    });
+    $config_object->set('settings.plugins.ckeditor5_sourceEditing.allowed_tags', $allowed_tags);
+
+    // Update the configuration with the modified allowed tags.
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated editor allowed field.');
+  }
+  return (string) new TranslatableMarkup('Allowed tags setting not set, aborting update.');
 }

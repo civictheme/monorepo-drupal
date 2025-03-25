@@ -5,20 +5,19 @@ Feature: XML Sitemap
   Scenario: XML Sitemap is accessible
 
     Given civictheme_page content:
-      | title                 | status | path                 |
-      | [TEST] Published page | 1      | /test-published-page |
-      | [TEST] Draft page     | 0      | /test-draft-page     |
+      | title                 | status | moderation_state | path                 |
+      | [TEST] Published page | 1      | published        | /test-published-page |
+      | [TEST] Draft page     | 0      | draft            | /test-draft-page     |
     And civictheme_event content:
-      | title                  | status | path                         |
-      | [TEST] Published event | 1      | /events/test-published-event |
-      | [TEST] Draft event     | 0      | /events/test-draft-event     |
+      | title                  | status | moderation_state | path                         |
+      | [TEST] Published event | 1      | published        | /events/test-published-event |
+      | [TEST] Draft event     | 0      | draft            | /events/test-draft-event     |
     And civictheme_alert content:
-      | title                  | status | path                         |
-      | [TEST] Published alert | 1      | /alerts/test-published-alert |
-      | [TEST] Draft alert     | 0      | /alerts/test-draft-alert     |
+      | title                  | status | moderation_state | path                         |
+      | [TEST] Published alert | 1      | published        | /alerts/test-published-alert |
+      | [TEST] Draft alert     | 0      | draft            | /alerts/test-draft-alert     |
 
     Given I run drush "simple-sitemap:generate" "--uri=http://example.com"
-
     When I go to "sitemap.xml"
     Then the response status code should be 200
 
