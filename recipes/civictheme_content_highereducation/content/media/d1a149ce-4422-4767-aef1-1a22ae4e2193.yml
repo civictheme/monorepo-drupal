@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d1a149ce-4422-4767-aef1-1a22ae4e2193
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    e897e660-3b34-41ef-98f9-1160f2528a89: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'United Nations.png'
+  created:
+    -
+      value: 1666104041
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: e897e660-3b34-41ef-98f9-1160f2528a89
+      alt: 'United Nations'
+      title: ''
+      width: 1000
+      height: 669

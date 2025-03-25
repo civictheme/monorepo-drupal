@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 894ac492-60e6-4596-b171-4e3c03331076
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Iconschool of media and journalism.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of media and journalism.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2990
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535289

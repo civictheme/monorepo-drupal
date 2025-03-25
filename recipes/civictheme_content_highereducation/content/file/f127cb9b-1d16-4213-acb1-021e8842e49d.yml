@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f127cb9b-1d16-4213-acb1-021e8842e49d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Iconschool of biomedical sciences.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of biomedical sciences.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1494
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536259

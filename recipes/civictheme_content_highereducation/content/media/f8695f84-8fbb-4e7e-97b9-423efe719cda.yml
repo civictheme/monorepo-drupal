@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f8695f84-8fbb-4e7e-97b9-423efe719cda
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    eb4983ea-b3e7-47c2-a036-52aadeebadc1: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'civictheme_background_2 1.png'
+  created:
+    -
+      value: 1669025702
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: eb4983ea-b3e7-47c2-a036-52aadeebadc1
+      alt: d
+      title: ''
+      width: 1176
+      height: 785

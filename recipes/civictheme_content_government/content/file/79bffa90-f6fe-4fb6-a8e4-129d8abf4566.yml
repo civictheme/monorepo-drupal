@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 79bffa90-f6fe-4fb6-a8e4-129d8abf4566
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: female-customer-service-executive-talking-on-headset-in-a-modern-office.png
+  uri:
+    -
+      value: 'public://images/2022-10/female-customer-service-executive-talking-on-headset-in-a-modern-office.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 93965
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666914814

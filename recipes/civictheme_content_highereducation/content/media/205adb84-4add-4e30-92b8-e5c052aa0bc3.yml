@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 205adb84-4add-4e30-92b8-e5c052aa0bc3
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    8b42af88-5ca5-4272-8b4d-d9588778a92d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: doubledegreesslider1.png
+  created:
+    -
+      value: 1666096780
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 8b42af88-5ca5-4272-8b4d-d9588778a92d
+      alt: 'Slider image double degrees'
+      title: ''
+      width: 500
+      height: 560

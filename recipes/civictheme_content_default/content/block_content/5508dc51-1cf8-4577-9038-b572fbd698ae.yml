@@ -1,0 +1,65 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 5508dc51-1cf8-4577-9038-b572fbd698ae
+  bundle: civictheme_component_block
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: Signup
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  field_c_b_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e2d0386e-34f4-43f6-81f2-8eb4eefb757e
+          bundle: civictheme_promo
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1667017477
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Sign up for news and updates from our agency.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_link:
+            -
+              uri: 'internal:/subscribe'
+              title: 'Sign up'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Sign up'
+          field_c_p_vertical_spacing:
+            -
+              value: top

@@ -1,0 +1,395 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b968b4c6-58b1-4a90-a436-54f93d0d7af1: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'About us'
+  created:
+    -
+      value: 1648614335
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /about-us
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: b968b4c6-58b1-4a90-a436-54f93d0d7af1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0f339067-7f60-4192-9fa7-46b012427c97
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666098639
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University was established in 1912 in Melbourne, Australia. It now has more than 10 campuses around the world, making it one of the first truly global universities.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e0889abb-bfef-432c-866e-a9456bbabdab
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648614361
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>About My University</h2>\r\n\r\n<p>My University was established in 1912 in Melbourne, Australia. It now has more than 10 campuses around the world, making it one of the first truly global universities.&nbsp;</p>\r\n\r\n<p>My University is consistently ranked in the top 30 universities in the different world rankings, with our top ranking being #19 in the Times Higher Education World University Rankings.&nbsp;</p>\r\n\r\n<p>Our courses and subject areas are also well ranked around the world.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e6c5952d-2efc-449e-b946-493261517ce2
+          bundle: civictheme_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666092249
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: be5332aa-b3a0-47a6-b0cb-5f53548000f7
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092249
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Science
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fe43f3d7-9ce3-420b-9ffd-a2c857b58f88
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092268
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Arts
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 24cfe84f-ea6e-4142-a758-56e6a34f9304
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092278
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Business
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7d58350d-b47d-47f2-a275-b2bdeea1d890
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092290
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Medical sciences'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 0e1de559-abb9-4a7f-a134-d40f9f198f50
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092307
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: IT
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 0e1a6b61-f2d4-4b7d-a580-39e97a0fb357
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666092316
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: '<p>Lorem ipsum</p>'
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: Engineering
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: feca0868-e80b-4519-8a7a-4bda6967e426
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666092338
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2 dir=\"ltr\">President and Vice-Chancellor</h2>\r\n\r\n<p dir=\"ltr\">My University’s President and Vice Chancellor is Jane Smith. Jane has 20 years of experience in academia. She started her academic career as a professor in medicine. She became head of the Department of Medicine in 2012 and Dean of the Faculty of Medicine and Health Sciences in 2015. In 2020, she was appointed President and Vice Chancellor of My University.&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-caption=\" \" data-entity-type=\"media\" data-entity-uuid=\"29410ad3-295b-450e-bba4-c58d5a7e83ad\" data-view-mode=\"\"></drupal-media>\r\n\r\n<p><a href=\"/about-this-template-website\">More about our structure</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

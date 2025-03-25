@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: eb8db1e8-1ccc-4c99-9a85-75b29eae4de6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'AI and open data for COVID 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/AI and open data for COVID 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 184269
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666102375
