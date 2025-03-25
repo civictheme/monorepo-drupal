@@ -61,6 +61,9 @@
         <env name="MINK_DRIVER_ARGS_WEBDRIVER" value=''/>
     </php>
     <testsuites>
+        <testsuite name="sdc-unit">
+            <directory>web/modules/custom/civictheme_sdc/tests/src/Unit</directory>
+        </testsuite>
         <testsuite name="unit">
             <directory>tests/phpunit</directory>
             <directory>web/modules/custom/*/tests/src/Unit</directory>
