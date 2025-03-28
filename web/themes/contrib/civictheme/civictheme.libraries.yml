@@ -1,9 +1,11 @@
 global:
   css:
     theme:
-      dist/civictheme.css: {}
+      dist/civictheme.base.css: {}
+      dist/civictheme.theme.css: {}
+      dist/civictheme.variables.css: {}
   js:
-    dist/civictheme.js: {}
+    dist/civictheme.drupal.base.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -12,7 +14,7 @@ global:
 css-variables:
   css:
     theme:
-      dist/civictheme.variables.css: {preprocess: false, weight: 10 }
+      dist/civictheme.variables.css: { preprocess: false, weight: 10 }
 
 layouts:
   css:

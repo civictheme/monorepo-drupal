@@ -4,12 +4,12 @@
  * CivicTheme implementation to display a MObile Navigation block.
  */
 #}
-{% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
+{% include 'civictheme:mobile-navigation-trigger' with {
   theme: trigger_theme,
   text: trigger_text,
 } %}
 
-{% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+{% include 'civictheme:mobile-navigation' with {
   theme: theme,
   top_menu: top_menu,
   bottom_menu: bottom_menu,
