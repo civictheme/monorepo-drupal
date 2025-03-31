@@ -26,4 +26,7 @@ fi
 echo "  > Enable development module."
 drush pm-enable civictheme_dev
 
+echo " > Clear drupal cache"
+drush cr
+
 echo "[ OK ] Finished enabling additional modules."
