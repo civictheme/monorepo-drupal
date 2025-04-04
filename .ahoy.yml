@@ -172,6 +172,12 @@ commands:
     cmd: |
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
 
+  lint-components:
+    usage: Lint single directory component properties and schema
+    cmd: |
+      ahoy cli "./vendor/bin/drush sdcv civictheme --csv" > errors-civictheme-components.csv
+      ahoy cli "./vendor/bin/drush sdcv civictheme_demo --csv"
+
   lint-config:
     usage: Lint config
     cmd: |

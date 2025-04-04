@@ -10,6 +10,7 @@
         "drupal/core-project-message": "^11",
         "drupal/core-recommended": "^11",
         "drupal/mysql57": "^1.0",
+        "drupal/sdc_devel": "^1.0",
         "drupal/search_api": "^1.30",
         "drush/drush": "^13",
         "mglaman/composer-drupal-lenient": "^1.0",
