@@ -324,6 +324,7 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['a@example.com.', 'a@example.com'],
       ['a@example.com,', 'a@example.com'],
       ['a@e2xample2.com.', 'a@e2xample2.com'],
+      ['1a@e2xample2.com.', '1a@e2xample2.com'],
       ['1a@3e2xample2.com.', '1a@3e2xample2.com'],
 
       ['<p>  a+b_c.d+e@e2xample2.digital.</p>', 'a+b_c.d+e@e2xample2.digital'],
