@@ -38,7 +38,7 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components-sdc/components components"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#feature/509-sdc-components",
+    "@civictheme/uikit": "github:civictheme/uikit#project/sdc",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
