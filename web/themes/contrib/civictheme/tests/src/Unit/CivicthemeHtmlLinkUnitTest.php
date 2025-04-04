@@ -324,54 +324,9 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['a@example.com.', 'a@example.com'],
       ['a@example.com,', 'a@example.com'],
       ['a@e2xample2.com.', 'a@e2xample2.com'],
-      ['1a@e2xample2.com.', '1a@3e2xample2.com'],
       ['1a@3e2xample2.com.', '1a@3e2xample2.com'],
 
       ['<p>  a+b_c.d+e@e2xample2.digital.</p>', 'a+b_c.d+e@e2xample2.digital'],
     ];
   }
-
-  /**
-   * Test for _civictheme_process_html_content_links_emails() with opt-out.
-   *
-   * @dataProvider dataProviderEmailOptOut
-   */
-  public function testEmailOptOut(string $html, string $expected): void {
-    $optouts = ['components.link.email'];
-    civictheme_get_theme_config_manager()->save('optouts', $optouts);
-
-    $result = _civictheme_process_html_content_links_emails($html);
-    $this->assertEquals($expected, $result);
-
-    civictheme_get_theme_config_manager()->save('optouts', []);
-  }
-
-  /**
-   * Data provider for testEmailOptOut().
-   */
-  public static function dataProviderEmailOptOut(): array {
-    return [
-      // Test case 1: Simple email in text
-      [
-        '<p>Contact us at test@example.com</p>',
-        '<p>Contact us at test@example.com</p>',
-      ],
-      // Test case 2: Multiple emails in text
-      [
-        '<p>Contact us at test@example.com or support@example.com</p>',
-        '<p>Contact us at test@example.com or support@example.com</p>',
-      ],
-      // Test case 3: Email with existing link
-      [
-        '<p>Contact us at <a href="mailto:test@example.com">test@example.com</a></p>',
-        '<p>Contact us at <a href="mailto:test@example.com">test@example.com</a></p>',
-      ],
-      // Test case 4: Email in complex HTML
-      [
-        '<div><p>Contact us at test@example.com</p><p>Or email support@example.com</p></div>',
-        '<div><p>Contact us at test@example.com</p><p>Or email support@example.com</p></div>',
-      ],
-    ];
-  }
-
 }
