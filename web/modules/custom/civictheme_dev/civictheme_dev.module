@@ -11,6 +11,7 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeVersionManager;
 use Drupal\Core\Site\Settings;
 use Drupal\views\ViewExecutable;
+use \Drupal\sdc_devel\TwigValidatorRulePluginBase;
 
 require_once __DIR__ . '/styleguide.inc';
 
@@ -86,4 +87,22 @@ function civictheme_dev_civictheme_automated_list_view_alter(ViewExecutable $vie
 
     $view->setArguments($view_args);
   }
+}
+
+//@todo move to own module so we can do kernel tests.
+function civictheme_dev_twig_validator_rule_info_alter(array &$info): void {
+  _civictheme_dev_twig_validator__update_filter_rules($info);
+  _civictheme_dev_twig_validator__update_sdc_rules($info);
+}
+
+function _civictheme_dev_twig_validator__update_filter_rules(&$info): void {
+  // Allow use of the raw filter.
+  $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_ALLOW][] = 'raw';
+}
+
+function _civictheme_dev_twig_validator__update_sdc_rules(&$info): void {
+  // Remove `Use slots instead of hard embedding a component in the template`.
+  unset($info['include']);
+  // Remove checks on conditional check semantics.
+  unset($info['test']);
 }
