@@ -78,7 +78,7 @@ let lastTime = null
 const PATH = import.meta.dirname
 
 const THEME_NAME                = PATH.split('/').reverse()[0]
-const DIR_CIVICTHEME            = fullPath('../../contrib/civictheme/')
+const DIR_CIVICTHEME            = getCivicthemeDir(PATH)
 const DIR_COMPONENTS_IN         = fullPath('./components/')
 const DIR_COMPONENTS_OUT        = fullPath('./components_combined/')
 const DIR_UIKIT_COMPONENTS_IN   = `${DIR_CIVICTHEME}/components/`
@@ -145,6 +145,21 @@ if (config.lintex) {
 }
 
 // ----------------------------------------------------------------------------- BUILD STEPS
+
+function getCivicthemeDir(subthemeDir) {
+  let currentDir = subthemeDir
+  successReporter(`Feb currentDir inside civictheme: ${currentDir}`)
+  while (currentDir !== path.parse(currentDir).root) {
+    if (path.parse(currentDir).name === 'themes') {
+      const civicthemePath = globSync(currentDir + '/**/civictheme').pop()
+      if (fs.existsSync(civicthemePath) && fs.lstatSync(civicthemePath).isDirectory()) {
+        return path.resolve(civicthemePath)
+      }
+    }
+    currentDir = path.dirname(currentDir)
+  }
+  errorReporter('Could not find civictheme directory.')
+}
 
 function buildOutDirectory() {
   if (!fs.existsSync(DIR_OUT)) {
