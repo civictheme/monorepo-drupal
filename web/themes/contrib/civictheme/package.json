@@ -1,6 +1,6 @@
 {
   "name": "civictheme-theme",
-  "version": "1.8.0",
+  "version": "1.10.0",
   "private": true,
   "description": "CivicTheme Drupal theme.",
   "homepage": "https://github.com/civictheme/civictheme",
@@ -11,6 +11,17 @@
   "engines": {
     "node": ">=22.6.0"
   },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm",
+    "arm64",
+    "ia32"
+  ],
   "scripts": {
     "add-lint-exclusions": "node build.js lintex",
     "build": "npm run dist && storybook build && npm run add-lint-exclusions",
@@ -27,7 +38,7 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#13e708ba7dfc42ad6ed75f78ae6f80cacfe73751",
+    "@civictheme/uikit": "github:civictheme/uikit#v1.10.0",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
