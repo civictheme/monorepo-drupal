@@ -5,6 +5,9 @@ _meta:
   bundle: civictheme_search
   default_langcode: en
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -25,3 +28,6 @@ default:
       uri: 'internal:/search'
       title: Search
       options: {  }
+  field_c_b_link_in_mobile_menu:
+    -
+      value: true
