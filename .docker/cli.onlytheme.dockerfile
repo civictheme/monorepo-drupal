@@ -52,7 +52,7 @@ RUN apk update \
 RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 
 # Adding recipes, patches and scripts.
-COPY recipes /app/recipes
+COPY patches /app/recipes
 COPY patches /app/patches
 COPY scripts /app/scripts
 
