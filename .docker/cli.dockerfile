@@ -88,15 +88,12 @@ COPY web/modules/custom/cs_generated_content/composer.json web/modules/custom/cs
 RUN if [ -n "${GITHUB_TOKEN}" ]; then export COMPOSER_AUTH="{\"github-oauth\": {\"github.com\": \"${GITHUB_TOKEN}\"}}"; fi && \
     COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --optimize-autoloader
 
-# Install NodeJS dependencies.
-COPY web/themes/contrib/civictheme/ web/themes/contrib/civictheme/package* /app/web/themes/contrib/civictheme/
-
-# Install NodeJS dependencies.
-RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
-
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
 COPY . /app
+
+# Install NodeJS dependencies.
+RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
