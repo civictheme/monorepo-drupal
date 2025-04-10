@@ -1,10 +1,10 @@
 # Database container.
 #
-# @see https://hub.docker.com/r/uselagoon/mysql-8.4/tags
+# @see https://hub.docker.com/r/uselagoon/mysql-8.0/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/mysql
 #
 # The ARG value will be updated with a value passed from docker-compose.yml
-ARG IMAGE=uselagoon/mysql-8.4:25.2.0
+ARG IMAGE=uselagoon/mysql-8.0:25.3.0
 
 # hadolint ignore=DL3006
 FROM ${IMAGE}
