@@ -73,7 +73,6 @@ settings:
         - '<h5 id>'
         - '<h6 id>'
         - '<drupal-media title>'
-        - '<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">'
     ckeditor5_style:
       styles:
         -

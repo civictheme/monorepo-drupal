@@ -4,4 +4,4 @@ dependencies: {  }
 id: civictheme_banner
 label: Banner
 revision: false
-description: ''
+description: 'Provides a block type to create CivicTheme banners.'
