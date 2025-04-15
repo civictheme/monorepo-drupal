@@ -78,14 +78,15 @@ let lastTime = null
 const PATH = import.meta.dirname
 
 const THEME_NAME                = PATH.split('/').reverse()[0]
-const DIR_CIVICTHEME            = getCivicthemeDir(PATH)
 const DIR_COMPONENTS_IN         = fullPath('./components/')
-const DIR_COMPONENTS_OUT        = fullPath('./components_combined/')
-const DIR_UIKIT_COMPONENTS_IN   = `${DIR_CIVICTHEME}/components/`
-const DIR_UIKIT_COPY_OUT        = fullPath('./.components-civictheme/')
 const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
+
+const DIR_CIVICTHEME            = config.base ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
+const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
+const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
+const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
 
 const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
 const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
@@ -117,9 +118,9 @@ const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
 const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
 const JS_LIB_IMPORTS            = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
 const JS_ASSET_IMPORTS          = [
-                                    `${DIR_CIVICTHEME}/assets/js/**/*.js`,
+                                    DIR_CIVICTHEME ? `${DIR_CIVICTHEME}/assets/js/**/*.js` : false,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
-                                  ]
+                                  ].filter(Boolean)
 const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
 
 const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
@@ -145,20 +146,6 @@ if (config.lintex) {
 }
 
 // ----------------------------------------------------------------------------- BUILD STEPS
-
-function getCivicthemeDir(subthemeDir) {
-  let currentDir = subthemeDir
-  while (currentDir !== path.parse(currentDir).root) {
-    if (path.parse(currentDir).name === 'themes') {
-      const civicthemePath = globSync(currentDir + '/**/civictheme').pop()
-      if (fs.existsSync(civicthemePath) && fs.lstatSync(civicthemePath).isDirectory()) {
-        return path.resolve(civicthemePath)
-      }
-    }
-    currentDir = path.dirname(currentDir)
-  }
-  errorReporter('Could not find civictheme directory.')
-}
 
 function buildOutDirectory() {
   if (!fs.existsSync(DIR_OUT)) {
@@ -441,6 +428,20 @@ function stripJS(js) {
 
 function fullPath(filepath) {
   return path.resolve(PATH, filepath)
+}
+
+function getCivicthemeDir(subthemeDir, parent, civicthemeDir) {
+  let currentDir = subthemeDir
+  while (currentDir !== path.parse(currentDir).root) {
+    if (path.parse(currentDir).name === parent) {
+      const civicthemePath = globSync(`${currentDir}${civicthemeDir}`).pop()
+      if (fs.existsSync(civicthemePath) && fs.lstatSync(civicthemePath).isDirectory()) {
+        return path.resolve(civicthemePath)
+      }
+    }
+    currentDir = path.dirname(currentDir)
+  }
+  errorReporter('Could not find civictheme directory.')
 }
 
 function time(full) {
