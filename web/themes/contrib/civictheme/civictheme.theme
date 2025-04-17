@@ -92,6 +92,20 @@ function civictheme_theme(): array {
       ],
       'template' => 'misc/tag-list',
     ],
+    'civictheme_table_of_contents' => [
+      'variables' => [
+        'component_theme' => CivicthemeConstants::THEME_LIGHT,
+        'title' => NULL,
+        'position' => NULL,
+        'links' => NULL,
+        'anchor_selector' => NULL,
+        'scope_selector' => NULL,
+        'content' => NULL,
+        'attributes' => NULL,
+        'modifier_class' => NULL,
+      ],
+      'template' => 'misc/table-of-contents',
+    ],
   ];
 }
 
