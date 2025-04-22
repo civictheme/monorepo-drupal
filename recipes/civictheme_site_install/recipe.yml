@@ -34,3 +34,6 @@ config:
     system.theme:
       simpleConfigUpdate:
         default: civictheme
+    node.settings:
+      simpleConfigUpdate:
+        use_admin_theme: true
