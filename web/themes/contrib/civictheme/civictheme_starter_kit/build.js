@@ -431,15 +431,14 @@ function fullPath(filepath) {
 }
 
 function getCivicthemeDir(subthemeDir, parent, civicthemeDir) {
-  let currentDir = subthemeDir
-  while (currentDir !== path.parse(currentDir).root) {
-    if (path.parse(currentDir).name === parent) {
-      const civicthemePath = globSync(`${currentDir}${civicthemeDir}`).pop()
-      if (fs.existsSync(civicthemePath) && fs.lstatSync(civicthemePath).isDirectory()) {
-        return path.resolve(civicthemePath)
-      }
+  const pathParts = subthemeDir.split('/')
+  const parentIndex = pathParts.indexOf(parent)
+  if (parentIndex >= 0) {
+    const basePath = pathParts.slice(0, parentIndex + 1).join('/')
+    const civicthemePath = globSync(`${basePath}${civicthemeDir}`).pop()
+    if (civicthemePath) {
+      return civicthemePath
     }
-    currentDir = path.dirname(currentDir)
   }
   errorReporter('Could not find civictheme directory.')
 }
