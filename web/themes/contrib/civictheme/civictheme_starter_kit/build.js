@@ -442,7 +442,7 @@ function getCivicthemeDir(subthemeDir, parent, civicthemeDir) {
   }
   errorReporter({
     message: 'Could not find civictheme directory.',
-    formatted: basePath ? `Could not find directory '${basePath}${civicthemeDir}'` : `Could not find directory '${parent}'`,
+    formatted: `Could not find directory '${basePath ? `${basePath}${civicthemeDir}` : parent}'`
   }, true)
 }
 
