@@ -19,10 +19,6 @@
 
 declare(strict_types=1);
 
-use Drupal\civictheme\CivicthemeConfigImporter;
-use Drupal\civictheme_content\Helper;
-use Drupal\Core\Installer\Exception\InstallerException;
-
 /**
  * Common updates to be run by all content modules.
  */
