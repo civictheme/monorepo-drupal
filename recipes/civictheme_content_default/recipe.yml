@@ -2,5 +2,4 @@ name: 'CivicTheme Default Content'
 description: 'Install civictheme default profile content'
 type: 'Theme'
 install:
-  - search_api
   - civictheme_content
