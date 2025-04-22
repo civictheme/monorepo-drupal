@@ -15,6 +15,7 @@ install:
   - menu_link_content
   - datetime
   - menu_ui
+  - node
   - options
   - toolbar
   - field_ui
