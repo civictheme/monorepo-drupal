@@ -177,8 +177,8 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     ];
   }
 
-  $current_route_match = \Drupal::routeMatch();
-  $title = $current_route_match ? \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject()) : NULL;
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $title = $route ? \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route) : NULL;
   if (!empty($title)) {
     $title = (string) (is_array($title) ? reset($title) : $title);
     $breadcrumb_links = $breadcrumb->getLinks();
