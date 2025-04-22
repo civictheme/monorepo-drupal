@@ -205,12 +205,6 @@ function process_stub(string $dir, array $options): void {
   // phpcs:enable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:enable Drupal.WhiteSpace.Comma.TooManySpaces
 
-  // Resolve CivicTheme's location relative to the new theme.
-  $current_dir = __DIR__;
-  $relative_dir = file_get_relative_dir($options['path'], $current_dir);
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'build.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
-
   // Adjust per-file settings.
   //
   // Remove 'hidden: true' from the info.
@@ -596,7 +590,7 @@ function file_is_excluded_from_processing(string $filename): bool {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }
@@ -622,49 +616,6 @@ function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0
   }
 
   return $path;
-}
-
-/**
- * Get relative directory path from 2 directory paths.
- *
- * This function does not rely on existence of paths.
- *
- * @param string $dir1
- *   First dir path to compare.
- * @param string $dir2
- *   Second dir path to compare.
- *
- * @return string
- *   Relative path between 2 directories.
- */
-function file_get_relative_dir(string $dir1, string $dir2): string {
-  $dir1 = rtrim($dir1, '/') . '/';
-  $dir2 = rtrim($dir2, '/') . '/';
-
-  if ($dir1 === $dir2) {
-    return './';
-  }
-
-  $dir1 = explode('/', $dir1);
-  $dir2 = explode('/', $dir2);
-  $parts = $dir2;
-
-  foreach ($dir1 as $depth => $dir) {
-    if ($dir === $dir2[$depth]) {
-      array_shift($parts);
-      continue;
-    }
-
-    $remaining = count($dir1) - $depth;
-    if ($remaining > 1) {
-      $parts = array_pad($parts, -1 * (count($parts) + $remaining - 1), '..');
-      break;
-    }
-
-    $parts[0] = './' . $parts[0];
-  }
-
-  return implode('/', $parts);
 }
 
 /**
