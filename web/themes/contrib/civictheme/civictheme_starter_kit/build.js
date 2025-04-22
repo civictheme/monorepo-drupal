@@ -433,14 +433,17 @@ function fullPath(filepath) {
 function getCivicthemeDir(subthemeDir, parent, civicthemeDir) {
   const pathParts = subthemeDir.split('/')
   const parentIndex = pathParts.indexOf(parent)
-  if (parentIndex >= 0) {
-    const basePath = pathParts.slice(0, parentIndex + 1).join('/')
-    const civicthemePath = globSync(`${basePath}${civicthemeDir}`).pop()
+  const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
+  if (basePath) {
+    const civicthemePath = globSync(`${basePath}${civicthemeDir}`, { ignore: 'node_modules/**' }).pop()
     if (civicthemePath) {
       return civicthemePath
     }
   }
-  errorReporter('Could not find civictheme directory.')
+  errorReporter({
+    message: 'Could not find civictheme directory.',
+    formatted: `Could not find directory '${basePath}${civicthemeDir}'`,
+  }, true)
 }
 
 function time(full) {
@@ -450,9 +453,12 @@ function time(full) {
   return `[ ${rtn} ms ]`
 }
 
-function errorReporter(error) {
-  console.error('❌   Error during SASS compilation:', error.message);
+function errorReporter(error, fatal = false) {
+  console.error('❌   Error during build:', error.message);
   console.error('Details:', error.formatted || error);
+  if (fatal) {
+    process.exit(1)
+  }
 }
 
 function successReporter(message) {
