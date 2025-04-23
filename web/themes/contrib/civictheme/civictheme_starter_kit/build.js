@@ -78,6 +78,7 @@ let lastTime = null
 const PATH = import.meta.dirname
 
 const THEME_NAME                = PATH.split('/').reverse()[0]
+const BUILD_CONFIG_DIR          = fullPath('./build-config.json')
 const DIR_COMPONENTS_IN         = fullPath('./components/')
 const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
@@ -430,20 +431,30 @@ function fullPath(filepath) {
   return path.resolve(PATH, filepath)
 }
 
-function getCivicthemeDir(subthemeDir, parent, civicthemeDir) {
-  const pathParts = subthemeDir.split('/')
-  const parentIndex = pathParts.indexOf(parent)
-  const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
-  if (basePath) {
-    const civicthemePath = globSync(`${basePath}${civicthemeDir}`, { ignore: 'node_modules/**' }).pop()
-    if (civicthemePath) {
-      return civicthemePath
+function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
+  if (fs.existsSync(BUILD_CONFIG_DIR)) {
+    const config = JSON.parse(fs.readFileSync(BUILD_CONFIG_DIR, 'utf-8'))
+    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(config.civicthemePath)) {
+      return config.civicthemePath
     }
+  }
+  let civicthemePath = getDirInParent(subthemeDir, parent, civicthemeGlob)
+  if (civicthemePath) {
+    civicthemePath = path.relative(subthemeDir, civicthemePath)
+    fs.writeFileSync(BUILD_CONFIG_DIR, JSON.stringify({ civicthemeGlob, civicthemePath }, null, 2), 'utf-8')
+    return civicthemePath
   }
   errorReporter({
     message: 'Could not find civictheme directory.',
-    formatted: `Could not find directory '${basePath ? `${basePath}${civicthemeDir}` : parent}'`
+    formatted: `Unable to find '${civicthemeGlob}' from '${parent}' directory.`
   }, true)
+}
+
+function getDirInParent(currentDir, parent, destinationGlob) {
+  const pathParts = currentDir.split('/')
+  const parentIndex = pathParts.indexOf(parent)
+  const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
+  return basePath ? globSync(`${basePath}${destinationGlob}`, { ignore: 'node_modules/**' }).pop() : null
 }
 
 function time(full) {
