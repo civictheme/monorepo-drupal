@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import '../dist/civictheme.storybook.css'; // eslint-disable-line import/no-unresolved
 import '../dist/civictheme.stories.css'; // eslint-disable-line import/no-unresolved
 import '../dist/civictheme.storybook'; // eslint-disable-line import/no-unresolved, import/extensions

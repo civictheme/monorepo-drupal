@@ -383,8 +383,9 @@ function lintExclusions() {
   console.log(`Applying lint exclusions: ${lintExclusionPaths.join(', ')}`)
   const storybookStaticPath = fullPath('./storybook-static/**/*.js')
   const header = `${JS_LINT_EXCLUSION_HEADER}\n`
-  lintExclusionPaths. forEach((path) => {
-    globSync(storybookStaticPath).forEach(filename => {
+  lintExclusionPaths. forEach((lintExclusionPath) => {
+    globSync(lintExclusionPath).forEach(filename => {
+      console.log(`Adding lint exclusion header to ${filename}`)
       const data = fs.readFileSync(filename, 'utf-8')
       if (data.substring(0, header.length) !== header) {
         fs.writeFileSync(filename, `${header}${data}`, 'utf-8')

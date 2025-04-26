@@ -596,7 +596,7 @@ function file_is_excluded_from_processing(string $filename): bool {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }

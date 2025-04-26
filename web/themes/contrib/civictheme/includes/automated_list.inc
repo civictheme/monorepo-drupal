@@ -111,6 +111,7 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
  *
  * @throws \Exception
  *   If view information is missing or view is not found.
+ *
  * @see hook_civictheme_automated_list_view_info_alter()
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
