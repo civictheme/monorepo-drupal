@@ -33,7 +33,7 @@ class SingleDirectoryComponentValidatorTest extends TestCase {
   /**
    * Data provider with valid component definitions.
    *
-   * @return array
+   * @return array<int, array<int,array<string>>>
    *   The data.
    */
   public static function dataProviderValidateDefinitionValid(): array {
@@ -86,14 +86,13 @@ class SingleDirectoryComponentValidatorTest extends TestCase {
     foreach ($non_string_types as $non_string_type) {
       $cta_with_non_string_prop_type = $valid_cta;
       $cta_with_non_string_prop_type['props']['properties']['text']['type'] = $non_string_type;
-      yield "non string type ($non_string_type)" => [$cta_with_non_string_prop_type];
-
+      yield sprintf('non string type (%s)', $non_string_type) => [$cta_with_non_string_prop_type];
       // Same, but as a part of the list of allowed types.
       $cta_with_non_string_prop_type['props']['properties']['text']['type'] = [
         'string',
         $non_string_type,
       ];
-      yield "non string type ($non_string_type) in a list of types" => [$cta_with_non_string_prop_type];
+      yield sprintf('non string type (%s) in a list of types', $non_string_type) => [$cta_with_non_string_prop_type];
     }
 
     // The array is a valid value for the 'type' parameter, but it is not
@@ -129,7 +128,7 @@ class SingleDirectoryComponentValidatorTest extends TestCase {
   /**
    * Data provider with valid component props.
    *
-   * @return array
+   * @return array<int|string, array<int,array<\Drupal\Core\Template\Attribute|\stdClass|string>|string>>
    *   The data.
    */
   public static function dataProviderValidatePropsValid(): array {
@@ -191,7 +190,7 @@ class SingleDirectoryComponentValidatorTest extends TestCase {
   /**
    * Data provider with invalid component props.
    *
-   * @return array
+   * @return array<string, array<int,array<bool|\Drupal\Core\Template\Attribute|int|\stdClass|string|null>|string>>
    *   Returns the generator with the invalid properties.
    */
   public static function dataProviderValidatePropsInvalid(): array {
@@ -256,10 +255,10 @@ class SingleDirectoryComponentValidatorTest extends TestCase {
    * @param string $component_name
    *   The component name.
    *
-   * @return array
+   * @return array<mixed>
    *   The component definition
    */
-  private static function loadComponentDefinitionFromFs(string $component_name): array {
+  protected static function loadComponentDefinitionFromFs(string $component_name): array {
     return array_merge(
       Yaml::parseFile(
         sprintf('%s/fixtures/components/%s/%s.component.yml', dirname(__DIR__, 2), $component_name, $component_name),
