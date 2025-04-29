@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#project/sdc"
+    "@civictheme/uikit": "github:civictheme/uikit#9ab5cfe703fd84504b74d4bb214353c461fe6554"
+  },
+  "scripts": {
+    "uikit-change": "node tools/civictheme-uikit-version-change/change-civictheme-version.mjs"
   }
 }

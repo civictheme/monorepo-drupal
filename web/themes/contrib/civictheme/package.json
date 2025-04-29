@@ -35,10 +35,10 @@
     "storybook": "storybook dev -p 6006",
     "storybook-build": "npm run dist && storybook build",
     "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\"",
-    "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components-sdc/components components"
+    "uikit-install": "rm -Rf components > /dev/null 2>&1 && ([ -d \"node_modules/@civictheme/uikit/components\" ] && cp -R node_modules/@civictheme/uikit/components components || ([ -d \"node_modules/@civictheme/uikit/packages/sdc/components\" ] && cp -R node_modules/@civictheme/uikit/packages/sdc/components components || (echo \"Error: No components directory found\" && exit 1)))"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#project/sdc",
+    "@civictheme/uikit": "github:civictheme/uikit#9ab5cfe703fd84504b74d4bb214353c461fe6554",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {

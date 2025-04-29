@@ -98,6 +98,13 @@ function civictheme_dev_twig_validator_rule_info_alter(array &$info): void {
 function _civictheme_dev_twig_validator__update_filter_rules(&$info): void {
   // Allow use of the raw filter.
   $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_ALLOW][] = 'raw';
+//  $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_ALLOW][] = 'default';
+  $filter_warning_override = ['default'];
+
+  $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_WARN] = array_filter( $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_WARN], function($key) use ($filter_warning_override) {
+    return !in_array($key, $filter_warning_override);
+  });
+  file_put_contents( 'test.json', json_encode($info));
 }
 
 function _civictheme_dev_twig_validator__update_sdc_rules(&$info): void {
