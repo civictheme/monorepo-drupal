@@ -134,10 +134,6 @@ $databases = [
 
 // Initialise environment type in Lagoon environment.
 if (getenv('LAGOON') && getenv('LAGOON_ENVIRONMENT_TYPE') == 'production' || getenv('LAGOON_ENVIRONMENT_TYPE') == 'development') {
-  // @todo remove once platform upgraded.
-  // Override requirements for use Drupal 11 on MySQL 5.7.8+
-  // and MariaDB 10.3.7+, which match Drupal 10's requirements.
-  require DRUPAL_ROOT . '/modules/contrib/mysql57/settings.inc';
 
   // Do not put any Lagoon-specific settings in this code block. It is used
   // to explicitly map Lagoon environments to $settings['environment']
