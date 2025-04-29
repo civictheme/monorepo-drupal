@@ -179,9 +179,6 @@
             },
             "drupal/simple_sitemap": {
                 "Error on installing / enabling simple_sitemap in D11: https://www.drupal.org/project/simple_sitemap/issues/3507718": "./patches/modules/simple_sitemap/fix-error-on-install.patch"
-            },
-            "drupal/styleguide": {
-                "Create Drupal 11 test release: https://www.drupal.org/project/styleguide/issues/3505640": "https://git.drupalcode.org/project/styleguide/-/merge_requests/23.patch"
             }
         },
         "preserve-paths": [
