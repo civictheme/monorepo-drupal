@@ -249,7 +249,13 @@ commands:
     cmd: |
       ahoy confirm "Some committed files may become overwritten. Proceed?" &&
       ./scripts/drevops/update-drevops.sh $@
-
+  change-uikit:
+    usage: Change the version of CivicTheme UI Kit the repository is using
+    cmd: |
+      pushd tools/civictheme-uikit-version-change
+      ([ -d "node_modules" ] || npm install)
+      npm run start
+      popd
   bump-uikit:
     usage: Update CivicTheme UIKit to latest commit hash
     cmd: |
