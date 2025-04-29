@@ -39,6 +39,9 @@ const NPM_PACKAGE_NAME = '@civictheme/uikit';
 async function main() {
   try {
     console.log('🌟 CivicTheme UI Kit Version Change Tool 🌟');
+    
+    // Print current CivicTheme version
+    await printCurrentVersion();
 
     // Ask what CivicTheme UI Kit to install
     const installType = await select({
@@ -307,6 +310,48 @@ async function installDependencies() {
   } catch (error) {
     console.error('Error installing dependencies:', error.message);
     throw error;
+  }
+}
+
+/**
+ * Print the current version of CivicTheme UI Kit being used.
+ */
+async function printCurrentVersion() {
+  try {
+    // Read the package.json file
+    const data = await fs.readFile(ROOT_PACKAGE_JSON, 'utf8');
+    const packageJson = JSON.parse(data);
+
+    if (packageJson.dependencies && packageJson.dependencies[NPM_PACKAGE_NAME]) {
+      const currentVersion = packageJson.dependencies[NPM_PACKAGE_NAME];
+      
+      console.log('📦 Current CivicTheme UI Kit version:');
+      
+      // Check if using a GitHub branch
+      if (currentVersion.includes('github:civictheme/uikit#')) {
+        const commitHash = currentVersion.split('#')[1];
+        console.log(`   Branch: Using GitHub commit ${commitHash}`);
+        
+        // Try to find which branch this commit belongs to
+        try {
+          // This would ideally check which branch the commit is from,
+          // but for simplicity we'll just note it's a GitHub branch
+          console.log('   Type: Development version (GitHub branch)');
+        } catch (error) {
+          console.log('   Type: Development version (GitHub commit)');
+        }
+      } else {
+        // NPM release version
+        console.log(`   Version: ${currentVersion}`);
+        console.log('   Type: NPM release');
+      }
+      console.log(''); // Empty line for better readability
+    } else {
+      console.log('⚠️ CivicTheme UI Kit is not installed or not found in package.json');
+      console.log(''); // Empty line for better readability
+    }
+  } catch (error) {
+    console.error('Error reading current version:', error.message);
   }
 }
 
