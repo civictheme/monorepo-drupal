@@ -92,6 +92,12 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   // Render view as rows.
   $variables['rows'] = $view->executeDisplay();
 
+  // Pass the CSS class from the view display to the template.
+  $css_class = $view->getDisplay()->getOption('css_class');
+  if (!empty($css_class)) {
+    $variables['modifier_class'] = $variables['modifier_class'] ?? '' . $css_class;
+  }
+
   // Add unique HTML ID.
   $attributes = [];
   $attributes['id'] = Html::getUniqueId('ct-automated-list-' . $paragraph->id());
