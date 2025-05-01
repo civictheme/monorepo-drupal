@@ -190,7 +190,7 @@ job-build-isolated: &job-build-isolated
 
     - run:
         name: Lint code with Twig CS Fixer
-        command: vendor/bin/twig-cs-fixer lint --config=web/themes/contrib/civictheme/.twig-cs-fixer.php web/themes/contrib/civictheme  || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: vendor/bin/twig-cs-fixer lint --config=web/themes/custom/civictheme/.twig-cs-fixer.php web/themes/custom/civictheme  || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
         working_directory: web/themes/contrib/civictheme/build
 
     - run:
@@ -213,6 +213,7 @@ job-build-isolated: &job-build-isolated
         name: Upload code coverage reports to Codecov
         command: |
           if [ -z "${CIRCLE_TAG-}" ] && [ -n "${CODECOV_TOKEN-}" ] && [ -d .logs/coverage/phpunit ]; then
+            curl -Os https://cli.codecov.io/latest/linux/codecov && sudo chmod +x codecov
             curl -Os https://cli.codecov.io/latest/linux/codecov && sudo chmod +x codecov
             ./codecov --verbose upload-process --fail-on-error -n "circleci-$CIRCLE_JOB" -s web/themes/contrib/civictheme/.logs/coverage
           fi
