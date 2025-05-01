@@ -7,7 +7,7 @@
 <div {{ attributes }}>
   <div class="component--my-banner--header">
     <h3>{{ heading }}</h3>
-    {% include 'sdc_test:my-cta' with { text: ctaText, href: ctaHref, target: ctaTarget } only %}
+    {% include 'sdc_test:my-cta' with {text: ctaText, href: ctaHref, target: ctaTarget} only %}
   </div>
   <div class="component--my-banner--body">
     {% block banner_body %}
