@@ -190,7 +190,7 @@ job-build-isolated: &job-build-isolated
 
     - run:
         name: Lint code with Twig CS Fixer
-        command: vendor/bin/twig-cs-fixer lint --config=web/themes/custom/civictheme/.twig-cs-fixer.php web/themes/custom/civictheme  || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: vendor/bin/twig-cs-fixer lint --config=../.twig-cs-fixer.php web/themes/contrib/civictheme/  || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
         working_directory: web/themes/contrib/civictheme/build
 
     - run:
