@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\civictheme_sdc\Unit;
 
 use Drupal\Core\Plugin\Component;

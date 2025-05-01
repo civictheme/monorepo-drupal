@@ -171,6 +171,7 @@ commands:
     usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
 
   lint-components:
     usage: Lint CivicTheme Single Directory Components
@@ -192,6 +193,7 @@ commands:
     cmd: |
       ahoy cli vendor/bin/rector --clear-cache
       ahoy cli vendor/bin/phpcbf
+      ahoy cli "vendor/bin/twig-cs-fixer lint --fix --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib"
 
   lint-govcms:
     usage: Lint with shipshape.
