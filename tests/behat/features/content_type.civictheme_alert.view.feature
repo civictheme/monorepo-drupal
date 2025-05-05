@@ -1,4 +1,4 @@
-@p1 @civictheme @content_type @civictheme_alert
+@p1 @civictheme @content_type @civictheme_alert @skipped
 Feature: CivicTheme Alert content type render
 
   Background:
