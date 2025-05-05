@@ -31,10 +31,11 @@ load _helper
   # Files managed by the CivicTheme Drupal theme CI build.
   assert_dir_exists "dist"
 
-  assert_file_exists "dist/civictheme.css"
+  assert_file_exists "dist/civictheme.base.css"
+  assert_file_exists "dist/civictheme.theme.css"
   assert_file_not_contains "dist/civictheme.css" "ck-editor__editable"
 
-  assert_file_exists "dist/civictheme.storybook.css"
+  assert_file_exists "dist/civictheme.stories.css"
 
   assert_file_exists "dist/civictheme.variables.css"
   assert_file_contains "dist/civictheme.variables.css" "--ct"
