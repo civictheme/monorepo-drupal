@@ -33,7 +33,7 @@ load _helper
 
   assert_file_exists "dist/civictheme.base.css"
   assert_file_exists "dist/civictheme.theme.css"
-  assert_file_not__exists "dist/civictheme.css"
+  assert_file_not_exists "dist/civictheme.css"
   assert_file_not_contains "dist/civictheme.css" "ck-editor__editable"
 
   assert_file_exists "dist/civictheme.stories.css"
