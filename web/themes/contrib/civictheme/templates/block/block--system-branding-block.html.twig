@@ -6,7 +6,7 @@
 #}
 {% extends "block.html.twig" %}
 
-{% block content %}
+{% block content_slot %}
   {% if show_site_logo %}
     {% include 'civictheme:logo' with {
       logos: logos,

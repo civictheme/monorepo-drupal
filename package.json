@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#d08632c7108ffa08168151fd423af319a42bae0f"
+    "@civictheme/uikit": "github:civictheme/uikit#345483d4370dbbd04666571c0f97225d876b573e"
   },
   "scripts": {
     "uikit-change": "node tools/civictheme-uikit-version-change/change-civictheme-version.mjs"

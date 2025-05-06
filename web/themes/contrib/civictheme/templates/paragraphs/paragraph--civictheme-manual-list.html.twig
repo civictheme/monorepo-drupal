@@ -6,7 +6,7 @@
 #}
 {% extends 'civictheme:list' %}
 
-{% block rows %}
+{% block rows_slot %}
   {% if rows -%}
     <div class="ct-list__rows">
       {% include 'civictheme:grid' with {
