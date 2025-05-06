@@ -264,4 +264,7 @@ function civictheme_page_attachments_alter(array &$attachments) {
   if ($current_user->isAuthenticated()) {
     $attachments['#attached']['library'][] = 'civictheme/admin';
   }
+  $component_plugin_manager = \Drupal::service('plugin.manager.sdc');
+  $alert = $component_plugin_manager->find('civictheme:alert');
+  $attachments['#attached']['library'][] = $alert->getLibraryName();
 }
