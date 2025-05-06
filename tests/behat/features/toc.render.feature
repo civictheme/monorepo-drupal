@@ -1,4 +1,4 @@
-@p0 @civictheme @civictheme_toc @skipped
+@p0 @civictheme @civictheme_toc
 Feature: Table Of Contents render
 
   @api @javascript
@@ -16,7 +16,7 @@ Feature: Table Of Contents render
 
     When I visit civictheme_page "[TEST] Page - toc"
     And wait 5 seconds
-    Then I should see a ".table-of-contents-container" element
+    Then I should see a "[data-table-of-contents-title]" element
     And I should see a visible ".ct-table-of-contents__title" element
     And I should see the text "On this page"
     And I should see "Test heading 1" in the ".ct-table-of-contents__links" element
