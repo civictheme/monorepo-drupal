@@ -474,15 +474,23 @@ function cli() {
 }
 
 function lintExclusions() {
+  const lintExclusionPaths = [
+    fullPath('./storybook-static/**/*.js'),
+    fullPath('./dist/**/*.js'),
+    fullPath('./components/**/*.js'),
+  ]
+  console.log(`Applying lint exclusions: ${lintExclusionPaths.join(', ')}`)
   const storybookStaticPath = fullPath('./storybook-static/**/*.js')
-  console.log(`Applying lint exclusions: ${storybookStaticPath}`)
   const header = `${JS_LINT_EXCLUSION_HEADER}\n`
-  globSync(storybookStaticPath).forEach(filename => {
-    const data = fs.readFileSync(filename, 'utf-8')
-    if (data.substr(0, header.length) !== header) {
-      fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
-    }
-  })
+  lintExclusionPaths. forEach((lintExclusionPath) => {
+    globSync(lintExclusionPath).forEach(filename => {
+      console.log(`Adding lint exclusion header to ${filename}`)
+      const data = fs.readFileSync(filename, 'utf-8')
+      if (data.substring(0, header.length) !== header) {
+        fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
+      }
+    })
+  });
 }
 
 // ----------------------------------------------------------------------------- UTILITIES

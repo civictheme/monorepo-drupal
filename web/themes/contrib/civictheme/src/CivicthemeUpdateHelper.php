@@ -178,7 +178,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @param string $view_mode
    *   View mode to update.
    */
-  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
+  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, ?array $group_config = NULL, string $view_mode = 'default'): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
@@ -222,7 +222,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    * @param string $view_mode
    *   View mode to update.
    */
-  public function updateViewDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
+  public function updateViewDisplayConfig(string $entity_type, string $bundle, array $field_config, ?array $group_config = NULL, string $view_mode = 'default'): void {
     /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
     $view_display = $this->entityTypeManager
       ->getStorage('entity_view_display')

@@ -73,7 +73,8 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
 
   // 'type' is internal field and should not be passed to the template.
   unset($variables['type']);
-  // 'attributes' field includes an id which conflicts with the template `main-content` id.
+  // 'attributes' field includes an id which conflicts with the template
+  // `main-content` id.
   unset($variables['attributes']);
 }
 
