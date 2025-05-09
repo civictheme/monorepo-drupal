@@ -40,7 +40,7 @@ x-environment: &default-environment
   # Local development route used in Lagoon images and Pygmy to route requests.
   LAGOON_ROUTE: *default-url
   # Local database host (not used in production).
-  MYSQL_HOST: database
+  MYSQL_HOST: mariadb
   # Local database name (not used in production).
   MYSQL_NAME: drupal
   # Local database user (not used in production).
