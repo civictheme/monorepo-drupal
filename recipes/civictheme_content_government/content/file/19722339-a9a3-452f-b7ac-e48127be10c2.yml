@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 19722339-a9a3-452f-b7ac-e48127be10c2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: dummy1.pdf
+  uri:
+    -
+      value: 'public://documents/2023-06/dummy1.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 7945
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1686797473

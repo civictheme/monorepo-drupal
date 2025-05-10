@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 43d131e1-0ed7-4df4-9666-2f97345b4e85
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: _Icon.svg
+  uri:
+    -
+      value: 'public://images/2022-10/_Icon.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1741
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666094731

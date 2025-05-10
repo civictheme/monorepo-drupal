@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 38de3cdb-63b6-40f1-b60d-110c30a8a9fc
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: dummy2.docx
+  uri:
+    -
+      value: 'public://documents/2023-06/dummy2.docx'
+  filemime:
+    -
+      value: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  filesize:
+    -
+      value: 11774
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1687665283

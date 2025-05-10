@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 405e6f34-e721-473c-b3da-49d618e92105
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    2dbb9ea9-fc71-45c8-8fc3-4fd5c4e47f69: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Iconschool of languages.svg'
+  created:
+    -
+      value: 1667535314
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 2dbb9ea9-fc71-45c8-8fc3-4fd5c4e47f69
+      alt: 'Icon School of Languages'
+      title: ''
+      width: 0
+      height: 0

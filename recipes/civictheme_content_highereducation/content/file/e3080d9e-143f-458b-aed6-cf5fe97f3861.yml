@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e3080d9e-143f-458b-aed6-cf5fe97f3861
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: BCG.png
+  uri:
+    -
+      value: 'public://images/2022-10/BCG.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 27537
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666103829

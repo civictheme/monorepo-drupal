@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 7b02f9f8-0b74-475b-98cb-efb080b09929
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    c14f7e58-db26-4c8d-830a-4f4ce677f898: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: WHO.png
+  created:
+    -
+      value: 1666103964
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: c14f7e58-db26-4c8d-830a-4f4ce677f898
+      alt: 'World Health Organization'
+      title: ''
+      width: 1000
+      height: 669

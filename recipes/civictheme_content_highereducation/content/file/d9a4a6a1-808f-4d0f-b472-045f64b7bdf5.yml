@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d9a4a6a1-808f-4d0f-b472-045f64b7bdf5
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: janesmith.png
+  uri:
+    -
+      value: 'public://images/2022-11/janesmith.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 595065
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1669027575

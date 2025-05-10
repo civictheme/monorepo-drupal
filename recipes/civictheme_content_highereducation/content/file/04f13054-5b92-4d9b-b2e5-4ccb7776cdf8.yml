@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 04f13054-5b92-4d9b-b2e5-4ccb7776cdf8
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of art.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of art.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2107
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535174

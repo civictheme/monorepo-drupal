@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4a661a2b-f6cc-480c-99ed-1f9911b5d405
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    06649f54-e0ba-4cb3-a291-d07abecdf0f1: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of emerging technologies.svg'
+  created:
+    -
+      value: 1667536158
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 06649f54-e0ba-4cb3-a291-d07abecdf0f1
+      alt: 'Icon Department of Emerging Technologies'
+      title: ''
+      width: 0
+      height: 0

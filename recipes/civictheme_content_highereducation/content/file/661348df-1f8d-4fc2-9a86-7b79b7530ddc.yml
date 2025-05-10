@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 661348df-1f8d-4fc2-9a86-7b79b7530ddc
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: scholarship.png
+  uri:
+    -
+      value: 'public://images/2022-10/scholarship.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 169105
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666096260

@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 0985ec26-733f-4e36-959d-89bd54cb097e
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    b7f32ddb-c81a-40ff-8389-a935cd317201: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Consultations
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: b7f32ddb-c81a-40ff-8389-a935cd317201
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -65
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

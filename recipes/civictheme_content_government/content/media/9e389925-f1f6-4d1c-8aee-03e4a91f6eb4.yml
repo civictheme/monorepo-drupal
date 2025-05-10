@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9e389925-f1f6-4d1c-8aee-03e4a91f6eb4
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    b8433893-9503-4154-a7c6-f6b5ff8fbc1d: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Two asian women are looking at the screen'
+  created:
+    -
+      value: 1666914854
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: b8433893-9503-4154-a7c6-f6b5ff8fbc1d
+      alt: 'Two asian women are looking at the screen'
+      title: ''
+      width: 304
+      height: 172

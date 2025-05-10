@@ -1,0 +1,40 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e343a613-0b38-49f4-a4b5-f000b171b10d
+  bundle: civictheme_icon
+  default_langcode: en
+  depends:
+    42ad3ee5-1d76-4dbb-87c9-cdea3252e774: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Warning
+  created:
+    -
+      value: 1668986910
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_icon:
+    -
+      entity: 42ad3ee5-1d76-4dbb-87c9-cdea3252e774
+      display: true
+      description: ''

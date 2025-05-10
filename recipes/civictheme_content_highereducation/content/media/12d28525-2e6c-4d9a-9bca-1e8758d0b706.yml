@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 12d28525-2e6c-4d9a-9bca-1e8758d0b706
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    17043c65-8fbe-4447-a967-293bedca0dd4: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: awardwinningresearchers.png
+  created:
+    -
+      value: 1666096630
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 17043c65-8fbe-4447-a967-293bedca0dd4
+      alt: 'Award winning researchers'
+      title: ''
+      width: 376
+      height: 240

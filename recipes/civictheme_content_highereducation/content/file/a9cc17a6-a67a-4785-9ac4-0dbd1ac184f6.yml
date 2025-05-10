@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a9cc17a6-a67a-4785-9ac4-0dbd1ac184f6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of chem engineering.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of chem engineering.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1322
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535916
