@@ -37,7 +37,7 @@ else
   # Deploy docker image.
   # @todo Move deployment into a separate script.
   if [ "${DREVOPS_EXPORT_DB_DOCKER_DEPLOY_PROCEED:-}" = "1" ]; then
-    DREVOPS_DEPLOY_DOCKER_MAP=database=${DREVOPS_DB_DOCKER_IMAGE} \
+    DREVOPS_DEPLOY_DOCKER_MAP=mariadb=${DREVOPS_DB_DOCKER_IMAGE} \
       ./scripts/drevops/deploy-docker.sh
   fi
 fi
