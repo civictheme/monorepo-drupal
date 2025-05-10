@@ -1,0 +1,54 @@
+diff --git a/src/Plugin/TwigValidatorRule/TwigValidatorRuleFilter.php b/src/Plugin/TwigValidatorRule/TwigValidatorRuleFilter.php
+index 4b4b68d..8709bff 100644
+--- a/src/Plugin/TwigValidatorRule/TwigValidatorRuleFilter.php
++++ b/src/Plugin/TwigValidatorRule/TwigValidatorRuleFilter.php
+@@ -236,37 +236,6 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
+    */
+   private static function default(string $id, Node $node, Node $parent, array $definition): array {
+     $errors = [];
+-
+-    if (\is_a($parent, 'Twig\Node\Expression\ConstantExpression') && $parent->hasAttribute('value')) {
+-      $value = $parent->getAttribute('value');
+-      if (\is_bool($value) || NULL === $value) {
+-        $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Filter `default` is not for booleans or null!'));
+-      }
+-    }
+-
+-    // Detect {{ foo|default(bar) }} where bar is boolean case.
+-    // Seems hard to detect if bar is a boolean set anywhere before in the
+-    // template. So we detect only injected variables.
+-    if (\is_a($parent, 'Twig\Node\Expression\Ternary\ConditionalTernary')) {
+-      foreach ($parent->getIterator() as $expr) {
+-        if (!$expr instanceof Node) {
+-          continue;
+-        }
+-
+-        if (!self::validateFilterExpression($expr)) {
+-          continue;
+-        }
+-
+-        $variable_name = $expr->getNode('node')->getNode('expr')->getAttribute('name');
+-
+-        if (!isset($definition[$variable_name]) || 'boolean' !== $definition[$variable_name]) {
+-          continue;
+-        }
+-
+-        $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup("Don't use `default` filter on boolean."));
+-      }
+-    }
+-
+     if ('Twig\Node\Expression\Filter\DefaultFilter' !== get_class($node)) {
+       return $errors;
+     }
+@@ -298,11 +267,6 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
+       $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Filter `default` return the value itself!'), RfcLogLevel::WARNING);
+     }
+ 
+-    // Detect {{ foo|default(false) }} or {{ foo|default(true) }} case.
+-    if (is_bool($inside_default)) {
+-      $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup("Don't use `default` filter with boolean."), RfcLogLevel::WARNING);
+-    }
+-
+     return $errors;
+   }
+ 

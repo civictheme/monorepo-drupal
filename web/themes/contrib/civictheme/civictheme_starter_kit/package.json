@@ -31,22 +31,22 @@
   },
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.1",
-    "@storybook/addon-essentials": "^8.5.2",
-    "@storybook/addon-links": "^8.5.2",
-    "@storybook/html-vite": "^8.5.2",
-    "@storybook/manager-api": "^8.5.2",
-    "@storybook/theming": "^8.5.2",
+    "@storybook/addon-essentials": "8.6.7",
+    "@storybook/addon-links": "8.6.7",
+    "@storybook/html-vite": "8.6.7",
+    "@storybook/manager-api": "8.6.7",
+    "@storybook/theming": "8.6.7",
     "@whitespace/storybook-addon-html": "^6.1.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import-newlines": "^1.4.0",
     "glob": "^11.0.1",
     "sass-embedded": "1.77.5",
-    "storybook": "^8.5.2",
+    "storybook": "8.6.7",
     "stylelint": "^14.16.1",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-config-standard-scss": "^2.0.1",
-    "vite": "^5.4.8",
-    "vite-plugin-twig-drupal": "^1.4.2"
+    "vite": "^6.0.0",
+    "vite-plugin-twig-drupal": "^1.6.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8"

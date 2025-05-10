@@ -8,13 +8,13 @@
 #}
 {% if multiple %}
   {% for item in items %}
-    {% include '@molecules/basic-content/basic-content.twig' with {
+    {% include 'civictheme:basic-content' with {
       content: item.content,
     } only %}
   {% endfor %}
 {% else %}
   {% for item in items %}
-    {% include '@molecules/basic-content/basic-content.twig' with {
+    {% include 'civictheme:basic-content' with {
       content: item.content,
     } only %}
   {% endfor %}

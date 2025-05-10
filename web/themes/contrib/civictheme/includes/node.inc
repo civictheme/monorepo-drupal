@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;
 
 /**
@@ -34,15 +33,12 @@ function _civictheme_preprocess_node(array &$variables): void {
 
   // Add Table of Contents if the value is set on node.
   if (civictheme_get_field_value($node, 'field_c_n_show_toc')) {
-    $toc_attributes = [];
-    $toc_attributes['data-table-of-contents-position'] = 'prepend';
-    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
-    $toc_attributes['data-table-of-contents-title'] = t('On this page');
-    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.ct-layout__main';
-    $toc_attributes = new Attribute($toc_attributes);
-
     array_unshift($variables['content'], [
-      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
+      '#theme' => 'civictheme_table_of_contents',
+      '#position' => 'prepend',
+      '#anchor_selector' => 'h2',
+      '#title' => t('On this page'),
+      '#scope_selector' => '.ct-layout__main',
     ]);
   }
 

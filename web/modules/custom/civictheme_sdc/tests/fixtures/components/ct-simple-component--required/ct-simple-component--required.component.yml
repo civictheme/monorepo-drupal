@@ -1,0 +1,14 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Optional props
+description: Component with required props
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      description: "Required prop"
+    message:
+      type: string
+      description: "Optional property"

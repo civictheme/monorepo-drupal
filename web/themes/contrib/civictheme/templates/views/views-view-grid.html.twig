@@ -4,7 +4,7 @@
  * CivicTheme implementation for views to display rows in a grid.
  */
 #}
-{% include '@base/grid/grid.twig' with {
+{% include 'civictheme:grid' with {
   theme: theme,
   items: rows,
   template_column_count: options.columns,
