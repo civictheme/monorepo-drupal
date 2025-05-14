@@ -12,6 +12,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\views\Plugin\views\filter\FilterPluginBase;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -30,7 +32,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__view(array &$variables): void {
-  /** @var \Drupal\views\ViewExecutable $view */
+  /** @var ViewExecutable $view */
   $view = &$variables['view'];
 
   $variables['attributes']['class'] = empty($variables['dom_id']) ? Html::getUniqueId('js-view-dom-id') : 'js-view-dom-id-' . $variables['dom_id'];
@@ -69,6 +71,7 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
     return;
   }
 
+  /** @var ViewExecutable $view */
   $view = &$variables['view'];
 
   // Hide pager if there is only one result page.
@@ -255,7 +258,9 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
  * Preprocess views selected filters from the query params.
  */
 function _civictheme_preprocess_views_view__selected_filters(array &$variables): void {
-  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list();
+  /** @var ViewExecutable $view */
+  $view = $variables['view'];
+  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
 
   if (!empty($variables['selected_filters'])) {
     $variables['selected_filters_clear_link'] = [
@@ -271,6 +276,7 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_views_view__search_page(array &$variables): void {
+  /** @var ViewExecutable $view */
   $view = $variables['view'];
   if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
     $variables['vertical_spacing'] = 'top';
@@ -280,7 +286,8 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
 /**
  * Preprocess the selected filters list.
  */
-function _civictheme_preprocess_views_view__selected_filters_list(): array {
+function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
+  $filter_types = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
   $query_params = \Drupal::request()->query->all();
   $current_values = array_filter($query_params, function ($value) {
     return !empty($value);
@@ -304,7 +311,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(): array {
       unset($new_query_params[$key]);
       $selected_filters[$key] = [
         'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($new_query_params),
-        'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value),
+        'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
       ];
       continue;
     }
@@ -318,7 +325,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(): array {
           }
           $selected_filters[$key . '_' . $item . '_' . $value_key] = [
             'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($temp_query_params),
-            'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $item),
+            'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $item, $filter_types),
           ];
         }
       }
@@ -328,30 +335,59 @@ function _civictheme_preprocess_views_view__selected_filters_list(): array {
 }
 
 /**
+ * Get the filter types from the view.
+ *
+ * @param ViewExecutable $view
+ *   The view executable object.
+ *
+ * @return array
+ *   Array of exposed filters with their properties:
+ *   - name: The human readable label
+ *   - type: The filter plugin ID
+ *   - machine_name: The filter ID
+ */
+function _civictheme_preprocess_views_view__selected_filters_get_filter_types(ViewExecutable $view): array {
+  $exposed_filters = [];
+  if (!empty($view)) {
+    $filters = $view->display_handler->getHandlers('filter');
+    foreach ($filters as $filter_id => $filter) {
+      if ($filter instanceof FilterPluginBase && $filter->isExposed()) {
+        $exposed_filters[$filter->options['expose']['identifier']] = [
+          'name' => $filter->options['expose']['label'],
+          'type' => $filter->getPluginId(),
+          'machine_name' => $filter_id,
+        ];
+      }
+    }
+  }
+  return $exposed_filters;
+}
+
+/**
  * Create the label correctly for each of the selected filters.
  *
  * @param string $key
  *   The filter key.
  * @param string|int $value
  *   The filter value.
+ * @param array $filter_types
+ *   Array of filter types containing metadata about each filter.
  *
  * @return string
- *   The formatted filter label.
+ *   The formatted filter label in the format "Key: Value".
  */
-function _civictheme_preprocess_views_view__selected_filters_list__create_filter_label(string $key, string|int $value): string {
-  switch ($key) {
-    case 'type':
-      // Get the type label from the node type.
+function _civictheme_preprocess_views_view__selected_filters_list__create_filter_label(string $key, string|int $value, array $filter_types): string {
+  switch ($filter_types[$key]['type']) {
+    case 'bundle':
       $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($value);
       $value_label = $node_type ? $node_type->label() : $value;
       break;
-    case 'topic':
-      // Get the topic label from the topic term.
-      $topic_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($value);
-      $value_label = $topic_term ? $topic_term->label() : $value;
+    case 'taxonomy_index_tid':
+      $taxonomy_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($value);
+      $value_label = $taxonomy_term ? $taxonomy_term->label() : $value;
       break;
     default:
       $value_label = $value;
   }
-  return ucfirst(str_replace('_', ' ', $key)) . ': ' . $value_label;
+  return $filter_types[$key]['name'] . ': ' . $value_label;
 }
