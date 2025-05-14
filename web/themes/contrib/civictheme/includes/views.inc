@@ -351,16 +351,14 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
  */
 function _civictheme_preprocess_views_view__selected_filters_get_filter_types(ViewExecutable $view): array {
   $exposed_filters = [];
-  if (!empty($view)) {
-    $filters = $view->display_handler->getHandlers('filter');
-    foreach ($filters as $filter_id => $filter) {
-      if ($filter instanceof FilterPluginBase && $filter->isExposed()) {
-        $exposed_filters[$filter->options['expose']['identifier']] = [
-          'name' => $filter->options['expose']['label'],
-          'type' => $filter->getPluginId(),
-          'machine_name' => $filter_id,
-        ];
-      }
+  $filters = $view->display_handler->getHandlers('filter');
+  foreach ($filters as $filter_id => $filter) {
+    if ($filter instanceof FilterPluginBase && $filter->isExposed()) {
+      $exposed_filters[$filter->options['expose']['identifier']] = [
+        'name' => $filter->options['expose']['label'],
+        'type' => $filter->getPluginId(),
+        'machine_name' => $filter_id,
+      ];
     }
   }
   return $exposed_filters;
