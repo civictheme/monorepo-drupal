@@ -260,6 +260,12 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 function _civictheme_preprocess_views_view__selected_filters(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
+
+  // Selected filters does not currently support ajax.
+  if ($view->ajaxEnabled()) {
+    return;
+  }
+
   $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
 
   if (!empty($variables['selected_filters'])) {
@@ -294,13 +300,8 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
     return !empty($value);
   });
 
-  // Prevent other query params from being used in the selected filters.
-  $permitted_keys = [
-    'type',
-    'topic',
-    'title',
-    'items_per_page',
-  ];
+  // Only process keys for available filters.
+  $permitted_keys = array_keys($filter_types);
   $selected_filters = [];
 
   foreach ($current_values as $key => $value) {
