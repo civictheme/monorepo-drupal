@@ -32,7 +32,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__view(array &$variables): void {
-  /** @var ViewExecutable $view */
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
   $variables['attributes']['class'] = empty($variables['dom_id']) ? Html::getUniqueId('js-view-dom-id') : 'js-view-dom-id-' . $variables['dom_id'];
@@ -71,7 +71,7 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
     return;
   }
 
-  /** @var ViewExecutable $view */
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
   // Hide pager if there is only one result page.
@@ -258,7 +258,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
  * Preprocess views selected filters from the query params.
  */
 function _civictheme_preprocess_views_view__selected_filters(array &$variables): void {
-  /** @var ViewExecutable $view */
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
   $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
 
@@ -270,13 +270,14 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
     ];
   }
 }
+
 /**
  * Preprocess for a search page.
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_views_view__search_page(array &$variables): void {
-  /** @var ViewExecutable $view */
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
   if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
     $variables['vertical_spacing'] = 'top';
@@ -337,7 +338,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
 /**
  * Get the filter types from the view.
  *
- * @param ViewExecutable $view
+ * @param \Drupal\views\ViewExecutable $view
  *   The view executable object.
  *
  * @return array
@@ -382,10 +383,12 @@ function _civictheme_preprocess_views_view__selected_filters_list__create_filter
       $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($value);
       $value_label = $node_type ? $node_type->label() : $value;
       break;
+
     case 'taxonomy_index_tid':
       $taxonomy_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($value);
       $value_label = $taxonomy_term ? $taxonomy_term->label() : $value;
       break;
+
     default:
       $value_label = $value;
   }
