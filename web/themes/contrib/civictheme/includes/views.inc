@@ -12,6 +12,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
 use Drupal\views\Plugin\views\filter\FilterPluginBase;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
@@ -270,7 +271,7 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
 
   if (!empty($variables['selected_filters'])) {
     $variables['selected_filters_clear_link'] = [
-      'url' => \Drupal::service('path.current')->getPath(),
+      'url' => Url::fromRoute('<current>')->toString(),
       'text' => t('Clear all'),
       'attributes' => 'aria-label="' . t('Clear all filters') . '"',
     ];
@@ -303,7 +304,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
   // Only process keys for available filters.
   $permitted_keys = array_keys($filter_types);
   $selected_filters = [];
-  $base_url = \Drupal::service('path.current')->getPath();
+  $base_url = Url::fromRoute('<current>')->toString();
 
   foreach ($current_values as $key => $value) {
     if (!in_array($key, $permitted_keys)) {
@@ -312,10 +313,8 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
     $new_query_params = $query_params;
     if (is_string($value)) {
       unset($new_query_params[$key]);
-      $selected_filters[$key] = [
-        'url' => $base_url . '?' . http_build_query($new_query_params),
-        'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
-      ];
+      $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $new_query_params, $key, $value, $filter_types);
+      $selected_filters[$key] = $filter_url;
       continue;
     }
     if (is_array($value)) {
@@ -326,15 +325,24 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
           if (empty($temp_query_params[$key])) {
             unset($temp_query_params[$key]);
           }
-          $selected_filters[$key . '_' . $item . '_' . $value_key] = [
-            'url' => $base_url . '?' . http_build_query($temp_query_params),
-            'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $item, $filter_types),
-          ];
+          $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $temp_query_params, $key, $item, $filter_types);
+          $selected_filters[$key . '_' . $item . '_' . $value_key] = $filter_url;
         }
       }
     }
   }
   return $selected_filters;
+}
+
+/**
+ * Create the URL for the selected filter.
+ */
+function _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
+  $query = http_build_query($query_params);
+  return [
+    'url' => !empty($query) ? ($base_url . '?' . $query) : $base_url,
+    'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
+  ];
 }
 
 /**
