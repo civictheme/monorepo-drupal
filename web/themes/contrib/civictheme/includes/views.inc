@@ -270,7 +270,7 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
 
   if (!empty($variables['selected_filters'])) {
     $variables['selected_filters_clear_link'] = [
-      'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query([]),
+      'url' => \Drupal::service('path.current')->getPath(),
       'text' => t('Clear all'),
       'attributes' => 'aria-label="' . t('Clear all filters') . '"',
     ];
@@ -303,6 +303,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
   // Only process keys for available filters.
   $permitted_keys = array_keys($filter_types);
   $selected_filters = [];
+  $base_url = \Drupal::service('path.current')->getPath();
 
   foreach ($current_values as $key => $value) {
     if (!in_array($key, $permitted_keys)) {
@@ -312,7 +313,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
     if (is_string($value)) {
       unset($new_query_params[$key]);
       $selected_filters[$key] = [
-        'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($new_query_params),
+        'url' => $base_url . '?' . http_build_query($new_query_params),
         'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
       ];
       continue;
@@ -326,7 +327,7 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
             unset($temp_query_params[$key]);
           }
           $selected_filters[$key . '_' . $item . '_' . $value_key] = [
-            'url' => \Drupal::request()->getUriForPath(\Drupal::request()->getPathInfo()) . '?' . http_build_query($temp_query_params),
+            'url' => $base_url . '?' . http_build_query($temp_query_params),
             'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $item, $filter_types),
           ];
         }
