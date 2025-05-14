@@ -12,6 +12,9 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\views\Plugin\views\filter\FilterPluginBase;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -21,6 +24,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
   _civictheme_preprocess_views_view__search_page($variables);
+  _civictheme_preprocess_views_view__selected_filters($variables);
 }
 
 /**
@@ -68,6 +72,7 @@ function _civictheme_preprocess_views_view__pager(array &$variables): void {
     return;
   }
 
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = &$variables['view'];
 
   // Hide pager if there is only one result page.
@@ -251,13 +256,149 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
 }
 
 /**
+ * Preprocess views selected filters from the query params.
+ */
+function _civictheme_preprocess_views_view__selected_filters(array &$variables): void {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+
+  // Selected filters does not currently support ajax.
+  if ($view->ajaxEnabled()) {
+    return;
+  }
+
+  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
+
+  if (!empty($variables['selected_filters'])) {
+    $variables['selected_filters_clear_link'] = [
+      'url' => Url::fromRoute('<current>')->toString(),
+      'text' => t('Clear all'),
+      'attributes' => 'aria-label="' . t('Clear all filters') . '"',
+    ];
+  }
+}
+
+/**
  * Preprocess for a search page.
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_views_view__search_page(array &$variables): void {
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
   if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
     $variables['vertical_spacing'] = 'top';
   }
+}
+
+/**
+ * Preprocess the selected filters list.
+ */
+function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
+  $filter_types = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
+  $query_params = \Drupal::request()->query->all();
+  $current_values = array_filter($query_params, function ($value) {
+    return !empty($value);
+  });
+
+  // Only process keys for available filters.
+  $permitted_keys = array_keys($filter_types);
+  $selected_filters = [];
+  $base_url = Url::fromRoute('<current>')->toString();
+
+  foreach ($current_values as $key => $value) {
+    if (!in_array($key, $permitted_keys)) {
+      continue;
+    }
+    $new_query_params = $query_params;
+    if (is_string($value)) {
+      unset($new_query_params[$key]);
+      $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $new_query_params, $key, $value, $filter_types);
+      $selected_filters[$key] = $filter_url;
+      continue;
+    }
+    if (is_array($value)) {
+      foreach ($value as $value_key => $item) {
+        if (!empty($item)) {
+          $temp_query_params = $query_params;
+          unset($temp_query_params[$key][$value_key]);
+          if (empty($temp_query_params[$key])) {
+            unset($temp_query_params[$key]);
+          }
+          $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $temp_query_params, $key, $item, $filter_types);
+          $selected_filters[$key . '_' . $item . '_' . $value_key] = $filter_url;
+        }
+      }
+    }
+  }
+  return $selected_filters;
+}
+
+/**
+ * Create the URL for the selected filter.
+ */
+function _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
+  $query = http_build_query($query_params);
+  return [
+    'url' => !empty($query) ? ($base_url . '?' . $query) : $base_url,
+    'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
+  ];
+}
+
+/**
+ * Get the filter types from the view.
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ *   The view executable object.
+ *
+ * @return array
+ *   Array of exposed filters with their properties:
+ *   - name: The human readable label
+ *   - type: The filter plugin ID
+ *   - machine_name: The filter ID
+ */
+function _civictheme_preprocess_views_view__selected_filters_get_filter_types(ViewExecutable $view): array {
+  $exposed_filters = [];
+  $filters = $view->display_handler->getHandlers('filter');
+  foreach ($filters as $filter_id => $filter) {
+    if ($filter instanceof FilterPluginBase && $filter->isExposed()) {
+      $exposed_filters[$filter->options['expose']['identifier']] = [
+        'name' => $filter->options['expose']['label'],
+        'type' => $filter->getPluginId(),
+        'machine_name' => $filter_id,
+      ];
+    }
+  }
+  return $exposed_filters;
+}
+
+/**
+ * Create the label correctly for each of the selected filters.
+ *
+ * @param string $key
+ *   The filter key.
+ * @param string|int $value
+ *   The filter value.
+ * @param array $filter_types
+ *   Array of filter types containing metadata about each filter.
+ *
+ * @return string
+ *   The formatted filter label in the format "Key: Value".
+ */
+function _civictheme_preprocess_views_view__selected_filters_list__create_filter_label(string $key, string|int $value, array $filter_types): string {
+  switch ($filter_types[$key]['type']) {
+    case 'bundle':
+      $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($value);
+      $value_label = $node_type ? $node_type->label() : $value;
+      break;
+
+    case 'taxonomy_index_tid':
+      $taxonomy_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($value);
+      $value_label = $taxonomy_term ? $taxonomy_term->label() : $value;
+      break;
+
+    default:
+      $value_label = $value;
+  }
+  return $filter_types[$key]['name'] . ': ' . $value_label;
 }
