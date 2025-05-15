@@ -4,9 +4,9 @@
  * CivicTheme implementation for Automated list.
  */
 #}
-{% extends '@organisms/list/list.twig' %}
+{% extends 'civictheme:list' %}
 
-{% block rows %}
+{% block rows_slot %}
   {% if rows -%}
     {{ rows }}
   {% endif %}

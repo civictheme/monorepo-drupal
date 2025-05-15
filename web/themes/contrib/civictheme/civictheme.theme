@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
 
 require_once __DIR__ . '/includes/utilities.inc';
 require_once __DIR__ . '/includes/process.inc';
@@ -91,6 +92,20 @@ function civictheme_theme(): array {
         'modifier_class' => NULL,
       ],
       'template' => 'misc/tag-list',
+    ],
+    'civictheme_table_of_contents' => [
+      'variables' => [
+        'component_theme' => CivicthemeConstants::THEME_LIGHT,
+        'title' => NULL,
+        'position' => NULL,
+        'links' => NULL,
+        'anchor_selector' => NULL,
+        'scope_selector' => NULL,
+        'content' => NULL,
+        'attributes' => NULL,
+        'modifier_class' => NULL,
+      ],
+      'template' => 'misc/table-of-contents',
     ],
   ];
 }
@@ -249,5 +264,14 @@ function civictheme_page_attachments_alter(array &$attachments) {
   $current_user = \Drupal::currentUser();
   if ($current_user->isAuthenticated()) {
     $attachments['#attached']['library'][] = 'civictheme/admin';
+  }
+  /** @var \Drupal\Core\Theme\ComponentPluginManager $component_plugin_manager */
+  $component_plugin_manager = \Drupal::service('plugin.manager.sdc');
+  try {
+    $alert = $component_plugin_manager->find('civictheme:alert');
+    $attachments['#attached']['library'][] = $alert->getLibraryName();
+  }
+  catch (ComponentNotFoundException $exception) {
+    \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
   }
 }

@@ -20,7 +20,7 @@
 </head>
 <body{{ attributes.addClass(body_classes) }}>
 
-{% include '@organisms/skip-link/skip-link.twig' with {
+{% include 'civictheme:skip-link' with {
   url: '#main-content',
   theme: skip_link_theme,
 } only %}

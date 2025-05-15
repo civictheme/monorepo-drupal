@@ -10,6 +10,7 @@
         "drupal/core-project-message": "^11",
         "drupal/core-recommended": "^11",
         "drupal/mysql57": "^1.0",
+        "drupal/sdc_devel": "^1.0",
         "drupal/search_api": "^1.30",
         "drupal/styleguide": "^2.2",
         "drush/drush": "^13",
@@ -177,6 +178,10 @@
         "patches": {
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+            },
+            "drupal/sdc_devel": {
+                "Change visibility of the rules constants in TwigValidatorRulePluginBase - https://www.drupal.org/project/sdc_devel/issues/3517321": "./patches/modules/sdc_devel/3517321--updated-visibility-of-rule-constants.patch",
+                "Remove check for use of default filter in boolean filter": "./patches/modules/sdc_devel/remove-boolean-filter-default.patch"
             },
             "drupal/simple_sitemap": {
                 "Error on installing / enabling simple_sitemap in D11: https://www.drupal.org/project/simple_sitemap/issues/3507718": "./patches/modules/simple_sitemap/fix-error-on-install.patch"
