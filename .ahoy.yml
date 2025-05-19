@@ -171,6 +171,19 @@ commands:
     usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
+  lint-check:
+    cmd: |
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
+
+  lint-components:
+    usage: Lint CivicTheme Single Directory Components
+    cmd: |
+      ahoy cli "vendor/bin/drush sdcv civictheme --xdebug"
+  lint-component:
+    usage: Lint CivicTheme Single Directory Component
+    cmd: |
+      ahoy cli "vendor/bin/drush sdcv civictheme" "$@" "--xdebug"
 
   lint-config:
     usage: Lint config
@@ -183,6 +196,7 @@ commands:
     cmd: |
       ahoy cli vendor/bin/rector --clear-cache
       ahoy cli vendor/bin/phpcbf
+      ahoy cli "vendor/bin/twig-cs-fixer lint --fix --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib"
 
   lint-govcms:
     usage: Lint with shipshape.
@@ -197,6 +211,9 @@ commands:
   test-unit:
     usage: Run PhpUnit unit tests.
     cmd: ahoy cli vendor/bin/phpunit --testsuite=unit "$@"
+  test-sdc:
+    usage: Run PhpUnit sdc unit tests.
+    cmd: ahoy cli vendor/bin/phpunit --testsuite=sdc-unit "$@"
 
   test-kernel:
     usage: Run PhpUnit kernel tests.
@@ -237,7 +254,13 @@ commands:
     cmd: |
       ahoy confirm "Some committed files may become overwritten. Proceed?" &&
       ./scripts/drevops/update-drevops.sh $@
-
+  change-uikit:
+    usage: Change the version of CivicTheme UI Kit the repository is using
+    cmd: |
+      pushd tools/civictheme-uikit-version-change
+      ([ -d "node_modules" ] || npm install)
+      npm run start
+      popd
   bump-uikit:
     usage: Update CivicTheme UIKit to latest commit hash
     cmd: |
