@@ -7,7 +7,7 @@
 {% extends 'civictheme:list' %}
 
 {# Override footer block to provide Drupal-specific view properties. #}
-{% block footer_slot %}
+{% block footer_block %}
   {% if attachment_after is defined and attachment_after is not empty %}
     <div class="ct-list__attachment-after">
       <div class="container">
