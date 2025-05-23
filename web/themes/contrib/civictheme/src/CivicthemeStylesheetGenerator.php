@@ -172,7 +172,7 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   protected function saveStylesheet($data): ?string {
     $filepath = $this->getStylesheetUri();
     try {
-      $this->fileSystem->saveData($data, $filepath, FileExists::Replace);
+      $this->fileSystem->saveData($data, $filepath, 1);
       $this->fileSystem->chmod($filepath);
     }
     catch (\Exception) {

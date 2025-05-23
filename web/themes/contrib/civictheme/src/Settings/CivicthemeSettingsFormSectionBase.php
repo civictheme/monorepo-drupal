@@ -144,7 +144,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
     $upload_element = NestedArray::getValue($form, $upload_field_name_key);
 
     if ($upload_element) {
-      $file = _file_save_upload_from_form($upload_element, $form_state, 0, FileExists::Replace);
+      $file = _file_save_upload_from_form($upload_element, $form_state, 0, 1);
       if ($file) {
         $form_state->setValue($upload_field_name_key, $file);
         // Do not validate the path as it will be re-written in the submit

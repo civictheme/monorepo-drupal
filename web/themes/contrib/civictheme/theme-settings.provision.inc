@@ -572,7 +572,7 @@ function civictheme_provision__files(): void {
   $default_file_scheme = \Drupal::config('system.file')->get('default_scheme') . '://';
   foreach ($filepaths as $filepath) {
     if (file_exists($filepath)) {
-      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileExists::Replace);
+      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), 1);
       continue;
     }
 
