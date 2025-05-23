@@ -318,7 +318,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
    * @return $this
    *   Instance of the current class.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings(StaticAccess)
    */
   public function invalidateCache(): static {
     $this->stylesheetGenerator->purge();
@@ -326,9 +326,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
     // Force browser reload by changing the dummy query string.
-    // @codingStandardsIgnoreStart DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
     \Drupal::service('asset.query_string')->reset();
-    // @codingStandardsIgnoreEnd
     return $this;
   }
 
