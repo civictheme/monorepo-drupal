@@ -327,6 +327,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
 
     // Force browser reload by changing the dummy query string.
     // @codingStandardsIgnoreStart DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
+    // @phpstan-ignore-next-line
     \Drupal::service('asset.query_string')->reset();
     // @codingStandardsIgnoreEnd
     return $this;
