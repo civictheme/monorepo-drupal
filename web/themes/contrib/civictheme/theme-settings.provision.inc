@@ -21,7 +21,6 @@ use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Config\FileStorage;
-use Drupal\Core\File\FileExists;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\media\Entity\Media;

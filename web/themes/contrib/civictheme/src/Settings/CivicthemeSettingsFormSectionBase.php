@@ -9,7 +9,6 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
-use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Form\FormStateInterface;

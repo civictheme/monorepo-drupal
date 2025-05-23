@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\civictheme;
 
 use Drupal\civictheme\Color\CivicthemeColor;
-use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -326,7 +325,9 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
     // Force browser reload by changing the dummy query string.
+    // @codingStandardsIgnoreStart DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
     \Drupal::service('asset.query_string')->reset();
+    // @codingStandardsIgnoreEnd
     return $this;
   }
 
