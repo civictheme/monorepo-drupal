@@ -318,6 +318,7 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
    *   Instance of the current class.
    *
    * @SuppressWarnings(StaticAccess)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function invalidateCache(): static {
     $this->stylesheetGenerator->purge();
