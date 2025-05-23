@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: c62e73db-9388-4088-9da8-facd065a2d39
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    e5b5afb3-e0b8-42f3-877e-011c0de89c95: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: clay-banks-Hf8n0RUk7g0-unsplash1.png
+  created:
+    -
+      value: 1666098010
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: e5b5afb3-e0b8-42f3-877e-011c0de89c95
+      alt: 'Homepage featured image'
+      title: ''
+      width: 608
+      height: 580

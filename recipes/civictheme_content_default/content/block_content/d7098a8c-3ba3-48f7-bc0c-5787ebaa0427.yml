@@ -1,0 +1,57 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: d7098a8c-3ba3-48f7-bc0c-5787ebaa0427
+  bundle: civictheme_component_block
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Footer - Copyright'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  field_c_b_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 42c1b152-b42e-4a14-8835-d8f9e455731d
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1667017477
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p class=\"ct-text-small text-align-right\">©2024 Commonwealth of Australia</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none

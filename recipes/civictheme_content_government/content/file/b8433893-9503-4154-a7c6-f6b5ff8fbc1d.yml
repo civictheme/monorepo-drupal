@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b8433893-9503-4154-a7c6-f6b5ff8fbc1d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: two-asian-women-looking-at-the-screen.png
+  uri:
+    -
+      value: 'public://images/2022-10/two-asian-women-looking-at-the-screen.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 99793
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666914854

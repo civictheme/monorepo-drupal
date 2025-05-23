@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Programs and services'
+  created:
+    -
+      value: 1666869064
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /programs-and-services
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7e36d492-5c65-4999-8c60-faa5c4df8d40
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666874948
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>We deliver a wide range of programs and services to help our citizens across the health, education, aged care, emergency relief, small business, and immigration sectors.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1ee88915-779f-42b0-971a-f10007d19175
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666874970
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Current programs</h2>\r\n\r\n<h3>Free English Tuition Program (ETP)</h3>\r\n\r\n<p>The Department of Citizens provides a free English Tuition Program (ETP). The ETP helps immigrants reach a higher level of proficiency in the English language, making settlement in Australia easier.</p>\r\n\r\n<p>ETP classes are free and flexible to support you to learn wherever you are in Australia. Distance learning is also an available option.</p>\r\n\r\n<p>The ETP has been offering free English tuition for over 50 years. People are welcome to attend for as long as they need to reach a higher English language skill level.</p>\r\n\r\n<p><a data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"21d11ae0-2874-4663-9937-a48ce30a7ad7\" href=\"/node/7\">Find out more about the ETP</a></p>\r\n\r\n<h3>Employment Experience Placement Program (EEPP)</h3>\r\n\r\n<p>The Employment Placement Program (EEPP) is available for participants aged 18 years and over to gain work experience to help develop real-world skills, confidence or a qualification in the workforce.</p>\r\n\r\n<p>Placements are available in a wide range of areas, with the work experience period established for up to 8 weeks. Eligible participants have the opportunity to build upon their core competencies in areas including office administration, retail, landscaping, tourism, hospitality, marketing, or warehouse duties.</p>\r\n\r\n<p>Upon successful completion of the EEPP, participants will be eligible for free accredited training in the field of their placement.</p>\r\n\r\n<p><a data-entity-substitution=\"media\" data-entity-type=\"media\" data-entity-uuid=\"02986a1f-61c6-4e26-9e74-373d2bc0c634\" href=\"/media/24\">Find out more about the EEPP and eligibility requirements</a></p>\r\n\r\n<h2>Our services</h2>\r\n\r\n<h3>Translation service</h3>\r\n\r\n<p>The Department of Citizens provides a translation telephone service. It’s available 24 hours a day, 7-days a week, including all public holidays.</p>\r\n\r\n<p>The service is available for people who don’t speak English and businesses that need to communicate with non-English speaking clients.</p>\r\n\r\n<p>You can access the translation service by calling 1300 000 000 for the cost of a local phone call.</p>\r\n\r\n<h3>Health and aged care home support services</h3>\r\n\r\n<p>Are you an older citizen, or are you suffering from a health condition and finding everyday tasks difficult to manage? The Department of Citizens provides support services to help during times of illness or to support older citizens to stay in their homes.</p>\r\n\r\n<p>Our health and aged care home support services include:</p>\r\n\r\n<ul>\r\n\t<li>In-home nursing</li>\r\n\t<li>In-home physiotherapy</li>\r\n\t<li>Medication delivery</li>\r\n\t<li>Transport</li>\r\n\t<li>Home and garden maintenance</li>\r\n\t<li>Meal delivery</li>\r\n\t<li>Hygiene and grooming</li>\r\n\t<li>Home cleaning</li>\r\n\t<li>Mobility aid hire</li>\r\n</ul>\r\n\r\n<p><a data-entity-substitution=\"media\" data-entity-type=\"media\" data-entity-uuid=\"a5653abc-41de-4b8f-a9b7-cb48aeeacd5b\" href=\"/media/25\">Find out more about our home support services and eligibility requirements</a></p>\r\n\r\n<h3>Employment assistance services</h3>\r\n\r\n<p>The Department of Citizens offers a range of employment assistance services to help our citizens find and keep a job.</p>\r\n\r\n<p>We can provide short-term payments for when you’re looking for work or if you’re unable to work due to injury or illness. You can also access our tools and services to help with everything from developing and improving skills to finding employment.</p>\r\n\r\n<p><a data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"21d11ae0-2874-4663-9937-a48ce30a7ad7\" href=\"/node/7\">See our list of employment assistance services</a></p>\r\n\r\n<p><a data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"21d11ae0-2874-4663-9937-a48ce30a7ad7\" href=\"/node/7\">See all of the services provided by the Department of Citizens</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

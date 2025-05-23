@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 35be8705-b50e-4506-9a61-568ef0986318
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    e66e8371-b802-4722-a078-5a19fc6b0f8c: menu_link_content
+    c9a1fe64-f6d1-4492-ac7f-6444698cfb12: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Contact us'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: c9a1fe64-f6d1-4492-ac7f-6444698cfb12
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -49
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:e66e8371-b802-4722-a078-5a19fc6b0f8c'
+  revision_translation_affected:
+    -
+      value: true

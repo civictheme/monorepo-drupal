@@ -1,0 +1,45 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    41c354ef-d5f3-4e68-9bdf-4085b47cdadf: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Nature
+  created:
+    -
+      value: 1633245335
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'CivicTheme demo image'
+  field_c_m_image:
+    -
+      entity: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf
+      alt: Nature
+      title: ''
+      width: 752
+      height: 480

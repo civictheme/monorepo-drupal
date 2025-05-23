@@ -56,7 +56,8 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
 
-  $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $variables['title'] = $route ? \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route) : NULL;
 
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
@@ -177,8 +178,8 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     ];
   }
 
-  $current_route_match = \Drupal::routeMatch();
-  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $title = $route ? \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route) : NULL;
   if (!empty($title)) {
     $title = (string) (is_array($title) ? reset($title) : $title);
     $breadcrumb_links = $breadcrumb->getLinks();

@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 199ccc90-1158-4d44-b970-7dfa63958962
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    d9abb0dc-5a6d-4fc0-ae0a-f4aa4147cd9b: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Menu item 1'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:d9abb0dc-5a6d-4fc0-ae0a-f4aa4147cd9b'
+  revision_translation_affected:
+    -
+      value: true

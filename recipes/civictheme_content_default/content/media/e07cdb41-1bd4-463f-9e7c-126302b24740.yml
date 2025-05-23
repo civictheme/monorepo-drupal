@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e07cdb41-1bd4-463f-9e7c-126302b24740
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    33ec0e62-3317-435d-b1cb-1e42e42e3260: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Landscape with road going into distance with mountains'
+  created:
+    -
+      value: 1637031388
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 33ec0e62-3317-435d-b1cb-1e42e42e3260
+      alt: 'Landscape with road going into distance with mountains'
+      title: ''
+      width: 4000
+      height: 2250

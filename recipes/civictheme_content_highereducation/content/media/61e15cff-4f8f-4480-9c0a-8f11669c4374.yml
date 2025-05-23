@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 61e15cff-4f8f-4480-9c0a-8f11669c4374
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    64a4df06-0829-4e3e-89ba-0f8dcf296cd3: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Newbreakthrough.png
+  created:
+    -
+      value: 1666096985
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 64a4df06-0829-4e3e-89ba-0f8dcf296cd3
+      alt: 'New chemotherapy breakthrough '
+      title: ''
+      width: 376
+      height: 240

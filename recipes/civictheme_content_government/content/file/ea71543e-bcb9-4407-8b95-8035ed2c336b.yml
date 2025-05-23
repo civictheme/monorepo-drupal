@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ea71543e-bcb9-4407-8b95-8035ed2c336b
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: aged-woman-smiles.png
+  uri:
+    -
+      value: 'public://images/2022-11/aged-woman-smiles.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 202599
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668751454

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 39d33114-a7ca-4960-8b72-0c616bcd57bc
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of marketing.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of marketing.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2068
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535752

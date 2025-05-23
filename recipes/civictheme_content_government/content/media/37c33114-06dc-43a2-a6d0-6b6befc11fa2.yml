@@ -1,0 +1,45 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 37c33114-06dc-43a2-a6d0-6b6befc11fa2
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    6a16b860-5aac-40a4-a5e7-13d8bc051448: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Man with a microscope'
+  created:
+    -
+      value: 1666868592
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Department of Citizens, Medical Research'
+  field_c_m_image:
+    -
+      entity: 6a16b860-5aac-40a4-a5e7-13d8bc051448
+      alt: 'Man with a microscope'
+      title: ''
+      width: 1000
+      height: 669

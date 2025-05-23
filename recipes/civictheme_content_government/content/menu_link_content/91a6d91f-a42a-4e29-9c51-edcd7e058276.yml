@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 91a6d91f-a42a-4e29-9c51-edcd7e058276
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    6a865497-8c11-4d3c-ad9e-7bcec0bc173b: menu_link_content
+    02831341-01cd-4d7d-80b7-20f01feb950b: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Programs and services'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 02831341-01cd-4d7d-80b7-20f01feb950b
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -49
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:6a865497-8c11-4d3c-ad9e-7bcec0bc173b'
+  revision_translation_affected:
+    -
+      value: true

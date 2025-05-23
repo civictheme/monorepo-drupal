@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: db66a086-bc7a-46e4-9f4f-cca5f6b4bea0
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    0ebd1fd8-5205-4a30-8809-a3ddf517a8a4: menu_link_content
+    ee025f20-7976-47b2-aa62-a00b84b149de: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Postgraduate courses'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: ee025f20-7976-47b2-aa62-a00b84b149de
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:0ebd1fd8-5205-4a30-8809-a3ddf517a8a4'
+  revision_translation_affected:
+    -
+      value: true

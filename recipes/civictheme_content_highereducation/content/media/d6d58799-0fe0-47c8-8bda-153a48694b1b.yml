@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d6d58799-0fe0-47c8-8bda-153a48694b1b
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    71884454-94a4-4b31-b549-72457937caae: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Iconschool of med.svg'
+  created:
+    -
+      value: 1667536226
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 71884454-94a4-4b31-b549-72457937caae
+      alt: 'Icon School of Medicine'
+      title: ''
+      width: 0
+      height: 0

@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1a2711fb-ca12-4835-9e1e-a8a63bd82ad0
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    3a8368f6-7bf7-4bb1-8691-a1cbfb1674f2: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Small car moving fast'
+  created:
+    -
+      value: 1666877132
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 3a8368f6-7bf7-4bb1-8691-a1cbfb1674f2
+      alt: 'Small car moving fast'
+      title: ''
+      width: 376
+      height: 240

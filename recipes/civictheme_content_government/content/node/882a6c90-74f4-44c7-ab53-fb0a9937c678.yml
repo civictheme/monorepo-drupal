@@ -1,0 +1,112 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 882a6c90-74f4-44c7-ab53-fb0a9937c678
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    c16012a7-6fb9-40a4-8ccf-b4f3691e1feb: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'NSW Open Community forum'
+  created:
+    -
+      value: 1676439241
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/nsw-open-community-forum
+      langcode: en
+      pathauto: 1
+  field_c_n_body:
+    -
+      value: "<p>The community is invited to address the Department of Citizens on any general matter.</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2023-05-26T12:45:00'
+      end_value: '2023-06-27T07:00:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cf6a0a6e-fa8c-45ed-92d9-6198e9e0362c
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668749899
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Citizenship Shire Council'
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d56798.419599138695!2d151.1956187424126!3d-33.8851402068878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e2!4m0!4m5!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW!3m2!1d-33.868819699999996!2d151.2092955!5e0!3m2!1sen!2sau!4v1668749809796!5m2!1sen!2sau'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://goo.gl/maps/gZiFFqakHffNPKpj7'
+              title: ''
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'The community is invited to address the Department of Citizens on any general matter.'
+  field_c_n_thumbnail:
+    -
+      entity: c16012a7-6fb9-40a4-8ccf-b4f3691e1feb
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

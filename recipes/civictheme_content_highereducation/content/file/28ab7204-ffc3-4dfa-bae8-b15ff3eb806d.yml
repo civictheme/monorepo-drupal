@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 28ab7204-ffc3-4dfa-bae8-b15ff3eb806d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of civil engineering.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of civil engineering.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2910
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536053

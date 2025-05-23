@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c52989ca-ad3c-468b-b4a0-02aaab1dc7e8
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Iconschool of social sciences.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Iconschool of social sciences.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1975
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667535238

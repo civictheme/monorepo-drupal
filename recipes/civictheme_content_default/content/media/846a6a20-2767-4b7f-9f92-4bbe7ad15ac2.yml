@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 846a6a20-2767-4b7f-9f92-4bbe7ad15ac2
+  bundle: civictheme_icon
+  default_langcode: en
+  depends:
+    bff45f89-9d22-4558-ae6e-81570c708bb6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: x.svg
+  created:
+    -
+      value: 1666996274
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_icon:
+    -
+      entity: bff45f89-9d22-4558-ae6e-81570c708bb6
+      display: false
+      description: ''

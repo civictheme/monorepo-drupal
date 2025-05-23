@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f6d32a80-22f2-4f4d-b4d5-09a1fc11b783
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    5aae0577-f184-421f-9818-36c4c91f7268: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'dose-media-bU6JyhSI6zo-unsplash 1.png'
+  created:
+    -
+      value: 1666109145
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 5aae0577-f184-421f-9818-36c4c91f7268
+      alt: 'Much Ado about nothing'
+      title: ''
+      width: 376
+      height: 240

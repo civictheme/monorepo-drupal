@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c9a1fe64-f6d1-4492-ac7f-6444698cfb12
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Contact us'
+  created:
+    -
+      value: 1648614885
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /contact-us
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 14849920-f59d-46f2-81d8-6a92a6dd862a
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666890117
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>You can contact us using the details below.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6fd0917a-3c03-4ffa-9a9b-3427607ec664
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648614895
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Head office location</h2>\r\n\r\n<p><strong>Department of Citizen </strong><br />\r\n123 Citizens Street Canberra ACT 2600<br />\r\nPhone: +61 2 6333 4444<br />\r\nEmail: citizens@doc.gov.au</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"e0c710e3-6eeb-4ea5-b656-0fa728b389b8\"></drupal-media>\r\n\r\n<h2>For all general enquiries</h2>\r\n\r\n<p>We’re committed to providing and maintaining a high level of service to members of the public. Generally, you’ll receive a reply to correspondence within 14 days. This is in accordance with our <a href=\"/about-this-template-website\">Community Service Policy</a>.</p>\r\n\r\n<p>Phone: +61 2 6111 1234<br />\r\nFreecall: 1800 611 111<br />\r\nEmail: general@departmentofcitizens.com</p>\r\n\r\n<h2>Compliments, complaints or suggestions</h2>\r\n\r\n<p>We welcome all compliments, complaints or suggestions. Our switchboard is open 8am to 5pm (AEST) Monday to Friday, excluding public holidays.</p>\r\n\r\n<p>Freecall: 1800 622 222</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\">Complete our online form</a></p>\r\n\r\n<p><a href=\"/our-locations\">Find your local Department of Citizen office</a></p>\r\n\r\n<p><a data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Subscribe to our mailing list to stay up to date</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Join the conversation and follow us on social media:</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Facebook</a></p>\r\n\r\n<p><a href=\"/about-this-template-website\">LinkedIn</a></p>\r\n\r\n<p><a href=\"/about-this-template-website\">Twitter</a></p>\r\n\r\n<p>Explore our <a href=\"/news-and-events\">latest events, news and insights</a></p>\r\n\r\n<p>We look forward to connecting with you.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ba71dc95-1801-406f-880a-41b9da49dcea
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: photo-of-hon-judy-denn-mp.png
+  uri:
+    -
+      value: 'public://images/2022-11/photo-of-hon-judy-denn-mp.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1549683
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668772780

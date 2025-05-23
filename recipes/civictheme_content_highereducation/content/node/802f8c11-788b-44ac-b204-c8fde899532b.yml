@@ -1,0 +1,103 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 802f8c11-788b-44ac-b204-c8fde899532b
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    a139973f-f02a-4838-bcb4-3a7e0e0c1556: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'My University sport'
+  created:
+    -
+      value: 1666109310
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/my-university-sport
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: "<p>Men’s tennis finals. Including rankings, news and championship brackets.</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2023-03-20T00:30:00'
+      end_value: '2023-03-20T02:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: feacf1fb-1fb8-426c-9cad-cc426d868800
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1669029103
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Online event</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Men’s tennis finals. Including rankings, news and championship brackets.'
+  field_c_n_thumbnail:
+    -
+      entity: a139973f-f02a-4838-bcb4-3a7e0e0c1556
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

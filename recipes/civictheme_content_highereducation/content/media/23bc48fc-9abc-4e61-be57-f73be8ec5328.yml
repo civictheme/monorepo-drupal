@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 23bc48fc-9abc-4e61-be57-f73be8ec5328
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    9c35b490-2a57-458a-a298-4cbc0b0907d9: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'World Vision.png'
+  created:
+    -
+      value: 1666104000
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 9c35b490-2a57-458a-a298-4cbc0b0907d9
+      alt: 'World Vision'
+      title: ''
+      width: 1000
+      height: 669
