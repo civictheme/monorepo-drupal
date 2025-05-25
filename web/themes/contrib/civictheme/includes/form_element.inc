@@ -4,6 +4,8 @@
  * @file
  * Form elements.
  *
+ * @phpcs:disable Drupal.Files.LineLength.TooLong
+ *
  * Drupal uses 'form element' as a unit of rendering for form elements: it is
  * a wrapper around specific form controls (input, select, textarea, etc.).
  *

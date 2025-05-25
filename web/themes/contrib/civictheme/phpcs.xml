@@ -64,4 +64,6 @@
         <exclude-pattern>*.TestBase\.php</exclude-pattern>
         <exclude-pattern>*.test</exclude-pattern>
     </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
+    <rule ref="Drupal.Commenting.TodoComment" />
 </ruleset>
