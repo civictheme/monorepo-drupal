@@ -28,11 +28,13 @@ npm run uikit-change
 The tool will ask you what version of CivicTheme UI Kit you want to install:
 
 1. **Release** - Install from NPM
+   - `@civictheme/sdc` will be the installed package
    - You'll be asked to specify a version (or use 'latest')
    - The tool will update package.json files to use this release
    - It will then run npm install to implement the changes
 
 2. **Dev** - Install from GitHub branch
+   - `@civictheme/uikit` will be the source for the installation
    - You'll be presented with all available branches from the CivicTheme repository
    - After selecting a branch, the tool will update package.json files
    - Select the latest commit in the repository
