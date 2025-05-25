@@ -478,6 +478,7 @@ function lintExclusions() {
     fullPath('./storybook-static/**/*.js'),
     fullPath('./dist/**/*.js'),
     fullPath('./components/**/*.js'),
+    fullPath('./.storybook/*.js'),
   ]
   console.log(`Applying lint exclusions: ${lintExclusionPaths.join(', ')}`)
   const storybookStaticPath = fullPath('./storybook-static/**/*.js')
