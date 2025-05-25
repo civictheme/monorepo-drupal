@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * CivicTheme UI Kit Version Change Tool.
+ * CivicTheme Version Change Tool.
  *
- * This script helps developers switch between different versions of the CivicTheme UI Kit:
- * - NPM released version
+ * This script helps developers switch between different versions of CivicTheme packages:
+ * - NPM released version (@civictheme/sdc)
+ * - Development version from GitHub repository (@civictheme/uikit)
  * - Main branch of the UI Kit repository
  * - Development/feature branch of the UI Kit repository
  */
 
-import select from '@inquirer/select';
-import input from '@inquirer/input';
-import search from '@inquirer/search';
+import { select, input, search } from '@inquirer/prompts';
 import axios from 'axios';
 import { promises as fs } from 'fs';
 import { execSync } from 'child_process';
@@ -31,21 +30,24 @@ const THEME_PACKAGE_JSON = path.join(ROOT_DIR, 'web/themes/contrib/civictheme/pa
 const GITHUB_API_URL = 'https://api.github.com/repos/civictheme/uikit/branches';
 const GITHUB_COMMITS_API_URL = 'https://api.github.com/repos/civictheme/uikit/commits/';
 const GITHUB_REPO_URL = 'github:civictheme/uikit';
-const NPM_PACKAGE_NAME = '@civictheme/uikit';
+const NPM_RELEASE_PACKAGE_NAME = '@civictheme/sdc';
+const NPM_DEV_PACKAGE_NAME = '@civictheme/uikit';
 
 /**
  * Main function to run the application.
  */
 async function main() {
   try {
-    console.log('🌟 CivicTheme UI Kit Version Change Tool 🌟');
-    
+    console.log('🌟 CivicTheme Version Change Tool 🌟');
+    console.log('🚀 To bump to the latest commit, use the dev option and select the branch you want to install')
+    console.log('📦 To use a released version of `@civictheme/sdc`, use the release option')
+
     // Print current CivicTheme version
     await printCurrentVersion();
 
-    // Ask what CivicTheme UI Kit to install
+    // Ask what CivicTheme version to install
     const installType = await select({
-      message: 'What CivicTheme UI Kit do you want to install?',
+      message: 'What CivicTheme UIKit version do you want to install?',
       choices: [
         { name: 'Release', value: 'Release' },
         { name: 'Dev', value: 'Dev' }
@@ -69,26 +71,37 @@ async function main() {
  */
 async function handleReleaseInstallation() {
   try {
-    // Get available versions from NPM (simulated for now)
-    console.log('Fetching available versions from NPM...');
+    // Fetch available versions from NPM
+    const availableVersions = await fetchNpmVersions(NPM_RELEASE_PACKAGE_NAME);
 
-    // For a real implementation, you would fetch the versions from NPM registry
-    // Here we're using a default latest version
-    const defaultVersion = 'latest';
+    if (!availableVersions || availableVersions.length === 0) {
+      throw new Error('No versions found or error fetching versions');
+    }
 
-    const version = await input({
-      message: 'Enter the version to install (e.g., 1.0.0, latest):',
-      default: defaultVersion
+    // Use search prompt for version selection
+    const version = await search({
+      message: 'Search for a version to install:',
+      source: async (input) => {
+        if (input === undefined) {
+          // Show first 20 versions by default
+          return availableVersions.slice(0, 20);
+        }
+        // Filter versions based on input
+        return availableVersions
+          .filter((ver) => ver.toLowerCase().includes(input.toLowerCase()))
+          .slice(0, 20); // Limit results for better performance
+      },
+      pageSize: 20
     });
 
     // Update package.json files
-    const versionString = version === 'latest' ? '' : `@${version}`;
-    await updatePackageJsonFiles(`${NPM_PACKAGE_NAME}${versionString}`, null);
+    // Pass just the version, not the full package@version string
+    await updatePackageJsonFiles(version, null, 'release');
 
     // Run npm install
     await installDependencies();
 
-    console.log(`✅ Successfully installed ${NPM_PACKAGE_NAME}${versionString}`);
+    console.log(`✅ Successfully installed ${NPM_RELEASE_PACKAGE_NAME}@${version}`);
   } catch (error) {
     console.error('Error during release installation:', error.message);
     throw error;
@@ -130,9 +143,9 @@ async function handleDevInstallation() {
 
     // Fetch the latest commit hash for the selected branch
     const latestCommitHash = await fetchLatestCommitHash(branch);
-    
+
     // Update package.json files with the GitHub branch and commit hash
-    await updatePackageJsonFiles(`${GITHUB_REPO_URL}#${branch}`, latestCommitHash);
+    await updatePackageJsonFiles(`${GITHUB_REPO_URL}#${branch}`, latestCommitHash, 'dev');
 
     // Run npm install
     await installDependencies();
@@ -141,6 +154,50 @@ async function handleDevInstallation() {
   } catch (error) {
     console.error('Error during dev installation:', error.message);
     throw error;
+  }
+}
+
+/**
+ * Fetch available versions from NPM registry.
+ * @param {string} packageName - The NPM package name
+ * @returns {Promise<string[]>} Array of version strings
+ */
+async function fetchNpmVersions(packageName) {
+  try {
+    console.log(`Fetching available versions for ${packageName}...`);
+    const response = await axios.get(`https://registry.npmjs.org/${packageName}`);
+
+    if (response.data && response.data.versions) {
+      // Get all versions and sort them in descending order
+      const versions = Object.keys(response.data.versions);
+
+      // Sort versions (newest first)
+      versions.sort((a, b) => {
+        // Simple version comparison - for production use, consider using semver library
+        const aParts = a.split('.').map(n => parseInt(n, 10));
+        const bParts = b.split('.').map(n => parseInt(n, 10));
+
+        for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+          const aPart = aParts[i] || 0;
+          const bPart = bParts[i] || 0;
+          if (aPart !== bPart) {
+            return bPart - aPart;
+          }
+        }
+        return 0;
+      });
+
+      // Add 'latest' as the first option
+      versions.unshift('latest');
+
+      return versions;
+    }
+
+    throw new Error('No versions found in registry response');
+  } catch (error) {
+    console.error('Error fetching NPM versions:', error.message);
+    // Return a default set if fetch fails
+    return ['latest'];
   }
 }
 
@@ -173,12 +230,12 @@ async function fetchLatestCommitHash(branch) {
         'Accept': 'application/vnd.github+json'
       }
     });
-    
+
     if (response.data && response.data.sha) {
       console.log(`Found latest commit: ${response.data.sha.substring(0, 8)}...`);
       return response.data.sha;
     }
-    
+
     throw new Error('Could not retrieve commit hash from response');
   } catch (error) {
     console.error('Error fetching latest commit hash:', error.message);
@@ -189,46 +246,49 @@ async function fetchLatestCommitHash(branch) {
 /**
  * Update package.json files with the new UI Kit version.
  * If commitHash is provided, it will update the branch reference to use the commit hash.
+ * @param {string} uikitVersion - The version to install
+ * @param {string|null} commitHash - The commit hash for dev installations
+ * @param {string} installType - 'release' or 'dev' to determine package name
  */
-async function updatePackageJsonFiles(uikitVersion, commitHash = null) {
+async function updatePackageJsonFiles(uikitVersion, commitHash = null, installType = 'dev') {
   try {
     // Update root package.json
-    await updatePackageJson(ROOT_PACKAGE_JSON, uikitVersion, commitHash);
+    await updatePackageJson(ROOT_PACKAGE_JSON, uikitVersion, commitHash, installType);
     console.log(`Updated ${ROOT_PACKAGE_JSON}`);
 
     // Update theme package.json if it exists
     try {
       await fs.access(THEME_PACKAGE_JSON);
-      await updatePackageJson(THEME_PACKAGE_JSON, uikitVersion, commitHash);
+      await updatePackageJson(THEME_PACKAGE_JSON, uikitVersion, commitHash, installType);
       console.log(`Updated ${THEME_PACKAGE_JSON}`);
     } catch (error) {
       console.log(`Theme package.json not found at ${THEME_PACKAGE_JSON}, skipping`);
     }
-    
+
     // If we have a commit hash, ensure the package-lock.json files are updated too
     if (commitHash) {
       try {
         console.log('Updating package-lock.json files with latest commit hash...');
-        
+
         // Update root package-lock.json if it exists
         const rootPackageLockPath = path.join(ROOT_DIR, 'package-lock.json');
         try {
           await fs.access(rootPackageLockPath);
           console.log(`Updating ${rootPackageLockPath} with commit hash ${commitHash.substring(0, 8)}...`);
-          
+
           // We'll use sed-like pattern replacement via execSync
           execSync(`sed -i 's|civictheme/uikit#[a-f0-9]\\{40\\}|civictheme/uikit#${commitHash}|g' ${rootPackageLockPath}`);
           execSync(`sed -i 's|git+ssh://git@github.com/civictheme/uikit.git#[a-f0-9]\\{40\\}|git+ssh://git@github.com/civictheme/uikit.git#${commitHash}|g' ${rootPackageLockPath}`);
         } catch (error) {
           console.log(`Root package-lock.json not found or couldn't be updated, will be created during npm install`);
         }
-        
+
         // Update theme package-lock.json if it exists
         const themePackageLockPath = path.join(ROOT_DIR, 'web/themes/contrib/civictheme/package-lock.json');
         try {
           await fs.access(themePackageLockPath);
           console.log(`Updating ${themePackageLockPath} with commit hash ${commitHash.substring(0, 8)}...`);
-          
+
           execSync(`sed -i 's|civictheme/uikit#[a-f0-9]\\{40\\}|civictheme/uikit#${commitHash}|g' ${themePackageLockPath}`);
           execSync(`sed -i 's|git+ssh://git@github.com/civictheme/uikit.git#[a-f0-9]\\{40\\}|git+ssh://git@github.com/civictheme/uikit.git#${commitHash}|g' ${themePackageLockPath}`);
         } catch (error) {
@@ -249,24 +309,35 @@ async function updatePackageJsonFiles(uikitVersion, commitHash = null) {
 /**
  * Update a specific package.json file with the new UI Kit version.
  * If commitHash is provided, it will be used to update GitHub references.
+ * @param {string} filePath - Path to package.json file
+ * @param {string} uikitVersion - The version to install
+ * @param {string|null} commitHash - The commit hash for dev installations
+ * @param {string} installType - 'release' or 'dev' to determine package name
  */
-async function updatePackageJson(filePath, uikitVersion, commitHash = null) {
+async function updatePackageJson(filePath, uikitVersion, commitHash = null, installType = 'dev') {
   try {
     // Read the package.json file
     const data = await fs.readFile(filePath, 'utf8');
     const packageJson = JSON.parse(data);
 
-    // Update the @civictheme/uikit dependency
+    // Update the dependency based on install type
     if (!packageJson.dependencies) {
       packageJson.dependencies = {};
     }
 
+    // Determine which package name to use
+    const packageName = installType === 'release' ? NPM_RELEASE_PACKAGE_NAME : NPM_DEV_PACKAGE_NAME;
+
+    // Remove old package names if they exist (to handle switching between release and dev)
+    delete packageJson.dependencies[NPM_RELEASE_PACKAGE_NAME];
+    delete packageJson.dependencies[NPM_DEV_PACKAGE_NAME];
+
     // If we have a commit hash and this is a GitHub version, update to use the commit hash
     if (commitHash && uikitVersion.includes('github:civictheme/uikit#')) {
-      packageJson.dependencies[NPM_PACKAGE_NAME] = `github:civictheme/uikit#${commitHash}`;
-      console.log(`Setting ${NPM_PACKAGE_NAME} to use commit hash ${commitHash.substring(0, 8)}...`);
+      packageJson.dependencies[packageName] = `github:civictheme/uikit#${commitHash}`;
+      console.log(`Setting ${packageName} to use commit hash ${commitHash.substring(0, 8)}...`);
     } else {
-      packageJson.dependencies[NPM_PACKAGE_NAME] = uikitVersion;
+      packageJson.dependencies[packageName] = uikitVersion;
     }
 
     // Write back to the file with proper formatting
@@ -322,32 +393,35 @@ async function printCurrentVersion() {
     const data = await fs.readFile(ROOT_PACKAGE_JSON, 'utf8');
     const packageJson = JSON.parse(data);
 
-    if (packageJson.dependencies && packageJson.dependencies[NPM_PACKAGE_NAME]) {
-      const currentVersion = packageJson.dependencies[NPM_PACKAGE_NAME];
-      
-      console.log('📦 Current CivicTheme UI Kit version:');
-      
-      // Check if using a GitHub branch
-      if (currentVersion.includes('github:civictheme/uikit#')) {
-        const commitHash = currentVersion.split('#')[1];
-        console.log(`   Branch: Using GitHub commit ${commitHash}`);
-        
-        // Try to find which branch this commit belongs to
-        try {
-          // This would ideally check which branch the commit is from,
-          // but for simplicity we'll just note it's a GitHub branch
-          console.log('   Type: Development version (GitHub branch)');
-        } catch (error) {
-          console.log('   Type: Development version (GitHub commit)');
-        }
-      } else {
+    // Check for either package name
+    const releaseVersion = packageJson.dependencies && packageJson.dependencies[NPM_RELEASE_PACKAGE_NAME];
+    const devVersion = packageJson.dependencies && packageJson.dependencies[NPM_DEV_PACKAGE_NAME];
+
+    if (releaseVersion || devVersion) {
+      console.log('📦 Current CivicTheme version:');
+
+      if (releaseVersion) {
         // NPM release version
-        console.log(`   Version: ${currentVersion}`);
+        console.log(`   Package: ${NPM_RELEASE_PACKAGE_NAME}`);
+        console.log(`   Version: ${releaseVersion}`);
         console.log('   Type: NPM release');
+      } else if (devVersion) {
+        // Check if using a GitHub branch
+        if (devVersion.includes('github:civictheme/uikit#')) {
+          const commitHash = devVersion.split('#')[1];
+          console.log(`   Package: ${NPM_DEV_PACKAGE_NAME}`);
+          console.log(`   Branch: Using GitHub commit ${commitHash}`);
+          console.log('   Type: Development version (GitHub branch)');
+        } else {
+          // NPM dev version
+          console.log(`   Package: ${NPM_DEV_PACKAGE_NAME}`);
+          console.log(`   Version: ${devVersion}`);
+          console.log('   Type: NPM development package');
+        }
       }
       console.log(''); // Empty line for better readability
     } else {
-      console.log('⚠️ CivicTheme UI Kit is not installed or not found in package.json');
+      console.log('⚠️ CivicTheme is not installed or not found in package.json');
       console.log(''); // Empty line for better readability
     }
   } catch (error) {
