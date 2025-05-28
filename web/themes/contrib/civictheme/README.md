@@ -18,22 +18,14 @@ The Drupal theme provides full integration and ships with the UI Kit.
 ## Installation
 
 > [!IMPORTANT]
-> For Drupal theme installation instructions, see https://docs.civictheme.io/development/drupal-theme
+> For Drupal theme installation instructions, see https://docs.civictheme.io/installation/drupal-theme
 
 Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
 already included as a set of compiled assets.
 
 ## Creating a sub-theme from the CivicTheme theme
 
-See [Sub-theme](https://docs.civictheme.io/development/drupal-theme/sub-theme)
-
-## Updating CivicTheme
-
-See [Version update](https://docs.civictheme.io/development/drupal-theme/version-update)
-
-## Managing colors
-
-See [Color selector](https://docs.civictheme.io/development/drupal-theme/color-selector)
+See [Sub-theme](https://github.com/civictheme/docs/blob/main/development/drupal-theme/sub-theme.md)
 
 ## Development
 
