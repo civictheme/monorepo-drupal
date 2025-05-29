@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3faebecb-df49-490c-8231-8618caec2a22
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Background Pattern.png'
+  uri:
+    -
+      value: 'public://images/2022-10/Background Pattern.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 464587
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666097335

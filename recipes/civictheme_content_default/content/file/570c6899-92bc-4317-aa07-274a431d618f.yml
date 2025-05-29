@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 570c6899-92bc-4317-aa07-274a431d618f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: demo_govcms-visual-white-paper.jpg
+  uri:
+    -
+      value: 'public://demo_govcms-visual-white-paper.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 126592
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637031487

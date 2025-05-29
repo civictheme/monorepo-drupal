@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7d40a1d7-cb84-416d-b1de-d6bbdae4a4d8
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: group-of-young-people-looking-at-computer-screen.jpg
+  uri:
+    -
+      value: 'public://images/2022-12/group-of-young-people-looking-at-computer-screen.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 231857
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1670122361

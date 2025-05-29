@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9a81d79d-79da-4bc4-8584-27c411248d3e
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    b0fd58d9-6ee5-4d72-8736-986cce424b88: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Aged man hugs aged woman'
+  created:
+    -
+      value: 1666918298
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: b0fd58d9-6ee5-4d72-8736-986cce424b88
+      alt: 'Aged man hugs aged woman'
+      title: ''
+      width: 304
+      height: 172

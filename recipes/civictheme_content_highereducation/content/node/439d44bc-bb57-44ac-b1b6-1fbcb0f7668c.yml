@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 439d44bc-bb57-44ac-b1b6-1fbcb0f7668c
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Uni life'
+  created:
+    -
+      value: 1666101515
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /uni-life
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: be1f04fb-4889-4615-acd1-b0216d204971
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666101545
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>My University is a hive of academic excellence and energy. We have students from all over the world, ensuring the university’s multicultural vibe.&nbsp; Whether you’re in our library, walking around the main square or being part of a smaller community through one of our clubs, My University has something to offer everyone.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0e479458-0c28-47e7-8f34-bd1e362b76b7
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666101563
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Entertainment</h2>\r\n\r\n<p>We hold regular entertainment options on campus and close to campus. Some of these are university-run events and others are organised by departments, clubs or others associated with the university.</p>\r\n\r\n<p><a href=\"/news-and-events\">View our calendar of events</a></p>\r\n\r\n<h2>Clubs</h2>\r\n\r\n<p>The university has a thriving clubs and societies scene. Whether it’s chess, AI, or chocolate…we’ve got a club that will interest you!</p>\r\n\r\n<p><a href=\"/about-this-template-website\">View all our clubs</a></p>\r\n\r\n<h2>Our library</h2>\r\n\r\n<p>Our library boasts large work spaces, private rooms and a vast collection of books across all areas.</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"707c016d-26af-43c0-a999-c892e651917a\"></drupal-media>\r\n\r\n<p><a href=\"/about-this-template-website\">Search library catalogue</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

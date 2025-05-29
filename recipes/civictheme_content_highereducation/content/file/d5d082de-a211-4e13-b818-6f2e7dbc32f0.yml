@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d5d082de-a211-4e13-b818-6f2e7dbc32f0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: aecom.png
+  uri:
+    -
+      value: 'public://images/2022-10/aecom.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 23332
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666103774

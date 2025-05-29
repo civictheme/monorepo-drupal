@@ -1,0 +1,45 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 146bdf1c-41ce-4ed4-a8e0-64d1c4f36ddc
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    65559b88-1418-471a-908d-6f440aa939b7: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Office building'
+  created:
+    -
+      value: 1670274168
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Department of Citizens, Head Office, Canberra, Australia'
+  field_c_m_image:
+    -
+      entity: 65559b88-1418-471a-908d-6f440aa939b7
+      alt: 'Office building'
+      title: ''
+      width: 575
+      height: 379

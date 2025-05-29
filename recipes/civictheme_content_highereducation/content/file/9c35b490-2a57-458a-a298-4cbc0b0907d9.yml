@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 9c35b490-2a57-458a-a298-4cbc0b0907d9
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'World Vision.png'
+  uri:
+    -
+      value: 'public://images/2022-10/World Vision.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 43458
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666104000

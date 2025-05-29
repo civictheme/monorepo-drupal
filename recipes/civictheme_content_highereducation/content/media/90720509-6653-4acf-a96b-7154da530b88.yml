@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 90720509-6653-4acf-a96b-7154da530b88
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    7d40a1d7-cb84-416d-b1de-d6bbdae4a4d8: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Group of young people looking at computer screen'
+  created:
+    -
+      value: 1670122325
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 7d40a1d7-cb84-416d-b1de-d6bbdae4a4d8
+      alt: 'Group of young people looking at computer screen'
+      title: ''
+      width: 545
+      height: 409

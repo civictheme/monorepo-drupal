@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: fbf13c94-e50b-4966-a1ad-8d580dfeccff
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    8f45163f-252f-46e3-b3d3-7930b1d9b6c7: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Research
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 8f45163f-252f-46e3-b3d3-7930b1d9b6c7
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -65
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

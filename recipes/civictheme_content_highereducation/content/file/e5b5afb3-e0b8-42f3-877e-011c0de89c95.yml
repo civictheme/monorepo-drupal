@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e5b5afb3-e0b8-42f3-877e-011c0de89c95
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'clay-banks-Hf8n0RUk7g0-unsplash 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/clay-banks-Hf8n0RUk7g0-unsplash 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 517602
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666098010

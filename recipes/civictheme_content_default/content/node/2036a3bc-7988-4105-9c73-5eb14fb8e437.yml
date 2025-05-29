@@ -1,0 +1,101 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2036a3bc-7988-4105-9c73-5eb14fb8e437
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Community Engagement'
+  created:
+    -
+      value: 1650950832
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /community-engagement
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 25e57d90-c7c1-426f-a587-914a33f5379a
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650950843
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>3.1. Observations</h2>\r\n\r\n<p>Effective community consultation and engagement is essential for large-scale renewable energy projects to gain widespread support and earn the ‘social license’ to operate within the community. To be effective in community engagement, it is vital to actually ‘engage the community’ and involve the community wherever possible in the design and execution of programs related to the project.</p>\r\n\r\n<h2>Background</h2>\r\n\r\n<p>Conversely, poor or no community engagement can allow misinformation and community opposition to a project to gain momentum – which can ultimately lead to projects not proceeding as a result of planning objections through to endless delays from lengthy and costly legal actions against the project.</p>\r\n\r\n<p>The level of community engagement by developers can vary widely across projects observed to date. A key observation is that initiating project developers (who secure the landholders and permits, then ‘on-sell’ the project to a long-term developer or operator) may not invest appropriate time and resources into community engagement or neighbour relations to be effective. These more limited efforts can result in lower levels of community support and more divided communities, compared with projects where the project developers appropriately focus on effective community engagement from the very start of the development activity.</p>\r\n\r\n<h3>Community Committees</h3>\r\n\r\n<p>In some jurisdictions, such as New South Wales, the planning guideline framework has provided for an early and continuing focus on community engagement, including the establishment of a Community Consultative Committee (CCC) that is maintained throughout the life of the project. Further, feed-in tariff arrangements such as those established by the ACT and Victorian Governments, place a significant weighting on selecting developers and projects that have proposed and demonstrated effective community engagement programs, subscribing to community engagement as a high priority.</p>\r\n\r\n<p>Many projects also establish Community Engagement Funds, funded by the developer, to support a wide range of initiatives that benefit the local community. In some cases, such funds are a condition of the permit approval, but largely these are voluntary arrangements proposed by the developer.</p>\r\n\r\n<p>Committees such as CCC’s appear to be most effective when there is an independent chair and an appropriate balance in the committee membership, with chair and committee appointments being made by an independent body where practical. Committees can play a vital role in the provision of factual information about the project, identifying and resolving issues that arise that require multi-stakeholder cooperation to resolve and dispensing with inaccurate perceptions about the project and related events.</p>\r\n\r\n<h3>Communications</h3>\r\n\r\n<p>The quality of and information provided by project websites vary from project and/or developer.</p>\r\n\r\n<p>In general, there is more work to be done by developers to provide up-to-date websites with clear transparency of information about the developer, the project, current news, how and who to contact in the organisation, how to make a complaint and access the complaint process procedure – along with access to all relevant project documents. While most projects and developers now maintain effective project websites, some project websites remain difficult to find, are out of date or lack sufficient information and easy navigation.</p>\r\n\r\n<p>Media relations and using media, such as local newspapers, to convey factual information and updates about the project can be an extremely effective way to communicate with the broader community.&nbsp; Conversely, poor media relations and/or attracting the attention of mainstream and national media that report negatively about the project, can be hugely detrimental.</p>\r\n\r\n<h3>Coordination</h3>\r\n\r\n<p>Some regions of Australia are experiencing increased clustering of proposed and approved projects, which may result in multiple projects infiltrating and ‘surrounding’ communities. The concept of Renewable Energy Zones, while largely beneficial to opening new areas for projects, may also have this unintended consequence.</p>\r\n\r\n<p>As a result, there is both the need and opportunity for individual project developers to communicate more effectively with each other and better coordinate engagement with the broader affected community. These activities could range from combined community engagement and communications initiatives by developers through to coordination of construction programs to minimise cumulative impacts on residents and townships.</p>\r\n\r\n<p>Developers should also be aware of other key infrastructure projects that may be taking place within the region and ensure that project activities and schedules are planned and coordinated to minimise impacts to communities.</p>\r\n\r\n<h3>Guidelines</h3>\r\n\r\n<p>Several community engagement publications have been issued or updated in recent times, including publications by the Clean Energy Council and the Victorian Government. These guidelines are very useful resources to assist developers plan, prepare and execute effective engagement programs.</p>\r\n\r\n<p>Community engagement plans are now also required in some planning permits as a prerequisite condition. Other stakeholders may also mandate the requirement for a well-designed and executed community engagement plan.</p>\r\n\r\n<p>Overall, there continues to be a wide range of opportunities for developers to further broaden and improve their community engagement. Suggestions gained from our observations of various practices across the industry are listed below.</p>\r\n\r\n<h2>3.2 Recommendations</h2>\r\n\r\n<p>3.2.1 The developer should ideally commence and invest early in community engagement – well before the commencement of the permit approval phase. An acquirer of a project still in development should conduct detailed due diligence on the extent and effectiveness of community engagement activities undertaken by the existing developer, prior to finalising purchase of the project, and be prepared to make the necessary investments in community engagement going forward.</p>\r\n\r\n<p>3.2.2 The developer should proactively identify and establish effective working relationships with key community stakeholders, including stakeholders that may be opposed to the project (including organised groups that are opposed to the project).</p>\r\n\r\n<p>3.2.3 The developer should, in consultation with the responsible authority and the community, consider establishing a CCC (or equivalent) with an appropriate charter and membership (noting that in some jurisdictions, a CCC may be mandated). The CCC Chair should, where practical, be a respected and representative member of the community at large as well as independent of any direct impact or beneficiary of the proposed project. Ideally, the CCC should meet monthly during critical stages of the project’s development, approval, construction, post-construction testing and initial operations.</p>\r\n\r\n<p>3.2.4 Many developers provide a range of information and education opportunities for community members to better understand the benefits and impacts of wind or solar farms as well as address any questions and concerns raised. Initiatives to consider include:</p>\r\n\r\n<ul>\r\n\t<li>establishing a ‘shop front’ in the community town centre that provides project/permit information, a map and model of the project, information about wind and solar farms and an ability to address questions or concerns raised by community members</li>\r\n\t<li>providing an informal channel for community members to ask questions, for example, by utilising a social media platform, and provide feedback about the project, and be able to do so anonymously, if required</li>\r\n\t<li>providing opportunities for community members to visit operating projects and/or projects under construction</li>\r\n\t<li>providing access to a wind farm noise simulator to demonstrate wind farm noise to community members, enabling participants to experience simulated noise scenarios</li>\r\n\t<li>maintaining an easily found, up-to-date project website with full transparency on contacts, complaint process, project details, the project’s current status along with planning permit details and documentation</li>\r\n\t<li>briefing local members (federal, state and local government) on the project and providing them with timely updates and information</li>\r\n\t<li>developing effective relationships with local media and providing the media with factual information to assist their reporting of the project and any perceived or real impacts</li>\r\n\t<li>providing information sessions about the project, as well as about wind farms and/or solar farms more generally, at convenient locations for community members, including presentations from key stakeholders, to compliment regular project newsletters and updates</li>\r\n\t<li>ensuring transparency for employment and contractor opportunities that arise from the project’s construction and operational phases</li>\r\n\t<li>publishing the minutes, where applicable, of CCC (or equivalent) meetings and allowing observers to attend CCC meetings, and</li>\r\n\t<li>understanding and assessing the impacts on local accommodation and catering during construction. Opportunities may exist for developers to construct accommodation which may, in turn, be utilised for long-term accommodation for people in need of housing arrangements. It is also essential that contractors pay invoices and accounts on time that may be rendered for accommodation and meals/catering consumed by construction workers.</li>\r\n</ul>\r\n\r\n<p>3.2.5 The developer should establish a formal complaints/enquiry process, including a system to record and manage complaints, as well as provide a transparent register of complaints/enquiries information (note: actual complainant details can be masked for privacy). The complaints process should ideally commence at the initial stage of the development activity, to allow community members to formally raise concerns and have those concerns addressed in a timely, consistent and transparent manner, and continue on throughout the life of the project.</p>\r\n\r\n<p>3.2.6 The developer (and CCC if it exists) should consult widely and communicate effectively and extensively on the proposed construction and related transport plan. The developer should also ensure appropriate restoration and ‘make-good’ actions are in place to remedy damage that may occur and seek, where practical, to leave local infrastructure in the same or better condition than prior to the construction. The developer should also proactively provide communications during construction using all forms of relevant channels, such as text messaging, to advise community members in advance of impactful activities. Where more than one construction project is occurring in the same area, collaboration should occur between the projects to proactively identify and resolve issues, such as constrained supplies such as gravel, tradespeople, accommodation, meals as well as road access issues.</p>\r\n\r\n<p>3.2.7 Further to Recommendation 3.2.6, the developer may wish to seek out opportunities to help facilitate improvements to other related community/local infrastructure. Initiatives could include improving mobile phone coverage, utilising the ‘imported’ project workforce to help upgrade local facilities (such as parks, playgrounds) and other practical activities which could benefit the overall community for years to come.</p>\r\n\r\n<p>3.2.8 Local council(s) should proactively engage with the project and community, clearly communicating the council’s level of support for the project as well as its role in facilitating and promoting effective community consultation and project compliance. Council should participate in any CCC or equivalent. If there are multiple large-scale infrastructure projects located within a council’s jurisdiction, it would be advisable to appoint a council liaison resource(s) to coordinate relations and issue resolution between council, community members and developers.</p>\r\n\r\n<p>3.2.9 Where possible, the developer should engage staff locally (or relocate them locally) to lead community engagement activities and respond to community concerns and complaints.</p>\r\n\r\n<p>The developer should also seek to hire local tradespeople, contractor staff and suppliers where practical.</p>\r\n\r\n<p>3.2.10 Once a project is in operation, the developer should continue to proactively provide information and updates about the project as well as provide opportunities for the community to visit the project site (such as an ‘open day’).</p>\r\n\r\n<p>3.2.11 The developer should consider establishing and maintaining a community engagement fund and ensure there is appropriate community involvement in the governance and management of the fund. In some jurisdictions, such a fund is mandated. The fund should allow for appropriate opportunities for community originated submissions to obtain funding for project proposals. Prioritisation of funded projects that may be of benefit to those community members more directly affected by the presence of the project should be encouraged. The community fund should clearly include and benefit community members that live in proximity to the wind or solar farm rather than only supporting projects related to a regional centre.</p>\r\n\r\n<p>3.2.12 Developers may wish to consider providing offers for community members to become shareholders in the project, which can provide a practical sense of ownership within the community. Developers may also decide to offer beneficial arrangements to community members such as reduced/subsidised electricity bills, gift cards for use at local vendors or other practical benefits to the local residents within the immediate community.</p>\r\n\r\n<p>3.2.13 Stakeholders to the project, including the responsible authority, council, bankers, investors and regulators, should seek relevant evidence of both the project’s community engagement plan and outcomes from the plan’s execution as input to decisions or requirements that the stakeholder may wish to place on the project and developer.</p>\r\n\r\n<p>3.2.14 Industry bodies, such as the Clean Energy Council (CEC) and the Renewable Energy Alliance (REA), should continue to promote effective community engagement and publicly recognise individuals and organisations achieving excellence in positive community engagement outcomes. Appropriate priority should continue to be given to this topic when designing industry forum programs.</p>\r\n\r\n<p>3.2.15 State governments can continue to play a key role by prioritising the promotion of effective community engagement in projects. Examples include initiatives such as community engagement plans as a key selection criterion for eligibility to be awarded state government ‘feed-in tariff’ programs as well as utilising formal permit conditions to mandate preparation, endorsement and execution of the plan.</p>\r\n\r\n<p>3.2.16 Project developers should ensure that all contractors, sub-contractors and other project stakeholders are aware of their responsibility to engage well with the community and minimise community impacts. If there are multiple infrastructure development projects occurring within a region, developers should also be aware of potential cumulative impacts to a community and should liaise with local councils and other developers to proactively plan to avoid or minimise unnecessary impact on the community.</p>\r\n\r\n<h2>Further information</h2>\r\n\r\n<ul>\r\n\t<li><a href=\"https://www.aeic.gov.au/observations-and-recommendations\">Observations &amp; recommendations</a></li>\r\n</ul>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both
