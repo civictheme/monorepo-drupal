@@ -9,7 +9,7 @@ field_name: field_c_p_list_limit
 entity_type: paragraph
 bundle: civictheme_automated_list
 label: Limit
-description: 'Number of items to display if <em>Limit type</em> is <em>Limited</em> or items per page if <em>Limit type</em> is <em>Unlimited</em>.<br/>Use <code>0</code> to show all items.'
+description: 'Select the number of items you want to display in the list if the Limit type is <em>Limited</em>, or the number of items per page if the Limit type is <em>Unlimited</em>. Using 0 will default to 12 items if the Limit type is <em>Unlimited</em>.'
 required: true
 translatable: false
 default_value:
