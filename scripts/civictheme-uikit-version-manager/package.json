@@ -1,0 +1,17 @@
+{
+  "name": "civictheme-uikit-version-change",
+  "version": "1.0.0",
+  "description": "CivicTheme UI Kit needs to be updated at different times to fulfill the development role of this repository.",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^7.5.0",
+    "axios": "^1.9.0"
+  }
+}

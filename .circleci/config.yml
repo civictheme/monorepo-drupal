@@ -190,7 +190,7 @@ job-build-isolated: &job-build-isolated
 
     - run:
         name: Lint code with Twig CS Fixer
-        command: vendor/bin/twig-cs-fixer || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+        command: vendor/bin/twig-cs-fixer lint --config=../.twig-cs-fixer.php web/themes/custom/civictheme/  || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
         working_directory: web/themes/contrib/civictheme/build
 
     - run:
@@ -213,6 +213,7 @@ job-build-isolated: &job-build-isolated
         name: Upload code coverage reports to Codecov
         command: |
           if [ -z "${CIRCLE_TAG-}" ] && [ -n "${CODECOV_TOKEN-}" ] && [ -d .logs/coverage/phpunit ]; then
+            curl -Os https://cli.codecov.io/latest/linux/codecov && sudo chmod +x codecov
             curl -Os https://cli.codecov.io/latest/linux/codecov && sudo chmod +x codecov
             ./codecov --verbose upload-process --fail-on-error -n "circleci-$CIRCLE_JOB" -s web/themes/contrib/civictheme/.logs/coverage
           fi
@@ -705,7 +706,7 @@ workflows:
               # - release/2023-04-17, release/2023-04-17.123 (date-based)
               # - hotfix/123.456.789, hotfix/123.456.789-rc.1213 (per https://semver.org/)
               # - hotfix/2023-04-17, hotfix/2023-04-17.123 (date-based)
-              only: /^(main|master|develop)$|^feature\/[a-zA-z0-9\-\.\,]+|^ci.*|^deps\/.*|^(release|hotfix)\/[0-9]+(\.[0-9]+){2}(-rc\.[0-9]+)?$|^(release|hotfix)\/[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9]+)?$/
+              only: /^(main|master|develop)$|^feature\/[a-zA-z0-9\-\.\,]+|^project\/[a-zA-z0-9\-\.\,]+|^ci.*|^deps\/.*|^(release|hotfix)\/[0-9]+(\.[0-9]+){2}(-rc\.[0-9]+)?$|^(release|hotfix)\/[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9]+)?$/
             tags:
               ignore: /.*/
 

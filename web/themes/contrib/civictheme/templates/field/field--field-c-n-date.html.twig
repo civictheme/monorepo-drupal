@@ -8,28 +8,28 @@
   {% if multiple %}
     <div{{ attributes }}>
       {% for item in items %}
-        {% include '@atoms/paragraph/paragraph.twig' with {
+        {% include 'civictheme:paragraph' with {
           content: item.content|render,
         } only %}
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-      {% include '@atoms/paragraph/paragraph.twig' with {
+      {% include 'civictheme:paragraph' with {
         content: item.content|render,
       } only %}
     {% endfor %}
   {% endif %}
 {% else %}
   <div{{ attributes }}>
-    {% include '@atoms/label/label.twig' with {
+    {% include 'civictheme:label' with {
       content: label,
     } only %}
     {% if multiple %}
     <div>
       {% endif %}
       {% for item in items %}
-        {% include '@atoms/paragraph/paragraph.twig' with {
+        {% include 'civictheme:paragraph' with {
           content: item.content|render,
         } only %}
       {% endfor %}
