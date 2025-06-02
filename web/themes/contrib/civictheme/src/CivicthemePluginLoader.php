@@ -45,7 +45,7 @@ final class CivicthemePluginLoader implements ContainerInjectionInterface {
    * @return array<object>
    *   Array of loaded class instances.
    */
-  public function load(string $path, string $parent_class = NULL): array {
+  public function load(string $path, ?string $parent_class = NULL): array {
     $files = glob($path . '/*.php') ?: [];
     foreach ($files as $filename) {
       require_once $filename;

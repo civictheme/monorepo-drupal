@@ -46,7 +46,7 @@
 
 {% if content %}
   <main class="ct-layout {{ modifier_class -}}" role="main" data-layout-builder-layout="true" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
-    {% block content_top %}
+    {% block content_top_block %}
       {% if content.content_top is not empty %}
         {{- content.content_top|raw -}}
       {% endif %}
@@ -54,7 +54,7 @@
 
     <div class="ct-layout__inner {{ is_contained_class }}">
       {% if content.main is not empty %}
-        {% block content %}
+        {% block content_block %}
           <section class="ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes|raw -}}{% endif %}>
             {{- content.main|raw -}}
           </section>
@@ -62,7 +62,7 @@
       {% endif %}
 
       {% if content.sidebar_top_left is not empty and has_sidebar_left %}
-        {% block sidebar_top_left %}
+        {% block sidebar_top_left_block %}
           <aside class="ct-layout__sidebar_top_left" {% if content.sidebar_top_left_attributes is not empty %}{{- content.sidebar_top_left_attributes|raw -}}{% endif %}>
             {{- content.sidebar_top_left|raw -}}
           </aside>
@@ -70,7 +70,7 @@
       {% endif %}
 
       {% if content.sidebar_top_right is not empty and has_sidebar_right %}
-        {% block sidebar_top_right %}
+        {% block sidebar_top_right_block %}
           <aside class="ct-layout__sidebar_top_right" {% if content.sidebar_top_right_attributes is not empty %}{{- content.sidebar_top_right_attributes|raw -}}{% endif %}>
             {{- content.sidebar_top_right|raw -}}
           </aside>
@@ -78,7 +78,7 @@
       {% endif %}
 
       {% if content.sidebar_bottom_left is not empty and has_sidebar_left %}
-        {% block sidebar_bottom_left %}
+        {% block sidebar_bottom_left_block %}
           <aside class="ct-layout__sidebar_bottom_left" {% if content.sidebar_bottom_left_attributes is not empty %}{{- content.sidebar_bottom_left_attributes|raw -}}{% endif %}>
             {{- content.sidebar_bottom_left|raw -}}
           </aside>
@@ -86,7 +86,7 @@
       {% endif %}
 
       {% if content.sidebar_bottom_right is not empty and has_sidebar_right %}
-        {% block sidebar_bottom_right %}
+        {% block sidebar_bottom_right_block %}
           <aside class="ct-layout__sidebar_bottom_right" {% if content.sidebar_bottom_right_attributes is not empty %}{{- content.sidebar_bottom_right_attributes|raw -}}{% endif %}>
             {{- content.sidebar_bottom_right|raw -}}
           </aside>
@@ -94,7 +94,7 @@
       {% endif %}
     </div>
 
-    {% block content_bottom %}
+    {% block content_bottom_block %}
       {% if content.content_bottom is not empty %}
         {{- content.content_bottom|raw -}}
       {% endif %}

@@ -205,12 +205,6 @@ function process_stub(string $dir, array $options): void {
   // phpcs:enable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:enable Drupal.WhiteSpace.Comma.TooManySpaces
 
-  // Resolve CivicTheme's location relative to the new theme.
-  $current_dir = __DIR__;
-  $relative_dir = file_get_relative_dir($options['path'], $current_dir);
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'build.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
-
   // Adjust per-file settings.
   //
   // Remove 'hidden: true' from the info.
@@ -596,7 +590,7 @@ function file_is_excluded_from_processing(string $filename): bool {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }

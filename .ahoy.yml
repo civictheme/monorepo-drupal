@@ -24,7 +24,7 @@ commands:
     usage: Show information about this project.
     cmd: |
       COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-${PWD##*/}} \
-      DREVOPS_HOST_DB_PORT=$(docker compose port mariadb 3306 2>/dev/null | cut -d : -f 2) \
+      DREVOPS_HOST_DB_PORT=$(docker compose port database 3306 2>/dev/null | cut -d : -f 2) \
       DREVOPS_HOST_SOLR_PORT=$(docker compose port solr 8983 2>/dev/null | cut -d : -f 2) \
       DREVOPS_HOST_HAS_SEQUELACE=$(uname -a | grep -i -q darwin && mdfind -name 'Sequel Ace' 2>/dev/null | grep -q "Ace" && echo 1 || true) \
       DREVOPS_DRUPAL_SHOW_LOGIN_LINK=${DREVOPS_DRUPAL_SHOW_LOGIN_LINK} \
@@ -34,8 +34,8 @@ commands:
     usage: Open DB in Sequel Ace.
     cmd: |
       uname -a | grep -i -q darwin && mdfind -name 'Sequel Ace' 2>/dev/null |grep -q "Ace" \
-      && DREVOPS_HOST_DB_PORT="$(docker port $(docker compose ps -q mariadb 2>/dev/null) 3306 2>/dev/null | cut -d : -f 2)" \
-      && open "mysql://${MARIADB_USERNAME:-drupal}:${MARIADB_PASSWORD:-drupal}@127.0.0.1:${DREVOPS_HOST_DB_PORT}/drupal" -a "Sequel Ace" \
+      && DREVOPS_HOST_DB_PORT="$(docker port $(docker compose ps -q database 2>/dev/null) 3306 2>/dev/null | cut -d : -f 2)" \
+      && open "mysql://${DATABASE_USERNAME:-drupal}:${DATABASE_PASSWORD:-drupal}@127.0.0.1:${DREVOPS_HOST_DB_PORT}/drupal" -a "Sequel Ace" \
       || echo "Not a supported OS or Sequel Ace is not installed."
 
   # ----------------------------------------------------------------------------
@@ -116,8 +116,8 @@ commands:
     usage: Reload the database container using local database image.
     cmd: |
       ahoy confirm "Running this command will replace your current database. Are you sure?" &&
-      docker compose rm -f -s -v mariadb \
-        && ahoy up -- --build mariadb \
+      docker compose rm -f -s -v database \
+        && ahoy up -- --build database \
         && ahoy up wait_dependencies \
         && sleep 15 \
         && ahoy provision \
@@ -171,6 +171,19 @@ commands:
     usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
+  lint-check:
+    cmd: |
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
+
+  lint-components:
+    usage: Lint CivicTheme Single Directory Components
+    cmd: |
+      ahoy cli "vendor/bin/drush sdcv civictheme --xdebug"
+  lint-component:
+    usage: Lint CivicTheme Single Directory Component
+    cmd: |
+      ahoy cli "vendor/bin/drush sdcv civictheme" "$@" "--xdebug"
 
   lint-config:
     usage: Lint config
@@ -183,6 +196,7 @@ commands:
     cmd: |
       ahoy cli vendor/bin/rector --clear-cache
       ahoy cli vendor/bin/phpcbf
+      ahoy cli "vendor/bin/twig-cs-fixer lint --fix --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib"
 
   lint-govcms:
     usage: Lint with shipshape.
@@ -197,6 +211,9 @@ commands:
   test-unit:
     usage: Run PhpUnit unit tests.
     cmd: ahoy cli vendor/bin/phpunit --testsuite=unit "$@"
+  test-sdc:
+    usage: Run PhpUnit sdc unit tests.
+    cmd: ahoy cli vendor/bin/phpunit --testsuite=sdc-unit "$@"
 
   test-kernel:
     usage: Run PhpUnit kernel tests.
@@ -237,21 +254,14 @@ commands:
     cmd: |
       ahoy confirm "Some committed files may become overwritten. Proceed?" &&
       ./scripts/drevops/update-drevops.sh $@
-
-  bump-uikit:
-    usage: Update CivicTheme UIKit to latest commit hash
+  change-uikit:
+    usage: Change the version of CivicTheme UI Kit the repository is using
+    aliases: ["bump-uikit"]
     cmd: |
-      export LATEST_UIKIT_HASH=$(curl -s https://api.github.com/repos/civictheme/uikit/commits/main | jq -r .sha)
-      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
-      sed -i 's|git+ssh://git@github.com/civictheme/uikit.git#[a-f0-9]\{40\}|git+ssh://git@github.com/civictheme/uikit.git#'$LATEST_UIKIT_HASH'|' package-lock.json
-      npm install
-      pushd web/themes/contrib/civictheme/
-      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
-      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package-lock.json
-      npm install
+      pushd scripts/civictheme-uikit-version-manager
+      ([ -d "node_modules" ] || npm install)
+      npm run start
       popd
-      echo "Bumped to latest commit on uikit#main https://github.com/civictheme/uikit/commit/${LATEST_UIKIT_HASH}"
-
   local:
     usage: Custom local commands. See `ahoy local help`.
     cmd: |

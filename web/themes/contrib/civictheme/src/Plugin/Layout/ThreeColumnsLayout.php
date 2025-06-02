@@ -6,6 +6,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;
 use Drupal\Core\Plugin\PluginFormInterface;
 
+/**
+ * Three Column Layout plugin class.
+ */
 class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
   /**

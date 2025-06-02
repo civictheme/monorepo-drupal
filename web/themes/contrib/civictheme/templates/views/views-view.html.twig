@@ -4,10 +4,10 @@
  * CivicTheme implementation for view template.
  */
 #}
-{% extends '@organisms/list/list.twig' %}
+{% extends 'civictheme:list' %}
 
 {# Override footer block to provide Drupal-specific view properties. #}
-{% block footer %}
+{% block footer_block %}
   {% if attachment_after is defined and attachment_after is not empty %}
     <div class="ct-list__attachment-after">
       <div class="container">

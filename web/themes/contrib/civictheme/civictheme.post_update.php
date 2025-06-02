@@ -14,6 +14,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
+use Drupal\layout_builder\Section;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\ParagraphInterface;
 
@@ -636,7 +637,7 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): string {
   $theme = \Drupal::service('theme.manager')->getActiveTheme();
 
   if (!in_array('civictheme', $theme->getBaseThemeExtensions()) && $theme->getName() !== 'civictheme') {
-    return (string)(new TranslatableMarkup('The active theme is not CivicTheme or based on CivicTheme. No blocks were moved.'));
+    return (string) (new TranslatableMarkup('The active theme is not CivicTheme or based on CivicTheme. No blocks were moved.'));
   }
 
   // Stop the update if the theme does not have a region that needs to be added
@@ -740,7 +741,7 @@ function civictheme_post_update_enable_three_column_layout(): string {
             }
           }
 
-          $layout_builder_sections[$index] = \Drupal\layout_builder\Section::fromArray($section_as_array);
+          $layout_builder_sections[$index] = Section::fromArray($section_as_array);
 
           $updated_entity_displays[$entity_display->id()] = $entity_display->id();
         }

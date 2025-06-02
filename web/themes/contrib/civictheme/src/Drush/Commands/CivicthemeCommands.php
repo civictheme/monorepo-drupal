@@ -57,9 +57,7 @@ class CivicthemeCommands extends DrushCommands {
    * @SuppressWarnings(StaticAccess)
    */
   public function setBrandColors($light_brand1, $light_brand2, $light_brand3, $dark_brand1, $dark_brand2, $dark_brand3): void {
-    /**
-     * @phpstan-ignore-next-line
-     */
+    // @phpstan-ignore-next-line
     $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
 
     try {
@@ -102,16 +100,12 @@ class CivicthemeCommands extends DrushCommands {
    *
    * @SuppressWarnings(StaticAccess)
    */
-  public function stylesheet(string $suffix = NULL): void {
-    /**
-     * @phpstan-ignore-next-line
-     */
+  public function stylesheet(?string $suffix = NULL): void {
+    // @phpstan-ignore-next-line
     $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
 
     if (empty($suffix)) {
-      /**
-       * @phpstan-ignore-next-line
-       */
+      // @phpstan-ignore-next-line
       $suffix = \Drupal::theme()->getActiveTheme()->getName();
     }
 
@@ -139,9 +133,7 @@ class CivicthemeCommands extends DrushCommands {
    * @SuppressWarnings(StaticAccess)
    */
   public function clearCache(): void {
-    /**
-     * @phpstan-ignore-next-line
-     */
+    // @phpstan-ignore-next-line
     $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
     $this->colorManager->invalidateCache();
   }

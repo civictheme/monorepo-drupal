@@ -168,7 +168,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_image_get_variables(MediaInterface $media, string $image_style = NULL): ?array {
+function civictheme_media_image_get_variables(MediaInterface $media, ?string $image_style = NULL): ?array {
   if (!in_array($media->bundle(), ['civictheme_image', 'civictheme_icon'])) {
     return NULL;
   }
@@ -236,7 +236,7 @@ function civictheme_media_get_url(MediaInterface $media, bool $is_relative = TRU
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function civictheme_media_image_get_url(MediaInterface $media, string $image_style = NULL, bool $is_relative = TRUE): ?string {
+function civictheme_media_image_get_url(MediaInterface $media, ?string $image_style = NULL, bool $is_relative = TRUE): ?string {
   $src = NULL;
 
   $file = File::load($media->getSource()->getSourceFieldValue($media));

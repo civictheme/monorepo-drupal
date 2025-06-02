@@ -1,0 +1,25 @@
+Index: src/TwigValidatorRulePluginBase.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/TwigValidatorRulePluginBase.php b/src/TwigValidatorRulePluginBase.php
+--- a/src/TwigValidatorRulePluginBase.php	(revision 37df01c5301260f4e6df9d61672fd82d3053bd18)
++++ b/src/TwigValidatorRulePluginBase.php	(date 1743746862284)
+@@ -14,11 +14,11 @@
+  */
+ abstract class TwigValidatorRulePluginBase extends PluginBase implements TwigValidatorRuleInterface {
+ 
+-  protected const RULE_NAME_IGNORE = -1;
+-  protected const RULE_NAME_ALLOW = 0;
+-  protected const RULE_NAME_WARN = RfcLogLevel::WARNING;
+-  protected const RULE_NAME_DEPRECATE = RfcLogLevel::NOTICE;
+-  protected const RULE_NAME_FORBID = RfcLogLevel::ERROR;
++  public const RULE_NAME_IGNORE = -1;
++  public const RULE_NAME_ALLOW = 0;
++  public const RULE_NAME_WARN = RfcLogLevel::WARNING;
++  public const RULE_NAME_DEPRECATE = RfcLogLevel::NOTICE;
++  public const RULE_NAME_FORBID = RfcLogLevel::ERROR;
+ 
+   /**
+    * {@inheritdoc}

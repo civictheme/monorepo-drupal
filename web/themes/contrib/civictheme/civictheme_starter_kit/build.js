@@ -36,8 +36,11 @@ const config = {
   styles_layout: false,
   styles_variables: false,
   styles_stories: false,
+  styles_theme: false,
   js_drupal: false,
   js_storybook: false,
+  sdc_base: false,
+  sdc_components: false,
   assets: false,
   constants: false,
   base: false,
@@ -55,13 +58,13 @@ if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
     config.build = buildWatchFlagCount === 0 || flags.indexOf('build') >= 0
     config.watch = flags.indexOf('watch') >= 0
     config.combine = true
-    config.styles = true
     config.styles_storybook = true
     config.styles_editor = true
     config.styles_variables = true
     config.styles_stories = true
-    config.js_drupal = true
-    config.js_storybook = true
+    config.styles_theme = true
+    config.sdc_base = true
+    config.sdc_components = true
     config.assets = true
     config.constants = true
   } else {
@@ -78,14 +81,16 @@ let lastTime = null
 const PATH = import.meta.dirname
 
 const THEME_NAME                = PATH.split('/').reverse()[0]
-const DIR_CIVICTHEME            = fullPath('../../contrib/civictheme/')
+const BUILD_CONFIG_DIR          = fullPath('./build-config.json')
 const DIR_COMPONENTS_IN         = fullPath('./components/')
-const DIR_COMPONENTS_OUT        = fullPath('./components_combined/')
-const DIR_UIKIT_COMPONENTS_IN   = `${DIR_CIVICTHEME}/components/`
-const DIR_UIKIT_COPY_OUT        = fullPath('./.components-civictheme/')
 const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
+
+const DIR_CIVICTHEME            = config.base ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
+const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
+const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
+const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
 
 const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
 const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
@@ -106,6 +111,7 @@ const STYLE_VARIABLE_FILE_OUT   = `${DIR_OUT}/${STYLE_NAME}.variables.css`
 const STYLE_ADMIN_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.admin.css`
 const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
+const STYLE_THEME_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.theme.css`
 
 const DIR_CT_ASSETS             = `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}/dist/assets/`
 const DIR_SB_ASSETS             = `/assets/`
@@ -117,9 +123,9 @@ const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
 const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
 const JS_LIB_IMPORTS            = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
 const JS_ASSET_IMPORTS          = [
-                                    `${DIR_CIVICTHEME}/assets/js/**/*.js`,
+                                    DIR_CIVICTHEME ? `${DIR_CIVICTHEME}/assets/js/**/*.js` : false,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
-                                  ]
+                                  ].filter(Boolean)
 const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
 
 const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
@@ -127,6 +133,18 @@ const CONSTANTS_SCSS_IMPORTER   = fullPath(`./.storybook/importer.scss_variables
 const CONSTANTS_BACKGROUND_UTIL = `${COMPONENT_DIR}/00-base/background/background.utils.js`
 const CONSTANTS_ICON_UTIL       = `${COMPONENT_DIR}/00-base/icon/icon.utils.js`
 const CONSTANTS_LOGO_UTIL       = `${COMPONENT_DIR}/02-molecules/logo/logo.utils.js`
+
+const STYLE_SDC_COMMON_INCLUDES      = [VAR_CT_ASSETS_DIRECTORY, `@import '00-base/variables';`]
+const STYLE_SDC_MIXIN_IMPORTS        = `00-base/mixins/**/*.scss`
+const STYLE_SDC_BASE_IMPORTS         = `00-base/**/!(*.stories|variables|_variables.*).scss`
+const STYLE_SDC_BASE_FILE_OUT        = `${DIR_OUT}/${STYLE_NAME}.base.css`;
+const JS_SDC_BASE_FILE_OUT           = `${DIR_OUT}/${SCRIPT_NAME}.drupal.base.js`
+const JS_SDC_STORYBOOK_BASE_FILE_OUT = `${DIR_OUT}/${SCRIPT_NAME}.base.js`
+const JS_SDC_BASE_IMPORTS            = `${COMPONENT_DIR}/00-base/**/!(*.stories|*.test|*.data|*.stories.data|*.utils).js`
+const SDC_HEADER                     = '/**\n * This file was automatically generated. Please run `npm run dist` to update.\n */\n\n';
+const SDC_STYLE_FILES_IN             = `!(00-base)/**/*.scss`
+const SDC_COMPONENT_DIR              = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_IN
+const SDC_COMPLETE_COMPONENT_DIR     = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
 
 if (config.build) {
   build()
@@ -175,10 +193,7 @@ function buildStyles() {
     ].join('\n')
 
     const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
-    const compiledImportAtTop = compiled.css.split('\n')
-      .sort(a => a.indexOf('@import') === 0 ? -1 : 0)
-      .sort(a => a.indexOf('@charset') === 0 ? -1 : 0)
-      .join('\n')
+    const compiledImportAtTop = sortCssLines(compiled.css)
     fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
     successReporter(`Saved: Component styles ${time()}`)
   }
@@ -249,36 +264,114 @@ function buildStylesStories() {
   }
 }
 
+function buildStylesTheme() {
+  if (config.styles_theme) {
+    const themecss = [
+      VAR_CT_ASSETS_DIRECTORY,
+      getImportsFromGlob(STYLE_THEME_FILE_IN, PATH),
+    ].join('\n')
+
+    const compiled = sass.compileString(themecss, { loadPaths: [COMPONENT_DIR, PATH] })
+    fs.writeFileSync(STYLE_THEME_FILE_OUT, sortCssLines(compiled.css), 'utf-8')
+    successReporter(`Saved: Component styles (theme) ${time()}`)
+  }
+}
+
+function buildStylesSdcBase() {
+  if (config.sdc_base) {
+    const baseCss = [
+      ...STYLE_SDC_COMMON_INCLUDES,
+      getImportsFromGlob(STYLE_SDC_BASE_IMPORTS, COMPONENT_DIR),
+    ].join('\n')
+    const compiled = sass.compileString(baseCss, { loadPaths: [COMPONENT_DIR] })
+    fs.writeFileSync(STYLE_SDC_BASE_FILE_OUT, SDC_HEADER + sortCssLines(compiled.css))
+    successReporter(`Saved: SDC styles (base) ${time()}`)
+  }
+}
+
+async function buildStylesSdcComponents() {
+  if (config.sdc_components) {
+    const componentFiles = globSync(SDC_STYLE_FILES_IN, { cwd: SDC_COMPONENT_DIR })
+
+    const componentDependencies = [
+      ...STYLE_SDC_COMMON_INCLUDES,
+      getImportsFromGlob(STYLE_SDC_MIXIN_IMPORTS, SDC_COMPLETE_COMPONENT_DIR)
+    ].join('\n')
+
+    await Promise.all(componentFiles.map(async (filePath) => {
+      const separator = filePath.lastIndexOf('/') + 1
+      const styleDir = filePath.substring(0, separator)
+      const styleName = filePath.substring(separator, filePath.lastIndexOf('.'))
+      const styleData = `${componentDependencies}\n@import '${filePath}';`
+      const result = await sass.compileStringAsync(styleData, { loadPaths: [SDC_COMPLETE_COMPONENT_DIR] })
+      fs.writeFileSync(`${SDC_COMPONENT_DIR}/${styleDir}/${styleName}.css`, SDC_HEADER + result.css)
+    }))
+    successReporter(`Saved: SDC styles (components) ${time()}`)
+  }
+}
+
+function buildStylesSdcCopyBack() {
+  if (config.sdc_components && !config.base) {
+    // Copy generated css files into the complete components directory.
+    globSync(SDC_STYLE_FILES_IN, { cwd: SDC_COMPONENT_DIR }).map(path => {
+      const filename = `${path.substring(0, path.lastIndexOf('.'))}.css`
+      return {
+        from: `${SDC_COMPONENT_DIR}/${filename}`,
+        to: `${SDC_COMPLETE_COMPONENT_DIR}/${filename}`
+      }
+    }).forEach(file => fs.copyFileSync(file.from, file.to))
+    successReporter(`Saved: SDC styles copied to combined components ${time()}`)
+  }
+}
+
+function buildJavascriptSdcBase() {
+  if (config.sdc_base) {
+    const libJs = [
+      ...JS_LIB_IMPORTS,
+      ...globSync(JS_ASSET_IMPORTS)
+    ].map(loadJSFile).join('\n')
+
+    // Load base components after DOM is ready
+    const baseComponentJs = globSync(JS_SDC_BASE_IMPORTS).map(loadJSFile).join('\n')
+
+    // Write JS file with drupal behaviour wrapper.
+    const newDrupalBaseJs = [
+      JS_LINT_EXCLUSION_HEADER,
+      libJs,
+      `Drupal.behaviors.${THEME_NAME} = {attach: function (context, settings) {\n${baseComponentJs}\n}};`
+    ].join('\n')
+    fs.writeFileSync(JS_SDC_BASE_FILE_OUT, newDrupalBaseJs, 'utf-8')
+    successReporter(`Saved: SDC javascript base (drupal) ${time()}`)
+
+    // Write JS file with dom content loaded wrapper.
+    const newBaseJs = [
+      JS_LINT_EXCLUSION_HEADER,
+      libJs,
+      `document.addEventListener('DOMContentLoaded', () => {\n${baseComponentJs}\n});`
+    ].join('\n')
+    fs.writeFileSync(JS_SDC_STORYBOOK_BASE_FILE_OUT, newBaseJs, 'utf-8')
+    successReporter(`Saved: SDC javascript base (storybook) ${time()}`)
+  }
+}
+
 function buildJavascript() {
   if (config.js_drupal || config.js_storybook) {
-    const jsComponents = []
-    const jsOutData = []
+    const libJs = [
+      ...JS_LIB_IMPORTS,
+      ...globSync(JS_ASSET_IMPORTS)
+    ].map(loadJSFile).join('\n')
 
-    // Add header.
-    jsOutData.push(JS_LINT_EXCLUSION_HEADER)
-
-    // Third party imports.
-    JS_LIB_IMPORTS.forEach(filename => {
-      jsOutData.push(stripJS(fs.readFileSync(filename, 'utf-8')))
-    })
-
-    // Civictheme asset imports.
-    globSync(JS_ASSET_IMPORTS).forEach(filename => {
-      jsOutData.push(stripJS(fs.readFileSync(filename, 'utf-8')))
-    })
-
-    // Civictheme component imports.
-    globSync(JS_CIVIC_IMPORTS).forEach(filename => {
-      const name = `${THEME_NAME}_${filename.split('/').reverse()[0].replace('.js', '').replace(/-/g, '_')}`
-      const body = fs.readFileSync(filename, 'utf-8')
-      jsComponents.push({ name, body })
-    })
+    const components = globSync(JS_CIVIC_IMPORTS).map(filename => ({
+      name: `${THEME_NAME}_${filename.split('/').reverse()[0].replace('.js', '').replace(/-/g, '_')}`,
+      body: fs.readFileSync(filename, 'utf-8')
+    }))
 
     // Write JS file with drupal behaviour wrapper.
     if (config.js_drupal) {
       fs.writeFileSync(JS_FILE_OUT, [
-        ...jsOutData,
-        ...jsComponents.map(i => {
+        JS_LINT_EXCLUSION_HEADER,
+        libJs,
+        ...components.map(i => {
           return `Drupal.behaviors.${i.name} = {attach: function (context, settings) {\n${i.body}\n}};`
         })
       ].join('\n'), 'utf-8')
@@ -288,8 +381,9 @@ function buildJavascript() {
     // Write JS file with dom content loaded wrapper.
     if (config.js_storybook) {
       fs.writeFileSync(JS_STORYBOOK_FILE_OUT, [
-        ...jsOutData,
-        ...jsComponents.map(i => {
+        JS_LINT_EXCLUSION_HEADER,
+        libJs,
+        ...components.map(i => {
           return `document.addEventListener('DOMContentLoaded', () => {\n${i.body}\n});`
         })
       ].join('\n'), 'utf-8')
@@ -338,7 +432,12 @@ async function build() {
     buildStylesLayout()
     buildStylesVariables()
     buildStylesStories()
+    buildStylesTheme()
+    buildStylesSdcBase()
+    await buildStylesSdcComponents()
+    buildStylesSdcCopyBack()
     buildJavascript()
+    buildJavascriptSdcBase()
     buildAssetsDirectory()
     await buildConstants()
   } catch (error) {
@@ -375,15 +474,22 @@ function cli() {
 }
 
 function lintExclusions() {
-  const storybookStaticPath = fullPath('./storybook-static/**/*.js')
-  console.log(`Applying lint exclusions: ${storybookStaticPath}`)
+  const lintExclusionPaths = [
+    fullPath('./storybook-static/**/*.js'),
+    fullPath('./dist/**/*.js'),
+    fullPath('./components/**/*.js'),
+    fullPath('./.storybook/*.js'),
+  ]
+  console.log(`Applying lint exclusions: ${lintExclusionPaths.join(', ')}`)
   const header = `${JS_LINT_EXCLUSION_HEADER}\n`
-  globSync(storybookStaticPath).forEach(filename => {
-    const data = fs.readFileSync(filename, 'utf-8')
-    if (data.substr(0, header.length) !== header) {
-      fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
-    }
-  })
+  lintExclusionPaths.forEach((lintExclusionPath) => {
+    globSync(lintExclusionPath).forEach(filename => {
+      const data = fs.readFileSync(filename, 'utf-8')
+      if (data.substr(0, header.length) !== header) {
+        fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
+      }
+    })
+  });
 }
 
 // ----------------------------------------------------------------------------- UTILITIES
@@ -421,12 +527,42 @@ function loadStyleFile(path, cwd) {
   return result.join('\n')
 }
 
+function loadJSFile(filename) {
+  return stripJS(fs.readFileSync(filename, 'utf-8'))
+}
+
 function stripJS(js) {
   return js.replace(/\/\/# sourceMappingURL=.*\.(map|json)/gi, '')
 }
 
 function fullPath(filepath) {
   return path.resolve(PATH, filepath)
+}
+
+function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
+  if (fs.existsSync(BUILD_CONFIG_DIR)) {
+    const config = JSON.parse(fs.readFileSync(BUILD_CONFIG_DIR, 'utf-8'))
+    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(config.civicthemePath)) {
+      return config.civicthemePath
+    }
+  }
+  let civicthemePath = getDirInParent(subthemeDir, parent, civicthemeGlob)
+  if (civicthemePath) {
+    civicthemePath = path.relative(subthemeDir, civicthemePath)
+    fs.writeFileSync(BUILD_CONFIG_DIR, JSON.stringify({ civicthemeGlob, civicthemePath }, null, 2), 'utf-8')
+    return civicthemePath
+  }
+  errorReporter({
+    message: 'Could not find civictheme directory.',
+    formatted: `Unable to find '${civicthemeGlob}' from '${parent}' directory.`
+  }, true)
+}
+
+function getDirInParent(currentDir, parent, destinationGlob) {
+  const pathParts = currentDir.split('/')
+  const parentIndex = pathParts.indexOf(parent)
+  const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
+  return basePath ? globSync(`${basePath}${destinationGlob}`, { ignore: 'node_modules/**' }).pop() : null
 }
 
 function time(full) {
@@ -436,11 +572,21 @@ function time(full) {
   return `[ ${rtn} ms ]`
 }
 
-function errorReporter(error) {
-  console.error('❌   Error during SASS compilation:', error.message);
+function errorReporter(error, fatal = false) {
+  console.error('❌   Error during build:', error.message);
   console.error('Details:', error.formatted || error);
+  if (fatal) {
+    process.exit(1)
+  }
 }
 
 function successReporter(message) {
   console.log(`✅   ${message}`)
+}
+
+function sortCssLines(css) {
+  return css.split('\n')
+    .sort(a => a.indexOf('@import') === 0 ? -1 : 0)
+    .sort(a => a.indexOf('@charset') === 0 ? -1 : 0)
+    .join('\n')
 }

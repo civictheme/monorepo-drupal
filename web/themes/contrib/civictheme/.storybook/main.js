@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 const config = {
   stories: [
     '../components/**/*.stories.js',

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { create } from '@storybook/theming';
 
 export default create({

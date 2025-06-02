@@ -156,5 +156,3 @@ Feature: Slider render
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 1"
-    And I should see a ".ct-slider__controls__previous[disabled]" element
-    And I should see a ".ct-slider__controls__next[disabled]" element

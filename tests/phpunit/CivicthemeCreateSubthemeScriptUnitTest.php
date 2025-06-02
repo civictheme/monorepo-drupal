@@ -82,7 +82,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderTestLocation
    * @runInSeparateProcess
    */
-  public function testLocation(string $civictheme_dir, string $newtheme_rel_dir, string $expected_newtheme_dir, string $expected_rel_path): void {
+  public function testLocation(string $civictheme_dir, string $newtheme_rel_dir, string $expected_newtheme_dir): void {
     $newtheme_name = 'new_theme';
 
     $sut_dir = $this->prepareSut($civictheme_dir);
@@ -135,8 +135,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
-
-    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
 
     $composerjson_actual = json_decode((string) file_get_contents($expected_new_theme_dir_full . 'composer.json'), TRUE);
     $this->assertStringContainsString($composerjson['version'], $composerjson_actual['extra']['civictheme']['version']);
@@ -212,7 +210,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $newtheme_rel_dir = '';
     $newtheme_name = 'new_theme';
     $expected_newtheme_dir = 'web/themes/custom/new_theme';
-    $expected_rel_path = '../../contrib/civictheme/';
 
     $this->prepareSut($civictheme_dir);
     $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
@@ -248,8 +245,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
-
-    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
 
     // Examples assertions.
     $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');

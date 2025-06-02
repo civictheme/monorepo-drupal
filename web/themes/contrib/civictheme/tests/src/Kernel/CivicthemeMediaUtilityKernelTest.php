@@ -15,7 +15,6 @@ use Drupal\Tests\media\Kernel\MediaKernelTestBase;
  */
 class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
 
-
   /**
    * {@inheritdoc}
    */

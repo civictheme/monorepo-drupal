@@ -71,4 +71,3 @@ function _civictheme_preprocess_page__node(array &$variables): void {
     \Drupal::service('theme.manager')->alter('civictheme_layout_suppress_page_regions', $variables, $context);
   }
 }
-
