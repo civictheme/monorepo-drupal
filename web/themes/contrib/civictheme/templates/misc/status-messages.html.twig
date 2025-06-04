@@ -8,8 +8,8 @@
   {% for message in messages %}
     {% include 'civictheme:message' with {
       title: status_headings[type] ? status_headings[type] : type|capitalize,
-      description: message,
-      type: type == 'status' ? 'information' : type,
+      description: message|render,
+      type: (type == 'status' or type == 'info') ? 'information' : type,
     } only %}
   {% endfor %}
 {% endfor %}
