@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 52cf5a8d-97bf-48cf-b106-e2249e2e705e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'The Pine Island Glacier 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/The Pine Island Glacier 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 92136
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666102491

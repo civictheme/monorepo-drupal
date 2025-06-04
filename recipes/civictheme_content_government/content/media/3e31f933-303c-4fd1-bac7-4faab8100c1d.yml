@@ -1,0 +1,40 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 3e31f933-303c-4fd1-bac7-4faab8100c1d
+  bundle: civictheme_icon
+  default_langcode: en
+  depends:
+    8af122fe-6beb-42fa-92dd-f11c36aa5276: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Medical
+  created:
+    -
+      value: 1668986893
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_icon:
+    -
+      entity: 8af122fe-6beb-42fa-92dd-f11c36aa5276
+      display: true
+      description: ''

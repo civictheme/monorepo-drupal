@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'About us'
+  created:
+    -
+      value: 1648614335
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /about-us
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: soft-light
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f69ff6e5-faf4-4539-8086-752a8bf8326e
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666915749
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>The Department of Citizens ensures Australia is a safe and supportive place to live for Australian citizens and immigrants. We provide policies, support and services across health, education, aged care, environment, national security, foreign affairs, emergency management, and immigration.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e0889abb-bfef-432c-866e-a9456bbabdab
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648614361
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>The Department of Citizens ensures Australia is a safe and supportive place to live for Australian citizens and immigrants. We provide policies, support and services across health, education, aged care, environment, national security, foreign affairs, emergency management, and immigration.</p>\r\n\r\n<h2 id=\"how-we-help-you\">How we help you</h2>\r\n\r\n<p><strong>We deliver programs and services for the public and businesses across the following sectors:</strong></p>\r\n\r\n<ul>\r\n\t<li>Health and disability</li>\r\n\t<li>Employment and education</li>\r\n\t<li>Aged care</li>\r\n\t<li>Immigration and citizenship</li>\r\n</ul>\r\n\r\n<p><a href=\"/programs-and-services\">See our full range of programs and services</a></p>\r\n\r\n<h2 id=\"department-of-citizen-grants\">Department of Citizen grants</h2>\r\n\r\n<p>We also provide funding in the form of grants to a wide range of stakeholders for the benefit of those living in Australia.</p>\r\n\r\n<p><strong>We provide grant funding in the following areas:</strong></p>\r\n\r\n<ul>\r\n\t<li>Education</li>\r\n\t<li>Medical research</li>\r\n\t<li>Social services</li>\r\n\t<li>Small business</li>\r\n\t<li>Science and technology</li>\r\n\t<li>Environment</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2 id=\"our-ministers\">Our ministers</h2>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"07a20a20-f169-4050-9dfe-dde58117bcb3\"></drupal-media>\r\n\r\n<p><strong>The Hon John Smith MP SC</strong><br />\r\nChief Law Officer of the Department of Citizens</p>\r\n\r\n<p>The Hon John Smith MP was appointed Chief Law Officer of the Department of Citizens on 1 June 2022. John is a firm believer in social justice and is devoted to protecting, preserving and promoting the rule of law.</p>\r\n\r\n<p>John has been a member of the Department of Citizens since 2016. He has previously served as Minister for Industrial Relations and Minister for National Security.</p>\r\n\r\n<p>John has over 25 years of experience as a barrister, practising in criminal law. In 2001 he was appointed Senior Counsel. John holds an Honours Degree in Law from Citizens University. He joined the Independent Bar in 1996.</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"17896e42-63c2-46db-bda4-a326904295b3\"></drupal-media>\r\n\r\n<p><strong>The Hon Adam Bontz MP</strong><br />\r\nMinister for Multicultural Affairs, Immigration and Citizenship</p>\r\n\r\n<p>The Hon Adam John MP was sworn in as the Minister for Foreign Affairs and Immigration on 1 June 2021.&nbsp; Before this, Adam served as the Minister for Employment and Education. He has also held ministries of Social Services and Climate Change and the Environment.</p>\r\n\r\n<p>Adam has been a member of the Department of Citizens since 2003. In 2012, he was awarded the Environmental Medal for his services in the fight against climate change.</p>\r\n\r\n<p>Adam holds a First Class Honours Law Degree, and from 1992 to 2002, Adam was a principal lawyer at Don &amp; Martin Lawyers, practising in visa and migration law.&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"66fcb842-06c3-4432-bd20-62918758e005\"></drupal-media>\r\n\r\n<p><strong>The Hon Judy Denn MP</strong><br />\r\nMinister for Health, Disability and Aged Care</p>\r\n\r\n<p>The Hon Judy Denn MP was sworn in as the Minister for Health, Disability and Aged Care on 1 June 2021. Before this, Judy served as the Minister for Community Services. She has also held a ministerial appointment for Housing and Homelessness.</p>\r\n\r\n<p>Judy has been a member of the Department of Citizens since 2018. She commenced her employment as the Director of Policy Development.</p>\r\n\r\n<p>From 2012 to 2016, Judy was a Senior Associate at Benton Brown Lawyers. Judy holds a Master of Law from the University of Citizens.</p>\r\n\r\n<p><a data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"21d11ae0-2874-4663-9937-a48ce30a7ad7\" href=\"/node/7\" title=\"About this template website\">More about our structure</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

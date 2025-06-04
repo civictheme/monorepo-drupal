@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ac4255ad-ec69-47e9-9617-86b2e51872b8
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    7ec668f1-cd7d-4111-967e-f2522817ff2f: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: account.svg
+  created:
+    -
+      value: 1667967354
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 7ec668f1-cd7d-4111-967e-f2522817ff2f
+      alt: Departments
+      title: ''
+      width: 0
+      height: 0

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 52c7c546-4010-44c0-aa09-7b1295255df8
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'helena-lopes-UZe35tk5UoA-unsplash 1.png'
+  uri:
+    -
+      value: 'public://images/2022-10/helena-lopes-UZe35tk5UoA-unsplash 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 190545
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666109426

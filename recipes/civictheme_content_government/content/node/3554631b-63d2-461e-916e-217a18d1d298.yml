@@ -1,0 +1,418 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3554631b-63d2-461e-916e-217a18d1d298
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Our locations'
+  created:
+    -
+      value: 1666877961
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /our-locations
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: overlay
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 75279732-acc4-4dc1-841c-b4431044443e
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666877981
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Department of Citizens’ offices are conveniently located across Australia. Services are by appointment only.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 25600243-059f-4a99-b9b6-96562770134b
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666877991
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Our office locations</h2>\r\n\r\n<p>You can find The Department of Citizens services in locations all across Australia.</p>\r\n\r\n<p>Find an office near you.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 01b9b3b6-e593-4092-80f2-0a3438da1c50
+          bundle: civictheme_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666916597
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1c04ef15-aaa2-4922-8d71-c64fb8003490
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>123 Citizens Street Canberra ACT 2600<br />\r\nPhone: +61 2 6333 4444<br />\r\nEmail: citizens@doc.gov.au</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"146bdf1c-41ce-4ed4-a8e0-64d1c4f36ddc\"></drupal-media>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCCanberra<br />\r\nTwitter @DOCCanberra</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Head office Canberra, ACT'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2e1658c7-6c39-42c4-ad07-e33f36b3d29a
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Level 56, 212 State Avenue<br />\r\nSydney NSW 2000<br />\r\n+61 2 9888 7777</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCSydney<br />\r\nTwitter @DOCSydney</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Sydney, NSW'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 13bf70f7-a736-4206-80d2-3fdd33ec96aa
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>272 City&nbsp; Street<br />\r\nMelboune Vic 3000<br />\r\n+61 3 5444 3333</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCMelbourne<br />\r\nTwitter @DOCMelbourne</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Melbourne, VIC'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 273ab387-2bc9-4179-a470-970e62b1bc48
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>12 Flag Way<br />\r\nBrisbane QLD 4000<br />\r\n+61 7 3222 5555</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCBrisbane<br />\r\nTwitter @DOCBrisbane</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Brisbane, QLD'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ba56b00a-b0fc-4436-9bde-c9e8b09f748b
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>456 Citizens Drive<br />\r\nAdelaide SA 5000<br />\r\n+61 8 8111 4444</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCAdelaide<br />\r\nTwitter @DOCAdelaide</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Adelaide, SA'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ef52fe44-cec6-4120-b02d-464dc1f2647a
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>222 Star Street<br />\r\nPerth WA 6000<br />\r\n+61 8 8666 2222</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCPerth<br />\r\nTwitter @DOCPerth</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Perth, WA'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 031b722c-fbef-4dde-aea4-0d63bdeba238
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>2456 Salamanca Way<br />\r\nHobart TAS 3000<br />\r\n+61 3 3000 1111</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance service</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCTas<br />\r\nTwitter @DOCTas</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Hobart, TAS'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d0ac03fb-177f-495d-9a87-c14f681e6e86
+                  bundle: civictheme_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1666916597
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Level 2, 56 Red Lane<br />\r\nDarwin NT 0800<br />\r\n+61 2 8930 1222</p>\r\n\r\n<h6>Services</h6>\r\n\r\n<p><a href=\"/about-this-template-website\">Free English Tuition Program (ETP)</a><br />\r\n<a href=\"/about-this-template-website\">Employment Experience Placement Program (EEPP)</a><br />\r\n<a href=\"/about-this-template-website\">Translation service</a><br />\r\n<a href=\"/about-this-template-website\">Health and aged care home support services</a><br />\r\n<a href=\"/about-this-template-website\">Employment assistance services</a></p>\r\n\r\n<h6>Social</h6>\r\n\r\n<p>Facebook /DOCDarwin<br />\r\nTwitter @DOCDarwin</p>\r\n\r\n<h6>Website feedback</h6>\r\n\r\n<p>Help us improve the content on our website or tell us what is working really well.</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" data-entity-substitution=\"canonical\" data-entity-type=\"node\" data-entity-uuid=\"56b371ee-ceb6-473b-93d2-2c5ff5edaa76\" href=\"/node/2\">Leave your feedback</a></p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Darwin, NT'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

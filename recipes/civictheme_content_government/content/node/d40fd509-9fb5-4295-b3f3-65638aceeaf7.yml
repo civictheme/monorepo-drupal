@@ -1,0 +1,151 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d40fd509-9fb5-4295-b3f3-65638aceeaf7
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b: media
+    abe71fa3-1197-4bc6-abde-6c0fa270c196: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Citizenship ceremony 2022'
+  created:
+    -
+      value: 1668752227
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/citizenship-ceremony-2022
+      langcode: en
+      pathauto: 1
+  field_c_n_body:
+    -
+      value: "<p>A citizenship ceremony is where you make the pledge of commitment, this is the final step in the journey to becoming an Australian. Find your nearest ceremony.</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a674f5fe-0870-436f-81c7-4792e97e617d
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668752242
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: '260 Elizabeth St, Melbourne VIC 3000'
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d176833.72908675516!2d144.87221213550825!3d-37.81438337032978!3m2!1i1024!2i768!4f13.1!4m8!3e2!4m0!4m5!1s0x6ad642b55d9aba51%3A0xc144f081ca9aa8f4!2sAustralia%20Post%20-%20Melbourne%20GPO%2C%20260%20Elizabeth%20St%2C%20Melbourne%20VIC%203000!3m2!1d-37.812477799999996!2d144.9626801!5e0!3m2!1sen!2sau!4v1668752755250!5m2!1sen!2sau'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://goo.gl/maps/xYbvbmnXPTmcbC1m7'
+              title: ''
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bc03ce4c-897d-47d2-a5b8-e1cf67efb962
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668752638
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: '1/1 Martin Pl, Sydney NSW 2000'
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d53005.76748161662!2d151.17222224718284!3d-33.867486679415535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sau!4v1668752660714!5m2!1sen!2sau'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://goo.gl/maps/VbrQn25roGHw9NcK7'
+              title: ''
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'A citizenship ceremony is when you pledge your commitment to Australia as the final step of becoming an Australian citizen. Find your nearest ceremony.'
+  field_c_n_thumbnail:
+    -
+      entity: fa15a8a9-f7c2-4e9c-a9d3-51cdb501d50b
+  field_c_n_topics:
+    -
+      entity: abe71fa3-1197-4bc6-abde-6c0fa270c196
+  field_c_n_vertical_spacing:
+    -
+      value: both

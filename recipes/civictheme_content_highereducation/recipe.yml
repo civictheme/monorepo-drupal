@@ -1,0 +1,5 @@
+name: 'CivicTheme Higher education Content'
+description: 'Install civictheme higher education profile content'
+type: 'Theme'
+install:
+  - civictheme_content

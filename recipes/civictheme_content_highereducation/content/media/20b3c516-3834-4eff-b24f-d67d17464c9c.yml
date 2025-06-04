@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 20b3c516-3834-4eff-b24f-d67d17464c9c
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    485cc58d-a829-4462-8cec-ef747507f158: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Baker-McKenzie.png
+  created:
+    -
+      value: 1666103861
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 485cc58d-a829-4462-8cec-ef747507f158
+      alt: 'Baker McKenzie'
+      title: ''
+      width: 320
+      height: 250

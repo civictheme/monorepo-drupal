@@ -1,0 +1,180 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: f3c7ec64-459f-4ea7-8060-f60b0d84901c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    ab71f96c-d1b4-4a7f-be7d-7b5fa5b26925: media
+    02986a1f-61c6-4e26-9e74-373d2bc0c634: media
+    9896b6d9-c590-48af-a0ce-fed22a0ec861: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Policy and forms'
+  created:
+    -
+      value: 1666875530
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /policy-and-forms
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8cae6844-3f8d-4d34-be9c-c0e5f1f75547
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666916113
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>The Department of Citizens holds policy and procedure documents in our National Online Database. Our policies document all responsibilities and services performed across all areas within the Department of Citizens.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 937dd7c2-002a-499f-b1da-96bac9b105d9
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666875581
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Policies and procedures</h2>\r\n\r\n<p>The Department of Citizens holds policy and procedure documents in our National Online Database. Our policies document all responsibilities and services performed across all areas within the Department of Citizens.</p>\r\n\r\n<p><strong>Our most commonly viewed policy and procedure documents:</strong></p>\r\n\r\n<ul>\r\n\t<li>Ministerial code of conduct</li>\r\n\t<li>Ministers’ handbook&nbsp;</li>\r\n\t<li>Employment and education policies</li>\r\n\t<li>Immigration and citizenship procedures</li>\r\n\t<li>Aged care policies</li>\r\n\t<li>Environmental emergency procedures</li>\r\n\t<li>Complaint handling policy</li>\r\n\t<li>Department of Citizens manual</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all policy and procedure documents</a></p>\r\n\r\n<h2>Online forms</h2>\r\n\r\n<p><strong>Search for an online application form.</strong></p>\r\n\r\n<p>We deliver programs and services for the public and businesses across the following sectors:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Immigration and citizenship</a>&nbsp;</li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Employment and education</a></li>\r\n\t<li><a href=\"/about-this-template-website\" title=\"About this template website\">Health and disability</a></li>\r\n\t<li><a data-entity-substitution=\"media\" data-entity-type=\"media\" data-entity-uuid=\"4603fcc8-7b0c-4698-aba9-2a43508b1038\" href=\"/media/26\" title=\"About this template website\">Aged care</a></li>\r\n\t<li>\r\n\t<p><a data-entity-substitution=\"media\" data-entity-type=\"media\" data-entity-uuid=\"50ea2910-e6f9-495e-9174-3b84e97426b7\" href=\"/media/28\" title=\"About this template website\">Grant application</a></p>\r\n\t</li>\r\n</ul>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">See all online application forms</a></p>\r\n\r\n<p>All Department of Citizen employee forms can be found at&nbsp;<a href=\"/about-this-template-website\" title=\"About this template website\">CitizenForms</a>.</p>\r\n\r\n<p>If you can’t locate the policy document or form that you’re looking for, please contact our Policy and Procedure Department on&nbsp;+61 2 6333 4434.</p>\r\n\r\n<p>You can access the translation service by calling 1300 000 000 for the cost of a local phone call.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 78b50f79-bb99-46ba-b25a-5d75b2ea551a
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1686797620
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: ab71f96c-d1b4-4a7f-be7d-7b5fa5b26925
+            -
+              entity: 02986a1f-61c6-4e26-9e74-373d2bc0c634
+            -
+              entity: 9896b6d9-c590-48af-a0ce-fed22a0ec861
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Example form'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: true
+  field_c_n_vertical_spacing:
+    -
+      value: both

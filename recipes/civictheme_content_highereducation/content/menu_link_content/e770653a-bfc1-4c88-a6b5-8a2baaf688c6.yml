@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: e770653a-bfc1-4c88-a6b5-8a2baaf688c6
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    91a6d91f-a42a-4e29-9c51-edcd7e058276: menu_link_content
+    35b75cc7-cf94-462f-9ee6-6bb69e895d8a: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Undergraduate courses'
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 35b75cc7-cf94-462f-9ee6-6bb69e895d8a
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:91a6d91f-a42a-4e29-9c51-edcd7e058276'
+  revision_translation_affected:
+    -
+      value: true

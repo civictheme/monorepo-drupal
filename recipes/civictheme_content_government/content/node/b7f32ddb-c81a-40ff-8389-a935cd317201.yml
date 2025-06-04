@@ -1,0 +1,136 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: b7f32ddb-c81a-40ff-8389-a935cd317201
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Consultations
+  created:
+    -
+      value: 1666869124
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /consultations
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d6cb0702-e96a-4a37-b5d8-762f83efe913
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666916206
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<p><span>Our open consultations allow citizens to share their views about any proposed changes to policies, legislation, programs and services. We welcome input from the public so we can understand how our proposals may affect our citizens and consider any practical and viable alternatives.</span></p>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d81c844e-448b-40e0-a3cd-9a554305c24a
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666875747
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Our open consultations allow citizens to share their views about any proposed changes to policies, legislation, programs and services. We welcome input from the public so we can understand how our proposals may affect our citizens and consider any practical and viable alternatives.</p>\r\n\r\n<h2><strong>Open consultations</strong></h2>\r\n\r\n<p><strong>Closes:</strong>&nbsp;21 November 2022<br />\r\n<strong>Opened:</strong>&nbsp;16 August 2022</p>\r\n\r\n<h3>Overview</h3>\r\n\r\n<p><strong>Review of the Citizen Immigration Program</strong></p>\r\n\r\n<p>The Department of Citizens is now inviting public feedback on the review and proposed changes to the Citizen Immigration Program.</p>\r\n\r\n<p>The Citizen Immigration Program is reviewed annually and achieves various financial and social outcomes to meet immigrant and community needs.</p>\r\n\r\n<p>We welcome feedback regarding immigration requirements and the proposed changes to the Citizen Immigration Program.&nbsp;</p>\r\n\r\n<h3>How to respond</h3>\r\n\r\n<p>You can share your views by reading the Consultation Draft showing the proposed changes to the Citizen Immigration Program and then completing our survey.</p>\r\n\r\n<p>The Consultation Draft contains four draft changes and detailed explanations of each draft point.</p>\r\n\r\n<p>We will carefully consider your feedback. This consultation process will help us ensure the final proposed changes reflect the view of our community.</p>\r\n\r\n<p><a href=\"/about-this-template-website\" title=\"About this template website\">See the consultation draft</a></p>\r\n\r\n<p><a href=\"/about-this-template-website\" title=\"About this template website\">See all closed consultations</a></p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-this-template-website\" title=\"About this template website\">Complete our survey</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

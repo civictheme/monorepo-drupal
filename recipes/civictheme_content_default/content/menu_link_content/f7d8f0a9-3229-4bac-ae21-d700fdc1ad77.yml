@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: f7d8f0a9-3229-4bac-ae21-d700fdc1ad77
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    0ebd1fd8-5205-4a30-8809-a3ddf517a8a4: menu_link_content
+    6d2fbfa0-5402-461e-9357-9eb7efb850f5: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For government'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 6d2fbfa0-5402-461e-9357-9eb7efb850f5
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 2
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:0ebd1fd8-5205-4a30-8809-a3ddf517a8a4'
+  revision_translation_affected:
+    -
+      value: true

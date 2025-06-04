@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 807435c6-a632-4c5c-bf66-2ffdc9ab609f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    43d131e1-0ed7-4df4-9666-2f97345b4e85: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Undergraduate courses icon.svg'
+  created:
+    -
+      value: 1666094731
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 43d131e1-0ed7-4df4-9666-2f97345b4e85
+      alt: 'Undergraduate courses icon'
+      title: ''
+      width: 0
+      height: 0

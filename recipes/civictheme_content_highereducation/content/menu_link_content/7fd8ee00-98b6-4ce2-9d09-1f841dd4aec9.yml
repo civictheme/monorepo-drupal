@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 7fd8ee00-98b6-4ce2-9d09-1f841dd4aec9
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    a29bbfc3-74a7-4f20-b2fb-afc695b5604d: menu_link_content
+    8f45163f-252f-46e3-b3d3-7930b1d9b6c7: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Research
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      target_uuid: 8f45163f-252f-46e3-b3d3-7930b1d9b6c7
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -49
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:a29bbfc3-74a7-4f20-b2fb-afc695b5604d'
+  revision_translation_affected:
+    -
+      value: true

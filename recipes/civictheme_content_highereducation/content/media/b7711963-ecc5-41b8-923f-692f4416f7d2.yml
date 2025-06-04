@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: b7711963-ecc5-41b8-923f-692f4416f7d2
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    26c337ee-6ff6-4a2f-bc5c-8a2716b64f3c: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of software engineering.svg'
+  created:
+    -
+      value: 1667536086
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 26c337ee-6ff6-4a2f-bc5c-8a2716b64f3c
+      alt: 'Icon Department of Software Systems'
+      title: ''
+      width: 0
+      height: 0

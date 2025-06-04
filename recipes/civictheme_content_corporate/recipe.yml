@@ -1,0 +1,5 @@
+name: 'CivicTheme Corporate Content'
+description: 'Install civictheme corporate profile content'
+type: 'Theme'
+install:
+  - civictheme_content

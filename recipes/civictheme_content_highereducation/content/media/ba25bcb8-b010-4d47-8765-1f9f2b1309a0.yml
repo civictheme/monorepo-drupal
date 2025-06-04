@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ba25bcb8-b010-4d47-8765-1f9f2b1309a0
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    d5d082de-a211-4e13-b818-6f2e7dbc32f0: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: aecom.png
+  created:
+    -
+      value: 1666103774
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: d5d082de-a211-4e13-b818-6f2e7dbc32f0
+      alt: Aecom
+      title: ''
+      width: 1000
+      height: 669

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 42ad3ee5-1d76-4dbb-87c9-cdea3252e774
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: icon4.svg
+  uri:
+    -
+      value: 'public://icons/icon4.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2318
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668986915
