@@ -18,7 +18,7 @@ The Drupal theme provides full integration and ships with the UI Kit.
 ## Installation
 
 > [!IMPORTANT]
-> For Drupal theme installation instructions, see https://docs.civictheme.io/installation/drupal-theme
+> For Drupal theme installation instructions, see [Installation instructions](https://docs.civictheme.io/installation/drupal-theme)
 
 Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
 already included as a set of compiled assets.
