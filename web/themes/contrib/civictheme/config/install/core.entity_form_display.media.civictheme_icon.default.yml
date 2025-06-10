@@ -5,7 +5,6 @@ dependencies:
     - field.field.media.civictheme_icon.field_c_m_icon
     - field.field.media.civictheme_icon.field_c_m_media_tags
     - media.type.civictheme_icon
-    - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
     - file

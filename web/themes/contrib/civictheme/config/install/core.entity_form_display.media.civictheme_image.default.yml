@@ -7,7 +7,6 @@ dependencies:
     - field.field.media.civictheme_image.field_c_m_media_tags
     - image.style.civictheme_medium
     - media.type.civictheme_image
-    - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
     - focal_point

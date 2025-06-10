@@ -6,7 +6,6 @@ dependencies:
     - field.field.block_content.civictheme_social_links.field_c_b_social_icons
     - field.field.block_content.civictheme_social_links.field_c_b_theme
     - field.field.block_content.civictheme_social_links.field_c_b_with_border
-    - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
     - paragraphs
