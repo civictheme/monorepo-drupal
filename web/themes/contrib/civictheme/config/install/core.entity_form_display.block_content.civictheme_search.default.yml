@@ -5,7 +5,6 @@ dependencies:
     - block_content.type.civictheme_search
     - field.field.block_content.civictheme_search.field_c_b_link
     - field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu
-    - workflows.workflow.civictheme_editorial
   module:
     - content_moderation
     - link
