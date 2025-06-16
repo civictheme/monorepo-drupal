@@ -10,6 +10,7 @@
       title: status_headings[type] ? status_headings[type] : type|capitalize,
       description: message,
       type: type == 'status' ? 'information' : type,
+      vertical_spacing: 'both',
     } only %}
   {% endfor %}
 {% endfor %}
