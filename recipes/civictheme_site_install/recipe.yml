@@ -30,6 +30,8 @@ config:
     media_library:
       - core.entity_form_mode.media.media_library
       - core.entity_view_mode.media.media_library
+      - image.style.media_library
+      - views.view.media_library
     civictheme: '*'
   actions:
     system.theme:
