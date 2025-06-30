@@ -330,4 +330,5 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
       ['<p>  a+b_c.d+e@e2xample2.digital.</p>', 'a+b_c.d+e@e2xample2.digital'],
     ];
   }
+
 }
