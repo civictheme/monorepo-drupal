@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
-use Drupal\filter\FilterPluginCollection;
 
 /**
  * Process HTML content to replace URLs with links.
