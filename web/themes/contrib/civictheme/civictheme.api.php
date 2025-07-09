@@ -47,7 +47,7 @@ use Drupal\views\ViewExecutable;
 function hook_civictheme_automated_list_view_info_alter(array &$info, array $settings): void {
   // Change the view name and block based on the conditions set in the
   // Automated list settings.
-  if ($settings['content_type'] == 'event') {
+  if ($settings['content_type'] == 'civictheme_event') {
     // Use a custom display name for 'Event' content type.
     $info['display_name'] = 'my_custom_block_1';
   }

@@ -4,7 +4,7 @@
  * CivicTheme implementation to display a Date range field.
  */
 #}
-{% include '@base/datetime/datetime.twig' with {
+{% include 'civictheme:datetime' with {
   start: date,
   start_iso: date_iso ?? null,
   end: date_end ?? null,

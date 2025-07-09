@@ -9,13 +9,13 @@
  */
 #}
 {% if in_sidebar %}
-  {% include '@organisms/side-navigation/side-navigation.twig' with {
+  {% include 'civictheme:side-navigation' with {
     theme: 'light',
     items,
     modifier_class: 'ct-primary-navigation ' ~ modifier_class|default(''),
   } only %}
 {% else %}
-  {% include '@organisms/navigation/navigation.twig' with {
+  {% include 'civictheme:navigation' with {
     theme,
     items,
     type: dropdown == 'none' ? 'inline' : dropdown,
@@ -23,6 +23,7 @@
     dropdown_columns_fill,
     is_animated,
     menu_id,
+    variant,
     modifier_class: 'ct-primary-navigation ' ~ modifier_class|default(''),
   } only %}
 {% endif %}
