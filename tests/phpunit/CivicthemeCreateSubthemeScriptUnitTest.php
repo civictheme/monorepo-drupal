@@ -147,11 +147,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString($packagejson['homepage'], $packagejson_actual['civictheme']['homepage']);
     $this->assertStringContainsString($packagejson['bugs'], $packagejson_actual['civictheme']['bugs']);
     $this->assertStringContainsString($packagejson['repository'], $packagejson_actual['civictheme']['repository']);
-
-    // Examples assertions.
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   public static function dataProviderTestLocation(): array {
@@ -245,11 +240,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
-
-    // Examples assertions.
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   /**

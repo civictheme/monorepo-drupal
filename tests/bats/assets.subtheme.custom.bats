@@ -77,11 +77,6 @@ load _helper
   assert_dir_exists ".components-civictheme"
   assert_dir_exists ".components-civictheme/01-atoms/button"
   assert_file_exists ".components-civictheme/01-atoms/button/button.twig"
-  assert_dir_not_exists ".components-civictheme/01-atoms/demo-button"
-  assert_file_exists ".components-civictheme/02-molecules/navigation-card/navigation-card.twig"
-  assert_file_not_contains ".components-civictheme/02-molecules/navigation-card/navigation-card.twig" "Demonstration of adding an extension of the existing molecule-level"
-  assert_file_exists ".components-civictheme/03-organisms/header/header.twig"
-  assert_file_not_contains ".components-civictheme/03-organisms/header/header.twig" "Example of extending of the base CivicTheme component."
 
   assert_dir_exists "components_combined"
   assert_dir_exists "components_combined/01-atoms/button"

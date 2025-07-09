@@ -240,14 +240,6 @@ function process_stub(string $dir, array $options): void {
     }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
   }
-
-  // Remove all the examples component before moving to the final path.
-  if ($options['remove_examples']) {
-    $example_components = example_component_paths();
-    foreach ($example_components as $example_dir) {
-      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
-    }
-  }
 }
 
 /**
@@ -554,20 +546,6 @@ function file_ignore_paths(): array {
  */
 function file_internal_paths(): array {
   return [];
-}
-
-/**
- * Example component paths.
- *
- * @return array<string>
- *   Array of example component paths.
- */
-function example_component_paths(): array {
-  return [
-    'components/01-atoms/demo-button',
-    'components/02-molecules/navigation-card',
-    'components/03-organisms/header',
-  ];
 }
 
 /**
