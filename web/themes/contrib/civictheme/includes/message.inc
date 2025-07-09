@@ -18,5 +18,5 @@ function civictheme_preprocess_paragraph__civictheme_message(array &$variables):
   _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 
   $variables['type'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_message_type');
-  $variables['has_aria'] = false;
+  $variables['has_aria'] = FALSE;
 }
