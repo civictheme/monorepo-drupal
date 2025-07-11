@@ -74,6 +74,8 @@ settings:
         - '<h6 id>'
         - '<drupal-media title>'
         - '<figure class data-component-id>'
+        - '<div class>'
+        - '<iframe width height src title allowfullscreen>'
     ckeditor5_style:
       styles:
         -
