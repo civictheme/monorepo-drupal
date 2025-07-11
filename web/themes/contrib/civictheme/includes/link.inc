@@ -22,7 +22,7 @@ function _civictheme_process_html_content_urls_to_links(string $html): string {
     return $html;
   }
 
-  // Use Drupal's text format processing system
+  // Use Drupal's text format processing system.
   $build = [
     '#type' => 'processed_text',
     '#text' => $html,
