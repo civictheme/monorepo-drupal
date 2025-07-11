@@ -8,7 +8,6 @@ dependencies:
     - image.style.civictheme_medium
     - media.type.civictheme_image
   module:
-    - content_moderation
     - focal_point
     - path
 id: media.civictheme_image.default

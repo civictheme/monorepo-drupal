@@ -6,7 +6,6 @@ dependencies:
     - field.field.block_content.civictheme_search.field_c_b_link
     - field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu
   module:
-    - content_moderation
     - link
 id: block_content.civictheme_search.default
 targetEntityType: block_content

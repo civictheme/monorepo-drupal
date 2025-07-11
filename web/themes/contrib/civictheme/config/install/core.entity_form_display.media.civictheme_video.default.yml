@@ -8,7 +8,6 @@ dependencies:
     - field.field.media.civictheme_video.field_c_m_video_file
     - media.type.civictheme_video
   module:
-    - content_moderation
     - file
     - link
     - path
