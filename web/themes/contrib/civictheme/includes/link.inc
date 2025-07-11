@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
-use Drupal\filter\FilterPluginCollection;
 
 /**
  * Process HTML content to replace URLs with links.
@@ -23,12 +22,14 @@ function _civictheme_process_html_content_urls_to_links(string $html): string {
     return $html;
   }
 
-  // Convert URLs to links using core filter_url.
-  $filter_manager = \Drupal::service('plugin.manager.filter');
-  $filter_collection = new FilterPluginCollection($filter_manager, []);
-  $filter = $filter_collection->get('filter_url');
+  // Use Drupal's text format processing system.
+  $build = [
+    '#type' => 'processed_text',
+    '#text' => $html,
+    '#format' => 'civictheme_rich_text',
+  ];
 
-  return _filter_url($html, $filter);
+  return (string) \Drupal::service('renderer')->render($build);
 }
 
 /**
