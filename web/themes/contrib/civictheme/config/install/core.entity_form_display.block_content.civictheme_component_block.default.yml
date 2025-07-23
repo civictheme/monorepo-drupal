@@ -4,9 +4,7 @@ dependencies:
   config:
     - block_content.type.civictheme_component_block
     - field.field.block_content.civictheme_component_block.field_c_b_components
-    - workflows.workflow.civictheme_editorial
   module:
-    - content_moderation
     - paragraphs
 id: block_content.civictheme_component_block.default
 targetEntityType: block_content

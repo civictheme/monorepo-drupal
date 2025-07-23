@@ -386,7 +386,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
       $variables['attributes']['aria-describedby'] = $element_id;
     }
   }
-  $variables['placeholder'] = $element['#placeholder'] ?? '';
+  $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
   $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
   $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
 }
@@ -447,6 +447,15 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
     'attributes' => $attributes,
     'modifier_class' => $modifier_class,
   ];
+
+  // Set control name for search elements if not already set.
+  if (
+    empty($variables['control'][0]['name']) &&
+    $element['#type'] === 'search' &&
+    !empty($element['#id'])
+  ) {
+    $variables['control'][0]['name'] = $element['#id'];
+  }
 
   if ($element['#type'] === 'checkbox') {
     $variables['control'][0]['is_checked'] = $element['#value'] ?? FALSE;

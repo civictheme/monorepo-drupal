@@ -33,7 +33,7 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
     if ($image->isValid()) {
       $variables['width'] = $image->getWidth();
       $variables['height'] = $image->getHeight();
-      $variables['url'] = $image_file->createFileUrl();
+      $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($image_file->getFileUri());
       $variables['alt'] = $media->get('field_c_m_image')->first()->get('alt')->getString();
       $variables['caption'] = $media->get('field_c_m_caption')->getString();
     }

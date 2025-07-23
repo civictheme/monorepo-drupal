@@ -21,6 +21,7 @@ if [ "${DRUPAL_PROFILE:-}" = "govcms" ]; then
 else
   echo "  > Enable Admin module."
   drush pm-enable civictheme_admin
+  drush pm-enable admin_toolbar admin_toolbar_search
 fi
 
 echo "  > Enable development module."

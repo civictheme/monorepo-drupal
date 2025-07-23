@@ -7,9 +7,7 @@ dependencies:
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
     - media.type.civictheme_remote_video
-    - workflows.workflow.civictheme_editorial
   module:
-    - content_moderation
     - link
     - media
     - path

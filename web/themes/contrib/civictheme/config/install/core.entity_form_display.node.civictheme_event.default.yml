@@ -15,9 +15,7 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_topics
     - field.field.node.civictheme_event.field_c_n_vertical_spacing
     - node.type.civictheme_event
-    - workflows.workflow.civictheme_editorial
   module:
-    - content_moderation
     - datetime
     - datetime_range
     - field_group
