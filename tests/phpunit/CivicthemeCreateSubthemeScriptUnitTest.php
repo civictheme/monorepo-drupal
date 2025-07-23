@@ -82,7 +82,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderTestLocation
    * @runInSeparateProcess
    */
-  public function testLocation(string $civictheme_dir, string $newtheme_rel_dir, string $expected_newtheme_dir, string $expected_rel_path): void {
+  public function testLocation(string $civictheme_dir, string $newtheme_rel_dir, string $expected_newtheme_dir): void {
     $newtheme_name = 'new_theme';
 
     $sut_dir = $this->prepareSut($civictheme_dir);
@@ -136,8 +136,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
-    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
-
     $composerjson_actual = json_decode((string) file_get_contents($expected_new_theme_dir_full . 'composer.json'), TRUE);
     $this->assertStringContainsString($composerjson['version'], $composerjson_actual['extra']['civictheme']['version']);
     $this->assertStringContainsString($composerjson['homepage'], $composerjson_actual['extra']['civictheme']['homepage']);
@@ -149,11 +147,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString($packagejson['homepage'], $packagejson_actual['civictheme']['homepage']);
     $this->assertStringContainsString($packagejson['bugs'], $packagejson_actual['civictheme']['bugs']);
     $this->assertStringContainsString($packagejson['repository'], $packagejson_actual['civictheme']['repository']);
-
-    // Examples assertions.
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
-    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   public static function dataProviderTestLocation(): array {
@@ -212,7 +205,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $newtheme_rel_dir = '';
     $newtheme_name = 'new_theme';
     $expected_newtheme_dir = 'web/themes/custom/new_theme';
-    $expected_rel_path = '../../contrib/civictheme/';
 
     $this->prepareSut($civictheme_dir);
     $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
@@ -248,13 +240,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
-
-    $this->assertStringContainsString($expected_rel_path, (string) file_get_contents($expected_new_theme_dir_full . 'build.js'));
-
-    // Examples assertions.
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
-    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   /**

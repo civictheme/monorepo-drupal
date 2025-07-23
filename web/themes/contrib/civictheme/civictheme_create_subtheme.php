@@ -205,12 +205,6 @@ function process_stub(string $dir, array $options): void {
   // phpcs:enable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:enable Drupal.WhiteSpace.Comma.TooManySpaces
 
-  // Resolve CivicTheme's location relative to the new theme.
-  $current_dir = __DIR__;
-  $relative_dir = file_get_relative_dir($options['path'], $current_dir);
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'build.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
-
   // Adjust per-file settings.
   //
   // Remove 'hidden: true' from the info.
@@ -245,14 +239,6 @@ function process_stub(string $dir, array $options): void {
       return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
     }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
-  }
-
-  // Remove all the examples component before moving to the final path.
-  if ($options['remove_examples']) {
-    $example_components = example_component_paths();
-    foreach ($example_components as $example_dir) {
-      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
-    }
   }
 }
 
@@ -563,20 +549,6 @@ function file_internal_paths(): array {
 }
 
 /**
- * Example component paths.
- *
- * @return array<string>
- *   Array of example component paths.
- */
-function example_component_paths(): array {
-  return [
-    'components/01-atoms/demo-button',
-    'components/02-molecules/navigation-card',
-    'components/03-organisms/header',
-  ];
-}
-
-/**
  * Check if the file is excluded from the processing.
  */
 function file_is_excluded_from_processing(string $filename): bool {
@@ -596,7 +568,7 @@ function file_is_excluded_from_processing(string $filename): bool {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }

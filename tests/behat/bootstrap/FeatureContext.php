@@ -45,6 +45,8 @@ use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
  */
 class FeatureContext extends DrupalContext {
 
+  use BlockTrait;
+  use BlockContentTrait;
   use ContentTrait;
   use DateTrait;
   use ElementTrait;

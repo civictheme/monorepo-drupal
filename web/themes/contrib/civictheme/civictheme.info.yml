@@ -2,7 +2,7 @@ name: CivicTheme
 type: theme
 base theme: false
 description: CivicTheme is a Drupal component-based theme.
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^10.2 || ^11
 
 libraries:
   - 'civictheme/global'
@@ -156,6 +156,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_iframe.default
     - core.entity_form_display.paragraph.civictheme_manual_list.default
     - core.entity_form_display.paragraph.civictheme_map.default
+    - core.entity_form_display.paragraph.civictheme_message.default
     - core.entity_form_display.paragraph.civictheme_navigation_card.default
     - core.entity_form_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_form_display.paragraph.civictheme_next_step.default
@@ -217,6 +218,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_iframe.default
     - core.entity_view_display.paragraph.civictheme_manual_list.default
     - core.entity_view_display.paragraph.civictheme_map.default
+    - core.entity_view_display.paragraph.civictheme_message.default
     - core.entity_view_display.paragraph.civictheme_navigation_card.default
     - core.entity_view_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_view_display.paragraph.civictheme_next_step.default
@@ -254,6 +256,7 @@ config_devel:
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
     - field.field.block_content.civictheme_search.field_c_b_link
+    - field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu
     - field.field.block_content.civictheme_social_links.field_c_b_social_icons
     - field.field.block_content.civictheme_social_links.field_c_b_theme
     - field.field.block_content.civictheme_social_links.field_c_b_with_border
@@ -393,6 +396,12 @@ config_devel:
     - field.field.paragraph.civictheme_map.field_c_p_theme
     - field.field.paragraph.civictheme_map.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_map.field_c_p_view_link
+    - field.field.paragraph.civictheme_message.field_c_p_background
+    - field.field.paragraph.civictheme_message.field_c_p_content
+    - field.field.paragraph.civictheme_message.field_c_p_message_type
+    - field.field.paragraph.civictheme_message.field_c_p_theme
+    - field.field.paragraph.civictheme_message.field_c_p_title
+    - field.field.paragraph.civictheme_message.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_navigation_card.field_c_p_image
     - field.field.paragraph.civictheme_navigation_card.field_c_p_link
     - field.field.paragraph.civictheme_navigation_card.field_c_p_show_image_as_icon
@@ -472,6 +481,7 @@ config_devel:
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_featured_image
     - field.storage.block_content.field_c_b_link
+    - field.storage.block_content.field_c_b_link_in_mobile_menu
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_top
@@ -550,6 +560,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_list_topics
     - field.storage.paragraph.field_c_p_list_type
     - field.storage.paragraph.field_c_p_location
+    - field.storage.paragraph.field_c_p_message_type
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference
     - field.storage.paragraph.field_c_p_show_image_as_icon
@@ -595,6 +606,7 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
+    - paragraphs.paragraphs_type.civictheme_message
     - paragraphs.paragraphs_type.civictheme_navigation_card
     - paragraphs.paragraphs_type.civictheme_navigation_card_ref
     - paragraphs.paragraphs_type.civictheme_next_step

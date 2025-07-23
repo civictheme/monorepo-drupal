@@ -32,8 +32,9 @@ load _helper
   # This is replicated by the CI build in this monorepo for testing purposes.
   assert_dir_exists "dist"
 
-  assert_file_exists "dist/styles.css"
-  assert_file_not_contains "dist/styles.css" "ck-editor__editable"
+  assert_file_exists "dist/styles.base.css"
+  assert_file_not_exists "dist/styles.css"
+  assert_file_not_contains "dist/styles.base.css" "ck-editor__editable"
 
   assert_file_exists "dist/styles.variables.css"
   assert_file_contains "dist/styles.variables.css" "--ct"
@@ -41,7 +42,8 @@ load _helper
   assert_file_exists "dist/styles.editor.css"
   assert_file_contains "dist/styles.editor.css" "ck-editor__editable"
 
-  assert_file_exists "dist/scripts.js"
+  assert_file_exists "dist/scripts.base.js"
+  assert_file_exists "dist/scripts.drupal.base.js"
   assert_file_not_exists "dist/styles-variables.js"
   assert_file_not_exists "dist/styles-editor.js"
 
@@ -75,11 +77,6 @@ load _helper
   assert_dir_exists ".components-civictheme"
   assert_dir_exists ".components-civictheme/01-atoms/button"
   assert_file_exists ".components-civictheme/01-atoms/button/button.twig"
-  assert_dir_not_exists ".components-civictheme/01-atoms/demo-button"
-  assert_file_exists ".components-civictheme/02-molecules/navigation-card/navigation-card.twig"
-  assert_file_not_contains ".components-civictheme/02-molecules/navigation-card/navigation-card.twig" "Demonstration of adding an extension of the existing molecule-level"
-  assert_file_exists ".components-civictheme/03-organisms/header/header.twig"
-  assert_file_not_contains ".components-civictheme/03-organisms/header/header.twig" "Example of extending of the base CivicTheme component."
 
   assert_dir_exists "components_combined"
   assert_dir_exists "components_combined/01-atoms/button"

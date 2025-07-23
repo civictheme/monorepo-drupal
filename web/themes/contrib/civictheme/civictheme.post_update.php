@@ -14,6 +14,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
+use Drupal\layout_builder\Section;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\ParagraphInterface;
 
@@ -636,7 +637,7 @@ function civictheme_post_update_move_blocks_to_sidebar_top_left(): string {
   $theme = \Drupal::service('theme.manager')->getActiveTheme();
 
   if (!in_array('civictheme', $theme->getBaseThemeExtensions()) && $theme->getName() !== 'civictheme') {
-    return (string)(new TranslatableMarkup('The active theme is not CivicTheme or based on CivicTheme. No blocks were moved.'));
+    return (string) (new TranslatableMarkup('The active theme is not CivicTheme or based on CivicTheme. No blocks were moved.'));
   }
 
   // Stop the update if the theme does not have a region that needs to be added
@@ -740,7 +741,7 @@ function civictheme_post_update_enable_three_column_layout(): string {
             }
           }
 
-          $layout_builder_sections[$index] = \Drupal\layout_builder\Section::fromArray($section_as_array);
+          $layout_builder_sections[$index] = Section::fromArray($section_as_array);
 
           $updated_entity_displays[$entity_display->id()] = $entity_display->id();
         }
@@ -806,7 +807,60 @@ function civictheme_post_update_update_view_mode_civictheme_navigation_card_ref_
   if ($config_read) {
     $config_object = \Drupal::configFactory()->getEditable('core.entity_view_display.paragraph.civictheme_navigation_card_ref.default');
     $config_object->set('content.field_c_p_reference.settings.view_mode', 'civictheme_navigation_card');
-    $config_object->save();return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated view mode from "civictheme_snippet" to "civictheme_navigation_card".');
   }
   return (string) new TranslatableMarkup('No update needed for view mode.');
+}
+
+/**
+ * Add field_c_b_link_in_mobile_menu field config and update form view.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_search_link_field_to_search_component(): string {
+  $block_field_configs = [
+    'field.storage.block_content.field_c_b_link_in_mobile_menu' => 'field_storage_config',
+    'field.field.block_content.civictheme_search.field_c_b_link_in_mobile_menu' => 'field_config',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($block_field_configs, $config_path);
+
+  $new_form_config = [
+    'field_c_b_link_in_mobile_menu' => [
+      'type' => 'boolean_checkbox',
+      'weight' => 2,
+      'region' => 'content',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+    ],
+  ];
+
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->updateFormDisplayConfig('block_content', 'civictheme_search', $new_form_config);
+
+  return (string) new TranslatableMarkup('Added field_c_b_link_in_mobile_menu field config and updated form view.');
+}
+
+/**
+ * Update editor config for D11 requirement (remove duplicate settings).
+ */
+function civictheme_post_update_update_editor_allowed_field(): string {
+  $config_name = 'editor.editor.civictheme_rich_text';
+  $config_object = \Drupal::configFactory()->getEditable($config_name);
+
+  // Fetch the existing allowed tags.
+  $allowed_tags = $config_object->get('settings.plugins.ckeditor5_sourceEditing.allowed_tags');
+  if (is_array($allowed_tags)) {
+    $allowed_tags = array_filter($allowed_tags, function ($tag) {
+      return $tag !== '<a hreflang target title class="ct-content-link ct-content-link--external ct-button--button ct-theme-dark">';
+    });
+    $config_object->set('settings.plugins.ckeditor5_sourceEditing.allowed_tags', $allowed_tags);
+
+    // Update the configuration with the modified allowed tags.
+    $config_object->save();
+    return (string) new TranslatableMarkup('Updated editor allowed field.');
+  }
+  return (string) new TranslatableMarkup('Allowed tags setting not set, aborting update.');
 }

@@ -2,8 +2,9 @@ name: CivicTheme Starter Kit
 type: theme
 base theme: civictheme
 description: 'CivicTheme Starter Kit description.'
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 hidden: true
+enforce_prop_schemas: true
 
 regions:
   header_top_1: 'Header top 1'
@@ -42,9 +43,11 @@ libraries-override:
   civictheme/global:
     css:
       theme:
-        dist/civictheme.css: dist/styles.css
+        dist/civictheme.base.css: dist/styles.base.css
+        dist/civictheme.theme.css: dist/styles.theme.css
+        dist/civictheme.variables.css: dist/styles.variables.css
     js:
-      dist/civictheme.js: dist/scripts.js
+      dist/civictheme.drupal.base.js: dist/scripts.drupal.base.js
 
   civictheme/css-variables:
     css:

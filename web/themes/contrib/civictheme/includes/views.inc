@@ -235,7 +235,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   foreach ($fields as $field) {
     $filter = [
       'content' => civictheme_render($field),
-      'title' => $field['#title'],
+      'title' => $field['#title'] ?? NULL,
     ];
 
     $filters[] = $filter;

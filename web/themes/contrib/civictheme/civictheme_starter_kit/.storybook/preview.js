@@ -1,6 +1,7 @@
-import '../dist/styles.storybook.css'; // eslint-disable-line import/no-unresolved
-import '../dist/styles.stories.css'; // eslint-disable-line import/no-unresolved
-import '../dist/scripts.storybook'; // eslint-disable-line import/no-unresolved, import/extensions
+import '../dist/styles.stories.css?module'; // eslint-disable-line import/no-unresolved
+import '../dist/styles.base.css'; // eslint-disable-line import/no-unresolved
+import '../dist/styles.variables.css'; // eslint-disable-line import/no-unresolved
+import '../dist/scripts.base'; // eslint-disable-line import/no-unresolved
 
 export default {
   parameters: {

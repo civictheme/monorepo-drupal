@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if single_filter %}
-  {% include '@molecules/single-filter/single-filter.twig' with {
+  {% include 'civictheme:single-filter' with {
     theme: theme,
     title: filter_title,
     items: filter_items,
@@ -22,7 +22,7 @@
     form_suffix: form_suffix,
   } only %}
 {% elseif group_filter %}
-  {% include '@molecules/group-filter/group-filter.twig' with {
+  {% include 'civictheme:group-filter' with {
     theme: theme,
     title: filter_title,
     items: filter_items,

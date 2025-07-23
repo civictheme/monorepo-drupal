@@ -1,18 +1,18 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import twig from 'vite-plugin-twig-drupal';
+import sdcPlugin from './.storybook/sdc-plugin.js';
+
+const componentDir = resolve(import.meta.dirname, './components');
 
 export default defineConfig(({ mode }) => ({
   plugins: [
     twig({
       namespaces: {
-        'base': resolve(import.meta.dirname, './components/00-base'),
-        'atoms': resolve(import.meta.dirname, './components/01-atoms'),
-        'molecules': resolve(import.meta.dirname, './components/02-molecules'),
-        'organisms': resolve(import.meta.dirname, './components/03-organisms'),
-        'templates': resolve(import.meta.dirname, './components/04-templates'),
+        civictheme: componentDir,
       },
     }),
+    sdcPlugin({ path: componentDir }),
     // This plugin allow watching files in the ./dist folder.
     {
       name: 'watch-dist',
