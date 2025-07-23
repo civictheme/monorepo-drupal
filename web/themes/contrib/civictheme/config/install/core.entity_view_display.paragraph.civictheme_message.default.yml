@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_message.field_c_p_background
+    - field.field.paragraph.civictheme_message.field_c_p_content
+    - field.field.paragraph.civictheme_message.field_c_p_message_type
+    - field.field.paragraph.civictheme_message.field_c_p_theme
+    - field.field.paragraph.civictheme_message.field_c_p_title
+    - field.field.paragraph.civictheme_message.field_c_p_vertical_spacing
+    - paragraphs.paragraphs_type.civictheme_message
+  module:
+    - options
+    - text
+id: paragraph.civictheme_message.default
+targetEntityType: paragraph
+bundle: civictheme_message
+mode: default
+content:
+  field_c_p_background:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_c_p_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_message_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }
