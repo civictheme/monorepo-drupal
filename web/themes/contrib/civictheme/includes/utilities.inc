@@ -179,7 +179,8 @@ function civictheme_media_image_get_variables(MediaInterface $media, ?string $im
     $image_style = NULL;
   }
 
-  $variables['url'] = civictheme_media_image_get_url($media, $image_style);
+  $url = civictheme_media_image_get_url($media, $image_style);
+  $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($url);
 
   $image = $media
     ->get($media->getSource()->getConfiguration()['source_field'])
