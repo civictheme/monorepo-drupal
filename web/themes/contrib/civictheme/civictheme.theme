@@ -34,6 +34,7 @@ require_once __DIR__ . '/includes/libraries.inc';
 require_once __DIR__ . '/includes/map.inc';
 require_once __DIR__ . '/includes/media.inc';
 require_once __DIR__ . '/includes/menu.inc';
+require_once __DIR__ . '/includes/message.inc';
 require_once __DIR__ . '/includes/mobile_navigation.inc';
 require_once __DIR__ . '/includes/next_step.inc';
 require_once __DIR__ . '/includes/node.inc';

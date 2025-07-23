@@ -8,9 +8,7 @@ dependencies:
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_top
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
-    - workflows.workflow.civictheme_editorial
   module:
-    - content_moderation
     - field_group
 third_party_settings:
   field_group:
