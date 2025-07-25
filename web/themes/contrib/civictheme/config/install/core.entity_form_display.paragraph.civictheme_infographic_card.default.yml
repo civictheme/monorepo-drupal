@@ -10,20 +10,18 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_infographic_card
   module:
     - link
+    - media_library
 id: paragraph.civictheme_infographic_card.default
 targetEntityType: paragraph
 bundle: civictheme_infographic_card
 mode: default
 content:
   field_c_p_icon:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 2
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_c_p_link:
     type: link_default
