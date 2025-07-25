@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+id: crop.token
+label: Token
+description: null
+targetEntityType: crop
+cache: true
