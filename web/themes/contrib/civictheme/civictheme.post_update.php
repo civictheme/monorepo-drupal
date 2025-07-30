@@ -867,8 +867,10 @@ function civictheme_post_update_update_editor_allowed_field(): string {
 
 /**
  * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_add_fast_fact_card_paragraph(array &$sandbox): string {
+function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
   $new_configs = [
     // Paragraph type definition.
     'paragraphs.paragraphs_type.civictheme_fast_fact_card' => 'paragraphs_type',
@@ -886,8 +888,7 @@ function civictheme_post_update_add_fast_fact_card_paragraph(array &$sandbox): s
 
   // Enable civictheme_fast_fact_card for civictheme_manual_list.
   $field_config_name = 'field.field.paragraph.civictheme_manual_list.field_c_p_list_items';
-  $config_factory = \Drupal::configFactory();
-  $field_config = $config_factory->getEditable($field_config_name);
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
 
   if (!$field_config->isNew()) {
     $handler_settings = $field_config->get('settings.handler_settings') ?: [];
