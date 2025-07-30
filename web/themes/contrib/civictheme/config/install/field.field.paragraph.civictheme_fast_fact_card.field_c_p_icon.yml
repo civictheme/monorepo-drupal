@@ -4,11 +4,11 @@ dependencies:
   config:
     - field.storage.paragraph.field_c_p_icon
     - media.type.civictheme_icon
-    - paragraphs.paragraphs_type.civictheme_infographic_card
-id: paragraph.civictheme_infographic_card.field_c_p_icon
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
+id: paragraph.civictheme_fast_fact_card.field_c_p_icon
 field_name: field_c_p_icon
 entity_type: paragraph
-bundle: civictheme_infographic_card
+bundle: civictheme_fast_fact_card
 label: Icon
 description: ''
 required: true

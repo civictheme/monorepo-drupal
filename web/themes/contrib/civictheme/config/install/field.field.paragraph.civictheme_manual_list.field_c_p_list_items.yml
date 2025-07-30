@@ -5,7 +5,7 @@ dependencies:
     - field.storage.paragraph.field_c_p_list_items
     - paragraphs.paragraphs_type.civictheme_event_card
     - paragraphs.paragraphs_type.civictheme_event_card_ref
-    - paragraphs.paragraphs_type.civictheme_infographic_card
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_navigation_card
     - paragraphs.paragraphs_type.civictheme_navigation_card_ref
@@ -35,7 +35,7 @@ settings:
     target_bundles:
       civictheme_event_card: civictheme_event_card
       civictheme_event_card_ref: civictheme_event_card_ref
-      civictheme_infographic_card: civictheme_infographic_card
+      civictheme_fast_fact_card: civictheme_fast_fact_card
       civictheme_navigation_card: civictheme_navigation_card
       civictheme_navigation_card_ref: civictheme_navigation_card_ref
       civictheme_promo_card: civictheme_promo_card
@@ -78,7 +78,7 @@ settings:
       civictheme_iframe:
         weight: -53
         enabled: false
-      civictheme_infographic_card:
+      civictheme_fast_fact_card:
         weight: -54
         enabled: true
       civictheme_manual_list:

@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_theme
-    - paragraphs.paragraphs_type.civictheme_infographic_card
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
   module:
     - options
-id: paragraph.civictheme_infographic_card.field_c_p_theme
+id: paragraph.civictheme_fast_fact_card.field_c_p_theme
 field_name: field_c_p_theme
 entity_type: paragraph
-bundle: civictheme_infographic_card
+bundle: civictheme_fast_fact_card
 label: Theme
 description: ''
 required: true

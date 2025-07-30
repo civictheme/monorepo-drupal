@@ -205,7 +205,7 @@ function civictheme_preprocess_paragraph__civictheme_service_card(array &$variab
 /**
  * Implements template_preprocess_paragraph().
  */
-function civictheme_preprocess_paragraph__civictheme_infographic_card(array &$variables): void {
+function civictheme_preprocess_paragraph__civictheme_fast_fact_card(array &$variables): void {
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
   _civictheme_preprocess_paragraph__paragraph_field__title($variables);
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);

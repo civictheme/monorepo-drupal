@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_card @civictheme_infographic_card
+@p1 @civictheme @civictheme_card @civictheme_fast_fact_card
 Feature: Fast fact card fields
 
   @api

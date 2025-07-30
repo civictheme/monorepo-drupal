@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: civictheme_infographic_card
+id: civictheme_fast_fact_card
 label: 'Fast fact card'
 icon_uuid: null
 icon_default: null

@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_infographic_card.field_c_p_icon
-    - field.field.paragraph.civictheme_infographic_card.field_c_p_link
-    - field.field.paragraph.civictheme_infographic_card.field_c_p_summary
-    - field.field.paragraph.civictheme_infographic_card.field_c_p_theme
-    - field.field.paragraph.civictheme_infographic_card.field_c_p_title
-    - paragraphs.paragraphs_type.civictheme_infographic_card
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_link
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
   module:
     - link
     - options
-id: paragraph.civictheme_infographic_card.default
+id: paragraph.civictheme_fast_fact_card.default
 targetEntityType: paragraph
-bundle: civictheme_infographic_card
+bundle: civictheme_fast_fact_card
 mode: default
 content:
   field_c_p_icon:
