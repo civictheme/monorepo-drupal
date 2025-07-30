@@ -868,7 +868,7 @@ function civictheme_post_update_update_editor_allowed_field(): string {
 /**
  * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
  */
-function civictheme_post_update_add_fast_fact_card_paragraph(array &$sandbox): ?string {
+function civictheme_post_update_add_fast_fact_card_paragraph(array &$sandbox): string {
   $new_configs = [
     // Paragraph type definition.
     'paragraphs.paragraphs_type.civictheme_fast_fact_card' => 'paragraphs_type',
