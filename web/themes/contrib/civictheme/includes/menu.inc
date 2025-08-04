@@ -48,6 +48,7 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
   $menu_theme_list = [
     'civictheme_primary_navigation',
     'civictheme_secondary_navigation',
+    'civictheme_sidebar_navigation',
     'civictheme_footer',
   ];
 
