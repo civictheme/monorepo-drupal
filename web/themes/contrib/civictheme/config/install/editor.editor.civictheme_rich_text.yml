@@ -76,6 +76,8 @@ settings:
         - '<figure class data-component-id>'
         - '<div class>'
         - '<iframe width height src title allowfullscreen>'
+        - '<video controls class width height>'
+        - '<source src type>'
     ckeditor5_style:
       styles:
         -
