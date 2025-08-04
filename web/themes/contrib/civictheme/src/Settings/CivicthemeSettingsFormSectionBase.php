@@ -163,7 +163,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
         return;
       }
 
-      if (!file_exists($path)) {
+      if (!file_exists($path) && !file_exists(urldecode($path))) {
         $form_state->setErrorByName(implode('][', $path_field_name_key), (string) $this->t('The file at provided path does not exist.'));
 
         return;
