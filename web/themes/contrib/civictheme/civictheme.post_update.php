@@ -885,3 +885,77 @@ function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
   }
   return 'No update needed for civictheme_side_navigation block.';
 }
+
+/**
+ * Add civictheme_message paragraph type and enable it for civictheme page.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_civictheme_message_paragraph(): string {
+  $new_configs = [
+    // Paragraph type definition.
+    'paragraphs.paragraphs_type.civictheme_message' => 'paragraphs_type',
+    'field.storage.paragraph.field_c_p_message_type' => 'field_storage_config',
+    'field.field.paragraph.civictheme_message.field_c_p_background' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_message_type' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_title' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_vertical_spacing' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_message.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_message.default' => 'entity_view_display',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($new_configs, $config_path);
+
+  // Enable civictheme_message for civictheme_page.
+  $field_config_name = 'field.field.node.civictheme_page.field_c_n_components';
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+  if (!$field_config->isNew()) {
+    $handler_settings = $field_config->get('settings.handler_settings') ?: [];
+    // Ensure target_bundles exists.
+    if (!isset($handler_settings['target_bundles'])) {
+      $handler_settings['target_bundles'] = [];
+    }
+    $handler_settings['target_bundles']['civictheme_message'] = 'civictheme_message';
+
+    // Ensure target_bundles_drag_drop exists.
+    if (!isset($handler_settings['target_bundles_drag_drop'])) {
+      $handler_settings['target_bundles_drag_drop'] = [];
+    }
+    $handler_settings['target_bundles_drag_drop']['civictheme_message'] = [
+      'weight' => -52,
+      'enabled' => TRUE,
+    ];
+
+    $field_config->set('settings.handler_settings', $handler_settings);
+    $field_config->save();
+  }
+
+  return (string) new TranslatableMarkup('Added civictheme_message paragraph type and enabled it for civictheme page.');
+}
+
+/**
+ * Update the field description for field_c_p_background.
+ */
+function civictheme_post_update_update_field_c_p_background_description(): string {
+  $field_configs = [
+    'field.field.paragraph.civictheme_accordion.field_c_p_background',
+    'field.field.paragraph.civictheme_content.field_c_p_background',
+    'field.field.paragraph.civictheme_map.field_c_p_background',
+    'field.field.paragraph.civictheme_promo.field_c_p_background',
+    'field.field.paragraph.civictheme_webform.field_c_p_background',
+  ];
+  foreach ($field_configs as $field_config_name) {
+    $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+    if (!$field_config->isNew()) {
+      $field_config->set('description', 'Apply a themed background colour and provide horizontal spacing to the component');
+      $field_config->save();
+    }
+  }
+
+  return (string) new TranslatableMarkup('Updated field description for field_c_p_background.');
+}
