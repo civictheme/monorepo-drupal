@@ -866,6 +866,27 @@ function civictheme_post_update_update_editor_allowed_field(): string {
 }
 
 /**
+ * Update civictheme_side_navigation to use civictheme_sidebar_navigation.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('block.block.civictheme_side_navigation');
+  if ($editable->isNew()) {
+    return 'Sidebar navigation block config does not exist.';
+  }
+  $settings = $editable->get('settings') ?? [];
+  if (empty($settings['suggestion']) || $settings['suggestion'] !== 'civictheme_sidebar_navigation') {
+    $settings['suggestion'] = 'civictheme_sidebar_navigation';
+    $editable->set('settings', $settings);
+    $editable->save();
+    return 'Updated civictheme_side_navigation block to use civictheme_sidebar_navigation suggestion.';
+  }
+  return 'No update needed for civictheme_side_navigation block.';
+}
+
+/**
  * Add civictheme_message paragraph type and enable it for civictheme page.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
