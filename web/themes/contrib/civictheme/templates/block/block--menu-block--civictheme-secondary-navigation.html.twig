@@ -4,22 +4,14 @@
  * CivicTheme implementation to display a Secondary Navigation menu block.
  */
 #}
-{% if in_sidebar %}
-  {% include 'civictheme:side-navigation' with {
-    theme,
-    items,
-    modifier_class: 'ct-secondary-navigation ' ~ modifier_class|default(''),
-  } only %}
-{% else %}
-  {% include 'civictheme:navigation' with {
-    theme,
-    items,
-    type: dropdown == 'none' ? 'inline' : dropdown,
-    dropdown_columns,
-    dropdown_columns_fill,
-    is_animated,
-    menu_id,
-    variant,
-    modifier_class: 'ct-secondary-navigation ' ~ modifier_class|default(''),
-  } only %}
-{% endif %}
+{% include 'civictheme:navigation' with {
+  theme,
+  items,
+  type: dropdown == 'none' ? 'inline' : dropdown,
+  dropdown_columns,
+  dropdown_columns_fill,
+  is_animated,
+  menu_id,
+  variant,
+  modifier_class: 'ct-secondary-navigation ' ~ modifier_class|default(''),
+} only %}

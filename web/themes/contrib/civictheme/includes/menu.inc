@@ -11,25 +11,6 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Url;
 
 /**
- * Preprocess for footer menu block.
- */
-function _civictheme_preprocess_block__civictheme_footer_menu(array &$variables): void {
-  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
-    return;
-  }
-
-  $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
-  if ($menu_name === 'civictheme_footer') {
-    // Set menu theme as per footer theme.
-    $variables['theme'] = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
-    $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
-
-    _civictheme_preprocess_menu_items($variables['items']);
-  }
-}
-
-/**
  * Add required element for external link.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
@@ -54,6 +35,8 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
 
 /**
  * Preprocess for primary navigation menu block.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__navigation(array &$variables): void {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
@@ -61,6 +44,17 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
   }
 
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
+
+  $menu_theme_list = [
+    'civictheme_primary_navigation',
+    'civictheme_secondary_navigation',
+    'civictheme_sidebar_navigation',
+    'civictheme_footer',
+  ];
+
+  if (!empty($variables['elements']['#configuration']['suggestion']) && in_array($variables['elements']['#configuration']['suggestion'], $menu_theme_list)) {
+    $menu_name = $variables['elements']['#configuration']['suggestion'];
+  }
 
   if ($menu_name === 'civictheme_primary_navigation' || $menu_name === 'civictheme_secondary_navigation') {
     $key = substr($menu_name, strlen('civictheme_'));
@@ -76,5 +70,14 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
     $variables['variant'] = $menu_name === 'civictheme_primary_navigation' ? 'primary' : 'secondary';
     $expand_all_items = $variables['elements']['#configuration']['expand_all_items'] ?? FALSE;
     _civictheme_preprocess_menu_items($variables['items'], $expand_all_items);
+  }
+
+  if ($menu_name === 'civictheme_footer') {
+    // Set menu theme as per footer theme.
+    $variables['theme'] = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
+    $variables['items'] = $variables['content']['#items'] ?? [];
+    $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
+
+    _civictheme_preprocess_menu_items($variables['items']);
   }
 }
