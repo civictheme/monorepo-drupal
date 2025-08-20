@@ -703,6 +703,7 @@ function _civictheme_provision__blocks__menu_blocks(): void {
         'pages' => '/search',
       ],
     ],
+    'suggestion' => 'civictheme_sidebar_navigation',
   ]);
   civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
     'plugin' => 'menu_block:civictheme-footer',

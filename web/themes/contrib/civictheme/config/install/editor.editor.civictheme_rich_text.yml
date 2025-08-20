@@ -76,6 +76,10 @@ settings:
         - '<figure class data-component-id>'
         - '<div class>'
         - '<iframe width height src title allowfullscreen>'
+        - '<video controls class width height>'
+        - '<source src type>'
+        - '<a hreflang target title data-dialog-type data-dialog-options class="ct-content-link ct-content-link--external use-ajax ct-button--button ct-button--prompt ct-button--link ct-promo__button ct-theme-dark">'
+        - '<table class="ct-theme-dark">'
     ckeditor5_style:
       styles:
         -
