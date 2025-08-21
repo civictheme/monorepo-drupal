@@ -13,7 +13,7 @@ $ruleset->addRule(new TwigCsFixer\Rules\Punctuation\TrailingCommaMultiLineRule()
 $ruleset->addRule(new TwigCsFixer\Rules\Punctuation\TrailingCommaSingleLineRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Literal\HashQuoteRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Literal\SingleQuoteRule());
-$ruleset->addRule(new TwigCsFixer\Rules\Variable\VariableNameRule());
+$ruleset->addRule(new TwigCsFixer\Rules\Variable\VariableNameRule(TwigCsFixer\Rules\Variable\VariableNameRule::SNAKE_CASE, '_'));
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\BlankEOFRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\EmptyLinesRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\IndentRule(2));
