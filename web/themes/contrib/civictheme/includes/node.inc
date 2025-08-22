@@ -14,9 +14,8 @@ use Drupal\node\NodeInterface;
  * Generic pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_node(array &$variables): void {
-  $node = $variables['node'];
-
-  if (!$node) {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
     return;
   }
 
@@ -31,8 +30,7 @@ function _civictheme_preprocess_node(array &$variables): void {
  */
 function _civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
   $node = $variables['node'] ?? NULL;
-
-  if (!$node instanceof \Drupal\node\NodeInterface) {
+  if (!$node instanceof NodeInterface) {
     return;
   }
 
@@ -71,8 +69,11 @@ function _civictheme_preprocess_node__civictheme_page__full(array &$variables): 
  * Pre-process Full view mode of nodes.
  */
 function _civictheme_preprocess_node__full(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $type = $node->getType();
   $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
   if (function_exists($type_callback)) {
@@ -84,8 +85,11 @@ function _civictheme_preprocess_node__full(array &$variables): void {
  * Default view mode fallback preprocessor for nodes.
  */
 function _civictheme_preprocess_node__default(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $type = $node->getType();
   $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
   if (function_exists($type_callback)) {
@@ -97,7 +101,11 @@ function _civictheme_preprocess_node__default(array &$variables): void {
  * Pre-process CivicTheme Alert nodes.
  */
 function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
   $variables['description'] = _civictheme_process__html_content((string) civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
