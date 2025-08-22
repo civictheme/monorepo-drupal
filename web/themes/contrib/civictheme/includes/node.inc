@@ -30,9 +30,9 @@ function _civictheme_preprocess_node(array &$variables): void {
  * Pre-process CivicTheme page nodes.
  */
 function _civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
 
-  if (!$node) {
+  if (!$node instanceof \Drupal\node\NodeInterface) {
     return;
   }
 
