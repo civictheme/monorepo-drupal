@@ -30,7 +30,7 @@
     "storybook-dev": "storybook dev -p 6006"
   },
   "devDependencies": {
-    "@alexskrypnyk/scss-variables-extractor": "^0.1.1",
+    "@civictheme/scss-variables-extractor": "^0.2.1",
     "@storybook/addon-essentials": "8.6.7",
     "@storybook/addon-links": "8.6.7",
     "@storybook/html-vite": "8.6.7",

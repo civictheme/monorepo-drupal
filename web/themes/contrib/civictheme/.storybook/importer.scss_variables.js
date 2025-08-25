@@ -3,7 +3,7 @@
 // Extract CSS variables as object from SCSS file.
 //
 import fs from 'fs';
-import extractor from '@alexskrypnyk/scss-variables-extractor';
+import extractor from '@civictheme/scss-variables-extractor';
 
 const files = [
   './components/00-base/_variables.base.scss',

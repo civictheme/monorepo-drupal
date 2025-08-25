@@ -171,6 +171,7 @@ commands:
     usage: Lint front-end code (NodeJS dependencies should already be installed).
     cmd: |
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
+      ahoy cli "vendor/bin/twig-cs-fixer lint"
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
   lint-check:
     cmd: |

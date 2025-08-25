@@ -36,7 +36,7 @@ Feature: Navigation reference card render
     And I should see 1 ".ct-snippet.ct-theme-dark" elements
     And I should see 2 ".ct-snippet__title" elements
     And I should see 2 ".ct-snippet__summary" elements
-    And I should see 2 ".ct-snippet__title__link" elements
+    And I should see 2 ".ct-snippet__title-link" elements
     And I should see 2 ".ct-snippet__tags" elements
     And I should see the text "[TEST] Referenced Page 1"
     And I should see the text "Summary 1"

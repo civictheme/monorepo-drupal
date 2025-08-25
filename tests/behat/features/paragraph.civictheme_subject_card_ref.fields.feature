@@ -39,6 +39,6 @@ Feature: subject reference card render
     And I should see 2 ".ct-subject-card__content" elements
     And I should see 2 ".ct-subject-card__image" elements
     And I should see 2 ".ct-subject-card__title" elements
-    And I should see 2 ".ct-subject-card__title__link" elements
+    And I should see 2 ".ct-subject-card__title-link" elements
     And I should see the text "[TEST] Referenced Page 1"
     And I should see the text "[TEST] Referenced Page 2"

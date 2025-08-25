@@ -27,7 +27,7 @@ settings:
   depth: 3
   expand_all_items: false
   parent: 'civictheme-primary-navigation:'
-  suggestion: civictheme_primary_navigation
+  suggestion: civictheme_sidebar_navigation
 visibility:
   request_path:
     id: request_path

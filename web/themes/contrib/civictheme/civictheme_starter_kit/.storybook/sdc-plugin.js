@@ -18,10 +18,12 @@ import { globSync } from 'glob';
  *
  * @param {string} storiesPath - Path to the story file to scan
  * @param {string} componentDirectory - Root directory containing all components
+ * @param {string[]} namespaces - Array of supported include namespaces
  * @returns {string[]} Array of paths to component assets
  */
-function getDependencyImports(storiesPath, componentDirectory) {
+function getDependencyImports(storiesPath, componentDirectory, namespaces = ['civictheme']) {
   const dir = path.dirname(storiesPath);
+  const includeRegex = new RegExp(`include\\s+'(${namespaces.join('|')}):([^']+)'`, 'g');
   const twigFiles = new Set(); // Store unique twig files to scan
   const scannedFiles = new Set(); // Prevent infinite recursion
 
@@ -47,13 +49,12 @@ function getDependencyImports(storiesPath, componentDirectory) {
     scannedFiles.add(twigPath);
 
     const twigContent = fs.readFileSync(twigPath, 'utf8');
-    twigContent.matchAll(/include\s+'civictheme:([^']+)'/g).forEach((match) => {
-      const componentPath = path.join(path.dirname(twigPath), `../../${match[1]}`);
-      const componentName = path.basename(componentPath);
+    twigContent.matchAll(includeRegex).forEach((match) => {
+      const componentName = match[2];
       const dependencyPath = globSync(`${componentDirectory}/**/${componentName}.twig`);
       if (dependencyPath.length > 0) {
-        const dependencyTwigPath = path.join(path.dirname(dependencyPath[0]), `${componentName}.twig`);
-        twigFiles.add(path.resolve(dependencyTwigPath));
+        const dependencyTwigPath = dependencyPath.pop();
+        twigFiles.add(dependencyTwigPath);
       }
     });
   };
@@ -106,11 +107,12 @@ export default (options = {}) => ({
   transform: (code, id) => {
     const componentDir = path.resolve(__dirname, options.path || '../components');
     const isWithinComponentDir = id.indexOf(componentDir) >= 0;
+    const namespaces = options.namespaces || ['civictheme'];
 
     if (isWithinComponentDir) {
       // For stories - resolve their dependencies.
       if (id.endsWith('.stories.js')) {
-        const imports = getDependencyImports(id, componentDir).map((i) => `import '${i}';`).join('\n');
+        const imports = getDependencyImports(id, componentDir, namespaces).map((i) => `import '${i}';`).join('\n');
         return {
           code: `${imports}\n${code}`,
           map: null,

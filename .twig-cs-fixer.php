@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 $ruleset = new TwigCsFixer\Ruleset\Ruleset();
+$ruleset->addStandard(new TwigCsFixer\Standard\Twig());
 $ruleset->addRule(new TwigCsFixer\Rules\Delimiter\BlockNameSpacingRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Delimiter\DelimiterSpacingRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Function\NamedArgumentSpacingRule());
@@ -19,8 +20,16 @@ $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\EmptyLinesRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\IndentRule(2));
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\TrailingSpaceRule());
 
+$finder = new TwigCsFixer\File\Finder();
+$finder->in(__DIR__ . '/web/modules/custom');
+$finder->in(__DIR__ . '/web/themes/contrib/civictheme/templates')->exclude([
+  '.components-civictheme',
+  'components_combined',
+]);
+
 $config = new TwigCsFixer\Config\Config();
 $config->setRuleset($ruleset);
+$config->setFinder($finder);
 $config->allowNonFixableRules();
 $config->addTokenParser(new Drupal\Core\Template\TwigTransTokenParser());
 

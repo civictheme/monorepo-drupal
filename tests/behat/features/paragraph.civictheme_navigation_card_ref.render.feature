@@ -39,7 +39,7 @@ Feature: Navigation reference card render
     And I should see 2 ".ct-navigation-card__content" elements
     And I should see 2 ".ct-navigation-card__image" elements
     And I should see 2 ".ct-navigation-card__title" elements
-    And I should see 2 ".ct-navigation-card__title__link" elements
+    And I should see 2 ".ct-navigation-card__title-link" elements
     And I should see 2 ".ct-navigation-card__summary" elements
     And I should see the text "[TEST] Referenced Page 1"
     And I should see the text "Summary 1"
