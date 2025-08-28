@@ -424,20 +424,20 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
  *   Admin label for the block.
  * @param string $region
  *   Region to place the block into.
+ * @param string $theme_name
+ *   The theme to place the block on.
  * @param string $uuid
  *   Optional UUID to use for plugin_id. Defaults to NULL. If not provided - a
  *   random UUID will be generated.
  * @param array $settings
  *   Optional array of settings to pass to the block. Default to empty array.
  *   If not provided - sensible defaults will be used.
- * @param string $theme_name
- *   The theme to place the block on.
  * @param string $block_type
  *   Optional block type. Defaults to 'block_content'.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_place_block(string $label, string $region, ?string $uuid = NULL, array $settings = [], string $theme_name, string $block_type = 'block_content'): void {
+function civictheme_provision_place_block(string $label, string $region, string $theme_name, ?string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
   $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
   $id = $theme_name . '_' . $label_machine_name;
   $base_theme_id = 'civictheme_' . $label_machine_name;
@@ -593,7 +593,6 @@ function civictheme_provision__files(string $theme_name): void {
  * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_provision__media(string $theme_name): void {
-
   $filenames_for_media = [
     'icon' => [
       'facebook.svg',
@@ -695,14 +694,14 @@ function civictheme_provision__blocks(string $theme_name): void {
  * Provision menu blocks.
  */
 function _civictheme_provision__blocks__menu_blocks(string $theme_name): void {
-  civictheme_provision_place_block('Primary Navigation', 'header_middle_3', NULL, [
+  civictheme_provision_place_block('Primary Navigation', 'header_middle_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
-  ], $theme_name);
-  civictheme_provision_place_block('Secondary Navigation', 'header_top_3', NULL, [
+  ],);
+  civictheme_provision_place_block('Secondary Navigation', 'header_top_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-secondary-navigation',
-  ], $theme_name);
-  civictheme_provision_place_block('Side Navigation', 'sidebar_top_left', NULL, [
+  ]);
+  civictheme_provision_place_block('Side Navigation', 'sidebar_top_left', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
     'visibility' => [
@@ -714,22 +713,22 @@ function _civictheme_provision__blocks__menu_blocks(string $theme_name): void {
     ],
     'suggestion' => 'civictheme_sidebar_navigation',
   ], $theme_name);
-  civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
+  civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
-  ], $theme_name);
-  civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', NULL, [
+  ]);
+  civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
-  ], $theme_name);
-  civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', NULL, [
+  ]);
+  civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
-  ], $theme_name);
-  civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', NULL, [
+  ]);
+  civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
-  ], $theme_name);
+  ]);
 }
 
 /**
@@ -748,7 +747,7 @@ function _civictheme_provision__blocks__banner(array $block, string $theme_name)
   $block_content->set('field_c_b_banner_type', 'default');
   $block_content->set('field_c_b_featured_image', civictheme_provision_load_media_by_name('demo_image.jpg'));
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [], $theme_name);
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -782,7 +781,7 @@ function _civictheme_provision__blocks__search(array $block, string $theme_name)
     'uri' => $search_path,
   ]);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [], $theme_name);
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -794,7 +793,6 @@ function _civictheme_provision__blocks__search(array $block, string $theme_name)
  *   Theme to apply this block to.
  */
 function _civictheme_provision__blocks__mobile_navigation(array $block, string $theme_name): void {
-
   $context_theme = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -803,7 +801,7 @@ function _civictheme_provision__blocks__mobile_navigation(array $block, string $
   $block_content->set('field_c_b_trigger_text', 'Menu');
   $block_content->set('field_c_b_trigger_theme', $context_theme);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [], $theme_name);
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -834,7 +832,7 @@ function _civictheme_provision__blocks__signup(array $block, $theme_name): void 
   $paragraph->set('field_c_p_vertical_spacing', CivicthemeConstants::VERTICAL_SPACING_TOP);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [], $theme_name);
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -883,9 +881,9 @@ function _civictheme_provision__blocks__social_links(array $block, $theme_name):
   $block_content->set('field_c_b_theme', CivicthemeConstants::THEME_DARK);
   $block_content->set('field_c_b_with_border', TRUE);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_social_links',
-  ], $theme_name);
+  ]);
 }
 
 /**
@@ -910,7 +908,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block, 
   $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_acknowledgment_of_country',
   ], $theme_name);
 }
@@ -937,9 +935,9 @@ function _civictheme_provision__blocks__copyright(array $block, $theme_name): vo
   $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_copyright',
-  ], $theme_name);
+  ]);
 }
 
 /**
