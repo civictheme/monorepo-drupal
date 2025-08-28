@@ -910,7 +910,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block, 
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_acknowledgment_of_country',
-  ], $theme_name);
+  ]);
 }
 
 /**
