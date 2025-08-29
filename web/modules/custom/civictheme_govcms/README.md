@@ -10,12 +10,11 @@ This script automates the installation and configuration of CivicTheme, the `civ
 
 ### Prerequisites
 
-1. **GovCMS Project:** You must have a GovCMS project already set up.
+1. **GovCMS Project:** You must have a GovCMS project / scaffold already set up.
 2. **Ahoy:** `ahoy` must be installed and configured for your project (i.e., you can run `ahoy` commands).
 3. **Docker:** Docker must be running, as `ahoy` typically interacts with Docker containers.
-4. **`wget` and `tar`:** These command-line utilities must be available in your shell environment where you run the script.
+4. **`tar` and `curl`:** These command-line utilities must be available in your shell environment where you run the script.
 5. **Bash:** The script is written for Bash.
-6. **`curl`:** Required for downloading the script.
 
 ## What the Script Does
 
