@@ -71,8 +71,6 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
 
-  // 'type' is internal field and should not be passed to the template.
-  unset($variables['type']);
   // 'attributes' field includes an id which conflicts with the template
   // `main-content` id.
   unset($variables['attributes']);
