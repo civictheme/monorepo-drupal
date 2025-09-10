@@ -281,7 +281,6 @@ ahoy_cli_govcms_script=$(cat <<'EOF'
   echo "[success] (container): CivicTheme GovCMS module steps completed."
 
   echo "[success] (container): Removing setup script"
-  rm "${self}"
 EOF
 )
 
@@ -385,5 +384,6 @@ echo "---"
 
 # --- Finalize ---
 finish
+rm "${self}"
 
 exit 0
