@@ -141,20 +141,10 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
     return;
   }
 
-  $video_title = $media->label();
   $transcript_attributes = new Attribute();
   $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript for @label', [
-    '@label' => $video_title,
+    '@label' => $media->label(),
   ]));
-
-  $transcript_has_value = civictheme_field_has_value($media, 'field_c_m_transcript');
-  if ($transcript_has_value) {
-    $variables['transcript_content'] = [
-      'content' => $media->get('field_c_m_transcript')->view(),
-    ];
-    $variables['transcript_expand_text'] = t('View transcript for @video', ['@video' => $video_title]);
-    $variables['transcript_collapse_text'] = t('Hide transcript for @video', ['@video' => $video_title]);
-  }
 
   $transcript_link_has_value = civictheme_field_has_value($media, 'field_c_m_transcript_link');
   if ($transcript_link_has_value) {
@@ -177,8 +167,22 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(array &$variables): void {
-  // Show transcript on the media landing page.
-  if ($variables['view_mode'] == 'full' && !empty($variables['content']['field_c_m_transcript'])) {
-    $variables['content'] = civictheme_render($variables['content']['field_c_m_transcript']);
+  if (empty($variables['media'])) {
+    return;
+  }
+
+  $media = $variables['media'];
+  if (!$media instanceof MediaInterface) {
+    return;
+  }
+
+  $transcript_has_value = civictheme_field_has_value($media, 'field_c_m_transcript');
+  if ($transcript_has_value) {
+    $variables['transcript_content'] = [
+      'content' => $media->get('field_c_m_transcript')->view(),
+    ];
+    $video_title = $media->label();
+    $variables['transcript_expand_text'] = t('View transcript for @video', ['@video' => $video_title]);
+    $variables['transcript_collapse_text'] = t('Hide transcript for @video', ['@video' => $video_title]);
   }
 }
