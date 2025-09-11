@@ -54,6 +54,7 @@ After the script completes successfully, your new subtheme will be active and re
                          -m <subtheme_machine_name> \
                          -u "<subtheme_human_name>" \
                          -d "<subtheme_description>" \
+                         [-n] \
                          [-p]
    ```
 
@@ -70,6 +71,7 @@ After the script completes successfully, your new subtheme will be active and re
 - `-m <subtheme_machine_name>`: **(Required)** The machine-readable name for your new subtheme. Use lowercase letters, numbers, and hyphens/underscores (e.g., "my_custom_site_theme").
 - `-u "<subtheme_human_name>"`: **(Required)** The human-readable name for your new subtheme. Enclose in quotes if it contains spaces (e.g., "My Custom Site Theme").
 - `-d "<subtheme_description>"`: **(Required)** A short description for your new subtheme. Enclose in quotes (e.g., "A custom theme for My Awesome GovCMS Project").
+- `-n`: **(Optional)** Skip content provisioning. By default, the script will provision demo content. Use this flag to skip that step.
 - `-p`: **(Optional)** Apply Drupal cache backend [patch](https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch) ([drupal.org issue](https://www.drupal.org/node/3204271)). This patches LayoutPluginManager to add cache tags for better cache invalidation.
 
 1. **Example:**
@@ -90,6 +92,17 @@ After the script completes successfully, your new subtheme will be active and re
      -u "My Awesome Gov Theme" \
      -d "A custom subtheme for GovCMS." \
      -p
+   ```
+
+   To skip content provisioning:
+   ```bash
+   ./setup_civictheme.sh \
+     -c "1.11.0" \
+     -g "{{ VERSION }}" \
+     -m "my_gov_theme" \
+     -u "My Awesome Gov Theme" \
+     -d "A custom subtheme for GovCMS." \
+     -n
    ```
 
 2. **View Help:**
