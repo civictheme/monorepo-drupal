@@ -129,28 +129,44 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
     return;
   }
 
-  $transcript_attributes = new Attribute();
-  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript @label', [
-    '@label' => $media->label(),
-  ]));
-  // Transcript link points to the video if the transcript is empty or
-  // to the external transcript, if provided.
-  if (civictheme_field_has_value($media, 'field_c_m_transcript')) {
-    $variables['transcript_link'] = [
-      'text' => t('View transcript'),
-      'url' => $media->toUrl()->toString(),
-      'attributes' => $transcript_attributes,
-    ];
+  // Initialize the transcript link & block to NULL preprocess from civictheme.
+  $variables['transcript_link'] = NULL;
+  $variables['transcript_content'] = NULL;
+  $variables['vertical_spacing'] = 'bottom';
+
+  // Hide transcript when viewing in CK Editor.
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  if ($route_name === 'media.filter.preview') {
+    return;
   }
-  elseif (civictheme_field_has_value($media, 'field_c_m_transcript_link')) {
+
+  $video_title = $media->label();
+  $transcript_attributes = new Attribute();
+  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript for @label', [
+    '@label' => $video_title,
+  ]));
+
+  $transcript_has_value = civictheme_field_has_value($media, 'field_c_m_transcript');
+  if ($transcript_has_value) {
+    $variables['transcript_content'] = [
+      'content' => $media->get('field_c_m_transcript')->view(),
+    ];
+    $variables['transcript_expand_text'] = t('View transcript for @video', ['@video' => $video_title]);
+    $variables['transcript_collapse_text'] = t('Hide transcript for @video', ['@video' => $video_title]);
+  }
+
+  $transcript_link_has_value = civictheme_field_has_value($media, 'field_c_m_transcript_link');
+  if ($transcript_link_has_value) {
     /** @var \Drupal\link\LinkItemInterface $link */
     $link = $media->get('field_c_m_transcript_link')->first();
+    $has_custom_link_title = !empty($link->get('title')->getValue());
     $variables['transcript_link'] = [
-      'text' => empty($link->get('title')->getValue()) ? t('View transcript') : $link->get('title')->getValue(),
+      'text' => $has_custom_link_title ? $link->get('title')->getValue() : t('View transcript'),
       'url' => $link->getUrl()->toString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
-      'attributes' => $transcript_attributes,
+      'attributes' => $has_custom_link_title ? '' : $transcript_attributes,
     ];
   }
 }
