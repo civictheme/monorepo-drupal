@@ -143,6 +143,7 @@ services:
     ports:
       - "3306" # MariaDB port in container. Find port on host with `ahoy info` or `docker compose port mariadb 3306`.
     labels:
+      quant.type: mysql
       lagoon.type: mariadb # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
 
   # Chrome container, used for browser testing.
@@ -155,6 +156,7 @@ services:
     depends_on:
       - cli
     labels:
+      quant.type: none
       lagoon.type: none # Do not deploy in Lagoon.
 
   # Helper container to wait for services to become available.
@@ -165,6 +167,7 @@ services:
       - mariadb
     command: mariadb:3306
     labels:
+      quant.type: none
       lagoon.type: none # Do not deploy in Lagoon.
 
 networks:
