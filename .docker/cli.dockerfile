@@ -110,3 +110,4 @@ RUN cd /app/web/themes/contrib/civictheme \
 # Compile sub-theme assets.
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
+COPY .docker/entrypoints/cli/* /quant-entrypoint.d/
