@@ -7,6 +7,8 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - develop
     - quant-cloud-migration
     - feature/*
+    - pr-*
+    - content/*
     tags:
     - '*'
   pull_request:
