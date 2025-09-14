@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   build-and-push:
-    runs-on: sh-runner-1-arm64
+    runs-on: ubuntu-latest
     steps:
 
     - name: Checkout code
