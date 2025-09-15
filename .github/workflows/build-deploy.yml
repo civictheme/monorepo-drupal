@@ -24,7 +24,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.3.3
         with:
           ref: ${{ github.sha }}
-          check-name: 'ci/circleci: build-minimal'
+          check-name: 'ci/circleci: build-isolated-php-83'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
 
