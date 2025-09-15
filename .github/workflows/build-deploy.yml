@@ -17,7 +17,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  wait-for-circleci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for CircleCI build-minimal to succeed
+        uses: lewagon/wait-on-check-action@v1.3.3
+        with:
+          ref: ${{ github.sha }}
+          check-name: 'ci/circleci: build-minimal'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+
   build-and-push:
+    needs: wait-for-circleci
     runs-on: sh-runner-1-arm64
     steps:
 
