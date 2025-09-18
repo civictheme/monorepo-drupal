@@ -61,16 +61,3 @@ ckeditor5-stylesheets:
   # below is resolved.
   # @see https://www.drupal.org/project/drupal/issues/3406959
   # - /sites/default/files/css-variables.civictheme_starter_kit.css
-
-components:
-  namespaces:
-    base:
-      - components/00-base
-    atoms:
-      - components/01-atoms
-    molecules:
-      - components/02-molecules
-    organisms:
-      - components/03-organisms
-    templates:
-      - components/04-templates
