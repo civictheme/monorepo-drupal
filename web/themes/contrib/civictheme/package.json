@@ -38,8 +38,8 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && ([ -d \"node_modules/@civictheme/uikit/packages/sdc/components\" ] && cp -R node_modules/@civictheme/uikit/packages/sdc/components components || ([ -d \"node_modules/@civictheme/sdc/components\" ] && cp -R node_modules/@civictheme/sdc/components components || (echo \"Error: No components directory found\" && exit 1)))"
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#fe7fe80b114737aa579576a244c5c54618bcca86",
-    "@popperjs/core": "^2.11.8"
+    "@popperjs/core": "^2.11.8",
+    "@civictheme/uikit": "github:civictheme/uikit#fe12e68b86846b234df168e5a6c43d3442dd2d37"
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
