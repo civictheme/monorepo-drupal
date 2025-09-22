@@ -98,6 +98,9 @@ settings:
           label: Link
           element: '<a class="ct-link ct-theme-light">'
         -
+          label: 'Content Link'
+          element: '<a class="ct-content-link ct-theme-light">'
+        -
           label: 'Lead paragraph'
           element: '<p class="ct-text-large">'
         -
