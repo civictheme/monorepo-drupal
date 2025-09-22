@@ -457,6 +457,19 @@ jobs:
             DREVOPS_DEPLOY_PR_HEAD=$CIRCLE_SHA1 \
             ./scripts/drevops/deploy.sh
           no_output_timeout: 30m
+      - run:
+          name: Trigger GitHub workflow for Quant Cloud deployment
+          command: |
+            if [ -n "${GITHUB_TOKEN}" ]; then
+              curl -X POST \
+                -H "Accept: application/vnd.github.v3+json" \
+                -H "Authorization: token ${GITHUB_TOKEN}" \
+                "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/dispatches" \
+                -d "{\"event_type\":\"circleci_success\",\"client_payload\":{\"branch\":\"${CIRCLE_BRANCH}\",\"sha\":\"${CIRCLE_SHA1}\",\"build_url\":\"${CIRCLE_BUILD_URL}\"}}"
+              echo "Successfully triggered Quant GitHub deploy workflow for branch: ${CIRCLE_BRANCH}"
+            else
+              echo "GITHUB_TOKEN not set - skipping GitHub workflow trigger"
+            fi
       - store_artifacts:
           path: *artifacts
 
@@ -539,6 +552,7 @@ jobs:
                 DREVOPS_DEPLOY_BRANCH="${branch}" DEPLOY_ACTION=deploy_override_db ./scripts/drevops/deploy.sh
               done
             fi
+
 
 ################################################################################
 # WORKFLOWS

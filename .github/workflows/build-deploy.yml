@@ -3,12 +3,9 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
   # Manual trigger for testing and emergency deployments
   workflow_dispatch:
 
-  # Trigger when CircleCI check suite completes successfully
-  check_suite:
-    types: [completed]
-
-  # Alternative: Use status event for the specific CircleCI workflow check
-  status:
+  # Trigger when CircleCI notifies via repository dispatch
+  repository_dispatch:
+    types: [circleci_success]
 
 concurrency:
   group: build-and-push-${{ github.ref }}
@@ -16,15 +13,9 @@ concurrency:
 
 jobs:
   build-and-push:
-    # Only run when triggered by successful CircleCI checks or manual dispatch
+    # Only run when triggered by CircleCI success or manual dispatch
     if: |
-      (github.event_name == 'check_suite' &&
-       github.event.check_suite.app.slug == 'circleci-checks' &&
-       github.event.check_suite.conclusion == 'success') ||
-      (github.event_name == 'status' &&
-       startsWith(github.event.context, 'ci/circleci:') &&
-       github.event.state == 'success' &&
-       (github.event.sender.login == 'circleci' || github.actor == 'circleci[bot]')) ||
+      github.event_name == 'repository_dispatch' ||
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
