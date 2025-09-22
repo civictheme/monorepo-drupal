@@ -18,11 +18,7 @@ use Drupal\media\MediaInterface;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_media__civictheme_image(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -45,11 +41,7 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
  * Implements hook_preprocess__HOOK().
  */
 function civictheme_preprocess_media__civictheme_video(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -78,11 +70,7 @@ function civictheme_preprocess_media__civictheme_video(array &$variables): void 
  * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_preprocess_media__civictheme_remote_video(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -120,11 +108,7 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_links(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -167,11 +151,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
