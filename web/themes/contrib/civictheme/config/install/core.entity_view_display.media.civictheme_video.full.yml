@@ -9,9 +9,7 @@ dependencies:
     - field.field.media.civictheme_video.field_c_m_video_file
     - media.type.civictheme_video
   module:
-    - file
     - layout_builder
-    - text
 third_party_settings:
   layout_builder:
     enabled: false
@@ -20,27 +18,14 @@ id: media.civictheme_video.full
 targetEntityType: media
 bundle: civictheme_video
 mode: full
-content:
-  field_c_m_transcript:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  field_c_m_video_file:
-    type: file_default
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
   content_moderation_control: true
   created: true
   field_c_m_media_tags: true
+  field_c_m_transcript: true
   field_c_m_transcript_link: true
+  field_c_m_video_file: true
   name: true
   thumbnail: true
   uid: true
