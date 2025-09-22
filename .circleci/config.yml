@@ -461,12 +461,22 @@ jobs:
           name: Trigger GitHub workflow for Quant Cloud deployment
           command: |
             if [ -n "${GITHUB_TOKEN}" ]; then
-              curl -X POST \
-                -H "Accept: application/vnd.github.v3+json" \
+              payload=$(jq -nc --arg branch "${CIRCLE_BRANCH}" --arg sha "${CIRCLE_SHA1}" --arg url "${CIRCLE_BUILD_URL}" \
+                '{event_type:"circleci_success", client_payload:{branch:$branch, sha:$sha, build_url:$url}}')
+              resp=$(mktemp)
+              code=$(curl -sS -f -o "$resp" -w "%{http_code}" \
+                -X POST \
+                -H "Accept: application/vnd.github+json" \
                 -H "Authorization: token ${GITHUB_TOKEN}" \
                 "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/dispatches" \
-                -d "{\"event_type\":\"circleci_success\",\"client_payload\":{\"branch\":\"${CIRCLE_BRANCH}\",\"sha\":\"${CIRCLE_SHA1}\",\"build_url\":\"${CIRCLE_BUILD_URL}\"}}"
-              echo "Successfully triggered Quant GitHub deploy workflow for branch: ${CIRCLE_BRANCH}"
+                -d "$payload" || true)
+              if [ "${code:-0}" -ge 200 ] && [ "${code:-0}" -lt 300 ]; then
+                echo "Triggered Quant GitHub deploy workflow for branch: ${CIRCLE_BRANCH}"
+              else
+                echo "Failed to trigger GitHub workflow (HTTP ${code:-0}). Response:"
+                cat "$resp"
+                exit 1
+              fi
             else
               echo "GITHUB_TOKEN not set - skipping GitHub workflow trigger"
             fi
