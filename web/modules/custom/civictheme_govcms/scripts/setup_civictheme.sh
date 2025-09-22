@@ -26,6 +26,7 @@ ARG_SUBTHEME_MACHINE_NAME=""
 ARG_SUBTHEME_HUMAN_NAME=""
 ARG_SUBTHEME_DESCRIPTION=""
 ARG_APPLY_CACHE_PATCH=false
+ARG_PROVISION_CONTENT=true
 
 # --- Usage Function ---
 usage () {
@@ -36,7 +37,7 @@ This script automates the setup of CivicTheme, the CivicTheme GovCMS module,
 and a custom subtheme on a GovCMS website.
 
 Usage:
-  $self -c <civictheme_version> -g <govcms_module_ref> -m <subtheme_machine_name> -u "<subtheme_human_name>" -d "<subtheme_description>" [-p]
+  $self -c <civictheme_version> -g <govcms_module_ref> -m <subtheme_machine_name> -u "<subtheme_human_name>" -d "<subtheme_description>" [-p] [-n]
   $self -h
 
 Options:
@@ -50,10 +51,12 @@ Options:
   -d    Description for the new subtheme. (Required)
   -p    Apply Drupal cache backend patch (optional). This patches LayoutPluginManager
         to add cache tags for better cache invalidation.
+  -n    Skip content provisioning (optional). By default, content provisioning is enabled.
 
 Example:
   $self -c "1.11.0" -g "main" -m "my_gov_theme" -u "My Awesome Gov Theme" -d "A custom subtheme for GovCMS."
   $self -c "1.11.0" -g "main" -m "my_gov_theme" -u "My Awesome Gov Theme" -d "A custom subtheme for GovCMS." -p
+  $self -c "1.11.0" -g "main" -m "my_gov_theme" -u "My Awesome Gov Theme" -d "A custom subtheme for GovCMS." -n
 HELP_USAGE
   exit 2
 }
@@ -78,7 +81,7 @@ finish () {
 }
 
 # --- Parse Command-Line Options ---
-while getopts 'hpc:g:m:u:d:' o; do
+while getopts 'hpnc:g:m:u:d:' o; do
   case $o in
     c) ARG_CIVICTHEME_VERSION="$OPTARG" ;;
     g) ARG_GOVCMS_MODULE_REF="$OPTARG" ;;
@@ -86,6 +89,7 @@ while getopts 'hpc:g:m:u:d:' o; do
     u) ARG_SUBTHEME_HUMAN_NAME="$OPTARG" ;;
     d) ARG_SUBTHEME_DESCRIPTION="$OPTARG" ;;
     p) ARG_APPLY_CACHE_PATCH=true ;;
+    n) ARG_PROVISION_CONTENT=false ;;
     h|?) usage ;;
   esac
 done
@@ -122,6 +126,7 @@ echo "[info]:   Subtheme Machine Name:      ${ARG_SUBTHEME_MACHINE_NAME}"
 echo "[info]:   Subtheme Human Name:        \"${ARG_SUBTHEME_HUMAN_NAME}\""
 echo "[info]:   Subtheme Description:       \"${ARG_SUBTHEME_DESCRIPTION}\""
 echo "[info]:   Apply Cache Patch:          ${ARG_APPLY_CACHE_PATCH}"
+echo "[info]:   Provision Content:          ${ARG_PROVISION_CONTENT}"
 echo "---"
 
 # --- Apply patch if requested ---
@@ -306,6 +311,7 @@ ahoy_cli_subtheme_script=$(cat <<'EOF'
   SUBTHEME_MACHINE_NAME_ARG="$1"
   SUBTHEME_HUMAN_NAME_ARG="$2"
   SUBTHEME_DESCRIPTION_ARG="$3"
+  PROVISION_CONTENT_ARG="$4"
   CIVICTHEME_BASE_PATH="/app/web/themes/custom/custom/civictheme"
   SUBTHEME_PATH_RELATIVE_TO_CUSTOM_THEMES="../${SUBTHEME_MACHINE_NAME_ARG}"
   SUBTHEME_FULL_PATH="/app/web/themes/custom/custom/${SUBTHEME_MACHINE_NAME_ARG}"
@@ -358,15 +364,19 @@ ahoy_cli_subtheme_script=$(cat <<'EOF'
   fi
   echo "[success] (container): Sub-theme set as default."
 
-  echo "[info] (container): Running CivicTheme provision CLI command..."
-  # This command refers to the base 'civictheme', ensure paths are correct if run from subtheme dir
-  # Or cd back to project root or base theme dir if necessary before this drush command.
-  # Assuming drush finds the base theme correctly from any path within the project:
-  if ! drush ev "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_provision_cli();"; then
-    echo "[error] (container): CivicTheme provision CLI command failed." >&2
-    exit 1
+  if [ "${PROVISION_CONTENT_ARG}" = "true" ]; then
+    echo "[info] (container): Running CivicTheme provision CLI command..."
+    # This command refers to the base 'civictheme', ensure paths are correct if run from subtheme dir
+    # Or cd back to project root or base theme dir if necessary before this drush command.
+    # Assuming drush finds the base theme correctly from any path within the project:
+    if ! drush ev "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_provision_cli();"; then
+      echo "[error] (container): CivicTheme provision CLI command failed." >&2
+      exit 1
+    fi
+    echo "[success] (container): CivicTheme provision CLI command completed."
+  else
+    echo "[info] (container): Skipping content provisioning (disabled via -n flag)."
   fi
-  echo "[success] (container): CivicTheme provision CLI command completed."
 
 EOF
 )
@@ -375,7 +385,8 @@ EOF
 if ! docker compose exec -T cli bash -s -- \
   "${ARG_SUBTHEME_MACHINE_NAME}" \
   "${ARG_SUBTHEME_HUMAN_NAME}" \
-  "${ARG_SUBTHEME_DESCRIPTION}" <<< "${ahoy_cli_subtheme_script}"; then
+  "${ARG_SUBTHEME_DESCRIPTION}" \
+  "${ARG_PROVISION_CONTENT}" <<< "${ahoy_cli_subtheme_script}"; then
   echo "[error]: Step 6: Sub-theme setup process within container failed." # Consolidated error
   exit 1
 fi

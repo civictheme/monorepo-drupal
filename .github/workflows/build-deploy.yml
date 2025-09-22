@@ -1,0 +1,146 @@
+name: Build and Push civictheme-monorepo-drupal to Quant Cloud
+'on':
+  push:
+    branches:
+    - main
+    - master
+    - develop
+    - quant-cloud-migration
+    - feature/*
+    - pr-*
+    - content/*
+    tags:
+    - '*'
+  pull_request:
+    branches: '*'
+
+concurrency:
+  group: build-and-push-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Initialize Quant Cloud
+      uses: quantcdn/quant-cloud-init-action@v1.1.2
+      id: init
+      with:
+        quant_organization: ${{ secrets.QUANT_ORGANIZATION }}
+        quant_api_key: ${{ secrets.QUANT_API_KEY }}
+        quant_application: civictheme-monorepo-drupal
+        master_branch_override: main
+
+    - name: Override outputs for quant-cloud-migration branch
+      id: override-outputs
+      run: |-
+        # Override outputs for quant-cloud-migration branch to treat it as production
+        if [[ "${{ github.ref }}" == "refs/heads/quant-cloud-migration" ]]; then
+          echo "image_suffix=-latest" >> $GITHUB_OUTPUT
+          echo "image_suffix_clean=latest" >> $GITHUB_OUTPUT
+          echo "is_production=true" >> $GITHUB_OUTPUT
+          echo "environment_name=production" >> $GITHUB_OUTPUT
+          echo "environment_exists=true" >> $GITHUB_OUTPUT
+          echo "Overriding outputs for quant-cloud-migration branch: using -latest suffix and production environment"
+        else
+          # Use the original action outputs
+          echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
+          # Remove leading hyphen from image_suffix for image_suffix parameter
+          suffix="${{ steps.init.outputs.image_suffix }}"
+          clean_suffix="${suffix#-}"
+          echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
+          echo "is_production=${{ steps.init.outputs.is_production }}" >> $GITHUB_OUTPUT
+          echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
+          echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Build and push cli image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./.docker/cli.dockerfile
+        platforms: linux/arm64
+        push: true
+        tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+        cache-from: |-
+          type=gha
+          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:cli-cache
+        cache-to: type=gha,mode=max
+        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+
+    - name: Build and push nginx image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./.docker/nginx-drupal.dockerfile
+        platforms: linux/arm64
+        push: true
+        tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:nginx${{ steps.override-outputs.outputs.image_suffix }}
+        cache-from: |-
+          type=gha
+          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:nginx-cache
+        cache-to: type=gha,mode=max
+        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+
+    - name: Build and push php image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./.docker/php.dockerfile
+        platforms: linux/arm64
+        push: true
+        tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:php${{ steps.override-outputs.outputs.image_suffix }}
+        cache-from: |-
+          type=gha
+          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:php-cache
+        cache-to: type=gha,mode=max
+        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
+          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+
+    - name: Create environment if it doesn't exist
+      if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' }}
+      uses: quantcdn/quant-cloud-environment-action@v1.2.1
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: ${{ steps.override-outputs.outputs.environment_name }}
+        from_environment: production
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
+
+    - name: Sync database from production to new environment
+      if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' && steps.override-outputs.outputs.environment_name
+        != 'production' }}
+      uses: quantcdn/quant-cloud-environment-sync-action@v1.0.0
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: ${{ steps.override-outputs.outputs.environment_name }}
+        source: production
+        type: database
+        wait: true
+        wait_interval: 10
+        max_retries: 30
+
+    - name: Redeploy existing environment
+      if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'true' }}
+      uses: quantcdn/quant-cloud-environment-state-action@v1
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        application: ${{ steps.init.outputs.quant_application }}
+        environment: ${{ steps.override-outputs.outputs.environment_name }}
+        action: redeploy
