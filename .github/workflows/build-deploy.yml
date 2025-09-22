@@ -22,8 +22,9 @@ jobs:
        github.event.check_suite.app.slug == 'circleci-checks' &&
        github.event.check_suite.conclusion == 'success') ||
       (github.event_name == 'status' &&
-       github.event.context == 'ci/circleci: commit' &&
-       github.event.state == 'success') ||
+       startsWith(github.event.context, 'ci/circleci:') &&
+       github.event.state == 'success' &&
+       (github.event.sender.login == 'circleci' || github.actor == 'circleci[bot]')) ||
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
