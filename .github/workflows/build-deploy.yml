@@ -1,11 +1,18 @@
 name: Build and Push civictheme-monorepo-drupal to Quant Cloud
 'on':
-  # Manual trigger for testing and emergency deployments
-  workflow_dispatch:
-
-  # Trigger when CircleCI notifies via repository dispatch
-  repository_dispatch:
-    types: [circleci_success]
+  push:
+    branches:
+    - main
+    - master
+    - develop
+    - quant-cloud-migration
+    - feature/*
+    - content/*
+    - pr-*
+    tags:
+    - '*'
+  pull_request:
+    branches: '*'
 
 concurrency:
   group: build-and-push-${{ github.ref }}
@@ -13,13 +20,6 @@ concurrency:
 
 jobs:
   build-and-push:
-    concurrency:
-      group: build-and-push-${{ github.event.client_payload.branch || github.ref || github.run_id }}
-      cancel-in-progress: true
-    # Only run when triggered by CircleCI success or manual dispatch
-    if: |
-      (github.event_name == 'repository_dispatch') ||
-      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
 
