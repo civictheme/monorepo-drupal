@@ -28,3 +28,13 @@ set -e
 # NOTE: This provision script has been disabled because:
 # - rsync commands try to connect to Lagoon SSH which is not available in Quant Cloud
 # - Use DREVOPS_PROVISION_SKIP=1 environment variable to skip provision steps
+
+# Delegate Drupal provisioning to the Quant-aware script. The standard
+# DrevOps provision script is not compatible with Quant Cloud because it relies
+# on Lagoon-specific tooling (e.g., rsync to Lagoon SSH).
+if [ -x "./scripts/quant/provision-quant.sh" ]; then
+  ./scripts/quant/provision-quant.sh
+else
+  echo "Quant provisioning script missing or not executable." >&2
+  exit 1
+fi
