@@ -24,7 +24,8 @@ fi
 if [ "${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}" != "1" ]; then
   echo "  > Generate test content."
   drush recipe /app/recipes/civictheme_content_generated_static
-
+  # cache clear required @see: https://www.drupal.org/project/drupal/issues/3477002
+  drush cr
   if drush pm-list --status=enabled | grep -q simple_sitemap; then
     echo "  > Generate sitemap."
     drush simple-sitemap:generate
