@@ -12,7 +12,7 @@ default:
       value: true
   uid:
     -
-      target_id: 1
+      target_id: 3
   name:
     -
       value: 'Adopt the DIY approach.png'
