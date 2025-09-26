@@ -1,0 +1,553 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 8276f8f5-c66f-478a-aaf3-48191ade8a76
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    11323430-2ee9-444e-9cc3-70547ca77464: media
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+    9f82d101-8522-4b0f-a046-4df56e39f92d: media
+    6b72fc35-5061-40e5-88c4-e4166fcd9ade: taxonomy_term
+    106e6e14-0c6d-40cf-85dd-bcf0eb87fa03: taxonomy_term
+    9fd5e9cd-37d3-4d07-9235-9141bf6ab2db: taxonomy_term
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+    f82c8bd7-bd96-4a69-826b-0f3d5c333996: media
+    cf12cdd3-9a9b-4ce0-bda5-c50d3098d30b: media
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Ali: /ge, Com: 2, Sta: Y, Mod: pub, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Event card'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/civictheme-no-sidebar/page-component-event-card
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 28e13f69-d69f-4c4a-bc51-eaf41be4ed65
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 54bb3c2e-369e-4577-ad7e-177bac7c8f48
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T12:15:00'
+                      end_value: '2026-05-30T14:30:00'
+                  field_c_p_image:
+                    -
+                      entity: 11323430-2ee9-444e-9cc3-70547ca77464
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Cupiditate-est-maiores-non-repellendus.'
+                      title: 'Fuga id.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Corrupti id.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Impedit non optio quod quos repudiandae sapiente tenetur.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Mollitia non sunt.'
+                  field_c_p_topics:
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 480d6616-0425-4eb5-a450-61c00a1189fd
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T12:15:00'
+                      end_value: '2021-04-30T14:30:00'
+                  field_c_p_image:
+                    -
+                      entity: 9f82d101-8522-4b0f-a046-4df56e39f92d
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Accusamus-animi-deleniti-doloribus-libero.'
+                      title: 'Earum perferendis.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Cumque delectus.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Distinctio harum praesentium quod quos repellat tempore ut.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Same day Officia officiis quos.'
+                  field_c_p_topics:
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 61f7a69a-686e-437b-a96d-2a2cf141b96a
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T12:15:00'
+                      end_value: '2026-05-30T14:30:00'
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Harum-id-nam-quas.-Debitis.'
+                      title: 'Asperiores atque.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Id impedit.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary At cumque hic laborum quo repellat. Cumque delectus.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'No image Est iusto maxime.'
+                  field_c_p_topics:
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d6ed248d-ee55-4d0b-8c17-2291024dac76
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T12:15:00'
+                      end_value: '2026-05-30T14:30:00'
+                  field_c_p_location:
+                    -
+                      value: 'Location Libero nam.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Consequatur deserunt doloribus hic itaque quo quod ut.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'No image, no link Atque dolor itaque.'
+                  field_c_p_topics:
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ec55d249-9b37-4e7b-94dd-ebe2ed30a844
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3f6fef08-dbe3-4dd5-ba53-528cd24423ed
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T02:15:00'
+                      end_value: '2026-05-30T04:30:00'
+                  field_c_p_image:
+                    -
+                      entity: f82c8bd7-bd96-4a69-826b-0f3d5c333996
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Dignissimos-doloribus-harum-nihil-quos.'
+                      title: 'Dolores eos.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Debitis delectus.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Aut delectus id minus molestias recusandae repudiandae. Animi.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Culpa debitis nobis.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4bc805b1-9988-49a2-8835-745b19a2e817
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T02:15:00'
+                      end_value: '2021-04-30T04:30:00'
+                  field_c_p_image:
+                    -
+                      entity: cf12cdd3-9a9b-4ce0-bda5-c50d3098d30b
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/In-molestiae-occaecati-possimus-qui.'
+                      title: 'Excepturi laborum.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Assumenda cupiditate.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Eos iusto optio quidem similique. Alias corrupti excepturi.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Same day Eveniet occaecati recusandae.'
+                  field_c_p_topics:
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 29e85b71-2847-457e-9cdb-152b784b86f4
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T02:15:00'
+                      end_value: '2026-05-30T04:30:00'
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Alias-aut-quas-ut.-Assumenda.'
+                      title: 'Doloribus iusto.'
+                      options: {  }
+                  field_c_p_location:
+                    -
+                      value: 'Location Et itaque.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Autem consequatur expedita facere laborum placeat quibusdam. Accusamus.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'No image Ducimus eligendi nobis.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9620b240-60f2-46a4-99ab-b9f77ae47cf4
+                  bundle: civictheme_event_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date_range:
+                    -
+                      value: '2021-04-30T02:15:00'
+                      end_value: '2026-05-30T04:30:00'
+                  field_c_p_location:
+                    -
+                      value: 'Location Deleniti mollitia.'
+                  field_c_p_summary:
+                    -
+                      value: 'Summary Delectus dolores eligendi hic laborum odio officia recusandae.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'No image, no link Blanditiis deserunt fuga.'
+                  field_c_p_topics:
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

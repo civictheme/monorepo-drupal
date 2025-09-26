@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: dfa24489-b5ee-409d-8aad-599d4b1dbace
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    d720b9c5-5101-4fe9-9a55-053e5fbe0391: media
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Thu: Y, Sum: Sum, Top: 1, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page 06. Culpa debitis nobis.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-06-culpa-debitis-nobis
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d636aa7d-9444-466c-b39b-ad37e7b8bdaa
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Dolores eos maxime temporibus. Asperiores</h2>
+                <p>Eveniet occaecati recusandae. Consequatur debitis dignissimos dolorum hic mollitia quidem reiciendis rerum sunt. Accusamus aut culpa maxime necessitatibus non quas. Accusamus expedita libero maiores maxime optio saepe sunt voluptatum. Cupiditate ducimus quibusdam. Blanditiis dolor id iusto libero recusandae. Deserunt maxime necessitatibus non. Alias asperiores at omnis. Dolores doloribus excepturi libero perferendis. Cumque dolor excepturi laborum mollitia quas quo temporibus.</p>
+                <p>Eos iusto optio quidem similique. Alias corrupti excepturi facilis molestiae optio quos repellat ut. Animi officiis possimus. Assumenda eveniet facere fuga itaque odio praesentium quos. Dolor doloribus earum harum praesentium quod. Dolor praesentium quibusdam tenetur. Cumque deleniti eligendi libero quod ut. Cumque cupiditate doloribus eos mollitia voluptas. Doloribus in voluptas. Alias atque consequatur corrupti dolores dolorum eveniet non similique. Accusamus atque consequatur cupiditate id odio officiis quos repellat saepe.</p>
+                <h3>Assumenda cupiditate mollitia quos repellendus</h3>
+                <p>In molestiae occaecati possimus qui recusandae. Animi asperiores dolorum itaque quo temporibus. Autem impedit odio placeat qui rerum similique ut. Cumque delectus earum maiores nam quibusdam quod repudiandae soluta. Consequatur debitis et eveniet impedit nam quos soluta. Expedita molestias necessitatibus. Delectus ducimus facilis id molestias nobis vero. Cumque ducimus et excepturi hic laborum mollitia repellat. Corrupti cumque deleniti deserunt hic non.</p><a href="https://www.example.com/Excepturi-laborum-minus-necessitatibus.-Minus.">Ducimus eligendi.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Aut delectus id minus molestias recusandae repudiandae. Animi deserunt optio. Atque cupiditate delectus dignissimos quas quos. Et id non voluptatibus. Expedita non occaecati odio similique. Assumenda et facilis laborum necessitatibus non qui quidem sint soluta. Molestiae recusandae rerum ut voluptatum. Cupiditate eos facilis maiores nihil odio officiis provident temporibus voluptates. Debitis delectus et in non rerum. At atque doloribus eligendi eos nobis omnis provident qui repudiandae. Asperiores doloribus excepturi id odio. Deleniti harum libero officiis. At autem deleniti dolores facere in nam similique. Debitis in iusto necessitatibus non officia quod voluptatum. Culpa cupiditate dolores officiis quas vero. Dignissimos doloribus harum.'
+  field_c_n_thumbnail:
+    -
+      entity: d720b9c5-5101-4fe9-9a55-053e5fbe0391
+  field_c_n_topics:
+    -
+      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+  field_c_n_vertical_spacing:
+    -
+      value: none
