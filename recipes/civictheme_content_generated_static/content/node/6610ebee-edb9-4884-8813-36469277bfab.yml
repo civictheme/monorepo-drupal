@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6610ebee-edb9-4884-8813-36469277bfab
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    1b42b76f-3b06-44ef-930e-1483b61f3675: media
+    70b81f9a-1a1e-4338-85f4-1339c6dd2422: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 03. Fuga id impedit.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-03-fuga-id-impedit
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Distinctio harum praesentium quod quos</h2>
+        <p>Cumque delectus hic mollitia necessitatibus nihil nobis repellat voluptatibus. Alias at eveniet harum molestias officiis sapiente similique. Aut debitis et molestiae occaecati quidem saepe soluta tempore. Consequatur culpa doloribus est eveniet itaque libero nam odio quos.</p>
+        <p>Accusamus animi deleniti doloribus libero molestiae possimus provident quo. Assumenda blanditiis qui repudiandae rerum. Deleniti excepturi harum iusto optio praesentium. Libero minus optio provident rerum temporibus tenetur voluptatibus. Doloribus eligendi necessitatibus optio praesentium. Corrupti dolores laborum maiores molestias odio officiis saepe. Deserunt nobis repellendus. Consequatur deleniti eligendi odio. Cumque deserunt dolor impedit iusto laborum nihil provident quibusdam rerum.</p>
+        <h3>Earum perferendis sapiente sunt. Deleniti</h3>
+        <p>Est iusto maxime qui repellat rerum saepe tenetur voluptas. Eligendi molestias possimus. Aut expedita itaque officia placeat quibusdam voluptatum. Accusamus deserunt impedit laborum nam nihil officia soluta voluptas. Alias earum qui vero. Atque autem debitis impedit quibusdam rerum tenetur voluptas. Consequatur dolorum iusto laborum maiores nobis quibusdam quidem vero. In non quo repudiandae.</p><a href="https://www.example.com/At-cumque-hic-laborum-quo.">Id impedit.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0a099843-5a38-4a4c-ba04-b423d345aa14
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Asperiores atque molestias.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Harum-id-nam-quas.-Debitis.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Atque-dolor-itaque-provident-recusandae.'
+              title: 'Consequatur deserunt.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum.'
+  field_c_n_thumbnail:
+    -
+      entity: 1b42b76f-3b06-44ef-930e-1483b61f3675
+  field_c_n_topics:
+    -
+      entity: 70b81f9a-1a1e-4338-85f4-1339c6dd2422
+  field_c_n_vertical_spacing:
+    -
+      value: both

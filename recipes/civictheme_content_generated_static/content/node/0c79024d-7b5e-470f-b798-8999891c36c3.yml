@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0c79024d-7b5e-470f-b798-8999891c36c3
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    a6515fab-e27b-4cbd-b059-30e2db4c2041: media
+    e2bf620d-9d59-41d3-9ce6-4a3f456919c2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 11. Accusamus animi deleniti.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-11-accusamus-animi-deleniti
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Est iusto maxime qui repellat</h2>
+        <p>At cumque hic laborum quo repellat. Cumque delectus excepturi maxime sint. Autem blanditiis culpa cupiditate eos expedita in quod quos voluptatum. Facilis iusto libero saepe. Corrupti dignissimos distinctio facere molestiae perferendis provident similique soluta sunt. Blanditiis culpa occaecati repudiandae vero.</p>
+        <p>Id impedit maxime minus nam nihil omnis optio qui sapiente. Asperiores corrupti quo ut. Blanditiis nihil voluptatum. Alias doloribus dolorum est maiores nam nihil. Atque dignissimos ducimus excepturi facilis laborum maxime nam quibusdam repudiandae. Aut dolorum eos in maiores molestias. Accusamus autem debitis in nam nobis qui ut. At aut deleniti distinctio hic maiores sint voluptates.</p>
+        <h3>Harum id nam quas. Debitis</h3>
+        <p>Asperiores atque molestias mollitia praesentium. Accusamus assumenda eligendi in iusto non optio possimus ut voluptas. Et iusto sunt vero. Accusamus cumque mollitia rerum. At cupiditate eos possimus qui quidem similique tempore vero voluptates. Consequatur eos harum qui quos similique. Deserunt dolor itaque necessitatibus voluptatum.</p><a href="https://www.example.com/Atque-dolor-itaque-provident-recusandae.">Consequatur deserunt.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1370ac06-ee40-4161-bc8f-03be341a01e3
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Culpa debitis nobis.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Libero-nam-odio-officiis-sapiente.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Aut-delectus-id-minus-molestias.'
+              title: 'Debitis delectus.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Earum perferendis sapiente sunt. Deleniti non provident. Excepturi harum iusto maiores. Alias doloribus est perferendis praesentium vero. Blanditiis cumque dolores.'
+  field_c_n_thumbnail:
+    -
+      entity: a6515fab-e27b-4cbd-b059-30e2db4c2041
+  field_c_n_topics:
+    -
+      entity: e2bf620d-9d59-41d3-9ce6-4a3f456919c2
+  field_c_n_vertical_spacing:
+    -
+      value: both

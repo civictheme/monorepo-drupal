@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 5f3f9455-8ba5-4282-8da1-706a05317b16
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    e021218d-c4c5-49e3-b747-9e7d015d8ddb: media
+    0cb8aca9-b05f-4bf2-859f-28c7e0acce0f: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 04. Libero nam odio.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-04-libero-nam-odio
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Aut delectus id minus molestias</h2>
+        <p>Debitis delectus et in non rerum. At atque doloribus eligendi eos nobis omnis provident qui repudiandae. Asperiores doloribus excepturi id odio. Deleniti harum libero officiis. At autem deleniti dolores facere in nam similique. Debitis in iusto necessitatibus non officia quod voluptatum. Culpa cupiditate dolores officiis quas vero.</p>
+        <p>Dignissimos doloribus harum nihil quos repellat saepe sapiente. Eligendi hic omnis optio praesentium quod repellat. Alias culpa deserunt dolores eveniet qui repellendus. Animi excepturi hic libero nihil qui voluptas. Animi corrupti maxime mollitia voluptatibus. Alias distinctio ducimus facere minus mollitia optio provident quidem voluptas.</p>
+        <h3>Dolores eos maxime temporibus. Asperiores</h3>
+        <p>Eveniet occaecati recusandae. Consequatur debitis dignissimos dolorum hic mollitia quidem reiciendis rerum sunt. Accusamus aut culpa maxime necessitatibus non quas. Accusamus expedita libero maiores maxime optio saepe sunt voluptatum. Cupiditate ducimus quibusdam. Blanditiis dolor id iusto libero recusandae. Deserunt maxime necessitatibus non. Alias asperiores at omnis. Dolores doloribus excepturi libero perferendis. Cumque dolor excepturi laborum mollitia quas quo temporibus.</p><a href="https://www.example.com/Eos-iusto-optio-quidem-similique.">Assumenda cupiditate.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c2b245e4-5baa-48d7-b6f5-6518630358d3
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Excepturi laborum minus.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/In-molestiae-occaecati-possimus-qui.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Ducimus-eligendi-nobis.-Debitis-eligendi.'
+              title: 'Autem consequatur.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Culpa debitis nobis. Assumenda autem facilis libero non. Dolorum itaque vero. Cupiditate dignissimos non possimus quos. Delectus facilis laborum molestiae.'
+  field_c_n_thumbnail:
+    -
+      entity: e021218d-c4c5-49e3-b747-9e7d015d8ddb
+  field_c_n_topics:
+    -
+      entity: 0cb8aca9-b05f-4bf2-859f-28c7e0acce0f
+  field_c_n_vertical_spacing:
+    -
+      value: both

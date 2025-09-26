@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c8e2bca0-f2c7-428b-8d4e-c6543a07afd2
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    edc01ea7-c8d6-4eab-8c4d-8d7d78e861da: media
+    25ed58e5-1f78-4cb8-b792-52afa86f4153: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 02. Deserunt temporibus voluptatibus.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-02-deserunt-temporibus-voluptatibus
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Non officia officiis quibusdam vero</h2>
+        <p>Facere id maxime nihil odio perferendis repellendus voluptas. Alias corrupti omnis quibusdam sint tempore. Blanditiis in maxime optio quos repellat sint temporibus tenetur voluptatibus. Animi delectus distinctio provident repellendus saepe vero. Facere fuga odio temporibus. At ducimus odio optio temporibus. Deleniti est expedita minus nihil placeat quo sint tenetur.</p>
+        <p>Dolor omnis optio repudiandae. Animi deleniti eveniet. Aut eos est praesentium saepe voluptatum. Aut dignissimos eligendi excepturi molestiae molestias sint tenetur vero. Est iusto nihil quod repellendus tempore.</p>
+        <h3>Laborum occaecati omnis. Eligendi possimus</h3>
+        <p>Minus molestias mollitia officiis qui. Id in molestiae omnis quidem repudiandae voluptatum. Delectus excepturi minus molestias nam placeat quos reiciendis similique soluta. Assumenda eos et excepturi maiores quod similique sint. Animi ducimus earum expedita itaque maxime molestias possimus sint voluptates.</p><a href="https://www.example.com/Occaecati-perferendis-tempore.-Accusamus-id.">Expedita officia.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 26afe8b0-5443-4c2c-8bbd-170a9ced300f
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Impedit non optio.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Mollitia-non-sunt.-Animi-eos.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
+              title: 'Cupiditate est.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Maiores molestiae saepe voluptas. Eos est facilis. Debitis facere itaque mollitia officiis omnis quo ut. Atque autem dignissimos excepturi impedit.'
+  field_c_n_thumbnail:
+    -
+      entity: edc01ea7-c8d6-4eab-8c4d-8d7d78e861da
+  field_c_n_topics:
+    -
+      entity: 25ed58e5-1f78-4cb8-b792-52afa86f4153
+  field_c_n_vertical_spacing:
+    -
+      value: both

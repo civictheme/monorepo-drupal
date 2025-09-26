@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4789c1ef-0ba6-4870-8232-71886c10b1d9
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    bb07f3af-1a5b-44f4-bba4-6e413f926a13: media
+    70b81f9a-1a1e-4338-85f4-1339c6dd2422: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 13. Delectus dolores eligendi.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-13-delectus-dolores-eligendi
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Animi aut culpa maiores. Dignissimos</h2>
+        <p>Facilis laborum officiis quidem quod recusandae repellat repudiandae sapiente sint. Ducimus eos facilis saepe similique tempore. Animi autem corrupti et impedit minus molestiae optio. Animi cupiditate distinctio hic maxime quibusdam. Asperiores eos et maiores quas recusandae rerum. Officia tempore voluptates. Corrupti deleniti dignissimos doloribus ducimus itaque ut. Est excepturi expedita in praesentium recusandae voluptatibus.</p>
+        <p>Dolorum eveniet libero necessitatibus odio officiis quo quod recusandae voluptatibus. At aut cumque fuga hic in minus mollitia necessitatibus similique. Assumenda eveniet mollitia officia placeat tempore. Accusamus asperiores atque deleniti facere quos soluta.</p>
+        <h3>Molestiae sapiente tempore. At maxime</h3>
+        <p>Eligendi expedita officia. Animi dolorum nam nobis odio officia quos. Cupiditate delectus maiores perferendis similique sunt. Asperiores molestiae mollitia possimus sunt. Impedit non provident quibusdam quidem repudiandae sunt tempore. Assumenda eos est mollitia occaecati perferendis. Consequatur eos id reiciendis repellat ut.</p><a href="https://www.example.com/Deserunt-temporibus-voluptatibus-voluptatum.-Debitis.">Maiores molestiae.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fb1b6810-1e3f-4fec-b388-8dc8de88b3cc
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Facere id maxime.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Non-officia-officiis-quibusdam-vero.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Dolor-omnis-optio-repudiandae.-Animi.'
+              title: 'Laborum occaecati.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Deleniti mollitia quo repudiandae vero. Deserunt doloribus itaque odio placeat possimus praesentium quod tempore. Alias cumque est maiores. Corrupti ducimus.'
+  field_c_n_thumbnail:
+    -
+      entity: bb07f3af-1a5b-44f4-bba4-6e413f926a13
+  field_c_n_topics:
+    -
+      entity: 70b81f9a-1a1e-4338-85f4-1339c6dd2422
+  field_c_n_vertical_spacing:
+    -
+      value: both

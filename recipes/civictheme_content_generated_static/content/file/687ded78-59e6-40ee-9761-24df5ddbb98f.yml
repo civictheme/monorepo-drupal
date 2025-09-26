@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 687ded78-59e6-40ee-9761-24df5ddbb98f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_6_haru.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_6_haru.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 186107
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758865472
