@@ -1,0 +1,76 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3830ffa7-5677-4b91-99c1-e4eb41c8ce3a
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    f2b12e05-3b89-467e-9d7f-6a69164646af: media
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Fac, Top: 1, Thu: Y, Ver: bot, Bod: 2, Dat: 2, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Event Date Range'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-topics-1-thumbnail-both-spaces-body-event-date-range
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Dolorum eveniet libero necessitatibus odio</h2>
+        <p>Molestiae sapiente tempore. At maxime quas quod repellat rerum saepe similique tenetur. Animi consequatur culpa deleniti dolorum molestiae occaecati vero. At dignissimos id minus mollitia quidem repudiandae saepe soluta voluptas. Facere harum molestias necessitatibus quos repellendus. Assumenda cumque dignissimos libero non quas qui quod repellat. Alias asperiores facere libero minus nihil officiis repellendus rerum.</p>
+        <p>Eligendi expedita officia. Animi dolorum nam nobis odio officia quos. Cupiditate delectus maiores perferendis similique sunt. Asperiores molestiae mollitia possimus sunt. Impedit non provident quibusdam quidem repudiandae sunt tempore. Assumenda eos est mollitia occaecati perferendis. Consequatur eos id reiciendis repellat ut.</p>
+        <h3>Deserunt temporibus voluptatibus voluptatum. Debitis</h3>
+        <p>Maiores molestiae saepe voluptas. Eos est facilis. Debitis facere itaque mollitia officiis omnis quo ut. Atque autem dignissimos excepturi impedit optio quos. Aut molestiae non optio quod. Animi delectus dolores quidem repellat repudiandae tenetur. Accusamus atque delectus et molestiae qui repellat temporibus. At dignissimos distinctio dolorum earum nobis possimus quidem recusandae ut. Excepturi laborum officia qui. Corrupti dignissimos eveniet nihil officia omnis qui reiciendis sunt tempore.</p><a href="https://www.example.com/Non-officia-officiis-quibusdam-vero.">Facere id.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Facilis laborum officiis quidem quod recusandae repellat repudiandae sapiente sint. Ducimus eos facilis saepe similique tempore. Animi autem corrupti et impedit minus molestiae optio. Animi cupiditate distinctio hic maxime quibusdam. Asperiores eos et maiores quas recusandae rerum. Officia tempore voluptates. Corrupti deleniti dignissimos doloribus ducimus itaque ut. Est excepturi expedita in praesentium recusandae voluptatibus.'
+  field_c_n_thumbnail:
+    -
+      entity: f2b12e05-3b89-467e-9d7f-6a69164646af
+  field_c_n_topics:
+    -
+      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+  field_c_n_vertical_spacing:
+    -
+      value: both

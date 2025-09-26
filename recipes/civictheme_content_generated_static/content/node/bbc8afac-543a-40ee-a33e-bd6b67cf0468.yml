@@ -1,0 +1,76 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bbc8afac-543a-40ee-a33e-bd6b67cf0468
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    8ce810f1-e26c-4734-9d33-240c57ada31e: taxonomy_term
+    48632cac-2e8d-436d-9938-2ccdf0efa903: media
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Aut, Top: 1, Thu: Y, Ver: bot, Bod: 2, Sit: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Site section'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-topics-1-thumbnail-both-spaces-body-site-section
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Et itaque provident rerum. Delectus</h2>
+        <p>Alias aut quas ut. Assumenda consequatur dignissimos dolor et hic id occaecati possimus sunt. Autem facere id necessitatibus recusandae repudiandae. Alias assumenda blanditiis facere perferendis saepe. Aut cumque id libero repellat voluptatibus. Asperiores atque consequatur distinctio facilis fuga provident quibusdam quo voluptatibus. Eligendi eos et expedita tempore voluptatum. Maxime minus molestiae saepe. Alias cupiditate sunt vero. Consequatur cupiditate in nobis non voluptas.</p>
+        <p>Doloribus iusto officia ut. Culpa doloribus iusto nam nobis odio recusandae vero. Accusamus atque culpa in occaecati quidem quo voluptas. Autem distinctio hic praesentium sint vero. Quo similique vero. Distinctio occaecati optio possimus quas saepe voluptates. Cumque delectus eos in maiores tenetur.</p>
+        <h3>Blanditiis deserunt fuga itaque quo</h3>
+        <p>Delectus dolores eligendi hic laborum odio officia recusandae ut voluptatum. Corrupti est nobis quibusdam. Autem distinctio mollitia odio. At delectus fuga impedit maiores molestiae repellendus rerum vero. Consequatur distinctio et maxime nam non officiis placeat temporibus. Alias ducimus eligendi et in molestias quidem quod reiciendis voluptatum. Atque est non optio quos repellendus voluptatibus. Autem debitis hic officia qui quod repellendus soluta voluptatibus.</p><a href="https://www.example.com/Deleniti-mollitia-quo-repudiandae-vero.">Animi aut.</a>
+      format: civictheme_rich_text
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_site_section:
+    -
+      entity: 8ce810f1-e26c-4734-9d33-240c57ada31e
+  field_c_n_summary:
+    -
+      value: 'Autem consequatur expedita facere laborum placeat quibusdam. Accusamus autem id mollitia omnis placeat qui tenetur. Assumenda eos facilis reiciendis. Deserunt dolorum quidem similique. Itaque maxime officiis quidem repudiandae. At maxime non repellendus saepe. Assumenda distinctio ducimus excepturi molestiae optio voluptatibus.'
+  field_c_n_thumbnail:
+    -
+      entity: 48632cac-2e8d-436d-9938-2ccdf0efa903
+  field_c_n_topics:
+    -
+      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+  field_c_n_vertical_spacing:
+    -
+      value: both

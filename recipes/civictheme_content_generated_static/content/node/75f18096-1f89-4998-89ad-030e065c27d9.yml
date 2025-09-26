@@ -1,0 +1,75 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 75f18096-1f89-4998-89ad-030e065c27d9
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    11323430-2ee9-444e-9cc3-70547ca77464: media
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Dol, Top: 1, Thu: Y, Ver: bot, Sho: Y, Cus: 202, Bod: 2, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Topics (1), Thumbnail, Both spaces, Body, Show Last Updated Date, Not Custom Date'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-topics-1-thumbnail-both-spaces-body-show-last-updated-date-not-custom-date
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Laborum occaecati omnis. Eligendi possimus</h2>
+        <p>Minus molestias mollitia officiis qui. Id in molestiae omnis quidem repudiandae voluptatum. Delectus excepturi minus molestias nam placeat quos reiciendis similique soluta. Assumenda eos et excepturi maiores quod similique sint. Animi ducimus earum expedita itaque maxime molestias possimus sint voluptates.</p>
+        <p>Occaecati perferendis tempore. Accusamus id praesentium quas temporibus. Consequatur expedita mollitia optio voluptas. Accusamus dolor et. Itaque necessitatibus possimus praesentium. Aut consequatur deleniti hic necessitatibus placeat rerum ut voluptas voluptatum. Aut est fuga iusto officia perferendis praesentium recusandae tenetur. Officia qui reiciendis similique sint. Animi eligendi id. At debitis dolorum eos eveniet occaecati quibusdam reiciendis voluptatibus.</p>
+        <h3>Expedita officia quod recusandae. Earum</h3>
+        <p>Mollitia non sunt. Animi eos impedit non occaecati officiis recusandae reiciendis voluptatibus. Asperiores impedit itaque quas repudiandae sapiente tenetur voluptas. Autem ducimus in praesentium similique. Autem earum et itaque repellat. Delectus dolorum non. Consequatur cupiditate doloribus eveniet in iusto nihil non possimus.</p><a href="https://www.example.com/Impedit-non-optio-quod-quos.">Corrupti id.</a>
+      format: civictheme_rich_text
+  field_c_n_custom_last_updated:
+    -
+      value: '2022-07-01'
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Dolor omnis optio repudiandae. Animi deleniti eveniet. Aut eos est praesentium saepe voluptatum. Aut dignissimos eligendi excepturi molestiae molestias sint tenetur vero. Est iusto nihil quod repellendus tempore.'
+  field_c_n_thumbnail:
+    -
+      entity: 11323430-2ee9-444e-9cc3-70547ca77464
+  field_c_n_topics:
+    -
+      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+  field_c_n_vertical_spacing:
+    -
+      value: both

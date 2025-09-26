@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 9864536c-229e-4d19-9a56-b4ddda16fe24
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    de760691-a8bd-4bbc-b9a9-cacbed929cf9: media
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Thu: Y, Sum: Sum, Top: 1, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page 13. Maiores molestiae saepe.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-13-maiores-molestiae-saepe
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cd9ee474-3afc-41da-9c16-bdeba8cd71d5
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Laborum occaecati omnis. Eligendi possimus</h2>
+                <p>Minus molestias mollitia officiis qui. Id in molestiae omnis quidem repudiandae voluptatum. Delectus excepturi minus molestias nam placeat quos reiciendis similique soluta. Assumenda eos et excepturi maiores quod similique sint. Animi ducimus earum expedita itaque maxime molestias possimus sint voluptates.</p>
+                <p>Occaecati perferendis tempore. Accusamus id praesentium quas temporibus. Consequatur expedita mollitia optio voluptas. Accusamus dolor et. Itaque necessitatibus possimus praesentium. Aut consequatur deleniti hic necessitatibus placeat rerum ut voluptas voluptatum. Aut est fuga iusto officia perferendis praesentium recusandae tenetur. Officia qui reiciendis similique sint. Animi eligendi id. At debitis dolorum eos eveniet occaecati quibusdam reiciendis voluptatibus.</p>
+                <h3>Expedita officia quod recusandae. Earum</h3>
+                <p>Mollitia non sunt. Animi eos impedit non occaecati officiis recusandae reiciendis voluptatibus. Asperiores impedit itaque quas repudiandae sapiente tenetur voluptas. Autem ducimus in praesentium similique. Autem earum et itaque repellat. Delectus dolorum non. Consequatur cupiditate doloribus eveniet in iusto nihil non possimus.</p><a href="https://www.example.com/Impedit-non-optio-quod-quos.">Corrupti id.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Non officia officiis quibusdam vero. Autem facilis hic in necessitatibus non occaecati similique voluptas. Consequatur cupiditate deserunt impedit libero optio qui reiciendis saepe vero. At dolores facere iusto nam odio officiis perferendis repudiandae voluptatum. Facere id maxime nihil odio perferendis repellendus voluptas. Alias corrupti omnis quibusdam sint tempore. Blanditiis in maxime optio quos repellat sint temporibus tenetur voluptatibus. Animi delectus distinctio provident repellendus saepe vero. Facere fuga odio temporibus. At ducimus odio optio temporibus. Deleniti est expedita minus nihil placeat quo sint tenetur. Dolor omnis optio repudiandae. Animi deleniti eveniet. Aut eos est praesentium saepe voluptatum. Aut dignissimos eligendi excepturi.'
+  field_c_n_thumbnail:
+    -
+      entity: de760691-a8bd-4bbc-b9a9-cacbed929cf9
+  field_c_n_topics:
+    -
+      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+  field_c_n_vertical_spacing:
+    -
+      value: none

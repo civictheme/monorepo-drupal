@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6b9ee0a3-c227-4334-8dce-3c2690933e83
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    3c65c30d-319f-402c-9d42-dbedc799eb34: media
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Sum: In, Top: 1, Thu: Y, Ver: bot, Sho: Y, Com: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Summary, Topics (1), Thumbnail, Both spaces, Content, Show Last Updated Date'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-summary-topics-1-thumbnail-both-spaces-content-show-last-updated-date
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6bb7ef3e-780e-4801-824d-b5e66c870a31
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Excepturi laborum minus necessitatibus. Minus</h2>
+                <p>Ducimus eligendi nobis. Debitis eligendi est hic iusto quibusdam vero voluptatum. Aut distinctio facilis officia repudiandae sunt. Assumenda autem eligendi iusto odio repellat voluptas voluptatum. Autem corrupti est fuga officia saepe soluta. Animi aut iusto maxime nobis provident. Accusamus asperiores culpa harum libero non sapiente ut voluptates. Deserunt eligendi hic laborum quod recusandae temporibus voluptas. Aut ducimus impedit necessitatibus officia optio possimus quod similique voluptatibus.</p>
+                <p>Autem consequatur expedita facere laborum placeat quibusdam. Accusamus autem id mollitia omnis placeat qui tenetur. Assumenda eos facilis reiciendis. Deserunt dolorum quidem similique. Itaque maxime officiis quidem repudiandae. At maxime non repellendus saepe. Assumenda distinctio ducimus excepturi molestiae optio voluptatibus.</p>
+                <h3>Et itaque provident rerum. Delectus</h3>
+                <p>Alias aut quas ut. Assumenda consequatur dignissimos dolor et hic id occaecati possimus sunt. Autem facere id necessitatibus recusandae repudiandae. Alias assumenda blanditiis facere perferendis saepe. Aut cumque id libero repellat voluptatibus. Asperiores atque consequatur distinctio facilis fuga provident quibusdam quo voluptatibus. Eligendi eos et expedita tempore voluptatum. Maxime minus molestiae saepe. Alias cupiditate sunt vero. Consequatur cupiditate in nobis non voluptas.</p><a href="https://www.example.com/Doloribus-iusto-officia-ut.-Culpa.">Blanditiis deserunt.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'In molestiae occaecati possimus qui recusandae. Animi asperiores dolorum itaque quo temporibus. Autem impedit odio placeat qui rerum similique ut. Cumque delectus earum maiores nam quibusdam quod repudiandae soluta. Consequatur debitis et eveniet impedit nam quos soluta. Expedita molestias necessitatibus. Delectus ducimus facilis id molestias nobis vero. Cumque ducimus et excepturi hic laborum mollitia repellat. Corrupti cumque deleniti deserunt hic non.'
+  field_c_n_thumbnail:
+    -
+      entity: 3c65c30d-319f-402c-9d42-dbedc799eb34
+  field_c_n_topics:
+    -
+      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+  field_c_n_vertical_spacing:
+    -
+      value: both

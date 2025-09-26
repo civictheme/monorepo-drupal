@@ -1,0 +1,68 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4fdb2d7c-56b3-4f9e-a147-d291bf9cd69b
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Off, Top: 1, Ver: bot, Bod: 2, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Topics (1), Both spaces, Body'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-topics-1-both-spaces-body
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Distinctio harum praesentium quod quos</h2>
+        <p>Cumque delectus hic mollitia necessitatibus nihil nobis repellat voluptatibus. Alias at eveniet harum molestias officiis sapiente similique. Aut debitis et molestiae occaecati quidem saepe soluta tempore. Consequatur culpa doloribus est eveniet itaque libero nam odio quos.</p>
+        <p>Accusamus animi deleniti doloribus libero molestiae possimus provident quo. Assumenda blanditiis qui repudiandae rerum. Deleniti excepturi harum iusto optio praesentium. Libero minus optio provident rerum temporibus tenetur voluptatibus. Doloribus eligendi necessitatibus optio praesentium. Corrupti dolores laborum maiores molestias odio officiis saepe. Deserunt nobis repellendus. Consequatur deleniti eligendi odio. Cumque deserunt dolor impedit iusto laborum nihil provident quibusdam rerum.</p>
+        <h3>Earum perferendis sapiente sunt. Deleniti</h3>
+        <p>Est iusto maxime qui repellat rerum saepe tenetur voluptas. Eligendi molestias possimus. Aut expedita itaque officia placeat quibusdam voluptatum. Accusamus deserunt impedit laborum nam nihil officia soluta voluptas. Alias earum qui vero. Atque autem debitis impedit quibusdam rerum tenetur voluptas. Consequatur dolorum iusto laborum maiores nobis quibusdam quidem vero. In non quo repudiandae.</p><a href="https://www.example.com/At-cumque-hic-laborum-quo.">Id impedit.</a>
+      format: civictheme_rich_text
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum. Animi facilis officiis soluta. Hic repellat soluta. Dolores harum non saepe tenetur. Dolorum excepturi nam occaecati. Dolor earum repellendus. Autem itaque qui. Hic itaque necessitatibus quos repudiandae voluptatum. Debitis delectus molestiae perferendis sapiente tempore.'
+  field_c_n_topics:
+    -
+      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+  field_c_n_vertical_spacing:
+    -
+      value: both

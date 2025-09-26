@@ -1,0 +1,63 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 625de974-9895-4a8a-8915-2811a3133896
+  bundle: civictheme_event
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Min, Ver: bot, Bod: 2, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Both spaces, Body'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-both-spaces-body
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Occaecati perferendis tempore. Accusamus id</h2>
+        <p>Expedita officia quod recusandae. Earum expedita maiores molestiae repellat. Distinctio maiores odio quas soluta tenetur. Asperiores assumenda odio optio praesentium quas repellat sint tenetur. Corrupti facilis officia. Delectus in occaecati perferendis quo tenetur.</p>
+        <p>Mollitia non sunt. Animi eos impedit non occaecati officiis recusandae reiciendis voluptatibus. Asperiores impedit itaque quas repudiandae sapiente tenetur voluptas. Autem ducimus in praesentium similique. Autem earum et itaque repellat. Delectus dolorum non. Consequatur cupiditate doloribus eveniet in iusto nihil non possimus.</p>
+        <h3>Impedit non optio quod quos</h3>
+        <p>Corrupti id saepe. Blanditiis culpa cupiditate necessitatibus nobis repudiandae similique temporibus. Atque cupiditate eos facilis maiores recusandae reiciendis voluptates. Doloribus est expedita impedit molestias occaecati similique soluta voluptatum. Doloribus itaque odio. Debitis id quo.</p><a href="https://www.example.com/Cupiditate-est-maiores-non-repellendus.">Fuga id.</a>
+      format: civictheme_rich_text
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Minus molestias mollitia officiis qui. Id in molestiae omnis quidem repudiandae voluptatum. Delectus excepturi minus molestias nam placeat quos reiciendis similique soluta. Assumenda eos et excepturi maiores quod similique sint. Animi ducimus earum expedita itaque maxime molestias possimus sint voluptates.'
+  field_c_n_vertical_spacing:
+    -
+      value: both

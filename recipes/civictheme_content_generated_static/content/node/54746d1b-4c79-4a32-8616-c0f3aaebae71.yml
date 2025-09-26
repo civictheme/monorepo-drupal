@@ -1,0 +1,297 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 54746d1b-4c79-4a32-8616-c0f3aaebae71
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    8b0dacdd-f7aa-4d1e-a93e-cac4cea90dfe: media
+    aee2f9e3-4f77-4b9a-b2df-7079b3d089ca: media
+    238babdd-3c76-4b96-aa60-952cf44fe689: media
+    d21221ff-feee-4a5d-931f-90eede0da0ca: media
+    9fa66811-896b-409a-bbd8-0b0adbb16da4: media
+    8d9f6c89-5abe-481a-bfa7-4738567ff6a0: media
+    dd0ea928-4136-45c3-a38c-c476fb0eb042: media
+    4e188906-d5cc-40ea-bb76-92cea2bb5ee9: media
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Aut, Top: 1, Bod: 2, Att: 6, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Component. Attachment'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-component-attachment
+      langcode: en
+      pathauto: 0
+  field_c_n_attachments:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 39f05fc9-54aa-4b1f-bd67-553dd98d3b8b
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 8b0dacdd-f7aa-4d1e-a93e-cac4cea90dfe
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: '1 attachment, Excepturi laborum minus.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c5ab9fc3-1525-4960-ad9f-aa66c82b3014
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: aee2f9e3-4f77-4b9a-b2df-7079b3d089ca
+            -
+              entity: 238babdd-3c76-4b96-aa60-952cf44fe689
+            -
+              entity: d21221ff-feee-4a5d-931f-90eede0da0ca
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: '3 attachments,Autem consequatur expedita.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b507e607-cd0b-40d7-af6f-19e19877b882
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 9fa66811-896b-409a-bbd8-0b0adbb16da4
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, Vertical spacing, Alias aut quas.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: abe4cbe8-d6e5-48f7-b13f-396222edda06
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 8d9f6c89-5abe-481a-bfa7-4738567ff6a0
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, Vertical spacing, Blanditiis deserunt fuga.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b669aaa6-8521-4490-b3e1-f4d7b32b7395
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: dd0ea928-4136-45c3-a38c-c476fb0eb042
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, BG, Vertical spacing, Deleniti mollitia quo.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 67c8a842-fcdd-4425-8f2c-cfe6d8395258
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 4e188906-d5cc-40ea-bb76-92cea2bb5ee9
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, BG, Vertical spacing, Facilis laborum officiis.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Debitis delectus et in non</h2>
+        <p>Dignissimos doloribus harum nihil quos repellat saepe sapiente. Eligendi hic omnis optio praesentium quod repellat. Alias culpa deserunt dolores eveniet qui repellendus. Animi excepturi hic libero nihil qui voluptas. Animi corrupti maxime mollitia voluptatibus. Alias distinctio ducimus facere minus mollitia optio provident quidem voluptas.</p>
+        <p>Dolores eos maxime temporibus. Asperiores aut doloribus dolorum id nobis tempore. Assumenda blanditiis corrupti debitis earum fuga nobis provident qui recusandae. Placeat quod tenetur. Deleniti eligendi eos sint. Culpa deserunt iusto libero officia optio praesentium tenetur. Accusamus animi deserunt fuga libero quod. Accusamus blanditiis cumque dolor id laborum placeat quibusdam similique.</p>
+        <h3>Eveniet occaecati recusandae. Consequatur debitis</h3>
+        <p>Eos iusto optio quidem similique. Alias corrupti excepturi facilis molestiae optio quos repellat ut. Animi officiis possimus. Assumenda eveniet facere fuga itaque odio praesentium quos. Dolor doloribus earum harum praesentium quod. Dolor praesentium quibusdam tenetur. Cumque deleniti eligendi libero quod ut. Cumque cupiditate doloribus eos mollitia voluptas. Doloribus in voluptas. Alias atque consequatur corrupti dolores dolorum eveniet non similique. Accusamus atque consequatur cupiditate id odio officiis quos repellat saepe.</p><a href="https://www.example.com/Assumenda-cupiditate-mollitia-quos-repellendus.">In molestiae.</a>
+      format: civictheme_rich_text
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Aut delectus id minus molestias recusandae repudiandae. Animi.'
+  field_c_n_topics:
+    -
+      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+  field_c_n_vertical_spacing:
+    -
+      value: none

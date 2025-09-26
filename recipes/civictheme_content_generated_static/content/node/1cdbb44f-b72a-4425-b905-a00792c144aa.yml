@@ -1,0 +1,63 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 1cdbb44f-b72a-4425-b905-a00792c144aa
+  bundle: civictheme_event
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Sum: Mol, Bod: 2, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event. Summary, Body'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-summary-body
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Eligendi expedita officia. Animi dolorum</h2>
+        <p>Deserunt temporibus voluptatibus voluptatum. Debitis laborum molestiae officia quibusdam reiciendis similique. At culpa deleniti possimus. Dolor est laborum molestias nobis. Atque aut officia optio placeat quibusdam repudiandae. Atque distinctio facilis maiores molestias nihil optio qui quibusdam voluptas. Atque blanditiis culpa cupiditate deserunt et eveniet iusto perferendis quos. Distinctio facere libero mollitia optio perferendis tenetur ut vero voluptates.</p>
+        <p>Maiores molestiae saepe voluptas. Eos est facilis. Debitis facere itaque mollitia officiis omnis quo ut. Atque autem dignissimos excepturi impedit optio quos. Aut molestiae non optio quod. Animi delectus dolores quidem repellat repudiandae tenetur. Accusamus atque delectus et molestiae qui repellat temporibus. At dignissimos distinctio dolorum earum nobis possimus quidem recusandae ut. Excepturi laborum officia qui. Corrupti dignissimos eveniet nihil officia omnis qui reiciendis sunt tempore.</p>
+        <h3>Non officia officiis quibusdam vero</h3>
+        <p>Facere id maxime nihil odio perferendis repellendus voluptas. Alias corrupti omnis quibusdam sint tempore. Blanditiis in maxime optio quos repellat sint temporibus tenetur voluptatibus. Animi delectus distinctio provident repellendus saepe vero. Facere fuga odio temporibus. At ducimus odio optio temporibus. Deleniti est expedita minus nihil placeat quo sint tenetur.</p><a href="https://www.example.com/Dolor-omnis-optio-repudiandae.-Animi.">Laborum occaecati.</a>
+      format: civictheme_rich_text
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Molestiae sapiente tempore. At maxime quas quod repellat rerum saepe similique tenetur. Animi consequatur culpa deleniti dolorum molestiae occaecati vero. At dignissimos id minus mollitia quidem repudiandae saepe soluta voluptas. Facere harum molestias necessitatibus quos repellendus. Assumenda cumque dignissimos libero non quas qui quod repellat. Alias asperiores facere libero minus nihil officiis repellendus rerum.'
+  field_c_n_vertical_spacing:
+    -
+      value: none

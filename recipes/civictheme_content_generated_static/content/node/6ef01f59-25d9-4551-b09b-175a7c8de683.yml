@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6ef01f59-25d9-4551-b09b-175a7c8de683
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    1f232b36-2259-4825-b989-76ab776794c3: media
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 19. Id impedit maxime.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-19-id-impedit-maxime
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Asperiores atque molestias mollitia praesentium</h2>
+        <p>Atque dolor itaque provident recusandae voluptates. Culpa facere voluptas. Distinctio facere sapiente. Asperiores earum fuga libero odio qui quo voluptas. Animi at id officia omnis. Alias at culpa minus molestias soluta tempore voluptatum. Aut earum soluta. Aut non placeat.</p>
+        <p>Consequatur deserunt doloribus hic itaque quo quod ut. Distinctio fuga nihil officia repellat voluptatum. Culpa debitis et eveniet hic itaque minus mollitia officia possimus. Alias animi eligendi fuga impedit maiores mollitia quidem similique. Eveniet reiciendis voluptas. Doloribus hic libero officiis perferendis possimus quos voluptas. Mollitia nam quo. Distinctio in itaque libero nihil nobis recusandae repudiandae. Et maxime placeat qui repellendus.</p>
+        <h3>Libero nam odio officiis sapiente</h3>
+        <p>Culpa debitis nobis. Assumenda autem facilis libero non. Dolorum itaque vero. Cupiditate dignissimos non possimus quos. Delectus facilis laborum molestiae odio omnis sunt voluptatibus. Animi cumque officia omnis possimus quidem reiciendis tenetur. Asperiores delectus impedit molestias mollitia quas quos temporibus. Aut dolores doloribus ducimus nobis non praesentium saepe sint soluta. Dolor eveniet odio quidem quo sunt temporibus voluptatibus.</p><a href="https://www.example.com/Aut-delectus-id-minus-molestias.">Debitis delectus.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 82e24a6a-ad35-4c65-8f27-dc6d98810c59
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Dolores eos maxime.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Dignissimos-doloribus-harum-nihil-quos.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Eveniet-occaecati-recusandae.-Consequatur-debitis.'
+              title: 'Eos iusto.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Harum id nam quas. Debitis eos eveniet in maiores necessitatibus qui quidem tempore vero. Aut consequatur cumque deserunt eos repudiandae.'
+  field_c_n_thumbnail:
+    -
+      entity: 1f232b36-2259-4825-b989-76ab776794c3
+  field_c_n_topics:
+    -
+      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+  field_c_n_vertical_spacing:
+    -
+      value: both
