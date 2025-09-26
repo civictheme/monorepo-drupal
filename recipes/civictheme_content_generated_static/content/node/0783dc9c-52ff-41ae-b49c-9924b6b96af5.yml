@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0783dc9c-52ff-41ae-b49c-9924b6b96af5
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    f4e5aa99-65e9-4d32-8375-35d01f824e4c: media
+    25ed58e5-1f78-4cb8-b792-52afa86f4153: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 12. Dignissimos doloribus harum.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-12-dignissimos-doloribus-harum
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Eveniet occaecati recusandae. Consequatur debitis</h2>
+        <p>Eos iusto optio quidem similique. Alias corrupti excepturi facilis molestiae optio quos repellat ut. Animi officiis possimus. Assumenda eveniet facere fuga itaque odio praesentium quos. Dolor doloribus earum harum praesentium quod. Dolor praesentium quibusdam tenetur. Cumque deleniti eligendi libero quod ut. Cumque cupiditate doloribus eos mollitia voluptas. Doloribus in voluptas. Alias atque consequatur corrupti dolores dolorum eveniet non similique. Accusamus atque consequatur cupiditate id odio officiis quos repellat saepe.</p>
+        <p>Assumenda cupiditate mollitia quos repellendus. Alias culpa earum eligendi hic nam. Necessitatibus optio perferendis quidem. Dolores eligendi impedit itaque iusto omnis repellendus tenetur. Autem dignissimos possimus sunt. At cupiditate eligendi excepturi facere maiores molestiae officia optio. Consequatur culpa dignissimos maxime similique sunt tenetur. Animi consequatur cupiditate debitis occaecati optio placeat quibusdam quod. Consequatur distinctio est facere iusto libero sapiente voluptas voluptates.</p>
+        <h3>In molestiae occaecati possimus qui</h3>
+        <p>Excepturi laborum minus necessitatibus. Minus nam officiis sunt. Alias dolor molestias nobis occaecati repudiandae similique voluptates. Expedita fuga ut. Animi est in omnis optio. Deleniti dignissimos laborum maxime praesentium quas quod temporibus. Accusamus corrupti et mollitia soluta voluptatibus voluptatum. Atque cupiditate recusandae sapiente. Consequatur corrupti deleniti et minus omnis placeat quo repudiandae saepe.</p><a href="https://www.example.com/Ducimus-eligendi-nobis.-Debitis-eligendi.">Autem consequatur.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7a6caffc-a1a5-4d3f-b911-39cd0ef84a3e
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Alias aut quas.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Et-itaque-provident-rerum.-Delectus.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Doloribus-iusto-officia-ut.-Culpa.'
+              title: 'Blanditiis deserunt.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Dolores eos maxime temporibus. Asperiores aut doloribus dolorum id nobis tempore. Assumenda blanditiis corrupti debitis earum fuga nobis provident qui.'
+  field_c_n_thumbnail:
+    -
+      entity: f4e5aa99-65e9-4d32-8375-35d01f824e4c
+  field_c_n_topics:
+    -
+      entity: 25ed58e5-1f78-4cb8-b792-52afa86f4153
+  field_c_n_vertical_spacing:
+    -
+      value: both

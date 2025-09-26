@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0f12f7e4-82dd-4f03-b42f-8a61410099d2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_3_esti.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_3_esti.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 186107
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758865472

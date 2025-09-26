@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3ddddf05-3faf-4ecc-89cc-bdecd5e8826c
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    70a6bbd1-436d-4af0-a997-c8d09be56c9f: media
+    0cb8aca9-b05f-4bf2-859f-28c7e0acce0f: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 14. Minus molestias mollitia.'
+  created:
+    -
+      value: 1758865472
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-14-minus-molestias-mollitia
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Expedita officia quod recusandae. Earum</h2>
+        <p>Mollitia non sunt. Animi eos impedit non occaecati officiis recusandae reiciendis voluptatibus. Asperiores impedit itaque quas repudiandae sapiente tenetur voluptas. Autem ducimus in praesentium similique. Autem earum et itaque repellat. Delectus dolorum non. Consequatur cupiditate doloribus eveniet in iusto nihil non possimus.</p>
+        <p>Impedit non optio quod quos repudiandae sapiente tenetur. Blanditiis consequatur facere quas temporibus. Blanditiis minus perferendis. Impedit maxime officia. Corrupti delectus dolorum mollitia omnis placeat quos reiciendis. Aut minus quos voluptas. Debitis facilis officia rerum soluta. Alias delectus itaque iusto necessitatibus officiis sint tempore voluptatum.</p>
+        <h3>Corrupti id saepe. Blanditiis culpa</h3>
+        <p>Cupiditate est maiores non repellendus. Dolorum itaque maiores quo. At atque consequatur facilis molestiae nobis non perferendis voluptates. Culpa est maiores maxime mollitia possimus praesentium quo tempore. Animi asperiores nihil non. Consequatur cumque necessitatibus omnis soluta tempore ut voluptates. Asperiores doloribus maxime sint tenetur. At eos est fuga harum mollitia non praesentium quas vero.</p><a href="https://www.example.com/Fuga-id-impedit-necessitatibus-soluta.">Officia officiis.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 152ef0e6-5beb-4436-ba2f-1199c69029d1
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758865472
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Cumque delectus hic.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Distinctio-harum-praesentium-quod-quos.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Accusamus-animi-deleniti-doloribus-libero.'
+              title: 'Earum perferendis.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Occaecati perferendis tempore. Accusamus id praesentium quas temporibus. Consequatur expedita mollitia optio voluptas. Accusamus dolor et. Itaque necessitatibus possimus praesentium.'
+  field_c_n_thumbnail:
+    -
+      entity: 70a6bbd1-436d-4af0-a997-c8d09be56c9f
+  field_c_n_topics:
+    -
+      entity: 0cb8aca9-b05f-4bf2-859f-28c7e0acce0f
+  field_c_n_vertical_spacing:
+    -
+      value: both

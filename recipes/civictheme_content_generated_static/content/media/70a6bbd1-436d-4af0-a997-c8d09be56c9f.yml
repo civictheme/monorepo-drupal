@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 70a6bbd1-436d-4af0-a997-c8d09be56c9f
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    485a35fb-8279-4a02-9464-5b61d7c993ac: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 14 Eos iusto.'
+  created:
+    -
+      value: 1758865472
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Assumenda cupiditate.'
+  field_c_m_image:
+    -
+      entity: 485a35fb-8279-4a02-9464-5b61d7c993ac
+      alt: 'Alt for Generated static Image media 14 Eos iusto.'
+      title: ''
+      width: 1552
+      height: 846

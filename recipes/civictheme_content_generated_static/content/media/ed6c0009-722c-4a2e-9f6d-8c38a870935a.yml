@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ed6c0009-722c-4a2e-9f6d-8c38a870935a
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    6760b6cc-d8d1-4012-93f5-e93871208844: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 19 Delectus dolores.'
+  created:
+    -
+      value: 1758865472
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Deleniti mollitia.'
+  field_c_m_image:
+    -
+      entity: 6760b6cc-d8d1-4012-93f5-e93871208844
+      alt: 'Alt for Generated static Image media 19 Delectus dolores.'
+      title: ''
+      width: 1550
+      height: 500

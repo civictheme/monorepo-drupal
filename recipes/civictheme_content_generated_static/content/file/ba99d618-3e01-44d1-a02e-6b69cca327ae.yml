@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ba99d618-3e01-44d1-a02e-6b69cca327ae
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_2_earu.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_2_earu.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 118679
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758865472

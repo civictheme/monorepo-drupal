@@ -23,7 +23,7 @@ fi
 
 if [ "${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}" != "1" ]; then
   echo "  > Generate test content."
-  GENERATED_CONTENT_CREATE=1 drush pm-enable cs_generated_content
+  drush recipe /app/recipes/civictheme_content_generated_static
 
   if drush pm-list --status=enabled | grep -q simple_sitemap; then
     echo "  > Generate sitemap."
