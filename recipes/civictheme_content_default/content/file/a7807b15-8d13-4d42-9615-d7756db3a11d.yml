@@ -6,13 +6,13 @@ _meta:
 default:
   uid:
     -
-      target_id: 3
+      target_id: 1
   filename:
     -
-      value: 'Tried and tested components.png'
+      value: 'Tried-and-tested-components.png'
   uri:
     -
-      value: 'public://images/2022-03/Tried and tested components_0.png'
+      value: 'public://images/2022-03/Tried-and-tested-components.png'
   filemime:
     -
       value: image/png

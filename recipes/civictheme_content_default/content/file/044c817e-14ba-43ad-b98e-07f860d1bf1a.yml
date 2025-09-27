@@ -6,7 +6,7 @@ _meta:
 default:
   uid:
     -
-      target_id: 3
+      target_id: 1
   filename:
     -
       value: 'Do it yourself - The DIY approach.png'

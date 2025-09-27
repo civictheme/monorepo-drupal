@@ -12,10 +12,10 @@ default:
       value: true
   uid:
     -
-      target_id: 3
+      target_id: 1
   name:
     -
-      value: 'Tried and tested components.png'
+      value: 'Tried-and-tested-components.png'
   created:
     -
       value: 1648621914

@@ -23,7 +23,6 @@ fi
 
 if [ "${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}" != "1" ]; then
   echo "  > Generate test content."
-  drush recipe /app/recipes/civictheme_content_default
   drush recipe /app/recipes/civictheme_content_generated_static
   # cache clear required @see: https://www.drupal.org/project/drupal/issues/3477002
   drush cr
