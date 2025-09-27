@@ -1,5 +1,3 @@
 name: 'CivicTheme Default Content'
 description: 'Install civictheme default profile content'
 type: 'Theme'
-install:
-  - civictheme_content
