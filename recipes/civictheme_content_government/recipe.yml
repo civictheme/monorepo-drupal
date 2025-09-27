@@ -1,5 +1,125 @@
 name: 'CivicTheme Government Content'
 description: 'Install civictheme government profile content'
 type: 'Theme'
-install:
-  - civictheme_content
+config:
+  actions:
+    system.site:
+      simpleConfigUpdate:
+        slogan: 'A design system by Salsa Digital'
+    civictheme.settings:
+      simpleConfigUpdate:
+        favicon:
+          mimetype: image/vnd.microsoft.icon
+          path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/favicon.ico
+          use_default: false
+        features:
+          favicon: true
+        components:
+          logo:
+            primary:
+              light:
+                desktop:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_desktop.svg
+                mobile:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_mobile.svg
+              dark:
+                desktop:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_desktop.svg
+                mobile:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_mobile.svg
+            secondary:
+              light:
+                desktop:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_light_desktop.png
+                mobile:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_light_mobile.png
+              dark:
+                desktop:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_dark_desktop.png
+                mobile:
+                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_dark_mobile.png
+            image_alt: 'Logo image'
+          header:
+            theme: dark
+            logo_type: inline
+          navigation:
+            primary_navigation:
+              dropdown: drawer
+              dropdown_columns: 4
+              dropdown_columns_fill: false
+              is_animated: true
+            secondary_navigation:
+              dropdown: dropdown
+              dropdown_columns: 4
+              dropdown_columns_fill: false
+              is_animated: true
+          footer:
+            theme: dark
+            logo_type: inline_stacked
+            background_image:
+              path: ''
+          link:
+            new_window: false
+            external_new_window: true
+            external_override_domains: { }
+          skip_link:
+            theme: light
+          event_card:
+            summary_length: 160
+          navigation_card:
+            summary_length: 160
+          promo_card:
+            summary_length: 160
+          publication_card:
+            summary_length: 160
+        colors:
+          use_color_selector: true
+          use_brand_colors: true
+          brand:
+            light:
+              brand1: '#0b66b8'
+              brand2: '#f2f2f2'
+              brand3: '#024d8f'
+            dark:
+              brand1: '#39aee2'
+              brand2: '#0f305a'
+              brand3: '#e38444'
+          palette:
+            light:
+              heading: '#042849'
+              body: '#34434f'
+              background_light: '#fdfdfd'
+              background: '#f2f2f2'
+              background_dark: '#c1c1c1'
+              border_light: '#b5b5b5'
+              border: '#606060'
+              border_dark: '#181818'
+              interaction_text: '#fcfcfc'
+              interaction_background: '#0b66b8'
+              interaction_hover_text: '#fcfcfc'
+              interaction_hover_background: '#063d6e'
+              interaction_focus: '#8b5cd7'
+              highlight: '#024d8f'
+              information: '#007cbf'
+              warning: '#c95100'
+              error: '#ce3836'
+              success: '#008482'
+            dark:
+              heading: '#f5fafd'
+              body: '#e1f2fa'
+              background_light: '#1b3a62'
+              background: '#0f305a'
+              background_dark: '#0a213e'
+              border_light: '#abb6c5'
+              border: '#27446a'
+              border_dark: '#0a213e'
+              interaction_text: '#0f305a'
+              interaction_background: '#39aee2'
+              interaction_hover_text: '#0a213e'
+              interaction_hover_background: '#88ceed'
+              interaction_focus: '#8b5cd7'
+              highlight: '#e38444'
+              information: '#4cc4fc'
+              warning: '#e38444'
+              error: '#e75653'
+              success: '#12b0ae'
