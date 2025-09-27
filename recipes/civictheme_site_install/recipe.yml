@@ -32,6 +32,8 @@ config:
       - core.entity_view_mode.media.media_library
       - image.style.media_library
       - views.view.media_library
+    node:
+      - views.view.content
     civictheme: '*'
   actions:
     system.theme:
