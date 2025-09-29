@@ -1,6 +1,6 @@
 {
-    "name": "drupal/civictheme_drupal_cms__preinstall",
-    "description": "Recipe for preparing CivicTheme to be installed.",
+    "name": "drupal/civictheme_drupal_cms_preinstall",
+    "description": "Recipe for preparing CivicTheme to be installed (overcoming missing layout issue but activating barebones CivicTheme).",
     "type": "recipe",
     "license": "GPL-2.0-or-later",
     "require": {}
