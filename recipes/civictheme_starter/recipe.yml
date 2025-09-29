@@ -1,5 +1,5 @@
-name: 'CivicTheme'
-description: 'Install civictheme'
+name: 'CivicTheme Starter Recipe'
+description: 'Install civicthemes, module dependencies, required configuration, and basic block types.'
 type: 'Site'
 recipes:
   - core/recipes/basic_block_type
@@ -25,6 +25,7 @@ install:
   - search_api_db
   - civictheme
 config:
+  strict: false
   import:
     shortcut: '*'
     media:

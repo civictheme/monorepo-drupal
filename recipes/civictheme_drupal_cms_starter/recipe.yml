@@ -1,0 +1,19 @@
+name: 'CivicTheme'
+description: 'Install civictheme'
+type: 'Theme installer'
+recipes:
+  - civictheme_starter
+config:
+  strict: false
+  actions:
+    system.theme:
+      simpleConfigUpdate:
+        default: civictheme
+    block.block.civictheme_help:
+      setStatus: false
+    block.block.civictheme_messages:
+      setStatus: false
+    block.block.civictheme_primaryadminactions:
+      setStatus: false
+    block.block.civictheme_tabs:
+      setStatus: false

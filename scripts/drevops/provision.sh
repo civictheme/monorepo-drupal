@@ -92,6 +92,8 @@ site_is_installed="$(drush status --fields=bootstrap | grep -q "Successful" && e
 echo
 note "Webroot dir                  : ${DREVOPS_WEBROOT}"
 note "Profile                      : ${DRUPAL_PROFILE}"
+# Custom CivicTheme change
+note "Drupal Version               : ${DRUPAL_VERSION}"
 note "Private files directory      : ${DREVOPS_DRUPAL_PRIVATE_FILES}"
 note "Config path                  : ${DREVOPS_DRUPAL_CONFIG_PATH}"
 note "DB dump file path            : ${DREVOPS_DB_DIR}/${DREVOPS_DB_FILE} ($([ -f "${DREVOPS_DB_DIR}/${DREVOPS_DB_FILE}" ] && echo "present" || echo "absent"))"

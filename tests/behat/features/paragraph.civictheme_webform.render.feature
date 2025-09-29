@@ -20,7 +20,7 @@ Feature: Webform render
     And I should see an ".ct-webform.ct-theme-light" element
     And I should see an ".ct-webform.ct-vertical-spacing-inset--both" element
     And I should not see an ".ct-webform.ct-theme-dark" element
-    And I see field "Your Name"
-    And I see field "Your Email"
-    And I see field "Subject"
-    And I see field "Message"
+    And I see field "First name"
+    And I see field "Last name"
+    And I see field "Email"
+    And I see field "Enquiry"

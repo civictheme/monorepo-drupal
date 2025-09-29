@@ -18,7 +18,9 @@ if [ "${DRUPAL_PROFILE:-}" = "govcms" ]; then
   echo "  > Remove GovCMS configs."
   drush pm-enable civictheme_govcms
   drush civictheme_govcms:remove-config
-else
+fi
+
+if [ "${DRUPAL_VERSION:-}" != 'CMS' ]; then
   echo "  > Enable Admin module."
   drush pm-enable civictheme_admin
   drush pm-enable admin_toolbar admin_toolbar_search

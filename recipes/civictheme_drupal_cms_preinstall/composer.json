@@ -1,0 +1,7 @@
+{
+    "name": "drupal/civictheme_drupal_cms__preinstall",
+    "description": "Recipe for preparing CivicTheme to be installed.",
+    "type": "recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {}
+}
