@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 773352c4-c4ac-4fcf-a1fd-3ecc0d145ed2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: logo_primary_dark_desktop.svg
+  uri:
+    -
+      value: 'public://images/2022-10/logo_primary_dark_desktop.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 39572
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982580

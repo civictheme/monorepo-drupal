@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ad3a4a48-93f7-4219-89b7-2dc7b04e7083
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: logo_secondary_dark_desktop.png
+  uri:
+    -
+      value: 'public://images/2022-10/logo_secondary_dark_desktop.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 5967
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982775

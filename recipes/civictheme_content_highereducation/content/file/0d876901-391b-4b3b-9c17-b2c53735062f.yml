@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0d876901-391b-4b3b-9c17-b2c53735062f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: logo_secondary_light_mobile.png
+  uri:
+    -
+      value: 'public://images/2022-10/logo_secondary_light_mobile.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 6637
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982775

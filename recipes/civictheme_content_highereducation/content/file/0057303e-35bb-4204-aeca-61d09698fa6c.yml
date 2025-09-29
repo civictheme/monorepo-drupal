@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0057303e-35bb-4204-aeca-61d09698fa6c
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: logo_primary_light_desktop.svg
+  uri:
+    -
+      value: 'public://images/2022-10/logo_primary_light_desktop.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 59687
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982775

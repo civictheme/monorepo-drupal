@@ -19,25 +19,25 @@ config:
             primary:
               light:
                 desktop:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_desktop.svg
+                  path: sites/default/files/images/2022-10/logo_primary_light_desktop.svg
                 mobile:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_light_mobile.svg
+                  path: sites/default/files/images/2022-10/logo_primary_light_mobile.svg
               dark:
                 desktop:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_desktop.svg
+                  path: sites/default/files/images/2022-10/logo_primary_dark_desktop.svg
                 mobile:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_primary_dark_mobile.svg
+                  path: sites/default/files/images/2022-10/logo_primary_dark_mobile.svg
             secondary:
               light:
                 desktop:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_light_desktop.png
+                  path: sites/default/files/images/2022-10/logo_secondary_light_desktop.png
                 mobile:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_light_mobile.png
+                  path: sites/default/files/images/2022-10/logo_secondary_light_mobile.png
               dark:
                 desktop:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_dark_desktop.png
+                  path: sites/default/files/images/2022-10/logo_secondary_dark_desktop.png
                 mobile:
-                  path: modules/custom/civictheme_content/modules/civictheme_content_government/assets/logos/logo_secondary_dark_mobile.png
+                  path: sites/default/files/images/2022-10/logo_secondary_dark_mobile.png
             image_alt: 'Logo image'
           header:
             theme: dark

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0f0a8396-c135-4f4e-8623-3c8b8d42d9fa
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: logo_primary_dark_mobile.svg
+  uri:
+    -
+      value: 'public://images/2022-10/logo_primary_dark_mobile.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 39572
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982580
