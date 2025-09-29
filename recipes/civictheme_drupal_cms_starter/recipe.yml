@@ -9,11 +9,25 @@ config:
     system.theme:
       simpleConfigUpdate:
         default: civictheme
+    block.block.civictheme_site_branding:
+      setStatus: false
     block.block.civictheme_help:
+      setStatus: false
+    block.block.civictheme_main_menu:
       setStatus: false
     block.block.civictheme_messages:
       setStatus: false
+    block.block.civictheme_account_menu:
+      setStatus: false
+    block.block.civictheme_breadcrumbs:
+      setStatus: false
+    block.block.civictheme_page_title:
+      setStatus: false
+    block.block.civictheme_powered:
+      setStatus: false
     block.block.civictheme_primaryadminactions:
+      setStatus: false
+    block.block.civictheme_footer_menu:
       setStatus: false
     block.block.civictheme_tabs:
       setStatus: false
