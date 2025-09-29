@@ -442,6 +442,21 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->loadForComponent('attachment', 'use_media_name', TRUE),
     ];
 
+    $form['components']['search'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Search'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['search']['keyword_fields'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Search and Automated list keyword fields'),
+      '#description' => $this->t('A list of machine names for views exposed filters keyword search.<br/>Fields added here will populate the "Showing @start - @end of @total @keywords" where @keywords is replaced with "for [keyword_field_value]" if a value exists.<br/>It will also be used in the browser page title as "@title - Searching for \'@keywords\' | @suffix".<br/>One keyword field per line.'),
+      '#default_value' => CivicthemeUtility::arrayToMultiline($this->themeConfigManager->load('components.search.keyword_fields', [])),
+      '#rows' => 4,
+    ];
+
     $form['#process'][] = $this->processForm(...);
 
     // Auto-discover per-component validation and submit handlers.
