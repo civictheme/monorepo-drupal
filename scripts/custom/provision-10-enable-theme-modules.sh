@@ -16,8 +16,8 @@ echo "  > Removing all site files."
 rm -Rf /app/web/sites/default/files/* >/dev/null || true
 if [[ "$DRUPAL_VERSION" = 'CMS' ]]; then
     drush updatedb -y
-    php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe /app/recipes/civictheme_drupal_cms_preinstall
-    php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe /app/recipes/civictheme_drupal_cms_starter
+    php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe ../recipes/civictheme_drupal_cms_preinstall
+    php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe ../recipes/civictheme_drupal_cms_starter
 fi
 if [[ "$DRUPAL_VERSION" != 'CMS' ]] && ([[ "$DRUPAL_PROFILE" != /app/recipes/* ]] || [[ "$DRUPAL_PROFILE" != "/app/recipes/civictheme_starter" ]]); then
 echo "[INFO] Enabling theme modules."

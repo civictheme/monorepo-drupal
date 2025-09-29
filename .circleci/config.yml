@@ -389,7 +389,7 @@ jobs:
     <<: *runner_config
     environment:
       DRUPAL_VERSION: CMS
-      DRUPAL_PROFILE: /app/recipes/drupal_cms_starter
+      DRUPAL_PROFILE: ../recipes/drupal_cms_starter
     <<: *job-build
 
   # GovCMS profile, sub-theme. Longest test run.
