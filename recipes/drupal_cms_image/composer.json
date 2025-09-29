@@ -1,0 +1,12 @@
+{
+    "name": "drupal/drupal_cms_image",
+    "type": "drupal-recipe",
+    "description": "Sets up base image configuration including responsive image styles, view modes, focal point-based cropping and SVG images.",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": "^10.4 || ^11",
+        "drupal/focal_point": "^2",
+        "drupal/svg_image": "^3.1"
+    },
+    "version": "1.2.5"
+}

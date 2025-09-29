@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_study__client_name
+    - node.type.case_study
+id: node.case_study.field_case_study__client_name
+field_name: field_case_study__client_name
+entity_type: node
+bundle: case_study
+label: 'Client name'
+description: 'Include the name of the client or organization.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_user
+id: auth_redirects
+modeller: bpmn_io
+label: 'Authentication redirects'
+version: 1.0.0
+weight: 0
+events:
+  Event_user_logout:
+    plugin: 'user:logout'
+    label: 'User logout'
+    configuration: {  }
+    successors:
+      -
+        id: Action_redirect_to_login
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Action_redirect_to_login:
+    plugin: action_goto_action
+    label: 'Back to login after logout'
+    configuration:
+      replace_tokens: false
+      url: /user/login
+    successors: {  }

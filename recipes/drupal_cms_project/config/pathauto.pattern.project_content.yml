@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    config:
+      - node.type.project
+  module:
+    - node
+id: project_content
+label: 'Project content'
+type: 'canonical_entities:node'
+pattern: '/projects/[node:title]'
+selection_criteria:
+  0655a022-fa1f-4809-9843-756babf82da4:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 0655a022-fa1f-4809-9843-756babf82da4
+    context_mapping:
+      node: node
+    bundles:
+      project: project
+selection_logic: and
+weight: -5
+relationships: {  }

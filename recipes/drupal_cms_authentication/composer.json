@@ -1,0 +1,14 @@
+{
+    "name": "drupal/drupal_cms_authentication",
+    "description": "Sets up a site with useful authentication features.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/bpmn_io": "^2.0.6",
+        "drupal/core": "^10.3 || ^11",
+        "drupal/eca": "^2.1.4",
+        "drupal/login_emailusername": "^3",
+        "drupal/token": "^1"
+    },
+    "version": "1.2.4"
+}

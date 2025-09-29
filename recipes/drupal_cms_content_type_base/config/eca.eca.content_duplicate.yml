@@ -1,0 +1,135 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_content
+    - eca_misc
+    - eca_render
+id: content_duplicate
+modeller: bpmn_io
+label: 'Duplicate content'
+version: 1.0.0
+weight: 0
+events:
+  Event_operations_link:
+    plugin: 'eca_render:entity_operations'
+    label: 'Operation links'
+    configuration:
+      entity_type_id: node
+      bundle: ''
+    successors:
+      -
+        id: Activity_duplicate_access_link
+        condition: ''
+  Event_prepare_entity:
+    plugin: 'content_entity:prepareform'
+    label: 'Prepare entity form'
+    configuration:
+      type: 'node _all'
+    successors:
+      -
+        id: Activity_load_id_from_query
+        condition: ''
+  Event_alter_local_tasks:
+    plugin: 'eca_render:local_tasks'
+    label: 'Alter local task'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_load_route_parmeter
+        condition: ''
+conditions:
+  Flow_create_access_link:
+    plugin: eca_entity_is_accessible
+    configuration:
+      negate: false
+      operation: create
+      entity: temp
+gateways: {  }
+actions:
+  Activity_add_link:
+    plugin: eca_render_build
+    label: Link
+    configuration:
+      value: |-
+        "#type": link
+        "#url": /[entity:entity_type]/add/[entity:bundle_id]?duplicate=[entity:id]
+        "#title": Duplicate
+      use_yaml: true
+      name: ''
+      token_name: ''
+      weight: ''
+      mode: append
+    successors: {  }
+  Activity_load_entity:
+    plugin: eca_token_load_entity
+    label: 'Load original entity'
+    configuration:
+      token_name: original
+      from: id
+      entity_type: node
+      entity_id: '[id]'
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: entity
+    successors:
+      -
+        id: Activity_message
+        condition: ''
+  Activity_message:
+    plugin: action_message_action
+    label: 'Show duplicate message'
+    configuration:
+      message: 'You are duplicating "[original:label]"'
+      replace_tokens: true
+    successors:
+      -
+        id: Activity_duplicate
+        condition: ''
+  Activity_duplicate:
+    plugin: eca_clone_entity
+    label: 'Duplicate content'
+    configuration:
+      token_name: entity
+      label: ''
+      published: false
+      owner: ''
+      object: original
+    successors: {  }
+  Activity_duplicate_access_link:
+    plugin: eca_clone_entity
+    label: Duplicate
+    configuration:
+      token_name: temp
+      label: ''
+      published: false
+      owner: ''
+      object: entity
+    successors:
+      -
+        id: Activity_add_link
+        condition: Flow_create_access_link
+  Activity_load_route_parmeter:
+    plugin: eca_token_load_route_param
+    label: 'Load route parameter'
+    configuration:
+      token_name: entity
+      request: '2'
+      parameter_name: node
+    successors:
+      -
+        id: Activity_duplicate_access_link
+        condition: ''
+  Activity_load_id_from_query:
+    plugin: eca_token_load_query_arg
+    label: 'Load entity ID'
+    configuration:
+      token_name: id
+      argument_name: duplicate
+    successors:
+      -
+        id: Activity_load_entity
+        condition: ''

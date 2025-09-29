@@ -1,0 +1,130 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 938413c9-45e5-456f-abbe-0f595b0ae785
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Events
+  created:
+    -
+      value: 1733926362
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events
+      langcode: en
+  field_description:
+    -
+      value: 'Lists all upcoming events.'
+  layout_builder__layout:
+    -
+      section:
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          541922dc-a8c8-4b74-9cdd-88a1f5d053dd:
+            uuid: 541922dc-a8c8-4b74-9cdd-88a1f5d053dd
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          812bdbeb-7e3d-4674-bb9d-12af324347b4:
+            uuid: 812bdbeb-7e3d-4674-bb9d-12af324347b4
+            region: content
+            configuration:
+              id: 'extra_field_block:node:page:content_moderation_control'
+              label: 'Moderation control'
+              label_display: 0
+              provider: layout_builder
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 1
+            additional: {  }
+          21cc27f2-13ef-4836-a084-13efc1dedf64:
+            uuid: 21cc27f2-13ef-4836-a084-13efc1dedf64
+            region: content
+            configuration:
+              id: 'views_block:events-all'
+              label: ''
+              label_display: 0
+              provider: views
+              views_label: ''
+              items_per_page: null
+              context_mapping: {  }
+            weight: 4
+            additional: {  }
+          ea7095d7-40c6-4e8a-95ae-bc3fce992e07:
+            uuid: ea7095d7-40c6-4e8a-95ae-bc3fce992e07
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_tags'
+              label: Tags
+              label_display: 0
+              provider: layout_builder
+              formatter:
+                label: hidden
+                type: entity_reference_label
+                settings:
+                  link: 1
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            weight: 3
+            additional: {  }
+          88cb7b85-bfbd-4fbf-8016-bdb467fac0c4:
+            uuid: 88cb7b85-bfbd-4fbf-8016-bdb467fac0c4
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_featured_image'
+              label: 'Featured image'
+              label_display: 0
+              provider: layout_builder
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: hero
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9f589217-c3bd-41eb-a0b5-7e8b6cd0e80b
+  bundle: image
+  default_langcode: en
+  depends:
+    4bb02092-717b-44c8-9147-be3821c244c6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'DrupalCon-Barcelona-2024 - credit-Bram-Driesen.webp'
+  created:
+    -
+      value: 1734275718
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 4bb02092-717b-44c8-9147-be3821c244c6
+      alt: 'Large group of people at DrupalCon Barcelona 2024 posting for a group photo.'
+      title: ''
+      width: 2048
+      height: 1119

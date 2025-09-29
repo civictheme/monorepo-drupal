@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project__client_name
+    - node.type.project
+id: node.project.field_project__client_name
+field_name: field_project__client_name
+entity_type: node
+bundle: project
+label: 'Client name'
+description: 'Include the name of the client or organization.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

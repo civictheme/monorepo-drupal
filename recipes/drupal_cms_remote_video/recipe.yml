@@ -1,0 +1,30 @@
+name: Remote Video
+type: Drupal CMS
+description: Configures display options for remote video.
+recipes:
+  - core/recipes/remote_video_media_type
+  - drupal_cms_privacy_basic
+config:
+  strict: false
+  actions:
+    core.entity_form_display.media.remote_video.*:
+      hideComponents:
+        - uid
+        - langcode
+        - path
+        - created
+      # Enable the name field in the entity form so it can be modified.
+      setComponent:
+        name: name
+        options:
+          type: string_textfield
+          weight: -1
+          region: content
+
+    # These two Klaro apps get automatically enabled as soon as a remote video of the
+    # respective provider is created as a media entity. This is implemented by ECA with
+    # the eca.eca.remote_video_consent model, contained in the config directory.
+    klaro.klaro_app.vimeo:
+      disable: []
+    klaro.klaro_app.youtube:
+      disable: []

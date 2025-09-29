@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: d3e5945c-5311-4332-b617-ba9872ccacc4
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    dd76c3fc-c072-40b5-9f79-53fd9df5ac33: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Contact
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: dd76c3fc-c072-40b5-9f79-53fd9df5ac33
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

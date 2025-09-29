@@ -1,0 +1,14 @@
+{
+    "name": "drupal/drupal_cms_blog",
+    "description": "Adds a blog post content type and listing page.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": "^10.4 || ^11",
+        "drupal/add_content_by_bundle": "^1.2.2",
+        "drupal/drupal_cms_page": "^1.2",
+        "drupal/better_exposed_filters": "^7",
+        "drupal/selective_better_exposed_filters": "^3"
+    },
+    "version": "1.2.5"
+}

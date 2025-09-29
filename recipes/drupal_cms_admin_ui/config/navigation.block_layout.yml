@@ -1,0 +1,51 @@
+langcode: en
+sections:
+  - layout_id: navigation_layout
+    layout_settings:
+      label: ''
+    components:
+      2694e8e4-2af1-4be6-a11c-84b2dee3cfdf:
+        uuid: 2694e8e4-2af1-4be6-a11c-84b2dee3cfdf
+        region: content
+        configuration:
+          id: navigation_dashboard
+          label: Dashboard
+          label_display: '0'
+          provider: dashboard
+        weight: -5
+        additional: { }
+      3ff7be01-c8b0-4444-88f3-2364d7a8054e:
+        uuid: 3ff7be01-c8b0-4444-88f3-2364d7a8054e
+        region: content
+        configuration:
+          id: 'navigation_menu:content'
+          label: Content
+          label_display: '0'
+          provider: navigation
+          level: 1
+          depth: 2
+        weight: 1
+        additional: { }
+      3f2f743f-856f-404a-9c28-57ee83af4691:
+        uuid: 3f2f743f-856f-404a-9c28-57ee83af4691
+        region: content
+        configuration:
+          id: 'navigation_menu:admin'
+          label: Administration
+          label_display: '0'
+          provider: navigation
+          level: 2
+          depth: 2
+        weight: 2
+        additional: { }
+      283da777-e051-4571-8089-47633a9ce706:
+        uuid: 283da777-e051-4571-8089-47633a9ce706
+        region: footer
+        configuration:
+          id: navigation_user
+          label: User
+          label_display: '0'
+          provider: navigation
+        weight: 0
+        additional: { }
+    third_party_settings: { }

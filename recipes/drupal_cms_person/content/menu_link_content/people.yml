@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 38dc22da-835e-47be-a194-4d30676b2e5d
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    43833f92-bc41-4902-a1ef-0101c8865ac2: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: People
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: 43833f92-bc41-4902-a1ef-0101c8865ac2
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

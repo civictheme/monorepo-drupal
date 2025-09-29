@@ -1,0 +1,104 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.event.field_content
+    - field.field.node.event.field_description
+    - field.field.node.event.field_event__date
+    - field.field.node.event.field_event__file
+    - field.field.node.event.field_event__link
+    - field.field.node.event.field_event__location_address
+    - field.field.node.event.field_event__location_name
+    - field.field.node.event.field_featured_image
+    - field.field.node.event.field_geofield
+    - field.field.node.event.field_tags
+    - node.type.event
+  module:
+    - date_augmenter
+    - layout_builder
+    - media
+    - smart_date
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.event.card
+targetEntityType: node
+bundle: event
+mode: card
+content:
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_event__date:
+    type: smartdate_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+      format: default
+      force_chronological: false
+      add_classes: false
+      time_wrapper: true
+      localize: false
+      parts:
+        start: start
+        end: end
+        duration: '0'
+      duration:
+        separator: ' | '
+        unit: ''
+        decimals: 2
+        suffix: h
+    third_party_settings:
+      date_augmenter:
+        instances:
+          status:
+            addtocal: false
+          weights:
+            order:
+              addtocal:
+                weight: 0
+          settings:
+            addtocal:
+              label: 'Add to calendar'
+              event_title: ''
+              location: ''
+              description: ''
+              retain_spacing: false
+              icons: true
+              max_desc: 60
+              ellipsis: true
+              past_events: false
+              target: ''
+              ignore_timezone_if_UTC: true
+          augmenter_settings:
+            fields__field_event__date__settings_edit_form__third_party_settings__date_augmenter__instances__augmenter_settings__active_tab: ''
+    weight: 1
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: 16_9_medium
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true
+  field_content: true
+  field_event__file: true
+  field_event__link: true
+  field_event__location_address: true
+  field_event__location_name: true
+  field_geofield: true
+  field_tags: true
+  langcode: true
+  links: true

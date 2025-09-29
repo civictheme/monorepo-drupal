@@ -1,0 +1,208 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.case_study.field_case_study__client_link
+    - field.field.node.case_study.field_case_study__client_logo
+    - field.field.node.case_study.field_case_study__client_name
+    - field.field.node.case_study.field_content
+    - field.field.node.case_study.field_description
+    - field.field.node.case_study.field_featured_image
+    - field.field.node.case_study.field_tags
+    - image.style.uncropped_500w_webp
+    - node.type.case_study
+  module:
+    - layout_builder
+    - layout_discovery
+    - link
+    - media
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Header
+          context_mapping: {  }
+        components:
+          4cb33af1-7c90-4eed-8890-5c27d526ba68:
+            uuid: 4cb33af1-7c90-4eed-8890-5c27d526ba68
+            region: content
+            configuration:
+              id: 'field_block:node:case_study:field_featured_image'
+              label: 'Featured image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: hero
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          df925eef-8afb-4f9a-8431-415d5b28e3c1:
+            uuid: df925eef-8afb-4f9a-8431-415d5b28e3c1
+            region: content
+            configuration:
+              id: 'field_block:node:case_study:field_tags'
+              label: Tags
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 7
+            additional: {  }
+          8e28256f-9bba-4d3b-af40-8545a51b398b:
+            uuid: 8e28256f-9bba-4d3b-af40-8545a51b398b
+            region: content
+            configuration:
+              id: 'extra_field_block:node:case_study:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 4
+            additional: {  }
+          739968bb-5952-482a-a215-9a642ef92064:
+            uuid: 739968bb-5952-482a-a215-9a642ef92064
+            region: content
+            configuration:
+              id: 'field_block:node:case_study:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          60cbfb7f-7ffb-4456-9488-6adc0c101abb:
+            uuid: 60cbfb7f-7ffb-4456-9488-6adc0c101abb
+            region: content
+            configuration:
+              id: 'field_block:node:case_study:field_case_study__client_link'
+              label: 'Client link'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
+          ac86ac5e-6b08-49e4-8ea7-b32f8be8084e:
+            uuid: ac86ac5e-6b08-49e4-8ea7-b32f8be8084e
+            region: content
+            configuration:
+              id: 'field_block:node:case_study:field_case_study__client_logo'
+              label: 'Client logo'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: uncropped_300w_webp
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: node.case_study.default
+targetEntityType: node
+bundle: case_study
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_case_study__client_link:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_case_study__client_logo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: uncropped_500w_webp
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_case_study__client_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: hero
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_description: true
+  links: true

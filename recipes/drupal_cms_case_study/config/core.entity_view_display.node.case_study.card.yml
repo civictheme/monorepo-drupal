@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.case_study.field_case_study__client_link
+    - field.field.node.case_study.field_case_study__client_logo
+    - field.field.node.case_study.field_case_study__client_name
+    - field.field.node.case_study.field_content
+    - field.field.node.case_study.field_description
+    - field.field.node.case_study.field_featured_image
+    - field.field.node.case_study.field_tags
+    - node.type.case_study
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.case_study.card
+targetEntityType: node
+bundle: case_study
+mode: card
+content:
+  field_case_study__client_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: 4_3_medium
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true
+  field_case_study__client_link: true
+  field_case_study__client_logo: true
+  field_content: true
+  field_tags: true
+  langcode: true
+  links: true

@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: bc153090-d5c0-4b3b-8a25-4c438c64b384
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    e5247df7-3f19-46c6-bfda-88f26db57a37: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Case studies'
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: e5247df7-3f19-46c6-bfda-88f26db57a37
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

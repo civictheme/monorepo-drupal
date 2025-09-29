@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_moderation
+id: basic_editorial
+label: 'Basic'
+type: content_moderation
+type_settings:
+  states:
+    unpublished:
+      published: false
+      default_revision: true
+      label: Unpublished
+      weight: 1
+    draft:
+      published: false
+      default_revision: false
+      label: Draft
+      weight: -1
+    published:
+      label: Published
+      published: true
+      default_revision: true
+      weight: 0
+  transitions:
+    unpublish:
+      label: Unpublish
+      from:
+        - published
+      to: unpublished
+      weight: 1
+    create_new_draft:
+      label: "Create new draft"
+      to: draft
+      weight: -1
+      from:
+        - unpublished
+        - draft
+        - published
+    publish:
+      label: Publish
+      to: published
+      weight: 0
+      from:
+        - draft
+        - published
+        - unpublished
+  default_moderation_state: draft
+  entity_types: {}

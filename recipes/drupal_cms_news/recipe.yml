@@ -1,0 +1,23 @@
+name: News
+type: Drupal CMS
+description: Adds a news content type and listing page.
+recipes:
+  - drupal_cms_page
+install:
+  - add_content_by_bundle
+  - menu_link_content
+  - selective_better_exposed_filters
+config:
+  strict: false
+  import:
+    system:
+      - system.menu.main
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create news content'
+        - 'delete news revisions'
+        - 'delete any news content'
+        - 'edit any news content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['news']

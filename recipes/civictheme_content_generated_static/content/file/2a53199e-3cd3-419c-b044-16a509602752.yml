@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2a53199e-3cd3-419c-b044-16a509602752
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_5_idim.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_5_idim.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 118679
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

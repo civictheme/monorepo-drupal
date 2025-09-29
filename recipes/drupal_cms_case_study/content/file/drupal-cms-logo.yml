@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 47b880a9-c2a4-4ed6-844d-95c6d6677004
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: drupal-cms-logo.png
+  uri:
+    -
+      value: 'public://2024-12/drupal-cms-logo.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 13677
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1733291105

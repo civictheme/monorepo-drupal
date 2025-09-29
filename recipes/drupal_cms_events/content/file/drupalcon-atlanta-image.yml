@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 601c1f74-4633-4069-ae90-57c645568b1c
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'DrupalCon-Atlanta.webp'
+  uri:
+    -
+      value: 'public://2024-12/DrupalCon-Atlanta.webp'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 82000
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1734408755

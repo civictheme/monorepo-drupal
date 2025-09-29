@@ -1,0 +1,89 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: dd76c3fc-c072-40b5-9f79-53fd9df5ac33
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Contact
+  created:
+    -
+      value: 1734572966
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /contact
+      langcode: en
+  field_description:
+    -
+      value: 'Contact page with a simple form for submitting a message.'
+  layout_builder__layout:
+    -
+      section:
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          541922dc-a8c8-4b74-9cdd-88a1f5d053dd:
+            uuid: 541922dc-a8c8-4b74-9cdd-88a1f5d053dd
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          eac039fb-8ad9-40a7-86cb-700e0bb303ae:
+            uuid: eac039fb-8ad9-40a7-86cb-700e0bb303ae
+            region: content
+            configuration:
+              id: 'extra_field_block:node:page:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+          fa409c76-7391-4076-8e24-3b5328a79883:
+            uuid: fa409c76-7391-4076-8e24-3b5328a79883
+            region: content
+            configuration:
+              id: webform_block
+              label: 'Contact form'
+              label_display: 0
+              provider: webform
+              webform_id: contact_form
+              default_data: ''
+              redirect: 0
+              lazy: 0
+              context_mapping: {  }
+            weight: 3
+            additional: {  }
+        third_party_settings: {  }

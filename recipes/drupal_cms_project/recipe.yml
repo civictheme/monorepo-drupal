@@ -1,0 +1,25 @@
+name: Projects
+type: Drupal CMS
+description: Adds a project content type and listing page.
+recipes:
+  - drupal_cms_page
+install:
+  - link
+  - add_content_by_bundle
+  - menu_link_content
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_project__client_link
+    - field.storage.node.field_project__client_logo
+    - field.storage.node.field_project__client_name
+  import:
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create project content'
+        - 'delete project revisions'
+        - 'delete any project content'
+        - 'edit any project content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['project']

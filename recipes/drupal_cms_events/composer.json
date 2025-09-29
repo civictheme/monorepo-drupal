@@ -1,0 +1,20 @@
+{
+  "name": "drupal/drupal_cms_events",
+  "description": "Adds an event content type and listing page.",
+  "type": "drupal-recipe",
+  "license": ["GPL-2.0-or-later"],
+  "require": {
+    "drupal/core": "^10.4 || ^11",
+    "drupal/add_content_by_bundle": "^1.2.2",
+    "drupal/address": "^2",
+    "drupal/addtocal_augment": "^1.2.3",
+    "drupal/drupal_cms_page": "^1.2",
+    "drupal/drupal_cms_privacy_basic": "^1.2",
+    "drupal/geocoder": "^4.10",
+    "drupal/geofield": "^1.47",
+    "drupal/leaflet": "^10.3.4",
+    "drupal/smart_date": "^4.2.1",
+    "geocoder-php/nominatim-provider": "^5.7"
+  },
+  "version": "1.2.4"
+}

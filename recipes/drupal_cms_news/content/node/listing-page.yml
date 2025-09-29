@@ -1,0 +1,125 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e8701c04-dc57-453d-9941-5fa900c434d9
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: News
+  created:
+    -
+      value: 1734413812
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news
+      langcode: en
+  field_description:
+    -
+      value: 'Listing page for news items.'
+  layout_builder__layout:
+    -
+      section:
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          541922dc-a8c8-4b74-9cdd-88a1f5d053dd:
+            uuid: 541922dc-a8c8-4b74-9cdd-88a1f5d053dd
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          261b00fc-c08b-46ea-bfa5-40464dc7f794:
+            uuid: 261b00fc-c08b-46ea-bfa5-40464dc7f794
+            region: content
+            configuration:
+              id: 'extra_field_block:node:page:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 1
+            additional: {  }
+          93b9e648-03a4-400b-bbf5-aa3d579a5a81:
+            uuid: 93b9e648-03a4-400b-bbf5-aa3d579a5a81
+            region: content
+            configuration:
+              id: 'views_block:news-all'
+              label: ''
+              label_display: 0
+              provider: views
+              views_label: ''
+              items_per_page: null
+              context_mapping: {  }
+            weight: 5
+            additional: {  }
+          5eaf9ac5-8744-4c6b-82c6-f879fb977ba2:
+            uuid: 5eaf9ac5-8744-4c6b-82c6-f879fb977ba2
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_tags'
+              label: Tags
+              label_display: 0
+              provider: layout_builder
+              formatter:
+                label: inline
+                type: entity_reference_label
+                settings:
+                  link: 1
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            weight: 4
+            additional: {  }
+          0a24778e-d602-4d9d-acd1-817828b1514b:
+            uuid: 0a24778e-d602-4d9d-acd1-817828b1514b
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_featured_image'
+              label: 'Featured image'
+              label_display: 0
+              provider: layout_builder
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: hero
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }

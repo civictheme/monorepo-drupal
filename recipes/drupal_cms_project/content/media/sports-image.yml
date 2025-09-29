@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: c3093e43-6af7-47e6-91da-cd733fdfc5c7
+  bundle: image
+  default_langcode: en
+  depends:
+    671c51f9-7a67-40ce-82de-750f53892f26: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: pexels-israel-franca-1108173-2101030.webp
+  created:
+    -
+      value: 1734364134
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 671c51f9-7a67-40ce-82de-750f53892f26
+      alt: 'Person Taking Photo of Stage Stadium Presentation.'
+      title: ''
+      width: 2626
+      height: 1744

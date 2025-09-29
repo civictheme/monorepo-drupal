@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 930856d3-0fff-455c-819d-2c74e01cff3d
+  bundle: image
+  default_langcode: en
+  depends:
+    47b880a9-c2a4-4ed6-844d-95c6d6677004: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: drupal-cms-logo.png
+  created:
+    -
+      value: 1733291105
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: 47b880a9-c2a4-4ed6-844d-95c6d6677004
+      alt: 'Drupal CMS logo'
+      title: ''
+      width: 823
+      height: 201

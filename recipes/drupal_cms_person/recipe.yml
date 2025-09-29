@@ -1,0 +1,25 @@
+name: Person Profiles
+type: Drupal CMS
+description: Adds a person profile content type.
+recipes:
+  - drupal_cms_page
+install:
+  - add_content_by_bundle
+  - menu_link_content
+  - telephone
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_person__email
+    - field.storage.node.field_person__phone_number
+    - field.storage.node.field_person__role_job_title
+  import:
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create person content'
+        - 'delete person revisions'
+        - 'delete any person content'
+        - 'edit any person content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['person']

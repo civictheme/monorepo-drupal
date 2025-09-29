@@ -1,0 +1,202 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.remote_video
+  module:
+    - eca_base
+    - eca_config
+    - eca_content
+    - eca_user
+id: remote_video_consent
+modeller: bpmn_io
+label: 'Enable consent management for remote video'
+version: 1.0.0
+weight: 0
+events:
+  Event_insert_remote_video:
+    plugin: 'content_entity:insert'
+    label: 'Insert remote video'
+    configuration:
+      type: 'media remote_video'
+    successors:
+      -
+        id: Activity_set_default_provider
+        condition: ''
+  Event_save_config:
+    plugin: 'config:save'
+    label: 'Save config'
+    configuration:
+      config_name: ''
+      sync_mode: ''
+      write_mode: ''
+    successors:
+      -
+        id: Activity_and_1
+        condition: Flow_is_youtube
+      -
+        id: Activity_and_1
+        condition: Flow_is
+conditions:
+  Flow_is_vimeo:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[media:field_media_oembed_video]'
+      right: vimeo.com
+      operator: contains
+      type: value
+  Flow_is_provider_disabled:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[status]'
+      right: '1'
+      operator: equal
+      type: value
+      negate: true
+  Flow_is_youtube:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[config_name]'
+      right: klaro.klaro_app.youtube
+      operator: equal
+      type: value
+  Flow_is:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[config_name]'
+      right: klaro.klaro_app.vimeo
+      operator: equal
+      type: value
+  Flow_disabled:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[config:status]'
+      right: '1'
+      operator: equal
+      type: value
+      negate: true
+  Flow_was_enabled:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[config_original:status]'
+      right: '1'
+      operator: equal
+      type: value
+gateways: {  }
+actions:
+  Activity_set_default_provider:
+    plugin: eca_token_set_value
+    label: 'Set default provider to YouTube'
+    configuration:
+      token_name: provider
+      token_value: youtube
+      use_yaml: false
+    successors:
+      -
+        id: Activity_set_vimeo_provider
+        condition: Flow_is_vimeo
+      -
+        id: Activity_switch_user
+        condition: ''
+  Activity_set_vimeo_provider:
+    plugin: eca_token_set_value
+    label: 'Set provider to Vimeo'
+    configuration:
+      token_name: provider
+      token_value: vimeo
+      use_yaml: false
+    successors: {  }
+  Activity_read_current_setting:
+    plugin: eca_config_read
+    label: 'Read current setting'
+    configuration:
+      token_name: status
+      include_overridden: true
+      config_name: 'klaro.klaro_app.[provider]'
+      config_key: status
+    successors:
+      -
+        id: Activity_enable_provider
+        condition: Flow_is_provider_disabled
+  Activity_enable_provider:
+    plugin: eca_config_write
+    label: 'Enable provider'
+    configuration:
+      config_value: '1'
+      use_yaml: false
+      save_config: true
+      config_name: 'klaro.klaro_app.[provider]'
+      config_key: status
+    successors: {  }
+  Activity_switch_user:
+    plugin: eca_switch_account
+    label: 'Switch user account'
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_read_current_setting
+        condition: ''
+  Activity_and_1:
+    plugin: eca_void_and_condition
+    label: AND
+    configuration: {  }
+    successors:
+      -
+        id: Activity_and_2
+        condition: Flow_disabled
+  Activity_and_2:
+    plugin: eca_void_and_condition
+    label: AND
+    configuration: {  }
+    successors:
+      -
+        id: Activity_switch_
+        condition: Flow_was_enabled
+  Activity_re_enable_provider:
+    plugin: eca_config_write
+    label: 'Re-enable provider'
+    configuration:
+      config_value: '1'
+      use_yaml: false
+      save_config: true
+      config_name: '[config_name]'
+      config_key: status
+    successors: {  }
+  Activity_switch_:
+    plugin: eca_switch_account
+    label: 'Switch user'
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0rno7mm
+        condition: ''
+  Activity_0rno7mm:
+    plugin: eca_token_load_entity
+    label: 'Load a remote video'
+    configuration:
+      token_name: video
+      from: properties
+      entity_type: media
+      entity_id: ''
+      revision_id: ''
+      properties: 'bundle: remote_video'
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_re_enable_provider
+        condition: ''

@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.16_9_512x288_focal_point_webp
+    - image.style.16_9_608x342_focal_point_webp
+    - image.style.16_9_720x405_focal_point_webp
+  theme:
+    - olivero
+id: 16_9_medium
+label: '16:9 Medium'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - 16_9_512x288_focal_point_webp
+        - 16_9_608x342_focal_point_webp
+        - 16_9_720x405_focal_point_webp
+    breakpoint_id: olivero.sm
+    multiplier: 1x
+breakpoint_group: olivero
+fallback_image_style: 16_9_512x288_focal_point_webp

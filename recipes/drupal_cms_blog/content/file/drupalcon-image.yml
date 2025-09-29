@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4bb02092-717b-44c8-9147-be3821c244c6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'DrupalCon-Barcelona-2024 - credit-Bram-Driesen.webp'
+  uri:
+    -
+      value: 'public://2024-12/DrupalCon-Barcelona-2024 - credit-Bram-Driesen.webp'
+      url: /sites/default/files/2024-12/DrupalCon-Barcelona-2024%20-%20credit-Bram-Driesen.webp
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 433000
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1734275718

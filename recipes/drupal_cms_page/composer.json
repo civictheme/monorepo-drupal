@@ -1,0 +1,11 @@
+{
+    "name": "drupal/drupal_cms_page",
+    "description": "Adds a content type for simple pages.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": "^10.4 || ^11",
+        "drupal/drupal_cms_content_type_base": "^1.2"
+    },
+    "version": "1.2.4"
+}

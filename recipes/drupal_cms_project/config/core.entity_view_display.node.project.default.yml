@@ -1,0 +1,205 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.project.field_content
+    - field.field.node.project.field_description
+    - field.field.node.project.field_featured_image
+    - field.field.node.project.field_project__client_link
+    - field.field.node.project.field_project__client_logo
+    - field.field.node.project.field_project__client_name
+    - field.field.node.project.field_tags
+    - image.style.uncropped_500w_webp
+    - node.type.project
+  module:
+    - layout_builder
+    - layout_discovery
+    - link
+    - media
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Header
+          context_mapping: {  }
+        components:
+          6edf9238-f343-4093-9c9c-ed5301d6658b:
+            uuid: 6edf9238-f343-4093-9c9c-ed5301d6658b
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_featured_image'
+              label: 'Featured image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: hero
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          43e820d8-dd02-49c6-8239-34b146f1b568:
+            uuid: 43e820d8-dd02-49c6-8239-34b146f1b568
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_tags'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 7
+            additional: {  }
+          b37e7c11-39c6-4c29-b32d-308f7a5f1ca6:
+            uuid: b37e7c11-39c6-4c29-b32d-308f7a5f1ca6
+            region: content
+            configuration:
+              id: 'extra_field_block:node:project:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 3
+            additional: {  }
+          811ba61b-54fa-4d59-9c75-245d66da3d99:
+            uuid: 811ba61b-54fa-4d59-9c75-245d66da3d99
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          635918ab-08d4-46e3-8312-b5c64d8e4752:
+            uuid: 635918ab-08d4-46e3-8312-b5c64d8e4752
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_project__client_logo'
+              label: 'Client logo'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: uncropped_300w_webp
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          ae32e8a9-44e7-433f-8c1f-931fe9497565:
+            uuid: ae32e8a9-44e7-433f-8c1f-931fe9497565
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_project__client_link'
+              label: 'Client link'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
+        third_party_settings: {  }
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: hero
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_project__client_link:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_project__client_logo:
+    type: media_thumbnail
+    label: inline
+    settings:
+      image_link: ''
+      image_style: uncropped_500w_webp
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_project__client_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_description: true
+  links: true

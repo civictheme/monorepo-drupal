@@ -1,0 +1,108 @@
+name: Content Basics
+type: Drupal CMS
+description: Provides basic tools for creating content.
+recipes:
+  - core/recipes/content_editor_role
+  # The media library cannot be opened via CKEditor unless at least one media
+  # type exists. This is due a core bug; see https://drupal.org/i3486284#comment-15861965.
+  # However, we also ship a `field_featured_image`, which is meant to refer to
+  # an image media item, so it makes sense to have the image media type available
+  # right out of the gate.
+  - drupal_cms_image
+install:
+  - autosave_form
+  - bpmn_io
+  - ckeditor5
+  - content_moderation
+  - eca_content
+  - eca_misc
+  - eca_render
+  - filter
+  - layout_builder
+  - linkit
+  - node
+  # We don't specifically use Pathauto in this recipe, but we can safely
+  # assume that content types built on our foundation will want to.
+  - pathauto
+  - scheduler
+  - scheduler_content_moderation_integration
+  - taxonomy
+  - token
+  - trash
+  - views
+  # We don't have a specific use of the Options or Field UI modules in this recipe,
+  # but we expect that site builders will want to add fields to their content types,
+  # so install these modules anyway.
+  - field_ui
+  - options
+  # Allow content types to configure whether editors can easily add menu links to them.
+  - menu_ui
+  - tagify
+  - tagify_user_list
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_content
+    - field.storage.node.field_description
+    - field.storage.node.field_featured_image
+    - field.storage.node.field_tags
+    - field.storage.node.layout_builder__layout
+  import:
+    filter: '*'
+    linkit:
+      - image.style.linkit_result_thumbnail
+    node:
+      # Only import config which is also imported by the Standard profile.
+      - core.entity_view_mode.node.full
+      - core.entity_view_mode.node.rss
+      - core.entity_view_mode.node.teaser
+      - system.action.node_delete_action
+      - system.action.node_make_sticky_action
+      - system.action.node_make_unsticky_action
+      - system.action.node_promote_action
+      - system.action.node_publish_action
+      - system.action.node_save_action
+      - system.action.node_unpromote_action
+      - system.action.node_unpublish_action
+      - views.view.content
+    taxonomy: '*'
+    trash: '*'
+    scheduler: '*'
+    scheduler_content_moderation_integration: '*'
+  actions:
+    autosave_form.settings:
+      # Enable autosave for all content types.
+      simpleConfigUpdate:
+        allowed_content_entity_types:
+          node:
+            bundles: []
+    scheduler.settings:
+      simpleConfigUpdate:
+        hide_seconds: true
+    tagify.settings:
+      simpleConfigUpdate:
+        set_default_widget: true
+    trash.settings:
+      simpleConfigUpdate:
+        enabled_entity_types.node: []
+    user.role.anonymous:
+      # We assume all published content should be accessible to anonymous users.
+      grantPermission: 'access content'
+    user.role.content_editor:
+      grantPermissions:
+        - 'access content overview'
+        - 'access trash'
+        - 'administer menu'
+        - 'use text format content_format'
+        - 'use basic_editorial transition unpublish'
+        - 'use basic_editorial transition create_new_draft'
+        - 'use basic_editorial transition publish'
+        - 'schedule publishing of nodes'
+        - 'view any unpublished content'
+        - 'view scheduled content'
+    # Disable the taxonomy and media scheduler views because they are not
+    # needed and break the navigation menu.
+    views.view.scheduler_scheduled_media:
+      disable: {}
+    views.view.scheduler_scheduled_taxonomy_term:
+      disable: {}

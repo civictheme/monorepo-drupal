@@ -1,0 +1,12 @@
+{
+    "name": "drupal/drupal_cms_case_study",
+    "description": "Adds a case study content type and listing page.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": "^10.4 || ^11",
+        "drupal/add_content_by_bundle": "^1.2.2",
+        "drupal/drupal_cms_page": "^1.2"
+    },
+    "version": "1.2.5"
+}

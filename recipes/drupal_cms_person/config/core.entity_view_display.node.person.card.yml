@@ -1,0 +1,55 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.person.field_content
+    - field.field.node.person.field_description
+    - field.field.node.person.field_featured_image
+    - field.field.node.person.field_person__email
+    - field.field.node.person.field_person__phone_number
+    - field.field.node.person.field_person__role_job_title
+    - field.field.node.person.field_tags
+    - node.type.person
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.person.card
+targetEntityType: node
+bundle: person
+mode: card
+content:
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: 1_1_square_small
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_person__role_job_title:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  content_moderation_control: true
+  field_content: true
+  field_person__email: true
+  field_person__phone_number: true
+  field_tags: true
+  links: true

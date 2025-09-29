@@ -1,0 +1,66 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: ca2fa0c4-6b33-4e69-bb2a-f6535109b926
+  bundle: project
+  default_langcode: en
+  depends:
+    930856d3-0fff-455c-819d-2c74e01cff3d: media
+    c3093e43-6af7-47e6-91da-cd733fdfc5c7: media
+    d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Building a robust digital experience for a leading sports association'
+  created:
+    -
+      value: 1734364091
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /projects/building-robust-digital-experience-leading-sports-association
+      langcode: en
+  field_project__client_link:
+    -
+      uri: 'https://www.drupal.org/case-studies?sectors%5B%5D=25138'
+      title: 'Visit website'
+      options: {  }
+  field_project__client_logo:
+    -
+      entity: 930856d3-0fff-455c-819d-2c74e01cff3d
+  field_project__client_name:
+    -
+      value: 'Drupal CMS'
+  field_content:
+    -
+      value: "<h3>Overview</h3><p>A prominent sports association needed a comprehensive digital platform to enhance its engagement with members, fans, and stakeholders. Their existing system was outdated, lacked scalability, and failed to deliver a modern user experience.</p><blockquote><p>With a vision to create a dynamic, user-centric website that could handle complex content management needs, they chose Drupal as their platform of choice.</p></blockquote><h3>Challenges</h3><p>The association faced several challenges with its previous platform, including:</p><ul><li>Limited scalability for handling high traffic during major events.</li><li>Inefficient content management, making it difficult for non-technical staff to update information.</li><li>Poor integration with third-party tools such as ticketing systems and live match feeds.</li><li>Lack of a responsive design, leading to suboptimal user experience on mobile devices.</li><li>Difficulty in personalizing content for diverse audiences, including players, fans, sponsors, and media.</li></ul><h3>Why Drupal?</h3><p>Drupal was selected as the platform for its unparalleled flexibility and scalability. The following features and benefits made it an ideal choice:</p><ul><li><strong>Customizable content management</strong>: Drupal’s robust content management capabilities allowed the creation of tailored workflows, empowering the team to manage content efficiently.</li><li><strong>Scalability and performance</strong>: The platform could handle traffic spikes during high-profile matches and campaigns, ensuring uninterrupted user experiences.</li><li><strong>Third-party integrations</strong>: Seamless integration with APIs for ticketing, live scores, and membership systems created a unified digital ecosystem.</li><li><strong>Responsive design</strong>: Out-of-the-box mobile optimization ensured a seamless experience across devices.</li><li><strong>Multilingual support</strong>: Catering to a global audience, Drupal's multilingual capabilities enabled the association to deliver content in multiple languages.</li></ul><h3>Implementation</h3><p>The project involved the development of a feature-rich website that addressed the unique needs of the association:</p><ol><li><strong>Content hub for fans and members</strong><br>A dynamic content hub was created to host articles, player profiles, match reports, and video highlights. Advanced tagging and filtering allowed users to find relevant content easily.</li><li><strong>Ticketing and membership integration</strong><br>The platform integrated with external ticketing and membership systems, streamlining the user journey from browsing events to purchasing tickets.</li><li><strong>Live event features</strong><br>Real-time updates, including live scores, match statistics, and commentary, were implemented to keep fans engaged during events.</li><li><strong>Sponsor and partner showcase</strong><br>Dedicated spaces were designed to highlight sponsors and partnerships, driving value for stakeholders while aligning with the brand identity.</li><li><strong>Personalization</strong><br>Personalized content delivery was achieved using user segmentation, ensuring relevant updates for players, fans, and other audience groups.</li><li><strong>Accessibility and compliance</strong><br>The site adhered to accessibility standards, ensuring inclusivity for all users, including those with disabilities.</li></ol><h3>Results</h3><p>The new Drupal-powered platform transformed the association’s digital presence, delivering measurable improvements:</p><ul><li><strong>Increased engagement</strong>: User interaction grew significantly due to the dynamic content and live event features.</li><li><strong>Streamlined operations</strong>: Non-technical staff could now easily manage content, saving time and reducing dependency on IT teams.</li><li><strong>Improved fan experience</strong>: Mobile-responsive design and real-time features enhanced the overall fan experience.</li><li><strong>Scalability</strong>: The website handled high traffic volumes during key events without any downtime.</li><li><strong>Enhanced stakeholder value</strong>: The platform successfully showcased sponsors and partners, improving brand visibility.</li></ul><h3>Conclusion</h3><p>This project demonstrated the power of Drupal in creating a robust and scalable digital solution tailored to the needs of sports organizations. With its flexibility, performance, and ability to integrate diverse functionalities, Drupal provided the association with a future-proof platform that continues to drive engagement and operational efficiency.</p>"
+      format: content_format
+  field_description:
+    -
+      value: 'Discover how a leading sports association transformed its digital presence with a feature-rich Drupal platform. From real-time updates and seamless integrations to personalized experiences for fans and members, this scalable solution enhanced engagement, streamlined operations, and delivered measurable results.'
+  field_featured_image:
+    -
+      entity: c3093e43-6af7-47e6-91da-cd733fdfc5c7
+  field_tags:
+    -
+      entity: d48adeba-e388-4e82-820b-98bbd2f35a46

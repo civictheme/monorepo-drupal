@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event__location_address
+    - node.type.event
+  module:
+    - address
+id: node.event.field_event__location_address
+field_name: field_event__location_address
+entity_type: node
+bundle: event
+label: 'Location address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+    addressLine3:
+      override: hidden
+  fields: {  }
+field_type: address

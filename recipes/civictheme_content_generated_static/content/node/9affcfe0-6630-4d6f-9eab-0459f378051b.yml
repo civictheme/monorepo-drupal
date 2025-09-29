@@ -1,0 +1,385 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 9affcfe0-6630-4d6f-9eab-0459f378051b
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    fb24d887-5e65-4ac2-abb3-f9d98220ddcc: media
+    af716da0-dff7-4bc2-b2fc-a42f603f4f9c: media
+    dbc30bcd-876e-4499-bab2-362edfb76d2a: media
+    106e6e14-0c6d-40cf-85dd-bcf0eb87fa03: taxonomy_term
+    9fd5e9cd-37d3-4d07-9235-9141bf6ab2db: taxonomy_term
+    d83dffb5-13bd-4f86-87f9-f76e3407e1d4: media
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+    a9a587b3-2b9e-43ce-ab28-66d5e5f634a0: media
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+    1f232b36-2259-4825-b989-76ab776794c3: media
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Com: 6, Tit: Pag, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Campaign, sidebar'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-campaign-sidebar
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bdd8c66e-dc89-4f7b-a08b-092729c6bafd
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_image:
+            -
+              entity: fb24d887-5e65-4ac2-abb3-f9d98220ddcc
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, Image left, Eligendi expedita officia.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 542567bf-1b36-4c91-8e80-b254caeed7a0
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_image:
+            -
+              entity: af716da0-dff7-4bc2-b2fc-a42f603f4f9c
+          field_c_p_image_position:
+            -
+              value: right
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, Image right, Deserunt temporibus voluptatibus.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8397c3a2-6aed-45d1-a388-680d4db87281
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Non officia officiis quibusdam vero. Autem facilis hic.'
+              format: ''
+          field_c_p_date:
+            -
+              value: '2022-12-22'
+          field_c_p_image:
+            -
+              entity: dbc30bcd-876e-4499-bab2-362edfb76d2a
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Facere-id-maxime-nihil-odio.'
+              title: 'Dolor omnis.'
+              options: {  }
+            -
+              uri: 'https://www.example.com/Laborum-occaecati-omnis.-Eligendi-possimus.'
+              title: 'Minus molestias.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, Image left, Date, Content, 2 links, 2 Topics, Maiores molestiae saepe.'
+          field_c_p_topics:
+            -
+              entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+            -
+              entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bef01ca5-ec86-4e0d-8e99-1f60f0eb4093
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Expedita officia quod recusandae. Earum expedita maiores molestiae.'
+              format: ''
+          field_c_p_date:
+            -
+              value: '2022-12-22'
+          field_c_p_image:
+            -
+              entity: d83dffb5-13bd-4f86-87f9-f76e3407e1d4
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Mollitia-non-sunt.-Animi-eos.'
+              title: 'Impedit non.'
+              options: {  }
+            -
+              uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
+              title: 'Cupiditate est.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, Image left, Date, Content, 2 links, 2 Topics, Occaecati perferendis tempore.'
+          field_c_p_topics:
+            -
+              entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+            -
+              entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7f0b1e87-0b3d-4d3e-b588-7c33e919f8b1
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem.'
+              format: ''
+          field_c_p_date:
+            -
+              value: '2022-12-22'
+          field_c_p_image:
+            -
+              entity: a9a587b3-2b9e-43ce-ab28-66d5e5f634a0
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Distinctio-harum-praesentium-quod-quos.'
+              title: 'Cumque delectus.'
+              options: {  }
+            -
+              uri: 'https://www.example.com/Accusamus-animi-deleniti-doloribus-libero.'
+              title: 'Earum perferendis.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, Image left, Date, Content, 2 links, 2 Topics, Vertical spacing, Fuga id impedit.'
+          field_c_p_topics:
+            -
+              entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+            -
+              entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a6f72a99-8694-4066-a0eb-a3ac51973e1c
+          bundle: civictheme_campaign
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'At cumque hic laborum quo repellat. Cumque delectus.'
+              format: ''
+          field_c_p_date:
+            -
+              value: '2022-12-22'
+          field_c_p_image:
+            -
+              entity: 1f232b36-2259-4825-b989-76ab776794c3
+          field_c_p_image_position:
+            -
+              value: left
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Id-impedit-maxime-minus-nam.'
+              title: 'Harum id.'
+              options: {  }
+            -
+              uri: 'https://www.example.com/Asperiores-atque-molestias-mollitia-praesentium.'
+              title: 'Atque dolor.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, Image left, Date, Content, 2 links, 2 Topics, Vertical spacing, Est iusto maxime.'
+          field_c_p_topics:
+            -
+              entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+            -
+              entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

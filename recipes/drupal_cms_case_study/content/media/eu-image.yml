@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 35a186fc-5bff-4357-9f4b-a9c6218866fc
+  bundle: image
+  default_langcode: en
+  depends:
+    831ca26d-590c-4f34-8545-379e9d77106f: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Government-building-EU-flag-credit-pexels-gintare-kairaityte-11923111-17178100.webp
+  created:
+    -
+      value: 1734363574
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 831ca26d-590c-4f34-8545-379e9d77106f
+      alt: 'Flags of European Union Countries.'
+      title: ''
+      width: 4230
+      height: 2820

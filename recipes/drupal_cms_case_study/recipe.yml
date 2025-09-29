@@ -1,0 +1,25 @@
+name: Case Studies
+type: Drupal CMS
+description: Adds a case study content type and listing page.
+recipes:
+  - drupal_cms_page
+install:
+  - link
+  - add_content_by_bundle
+  - menu_link_content
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_case_study__client_link
+    - field.storage.node.field_case_study__client_logo
+    - field.storage.node.field_case_study__client_name
+  import:
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create case_study content'
+        - 'delete case_study revisions'
+        - 'delete any case_study content'
+        - 'edit any case_study content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['case_study']

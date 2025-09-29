@@ -1,0 +1,54 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4ebc8c8d-a2a8-4e90-be66-e9baaf4c2574
+  bundle: news
+  default_langcode: en
+  depends:
+    d6206efd-8da4-4479-a0a3-807890330705: media
+    d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Drupal CMS: A strategic initiative for the future'
+  created:
+    -
+      value: 1736421462
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news/2025-01/drupal-cms-strategic-initiative-future
+      langcode: en
+  field_content:
+    -
+      value: "<p>Drupal has long been a go-to content management system for developers seeking flexibility, scalability, and power in building complex websites. As the digital landscape evolves, the demand for platforms that are not only powerful but also easy to use and accessible to a broader audience has grown. In response, the Drupal project has launched Drupal CMS, with significant changes aimed at making website building simpler and faster, without compromising its core strengths.</p><h2>Why Drupal CMS?</h2><p>Traditionally, Drupal has been lauded for its flexibility in handling large, data-driven websites. However, this flexibility often comes with a steep learning curve. Developers and site builders have had to grapple with complex configurations, coding, and integrations. While this has suited professional developers, it has created a barrier for smaller teams, non-technical users, and businesses looking to quickly deploy a website.</p><p>Drupal CMS focuses on addressing these challenges, making it easier for both developers and non-technical users to build and launch websites with Drupal—without compromising on the platform’s renowned power and customization options.</p><h2>Key features</h2><h3>Enhanced user interface</h3><p>One of the primary goals of this strategic initiative is to create a more intuitive user interface (UI). The Drupal administration interface, often cited as one of its more challenging aspects, is undergoing a major redesign to make it more user-friendly. The aim is to ensure that users—regardless of their technical background—can navigate the system with ease, quickly finding the tools and features they need to create and manage content.</p><h3>Streamlined site setup</h3><p>Setting up a new Drupal site can be daunting, especially for beginners. Drupal CMS simplifies the process, offering pre-configured templates and streamlined workflows. With fewer steps to get a site up and running, users can now focus on what really matters—content and design—without getting bogged down by technical details.</p><h3>Low-code/no-code capabilities</h3><p>To expand accessibility even further, the initiative includes the integration of low-code and no-code tools that empower non-developers to build and customize websites. These tools allow users to leverage pre-built components and templates, making it easier to create a personalized website without writing a single line of code.</p><h3>Enhanced content management features</h3><p>Drupal’s core strength has always been its powerful content management capabilities. As part of the initiative, the CMS is focusing on further refining its content creation and management tools, making it easier to work with complex content types, media assets, and workflows. Features like improved content previews and drag-and-drop media management will enable users to create dynamic content with minimal effort.</p><h2>A platform for the future</h2><p>The strategic initiative to make Drupal easier to use is not just about streamlining workflows—it’s about opening Drupal up to a new generation of website builders. By lowering the technical barrier to entry while maintaining the powerful capabilities of the platform, Drupal is poised to continue its legacy as one of the most robust and versatile CMS options available.</p><p>Whether you're a seasoned developer or a small business owner looking to create your first website, Drupal's new direction offers a promising future, where building and launching a site is simpler, faster, and more accessible than ever before.</p>"
+      format: content_format
+  field_description:
+    -
+      value: 'Drupal is simplifying website building by enhancing its user interface, streamlining site setup, and adding low-code/no-code tools. These improvements make the platform more accessible to both developers and non-technical users, enabling faster, easier site creation while maintaining Drupal’s robust features, performance, and security.'
+  field_featured_image:
+    -
+      entity: d6206efd-8da4-4479-a0a3-807890330705
+  field_tags:
+    -
+      entity: d48adeba-e388-4e82-820b-98bbd2f35a46

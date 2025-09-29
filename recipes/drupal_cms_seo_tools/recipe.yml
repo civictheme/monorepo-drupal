@@ -1,0 +1,236 @@
+name: SEO Tools
+description: Adds common search engine optimisation tools such as meta tags, XML sitemap, robots.txt management and more.
+type: Drupal CMS
+recipes:
+  - core/recipes/image_media_type
+install:
+  - eca_base
+  - eca_config
+  - eca_content
+  - eca_misc
+  - eca_user
+  - field_group
+  - focal_point
+  - layout_builder
+  - menu_link_content
+  - metatag
+  - metatag_open_graph
+  - metatag_twitter_cards
+  - node
+  - robotstxt
+  - seo_checklist
+  - simple_sitemap
+  - sitemap
+  - token_or
+  - yoast_seo
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_seo_analysis
+    - field.storage.node.field_seo_description
+    - field.storage.node.field_seo_image
+    - field.storage.node.field_seo_title
+  import:
+    metatag:
+      # Exclude Global, Front and Node as we create those in the config folder.
+      - metatag.metatag_defaults.403.yml
+      - metatag.metatag_defaults.404.yml
+      - metatag.metatag_defaults.taxonomy_term.yml
+      - metatag.metatag_defaults.user.yml
+    simple_sitemap: '*'
+  actions:
+    # Add SEO fields to all content types that are installed.
+    field.storage.node.field_seo_analysis:
+      addToAllBundles:
+        label: 'SEO analysis'
+        description: 'Pick the main keyword this page is about.'
+    field.storage.node.field_seo_description:
+      addToAllBundles:
+        label: 'SEO description'
+        description: 'Write a description for search engines and social media sites.'
+    field.storage.node.field_seo_image:
+      addToAllBundles:
+        label: 'SEO image'
+        description: 'Upload an image to be used when the page is shared on social media sites.'
+    # Ensure all instances of `field_seo_image` reference image media.
+    field.field.node.*.field_seo_image:
+      setSettings:
+        handler: 'default:media'
+        handler_settings:
+          target_bundles:
+            image: image
+    field.storage.node.field_seo_title:
+      addToAllBundles:
+        label: 'SEO title'
+        description: 'Use this field to overwrite the default HTML page title for SEO.'
+    # Configure the fields on the edit forms.
+    core.entity_form_display.node.*.default:
+      # Configure field group.
+      setThirdPartySettings:
+        - module: field_group
+          key: group_seo
+          value:
+            children:
+              - field_seo_title
+              - field_seo_description
+              - field_seo_image
+              - field_seo_analysis
+            label: 'Search Engine Optimization (SEO) Information'
+            region: content
+            parent_name: ''
+            weight: 50
+            format_type: details
+            format_settings:
+              classes: ''
+              show_empty_fields: false
+              id: group_seo
+              label_as_html: false
+              open: false
+              description: ''
+              required_fields: false
+      setComponents:
+        -
+          name: field_seo_analysis
+          options:
+            type: yoast_seo_widget
+            weight: 18
+            region: content
+            settings:
+              render_theme: NULL
+              render_view_mode: default
+              edit_title: 0
+              edit_description: 0
+        -
+          name: field_seo_description
+          options:
+            type: string_textarea
+            weight: 16
+            region: content
+            settings:
+              rows: 5
+              placeholder: ''
+        -
+          name: field_seo_image
+          options:
+            type: media_library_widget
+            weight: 17
+            region: content
+            settings:
+              media_types: {  }
+        -
+          name: field_seo_title
+          options:
+            type: string_textfield
+            weight: 15
+            region: content
+            settings:
+              size: 60
+              placeholder: ''
+    robotstxt.settings:
+      # We add Drupal core's robots.txt and XML Sitemap.
+      simpleConfigUpdate:
+        content: |
+          #
+          # robots.txt
+          #
+          # This file is to prevent the crawling and indexing of certain parts
+          # of your site by web crawlers and spiders run by sites like Yahoo!
+          # and Google. By telling these "robots" where not to go on your site,
+          # you save bandwidth and server resources.
+          #
+          # This file will be ignored unless it is at the root of your host:
+          # Used:    http://example.com/robots.txt
+          # Ignored: http://example.com/site/robots.txt
+          #
+          # For more information about the robots.txt standard, see:
+          # http://www.robotstxt.org/robots
+          User-agent: *
+          # CSS, JS, Images
+          Allow: /core/*.css$
+          Allow: /core/*.css?
+          Allow: /core/*.js$
+          Allow: /core/*.js?
+          Allow: /core/*.gif
+          Allow: /core/*.jpg
+          Allow: /core/*.jpeg
+          Allow: /core/*.png
+          Allow: /core/*.svg
+          Allow: /profiles/*.css$
+          Allow: /profiles/*.css?
+          Allow: /profiles/*.js$
+          Allow: /profiles/*.js?
+          Allow: /profiles/*.gif
+          Allow: /profiles/*.jpg
+          Allow: /profiles/*.jpeg
+          Allow: /profiles/*.png
+          Allow: /profiles/*.svg
+          # Directories
+          Disallow: /core/
+          Disallow: /profiles/
+          # Files
+          Disallow: /README.md
+          Disallow: /composer/Metapackage/README.txt
+          Disallow: /composer/Plugin/ProjectMessage/README.md
+          Disallow: /composer/Plugin/Scaffold/README.md
+          Disallow: /composer/Plugin/VendorHardening/README.txt
+          Disallow: /composer/Template/README.txt
+          Disallow: /modules/README.txt
+          Disallow: /sites/README.txt
+          Disallow: /themes/README.txt
+          # Paths (clean URLs)
+          Disallow: /admin/
+          Disallow: /comment/reply/
+          Disallow: /filter/tips
+          Disallow: /node/add/
+          Disallow: /search/
+          Disallow: /user/register
+          Disallow: /user/password
+          Disallow: /user/login
+          Disallow: /user/logout
+          Disallow: /media/oembed
+          Disallow: /*/media/oembed
+          # Paths (no clean URLs)
+          Disallow: /index.php/admin/
+          Disallow: /index.php/comment/reply/
+          Disallow: /index.php/filter/tips
+          Disallow: /index.php/node/add/
+          Disallow: /index.php/search/
+          Disallow: /index.php/user/password
+          Disallow: /index.php/user/register
+          Disallow: /index.php/user/login
+          Disallow: /index.php/user/logout
+          Disallow: /index.php/media/oembed
+          Disallow: /index.php/*/media/oembed
+          # XML sitemap
+          Sitemap: /sitemap.xml
+    sitemap.settings:
+      simpleConfigUpdate:
+        plugins.frontpage:
+          base_plugin: frontpage
+          enabled: true
+          weight: 0
+          settings:
+            title: 'Front page'
+            rss: null
+          id: frontpage
+          provider: sitemap
+        plugins.menu:main:
+          base_plugin: menu
+          enabled: true
+          weight: 0
+          settings:
+            title: ''
+            show_disabled: false
+          id: 'menu:main'
+          provider: sitemap
+    system.performance:
+      simpleConfigUpdate:
+        # Ensure caching is on and set to 15 minutes for Lighthouse.
+        cache.page.max_age: 900
+        # Ensure CSS and JS are preprocessed.
+        css.preprocess: true
+        js.preprocess: true
+    user.role.anonymous:
+      grantPermission: 'access sitemap'
+    user.role.authenticated:
+      grantPermission: 'access sitemap'

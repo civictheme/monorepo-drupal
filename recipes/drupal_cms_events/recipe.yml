@@ -1,0 +1,44 @@
+name: Events
+description: Adds an event content type and listing page.
+type: Drupal CMS
+recipes:
+  - core/recipes/document_media_type
+  - drupal_cms_page
+  - drupal_cms_privacy_basic
+install:
+  - add_content_by_bundle
+  - address
+  - addtocal_augment
+  - date_augmenter
+  - geofield
+  - geocoder
+  - geocoder_address
+  - geocoder_geofield
+  - leaflet_views
+  - menu_link_content
+  - smart_date
+config:
+  # Treat all field storages strictly, since they influence the database layout.
+  strict:
+    - field.storage.node.field_event__date
+    - field.storage.node.field_event__file
+    - field.storage.node.field_event__link
+    - field.storage.node.field_event__location_address
+    - field.storage.node.field_event__location_name
+    - field.storage.node.field_geofield
+  import:
+    geofield: '*'
+    smart_date: '*'
+    system:
+      - system.menu.main
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create event content'
+        - 'delete event revisions'
+        - 'delete any event content'
+        - 'edit any event content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['event']
+    klaro.klaro_app.leaflet:
+      enable: []

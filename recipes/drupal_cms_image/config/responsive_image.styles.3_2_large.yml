@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.3_2_504x336_focal_point_webp
+    - image.style.3_2_702x468_focal_point_webp
+    - image.style.3_2_960x640_focal_point_webp
+  theme:
+    - olivero
+id: 3_2_large
+label: '3:2 Large'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - 3_2_504x336_focal_point_webp
+        - 3_2_702x468_focal_point_webp
+        - 3_2_960x640_focal_point_webp
+    breakpoint_id: olivero.sm
+    multiplier: 1x
+breakpoint_group: olivero
+fallback_image_style: 3_2_504x336_focal_point_webp

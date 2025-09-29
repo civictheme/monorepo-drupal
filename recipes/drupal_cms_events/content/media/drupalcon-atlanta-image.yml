@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 80952560-d94f-4925-b73f-988dd04d2dd8
+  bundle: image
+  default_langcode: en
+  depends:
+    601c1f74-4633-4069-ae90-57c645568b1c: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'DrupalCon-Atlanta.webp'
+  created:
+    -
+      value: 1734408755
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: 601c1f74-4633-4069-ae90-57c645568b1c
+      alt: 'Time lapse image of downtown Atlanta, Georgia at sunset'
+      title: ''
+      width: 1440
+      height: 720

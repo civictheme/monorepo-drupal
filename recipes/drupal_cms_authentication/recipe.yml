@@ -1,0 +1,19 @@
+name: Authentication Tweaks
+description: Adds useful authentication features.
+type: Drupal CMS
+install:
+  - bpmn_io
+  - eca_base
+  - eca_form
+  - eca_misc
+  - eca_user
+  - login_emailusername
+  - token
+config:
+  # If the active config doesn't match what's in the recipe, we can assume that the site
+  # owner has made their own tweaks to the authentication flows, and we respect those.
+  strict: false
+  actions:
+    system.site:
+      simpleConfigUpdate:
+        page.403: '/user/login'

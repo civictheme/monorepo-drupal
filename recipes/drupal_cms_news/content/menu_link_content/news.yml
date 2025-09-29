@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: db1c9c23-32e0-4c7f-90f2-328028755ce5
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    e8701c04-dc57-453d-9941-5fa900c434d9: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: News
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: e8701c04-dc57-453d-9941-5fa900c434d9
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

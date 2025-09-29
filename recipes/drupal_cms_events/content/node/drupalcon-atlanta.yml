@@ -1,0 +1,89 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 783621b6-7ad7-446c-8d7c-c270961391b2
+  bundle: event
+  default_langcode: en
+  depends:
+    80952560-d94f-4925-b73f-988dd04d2dd8: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'DrupalCon Atlanta 2025'
+  created:
+    -
+      value: 1734408562
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /events/drupalcon-atlanta-2025
+      langcode: en
+  field_content:
+    -
+      value: '<p>DrupalCon is heading to the incredible city of Atlanta, Georgia, from 24-27 March 2025. You’ll get the chance to connect with the Drupal community through insightful sessions, informative discussions, networking opportunities, and more. Don’t miss this opportunity to visit a city rich with history and to get together with fellow Drupalers!<br><br><strong>When you buy a conference ticket, you’ll get access to:</strong></p><ul><li dir="ltr">2-hour&nbsp;Welcome Party at the Expo Hall</li><li dir="ltr">Trivia Night</li><li dir="ltr">All general conference sessions + contribution sessions including Driesnote</li><li dir="ltr">Keynote speakers, access to Expo Hall, and raffle contest</li><li dir="ltr">Lunch and coffee breaks</li><li dir="ltr">and more!&nbsp;</li></ul><p><a href="https://events.drupal.org/atlanta2025/program-glance">View the program at a glance now</a>.</p><p><a href="https://events.drupal.org/atlanta2025/summits-trainings">Trainings and Summits</a> will be available to purchase on,&nbsp;<strong>Monday, 18 November</strong>. These include the Industry Summits and Trainings for Government, Higher Education, Nonprofit, Healthcare, and Community. Stay tuned!<br><br>Applications are also available for our needs-based Scholarships and Community Grants, which close on&nbsp;<strong>20 December</strong>.&nbsp;<a href="https://events.drupal.org/atlanta2025/scholarships-community-grants">Visit our Scholarships and Community Grants page</a> for more information on eligibility criteria and to submit an application.</p>'
+      format: content_format
+  field_description:
+    -
+      value: "The biggest open-source event in North America is coming to Atlanta, Georgia. We can't wait to see you at this one-of-a-kind experience!"
+  field_event__date:
+    -
+      value: 1742738400
+      end_value: 1743083940
+      duration: 5759
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__link:
+    -
+      uri: 'https://events.drupal.org/atlanta2025'
+      title: 'DrupalCon Atlanta website'
+      options: {  }
+  field_event__location_address:
+    -
+      langcode: ''
+      country_code: US
+      administrative_area: GA
+      locality: Atlanta
+      dependent_locality: ''
+      postal_code: '30303'
+      sorting_code: ''
+      address_line1: '265 Peachtree St NE'
+      address_line2: ''
+  field_event__location_name:
+    -
+      value: 'Hyatt Regency Atlanta'
+  field_featured_image:
+    -
+      entity: 80952560-d94f-4925-b73f-988dd04d2dd8
+  field_geofield:
+    -
+      value: 'POINT(-84.386636 33.761630)'
+      geo_type: Point
+      lat: 33.76163
+      lon: -84.386636
+      left: -84.386636
+      top: 33.76163
+      right: -84.386636
+      bottom: 33.76163
+      geohash: dn5bpdpe8zgx
+      latlon: '33.76163,-84.386636'

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 831ca26d-590c-4f34-8545-379e9d77106f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Government-building-EU-flag-credit-pexels-gintare-kairaityte-11923111-17178100.webp
+  uri:
+    -
+      value: 'public://2024-12/Government-building-EU-flag-credit-pexels-gintare-kairaityte-11923111-17178100.webp'
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 500000
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1734363574

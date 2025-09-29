@@ -1,0 +1,11 @@
+{
+    "name": "drupal/drupal_cms_remote_video",
+    "type": "drupal-recipe",
+    "description": "Configures display options for remote video.",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": "^10.4 || ^11",
+        "drupal/drupal_cms_privacy_basic": "^1.2"
+    },
+    "version": "1.2.5"
+}

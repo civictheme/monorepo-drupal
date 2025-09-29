@@ -1,0 +1,192 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_form
+    - eca_user
+id: user_register
+modeller: bpmn_io
+label: 'User registration'
+version: 1.0.1
+weight: 0
+events:
+  Event_build_user_reg_form:
+    plugin: 'form:form_build'
+    label: 'Build user register form'
+    configuration:
+      form_id: user-register-form
+      entity_type_id: ''
+      bundle: ''
+      operation: ''
+    successors:
+      -
+        id: Activity_set_weight_mail
+        condition: Flow_0x4d8cz
+  Event_validate_user_reg_form:
+    plugin: 'form:form_validate'
+    label: 'Validate user register form'
+    configuration:
+      form_id: user-register-form
+      entity_type_id: ''
+      bundle: ''
+      operation: ''
+    successors:
+      -
+        id: Gateway_0esk9dm
+        condition: Flow_notify_on
+conditions:
+  Flow_0x4d8cz:
+    plugin: eca_current_user_id
+    configuration:
+      user_id: '0'
+      negate: true
+  Flow_notify_on:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: '1'
+      field_name: notify
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: numeric
+  Flow_0xwcjpm:
+    plugin: eca_current_user_id
+    configuration:
+      user_id: '0'
+      negate: true
+gateways:
+  Gateway_0esk9dm:
+    type: 0
+    successors:
+      -
+        id: Activity_get_random_string
+        condition: Flow_0xwcjpm
+actions:
+  Activity_password_field_not_required:
+    plugin: eca_form_field_require
+    label: 'Set password as not required'
+    configuration:
+      flag: false
+      field_name: pass
+    successors:
+      -
+        id: Activity_invisible_state_password
+        condition: ''
+  Activity_get_random_string:
+    plugin: eca_token_set_random_value
+    label: 'Get random string'
+    configuration:
+      token_name: password
+      mode: password
+      length: '15'
+    successors:
+      -
+        id: Activity_set_password
+        condition: ''
+  Activity_set_password:
+    plugin: eca_form_field_set_value
+    label: 'Set password'
+    configuration:
+      field_value: '[password]'
+      use_yaml: false
+      validate_yaml: false
+      field_name: pass
+      strip_tags: false
+      trim: false
+      xss_filter: false
+    successors:
+      -
+        id: Activity_set_status
+        condition: ''
+  Activity_set_weight_mail:
+    plugin: eca_form_field_set_weight
+    label: 'Set weight for mail'
+    configuration:
+      weight: '-10'
+      field_name: mail
+    successors:
+      -
+        id: Activity_set_weight_name
+        condition: ''
+  Activity_set_weight_name:
+    plugin: eca_form_field_set_weight
+    label: 'Set weight for name'
+    configuration:
+      weight: '-9'
+      field_name: name
+    successors:
+      -
+        id: Activity_set_weight_notify
+        condition: ''
+  Activity_set_weight_notify:
+    plugin: eca_form_field_set_weight
+    label: 'Set weight for notify'
+    configuration:
+      weight: '-8'
+      field_name: notify
+    successors:
+      -
+        id: Activity_set_weight_password
+        condition: ''
+      -
+        id: Activity_enable_notify
+        condition: ''
+  Activity_set_weight_password:
+    plugin: eca_form_field_set_weight
+    label: 'Set weight for password'
+    configuration:
+      weight: '-7'
+      field_name: pass
+    successors:
+      -
+        id: Activity_password_field_not_required
+        condition: ''
+      -
+        id: Activity_invisible_state_status
+        condition: ''
+  Activity_enable_notify:
+    plugin: eca_form_field_default_value
+    label: 'Enable notify by default'
+    configuration:
+      value: '1'
+      field_name: notify
+      strip_tags: false
+      trim: false
+      xss_filter: false
+    successors: {  }
+  Activity_invisible_state_status:
+    plugin: eca_form_field_add_state
+    label: 'Add invisible state for status'
+    configuration:
+      selector: ':input[name="notify"]'
+      state: invisible
+      condition: checked
+      value: ''
+      field_name: status
+    successors: {  }
+  Activity_invisible_state_password:
+    plugin: eca_form_field_add_state
+    label: 'Add invisible state for password'
+    configuration:
+      selector: ':input[name="notify"]'
+      state: invisible
+      condition: checked
+      value: ''
+      field_name: pass
+    successors: {  }
+  Activity_set_status:
+    plugin: eca_form_field_set_value
+    label: 'Set status'
+    configuration:
+      field_value: '1'
+      use_yaml: false
+      validate_yaml: false
+      field_name: status
+      strip_tags: false
+      trim: false
+      xss_filter: false
+    successors: {  }

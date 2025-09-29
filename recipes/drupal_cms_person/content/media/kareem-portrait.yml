@@ -1,0 +1,40 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: da8e1d35-d11a-4092-a33e-347534dd371a
+  bundle: image
+  default_langcode: en
+  depends:
+    5a635060-8540-4be7-bad9-8a51414731ad: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: unsplash_Leilani_Angel.webp
+  created:
+    -
+      value: 1734903584
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 5a635060-8540-4be7-bad9-8a51414731ad
+      alt: 'Kareem - Ambitious Sitebuilder'
+      title: ''
+      width: 600
+      height: 600
+

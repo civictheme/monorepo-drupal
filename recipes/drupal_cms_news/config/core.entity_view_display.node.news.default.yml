@@ -1,0 +1,138 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.field_content
+    - field.field.node.news.field_description
+    - field.field.node.news.field_featured_image
+    - field.field.node.news.field_tags
+    - node.type.news
+    - views.view.news
+  module:
+    - layout_builder
+    - layout_discovery
+    - media
+    - text
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          ef3dbec3-d4c2-481e-ae4e-526297acceed:
+            uuid: ef3dbec3-d4c2-481e-ae4e-526297acceed
+            region: content
+            configuration:
+              id: 'field_block:node:news:field_featured_image'
+              label: 'Featured image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: hero
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          ef1d88e6-4477-43a9-a9a2-23efade33853:
+            uuid: ef1d88e6-4477-43a9-a9a2-23efade33853
+            region: content
+            configuration:
+              id: 'field_block:node:news:field_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          43617bd8-2ce9-44c6-975e-1512223b14ea:
+            uuid: 43617bd8-2ce9-44c6-975e-1512223b14ea
+            region: content
+            configuration:
+              id: 'views_block:news-related'
+              label: ''
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 5
+            additional: {  }
+          68ad074b-b045-43f3-b4ea-c89278e5a851:
+            uuid: 68ad074b-b045-43f3-b4ea-c89278e5a851
+            region: content
+            configuration:
+              id: 'field_block:node:news:field_tags'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          bbd9bda8-e7fd-49dc-9113-3ac04c14aae9:
+            uuid: bbd9bda8-e7fd-49dc-9113-3ac04c14aae9
+            region: content
+            configuration:
+              id: 'extra_field_block:node:news:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 2
+            additional: {  }
+        third_party_settings: {  }
+id: node.news.default
+targetEntityType: node
+bundle: news
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: hero
+      link: false
+    third_party_settings: { }
+    weight: 1
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_description: true
+  langcode: true
+  links: true

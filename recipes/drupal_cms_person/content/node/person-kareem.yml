@@ -1,0 +1,63 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 621b5375-c434-4c27-bbb7-6f55dace22ab
+  bundle: person
+  default_langcode: en
+  depends:
+    da8e1d35-d11a-4092-a33e-347534dd371a: media
+    d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Kareem - Ambitious Sitebuilder'
+  created:
+    -
+      value: 1734903562
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /people/kareem-ambitious-sitebuilder
+      langcode: en
+  field_content:
+    -
+      value: "<p>Kareem is a fast learner with a strong grasp of Drupal CMS. He likes the structured approach to configuration, seeking concise and clear guidance on utilizing existing functionalities.</p><blockquote><p>Drupal CMS allows him to efficiently build and customize sites while maintaining a focus on user experience.</p></blockquote><p>Kareem's strengths:</p><ul><li><strong>Rapid prototyping:</strong> Quickly translating user needs into functional Drupal-based prototypes.</li><li><strong>User-centric design:</strong> Prioritizing user experience in all aspects of site development.</li><li><strong>Efficient workflow:</strong> Leveraging structured configurations and clear guidelines to streamline development processes.</li><li><strong>Adaptability:</strong> Continuously learning and adapting to new Drupal features and best practices.</li></ul>"
+      format: content_format
+  field_description:
+    -
+      value: 'Kareem is highly motivated and results-oriented. He possesses a unique blend of technical aptitude and a keen understanding of user experience. As a Drupal CMS sitebuilder, Kareem excels at rapidly creating engaging user interfaces.'
+  field_featured_image:
+    -
+      entity: da8e1d35-d11a-4092-a33e-347534dd371a
+  field_person__email:
+    -
+      value: kareem@sitebuilder.org
+  field_person__phone_number:
+    -
+      value: '+33 6 39 98 43 65'
+  field_person__role_job_title:
+    -
+      value: 'Drupal CMS Sitebuilder & Marketer'
+  field_tags:
+    -
+      entity: d48adeba-e388-4e82-820b-98bbd2f35a46

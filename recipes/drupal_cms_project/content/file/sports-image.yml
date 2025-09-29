@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 671c51f9-7a67-40ce-82de-750f53892f26
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: pexels-israel-franca-1108173-2101030.webp
+  uri:
+    -
+      value: 'public://2024-12/pexels-israel-franca-1108173-2101030.webp'
+      url: /sites/default/files/2024-12/pexels-israel-franca-1108173-2101030.webp
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 511000
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1734364134

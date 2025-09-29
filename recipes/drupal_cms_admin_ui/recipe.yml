@@ -1,0 +1,43 @@
+name: Admin UI
+type: Drupal CMS
+description: Sets up a nice administrative theme and navigation.
+install:
+  - coffee
+  - dashboard
+  - contextual
+  - gin
+  - gin_toolbar
+  - navigation
+  - sam
+  - tagify
+  - tagify_user_list
+config:
+  strict: false
+  import:
+    gin:
+      - block.block.gin_breadcrumbs
+      - block.block.gin_content
+      - block.block.gin_local_actions
+      - block.block.gin_messages
+      - block.block.gin_page_title
+      - block.block.gin_primary_local_tasks
+      - block.block.gin_secondary_local_tasks
+    navigation:
+      - system.menu.content
+    claro:
+      - block.block.claro_breadcrumbs
+      - block.block.claro_content
+      - block.block.claro_local_actions
+      - block.block.claro_messages
+      - block.block.claro_page_title
+      - block.block.claro_primary_local_tasks
+      - block.block.claro_secondary_local_tasks
+  actions:
+    system.theme:
+      simpleConfigUpdate:
+        admin: gin
+    tagify.settings:
+      simpleConfigUpdate:
+        set_default_widget: true
+    user.role.authenticated:
+      grantPermission: 'access coffee'

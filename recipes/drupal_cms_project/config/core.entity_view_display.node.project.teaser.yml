@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.project.field_content
+    - field.field.node.project.field_description
+    - field.field.node.project.field_featured_image
+    - field.field.node.project.field_project__client_link
+    - field.field.node.project.field_project__client_logo
+    - field.field.node.project.field_project__client_name
+    - field.field.node.project.field_tags
+    - node.type.project
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.project.teaser
+targetEntityType: node
+bundle: project
+mode: teaser
+content:
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: 4_3_medium
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true
+  field_content: true
+  field_project__client_link: true
+  field_project__client_logo: true
+  field_project__client_name: true
+  field_tags: true
+  langcode: true
+  links: true

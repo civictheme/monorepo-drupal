@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - scheduler
+    - menu_ui
+third_party_settings:
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: true
+    publish_past_date: error
+    publish_past_date_created: false
+    publish_required: false
+    publish_revision: true
+    publish_touch: true
+    show_message_after_update: true
+    unpublish_enable: true
+    unpublish_required: false
+    unpublish_revision: true
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Project
+type: project
+description: 'Project content provides information about an example of work to the intended audience.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

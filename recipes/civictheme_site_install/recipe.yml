@@ -1,0 +1,46 @@
+name: 'CivicTheme'
+description: 'Install civictheme'
+type: 'Site'
+recipes:
+  - core/recipes/basic_block_type
+  - core/recipes/core_recommended_performance
+  - core/recipes/core_recommended_maintenance
+  - core/recipes/core_recommended_admin_theme
+  - core/recipes/administrator_role
+install:
+  - image
+  - help
+  - config
+  - contextual
+  - menu_link_content
+  - datetime
+  - menu_ui
+  - node
+  - options
+  - toolbar
+  - field_ui
+  - views_ui
+  - shortcut
+  - search_api
+  - search_api_db
+  - civictheme
+config:
+  import:
+    shortcut: '*'
+    media:
+      - core.entity_view_mode.media.full
+    media_library:
+      - core.entity_form_mode.media.media_library
+      - core.entity_view_mode.media.media_library
+      - image.style.media_library
+      - views.view.media_library
+    node:
+      - views.view.content
+    civictheme: '*'
+  actions:
+    system.theme:
+      simpleConfigUpdate:
+        default: civictheme
+    node.settings:
+      simpleConfigUpdate:
+        use_admin_theme: true

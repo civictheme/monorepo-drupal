@@ -1,0 +1,66 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 1d208712-bb75-4af9-98af-fd6c48ce9924
+  bundle: case_study
+  default_langcode: en
+  depends:
+    930856d3-0fff-455c-819d-2c74e01cff3d: media
+    35a186fc-5bff-4357-9f4b-a9c6218866fc: media
+    d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Transforming government digital services with Drupal'
+  created:
+    -
+      value: 1734363110
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /case-studies/transforming-government-digital-services-drupal
+      langcode: en
+  field_case_study__client_link:
+    -
+      uri: 'https://www.drupal.org/case-studies?sectors%5B%5D=24660'
+      title: 'Visit website'
+      options: {  }
+  field_case_study__client_logo:
+    -
+      entity: 930856d3-0fff-455c-819d-2c74e01cff3d
+  field_case_study__client_name:
+    -
+      value: 'Drupal CMS'
+  field_content:
+    -
+      value: '<h3>Introduction</h3><p>A government agency faced the challenge of modernizing its outdated digital platform to meet the evolving needs of its citizens. With a diverse audience, stringent security requirements, and a mandate to deliver accessible and user-friendly services, the agency sought a robust and flexible content management system (CMS).</p><blockquote><p>After careful evaluation, Drupal was selected as the platform of choice for this transformation.</p></blockquote><h3>The challenge</h3><p>The agency’s existing digital platform presented several obstacles:</p><ul><li><strong>Scalability:</strong> The need to support a growing user base with diverse requirements.</li><li><strong>Security:</strong> Ensuring compliance with government-level data protection and cybersecurity standards.</li><li><strong>Accessibility:</strong> Meeting WCAG standards to provide equitable access for all citizens.</li><li><strong>Integration:</strong> Seamlessly connecting with legacy systems and external services.</li><li><strong>Cost-effectiveness:</strong> Delivering a high-quality solution within a limited budget.</li></ul><h3>Why Drupal?</h3><p>Drupal’s powerful capabilities made it an ideal solution for the agency’s needs:</p><ul><li><strong>Open source advantage:</strong> Eliminating licensing fees allowed the agency to allocate resources to custom development and ongoing improvements.</li><li><strong>Security:</strong> With a dedicated security team and regular updates, Drupal provided the necessary safeguards for sensitive government data.</li><li><strong>Scalability and flexibility:</strong> Drupal’s modular architecture enabled the creation of a platform that could grow and adapt to future requirements.</li><li><strong>Multilingual capabilities:</strong> Built-in support for multiple languages ensured the agency could serve diverse populations effectively.</li><li><strong>Accessibility:</strong> Drupal’s adherence to WCAG standards guaranteed inclusive digital experiences for all users.</li></ul><h3>Implementation highlights</h3><ol><li><strong>Unified platform:</strong> The agency consolidated several outdated websites into a single Drupal-based platform. This streamlined maintenance processes and provided a consistent user experience.</li><li><strong>Custom workflows and permissions:</strong> Drupal’s customizable workflows allowed the agency to implement efficient editorial processes, ensuring content accuracy and regulatory compliance.</li><li><strong>Improved citizen engagement:</strong> The new platform featured tools such as service locators, feedback forms, and event calendars to enhance citizen interaction and satisfaction.</li><li><strong>Integration with third-party services:</strong> Drupal was integrated with existing legacy systems, analytics tools, and external services to enable smooth operations and data management.</li></ol><h3>Real-world benefits</h3><ol><li><strong>Enhanced user experience:</strong> The modernized platform delivered faster load times, intuitive navigation, and responsive design, improving citizen satisfaction.</li><li><strong>Cost savings:</strong> By leveraging Drupal’s open-source nature, the agency reduced licensing costs and avoided vendor lock-in.</li><li><strong>Operational efficiency:</strong> Centralized content management and streamlined workflows significantly improved internal operations and reduced administrative overhead.</li><li><strong>Future-proof technology:</strong> With regular updates and a thriving global community, Drupal ensured the platform remained adaptable to changing needs and technologies.</li></ol><h3>Conclusion</h3><p>The government agency successfully transformed its digital presence by adopting Drupal. The new platform not only met the agency’s immediate requirements but also positioned it for future growth and innovation. By choosing Drupal, the agency delivered citizen-centric services, streamlined its operations, and set a benchmark for modern government digital platforms.</p>'
+      format: content_format
+  field_description:
+    -
+      value: 'Discover how a government agency transformed its digital services with Drupal, creating a scalable, secure, and accessible platform to meet the needs of citizens and stakeholders. By consolidating outdated systems, implementing streamlined workflows, and enhancing user engagement, the agency set a new standard for modern government websites.'
+  field_featured_image:
+    -
+      entity: 35a186fc-5bff-4357-9f4b-a9c6218866fc
+  field_tags:
+    -
+      entity: d48adeba-e388-4e82-820b-98bbd2f35a46

@@ -1,0 +1,101 @@
+name: Search
+type: Drupal CMS
+description: Adds a search to help visitors find content. 
+install:
+  - block
+  # Basic search is for node entity type only at the moment.
+  - node
+  - search_api
+  - search_api_autocomplete
+  - search_api_db
+  - search_api_exclude
+  - simple_search_form
+  - views
+config:
+  strict: false
+  import:
+    # Use core node view mode for indexing.
+    node:
+      - core.entity_view_mode.node.search_index
+  actions:
+    # Enable Search API Exclude for all content types.
+    node.type.*:
+      setThirdPartySetting:
+        module: search_api_exclude
+        key: enabled
+        value: 1
+    # Create view display "Search Index" for all available content types.
+    core.entity_view_display.node.*.default:
+      # Clone the "Default" view display by default.
+      cloneAs: node.%.search_index
+    # Add the desktop search form to the secondary menu of the page (there are
+    # two because of accessibility reasons).
+    block.block.search_form:
+      placeBlockInDefaultTheme:
+        id: search_form
+        # The region accepts an array keyed by theme name.
+        region:
+          olivero: secondary_menu
+          drupal_cms_olivero: secondary_menu
+        # A fallback used if no match found in the region array.
+        default_region: content
+        # Place the block before any blocks already in the region.
+        position: first
+        plugin: simple_search_form_block
+        settings:
+          label: 'Search form'
+          label_display: '0'
+          provider: simple_search_form
+          action_path: /search
+          get_parameter: text
+          input_type: search_api_autocomplete
+          search_api_autocomplete:
+            search_id: content_autocomplete
+            display: page_1
+            arguments: ''
+            filter: text
+          input_label: Search
+          input_label_display: invisible
+          input_placeholder: 'Enter search keywords'
+          input_css_classes: ''
+          submit_display: true
+          submit_label: Search
+          input_keep_value: false
+          preserve_url_query_parameters: { }
+    # Add the mobile search form to the primary menu region of the page.
+    block.block.search_form_primary:
+      placeBlockInDefaultTheme:
+        id: search_form_primary
+        # The region accepts an array keyed by theme name.
+        region:
+          olivero: primary_menu
+          drupal_cms_olivero: primary_menu
+        # A fallback used if no match found in the region array.
+        default_region: content
+        # Place the block before any blocks already in the region.
+        position: first
+        plugin: simple_search_form_block
+        settings:
+          label: 'Search form'
+          label_display: '0'
+          provider: simple_search_form
+          action_path: /search
+          get_parameter: text
+          input_type: search_api_autocomplete
+          search_api_autocomplete:
+            search_id: content_autocomplete
+            display: page_1
+            arguments: ''
+            filter: text
+          input_label: Search
+          input_label_display: invisible
+          input_placeholder: 'Enter search keywords'
+          input_css_classes: ''
+          submit_display: true
+          submit_label: Search
+          input_keep_value: false
+          preserve_url_query_parameters: { }
+    user.role.anonymous:
+      grantPermission: 'use search_api_autocomplete for content_autocomplete'
+    user.role.authenticated:
+      grantPermission: 'use search_api_autocomplete for content_autocomplete'

@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f57ca5cc-9336-44d5-b847-b24876ffd1f6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: unsplash_John_Schnobrich.webp
+  uri:
+    -
+      value: 'public://2024-12/unsplash_John_Schnobrich.webp'
+      url: /sites/default/files/2024-12/unsplash_John_Schnobrich.webp
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 168000
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1734904462
