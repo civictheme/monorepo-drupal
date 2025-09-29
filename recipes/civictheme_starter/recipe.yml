@@ -38,6 +38,7 @@ config:
     node:
       - views.view.content
     civictheme: '*'
+    user: '*'
   actions:
     system.theme:
       simpleConfigUpdate:
