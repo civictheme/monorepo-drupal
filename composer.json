@@ -98,7 +98,9 @@
             "phpstan/extension-installer": true,
             "pyrech/composer-changelogs": true,
             "tbachert/spi": true,
-            "wikimedia/composer-merge-plugin": true
+            "wikimedia/composer-merge-plugin": true,
+            "drupal/core-vendor-hardening": true,
+            "drupal/core-recipe-unpack": true
         },
         "platform": {
             "php": "8.3.8"
