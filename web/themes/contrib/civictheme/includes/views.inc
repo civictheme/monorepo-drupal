@@ -162,6 +162,21 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
 
   if ($field_count == 1) {
+    // Use inline filter on search and auto pages if a single text field exsits.
+    if (in_array($view->id(), ['civictheme_search', 'civictheme_automated_list'])) {
+      $keyword_field = reset($fields);
+      if ($keyword_field['#type'] === 'textfield') {
+        $variables['inline_filter'] = TRUE;
+        $variables['filter_items'] = $keyword_field;
+        $submit_field = $variables['form']['actions']['submit'] ?? NULL;
+        if (!empty($submit_field)) {
+          $variables['submit_text'] = $submit_field['#value'] ?? '';
+        }
+        return;
+      }
+    }
+
+    // Use single filter.
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
   }
   elseif ($field_count > 1) {
