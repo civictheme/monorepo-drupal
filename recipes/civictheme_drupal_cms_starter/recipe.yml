@@ -9,8 +9,6 @@ config:
     system.theme:
       simpleConfigUpdate:
         default: civictheme
-      block.block.civictheme_help:
-        setStatus: false
       block.block.civictheme_messages:
         setStatus: false
       block.block.civictheme_primaryadminactions:
