@@ -82,6 +82,8 @@ aliases:
           username: $DOCKER_USER
           password: $DOCKER_PASS
         environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
           # Set runner timezone to ensure that executed operations use correct timestamps.
           TZ: *timezone
           # Set runner terminal capabilities.
@@ -257,7 +259,7 @@ job-build: &job-build
         command: docker compose exec -T cli bash -c "./scripts/lint.theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme schema
-        command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
+        command: docker compose exec -T cli bash -c "./vendor/bin/drush --uri=${QUANT_ROUTE} inspect_config civictheme.settings --detail --only-error"
     - run:
         name: Run assets tests
         command: ./scripts/test.assets.sh
@@ -309,6 +311,8 @@ jobs:
     docker:
       - image: cimg/php:8.2-browsers
     environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
       DRUPAL_VERSION: 10.3
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
@@ -318,6 +322,8 @@ jobs:
     docker:
       - image: cimg/php:8.3-browsers
     environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
       DRUPAL_VERSION: 10.3
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
@@ -327,6 +333,8 @@ jobs:
     docker:
       - image: cimg/php:8.3-browsers
     environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
       DRUPAL_VERSION: 10.3
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
@@ -336,6 +344,8 @@ jobs:
     docker:
       - image: cimg/php:8.3-browsers
     environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
       DRUPAL_VERSION: 10@beta
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
@@ -345,6 +355,8 @@ jobs:
   #   docker:
   #     - image: cimg/php:8.4-browsers
   #   environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
   #     DRUPAL_VERSION: stable
   #     DRUPAL_PROJECT_SHA: 10.x
   #   <<: *job-build-isolated
@@ -354,6 +366,8 @@ jobs:
   #   docker:
   #     - image: cimg/php:8.4-browsers
   #   environment:
+          # QUANT route to be used for Drush --uri.
+          QUANT_ROUTE: $QUANT_ROUTE
   #     DRUPAL_VERSION: 10@beta
   #     DRUPAL_PROJECT_SHA: 10.x
   #   <<: *job-build-isolated
