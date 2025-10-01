@@ -29,5 +29,4 @@ Feature: CivicTheme remote video
     And I should see the text "Test Remote Video without transcript"
     And I should see the text "Test Remote Video with transcript"
     And I should see the text "View transcript"
-    And I click on ".ct-video-player__links-transcript a" element
     And I should see the text "[TEST] CivicTheme Remote Video Transcript"
