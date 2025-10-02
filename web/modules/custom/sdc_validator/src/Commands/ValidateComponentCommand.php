@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\sdc_validator\Commands;
 
+use Consolidation\AnnotatedCommand\CommandResult;
 use Drupal\Core\Plugin\Component;
 use Drupal\Core\Render\Component\Exception\InvalidComponentException;
 use Drupal\Core\Template\ComponentNodeVisitor;
@@ -11,9 +12,9 @@ use Drupal\Core\Template\TwigEnvironment;
 use Drupal\Core\Theme\Component\ComponentValidator;
 use Drupal\Core\Theme\ComponentPluginManager;
 use Drush\Commands\DrushCommands;
+use Psy\Command\Command;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Error\Error;
-use Twig\Node\Node;
 
 /**
  * Validates SDC component definitions using Drupal core's ComponentValidator.
@@ -51,8 +52,10 @@ class ValidateComponentCommand extends DrushCommands {
    * @command sdc_validator:validate
    * @usage drush sdc_validator:validate '<path to components>'
    * @usage drush sdc_validator:validate 'web/themes/custom/civictheme/components'
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
-  public function validateComponentDefinitions(string $components_path): void {
+  public function validateComponentDefinitions(string $components_path): CommandResult {
     if (!is_dir($components_path)) {
       throw new \Exception('❌ Components directory not found: ' . $components_path);
     }
@@ -86,36 +89,8 @@ class ValidateComponentCommand extends DrushCommands {
         $component_name = basename((string) $component_file, '.component.yml');
         $component_id = $component_base_identifier . ':' . $component_name;
         $component = $this->componentPluginManager->find($component_id);
-        $template_path = $component->getTemplatePath();
-        if ($template_path === NULL) {
-          throw new \Exception(sprintf('❌ %s does not have a template.', $component_id));
-        }
-        $source = $this->twig->getLoader()->getSourceContext($template_path);
-        try {
-          // Need to load as a component.
-          $node_tree = $this->twig->parse($this->twig->tokenize($source));
-        }
-        catch (Error $error) {
-          throw new \Exception("❌ Error parsing twig file: " . $error->getMessage(), $error->getCode(), $error);
-        }
-        $this->validateSlots($component, $node_tree->getNode('blocks'));
-        $definition = Yaml::parseFile($component_file);
-        // Merge with additional required keys.
-        $definition = array_merge(
-          $definition,
-          [
-            'machineName' => $component_name,
-            'extension_type' => 'theme',
-            'id' => 'civictheme:' . $component_name,
-            'library' => ['css' => ['component' => ['foo.css' => []]]],
-            'path' => '',
-            'provider' => 'civictheme',
-            'template' => $component_name . '.twig',
-            'group' => 'civictheme-group',
-            'description' => 'CivicTheme component',
-          ]
-        );
-        $this->validateComponentFile($definition);
+        $this->validateSlots($component);
+        $this->validateComponentFile($component_file, $component_id);
         $valid_count++;
       }
       catch (\Exception $e) {
@@ -135,20 +110,39 @@ class ValidateComponentCommand extends DrushCommands {
       foreach ($errors as $error) {
         $this->output()->writeln(sprintf("❌ %s - %s", $error['file'], $error['error']));
       }
-      throw new \Exception("Component validation failed.");
+      return CommandResult::dataWithExitCode('Component validation failed.', Command::FAILURE);
     }
-    $this->output()->writeln("✨ All components are valid");
+    return CommandResult::dataWithExitCode('✨ All components are valid', Command::SUCCESS);
   }
 
   /**
    * Validates a single component definition file.
    *
-   * @param array $definition
-   *   The component definition.
+   * @param string $component_file
+   *   Path to the file.
+   * @param string $component_id
+   *   The component id.
    *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
    */
-  public function validateComponentFile(array $definition): void {
+  public function validateComponentFile(string $component_file, string $component_id): void {
+    [, $component_name] = explode(':', $component_id);
+    $definition = Yaml::parseFile($component_file);
+    // Merge with additional required keys.
+    $definition = array_merge(
+      $definition,
+      [
+        'machineName' => $component_name,
+        'extension_type' => 'theme',
+        'id' => $component_id,
+        'library' => ['css' => ['component' => ['foo.css' => []]]],
+        'path' => '',
+        'provider' => 'civictheme',
+        'template' => $component_name . '.twig',
+        'group' => 'civictheme-group',
+        'description' => 'CivicTheme component',
+      ]
+    );
     $this->componentValidator->validateDefinition($definition, TRUE);
   }
 
@@ -163,12 +157,31 @@ class ValidateComponentCommand extends DrushCommands {
    * undeclared slots. This cheap validation lets us validate during runtime
    * even in production.
    *
+   * @param \Drupal\Core\Plugin\Component $component
+   *   The component to validate the slots against.
+   *
    * @throws \Drupal\Core\Render\Component\Exception\InvalidComponentException
+   *   When the twig doesn't parse or template does not exist.
+   * @throws \Exception
    *   When the slots don't pass validation.
    *
    * @see \Drupal\Core\Template\ComponentNodeVisitor::validateSlots
    */
-  protected function validateSlots(Component $component, Node $node): void {
+  protected function validateSlots(Component $component): void {
+    $template_path = $component->getTemplatePath();
+    if ($template_path === NULL) {
+      throw new \Exception(sprintf('❌ %s does not have a template.', $component->getI));
+    }
+    $source = $this->twig->getLoader()->getSourceContext($template_path);
+    try {
+      // Need to load as a component.
+      $node_tree = $this->twig->parse($this->twig->tokenize($source));
+      $node = $node_tree->getNode('blocks');
+    }
+    catch (Error $error) {
+      throw new \Exception("❌ Error parsing twig file: " . $error->getMessage(), $error->getCode(), $error);
+    }
+
     $metadata = $component->metadata;
     if (!$metadata->mandatorySchemas) {
       return;
