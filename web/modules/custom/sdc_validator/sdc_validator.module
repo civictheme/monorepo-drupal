@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ */
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * CivicTheme Development module.
+ */
+
+/**
+ * Implements hook_twig_validator_rule_info_alter().
+ */
+function sdc_validator_twig_validator_rule_info_alter(array &$info): void {
+  // @see https://www.drupal.org/project/sdc_devel/issues/3517321
+  $rule_name_ignore = -1;
+  $rule_name_error = 3;
+  $rule_name_warning = 4;
+  $rule_name_notice = 5;
+
+  $info['filter']['rule_on_name'][$rule_name_ignore][] = 'raw';
+
+  // Ignore "Use slots instead of hard embedding a component in the template with `@name`.".
+  unset($info['include']);
+  // Ignore "Use slots instead of hard embedding a component in the template with `includ\r\ne`.".
+  unset($info['function']['rule_on_name'][$rule_name_error]['parent']);
+  // Ignore "Replace with Twig function include()".
+  unset($info['function']['rule_on_name'][$rule_name_notice]['pattern']);
+  // Ignore "Careful with Twig function: `source`. Bad architecture, but sometimes needed\r\n for shared static files.".
+  $info['function']['rule_on_name'][$rule_name_ignore][] = 'source';
+  unset($info['function']['rule_on_name'][$rule_name_warning]['source']);
+  // Ignore "`is iterable` test is too ambiguous. Use `is sequence` or `is mapping`.".
+  unset($info['test']);
+}

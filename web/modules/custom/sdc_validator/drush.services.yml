@@ -1,0 +1,6 @@
+services:
+  sdc_validator.commands:
+    class: \Drupal\sdc_validator\Commands\ValidateComponentCommand
+    arguments: ['@plugin.manager.sdc', '@twig']
+    tags:
+      - { name: drush.command }
