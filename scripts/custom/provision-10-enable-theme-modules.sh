@@ -17,7 +17,7 @@ rm -Rf /app/web/sites/default/files/* >/dev/null || true
 if [[ "$DRUPAL_VERSION" = 'CMS' ]]; then
     drush updatedb -y
     # Uninstalling conflicting components of Drupal CMS
-    drush pm:uninstall scheduler content_moderation svg_image
+    drush pm:uninstall scheduler svg_image
     php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe /app/recipes/civictheme_drupal_cms_preinstall
     php -d memory_limit=-1 /app/vendor/drush/drush/drush.php recipe /app/recipes/civictheme_drupal_cms_starter
 fi

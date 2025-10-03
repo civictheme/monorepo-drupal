@@ -9,3 +9,6 @@ config:
     system.theme:
       simpleConfigUpdate:
         default: civictheme
+    media.settings:
+      simpleConfigUpdate:
+        standalone_url: true
