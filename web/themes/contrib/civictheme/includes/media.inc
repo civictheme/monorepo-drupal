@@ -18,11 +18,7 @@ use Drupal\media\MediaInterface;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_media__civictheme_image(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -45,11 +41,7 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
  * Implements hook_preprocess__HOOK().
  */
 function civictheme_preprocess_media__civictheme_video(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -78,11 +70,7 @@ function civictheme_preprocess_media__civictheme_video(array &$variables): void 
  * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_preprocess_media__civictheme_remote_video(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
@@ -120,37 +108,39 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_links(array &$variables): void {
-  if (empty($variables['media'])) {
-    return;
-  }
-
-  $media = $variables['media'];
+  $media = $variables['media'] ?? NULL;
   if (!$media instanceof MediaInterface) {
     return;
   }
 
+  // Initialize the transcript link & block to NULL preprocess from civictheme.
+  $variables['transcript_link'] = NULL;
+  $variables['transcript_content'] = NULL;
+  $variables['vertical_spacing'] = 'bottom';
+
+  // Hide transcript when viewing in CK Editor.
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  if ($route_name === 'media.filter.preview') {
+    return;
+  }
+
   $transcript_attributes = new Attribute();
-  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript @label', [
+  $transcript_attributes->setAttribute('aria-label', (string) new FormattableMarkup('View transcript for @label', [
     '@label' => $media->label(),
   ]));
-  // Transcript link points to the video if the transcript is empty or
-  // to the external transcript, if provided.
-  if (civictheme_field_has_value($media, 'field_c_m_transcript')) {
-    $variables['transcript_link'] = [
-      'text' => t('View transcript'),
-      'url' => $media->toUrl()->toString(),
-      'attributes' => $transcript_attributes,
-    ];
-  }
-  elseif (civictheme_field_has_value($media, 'field_c_m_transcript_link')) {
+
+  $transcript_link_has_value = civictheme_field_has_value($media, 'field_c_m_transcript_link');
+  if ($transcript_link_has_value) {
     /** @var \Drupal\link\LinkItemInterface $link */
     $link = $media->get('field_c_m_transcript_link')->first();
+    $has_custom_link_title = !empty($link->get('title')->getValue());
     $variables['transcript_link'] = [
-      'text' => empty($link->get('title')->getValue()) ? t('View transcript') : $link->get('title')->getValue(),
+      'text' => $has_custom_link_title ? $link->get('title')->getValue() : t('View transcript'),
       'url' => $link->getUrl()->toString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
-      'attributes' => $transcript_attributes,
+      'attributes' => $has_custom_link_title ? '' : $transcript_attributes,
     ];
   }
 }
@@ -161,8 +151,18 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(array &$variables): void {
-  // Show transcript on the media landing page.
-  if ($variables['view_mode'] == 'full' && !empty($variables['content']['field_c_m_transcript'])) {
-    $variables['content'] = civictheme_render($variables['content']['field_c_m_transcript']);
+  $media = $variables['media'] ?? NULL;
+  if (!$media instanceof MediaInterface) {
+    return;
+  }
+
+  $transcript_has_value = civictheme_field_has_value($media, 'field_c_m_transcript');
+  if ($transcript_has_value) {
+    $variables['transcript_content'] = [
+      'content' => $media->get('field_c_m_transcript')->view(),
+    ];
+    $video_title = $media->label();
+    $variables['transcript_expand_text'] = t('View transcript for @video', ['@video' => $video_title]);
+    $variables['transcript_collapse_text'] = t('Hide transcript for @video', ['@video' => $video_title]);
   }
 }

@@ -61,7 +61,7 @@ settings:
         - '<dd>'
         - '<img src alt data-entity-type data-entity-uuid>'
         - '<drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
-        - '<span class="ct-visually-hidden">'
+        - '<span class>'
         - '<svg role viewBox aria-hidden width height class="ct-icon">'
         - '<path d>'
         - '<blockquote cite>'
@@ -74,12 +74,12 @@ settings:
         - '<h6 id>'
         - '<drupal-media title>'
         - '<figure class data-component-id>'
-        - '<div class>'
+        - '<div class data-collapsible data-collapsible-collapsed data-collapsible-duration data-collapsible-panel>'
         - '<iframe width height src title allowfullscreen>'
         - '<video controls class width height>'
         - '<source src type>'
-        - '<a hreflang target title data-dialog-type data-dialog-options class="ct-content-link ct-content-link--external use-ajax ct-button--button ct-button--prompt ct-button--link ct-promo__button ct-theme-dark">'
-        - '<table class="ct-theme-dark">'
+        - '<a hreflang target title data-dialog-type data-dialog-options>'
+        - '<button class>'
     ckeditor5_style:
       styles:
         -
@@ -94,6 +94,12 @@ settings:
         -
           label: 'Large secondary large'
           element: '<a class="ct-button ct-theme-light ct-button--secondary ct-button--large">'
+        -
+          label: Link
+          element: '<a class="ct-link ct-theme-light">'
+        -
+          label: 'Do not use'
+          element: '<a class="ct-content-link ct-content-link--external ct-theme-dark ct-theme-light">'
         -
           label: 'Lead paragraph'
           element: '<p class="ct-text-large">'

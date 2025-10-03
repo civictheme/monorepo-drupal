@@ -95,6 +95,7 @@ $settings['entity_update_batch_size'] = 50;
 $settings['trusted_host_patterns'] = [
   // Local URL.
   '^.+\.docker\.amazee\.io$',
+  '^.+\.apps\.quantgovsites\.com$',
   // URL when accessed from Behat tests.
   '^nginx$',
 ];

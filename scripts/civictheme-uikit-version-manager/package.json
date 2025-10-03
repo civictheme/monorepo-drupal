@@ -12,6 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@inquirer/prompts": "^7.5.0",
-    "axios": "^1.9.0"
+    "axios": "^1.12.0"
   }
 }

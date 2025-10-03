@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#751229f6b5ccaa5259c769add897471283280143"
+    "@civictheme/uikit": "github:civictheme/uikit#fe12e68b86846b234df168e5a6c43d3442dd2d37"
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
@@ -57,7 +57,7 @@
     "stylelint": "^14.16.1",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-config-standard-scss": "^2.0.1",
-    "vite": "^6.0.0",
+    "vite": "^6.3.6",
     "vite-plugin-twig-drupal": "^1.6.0"
   }
 }
