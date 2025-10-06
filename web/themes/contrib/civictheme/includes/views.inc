@@ -167,6 +167,7 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
       $keyword_field = reset($fields);
       if ($keyword_field['#type'] === 'textfield') {
         $variables['inline_filter'] = TRUE;
+        $keyword_field['#title_size'] = 'extra-large';
         $variables['filter_items'] = $keyword_field;
         $submit_field = $variables['form']['actions']['submit'] ?? NULL;
         if (!empty($submit_field)) {
