@@ -131,7 +131,10 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $updated_date . '</p>',
+      '#content' => [
+        '#type' => 'markup',
+        '#markup' => '<p class="ct-banner__last_updated">Last updated: ' . $updated_date . '</p>',
+      ],
     ];
   }
 

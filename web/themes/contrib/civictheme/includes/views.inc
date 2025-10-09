@@ -46,7 +46,7 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
 
     // Render the rest of the header.
     foreach ($view->header as $header_item) {
-      $variables['rows_above'][] = civictheme_render($header_item->render());
+      $variables['rows_above'][] = $header_item->render();
     }
   }
 
@@ -203,7 +203,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
 
     $variables['filter_items'][] = [
       'text' => $title,
-      'attributes' => (string) $attributes,
+      'attributes' => $attributes,
       'is_selected' => in_array($value, is_array($field['#value'] ?? []) ? $field['#value'] : [$field['#value']]),
     ];
   }
@@ -234,7 +234,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $filters = [];
   foreach ($fields as $field) {
     $filter = [
-      'content' => civictheme_render($field),
+      'content' => $field,
       'title' => $field['#title'] ?? NULL,
     ];
 
