@@ -277,5 +277,5 @@ function civictheme_page_attachments_alter(array &$attachments) {
   catch (ComponentNotFoundException $exception) {
     \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
   }
-  $attachments['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'] ?? [], ['url.query_args']);
+  $attachments['#cache']['contexts'] = Cache::mergeContexts($attachments['#cache']['contexts'] ?? [], ['url.query_args']);
 }

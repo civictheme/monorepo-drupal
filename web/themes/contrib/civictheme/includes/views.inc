@@ -13,6 +13,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -162,19 +163,9 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
 
   if ($field_count == 1) {
-    // Use inline filter on search and auto pages if a single text field exsits.
-    if (in_array($view->id(), ['civictheme_search', 'civictheme_automated_list'])) {
-      $keyword_field = reset($fields);
-      if ($keyword_field['#type'] === 'textfield') {
-        $variables['inline_filter'] = TRUE;
-        $keyword_field['#title_size'] = 'extra-large';
-        $variables['filter_items'] = $keyword_field;
-        $submit_field = $variables['form']['actions']['submit'] ?? NULL;
-        if (!empty($submit_field)) {
-          $variables['submit_text'] = $submit_field['#value'] ?? '';
-        }
-        return;
-      }
+    // Use inline filter on search and auto pages if a single text field exists.
+    if (_civictheme_preprocess_views__exposed_form__inline_filter($variables, $view, $fields)) {
+      return;
     }
 
     // Use single filter.
@@ -183,6 +174,44 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   elseif ($field_count > 1) {
     _civictheme_preprocess_views__exposed_form__group_filter($variables);
   }
+}
+
+/**
+ * Preprocess views exposed form to convert it to the Inline filter.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param \Drupal\views\ViewExecutable|null $view
+ *   The view object.
+ * @param array $fields
+ *   Form fields.
+ *
+ * @return bool
+ *   TRUE if inline filter was processed, FALSE otherwise.
+ */
+function _civictheme_preprocess_views__exposed_form__inline_filter(array &$variables, $view, array $fields): bool {
+  if (!($view instanceof ViewExecutable)) {
+    return FALSE;
+  }
+
+  if (!in_array($view->id(), ['civictheme_search', 'civictheme_automated_list'])) {
+    return FALSE;
+  }
+
+  $keyword_field = reset($fields);
+  if ($keyword_field['#type'] !== 'textfield') {
+    return FALSE;
+  }
+
+  $variables['inline_filter'] = TRUE;
+  $keyword_field['#title_size'] = 'extra-large';
+  $variables['filter_items'] = $keyword_field;
+  $submit_field = $variables['form']['actions']['submit'] ?? NULL;
+  if (!empty($submit_field)) {
+    $variables['submit_text'] = $submit_field['#value'] ?? '';
+  }
+
+  return TRUE;
 }
 
 /**
@@ -282,6 +311,8 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
 
 /**
  * Pre-process results count for views.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__results_count(array &$variables): void {
   if (empty($variables['results_count'])) {
@@ -294,6 +325,8 @@ function _civictheme_preprocess_views_view__results_count(array &$variables): vo
   // Load search fields from theme settings.
   $setting_keyword_fields = civictheme_get_theme_config_manager()->load('components.search.keyword_fields') ?? '';
   if (empty($setting_keyword_fields)) {
+    // Strip the @keywords token because it exists but won't be populated.
+    $variables['results_count'] = str_replace('@keywords', '', $variables['results_count']);
     return;
   }
 

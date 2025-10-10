@@ -40,6 +40,8 @@ function civictheme_preprocess_block__civictheme_search(array &$variables): void
 
 /**
  * Implements hook_preprocess_html().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_html__search_head_title(array &$variables): void {
   // Load search fields from theme settings.
@@ -61,13 +63,12 @@ function _civictheme_preprocess_html__search_head_title(array &$variables): void
   if (empty($keywords)) {
     return;
   }
-  $head_title = (string) $variables['head_title']['title'] ?? '';
+  $head_title = (string) ($variables['head_title']['title'] ?? '');
   if (empty($head_title)) {
     return;
   }
-  $sanitized_keywords = htmlspecialchars($keywords, ENT_QUOTES, 'UTF-8');
   $variables['head_title']['title'] = t("@title - Searching for '@keywords'", [
     '@title' => $head_title,
-    '@keywords' => $sanitized_keywords,
+    '@keywords' => $keywords,
   ]);
 }

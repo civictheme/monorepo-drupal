@@ -604,6 +604,18 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   }
 
   /**
+   * Submit callback for theme settings form of Search component.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function submitSearch(array &$form, FormStateInterface $form_state): void {
+    $keyword_fields = $form_state->getValue(['components', 'search', 'keyword_fields'], '');
+    $keyword_fields = CivicthemeUtility::multilineToArray($keyword_fields);
+    $form_state->setValue(['components', 'search', 'keyword_fields'], $keyword_fields);
+  }
+
+  /**
    * Provide a description for a path field.
    *
    * @param string $filename
