@@ -10,7 +10,7 @@ Feature: Field, Checkboxes
     # Validate: Checkboxes, Title visible, no default value, no description, no error
     And I should see an ".ct-field.js-form-item-test-checkboxes-1" element
     And I should see an ".ct-field.js-form-item-test-checkboxes-1 label" element
-    And I should see an ".ct-field.js-form-item-test-checkboxes-1 label:contains('Checkboxes, Title visible, no default value, no description, no error')" element
+    And I should see an ".ct-field.js-form-item-test-checkboxes-1 legend:contains('Checkboxes, Title visible, no default value, no description, no error')" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-1 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-1 ul.ct-item-list" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-1 input[type='checkbox']" element
@@ -29,7 +29,7 @@ Feature: Field, Checkboxes
     And I should see a ".ct-field.js-form-item-test-checkboxes-2[data-wrapper-test='test-wrapper-attribute-value']" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-2[data-test='test-attribute-value']" element
     And I should see an ".ct-field.js-form-item-test-checkboxes-2 label" element
-    And I should see an ".ct-field.js-form-item-test-checkboxes-2 label:contains('Checkboxes, Title visible, default value, no description, no error, required, with attributes')" element
+    And I should see an ".ct-field.js-form-item-test-checkboxes-2 legend:contains('Checkboxes, Title visible, default value, no description, no error, required, with attributes')" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-2 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-2 ul.ct-item-list" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-2 input[type='checkbox']" element
@@ -54,8 +54,8 @@ Feature: Field, Checkboxes
 
     # Validate: Checkboxes, Title visually hidden, default value, description, no error
     And I should see an ".ct-field.js-form-item-test-checkboxes-3" element
-    And I should see an ".ct-field.js-form-item-test-checkboxes-3 label.ct-visually-hidden" element
-    And I should see a ".ct-field.js-form-item-test-checkboxes-3 label:contains('Checkboxes, Title visually hidden, default value, description, no error')" element
+    And I should see an ".ct-field.js-form-item-test-checkboxes-3 legend.ct-visually-hidden" element
+    And I should see a ".ct-field.js-form-item-test-checkboxes-3 legend:contains('Checkboxes, Title visually hidden, default value, description, no error')" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 .ct-field-description:contains('This is a description')" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 ul.ct-item-list" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-3 input[type='checkbox']" element
@@ -85,7 +85,7 @@ Feature: Field, Checkboxes
     # Validate: Checkboxes, Title visible, default value, no description, disabled
     And I should see an ".ct-field.js-form-item-test-checkboxes-5" element
     And I should see an ".ct-field.js-form-item-test-checkboxes-5 label" element
-    And I should see an ".ct-field.js-form-item-test-checkboxes-5 label:contains('Checkboxes, Title visible, default value, no description, disabled')" element
+    And I should see an ".ct-field.js-form-item-test-checkboxes-5 legend:contains('Checkboxes, Title visible, default value, no description, disabled')" element
     And I should not see a ".ct-field.js-form-item-test-checkboxes-5 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-5 ul.ct-item-list" element
     And I should see a ".ct-field.js-form-item-test-checkboxes-5 input[type='checkbox']" element
