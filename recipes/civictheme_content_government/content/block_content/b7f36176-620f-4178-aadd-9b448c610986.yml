@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: b7f36176-620f-4178-aadd-9b448c610986
+  bundle: civictheme_mobile_navigation
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Mobile Navigation'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  field_c_b_bottom:
+    -
+      target_id: civictheme_secondary_navigation
+  field_c_b_theme:
+    -
+      value: light
+  field_c_b_top:
+    -
+      target_id: civictheme_primary_navigation
+  field_c_b_trigger_text:
+    -
+      value: Menu
+  field_c_b_trigger_theme:
+    -
+      value: light

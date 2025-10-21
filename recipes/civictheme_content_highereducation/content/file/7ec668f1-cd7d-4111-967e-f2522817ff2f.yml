@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7ec668f1-cd7d-4111-967e-f2522817ff2f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: account.svg
+  uri:
+    -
+      value: 'public://images/2022-11/account.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1819
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667967354

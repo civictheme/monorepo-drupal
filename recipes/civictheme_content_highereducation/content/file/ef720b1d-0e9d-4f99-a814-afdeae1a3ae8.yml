@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ef720b1d-0e9d-4f99-a814-afdeae1a3ae8
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: favicon.ico
+  uri:
+    -
+      value: 'public://images/2022-10/favicon.ico'
+  filemime:
+    -
+      value: image/vnd.microsoft.icon
+  filesize:
+    -
+      value: 15406
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758982775

@@ -1,0 +1,225 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 416a4c14-20fc-4c12-ad96-aa27d584a554
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    2b8021df-e474-4b3a-8b91-62844aefe844: media
+    209291bc-81be-41c7-912c-70d695e9376c: media
+    faa70cfa-88f0-49e7-81ed-9523560bb0d5: media
+    6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'CivicTheme in 60 seconds series'
+  created:
+    -
+      value: 1649559632
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /civictheme-60-second-series
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fda796a5-f04a-4ada-9218-5b4f9330d99d
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1649559659
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9cb6909c-5a77-4b75-8ebb-9a7640cbfcff
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1649559662
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 2b8021df-e474-4b3a-8b91-62844aefe844
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: "CivicTheme in 60 second series\r\n"
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: CivicTheme
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 92dbfaba-6536-4d0f-a688-c2a641575c85
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1649559666
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 209291bc-81be-41c7-912c-70d695e9376c
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: "CivicTheme in 60 second series\r\n"
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: CivicTheme
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: db72bbfc-5e10-4392-8ae9-9fe24523ebdf
+                  bundle: civictheme_navigation_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1649559669
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: faa70cfa-88f0-49e7-81ed-9523560bb0d5
+                  field_c_p_show_image_as_icon:
+                    -
+                      value: false
+                  field_c_p_summary:
+                    -
+                      value: "CivicTheme in 60 second series\r\n"
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: CivicTheme
+          field_c_p_list_link_above:
+            -
+              target_uuid: 6d9a4f8c-3dbf-4111-a642-ee7c088cdcc8
+              title: 'Read all'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'CivicTheme in 60 seconds'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: top

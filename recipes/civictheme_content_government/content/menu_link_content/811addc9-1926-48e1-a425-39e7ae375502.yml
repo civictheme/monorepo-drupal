@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 811addc9-1926-48e1-a425-39e7ae375502
+  bundle: menu_link_content
+  default_langcode: en
+default:
+  enabled:
+    -
+      value: false
+  title:
+    -
+      value: 'Menu item 2'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

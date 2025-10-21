@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2280ddcf-ec73-49ae-8a02-3d6c69579504
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '_Icondept of structural engineering.svg'
+  uri:
+    -
+      value: 'public://images/2022-11/_Icondept of structural engineering.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 2229
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667536014

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e71dbfa0-a672-4c84-a4b7-3b7863e6268c
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    13cbd4d6-a1d3-468e-80ed-17ee2d97975d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '_Icondept of economics.svg'
+  created:
+    -
+      value: 1667535803
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 13cbd4d6-a1d3-468e-80ed-17ee2d97975d
+      alt: 'Icon Department of Economics'
+      title: ''
+      width: 0
+      height: 0

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e5120032-950d-422c-9d6e-3d562e633858
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    52c7c546-4010-44c0-aa09-7b1295255df8: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'helena-lopes-UZe35tk5UoA-unsplash 1.png'
+  created:
+    -
+      value: 1666109426
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 52c7c546-4010-44c0-aa09-7b1295255df8
+      alt: 'Mental health day'
+      title: ''
+      width: 376
+      height: 240

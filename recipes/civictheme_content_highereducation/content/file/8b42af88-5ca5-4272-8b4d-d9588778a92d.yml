@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8b42af88-5ca5-4272-8b4d-d9588778a92d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: doubledegreesslider1.png
+  uri:
+    -
+      value: 'public://images/2022-10/doubledegreesslider1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 487723
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666096780

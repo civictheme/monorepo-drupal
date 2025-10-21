@@ -1,0 +1,101 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 11575ae4-d804-4b68-a9e2-528dde78ca5e
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'About this template website'
+  created:
+    -
+      value: 1666092395
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /about-this-template-website
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cbe4d7d2-103d-411c-a9a4-968ec6dfe4f7
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666092411
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p dir=\"ltr\">This is a template website with dummy content. All content is for demonstration purposes only. This website has been created to show how CivicTheme can be used out-of-the-box to quickly and easily create a university website.&nbsp;</p>\r\n\r\n<p dir=\"ltr\">This site contains ‘dummy’ content for a fictitious university, My University. All links lead to either:</p>\r\n\r\n<ul>\r\n\t<li dir=\"ltr\">Content created for this site</li>\r\n\t<li dir=\"ltr\">This page, which contains information about the website</li>\r\n</ul>\r\n\r\n<h2 dir=\"ltr\">About CivicTheme</h2>\r\n\r\n<p dir=\"ltr\">CivicTheme is a new, open source component-based design system and Drupal 10 theme. It provides a quick, easy and cost-efficient solution to build new websites. Web publishers and administrators can create and manage pages and layout designs without any coding.&nbsp;</p>\r\n\r\n<p dir=\"ltr\">It was developed with a strong user experience.</p>\r\n\r\n<p dir=\"ltr\"><a href=\"https://www.civictheme.io/\">More about CivicTheme</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: both

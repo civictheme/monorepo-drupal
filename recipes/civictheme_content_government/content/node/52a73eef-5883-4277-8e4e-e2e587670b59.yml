@@ -1,0 +1,151 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 52a73eef-5883-4277-8e4e-e2e587670b59
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    a172a439-0aea-42e1-b19c-7fdd3ba68bcf: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+    7f02fd6d-bda1-47a0-b463-f7cd975e026d: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Citizenship application fees to change effective 1 July 2022'
+  created:
+    -
+      value: 1666876969
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news-and-events/citizenship-application-fees-change-effective-1-july-2022
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2d11393c-eabe-4a0d-927b-0ac41c84d8f9
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1668976303
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Effective from 12am, 1 July 2022 (Australian Eastern Standard Time), the Department of Citizens will increase the citizenship application fee.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 63c8f797-59cd-4a1a-9d3b-960a925a362b
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1666877042
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Effective from 12am, 1 July 2022 (Australian Eastern Standard Time), the Department of Citizens will increase the citizenship application fee. The fee increase more accurately reflects the delivery of the citizenship program and application processing.</p>\r\n\r\n<p>The fee increase will apply to any citizenship application and payment received on or after 1 July 2022. There will be no changes to application fee exemptions.</p>\r\n\r\n<p>This is the first change to citizenship application fees since 2013 and is consistent with rising inflation, staffing costs, and the increased complexity of end-to-end processing of citizenship applications.</p>\r\n\r\n<p>The citizenship application fee increase remains comparable with other countries and will still be lower than in the United States, United Kingdom and Ireland.</p>\r\n\r\n<p><a href=\"/about-this-template-website\">Learn more about the citizenship application fees (effective 1 July 2022)</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Effective from 12am, 2 July 2022 (Australian Eastern Standard Time), the Department of Citizens will increase the citizenship application fee.'
+  field_c_n_thumbnail:
+    -
+      entity: a172a439-0aea-42e1-b19c-7fdd3ba68bcf
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b
+    -
+      entity: 7f02fd6d-bda1-47a0-b463-f7cd975e026d
+  field_c_n_vertical_spacing:
+    -
+      value: both

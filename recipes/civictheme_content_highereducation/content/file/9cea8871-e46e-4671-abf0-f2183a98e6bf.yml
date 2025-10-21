@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 9cea8871-e46e-4671-abf0-f2183a98e6bf
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: melbourne_flinders_street.jpg
+  uri:
+    -
+      value: 'public://images/2022-12/melbourne_flinders_street.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 224913
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1670203051

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a11c8970-147e-4977-bff1-074882279be0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: photo-of-hon-adam-bontz-mp.png
+  uri:
+    -
+      value: 'public://images/2022-11/photo-of-hon-adam-bontz-mp.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1790221
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1668772842

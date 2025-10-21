@@ -1,0 +1,45 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 707c016d-26af-43c0-a999-c892e651917a
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    262c3484-7a1b-4c87-8b62-b4ed2aa6fdff: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'University library'
+  created:
+    -
+      value: 1669028652
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'My University library'
+  field_c_m_image:
+    -
+      entity: 262c3484-7a1b-4c87-8b62-b4ed2aa6fdff
+      alt: 'University library'
+      title: ''
+      width: 762
+      height: 473

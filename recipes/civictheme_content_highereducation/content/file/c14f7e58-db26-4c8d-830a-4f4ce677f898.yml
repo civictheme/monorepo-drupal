@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c14f7e58-db26-4c8d-830a-4f4ce677f898
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: WHO.png
+  uri:
+    -
+      value: 'public://images/2022-10/WHO.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 235740
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1666103964
