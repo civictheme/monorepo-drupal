@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements template_preprocess_paragraph().
@@ -35,13 +36,21 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(array &$variabl
     'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
     'cache_tags' => $paragraph->getCacheTags(),
   ];
+  $variables['#cache']['tags'] = $variables['cache_tags'];
 
-  /** @var \Drupal\Core\Entity\EntityInterface[] $items */
-  $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items');
+  /** @var \Drupal\Core\Entity\ContentEntityInterface[] $items */
+  $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items', $variables);
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   if ($items) {
     foreach ($items as $item) {
-      $variables['rows'][] = $builder->view($item);
+      if (!$item->hasField('field_c_p_reference')) {
+        $variables['rows'][] = $builder->view($item);
+        continue;
+      }
+      $referenced_item = civictheme_get_field_referenced_entity($item, 'field_c_p_reference', $variables);
+      if ($referenced_item instanceof EntityInterface) {
+        $variables['rows'][] = $builder->view($item);
+      }
     }
   }
 

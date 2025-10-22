@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
 
@@ -45,18 +46,21 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   // Remove existing content.
   $variables['content'] = NULL;
 
-  $background_image = civictheme_get_field_value($block, 'field_c_b_background_image', TRUE);
+  $background_image = civictheme_get_field_value($block, 'field_c_b_background_image', TRUE, build: $variables);
   if (!empty($background_image)) {
     $variables['background_image'] = civictheme_media_image_get_variables($background_image);
     $variables['background_image_blend_mode'] = civictheme_get_field_value($block, 'field_c_b_banner_blend_mode', TRUE);
   }
 
-  $featured_image = civictheme_get_field_value($block, 'field_c_b_featured_image', TRUE);
+  $featured_image = civictheme_get_field_value($block, 'field_c_b_featured_image', TRUE, build: $variables);
   if (!empty($featured_image)) {
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
-
-  $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $title = (string) (is_array($title) ? reset($title) : ((string) $title));
+  $title = Xss::filter($title);
+  $title = strip_tags($title);
+  $variables['title'] = $title;
 
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
@@ -106,7 +110,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_banner_blend_mode', TRUE);
   }
 
-  $featured_image = civictheme_get_field_value($node, 'field_c_n_banner_featured_image', TRUE);
+  $featured_image = civictheme_get_field_value($node, 'field_c_n_banner_featured_image', TRUE, build: $variables);
   if (!empty($featured_image)) {
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
@@ -117,7 +121,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['breadcrumb'] = NULL;
   }
 
-  $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+  $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE, build: $variables);
   if (!empty($site_section)) {
     $variables['site_section'] = $site_section->getName();
   }
@@ -154,13 +158,14 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$variables): void {
   // Disable breadcrumb on homepage.
   if (\Drupal::service('path.matcher')->isFrontPage()) {
     return;
   }
-
+  /** @var \Drupal\Core\Breadcrumb\Breadcrumb $breadcrumb */
   $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
 
   // Always show the last item as a plain text (not a link).
@@ -169,8 +174,9 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   // Gather existing links. Note that some profiles (GovCMS) may already have
   // the functionality to add current page as a last item implemented.
   foreach ($breadcrumb->getLinks() as $link) {
+    $link_text = $link->getText();
     $variables['breadcrumb']['links'][] = [
-      'text' => $link->getText(),
+      'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -178,14 +184,17 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   $current_route_match = \Drupal::routeMatch();
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
   if (!empty($title)) {
-    $title = (string) (is_array($title) ? reset($title) : $title);
+    $title = (string) (is_array($title) ? reset($title) : ((string) $title));
+    $title = Xss::filter($title);
+    $title = strip_tags($title);
     $breadcrumb_links = $breadcrumb->getLinks();
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
     // Check if the link already exists and add it if not.
     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+      $link_text = $link->getText();
       $variables['breadcrumb']['links'][] = [
-        'text' => $link->getText(),
+        'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
         'url' => $link->getUrl()->toString(),
       ];
     }

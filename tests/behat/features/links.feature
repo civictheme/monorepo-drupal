@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_links @wip
+@p1 @civictheme @civictheme_links
 Feature: Content links processing
 
   @api
