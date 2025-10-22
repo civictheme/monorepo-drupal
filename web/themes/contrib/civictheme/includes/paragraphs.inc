@@ -131,6 +131,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__image_position(array
 
 /**
  * Pre-process for Link paragraph field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__paragraph_field__link(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
@@ -194,6 +196,8 @@ function _civictheme_preprocess_paragraph__node_field__link(array &$variables): 
 
 /**
  * Pre-process for Links paragraph field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__paragraph_field__links(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem[]|null $links */

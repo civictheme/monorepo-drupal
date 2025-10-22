@@ -588,6 +588,9 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *
  * @return array<int|string, \Drupal\Core\Entity\EntityInterface>
  *   Referenced entities.
+ *
+ * @SuppressWarnings(PHPMD.ErrorControlOperator)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, array &$build = []): array {
   $trigger_bc = empty($build);

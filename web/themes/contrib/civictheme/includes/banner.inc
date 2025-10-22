@@ -158,6 +158,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$variables): void {
   // Disable breadcrumb on homepage.
