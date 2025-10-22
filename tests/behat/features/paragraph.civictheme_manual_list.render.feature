@@ -71,7 +71,7 @@ Feature: Manual list render
     And I should see the text "Card summary 4"
     And the response should contain "https://example.com/link4"
 
-  @api @security @wip
+  @api @security
   Scenario: Manual list, Reference cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Manual list content" has "civictheme_manual_list" paragraph:
