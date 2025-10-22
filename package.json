@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@civictheme/sdc": "1.11.0"
+    "@civictheme/sdc": "1.12.0"
   },
   "scripts": {
     "uikit-change": "node scripts/civictheme-uikit-version-manager/index.mjs"

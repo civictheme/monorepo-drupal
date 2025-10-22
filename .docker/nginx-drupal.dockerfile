@@ -17,4 +17,7 @@ ENV WEBROOT=${WEBROOT}
 
 RUN apk add --no-cache tzdata
 
+# Copy custom nginx configuration for CDN header handling
+COPY .docker/config/nginx/location_drupal_prepend_host.conf /etc/nginx/conf.d/drupal/
+RUN chmod 0644 /etc/nginx/conf.d/drupal/location_drupal_prepend_host.conf
 COPY --from=cli /app /app

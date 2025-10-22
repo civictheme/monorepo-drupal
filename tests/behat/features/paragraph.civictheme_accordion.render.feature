@@ -76,3 +76,28 @@ Feature: Accordion render
     And I wait 2 second
     And I should see an "[data-collapsible-trigger][aria-expanded='true']" element
     And I should see an "[data-collapsible-panel][aria-hidden='false']" element
+
+
+  @api @security
+  Scenario: XSS - Accordion
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
+      | field_c_p_theme      | dark |
+      | field_c_p_background | 1    |
+      | field_c_p_expand     | 1    |
+    And "field_c_p_panels" in "civictheme_accordion" "paragraph" parent "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" delta "0" has "civictheme_accordion_panel" paragraph:
+      | field_c_p_title          | <script id="test-accordion-panel--field_c_p_title">alert('[TEST] Accordion panel 1 field_c_p_title')</script>                                                                                                                            |
+      | field_c_p_expand         | 0                                                                                                                                                   |
+      | field_c_p_content:value  | <script id="test-accordion-panel--field_c_p_content">alert('[TEST] Accordion panel 1 field_c_p_content')</script> |
+      | field_c_p_content:format | civictheme_rich_text                                                                                                                                |
+
+    When I visit "civictheme_page" "[TEST] Page accordion test"
+    And I should see an ".ct-accordion" element
+    And I should see an ".ct-accordion.ct-accordion--with-background" element
+    And I should not see an ".ct-accordion.ct-theme-light" element
+    And I should see an ".ct-accordion.ct-theme-dark" element
+    And I should not see an "script#test-accordion-panel--field_c_p_title" element
+    And I should see the text "alert('[TEST] Accordion panel 1 field_c_p_title')"
+    And I should not see an "script#test-accordion-panel--field_c_p_content" element
+    And I should not see an "script#test-accordion-panel--field_c_p_content" element
+    And I should see the text "alert('[TEST] Accordion panel 1 field_c_p_content')"

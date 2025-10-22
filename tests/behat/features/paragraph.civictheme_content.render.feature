@@ -36,3 +36,18 @@ Feature: Content render
     And I should see an ".ct-basic-content.ct-basic-content--with-background" element
     And I should not see an ".ct-basic-content.ct-theme-light" element
     And I should see the text "[TEST] Page content"
+
+  @api @security
+  Scenario:XSS - Content
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page content test" has "civictheme_content" paragraph:
+      | field_c_p_theme          | light                                                                                                                                                    |
+      | field_c_p_content:value  | <script id="test-content--field_c_p_content">alert('[TEST] Content field_c_p_content')</script> |
+      | field_c_p_content:format | civictheme_rich_text                                                                                                                                     |
+      | field_c_p_background     | 0                                                                                                                                                        |
+
+    When I visit "civictheme_page" "[TEST] Page content test"
+    And I should see an ".ct-basic-content" element
+    And I should see an ".ct-basic-content.ct-theme-light" element
+    And I should not see an "script#test-content--field_c_p_content" element
+    And I should see the text "alert('[TEST] Content field_c_p_content')"

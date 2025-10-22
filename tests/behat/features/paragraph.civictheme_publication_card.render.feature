@@ -105,3 +105,42 @@ Feature: Publication card render
     And I check the box "Confirm settings reset"
     And I press "reset_to_defaults"
     Then I should see the text "Theme configuration was reset to defaults."
+
+  @api @security
+  Scenario:XSS - Publication Card
+    Given managed file:
+      | filename       | uri                                     | path           |
+      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
+      | test_pdf1.pdf  | public://civictheme_test/test_pdf1.pdf  | test_pdf.pdf   |
+
+    And "civictheme_image" media:
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
+
+    And "civictheme_page" content:
+      | title                              | status | field_c_n_site_section |
+      | [TEST] Page Publication cards test | 1      |                        |
+
+    And "civictheme_document" media:
+      | name              | field_c_m_document |
+      | [TEST] Document 1 | test_pdf1.pdf      |
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Publication cards test" has "civictheme_manual_list" paragraph:
+      | field_c_p_title             | [TEST] Publication card manual list                    |
+      | field_c_p_list_column_count | 4                                                      |
+      | field_c_p_list_link_above   | 0: View all publication cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                      |
+    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Publication card manual list" has "civictheme_publication_card" paragraph:
+      | field_c_p_title    | <script id="test-publication-card--field_c_p_title">alert('[TEST] Publication card field_c_p_title')</script> |
+      | field_c_p_summary  | <script id="test-publication-card--field_c_p_summary">alert('[TEST] Publication card field_c_p_summary')</script>           |
+      | field_c_p_image    | [TEST] CivicTheme Image  |
+      | field_c_p_document | [TEST] Document 1        |
+      | field_c_p_theme    | light                    |
+
+    When I visit "civictheme_page" "[TEST] Page Publication cards test"
+    And I should see an ".ct-publication-card" element
+    And I should not see an "script#test-publication-card--field_c_p_title" element
+    And I should see the text "alert('[TEST] Publication card field_c_p_title')"
+    And I should not see an "script#test-publication-card--field_c_p_summary" element
+    And I should see the text "alert('[TEST] Publication card field_c_p_summary')"
