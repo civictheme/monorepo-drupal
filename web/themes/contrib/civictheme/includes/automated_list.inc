@@ -59,8 +59,8 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   $settings['filters_exp'] = civictheme_get_field_value($paragraph, 'field_c_p_list_filters_exp', TRUE, '');
   $settings['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
   $settings['item_theme'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme');
-  $settings['topics'] = civictheme_get_field_value($paragraph, 'field_c_p_list_topics');
-  $settings['site_sections'] = civictheme_get_field_value($paragraph, 'field_c_p_list_site_sections');
+  $settings['topics'] = civictheme_get_field_value($paragraph, 'field_c_p_list_topics', build: $variables);
+  $settings['site_sections'] = civictheme_get_field_value($paragraph, 'field_c_p_list_site_sections', build: $variables);
   $settings['theme'] = $variables['theme'];
   _civictheme_preprocess_paragraph__paragraph_field__theme($settings);
   _civictheme_preprocess_paragraph__paragraph_field__title($settings);
