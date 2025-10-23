@@ -20,3 +20,4 @@ COPY .docker/config/nginx/location_drupal_prepend_host.conf /etc/nginx/conf.d/dr
 RUN fix-permissions /etc/nginx
 RUN apk add --no-cache tzdata
 COPY --from=cli /app /app
+COPY .docker/entrypoints/nginx/* /quant-entrypoint.d/
