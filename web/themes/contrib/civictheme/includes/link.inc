@@ -15,7 +15,7 @@ use Drupal\Component\Utility\Html;
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function _civictheme_process_html_content_urls_to_links(string $html): string {
+function _civictheme_process_html_content_urls_to_links(string $html, string $format): string {
   // Although URL to link conversion is not technically a link processing,
   // we reuse link's opt-out feature flag namespace for simplicity.
   if (_civictheme_feature_is_optedout('process', 'components.link.urls')) {
@@ -26,7 +26,7 @@ function _civictheme_process_html_content_urls_to_links(string $html): string {
   $build = [
     '#type' => 'processed_text',
     '#text' => $html,
-    '#format' => 'civictheme_rich_text',
+    '#format' => $format ?? 'civictheme_rich_text',
   ];
 
   return (string) \Drupal::service('renderer')->render($build);

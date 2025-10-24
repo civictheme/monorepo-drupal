@@ -22,7 +22,7 @@ declare(strict_types=1);
  */
 function _civictheme_process__html_content(string $html, array $options = []): string {
   // Process links.
-  $html = _civictheme_process_html_content_urls_to_links($html);
+  $html = _civictheme_process_html_content_urls_to_links($html, $options['format'] ?? '');
 
   $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $request = \Drupal::service('request_stack')->getCurrentRequest();
