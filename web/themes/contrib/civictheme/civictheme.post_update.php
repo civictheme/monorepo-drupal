@@ -964,8 +964,9 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
  * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes(array &$sandbox): ?string {
+function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes(): string {
   $field_config_name = 'field.field.paragraph.civictheme_iframe.field_c_p_attributes';
   $field_storage_config_name = 'field.storage.paragraph.field_c_p_attributes';
 
