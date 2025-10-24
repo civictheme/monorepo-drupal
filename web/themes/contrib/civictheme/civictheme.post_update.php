@@ -974,13 +974,13 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes():
 
   // Remove field instance if exists.
   $field_config = $config_factory->getEditable($field_config_name);
-  if ($field_config && !$field_config->isNew()) {
+  if (!$field_config->isNew()) {
     $field_config->delete();
   }
 
   // Remove field storage if exists.
   $field_storage_config = $config_factory->getEditable($field_storage_config_name);
-  if ($field_storage_config && !$field_storage_config->isNew()) {
+  if (!$field_storage_config->isNew()) {
     $field_storage_config->delete();
   }
 
