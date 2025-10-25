@@ -1011,6 +1011,7 @@ function _civictheme_feature_optout_flags(): array {
   $flags = [
     'components.link' => t('Links processing'),
     'components.link.email' => t('Email links processing'),
+    'components.link.urls' => t('URL links processing'),
   ];
   $flags[CivicthemeConstants::OPTOUT_SUMMARY_HIDE_ELLIPSIS] = t('Hide card summary ellipsis');
   return $flags;
