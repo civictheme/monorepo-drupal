@@ -40,7 +40,7 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
     if (!empty($view->header['result'])) {
-      $variables['results_count'] = civictheme_render($view->header['result']->render());
+      $variables['results_count'] = $view->header['result']->render();
       unset($view->header['result']);
     }
 
