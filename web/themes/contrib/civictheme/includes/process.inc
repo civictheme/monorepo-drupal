@@ -17,17 +17,18 @@ declare(strict_types=1);
  * @param array<string,string> $options
  *   An array of options.
  *   - theme: The theme to use for the component.
- *   - format: the text format to use for filtering for the component.
+ * @param string|null $format
+ *   The text format ID to use for the content.
  *
  * @return string
  *   The processed string.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ErrorControlOperator)
  */
-function _civictheme_process__html_content(string $html, array $options = []): string {
+function _civictheme_process__html_content(string $html, array $options = [], ?string $format = NULL): string {
   // Process links.
-  $html = _civictheme_process_html_content_urls_to_links($html, $options['format'] ?? NULL);
-
+  $html = _civictheme_process_html_content_urls_to_links($html, $format);
   $link_settings = civictheme_get_theme_config_manager()->load('components.link', []);
   $request = \Drupal::service('request_stack')->getCurrentRequest();
   $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());

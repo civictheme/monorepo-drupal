@@ -23,14 +23,6 @@ use Drupal\filter\FilterPluginCollection;
  * @SuppressWarnings(PHPMD.MissingImport)
  */
 function _civictheme_process_html_content_urls_to_links(string $html, ?string $format): string {
-  // Although URL to link conversion is not technically a link processing,
-  // we reuse link's opt-out feature flag namespace for simplicity.
-  // CivicTheme theme settings turns off all link processing, overrides
-  // any settings set in a filter format and whether that
-  // allows link processing.
-  if (_civictheme_feature_is_optedout('process', 'components.link.urls')) {
-    return $html;
-  }
   // Check to see if a valid filter_format has been provided and whether
   // link processing is enabled for that format.
   if (is_string($format)) {
@@ -38,8 +30,12 @@ function _civictheme_process_html_content_urls_to_links(string $html, ?string $f
       ->getStorage('filter_format')
       ->load($format);
   }
-  if ($format instanceof FilterFormat && $format->filters('filter_url')->status === FALSE) {
-    return $html;
+  if ($format instanceof FilterFormat) {
+    /** @var \Drupal\filter\Plugin\FilterBase $filter */
+    $filter = $format->filters('filter_url');
+    if ($filter->status === FALSE) {
+      return $html;
+    }
   }
 
   // Convert URLs to links using core filter_url.

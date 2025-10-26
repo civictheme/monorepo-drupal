@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 use Drupal\node\NodeInterface;
 
 /**
@@ -103,12 +104,21 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
   }
 
   $variables['id'] = $node->id();
-  $variables['title'] = check_markup((string) $node->label(), 'plain_text');
-  $variables['description'] = _civictheme_process__html_content((string) civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
-    // Force dark theme to make sure that text colour has enough contrast with
-    // a background.
-    'theme' => CivicthemeConstants::THEME_DARK,
-  ]);
+  $variables['title'] = Xss::filter((string) $node->label());
+  $body = civictheme_get_field_value($node, 'field_c_n_body')[0];
+  if ($body !== NULL && !empty($body['#text']) && !empty($body['#format'])) {
+    $text_format = $body['#format'];
+    $variables['description'] = [
+      '#type' => 'processed_text',
+      '#text' => _civictheme_process__html_content($body['#text'], [
+        // Force dark theme to make sure that text colour has enough contrast
+        // with a background.
+        'theme' => CivicthemeConstants::THEME_DARK,
+      ], $text_format),
+      '#format' => $text_format,
+    ];
+  }
+
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }
 
