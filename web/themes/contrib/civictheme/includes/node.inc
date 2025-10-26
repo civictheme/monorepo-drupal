@@ -107,7 +107,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
 
   $variables['id'] = $node->id();
   $variables['title'] = Xss::filter((string) $node->label());
-
+  $variables['title'] = strip_tags($variables['title']);
   $body_values = civictheme_get_field_value($node, 'field_c_n_body');
   $body = is_array($body_values) && !empty($body_values) ? $body_values[0] : NULL;
   if ($body !== NULL && !empty($body['#text']) && !empty($body['#format'])) {
