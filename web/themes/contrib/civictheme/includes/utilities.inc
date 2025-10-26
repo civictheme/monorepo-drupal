@@ -557,18 +557,10 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
     case 'text_long':
     case 'text_with_summary':
     case 'text':
-      // Opinionated.
-      // This implementation renders the field if it has a single value.
-      // If the field contains multiple values, it relies on view() to handle
-      // the rendering.
       if ($only_first) {
-        $field = $field->first();
-        $field_value = $field->get('value')->getString();
-        $field_format = $field->get('format')->getString();
-        $value = empty($field_format) ? $field_value : check_markup($field_value, $field_format);
+        $value = $field->first()->view();
         break;
       }
-
       $value = $field->view();
       break;
   }
@@ -819,13 +811,14 @@ function _civictheme_get_dom_document(string $content): \DOMDocument {
  * @return bool
  *   TRUE if the field is wysiwyg, FALSE otherwise.
  */
-function _civictheme_field_is_wysiwyg(string $field_name): bool {
-  $wysiwyg_field_list = [
-    'field_c_n_body',
-    'field_c_p_content',
-  ];
-
-  return in_array($field_name, $wysiwyg_field_list);
+function _civictheme_field_is_wysiwyg(string $field_name, string $field_type): bool {
+  /** @var \Drupal\Core\Field\FieldTypePluginManager $field_type_manager */
+  $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
+  $field_definition = $field_type_manager->getDefinition($field_type, FALSE);
+  if ($field_definition === NULL || empty($field_definition['class'])) {
+    return FALSE;
+  }
+  return is_subclass_of($field_definition['class'], '\Drupal\text\Plugin\Field\FieldType\TextItemBase');
 }
 
 /**
