@@ -805,13 +805,15 @@ function _civictheme_get_dom_document(string $content): \DOMDocument {
 /**
  * Check if the provided field is wysiwyg.
  *
- * @param string $field_name
- *   Field name to check.
+ * @param string $field_type
+ *   Field type to check.
  *
  * @return bool
  *   TRUE if the field is wysiwyg, FALSE otherwise.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_field_is_wysiwyg(string $field_name, string $field_type): bool {
+function _civictheme_field_is_wysiwyg(string $field_type): bool {
   /** @var \Drupal\Core\Field\FieldTypePluginManager $field_type_manager */
   $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
   $field_definition = $field_type_manager->getDefinition($field_type, FALSE);
