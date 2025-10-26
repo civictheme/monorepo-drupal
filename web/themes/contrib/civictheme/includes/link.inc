@@ -37,11 +37,12 @@ function _civictheme_process_html_content_urls_to_links(string $html, ?string $f
       return $html;
     }
   }
-
-  // Convert URLs to links using core filter_url.
-  $filter_manager = \Drupal::service('plugin.manager.filter');
-  $filter_collection = new FilterPluginCollection($filter_manager, []);
-  $filter = $filter_collection->get('filter_url');
+  else {
+    // Fallback to a default instance.
+    $filter_manager = \Drupal::service('plugin.manager.filter');
+    $filter_collection = new FilterPluginCollection($filter_manager, []);
+    $filter = $filter_collection->get('filter_url');
+  }
 
   return _filter_url($html, $filter);
 }

@@ -96,6 +96,8 @@ function _civictheme_preprocess_node__default(array &$variables): void {
 
 /**
  * Pre-process CivicTheme Alert nodes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
   $node = $variables['node'] ?? NULL;

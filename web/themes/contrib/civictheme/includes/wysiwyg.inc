@@ -21,7 +21,7 @@ function _civictheme_preprocess_wysiwyg_field(array &$variables): void {
         $theme = empty($variables['element']['#object']) ? NULL : civictheme_get_field_theme_value($variables['element']['#object']);
         $variables['items'][$item]['content']['#text'] = _civictheme_process__html_content($variables['items'][$item]['content']['#text'], [
           'theme' => $theme,
-        ], $variables['items'][$item]['content']['#format']);
+        ], $variables['items'][$item]['content']['#format'] ?? NULL);
       }
     }
   }
