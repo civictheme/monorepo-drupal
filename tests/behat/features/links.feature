@@ -1,4 +1,4 @@
-@p1 @civictheme @civictheme_links @wip
+@p1 @civictheme @civictheme_links
 Feature: Content links processing
 
   Background:
@@ -122,13 +122,37 @@ Feature: Content links processing
     And I should see an ".ct-basic-content a[href='///C:/Users/civictheme/invalid'].ct-theme-dark" element
     And I should see an ".ct-basic-content a[href='///C:/Users/civictheme/invalid'][target='_blank'].ct-content-link" element
     And I should not see an ".ct-basic-content a[href='///C:/Users/civictheme/invalid'].ct-content-link.ct-content-link--external" element
-    # Emails are converted to anchors.
-    And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element
 
+    # Emails are converted to anchors in default state.
+    And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element
+    # URLS are converted to anchors in default state.
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link" element
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-theme-dark" element
     And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link.ct-content-link--external" element
 
-    And I should see an ".ct-basic-content a[href='mailto:test-user@salsa.digital'].ct-content-link" element
+    # Test with filter_url disabled - URLs and emails should not be converted to links.
+    When I disable "filter_url" filter on "civictheme_rich_text"
+    And the cache has been cleared
+    And I visit "civictheme_page" "[TEST] Page 1"
+    Then I should not see an ".ct-basic-content a[href='http://www.test-link.com']" element
+    And I should not see an ".ct-basic-content a[href='mailto:person@test.com']" element
+
+    # Re-enable filter_url and add components.link optout - URLs and emails should be converted to links.
+    # Link conversion handled in text format when rendered.
+    When I enable "filter_url" filter on "civictheme_rich_text"
+    And the cache has been cleared
+    And I add "components.link" optout to theme settings
+    And the cache has been cleared
+    And I visit "civictheme_page" "[TEST] Page 1"
+    Then I should see an ".ct-basic-content a[href='http://www.test-link.com']" element
+    And I should see an ".ct-basic-content a[href='mailto:person@test.com']" element
+    # Remove components.link optout - URLs and emails should be converted to links with theme classes.
+    When I remove "components.link" optout from theme settings
+    And the cache has been cleared
+    And I visit "civictheme_page" "[TEST] Page 1"
+    Then I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link" element
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-theme-dark" element
+    And I should see an ".ct-basic-content a[href='http://www.test-link.com'].ct-content-link.ct-content-link--external" element
+    And I should see an ".ct-basic-content a[href='mailto:person@test.com'].ct-content-link.ct-theme-dark" element
 
 
