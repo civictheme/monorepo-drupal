@@ -181,8 +181,8 @@ Feature: CivicTheme Alert content type render
   @api @javascript @security
   Scenario: XSS - Alert
     Given civictheme_alert content:
-      | nid    | title                                                               | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                                                                        | field_c_n_date_range:value     | field_c_n_date_range:end_value   |
-      | 999976 | <script id="test-alert--title">alert('[TEST] Alert title')</script> | 1      | information          |                                 | <script id="test-alert--field_c_n_body">alert('[TEST] Alert field_c_n_body')</script> | [relative:-1 day#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] |
+      | nid    | title                                                               | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body:value                                                                  | field_c_n_body:format | field_c_n_date_range:value     | field_c_n_date_range:end_value   |
+      | 999976 | <script id="test-alert--title">alert('[TEST] Alert title')</script> | 1      | information          |                                 | <script id="test-alert--field_c_n_body">alert('[TEST] Alert field_c_n_body')</script> | civictheme_rich_text  | [relative:-1 day#Y-m-d\TH:i:s] | [relative:+10 days#Y-m-d\TH:i:s] |
     Given I am an anonymous user
     When I go to the homepage
     And wait 5 second
