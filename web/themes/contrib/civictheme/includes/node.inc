@@ -50,12 +50,8 @@ function _civictheme_preprocess_node__civictheme_page__full(array &$variables): 
 
   // Add Tags if hide tags is not set on node.
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
-    $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
+    $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
     if (!empty($topics)) {
-      $topics = array_map(static function ($topic) {
-        return $topic->label();
-      }, $topics);
-
       $variables['content'][] = [
         '#theme' => 'civictheme_tag_list',
         '#tags' => $topics,
@@ -107,7 +103,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
   }
 
   $variables['id'] = $node->id();
-  $variables['title'] = $node->label();
+  $variables['title'] = check_markup((string) $node->label(), 'plain_text');
   $variables['description'] = _civictheme_process__html_content((string) civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
     // Force dark theme to make sure that text colour has enough contrast with
     // a background.

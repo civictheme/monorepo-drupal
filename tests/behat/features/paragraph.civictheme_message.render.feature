@@ -46,3 +46,24 @@ Feature: Message render
     And I should see the text "[TEST] message title"
     And I should see the text "Content text"
     And save screenshot
+
+  @api @security
+  Scenario:XSS - Message
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page message test" has "civictheme_message" paragraph:
+      | field_c_p_title          | <script id="test-message--field_c_p_title">alert('[TEST] Message field_c_p_title')</script>                                                                               |
+      | field_c_p_theme          | light                                                                                              |
+      | field_c_p_content:value  | <script id="test-message--field_c_p_content">alert('[TEST] Message field_c_p_content')</script>                                                                                       |
+      | field_c_p_content:format | civictheme_rich_text                                                                               |
+      | field_c_p_message_type   | information                                                                                        |
+      | field_c_p_background     | 1                                                                                                  |
+
+    When I visit "civictheme_page" "[TEST] Page message test"
+    Then I should see an ".ct-message" element
+    And I should see an ".ct-message.ct-theme-light" element
+    And I should see an ".ct-message__title" element
+    And I should not see an "script#test-message--field_c_p_title" element
+    And I should see the text "alert('[TEST] Message field_c_p_title')"
+    And I should see an ".ct-message__content" element
+    And I should not see an "script#test-message--field_c_p_content" element
+    And I should see the text "alert('[TEST] Message field_c_p_content')"

@@ -375,7 +375,6 @@ config_devel:
     - field.field.paragraph.civictheme_event_card.field_c_p_topics
     - field.field.paragraph.civictheme_event_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_event_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_iframe.field_c_p_attributes
     - field.field.paragraph.civictheme_iframe.field_c_p_background
     - field.field.paragraph.civictheme_iframe.field_c_p_height
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
@@ -533,7 +532,6 @@ config_devel:
     - field.storage.node.field_c_n_vertical_spacing
     - field.storage.paragraph.field_c_p_address
     - field.storage.paragraph.field_c_p_attachments
-    - field.storage.paragraph.field_c_p_attributes
     - field.storage.paragraph.field_c_p_background
     - field.storage.paragraph.field_c_p_cards
     - field.storage.paragraph.field_c_p_content

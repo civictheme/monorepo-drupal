@@ -17,7 +17,7 @@ function civictheme_preprocess_paragraph__civictheme_attachment(array &$variable
   _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
   _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 
-  $attachments = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments') ?? [];
+  $attachments = civictheme_get_field_value($variables['paragraph'], 'field_c_p_attachments', build: $variables) ?? [];
   foreach ($attachments as $attachment) {
     $vars = civictheme_media_get_variables($attachment);
     if ($vars) {

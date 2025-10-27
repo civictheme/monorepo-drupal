@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_iframe.field_c_p_attributes
     - field.field.paragraph.civictheme_iframe.field_c_p_background
     - field.field.paragraph.civictheme_iframe.field_c_p_height
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
@@ -15,14 +14,6 @@ targetEntityType: paragraph
 bundle: civictheme_iframe
 mode: default
 content:
-  field_c_p_attributes:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_c_p_background:
     type: boolean_checkbox
     weight: 6

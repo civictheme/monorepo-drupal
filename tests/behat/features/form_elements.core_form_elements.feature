@@ -190,7 +190,7 @@ Feature: Test a sample of the core form elements
 
     # Markup within a form
     And I should see "Markup within a form" in the "h2" element
-    And I should see "Test content 1" in the "p" element
+    And I should see "Test content 1" in the "#edit-non-form-elements .ct-basic-content p" element
     And I should see an ".ct-basic-content.ct-theme-light ul li" element
     And I should see the text "List Item 1"
     And I should see the text "List Item 2"

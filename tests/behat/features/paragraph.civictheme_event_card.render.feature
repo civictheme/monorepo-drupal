@@ -94,3 +94,47 @@ Feature: Event Card render
     And I should see the text "29 May 2022"
     And I should see the text "29 Jun 2023"
     And I should see the ".ct-event-card__image img.ct-image" element with a "src" attribute containing "/sites/default/files/styles/civictheme_event_card/public/"
+
+  @api @security
+  Scenario:XSS - Event Card
+    Given managed file:
+      | filename       | uri                                     | path           |
+      | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
+
+    And "civictheme_image" media:
+      | name                    | field_c_m_image |
+      | [TEST] CivicTheme Image | test_image.jpg  |
+
+    And "civictheme_page" content:
+      | title                          | status |
+      | [TEST] Page - Event cards test | 1      |
+
+    And "civictheme_topics" terms:
+      | name           |
+      | [TEST] Topic 1 |
+
+    And I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page - Event cards test" has "civictheme_manual_list" paragraph:
+      | field_c_p_title             | [TEST] Event manual list                    |
+      | field_c_p_list_column_count | 4                                           |
+      | field_c_p_list_link_above   | 0: View all events - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                           |
+    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
+      | field_c_p_title                | <script id="test-event-card--field_c_p_title">alert('[TEST] Event card field_c_p_title')</script>                    |
+      | field_c_p_summary              | <script id="test-event-card--field_c_p_summary">alert('[TEST] Event card field_c_p_summary')</script>                        |
+      | field_c_p_date_range:value     | 2021-04-29                            |
+      | field_c_p_date_range:end_value | 2025-05-29                            |
+      | field_c_p_image                | [TEST] CivicTheme Image               |
+      | field_c_p_link                 | 0: Test link - 1: https://example.com |
+      | field_c_p_theme                | light                                 |
+      | field_c_p_topics               | [TEST] Topic 1                        |
+      | field_c_p_location             | <script id="test-event-card--field_c_p_location">alert('[TEST] Event card field_c_p_location')</script>                     |
+
+    When I visit "civictheme_page" "[TEST] Page - Event cards test"
+    And I should see an ".ct-event-card" element
+    And I should not see an "script#test-event-card--field_c_p_title" element
+    And I should see the text "alert('[TEST] Event card field_c_p_title')"
+    And I should not see an "script#test-event-card--field_c_p_summary" element
+    And I should see the text "alert('[TEST] Event card field_c_p_summary')"
+    And I should not see an "script#test-event-card--field_c_p_location" element
+    And I should see the text "alert('[TEST] Event card field_c_p_location')"

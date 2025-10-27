@@ -6,7 +6,6 @@ dependencies:
     - filter.format.civictheme_rich_text
     - media.type.civictheme_audio
     - media.type.civictheme_document
-    - media.type.civictheme_icon
     - media.type.civictheme_image
     - media.type.civictheme_remote_video
     - media.type.civictheme_video
@@ -43,12 +42,10 @@ permissions:
   - 'create civictheme_audio media'
   - 'create civictheme_document media'
   - 'create civictheme_event content'
-  - 'create civictheme_icon media'
   - 'create civictheme_image media'
   - 'create civictheme_page content'
   - 'create civictheme_remote_video media'
   - 'create civictheme_video media'
-  - 'create media'
   - 'create terms in civictheme_media_tags'
   - 'create url aliases'
   - 'delete all revisions'
@@ -56,12 +53,10 @@ permissions:
   - 'delete any civictheme_audio media'
   - 'delete any civictheme_document media'
   - 'delete any civictheme_event content'
-  - 'delete any civictheme_icon media'
   - 'delete any civictheme_image media'
   - 'delete any civictheme_page content'
   - 'delete any civictheme_remote_video media'
   - 'delete any civictheme_video media'
-  - 'delete any media'
   - 'delete civictheme_alert revisions'
   - 'delete civictheme_event revisions'
   - 'delete civictheme_page revisions'
@@ -70,7 +65,6 @@ permissions:
   - 'delete own civictheme_audio media'
   - 'delete own civictheme_document media'
   - 'delete own civictheme_event content'
-  - 'delete own civictheme_icon media'
   - 'delete own civictheme_image media'
   - 'delete own civictheme_page content'
   - 'delete own civictheme_remote_video media'
@@ -80,7 +74,6 @@ permissions:
   - 'edit any civictheme_audio media'
   - 'edit any civictheme_document media'
   - 'edit any civictheme_event content'
-  - 'edit any civictheme_icon media'
   - 'edit any civictheme_image media'
   - 'edit any civictheme_page content'
   - 'edit any civictheme_remote_video media'
@@ -89,7 +82,6 @@ permissions:
   - 'edit own civictheme_audio media'
   - 'edit own civictheme_document media'
   - 'edit own civictheme_event content'
-  - 'edit own civictheme_icon media'
   - 'edit own civictheme_image media'
   - 'edit own civictheme_page content'
   - 'edit own civictheme_remote_video media'
@@ -99,8 +91,6 @@ permissions:
   - 'revert civictheme_alert revisions'
   - 'revert civictheme_event revisions'
   - 'revert civictheme_page revisions'
-  - 'update any media'
-  - 'update media'
   - 'use civictheme_editorial transition create_new_draft'
   - 'use civictheme_editorial transition needs_review'
   - 'use civictheme_editorial transition send_back_to_draft'
