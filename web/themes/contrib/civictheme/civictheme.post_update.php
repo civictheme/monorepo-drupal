@@ -991,6 +991,7 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes():
  * Migrate deprecated layouts to civictheme_three_columns.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_migrate_one_column_layouts(): string {
