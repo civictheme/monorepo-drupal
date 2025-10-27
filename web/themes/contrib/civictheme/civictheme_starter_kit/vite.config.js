@@ -1,22 +1,22 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve, basename } from 'path';
 import twig from 'vite-plugin-twig-drupal';
+import sdcPlugin from './.storybook/sdc-plugin.js';
+const subthemeName = basename(import.meta.dirname);
+const componentDir = resolve(import.meta.dirname, './components_combined');
+const coreComponentDir = resolve(import.meta.dirname, './.components-civictheme');
 
 export default defineConfig(({ mode }) => ({
   plugins: [
     twig({
       namespaces: {
-        'base': resolve(import.meta.dirname, './components_combined/00-base'),
-        'atoms': resolve(import.meta.dirname, './components_combined/01-atoms'),
-        'molecules': resolve(import.meta.dirname, './components_combined/02-molecules'),
-        'organisms': resolve(import.meta.dirname, './components_combined/03-organisms'),
-        'templates': resolve(import.meta.dirname, './components_combined/04-templates'),
-        'ct-base': resolve(import.meta.dirname, './.components-civictheme/00-base'),
-        'ct-atoms': resolve(import.meta.dirname, './.components-civictheme/01-atoms'),
-        'ct-molecules': resolve(import.meta.dirname, './.components-civictheme/02-molecules'),
-        'ct-organisms': resolve(import.meta.dirname, './.components-civictheme/03-organisms'),
-        'ct-templates': resolve(import.meta.dirname, './.components-civictheme/04-templates'),
+        civictheme: componentDir,
+        [subthemeName]: componentDir,
       },
+    }),
+    sdcPlugin({
+      path: componentDir,
+      namespaces: ['civictheme', subthemeName],
     }),
     // This plugin allow watching files in the ./dist folder.
     {

@@ -155,3 +155,15 @@ Feature: CivicTheme Page content type render
     When I visit "civictheme_page" "[TEST] Page without Site section"
     And I should see the text "[TEST] Page without Site section"
     And I should not see an ".ct-banner__site-section" element
+
+  @api @security
+  Scenario: XSS - Page
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                            | status | field_c_n_banner_title  |
+      | <script id=test-page--title>alert('[TEST] Page title')</script> | 1      | <script id="test-page--field_c_n_banner_title">alert('[TEST] Page field_c_n_banner_title')</script> |
+    When I visit "civictheme_page" "<script id=test-page--title>alert('[TEST] Page title')</script>"
+    Then I should not see an "script#test-page--title" element
+    And I should see the text "alert('[TEST] Page title')"
+    And I should not see an "script#test-page--field_c_n_banner_title" element
+    And I should see the text "alert('[TEST] Page field_c_n_banner_title')"

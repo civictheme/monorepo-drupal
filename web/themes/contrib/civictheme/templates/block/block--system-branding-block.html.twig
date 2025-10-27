@@ -4,11 +4,11 @@
  * CivicTheme implementation to display a Branding block.
  */
 #}
-{% extends "block.html.twig" %}
+{% extends 'block.html.twig' %}
 
-{% block content %}
+{% block content_block %}
   {% if show_site_logo %}
-    {% include '@molecules/logo/logo.twig' with {
+    {% include 'civictheme:logo' with {
       logos: logos,
       url: url,
       title: title,
@@ -19,18 +19,18 @@
   {% endif %}
 
   {% if show_site_name and site_name %}
-    {% include '@atoms/link/link.twig' with {
+    {% include 'civictheme:link' with {
       theme: theme,
       text: site_name,
       url: path('<front>'),
-      attributes: 'rel="home"'
+      attributes: 'rel="home"',
     } only %}
   {% endif %}
 
   {% if show_site_slogan and site_slogan %}
-    {% include '@atoms/paragraph/paragraph.twig' with {
+    {% include 'civictheme:paragraph' with {
       theme: theme,
-      content: site_slogan
+      content: site_slogan,
     } only %}
   {% endif %}
 {% endblock %}

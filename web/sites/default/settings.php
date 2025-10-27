@@ -69,7 +69,7 @@ if (getenv('TMP')) {
 $settings['file_private_path'] = 'sites/default/files/private';
 
 // Base salt on the DB host name.
-$settings['hash_salt'] = hash('sha256', getenv('MARIADB_HOST') ?: 'localhost');
+$settings['hash_salt'] = hash('sha256', getenv('MARIADB_HOST') ?: getenv('DB_HOST') ?: 'localhost');
 
 // Expiration of cached pages.
 $config['system.performance']['cache']['page']['max_age'] = 900;
@@ -95,6 +95,7 @@ $settings['entity_update_batch_size'] = 50;
 $settings['trusted_host_patterns'] = [
   // Local URL.
   '^.+\.docker\.amazee\.io$',
+  '^.+\.apps\.quantgovsites\.com$',
   // URL when accessed from Behat tests.
   '^nginx$',
 ];
@@ -114,11 +115,11 @@ $databases = [
     [
       'default' =>
         [
-          'database' => getenv('MYSQL_DATABASE') ?: getenv('MARIADB_DATABASE') ?: 'drupal',
-          'username' => getenv('MYSQL_USERNAME') ?: getenv('MARIADB_USERNAME') ?: 'drupal',
-          'password' => getenv('MYSQL_PASSWORD') ?: getenv('MARIADB_PASSWORD') ?: 'drupal',
-          'host' => getenv('MYSQL_HOST') ?: getenv('MARIADB_HOST') ?: 'localhost',
-          'port' => getenv('MYSQL_PORT') ?: getenv('MARIADB_PORT') ?: '3306',
+          'database' => getenv('MYSQL_DATABASE') ?: getenv('MARIADB_DATABASE') ?: getenv('DB_DATABASE') ?: 'drupal',
+          'username' => getenv('MYSQL_USERNAME') ?: getenv('MARIADB_USERNAME') ?: getenv('DB_USERNAME') ?: 'drupal',
+          'password' => getenv('MYSQL_PASSWORD') ?: getenv('MARIADB_PASSWORD') ?: getenv('DB_PASSWORD') ?: 'drupal',
+          'host' => getenv('MYSQL_HOST') ?: getenv('MARIADB_HOST') ?: getenv('DB_HOST') ?: 'localhost',
+          'port' => getenv('MYSQL_PORT') ?: getenv('MARIADB_PORT') ?: getenv('DB_PORT') ?: '3306',
           'prefix' => '',
           'driver' => 'mysql',
           'charset' => 'utf8mb4',

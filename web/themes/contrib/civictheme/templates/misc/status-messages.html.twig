@@ -6,10 +6,11 @@
 #}
 {% for type, messages in message_list %}
   {% for message in messages %}
-    {% include '@organisms/message/message.twig' with {
+    {% include 'civictheme:message' with {
       title: status_headings[type] ? status_headings[type] : type|capitalize,
-      description: message,
-      type: type == 'status' ? 'information' : type,
+      content: message|render,
+      type: (type == 'status' or type == 'info') ? 'information' : type,
+      vertical_spacing: 'both',
     } only %}
   {% endfor %}
 {% endfor %}

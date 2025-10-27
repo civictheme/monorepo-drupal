@@ -15,7 +15,7 @@
 {% if content %}
   <main class="ct-layout">
     <div class="ct-layout__inner container">
-      {% block content %}
+      {% block content_block %}
         <section class="ct-layout__main ct-layout__content {{ modifier_class }}">
           {{ content }}
         </section>
@@ -23,4 +23,3 @@
     </div>
   </main>
 {% endif %}
-

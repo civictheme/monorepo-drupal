@@ -4,12 +4,12 @@
  * CivicTheme implementation for Manual list.
  */
 #}
-{% extends '@organisms/list/list.twig' %}
+{% extends 'civictheme:list' %}
 
-{% block rows %}
+{% block rows_block %}
   {% if rows -%}
     <div class="ct-list__rows">
-      {% include '@base/grid/grid.twig' with {
+      {% include 'civictheme:grid' with {
         theme: theme,
         title: title,
         template_column_count: column_count,
@@ -17,7 +17,7 @@
         items: rows,
         theme: theme,
         with_background: with_background,
-        row_class: 'row--equal-heights-content row--vertically-spaced'
+        row_class: 'row--equal-heights-content row--vertically-spaced',
       } only %}
     </div>
   {% endif %}

@@ -8,7 +8,7 @@ detailed information on setting up your local development environment.
 
 Before starting, ensure you have reviewed the documentation for
 [UI kit](https://docs.civictheme.io/ui-kit) and
-[Drupal theme](https://docs.civictheme.io/drupal-theme).
+[Drupal theme](https://docs.civictheme.io/development/drupal-theme).
 
 
 ## Build types

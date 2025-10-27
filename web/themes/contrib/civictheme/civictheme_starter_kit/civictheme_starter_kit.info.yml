@@ -42,9 +42,11 @@ libraries-override:
   civictheme/global:
     css:
       theme:
-        dist/civictheme.css: dist/styles.css
+        dist/civictheme.base.css: dist/styles.base.css
+        dist/civictheme.theme.css: dist/styles.theme.css
+        dist/civictheme.variables.css: dist/styles.variables.css
     js:
-      dist/civictheme.js: dist/scripts.js
+      dist/civictheme.drupal.base.js: dist/scripts.drupal.base.js
 
   civictheme/css-variables:
     css:

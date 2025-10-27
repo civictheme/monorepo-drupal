@@ -59,7 +59,7 @@ Feature: Event reference card render
     And I should see 2 ".ct-event-card__location" elements
     And I should see 2 ".ct-event-card__image" elements
     And I should see 2 ".ct-event-card__title" elements
-    And I should see 2 ".ct-event-card__title__link" elements
+    And I should see 2 ".ct-event-card__title-link" elements
     And I should see 2 ".ct-event-card__summary" elements
     And I should see 2 ".ct-event-card__location" elements
     And I should see the text "[TEST] Referenced Event 1"

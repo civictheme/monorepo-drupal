@@ -11,13 +11,13 @@ Feature: Manual list render
       | [TEST] CivicTheme Image | test_image.jpg  |
 
     And "civictheme_page" content:
-      | title                           | status |
-      | [TEST] Page Manual list content | 1      |
-      | [TEST] Referenced Page          | 1      |
+      | title                           | status | moderation_state |
+      | [TEST] Page Manual list content | 1      | published        |
+      | [TEST] Referenced Page          | 1      | published        |
 
     And "civictheme_event" content:
-      | title                   | status |
-      | [TEST] Referenced Event | 1      |
+      | title                   | status | moderation_state | field_c_n_body    |
+      | [TEST] Referenced Event | 1      | published        | Content           |
 
   @api
   Scenario: Manual list, Cards
@@ -71,13 +71,16 @@ Feature: Manual list render
     And I should see the text "Card summary 4"
     And the response should contain "https://example.com/link4"
 
-  @api
+  @api @security
   Scenario: Manual list, Reference cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Manual list content" has "civictheme_manual_list" paragraph:
       | field_c_p_title             | [TEST] Manual list title |
       | field_c_p_list_column_count | 3                        |
       | field_c_p_list_fill_width   | 0                        |
+    And "field_c_n_location" in "civictheme_event" "node" with "title" of "[TEST] Referenced Event" has "civictheme_content" paragraph:
+      | field_c_p_content:value  | Test Content         |
+      | field_c_p_content:format | civictheme_rich_text |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Manual list title" has "civictheme_event_card_ref" paragraph:
       | field_c_p_reference | [TEST] Referenced Event |
       | field_c_p_theme     | light                   |
@@ -105,3 +108,37 @@ Feature: Manual list render
 
     And I should see the text "[TEST] Referenced Event"
     And I should see the text "[TEST] Referenced Page"
+
+    Given I am logged in as a user with the "Content Author, Content Approver" role
+
+    When I edit "civictheme_event" "[TEST] Referenced Event"
+    And I select "archived" from "edit-moderation-state-0-state"
+    And I press "Save"
+
+    When I edit "civictheme_page" "[TEST] Referenced Page"
+    And I select "archived" from "edit-moderation-state-0-state"
+    And I press "Save"
+
+    Given I am an anonymous user
+    When I visit "civictheme_page" "[TEST] Page Manual list content"
+    Then I should see the text "[TEST] Manual list title"
+
+    And I should see 0 ".ct-subject-card" elements
+    And I should see 0 ".ct-subject-card.ct-theme-light" elements
+    And I should see 0 ".ct-navigation-card" elements
+    And I should see 0 ".ct-navigation-card.ct-theme-dark" elements
+    And I should see 0 ".ct-promo-card" elements
+    And I should see 0 ".ct-promo-card.ct-theme-light" elements
+
+    And I should not see the text "[TEST] Referenced Event"
+    And I should not see the text "[TEST] Referenced Page"
+
+    Given I am logged in as a user with the "Content Author, Content Approver" role
+    When I edit "civictheme_event" "[TEST] Referenced Event"
+    And I select "published" from "edit-moderation-state-0-state"
+    And I press "Save"
+
+    Given I am an anonymous user
+    When I visit "civictheme_page" "[TEST] Page Manual list content"
+    Then I should see the text "[TEST] Manual list title"
+    And I should see the text "[TEST] Referenced Event"

@@ -49,6 +49,10 @@ RUN apk update \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
+RUN curl -L -o shipshape "https://github.com/salsadigitalauorg/shipshape/releases/download/v0.3.1/shipshape-$(uname -s)-$(uname -m)" && \
+    chmod +x shipshape && \
+    mv shipshape /usr/local/bin/shipshape
+
 # Install updated version of NPM.
 RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 
@@ -62,9 +66,6 @@ RUN mkdir -p web/themes/contrib/civictheme \
     && mkdir -p web/modules/custom/civictheme_content \
     && mkdir -p web/modules/custom/civictheme_dev \
     && mkdir -p web/modules/custom/cs_generated_content
-
-# Add shipshape binary so that we can execute audits.
-COPY --from=ghcr.io/salsadigitalauorg/shipshape:latest /usr/local/bin/shipshape /usr/local/bin/shipshape
 
 # Copy files required for PHP dependencies resolution.
 # Note that composer.lock is not explicitly copied, allowing to run the stack
@@ -109,3 +110,4 @@ RUN cd /app/web/themes/contrib/civictheme \
 # Compile sub-theme assets.
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
+COPY .docker/entrypoints/cli/* /quant-entrypoint.d/

@@ -26,7 +26,7 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
 
   $items = [];
 
-  $paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons');
+  $paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons', $variables);
   foreach ($paragraphs as $paragraph) {
     if (!$paragraph instanceof Paragraph) {
       continue;
@@ -40,13 +40,14 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
       $item['title'] = $link->get('title')->getString();
     }
 
-    $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
+    $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE, build: $variables);
     if ($media instanceof MediaInterface) {
       $image = civictheme_media_image_get_variables($media);
       if ($image) {
-        $item['icon_html'] = civictheme_embed_svg($image['url'], [
-          'ct-icon',
-        ]);
+        $item['icon_html'] = [
+          '#type' => 'inline_template',
+          '#template' => civictheme_embed_svg($image['url'], ['ct-icon']),
+        ];
       }
     }
 

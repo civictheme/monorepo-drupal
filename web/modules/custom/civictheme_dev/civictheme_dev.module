@@ -10,6 +10,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeVersionManager;
 use Drupal\Core\Site\Settings;
+use Drupal\sdc_devel\TwigValidatorRulePluginBase;
 use Drupal\views\ViewExecutable;
 
 require_once __DIR__ . '/styleguide.inc';
@@ -86,4 +87,21 @@ function civictheme_dev_civictheme_automated_list_view_alter(ViewExecutable $vie
 
     $view->setArguments($view_args);
   }
+}
+
+/**
+ * Implements hook_twig_validator_rule_info_alter().
+ */
+function civictheme_dev_twig_validator_rule_info_alter(array &$info): void {
+  // Allow use of the raw filter.
+  $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_ALLOW][] = 'raw';
+  $filter_warning_override = ['default'];
+  unset($info['null_coalesce']);
+  $info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_WARN] = array_filter($info['filter']['rule_on_name'][TwigValidatorRulePluginBase::RULE_NAME_WARN], function ($key) use ($filter_warning_override): bool {
+    return !in_array($key, $filter_warning_override);
+  });
+  // Remove `Use slots instead of hard embedding a component in the template`.
+  unset($info['include']);
+  // Remove checks on conditional check semantics.
+  unset($info['test']);
 }
