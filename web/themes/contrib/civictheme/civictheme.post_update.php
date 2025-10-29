@@ -959,3 +959,30 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
 
   return (string) new TranslatableMarkup('Updated field description for field_c_p_background.');
 }
+
+/**
+ * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes(): string {
+  $field_config_name = 'field.field.paragraph.civictheme_iframe.field_c_p_attributes';
+  $field_storage_config_name = 'field.storage.paragraph.field_c_p_attributes';
+
+  $config_factory = \Drupal::configFactory();
+
+  // Remove field instance if exists.
+  $field_config = $config_factory->getEditable($field_config_name);
+  if (!$field_config->isNew()) {
+    $field_config->delete();
+  }
+
+  // Remove field storage if exists.
+  $field_storage_config = $config_factory->getEditable($field_storage_config_name);
+  if (!$field_storage_config->isNew()) {
+    $field_storage_config->delete();
+  }
+
+  return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' instance and storage if they existed.");
+}

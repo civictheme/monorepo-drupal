@@ -16,7 +16,7 @@ function civictheme_preprocess_paragraph__civictheme_accordion(array &$variables
   _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 
   /** @var \Drupal\paragraphs\Entity\Paragraph[] $panels */
-  $panels = civictheme_get_field_value($variables['paragraph'], 'field_c_p_panels') ?? [];
+  $panels = civictheme_get_field_value($variables['paragraph'], 'field_c_p_panels', build: $variables) ?? [];
   foreach ($panels as $panel) {
     $panel_variables = [
       'expanded' => civictheme_get_field_value($panel, 'field_c_p_expand'),

@@ -23,7 +23,7 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
     return;
   }
 
-  $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image');
+  $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image', $variables);
   if ($image_file instanceof FileInterface) {
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
     if ($image->isValid()) {
