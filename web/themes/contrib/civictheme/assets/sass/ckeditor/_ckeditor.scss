@@ -1,0 +1,15 @@
+//
+// This file contains styles for the CKEditor component in CivicTheme.
+//
+
+.ct-figure {
+  &.align-left,
+  &.align-center,
+  &.align-right {
+    display: block;
+    margin-block-start: ct-particle(2);
+    margin-block-end: ct-particle(2);
+    margin-inline-start: ct-particle-px(5);
+    margin-inline-end: ct-particle-px(5);
+  }
+}
