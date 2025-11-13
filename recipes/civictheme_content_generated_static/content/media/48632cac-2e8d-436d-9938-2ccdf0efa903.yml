@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 48632cac-2e8d-436d-9938-2ccdf0efa903
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    c96dee56-2d41-4b6d-9fc2-914713f06c1a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 22 Eligendi expedita.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Deserunt temporibus.'
+  field_c_m_image:
+    -
+      entity: c96dee56-2d41-4b6d-9fc2-914713f06c1a
+      alt: 'Alt for Generated static Image media 22 Eligendi expedita.'
+      title: ''
+      width: 500
+      height: 846

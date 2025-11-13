@@ -1,0 +1,14 @@
+name: 'CivicTheme'
+description: 'Install civictheme'
+type: 'Theme installer'
+recipes:
+  - civictheme_starter
+config:
+  strict: false
+  actions:
+    system.theme:
+      simpleConfigUpdate:
+        default: civictheme
+    media.settings:
+      simpleConfigUpdate:
+        standalone_url: true

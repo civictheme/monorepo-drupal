@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3ccbb634-5c09-4d9e-aa33-9166c0a86940
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b272bf9d-bd55-4a92-a0fd-b904240017a4: media
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Thu: Y, Sum: Sum, Top: 1, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page 14. Cupiditate est maiores.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-14-cupiditate-est-maiores
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 76db1c2c-2e26-41f1-9440-56843ee1dd6b
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Distinctio harum praesentium quod quos</h2>
+                <p>Cumque delectus hic mollitia necessitatibus nihil nobis repellat voluptatibus. Alias at eveniet harum molestias officiis sapiente similique. Aut debitis et molestiae occaecati quidem saepe soluta tempore. Consequatur culpa doloribus est eveniet itaque libero nam odio quos.</p>
+                <p>Accusamus animi deleniti doloribus libero molestiae possimus provident quo. Assumenda blanditiis qui repudiandae rerum. Deleniti excepturi harum iusto optio praesentium. Libero minus optio provident rerum temporibus tenetur voluptatibus. Doloribus eligendi necessitatibus optio praesentium. Corrupti dolores laborum maiores molestias odio officiis saepe. Deserunt nobis repellendus. Consequatur deleniti eligendi odio. Cumque deserunt dolor impedit iusto laborum nihil provident quibusdam rerum.</p>
+                <h3>Earum perferendis sapiente sunt. Deleniti</h3>
+                <p>Est iusto maxime qui repellat rerum saepe tenetur voluptas. Eligendi molestias possimus. Aut expedita itaque officia placeat quibusdam voluptatum. Accusamus deserunt impedit laborum nam nihil officia soluta voluptas. Alias earum qui vero. Atque autem debitis impedit quibusdam rerum tenetur voluptas. Consequatur dolorum iusto laborum maiores nobis quibusdam quidem vero. In non quo repudiandae.</p><a href="https://www.example.com/At-cumque-hic-laborum-quo.">Id impedit.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Fuga id impedit necessitatibus soluta tempore. Accusamus eveniet iusto laborum placeat recusandae rerum. Cumque et reiciendis. Assumenda facilis molestiae placeat praesentium voluptas. Doloribus fuga hic maiores soluta tenetur. Accusamus eligendi facere laborum perferendis placeat quo repudiandae sapiente sunt. Deserunt est libero molestias reiciendis. Eveniet hic maiores provident ut voluptas. Eveniet occaecati praesentium quidem reiciendis vero. Doloribus iusto praesentium quos. Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum. Animi facilis officiis soluta. Hic repellat soluta. Dolores harum non saepe tenetur. Dolorum excepturi nam occaecati. Dolor earum repellendus. Autem itaque.'
+  field_c_n_thumbnail:
+    -
+      entity: b272bf9d-bd55-4a92-a0fd-b904240017a4
+  field_c_n_topics:
+    -
+      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+  field_c_n_vertical_spacing:
+    -
+      value: none

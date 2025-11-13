@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.thumbnail
+    - image.style.civictheme_medium
     - taxonomy.vocabulary.civictheme_media_tags
   module:
     - image
@@ -133,7 +133,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: thumbnail
+            image_style: civictheme_medium
             image_loading:
               attribute: lazy
           group_column: ''
@@ -930,7 +930,7 @@ display:
       footer: {  }
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -958,7 +958,7 @@ display:
         parent: ''
         context: '0'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

@@ -1,0 +1,5 @@
+name: 'CivicTheme'
+description: 'Install civictheme'
+type: 'Enabling civictheme to register layouts (see: https://www.drupal.org/project/drupal/issues/3204271)'
+install:
+  - civictheme

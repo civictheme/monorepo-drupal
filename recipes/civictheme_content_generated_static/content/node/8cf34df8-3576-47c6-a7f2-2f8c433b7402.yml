@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 8cf34df8-3576-47c6-a7f2-2f8c433b7402
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    9ce87d83-eb80-4430-9925-93a55af3caae: media
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 20. Assumenda cupiditate mollitia.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-20-assumenda-cupiditate-mollitia
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Excepturi laborum minus necessitatibus. Minus</h2>
+        <p>Ducimus eligendi nobis. Debitis eligendi est hic iusto quibusdam vero voluptatum. Aut distinctio facilis officia repudiandae sunt. Assumenda autem eligendi iusto odio repellat voluptas voluptatum. Autem corrupti est fuga officia saepe soluta. Animi aut iusto maxime nobis provident. Accusamus asperiores culpa harum libero non sapiente ut voluptates. Deserunt eligendi hic laborum quod recusandae temporibus voluptas. Aut ducimus impedit necessitatibus officia optio possimus quod similique voluptatibus.</p>
+        <p>Autem consequatur expedita facere laborum placeat quibusdam. Accusamus autem id mollitia omnis placeat qui tenetur. Assumenda eos facilis reiciendis. Deserunt dolorum quidem similique. Itaque maxime officiis quidem repudiandae. At maxime non repellendus saepe. Assumenda distinctio ducimus excepturi molestiae optio voluptatibus.</p>
+        <h3>Et itaque provident rerum. Delectus</h3>
+        <p>Alias aut quas ut. Assumenda consequatur dignissimos dolor et hic id occaecati possimus sunt. Autem facere id necessitatibus recusandae repudiandae. Alias assumenda blanditiis facere perferendis saepe. Aut cumque id libero repellat voluptatibus. Asperiores atque consequatur distinctio facilis fuga provident quibusdam quo voluptatibus. Eligendi eos et expedita tempore voluptatum. Maxime minus molestiae saepe. Alias cupiditate sunt vero. Consequatur cupiditate in nobis non voluptas.</p><a href="https://www.example.com/Doloribus-iusto-officia-ut.-Culpa.">Blanditiis deserunt.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fbf0a1ca-056d-42cf-b72b-c1dfba43f24a
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Deleniti mollitia quo.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Delectus-dolores-eligendi-hic-laborum.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Animi-aut-culpa-maiores.-Dignissimos.'
+              title: 'Facilis laborum.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary In molestiae occaecati possimus qui recusandae. Animi asperiores dolorum itaque quo temporibus. Autem impedit odio placeat qui rerum similique ut.'
+  field_c_n_thumbnail:
+    -
+      entity: 9ce87d83-eb80-4430-9925-93a55af3caae
+  field_c_n_topics:
+    -
+      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+  field_c_n_vertical_spacing:
+    -
+      value: both

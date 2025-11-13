@@ -1,0 +1,7 @@
+{
+    "name": "drupal/civictheme_starter",
+    "description": "Install civicthemes, module dependencies, required configuration, and basic block types.",
+    "type": "recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {}
+}

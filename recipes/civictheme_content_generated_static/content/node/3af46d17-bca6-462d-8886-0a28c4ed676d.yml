@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3af46d17-bca6-462d-8886-0a28c4ed676d
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    a4f343aa-4d4d-4948-b6ff-9f6cab295888: media
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Sum: Est, Top: 1, Thu: Y, Ver: bot, Com: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Summary, Topics (1), Thumbnail, Both spaces, Content'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-summary-topics-1-thumbnail-both-spaces-content
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 07b4ef1d-5cf3-443c-a2b7-5ad9a1814707
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>At cumque hic laborum quo</h2>
+                <p>Id impedit maxime minus nam nihil omnis optio qui sapiente. Asperiores corrupti quo ut. Blanditiis nihil voluptatum. Alias doloribus dolorum est maiores nam nihil. Atque dignissimos ducimus excepturi facilis laborum maxime nam quibusdam repudiandae. Aut dolorum eos in maiores molestias. Accusamus autem debitis in nam nobis qui ut. At aut deleniti distinctio hic maiores sint voluptates.</p>
+                <p>Harum id nam quas. Debitis eos eveniet in maiores necessitatibus qui quidem tempore vero. Aut consequatur cumque deserunt eos repudiandae similique tempore. Cupiditate facilis libero perferendis quibusdam sapiente. Et laborum quas quibusdam reiciendis sint voluptatum. Aut culpa debitis earum laborum nobis odio praesentium.</p>
+                <h3>Asperiores atque molestias mollitia praesentium</h3>
+                <p>Atque dolor itaque provident recusandae voluptates. Culpa facere voluptas. Distinctio facere sapiente. Asperiores earum fuga libero odio qui quo voluptas. Animi at id officia omnis. Alias at culpa minus molestias soluta tempore voluptatum. Aut earum soluta. Aut non placeat.</p><a href="https://www.example.com/Consequatur-deserunt-doloribus-hic-itaque.">Libero nam.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Est iusto maxime qui repellat rerum saepe tenetur voluptas. Eligendi molestias possimus. Aut expedita itaque officia placeat quibusdam voluptatum. Accusamus deserunt impedit laborum nam nihil officia soluta voluptas. Alias earum qui vero. Atque autem debitis impedit quibusdam rerum tenetur voluptas. Consequatur dolorum iusto laborum maiores nobis quibusdam quidem vero. In non quo repudiandae.'
+  field_c_n_thumbnail:
+    -
+      entity: a4f343aa-4d4d-4948-b6ff-9f6cab295888
+  field_c_n_topics:
+    -
+      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+  field_c_n_vertical_spacing:
+    -
+      value: both

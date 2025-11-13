@@ -128,6 +128,14 @@ commands:
     usage: Provision a site from the database dump or profile.
     cmd: ahoy cli ./scripts/drevops/provision.sh
 
+  provision-cms:
+    usage: Provision a site with Drupal CMS profile.
+    cmd: ahoy cli "DRUPAL_VERSION=CMS DRUPAL_PROFILE=/app/recipes/drupal_cms_starter ./scripts/drevops/provision.sh"
+
+  provision-11:
+    usage: Provision a site with CivicTheme starter for Drupal 11.
+    cmd: ahoy cli "DRUPAL_PROFILE=/app/recipes/civictheme_starter DRUPAL_VERSION=11 ./scripts/drevops/provision.sh"
+
   export-db:
     usage: Export database dump or database image (if DREVOPS_DB_DOCKER_IMAGE variable is set).
     cmd: ./scripts/drevops/export-db.sh "$@"

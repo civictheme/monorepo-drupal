@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 62e4d359-347d-4f5f-af17-a153ad83a7a9
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_7_aspe.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_7_aspe.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 295717
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

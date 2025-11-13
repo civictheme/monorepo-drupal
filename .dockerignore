@@ -42,4 +42,5 @@ node_modules
 !package-lock.json
 !patches
 !scripts
+!recipes
 !.lagoon.env.*
