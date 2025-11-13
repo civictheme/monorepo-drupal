@@ -9,14 +9,14 @@
     <div{{ attributes }}>
       {% for item in items %}
         {% include 'civictheme:paragraph' with {
-          content: item.content|render,
+          content: item.content,
         } only %}
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
       {% include 'civictheme:paragraph' with {
-        content: item.content|render,
+        content: item.content,
       } only %}
     {% endfor %}
   {% endif %}
@@ -30,7 +30,7 @@
       {% endif %}
       {% for item in items %}
         {% include 'civictheme:paragraph' with {
-          content: item.content|render,
+          content: item.content,
         } only %}
       {% endfor %}
       {% if multiple %}
