@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="../build/web/core/tests/bootstrap.php"
+         colors="true"
+         cacheResultFile="../build/.phpunit.cache/test-results"
+         executionOrder="depends,defects"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         convertWarningsToExceptions="false"
+         failOnRisky="true"
+         failOnWarning="false"
+         verbose="true">
+    <testsuites>
+        <testsuite name="sdc_validator">
+            <directory>./tests/src/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_DIR" value="../build/web/core" />
+        <env name="SIMPLETEST_BASE_URL" value="http://localhost" />
+        <env name="SIMPLETEST_DB" value="sqlite://localhost/sites/default/files/.ht.sqlite" />
+    </php>
+</phpunit>
