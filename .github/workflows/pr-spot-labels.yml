@@ -1,0 +1,12 @@
+name: PR Spot Configuration via Labels
+
+on:
+  pull_request:
+    types: [labeled, unlabeled]
+
+jobs:
+  update-spot:
+    uses: salsadigitalauorg/salsa-hosting-workflows/.github/workflows/pr-spot-labels.yml@v0.0.13
+    secrets:
+      hosting-api-key: ${{ secrets.QUANT_API_KEY }}
+      hosting-org-name: ${{ secrets.QUANT_ORGANIZATION }}

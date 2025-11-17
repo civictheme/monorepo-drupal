@@ -12,8 +12,6 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - feature/editorial-*
     tags:
     - '*'
-  pull_request:
-    branches: '*'
 
 concurrency:
   group: build-and-push-${{ github.ref }}

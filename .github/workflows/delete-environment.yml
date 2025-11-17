@@ -1,0 +1,15 @@
+name: Cleanup Environment
+'on':
+  pull_request:
+    types: [closed]
+  delete:
+
+jobs:
+  delete-environment:
+    if: |
+      (github.event_name == 'delete' && github.event.ref_type == 'branch' && startsWith(github.event.ref, 'feature/')) ||
+      (github.event_name == 'pull_request')
+    uses: salsadigitalauorg/salsa-hosting-workflows/.github/workflows/delete-environment.yml@v0.0.9-preview
+    secrets:
+      hosting-api-key: ${{ secrets.QUANT_API_KEY }}
+      hosting-org-name: ${{ secrets.QUANT_ORGANIZATION }}
