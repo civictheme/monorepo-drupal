@@ -529,7 +529,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
     case 'string':
     case 'string_long':
       $value = $field->getString();
-      $value = Xss::filter($value);
+      $value = strip_tags($value);
       break;
 
     // Field types where we want to return field item.
