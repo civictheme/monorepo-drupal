@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
@@ -59,11 +58,11 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   }
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
   $title = (string) (is_array($title) ? reset($title) : ((string) $title));
-
-  $variables['title'] = [
+  $title = [
     '#type' => 'markup',
     '#markup' => $title,
   ];
+  $variables['title'] = $title;
 
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
@@ -188,7 +187,10 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
   if (!empty($title)) {
     $title = (string) (is_array($title) ? reset($title) : ((string) $title));
-    $title = Html::decodeEntities(Xss::filter($title));
+    $title = [
+      '#type' => 'markup',
+      '#markup' => $title,
+    ];
     $breadcrumb_links = $breadcrumb->getLinks();
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
