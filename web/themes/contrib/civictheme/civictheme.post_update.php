@@ -966,7 +966,7 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes(): string {
+function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(): string {
   $field_config_name = 'field.field.paragraph.civictheme_iframe.field_c_p_attributes';
   $field_storage_config_name = 'field.storage.paragraph.field_c_p_attributes';
 
@@ -984,5 +984,38 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes():
     $field_storage_config->delete();
   }
 
-  return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' instance and storage if they existed.");
+  // Remove the field from all entity view & form displays.
+  $display_config_prefixes = [
+    'core.entity_view_display.paragraph.civictheme_iframe',
+    'core.entity_form_display.paragraph.civictheme_iframe',
+  ];
+
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  foreach ($display_config_prefixes as $prefix) {
+    // Get all config names with the prefix.
+    $all_config_names = $config_storage->listAll($prefix);
+    foreach ($all_config_names as $config_name) {
+      if (strpos($config_name, $prefix) === 0) {
+        $display_config = $config_factory->getEditable($config_name);
+        $display = $display_config->get();
+        $changed = FALSE;
+        if (isset($display['content']['field_c_p_attributes'])) {
+          unset($display['content']['field_c_p_attributes']);
+          $changed = TRUE;
+        }
+        if (isset($display['fields']['field_c_p_attributes'])) {
+          unset($display['fields']['field_c_p_attributes']);
+          $changed = TRUE;
+        }
+        if ($changed) {
+          $display_config->setData($display);
+          $display_config->save();
+        }
+      }
+    }
+  }
+
+  return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' from field instance, field storage, and all civictheme_iframe paragraph displays (view and form) if they existed.");
 }
