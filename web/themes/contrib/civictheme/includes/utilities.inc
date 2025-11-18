@@ -12,7 +12,6 @@ declare(strict_types=1);
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\CacheableMetadata;
@@ -530,7 +529,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
     case 'string':
     case 'string_long':
       $value = $field->getString();
-      $value = Html::decodeEntities(Xss::filter($value));
+      $value = strip_tags($value);
       break;
 
     // Field types where we want to return field item.
