@@ -33,7 +33,10 @@ function civictheme_preprocess_table(array &$variables): void {
           $cell = $cell['content'] ?? '';
           $cell = civictheme_render($cell);
           $cell = _civictheme_process__html_content($cell);
-          $rows[$row_key][] = $cell;
+          $rows[$row_key][] = [
+            '#type' => 'markup',
+            '#markup' => $cell,
+          ];
         }
       }
     }

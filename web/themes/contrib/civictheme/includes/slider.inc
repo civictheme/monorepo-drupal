@@ -25,7 +25,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
   $variables['next_label'] = t('Next');
 
   if (!empty($variables['content']['field_c_p_slides'])) {
-    $variables['slides'] = civictheme_render($variables['content']['field_c_p_slides']);
+    $variables['slides'] = $variables['content']['field_c_p_slides'];
   }
 }
 
@@ -53,7 +53,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$va
   $paragraph = $variables['paragraph'];
 
   /** @var \Drupal\node\NodeInterface|null $node */
-  $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE);
+  $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE, build: $variables);
   if (empty($node)) {
     return;
   }

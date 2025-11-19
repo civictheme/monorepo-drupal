@@ -8,15 +8,15 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 use Drupal\node\NodeInterface;
 
 /**
  * Generic pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_node(array &$variables): void {
-  $node = $variables['node'];
-
-  if (!$node) {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
     return;
   }
 
@@ -24,12 +24,19 @@ function _civictheme_preprocess_node(array &$variables): void {
   if (!$node->isPublished()) {
     $variables['attributes']['class'][] = 'node--unpublished';
   }
+}
 
-  $view_mode = $variables['elements']['#view_mode'];
-  // Do not display node title on revision pages.
-  if ($view_mode === 'full') {
-    unset($variables['label']);
+/**
+ * Pre-process CivicTheme page nodes.
+ */
+function _civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
   }
+
+  // Do not display node title on revision pages.
+  unset($variables['label']);
 
   // Add Table of Contents if the value is set on node.
   if (civictheme_get_field_value($node, 'field_c_n_show_toc')) {
@@ -44,12 +51,8 @@ function _civictheme_preprocess_node(array &$variables): void {
 
   // Add Tags if hide tags is not set on node.
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
-    $topics = civictheme_get_field_referenced_entities($node, 'field_c_n_topics');
+    $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
     if (!empty($topics)) {
-      $topics = array_map(static function ($topic) {
-        return $topic->label();
-      }, $topics);
-
       $variables['content'][] = [
         '#theme' => 'civictheme_tag_list',
         '#tags' => $topics,
@@ -63,8 +66,11 @@ function _civictheme_preprocess_node(array &$variables): void {
  * Pre-process Full view mode of nodes.
  */
 function _civictheme_preprocess_node__full(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $type = $node->getType();
   $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
   if (function_exists($type_callback)) {
@@ -76,8 +82,11 @@ function _civictheme_preprocess_node__full(array &$variables): void {
  * Default view mode fallback preprocessor for nodes.
  */
 function _civictheme_preprocess_node__default(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $type = $node->getType();
   $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
   if (function_exists($type_callback)) {
@@ -87,16 +96,33 @@ function _civictheme_preprocess_node__default(array &$variables): void {
 
 /**
  * Pre-process CivicTheme Alert nodes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
-  $node = $variables['node'];
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
   $variables['id'] = $node->id();
-  $variables['title'] = $node->label();
-  $variables['description'] = _civictheme_process__html_content((string) civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
-    // Force dark theme to make sure that text colour has enough contrast with
-    // a background.
-    'theme' => CivicthemeConstants::THEME_DARK,
-  ]);
+  $variables['title'] = Xss::filter((string) $node->label());
+  $variables['title'] = strip_tags($variables['title']);
+  $body_values = civictheme_get_field_value($node, 'field_c_n_body');
+  $body = is_array($body_values) && !empty($body_values) ? $body_values[0] : NULL;
+  if ($body !== NULL && !empty($body['#text']) && !empty($body['#format'])) {
+    $text_format = $body['#format'];
+    $variables['description'] = [
+      '#type' => 'processed_text',
+      '#text' => _civictheme_process__html_content($body['#text'], [
+        // Force dark theme to make sure that text colour has enough contrast
+        // with a background.
+        'theme' => CivicthemeConstants::THEME_DARK,
+      ], $text_format),
+      '#format' => $text_format,
+      '#langcode' => $body['#langcode'],
+    ];
+  }
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }
 

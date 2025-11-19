@@ -355,3 +355,28 @@ Feature: Automated list render
     Then I save screenshot
     And the ".ct-list .ct-list__rows" element should contain "Test page content in list"
     And the ".ct-list .ct-list__rows" element should not contain "Test page with Automated list non self referenced"
+
+  @api @security
+  Scenario:XSS - Automated list
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+      | field_c_p_title             | <script id="test-automated-list--field_c_p_title">alert('[TEST] Automated list field_c_p_title')</script>                         |
+      | field_c_p_content:value     | <script id="test-automated-list--field_c_p_content">alert('[TEST] Automated list field_c_p_content')</script>     |
+      | field_c_p_content:format    | civictheme_rich_text                                |
+      | field_c_p_list_link_above   | 0: [TEST] Link above - 1: https://example.com/above |
+      | field_c_p_list_link_below   | 0: [TEST] Link below - 1: https://example.com/below |
+      | field_c_p_list_column_count | 4                                                   |
+      | field_c_p_list_fill_width   | 0                                                   |
+      | field_c_p_theme             | light                                               |
+      | field_c_p_background        | 1                                                   |
+      | field_c_p_vertical_spacing  | both                                                |
+      | field_c_p_list_limit_type   | limited                                             |
+      | field_c_p_list_limit        | 96                                                  |
+
+    When I visit "civictheme_page" "Test page with Automated list content"
+    Then I should see a ".ct-list" element
+    And I should see a ".ct-list.ct-theme-light" element
+    And I should not see an "script#test-automated-list--field_c_p_title" element
+    And I should see the text "alert('[TEST] Automated list field_c_p_title')"
+    And I should not see an "script#test-automated-list--field_c_p_content" element
+    And I should see the text "alert('[TEST] Automated list field_c_p_content')"

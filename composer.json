@@ -6,6 +6,7 @@
         "php": ">=8.2",
         "composer/installers": "^2.1",
         "cweagans/composer-patches": "^1.7",
+        "drupal/admin_toolbar": "^3.6",
         "drupal/components": "^3.1",
         "drupal/core-composer-scaffold": "^11",
         "drupal/core-project-message": "^11",
@@ -34,7 +35,6 @@
         "drupal/core-dev": "^11",
         "drupal/drupal-extension": "^5",
         "ergebnis/composer-normalize": "^2.42",
-        "friendsoftwig/twigcs": "^6.2",
         "mglaman/phpstan-drupal": "^1.2",
         "palantirnet/drupal-rector": "^0.20",
         "php-parallel-lint/php-parallel-lint": "^1.3",
@@ -42,7 +42,8 @@
         "phpmd/phpmd": "^2.13",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/extension-installer": "^1.3",
-        "pyrech/composer-changelogs": "^1.8"
+        "pyrech/composer-changelogs": "^1.8",
+        "vincentlanglet/twig-cs-fixer": "^3.9"
     },
     "conflict": {
         "drupal/drupal": "*"

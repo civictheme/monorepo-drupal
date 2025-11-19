@@ -864,3 +864,158 @@ function civictheme_post_update_update_editor_allowed_field(): string {
   }
   return (string) new TranslatableMarkup('Allowed tags setting not set, aborting update.');
 }
+
+/**
+ * Update civictheme_side_navigation to use civictheme_sidebar_navigation.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('block.block.civictheme_side_navigation');
+  if ($editable->isNew()) {
+    return 'Sidebar navigation block config does not exist.';
+  }
+  $settings = $editable->get('settings') ?? [];
+  if (empty($settings['suggestion']) || $settings['suggestion'] !== 'civictheme_sidebar_navigation') {
+    $settings['suggestion'] = 'civictheme_sidebar_navigation';
+    $editable->set('settings', $settings);
+    $editable->save();
+    return 'Updated civictheme_side_navigation block to use civictheme_sidebar_navigation suggestion.';
+  }
+  return 'No update needed for civictheme_side_navigation block.';
+}
+
+/**
+ * Add civictheme_message paragraph type and enable it for civictheme page.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_civictheme_message_paragraph(): string {
+  $new_configs = [
+    // Paragraph type definition.
+    'paragraphs.paragraphs_type.civictheme_message' => 'paragraphs_type',
+    'field.storage.paragraph.field_c_p_message_type' => 'field_storage_config',
+    'field.field.paragraph.civictheme_message.field_c_p_background' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_content' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_message_type' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_title' => 'field_config',
+    'field.field.paragraph.civictheme_message.field_c_p_vertical_spacing' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_message.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_message.default' => 'entity_view_display',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($new_configs, $config_path);
+
+  // Enable civictheme_message for civictheme_page.
+  $field_config_name = 'field.field.node.civictheme_page.field_c_n_components';
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+  if (!$field_config->isNew()) {
+    $handler_settings = $field_config->get('settings.handler_settings') ?: [];
+    // Ensure target_bundles exists.
+    if (!isset($handler_settings['target_bundles'])) {
+      $handler_settings['target_bundles'] = [];
+    }
+    $handler_settings['target_bundles']['civictheme_message'] = 'civictheme_message';
+
+    // Ensure target_bundles_drag_drop exists.
+    if (!isset($handler_settings['target_bundles_drag_drop'])) {
+      $handler_settings['target_bundles_drag_drop'] = [];
+    }
+    $handler_settings['target_bundles_drag_drop']['civictheme_message'] = [
+      'weight' => -52,
+      'enabled' => TRUE,
+    ];
+
+    $field_config->set('settings.handler_settings', $handler_settings);
+    $field_config->save();
+  }
+
+  return (string) new TranslatableMarkup('Added civictheme_message paragraph type and enabled it for civictheme page.');
+}
+
+/**
+ * Update the field description for field_c_p_background.
+ */
+function civictheme_post_update_update_field_c_p_background_description(): string {
+  $field_configs = [
+    'field.field.paragraph.civictheme_accordion.field_c_p_background',
+    'field.field.paragraph.civictheme_content.field_c_p_background',
+    'field.field.paragraph.civictheme_map.field_c_p_background',
+    'field.field.paragraph.civictheme_promo.field_c_p_background',
+    'field.field.paragraph.civictheme_webform.field_c_p_background',
+  ];
+  foreach ($field_configs as $field_config_name) {
+    $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+    if (!$field_config->isNew()) {
+      $field_config->set('description', 'Apply a themed background colour and provide horizontal spacing to the component');
+      $field_config->save();
+    }
+  }
+
+  return (string) new TranslatableMarkup('Updated field description for field_c_p_background.');
+}
+
+/**
+ * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(): string {
+  $field_config_name = 'field.field.paragraph.civictheme_iframe.field_c_p_attributes';
+  $field_storage_config_name = 'field.storage.paragraph.field_c_p_attributes';
+
+  $config_factory = \Drupal::configFactory();
+
+  // Remove field instance if exists.
+  $field_config = $config_factory->getEditable($field_config_name);
+  if (!$field_config->isNew()) {
+    $field_config->delete();
+  }
+
+  // Remove field storage if exists.
+  $field_storage_config = $config_factory->getEditable($field_storage_config_name);
+  if (!$field_storage_config->isNew()) {
+    $field_storage_config->delete();
+  }
+
+  // Remove the field from all entity view & form displays.
+  $display_config_prefixes = [
+    'core.entity_view_display.paragraph.civictheme_iframe',
+    'core.entity_form_display.paragraph.civictheme_iframe',
+  ];
+
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  foreach ($display_config_prefixes as $prefix) {
+    // Get all config names with the prefix.
+    $all_config_names = $config_storage->listAll($prefix);
+    foreach ($all_config_names as $config_name) {
+      if (strpos($config_name, $prefix) === 0) {
+        $display_config = $config_factory->getEditable($config_name);
+        $display = $display_config->get();
+        $changed = FALSE;
+        if (isset($display['content']['field_c_p_attributes'])) {
+          unset($display['content']['field_c_p_attributes']);
+          $changed = TRUE;
+        }
+        if (isset($display['fields']['field_c_p_attributes'])) {
+          unset($display['fields']['field_c_p_attributes']);
+          $changed = TRUE;
+        }
+        if ($changed) {
+          $display_config->setData($display);
+          $display_config->save();
+        }
+      }
+    }
+  }
+
+  return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' from field instance, field storage, and all civictheme_iframe paragraph displays (view and form) if they existed.");
+}

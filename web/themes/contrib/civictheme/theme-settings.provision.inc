@@ -128,13 +128,13 @@ function _civictheme_form_system_theme_settings_provision_validate(array &$form,
 function _civictheme_form_system_theme_settings_provision_submit(array &$form, FormStateInterface $form_state): void {
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
-
+  $theme_name = explode('.', $form_state->getValues()['config_key'])[0];
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     $clear_cache = $form_state->getValue('provision_clear_cache');
 
     if (!empty($types)) {
-      $results = civictheme_provision($types, $clear_cache);
+      $results = civictheme_provision($theme_name, $types, $clear_cache);
 
       foreach ($results as $type => $result) {
         if ($result === TRUE) {
@@ -171,6 +171,8 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
 /**
  * Provision content.
  *
+ * @param string $theme_name
+ *   The theme to provision the block and other theme specific entities to.
  * @param array $types
  *   Optional array of types discovered from defined callbacks.
  *   If not provided - provisioning for all types will run.
@@ -190,7 +192,7 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verbose = FALSE): array {
+function civictheme_provision(string $theme_name, array $types = [], $clear_cache = TRUE, bool $verbose = FALSE): array {
   $results = [];
 
   $callbacks = _civictheme_provision_discover_callbacks();
@@ -212,7 +214,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, bool $verb
       try {
         $results[$callback_type] = FALSE;
         // @phpstan-ignore-next-line
-        $return = call_user_func($callbacks[$callback_type]);
+        $return = call_user_func($callbacks[$callback_type], $theme_name);
         // Allow callbacks to not return a value on success.
         // Failure can be returned as FALSE or exception.
         if ($return === TRUE || is_null($return)) {
@@ -264,8 +266,8 @@ function civictheme_provision_cli(array $include_types = [], array $exclude_type
   if (!empty($exclude_types)) {
     $types = array_diff($types, $exclude_types);
   }
-
-  $results = civictheme_provision($types, TRUE, TRUE);
+  $theme_name = \Drupal::service('theme_handler')->getDefault();
+  $results = civictheme_provision($theme_name, $types, TRUE, TRUE);
   $errors = array_filter($results, static function ($value): bool {
     return $value !== TRUE;
   });
@@ -422,6 +424,8 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
  *   Admin label for the block.
  * @param string $region
  *   Region to place the block into.
+ * @param string $theme_name
+ *   The theme to place the block on.
  * @param string $uuid
  *   Optional UUID to use for plugin_id. Defaults to NULL. If not provided - a
  *   random UUID will be generated.
@@ -433,9 +437,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_place_block(string $label, string $region, ?string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
-  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
-
+function civictheme_provision_place_block(string $label, string $region, string $theme_name, ?string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
   $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
   $id = $theme_name . '_' . $label_machine_name;
   $base_theme_id = 'civictheme_' . $label_machine_name;
@@ -551,11 +553,13 @@ function civictheme_provision_clear_menu(string $menu_name): void {
 /**
  * Provision files.
  *
+ * @param string $theme_name
+ *   Theme to apply provisioning to.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision__files(): void {
-  $theme_name = \Drupal::config('system.theme')->get('default');
+function civictheme_provision__files(string $theme_name): void {
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   $filepaths = [
@@ -582,12 +586,13 @@ function civictheme_provision__files(): void {
 /**
  * Provision media.
  *
+ * @param string $theme_name
+ *   Theme to apply provisioning to.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function civictheme_provision__media(): void {
-  $theme_name = \Drupal::config('system.theme')->get('default');
-
+function civictheme_provision__media(string $theme_name): void {
   $filenames_for_media = [
     'icon' => [
       'facebook.svg',
@@ -673,27 +678,30 @@ function civictheme_provision__menu_links(): void {
 
 /**
  * Provision blocks.
+ *
+ * @param string $theme_name
+ *   The theme to provision blocks for.
  */
-function civictheme_provision__blocks(): void {
-  _civictheme_provision__blocks__menu_blocks();
+function civictheme_provision__blocks(string $theme_name): void {
+  _civictheme_provision__blocks__menu_blocks($theme_name);
   $blocks = _civictheme_get_theme_blocks();
   foreach ($blocks as $block) {
-    call_user_func($block['builder'], $block);
+    call_user_func($block['builder'], $block, $theme_name);
   }
 }
 
 /**
  * Provision menu blocks.
  */
-function _civictheme_provision__blocks__menu_blocks(): void {
-  civictheme_provision_place_block('Primary Navigation', 'header_middle_3', NULL, [
+function _civictheme_provision__blocks__menu_blocks(string $theme_name): void {
+  civictheme_provision_place_block('Primary Navigation', 'header_middle_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
-  ]);
-  civictheme_provision_place_block('Secondary Navigation', 'header_top_3', NULL, [
+  ],);
+  civictheme_provision_place_block('Secondary Navigation', 'header_top_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-secondary-navigation',
   ]);
-  civictheme_provision_place_block('Side Navigation', 'sidebar_top_left', NULL, [
+  civictheme_provision_place_block('Side Navigation', 'sidebar_top_left', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
     'visibility' => [
@@ -703,20 +711,21 @@ function _civictheme_provision__blocks__menu_blocks(): void {
         'pages' => '/search',
       ],
     ],
-  ]);
-  civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
+    'suggestion' => 'civictheme_sidebar_navigation',
+  ], $theme_name);
+  civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
-  civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', NULL, [
+  civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
-  civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', NULL, [
+  civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
-  civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', NULL, [
+  civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', $theme_name, NULL, [
     'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
@@ -727,9 +736,10 @@ function _civictheme_provision__blocks__menu_blocks(): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  */
-function _civictheme_provision__blocks__banner(array $block): void {
-  $theme_name = \Drupal::config('system.theme')->get('default');
+function _civictheme_provision__blocks__banner(array $block, string $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->set('field_c_b_background_image', civictheme_provision_load_media_by_name($theme_name . '_background_1.png'));
   $block_content->set('field_c_b_theme', 'dark');
@@ -737,7 +747,7 @@ function _civictheme_provision__blocks__banner(array $block): void {
   $block_content->set('field_c_b_banner_type', 'default');
   $block_content->set('field_c_b_featured_image', civictheme_provision_load_media_by_name('demo_image.jpg'));
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -745,10 +755,12 @@ function _civictheme_provision__blocks__banner(array $block): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__search(array $block): void {
+function _civictheme_provision__blocks__search(array $block, string $theme_name): void {
   // Redirect to 'Search' page if the path exists.
   $search_path = '/search';
   $fallback_path = '/';
@@ -769,7 +781,7 @@ function _civictheme_provision__blocks__search(array $block): void {
     'uri' => $search_path,
   ]);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -777,10 +789,10 @@ function _civictheme_provision__blocks__search(array $block): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  */
-function _civictheme_provision__blocks__mobile_navigation(array $block): void {
-  $theme_name = \Drupal::config('system.theme')->get('default');
-
+function _civictheme_provision__blocks__mobile_navigation(array $block, string $theme_name): void {
   $context_theme = \Drupal::service('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class)->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -789,7 +801,7 @@ function _civictheme_provision__blocks__mobile_navigation(array $block): void {
   $block_content->set('field_c_b_trigger_text', 'Menu');
   $block_content->set('field_c_b_trigger_theme', $context_theme);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -797,10 +809,12 @@ function _civictheme_provision__blocks__mobile_navigation(array $block): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__signup(array $block): void {
+function _civictheme_provision__blocks__signup(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_promo',
@@ -818,7 +832,7 @@ function _civictheme_provision__blocks__signup(array $block): void {
   $paragraph->set('field_c_p_vertical_spacing', CivicthemeConstants::VERTICAL_SPACING_TOP);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), []);
 }
 
 /**
@@ -826,10 +840,12 @@ function _civictheme_provision__blocks__signup(array $block): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__social_links(array $block): void {
+function _civictheme_provision__blocks__social_links(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
 
   $paragraph = Paragraph::create([
@@ -865,7 +881,7 @@ function _civictheme_provision__blocks__social_links(array $block): void {
   $block_content->set('field_c_b_theme', CivicthemeConstants::THEME_DARK);
   $block_content->set('field_c_b_with_border', TRUE);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_social_links',
   ]);
 }
@@ -875,10 +891,12 @@ function _civictheme_provision__blocks__social_links(array $block): void {
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__acknowledgment_of_country(array $block): void {
+function _civictheme_provision__blocks__acknowledgment_of_country(array $block, string $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
@@ -890,7 +908,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block):
   $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_acknowledgment_of_country',
   ]);
 }
@@ -900,10 +918,12 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block):
  *
  * @param array $block
  *   Data structure of block.
+ * @param string $theme_name
+ *   Theme to apply this block to.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_provision__blocks__copyright(array $block): void {
+function _civictheme_provision__blocks__copyright(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
@@ -915,7 +935,7 @@ function _civictheme_provision__blocks__copyright(array $block): void {
   $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
   $block_content->get('field_c_b_components')->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid(), [
+  civictheme_provision_place_block($block['name'], $block['region'], $theme_name, $block_content->uuid(), [
     'label_machine_name' => 'footer_copyright',
   ]);
 }
@@ -923,10 +943,12 @@ function _civictheme_provision__blocks__copyright(array $block): void {
 /**
  * Provision theme settings.
  *
+ * @param string $theme_name
+ *   Theme to apply settings to.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision__theme_settings(): void {
-  $theme_name = \Drupal::config('system.theme')->get('default');
+function civictheme_provision__theme_settings(string $theme_name): void {
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   /** @var \Drupal\civictheme\CivicthemeConfigImporter $config_importer */

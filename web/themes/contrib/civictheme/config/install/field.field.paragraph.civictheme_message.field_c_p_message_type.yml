@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_message_type
+    - paragraphs.paragraphs_type.civictheme_message
+  module:
+    - options
+id: paragraph.civictheme_message.field_c_p_message_type
+field_name: field_c_p_message_type
+entity_type: paragraph
+bundle: civictheme_message
+label: Type
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: information
+default_value_callback: ''
+settings: {  }
+field_type: list_string

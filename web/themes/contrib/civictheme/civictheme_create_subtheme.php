@@ -212,6 +212,24 @@ function process_stub(string $dir, array $options): void {
   if (file_exists($info_file)) {
     $content = file_get_contents($info_file) ?: '';
     $content = str_replace("hidden: true\n", '', $content);
+    // Remove Drupal.org packaging that is added to the starter theme info.yml.
+    // @see https://www.drupal.org/project/civictheme/issues/3554770
+    $lines = $content ? explode("\n", $content) : [];
+    $lines = array_filter($lines, static function ($line) {
+      $lines_to_remove = [
+        '# Information added by Drupal.org',
+        'version:',
+        'project:',
+        'datestamp:',
+      ];
+      foreach ($lines_to_remove as $line_to_remove) {
+        if (str_starts_with($line, $line_to_remove)) {
+          return FALSE;
+        }
+      }
+      return TRUE;
+    });
+    $content = implode("\n", $lines);
     file_put_contents($info_file, $content);
   }
 
@@ -239,14 +257,6 @@ function process_stub(string $dir, array $options): void {
       return str_repeat(' ', strlen((string) ceil((int) $m[0] / 2)));
     }, (string) json_encode($packagejson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     file_put_contents($packagejson_file, $packagejson_encoded);
-  }
-
-  // Remove all the examples component before moving to the final path.
-  if ($options['remove_examples']) {
-    $example_components = example_component_paths();
-    foreach ($example_components as $example_dir) {
-      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
-    }
   }
 }
 
@@ -554,20 +564,6 @@ function file_ignore_paths(): array {
  */
 function file_internal_paths(): array {
   return [];
-}
-
-/**
- * Example component paths.
- *
- * @return array<string>
- *   Array of example component paths.
- */
-function example_component_paths(): array {
-  return [
-    'components/01-atoms/demo-button',
-    'components/02-molecules/navigation-card',
-    'components/03-organisms/header',
-  ];
 }
 
 /**
