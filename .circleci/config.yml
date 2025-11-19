@@ -259,6 +259,7 @@ job-build: &job-build
         command: docker compose exec -T cli bash -c "./scripts/lint.theme-config.sh" || [ "${DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Lint Drupal theme schema
+        command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
     - run:
         name: Run assets tests
         command: ./scripts/test.assets.sh
