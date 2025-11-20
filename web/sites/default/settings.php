@@ -99,7 +99,6 @@ $settings['trusted_host_patterns'] = [
   // URL when accessed from Behat tests.
   '^nginx$',
 ];
-$settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
 
 // Modules excluded from config export.
 $settings['config_exclude_modules'] = [];
