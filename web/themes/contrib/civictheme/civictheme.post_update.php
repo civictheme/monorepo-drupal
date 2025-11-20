@@ -892,6 +892,10 @@ function civictheme_post_update_update_sidebar_navigation_suggestion(): string {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_add_civictheme_message_paragraph(): string {
+  $paragraph_type_config = \Drupal::config('paragraphs.paragraphs_type.civictheme_message');
+  if (!$paragraph_type_config->isNew()) {
+    return (string) new TranslatableMarkup('civictheme_message paragraph type already exists. Skipping update.');
+  }
   $new_configs = [
     // Paragraph type definition.
     'paragraphs.paragraphs_type.civictheme_message' => 'paragraphs_type',
