@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d51c0f76-62c0-4381-984d-644ec9aa73a6
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    551b075c-af70-4521-9de7-ec5e487c40f8: media
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Thu: Y, Sum: Sum, Top: 1, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page 09. Mollitia non sunt.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-09-mollitia-non-sunt
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 077f6a66-8930-423f-9fa0-80720a5a12e8
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Fuga id impedit necessitatibus soluta</h2>
+                <p>Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum. Animi facilis officiis soluta. Hic repellat soluta. Dolores harum non saepe tenetur. Dolorum excepturi nam occaecati. Dolor earum repellendus. Autem itaque qui. Hic itaque necessitatibus quos repudiandae voluptatum. Debitis delectus molestiae perferendis sapiente tempore.</p>
+                <p>Distinctio harum praesentium quod quos repellat tempore ut voluptatum. Earum eveniet itaque vero voluptatibus. Corrupti eos facere temporibus. Deserunt eveniet id minus nihil placeat voluptatibus. Dolor earum itaque possimus tenetur vero.</p>
+                <h3>Cumque delectus hic mollitia necessitatibus</h3>
+                <p>Accusamus animi deleniti doloribus libero molestiae possimus provident quo. Assumenda blanditiis qui repudiandae rerum. Deleniti excepturi harum iusto optio praesentium. Libero minus optio provident rerum temporibus tenetur voluptatibus. Doloribus eligendi necessitatibus optio praesentium. Corrupti dolores laborum maiores molestias odio officiis saepe. Deserunt nobis repellendus. Consequatur deleniti eligendi odio. Cumque deserunt dolor impedit iusto laborum nihil provident quibusdam rerum.</p><a href="https://www.example.com/Earum-perferendis-sapiente-sunt.-Deleniti.">Est iusto.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Impedit non optio quod quos repudiandae sapiente tenetur. Blanditiis consequatur facere quas temporibus. Blanditiis minus perferendis. Impedit maxime officia. Corrupti delectus dolorum mollitia omnis placeat quos reiciendis. Aut minus quos voluptas. Debitis facilis officia rerum soluta. Alias delectus itaque iusto necessitatibus officiis sint tempore voluptatum. Corrupti id saepe. Blanditiis culpa cupiditate necessitatibus nobis repudiandae similique temporibus. Atque cupiditate eos facilis maiores recusandae reiciendis voluptates. Doloribus est expedita impedit molestias occaecati similique soluta voluptatum. Doloribus itaque odio. Debitis id quo. Cupiditate est maiores non repellendus. Dolorum itaque maiores quo. At atque consequatur facilis molestiae nobis non perferendis voluptates. Culpa est maiores.'
+  field_c_n_thumbnail:
+    -
+      entity: 551b075c-af70-4521-9de7-ec5e487c40f8
+  field_c_n_topics:
+    -
+      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+  field_c_n_vertical_spacing:
+    -
+      value: none

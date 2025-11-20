@@ -1,0 +1,72 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 8ee45a97-0d87-4439-b0d0-5e196f3afe05
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Sum: Exc, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Summary'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-summary
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Excepturi laborum minus necessitatibus. Minus nam officiis sunt. Alias dolor molestias nobis occaecati repudiandae similique voluptates. Expedita fuga ut. Animi est in omnis optio. Deleniti dignissimos laborum maxime praesentium quas quod temporibus. Accusamus corrupti et mollitia soluta voluptatibus voluptatum. Atque cupiditate recusandae sapiente. Consequatur corrupti deleniti et minus omnis placeat quo repudiandae saepe.'
+  field_c_n_vertical_spacing:
+    -
+      value: none

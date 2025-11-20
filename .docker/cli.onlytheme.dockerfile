@@ -55,7 +55,8 @@ RUN curl -L -o shipshape "https://github.com/salsadigitalauorg/shipshape/release
 # Install updated version of NPM.
 RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 
-# Adding patches and scripts.
+# Adding recipes, patches and scripts.
+COPY recipes /app/recipes
 COPY patches /app/patches
 COPY scripts /app/scripts
 

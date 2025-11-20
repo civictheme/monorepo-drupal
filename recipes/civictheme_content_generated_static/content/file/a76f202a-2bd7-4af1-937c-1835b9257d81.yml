@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a76f202a-2bd7-4af1-937c-1835b9257d81
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_pdf_file_1_duci.pdf
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_pdf_file_1_duci.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 30278
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

@@ -62,3 +62,10 @@ docker-compose.override.yml
 
 # Build artifacts for twig linter.
 .twig-cs-fixer.cache
+
+# Ignore recipes directory except specific subdirectories
+/recipes/*
+!/recipes/civictheme_content_generated_static/
+!/recipes/civictheme_drupal_cms_preinstall/
+!/recipes/civictheme_drupal_cms_starter/
+!/recipes/civictheme_starter/

@@ -7,7 +7,7 @@
 
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
-
+    <exclude-pattern>*/recipes/*</exclude-pattern>
     <exclude-pattern>*/web/core/*</exclude-pattern>
     <exclude-pattern>*/web/profiles/contrib/*</exclude-pattern>
     <exclude-pattern>*/web/modules/contrib/*</exclude-pattern>

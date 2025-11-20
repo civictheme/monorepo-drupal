@@ -33,6 +33,7 @@ set -e
 # DrevOps provision script is not compatible with Quant Cloud because it relies
 # on Lagoon-specific tooling (e.g., rsync to Lagoon SSH).
 if [ -x "./scripts/quant/provision-quant.sh" ]; then
+  echo "Using Quant Provisioning script"
   ./scripts/quant/provision-quant.sh
 else
   echo "Quant provisioning script missing or not executable." >&2

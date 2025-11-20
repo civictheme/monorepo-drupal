@@ -394,6 +394,13 @@ jobs:
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
     <<: *job-build
+  # Drupal CMS profile.
+  build-drupal-cms:
+    <<: *runner_config
+    environment:
+      DRUPAL_VERSION: CMS
+      DRUPAL_PROFILE: ../recipes/drupal_cms_starter
+    <<: *job-build
 
   # GovCMS profile, sub-theme. Longest test run.
   build-govcms-subtheme:
@@ -623,6 +630,19 @@ workflows:
             tags:
               only: /.*/
       - build-govcms:
+          requires:
+            - build-isolated-php-82
+            - build-isolated-php-83
+            - build-isolated-php-83-legacy
+            - build-isolated-php-83-next
+            # - build-isolated-php-84
+            # - build-isolated-php-84-next
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+      - build-drupal-cms:
           requires:
             - build-isolated-php-82
             - build-isolated-php-83

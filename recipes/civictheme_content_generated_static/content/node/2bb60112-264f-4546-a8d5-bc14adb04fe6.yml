@@ -1,0 +1,366 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2bb60112-264f-4546-a8d5-bc14adb04fe6
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Com: 8, Tit: Pag, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Webform, sidebar'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-webform-sidebar
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 358a9266-5c64-4c88-8203-de6dd38a8a6c
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+          field_c_p_webform:
+            -
+              target_id: civictheme_test_webform_fields
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ba273878-76b8-4ed4-9bfe-35aaf3c2541e
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+          field_c_p_webform:
+            -
+              target_id: civictheme_enquiry
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 56c84309-b861-4f88-be6a-f4350f60fe73
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_webform:
+            -
+              target_id: civictheme_enquiry
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c97f03da-7e71-479c-9da7-327cdd40b813
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_webform:
+            -
+              target_id: civictheme_test_webform_fields
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1bf30f17-fb9a-4b6c-9690-7bc17001e400
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+          field_c_p_webform:
+            -
+              target_id: civictheme_feedback
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: eb5cadf8-491f-4bd7-8127-8455fc9f2d81
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+          field_c_p_webform:
+            -
+              target_id: civictheme_feedback
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6f695603-547f-4dc8-a252-0fdce9c08f48
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_webform:
+            -
+              target_id: civictheme_enquiry
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b0f8f2b7-cb65-4ed3-b306-2305e603dbd4
+          bundle: civictheme_webform
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_webform:
+            -
+              target_id: contact
+              default_data: ''
+              status: ''
+              open: ''
+              close: ''
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

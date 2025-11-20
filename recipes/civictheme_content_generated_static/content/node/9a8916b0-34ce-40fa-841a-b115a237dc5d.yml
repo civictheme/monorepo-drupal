@@ -1,0 +1,269 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 9a8916b0-34ce-40fa-841a-b115a237dc5d
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Com: 5, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Callout'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-callout
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fb678904-f6b8-41b2-972b-f2d670651b7d
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Aut delectus id minus molestias recusandae repudiandae. Animi.'
+              format: ''
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Debitis-delectus-et-in-non.'
+              title: 'Dignissimos doloribus.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 link, Culpa debitis nobis.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8a6e4fa3-024f-451e-9182-682eea321a06
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Eveniet occaecati recusandae. Consequatur debitis dignissimos dolorum hic.'
+              format: ''
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Eos-iusto-optio-quidem-similique.'
+              title: 'Assumenda cupiditate.'
+              options: {  }
+            -
+              uri: 'https://www.example.com/In-molestiae-occaecati-possimus-qui.'
+              title: 'Excepturi laborum.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 2 links, Dolores eos maxime.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 95b81433-14de-41b9-a821-6f2e76d86fc9
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Autem consequatur expedita facere laborum placeat quibusdam. Accusamus.'
+              format: ''
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Et-itaque-provident-rerum.-Delectus.'
+              title: 'Alias aut.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 1 link, Ducimus eligendi nobis.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 699104ed-e1de-42fb-b7a4-6a35c5afdefa
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Blanditiis deserunt fuga itaque quo reiciendis repellendus sapiente.'
+              format: ''
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Delectus-dolores-eligendi-hic-laborum.'
+              title: 'Deleniti mollitia.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 link, Vertical spacingDoloribus iusto officia.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 30b1fea6-f26c-4c9b-b7f7-58045a7959d2
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Facilis laborum officiis quidem quod recusandae repellat repudiandae.'
+              format: ''
+          field_c_p_links:
+            -
+              uri: 'https://www.example.com/Dolorum-eveniet-libero-necessitatibus-odio.'
+              title: 'Molestiae sapiente.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 1 link, Vertical spacingAnimi aut culpa.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

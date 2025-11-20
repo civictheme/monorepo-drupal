@@ -10,7 +10,7 @@ Feature: Webform render
   Scenario: CivicTheme page content type page can be viewed by anonymous with Webform
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Webform test" has "civictheme_webform" paragraph:
-      | field_c_p_webform          | contact |
+      | field_c_p_webform          | civictheme_enquiry |
       | field_c_p_theme            | light   |
       | field_c_p_vertical_spacing | both    |
       | field_c_p_background       | 0       |
@@ -20,7 +20,7 @@ Feature: Webform render
     And I should see an ".ct-webform.ct-theme-light" element
     And I should see an ".ct-webform.ct-vertical-spacing-inset--both" element
     And I should not see an ".ct-webform.ct-theme-dark" element
-    And I see field "Your Name"
-    And I see field "Your Email"
-    And I see field "Subject"
-    And I see field "Message"
+    And I see field "First name"
+    And I see field "Last name"
+    And I see field "Email"
+    And I see field "Enquiry"

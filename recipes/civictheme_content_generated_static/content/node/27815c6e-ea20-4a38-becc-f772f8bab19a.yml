@@ -1,0 +1,1944 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 27815c6e-ea20-4a38-becc-f772f8bab19a
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    d720b9c5-5101-4fe9-9a55-053e5fbe0391: media
+    bc3fe3c6-2fa2-4d4b-89c9-d0fb9811a055: node
+    c6d7e5fc-471b-4d67-8175-95986b13aee8: node
+    55dededf-b8f0-4ec8-9f60-42e694a03e24: node
+    d51c0f76-62c0-4381-984d-644ec9aa73a6: node
+    3a7003b8-c715-4980-9036-86de9a189bad: node
+    6cde5471-c98e-434d-83b0-25426b76c3b2: node
+    3b356dee-7c02-433a-8ad8-e2298a720e7f: media
+    106e6e14-0c6d-40cf-85dd-bcf0eb87fa03: taxonomy_term
+    9fd5e9cd-37d3-4d07-9235-9141bf6ab2db: taxonomy_term
+    db6528c7-cea8-4a4f-9574-97324f2eab7e: media
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+    551b075c-af70-4521-9de7-ec5e487c40f8: media
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+    d034df75-23ae-4dea-bfa3-334b94b79660: media
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+    f2876ebf-7ba4-47c4-bf40-7a1364564b59: media
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+    6b72fc35-5061-40e5-88c4-e4166fcd9ade: taxonomy_term
+    d137be4d-e1db-47bb-86fa-0f8d5d18c9bc: media
+    de760691-a8bd-4bbc-b9a9-cacbed929cf9: media
+    b272bf9d-bd55-4a92-a0fd-b904240017a4: media
+    71e0aa2b-3de8-4d67-b907-287a2e7868af: media
+    2b11cf24-4747-4d7a-bc8c-a7ae8ce2ee3b: media
+    2b33fc27-dd4a-427e-a3a2-4b3ace382ca4: media
+    9468e905-6a82-401c-93ed-9ae6b6f1cd5d: media
+    1590793c-8c13-4a67-8607-dd9aef6115e7: media
+    def8b78a-1955-4c98-a8fd-a7f7e48dc6aa: media
+    a4f343aa-4d4d-4948-b6ff-9f6cab295888: media
+    f5615546-86c4-4d6c-8bf6-931e6079c987: media
+    3c65c30d-319f-402c-9d42-dbedc799eb34: media
+    e51bfef1-1ca4-4bdd-b4b7-a948d9313273: media
+    bf0b24f1-7173-49a1-b1f3-e5ed83b6a216: media
+    09d61f69-746d-42d1-9d8f-78c256e9595e: media
+    9ab67eb6-579a-4792-9fd5-51b046cf8873: media
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Com: 14, Tit: Pag, Ali: /ge, Sta: Y, Mod: pub, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Slider, no sidebar'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/civictheme-no-sidebar/page-component-slider-no-sidebar
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5184c613-6e44-4437-baed-b8d16a3dcdcd
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 26185f8b-bf95-4d3a-b322-09e4c2f3ef80
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d720b9c5-5101-4fe9-9a55-053e5fbe0391
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Light, image left, Aut delectus.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 slide Culpa debitis.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 99fdbd92-6c91-44cc-a98f-8942d0dbcc4c
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 0e4e105a-493a-42e7-912c-068f69fe640e
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_link_text:
+                    -
+                      value: 'Reference slide, Image on right, Dignissimos doloribus.'
+                  field_c_p_reference:
+                    -
+                      entity: bc3fe3c6-2fa2-4d4b-89c9-d0fb9811a055
+                  field_c_p_theme:
+                    -
+                      value: light
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 reference slide,  Debitis delectus.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: eaed3e24-ff4a-490a-b2be-fb79c2236dd3
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c1332030-d2b4-4a1a-afb1-9582138f7735
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_reference:
+                    -
+                      entity: c6d7e5fc-471b-4d67-8175-95986b13aee8
+                  field_c_p_theme:
+                    -
+                      value: light
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 reference slide, no button, Dolores eos.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bb8ba5fd-9d32-4e50-a8f0-5c24443dfd35
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d7b9f0e8-45cd-4869-aaf6-9de3868c0a8a
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_link_text:
+                    -
+                      value: 'Reference slide, Image on right, Eos iusto.'
+                  field_c_p_reference:
+                    -
+                      entity: 55dededf-b8f0-4ec8-9f60-42e694a03e24
+                  field_c_p_theme:
+                    -
+                      value: light
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 1 reference slide, Event  Eveniet occaecati.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 013b7e38-366e-4a9d-bbec-3e9dfcc8232b
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b1c3a8f3-d38b-41e7-8399-3e017fb9cf74
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_link_text:
+                    -
+                      value: 'Reference slide, Image on right, In molestiae.'
+                  field_c_p_reference:
+                    -
+                      entity: d51c0f76-62c0-4381-984d-644ec9aa73a6
+                  field_c_p_theme:
+                    -
+                      value: dark
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 1 reference slide,  Assumenda cupiditate.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e3fffb99-edc7-4777-8263-26b1454d6d59
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9686b5f2-3d43-437c-a12b-b067b75313d6
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_reference:
+                    -
+                      entity: 3a7003b8-c715-4980-9036-86de9a189bad
+                  field_c_p_theme:
+                    -
+                      value: dark
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 1 reference slide, no button, Excepturi laborum.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4d310331-68a1-4675-a507-c45d37020bb5
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a4280d72-025c-43bc-b706-ba50a452c201
+                  bundle: civictheme_slider_slide_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_link_text:
+                    -
+                      value: 'Reference slide, Image on right, Autem consequatur.'
+                  field_c_p_reference:
+                    -
+                      entity: 6cde5471-c98e-434d-83b0-25426b76c3b2
+                  field_c_p_theme:
+                    -
+                      value: dark
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 1 reference slide, Event Ducimus eligendi.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 93a0ca6c-5a13-436f-9537-931040533929
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 89cfc69d-2a94-4063-b24c-da15509fdc89
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Doloribus iusto officia ut. Culpa.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 3b356dee-7c02-433a-8ad8-e2298a720e7f
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Blanditiis-deserunt-fuga-itaque-quo.'
+                      title: 'Delectus dolores.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Deleniti-mollitia-quo-repudiandae-vero.'
+                      title: 'Animi aut.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Light, image left, Alias aut.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a35d843e-4227-4ace-9084-7c5e309417d3
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Dolorum eveniet libero necessitatibus odio.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: db6528c7-cea8-4a4f-9574-97324f2eab7e
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Molestiae-sapiente-tempore.-At-maxime.'
+                      title: 'Eligendi expedita.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Deserunt-temporibus-voluptatibus-voluptatum.-Debitis.'
+                      title: 'Maiores molestiae.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Light, image right, Facilis laborum.'
+                  field_c_p_topics:
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d7736392-48c7-4a08-a1cf-e5dd39f72d82
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Facere id maxime nihil odio.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 551b075c-af70-4521-9de7-ec5e487c40f8
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Dolor-omnis-optio-repudiandae.-Animi.'
+                      title: 'Laborum occaecati.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Minus-molestias-mollitia-officiis-qui.'
+                      title: 'Occaecati perferendis.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Light, image left, Non officia.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 3 slides Et itaque.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c6e086db-bace-494a-87ad-357535e7e8cc
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 78faa2a3-e812-4bbb-9e16-94ce7f9e3852
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Impedit non optio quod quos.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: d034df75-23ae-4dea-bfa3-334b94b79660
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
+                      title: 'Cupiditate est.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Fuga-id-impedit-necessitatibus-soluta.'
+                      title: 'Officia officiis.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Light, image left, Mollitia non.'
+                  field_c_p_topics:
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 69fba721-457f-466c-9b18-19e764d6c92b
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Cumque delectus hic mollitia necessitatibus.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: f2876ebf-7ba4-47c4-bf40-7a1364564b59
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Accusamus-animi-deleniti-doloribus-libero.'
+                      title: 'Earum perferendis.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Est-iusto-maxime-qui-repellat.'
+                      title: 'At cumque.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Light, image right, Distinctio harum.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f30cf4f6-d924-4bf8-8bc8-02748103284b
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Harum id nam quas. Debitis.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: d137be4d-e1db-47bb-86fa-0f8d5d18c9bc
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Asperiores-atque-molestias-mollitia-praesentium.'
+                      title: 'Atque dolor.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Consequatur-deserunt-doloribus-hic-itaque.'
+                      title: 'Libero nam.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Light, image left, Id impedit.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 3 slides, BG, Expedita officia.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3a863ed9-e120-4c7e-bc90-fdbd1752fc87
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e962d337-9624-4e7f-b0b1-941e6f53a8e4
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Debitis delectus et in non.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: de760691-a8bd-4bbc-b9a9-cacbed929cf9
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Dignissimos-doloribus-harum-nihil-quos.'
+                      title: 'Dolores eos.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Eveniet-occaecati-recusandae.-Consequatur-debitis.'
+                      title: 'Eos iusto.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Dark, image left, Aut delectus.'
+                  field_c_p_topics:
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 94cef8d7-1983-4a6e-8530-d19aa1357b6f
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'In molestiae occaecati possimus qui.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: b272bf9d-bd55-4a92-a0fd-b904240017a4
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Excepturi-laborum-minus-necessitatibus.-Minus.'
+                      title: 'Ducimus eligendi.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Autem-consequatur-expedita-facere-laborum.'
+                      title: 'Et itaque.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Dark, image right, Assumenda cupiditate.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 99d3c866-0e20-4132-b6cc-e7a57ccc2104
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Doloribus iusto officia ut. Culpa.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 71e0aa2b-3de8-4d67-b907-287a2e7868af
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Blanditiis-deserunt-fuga-itaque-quo.'
+                      title: 'Delectus dolores.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Deleniti-mollitia-quo-repudiandae-vero.'
+                      title: 'Animi aut.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Dark, image left, Alias aut.'
+                  field_c_p_topics:
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 3 slides, BG, Culpa debitis.'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d8fdf605-fc00-449d-b2bb-64b2d33eb0f4
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 15799eb2-d23a-4fb5-8b17-e5dab662faf3
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Molestiae sapiente tempore. At maxime.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 2b11cf24-4747-4d7a-bc8c-a7ae8ce2ee3b
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Eligendi-expedita-officia.-Animi-dolorum.'
+                      title: 'Deserunt temporibus.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Maiores-molestiae-saepe-voluptas.-Eos.'
+                      title: 'Non officia.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Light, image left, Dolorum eveniet.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 11ed3573-9e39-4018-aeb6-7af84e57a30f
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Dolor omnis optio repudiandae. Animi.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 2b33fc27-dd4a-427e-a3a2-4b3ace382ca4
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Laborum-occaecati-omnis.-Eligendi-possimus.'
+                      title: 'Minus molestias.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Occaecati-perferendis-tempore.-Accusamus-id.'
+                      title: 'Expedita officia.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Light, image right, Facere id.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 65667292-982a-4f71-b68a-3fee70ff927b
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Impedit non optio quod quos.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 9468e905-6a82-401c-93ed-9ae6b6f1cd5d
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
+                      title: 'Cupiditate est.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Fuga-id-impedit-necessitatibus-soluta.'
+                      title: 'Officia officiis.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Light, image left, Mollitia non.'
+                  field_c_p_topics:
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 3 slides, Vertical spacing, Facilis laborum.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 52ff7065-2f3d-4e1a-b4f9-4829a9cd86d5
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6cacaeb5-3d66-4966-a0db-318773ac780e
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Accusamus animi deleniti doloribus libero.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 1590793c-8c13-4a67-8607-dd9aef6115e7
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Earum-perferendis-sapiente-sunt.-Deleniti.'
+                      title: 'Est iusto.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/At-cumque-hic-laborum-quo.'
+                      title: 'Id impedit.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Dark, image left, Cumque delectus.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 74f63c15-2a87-4759-b0c6-c275afd903ad
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Asperiores atque molestias mollitia praesentium.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: def8b78a-1955-4c98-a8fd-a7f7e48dc6aa
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Atque-dolor-itaque-provident-recusandae.'
+                      title: 'Consequatur deserunt.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Libero-nam-odio-officiis-sapiente.'
+                      title: 'Culpa debitis.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Dark, image right, Harum id.'
+                  field_c_p_topics:
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b877fe3f-d6b7-4d24-bea7-c2bf3a5e2e7d
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Debitis delectus et in non.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: a4f343aa-4d4d-4948-b6ff-9f6cab295888
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Dignissimos-doloribus-harum-nihil-quos.'
+                      title: 'Dolores eos.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Eveniet-occaecati-recusandae.-Consequatur-debitis.'
+                      title: 'Eos iusto.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Dark, image left, Aut delectus.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 3 slides, Vertical spacing, Distinctio harum.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b8a0af8c-29db-4095-b56c-9a934f6f4a98
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 12ee05c3-a88f-4627-960a-31290bc4809b
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Excepturi laborum minus necessitatibus. Minus.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: f5615546-86c4-4d6c-8bf6-931e6079c987
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Ducimus-eligendi-nobis.-Debitis-eligendi.'
+                      title: 'Autem consequatur.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Et-itaque-provident-rerum.-Delectus.'
+                      title: 'Alias aut.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Light, image left, In molestiae.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 04aecd68-e6a0-49c5-98ca-15e556733950
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Blanditiis deserunt fuga itaque quo.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 3c65c30d-319f-402c-9d42-dbedc799eb34
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Delectus-dolores-eligendi-hic-laborum.'
+                      title: 'Deleniti mollitia.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Animi-aut-culpa-maiores.-Dignissimos.'
+                      title: 'Facilis laborum.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Light, image right, Doloribus iusto.'
+                  field_c_p_topics:
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3d98e7d7-4e15-430a-a494-f1c6512c5880
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Molestiae sapiente tempore. At maxime.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: e51bfef1-1ca4-4bdd-b4b7-a948d9313273
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Eligendi-expedita-officia.-Animi-dolorum.'
+                      title: 'Deserunt temporibus.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Maiores-molestiae-saepe-voluptas.-Eos.'
+                      title: 'Non officia.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Light, image left, Dolorum eveniet.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Light, 3 slides, BG, Vertical spacing, Assumenda cupiditate.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d6d5bc18-55a1-4558-920d-e8998d7c2242
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a45715e9-1411-4dad-b42c-c1110e62dbe3
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Laborum occaecati omnis. Eligendi possimus.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: bf0b24f1-7173-49a1-b1f3-e5ed83b6a216
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Minus-molestias-mollitia-officiis-qui.'
+                      title: 'Occaecati perferendis.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Expedita-officia-quod-recusandae.-Earum.'
+                      title: 'Mollitia non.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 1, Dark, image left, Dolor omnis.'
+                  field_c_p_topics:
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9892edb7-4b12-49cc-8d01-a00a138fc5e8
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Corrupti id saepe. Blanditiis culpa.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 09d61f69-746d-42d1-9d8f-78c256e9595e
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Cupiditate-est-maiores-non-repellendus.'
+                      title: 'Fuga id.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Officia-officiis-quos.-Facere-harum.'
+                      title: 'Distinctio harum.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 2, Dark, image right, Impedit non.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 71ec1268-50bb-47dc-b484-1d4cf9f9ffc3
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: 'Accusamus animi deleniti doloribus libero.'
+                      format: civictheme_rich_text
+                  field_c_p_date:
+                    -
+                      value: '2022-12-22'
+                  field_c_p_image:
+                    -
+                      entity: 9ab67eb6-579a-4792-9fd5-51b046cf8873
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Earum-perferendis-sapiente-sunt.-Deleniti.'
+                      title: 'Est iusto.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/At-cumque-hic-laborum-quo.'
+                      title: 'Id impedit.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Slide 3, Dark, image left, Cumque delectus.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Dark, 3 slides, BG, Vertical spacing, Facere id.'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

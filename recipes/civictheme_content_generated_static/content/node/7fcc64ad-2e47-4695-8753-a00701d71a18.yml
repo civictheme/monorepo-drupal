@@ -1,0 +1,124 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7fcc64ad-2e47-4695-8753-a00701d71a18
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    e51bfef1-1ca4-4bdd-b4b7-a948d9313273: media
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Sum: Del, Top: 1, Thu: Y, Ver: bot, Sho: N, Cus: 202, Com: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Summary, Topics (1), Thumbnail, Both spaces, Content, Uncheck Last Updated Date, Shows Custom Date'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-summary-topics-1-thumbnail-both-spaces-content-uncheck-last-updated-date-shows-custom-date
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5a8d4714-033d-485e-a19a-739eda819fd9
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Deleniti mollitia quo repudiandae vero</h2>
+                <p>Animi aut culpa maiores. Dignissimos dolor est laborum optio provident reiciendis. Doloribus facere fuga temporibus voluptas. Deleniti earum iusto maxime. Cumque facilis nam odio officia optio placeat possimus quidem quos. Libero repellat vero voluptatibus. Id maiores sint. Dolor et expedita itaque molestias mollitia quo sunt voluptatibus. Atque distinctio hic placeat saepe voluptatibus. Deleniti distinctio dolores itaque maxime officiis placeat praesentium qui.</p>
+                <p>Facilis laborum officiis quidem quod recusandae repellat repudiandae sapiente sint. Ducimus eos facilis saepe similique tempore. Animi autem corrupti et impedit minus molestiae optio. Animi cupiditate distinctio hic maxime quibusdam. Asperiores eos et maiores quas recusandae rerum. Officia tempore voluptates. Corrupti deleniti dignissimos doloribus ducimus itaque ut. Est excepturi expedita in praesentium recusandae voluptatibus.</p>
+                <h3>Dolorum eveniet libero necessitatibus odio</h3>
+                <p>Molestiae sapiente tempore. At maxime quas quod repellat rerum saepe similique tenetur. Animi consequatur culpa deleniti dolorum molestiae occaecati vero. At dignissimos id minus mollitia quidem repudiandae saepe soluta voluptas. Facere harum molestias necessitatibus quos repellendus. Assumenda cumque dignissimos libero non quas qui quod repellat. Alias asperiores facere libero minus nihil officiis repellendus rerum.</p><a href="https://www.example.com/Eligendi-expedita-officia.-Animi-dolorum.">Deserunt temporibus.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_custom_last_updated:
+    -
+      value: '2022-07-01'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: false
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Delectus dolores eligendi hic laborum odio officia recusandae ut voluptatum. Corrupti est nobis quibusdam. Autem distinctio mollitia odio. At delectus fuga impedit maiores molestiae repellendus rerum vero. Consequatur distinctio et maxime nam non officiis placeat temporibus. Alias ducimus eligendi et in molestias quidem quod reiciendis voluptatum. Atque est non optio quos repellendus voluptatibus. Autem debitis hic officia qui quod repellendus soluta voluptatibus.'
+  field_c_n_thumbnail:
+    -
+      entity: e51bfef1-1ca4-4bdd-b4b7-a948d9313273
+  field_c_n_topics:
+    -
+      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+  field_c_n_vertical_spacing:
+    -
+      value: both
