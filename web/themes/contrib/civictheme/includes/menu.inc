@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\Xss;
 use Drupal\Core\Url;
 
 /**
