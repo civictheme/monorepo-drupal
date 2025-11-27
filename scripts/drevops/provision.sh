@@ -72,32 +72,7 @@ fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\03
 # @formatter:on
 
 yesno() { [ "${1}" = "1" ] && echo "Yes" || echo "No"; }
-
-# Prepare Drush URI using QUANT_ROUTE when available.
-drush_uri=""
-if [ -v QUANT_ROUTE ] && [ -n "${QUANT_ROUTE}" ]; then
-  case "${QUANT_ROUTE}" in
-    http://*|https://*)
-      drush_uri="${QUANT_ROUTE%/}"
-      info "Using QUANT_ROUTE for Drush URI: ${drush_uri}"
-      ;;
-    *)
-      note "QUANT_ROUTE is set but is not a full URL. Drush will fall back to the default site context."
-      ;;
-  esac
-elif [ -v QUANT_ROUTE ]; then
-  note "QUANT_ROUTE is defined but empty. Drush will fall back to the default site context."
-else
-  note "QUANT_ROUTE not defined. Drush will fall back to the default site context."
-fi
-
-drush() {
-  if [ -n "${drush_uri}" ]; then
-    ./vendor/bin/drush -y --uri="${drush_uri}" "$@"
-  else
-    ./vendor/bin/drush -y "$@"
-  fi
-}
+drush() { ./vendor/bin/drush -y "$@"; }
 
 info "Started site provisioning."
 
