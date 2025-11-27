@@ -72,7 +72,13 @@ fail() { [ "${TERM:-}" != "dumb" ] && tput colors >/dev/null 2>&1 && printf "\03
 # @formatter:on
 
 yesno() { [ "${1}" = "1" ] && echo "Yes" || echo "No"; }
-drush() { ./vendor/bin/drush -y "$@"; }
+drush() {
+  if [ -n "${drush_uri}" ]; then
+    ./vendor/bin/drush -y --uri="${drush_uri}" "$@"
+  else
+    ./vendor/bin/drush -y "$@"
+  fi
+}
 
 info "Started site provisioning."
 
