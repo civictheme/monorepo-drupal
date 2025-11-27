@@ -32,9 +32,9 @@ set -e
 # Delegate Drupal provisioning to the Quant-aware script. The standard
 # DrevOps provision script is not compatible with Quant Cloud because it relies
 # on Lagoon-specific tooling (e.g., rsync to Lagoon SSH).
-if [ -x "./scripts/quant/provision-quant.sh" ]; then
-  ./scripts/quant/provision-quant.sh
+if [ -x "./scripts/drevops/provision.sh" ]; then
+  ./scripts/drevops/provision.sh
 else
-  echo "Quant provisioning script missing or not executable." >&2
+  echo "Drevops provisioning script missing or not executable." >&2
   exit 1
 fi

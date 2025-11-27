@@ -10,6 +10,7 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - release/*
     - hotfix/*
     - feature/editorial-*
+    - project/quant-provision
     tags:
     - '*'
 
@@ -37,9 +38,12 @@ jobs:
         quant_application: civictheme-monorepo-drupal
         master_branch_override: main
 
-    - name: Override outputs for quant-cloud-migration branch
+    - name: Override outputs for special branches
       id: override-outputs
       run: |-
+        # Default: do not skip database sync
+        skip_db_sync="false"
+
         # Override outputs for quant-cloud-migration branch to treat it as production
         if [[ "${{ github.ref }}" == "refs/heads/quant-cloud-migration" ]]; then
           echo "image_suffix=-latest" >> $GITHUB_OUTPUT
@@ -48,6 +52,17 @@ jobs:
           echo "environment_name=production" >> $GITHUB_OUTPUT
           echo "environment_exists=true" >> $GITHUB_OUTPUT
           echo "Overriding outputs for quant-cloud-migration branch: using -latest suffix and production environment"
+        # Override for project/quant-provision branch to skip database sync (fresh install from static content)
+        elif [[ "${{ github.ref }}" == "refs/heads/project/quant-provision" ]]; then
+          echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
+          suffix="${{ steps.init.outputs.image_suffix }}"
+          clean_suffix="${suffix#-}"
+          echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
+          echo "is_production=false" >> $GITHUB_OUTPUT
+          echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
+          echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
+          skip_db_sync="true"
+          echo "Overriding outputs for project/quant-provision branch: skipping database sync"
         else
           # Use the original action outputs
           echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
@@ -59,6 +74,8 @@ jobs:
           echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
           echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
         fi
+
+        echo "skip_db_sync=$skip_db_sync" >> $GITHUB_OUTPUT
 
     - name: Build and push cli image
       uses: docker/build-push-action@v5
@@ -121,7 +138,7 @@ jobs:
 
     - name: Sync database from production to new environment
       if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' && steps.override-outputs.outputs.environment_name
-        != 'production' }}
+        != 'production' && steps.override-outputs.outputs.skip_db_sync != 'true' }}
       uses: quantcdn/quant-cloud-environment-sync-action@v1.0.0
       with:
         api_key: ${{ secrets.QUANT_API_KEY }}
