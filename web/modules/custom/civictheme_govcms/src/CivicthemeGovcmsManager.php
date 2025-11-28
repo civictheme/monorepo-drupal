@@ -150,7 +150,10 @@ final class CivicthemeGovcmsManager {
     foreach ($info as $entity_type => $field_info) {
       foreach ($field_info as $bundle => $field_names) {
         try {
-          field_entity_bundle_delete($entity_type, $bundle);
+          $bundle_entity = $this->entityTypeManager->getStorage($entity_type)->load($bundle);
+          if ($bundle_entity !== NULL) {
+            $bundle_entity->delete();
+          }
         }
         catch (\Exception) {
           // Do nothing - try to remove fields manually below.
