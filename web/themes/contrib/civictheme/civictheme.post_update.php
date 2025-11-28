@@ -778,8 +778,19 @@ function civictheme_post_update_import_subject_card_view_mode(): void {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_post_update_alert_visibility_validation(): string {
-  $view_config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
-  $view_config->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
-  $view_config->save();
-  return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+  $config_name = 'views.view.civictheme_alerts';
+  $config_entity_type = 'view';
+  // Get Remove the config prefix, so can get the id.
+  // @see Drupal\civictheme\CivicthemeUpdateHelper::deleteConfig().
+  // @see Drupal\Core\Config\Entity\ConfigEntityStorage\ConfigEntityStorage::getIDFromConfigName().
+  $id = substr($config_name, strpos($config_name, '.', 6) + 1);
+  $config_read = \Drupal::service('entity_type.manager')->getStorage($config_entity_type)->load($id);
+  // Only update config if it already exists.
+  if ($config_read) {
+    $config_object = \Drupal::configFactory()->getEditable($config_name);
+    $config_object->set('display.default.display_options.fields.field_c_n_alert_page_visibility.alter.strip_tags', TRUE);
+    $config_object->save();
+    return (string) (new TranslatableMarkup('Updated alert api view to strip tags from visibility validation.'));
+  }
+  return (string) (new TranslatableMarkup('Update to alert api view skipped, view does not exist.'));
 }

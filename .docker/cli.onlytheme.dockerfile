@@ -5,11 +5,11 @@
 # - Installs Composer dependencies
 # - Installs CivicTheme dependencies and builds assets
 #
-# @see https://hub.docker.com/r/uselagoon/php-8.2-cli-drupal/tags
+# @see https://hub.docker.com/r/uselagoon/php-8.3-cli-drupal/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
 #
 # hadolint global ignore=DL3018
-FROM uselagoon/php-8.2-cli-drupal:24.5.1
+FROM uselagoon/php-8.3-cli-drupal:24.10.0
 
 # Add missing variables.
 # @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
