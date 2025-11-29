@@ -114,6 +114,7 @@ commands:
 
   install-site:
     usage: Install a site.
+    aliases: ['provision']
     cmd: |
       docker-compose exec \
       -e DREVOPS_DRUPAL_VERSION=${DREVOPS_DRUPAL_VERSION:-} \
@@ -151,13 +152,11 @@ commands:
   fei:
     usage: Install front-end assets.
     cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library install"
       ahoy cli "npm --prefix docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
     cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/civictheme_library && npm run build"
       ahoy cli "cd docroot/themes/contrib/${DREVOPS_DRUPAL_THEME} && npm run build"
 
   lint:
@@ -198,7 +197,7 @@ commands:
 
   test-bdd:
     usage: Run BDD tests.
-    cmd: ahoy cli "DREVOPS_TEST_TYPE=bdd DREVOPS_TEST_ARTIFACT_DIR=${DREVOPS_TEST_ARTIFACT_DIR} DREVOPS_TEST_REPORTS_DIR=${DREVOPS_TEST_REPORTS_DIR} DREVOPS_TEST_BEHAT_PROFILE=${DREVOPS_TEST_BEHAT_PROFILE:-} DREVOPS_TEST_BEHAT_FORMAT=${DREVOPS_TEST_BEHAT_FORMAT:-} DREVOPS_TEST_BEHAT_PARALLEL_INDEX=${DREVOPS_TEST_BEHAT_PARALLEL_INDEX:-} BEHAT_SCREENSHOT_PURGE=${BEHAT_SCREENSHOT_PURGE-} DREVOPS_TEST_BEHAT_TAGS=${DREVOPS_TEST_BEHAT_TAGS-} ./scripts/drevops/test.sh $@"
+    cmd: ahoy cli php -d memory_limit=-1 vendor/bin/behat --colors "$@"
 
   test-bats:
     usage: Run Bats tests (host only).

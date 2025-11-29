@@ -1,0 +1,78 @@
+//
+// Event Card component.
+//
+
+@use 'sass:map';
+
+.ct-event-card {
+  $root: &;
+
+  @include ct-elevation-interaction();
+
+  position: relative;
+  border-radius: $ct-event-card-border-radius;
+  width: 100%;
+
+  // Event image from "spilling" over the border radius.
+  overflow: hidden;
+
+  &:not(#{$root}--with-image) {
+    @include ct-highlight-stripe-horizontal($ct-event-card-stripe-height, $ct-event-card-border-radius, 0);
+  }
+
+  #{$root}__image {
+    @include ct-image-fit();
+
+    position: relative;
+    height: $ct-event-card-image-height-mobile;
+    width: $ct-event-card-image-width-mobile;
+
+    @include ct-breakpoint(m) {
+      height: $ct-event-card-image-height-desktop;
+      width: $ct-event-card-image-width-desktop;
+    }
+  }
+
+  #{$root}__content {
+    padding: ct-spacing(3);
+  }
+
+  #{$root}__date {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+  }
+
+  #{$root}__location {
+    @include ct-typography('label-regular');
+
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__tags {
+    display: flex;
+    margin-top: ct-spacing(2);
+  }
+
+  #{$root}__tags__link {
+    @include ct-flex-align-right();
+
+    .ct-link__icon {
+      @include ct-icon-size();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    &#{$root}:not(#{$root}--with-image) {
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+    }
+  }
+}

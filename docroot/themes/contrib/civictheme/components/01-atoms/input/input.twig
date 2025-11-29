@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Input component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Input type: Text, Textarea, Email, Password, Tel.
+ * - value: [string] Input field value.
+ * - placeholder: [string] Input field placeholder text.
+ * - id: [string] Input field html ID attribute.
+ * - name: [string] Input field html name attribute.
+ * - state: [string] Input field state: error, success.
+ * - required: [boolean] Required state.
+ * - disabled: [boolean] Disabled state.
+ * - autocomplete: [boolean] Autocomplete state.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes
+ */
+#}
+
+{% if type is not empty %}
+
+  {% set state = state is empty or state == 'none' ? 'default' : state %}
+  {% set state_class = 'ct-input--%s'|format(state) %}
+  {% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
+  {% set required_class = required ? 'ct-input--required required' : '' %}
+  {% set type_class = 'ct-input--%s'|format(type) %}
+  {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+  {% set civictheme_input_modifier_class = '%s %s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, type_class, modifier_class|default('')) %}
+
+  {% if type == 'hidden' %}
+    <input
+      type="{{ type }}"
+      value="{{ value }}"
+      {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+    />
+  {% else %}
+    <div class="ct-input {{ civictheme_input_modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+      {% if type == 'textarea' %}
+        {% include '@atoms/textarea/textarea.twig' %}
+      {% elseif type == 'radio' %}
+        {% include '@atoms/radio/radio.twig' %}
+      {% elseif type == 'checkbox' %}
+        {% include '@atoms/checkbox/checkbox.twig' %}
+      {% elseif type == 'submit' or type == 'reset' %}
+        {% include '@atoms/button/button.twig' with {
+          kind: type,
+          text: value,
+          modifier_class: civictheme_input_modifier_class,
+        } only %}
+      {% else %}
+        {% include '@atoms/textfield/textfield.twig' %}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endif %}

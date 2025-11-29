@@ -1,0 +1,30 @@
+{#
+/**
+  * @file
+  * Mobile Navigation Close component.
+  *
+  * Available variables:
+  * - theme: [string] theme: light, dark.
+  * - text: [string] Test for the button.
+  * - attributes: [string] Button tag attributes.
+  * - modifier_class: [string] Additional classes.
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set attribute_values = '%s %s'|format('data-flyout-close-all-trigger', attributes|default('')) %}
+{% set button_text = text|default('Close') %}
+
+<div class="ct-mobile-navigation-close {{ modifier_class }}">
+  {% include '@atoms/button/button.twig' with {
+    theme: theme,
+    type: 'tertiary',
+    kind: 'button',
+    size: 'small',
+    text: button_text,
+    icon: 'close',
+    icon_placement: 'after',
+    attributes: attribute_values,
+    modifier_class: 'ct-mobile-navigation-close__button',
+  } only %}
+</div>

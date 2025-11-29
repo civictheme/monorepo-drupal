@@ -1,0 +1,42 @@
+//
+// Visibility component.
+//
+
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-visibility-lowest-breakpoint {
+    .show-#{$breakpoint} {
+      display: block !important;
+    }
+
+    .show-#{$breakpoint}-table {
+      display: table !important;
+    }
+
+    .hide-#{$breakpoint} {
+      display: none !important;
+    }
+  }
+  @else {
+    @include ct-breakpoint($breakpoint) {
+      .show-#{$breakpoint} {
+        display: block !important;
+      }
+
+      .show-#{$breakpoint}-table {
+        display: table !important;
+      }
+
+      .show-#{$breakpoint}-flex {
+        display: flex !important;
+      }
+
+      .hide-#{$breakpoint} {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.ct-visually-hidden {
+  @include ct-visually-hidden();
+}

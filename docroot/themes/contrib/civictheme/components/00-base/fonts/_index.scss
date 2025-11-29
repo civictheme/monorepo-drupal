@@ -1,0 +1,15 @@
+//
+// Font component.
+//
+// stylelint-disable no-invalid-position-at-import-rule, scss/dollar-variable-pattern
+
+// Generate all fonts inclusions.
+@include ct-font-include(_ct-font-map-all());
+
+@if $ct-font-smoothing-enable {
+  html {
+    text-rendering: optimizelegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}

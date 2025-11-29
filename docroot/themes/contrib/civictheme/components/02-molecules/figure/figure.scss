@@ -1,0 +1,27 @@
+//
+// Figure component.
+//
+
+.ct-figure {
+  $root: &;
+
+  margin: 0;
+  display: block;
+
+  @include ct-reset-margins();
+
+  #{$root}__image {
+    border-radius: $ct-figure-border-radius;
+    object-fit: contain;
+  }
+
+  #{$root}__caption {
+    @include ct-typography('label-small');
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__caption {
+      @include ct-component-property($root, $theme, caption, color);
+    }
+  }
+}

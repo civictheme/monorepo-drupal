@@ -1,0 +1,32 @@
+//
+// Basic Filter component.
+//
+
+.ct-single-filter {
+  $root: &;
+
+  border-top: solid ct-particle(0.125);
+  border-bottom: solid ct-particle(0.125);
+  padding-top: ct-spacing(3);
+  padding-bottom: ct-spacing(3);
+  margin-top: ct-spacing(4);
+  margin-bottom: ct-spacing(5);
+
+  @include ct-breakpoint(m) {
+    padding-top: ct-spacing(5);
+    padding-bottom: ct-spacing(5);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(3);
+  }
+
+  #{$root}__submit {
+    white-space: nowrap;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    border-top-color: ct-component-var($root, $theme, border-color);
+    border-bottom-color: ct-component-var($root, $theme, border-color);
+  }
+}

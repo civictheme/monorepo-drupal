@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Video component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title for the iframe.
+ * - url: [string] URL of the video.
+ * - width: [string] Width of the iframe.
+ * - height: [string] Height of the video.
+ * - transcript_link: [object] Video transcript link.
+ * - oembed: [string] oEmbed provided iframe container.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if sources is not empty or embedded_source is not empty or raw_source is not empty %}
+  <div class="ct-video-player {{ modifier_class }}">
+    {% block video %}
+      <div class="ct-video-player__wrapper">
+        {% if sources is not empty %}
+          {% include '@atoms/video/video.twig' with {
+            sources: sources,
+            poster: poster,
+            width: width,
+            height: height,
+            has_controls: true,
+          } only %}
+        {% elseif embedded_source is not empty %}
+          {% set attributes = '%s %s'|format('allowfullscreen data-chromatic="ignore"', attributes|default('')) %}
+          {% if title is not empty %}
+            {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
+          {% endif %}
+          {% include '@atoms/iframe/iframe.twig' with {
+            url: embedded_source,
+            attributes: attributes,
+            width: width,
+            height: height,
+          } only %}
+        {% else %}
+          {{ raw_source|raw }}
+        {% endif %}
+      </div>
+    {% endblock %}
+
+    {% block links %}
+      <div class="ct-video-player__links">
+        {% if transcript_link.url is defined and transcript_link.url is not empty %}
+          <div class="ct-video-player__links__transcript">
+            {% include '@atoms/button/button.twig' with {
+              kind: 'link',
+              theme: theme,
+              type: 'tertiary',
+              text: transcript_link.text,
+              title: transcript_link.title,
+              url: transcript_link.url,
+              is_new_window: transcript_link.is_new_window,
+              is_external: transcript_link.is_external,
+              attributes: transcript_link.attributes,
+              icon: 'eye',
+              icon_placement: 'before',
+              size: 'small',
+            } only %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

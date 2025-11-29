@@ -1,0 +1,20 @@
+//
+// Back to Top component stories.
+//
+
+.example-container__page-content {
+  &.example-ct-back-to-top {
+    height: 2000px;
+
+    &::before {
+      box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #f00 inset;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: '';
+    }
+  }
+}

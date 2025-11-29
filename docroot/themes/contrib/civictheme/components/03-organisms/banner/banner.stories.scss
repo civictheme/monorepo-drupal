@@ -1,0 +1,13 @@
+//
+// Banner component stories.
+//
+
+.ct-banner {
+  &__content__example {
+    margin-bottom: ct-spacing(6);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

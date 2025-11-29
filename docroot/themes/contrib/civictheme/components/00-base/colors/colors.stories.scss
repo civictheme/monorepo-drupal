@@ -1,0 +1,76 @@
+//
+// Color stories.
+//
+
+@use 'sass:string';
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:color';
+
+//
+// Mixin to create a color box with specific dimensions.
+//
+@mixin ct-stories-color-box($key, $value, $width:  ct-particle(12), $height:  ct-particle(12)) {
+  margin: 0 ct-spacing(2) ct-spacing(2) 0;
+  position: relative;
+  width: $width;
+
+  .story-color-element {
+    // @code
+    // Uncomment below for more prominent borders.
+    // $border-color: desaturate(color.invert($value, 100%), 100%);
+    // @endcode
+    $border-color: color.scale($value, $lightness: -40%);
+
+    display: block;
+    height: $height;
+    box-shadow: inset 0 0 0 ct-particle(0.125) $border-color;
+    position: relative;
+    background-color: $value;
+  }
+
+  .story-color-text {
+    display: block;
+
+    @include ct-typography('label-small');
+
+    text-align: center;
+    margin: ct-spacing() 0;
+
+    &::after {
+      $content: string.to-upper-case(#{$value});
+
+      content: '#{$content}';
+      font-family: 'Courier New', monospace, sans-serif;
+      text-align: center;
+      display: block;
+      position: absolute;
+      line-height: 150%;
+      width: 100%;
+    }
+  }
+}
+
+.story-colors-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  $brand-colors: _ct-colors-brands();
+  $colors: _ct-colors();
+
+  @include ct-generate-class-variations-from-map(map-get($brand-colors, 'light'), 'story-color-light') using($key, $value, $index) {
+    @include ct-stories-color-box($key, $value,  ct-particle(12), ct-particle(7.5));
+  }
+
+  @include ct-generate-class-variations-from-map(map-get($brand-colors, 'dark'), 'story-color-dark') using($key, $value, $index) {
+    @include ct-stories-color-box($key, $value,  ct-particle(12), ct-particle(7.5));
+  }
+
+  @include ct-generate-class-variations-from-map(map-get($colors, 'light'), 'story-color-light') using($key, $value, $index) {
+    @include ct-stories-color-box($key, $value,  ct-particle(12), ct-particle(7.5));
+  }
+
+  @include ct-generate-class-variations-from-map(map-get($colors, 'dark'), 'story-color-dark') using($key, $value, $index) {
+    @include ct-stories-color-box($key, $value,  ct-particle(12), ct-particle(7.5));
+  }
+}

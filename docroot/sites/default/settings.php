@@ -260,3 +260,15 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 if (file_exists($app_root . '/' . $site_path . '/services.local.yml')) {
   $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.local.yml';
 }
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'drupal',
+  'password' => 'drupal',
+  'prefix' => '',
+  'host' => 'mariadb',
+  'port' => '3306',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'driver' => 'mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+);
+$settings['hash_salt'] = 'B27CcmjOkwQg2lYcatOlOLbhro3_L1IRq5-kIwrQbuy95KE6NMo6uJXAupkAxeqCO9A_f7Mnzw';

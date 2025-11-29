@@ -10,15 +10,15 @@
 
 // stylelint-disable no-invalid-position-at-import-rule
 .cke_editable {
-  // Include civictheme content css styles for typography
-  @include ct-content();
-  @include ct-content-light();
-
   // Load all non-stories mixins.
   @import '01-atoms/**/!(*.stories).scss';
   @import '02-molecules/**/!(*.stories|basic-content).scss';
   @import '03-organisms/**/!(*.stories).scss';
   @import '04-templates/**/!(*.stories).scss';
   @import '05-pages/**/!(*.stories).scss';
+
+  // Include civictheme content css styles for typography
+  @include ct-content();
+  @include ct-content-light();
 }
 // stylelint-enable no-invalid-position-at-import-rule

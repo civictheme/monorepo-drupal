@@ -1,0 +1,50 @@
+//
+// Spacing component stories.
+//
+
+@use 'sass:color';
+@use 'sass:list';
+
+.story-spacing-wrapper {
+  div {
+    position: relative;
+    width: 100%;
+    min-height: ct-spacing();
+  }
+
+  $spacings: ();
+
+  @for $index from 1 through 11 {
+    $spacings: list.append($spacings, ct-spacing($index));
+  }
+
+  @include ct-generate-class-variations-from-map($spacings, 'story-spacing') using($name, $value, $index) {
+    padding: $value 0 0 $value;
+
+    $transparency: if($index % 2 == 0, 25%, 50%);
+
+    background-color: color.mix(#61daff, white, $transparency);
+
+    &::before {
+      content: 'spacing #{$name}';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+}
+
+.story-vertical-spacing-wrapper {
+  .story-vertical-spacing-container {
+    @include ct-block-debug(red, 'Component container', true, 2px);
+
+    position: relative;
+    overflow: hidden; // Force container to reflow.
+  }
+
+  .story-vertical-spacing {
+    @include ct-block-debug(blue, 'Component', false, 2px);
+
+    position: relative;
+  }
+}

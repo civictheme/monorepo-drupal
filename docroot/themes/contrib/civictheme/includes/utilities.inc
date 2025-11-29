@@ -12,6 +12,7 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
@@ -86,7 +87,7 @@ function civictheme_media_get_variables(MediaInterface $media) {
     'name' => t('@name', ['@name' => $file->label()]),
     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?? '',
     'url' => civictheme_media_get_url($media),
-    'size' => format_size($file->getSize()),
+    'size' => ByteSizeMarkup::create($file->getSize()),
     'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
     'changed' => civictheme_format_date('civictheme_short_date', $media->getChangedTime()),
     'icon' => civictheme_get_icon_from_file($file),
@@ -382,6 +383,32 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
   }
 
   return $entities;
+}
+
+/**
+ * Gets the first referenced entity in a field of an entity.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   The host entity.
+ * @param string $field_name
+ *   The entity reference field.
+ *
+ * @return \Drupal\Core\Entity\EntityInterface|null
+ *   Referenced entity.
+ */
+function civictheme_get_field_referenced_entity(FieldableEntityInterface $entity, string $field_name): ?EntityInterface {
+  $referenced_entity = NULL;
+
+  $entities = civictheme_get_field_referenced_entities($entity, $field_name);
+
+  if (!empty($entities)) {
+    $referenced_entity = reset($entities);
+    if (!$referenced_entity instanceof EntityInterface) {
+      $referenced_entity = NULL;
+    }
+  }
+
+  return $referenced_entity;
 }
 
 /**

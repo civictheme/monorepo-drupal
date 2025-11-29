@@ -1,0 +1,76 @@
+//
+// Promo Card component.
+//
+
+@use 'sass:map';
+
+.ct-promo-card {
+  $root: &;
+
+  @include ct-elevation-interaction();
+
+  position: relative;
+  border-radius: $ct-promo-card-border-radius;
+  width: 100%;
+
+  // Promo image from "spilling" over the border radius.
+  overflow: hidden;
+
+  &:not(#{$root}--with-image) {
+    @include ct-highlight-stripe-horizontal($ct-promo-card-stripe-height, $ct-promo-card-border-radius, 0);
+  }
+
+  #{$root}__image {
+    @include ct-image-fit();
+
+    position: relative;
+    height: $ct-promo-card-image-height-mobile;
+    width: $ct-promo-card-image-width-mobile;
+
+    @include ct-breakpoint(m) {
+      height: $ct-promo-card-image-height-desktop;
+      width: $ct-promo-card-image-width-desktop;
+    }
+  }
+
+  #{$root}__content {
+    padding: ct-spacing(3);
+  }
+
+  #{$root}__subtitle {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__date {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+  }
+
+  #{$root}__tags {
+    display: flex;
+    margin-top: ct-spacing(2);
+  }
+
+  #{$root}__tags__link {
+    @include ct-flex-align-right();
+
+    .ct-link__icon {
+      @include ct-icon-size();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    &#{$root}:not(#{$root}--with-image) {
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+    }
+  }
+}

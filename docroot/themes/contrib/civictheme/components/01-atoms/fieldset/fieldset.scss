@@ -1,0 +1,24 @@
+//
+// Fieldset component.
+//
+
+.ct-fieldset {
+  $root: &;
+
+  border: none;
+  padding: ct-spacing(2) 0;
+
+  &.ct-form-element--form-required {
+    #{$root}__legend::after {
+      content: ' (Required)';
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &.ct-form-element--form-required {
+      #{$root}__legend::after {
+        @include ct-component-property($root, $theme, required, color);
+      }
+    }
+  }
+}

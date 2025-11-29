@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Tooltip component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - symbol: [string] Symbol to use in the button. Defaults to 'userinterface_informationmark'.
+ * - text: [string] Text to display within the popup.
+ * - title: [string] Text used within the button title and for screen readers.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content %}
+  <div class="ct-tooltip {{ modifier_class }}" data-component-name="tooltip" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <button class="ct-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
+      {%- include '@base/icon/icon.twig' with {
+        symbol: icon|default('information-mark'),
+        size: icon_size|default('large'),
+      } only -%}
+    </button>
+
+    <div class="ct-tooltip__description" data-tooltip-content>
+      <div class="ct-tooltip__description__inner">
+        {{ content }}
+      </div>
+      <div data-tooltip-close>
+        {%- include "@atoms/button/button.twig" with {
+          type: 'tertiary',
+          kind: 'button',
+          icon: 'cancel',
+          size: 'regular',
+        } only -%}
+      </div>
+
+      <div class="ct-tooltip__arrow" data-tooltip-arrow></div>
+    </div>
+  </div>
+{% endif %}

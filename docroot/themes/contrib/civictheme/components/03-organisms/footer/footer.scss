@@ -1,0 +1,116 @@
+//
+// Footer component.
+//
+
+.ct-footer {
+  $root: &;
+
+  @include ct-print-hide();
+  @include ct-background();
+
+  &__top {
+    .row {
+      padding-top: ct-spacing(4);
+      padding-bottom: ct-spacing(2);
+
+      @include ct-breakpoint(m) {
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
+        border-bottom: solid ct-particle(0.125) transparent;
+      }
+    }
+  }
+
+  &__top__content-top1 {
+    // stylelint-disable-block block-no-empty
+  }
+
+  &__top__content-top2 {
+    @include ct-breakpoint-upto(m) {
+      margin-top: ct-spacing(3);
+    }
+  }
+
+  &__middle {
+    .row {
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(2);
+
+      @include ct-breakpoint(m) {
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
+        border-bottom: solid ct-particle(0.125) transparent;
+      }
+    }
+  }
+
+  &__bottom {
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(4);
+
+    @include ct-breakpoint(m) {
+      padding-top: ct-spacing(5);
+      padding-bottom: ct-spacing(5);
+    }
+  }
+
+  &__bottom__content-bottom2 {
+    @include ct-breakpoint-upto(m) {
+      margin-top: ct-spacing(3);
+    }
+  }
+
+  .copyright {
+    @include ct-breakpoint(m) {
+      text-align: right;
+    }
+  }
+
+  .ct-social-links {
+    @include ct-breakpoint(m) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .ct-navigation {
+    @include ct-breakpoint-upto(m) {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  [data-collapsible='true'] {
+    margin-bottom: 0;
+
+    [data-collapsible-trigger] {
+      padding: ct-spacing(2) ct-spacing();
+      margin-bottom: 0;
+    }
+
+    [data-collapsible-panel] {
+      padding-left: ct-spacing();
+      padding-right: ct-spacing();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, color);
+
+    #{$root}__top {
+      .row {
+        @include ct-breakpoint(m) {
+          @include ct-component-property($root, $theme, border-color);
+        }
+      }
+    }
+
+    #{$root}__middle {
+      .row {
+        @include ct-breakpoint(m) {
+          @include ct-component-property($root, $theme, border-color);
+        }
+      }
+    }
+  }
+}

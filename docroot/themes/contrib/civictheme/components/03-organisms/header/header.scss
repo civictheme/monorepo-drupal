@@ -1,0 +1,57 @@
+//
+// Header component.
+//
+
+.ct-header {
+  $root: &;
+
+  &__content-top2,
+  &__content-top3 {
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
+  }
+
+  &__middle {
+    border-bottom: solid ct-particle(0.125);
+    padding-top: ct-particle(2);
+    padding-bottom: ct-particle(2);
+  }
+
+  &__content-middle2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content-middle3 {
+    @include ct-print-hide();
+
+    height: 100%;
+    position: relative;
+
+    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
+      position: static;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .ct-mobile-navigation-trigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__top {
+      @include ct-component-property($root, $theme, top, background-color);
+      @include ct-component-property($root, $theme, top, color);
+    }
+
+    #{$root}__middle {
+      @include ct-component-property($root, $theme, middle, background-color);
+      @include ct-component-property($root, $theme, middle, border-color);
+    }
+  }
+}

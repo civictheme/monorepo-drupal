@@ -1,0 +1,23 @@
+//
+// Breadcrumb component.
+//
+
+.ct-breadcrumb {
+  $root: &;
+
+  @include ct-typography('label-regular');
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__links__separator {
+      @include ct-component-property($root, $theme, color);
+    }
+
+    #{$root}__links {
+      &__link {
+        &--active {
+          @include ct-component-property($root, $theme, active, color);
+        }
+      }
+    }
+  }
+}

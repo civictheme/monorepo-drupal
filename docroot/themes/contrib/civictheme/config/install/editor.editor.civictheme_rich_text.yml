@@ -4,9 +4,9 @@ dependencies:
   config:
     - filter.format.civictheme_rich_text
   module:
-    - ckeditor
+    - ckeditor5
 format: civictheme_rich_text
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
     rows:

@@ -1,0 +1,18 @@
+//
+// Background component.
+//
+
+@mixin ct-background() {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ct-background {
+  @include ct-background();
+}
+
+// Generate .ct-background--[blend-mode] classes that can be added to elements.
+@include ct-generate-class-variations-from-map($ct-background-blend-modes, 'ct-background', true) using($key, $value, $index) {
+  background-blend-mode: $value;
+}

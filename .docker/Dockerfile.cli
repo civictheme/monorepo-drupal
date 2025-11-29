@@ -9,7 +9,7 @@
 #
 # @see https://hub.docker.com/r/uselagoon/php-7.4-cli-drupal/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
-FROM uselagoon/php-8.1-cli-drupal:23.10.0
+FROM uselagoon/php-8.3-cli-drupal:25.11.0
 
 # Add missing variables.
 # @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
@@ -93,13 +93,11 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist -
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
-COPY docroot/themes/contrib/civictheme/civictheme_library/package.json docroot/themes/contrib/civictheme/civictheme_library/package* /app/docroot/themes/contrib/civictheme/civictheme_library/
 COPY docroot/themes/contrib/civictheme/ docroot/themes/contrib/civictheme/package* /app/docroot/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencies here - they are not exposed in any way.
-RUN npm --prefix docroot/themes/contrib/civictheme/civictheme_library install --no-audit --no-progress --unsafe-perm
 RUN npm --prefix docroot/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
@@ -108,12 +106,11 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd /app/docroot/themes/contrib/civictheme/civictheme_library && npm run build
 RUN cd /app/docroot/themes/contrib/civictheme && npm run build
 
 # Create subtheme.
 RUN cd /app/docroot/themes/contrib/civictheme \
-  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../../custom/civictheme_demo
 
 # Compile subtheme assets.
 RUN npm --prefix docroot/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \

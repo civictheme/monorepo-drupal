@@ -1,0 +1,199 @@
+//
+// Base rules for Storybook stories.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+
+// Set default styles for the Storybook viewport.
+#root {
+  font-family: sans-serif;
+  padding: ct-spacing(2);
+
+  // Only apply wrappers used directly in preview, but not within other
+  // components.
+  > .story-wrapper-size--small {
+    max-width: map.get($ct-breakpoints, 'xs');
+  }
+
+  > .story-wrapper-size--medium {
+    max-width: map.get($ct-breakpoints, 's');
+  }
+
+  > .story-wrapper-size--large {
+    max-width: map.get($ct-breakpoints, 'xxl');
+  }
+
+  > .story-wrapper--centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  > .story-wrapper--centered-both {
+    margin-top: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.sb-show-main {
+  overflow-y: scroll;
+
+  &.sb-main-fullscreen,
+  &.sb-main-centered {
+    #root {
+      padding: 0;
+    }
+  }
+}
+
+.story-slot {
+  display: block;
+  background-color: color.adjust(purple, $alpha: -0.7);
+  padding: 1em;
+  text-align: center;
+  font-family: sans-serif;
+  border: dotted ct-particle(0.125) purple;
+
+  .ct-theme-dark & {
+    background-color: color.adjust(white, $alpha: -0.7);
+    border: dotted ct-particle(0.125) purple;
+  }
+}
+
+.story-slot--image_over {
+  position: absolute;
+  top: 4em;
+  left: 0;
+  right: 0;
+}
+
+.story-placeholder {
+  $_color: grey;
+
+  width: 100%;
+  display: block;
+  background-color: color.adjust($_color, $alpha: -0.7);
+  padding: 1em;
+  text-align: center;
+  font-family: sans-serif;
+  border: dotted ct-particle(0.125) $_color;
+  color: color.adjust($_color, $alpha: -0.1);
+
+  .ct-theme-dark & {
+    background-color: color.adjust($_color, $alpha: -0.7);
+    border: dotted ct-particle(0.125) $_color;
+    color: color.adjust($_color, $alpha: 0.1);
+  }
+}
+
+.example-container {
+  $root: &;
+
+  margin-bottom: ct-spacing(4);
+
+  #{$root}__title {
+    @include ct-typography('label-large');
+
+    border-bottom: solid ct-particle(0.125);
+    margin-bottom: ct-spacing(2);
+
+    code {
+      text-transform: lowercase;
+      font-family: 'Courier New', monospace;
+      background: #eee;
+      padding: 0 0.25em;
+    }
+  }
+
+  #{$root}__subtitle {
+    @include ct-typography('label-regular');
+
+    margin-bottom: ct-spacing(1);
+  }
+
+  #{$root}__content {
+    margin-bottom: ct-spacing(4);
+  }
+
+  #{$root}__subcontent {
+    margin-bottom: ct-spacing(4);
+  }
+
+  &#{$root}--columns {
+    display: flex;
+  }
+
+  &#{$root}--columns--2 {
+    #{$root}__column {
+      width: 50%;
+      padding: ct-spacing(2);
+    }
+  }
+
+  #{$root}__column {
+    flex: 1;
+
+    &--light {
+      background: ct-color-light('background-light');
+
+      #{$root}__title,
+      #{$root}__subtitle {
+        color: ct-color-light('heading');
+      }
+
+      #{$root}__content,
+      #{$root}__subcontent {
+        color: ct-color-light('body');
+      }
+    }
+
+    &--dark {
+      background: ct-color-dark('background');
+
+      #{$root}__title,
+      #{$root}__subtitle {
+        color: ct-color-dark('heading');
+      }
+
+      #{$root}__content,
+      #{$root}__subcontent {
+        color: ct-color-dark('body');
+      }
+    }
+  }
+}
+
+.docs-container {
+  $root: &;
+
+  border: solid ct-particle(0.125) #ccc;
+  padding: ct-spacing(4);
+  margin: ct-spacing(4) auto;
+  max-width: 60%;
+
+  &--small {
+    max-width: map.get($ct-breakpoints, 'xs');
+  }
+
+  &--medium {
+    max-width: map.get($ct-breakpoints, 's');
+  }
+
+  &--large {
+    margin: ct-spacing(8) auto;
+    min-width: map.get($ct-breakpoints, 'xxl');
+  }
+
+  &--content-centered {
+    text-align: center;
+  }
+
+  #{$root}__title {
+    @include ct-typography('label-large');
+  }
+
+  #{$root}__content {
+    margin-bottom: ct-spacing(4);
+  }
+}
