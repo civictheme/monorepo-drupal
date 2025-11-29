@@ -21,7 +21,6 @@ use DrevOps\BehatSteps\JsTrait;
 use DrevOps\BehatSteps\LinkTrait;
 use DrevOps\BehatSteps\MediaTrait;
 use DrevOps\BehatSteps\MenuTrait;
-use DrevOps\BehatSteps\OverrideTrait;
 use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
@@ -34,6 +33,7 @@ use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Url;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
@@ -45,6 +45,8 @@ use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
  */
 class FeatureContext extends DrupalContext {
 
+  use BlockTrait;
+  use BlockContentTrait;
   use ContentTrait;
   use DateTrait;
   use ElementTrait;

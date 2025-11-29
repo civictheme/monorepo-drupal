@@ -9,16 +9,17 @@
         "issues": "https://github.com/civictheme/monorepo-drupal/issues"
     },
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "drupal/components": "^3@beta",
         "drupal/field_group": "^3.4",
-        "drupal/layout_builder_restrictions": "^2.19",
-        "drupal/linkit": "^6.1",
+        "drupal/focal_point": "^2.0",
+        "drupal/layout_builder_restrictions": "^3",
+        "drupal/linkit": "^7",
         "drupal/menu_block": "^1.10",
         "drupal/paragraphs": "^1.16",
         "drupal/pathauto": "^1.12",
         "drupal/redirect": "^1.9",
-        "drupal/simple_sitemap": "^4.1",
+        "drupal/simple_sitemap": "^4.2",
         "drupal/webform": "^6.2"
     },
     "suggest": {

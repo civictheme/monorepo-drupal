@@ -7,6 +7,7 @@ namespace Drupal\civictheme;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -174,12 +175,14 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Array of field configs.
    * @param array|null $group_config
    *   Optional array of group configs.
+   * @param string $view_mode
+   *   View mode to update.
    */
-  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
+  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
-      ->load($entity_type . '.' . $bundle . '.default');
+      ->load($entity_type . '.' . $bundle . '.' . $view_mode);
 
     // @phpstan-ignore-next-line
     if (!$form_display) {
@@ -203,6 +206,49 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     }
 
     $form_display->save();
+  }
+
+  /**
+   * Update entity view display.
+   *
+   * @param string $entity_type
+   *   Entity type to update.
+   * @param string $bundle
+   *   Bundle to update.
+   * @param array $field_config
+   *   Array of field configs.
+   * @param array|null $group_config
+   *   Optional array of group configs.
+   * @param string $view_mode
+   *   View mode to update.
+   */
+  public function updateViewDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
+    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
+    $view_display = $this->entityTypeManager
+      ->getStorage('entity_view_display')
+      ->load($entity_type . '.' . $bundle . '.' . $view_mode);
+
+    if (!$view_display instanceof EntityViewDisplayInterface) {
+      return;
+    }
+
+    foreach ($field_config as $field => $replacements) {
+      $component = $view_display->getComponent($field);
+      $component = $component ? array_replace_recursive($component, $replacements) : $replacements;
+      $view_display->setComponent($field, $component);
+
+      if ($group_config) {
+        $field_group = $view_display->getThirdPartySettings('field_group');
+        foreach ($group_config as $group_name => $group_config_item) {
+          if (!empty($field_group[$group_name]['children'])) {
+            $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config_item);
+            $view_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
+          }
+        }
+      }
+    }
+
+    $view_display->save();
   }
 
   /**
