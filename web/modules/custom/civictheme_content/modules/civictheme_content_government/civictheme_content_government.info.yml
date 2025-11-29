@@ -1,7 +1,7 @@
 name: 'CivicTheme Government Content'
 type: module
 description: 'Provides default Government content CivicTheme theme.'
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 package: CivicTheme
 dependencies:
   - default_content:default_content

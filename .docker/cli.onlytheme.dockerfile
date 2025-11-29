@@ -7,7 +7,7 @@
 #
 # @see https://hub.docker.com/r/uselagoon/php-8.1-cli-drupal/tags
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
-FROM uselagoon/php-8.1-cli-drupal:23.12.0
+FROM uselagoon/php-8.3-cli-drupal:25.11.0
 
 # Add missing variables.
 # @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
@@ -42,7 +42,7 @@ ENV WEBROOT=${WEBROOT} \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv python3 make gcc g++ diffutils ncurses=6.4_p20230506-r0 pv=1.6.20-r1 tzdata=2023d-r0 \
+    && apk add pv python3 make gcc g++ diffutils ncurses pv tzdata \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 

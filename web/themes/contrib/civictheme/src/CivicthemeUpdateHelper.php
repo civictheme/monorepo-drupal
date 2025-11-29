@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\paragraphs\ParagraphInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,26 +20,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 
   /**
-   * The entity type manager.
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
-   * A logger instance.
-   */
-  protected LoggerInterface $logger;
-
-  /**
    * ConfigEntityUpdater constructor.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
    * @param \Psr\Log\LoggerInterface $logger
    *   Logger.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger) {
-    $this->entityTypeManager = $entity_type_manager;
-    $this->logger = $logger;
+  public function __construct(protected EntityTypeManagerInterface $entityTypeManager, protected LoggerInterface $logger) {
   }
 
   /**
@@ -81,6 +73,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       if ($limit) {
         $query->range(0, $limit);
       }
+
       $sandbox['entities'] = $query->execute();
 
       $sandbox['max'] = count($sandbox['entities']);
@@ -93,7 +86,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       call_user_func($start_callback, $this);
     }
 
-    $sandbox['batch']++;
+    ++$sandbox['batch'];
 
     /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
     $entities = $storage->loadMultiple(array_splice($sandbox['entities'], 0, $batch_size));
@@ -106,20 +99,20 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       $sandbox['results'][$process_return === TRUE ? 'updated' : 'skipped'][] = $entity->id();
     }
 
-    $sandbox['#finished'] = !empty($sandbox['entities']) ? ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'] : 1;
+    $sandbox['#finished'] = empty($sandbox['entities']) ? 1 : ($sandbox['max'] - count($sandbox['entities'])) / $sandbox['max'];
 
     if ($sandbox['#finished'] >= 1) {
       $log = call_user_func($finish_callback, $this);
 
-      $log = new TranslatableMarkup("%finished\n<br> Update ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
+      $log = (string) new FormattableMarkup("%finished\n<br> Update ran in %batches batch(es):\n<br>   Processed: %processed %processed_ids\n<br>   Updated: %updated %updated_ids\n<br>   Skipped: %skipped %skipped_ids\n<br>", [
         '%finished' => $log ?? '',
         '%batches' => $sandbox['batch'],
         '%processed' => count($sandbox['results']['processed']),
-        '%processed_ids' => count($sandbox['results']['processed']) ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
+        '%processed_ids' => count($sandbox['results']['processed']) > 0 ? '(' . implode(', ', $sandbox['results']['processed']) . ')' : '',
         '%updated' => count($sandbox['results']['updated']),
-        '%updated_ids' => count($sandbox['results']['updated']) ? '(' . implode(', ', $sandbox['results']['updated']) . ')' : '',
+        '%updated_ids' => count($sandbox['results']['updated']) > 0 ? '(' . implode(', ', $sandbox['results']['updated']) . ')' : '',
         '%skipped' => count($sandbox['results']['skipped']),
-        '%skipped_ids' => count($sandbox['results']['skipped']) ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
+        '%skipped_ids' => count($sandbox['results']['skipped']) > 0 ? '(' . implode(', ', $sandbox['results']['skipped']) . ')' : '',
       ]);
       $this->logger->info($log);
 
@@ -182,12 +175,14 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Array of field configs.
    * @param array|null $group_config
    *   Optional array of group configs.
+   * @param string $view_mode
+   *   View mode to update.
    */
-  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL): void {
+  public function updateFormDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->entityTypeManager
       ->getStorage('entity_form_display')
-      ->load($entity_type . '.' . $bundle . '.default');
+      ->load($entity_type . '.' . $bundle . '.' . $view_mode);
 
     // @phpstan-ignore-next-line
     if (!$form_display) {
@@ -211,6 +206,49 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     }
 
     $form_display->save();
+  }
+
+  /**
+   * Update entity view display.
+   *
+   * @param string $entity_type
+   *   Entity type to update.
+   * @param string $bundle
+   *   Bundle to update.
+   * @param array $field_config
+   *   Array of field configs.
+   * @param array|null $group_config
+   *   Optional array of group configs.
+   * @param string $view_mode
+   *   View mode to update.
+   */
+  public function updateViewDisplayConfig(string $entity_type, string $bundle, array $field_config, array $group_config = NULL, string $view_mode = 'default'): void {
+    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
+    $view_display = $this->entityTypeManager
+      ->getStorage('entity_view_display')
+      ->load($entity_type . '.' . $bundle . '.' . $view_mode);
+
+    if (!$view_display instanceof EntityViewDisplayInterface) {
+      return;
+    }
+
+    foreach ($field_config as $field => $replacements) {
+      $component = $view_display->getComponent($field);
+      $component = $component ? array_replace_recursive($component, $replacements) : $replacements;
+      $view_display->setComponent($field, $component);
+
+      if ($group_config) {
+        $field_group = $view_display->getThirdPartySettings('field_group');
+        foreach ($group_config as $group_name => $group_config_item) {
+          if (!empty($field_group[$group_name]['children'])) {
+            $field_group[$group_name]['children'] = array_merge($field_group[$group_name]['children'], $group_config_item);
+            $view_display->setThirdPartySetting('field_group', $group_name, $field_group[$group_name]);
+          }
+        }
+      }
+    }
+
+    $view_display->save();
   }
 
   /**
@@ -241,6 +279,24 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     }
 
     return $updated;
+  }
+
+  /**
+   * Create a paragraph.
+   *
+   * @param array $paragraph_values
+   *   The content string.
+   *
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   Created paragraph.
+   */
+  public function createContentParagraph(array $paragraph_values): ?ParagraphInterface {
+    $paragraph = $this->entityTypeManager->getStorage('paragraph')->create($paragraph_values);
+    $paragraph->save();
+    if ($paragraph instanceof ParagraphInterface) {
+      return $paragraph;
+    }
+    return NULL;
   }
 
 }
