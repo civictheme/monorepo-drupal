@@ -1,0 +1,83 @@
+//
+// Input component.
+//
+
+@use 'sass:math';
+
+.ct-input {
+  $root: &;
+  $_border-width: ct-particle(0.125);
+  $_hover-border-width: $_border-width * 2;
+  $_horizontal_spacing: ct-spacing(2);
+  $_vertical_spacing: ct-spacing(1.625);
+  $_label-size: 'label-small';
+  $_label-font-size: ct-typography-rule($_label-size, 'font-size', 'm');
+  $_label-line_height: ct-typography-rule($_label-size, 'line-height', 'm');
+
+  @include ct-form-control-no-appearance();
+  @include ct-form-control-disabled($ct-input-disabled-opacity);
+  @include ct-typography('label-small');
+
+  border-radius: $ct-input-border-radius;
+  border-style: solid;
+  border-width: $_border-width;
+  padding: $_vertical_spacing $_horizontal_spacing;
+  width: 100%;
+  min-height: $_label-line_height + $_vertical_spacing * 2;
+
+  &[type='color'] {
+    padding: math.div($_vertical_spacing, 2) math.div($_horizontal_spacing, 2);
+    width: $_label-line_height + $_vertical_spacing * 2;
+  }
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: $ct-input-outline-width;
+    outline-offset: $ct-input-outline-offset;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &:focus-visible {
+      @include ct-component-property($root, $theme, outline-color);
+    }
+
+    &:not(#{$root}--is-invalid) {
+      @include ct-component-property($root, $theme, color);
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-component-property($root, $theme, background-color);
+
+      @if $theme == 'dark' {
+        // Note that this will also affects the calendar color scheme.
+        color-scheme: dark;
+      }
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, color);
+      }
+
+      &:hover {
+        @include ct-component-property($root, $theme, hover, color);
+        @include ct-component-property($root, $theme, hover, border-color);
+        @include ct-component-property($root, $theme, hover, background-color);
+        @include ct-form-control-border-inset(ct-component-var($root, $theme, hover, border-color), $_hover-border-width - $_border-width);
+      }
+
+      &:focus-visible {
+        @include ct-component-property($root, $theme, focus, color);
+        @include ct-component-property($root, $theme, focus, border-color);
+        @include ct-component-property($root, $theme, focus, background-color);
+      }
+    }
+
+    &#{$root}--is-invalid {
+      @include ct-component-property($root, $theme, invalid, color);
+      @include ct-component-property($root, $theme, invalid, border-color);
+      @include ct-component-property($root, $theme, invalid, background-color);
+      @include ct-form-control-border-inset(ct-component-var($root, $theme, invalid, border-color), $_hover-border-width - $_border-width);
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, invalid, color);
+      }
+    }
+  }
+}

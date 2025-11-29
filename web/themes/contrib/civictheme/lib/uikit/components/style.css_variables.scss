@@ -1,0 +1,29 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use '00-base/variables';
+@use '00-base/mixins/color';
+@import '00-base/mixins/map';
+@import '00-base/mixins/string';
+
+html {
+  $colors: map.deep-merge(variables.$ct-colors-default, variables.$ct-colors);
+
+  @each $theme, $colors in $colors {
+    @each $name, $value in $colors {
+      --#{ct-string(ct-join-lists(('ct', 'color', $theme, $name), '-'))}: #{$value};
+    }
+  }
+
+  @each $name, $value in meta.module-variables('variables') {
+    // Only filter by CivicTheme variables.
+    @if str-index($name, 'ct-') {
+      // Only filter by variable names related to color or opacity.
+      @if str-index($name, 'color') or str-index($name, 'opacity') {
+        // Only filter by color or string variables.
+        @if type-of($value) == 'color' or type-of($value) == 'number' or type-of($value) == 'string' {
+          --#{$name}: #{$value};
+        }
+      }
+    }
+  }
+}

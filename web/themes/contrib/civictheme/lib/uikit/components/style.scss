@@ -1,0 +1,14 @@
+//
+// Styles.
+//
+// stylelint-disable scss/at-import-partial-extension
+@import '00-base/reset/reset';
+@import '00-base/variables';
+
+// Load all non-stories mixins.
+@import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
+@import '01-atoms/**/!(*.stories).scss';
+@import '02-molecules/**/!(*.stories).scss';
+@import '03-organisms/**/!(*.stories).scss';
+@import '04-templates/**/!(*.stories).scss';
+@import '05-pages/**/!(*.stories).scss';

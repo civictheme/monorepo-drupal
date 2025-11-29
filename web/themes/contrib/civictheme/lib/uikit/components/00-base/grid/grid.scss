@@ -1,0 +1,162 @@
+//
+// Grid component.
+//
+
+@use 'sass:map';
+
+// Container class should wrap every row.
+.container {
+  @include ct-container();
+}
+
+.container-fluid {
+  @include ct-container(false);
+}
+
+.row {
+  $root: &;
+
+  @include ct-row($ct-grid-gutters);
+
+  &#{$root}--no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*='col-'] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &#{$root}--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &#{$root}--no-grow {
+    > .col,
+    > [class*='col-'] {
+      flex-grow: initial;
+      flex-basis: auto;
+    }
+  }
+
+  &#{$root}--fill-width {
+    > .col,
+    > [class*='col-'] {
+      max-width: 100%;
+      flex-grow: 1;
+    }
+  }
+
+  &#{$root}--equal-heights-content {
+    > .col,
+    > [class*='col-'] {
+      > * {
+        height: 100%;
+      }
+    }
+  }
+
+  &#{$root}--unequal-heights {
+    > .col,
+    > [class*='col-'] {
+      margin-bottom: auto;
+    }
+  }
+
+  &#{$root}--vertically-spaced {
+    @each $bp, $gutter in $ct-grid-vertical-gutters {
+      @if $bp == $ct-grid-lowest-breakpoint {
+        row-gap: $gutter;
+        margin-bottom: $gutter;
+      }
+      @else {
+        @include ct-breakpoint($bp) {
+          row-gap: $gutter;
+          margin-bottom: $gutter;
+        }
+      }
+    }
+  }
+}
+
+ul.row {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.col {
+  $root: &;
+
+  // Make columns at the lowest breakpoint to act as a single column per row.
+  @include _ct-grid-col($ct-grid-lowest-breakpoint, $ct-grid-columns);
+
+  $next-bp: ct-map-get-next($ct-breakpoints, $ct-grid-lowest-breakpoint, map.get($ct-breakpoints, 'xxs'), key);
+
+  // Spawn columns to fit into as single row for larger breakpoints.
+  @include ct-breakpoint($next-bp) {
+    @include _ct-grid-col();
+  }
+}
+
+// Generate column classes.
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-grid-lowest-breakpoint {
+    @include _ct-col-factory($breakpoint);
+  }
+  @else {
+    @include ct-breakpoint($breakpoint) {
+      @include _ct-col-factory($breakpoint);
+    }
+  }
+}
+
+// Utilities for fixed and auto columns.
+.col,
+[class*='col-'] {
+  &.col--reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &.col--no-grow {
+    flex-grow: initial;
+    flex-basis: auto;
+  }
+
+  &.col--no-gap {
+    // Remove the offsets starting from the next breakpoint from the lowest one.
+    @include ct-breakpoint($ct-grid-responsive-breakpoint) {
+      &:not(:first-child) {
+        padding-left: 0;
+      }
+
+      &:not(:last-child) {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-grid-lowest-breakpoint {
+    .first {
+      order: -1;
+    }
+
+    .last {
+      order: 1;
+    }
+  }
+  @else {
+    @include ct-breakpoint($breakpoint) {
+      .first-#{$breakpoint} {
+        order: -1;
+      }
+      .last-#{$breakpoint} {
+        order: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+//
+// Visibility mixins.
+//
+
+//
+// Make element visually hidden but readable by screen readers.
+//
+@mixin ct-visually-hidden() {
+  position: absolute !important;
+  clip: rect(ct-particle(0.125), ct-particle(0.125), ct-particle(0.125), ct-particle(0.125));
+  overflow: hidden;
+  height: 1px !important;
+  width: 1px !important;
+  word-wrap: normal;
+
+  &.ct-focusable {
+    &:active,
+    &:focus-visible,
+    &:hover {
+      position: static !important;
+      overflow: visible;
+      clip: auto;
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+}

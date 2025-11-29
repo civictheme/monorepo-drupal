@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Icon component.
+ *
+ * Variables:
+ * - symbol: [string] Required icon name.
+ * - size: [string] Optional icon size.
+ * - alt: [string] Optional alternate text of the image.
+ * - attributes: [string] Optional additional attributes.
+ * - modifier_class: [string] Optional additional classes.
+ * - assets_dir: [string] Optional assets directory to get icons from.
+ */
+#}
+
+{% set assets_dir = assets_dir|default('@civictheme/../assets') %}
+
+{% if symbol is not empty %}
+  {% set source = source(assets_dir ~ '/icons/' ~ symbol ~ '.svg', true) %}
+  {% if source is not empty %}
+    {% set size_class = size ? 'ct-icon--size-' ~ size : '' %}
+    {% set base_class = 'ct-icon ' ~ size_class %}
+    {% set modifier = modifier_class|default('') %}
+    {% set aria_attributes = 'aria-hidden="true" role="img"' %}
+    {% set alt_attribute = alt is defined ? 'alt="' ~ alt ~ '"' : '' %}
+    {% set additional_attributes = attributes|default('') %}
+    {% set attributes = 'class="' ~ base_class ~ ' ' ~ modifier ~ '" ' ~ aria_attributes ~ ' ' ~ alt_attribute ~ ' ' ~ additional_attributes %}
+    {{ source|replace({'<svg ': '<svg ' ~ attributes ~ ' '})|raw }}
+  {% endif %}
+{% endif %}

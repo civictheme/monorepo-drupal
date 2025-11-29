@@ -18,15 +18,12 @@
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
     "lint": "eslint ./components ./.storybook ./webpack && stylelint '{components,assets/sass}/**/*.scss'",
     "lint-fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
-    "postinstall": "patch-package && npm run uikit-install && npm run add-lint-exclusions",
-    "reset": "rm -rf node_modules > /dev/null; rm -rf lib/uikit > /dev/null",
+    "postinstall": "patch-package && npm run add-lint-exclusions",
+    "reset": "rm -rf node_modules > /dev/null",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -s .storybook/static",
-    "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && start-storybook -s .storybook/static",
-    "uikit-install": "rm -Rf lib/uikit > /dev/null 2>&1 && mkdir -p lib/uikit && cp -R node_modules/@civictheme/uikit lib && rm -Rf lib/uikit/dist lib/uikit/storybook-static > /dev/null 2>&1"
+    "storybook-full": "export NODE_OPTIONS=--openssl-legacy-provider && export STORYBOOK_FULL=1 && start-storybook -s .storybook/static"
   },
-  "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#v1.8.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.1",
     "@babel/cli": "^7.24.7",

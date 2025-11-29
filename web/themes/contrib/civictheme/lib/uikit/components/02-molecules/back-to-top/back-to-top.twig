@@ -1,0 +1,17 @@
+{#
+/**
+* @file
+* Back to Top component.
+*/
+#}
+
+<div class="ct-back-to-top" data-component-name="back-to-top" data-scrollspy data-scrollspy-offset="400">
+  {% include '@atoms/button/button.twig' with {
+    kind: 'link',
+    type: 'primary',
+    icon: 'up-arrow',
+    url: '#top',
+    title: 'Return focus to the top of the page',
+    modifier_class: 'ct-back-to-top__button',
+  } only %}
+</div>

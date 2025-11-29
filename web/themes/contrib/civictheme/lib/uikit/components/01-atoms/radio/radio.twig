@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Radio component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - name: [string] DOM name. Required.
+ * - id: [string] DOM id. Required.
+ * - value: [string] DOM value.
+ * - label: [string] Label content.
+ * - is_checked: [boolean] Denote if the control is checked.
+ * - is_required: [boolean] Denote if the control is required.
+ * - is_invalid: [boolean] Denote if the control is invalid.
+ * - is_disabled: [boolean] Denote if the control is disabled.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set is_invalid_class = is_invalid ? 'ct-radio--is-invalid' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_invalid_class, modifier_class|default(''))|trim %}
+
+{% if name is not empty and id is not empty %}
+  <input
+    type="radio"
+    class="ct-radio {{ modifier_class -}}"
+    name="{{ name }}"
+    value="{{ value }}"
+    id="{{ id }}"
+    {% if is_checked %}checked{% endif %}
+    {% if is_required %}required{% endif %}
+    {% if is_disabled %}disabled{% endif %}
+    {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+  />
+  {% if label is not empty %}
+    {% include '@atoms/label/label.twig' with {
+      theme: theme,
+      content: label,
+      for: id,
+      size: 'small',
+      modifier_class: 'ct-radio__label',
+    } only %}
+  {% endif %}
+{% endif %}

@@ -1,0 +1,24 @@
+//
+// Reset mixins.
+//
+
+//
+// Reset the box model dimensions.
+//
+@mixin ct-reset-box-model() {
+  @include ct-reset-margins();
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+//
+// Reset margins.
+//
+@mixin ct-reset-margins() {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}

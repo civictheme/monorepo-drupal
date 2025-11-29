@@ -1,0 +1,70 @@
+//
+// Custom documentation helpers for Storybook.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+
+#root {
+  > .story-docs {
+    $root: &;
+
+    border: solid ct-particle(0.125) #ccc;
+    padding: ct-spacing(4);
+    margin: ct-spacing(4) auto;
+    max-width: 60%;
+    text-align: center;
+    line-height: 150%;
+
+    &.story-docs-size--small {
+      max-width: map.get($ct-breakpoints, 'xs');
+    }
+
+    &.story-docs-size--medium {
+      max-width: map.get($ct-breakpoints, 's');
+    }
+
+    &.story-docs-size--large {
+      margin: ct-spacing(8) auto;
+      min-width: map.get($ct-breakpoints, 'xxl');
+    }
+
+    &.story-docs-size--fluid {
+      width: fit-content;
+      max-width: 80%;
+    }
+
+    #{$root}__title {
+      @include ct-typography('label-large');
+    }
+
+    #{$root}__content {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  // Test class for the docs class testing.
+  .test-docs-align-right {
+    text-align: right !important;
+
+    > * {
+      text-align: right !important;
+    }
+  }
+}
+
+//
+// Conditionally show docs if an element with a certain class follows the docs.
+//
+// The story should add .story-docs--conditional as `docsClass`.
+//
+@mixin ct-story-docs-conditional($class) {
+  .story-docs.story-docs--conditional:has(+ #{$class}) {
+    display: block;
+  }
+
+  .story-docs.story-docs--conditional:not(:has(+ #{$class})) {
+    display: none;
+  }
+}

@@ -1,0 +1,89 @@
+//
+// Collapsible component.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+
+[data-collapsible] {
+  [data-collapsible-trigger] {
+    cursor: pointer;
+  }
+
+  .ct-collapsible__icon {
+    @include ct-icon-size();
+  }
+
+  &:not([data-collapsible-trigger-no-icon]) {
+    [data-collapsible-trigger] {
+      position: relative;
+
+      .ct-collapsible__icon {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &[data-collapsible-trigger-wide] {
+      [data-collapsible-trigger] {
+        display: flex;
+
+        .ct-collapsible__icon {
+          @include ct-flex-align-right();
+        }
+      }
+    }
+  }
+
+  &:not([data-collapsible-duration='0']) {
+    [data-collapsible-trigger] {
+      .ct-collapsible__icon {
+        transition: transform 0.5s;
+      }
+    }
+  }
+
+  &[data-collapsible-collapsing] {
+    [data-collapsible-trigger] {
+      .ct-collapsible__icon {
+        transform: rotate(0deg);
+      }
+    }
+
+    &[data-collapsible-collapsed] {
+      [data-collapsible-trigger] {
+        .ct-collapsible__icon {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+
+  &[data-collapsible-collapsed] {
+    [data-collapsible-trigger] {
+      .ct-collapsible__icon {
+        transform: rotate(0deg);
+      }
+    }
+
+    [data-collapsible-panel] {
+      height: 0;
+      overflow: hidden;
+
+      @include ct-print() {
+        height: auto;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.no-js {
+  [data-collapsible] {
+    &[data-collapsible-collapsed] {
+      [data-collapsible-panel] {
+        height: auto;
+        overflow: auto;
+      }
+    }
+  }
+}

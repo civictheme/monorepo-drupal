@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Content Link component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Button text.
+ * - url: [string] URL.
+ * - title: [string] Defines the title of a link.
+ * - is_new_window: [boolean] Open in a new window.
+ * - is_external: [boolean] Link is external.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set is_external = is_external ? 'ct-content-link--external' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
+
+{% if text is not empty %}
+  {% set link_content %}
+    {%- include '@base/text-icon/text-icon.twig' with {
+      text: text,
+      is_new_window: is_new_window,
+      is_external: is_external,
+    } only -%}
+  {% endset %}
+
+  <a
+    class="ct-content-link {{ modifier_class -}}"
+    {% if url is not empty %}href="{{ url }}"{% endif %}
+    {% if title is not empty %}title="{{ title }}"{% endif %}
+    {% if is_new_window %}target="_blank" aria-label="Opens in a new tab"{% endif %}
+    {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+  >
+    {{- link_content -}}
+  </a>
+{% endif %}

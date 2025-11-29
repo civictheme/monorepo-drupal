@@ -1,0 +1,321 @@
+//
+// Layout component.
+//
+
+.ct-layout {
+  $root: &;
+
+  &__sidebar_top_left,
+  &__sidebar_top_right,
+  &__sidebar_bottom_left,
+  &__sidebar_bottom_right {
+    @include ct-print-hide();
+  }
+
+  &.ct-vertical-spacing--top {
+    #{$root}.ct-vertical-spacing--top,
+    #{$root}.ct-vertical-spacing--both {
+      margin-top: 0;
+    }
+
+    #{$root}.ct-vertical-spacing--bottom,
+    #{$root}.ct-vertical-spacing--both {
+      margin-bottom: 0;
+    }
+  }
+
+  &__inner {
+    $inner: &;
+
+    display: grid;
+    grid-template-columns: repeat($ct-layout-columns, 1fr);
+    row-gap: $ct-layout-row-gap;
+    grid-template-rows: auto 1fr;
+    grid-template-rows: masonry;
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      // Activate masonry layout.
+      --js-masonry-enabled: 1;
+
+      // See the responsive layout rules at the bottom of this file.
+      column-gap: $ct-layout-column-gap;
+    }
+
+    --stl: 1;
+    --str: 2;
+    --m: 3;
+    --sbl: 4;
+    --sbr: 5;
+
+    #{$root}--no-top-left > & {
+      --stl: 0;
+      --str: 1;
+      --m: 2;
+      --sbl: 3;
+      --sbr: 4;
+    }
+
+    #{$root}--no-top-right > & {
+      --stl: 1;
+      --str: 0;
+      --m: 2;
+      --sbl: 3;
+      --sbr: 4;
+    }
+
+    #{$root}--no-bottom-left > & {
+      --stl: 1;
+      --str: 2;
+      --m: 3;
+      --sbl: 0;
+      --sbr: 4;
+    }
+
+    #{$root}--no-bottom-right > & {
+      --stl: 1;
+      --str: 2;
+      --m: 3;
+      --sbl: 4;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-left#{$root}--no-top-right > & {
+      --stl: 0;
+      --str: 0;
+      --m: 1;
+      --sbl: 2;
+      --sbr: 3;
+    }
+
+    #{$root}--no-top-left#{$root}--no-bottom-left > & {
+      --stl: 0;
+      --str: 1;
+      --m: 2;
+      --sbl: 0;
+      --sbr: 3;
+    }
+
+    #{$root}--no-top-left#{$root}--no-bottom-right > & {
+      --stl: 0;
+      --str: 1;
+      --m: 2;
+      --sbl: 3;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-right#{$root}--no-bottom-left > & {
+      --stl: 1;
+      --str: 0;
+      --m: 2;
+      --sbl: 0;
+      --sbr: 3;
+    }
+
+    #{$root}--no-top-right#{$root}--no-bottom-right > & {
+      --stl: 1;
+      --str: 0;
+      --m: 2;
+      --sbl: 3;
+      --sbr: 0;
+    }
+
+    #{$root}--no-bottom-left#{$root}--no-bottom-right > & {
+      --stl: 1;
+      --str: 2;
+      --m: 3;
+      --sbl: 0;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-left#{$root}--no-top-right#{$root}--no-bottom-left > & {
+      --stl: 0;
+      --str: 0;
+      --m: 1;
+      --sbl: 0;
+      --sbr: 2;
+    }
+
+    #{$root}--no-top-left#{$root}--no-top-right#{$root}--no-bottom-right > & {
+      --stl: 0;
+      --str: 0;
+      --m: 1;
+      --sbl: 2;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-left#{$root}--no-bottom-left#{$root}--no-bottom-right > & {
+      --stl: 0;
+      --str: 1;
+      --m: 2;
+      --sbl: 0;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-right#{$root}--no-bottom-left#{$root}--no-bottom-right > & {
+      --stl: 1;
+      --str: 0;
+      --m: 2;
+      --sbl: 0;
+      --sbr: 0;
+    }
+
+    #{$root}--no-top-left#{$root}--no-top-right#{$root}--no-bottom-left#{$root}--no-bottom-right > & {
+      --stl: 0;
+      --str: 0;
+      --m: 1;
+      --sbl: 0;
+      --sbr: 0;
+    }
+  }
+
+  &__sidebar_top_left {
+    grid-column: 1 / span $ct-layout-columns;
+    grid-row-start: var(--stl, 1);
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      grid-column: 1 / span $ct-layout-sidebar-left-columns;
+      grid-row: 1 / span 1;
+      height: auto;
+
+      #{$root}--no-bottom-left > #{$root}__inner > & {
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+
+  &__sidebar_top_right {
+    grid-column: 1 / span $ct-layout-columns;
+    grid-row-start: var(--str, 2);
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      grid-column: ($ct-layout-columns - $ct-layout-sidebar-right-columns + 1) / span $ct-layout-sidebar-right-columns;
+      grid-row: 1 / span 1;
+      height: auto;
+
+      #{$root}--no-bottom-right > #{$root}__inner > & {
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+
+  &__main {
+    grid-column: 1 / span $ct-layout-columns;
+    grid-row-start: var(--m, 3);
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      grid-column: ($ct-layout-sidebar-left-columns + 1) / span ($ct-layout-columns - $ct-layout-sidebar-left-columns - $ct-layout-sidebar-right-columns);
+      grid-row: 1 / span 2;
+
+      #{$root}--no-top-left#{$root}--no-bottom-left > #{$root}__inner > & {
+        grid-column: 1 / span ($ct-layout-columns - $ct-layout-sidebar-right-columns);
+      }
+
+      #{$root}--no-top-right#{$root}--no-bottom-right > #{$root}__inner > & {
+        grid-column: ($ct-layout-sidebar-left-columns + 1) / span ($ct-layout-columns - $ct-layout-sidebar-left-columns);
+      }
+
+      #{$root}--no-top-left#{$root}--no-bottom-left#{$root}--no-top-right#{$root}--no-bottom-right > #{$root}__inner > & {
+        grid-column: 1 / span $ct-layout-columns;
+      }
+    }
+  }
+
+  &__sidebar_bottom_left {
+    grid-column: 1 / span $ct-layout-columns;
+    grid-row-start: var(--sbl, 4);
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      grid-column: 1 / span $ct-layout-sidebar-left-columns;
+      grid-row: 2 / span 1;
+      height: 100%;
+
+      #{$root}--no-top-left > #{$root}__inner > & {
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+
+  &__sidebar_bottom_right {
+    grid-column: 1 / span $ct-layout-columns;
+    grid-row-start: var(--sbr, 5);
+
+    @include ct-breakpoint($ct-layout-breakpoint) {
+      grid-column: ($ct-layout-columns - $ct-layout-sidebar-right-columns + 1) / span $ct-layout-sidebar-right-columns;
+      grid-row: 2 / span 1;
+      height: 100%;
+
+      #{$root}--no-top-right > #{$root}__inner > & {
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+}
+
+//
+// Layout has larger gaps when only one sidebar is present.
+// Nested layouts should have the smae larger gaps when only one sidebar is
+// present, but only when the parent layout has no sidebars.
+//
+@include ct-breakpoint($ct-layout-breakpoint) {
+  .ct-layout {
+    $root: &;
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &#{$root}--no-top-left#{$root}--no-bottom-left > #{$root}__inner {
+      column-gap: $ct-layout-column-gap-right-only;
+    }
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &#{$root}--no-top-right#{$root}--no-bottom-right > #{$root}__inner {
+      column-gap: $ct-layout-column-gap-left-only;
+    }
+
+    & > #{$root}__inner {
+      #{$root} {
+        > #{$root}__inner {
+          column-gap: $ct-layout-column-gap;
+        }
+      }
+    }
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &#{$root}--no-top-left#{$root}--no-bottom-left > #{$root}__inner {
+      #{$root} {
+        &#{$root}--no-top-left#{$root}--no-bottom-left,
+        &#{$root}--no-top-right#{$root}--no-bottom-right {
+          > #{$root}__inner {
+            column-gap: $ct-layout-column-gap;
+          }
+        }
+      }
+    }
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &#{$root}--no-top-right#{$root}--no-bottom-right > #{$root}__inner {
+      #{$root} {
+        &#{$root}--no-top-left#{$root}--no-bottom-left,
+        &#{$root}--no-top-right#{$root}--no-bottom-right {
+          > #{$root}__inner {
+            column-gap: $ct-layout-column-gap;
+          }
+        }
+      }
+    }
+
+    &#{$root}--no-top-left#{$root}--no-bottom-left#{$root}--no-top-right#{$root}--no-bottom-right > #{$root}__inner {
+      #{$root} {
+        &#{$root}--no-top-left#{$root}--no-bottom-left {
+          > #{$root}__inner {
+            column-gap: $ct-layout-column-gap-right-only;
+          }
+        }
+
+        &#{$root}--no-top-right#{$root}--no-bottom-right {
+          > #{$root}__inner {
+            column-gap: $ct-layout-column-gap-right-only;
+          }
+        }
+      }
+    }
+  }
+}

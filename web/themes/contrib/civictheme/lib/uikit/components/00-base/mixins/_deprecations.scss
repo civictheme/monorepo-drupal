@@ -1,0 +1,21 @@
+//
+// Polyfills for deprecated mixins.
+//
+
+// Suppress deprecation warnings.
+$ct-suppress-deprecations: false !default;
+
+//
+// Warn about deprecated functionality.
+//
+@mixin ct-deprecation($version, $deprecated, $replacement: false) {
+  $message: 'CivicTheme deprecation warning: Using "#{$deprecated}" is deprecated and will be removed in CivicTheme #{$version}.';
+
+  @if $replacement {
+    $message: '#{$message} Use replacement: "#{$replacement}".';
+  }
+
+  @if not $ct-suppress-deprecations {
+    @warn $message;
+  }
+}

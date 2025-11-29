@@ -1,0 +1,11 @@
+//
+// Menu component stories.
+//
+
+.ct-menu__item--active-trail {
+  > .ct-menu__item__link {
+    &::after {
+      content: ' (A)';
+    }
+  }
+}

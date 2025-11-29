@@ -1,0 +1,64 @@
+//
+// Campaign component.
+//
+
+@use 'sass:map';
+
+.ct-campaign {
+  $root: &;
+
+  #{$root}__image {
+    @include ct-image-fit();
+
+    height: $ct-campaign-mobile-height;
+
+    img {
+      border-radius: $ct-campaign-image-border-radius;
+    }
+
+    @include ct-breakpoint(m) {
+      @include ct-image-container-square();
+    }
+  }
+
+  #{$root}__inner {
+    > * {
+      margin-bottom: ct-spacing(2);
+
+      @include ct-breakpoint(m) {
+        margin-bottom: ct-spacing(3);
+      }
+
+      @include ct-breakpoint(xl) {
+        margin-bottom: ct-spacing(4);
+      }
+    }
+  }
+
+  #{$root}__links {
+    > * {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    &.ct-campaign--image-left {
+      .ct-campaign__image {
+        @include ct-breakpoint(m) {
+          @include ct-image-shadow(ct-component-var($root, $theme, image, shadow-color), 'down-right', $ct-campaign-image-shadow-offset-x, $ct-campaign-image-shadow-offset-y);
+        }
+      }
+    }
+
+    &.ct-campaign--image-right {
+      .ct-campaign__image {
+        @include ct-breakpoint(m) {
+          @include ct-image-shadow(ct-component-var($root, $theme, image, shadow-color), 'down-left', $ct-campaign-image-shadow-offset-x, $ct-campaign-image-shadow-offset-y);
+        }
+      }
+    }
+  }
+}

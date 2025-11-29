@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Text Icon component.
+ *
+ * Variables:
+ * - text: [string] Link text.
+ * - is_new_window: [boolean] Open in a new window.
+ * - is_external: [boolean] Link is external.
+ * - icon: [string] Icon name.
+ * - icon_placement: [string] Icon position: before, after.
+ * - icon_class: [string] Class for custom icon.
+ */
+#}
+{% apply spaceless %}
+  {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+
+  {% set content_markup %}
+    {% if icon or is_external %}
+
+      {% if icon %}
+        {% set icon_markup %}
+          {%- include '@base/icon/icon.twig' with {
+            symbol: icon,
+            modifier_class: icon_class|default(''),
+          } only %}
+        {% endset -%}
+      {% endif %}
+
+      {% if text is not empty %}
+
+        {% if icon and icon_placement == 'before' and not is_external %}
+          {{- icon_markup -}}{{- text|raw -}}
+        {% else %}
+          {# Prepare the text #}
+          {% set text_arr = text|trim|split(' ') %}
+          {% set text_start = text_arr|slice(0, -1)|join(' ') %}
+          {% set text_end = text_arr|last %}
+
+          {# Place text in groups #}
+          {% set before_group = text_start %}
+          {% set within_group = text_end %}
+
+          {# Place icon before or after text #}
+          {% if icon_placement == 'before' %}
+            {% set before_group = icon_markup|raw ~ before_group %}
+          {% else %}
+            {% set within_group = within_group ~ icon_markup|raw %}
+          {% endif %}
+
+          {# Add external icon #}
+          {% if is_external %}
+            {% set is_external_content %}
+              {%- include '@base/icon/icon.twig' with {
+                symbol: 'upper-right-arrow',
+              } only -%}
+            {% endset %}
+            {% set within_group = within_group|raw ~ is_external_content|raw %}
+          {% endif %}
+
+          {# Set the markup #}
+          {{- before_group|raw }} <span class="ct-text-icon__group">{{- within_group|raw -}}</span>
+        {% endif %}
+
+      {% else %}
+        {{- icon_markup -}}
+      {% endif %}
+
+    {% else %}
+      {{- text|raw -}}
+    {% endif %}
+  {% endset %}
+
+  {% if is_new_window %}
+    {% set is_new_window_content -%}
+      <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+    {%- endset %}
+  {% endif %}
+{% endapply %}
+
+{{- content_markup -}}{{- is_new_window_content -}}

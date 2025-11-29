@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * Layout component.
+ *
+ * Variables:
+ * - content_top: Content top slot.
+ * - sidebar_top_left: Top left sidebar slot.
+ * - sidebar_top_left_attributes: Top left sidebar attributes.
+ * - sidebar_top_right: Top right sidebar slot.
+ * - sidebar_top_right_attributes: Top right sidebar attributes.
+ * - content: Content slot.
+ * - content_attributes: Content attributes.
+ * - sidebar_bottom_left: Bottom left sidebar slot.
+ * - sidebar_bottom_left_attributes: Bottom left sidebar attributes.
+ * - sidebar_bottom_right: Bottom right sidebar slot.
+ * - sidebar_bottom_right_attributes: Bottom right sidebar attributes.
+ * - content_bottom: Content bottom slot.
+ * - hide_sidebar_left: Whether to force hide the left sidebar.
+ * - hide_sidebar_right: Whether to force hide the right sidebar.
+ * - is_contained: Whether the page is to be contained.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set has_sidebar_left = (sidebar_top_left is not empty or sidebar_bottom_left is not empty) and not hide_sidebar_left|default(false) %}
+{% set has_sidebar_right = (sidebar_top_right is not empty or sidebar_bottom_right is not empty) and not hide_sidebar_right|default(false) %}
+
+{% set is_contained = is_contained|default(false) %}
+{% set is_contained = is_contained or has_sidebar_left or has_sidebar_right %}
+
+{% set vertical_spacing = has_sidebar_left or has_sidebar_right ? 'top' : vertical_spacing %}
+
+{% set no_sidebar_left_class = hide_sidebar_left ? 'ct-layout--no-sidebar-left' : '' %}
+{% set no_sidebar_right_class = hide_sidebar_right ? 'ct-layout--no-sidebar-right' : '' %}
+{% set no_tl_class = sidebar_top_left is empty or hide_sidebar_left ? 'ct-layout--no-top-left' : '' %}
+{% set no_tr_class = sidebar_top_right is empty or hide_sidebar_right ? 'ct-layout--no-top-right' : '' %}
+{% set no_bl_class = sidebar_bottom_left is empty or hide_sidebar_left ? 'ct-layout--no-bottom-left' : '' %}
+{% set no_br_class = sidebar_bottom_right is empty or hide_sidebar_right ? 'ct-layout--no-bottom-right' : '' %}
+{% set is_contained_class = is_contained ? 'container' : 'container-fluid' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+
+{% set modifier_class = '%s %s %s %s %s %s %s %s'|format(no_sidebar_left_class, no_sidebar_right_class, no_tl_class, no_tr_class, no_bl_class, no_br_class, vertical_spacing_class, modifier_class|default('')) %}
+{% set modifier_class = modifier_class|trim %}
+
+{% if content %}
+	<main class="ct-layout {{ modifier_class -}}" role="main" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+		{% block content_top %}
+			{% if content_top is not empty %}
+				{{- content_top|raw -}}
+			{% endif %}
+		{% endblock %}
+
+		<div class="ct-layout__inner {{ is_contained_class }}">
+			{% if content is not empty %}
+				{% block content %}
+					<section class="ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes|raw -}}{% endif %}>
+						{{- content|raw -}}
+					</section>
+				{% endblock %}
+			{% endif %}
+
+			{% if sidebar_top_left is not empty and has_sidebar_left %}
+				{% block sidebar_top_left %}
+					<aside class="ct-layout__sidebar_top_left" {% if sidebar_top_left_attributes is not empty %}{{- sidebar_top_left_attributes|raw -}}{% endif %}>
+						{{- sidebar_top_left|raw -}}
+					</aside>
+				{% endblock %}
+			{% endif %}
+
+			{% if sidebar_top_right is not empty and has_sidebar_right %}
+				{% block sidebar_top_right %}
+					<aside class="ct-layout__sidebar_top_right" {% if sidebar_top_right_attributes is not empty %}{{- sidebar_top_right_attributes|raw -}}{% endif %}>
+						{{- sidebar_top_right|raw -}}
+					</aside>
+				{% endblock %}
+			{% endif %}
+
+			{% if sidebar_bottom_left is not empty and has_sidebar_left %}
+				{% block sidebar_bottom_left %}
+					<aside class="ct-layout__sidebar_bottom_left" {% if sidebar_bottom_left_attributes is not empty %}{{- sidebar_bottom_left_attributes|raw -}}{% endif %}>
+						{{- sidebar_bottom_left|raw -}}
+					</aside>
+				{% endblock %}
+			{% endif %}
+
+			{% if sidebar_bottom_right is not empty and has_sidebar_right %}
+				{% block sidebar_bottom_right %}
+					<aside class="ct-layout__sidebar_bottom_right" {% if sidebar_bottom_right_attributes is not empty %}{{- sidebar_bottom_right_attributes|raw -}}{% endif %}>
+						{{- sidebar_bottom_right|raw -}}
+					</aside>
+				{% endblock %}
+			{% endif %}
+		</div>
+
+		{% block content_bottom %}
+			{% if content_bottom is not empty %}
+				{{- content_bottom|raw -}}
+			{% endif %}
+		{% endblock %}
+	</main>
+{% endif %}

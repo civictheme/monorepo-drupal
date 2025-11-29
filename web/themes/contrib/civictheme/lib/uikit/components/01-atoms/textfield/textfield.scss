@@ -1,0 +1,65 @@
+//
+// Textfield component.
+//
+
+.ct-textfield {
+  $root: &;
+  $_border-width: ct-particle(0.125);
+  $_hover-border-width: $_border-width * 2;
+
+  @include ct-form-control-no-appearance();
+  @include ct-form-control-disabled($ct-textfield-disabled-opacity);
+  @include ct-typography('label-small');
+
+  border-radius: $ct-textfield-border-radius;
+  border-style: solid;
+  border-width: $_border-width;
+  padding: ct-spacing(1.625) ct-spacing(2);
+  width: 100%;
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: $ct-textfield-outline-width;
+    outline-offset: $ct-textfield-outline-offset;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &:focus-visible {
+      @include ct-component-property($root, $theme, outline-color);
+    }
+
+    &:not(#{$root}--is-invalid) {
+      @include ct-component-property($root, $theme, color);
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-component-property($root, $theme, background-color);
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, color);
+      }
+
+      &:hover {
+        @include ct-component-property($root, $theme, hover, color);
+        @include ct-component-property($root, $theme, hover, border-color);
+        @include ct-component-property($root, $theme, hover, background-color);
+        @include ct-form-control-border-inset(ct-component-var($root, $theme, hover, border-color), $_hover-border-width - $_border-width);
+      }
+
+      &:focus-visible {
+        @include ct-component-property($root, $theme, focus, color);
+        @include ct-component-property($root, $theme, focus, border-color);
+        @include ct-component-property($root, $theme, focus, background-color);
+      }
+    }
+
+    &#{$root}--is-invalid {
+      @include ct-component-property($root, $theme, invalid, color);
+      @include ct-component-property($root, $theme, invalid, border-color);
+      @include ct-component-property($root, $theme, invalid, background-color);
+      @include ct-form-control-border-inset(ct-component-var($root, $theme, invalid, border-color), $_hover-border-width - $_border-width);
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, invalid, color);
+      }
+    }
+  }
+}

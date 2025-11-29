@@ -1,0 +1,61 @@
+//
+// Basic Filter component.
+//
+
+.ct-single-filter {
+  $root: &;
+
+  border-top: solid ct-particle(0.125);
+  border-bottom: solid ct-particle(0.125);
+  padding-top: ct-spacing(3);
+  padding-bottom: ct-spacing(3);
+
+  @include ct-breakpoint(m) {
+    padding-top: ct-spacing(5);
+    padding-bottom: ct-spacing(5);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(3);
+  }
+
+  #{$root}__submit {
+    white-space: nowrap;
+  }
+
+  #{$root}__wrapper {
+    @include ct-breakpoint(m) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  #{$root}__actions {
+    display: flex;
+    column-gap: ct-spacing();
+    row-gap: ct-spacing();
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      flex-grow: 0;
+      margin-left: ct-spacing(3);
+      margin-top: 0;
+    }
+
+    .ct-button {
+      flex-grow: 1;
+
+      @include ct-breakpoint(m) {
+        flex-grow: 0;
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    border-top-color: ct-component-var($root, $theme, border-color);
+    border-bottom-color: ct-component-var($root, $theme, border-color);
+  }
+}

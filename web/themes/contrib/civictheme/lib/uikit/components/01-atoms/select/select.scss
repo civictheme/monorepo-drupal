@@ -1,0 +1,103 @@
+//
+// Select component.
+//
+
+@use 'sass:math';
+
+.ct-select {
+  $root: &;
+  $_vertical-padding: ct-spacing(2);
+  $_horizontal-padding: $_vertical-padding;
+  $_border-width: ct-particle(0.125);
+  $_hover-border-width: $_border-width * 2;
+  $_label-size: 'label-small';
+  $_label-font-size: ct-typography-rule($_label-size, 'font-size', 'm');
+  $_label-line_height: ct-typography-rule($_label-size, 'line-height', 'm');
+  $_label-font-size-actual: math.max($_label-font-size, $_label-line_height);
+  $_icon-height: $_vertical-padding + $_label-font-size-actual + $_border-width;
+
+  // Icon height drives the width because it is used as a background image.
+  $_icon-width: $_icon-height;
+
+  @include ct-form-control-no-appearance();
+  @include ct-form-control-disabled($ct-select-disabled-opacity);
+  @include ct-typography($_label-size);
+
+  width: 100%;
+
+  // Show at least 5 characters.
+  min-width: $_icon-width + $_horizontal-padding * 2 + $ct-font-average-character-width * 5;
+  border-radius: $ct-select-border-radius;
+  border-style: solid;
+  border-width: $_border-width;
+  padding: ct-spacing(1.625) $_horizontal-padding + $_icon-width ct-spacing(1.625) $_horizontal-padding;
+
+  // Visually move icon off the edge by the width of the border.
+  background-position: calc(100% - $_border-width);
+  background-repeat: no-repeat;
+  background-size: $_icon-height;
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: $ct-select-outline-width;
+    outline-offset: $ct-select-outline-offset;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @if $theme == 'dark' {
+      background-image: $ct-select-dark-icon;
+    }
+    @else {
+      background-image: $ct-select-light-icon;
+    }
+
+    &[multiple] {
+      background: none;
+    }
+
+    &:focus-visible {
+      @include ct-component-property($root, $theme, outline-color);
+    }
+
+    &:not(#{$root}--is-invalid) {
+      @include ct-component-property($root, $theme, color);
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-component-property($root, $theme, background-color);
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, color);
+      }
+
+      option {
+        &:checked {
+          @include ct-component-property($root, $theme, option, background-color);
+          @include ct-component-property($root, $theme, option, color);
+        }
+      }
+
+      &:hover {
+        @include ct-component-property($root, $theme, hover, color);
+        @include ct-component-property($root, $theme, hover, border-color);
+        @include ct-component-property($root, $theme, hover, background-color);
+        @include ct-form-control-border-inset(ct-component-var($root, $theme, hover, border-color), $_hover-border-width - $_border-width);
+      }
+
+      &:focus-visible {
+        @include ct-component-property($root, $theme, focus, color);
+        @include ct-component-property($root, $theme, focus, border-color);
+        @include ct-component-property($root, $theme, focus, background-color);
+      }
+    }
+
+    &#{$root}--is-invalid {
+      @include ct-component-property($root, $theme, invalid, color);
+      @include ct-component-property($root, $theme, invalid, border-color);
+      @include ct-component-property($root, $theme, invalid, background-color);
+      @include ct-form-control-border-inset(ct-component-var($root, $theme, invalid, border-color), $_hover-border-width - $_border-width);
+
+      &::placeholder {
+        @include ct-component-property($root, $theme, invalid, color);
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+//
+// Flyout component.
+//
+
+#flyout-story1 {
+  [data-flyout-panel] {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #f00 inset;
+    padding: ct-spacing(2);
+  }
+}
+
+#flyout-story2 {
+  [data-flyout-panel] {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #00f inset;
+    padding: ct-spacing(2);
+  }
+}
+
+#flyout-story3 {
+  [data-flyout-panel] {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #0f0 inset;
+    padding: ct-spacing(2);
+  }
+}
+
+#flyout-story4 {
+  [data-flyout-panel] {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #c95100 inset;
+    padding: ct-spacing(2);
+  }
+}
+
+#flyout-story5 {
+  [data-flyout-panel] {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #b388ff inset;
+    padding: ct-spacing(2);
+  }
+}

@@ -1,0 +1,1328 @@
+//
+// CivicTheme components default variables.
+//
+//
+// Do not copy this file for customisations.
+// Use `components/variables.components.scss` instead.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to apply custom
+// heading color and have it propagated to components).
+//
+// Variables organisation rules:
+// 1. Variables are grouped by their atomic type alphabetically.
+// 2. For every component, variables are ordered by:
+//    a. generic values
+//    b. light theme
+//    c. dark theme
+// 3. For every light theme variable, there is a dark theme counterpart.
+// 4. Variables named according to the pattern:
+//    $ct-[component]-[theme]-[?subcomponent]-[?state]-[rule]
+//    where:
+//    a. [component] is a hyphen delimited name of the component
+//    b. [theme] is a theme name (light or dark)
+//    c. [subcomponent] is an optional hyphen-delimited name of the subcomponent
+//    d. [state] is a single or multiple hyphen-delimited name of the state
+//    e. [rule] is an exact CSS rule name
+//
+//    Example 1:
+//    $ct-link-light-visited-hover-background
+//    [component]=link
+//    [theme]=light
+//    [state]=hover over visited
+//    [rule]=background-color
+//
+//    Example 2:
+//    $ct-navigation-light-dropdown-menu-item-active-background-color
+//    [component]=secondary-navigation
+//    [theme]=light
+//    [subcomponent]=menu-item
+//    [state]=active
+//    [rule]=background-color
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+@import 'mixins';
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 BASE                                       //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Collapsible.
+//
+$ct-collapsible-icon-size: 'm' !default;
+$ct-collapsible-light-color: ct-color-light('body') !default;
+$ct-collapsible-light-icon-color: $ct-collapsible-light-color !default;
+$ct-collapsible-dark-color: ct-color-dark('body') !default;
+$ct-collapsible-dark-icon-color: $ct-collapsible-dark-color !default;
+
+//
+// Layout.
+//
+$ct-layout-columns: $ct-grid-columns;
+$ct-layout-sidebar-left-columns: 3;
+$ct-layout-sidebar-right-columns: 3;
+$ct-layout-column-gap: ct-spacing(3);
+$ct-layout-column-gap-left-only: ct-spacing(8);
+$ct-layout-column-gap-right-only: ct-spacing(8);
+$ct-layout-row-gap: ct-spacing(3);
+$ct-layout-row-gap-left-only: ct-spacing(3);
+$ct-layout-row-gap-right-only: ct-spacing(3);
+$ct-layout-breakpoint: l;
+
+// Outline.
+$ct-outline-light: ct-color-light('interaction-focus') !default;
+$ct-outline-dark: ct-color-dark('interaction-focus') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 ATOMS                                      //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Chip.
+//
+$ct-chip-border-width: ct-particle(0.125) !default;
+$ct-chip-light-background-color: ct-color-light('interaction-text') !default;
+$ct-chip-light-border-color: ct-color-light('interaction-background') !default;
+$ct-chip-light-color: ct-color-light('interaction-background') !default;
+$ct-chip-light-selected-background-color: ct-color-light('interaction-background') !default;
+$ct-chip-light-selected-border-color: $ct-chip-light-selected-background-color !default;
+$ct-chip-light-selected-color: ct-color-light('interaction-hover-text') !default;
+$ct-chip-light-selected-hover-color: $ct-chip-light-background-color !default;
+$ct-chip-light-selected-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-selected-hover-border-color: $ct-chip-light-selected-hover-background-color !default;
+$ct-chip-light-hover-background-color: $ct-chip-light-background-color !default;
+$ct-chip-light-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-hover-border-color: $ct-chip-light-hover-color !default;
+$ct-chip-light-focus-background-color: false !default;
+$ct-chip-light-focus-border-color: false !default;
+$ct-chip-light-focus-color: false !default;
+$ct-chip-light-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-chip-dark-background-color: ct-color-dark('interaction-text') !default;
+$ct-chip-dark-border-color: ct-color-dark('interaction-background') !default;
+$ct-chip-dark-color: ct-color-dark('interaction-background') !default;
+$ct-chip-dark-selected-background-color: ct-color-dark('interaction-background') !default;
+$ct-chip-dark-selected-border-color: $ct-chip-dark-selected-background-color !default;
+$ct-chip-dark-selected-color: ct-color-dark('interaction-hover-text') !default;
+$ct-chip-dark-selected-hover-color: $ct-chip-dark-background-color !default;
+$ct-chip-dark-selected-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-selected-hover-border-color: $ct-chip-dark-selected-hover-background-color !default;
+$ct-chip-dark-hover-background-color: $ct-chip-dark-background-color !default;
+$ct-chip-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-hover-border-color: $ct-chip-dark-hover-color !default;
+$ct-chip-dark-focus-background-color: false !default;
+$ct-chip-dark-focus-border-color: false !default;
+$ct-chip-dark-focus-color: false !default;
+$ct-chip-dark-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Content Link.
+//
+$ct-content-link-light-color: ct-color-light('interaction-background') !default;
+$ct-content-link-light-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-content-link-light-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-content-link-light-visited-color: ct-color-light('body') !default;
+$ct-content-link-light-visited-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-content-link-light-visited-hover-border-color: ct-color-light('interaction-focus') !default;
+$ct-content-link-dark-color: ct-color-dark('interaction-background') !default;
+$ct-content-link-dark-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-content-link-dark-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-content-link-dark-visited-color: ct-color-dark('body') !default;
+$ct-content-link-dark-visited-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-content-link-dark-visited-hover-border-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Heading.
+//
+$ct-heading-light-color: ct-color-light('heading') !default;
+$ct-heading-dark-color: ct-color-dark('heading') !default;
+
+//
+// Iframe.
+//
+$ct-iframe-space-horizontal: ct-spacing(7) !default;
+$ct-iframe-light-wrapper-background-color: ct-color-light('background-light') !default;
+$ct-iframe-dark-wrapper-background-color: ct-color-dark('background-light') !default;
+
+//
+// Link.
+//
+$ct-link-light-color: ct-color-light('interaction-background') !default;
+$ct-link-light-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-link-light-visited-color: $ct-link-light-color !default;
+$ct-link-light-active-color: ct-color-light('body') !default;
+$ct-link-dark-color: ct-color-dark('interaction-background') !default;
+$ct-link-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-link-dark-visited-color: $ct-link-dark-color !default;
+$ct-link-dark-active-color: ct-color-dark('body') !default;
+
+//
+// Popover.
+//
+$ct-popover-min-width: ct-particle(35) !default;
+$ct-popover-description-border-radius: $ct-border-radius !default;
+$ct-popover-z-index: 99 !default;
+$ct-popover-top-offset: ct-particle(2) !default;
+$ct-popover-light-content-background-color: ct-color-light('background-light') !default;
+$ct-popover-dark-content-background-color: ct-color-dark('background') !default;
+
+//
+// Table.
+//
+$ct-table-breakpoint: 'm' !default;
+$ct-table-cell-vertical-align: top !default;
+$ct-table-light-background-color: ct-color-light('background-light') !default;
+$ct-table-light-border-color: ct-color-light('border') !default;
+$ct-table-light-caption-color: ct-color-light('body') !default;
+$ct-table-light-color: ct-color-light('body') !default;
+$ct-table-light-footer-border-color: ct-color-light('border') !default;
+$ct-table-light-footer-color: ct-color-light('heading') !default;
+$ct-table-light-header-border-color: ct-color-light('border') !default;
+$ct-table-light-header-color: ct-color-light('heading') !default;
+$ct-table-light-row-even-background-color: ct-color-light('background') !default;
+$ct-table-light-row-even-color: ct-color-light('body') !default;
+$ct-table-light-row-odd-background-color: ct-color-light('background-light') !default;
+$ct-table-light-row-odd-color: ct-color-light('body') !default;
+$ct-table-dark-background-color: ct-color-dark('background') !default;
+$ct-table-dark-border-color: ct-color-dark('border') !default;
+$ct-table-dark-caption-color: ct-color-dark('body') !default;
+$ct-table-dark-color: ct-color-dark('body') !default;
+$ct-table-dark-footer-border-color: ct-color-dark('border') !default;
+$ct-table-dark-footer-color: ct-color-dark('heading') !default;
+$ct-table-dark-header-border-color: ct-color-dark('border') !default;
+$ct-table-dark-header-color: ct-color-dark('heading') !default;
+$ct-table-dark-row-even-background-color: ct-color-dark('background-light') !default;
+$ct-table-dark-row-even-color: ct-color-dark('body') !default;
+$ct-table-dark-row-odd-background-color: ct-color-dark('background') !default;
+$ct-table-dark-row-odd-color: ct-color-dark('body') !default;
+
+//
+// Tag.
+//
+$ct-tag-border-radius: $ct-border-radius !default;
+$ct-tag-border-width: ct-particle(0.125) !default;
+$ct-tag-light-primary-background-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-primary-border-color: $ct-tag-light-primary-background-color !default;
+$ct-tag-light-primary-color: ct-color-light('interaction-text') !default;
+$ct-tag-light-secondary-background-color: transparent !default;
+$ct-tag-light-secondary-border-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-secondary-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-tertiary-background-color: transparent !default;
+$ct-tag-light-tertiary-border-color: transparent !default;
+$ct-tag-light-tertiary-color: ct-color-light('interaction-background') !default;
+$ct-tag-dark-primary-background-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-primary-border-color: $ct-tag-dark-primary-background-color !default;
+$ct-tag-dark-primary-color: ct-color-dark('interaction-text') !default;
+$ct-tag-dark-secondary-background-color: transparent !default;
+$ct-tag-dark-secondary-border-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-secondary-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-tertiary-background-color: transparent !default;
+$ct-tag-dark-tertiary-border-color: transparent !default;
+$ct-tag-dark-tertiary-color: ct-color-dark('interaction-background') !default;
+
+//
+// Video
+//
+$ct-video-ratio-width: 16 !default;
+$ct-video-ratio-height: 9 !default;
+
+//
+// Form Control/Button.
+//
+$ct-button-border-radius: ct-particle(0.5) !default;
+$ct-button-border-width: ct-particle(0.25) !default;
+$ct-button-outline-offset: ct-particle(0.25) !default;
+$ct-button-outline-width: ct-particle(0.375) !default;
+$ct-button-animation-duration: $ct-animation-duration;
+
+// Primary button.
+$ct-button-light-primary-background-color: ct-color-light('interaction-background') !default;
+$ct-button-light-primary-border-color: $ct-button-light-primary-background-color !default;
+$ct-button-light-primary-color: ct-color-light('interaction-text') !default;
+$ct-button-light-primary-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-primary-hover-border-color: $ct-button-light-primary-hover-background-color !default;
+$ct-button-light-primary-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-button-light-primary-visited-background-color: $ct-button-light-primary-background-color !default;
+$ct-button-light-primary-visited-border-color: $ct-button-light-primary-border-color !default;
+$ct-button-light-primary-visited-color: $ct-button-light-primary-color !default;
+$ct-button-light-primary-active-background-color: $ct-button-light-primary-hover-background-color !default;
+$ct-button-light-primary-active-border-color: $ct-button-light-primary-hover-border-color !default;
+$ct-button-light-primary-active-color: $ct-button-light-primary-hover-color !default;
+$ct-button-light-primary-focus-background-color: false !default;
+$ct-button-light-primary-focus-border-color: false !default;
+$ct-button-light-primary-focus-color: false !default;
+$ct-button-light-primary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-primary-background-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-primary-border-color: $ct-button-dark-primary-background-color !default;
+$ct-button-dark-primary-color: ct-color-dark('interaction-text') !default;
+$ct-button-dark-primary-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-primary-hover-border-color: $ct-button-dark-primary-hover-background-color !default;
+$ct-button-dark-primary-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-button-dark-primary-visited-background-color: $ct-button-dark-primary-background-color !default;
+$ct-button-dark-primary-visited-border-color: $ct-button-dark-primary-border-color !default;
+$ct-button-dark-primary-visited-color: $ct-button-dark-primary-color !default;
+$ct-button-dark-primary-active-background-color: $ct-button-dark-primary-hover-background-color !default;
+$ct-button-dark-primary-active-border-color: $ct-button-dark-primary-hover-border-color !default;
+$ct-button-dark-primary-active-color: $ct-button-dark-primary-hover-color !default;
+$ct-button-dark-primary-focus-background-color: false !default;
+$ct-button-dark-primary-focus-border-color: false !default;
+$ct-button-dark-primary-focus-color: false !default;
+$ct-button-dark-primary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+// Secondary button.
+$ct-button-light-secondary-background-color: transparent !default;
+$ct-button-light-secondary-border-color: ct-color-light('interaction-background') !default;
+$ct-button-light-secondary-color: $ct-button-light-secondary-border-color !default;
+$ct-button-light-secondary-hover-background-color: $ct-button-light-secondary-background-color !default;
+$ct-button-light-secondary-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-secondary-hover-color: $ct-button-light-secondary-hover-border-color !default;
+$ct-button-light-secondary-visited-background-color: $ct-button-light-secondary-background-color !default;
+$ct-button-light-secondary-visited-border-color: $ct-button-light-secondary-border-color !default;
+$ct-button-light-secondary-visited-color: $ct-button-light-secondary-color !default;
+$ct-button-light-secondary-active-background-color: $ct-button-light-secondary-hover-background-color !default;
+$ct-button-light-secondary-active-border-color: $ct-button-light-secondary-hover-border-color !default;
+$ct-button-light-secondary-active-color: $ct-button-light-secondary-hover-color !default;
+$ct-button-light-secondary-focus-background-color: false !default;
+$ct-button-light-secondary-focus-border-color: false !default;
+$ct-button-light-secondary-focus-color: false !default;
+$ct-button-light-secondary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-secondary-background-color: transparent !default;
+$ct-button-dark-secondary-border-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-secondary-color: $ct-button-dark-secondary-border-color !default;
+$ct-button-dark-secondary-hover-background-color: $ct-button-dark-secondary-background-color !default;
+$ct-button-dark-secondary-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-secondary-hover-color: $ct-button-dark-secondary-hover-border-color !default;
+$ct-button-dark-secondary-visited-background-color: $ct-button-dark-secondary-background-color !default;
+$ct-button-dark-secondary-visited-border-color: $ct-button-dark-secondary-border-color !default;
+$ct-button-dark-secondary-visited-color: $ct-button-dark-secondary-color !default;
+$ct-button-dark-secondary-active-background-color: $ct-button-dark-secondary-hover-background-color !default;
+$ct-button-dark-secondary-active-border-color: $ct-button-dark-secondary-hover-border-color !default;
+$ct-button-dark-secondary-active-color: $ct-button-dark-secondary-hover-color !default;
+$ct-button-dark-secondary-focus-background-color: false !default;
+$ct-button-dark-secondary-focus-border-color: false !default;
+$ct-button-dark-secondary-focus-color: false !default;
+$ct-button-dark-secondary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+// Tertiary button.
+$ct-button-light-tertiary-background-color: transparent !default;
+$ct-button-light-tertiary-border-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-color: ct-color-light('interaction-background') !default;
+$ct-button-light-tertiary-hover-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-hover-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-tertiary-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-tertiary-visited-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-visited-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-tertiary-visited-color: $ct-button-light-tertiary-color !default;
+$ct-button-light-tertiary-active-background-color: $ct-button-light-tertiary-hover-background-color !default;
+$ct-button-light-tertiary-active-border-color: $ct-button-light-tertiary-hover-border-color !default;
+$ct-button-light-tertiary-active-color: $ct-button-light-tertiary-hover-color !default;
+$ct-button-light-tertiary-focus-background-color: false !default;
+$ct-button-light-tertiary-focus-border-color: false !default;
+$ct-button-light-tertiary-focus-color: false !default;
+$ct-button-light-tertiary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-tertiary-background-color: transparent !default;
+$ct-button-dark-tertiary-border-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-tertiary-hover-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-hover-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-tertiary-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-tertiary-visited-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-visited-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-tertiary-visited-color: $ct-button-dark-tertiary-color !default;
+$ct-button-dark-tertiary-active-background-color: $ct-button-dark-tertiary-hover-background-color !default;
+$ct-button-dark-tertiary-active-border-color: $ct-button-dark-tertiary-hover-border-color !default;
+$ct-button-dark-tertiary-active-color: $ct-button-dark-tertiary-hover-color !default;
+$ct-button-dark-tertiary-focus-background-color: false !default;
+$ct-button-dark-tertiary-focus-border-color: false !default;
+$ct-button-dark-tertiary-focus-color: false !default;
+$ct-button-dark-tertiary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Form Control/Checkbox.
+//
+$ct-checkbox-border-radius: $ct-border-radius !default;
+$ct-checkbox-check: url("data:image/svg+xml,%3Csvg viewBox='' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.9 0H17.1C17.3387 0 17.5676 0.0948211 17.7364 0.263604C17.9052 0.432387 18 0.661305 18 0.9V17.1C18 17.3387 17.9052 17.5676 17.7364 17.7364C17.5676 17.9052 17.3387 18 17.1 18H0.9C0.661305 18 0.432387 17.9052 0.263604 17.7364C0.0948211 17.5676 0 17.3387 0 17.1V0.9C0 0.661305 0.0948211 0.432387 0.263604 0.263604C0.432387 0.0948211 0.661305 0 0.9 0ZM6.48885 14.1746C6.57252 14.259 6.67206 14.326 6.78173 14.3716C6.8914 14.4173 7.00904 14.4409 7.12785 14.4409C7.24666 14.4409 7.3643 14.4173 7.47397 14.3716C7.58364 14.326 7.68318 14.259 7.76685 14.1746L15.9388 6.00264C16.1083 5.83317 16.2035 5.60331 16.2035 5.36364C16.2035 5.12397 16.1083 4.89412 15.9388 4.72464C15.7694 4.55517 15.5395 4.45996 15.2998 4.45996C15.0602 4.45996 14.8303 4.55517 14.6608 4.72464L7.12785 12.2666L4.23885 9.36864C4.06938 9.19917 3.83952 9.10396 3.59985 9.10396C3.36018 9.10396 3.13032 9.19917 2.96085 9.36864C2.79138 9.53812 2.69617 9.76797 2.69617 10.0076C2.69617 10.2473 2.79138 10.4772 2.96085 10.6466L6.48885 14.1746Z' fill='currentcolor'/%3E%3C/svg%3E%0A");
+$ct-checkbox-animation-duration: 0.1s !default;
+$ct-checkbox-disabled-opacity: 40% !default;
+$ct-checkbox-outline-width: 2px !default;
+$ct-checkbox-outline-offset: 2px !default;
+$ct-checkbox-light-background-color: transparent !default;
+$ct-checkbox-light-border-color: ct-color-light('border-light') !default;
+$ct-checkbox-light-color: ct-color-light('body') !default;
+$ct-checkbox-light-hover-background-color: $ct-checkbox-light-background-color !default;
+$ct-checkbox-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-checkbox-light-hover-color: $ct-checkbox-light-color !default;
+$ct-checkbox-light-checked-background-color: $ct-checkbox-light-background-color !default;
+$ct-checkbox-light-checked-border-color: ct-color-light('interaction-background') !default;
+$ct-checkbox-light-checked-color: $ct-checkbox-light-color !default;
+$ct-checkbox-light-checked-hover-background-color: $ct-checkbox-light-hover-background-color !default;
+$ct-checkbox-light-checked-hover-border-color: $ct-checkbox-light-hover-border-color !default;
+$ct-checkbox-light-checked-hover-color: $ct-checkbox-light-hover-color !default;
+$ct-checkbox-light-invalid-background-color: $ct-checkbox-light-hover-background-color !default;
+$ct-checkbox-light-invalid-border-color: ct-color-light('error') !default;
+$ct-checkbox-light-invalid-color: ct-color-light('error') !default;
+$ct-checkbox-light-outline-color: $ct-outline-light !default;
+$ct-checkbox-dark-background-color: transparent !default;
+$ct-checkbox-dark-border-color: ct-color-dark('border-light') !default;
+$ct-checkbox-dark-color: ct-color-dark('body') !default;
+$ct-checkbox-dark-hover-background-color: $ct-checkbox-dark-background-color !default;
+$ct-checkbox-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-checkbox-dark-hover-color: $ct-checkbox-dark-color !default;
+$ct-checkbox-dark-checked-background-color: $ct-checkbox-dark-background-color !default;
+$ct-checkbox-dark-checked-border-color: ct-color-dark('interaction-background') !default;
+$ct-checkbox-dark-checked-color: $ct-checkbox-dark-color !default;
+$ct-checkbox-dark-checked-hover-background-color: $ct-checkbox-dark-hover-background-color !default;
+$ct-checkbox-dark-checked-hover-border-color: $ct-checkbox-dark-hover-border-color !default;
+$ct-checkbox-dark-checked-hover-color: $ct-checkbox-dark-hover-color !default;
+$ct-checkbox-dark-invalid-background-color: $ct-checkbox-dark-hover-background-color !default;
+$ct-checkbox-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-checkbox-dark-invalid-color: ct-color-dark('error') !default;
+$ct-checkbox-dark-outline-color: $ct-outline-dark !default;
+
+//
+// Form Control/Field description.
+//
+$ct-field-description-light-color: ct-color-light('body') !default;
+$ct-field-description-dark-color: ct-color-dark('body') !default;
+
+//
+// Form Control/Field message.
+//
+$ct-field-message-border-radius: $ct-border-radius !default;
+$ct-field-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 85) !default;
+$ct-field-message-light-error-border-color: ct-color-light('error') !default;
+$ct-field-message-light-error-color: ct-color-light('body') !default;
+$ct-field-message-light-error-icon-color: $ct-field-message-light-error-color !default;
+$ct-field-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 85) !default;
+$ct-field-message-light-information-border-color: ct-color-light('information') !default;
+$ct-field-message-light-information-color: ct-color-light('body') !default;
+$ct-field-message-light-information-icon-color: $ct-field-message-light-information-color !default;
+$ct-field-message-light-success-border-color: ct-color-light('success') !default;
+$ct-field-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 85) !default;
+$ct-field-message-light-success-color: ct-color-light('body') !default;
+$ct-field-message-light-success-icon-color: $ct-field-message-light-success-color !default;
+$ct-field-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 85) !default;
+$ct-field-message-light-warning-border-color: ct-color-light('warning') !default;
+$ct-field-message-light-warning-color: ct-color-light('body') !default;
+$ct-field-message-light-warning-icon-color: $ct-field-message-light-warning-color !default;
+$ct-field-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 20) !default;
+$ct-field-message-dark-error-border-color: ct-color-dark('error') !default;
+$ct-field-message-dark-error-color: ct-color-dark('body') !default;
+$ct-field-message-dark-error-icon-color: $ct-field-message-dark-error-color !default;
+$ct-field-message-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 20) !default;
+$ct-field-message-dark-information-border-color: ct-color-dark('information') !default;
+$ct-field-message-dark-information-color: ct-color-dark('body') !default;
+$ct-field-message-dark-information-icon-color: $ct-field-message-dark-information-color !default;
+$ct-field-message-dark-success-border-color: ct-color-dark('success') !default;
+$ct-field-message-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 20) !default;
+$ct-field-message-dark-success-color: ct-color-dark('body') !default;
+$ct-field-message-dark-success-icon-color: $ct-field-message-dark-success-color !default;
+$ct-field-message-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 20) !default;
+$ct-field-message-dark-warning-border-color: ct-color-dark('warning') !default;
+$ct-field-message-dark-warning-color: ct-color-dark('body') !default;
+$ct-field-message-dark-warning-icon-color: $ct-field-message-dark-warning-color !default;
+
+//
+// Form/Fieldset.
+//
+$ct-fieldset-stripe-width: $ct-stripe-size !default;
+$ct-fieldset-light-required-color: ct-color-light('error') !default;
+$ct-fieldset-light-stripe-border-color: ct-color-light('highlight') !default;
+$ct-fieldset-dark-required-color: ct-color-dark('error') !default;
+$ct-fieldset-light-stripe-border-color: ct-color-dark('highlight') !default;
+
+//
+// Form Control/Input.
+//
+$ct-input-border-radius: $ct-border-radius !default;
+$ct-input-outline-width: 2px !default;
+$ct-input-outline-offset: 2px !default;
+$ct-input-disabled-opacity: 40% !default;
+$ct-input-light-background-color: ct-color-light('background-light') !default;
+$ct-input-light-border-color: ct-color-light('border') !default;
+$ct-input-light-color: ct-color-light('body') !default;
+$ct-input-light-hover-background-color: $ct-input-light-background-color !default;
+$ct-input-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-input-light-hover-color: $ct-input-light-color !default;
+$ct-input-light-focus-background-color: $ct-input-light-background-color !default;
+$ct-input-light-focus-border-color: ct-color-light('interaction-background') !default;
+$ct-input-light-focus-color: $ct-input-light-color !default;
+$ct-input-light-invalid-background-color: ct-color-light('background-light') !default;
+$ct-input-light-invalid-border-color: ct-color-light('error') !default;
+$ct-input-light-invalid-color: ct-color-light('body') !default;
+$ct-input-light-outline-color: $ct-outline-light !default;
+$ct-input-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-input-dark-border-color: ct-color-dark('border-light') !default;
+$ct-input-dark-color: ct-color-dark('body') !default;
+$ct-input-dark-hover-background-color: $ct-input-dark-background-color !default;
+$ct-input-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-input-dark-hover-color: $ct-input-dark-color !default;
+$ct-input-dark-focus-background-color: ct-color-dark('background') !default;
+$ct-input-dark-focus-border-color: ct-color-dark('interaction-background') !default;
+$ct-input-dark-focus-color: $ct-input-dark-color !default;
+$ct-input-dark-invalid-background-color: ct-color-dark('background-dark') !default;
+$ct-input-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-input-dark-invalid-color: ct-color-dark('body') !default;
+$ct-input-dark-outline-color: $ct-outline-dark !default;
+
+//
+// Form Control/Label.
+//
+$ct-label-required-content: '*';
+$ct-label-light-color: ct-color-light('heading') !default;
+$ct-label-light-required-color: ct-color-light('error') !default;
+$ct-label-dark-color: ct-color-dark('heading') !default;
+$ct-label-dark-required-color: ct-color-dark('error') !default;
+
+//
+// Form Control/Radio.
+//
+$ct-radio-disabled-opacity: 40% !default;
+$ct-radio-animation-duration: 0.1s !default;
+$ct-radio-outline-width: 2px !default;
+$ct-radio-outline-offset: 2px !default;
+$ct-radio-light-background-color: transparent !default;
+$ct-radio-light-border-color: ct-color-light('border-light') !default;
+$ct-radio-light-color: ct-color-light('body') !default;
+$ct-radio-light-hover-background-color: $ct-radio-light-background-color !default;
+$ct-radio-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-radio-light-hover-color: $ct-radio-light-color !default;
+$ct-radio-light-checked-background-color: $ct-radio-light-background-color !default;
+$ct-radio-light-checked-border-color: ct-color-light('interaction-background') !default;
+$ct-radio-light-checked-color: $ct-radio-light-color !default;
+$ct-radio-light-checked-hover-background-color: $ct-radio-light-hover-background-color !default;
+$ct-radio-light-checked-hover-border-color: $ct-radio-light-hover-border-color !default;
+$ct-radio-light-checked-hover-color: $ct-radio-light-hover-color !default;
+$ct-radio-light-invalid-background-color: $ct-radio-light-hover-background-color !default;
+$ct-radio-light-invalid-border-color: ct-color-light('error') !default;
+$ct-radio-light-invalid-color: ct-color-light('error') !default;
+$ct-radio-light-outline-color: $ct-outline-light !default;
+$ct-radio-dark-background-color: transparent !default;
+$ct-radio-dark-border-color: ct-color-dark('border-light') !default;
+$ct-radio-dark-color: ct-color-dark('body') !default;
+$ct-radio-dark-hover-background-color: $ct-radio-dark-background-color !default;
+$ct-radio-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-radio-dark-hover-color: $ct-radio-dark-color !default;
+$ct-radio-dark-checked-background-color: $ct-radio-dark-background-color !default;
+$ct-radio-dark-checked-border-color: ct-color-dark('interaction-background') !default;
+$ct-radio-dark-checked-color: $ct-radio-dark-color !default;
+$ct-radio-dark-checked-hover-background-color: $ct-radio-dark-hover-background-color !default;
+$ct-radio-dark-checked-hover-border-color: $ct-radio-dark-hover-border-color !default;
+$ct-radio-dark-checked-hover-color: $ct-radio-dark-hover-color !default;
+$ct-radio-dark-invalid-background-color: $ct-radio-dark-hover-background-color !default;
+$ct-radio-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-radio-dark-invalid-color: ct-color-dark('error') !default;
+$ct-radio-dark-outline-color: $ct-outline-dark !default;
+
+//
+// Form Control/Select.
+//
+$ct-select-border-radius: $ct-border-radius !default;
+$ct-select-outline-width: 2px !default;
+$ct-select-outline-offset: 2px !default;
+$ct-select-disabled-opacity: 40% !default;
+$ct-select-light-background-color: ct-color-light('background-light') !default;
+$ct-select-light-border-color: ct-color-light('border') !default;
+$ct-select-light-color: ct-color-light('body') !default;
+$ct-select-light-option-background-color: ct-color-light('background') !default;
+$ct-select-light-option-color: inherit !default;
+$ct-select-light-hover-background-color: $ct-select-light-background-color !default;
+$ct-select-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-select-light-hover-color: $ct-select-light-color !default;
+$ct-select-light-focus-background-color: $ct-select-light-background-color !default;
+$ct-select-light-focus-border-color: ct-color-light('interaction-background') !default;
+$ct-select-light-focus-color: $ct-select-light-color !default;
+$ct-select-light-invalid-background-color: ct-color-light('background-light') !default;
+$ct-select-light-invalid-border-color: ct-color-light('error') !default;
+$ct-select-light-invalid-color: ct-color-light('body') !default;
+$ct-select-light-outline-color: $ct-outline-light !default;
+$ct-select-light-icon: url("data:image/svg+xml,%3Csvg width='38' height='28' viewBox='0 0 38 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0H0V28H1V0Z' fill='black' fill-opacity='0.6'/%3E%3Cpath d='M17.0916 13.1714L19 13.1666C19 13.1666 20.7334 13.1666 20.9083 13.1666C21.0831 13.1666 21.0831 13.1666 21.0831 13.1666L21.5 13.1714C21.5 13.1714 21.7189 13.1497 21.8204 13.1074C21.922 13.0651 22.0141 13.0031 22.0916 12.9249C22.1697 12.8475 22.2317 12.7553 22.274 12.6538C22.3163 12.5522 22.3381 12.4433 22.3381 12.3333C22.3381 12.2233 22.3163 12.1144 22.274 12.0128C22.2317 11.9113 22.1697 11.8191 22.0916 11.7416L19.5916 9.24162C19.5141 9.16351 19.422 9.10151 19.3204 9.05921C19.2189 9.0169 19.11 8.99512 19 8.99512C18.8899 8.99512 18.781 9.0169 18.6795 9.05921C18.5779 9.10151 18.4858 9.16351 18.4083 9.24162L15.9083 11.7416C15.7514 11.8985 15.6632 12.1114 15.6632 12.3333C15.6632 12.5552 15.7514 12.768 15.9083 12.9249C16.0652 13.0819 16.278 13.17 16.5 13.17C16.7219 13.17 17.0916 13.1714 17.0916 13.1714ZM20.9083 15.6666H19H17.0916C16.9165 15.6666 16.9165 15.6632 16.8202 15.6632C16.4998 15.6632 16.6098 15.6632 16.5 15.6632C16.3901 15.6632 16.2813 15.6848 16.1797 15.7269C16.0782 15.7689 15.986 15.8306 15.9083 15.9083C15.8306 15.986 15.769 16.0782 15.7269 16.1797C15.6849 16.2813 15.6632 16.3901 15.6632 16.4999C15.6632 16.6098 15.6849 16.7186 15.7269 16.8202C15.769 16.9217 15.8306 17.0139 15.9083 17.0916L18.4083 19.5916C18.4858 19.6697 18.5779 19.7317 18.6795 19.774C18.781 19.8163 18.8899 19.8381 19 19.8381C19.11 19.8381 19.2189 19.8163 19.3204 19.774C19.422 19.7317 19.5141 19.6697 19.5916 19.5916L22.0916 17.0916C22.2485 16.9347 22.3367 16.7219 22.3367 16.4999C22.3367 16.278 22.2485 16.0652 22.0916 15.9083C21.9347 15.7514 21.7219 15.6632 21.5 15.6632C21.278 15.6632 21.0831 15.6666 20.9083 15.6666Z' fill='black' fill-opacity='0.6'/%3E%3C/svg%3E%0A");
+$ct-select-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-select-dark-border-color: ct-color-dark('border-light') !default;
+$ct-select-dark-color: ct-color-dark('body') !default;
+$ct-select-dark-option-background-color: ct-color-dark('background-light') !default;
+$ct-select-dark-option-color: inherit !default;
+$ct-select-dark-hover-background-color: $ct-select-dark-background-color !default;
+$ct-select-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-select-dark-hover-color: $ct-select-dark-color !default;
+$ct-select-dark-focus-background-color: ct-color-dark('background') !default;
+$ct-select-dark-focus-border-color: ct-color-dark('interaction-background') !default;
+$ct-select-dark-focus-color: $ct-select-dark-color !default;
+$ct-select-dark-invalid-background-color: ct-color-dark('background') !default;
+$ct-select-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-select-dark-invalid-color: ct-color-dark('body') !default;
+$ct-select-dark-outline-color: $ct-outline-dark !default;
+$ct-select-dark-icon: url("data:image/svg+xml,%3Csvg width='38' height='28' viewBox='0 0 38 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0H0V28H1V0Z' fill='white' fill-opacity='0.9'/%3E%3Cpath d='M17.0916 13.1714L19 13.1666C19 13.1666 20.7334 13.1666 20.9083 13.1666C21.0831 13.1666 21.0831 13.1666 21.0831 13.1666L21.5 13.1714C21.5 13.1714 21.7189 13.1497 21.8204 13.1074C21.922 13.0651 22.0141 13.0031 22.0916 12.9249C22.1697 12.8475 22.2317 12.7553 22.274 12.6538C22.3163 12.5522 22.3381 12.4433 22.3381 12.3333C22.3381 12.2233 22.3163 12.1144 22.274 12.0128C22.2317 11.9113 22.1697 11.8191 22.0916 11.7416L19.5916 9.24162C19.5141 9.16351 19.422 9.10151 19.3204 9.05921C19.2189 9.0169 19.11 8.99512 19 8.99512C18.8899 8.99512 18.781 9.0169 18.6795 9.05921C18.5779 9.10151 18.4858 9.16351 18.4083 9.24162L15.9083 11.7416C15.7514 11.8985 15.6632 12.1114 15.6632 12.3333C15.6632 12.5552 15.7514 12.768 15.9083 12.9249C16.0652 13.0819 16.278 13.17 16.5 13.17C16.7219 13.17 17.0916 13.1714 17.0916 13.1714ZM20.9083 15.6666H19H17.0916C16.9165 15.6666 16.9165 15.6632 16.8202 15.6632C16.4998 15.6632 16.6098 15.6632 16.5 15.6632C16.3901 15.6632 16.2813 15.6848 16.1797 15.7269C16.0782 15.7689 15.986 15.8306 15.9083 15.9083C15.8306 15.986 15.769 16.0782 15.7269 16.1797C15.6849 16.2813 15.6632 16.3901 15.6632 16.4999C15.6632 16.6098 15.6849 16.7186 15.7269 16.8202C15.769 16.9217 15.8306 17.0139 15.9083 17.0916L18.4083 19.5916C18.4858 19.6697 18.5779 19.7317 18.6795 19.774C18.781 19.8163 18.8899 19.8381 19 19.8381C19.11 19.8381 19.2189 19.8163 19.3204 19.774C19.422 19.7317 19.5141 19.6697 19.5916 19.5916L22.0916 17.0916C22.2485 16.9347 22.3367 16.7219 22.3367 16.4999C22.3367 16.278 22.2485 16.0652 22.0916 15.9083C21.9347 15.7514 21.7219 15.6632 21.5 15.6632C21.278 15.6632 21.0831 15.6666 20.9083 15.6666Z' fill='white' fill-opacity='0.9'/%3E%3C/svg%3E%0A");
+
+//
+// Form Control/Textarea.
+//
+$ct-textarea-border-radius: $ct-border-radius !default;
+$ct-textarea-outline-width: 2px !default;
+$ct-textarea-outline-offset: 2px !default;
+$ct-textarea-disabled-opacity: 40% !default;
+$ct-textarea-light-background-color: ct-color-light('background-light') !default;
+$ct-textarea-light-border-color: ct-color-light('border') !default;
+$ct-textarea-light-color: ct-color-light('body') !default;
+$ct-textarea-light-hover-background-color: $ct-textarea-light-background-color !default;
+$ct-textarea-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-textarea-light-hover-color: $ct-textarea-light-color !default;
+$ct-textarea-light-focus-background-color: $ct-textarea-light-background-color !default;
+$ct-textarea-light-focus-border-color: ct-color-light('interaction-background') !default;
+$ct-textarea-light-focus-color: $ct-textarea-light-color !default;
+$ct-textarea-light-invalid-background-color: ct-color-light('background-light') !default;
+$ct-textarea-light-invalid-border-color: ct-color-light('error') !default;
+$ct-textarea-light-invalid-color: ct-color-light('body') !default;
+$ct-textarea-light-outline-color: $ct-outline-light !default;
+$ct-textarea-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-textarea-dark-border-color: ct-color-dark('border-light') !default;
+$ct-textarea-dark-color: ct-color-dark('body') !default;
+$ct-textarea-dark-hover-background-color: $ct-textarea-dark-background-color !default;
+$ct-textarea-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-textarea-dark-hover-color: $ct-textarea-dark-color !default;
+$ct-textarea-dark-focus-background-color: ct-color-dark('background') !default;
+$ct-textarea-dark-focus-border-color: ct-color-dark('interaction-background') !default;
+$ct-textarea-dark-focus-color: $ct-textarea-dark-color !default;
+$ct-textarea-dark-invalid-background-color: ct-color-dark('background-dark') !default;
+$ct-textarea-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-textarea-dark-invalid-color: ct-color-dark('body') !default;
+$ct-textarea-dark-outline-color: $ct-outline-dark !default;
+
+//
+// Form Control/Textfield.
+//
+$ct-textfield-border-radius: $ct-border-radius !default;
+$ct-textfield-outline-width: 2px !default;
+$ct-textfield-outline-offset: 2px !default;
+$ct-textfield-disabled-opacity: 40% !default;
+$ct-textfield-light-background-color: ct-color-light('background-light') !default;
+$ct-textfield-light-border-color: ct-color-light('border') !default;
+$ct-textfield-light-color: ct-color-light('body') !default;
+$ct-textfield-light-hover-background-color: $ct-textfield-light-background-color !default;
+$ct-textfield-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-textfield-light-hover-color: $ct-textfield-light-color !default;
+$ct-textfield-light-focus-background-color: $ct-textfield-light-background-color !default;
+$ct-textfield-light-focus-border-color: ct-color-light('interaction-background') !default;
+$ct-textfield-light-focus-color: $ct-textfield-light-color !default;
+$ct-textfield-light-invalid-background-color: ct-color-light('background-light') !default;
+$ct-textfield-light-invalid-border-color: ct-color-light('error') !default;
+$ct-textfield-light-invalid-color: ct-color-light('body') !default;
+$ct-textfield-light-outline-color: $ct-outline-light !default;
+$ct-textfield-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-textfield-dark-border-color: ct-color-dark('border-light') !default;
+$ct-textfield-dark-color: ct-color-dark('body') !default;
+$ct-textfield-dark-hover-background-color: $ct-textfield-dark-background-color !default;
+$ct-textfield-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-textfield-dark-hover-color: $ct-textfield-dark-color !default;
+$ct-textfield-dark-focus-background-color: ct-color-dark('background') !default;
+$ct-textfield-dark-focus-border-color: ct-color-dark('interaction-background') !default;
+$ct-textfield-dark-focus-color: $ct-textfield-dark-color !default;
+$ct-textfield-dark-invalid-background-color: ct-color-dark('background-dark') !default;
+$ct-textfield-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-textfield-dark-invalid-color: ct-color-dark('body') !default;
+$ct-textfield-dark-outline-color: $ct-outline-dark !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               MOLECULES                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Accordion.
+//
+$ct-accordion-button-border-radius: $ct-border-radius !default;
+$ct-accordion-header-border-radius: $ct-border-radius !default;
+$ct-accordion-item-border-radius: $ct-border-radius !default;
+$ct-accordion-stripe-width: $ct-stripe-size !default;
+$ct-accordion-space-horizontal: ct-spacing(7) !default;
+$ct-accordion-light-background-color: ct-color-light('background-light') !default;
+$ct-accordion-light-border-color: ct-color-light('border-light') !default;
+$ct-accordion-light-color: ct-color-light('body') !default;
+$ct-accordion-light-button-background-color: ct-color-light('background-light') !default;
+$ct-accordion-light-button-color: ct-color-light('heading') !default;
+$ct-accordion-light-icon-color: ct-color-light('interaction-background') !default;
+$ct-accordion-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-accordion-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-accordion-button-border-radius: $ct-border-radius !default;
+$ct-accordion-header-border-radius: $ct-border-radius !default;
+$ct-accordion-item-border-radius: $ct-border-radius !default;
+$ct-accordion-dark-background-color: ct-color-dark('background-light') !default;
+$ct-accordion-dark-border-color: ct-color-dark('border') !default;
+$ct-accordion-dark-color: ct-color-dark('body') !default;
+$ct-accordion-dark-button-background-color: ct-color-dark('background-light') !default;
+$ct-accordion-dark-button-color: ct-color-dark('heading') !default;
+$ct-accordion-dark-icon-color: ct-color-dark('interaction-background') !default;
+$ct-accordion-dark-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-accordion-dark-wrapper-background-color: ct-color-dark('background-dark') !default;
+
+//
+// Attachment.
+//
+$ct-attachment-border-radius: $ct-border-radius !default;
+$ct-attachment-space-horizontal: ct-spacing(7) !default;
+$ct-attachment-light-background-color: ct-color-light('background-light') !default;
+$ct-attachment-light-border-color: ct-color-light('border-light') !default;
+$ct-attachment-light-color: ct-color-light('body') !default;
+$ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-attachment-dark-background-color: ct-color-dark('background') !default;
+$ct-attachment-dark-border-color: ct-color-dark('border') !default;
+$ct-attachment-dark-color: ct-color-dark('body') !default;
+$ct-attachment-dark-wrapper-background-color: ct-color-dark('background') !default;
+
+//
+// Back to top.
+//
+$ct-back-to-top-space-bottom: ct-spacing(8) !default;
+$ct-back-to-top-space-right: ct-spacing(2) !default;
+$ct-back-to-top-background-color: ct-color-light('interaction-background') !default;
+$ct-back-to-top-border-color: $ct-back-to-top-background-color !default;
+$ct-back-to-top-color: ct-color-light('interaction-text') !default;
+$ct-back-to-top-outline-color: transparent !default;
+
+//
+// Basic content.
+//
+$ct-basic-content-blockquote-border-radius: $ct-border-radius !default;
+$ct-basic-content-list-marker-margin: ct-particle(2) !default;
+$ct-basic-content-list-marker-width: ct-particle(3.5) !default;
+$ct-basic-content-space-horizontal: ct-spacing(7) !default;
+$ct-basic-content-vertical-spacing: 1.5rem !default;
+$ct-basic-content-light-base-color: ct-color-light('body') !default;
+$ct-basic-content-light-blockquote-stripe-background-color: ct-color-light('highlight') !default;
+$ct-basic-content-light-blockquote-color: ct-color-light('body') !default;
+$ct-basic-content-light-blockquote-background-color: ct-color-light('background-light') !default;
+$ct-basic-content-light-blockquote-author-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-1-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-2-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-3-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-4-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-5-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-6-color: ct-color-light('heading') !default;
+$ct-basic-content-light-ol-li-color: ct-color-light('body') !default;
+$ct-basic-content-light-ol-li-marker-color: ct-color-light('body') !default;
+$ct-basic-content-light-ul-li-color: ct-color-light('body') !default;
+$ct-basic-content-light-ul-li-marker-color: ct-color-light('body') !default;
+$ct-basic-content-light-background-color: ct-color-light('background') !default;
+$ct-basic-content-dark-base-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-blockquote-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-basic-content-dark-blockquote-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-blockquote-background-color: ct-color-dark('background-light') !default;
+$ct-basic-content-dark-blockquote-author-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-1-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-2-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-3-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-4-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-5-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-6-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-ol-li-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ol-li-marker-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ul-li-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ul-li-marker-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Breadcrumb.
+//
+$ct-breadcrumb-light-color: ct-color-light('body') !default;
+$ct-breadcrumb-light-active-color: $ct-breadcrumb-light-color !default;
+$ct-breadcrumb-dark-color: ct-color-dark('body') !default;
+$ct-breadcrumb-dark-active-color: $ct-breadcrumb-dark-color !default;
+
+//
+// Callout.
+//
+$ct-callout-border-radius: $ct-border-radius !default;
+$ct-callout-stripe-width: $ct-stripe-size !default;
+$ct-callout-light-background-color: ct-color-light('background') !default;
+$ct-callout-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-callout-dark-background-color: ct-color-dark('background') !default;
+$ct-callout-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Field.
+//
+$ct-field-horizontal-label-min-width: auto !default;
+$ct-field-horizontal-label-max-width: 25% !default;
+$ct-field-label-fixed-widths: 15, 25 !default;
+
+//
+// Figure.
+//
+$ct-figure-border-radius: $ct-border-radius !default;
+$ct-figure-light-caption-color: ct-color-light('body') !default;
+$ct-figure-dark-caption-color: ct-color-dark('body') !default;
+
+//
+// Logo.
+//
+$ct-logo-breakpoint: 'l' !default;
+$ct-logo-image-height-max-desktop: ct-particle(5) !default;
+$ct-logo-image-height-max-mobile: ct-particle(5) !default;
+$ct-logo-light-stripe-background-color: ct-color-light('border-dark') !default;
+$ct-logo-dark-stripe-background-color: ct-color-dark('border-light') !default;
+
+//
+// Map.
+//
+$ct-map-padding-bottom: 56.25% !default;
+$ct-map-space-horizontal: ct-spacing(7) !default;
+$ct-map-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
+
+//
+// Next steps.
+//
+$ct-next-step-border-radius: $ct-border-radius !default;
+$ct-next-step-stripe-width: $ct-stripe-size !default;
+$ct-next-step-light-background-color: ct-color-light('background-light') !default;
+$ct-next-step-light-border-color: ct-color-light('border-light') !default;
+$ct-next-step-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-next-step-dark-background-color: ct-color-dark('background') !default;
+$ct-next-step-dark-border-color: ct-color-dark('border') !default;
+$ct-next-step-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Table Of Contents.
+//
+$ct-table-of-contents-link-active-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-table-of-contents-max-width: 50% !default;
+$ct-table-of-contents-min-width: 50% !default;
+$ct-table-of-contents-light-link-background-color: ct-color-light('background-light') !default;
+$ct-table-of-contents-light-link-color: ct-color-light('heading') !default;
+$ct-table-of-contents-light-link-hover-background-color: ct-color-light('background') !default;
+$ct-table-of-contents-light-link-hover-border-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-color: $ct-table-of-contents-light-link-color !default;
+$ct-table-of-contents-light-link-stripe-background-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-table-of-contents-light-title-color: ct-color-light('heading') !default;
+$ct-table-of-contents-dark-link-background-color: ct-color-dark('background-light') !default;
+$ct-table-of-contents-dark-link-color: ct-color-dark('heading') !default;
+$ct-table-of-contents-dark-link-hover-background-color: ct-color-dark('background') !default;
+$ct-table-of-contents-dark-link-hover-border-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-color: $ct-table-of-contents-dark-link-color !default;
+$ct-table-of-contents-dark-link-stripe-background-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
+
+//
+// Tabs.
+//
+$ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
+$ct-tabs-light-links-stripe-background-color: ct-color-light('border-light') !default;
+$ct-tabs-light-links-background-color: ct-color-light('background') !default;
+$ct-tabs-light-links-border-color: ct-color-light('border-light') !default;
+$ct-tabs-light-links-active-background-color: ct-color-light('background-light') !default;
+$ct-tabs-light-links-active-border-color: ct-color-light('border-light') !default;
+$ct-tabs-light-panel-background-color: ct-color-light('background') !default;
+$ct-tabs-light-panel-border-color: ct-color-light('border') !default;
+$ct-tabs-dark-links-stripe-background-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-links-background-color: ct-color-dark('background') !default;
+$ct-tabs-dark-links-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !default;
+$ct-tabs-dark-links-active-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-panel-background-color: ct-color-dark('background') !default;
+$ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
+
+//
+// Tooltip.
+//
+$ct-tooltip-description-border-radius: $ct-border-radius !default;
+$ct-tooltip-width: ct-particle(60) !default;
+$ct-tooltip-width-mobile: ct-particle(40) !default;
+$ct-tooltip-triangle-width: ct-spacing(3.2) !default;
+$ct-tooltip-triangle-height: ct-spacing(2.6) !default;
+$ct-tooltip-z-index: 99 !default;
+$ct-tooltip-light-description-background-color: ct-color-light('interaction-background') !default;
+$ct-tooltip-light-description-color: ct-color-light('interaction-text') !default;
+$ct-tooltip-light-icon-color: ct-color-light('interaction-background') !default;
+$ct-tooltip-dark-description-background-color: ct-color-dark('interaction-background') !default;
+$ct-tooltip-dark-description-color: ct-color-dark('interaction-text') !default;
+$ct-tooltip-dark-icon-color: ct-color-dark('interaction-background') !default;
+
+//
+// List/Single filter.
+//
+$ct-single-filter-light-border-color: ct-color-light('border-light') !default;
+$ct-single-filter-dark-border-color: ct-color-dark('border') !default;
+
+//
+// List/Group filter.
+//
+$ct-group-filter-light-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-border-color: ct-color-light('border-light') !default;
+$ct-group-filter-light-dropdown-filter-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-filters-legend-color: ct-color-light('body') !default;
+$ct-group-filter-light-mobile-filter-title-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-overlay-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-toggle-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-toggle-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-mobile-toggle-color: ct-color-light('interaction-background') !default;
+$ct-group-filter-light-mobile-toggle-display-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-mobile-toggle-display-color: ct-color-light('background') !default;
+$ct-group-filter-light-selected-filters-border-color: ct-color-light('border-light') !default;
+$ct-group-filter-light-selected-filters-title-color: ct-color-light('body') !default;
+$ct-group-filter-dark-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-border-color: ct-color-dark('border') !default;
+$ct-group-filter-dark-dropdown-filter-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-filters-legend-color: ct-color-dark('body') !default;
+$ct-group-filter-dark-mobile-filter-title-color: ct-color-dark('body') !default;
+$ct-group-filter-dark-mobile-overlay-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-mobile-toggle-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-display-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-mobile-toggle-display-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-selected-filters-border-color: ct-color-dark('border-light') !default;
+$ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') !default;
+
+//
+// List/Pagination.
+//
+$ct-pagination-light-color: ct-color-light('interaction-background') !default;
+$ct-pagination-light-border-color: ct-color-light('border-light') !default;
+$ct-pagination-dark-color: ct-color-dark('interaction-background') !default;
+$ct-pagination-dark-border-color: ct-color-dark('border') !default;
+
+//
+// List/Event card.
+//
+$ct-event-card-border-radius: $ct-border-radius !default;
+$ct-event-card-image-height-desktop: ct-particle(30) !default;
+$ct-event-card-image-height-mobile: ct-particle(25) !default;
+$ct-event-card-image-width-desktop: auto !default;
+$ct-event-card-image-width-mobile: auto !default;
+$ct-event-card-stripe-height: $ct-stripe-size !default;
+$ct-event-card-light-background-color: ct-color-light('background-light') !default;
+$ct-event-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-event-card-dark-background-color: ct-color-dark('background') !default;
+$ct-event-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// List/Navigation card.
+//
+$ct-navigation-card-border-radius: $ct-border-radius !default;
+$ct-navigation-card-image-height-mobile: ct-particle(35) !default;
+$ct-navigation-card-image-width-mobile: auto !default;
+$ct-navigation-card-image-min-height-desktop: ct-particle(32) !default;
+$ct-navigation-card-image-min-width-desktop: ct-particle(36) !default;
+$ct-navigation-card-image-max-width-desktop: 30% !default;
+$ct-navigation-card-orientation-threshold: $ct-navigation-card-image-min-width-desktop * 2 !default;
+$ct-navigation-card-light-background-color: ct-color-light('background-light') !default;
+$ct-navigation-card-light-icon-color: $ct-link-light-color !default;
+$ct-navigation-card-dark-background-color: ct-color-dark('background') !default;
+$ct-navigation-card-dark-icon-color: $ct-link-dark-color !default;
+
+//
+// List/Promo card.
+//
+$ct-promo-card-border-radius: $ct-border-radius !default;
+$ct-promo-card-image-height-desktop: ct-particle(30) !default;
+$ct-promo-card-image-height-mobile: ct-particle(25) !default;
+$ct-promo-card-image-width-desktop: auto !default;
+$ct-promo-card-image-width-mobile: auto !default;
+$ct-promo-card-stripe-height: $ct-stripe-size !default;
+$ct-promo-card-light-background-color: ct-color-light('background-light') !default;
+$ct-promo-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-promo-card-dark-background-color: ct-color-dark('background') !default;
+$ct-promo-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// List/Publication card.
+//
+$ct-publication-card-border-radius: $ct-border-radius !default;
+$ct-publication-card-image-height-mobile: ct-particle(23) !default;
+$ct-publication-card-image-width-mobile: auto !default;
+$ct-publication-card-image-height-desktop: ct-particle(23) !default;
+$ct-publication-card-image-width-desktop: 50% !default;
+$ct-publication-card-light-background-color: ct-color-light('background-light') !default;
+$ct-publication-card-dark-background-color: ct-color-dark('background') !default;
+
+//
+// List/Service card.
+//
+$ct-service-card-border-radius: $ct-border-radius !default;
+$ct-service-card-stripe-height: $ct-stripe-size !default;
+$ct-service-card-light-background-color: ct-color-light('background-light') !default;
+$ct-service-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-service-card-dark-background-color: ct-color-dark('background') !default;
+$ct-service-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// List/Subject card.
+//
+$ct-subject-card-border-radius: $ct-border-radius !default;
+$ct-subject-card-image-height-mobile: ct-particle(20) !default;
+$ct-subject-card-image-width-mobile: auto !default;
+$ct-subject-card-image-height-desktop: ct-particle(28) !default;
+$ct-subject-card-image-width-desktop: auto !default;
+$ct-subject-card-light-background-color: ct-color-light('background-light') !default;
+$ct-subject-card-light-image-opacity: 30% !default;
+$ct-subject-card-dark-background-color: ct-color-dark('background') !default;
+$ct-subject-card-dark-image-opacity: 20% !default;
+
+//
+// List/Snippet.
+//
+$ct-snippet-light-background-color: transparent !default;
+$ct-snippet-dark-background-color: transparent !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               ORGANISMS                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Alert.
+//
+$ct-alert-light-divider-color: ct-color-light('interaction-background') !default;
+$ct-alert-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 80) !default;
+$ct-alert-light-error-color: ct-color-light('body') !default;
+$ct-alert-light-error-icon-color: $ct-alert-light-error-color !default;
+$ct-alert-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 80) !default;
+$ct-alert-light-information-color: ct-color-light('body') !default;
+$ct-alert-light-information-icon-color: $ct-alert-light-information-color !default;
+$ct-alert-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 80) !default;
+$ct-alert-light-success-color: ct-color-light('body') !default;
+$ct-alert-light-success-icon-color: $ct-alert-light-success-color !default;
+$ct-alert-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 80) !default;
+$ct-alert-light-warning-color: ct-color-light('body') !default;
+$ct-alert-light-warning-icon-color: $ct-alert-light-warning-color !default;
+$ct-alert-dark-divider-color: ct-color-dark('interaction-background') !default;
+$ct-alert-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 20) !default;
+$ct-alert-dark-error-color: ct-color-dark('body') !default;
+$ct-alert-dark-error-icon-color: $ct-alert-dark-error-color !default;
+$ct-alert-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 20) !default;
+$ct-alert-dark-information-color: ct-color-dark('body') !default;
+$ct-alert-dark-information-icon-color: $ct-alert-dark-information-color !default;
+$ct-alert-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 20) !default;
+$ct-alert-dark-success-color: ct-color-dark('body') !default;
+$ct-alert-dark-success-icon-color: $ct-alert-dark-success-color !default;
+$ct-alert-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 20) !default;
+$ct-alert-dark-warning-color: ct-color-dark('body') !default;
+$ct-alert-dark-warning-icon-color: $ct-alert-dark-warning-color !default;
+
+//
+// Banner.
+//
+$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(2)}), 0% 100%) !default;
+$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(6)}), 0% 100%) !default;
+$ct-banner-featured-image-width: 40% !default;
+$ct-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
+$ct-banner-light-background-color: ct-color-light('background') !default;
+$ct-banner-light-featured-image-shadow-color: ct-color-light('background-light') !default;
+$ct-banner-dark-background-color: ct-color-dark('background') !default;
+$ct-banner-dark-featured-image-shadow-color: ct-color-dark('background') !default;
+
+//
+// Campaign.
+//
+$ct-campaign-image-border-radius: $ct-border-radius !default;
+$ct-campaign-image-shadow-offset-x: ct-particle(2) !default;
+$ct-campaign-image-shadow-offset-y: ct-particle(2) !default;
+$ct-campaign-mobile-height: ct-particle(30) !default;
+$ct-campaign-light-background-color: ct-color-light('background-light') !default;
+$ct-campaign-light-image-shadow-color: ct-color-light('background') !default;
+$ct-campaign-dark-background-color: ct-color-dark('background') !default;
+$ct-campaign-dark-image-shadow-color: ct-color-dark('background-dark') !default;
+
+//
+// Footer.
+//
+$ct-footer-light-background-color: ct-color-light('background') !default;
+$ct-footer-light-border-color: ct-color-light('border-light') !default;
+$ct-footer-light-color: ct-color-light('body') !default;
+$ct-footer-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-footer-dark-border-color: ct-color-dark('border') !default;
+$ct-footer-dark-color: ct-color-dark('body') !default;
+
+//
+// Header.
+//
+$ct-header-desktop-menu-breakpoint: 'm' !default;
+$ct-header-light-middle-background-color: ct-color-light('background-light') !default;
+$ct-header-light-middle-border-color: ct-color-light('border-light') !default;
+$ct-header-light-top-background-color: ct-color-light('background') !default;
+$ct-header-light-top-color: ct-color-light('body') !default;
+$ct-header-dark-middle-background-color: ct-color-dark('background') !default;
+$ct-header-dark-middle-border-color: ct-color-dark('border') !default;
+$ct-header-dark-top-background-color: ct-color-dark('background-dark') !default;
+$ct-header-dark-top-color: ct-color-dark('body') !default;
+
+//
+// List.
+//
+$ct-list-light-background-color: ct-color-light('background') !default;
+$ct-list-light-color: ct-color-light('body') !default;
+$ct-list-dark-background-color: ct-color-dark('background') !default;
+$ct-list-dark-color: ct-color-dark('body') !default;
+
+//
+// Message.
+//
+$ct-message-border-radius: $ct-border-radius !default;
+$ct-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 80) !default;
+$ct-message-light-error-border-color: ct-color-light('error') !default;
+$ct-message-light-error-color: ct-color-light('body') !default;
+$ct-message-light-error-icon-color: $ct-message-light-error-color !default;
+$ct-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 80) !default;
+$ct-message-light-information-border-color: ct-color-light('information') !default;
+$ct-message-light-information-color: ct-color-light('body') !default;
+$ct-message-light-information-icon-color: $ct-message-light-information-color !default;
+$ct-message-light-success-border-color: ct-color-light('success') !default;
+$ct-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 80) !default;
+$ct-message-light-success-color: ct-color-light('body') !default;
+$ct-message-light-success-icon-color: $ct-message-light-success-color !default;
+$ct-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 80) !default;
+$ct-message-light-warning-border-color: ct-color-light('warning') !default;
+$ct-message-light-warning-color: ct-color-light('body') !default;
+$ct-message-light-warning-icon-color: $ct-message-light-warning-color !default;
+$ct-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 20) !default;
+$ct-message-dark-error-border-color: ct-color-dark('error') !default;
+$ct-message-dark-error-color: ct-color-dark('body') !default;
+$ct-message-dark-error-icon-color: $ct-message-dark-error-color !default;
+$ct-message-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 20) !default;
+$ct-message-dark-information-border-color: ct-color-dark('information') !default;
+$ct-message-dark-information-color: ct-color-dark('body') !default;
+$ct-message-dark-information-icon-color: $ct-message-dark-information-color !default;
+$ct-message-dark-success-border-color: ct-color-dark('success') !default;
+$ct-message-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 20) !default;
+$ct-message-dark-success-color: ct-color-dark('body') !default;
+$ct-message-dark-success-icon-color: $ct-message-dark-success-color !default;
+$ct-message-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 20) !default;
+$ct-message-dark-warning-border-color: ct-color-dark('warning') !default;
+$ct-message-dark-warning-color: ct-color-dark('body') !default;
+$ct-message-dark-warning-icon-color: $ct-message-dark-warning-color !default;
+
+//
+// Navigation
+//
+// Navigation can be rendered in 3 ways: plain, with dropdown and with drawer.
+
+// Inline.
+$ct-navigation-inline-column-gutter: $ct-item-list-horizontal-regular-column-gap !default;
+$ct-navigation-inline-row-gutter: $ct-item-list-horizontal-regular-column-gap !default;
+
+// Dropdown.
+$ct-navigation-dropdown-zindex: 11 !default;
+$ct-navigation-dropdown-border-radius: $ct-border-radius !default;
+
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-dropdown-top-offset: ct-spacing() !default;
+
+// Colors.
+$ct-navigation-light-dropdown-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-dark-dropdown-sub-menu-background-color: ct-color-dark('background-light') !default;
+
+// Drawer.
+$ct-navigation-drawer-zindex: 10 !default;
+
+// Maximum number of columns a drawer may have.
+$ct-navigation-drawer-cols: 4 !default;
+
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-drawer-top-offset: ct-spacing(2) !default;
+
+// Gutter size between the drawer columns.
+$ct-navigation-drawer-column-gutter: ct-spacing(4) !default;
+
+// Colors.
+$ct-navigation-light-menu-border-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-active-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-item-background-color: transparent !default;
+$ct-navigation-light-menu-item-border-color: transparent !default;
+$ct-navigation-light-menu-item-hover-background-color: transparent !default;
+$ct-navigation-light-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-item-active-background-color: transparent !default;
+$ct-navigation-light-menu-item-active-border-color: ct-color-light('highlight') !default;
+$ct-navigation-light-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-item-active-trail-color: ct-color-light('background') !default;
+$ct-navigation-light-drawer-border-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-active-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-active-border-color: ct-color-light('highlight') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-color: ct-color-light('background') !default;
+$ct-navigation-light-drawer-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-light-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-hover-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-active-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-background-color: ct-color-light('body') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-color: ct-color-light('background') !default;
+$ct-navigation-dark-menu-border-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-active-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-item-background-color: transparent !default;
+$ct-navigation-dark-menu-item-border-color: transparent !default;
+$ct-navigation-dark-menu-item-hover-background-color: transparent !default;
+$ct-navigation-dark-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-item-active-background-color: transparent !default;
+$ct-navigation-dark-menu-item-active-border-color: ct-color-dark('highlight') !default;
+$ct-navigation-dark-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-item-active-trail-color: ct-color-dark('background') !default;
+$ct-navigation-dark-drawer-border-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-active-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-active-border-color: ct-color-dark('highlight') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-color: ct-color-dark('background') !default;
+$ct-navigation-dark-drawer-sub-menu-background-color: ct-color-dark('background-light') !default;
+$ct-navigation-dark-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-hover-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-active-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-background-color: ct-color-dark('body') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-color: ct-color-dark('background') !default;
+
+// @todo Remove this in favour of inline classes.
+$ct-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
+
+//
+// Navigation/Side navigation.
+//
+$ct-side-navigation-link-active-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-side-navigation-light-title-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-expanded-icon-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-parent-background-color: ct-color-light('background-light') !default;
+$ct-side-navigation-light-link-parent-border-color: ct-color-light('border-light') !default;
+$ct-side-navigation-light-link-parent-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-parent-stripe-background-color: ct-color-light('border-light') !default;
+$ct-side-navigation-light-link-parent-hover-background-color: ct-color-light('background-dark') !default;
+$ct-side-navigation-light-link-parent-hover-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-parent-hover-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-parent-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-parent-active-background-color: ct-color-light('background') !default;
+$ct-side-navigation-light-link-parent-active-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-parent-active-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-parent-active-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-child-background-color: $ct-side-navigation-light-link-parent-background-color !default;
+$ct-side-navigation-light-link-child-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-child-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-child-stripe-background-color: $ct-side-navigation-light-link-parent-stripe-background-color !default;
+$ct-side-navigation-light-link-child-hover-background-color: $ct-side-navigation-light-link-parent-hover-background-color !default;
+$ct-side-navigation-light-link-child-hover-border-color: $ct-side-navigation-light-link-child-border-color !default;
+$ct-side-navigation-light-link-child-hover-color: $ct-side-navigation-light-link-child-color !default;
+$ct-side-navigation-light-link-child-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-child-active-background-color: ct-color-light('background') !default;
+$ct-side-navigation-light-link-child-active-border-color: $ct-side-navigation-light-link-child-border-color !default;
+$ct-side-navigation-light-link-child-active-color: $ct-side-navigation-light-link-child-color !default;
+$ct-side-navigation-light-link-child-active-stripe-background-color: $ct-side-navigation-light-link-child-hover-stripe-background-color !default;
+$ct-side-navigation-dark-title-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-expanded-icon-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-parent-background-color: ct-color-dark('background-light') !default;
+$ct-side-navigation-dark-link-parent-border-color: ct-color-dark('interaction-text') !default;
+$ct-side-navigation-dark-link-parent-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-parent-stripe-background-color: ct-color-dark('interaction-text') !default;
+$ct-side-navigation-dark-link-parent-hover-background-color: ct-color-dark('background-dark') !default;
+$ct-side-navigation-dark-link-parent-hover-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-parent-hover-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-parent-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-parent-active-background-color: ct-color-dark('background') !default;
+$ct-side-navigation-dark-link-parent-active-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-parent-active-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-parent-active-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-child-background-color: $ct-side-navigation-dark-link-parent-background-color !default;
+$ct-side-navigation-dark-link-child-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-child-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-child-stripe-background-color: $ct-side-navigation-dark-link-parent-stripe-background-color !default;
+$ct-side-navigation-dark-link-child-hover-background-color: $ct-side-navigation-dark-link-parent-hover-background-color !default;
+$ct-side-navigation-dark-link-child-hover-border-color: $ct-side-navigation-dark-link-child-border-color !default;
+$ct-side-navigation-dark-link-child-hover-color: $ct-side-navigation-dark-link-child-color !default;
+$ct-side-navigation-dark-link-child-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-child-active-background-color: ct-color-dark('background') !default;
+$ct-side-navigation-dark-link-child-active-border-color: $ct-side-navigation-dark-link-child-border-color !default;
+$ct-side-navigation-dark-link-child-active-color: $ct-side-navigation-dark-link-child-color !default;
+$ct-side-navigation-dark-link-child-active-stripe-background-color: $ct-side-navigation-dark-link-child-hover-stripe-background-color !default;
+
+//
+// Navigation/Mobile navigation.
+//
+$ct-mobile-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
+$ct-mobile-navigation-light-panel-background-color: ct-color-light('background-light') !default;
+$ct-mobile-navigation-light-top-menu-background-color: $ct-mobile-navigation-light-panel-background-color !default;
+$ct-mobile-navigation-light-bottom-menu-background-color: ct-color-light('background') !default;
+$ct-mobile-navigation-light-menu-item-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-light-menu-item-hover-color: $ct-mobile-navigation-light-menu-item-color !default;
+$ct-mobile-navigation-light-menu-divider-border-color: ct-color-light('border-light') !default;
+$ct-mobile-navigation-light-subsection-heading-color: ct-color-light('heading') !default;
+$ct-mobile-navigation-light-subsection-heading-icon-color: $ct-mobile-navigation-light-subsection-heading-color !default;
+$ct-mobile-navigation-light-subsection-trigger-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-trigger-light-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-dark-panel-background-color: ct-color-dark('background') !default;
+$ct-mobile-navigation-dark-top-menu-background-color: $ct-mobile-navigation-dark-panel-background-color !default;
+$ct-mobile-navigation-dark-bottom-menu-background-color: ct-color-dark('background-dark') !default;
+$ct-mobile-navigation-dark-menu-item-color: ct-color-dark('interaction-background') !default;
+$ct-mobile-navigation-dark-menu-item-hover-color: $ct-mobile-navigation-dark-menu-item-color !default;
+$ct-mobile-navigation-dark-menu-divider-border-color: ct-color-dark('border') !default;
+$ct-mobile-navigation-dark-subsection-heading-color: ct-color-dark('heading') !default;
+$ct-mobile-navigation-dark-subsection-heading-icon-color: $ct-mobile-navigation-dark-subsection-heading-color !default;
+$ct-mobile-navigation-dark-subsection-trigger-color: ct-color-dark('interaction-background') !default;
+$ct-mobile-navigation-trigger-dark-color: ct-color-dark('interaction-background') !default;
+
+//
+// Promo.
+//
+$ct-promo-light-background-color: ct-color-light('background-light') !default;
+$ct-promo-light-border-color: ct-color-light('border-light') !default;
+$ct-promo-dark-background-color: ct-color-dark('background') !default;
+$ct-promo-dark-border-color: ct-color-dark('border') !default;
+$ct-promo-space-horizontal: ct-spacing(7) !default;
+
+//
+// Skip link.
+//
+$ct-skip-link-light-background-color: ct-color-light('background') !default;
+$ct-skip-link-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Slider.
+//
+$ct-slider-border-radius: $ct-border-radius !default;
+$ct-slider-space-horizontal: ct-spacing(7) !default;
+$ct-slider-slide-desktop-min-height: ct-particle(35) !default;
+$ct-slider-slide-mobile-min-height: ct-particle(35) !default;
+$ct-slider-mobile-transition: 0.5s !default;
+$ct-slider-desktop-transition: 1s !default;
+$ct-slider-light-background-color: ct-color-light('background-light') !default;
+$ct-slider-light-slide-background-color: ct-color-light('background') !default;
+$ct-slider-dark-background-color: ct-color-dark('background') !default;
+$ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
+
+//
+// Webform.
+//
+$ct-webform-space-horizontal: ct-spacing(7) !default;
+$ct-webform-light-background-color: ct-color-light('background') !default;
+$ct-webform-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Page.
+//
+$ct-page-light-background-color: ct-color-light('background-light') !default;
+$ct-page-dark-background-color: ct-color-dark('background-dark') !default;

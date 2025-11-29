@@ -1,0 +1,149 @@
+//
+// Link mixins.
+//
+
+//
+// Set link colors.
+//
+@mixin ct-link-colors($normal, $hover: $normal, $visited: $normal, $active: $normal, $focus: false) {
+  color: $normal;
+
+  @if $hover != false {
+    &:hover,
+    &:visited:hover {
+      color: $hover;
+    }
+  }
+
+  @if $visited != false {
+    &:visited {
+      color: $visited;
+    }
+  }
+
+  @if $active != false {
+    &--active,
+    &:active {
+      color: $active;
+    }
+  }
+
+  @if $focus != false {
+    &:focus-visible {
+      color: $focus;
+    }
+  }
+}
+
+//
+// Set link background colors.
+//
+@mixin ct-link-backgrounds($normal, $hover: $normal, $visited: $normal, $active: $normal, $focus: false) {
+  background-color: $normal;
+
+  @if $hover != false {
+    &:hover {
+      background-color: $hover;
+    }
+  }
+
+  @if $visited != false {
+    &:visited {
+      background-color: $visited;
+    }
+  }
+
+  @if $active != false {
+    &--active,
+    &:active {
+      background-color: $active;
+    }
+  }
+
+  @if $focus != false {
+    &:focus-visible {
+      background-color: $focus;
+    }
+  }
+}
+
+//
+// Add text decoration to a link.
+//
+@mixin ct-link-decoration($underline: false, $underline-hover: true, $underline-active: true, $underline-focus: true) {
+  @if $underline {
+    text-decoration: underline;
+  }
+  @else {
+    text-decoration: none;
+  }
+
+  &:hover {
+    @if $underline-hover {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+
+  &--active,
+  &:active {
+    @if $underline-active {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+
+  &:focus-visible {
+    @if $underline-focus {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+}
+
+//
+// Remove text decoration from a link.
+//
+@mixin ct-link-no-decoration() {
+  @include ct-link-decoration(false, false, false, false);
+}
+
+//
+// Remove an outline from the link.
+//
+@mixin ct-link-no-outline() {
+  outline: 0;
+
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+//
+// Cover parent to allow the whole element to become a link.
+//
+@mixin ct-link-cover-parent() {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@mixin ct-link-wide() {
+  display: flex;
+  column-gap: ct-spacing(2);
+
+  .ct-link__icon {
+    @include ct-flex-align-right();
+  }
+}

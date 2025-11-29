@@ -1,0 +1,30 @@
+.story-welcome {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // CivicTheme's own brand color.
+  background-color: #003f56;
+}
+
+.story-welcome__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .ct-logo {
+    margin-bottom: 2em;
+
+    .ct-logo__image {
+      max-height: 5em;
+    }
+  }
+
+  .ct-paragraph {
+    margin-top: 2em;
+    max-width: 50em;
+  }
+}

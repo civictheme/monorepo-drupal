@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Grid component.
+ *
+ * Variables:
+ * - items: [array] Array of column items.
+ * - row_element: [string] Row element.
+ * - row_class: [string] Optional row class override. Deffaults to 'row'.
+ * - row_attributes: [string] Additional row attributes.
+ * - column_element: [string] Column element.
+ * - column_class: [string] Optional column class override. Defaults to 'col' if
+ *   column auto-generation is not required (template_column_count is 0),
+ *   otherwise it is appended to the auto-generated column class list.
+ * - column_attributes: [string] Additional column attributes.
+ * - use_container: [boolean] Whether to use container or not.
+ * - is_fluid: [boolean] Whether the grid is fluid or not. Defaults to false.
+ *   Applies only if `use_container` is true.
+ * - template_column_count: [number] Number of columns in the row. If 0 - the
+ *   auto columns will be used where column width will be calculated
+ *   automatically. Defaults to 0.
+ * - fill_width: [boolean] Stretch "hanging" items to the full width of the row.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set use_container = use_container|default(true) %}
+{% set is_fluid = is_fluid|default(false) %}
+{% set fill_width = fill_width|default(false) %}
+{% set row_element = row_element|default('div') %}
+{% set column_element = column_element|default('div') %}
+{% set template_column_count = template_column_count|default(0) %}
+{% set row_class = row_class|default('') %}
+{% set modifier_class = modifier_class|default('') %}
+
+{% if template_column_count > 0 %}
+	{% set column_class = column_class|default('') %}
+	{% set template_column_count = template_column_count in [1, 2, 3, 4, 6, 12] ? template_column_count : 12 %}
+	{% set column_class = 'col-xxs-12 col-m-%s %s'|format(12 // template_column_count, column_class)|trim %}
+{% else %}
+	{% set column_class = ('col ' ~ column_class|default(''))|trim %}
+{% endif %}
+
+{% set row_classes = ['row'] %}
+{% if fill_width %}
+	{% set row_classes = row_classes|merge(['row--fill-width']) %}
+{% endif %}
+{% set row_classes = row_classes|merge([row_class]) %}
+
+{% set container_class = '' %}
+{% if use_container %}
+	{% set container_class = ((is_fluid ? 'container-fluid' : 'container') ~ ' ' ~ modifier_class)|trim %}
+{% else %}
+	{# Propagade modifier class to row class if container is not used. #}
+	{% if modifier_class is not empty %}
+		{% set row_classes = row_classes|merge([modifier_class]) %}
+	{% endif %}
+	{% set row_attributes = (row_attributes ~ ' ' ~ attributes)|trim %}
+{% endif %}
+
+{% set row_class_string = row_classes|join(' ')|trim %}
+
+{% if items is not empty %}
+	{% if use_container %}
+	<div class="{{ container_class }}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %} aria-live="polite">
+	{% endif %}
+		<{{ row_element }} class="{{ row_class_string }}" {% if row_attributes is not empty %}{{ row_attributes|raw }}{% endif %}>
+			{% for item in items %}
+				{% if item is not empty %}
+					<{{ column_element }} class="{{ column_class }}" {% if column_attributes is not empty %}{{ column_attributes|raw }}{% endif %}>
+						{{ item|raw }}
+					</{{ column_element }}>
+				{% endif %}
+			{% endfor %}
+    </{{ row_element }}>
+	{% if use_container %}
+	</div>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,83 @@
+//
+// Field component.
+//
+
+@use 'sass:math';
+
+.ct-field {
+  $root: &;
+  $_label-size: 'label-small';
+  $_control-vertical-padding: ct-spacing(2);
+  $_control-border-width: ct-particle(0.125);
+  $_item-line_height: ct-typography-rule($_label-size, 'line-height', 'm');
+
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: ct-spacing(2);
+  }
+
+  & > *:not(:last-child),
+  &__wrapper > *:not(:last-child) {
+    margin-bottom: ct-spacing();
+  }
+
+  .ct-item-list__item {
+    line-height: $_item-line_height;
+  }
+
+  &#{$root}--horizontal {
+    display: flex;
+    flex-flow: row;
+    align-items: start;
+    column-gap: ct-spacing();
+
+    &#{$root}--horizontal--fluid {
+      #{$root}__title {
+        min-width: auto;
+        max-width: fit-content;
+      }
+    }
+
+    #{$root}__title {
+      flex: 0 1 auto;
+      min-width: $ct-field-horizontal-label-min-width;
+      max-width: $ct-field-horizontal-label-max-width;
+      margin-top: $_control-vertical-padding - $_control-border-width;
+    }
+
+    @each $width in $ct-field-label-fixed-widths {
+      &#{$root}--with-fixed-title--#{$width} {
+        #{$root}__title {
+          min-width: ct-spacing($width);
+        }
+      }
+    }
+
+    &#{$root}--radio,
+    &#{$root}--checkbox,
+    &#{$root}--select[multiple] {
+      #{$root}__title {
+        margin-top: 0;
+      }
+    }
+
+    #{$root}__wrapper {
+      flex: 1 0 0;
+      display: flex;
+      flex-flow: column;
+    }
+
+    #{$root}__control {
+      order: 1;
+    }
+
+    #{$root}__description {
+      order: 2;
+    }
+
+    #{$root}__message {
+      order: 3;
+    }
+  }
+}

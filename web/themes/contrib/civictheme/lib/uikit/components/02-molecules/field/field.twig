@@ -1,0 +1,155 @@
+{#
+/**
+ * @file
+ * Field component.
+ *
+ * Used as a main entry point to build any form fields.
+ *
+ * This component supports both simple and complex controls.
+ *
+ * For simple controls, the properties `name`, `value`, `is_invalid`,
+ * `is_disabled`, and `is_required` can be defined at the top level.
+ * For group controls, like radio or checkbox, these properties will be
+ * propagated to `control` prop, unless explicitly defined there.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark. Optional.
+ * - type: [string] Type defined by a control type. Required.
+ * - title: [string] Title. Optional.
+ * - title_display: [string] Title display: visible, invisible, hidden. Optional.
+ * - description: [string] Description. Optional.
+ * - name: [string] DOM name. Required, propagated.
+ * - value: [string] DOM value. Optional, propagated.
+ * - id: [string] Control DOM id. Optional, propagated.
+ * - is_invalid: [boolean] Denote if the control is invalid. Optional, propagated.
+ * - is_disabled: [boolean] Denote if the control is disabled. Optional, propagated.
+ * - is_required: [boolean] Denote if the control is required. Optional, propagated.
+ * - orientation: [string] Elements orientation: vertical or horizontal. Optional.
+ * - is_inline: [boolean] Denote if the complex control is shown inline. Optional.
+ * - control: [object | array[object]] Object or array of objects with control's
+ *   properties. Required for complex controls.
+ *   - label: [string] Control label. Required only for a radio group or checkbox.
+ *   - name: [string] Control DOM name. Propagated from `name` if not defined.
+ *   - value: [string] Control DOM value. Propagated from `value` if not defined.
+ *   - id: [string] Control DOM id. Optional.
+ *   - is_required: [boolean] Denote if the control is required. Propagated from `is_required` if not defined.
+ *   - is_invalid: [boolean] Denote if the control is invalid. Propagated from `is_invalid` if not defined.
+ *   - is_disabled: [boolean] Denote if the control is disabled. Propagated from `is_disabled` if not defined.
+ *   - attributes: [string] Control additional attributes. Optional.
+ *   - modifier_class: [string] Control additional classes. Optional.
+ * - attributes: [string] Additional attributes. Optional.
+ * - modifier_class: [string] Additional classes. Optional.
+ */
+#}
+
+{% set type = type is defined ? type : 'hidden' %}
+{% set title_display = title_display is defined and title_display in ['visible', 'invisible', 'hidden'] ? title_display : 'visible' %}
+{% set is_invalid = is_invalid is defined ? is_invalid : false %}
+{% set is_disabled = is_disabled is defined ? is_disabled : false %}
+{% set is_required = is_required is defined ? is_required : false %}
+{% set orientation = orientation in ['vertical', 'horizontal'] ? orientation : 'vertical' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'ct-field--%s'|format(type) %}
+{% set is_required_class = is_required ? 'ct-field--required' : '' %}
+{% set is_disabled_class = is_disabled ? 'ct-field--disabled' : '' %}
+{% set is_invalid_class = is_invalid ? 'ct-field--invalid' : '' %}
+{% set orientation_class = 'ct-field--%s'|format(orientation) %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, orientation_class, is_required_class, is_disabled_class, is_invalid_class, modifier_class|default('')) %}
+
+{# Initialise empty control and convert to an array. #}
+{% if control is not defined or control is not iterable %}
+	{% set control = [{name: name}] %}
+{% else %}
+	{% set first_key = control|keys|first %}
+	{% set control = first_key is not empty and first_key matches '/^[0-9]+$/' ? control : [control] %}
+{% endif %}
+
+{% set _controls = [] %}
+{% for c in control %}
+	{% set c = {
+		theme: c.theme is defined ? c.theme : theme,
+		label: c.label is defined ? c.label : title,
+		name: c.name is defined ? c.name : name,
+		value: c.value is defined ? c.value : value,
+		id: c.id is defined ? c.id : id,
+		options: c.options is defined ? c.options : options is defined ? options : [],
+		is_multiple: c.is_multiple is defined ? c.is_multiple : is_multiple is defined ? is_multiple : false,
+		placeholder: placeholder is defined ? placeholder : '',
+		is_required: is_required,
+		is_invalid: is_invalid,
+		is_disabled: is_disabled,
+		is_checked: c.is_checked is defined ? c.is_checked : false,
+		attributes: c.attributes is defined ? c.attributes : '',
+		modifier_class: c.modifier_class is defined ? 'ct-field__control ' ~ c.modifier_class : 'ct-field__control',
+	} %}
+	{% set _controls = _controls|merge([c]) %}
+{% endfor %}
+{% set control = _controls %}
+
+{% if control[0].name is defined %}
+	<div class="ct-field {{ modifier_class -}}" {% if attributes %}{{- attributes|raw -}}{% endif %}>
+		{% if title is not empty and title_display != 'hidden' and type != 'hidden' %}
+			{% include '@atoms/label/label.twig' with {
+				theme: theme,
+				content: title,
+				is_required: is_required,
+				for: control[0].id and type not in ['radio', 'checkbox'] ? control[0].id : null,
+				modifier_class: 'ct-field__title' ~ (title_display == 'invisible' ? ' ct-visually-hidden' : ''),
+			} only %}
+		{% endif %}
+
+		<div class="ct-field__wrapper">
+			{% if (description) and type != 'hidden' %}
+				{% include '@atoms/field-description/field-description.twig' with {
+					theme: theme,
+					content: description ? description : (is_invalid ? (label is not empty ? 'Field <em>' ~ label ~ '</em> has an error' : 'Field has an error') : null),
+					allow_html: true,
+					modifier_class: 'ct-field__description',
+				} only %}
+			{% endif %}
+
+			{% if type == 'textfield' %}
+				{% include '@atoms/textfield/textfield.twig' with control[0] only %}
+
+			{% elseif type == 'textarea' %}
+				{% include '@atoms/textarea/textarea.twig' with control[0] only %}
+
+			{% elseif type == 'select' %}
+				{% include '@atoms/select/select.twig' with control[0] only %}
+
+			{% elseif type == 'checkbox' or type == 'radio' %}
+
+				{% set list_items = [] %}
+				{% for item in control %}
+					{% set list_item %}
+						{% if type == 'checkbox' %}
+							{% include '@atoms/checkbox/checkbox.twig' with item only %}
+						{% else %}
+							{% include '@atoms/radio/radio.twig' with item only %}
+						{% endif %}
+					{% endset %}
+					{% set list_items = list_items|merge([list_item]) %}
+				{% endfor %}
+				{% include '@base/item-list/item-list.twig' with {
+					direction: is_inline ? 'horizontal' : 'vertical',
+					items: list_items,
+				} only %}
+
+			{% else %}
+				{% set control0 = control[0] %}
+				{% set control0 = control0|merge({'type': type}) %}
+				{% include '@atoms/input/input.twig' with control0 only %}
+			{% endif %}
+
+			{% if (message or is_invalid) and type != 'hidden' %}
+				{% include '@atoms/field-message/field-message.twig' with {
+					theme: theme,
+					type: is_invalid ? 'error' : 'information',
+					content: message ? message : (is_invalid ? (title is not empty ? 'Field <em>' ~ title ~ '</em> has an error' : 'Field has an error') : null),
+					allow_html: true,
+					modifier_class: 'ct-field__message',
+				} only %}
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

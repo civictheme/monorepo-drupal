@@ -1,0 +1,11 @@
+//
+// Page component.
+//
+
+.ct-page {
+  $root: &;
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}
