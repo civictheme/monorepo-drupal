@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Welcome story template.
+ */
+#}
+
+<div class="story-welcome">
+	<div class="story-welcome__inner">
+		{% include '@molecules/logo/logo.twig' with {
+			theme: 'light',
+			logos: logos,
+		} only %}
+		{% include '@atoms/heading/heading.twig' with {
+			theme: 'dark',
+			content: 'A design system by <a class="ct-content-link ct-theme-dark" href="https://salsa.digital/">Salsa Digital</a>',
+			level: 4,
+			modifier_class: 'ct-text-align-center',
+		} only %}
+
+		{% include '@atoms/paragraph/paragraph.twig' with {
+			theme: 'dark',
+			content: 'Welcome to the CivicTheme design system, an open-source, atomic design-based, true design system developed to help you build websites quickly and efficiently.',
+			modifier_class: 'ct-text-align-center',
+		} only %}
+
+		{% include '@atoms/paragraph/paragraph.twig' with {
+			theme: 'dark',
+			content: 'CivicTheme provides an atomic design, component-based framework to build and easily manage website assets and components.',
+			modifier_class: 'ct-text-align-center',
+		} only %}
+	</div>
+</div>

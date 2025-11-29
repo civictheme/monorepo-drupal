@@ -1,0 +1,32 @@
+//
+// Outline mixins.
+//
+
+//
+// Set element outline.
+//
+@mixin ct-outline($is_dark: false) {
+  outline-offset: $ct-outline-offset;
+  outline-width: $ct-outline-width;
+  outline-style: solid;
+
+  @if $is_dark {
+    outline-color: $ct-outline-dark;
+  }
+  @else {
+    outline-color: $ct-outline-light;
+  }
+}
+
+@mixin ct-outline-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-outline();
+  }
+  @else {
+    @include ct-outline(true);
+  }
+}
+
+@mixin ct-outline-border() {
+  border-radius: $ct-outline-border-radius;
+}

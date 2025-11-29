@@ -1,0 +1,55 @@
+//
+// Layout component stories.
+//
+
+@use 'sass:color';
+
+// Nested layout.
+.ct-layout {
+  .ct-layout {
+    .story-placeholder {
+      $_color: #6b5394;
+
+      background-color: color.adjust($_color, $alpha: -0.7);
+      border: dashed 1px color.adjust($_color, $alpha: -0.3);
+      color: color.adjust($_color, $lightness: -30%);
+    }
+  }
+}
+
+.story-layout-outlines {
+  $_viewport-color: blue;
+  $_layout-color: green;
+  $_container-color: red;
+  $_fluid-container-color: purple;
+  $_grid-color: orange;
+
+  overflow: auto;
+  background-color: rgba($_viewport-color, 0.025);
+  box-shadow: 0 0 1px 1px $_viewport-color inset;
+
+  .ct-layout {
+    background-color: rgba($_layout-color, 0.025);
+    box-shadow: 0 0 1px 1px $_layout-color inset;
+  }
+
+  .ct-layout__main,
+  .ct-layout__sidebar_top_left,
+  .ct-layout__sidebar_top_right,
+  .ct-layout__sidebar_bottom_left,
+  .ct-layout__sidebar_bottom_right {
+    background-color: rgba($_grid-color, 0.025);
+    box-shadow: 0 0 1px 1px $_grid-color inset;
+  }
+
+  .container,
+  .container-fluid {
+    background-color: rgba($_container-color, 0.025);
+    box-shadow: 0 0 1px 1px $_container-color inset;
+  }
+
+  .container-fluid {
+    background-color: rgba($_fluid-container-color, 0.025);
+    box-shadow: 0 0 1px 1px $_fluid-container-color inset;
+  }
+}

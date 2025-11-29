@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Datetime component.
+ *
+ * Variables:
+ * - start: [string] Formatted start time.
+ * - start_iso: [string] Start time in ISO format.
+ * - end: [string] Formatted end time.
+ * - end_iso: [string] End time in ISO format.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% if start is not empty %}
+  <span class="ct-datetime {{ modifier_class|default('') }}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+    <time class="ct-timestamp__start" datetime="{{ start_iso|default(start)|striptags }}">{{ start|raw }}</time>
+    {% if end is not empty %}
+      &mdash;
+      <time class="ct-timestamp__end" datetime="{{ end_iso|default(end)|striptags }}">{{ end|raw }}</time>
+    {% endif %}
+  </span>
+{% endif %}

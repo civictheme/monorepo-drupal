@@ -1,0 +1,16 @@
+//
+// Content Link component.
+//
+
+.ct-content-link {
+  @include ct-content-link-base();
+
+  &,
+  &.ct-theme-light {
+    @include ct-content-link-light();
+  }
+
+  &.ct-theme-dark {
+    @include ct-content-link-dark();
+  }
+}

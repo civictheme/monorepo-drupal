@@ -1,0 +1,57 @@
+//
+// Spacing mixins.
+//
+
+@use 'sass:list';
+@use 'sass:math';
+
+//
+// Get a spacing value from the pre-defined list of spacings.
+//
+@function ct-spacing($multiplier: 1) {
+  @if type-of($multiplier) != number {
+    @error '"#{$multiplier}" is not a valid number!';
+  }
+
+  @return $ct-spacing * $multiplier;
+}
+
+//
+// Set vertical spacing as padding or margin for a component.
+//
+@mixin ct-component-with-vertical-spacing($type, $top, $bottom: $top, $is_padding: true) {
+  $types: top, bottom, both;
+
+  @if not list.index($type, $type) {
+    @error '#{$type} is not a valid space type. Expected one of #{$types}.';
+  }
+
+  @if $type == 'top' or $type == 'both' {
+    @if $is_padding {
+      padding-top: $top;
+    }
+    @else {
+      margin-top: $top;
+    }
+  }
+
+  @if $type == 'bottom' or $type == 'both' {
+    @if $is_padding {
+      padding-bottom: $bottom;
+    }
+    @else {
+      margin-bottom: $bottom;
+    }
+  }
+
+  @if $type == 'none' {
+    @if $is_padding {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    @else {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

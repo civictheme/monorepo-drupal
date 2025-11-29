@@ -1,0 +1,82 @@
+//
+// Button component.
+//
+
+.ct-button {
+  $root: &;
+
+  cursor: pointer;
+  border: $ct-button-border-width solid transparent;
+  border-radius: $ct-button-border-radius;
+  appearance: button;
+
+  @include ct-button-size('regular');
+
+  &--primary {
+    @include ct-button-type('primary');
+  }
+
+  &--secondary {
+    @include ct-button-type('secondary');
+  }
+
+  // Type.
+  &--tertiary {
+    @include ct-button-type('tertiary');
+
+    &:focus-visible,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+
+    &--large {
+      @include ct-button-size('large', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(3);
+      }
+    }
+
+    &--regular {
+      @include ct-button-size('regular', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(3);
+      }
+    }
+
+    &--small {
+      @include ct-button-size('small', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(2);
+      }
+    }
+  }
+
+  // Size.
+  &--large {
+    @include ct-button-size('large');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+
+  &--regular {
+    @include ct-button-size('regular');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+
+  &--small {
+    @include ct-button-size('small');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+}

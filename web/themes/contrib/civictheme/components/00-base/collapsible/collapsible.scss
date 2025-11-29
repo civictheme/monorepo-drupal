@@ -1,0 +1,80 @@
+//
+// Collapsible component.
+//
+
+[data-collapsible] {
+  [data-collapsible-trigger] {
+    cursor: pointer;
+    position: relative;
+
+    .ct-collapsible__icon {
+      @include ct-icon-size();
+
+      transform: rotate(-180deg);
+
+      @include ct-print() {
+        transform: rotate(-180deg) !important;
+      }
+    }
+
+    &[data-collapsible-trigger-collapsing] {
+      .ct-collapsible__icon {
+        transform: rotate(0deg);
+      }
+
+      &[data-collapsible-trigger-collapsed] {
+        .ct-collapsible__icon {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &[data-collapsible-trigger-collapsed] {
+      .ct-collapsible__icon {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  &:not([data-collapsible-trigger-no-icon]) {
+    &[data-collapsible-trigger-wide] {
+      [data-collapsible-trigger] {
+        display: flex;
+
+        .ct-collapsible__icon {
+          @include ct-flex-align-right();
+        }
+      }
+    }
+  }
+
+  &:not([data-collapsible-duration='0']) {
+    [data-collapsible-trigger] {
+      .ct-collapsible__icon {
+        transition: transform 0.5s;
+      }
+    }
+  }
+
+  &[data-collapsible-collapsed] {
+    [data-collapsible-panel] {
+      @include ct-print() {
+        display: block !important;
+        height: auto !important;
+        overflow: auto !important;
+      }
+    }
+  }
+}
+
+.no-js {
+  [data-collapsible] {
+    &[data-collapsible-collapsed] {
+      [data-collapsible-panel] {
+        display: block !important;
+        height: auto !important;
+        overflow: auto !important;
+      }
+    }
+  }
+}

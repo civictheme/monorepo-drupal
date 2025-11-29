@@ -30,15 +30,13 @@
     "dist:watch": "node build.js base build styles styles_storybook styles_editor styles_admin styles_layout styles_variables styles_stories js_drupal js_storybook assets constants watch",
     "lint": "eslint ./components ./.storybook && stylelint '{components,assets/sass}/**/*.scss'",
     "lint-fix": "eslint ./components ./.storybook --fix && stylelint 'components/**/*.scss' --fix",
-    "postinstall": "npm run uikit-install && npm run build",
-    "reset": "rm -rf node_modules > /dev/null; rm -rf components > /dev/null",
+    "postinstall": "npm run build",
+    "reset": "rm -rf node_modules > /dev/null",
     "storybook": "storybook dev -p 6006",
     "storybook-build": "npm run dist && storybook build",
-    "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\"",
-    "uikit-install": "rm -Rf components > /dev/null 2>&1 && cp -R node_modules/@civictheme/uikit/components components"
+    "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\""
   },
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#v1.10.0",
     "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {

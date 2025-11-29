@@ -1,0 +1,176 @@
+//
+// Checkbox component.
+//
+
+@use 'sass:math';
+
+.ct-checkbox {
+  $root: &;
+  $_label-size: 'label-small';
+  $_label-font-size: ct-typography-rule($_label-size, 'font-size', 'm');
+  $_label-line_height: ct-typography-rule($_label-size, 'line-height', 'm');
+
+  // The dimensions of the checkbox control's elements are based on the label size.
+  $_width: $_label-font-size * 1.625;
+  $_height: $_label-font-size * 1.625;
+  $_border-width: ct-particle(0.125);
+  $_hover-border-width: $_border-width * 2;
+  $_checked-border-width: $_hover-border-width;
+  $_checked-square-width: $_width * 0.6923;
+  $_checked-square-height: $_height * 0.6923;
+  $_checked-hover-border-width: $_checked-border-width;
+  $_ct-checkbox-check_resized: ct-svg-viewbox($ct-checkbox-check, '0 0 #{$_checked-square-width} #{$_checked-square-height}');
+
+  @include ct-form-control-no-appearance();
+  @include ct-form-control-disabled($ct-checkbox-disabled-opacity);
+
+  border-radius: $ct-checkbox-border-radius;
+  border-style: solid;
+  box-sizing: border-box;
+  height: $_height;
+  width: $_width;
+  border-width: $_border-width;
+  cursor: pointer;
+
+  // Offset by font spacing.
+  margin-right: -1 * $_label-font-size * $ct-font-average-character-width;
+
+  // Vertically align the control, preserving label's baseline.
+  vertical-align: top;
+  margin-top: math.div(math.max($_label-font-size, $_label-line_height) - $_height, 2);
+
+  + label {
+    cursor: pointer;
+    display: inline;
+    margin-left: ct-spacing();
+  }
+
+  &:hover {
+    border-width: $_hover-border-width;
+  }
+
+  &:checked {
+    border-width: $_checked-border-width;
+
+    &:hover {
+      border-width: $_checked-hover-border-width;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      border-radius: math.div($ct-checkbox-border-radius, 2);
+      width: $_checked-square-width;
+      height: $_checked-square-height;
+      margin: math.div($_height - $_checked-square-height, 2) - $_checked-border-width auto;
+      mask-image: $_ct-checkbox-check_resized;
+
+      @if $ct-animation-enabled and $ct-checkbox-animation-duration > 0 {
+        transform: scale(0);
+        animation: check-grow $ct-checkbox-animation-duration forwards;
+
+        @keyframes check-grow {
+          to {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: $ct-checkbox-outline-width;
+    outline-offset: $ct-checkbox-outline-offset;
+  }
+
+  &:disabled {
+    + label {
+      opacity: $ct-checkbox-disabled-opacity;
+      pointer-events: none;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &:focus-visible {
+      @include ct-component-property($root, $theme, outline-color);
+    }
+
+    &:not(#{$root}--is-invalid) {
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-component-property($root, $theme, background-color);
+
+      &:hover {
+        @include ct-component-property($root, $theme, hover, border-color);
+        @include ct-component-property($root, $theme, hover, background-color);
+
+        & + label {
+          @include ct-component-property($root, $theme, hover, color);
+        }
+      }
+
+      & + label {
+        @include ct-component-property($root, $theme, color);
+
+        &:hover {
+          @include ct-component-property($root, $theme, hover, color);
+        }
+      }
+
+      &:checked {
+        @include ct-component-property($root, $theme, checked, border-color);
+        @include ct-component-property($root, $theme, checked, background-color);
+
+        &:hover {
+          @include ct-component-property($root, $theme, checked, hover, border-color);
+          @include ct-component-property($root, $theme, checked, hover, background-color);
+
+          &::before {
+            background-color: ct-component-var($root, $theme, checked, hover, border-color);
+          }
+
+          & + label {
+            @include ct-component-property($root, $theme, checked, hover, color);
+          }
+        }
+
+        &::before {
+          background-color: ct-component-var($root, $theme, checked, border-color);
+        }
+
+        & + label {
+          @include ct-component-property($root, $theme, checked, color);
+
+          &:hover {
+            @include ct-component-property($root, $theme, checked, hover, color);
+          }
+        }
+      }
+    }
+
+    &#{$root}--is-invalid {
+      @include ct-component-property($root, $theme, invalid, border-color);
+      @include ct-component-property($root, $theme, invalid, background-color);
+
+      &:hover {
+        & + label {
+          @include ct-component-property($root, $theme, invalid, color);
+        }
+      }
+
+      & + label {
+        @include ct-component-property($root, $theme, invalid, color);
+
+        &:hover {
+          @include ct-component-property($root, $theme, invalid, color);
+        }
+      }
+
+      &:checked {
+        &::before {
+          background-color: ct-component-var($root, $theme, invalid, border-color);
+        }
+      }
+    }
+  }
+}

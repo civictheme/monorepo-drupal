@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Field message component.
+ *
+ * Variables:
+ * - content: [string] The description's content.
+ * - type: [string] Message type: error, information, warning, success.
+ * - theme: [string] Theme: light, dark.
+ * - allow_html: [boolean] Allow HTML in text.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type = type in ['error', 'information', 'warning', 'success'] ? type : 'information' %}
+{% set type_class = 'ct-field-message--%s'|format(type|default('information')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+{% set icons = {
+  information: 'information-mark',
+  warning: 'exclamation-mark-3',
+  error: 'close-outline',
+  success: 'approve',
+} %}
+
+{% if content is not empty -%}
+  <div class="ct-field-message {{ modifier_class -}}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+    {% if icons[type] is defined %}
+      {% include "@base/icon/icon.twig" with {
+        symbol: icons[type],
+        size: 'regular',
+        modifier_class: 'ct-field-message__icon',
+      } only %}
+    {% endif %}
+    {% if allow_html|default(false) %}
+      {{- content|raw -}}
+    {% else %}
+      {{- content -}}
+    {% endif %}
+  </div>
+{%- endif %}
