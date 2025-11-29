@@ -1,0 +1,55 @@
+//
+// Logo component.
+//
+
+.ct-logo {
+  $root: &;
+
+  line-height: 0;
+  display: inline-block;
+
+  #{$root}__image {
+    line-height: 0;
+    display: block;
+    max-height: $ct-logo-image-height-max-mobile;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-height: $ct-logo-image-height-max-desktop;
+    }
+  }
+
+  &#{$root}--stacked,
+  &#{$root}--inline,
+  &#{$root}--inline-stacked {
+    text-align: center;
+
+    #{$root}__stripe {
+      display: block;
+      border: 0;
+      margin: ct-particle(2) 0;
+      height: ct-particle(0.125);
+      width: 100%;
+    }
+  }
+
+  &#{$root}--inline,
+  &#{$root}--inline-stacked {
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      display: flex;
+      align-items: center;
+
+      #{$root}__stripe {
+        align-self: stretch;
+        margin: 0 ct-particle(2);
+        height: auto;
+        width: ct-particle(0.125);
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__stripe {
+      background-color: ct-component-var($root, $theme, stripe, background-color);
+    }
+  }
+}

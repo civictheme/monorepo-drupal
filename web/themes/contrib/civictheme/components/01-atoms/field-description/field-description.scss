@@ -1,0 +1,24 @@
+//
+// Field description component.
+//
+
+.ct-field-description {
+  $root: &;
+
+  display: block;
+  margin-bottom: ct-spacing();
+
+  @include ct-typography('text-regular');
+
+  &--large {
+    @include ct-typography('text-large');
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    a:not(.ct-link.ct-theme-light):not(.ct-link.ct-theme-dark) {
+      color: inherit;
+    }
+  }
+}

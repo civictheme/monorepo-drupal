@@ -1,0 +1,41 @@
+//
+// CivicTheme variables.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control the look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to override
+// primary color in child theme and have it propagate to components).
+//
+
+//
+// Assets directory.
+//
+// Placed outside of included variables as a super-global that might be used
+// in base overrides (like paths to locally stored fonts) before defined in
+// base defaults.
+//
+// Note that this variable's value may be overwritten by the webpack
+// configuration (via injecting through sass-loader's 'additionalData' property)
+// depending on the context of SCSS compilation in order to allow storage of
+// assets in a different location (Storybook, for example, requires a relative
+// path to the own statically-generated directory while generating assets for
+// distributions may require a full path to the site root).
+//
+$ct-assets-directory: './assets/' !default;
+
+// stylelint-disable scss/at-import-partial-extension
+// Import overrides for base variables.
+@import '../variables.base';
+
+// import CivicThemeTheme base variables.
+@import 'variables.base';
+
+// Import overrides for component variables.
+@import '../variables.components';
+
+// import CivicThemeTheme component variables.
+@import 'variables.components';

@@ -1,0 +1,43 @@
+//
+// Video component.
+//
+
+@use 'sass:math';
+
+.ct-video-player {
+  $root: &;
+
+  &__wrapper {
+    position: relative;
+    padding-bottom: math.div($ct-video-ratio-height, $ct-video-ratio-width) * 100%;
+    padding-top: ct-spacing(3);
+    height: 0;
+    overflow: hidden;
+
+    iframe,
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__links {
+    display: flex;
+    margin-top: ct-spacing(4);
+
+    @include ct-breakpoint(m) {
+      margin-top: ct-spacing(3);
+    }
+  }
+
+  &__links__transcript {
+    padding-right: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      padding-right: ct-spacing(3);
+    }
+  }
+}

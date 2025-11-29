@@ -1,0 +1,219 @@
+{#
+/**
+ * @file
+ * About CivicTheme story template.
+ */
+#}
+
+<div class="story-about-civictheme ct-vertical-spacing-inset--both">
+	<div class="container">
+		<div class="row">
+			<div class="col-xxs-12">
+				{% include '@molecules/logo/logo.twig' with {
+					theme: 'light',
+					logos: logos,
+					url: 'https://civictheme.io/',
+				} only %}
+			</div>
+		</div>
+	</div>
+	<div class="ct-basic-content ct-theme-dark ct-vertical-spacing-inset--both">
+		<div class="container">
+			<div class="row">
+				<div class="col-xxs-12">
+					{% include '@atoms/paragraph/paragraph.twig' with {
+						theme: 'dark',
+						content: 'CivicTheme is an open-source design system build for modern web development. It offers a comprehensive suite of customisable components and templates designed to streamline the creation of visually appealing and highly functional websites.',
+					} only %}
+
+					{% include '@atoms/paragraph/paragraph.twig' with {
+						theme: 'dark',
+						content: 'With a strong emphasis on accessibility compliance, CivicTheme ensures compliance with WCAG 2.2 standards and the platform\'s responsive design provides a seamless user experience across various devices and screen sizes. The rich library of pre-built components, such as buttons, forms, and navigation menus, allow developers to quickly integrate essential features into their projects, significantly reducing development time and costs.',
+					} only %}
+
+					<div class="row ct-vertical-spacing--top">
+						<div class="col-xxs-12 col-m-6">
+							{% include '@atoms/heading/heading.twig' with {
+								theme: 'dark',
+								content: 'Key benefits',
+								level: 3,
+							} only %}
+
+							{% set list_item1 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'layer',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: list_item_icon_1 ~ ' Atomic design system of 60+ components',
+									allow_html: true,
+								} only %}
+							{% endset %}
+
+							{% set list_item2 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'eye',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Compliant with WCAG 2.2 AA Standards',
+								} only %}
+							{% endset %}
+
+							{% set list_item3 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'water-drop',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Integrates with Drupal theme',
+								} only %}
+							{% endset %}
+
+							{% set list_item4 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'open-source',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Open source and community-driven',
+								} only %}
+							{% endset %}
+
+							{% include '@base/item-list/item-list.twig' with {
+								direction: 'vertical',
+								items: [
+									list_item1,
+									list_item2,
+									list_item3,
+									list_item4,
+								],
+							} only %}
+						</div>
+
+						<div class="col-xxs-12 col-m-6">
+
+							{% include '@atoms/heading/heading.twig' with {
+								theme: 'dark',
+								content: 'Key features',
+								level: 3,
+							} only %}
+
+							{% set list_item1 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'web',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Enhanced user experience',
+								} only %}
+							{% endset %}
+
+							{% set list_item2 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'mobile',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Responsive design and consistent branding',
+								} only %}
+							{% endset %}
+
+							{% set list_item3 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'layers',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Scalable and flexible for evolving needs',
+								} only %}
+							{% endset %}
+
+							{% set list_item4 %}
+								{% include '@base/icon/icon.twig' with {
+									symbol: 'document',
+									size: 'large',
+								} only %}
+								{% include '@atoms/paragraph/paragraph.twig' with {
+									theme: 'dark',
+									content: 'Documentation and support',
+								} only %}
+							{% endset %}
+
+							{% include '@base/item-list/item-list.twig' with {
+								direction: 'vertical',
+								items: [
+									list_item1,
+									list_item2,
+									list_item3,
+									list_item4,
+								],
+							} only %}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row ct-vertical-spacing--top">
+				<div class="col-12">
+					{% include '@atoms/paragraph/paragraph.twig' with {
+						theme: 'dark',
+						content: 'CivicTheme\'s focus on consistent branding and design aims to ensure that organisations can maintain a cohesive online presence, reinforcing their brand identity across all digital touchpoints.',
+					} only %}
+
+					{% include '@atoms/paragraph/paragraph.twig' with {
+						theme: 'dark',
+						content: 'Ultimately, CivicTheme\'s blend of flexibility, scalability, and cost efficiency makes it an ideal choice for organisations seeking to create professional, user-friendly websites without the need for extensive development resources.',
+					} only %}
+				</div>
+			</div>
+
+			<div class="row ct-vertical-spacing--top">
+				<div class="col-12">
+					{% include '@atoms/heading/heading.twig' with {
+						theme: 'dark',
+						content: 'Under the following conditions:',
+						level: 5,
+					} only %}
+
+					{% set list_item1 %}
+						{% include '@base/icon/icon.twig' with {
+							symbol: 'lock-file',
+							size: 'large',
+						} only %}
+						{% include '@atoms/paragraph/paragraph.twig' with {
+							theme: 'dark',
+							content: 'This page must remain in Figma.',
+						} only %}
+					{% endset %}
+
+					{% set list_item2 %}
+						{% include '@base/icon/icon.twig' with {
+							symbol: 'lock-gallery',
+							size: 'large',
+						} only %}
+						{% include '@atoms/paragraph/paragraph.twig' with {
+							theme: 'dark',
+							content: 'The co-branded logo must remain in Storybook and must not be deleted.',
+						} only %}
+					{% endset %}
+
+					{% include '@base/item-list/item-list.twig' with {
+						direction: 'vertical',
+						items: [
+							list_item1,
+							list_item2,
+						],
+					} only %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+//
+// Background component stories.
+//
+#root {
+  > .story-layout {
+    &.story-background-wrapper {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .ct-background {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

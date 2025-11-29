@@ -1,0 +1,21 @@
+//
+// Icon component.
+//
+
+@use 'sass:map';
+
+.ct-icon {
+  fill: currentcolor;
+
+  // Size-less icons inherit dimensions from container's font-size.
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+
+  // Generate size classes for all pre-set sizes.
+  @each $size, $values in _ct-icon-sizes-all() {
+    &--size-#{$size} {
+      @include ct-icon-size($size);
+    }
+  }
+}

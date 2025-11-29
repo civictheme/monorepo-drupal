@@ -1,0 +1,62 @@
+//
+// List component.
+//
+
+.ct-list {
+  $root: &;
+
+  &#{$root}--with-background {
+    padding-left: $ct-accordion-space-horizontal;
+    padding-right: $ct-accordion-space-horizontal;
+  }
+
+  &__inner {
+    > *:not(:last-child) {
+      margin-bottom: ct-spacing(3);
+
+      @include ct-breakpoint(m) {
+        margin-bottom: ct-spacing(4);
+      }
+    }
+  }
+
+  &__link-above {
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      display: flex;
+      justify-content: flex-end;
+      align-self: center;
+      margin-left: auto;
+      margin-top: 0;
+    }
+  }
+
+  &__rows {
+    .col,
+    [class*='col-'] {
+      container-type: inline-size;
+    }
+  }
+
+  &__link-below {
+    padding-top: ct-spacing();
+    padding-bottom: ct-spacing();
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &#{$root}__content,
+    &#{$root}__header,
+    &#{$root}__rows-header {
+      @include ct-component-property($root, $theme, color);
+    }
+
+    &#{$root}--with-background {
+      @include ct-component-property($root, $theme, background-color);
+
+      #{$root}__results-below {
+        @include ct-component-property($root, $theme, background-color);
+      }
+    }
+  }
+}

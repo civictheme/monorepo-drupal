@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Textfield component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - name: [string] DOM name. Required.
+ * - value: [string] The value.
+ * - placeholder: [string] Placeholder text.
+ * - is_invalid: [boolean] Denote if the control is invalid.
+ * - is_disabled: [boolean] Denote if the control is disabled.
+ * - is_required: [boolean] Denote if the control is required.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set is_invalid_class = is_invalid ? 'ct-textfield--is-invalid' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_invalid_class, modifier_class|default(''))|trim %}
+
+{% if name is not empty %}
+	<input
+		type="text"
+		class="ct-textfield {{ modifier_class -}}"
+		name="{{ name }}"
+		{% if value is not empty %}value="{{ value }}"{% endif %}
+		{% if id %}id="{{ id }}"{% endif %}
+		{% if is_disabled %}disabled{% endif %}
+		{% if is_required %}required{% endif %}
+		{% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+		{% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+	/>
+{% endif %}
