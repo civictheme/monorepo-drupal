@@ -1,0 +1,378 @@
+//
+// Navigation component.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+.ct-navigation {
+  $root: &;
+
+  #{$root}__title {
+    @include ct-typography('heading-5');
+
+    margin-bottom: ct-spacing(2);
+    margin-top: ct-spacing(2);
+  }
+
+  &#{$root}--none {
+    #{$root}__items {
+      #{$root}__menu {
+        &.ct-menu,
+        .ct-menu {
+          @include ct-print-hide();
+
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .ct-menu__sub-menu {
+          margin-top: ct-spacing(2);
+        }
+
+        .ct-menu__item {
+          margin-bottom: ct-spacing(2);
+          margin-left: ct-spacing(2);
+        }
+
+        &.ct-menu > .ct-menu__item {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &#{$root}--inline {
+    #{$root}__items {
+      #{$root}__menu {
+        // First-level items to be displayed inline.
+        &.ct-menu--level-0 {
+          display: flex;
+          column-gap: $ct-navigation-inline-column-gutter;
+          row-gap: $ct-navigation-inline-row-gutter;
+          flex-wrap: wrap;
+        }
+
+        &.ct-menu,
+        .ct-menu {
+          @include ct-print-hide();
+
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .ct-menu__sub-menu {
+          margin-top: ct-spacing(2);
+        }
+
+        .ct-menu__item {
+          margin-bottom: ct-spacing(2);
+          margin-left: ct-spacing(2);
+        }
+
+        &.ct-menu > .ct-menu__item {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &#{$root}--drawer {
+    #{$root}__items {
+      @include ct-print-hide();
+
+      align-items: center;
+      height: 100%;
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+      }
+
+      #{$root}__menu {
+        // Reset all menu styles.
+        &.ct-menu,
+        .ct-menu {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        &.ct-menu--level-0 {
+          // First-level items to be displayed inline.
+          display: flex;
+        }
+      }
+
+      // Menu item with dropdown.
+      #{$root}__has-dropdown {
+        // Since 'data-collapsible-panel' is not added through a menu structure, we
+        // need to imitate the initially collapsed panel behaviour.
+        &[data-collapsible-collapsed] {
+          > .ct-menu__sub-menu__wrapper {
+            height: 0;
+            overflow: hidden;
+          }
+        }
+
+        // Dropdown (submenu) wrapper.
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          left: 0;
+          right: 0;
+          padding: 0;
+          margin: 0;
+          margin-top: $ct-navigation-drawer-top-offset;
+          z-index: $ct-navigation-drawer-zindex;
+          box-shadow: 0 ct-spacing(2) ct-spacing(4) rgba(0, 0, 0, 20%);
+
+          // Submenu.
+          .ct-menu__sub-menu {
+            &.ct-menu--level-1 {
+              padding: 0;
+              margin: 0 auto;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+
+              @include ct-container();
+
+              margin-bottom: ct-spacing(4);
+            }
+          }
+
+          .ct-menu__item--level-1 {
+            padding: 0;
+            margin: ct-spacing(4) 0 0;
+            flex-basis: math.div(100%, $ct-navigation-drawer-cols);
+
+            > .ct-link {
+              @include ct-typography('heading-5');
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-2 {
+            margin-top: ct-spacing(4);
+          }
+
+          .ct-menu__item--level-2,
+          .ct-menu__item--level-3,
+          .ct-menu__item--level-4,
+          .ct-menu__item--level-5 {
+            width: 100%;
+            margin-bottom: ct-spacing();
+
+            > .ct-link {
+              display: inline-block;
+              border-radius: $ct-border-radius;
+              padding: ct-spacing();
+
+              &--external {
+                padding-right: ct-spacing(3);
+
+                &::after {
+                  top: ct-spacing(0.65);
+                }
+              }
+            }
+          }
+
+          .ct-menu__item--level-3 {
+            margin-left: 1 * ct-spacing(2);
+          }
+
+          .ct-menu__item--level-4 {
+            margin-left: 2 * ct-spacing(2);
+          }
+
+          .ct-menu__item--level-5 {
+            margin-left: 3 * ct-spacing(2);
+          }
+        }
+      }
+
+      // Fill column width if there are less columns than expected.
+      #{$root}__dropdown-columns--fill {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          .ct-menu__item--level-1 {
+            flex: 1;
+          }
+        }
+      }
+
+      // Allow to override column width based on the explicitly set columns number
+      // class.
+      @for $i from 1 through $ct-navigation-drawer-cols * 2 {
+        &__dropdown-columns--#{$i} {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            .ct-menu--level-1 {
+              // @todo: Implement gutters using :nth() to make the last gutter
+              // in the row collapse. Note that for "fill column width" option
+              // this already works automatically.
+              column-gap: $ct-navigation-drawer-column-gutter;
+            }
+
+            .ct-menu__item--level-1 {
+              $basis: math.div(100%, $i);
+
+              flex-basis: calc(#{$basis} - #{$ct-navigation-drawer-column-gutter});
+            }
+          }
+        }
+      }
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            @include ct-component-property($root, $theme, drawer-sub-menu, background-color);
+
+            // Reset some styles for all links in the dropdown.
+            .ct-link {
+              background: none;
+
+              &:hover,
+              &:active,
+              &:focus-visible {
+                background: none;
+              }
+            }
+
+            .ct-menu__item--level-1 {
+              > .ct-link {
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, color);
+
+                &:hover {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, hover, color);
+                }
+
+                &:active {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, active, color);
+                }
+              }
+            }
+
+            .ct-menu__item--level-2,
+            .ct-menu__item--level-3,
+            .ct-menu__item--level-4,
+            .ct-menu__item--level-5 {
+              > .ct-link {
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, background-color);
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, color);
+
+                &:hover {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, hover, background-color);
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, hover, color);
+                }
+
+                &:active {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, active, background-color);
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, active, color);
+                }
+              }
+
+              &.ct-menu__item--active-trail {
+                > .ct-link {
+                  @include ct-component-property($root, $theme, drawer-menu-item, active-trail, background-color);
+                  @include ct-component-property($root, $theme, drawer-menu-item, active-trail, color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &#{$root}--dropdown {
+    #{$root}__items {
+      @include ct-print-hide();
+
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+        align-items: center;
+      }
+
+      #{$root}__menu {
+        &.ct-menu,
+        .ct-menu {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        // First-level items to be displayed inline.
+        &.ct-menu--level-0 {
+          display: flex;
+        }
+
+        .ct-menu__item {
+          .ct-link {
+            display: block;
+          }
+
+          > .ct-link {
+            &::after {
+              right: ct-spacing();
+              margin-top: -1 * ct-particle(0.25);
+            }
+          }
+        }
+      }
+
+      #{$root}__has-dropdown {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          z-index: $ct-navigation-dropdown-zindex;
+          margin-top: $ct-navigation-dropdown-top-offset;
+          border-bottom-left-radius: $ct-navigation-dropdown-border-radius;
+          border-bottom-right-radius: $ct-navigation-dropdown-border-radius;
+
+          @include ct-elevation(4);
+
+          .ct-menu__sub-menu {
+            margin-left: ct-spacing(2);
+
+            &.ct-menu--level-1 {
+              margin: ct-spacing(2);
+            }
+          }
+        }
+      }
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          @if $theme == 'light' {
+            color: $ct-link-light-color;
+          }
+          @else {
+            color: $ct-link-dark-color;
+          }
+
+          .ct-menu__item__link {
+            &:hover {
+              @if $theme == 'light' {
+                color: $ct-link-light-hover-color;
+              }
+              @else {
+                color: $ct-link-dark-hover-color;
+              }
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-1 {
+            @include ct-component-property($root, $theme, dropdown-sub-menu, background-color);
+          }
+        }
+      }
+    }
+  }
+}

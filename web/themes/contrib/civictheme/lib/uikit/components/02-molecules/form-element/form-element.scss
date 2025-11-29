@@ -1,0 +1,18 @@
+//
+// Form Element component.
+//
+
+.ct-form-element {
+  $root: &;
+
+  margin-bottom: ct-spacing(2);
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+  }
+}

@@ -1,0 +1,26 @@
+//
+// Print mixins.
+//
+
+// Adjust rules for print.
+//
+// @code
+//
+// @include ct-print(s) {
+//   width: 50%;
+// }
+//
+// @endcode
+//
+@mixin ct-print() {
+  @media print {
+    @content;
+  }
+}
+
+// Shorthand to hide elements for print.
+@mixin ct-print-hide() {
+  @media print {
+    display: none;
+  }
+}

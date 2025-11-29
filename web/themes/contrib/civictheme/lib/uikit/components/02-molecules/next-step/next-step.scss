@@ -1,0 +1,46 @@
+//
+// Next Steps component.
+//
+
+.ct-next-step {
+  $root: &;
+
+  position: relative;
+  width: 100%;
+
+  #{$root}__wrapper {
+    display: block;
+    position: relative;
+    border-width: ct-particle(0.125);
+    border-style: solid;
+    padding: ct-spacing(3) ct-spacing(2) ct-spacing(3) ct-spacing(2) + $ct-next-step-stripe-width;
+    border-radius: $ct-next-step-border-radius;
+
+    @include ct-highlight-stripe-vertical($ct-next-step-stripe-width, $ct-next-step-border-radius);
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(3) + $ct-next-step-stripe-width;
+    }
+  }
+
+  #{$root}__title {
+    @include ct-typography('heading-5');
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+    @include ct-link-wide();
+  }
+
+  #{$root}__content {
+    margin-top: ct-spacing(2);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__wrapper {
+      @include ct-component-property($root, $theme, border, color);
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+    }
+  }
+}

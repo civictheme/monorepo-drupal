@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Social links Component.
+ *
+ * Variables:
+ * - items: [array] Array of items:
+ *   - title: [string] Title to be added to the 'title' attribute
+ *   - icon: [string] Icon name from the existing icon set.
+ *   - icon_html [string] Alternative icon HTML for embedding.
+ *   - url: [string] Link URL.
+ * - with_border: [boolean] Whether icons have borders.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_border_class = with_border ? 'ct-social-links--with-border' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, with_border_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <div class="ct-social-links {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+
+    {% block items %}
+      {% set items_rendered = [] %}
+      {% for item in items %}
+        {%- set item_rendered %}
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            kind: 'link',
+            type: 'tertiary',
+            icon: item.icon_html is not defined or item.icon_html is empty ? item.icon : null,
+            text: item.icon_html ?? null,
+            url: item.url,
+            is_external: false,
+            is_new_window: true,
+            is_raw_text: true,
+            modifier_class: 'ct-social-links__button',
+            attributes: item.title is defined and item.title is not empty ? ' title="' ~ item.title ~ '"' : '',
+          } only %}
+        {% endset -%}
+        {% set items_rendered = items_rendered|merge([item_rendered]) %}
+      {% endfor %}
+
+      {% include '@base/item-list/item-list.twig' with {
+        items: items_rendered,
+        direction: 'horizontal',
+        modifier_class: 'ct-social-links__list',
+      } only %}
+    {% endblock %}
+
+  </div>
+{% endif %}

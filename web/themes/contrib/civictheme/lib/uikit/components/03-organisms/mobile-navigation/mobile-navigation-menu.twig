@@ -1,0 +1,131 @@
+{#
+/**
+ * @file
+ * Mobile Navigation Menu component.
+ *
+ * Copied from '@base/menu/menu.twig' with some additions.
+ *
+ * Used to output hierarchical menu structure.
+ *
+ * Specific navigation component implementations that use menu hierarchies
+ * should extend this template and may override 'menu_item_link' and
+ * 'menu_item_below' blocks with specific markup.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - items: [array] Menu links array. Each item contains:
+ *   - title: [string] The title of the link.
+ *   - url: [string] The link url.
+ *   - below: [array] Array of submenu items.
+ *   - is_expanded: [boolean] Flag if the current item has visible child.
+ *   - in_active_trail: [boolean] Flag if the current item is in the active trail.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% import _self as menus %}
+
+{#
+Copied as-is from '@base/menu/menu.twig'.
+#}
+{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul class="ct-menu ct-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="ct-menu" {{ attributes|default('') }}>
+    {% else %}
+      {% if is_collapsible %}
+        {% set collapsible_panel = 'data-collapsible-panel' %}
+        {% set aria_hidden = item.in_active_trail ? 'aria-hidden="false"' : 'aria-hidden="true"' %}
+      {% endif %}
+      <div class="ct-menu__sub-menu__wrapper ct-menu__sub-menu__wrapper--level-{{ menu_level }}" {{ collapsible_panel }} {{ aria_hidden }}>
+        <ul class="ct-menu ct-menu__sub-menu ct-menu--level-{{ menu_level }}">
+    {% endif %}
+
+    {% for key, item in items %}
+      {% set item_classes = [
+        'ct-menu__item',
+        'ct-menu__item--level-' ~ menu_level,
+        item.below ? 'ct-menu__item--has-children' : '',
+        item.in_active_trail ? 'ct-menu__item--active-trail' : '',
+        item.modifier_class|default(''),
+      ] %}
+
+      {% set item_attributes = item.attributes|default('') %}
+      {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
+      {% if is_collapsible %}
+        {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
+        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=0', collapsible_collapsed, aria_expanded]|join(' ') %}
+      {% endif %}
+
+      <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
+
+        {% include '@atoms/link/link.twig' with {
+          theme: theme,
+          text: item.title,
+          title: item.title,
+          url: item.url,
+          modifier_class: 'ct-menu__item__link',
+          attributes: item.link_attributes|default(''),
+          is_new_window: item.is_new_window is defined ? item.is_new_window : false,
+          is_external: item.is_external is defined ? item.is_external : false,
+        } only %}
+
+        {% if is_collapsible and item.below %}
+          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded }} title="Expand {{ item.title }} menu"></a>
+        {% endif %}
+
+        {% if item.below %}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, item) }}
+        {% endif %}
+
+      </li>
+    {% endfor %}
+
+    {% if menu_level == 0 %}
+      </ul>
+    {% else %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{#
+Overrides for generation of child links.
+#}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, parent_item) %}
+
+  {% include '@atoms/button/button.twig' with {
+    theme: theme,
+    kind: 'button',
+    icon: 'right-arrow-2',
+    size: 'regular',
+    modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
+    attributes: 'data-flyout-open-trigger aria-expanded="false" aria-label="Open %s submenu"'|format(parent_item.title),
+  } only %}
+
+  <div data-flyout data-flyout-direction="right" data-flyout-focus=".ct-link">
+    <div data-flyout-panel>
+      {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
+
+      <div class="ct-mobile-navigation__close-trigger">
+        {% include '@atoms/button/button.twig' with {
+          theme: theme,
+          kind: 'button',
+          icon: 'left-arrow-outline',
+          icon_placement: 'before',
+          size: 'regular',
+          text: parent_item.title,
+          attributes: 'data-flyout-close-trigger aria-label="Close %s submenu"'|format(parent_item.title),
+        } only %}
+      </div>
+
+      {{ menus.menu_links(items, menu_level, modifier_class, theme) }}
+    </div>
+  </div>
+
+{% endmacro %}
+
+{{ menus.menu_links(items, 0, modifier_class, theme) }}

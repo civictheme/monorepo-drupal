@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Message component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Message type: info, error, warning, success.
+ * - description: [string] Description text.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set type = type|default('information') %}
+{% set type_class = 'ct-message--%s'|format(type) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+
+{% set icons = {
+  information: 'information-mark',
+  warning: 'exclamation-mark-1',
+  error: 'close-outline',
+  success: 'approve',
+} %}
+
+<div
+  class="ct-message {{ modifier_class }}"
+  role="{% if type == 'error' %}alert{% else %}contentinfo{% endif %}"
+  aria-label="{{ type }}"
+  {% if type == 'error' %}aria-live="polite"{% endif %}
+  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+>
+  {% if icons[type] is defined %}
+    <div class="ct-message__icon">
+      {% include "@base/icon/icon.twig" with {
+        symbol: icons[type],
+        size: 'regular',
+      } only %}
+    </div>
+  {% endif %}
+
+  <div class="ct-message__content">
+    {% if title %}
+      <div class="ct-message__title">{{ title }}</div>
+    {% endif %}
+
+    {% if description %}
+      <div class="ct-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+    {% endif %}
+  </div>
+</div>

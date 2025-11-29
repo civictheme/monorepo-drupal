@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Flyout component stories.
+ */
+#}
+
+<button data-flyout-open-trigger data-flyout-target="#flyout-example1" role="button">Open flyout 1</button>
+
+<div id="flyout-example1" data-flyout data-flyout-direction="{{ direction }}" {% if expanded %}data-flyout-expanded{% endif %}>
+
+  <div data-flyout-panel>
+    <span data-flyout-close-trigger>
+      Close
+    </span>
+
+    <br/>Flyout 1<br/>
+    Labore commodo sunt reprehenderit mollit ipsum adipisicing commodo nisi
+    cupidatat mollit dolor commodo velit tempor laboris enim est sit labore
+    deserunt enim ullamco irure anim do mollit deserunt Lorem aliquip dolore ex
+    laboris ea consectetur aliquip adipisicing consectetur eu ad dolore ullamco
+    nostrud reprehenderit quis cillum reprehenderit excepteur enim incididunt.
+  </div>
+</div>
+
+<hr>
+
+<button data-flyout-open-trigger data-flyout-target="#flyout-example2" role="button">Open flyout 2</button>
+
+<div id="flyout-example2" data-flyout data-flyout-direction="{{ direction }}" {% if expanded %}data-flyout-expanded{% endif %}>
+
+  <div data-flyout-panel>
+    <span data-flyout-close-trigger>
+      Close
+    </span>
+
+    <br/>Flyout 2<br/>
+    Labore commodo sunt reprehenderit mollit ipsum adipisicing commodo nisi
+    cupidatat mollit dolor commodo velit tempor laboris enim est sit labore
+    deserunt enim ullamco irure anim do mollit deserunt Lorem aliquip dolore ex
+    laboris ea consectetur aliquip adipisicing consectetur eu ad dolore ullamco
+    nostrud reprehenderit quis cillum reprehenderit excepteur enim incididunt.
+  </div>
+</div>
+
+<hr>
+
+<button data-flyout-open-trigger role="button">Open flyout 3 (no trigger target)</button>
+<div id="flyout-example3" data-flyout data-flyout-direction="{{ direction }}" {% if expanded %}data-flyout-expanded{% endif %}>
+
+  <div data-flyout-panel>
+    <span data-flyout-close-trigger>
+      Close
+    </span>
+
+    <br/>Flyout 3<br/>
+    Labore commodo sunt reprehenderit mollit ipsum adipisicing commodo nisi
+    cupidatat mollit dolor commodo velit tempor laboris enim est sit labore
+    deserunt enim ullamco irure anim do mollit deserunt Lorem aliquip dolore ex
+    laboris ea consectetur aliquip adipisicing consectetur eu ad dolore ullamco
+    nostrud reprehenderit quis cillum reprehenderit excepteur enim incididunt.
+  </div>
+</div>
+
+<hr>
+
+<button data-flyout-open-trigger role="button">Open flyout 4 (duration)</button>
+<div id="flyout-example4" data-flyout data-flyout-direction="{{ direction }}" {% if duration %}data-flyout-duration="{{ duration }}"{% endif %} {% if expanded %}data-flyout-expanded{% endif %}>
+
+  <div data-flyout-panel>
+    <span data-flyout-close-trigger>
+      Close
+    </span>
+
+    <br/>Flyout 4<br/>
+    Labore commodo sunt reprehenderit mollit ipsum adipisicing commodo nisi
+    cupidatat mollit dolor commodo velit tempor laboris enim est sit labore
+    deserunt enim ullamco irure anim do mollit deserunt Lorem aliquip dolore ex
+    laboris ea consectetur aliquip adipisicing consectetur eu ad dolore ullamco
+    nostrud reprehenderit quis cillum reprehenderit excepteur enim incididunt.
+  </div>
+</div>
+
+<hr>
+
+<button data-flyout-open-trigger data-flyout-target="#flyout-example5" role="button">Open flyout 5 and close all</button>
+<div id="flyout-example5" data-flyout data-flyout-direction="{{ direction }}" {% if expanded %}data-flyout-expanded{% endif %}>
+
+  <div data-flyout-panel>
+    <span data-flyout-close-all-trigger>
+      Close all
+    </span>
+
+    <br/>Flyout 5<br/>
+    Labore commodo sunt reprehenderit mollit ipsum adipisicing commodo nisi
+    cupidatat mollit dolor commodo velit tempor laboris enim est sit labore
+    deserunt enim ullamco irure anim do mollit deserunt Lorem aliquip dolore ex
+    laboris ea consectetur aliquip adipisicing consectetur eu ad dolore ullamco
+    nostrud reprehenderit quis cillum reprehenderit excepteur enim incididunt.
+  </div>
+</div>

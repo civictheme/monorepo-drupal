@@ -1,0 +1,42 @@
+{#
+/**
+* @file
+* Colors component story.
+*/
+#}
+
+<div class="story-wrapper-size--large story-wrapper--centered example-container example-container--columns example-container--columns--2">
+  {% for theme, theme_section in sections %}
+    <div class="example-container__column example-container__column--{{ theme }}">
+      {% for section_title, section_colors in theme_section %}
+
+        <div class="example-container__title">{{ section_title }}</div>
+
+        {% for section_name, colors in section_colors %}
+          <div class="example-container">
+            {% if section_name != 'Standard' %}
+              <div class="example-container__subtitle">{{ section_name }}</div>
+            {% endif %}
+
+            <div class="example-container__content story-colors-wrapper story-wrapper-size--large">
+              {% for color_name, color in colors %}
+                <div class="story-color-{{ theme }}--{{ color_name }}">
+                  <span class="story-color-element" title="{{ color_name }}"></span><span class="story-color-text" title="{{ color_name }}">{{ color_name|capitalize|replace({'-': ' '}) }}</span>
+                </div>
+              {% endfor %}
+            </div>
+
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+{% if color_map_link is not empty %}
+  <div style="text-align: center;">
+    <a href="{{ color_map_link }}" target="_blank" class="ct-theme-light ct-button ct-button--secondary ct-button--small">
+      Download color map CSV
+    </a>
+  </div>
+{% endif %}

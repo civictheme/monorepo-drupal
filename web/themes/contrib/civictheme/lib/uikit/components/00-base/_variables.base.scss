@@ -1,0 +1,464 @@
+//
+// CivicTheme base default variables.
+//
+// Do not copy this file for customisations.
+// Use `components/variables.base.scss` instead.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control the look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to override
+// heading color in child theme and have it propagate to components).
+//
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+@import 'mixins';
+
+//
+// Particle.
+//
+// The most basic unit of measurement.
+// Using pixels to tie to the design grid which is in pixels as well.
+// Depending on the context, most of the values will be using conversion to
+// rem with rem() function.
+//
+// Do not use these directly.
+// Use ct-particle() function instead.
+//
+// Use ct-spacing() function for spacing.
+//
+$ct-particle: 8px !default;
+
+//
+// Assets directory.
+//
+$ct-assets-directory: './assets/' !default;
+
+//
+// Colors.
+//
+// Components are using colors defined in the color palette variables.
+//
+// Color palette variables can have custom color values or can be based on
+// the brand colors to allow quick mapping.
+//
+
+// Use $ct-colors-brands to provide brand color values.
+// It is available (and empty) so that consumer site implementations could
+// specify their custom brand color values an *additional* colors to extend the
+// brand color set.
+$ct-colors-brands: () !default;
+
+// Default CivicTheme colors palette.
+// Use $ct-colors to override and extend color palette values.
+// It is available (and empty) so that consumer site implementations could
+// specify their custom color values (to override defaults) and *additional*
+// colors to extend the color palette set. This allows CivicTheme to make
+// color palette additions without breaking consumer site implementations.
+$ct-colors: () !default;
+$ct-colors-default: (
+  'light': (
+    'heading': ct-color-shade(ct-color-constant-light('brand1'), 60),
+    'body': ct-color-tint(ct-color-shade(ct-color-constant-light('brand1'), 80), 20),
+    'background-light': ct-color-tint(ct-color-constant-light('brand2'), 90),
+    'background': ct-color-constant-light('brand2'),
+    'background-dark': ct-color-shade(ct-color-constant-light('brand2'), 20),
+    'border-light': ct-color-shade(ct-color-constant-light('brand2'), 25),
+    'border': ct-color-shade(ct-color-constant-light('brand2'), 60),
+    'border-dark': ct-color-shade(ct-color-constant-light('brand2'), 90),
+    'interaction-text': ct-color-tint(ct-color-constant-light('brand2'), 80),
+    'interaction-background': ct-color-constant-light('brand1'),
+    'interaction-hover-text': ct-color-tint(ct-color-constant-light('brand2'), 80),
+    'interaction-hover-background': ct-color-shade(ct-color-constant-light('brand1'), 40),
+    'interaction-focus': #8b5cd7,
+    'highlight': ct-color-constant-light('brand3'),
+    'information': #007cbf,
+    'warning': #c95100,
+    'error': #ce3836,
+    'success': #008482,
+  ),
+  'dark': (
+    'heading': ct-color-tint(ct-color-constant-dark('brand1'), 95),
+    'body': ct-color-tint(ct-color-constant-dark('brand1'), 85),
+    'background-light': ct-color-tint(ct-color-constant-dark('brand2'), 5),
+    'background': ct-color-constant-dark('brand2'),
+    'background-dark': ct-color-shade(ct-color-constant-dark('brand2'), 30),
+    'border-light': ct-color-tint(ct-color-constant-dark('brand2'), 65),
+    'border': ct-color-tint(ct-color-constant-dark('brand2'), 10),
+    'border-dark': ct-color-shade(ct-color-constant-dark('brand2'), 30),
+    'interaction-text': ct-color-constant-dark('brand2'),
+    'interaction-background': ct-color-constant-dark('brand1'),
+    'interaction-hover-text': ct-color-shade(ct-color-constant-dark('brand2'), 30),
+    'interaction-hover-background': ct-color-tint(ct-color-constant-dark('brand1'), 40),
+    'interaction-focus': #8b5cd7,
+    'highlight': ct-color-constant-dark('brand3'),
+    'information': #4cc4fc,
+    'warning': #e38444,
+    'error': #e85653,
+    'success': #12b0ae,
+  )
+);
+
+//
+// Fonts.
+//
+
+// Use $ct-fonts to override any font family values. It is available
+// (and empty) so that any consumer sites could specify their fonts in here to
+// override the defaults. This allows CivicTheme to make font additions without
+// breaking consumer sites.
+$ct-fonts: () !default;
+$ct-fonts-default: (
+  'primary': (
+    'family': '"Lexend", sans-serif',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+      ),
+    ),
+  ),
+  'secondary': (
+    'family': '"Public Sans", sans-serif',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
+      ),
+    ),
+  ),
+);
+
+// Add custom fonts to $ct-fonts with the same key as above to override
+// fonts or with a new key to add a new font kind.
+// 'uri' can be a URL to the external font or a list of local files with
+// extensions to be imported. The font type will be taken from the file
+// extensions.
+// Use $ct-assets-directory to provide a relative path.
+//
+// IMPORTANT: Make sure to put commas at the end of every list or SASS will not
+// be able to distinguish lists and values.
+//
+// Example:
+//
+// $ct-fonts: (
+//   'tertiary': (
+//     'family': 'Roboto',
+//     'types': (
+//       (
+//         'uri': (
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-Regular.ttf',
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-Regular.woff',
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-Regular.eot',
+//         ),
+//       ),
+//       (
+//         'italic': true,
+//         'weight': 'bold',
+//         'uri': (
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
+//           '#{$ct-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+//         ),
+//       ),
+//     ),
+//   ),
+// );
+
+//
+// Font weights.
+//
+
+// These directly correlate with font weight values set in the $ct-fonts-default
+// and $ct-fonts above.
+$ct-font-weights: ();
+$ct-font-weights-default: (
+  'thin': 100,
+  'extralight': 200,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+  'black': 900,
+);
+
+//
+// Typography.
+//
+
+// Base font size.
+$ct-font-base-size: ct-particle-px(2) !default;
+
+// Base font line height.
+$ct-font-base-line-height: $ct-font-base-size !default;
+
+// Use $ct-typography to override any typography values. It is available
+// (and empty) so that any consumer sites could specify their typography in here to
+// override the defaults. This allows CivicTheme to make typography additions
+// without breaking consumer sites.
+$ct-typography: () !default;
+$ct-typography-default: (
+  // Headings.
+  'heading-1': (
+    'xxs': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 'bold', 'primary', -0.6px),
+    'm': ($ct-font-base-size * 3, $ct-font-base-line-height * 3.75, 'bold', 'primary', -1px)
+  ),
+  'heading-2': (
+    'xxs': ($ct-font-base-size * 1.75, $ct-font-base-line-height * 2.25, 'bold', 'primary', -0.5px),
+    'm': ($ct-font-base-size * 2.5, $ct-font-base-line-height * 3, 'bold', 'primary', -0.8px)
+  ),
+  'heading-3': (
+    'xxs': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 'bold', 'primary', -0.35px),
+    'm': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 'bold', 'primary', -0.6px)
+  ),
+  'heading-4': (
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'bold', 'primary', -0.25px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 'bold', 'primary', -0.4px)
+  ),
+  'heading-5': (
+    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.375, 'bold', 'primary', 0),
+    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'bold', 'primary', -0.2px)
+  ),
+  'heading-6': ($ct-font-base-size, $ct-font-base-line-height * 1.625, 'bold', 'primary', 0),
+  // Text.
+  'text-extra-large': (
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0)
+  ),
+  'text-large': (
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.75, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 2.125, 'regular', 'primary', 0)
+  ),
+  'text-regular': (
+    'xxs': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.75, 'regular', 'primary', 0)
+  ),
+  'text-small': (
+    'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0),
+  ),
+  // Labels.
+  'label-extra-large': (
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
+  ),
+  'label-large': (
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
+  ),
+  'label-regular': (
+    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 'semibold', 'primary', -0.1px)
+  ),
+  'label-small': (
+    'xxs': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
+  ),
+  'label-extra-small': (
+    'xxs': ($ct-font-base-size * 0.5, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
+  ),
+  // Special elements.
+  'quote': (
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.815, 'regular', 'primary', -0.15px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-size * 2.5, 'regular', 'primary', -0.35px)
+  ),
+);
+
+// Font smoothing.
+$ct-font-smoothing-enable: true !default;
+
+//
+// Spacing.
+//
+// Used to control spacing for elements.
+//
+// Do not use these directly.
+// Use ct-spacing() function instead.
+//
+// Use ct-spacing() function for spacing.
+//
+$ct-spacing: ct-particle() !default;
+
+//
+// Breakpoints.
+//
+// The value denotes the "start" of the breakpoint range.
+//
+// Do not use these directly.
+// Use @include ct-breakpoint() mixin instead.
+//
+// We are not basing these on $ct-particle as these are dimensions of the real
+// screens.
+$ct-breakpoints: (
+  'xxs': 0,
+  'xs': 368px,
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1280px,
+  'xxl': 1440px,
+) !default;
+
+//
+// Grid.
+//
+
+// Number of grid columns.
+$ct-grid-columns: 12 !default;
+
+// Grid spacing used to calculate gutter spacings. Since the grid is based on
+// pixel values instead of rems (for consistency), the spacing is also based on
+// pixel values.
+$ct-grid-space: ct-particle-px() !default;
+
+// The lowest breakpoint where column classes should start applying.
+$ct-grid-lowest-breakpoint: 'xxs' !default;
+
+// The width of the fluid container at max width. Used to contain fluid
+// containers on wide screens. Set to 'auto' to keep fluid.
+$ct-grid-max-width: map.get($ct-breakpoints, 'xxl') !default;
+
+// Spacing between columns in a row.
+$ct-grid-gutters: (
+  'xxs': $ct-grid-space * 2,
+  'xs': $ct-grid-space * 2,
+  's': $ct-grid-space * 3
+) !default;
+
+// Side spacing between the edge of the viewport and a start of the grid.
+$ct-grid-offsets: (
+  'xxs': $ct-grid-space * 3,
+  'xs': $ct-grid-space * 3,
+  's': $ct-grid-space * 3,
+  'm': $ct-grid-space * 3,
+  'l': $ct-grid-space * 6,
+  'xl': $ct-grid-space * 6,
+  'xxl': $ct-grid-space * 12,
+) !default;
+
+//
+// Item list.
+//
+$ct-item-list-horizontal-large-column-gap: ct-spacing(4);
+$ct-item-list-horizontal-large-row-gap: ct-spacing(4);
+$ct-item-list-horizontal-regular-column-gap: ct-spacing(2);
+$ct-item-list-horizontal-regular-row-gap: ct-spacing(2);
+$ct-item-list-horizontal-small-column-gap: ct-spacing(1);
+$ct-item-list-horizontal-small-row-gap: ct-spacing(1);
+$ct-item-list-vertical-large-column-gap: ct-spacing(4);
+$ct-item-list-vertical-large-row-gap: ct-spacing(4);
+$ct-item-list-vertical-regular-column-gap: ct-spacing(2);
+$ct-item-list-vertical-regular-row-gap: ct-spacing(2);
+$ct-item-list-vertical-small-column-gap: ct-spacing(1);
+$ct-item-list-vertical-small-row-gap: ct-spacing(1);
+
+//
+// Visibility.
+//
+
+// The lowest breakpoint where visibility classes should apply.
+$ct-visibility-lowest-breakpoint: 'xxs' !default;
+
+//
+// Icon size.
+//
+
+// Use $ct-icon-sizes to override any icon size values. It is available
+// (and empty) so that any consumer sites could specify their icons sizes here
+// to override the defaults. This allows CivicTheme to make icon sizes additions
+// without breaking consumer sites.
+$ct-icon-sizes: () !default;
+$ct-icon-sizes-default: (
+  'extra-large': (
+    'xxs': (ct-particle-px(6), ct-particle-px(6)),
+    'm': (ct-particle-px(6), ct-particle-px(6)),
+  ),
+  'large': (
+    'xxs': (ct-particle-px(5), ct-particle-px(5)),
+    'm': (ct-particle-px(5), ct-particle-px(5)),
+  ),
+  'regular': (
+    'xxs': (ct-particle-px(2.5), ct-particle-px(2.5)),
+    'm': (ct-particle-px(2.5), ct-particle-px(2.5)),
+  ),
+  'small': (
+    'xxs': (ct-particle-px(2), ct-particle-px(2)),
+    'm': (ct-particle-px(2), ct-particle-px(2)),
+  ),
+  'extra-small': (
+    'xxs': (ct-particle-px(1.75), ct-particle-px(1.75)),
+    'm': (ct-particle-px(1.75), ct-particle-px(1.75)),
+  )
+);
+
+//
+// Elevations.
+//
+$ct-elevations: (
+  0 ct-particle(0.25) ct-particle(1) rgba(0, 0, 0, 25%),
+  0 ct-particle(0.5) ct-particle(2) rgba(0, 0, 0, 20%),
+  0 ct-particle(1) ct-particle(3) rgba(0, 0, 0, 20%),
+  0 ct-particle(2) ct-particle(8) rgba(0, 0, 0, 20%),
+) !default;
+
+//
+// Flyout.
+//
+
+// Flyout animation duration.
+$ct-flyout-duration: 0.5s !default;
+
+// Flyout animation direction.
+$ct-flyout-direction-transforms: (
+  'right': translateX(100%),
+  'left': translateX(-100%),
+  'top': translateY(-100%),
+  'bottom': translateY(100%),
+) !default;
+
+// Flyout z-index.
+$ct-flyout-zindex: 1000 !default;
+
+//
+// Misc Variables.
+//
+
+// Border radius.
+$ct-border-radius: ct-particle(0.5) !default;
+
+// Width or height of the highlight stripe.
+$ct-stripe-size: ct-particle(0.75) !default;
+
+// Background blend modes.
+$ct-background-blend-modes: (
+  normal,
+  color,
+  color-burn,
+  color-dodge,
+  darken,
+  difference,
+  exclusion,
+  hard-light,
+  hue,
+  lighten,
+  luminosity,
+  multiply,
+  overlay,
+  saturation,
+  screen,
+  soft-light,
+) !default;
+
+// Enable CSS animations.
+$ct-animation-enabled: true !default;
+$ct-animation-duration: 0.25s !default;
+
+// Outline.
+$ct-outline-offset: 0 !default;
+$ct-outline-width: ct-particle(0.375) !default;
+$ct-outline-border-radius: $ct-border-radius !default;

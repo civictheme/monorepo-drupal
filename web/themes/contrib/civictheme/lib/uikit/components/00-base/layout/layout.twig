@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Layout component.
+ *
+ * Renders as edge-to-edge if sidebar is not provided, or contained if the
+ * sidebar is configured for the page or if layout is not handled at content
+ * level.
+ *
+ * Allows for multiple layouts to handle the layout of the content area of the
+ * page.
+ *
+ * All inner components must manage their own layout whether they are rendered
+ * with or without a sidebar. Current CivicTheme grid .container implementation
+ * allows contained elments to correctly narrow their width to fit into content
+ * on the page with sidebar present.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - content: [string]  Content slot.
+ * - content_bottom: [string] Content slot.
+ * - sidebar: [string] Sidebar slot.
+ * - hide_sidebar: [bool] Whether the sidebar is to be shown on the page.
+ * - is_contained: [bool] Whether the page is to be contained for non-layout managed pages.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - sidebar_attributes: [string] Sidebar attributes.
+ * - content_attributes: [string] Content attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set has_sidebar = sidebar is not empty %}
+{% if hide_sidebar %}
+  {% set has_sidebar = FALSE %}
+{% endif %}
+{% set vertical_spacing = has_sidebar ? 'top' : vertical_spacing %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if content or sidebar %}
+  <main class="ct-layout {{ modifier_class }}" role="main">
+
+    {% block content_top %}
+      {% if content_top is not empty %}
+        {{ content_top }}
+      {% endif %}
+    {% endblock %}
+
+    <div class="ct-layout__inner {{ has_sidebar or is_contained ? 'container' : '' }}">
+
+      {% if has_sidebar or is_contained %}
+      <div class="row">
+      {% endif %}
+
+        {% if has_sidebar %}
+          {% block sidebar %}
+            <aside class="ct-layout__sidebar {% if has_sidebar %}col-m-3 col-xxs-12{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
+              {{ sidebar }}
+            </aside>
+          {% endblock %}
+        {% endif %}
+
+        {% block content %}
+          <section class="ct-layout__main {% if has_sidebar %}col-m-8 col-m-offset-1 col-xxs-12{% elseif is_contained %} col-m-12 col-xxs-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
+            {{ content }}
+          </section>
+        {% endblock %}
+
+      {% if has_sidebar or is_contained %}
+      </div>
+      {% endif %}
+    </div>
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        {{ content_bottom }}
+      {% endif %}
+    {% endblock %}
+
+  </main>
+{% endif %}

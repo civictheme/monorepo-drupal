@@ -1,0 +1,92 @@
+//
+// Icon mixins.
+//
+
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+//
+// Get icon size at breakpoint.
+//
+@function ct-icon-size-dimension($size, $breakpoint, $dimension) {
+  $all-icon-sizes: _ct-icon-sizes-all();
+
+  @if map.get($all-icon-sizes, $size) == null {
+    @error '"#{$size}" is not an available size.';
+  }
+
+  $size-at-breakpoints: map.get($all-icon-sizes, $size);
+
+  @if map.get($size-at-breakpoints, $breakpoint) == null {
+    @error '"#{$breakpoint}" is not an available breakpoint for size #{$size}.';
+  }
+
+  $dimensions: map.get($size-at-breakpoints, $breakpoint);
+
+  @if list.length($dimensions) != 2 {
+    @error 'Dimenstions list must contain exactly 2 entries for icon size #{$size} at breakpoint #{$breakpoint}.';
+  }
+
+  $value: '';
+
+  @if $dimension == 'width' {
+    $value: list.nth($dimensions, 1);
+  }
+  @else if $dimension == 'height' {
+    $value: list.nth($dimensions, 2);
+  }
+
+  @if ct-string-is-quoted($value) {
+    $value: string.unquote($value);
+  }
+
+  @if $value {
+    // @todo Review and replace this to use rem() in source variables.
+    @return rem($value);
+  }
+
+  @error '"#{$dimension}" is not an available dimension for size #{$size} at breakpoint #{$breakpoint}.';
+}
+
+//
+// Compile all icon sizes into a single map.
+//
+// Do not use directly.
+// Use ct-icon-size-dimension() function instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-icon-sizes-all() {
+  @return map.merge($ct-icon-sizes-default, $ct-icon-sizes);
+}
+
+//
+// Include icon size for one-to-many breakpoints.
+//
+// Note that icons inherit font size by default. This mixin should be used
+// only as an override for the default functionality.
+//
+// @include ct-icon-size('regular');
+//
+@mixin ct-icon-size($size: 'regular', $use-font-size: true) {
+  $all-icon-sizes: _ct-icon-sizes-all();
+
+  @if map.get($all-icon-sizes, $size) == null {
+    @error '"#{$size}" is not an available size.';
+  }
+
+  $size-at-breakpoints: map.get($all-icon-sizes, $size);
+  $breakpoints: map.keys($size-at-breakpoints);
+
+  @each $breakpoint in $breakpoints {
+    @include ct-breakpoint($breakpoint) {
+      @if $use-font-size {
+        font-size: ct-icon-size-dimension($size, $breakpoint, 'width');
+      }
+      @else {
+        width: ct-icon-size-dimension($size, $breakpoint, 'width');
+        height: ct-icon-size-dimension($size, $breakpoint, 'height');
+      }
+    }
+  }
+}

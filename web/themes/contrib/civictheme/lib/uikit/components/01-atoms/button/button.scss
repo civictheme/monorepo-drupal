@@ -1,0 +1,421 @@
+//
+// Button component.
+//
+
+@use 'sass:map';
+@use 'sass:math';
+
+//
+// Mixins.
+//
+
+@mixin ct-button-type($type, $map: false) {
+  @if type-of($map) != 'map' {
+    // SASS does not allow variables interpolation, so we are creating a local
+    // map to easily generate rules.
+    $map: (
+      'primary': (
+        'light': (
+          'normal': (
+            'color': $ct-button-light-primary-color,
+            'background-color': $ct-button-light-primary-background-color,
+            'border-color': $ct-button-light-primary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-light-primary-hover-color,
+            'background-color': $ct-button-light-primary-hover-background-color,
+            'border-color': $ct-button-light-primary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-light-primary-visited-color,
+            'background-color': $ct-button-light-primary-visited-background-color,
+            'border-color': $ct-button-light-primary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-light-primary-active-color,
+            'background-color': $ct-button-light-primary-active-background-color,
+            'border-color': $ct-button-light-primary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-light-primary-focus-color,
+            'background-color': $ct-button-light-primary-focus-background-color,
+            'border-color': $ct-button-light-primary-focus-border-color,
+            'outline-color': $ct-button-light-primary-focus-outline-color,
+          ),
+        ),
+        'dark': (
+          'normal': (
+            'color': $ct-button-dark-primary-color,
+            'background-color': $ct-button-dark-primary-background-color,
+            'border-color': $ct-button-dark-primary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-dark-primary-hover-color,
+            'background-color': $ct-button-dark-primary-hover-background-color,
+            'border-color': $ct-button-dark-primary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-dark-primary-visited-color,
+            'background-color': $ct-button-dark-primary-visited-background-color,
+            'border-color': $ct-button-dark-primary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-dark-primary-active-color,
+            'background-color': $ct-button-dark-primary-active-background-color,
+            'border-color': $ct-button-dark-primary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-dark-primary-focus-color,
+            'background-color': $ct-button-dark-primary-focus-background-color,
+            'border-color': $ct-button-dark-primary-focus-border-color,
+            'outline-color': $ct-button-dark-primary-focus-outline-color,
+          ),
+        )
+      ),
+      'secondary': (
+        'light': (
+          'normal': (
+            'color': $ct-button-light-secondary-color,
+            'background-color': $ct-button-light-secondary-background-color,
+            'border-color': $ct-button-light-secondary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-light-secondary-hover-color,
+            'background-color': $ct-button-light-secondary-hover-background-color,
+            'border-color': $ct-button-light-secondary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-light-secondary-visited-color,
+            'background-color': $ct-button-light-secondary-visited-background-color,
+            'border-color': $ct-button-light-secondary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-light-secondary-active-color,
+            'background-color': $ct-button-light-secondary-active-background-color,
+            'border-color': $ct-button-light-secondary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-light-secondary-focus-color,
+            'background-color': $ct-button-light-secondary-focus-background-color,
+            'border-color': $ct-button-light-secondary-focus-border-color,
+            'outline-color': $ct-button-light-secondary-focus-outline-color,
+          ),
+        ),
+        'dark': (
+          'normal': (
+            'color': $ct-button-dark-secondary-color,
+            'background-color': $ct-button-dark-secondary-background-color,
+            'border-color': $ct-button-dark-secondary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-dark-secondary-hover-color,
+            'background-color': $ct-button-dark-secondary-hover-background-color,
+            'border-color': $ct-button-dark-secondary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-dark-secondary-visited-color,
+            'background-color': $ct-button-dark-secondary-visited-background-color,
+            'border-color': $ct-button-dark-secondary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-dark-secondary-active-color,
+            'background-color': $ct-button-dark-secondary-active-background-color,
+            'border-color': $ct-button-dark-secondary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-dark-secondary-focus-color,
+            'background-color': $ct-button-dark-secondary-focus-background-color,
+            'border-color': $ct-button-dark-secondary-focus-border-color,
+            'outline-color': $ct-button-dark-secondary-focus-outline-color,
+          ),
+        )
+      ),
+      'tertiary': (
+        'light': (
+          'normal': (
+            'color': $ct-button-light-tertiary-color,
+            'background-color': $ct-button-light-tertiary-background-color,
+            'border-color': $ct-button-light-tertiary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-light-tertiary-hover-color,
+            'background-color': $ct-button-light-tertiary-hover-background-color,
+            'border-color': $ct-button-light-tertiary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-light-tertiary-visited-color,
+            'background-color': $ct-button-light-tertiary-visited-background-color,
+            'border-color': $ct-button-light-tertiary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-light-tertiary-active-color,
+            'background-color': $ct-button-light-tertiary-active-background-color,
+            'border-color': $ct-button-light-tertiary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-light-tertiary-focus-color,
+            'background-color': $ct-button-light-tertiary-focus-background-color,
+            'border-color': $ct-button-light-tertiary-focus-border-color,
+            'outline-color': $ct-button-light-tertiary-focus-outline-color,
+          ),
+        ),
+        'dark': (
+          'normal': (
+            'color': $ct-button-dark-tertiary-color,
+            'background-color': $ct-button-dark-tertiary-background-color,
+            'border-color': $ct-button-dark-tertiary-border-color,
+            'outline-color': false,
+          ),
+          'hover': (
+            'color': $ct-button-dark-tertiary-hover-color,
+            'background-color': $ct-button-dark-tertiary-hover-background-color,
+            'border-color': $ct-button-dark-tertiary-hover-border-color,
+            'outline-color': false,
+          ),
+          'visited': (
+            'color': $ct-button-dark-tertiary-visited-color,
+            'background-color': $ct-button-dark-tertiary-visited-background-color,
+            'border-color': $ct-button-dark-tertiary-visited-border-color,
+            'outline-color': false,
+          ),
+          'active': (
+            'color': $ct-button-dark-tertiary-active-color,
+            'background-color': $ct-button-dark-tertiary-active-background-color,
+            'border-color': $ct-button-dark-tertiary-active-border-color,
+            'outline-color': false,
+          ),
+          'focus': (
+            'color': $ct-button-dark-tertiary-focus-color,
+            'background-color': $ct-button-dark-tertiary-focus-background-color,
+            'border-color': $ct-button-dark-tertiary-focus-border-color,
+            'outline-color': $ct-button-dark-tertiary-focus-outline-color,
+          ),
+        )
+      ),
+    );
+  }
+
+  $types: map.keys($map);
+
+  @if not index($types, $type) {
+    @error '"#{$type}" is not one of allowed #{$types}.';
+  }
+
+  display: inline-block;
+  text-decoration: none;
+  outline-offset: $ct-button-outline-offset;
+  outline-width: $ct-button-outline-width;
+
+  @if $ct-animation-enabled {
+    transition: all $ct-animation-duration ease;
+  }
+
+  &:focus-visible,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  &[disabled] {
+    text-decoration: none;
+    pointer-events: none;
+    user-select: none;
+    opacity: 50%;
+  }
+
+  input {
+    @include ct-visually-hidden();
+  }
+
+  $map-per-type: map.get($map, $type);
+
+  @each $theme, $type-kinds in $map-per-type {
+    &.ct-theme-#{$theme} {
+      @each $type-kind, $type-kind-values in $type-kinds {
+        @if $type-kind == 'normal' {
+          @include _ct-button-print-rules($type-kind-values);
+        }
+        @else if $type-kind == 'hover' {
+          &:hover {
+            @include _ct-button-print-rules($type-kind-values);
+          }
+        }
+        @else if $type-kind == 'active' {
+          &:active,
+          &.active {
+            @include _ct-button-print-rules($type-kind-values);
+          }
+        }
+        @else if $type-kind == 'focus' {
+          &:focus-visible,
+          &.focus {
+            @include _ct-button-print-rules($type-kind-values);
+          }
+        }
+        @else if $type-kind == 'selected' {
+          &.selected,
+          &.selected:hover,
+          &.selected:active,
+          &.selected:hover:active {
+            @include _ct-button-print-rules($type-kind-values);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin ct-button-size($size, $with-padding: true) {
+  // stylelint-disable-next-line scss/dollar-variable-pattern
+  $sizes: ('large', 'regular', 'small');
+
+  @if $size == 'large' {
+    @include ct-typography('label-large');
+
+    @if $with-padding {
+      padding: ct-spacing(2) ct-spacing(6);
+    }
+  }
+  @else if $size == 'regular' {
+    @include ct-typography('label-regular');
+
+    @if $with-padding {
+      padding: ct-spacing(1.75) ct-spacing(5);
+    }
+  }
+  @else if $size == 'small' {
+    @include ct-typography('label-small');
+
+    border-width: math.div($ct-button-border-width, 2);
+
+    @if $with-padding {
+      padding: ct-spacing() ct-spacing(4);
+    }
+  }
+  @else {
+    @error '"#{$size}" is not one of allowed #{$sizes}.';
+  }
+}
+
+@mixin _ct-button-print-rules($rules) {
+  $map: (
+    'background-color',
+    'border-color',
+    'color',
+    'outline-color',
+  );
+
+  @each $property in $map {
+    $value: map.get($rules, $property);
+
+    @if $value {
+      #{$property}: $value;
+    }
+  }
+
+  @if map.get($rules, 'outline-color') {
+    outline-style: solid;
+  }
+}
+
+//
+// Classes.
+//
+
+.ct-button {
+  $root: &;
+
+  cursor: pointer;
+  border: $ct-button-border-width solid transparent;
+  border-radius: $ct-button-border-radius;
+
+  @include ct-button-size('regular');
+
+  &--primary {
+    @include ct-button-type('primary');
+  }
+
+  &--secondary {
+    @include ct-button-type('secondary');
+  }
+
+  // Type.
+  &--tertiary {
+    @include ct-button-type('tertiary');
+
+    &:focus-visible,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+
+    &--large {
+      @include ct-button-size('large', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(3);
+      }
+    }
+
+    &--regular {
+      @include ct-button-size('regular', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(3);
+      }
+    }
+
+    &--small {
+      @include ct-button-size('small', false);
+
+      &__dismiss {
+        margin-left: ct-spacing(2);
+      }
+    }
+  }
+
+  // Size.
+  &--large {
+    @include ct-button-size('large');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+
+  &--regular {
+    @include ct-button-size('regular');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+
+  &--small {
+    @include ct-button-size('small');
+
+    &#{$root}--tertiary {
+      padding: 0;
+    }
+  }
+}

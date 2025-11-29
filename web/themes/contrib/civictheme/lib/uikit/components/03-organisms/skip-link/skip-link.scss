@@ -1,0 +1,16 @@
+//
+// Skip Link component.
+//
+
+.ct-skip-link {
+  $root: &;
+
+  &__link {
+    display: inline-block;
+    margin: ct-spacing(2) ct-spacing(3);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}

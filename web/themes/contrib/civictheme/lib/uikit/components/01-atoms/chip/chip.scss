@@ -1,0 +1,132 @@
+//
+// Mixins.
+//
+
+//
+// Classes.
+//
+
+.ct-chip {
+  $root: &;
+
+  cursor: pointer;
+  border: $ct-chip-border-width solid transparent;
+  border-radius: ct-spacing(6);
+
+  @include ct-link-decoration(false, false, false, false);
+
+  #{$root}__dismiss {
+    display: none;
+  }
+
+  #{$root}__input[checked] + .ct-chip__dismiss {
+    display: inline;
+  }
+
+  $map: (
+    'chip': (
+      'light': (
+        'normal': (
+          'color': $ct-chip-light-color,
+          'background-color': $ct-chip-light-background-color,
+          'border-color': $ct-chip-light-border-color,
+          'outline-color': false,
+        ),
+        'hover': (
+          'color': $ct-chip-light-hover-color,
+          'background-color': $ct-chip-light-hover-background-color,
+          'border-color': $ct-chip-light-hover-border-color,
+          'outline-color': false,
+        ),
+        'focus': (
+          'color': $ct-chip-light-focus-color,
+          'background-color': $ct-chip-light-focus-background-color,
+          'border-color': $ct-chip-light-focus-border-color,
+          'outline-color': $ct-chip-light-focus-outline-color,
+        ),
+        'selected': (
+          'color': $ct-chip-light-selected-color,
+          'background-color': $ct-chip-light-selected-background-color,
+          'border-color': $ct-chip-light-selected-border-color,
+        ),
+        'active': (
+          'color': $ct-chip-light-selected-color,
+          'background-color': $ct-chip-light-selected-background-color,
+          'border-color': $ct-chip-light-selected-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $ct-chip-light-selected-color,
+          'background-color': $ct-chip-light-selected-background-color,
+          'border-color': $ct-chip-light-selected-border-color,
+          'outline-color': false,
+        ),
+      ),
+      'dark': (
+        'normal': (
+          'color': $ct-chip-dark-color,
+          'background-color': $ct-chip-dark-background-color,
+          'border-color': $ct-chip-dark-border-color,
+          'outline-color': false,
+        ),
+        'hover': (
+          'color': $ct-chip-dark-hover-color,
+          'background-color': $ct-chip-dark-hover-background-color,
+          'border-color': $ct-chip-dark-hover-border-color,
+          'outline-color': false,
+        ),
+        'focus': (
+          'color': $ct-chip-dark-focus-color,
+          'background-color': $ct-chip-dark-focus-background-color,
+          'border-color': $ct-chip-dark-focus-border-color,
+          'outline-color': $ct-chip-dark-focus-outline-color,
+        ),
+        'selected': (
+          'color': $ct-chip-dark-selected-color,
+          'background-color': $ct-chip-dark-selected-background-color,
+          'border-color': $ct-chip-dark-selected-border-color,
+        ),
+        'active': (
+          'color': $ct-chip-dark-selected-color,
+          'background-color': $ct-chip-dark-selected-background-color,
+          'border-color': $ct-chip-dark-selected-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $ct-chip-dark-selected-color,
+          'background-color': $ct-chip-dark-selected-background-color,
+          'border-color': $ct-chip-dark-selected-border-color,
+          'outline-color': false,
+        ),
+      )
+    ),
+  );
+
+  // Re-using Button's mixin with Chip's custom color map.
+  @include ct-button-type('chip', $map);
+
+  // Size.
+  &--large {
+    @include ct-button-size('large');
+
+    &__dismiss {
+      margin-left: ct-spacing(3);
+    }
+  }
+
+  &--regular {
+    @include ct-button-size('regular');
+
+    &__dismiss {
+      margin-left: ct-spacing(3);
+    }
+  }
+
+  &--small {
+    @include ct-button-size('small');
+
+    &__dismiss {
+      margin-left: ct-spacing(2);
+    }
+  }
+}

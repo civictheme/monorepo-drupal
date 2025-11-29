@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Service Card component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] The text of card title.
+ * - links: [array] Links array:
+ *   - title [string] Title.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-service-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="ct-service-card__content">
+      {% block content_top %}
+        {% if content_top is not empty %}
+          <div class="ct-service-card__content-top">
+            {{ content_top }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title %}
+        {% if title is not empty %}
+          {% include '@atoms/heading/heading.twig' with {
+            theme: theme,
+            content: title,
+            level: 4,
+            modifier_class: 'ct-service-card__title',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block links %}
+        {% if links is not empty %}
+          {% set list_items = [] %}
+          {% for link in links %}
+            {% if link.text is not empty %}
+              {% set list_item %}
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: link.text,
+                  url: link.url,
+                  is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                  is_external: link.is_external is defined ? link.is_external : false,
+                } only %}
+              {% endset %}
+              {% set list_items = list_items|merge([list_item]) %}
+            {% endif %}
+          {% endfor %}
+          {% include '@base/item-list/item-list.twig' with {
+            items: list_items,
+            direction: 'vertical',
+            modifier_class: 'ct-service-card__links',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_bottom %}
+        {% if content_bottom is not empty %}
+          <div class="ct-service-card__content-bottom">
+            {{ content_bottom }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

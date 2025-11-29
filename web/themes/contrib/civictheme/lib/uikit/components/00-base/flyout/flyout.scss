@@ -1,0 +1,47 @@
+//
+// Flyout component.
+//
+
+[data-flyout] {
+  $root: &;
+
+  [data-flyout-panel] {
+    overflow: hidden auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    transition: transform $ct-flyout-duration;
+  }
+
+  &[data-flyout-expanded] {
+    > [data-flyout-panel] {
+      transform: translate(0, 0);
+      visibility: visible;
+      transition: transform $ct-flyout-duration;
+      z-index: $ct-flyout-zindex;
+    }
+  }
+
+  @each $direction, $transform in $ct-flyout-direction-transforms {
+    &[data-flyout-direction='#{$direction}'] {
+      [data-flyout-panel] {
+        transform: $transform;
+      }
+
+      &[data-flyout-expanded] {
+        > [data-flyout-panel] {
+          transform: translate(0, 0);
+        }
+      }
+    }
+  }
+}
+
+[data-flyout-open-trigger],
+[data-flyout-close-trigger],
+[data-flyout-close-all-trigger] {
+  cursor: pointer;
+}

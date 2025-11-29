@@ -1,0 +1,126 @@
+{#
+/**
+ * @file
+ * Group Filter component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] Title for filters.
+ * - form_attributes: [string] Form attributes. If empty - the form will not be printed.
+ * - form_hidden_fields: [string] Form hidden fields.
+ * - filters: [array] Filter object:
+ *   - title: [string] Filter title.
+ *   - content: [string] Filter content.
+ * - submit_text: [string] Text on the submit button.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if filters is not empty %}
+  {% set title = title|default('Filter results by:') %}
+
+  <div
+    class="ct-group-filter {{ modifier_class }}"
+    data-component-name="ct-group-filter"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    <div class="container" data-ct-group-filter-element>
+      <div class="row">
+        <div class="col-xxs-12">
+
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="ct-group-filter__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block filters %}
+            {% set group = 'ct-group-filter--group-' ~ random(1000, 9999) %}
+            {% set filters_items = [] %}
+            {% for filter in filters %}
+              {% set filters_item %}
+                {% include '@atoms/popover/popover.twig' with {
+                  theme: theme,
+                  content: filter.content,
+                  trigger: {
+                    text: filter.title,
+                  },
+                  group: group,
+                } only %}
+              {% endset %}
+              {% set filters_items = filters_items|merge([filters_item]) %}
+            {% endfor %}
+
+            {% if form_attributes is not empty %}
+              <form {{ form_attributes }}>
+            {% endif %}
+
+            <div class="row row--no-wrap ct-group-filter__row">
+              <div class="col col--no-grow">
+                <div class="ct-align-middle">
+                  {% if title %}
+                    {% include '@atoms/label/label.twig' with {
+                      theme: theme,
+                      content: title,
+                      modifier_class: 'ct-group-filter__title',
+                    } only %}
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="ct-align-middle">
+                  {% include '@base/item-list/item-list.twig' with {
+                    items: filters_items,
+                    modifier_class: 'ct-group-filter__filters',
+                    attributes: 'data-ct-group-filter-filters',
+                  } only %}
+                </div>
+              </div>
+
+              <div class="col col--no-grow">
+                <div class="ct-align-middle">
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    kind: 'button',
+                    type: 'secondary',
+                    size: 'small',
+                    text: submit_text|default('Apply filters'),
+                    icon: 'approve',
+                    icon_placement: 'before',
+                    attributes: 'type=submit',
+                    modifier_class: 'ct-group-filter__submit',
+                  } only %}
+                </div>
+              </div>
+            </div>
+
+            {% if form_hidden_fields|trim is not empty %}
+              {{ form_hidden_fields|raw }}
+            {% endif %}
+
+            {% if form_attributes is not empty %}
+              </form>
+            {% endif %}
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="ct-group-filter__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

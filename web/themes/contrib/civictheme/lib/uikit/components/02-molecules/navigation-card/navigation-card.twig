@@ -1,0 +1,147 @@
+{#
+/**
+ * @file
+ * Navigation Card component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - image_over: [string] Content slot for image over.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ * - image_as_icon: [boolean] Show image as an icon.
+ * - icon: [string] Icon name.
+ * - title: [string] The text of card title.
+ * - summary: [string] Summary of the card.
+ * - link: [object] Link object:
+ *   - text: [string] Text.
+ *   - url: [string] URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_image = image.url is not empty %}
+{% set with_image_class = with_image ? 'ct-navigation-card--with-image' : '' %}
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set with_link_class = with_link ? 'ct-navigation-card--with-link' : '' %}
+{% set image_as_icon_class = image_as_icon ? 'ct-navigation-card--image-as-icon' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, with_image_class, with_link_class, image_as_icon_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-navigation-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% block image %}
+      {% if not image_as_icon %}
+        {% if image.url is not empty %}
+          <div class="ct-navigation-card__image">
+            {% include '@atoms/image/image.twig' with {
+              theme: theme,
+              url: image.url,
+              alt: image.alt,
+            } only %}
+
+            {% block image_over %}
+              {% if image_over %}
+                <div class="ct-navigation-card__image__over">
+                  {{ image_over }}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+
+    <div class="ct-navigation-card__content">
+      {% block content_top %}
+        {% if content_top is not empty %}
+          <div class="ct-navigation-card__content-top">
+            {{ content_top }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block icon %}
+        {% if icon is not empty or (with_image and image_as_icon) %}
+          <div class="ct-navigation-card__icon">
+            {% if icon is not empty %}
+              {% include '@base/icon/icon.twig' with {
+                symbol: icon,
+                size: 'extra-large',
+              } only %}
+            {% endif %}
+            {% if image_as_icon and with_image %}
+              <div class="ct-icon ct-icon--size-extra-large ct-navigation-card__icon__image">
+                {% include '@atoms/image/image.twig' with {
+                  theme: theme,
+                  url: image.url,
+                  alt: image.alt,
+                } only %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% if with_link %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: title,
+                url: link.url,
+                is_new_window: link.is_new_window,
+                is_external: false,
+                icon: 'right-arrow-2',
+                modifier_class: 'ct-navigation-card__title__link',
+              } only %}
+            {% else %}
+              {{ title }}
+            {% endif %}
+          {% endset %}
+
+          {% include '@atoms/heading/heading.twig' with {
+            content: title_content,
+            level: 4,
+            theme: theme,
+            modifier_class: 'ct-navigation-card__title',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_middle %}
+        {% if content_middle is not empty %}
+          <div class="ct-navigation-card__content-middle">
+            {{ content_middle }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block summary %}
+        {% if summary is not empty %}
+          {% include '@atoms/paragraph/paragraph.twig' with {
+            theme: theme,
+            content: summary,
+            allow_html: true,
+            modifier_class: 'ct-navigation-card__summary',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_bottom %}
+        {% if content_bottom is not empty %}
+          <div class="ct-navigation-card__content-bottom">
+            {{ content_bottom }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

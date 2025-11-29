@@ -1,0 +1,172 @@
+{#
+/**
+ * @file
+ * Pagination component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - heading_id: [string] Heading id.
+ * - items: [array] Array of pagination items:
+ *   - text: [string] Item text.
+ *   - href: [string] Item link.
+ * - items_modifier_class: [string] Items modifier class.
+ * - current: [string] Current page number.
+ * - items_per_page_label: [string] Label for items per page.
+ * - items_per_page_options: [array] Array of options (applies to optgroup type):
+ *   - type: [string] Option type ('option')
+ *   - label: [string] Option label.
+ *   - value: [string] Option value.
+ *   - selected: [string] Flag whether option is selected.
+ * - items_per_page_attributes: attributes for select element.
+ * - use_ellipsis: [boolean] Flag whether ellipsis to be shown.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set items_per_page_label = items_per_page_label|default('Items per page') %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <nav
+    class="ct-pager {{ modifier_class }}" role="navigation"
+    {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="ct-visually-hidden">{{ 'Pagination' }}</h4>
+
+    {% if items_per_page_options is defined and items_per_page_options is not empty %}
+      <div class="ct-pager__items_per_page">
+        {%- include '@atoms/label/label.twig' with {
+          content: items_per_page_label,
+          modifier_class: 'ct-pager__items_per_page__label'
+        } -%}
+        {%- include '@atoms/select/select.twig' with {
+          theme: theme,
+          is_multiple: false,
+          options: items_per_page_options,
+          attributes: items_per_page_attributes,
+          modifier_class: 'ct-pager__items_per_page__select'
+        } -%}
+      </div>
+    {% endif %}
+
+    <ul class="ct-pager__items {{ items_modifier_class }}">
+      {# Print first item if we are not on the first page. #}
+      {% if items.first is not empty %}
+        <li class="ct-pager__item ct-pager__item--first hide-xxs show-m">
+          {% set attributes = 'title="Go to first page"' %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: items.first.text|default('First'),
+            url: items.first.href,
+            is_disabled: (current - 1) ? 0 : 1,
+            icon: 'left-arrow',
+            icon_placement: 'before',
+            attributes: attributes,
+            modifier_class: 'ct-pager__link',
+          } only %}
+        </li>
+      {% endif %}
+
+      {# Print previous item. #}
+      <li class="ct-pager__item ct-pager__item--previous">
+        {% if current - 1 %}
+          {% set attributes = 'title="Go to previous page - page %s"'|format(current - 1) %}
+        {% else %}
+          {% set attributes = 'title="Go to previous page"' %}
+        {% endif %}
+
+        {% include '@atoms/link/link.twig' with {
+          theme: theme,
+          text: items.previous.text|default('Prev'),
+          url: items.previous.href,
+          is_disabled: (current - 1) ? 0 : 1,
+          icon: 'left-arrow',
+          icon_placement: 'before',
+          attributes: attributes,
+          modifier_class: 'ct-pager__link',
+        } only %}
+      </li>
+
+      {# Generate pager. #}
+      {% for key, item in items.pages %}
+        {% if loop.last %}
+          {# Add an ellipsis if there are further previous pages. #}
+          {% if use_ellipsis and current > 1 %}
+            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-previous" role="presentation">
+              &hellip;
+            </li>
+          {% endif %}
+        {% endif %}
+
+        <li class="ct-pager__item {{ current == key ? ' ct-pager__item--active' : 'hide-xxs show-m' }}">
+          {% if current == key %}
+            {% set attributes = 'title="Current page"' %}
+          {% else %}
+            {% set attributes = 'title="Go to page %s of %s"'|format(key, items.pages|length) %}
+          {% endif %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: key,
+            title: title,
+            hidden_text: current == key ? 'Current page' : 'Page',
+            is_active: current == key ? 1 : 0,
+            url: item.href,
+            attributes: attributes,
+            modifier_class: 'ct-pager__item__link',
+          } only %}
+        </li>
+
+        {% if loop.first %}
+          {# Add an ellipsis if there are further next pages. #}
+          {% if use_ellipsis and current < total_pages %}
+            <li class="ct-pager__item ct-pager__item--ellipsis ct-pager__item--ellipsis-next" role="presentation">
+              &hellip;
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {# Print next item if we are not on the last page. #}
+      <li class="ct-pager__item ct-pager__item--next">
+        {% if current < total_pages %}
+          {% set attributes = 'title="Go to next page - page %s"'|format(current + 1) %}
+        {% else %}
+          {% set attributes = 'title="Go to next page"' %}
+        {% endif %}
+
+        {% include '@atoms/link/link.twig' with {
+          theme: theme,
+          text: items.next.text|default('Next'),
+          title: title,
+          aria_text: 'Next page',
+          url: items.next.href,
+          is_disabled: (current < total_pages) ? 0 : 1,
+          icon: 'right-arrow-2',
+          icon_placement: 'after',
+          attributes: attributes,
+          modifier_class: 'ct-pager__link',
+        } only %}
+      </li>
+
+      {# Print last item if we are not on the last page. #}
+      {% if items.last %}
+        {% set attributes = 'title="Go to last page"' %}
+        <li class="ct-pager__item ct-pager__item--last hide-xxs show-m">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: items.last.text|default('Last'),
+            url: items.last.href,
+            is_disabled: (current < total_pages) ? 0 : 1,
+            icon: 'right-arrow-2',
+            icon_placement: 'after',
+            attributes: attributes,
+            modifier_class: 'ct-pager__link',
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

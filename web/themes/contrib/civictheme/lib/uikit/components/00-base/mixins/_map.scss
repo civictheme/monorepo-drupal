@@ -1,0 +1,90 @@
+//
+// Map functions to extend SASS functionality.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+//
+// Get the next element from the map.
+//
+// @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
+//
+@function ct-map-get-next($map, $key, $fallback: false, $return: value) {
+  // Check if map is valid.
+  @if type-of($map) == map {
+    // Check if key exists in map.
+    @if map.has-key($map, $key) {
+      // Init index counter variable.
+      $i: 0;
+
+      // Init key index.
+      $key-index: false;
+
+      // Traverse map for key.
+      @each $map-key,
+        $map-value in $map {
+        // Update index
+        $i: $i + 1;
+
+        // If map key found, set key index.
+        @if $map-key == $key {
+          $key-index: $i;
+        }
+
+        // If next index return next value or key based on $return.
+        @if $i == $key-index + 1 {
+          @if $return == key {
+            @return $map-key;
+          }
+          @else {
+            @return $map-value;
+          }
+        }
+
+        // If last entry return false.
+        @if $i == length($map) {
+          @return $fallback;
+        }
+      }
+
+      @warn 'No next map item for key #{$key}';
+      @return $fallback;
+    }
+
+    @warn 'No valid key #{$key} in map';
+    @return $fallback;
+  }
+
+  @warn 'No valid map';
+  @return $fallback;
+}
+
+@function ct-join-lists($lists, $separator: ' ') {
+  $value: '';
+
+  @if $lists and list.length($lists) > 0 {
+    @if list.nth($lists, 1) and list.length(list.nth($lists, 1)) > 0 {
+      $value: list.nth($lists, 1);
+    }
+  }
+
+  @for $i from 1 to list.length($lists) {
+    @if $i == 1 {
+      @if list.nth($lists, 1) and list.length(list.nth($lists, 1)) > 0 and list.nth($lists, $i + 1)
+        and list.length(list.nth($lists, $i + 1)) > 0 {
+        $value: $value + $separator + list.nth($lists, $i + 1);
+      }
+      @else if (not list.nth($lists, 1) or list.length(list.nth($lists, 1)) == 0)
+        and list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
+        $value: $value + list.nth($lists, $i + 1);
+      }
+    }
+    @else if list.nth($lists, $i + 1) and list.length(list.nth($lists, $i + 1)) > 0 {
+      $value: $value + $separator + list.nth($lists, $i + 1);
+    }
+  }
+
+  @return list.join(#{$value}, ());
+}

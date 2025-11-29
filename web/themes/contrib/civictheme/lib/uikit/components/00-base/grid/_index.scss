@@ -1,0 +1,154 @@
+//
+// Grid component.
+//
+
+@use 'sass:map';
+
+.row {
+  @include ct-row($ct-grid-gutters);
+
+  &--no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &.reverse {
+    @include ct-row-reverse();
+  }
+
+  &.natural-height {
+    @include ct-row-natural-height();
+  }
+
+  &.flex-column {
+    @include ct-row-flex-column();
+  }
+}
+
+.col {
+  // Make columns at the lowest breakpoint to act as a single column per row.
+  @include _ct-grid-col($ct-grid-lowest-breakpoint, $ct-grid-columns);
+
+  $next-bp: ct-map-get-next($ct-breakpoints, $ct-grid-lowest-breakpoint, map.get($ct-breakpoints, 'xxs'), key);
+
+  // Spawn columns to fit into as single row for larger breakpoints.
+  @include ct-breakpoint($next-bp) {
+    @include _ct-grid-col();
+  }
+
+  &.reverse {
+    @include ct-col-reverse();
+  }
+
+  &--no-grow {
+    flex-grow: initial;
+  }
+}
+
+.first {
+  order: -1;
+}
+
+.last {
+  order: 1;
+}
+
+.align-start {
+  align-self: flex-start;
+}
+
+.align-end {
+  align-self: flex-end;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.align-baseline {
+  align-self: baseline;
+}
+
+.align-stretch {
+  align-self: stretch;
+}
+
+// Generate column classes.
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-grid-lowest-breakpoint {
+    @include _ct-col-factory($breakpoint);
+  }
+  @else {
+    @include ct-breakpoint($breakpoint) {
+      @include _ct-col-factory($breakpoint);
+    }
+  }
+}
+
+// Container class should wrap every row.
+.container {
+  @include ct-container();
+}
+
+//
+// Max width container class to limit the width of the fluid containers at max width.
+//
+.container-max-width {
+  @include ct-breakpoint(xxl) {
+    width: $ct-grid-max-width;
+    margin: 0 auto;
+  }
+}
+
+//
+// Offset container class to add offset on small screens.
+//
+.container-offset-xs {
+  @include ct-breakpoint-upto(m) {
+    padding-left: map.get($ct-grid-offsets, 'xxs');
+    padding-right: map.get($ct-grid-offsets, 'xxs');
+    width: auto;
+  }
+}
+
+.row-no-gap {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col-no-gap {
+  padding: 0;
+}
+
+.ct-justify-content-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ct-justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.ct-justify-content-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ct-text-align-left {
+  text-align: left;
+}
+
+.ct-text-align-center {
+  text-align: center;
+}
+
+.ct-text-align-right {
+  text-align: right;
+}
+
+.ct-align-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}

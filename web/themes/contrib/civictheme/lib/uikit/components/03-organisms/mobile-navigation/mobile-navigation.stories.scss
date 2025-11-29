@@ -1,0 +1,21 @@
+//
+// Mobile Navigation stories.
+//
+
+.example-container__page-content {
+  &.example-ct-mobile-navigation {
+    // Override hiding of mobile trigger and a menu for this component
+    // storybook. It will still be hidden in other components (i.e. header).
+    .ct-mobile-navigation {
+      @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
+        display: block;
+      }
+    }
+
+    .ct-mobile-navigation-trigger {
+      @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
+        display: inline;
+      }
+    }
+  }
+}

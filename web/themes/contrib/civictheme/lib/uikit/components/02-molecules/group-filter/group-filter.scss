@@ -1,0 +1,44 @@
+.ct-group-filter {
+  $root: &;
+
+  border-top: solid ct-particle(0.125);
+  border-bottom: solid ct-particle(0.125);
+  padding-top: ct-spacing(3);
+  padding-bottom: ct-spacing(3);
+  margin-top: ct-spacing(4);
+  margin-bottom: ct-spacing(5);
+  padding-left: ct-spacing(4);
+  padding-right: ct-spacing(4);
+
+  #{$root}__title {
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+
+  #{$root}__row {
+    flex-direction: column;
+    gap: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+      gap: initial;
+    }
+  }
+
+  #{$root}__filters {
+    flex-direction: column;
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+    }
+  }
+
+  #{$root}__submit {
+    white-space: nowrap;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    border-top-color: ct-component-var($root, $theme, border-color);
+    border-bottom-color: ct-component-var($root, $theme, border-color);
+  }
+}

@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * Campaign component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ * - image_position: [string] left / right
+ * - tags: [array] Array of tags.
+ * - title: [string] Title.
+ * - date: [string] Date.
+ * - content: [string] Content.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Open link in the new window.
+ *   - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set image_position_class = image_position in ['left', 'right'] ? 'ct-campaign--image-%s'|format(image_position) : 'right' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, image_position_class, modifier_class|default('')) %}
+
+<div class="ct-campaign {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        <div class="ct-campaign__wrapper">
+          {% block image %}
+            {% if image is not empty %}
+              <div class="ct-campaign__image">
+                {% include '@atoms/image/image.twig' with {
+                  theme: theme,
+                  url: image.url,
+                  alt: image.alt,
+                } only %}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          <div class="ct-campaign__inner-wrapper">
+            <div class="ct-campaign__inner">
+              {% block content_top %}
+                {% if content_top is not empty %}
+                  <div class="ct-campaign__content-top">
+                    {{ content_top }}
+                  </div>
+                {% endif %}
+              {% endblock %}
+
+              {% block tags %}
+                {% if tags %}
+                  {% include '@molecules/tag-list/tag-list.twig' with {
+                    theme: theme,
+                    tags: tags,
+                    modifier_class: 'ct-campaign__tags'
+                  } only %}
+                {% endif %}
+              {% endblock %}
+
+              {% block content %}
+                {% if title is not empty %}
+                  {% include '@atoms/heading/heading.twig' with {
+                    theme: theme,
+                    content: title,
+                    level: 2,
+                    modifier_class: 'ct-campaign__title'
+                  } only %}
+                {% endif %}
+
+                {% if date is not empty %}
+                  {% include '@atoms/tag/tag.twig' with {
+                    theme: theme,
+                    content: date,
+                    type: 'tertiary',
+                    modifier_class: 'ct-campaign__date'
+                  } only %}
+                {% endif %}
+
+                {% if content is not empty %}
+                  {% include '@atoms/paragraph/paragraph.twig' with {
+                    theme: theme,
+                    content: content,
+                    allow_html: true,
+                    modifier_class: 'ct-campaign__content',
+                  } only %}
+                {% endif %}
+
+                {% block links %}
+                  {% if links is not empty %}
+                    {% set link_items = [] %}
+                    {% for link in links %}
+                      {% set link_item %}
+                        {% include '@atoms/button/button.twig' with {
+                          theme: theme,
+                          kind: 'link',
+                          type: loop.index == 1 ? 'primary' : 'secondary',
+                          text: link.text,
+                          url: link.url,
+                          is_new_window: link.is_new_window,
+                          is_external: link.is_external
+                        } only %}
+                      {% endset %}
+                      {% set link_items = link_items|merge([link_item]) %}
+                    {% endfor %}
+
+                    {% include '@base/item-list/item-list.twig' with {
+                      items: link_items,
+                      size: 'small',
+                      modifier_class: 'ct-campaign__links',
+                    } only %}
+                  {% endif %}
+                {% endblock %}
+              {% endblock %}
+
+              {% block content_bottom %}
+                {% if content_bottom is not empty %}
+                  <div class="ct-campaign__content-bottom">
+                    {{ content_bottom }}
+                  </div>
+                {% endif %}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+{#
+/**
+ * @file
+ * Publication Card component.
+ *
+ * Variables:
+ * - image: [object] Image object:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ * - image_over: [string] Content slot.
+ * - content_top: [string] Content slot.
+ * - title: [string] The text of card title.
+ * - content_middle: [string] Content slot.
+ * - summary: [string] Summary of the card.
+ * - file: [object] File object containing:
+ *   - name: [string] File name (as it appears to the user).
+ *   - ext: [string] File extension.
+ *   - url: [string] File URL.
+ *   - size: [string] File size (as it appears to the user).
+ *   - created: [string] File created date.
+ *   - changed: [string] File chnaged date.
+ *   - icon: [string] File type icon name.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.attributes: text('Additional attributes', '', generalKnobTab),
+ */
+#}
+
+{% set with_image = image.url is not empty %}
+{% set with_image_class = with_image ? 'ct-publication-card--with-image' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, with_link_class, modifier_class|default('')) %}
+
+{% if file is not empty %}
+  <div class="ct-publication-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% block image %}
+      {% if image.url is not empty %}
+        <div class="ct-publication-card__image">
+          {% include '@atoms/image/image.twig' with {
+            theme: theme,
+            url: image.url,
+            alt: image.alt,
+          } only %}
+
+          {% block image_over %}
+            {% if image_over is not empty %}
+              <div class="ct-publication-card__image__over">
+                {{ image_over }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    <div class="ct-publication-card__content">
+      {% block content_top %}
+        {% if content_top is not empty %}
+          <div class="ct-publication-card__content-top">
+            {{ content_top }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: title,
+              url: file.url,
+              icon: 'download',
+              modifier_class: 'ct-publication-card__title__link',
+            } only %}
+          {% endset %}
+
+          {% include '@atoms/heading/heading.twig' with {
+            content: title_content,
+            level: 4,
+            theme: theme,
+            modifier_class: 'ct-publication-card__title',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_middle %}
+        {% if content_middle is not empty %}
+          <div class="ct-publication-card__content__middle">
+            {{ content_middle }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block summary %}
+        {% if summary is not empty %}
+          {% include '@atoms/paragraph/paragraph.twig' with {
+            theme: theme,
+            content: summary,
+            allow_html: true,
+            modifier_class: 'ct-publication-card__summary',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block link %}
+        {% if file.ext is not empty and file.size is not empty %}
+          {% set extension = ' <span class="ct-publication-card__link__extension">(%s, %s)</span>'|format(file.ext, file.size) %}
+        {% elseif file.ext is not empty or file.size is not empty %}
+          {% set extension = ' <span class="ct-publication-card__link__extension">(%s)</span>'|format(file.ext ?? file.size) %}
+        {% endif %}
+
+        {% include '@atoms/link/link.twig' with {
+          theme: theme,
+          text: file.name ~ extension,
+          title: 'Download %s'|format(file.name),
+          url: file.url,
+          modifier_class: 'ct-publication-card__link'
+        } only %}
+      {% endblock %}
+
+      {% block content_bottom %}
+        {% if content_bottom is not empty %}
+          <div class="ct-publication-card__content-bottom">
+            {{ content_bottom }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

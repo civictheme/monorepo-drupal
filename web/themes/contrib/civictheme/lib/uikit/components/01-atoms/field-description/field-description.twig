@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Field description component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] The description's content.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content is not empty -%}
+  <div
+    class="ct-field-description {{ modifier_class }}"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content }}
+  </div>
+{%- endif %}

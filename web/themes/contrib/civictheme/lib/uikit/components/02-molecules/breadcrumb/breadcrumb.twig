@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Breadcrumb component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ * - active_is_link: [boolean] Show active element as a link.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if links %}
+  {% set links_count = links|length %}
+  {% set parent = false %}
+
+  <nav class="ct-breadcrumb {{ modifier_class }}" aria-label="breadcrumb" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% set link_items = [] %}
+
+    {% for link in links %}
+      {% set link_item %}
+        {% set link = {
+          text: link.text,
+          url: link.url,
+          theme: theme,
+          is_active: (loop.index == links_count),
+          attributes: (loop.index == links_count) ? 'aria-current="location"' : '',
+          modifier_class: (loop.index == links_count) ? 'ct-breadcrumb__links__link ct-breadcrumb__links__link--active' : 'ct-breadcrumb__links__link',
+        } %}
+
+        {% if (not active_is_link or link.url is empty) and (loop.index == links_count) %}
+          <span class="ct-breadcrumb__links__link ct-breadcrumb__links__link--active" aria-current="location">{{ link.text }}</span>
+        {% else %}
+          {% include '@atoms/link/link.twig' with link only %}
+        {% endif %}
+      {% endset %}
+
+      {% set link_items = link_items|merge([link_item]) %}
+
+      {% if loop.index < links_count %}
+        {% set link_item %}
+          {% include '@base/icon/icon.twig' with {
+            symbol: 'right-arrow-1',
+            modifier_class: 'ct-breadcrumb__links__separator',
+          } only %}
+        {% endset %}
+        {% set link_items = link_items|merge([link_item]) %}
+      {% endif %}
+
+      {% if loop.index == links_count - 1 %}
+        {% set parent = {
+          text: link.text,
+          url: link.url,
+          theme: theme,
+          icon: 'left-arrow',
+          icon_placement: 'before',
+        } %}
+      {% endif %}
+    {% endfor %}
+
+    {% if parent %}
+      {% set parent_link_item %}
+        {% include '@atoms/link/link.twig' with parent only %}
+      {% endset %}
+
+      {% include '@base/item-list/item-list.twig' with {
+        direction: 'horizontal',
+        items: [parent_link_item],
+        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-m',
+      } only %}
+    {% endif %}
+
+    {% include '@base/item-list/item-list.twig' with {
+      direction: 'horizontal',
+      items: link_items,
+      no_gap: true,
+      modifier_class: 'ct-breadcrumb__links hide-xxs show-m-flex',
+    } only %}
+  </nav>
+{% endif %}

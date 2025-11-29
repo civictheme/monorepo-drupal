@@ -1,0 +1,17 @@
+<div class="example-container__page-content example-ct-mobile-navigation">
+  {% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
+    theme: trigger_theme,
+    icon: trigger_icon,
+    text: trigger_text,
+  } only %}
+
+  <div class="docs-container docs-container--large">Click on the mobile navigation trigger in the top left to open Mobile Navigation panel.</div>
+
+  {% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+    theme: theme,
+    top_menu: top_menu,
+    bottom_menu: bottom_menu,
+    content_top: content_top,
+    content_bottom: content_bottom,
+  } only %}
+</div>

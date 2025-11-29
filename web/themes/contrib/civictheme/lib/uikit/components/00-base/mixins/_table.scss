@@ -1,0 +1,238 @@
+//
+// Table mixins.
+//
+
+@mixin ct-table() {
+  $root: &;
+
+  width: 100%;
+  border-collapse: collapse;
+  border: 0;
+  border-spacing: 0;
+  text-align: left;
+  vertical-align: middle;
+
+  @include ct-typography('text-regular');
+
+  @include ct-breakpoint-upto($ct-table-breakpoint) {
+    thead,
+    tfoot {
+      @include ct-visually-hidden();
+    }
+
+    tbody {
+      tr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        td {
+          border: 0;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: stretch;
+
+          &:first-of-type::after {
+            visibility: hidden;
+          }
+
+          &::after {
+            content: '';
+            width: calc(100% - 30px);
+            display: block;
+            margin: 0 auto;
+            height: ct-particle(0.125);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -6px;
+          }
+
+          &::before {
+            content: attr(data-title);
+            display: table-cell;
+            height: 100%;
+            width: 30%;
+            max-width: ct-spacing(12);
+            flex-shrink: 0;
+            vertical-align: middle;
+            padding-right: ct-spacing(2);
+
+            @include ct-typography('label-regular');
+          }
+        }
+      }
+    }
+  }
+
+  thead,
+  tfoot {
+    @include ct-typography('label-regular');
+  }
+
+  tr {
+    th,
+    td {
+      padding: ct-spacing(1.5) ct-spacing();
+      vertical-align: $ct-table-cell-vertical-align;
+
+      @include ct-breakpoint($ct-table-breakpoint) {
+        padding: ct-spacing(1.5) ct-spacing(3);
+      }
+    }
+  }
+
+  caption {
+    text-align: left;
+    padding: ct-spacing(1.5) 0;
+
+    @include ct-typography('label-large');
+
+    @include ct-breakpoint($ct-table-breakpoint) {
+      padding: ct-spacing(1.5) 0;
+    }
+  }
+
+  &#{$root}--caption-after {
+    caption-side: bottom;
+
+    caption {
+      @include ct-typography('text-regular');
+    }
+  }
+}
+
+@mixin ct-table-light() {
+  color: $ct-table-light-color;
+  background-color: $ct-table-light-background-color;
+
+  thead {
+    color: $ct-table-light-header-color;
+
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-bottom: solid ct-particle(0.125) $ct-table-light-header-border-color;
+    }
+
+    tr {
+      &:last-child {
+        border-bottom: solid ct-particle(0.25) $ct-table-light-header-border-color;
+      }
+    }
+  }
+
+  tfoot {
+    color: $ct-table-light-footer-color;
+
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-top: solid ct-particle(0.125) $ct-table-light-footer-border-color;
+    }
+
+    tr {
+      &:last-child {
+        border-top: solid ct-particle(0.25) $ct-table-light-footer-border-color;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: solid ct-particle(0.125) $ct-table-light-border-color;
+    }
+  }
+
+  caption {
+    color: $ct-table-light-caption-color;
+  }
+
+  &.ct-table--striped {
+    tbody {
+      tr:nth-child(odd) {
+        background: $ct-table-light-row-odd-background-color;
+
+        td {
+          color: $ct-table-light-row-odd-color;
+        }
+      }
+
+      tr:nth-child(even) {
+        background: $ct-table-light-row-even-background-color;
+
+        td {
+          color: $ct-table-light-row-even-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin ct-table-dark() {
+  color: $ct-table-dark-color;
+  background-color: $ct-table-dark-background-color;
+
+  thead {
+    color: $ct-table-dark-header-color;
+
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-bottom: solid ct-particle(0.125) $ct-table-dark-header-border-color;
+    }
+
+    tr {
+      &:last-child {
+        border-bottom: solid ct-particle(0.25) $ct-table-dark-header-border-color;
+      }
+    }
+  }
+
+  tfoot {
+    color: $ct-table-dark-footer-color;
+
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-top: solid ct-particle(0.125) $ct-table-dark-footer-border-color;
+    }
+
+    tr {
+      &:last-child {
+        border-top: solid ct-particle(0.25) $ct-table-dark-footer-border-color;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: solid ct-particle(0.125) $ct-table-dark-border-color;
+    }
+  }
+
+  caption {
+    color: $ct-table-dark-caption-color;
+  }
+
+  &.ct-table--striped {
+    tbody {
+      tr:nth-child(odd) {
+        background: $ct-table-dark-row-odd-background-color;
+
+        td {
+          color: $ct-table-dark-row-odd-color;
+        }
+      }
+
+      tr:nth-child(even) {
+        background: $ct-table-dark-row-even-background-color;
+
+        td {
+          color: $ct-table-dark-row-even-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin ct-table-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-table-light();
+  }
+  @else {
+    @include ct-table-dark();
+  }
+}

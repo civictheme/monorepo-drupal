@@ -1,0 +1,147 @@
+//
+// Font mixins.
+//
+
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+//
+// Get a font from the pre-defined list of fonts by defined name.
+//
+@function ct-font($name) {
+  $all-fonts: _ct-font-map-all();
+
+  @if map.get($all-fonts, $name) == null {
+    @error '"#{$name}" is not a defined font.';
+  }
+
+  @return string.unquote(map.get(map.get($all-fonts, $name), 'family'));
+}
+
+//
+// Compile all fonts into a single map.
+//
+// Do not use directly.
+// Use @include ct-font() function instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-font-map-all() {
+  @return map.merge($ct-fonts-default, $ct-fonts);
+}
+
+//
+// Compile all fonts into a single map.
+//
+// Do not use directly.
+// Use @include ct-font() function instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-font-weights-all() {
+  @return map.merge($ct-font-weights-default, $ct-font-weights);
+}
+
+@mixin ct-font-url-import($path) {
+  // Use interpolated CSS @import to bypass importers' functionality to
+  // import resources when used in partials.
+  // stylelint-disable
+  @#{"import"} url('#{$path}');
+};
+
+//
+// Generate font inclusions using provided map.
+//
+@mixin ct-font-include($fonts-map) {
+  @each $font-map-name, $font-map in $fonts-map {
+    @if not (map.has-key($font-map, 'family')) {
+      @error "Font #{$font-map-name} value is missing the 'family' key.";
+    }
+
+    @if not (map.has-key($font-map, 'types')) {
+      @error "Font #{$font-map-name} value is missing the 'types' key.";
+    }
+
+    $types: map.get($font-map, 'types');
+
+    @if not type-of($types) == 'list' {
+      @error "Font #{$font-map-name} value 'types' must be a list.";
+    }
+
+    @each $type-map in $types {
+      @if not (map.has-key($type-map, 'uri')) {
+        @error "Font #{$font-map-name} value is missing the 'uri' key.";
+      }
+
+      $uri: map.get($type-map, 'uri');
+
+      // Convert scalar value to a list.
+      @if not (type-of($uri) == 'list') {
+        $uri: ($uri);
+      }
+
+      // Validate list: either single URL OR single or multiple local files.
+      @each $path in $uri {
+        @if string.index($path, 'http') == 1 and list.length($uri) > 1 {
+          @error "Font #{$font-map-name} 'uri' value must have only one absolute URL.";
+        }
+      }
+
+      $local-src-list: ();
+      $extra-src: null;
+
+      @each $path in $uri {
+        @if string.index($path, 'http') == 1 {
+          @include ct-font-url-import($path);
+        } @else {
+          // Extract format from file extension.
+          $format: string.slice($path, ct-string-last-index($path, '.') + 1);
+
+          // Handle special case for EOT and IE.
+          @if $format == 'eot' {
+            $extra-src: url('#{$path}');
+            $path: '#{$path}?#iefix';
+            $format: 'embedded-opentype';
+          }
+
+          // noinspection CssInvalidFunction
+          $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
+        }
+      }
+
+      @if list.length($local-src-list) > 0 {
+        // Extract font name from the defined family as it may contain fallbacks.
+        // Note that font-family name is ignored for @import'ed fonts since they
+        // do not use @font-face.
+        $font-names: ct-string-split(map.get($font-map, 'family'), ',');
+
+        @if list.length($font-names) == 0 {
+          @error "Font #{$font-map-name} 'family' value must have at least one name.";
+        }
+
+        $font-family: list.nth($font-names, 1);
+        $font-family: ct-unquote($font-family);
+
+        @font-face {
+          font-family: $font-family;
+
+          @if $extra-src {
+            src: $extra-src;
+          }
+
+          src: $local-src-list;
+
+          @if map.get($type-map, 'italic') == true {
+            font-style: italic;
+          }
+
+          @if map.get($type-map, 'weight') != null {
+            $weight: map.get($type-map, 'weight');
+            $weight: ct-unquote($weight);
+            font-weight: $weight;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,342 @@
+//
+// Content mixins.
+//
+
+@mixin ct-content {
+  @include ct-typography('text-regular');
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  h1 {
+    @include ct-typography('heading-1');
+
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  h2 {
+    @include ct-typography('heading-2');
+
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  h3 {
+    @include ct-typography('heading-3');
+
+    margin-bottom: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  h4 {
+    @include ct-typography('heading-4');
+
+    margin-bottom: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  h5 {
+    @include ct-typography('heading-5');
+
+    margin-bottom: ct-spacing();
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(2);
+    }
+  }
+
+  h6 {
+    @include ct-typography('heading-6');
+
+    margin-bottom: ct-spacing();
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(2);
+    }
+  }
+
+  p {
+    margin-top: $ct-basic-content-vertical-spacing;
+    margin-bottom: $ct-basic-content-vertical-spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &:last-child {
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  a:not(.ct-button) {
+    @include ct-content-link-base();
+  }
+
+  blockquote {
+    @include ct-typography('quote');
+
+    position: relative;
+    margin: 0;
+    margin-top: $ct-basic-content-vertical-spacing;
+    margin-bottom: $ct-basic-content-vertical-spacing;
+    padding: ct-spacing(2) ct-spacing(3);
+    display: grid;
+
+    &::before {
+      content: '';
+      width: ct-particle(0.75);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: $ct-basic-content-blockquote-border-radius;
+    }
+
+    p {
+      @include ct-typography('quote');
+
+      margin-bottom: 0;
+    }
+
+    cite {
+      @include ct-typography('label-small');
+
+      padding-top: ct-spacing(2);
+      font-style: normal;
+
+      &::before {
+        content: '-';
+        margin-right: ct-spacing(0.5);
+      }
+    }
+  }
+
+  ul {
+    margin-top: $ct-basic-content-vertical-spacing;
+    margin-bottom: $ct-basic-content-vertical-spacing;
+    padding: 0;
+    list-style: none;
+
+    >li {
+      position: relative;
+      padding-left: $ct-basic-content-list-marker-width + $ct-basic-content-list-marker-margin;
+
+      &::before {
+        content: '';
+        position: absolute;
+        text-align: center;
+        width: rem(7px);
+        height: rem(7px);
+        border-radius: 100%;
+        top: rem(11px);
+        left: rem(11px);
+      }
+    }
+  }
+
+  ol {
+    margin-top: $ct-basic-content-vertical-spacing;
+    margin-bottom: $ct-basic-content-vertical-spacing;
+    counter-reset: ordered_counter;
+    padding: 0;
+    list-style: none;
+
+    >li {
+      counter-increment: ordered_counter;
+      padding-left: $ct-basic-content-list-marker-width + $ct-basic-content-list-marker-margin;
+
+      &::before {
+        content: counter(ordered_counter);
+        display: inline-block;
+        text-align: center;
+        width: $ct-basic-content-list-marker-width;
+        margin-left: -$ct-basic-content-list-marker-width - $ct-basic-content-list-marker-margin;
+        margin-right: $ct-basic-content-list-marker-margin;
+      }
+    }
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+    margin-top: $ct-basic-content-vertical-spacing * 2;
+    margin-bottom: $ct-basic-content-vertical-spacing * 2;
+  }
+
+  figure {
+    margin-top: $ct-basic-content-vertical-spacing * 2;
+    margin-bottom: $ct-basic-content-vertical-spacing * 2;
+
+    img {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  table {
+    @include ct-table();
+  }
+}
+
+@mixin ct-content-light {
+  color: $ct-basic-content-light-base-color;
+
+  h1 {
+    color: $ct-basic-content-light-heading-1-color;
+  }
+
+  h2 {
+    color: $ct-basic-content-light-heading-2-color;
+  }
+
+  h3 {
+    color: $ct-basic-content-light-heading-3-color;
+  }
+
+  h4 {
+    color: $ct-basic-content-light-heading-4-color;
+  }
+
+  h5 {
+    color: $ct-basic-content-light-heading-5-color;
+  }
+
+  h6 {
+    color: $ct-basic-content-light-heading-6-color;
+  }
+
+  blockquote {
+    color: $ct-basic-content-light-blockquote-color;
+    background-color: $ct-basic-content-light-blockquote-background-color;
+
+    &::before {
+      background-color: $ct-basic-content-light-blockquote-stripe-background-color;
+    }
+
+    cite {
+      color: $ct-basic-content-light-blockquote-color;
+    }
+  }
+
+  ul {
+    >li {
+      color: $ct-basic-content-light-ul-li-color;
+
+      &::before {
+        background-color: $ct-basic-content-light-ul-li-marker-color;
+      }
+    }
+  }
+
+  ol {
+    >li {
+      color: $ct-basic-content-light-ol-li-color;
+
+      &::before {
+        color: $ct-basic-content-light-ol-li-marker-color;
+      }
+    }
+  }
+
+  table {
+    @include ct-table-light();
+  }
+}
+
+@mixin ct-content-dark {
+  color: $ct-basic-content-dark-base-color;
+
+  h1 {
+    color: $ct-basic-content-dark-heading-1-color;
+  }
+
+  h2 {
+    color: $ct-basic-content-dark-heading-2-color;
+  }
+
+  h3 {
+    color: $ct-basic-content-dark-heading-3-color;
+  }
+
+  h4 {
+    color: $ct-basic-content-dark-heading-4-color;
+  }
+
+  h5 {
+    color: $ct-basic-content-dark-heading-5-color;
+  }
+
+  h6 {
+    color: $ct-basic-content-dark-heading-6-color;
+  }
+
+  blockquote {
+    color: $ct-basic-content-dark-blockquote-color;
+    background-color: $ct-basic-content-dark-blockquote-background-color;
+
+    &::before {
+      background-color: $ct-basic-content-dark-blockquote-stripe-background-color;
+    }
+
+    cite {
+      color: $ct-basic-content-dark-blockquote-color;
+    }
+  }
+
+  ul {
+    >li {
+      color: $ct-basic-content-dark-ul-li-color;
+
+      &::before {
+        background-color: $ct-basic-content-dark-ul-li-marker-color;
+      }
+    }
+  }
+
+  ol {
+    >li {
+      color: $ct-basic-content-dark-ol-li-color;
+
+      &::before {
+        color: $ct-basic-content-dark-ol-li-marker-color;
+      }
+    }
+  }
+
+  table {
+    @include ct-table-dark();
+  }
+}
+
+@mixin ct-content-theme($theme) {
+  @if $theme == 'light' {
+    @include ct-content-light();
+  }
+  @else {
+    @include ct-content-dark();
+  }
+}

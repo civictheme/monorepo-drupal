@@ -1,0 +1,193 @@
+//
+// Header component.
+//
+
+.ct-header {
+  $root: &;
+
+  &__content-top2 {
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
+  }
+
+  &__content-top3 {
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
+
+    .ct-navigation {
+      $root-dropdown: '.ct-navigation';
+      &#{$root-dropdown}--dropdown {
+        #{$root-dropdown}__items {
+          #{$root-dropdown}__menu {
+            .ct-menu__item {
+              // Links - level 0.
+              &--level-0 {
+                margin-right: ct-spacing(2);
+
+                &:last-child {
+                  margin-right: 0;
+                }
+
+                > .ct-link {
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__middle {
+    border-bottom: solid ct-particle(0.125);
+    padding-top: ct-particle(2);
+    padding-bottom: ct-particle(2);
+  }
+
+  &__content-middle2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content-middle3 {
+    @include ct-print-hide();
+
+    height: 100%;
+    position: relative;
+
+    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
+      position: static;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .ct-navigation {
+      $root-drawer: '.ct-navigation';
+
+      &#{$root-drawer}--drawer {
+        #{$root-drawer}__items {
+          #{$root-drawer}__menu {
+            .ct-menu__item {
+              // Links - level 0.
+              &--level-0 {
+                border-bottom: solid ct-particle(0.5);
+
+                > .ct-link {
+                  display: block;
+                  padding: ct-spacing(2);
+                  text-align: center;
+
+                  &::after {
+                    right: ct-spacing();
+                    margin-top: -1 * ct-particle(0.25);
+                    top: ct-spacing(2);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        @include ct-component-theme($root-drawer) using($root-drawer, $theme) {
+          #{$root-drawer}__items {
+            #{$root-drawer}__menu {
+              .ct-menu__item {
+                // Links - level 0.
+                &--level-0 {
+                  border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, border-color);
+
+                  &:hover {
+                    @include ct-component-property($root-drawer, $theme, drawer-menu-item, hover, background-color);
+
+                    border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, hover, border-color);
+                  }
+
+                  &:active {
+                    @include ct-component-property($root-drawer, $theme, drawer-menu-item, active, background-color);
+
+                    border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, active, border-color);
+                  }
+
+                  &[data-collapsible] {
+                    @if $theme == 'light' {
+                      color: $ct-navigation-light-drawer-color;
+                    }
+                    @else {
+                      color: $ct-navigation-dark-drawer-color;
+                    }
+
+                    border-bottom-color: ct-component-var($root-drawer, $theme, drawer, border-color);
+
+                    &:hover {
+                      @if $theme == 'light' {
+                        color: $ct-navigation-light-drawer-hover-color;
+                      }
+                      @else {
+                        color: $ct-navigation-dark-drawer-hover-color;
+                      }
+
+                      @include ct-component-property($root-drawer, $theme, drawer-menu-item, hover, background-color);
+
+                      border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, hover, border-color);
+                    }
+
+                    &:active {
+                      @include ct-component-property($root-drawer, $theme, drawer-menu-item, active, background-color);
+
+                      border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, active, border-color);
+                    }
+                  }
+
+                  &[data-collapsible-collapsed] {
+                    border-bottom-color: ct-component-var($root-drawer, $theme, drawer-menu-item, border-color);
+                  }
+
+                  &.ct-menu__item--active-trail {
+                    border-bottom-color: ct-component-var($root-drawer, $theme, drawer, border-color);
+                  }
+
+                  > .ct-link {
+                    @include ct-component-property($root-drawer, $theme, drawer-menu-item, background-color);
+                    @include ct-component-property($root-drawer, $theme, drawer, color);
+
+                    &:hover {
+                      @include ct-component-property($root-drawer, $theme, drawer-menu-item, hover, background-color);
+                      @include ct-component-property($root-drawer, $theme, drawer, hover, color);
+                    }
+
+                    &[aria-expanded='true'],
+                    &:active {
+                      @include ct-component-property($root-drawer, $theme, drawer-menu-item, active, background-color);
+                      @include ct-component-property($root-drawer, $theme, drawer, active, color);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ct-mobile-navigation-trigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__top {
+      @include ct-component-property($root, $theme, top, background-color);
+      @include ct-component-property($root, $theme, top, color);
+    }
+
+    #{$root}__middle {
+      @include ct-component-property($root, $theme, middle, background-color);
+      @include ct-component-property($root, $theme, middle, border-color);
+    }
+  }
+}

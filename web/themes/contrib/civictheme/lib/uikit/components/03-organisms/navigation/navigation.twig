@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Navigation component.
+  *
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - items: [array] Array of menu items.
+  * - title: [string] Navigation title.
+  * - type: [string] One of: none, inline, dropdown, drawer.
+  * - dropdown_columns: [integer] Number of columns in the dropdown drawer.
+  * - dropdown_columns_fill: [bollean] Fill columns.
+  * - is_animated: [bollean] Use animation for transitions.
+  * - menu_id: [string] Optional menu ID used for grouping dropdown items.
+  * - attributes: [string] Additional attributes.
+  * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set menu_id = menu_id|default('navigation') %}
+{% set dropdown_class = 'ct-navigation--%s'|format(type|default('none')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, dropdown_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  {% if type in ['dropdown', 'drawer'] %}
+    {% for key in items|keys %}
+      {% if items[key].below %}
+        {# Item attributes to convert them into a collapsible element. #}
+        {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group=' ~ menu_id ~ ' ' ~ (is_animated ? 'data-collapsible-duration=250' : 'data-collapsible-duration=0') %}
+
+        {% if type == 'drawer' %}
+          {# Item classes to style dynamically. #}
+          {% set item_dropdown_columns_class = dropdown_columns ? 'ct-navigation__dropdown-columns--%s'|format(dropdown_columns) : '' %}
+          {% set item_dropdown_columns_fill_class = dropdown_columns_fill ? 'ct-navigation__dropdown-columns--fill' : '' %}
+          {% set item_modifier_class = 'ct-navigation__has-dropdown %s %s'|format(item_dropdown_columns_class, item_dropdown_columns_fill_class) %}
+          {# Update item with attributes and classes. #}
+          {% set new_item = items[key]|merge({'attributes': item_attributes, 'modifier_class': item_modifier_class}) %}
+          {% set items = items|merge({(key): new_item}) %}
+        {% else %}
+          {# Item classes to style dynamically. #}
+          {% set item_modifier_class = 'ct-navigation__has-dropdown' %}
+          {# Update item with attributes and classes. #}
+          {% set new_item = items[key]|merge({'attributes': item_attributes, 'modifier_class': item_modifier_class}) %}
+          {% set items = items|merge({(key): new_item}) %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% for key in items|keys %}
+      {% if items[key].below %}
+          {% set items_without_below = items[key]|merge({ 'below': null }) %}
+          {% set items = items|merge({(key): items_without_below}) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <div class="ct-navigation {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if title %}
+      {% block title %}
+        {% include '@atoms/heading/heading.twig' with {
+          theme: theme,
+          level: 2,
+          content: title,
+          modifier_class: 'ct-navigation__title',
+        } only %}
+      {% endblock %}
+    {% endif %}
+
+    <div class="ct-navigation__items">
+      {% include '@base/menu/menu.twig' with {
+        theme: theme,
+        items: items,
+        modifier_class: 'ct-navigation__menu',
+      } only %}
+    </div>
+  </div>
+{% endif %}

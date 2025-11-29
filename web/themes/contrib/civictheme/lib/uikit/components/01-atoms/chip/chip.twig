@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Chip component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - kind: [string] Chip kind: default, input.
+ * - size: [string] Chip size: large, regular, small.
+ * - content: [string] Chip text.
+ * - is_selected: [boolean] Is the button selected (for filter chips).
+ * - is_disabled: [boolean] Disabled or not.
+ * - is_dismissible: [boolean] Can be dismissed or not.
+ * - is_multiple: [boolean] Can be multiple.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+{% set kind = kind in ['default', 'input'] ? kind : 'default' %}
+{% set kind_class = kind ? 'ct-chip--%s'|format(kind) : '' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
+{% set size_class = 'ct-chip--%s'|format(size) %}
+{% set selected_class = is_selected ? 'active' : '' %}
+{% set multiple_class = is_multiple ? 'ct-chip--multiple' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, kind_class, size_class, selected_class, multiple_class, modifier_class|default('')) %}
+
+{% if content is not empty %}
+  {% if kind == 'input' %}
+    <label
+      class="ct-chip {{ modifier_class }}"
+      data-component-name="chip"
+      {{ is_multiple ? 'data-chip-dismiss' }}
+    >
+      <input
+        class="ct-chip__input"
+        type="{{ is_multiple ? 'checkbox' : 'radio' }}"
+        {% if is_selected %}checked="checked"{% endif %}
+        {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+      >
+      {{ content }}
+      {% if is_multiple %}
+        {% include '@base/icon/icon.twig' with {
+          symbol: 'cancel',
+          modifier_class: 'ct-chip__dismiss',
+        } only %}
+      {% endif %}
+    </label>
+  {% else %}
+    <span
+      class="ct-chip {{ modifier_class }}"
+      data-component-name="chip"
+      {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+    >
+      {{ content }}
+    </span>
+  {% endif %}
+{% endif %}

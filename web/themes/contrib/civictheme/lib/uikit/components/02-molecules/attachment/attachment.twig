@@ -1,0 +1,128 @@
+{#
+/**
+ * @file
+ * Attachment component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] attachment title.
+ * - content: [string] attachment content.
+ * - files: [array] Array of files containing:
+ *   - name: [string] File name (as it appears to the user).
+ *   - ext: [string] File extension.
+ *   - url: [string] File URL.
+ *   - size: [string] File size (as it appears to the user).
+ *   - created: [string] File created date.
+ *   - changed: [string] File chnaged date.
+ *   - icon: [string] File type icon name.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-attachment--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% if files is not empty %}
+  <div class="ct-attachment {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          <div class="ct-attachment__wrapper">
+            {% block content_top %}
+              {% if content_top is not empty %}
+                <div class="ct-attachment__content-top">
+                  {{ content_top }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content %}
+              {% if title is not empty or content is not empty %}
+                <div class="ct-attachment__inner">
+                  {% if title is not empty %}
+                    {% include '@atoms/heading/heading.twig' with {
+                      theme: theme,
+                      content: title,
+                      level: 4,
+                      modifier_class: 'ct-attachment__title'
+                    } only %}
+                  {% endif %}
+
+                  {% if content is not empty %}
+                    {% include '@atoms/paragraph/paragraph.twig' with {
+                      theme: theme,
+                      content: content,
+                      size: 'small',
+                      allow_html: true,
+                      modifier_class: 'ct-attachment__content',
+                    } only %}
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block links %}
+              {% set link_items = [] %}
+              {% for file in files %}
+                {%- set link %}
+                  {% include '@base/icon/icon.twig' with {
+                    symbol: file.icon ? file.icon : 'download-file',
+                    size: 'large',
+                    modifier_class: 'ct-attachment__links__link__icon',
+                  } only %}
+
+                  <div class="ct-attachment__links__link__wrapper">
+                    {% if file.ext is not empty and file.size is not empty %}
+                      {% set extension = ' <span class="ct-attachment__links__link__extension">(%s, %s)</span>'|format(file.ext, file.size) %}
+                    {% elseif file.ext is not empty or file.size is not empty %}
+                      {% set extension = ' <span class="ct-attachment__links__link__extension">(%s)</span>'|format(file.ext ?? file.size) %}
+                    {% endif %}
+
+                    {% include '@atoms/link/link.twig' with {
+                      theme: theme,
+                      text: file.name ~ extension,
+                      title: 'Download %s'|format(file.name),
+                      url: file.url,
+                      modifier_class: 'ct-attachment__links__link'
+                    } only %}
+
+                    {% if file.changed is not empty %}
+                      {% include '@atoms/paragraph/paragraph.twig' with {
+                        theme: theme,
+                        content: 'LAST UPDATED: ' ~ file.changed,
+                        size: 'small',
+                        modifier_class: 'ct-attachment__links__link__changed',
+                      } only %}
+                    {% endif %}
+                  </div>
+                {% endset -%}
+                {% set link_items = link_items|merge([link]) %}
+              {% endfor %}
+
+              {% include '@base/item-list/item-list.twig' with {
+                items: link_items,
+                direction: 'vertical',
+                modifier_class: 'ct-attachment__links',
+              } only %}
+            {% endblock %}
+
+            {% block content_bottom %}
+              {% if content_bottom is not empty %}
+                <div class="ct-attachment__content-bottom">
+                  {{ content_bottom }}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

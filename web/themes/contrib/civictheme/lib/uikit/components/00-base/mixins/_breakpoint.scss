@@ -1,0 +1,69 @@
+//
+// Breakpoint mixins.
+//
+
+@use 'sass:map';
+@import '~breakpoint-sass/stylesheets/breakpoint';
+
+//
+// Mobile-and-up breakpoints.
+//
+// Always use this mixin for responsive style overrides.
+// Do not define breakpoint values anywhere else.
+// When defining breakpoints, include them lowest to highest (xs, s, m, l, xl, xxl)
+// to improve code readability.
+//
+// @code
+//
+// @include ct-breakpoint(s) {
+//   color: red;
+// }
+// @include ct-breakpoint(m) {
+//   color: green;
+// }
+// @include ct-breakpoint(l) {
+//   color: blue;
+// }
+//
+// @endcode
+//
+@mixin ct-breakpoint($name) {
+  @if ct-string-is-quoted($name) {
+    $name: ct-unquote($name);
+  }
+
+  @if map.get($ct-breakpoints, $name) == null {
+    @error '"#{$name}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
+  }
+
+  @include breakpoint(map.get($ct-breakpoints, $name)) {
+    @content;
+  }
+}
+
+//
+// Max-width breakpoint.
+//
+// @code
+//
+// @include ct-breakpoint-upto(s) {
+//   color: red;
+// }
+// @include ct-breakpoint-upto(m) {
+//   color: green;
+// }
+// @include ct-breakpoint-upto(l) {
+//   color: blue;
+// }
+//
+// @endcode
+//
+@mixin ct-breakpoint-upto($class) {
+  @if map.get($ct-breakpoints, $class) == null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
+  }
+
+  @include breakpoint('max-width'  map.get($ct-breakpoints, $class) - 1) {
+    @content;
+  }
+}

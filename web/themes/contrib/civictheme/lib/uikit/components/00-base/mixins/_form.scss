@@ -1,0 +1,215 @@
+//
+// Form mixins.
+//
+
+@mixin ct-checkbox-radio($type: 'radio') {
+  position: absolute;
+  // stylelint-disable-next-line alpha-value-notation
+  opacity: 0;
+  width: ct-particle(3.25);
+  height: ct-particle(3.25);
+  z-index: 1;
+  cursor: pointer;
+
+  & + .ct-#{$type}__state {
+    &::before {
+      content: '';
+
+      @if $type == radio {
+        border-radius: 50%;
+      }
+      @else if $type == checkbox {
+        border-radius: $ct-checkbox-border-radius;
+      }
+
+      border: ct-particle(0.125) solid;
+      display: block;
+      width: ct-particle(3);
+      height: ct-particle(3);
+      position: relative;
+      margin-right: ct-spacing();
+      vertical-align: middle;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+  &:checked {
+    & + .ct-#{$type}__state {
+      &::before {
+        width: ct-particle(3) - rem(2px);
+        height: ct-particle(3) - rem(2px);
+        border-width: ct-particle(0.25);
+      }
+    }
+  }
+
+  &:focus-visible,
+  &:hover {
+    & + .ct-#{$type}__state {
+      &::before {
+        box-shadow: 0 0 0 ct-particle(0.125);
+      }
+    }
+  }
+
+  &.ct-theme-light {
+    & + .ct-#{$type}__state {
+      &::before {
+        border-color: $ct-radio-light-border-color;
+      }
+    }
+
+    &:active {
+      & + .ct-#{$type}__state {
+        &::before {
+          background-color: $ct-radio-light-active-background-color;
+          border-color: $ct-radio-light-active-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
+        }
+      }
+    }
+
+    &:focus-visible {
+      & + .ct-#{$type}__state {
+        &::before {
+          @include ct-outline();
+
+          background-color: $ct-radio-light-selected-background-color;
+          border-color: $ct-radio-light-selected-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
+        }
+      }
+    }
+
+    &:hover {
+      & + .ct-#{$type}__state {
+        &::before {
+          box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-light-border-color;
+        }
+      }
+    }
+
+    &:checked {
+      & + .ct-#{$type}__state {
+        &::before {
+          background-color: $ct-radio-light-selected-background-color;
+          border-color: $ct-radio-light-selected-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
+        }
+      }
+
+      &.success,
+      &.ct-input--success {
+        & + .ct-#{$type}__state {
+          &::before {
+            border-color: $ct-input-light-success-border-color;
+            background-color: $ct-input-light-success-border-color;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      & + .ct-#{$type}__state {
+        &::before {
+          cursor: default;
+          color: $ct-input-light-disabled-color;
+          background-color: $ct-input-light-disabled-background-color;
+          border-color: $ct-input-light-disabled-color;
+        }
+      }
+    }
+  }
+
+  &.ct-theme-dark {
+    & + .ct-#{$type}__state {
+      &::before {
+        border-color: $ct-radio-dark-border-color;
+        background-color: $ct-radio-dark-background-color;
+      }
+    }
+
+    &:hover {
+      & + .ct-#{$type}__state {
+        &::before {
+          box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-dark-border-color;
+        }
+      }
+    }
+
+    &:active {
+      & + .ct-#{$type}__state {
+        &::before {
+          background-color: $ct-radio-dark-active-background-color;
+          border-color: $ct-radio-dark-active-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
+        }
+      }
+    }
+
+    &:focus-visible {
+      & + .ct-#{$type}__state {
+        &::before {
+          @include ct-outline();
+
+          background-color: $ct-radio-dark-selected-background-color;
+          border-color: $ct-radio-dark-selected-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
+        }
+      }
+    }
+
+    &:checked {
+      & + .ct-#{$type}__state {
+        &::before {
+          background-color: $ct-radio-dark-selected-background-color;
+          border-color: $ct-radio-dark-selected-background-color;
+          box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-background-color;
+        }
+      }
+
+      &.success,
+      &.ct-input--success {
+        & + .ct-#{$type}__state {
+          &::before {
+            border-color: $ct-input-dark-success-border-color;
+            background-color: $ct-input-dark-success-border-color;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      & + .ct-#{$type}__state {
+        &::before {
+          color: $ct-input-dark-disabled-color;
+          border-color: $ct-radio-dark-disabled-border-color;
+          background-color: $ct-input-dark-disabled-background-color;
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &.error,
+  &.ct-input--error {
+    & + .ct-#{$type}__state {
+      &::before {
+        border-color: $ct-input-dark-error-border-color;
+      }
+    }
+
+    &:checked {
+      & + .ct-#{$type}__state {
+        &::before {
+          border-color: $ct-input-dark-error-border-color;
+          background-color: $ct-input-dark-error-border-color;
+        }
+      }
+    }
+  }
+}
