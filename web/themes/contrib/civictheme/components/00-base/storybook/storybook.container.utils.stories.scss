@@ -19,23 +19,29 @@
     @include ct-typography('label-large');
     @include ct-container();
 
-    border-bottom: solid ct-particle(0.125);
-    margin-bottom: ct-spacing(2);
-    margin-top: ct-spacing(4);
+    & {
+      border-bottom: solid ct-particle(0.125);
+      margin-bottom: ct-spacing(2);
+      margin-top: ct-spacing(4);
+    }
   }
 
   #{$root}__subtitle {
     @include ct-typography('label-regular');
     @include ct-container();
 
-    margin-top: ct-spacing(3);
-    margin-bottom: ct-spacing(2);
+    & {
+      margin-top: ct-spacing(3);
+      margin-bottom: ct-spacing(2);
+    }
   }
 
   #{$root}__content {
     @include ct-container();
 
-    margin-bottom: ct-spacing(4);
+    & {
+      margin-bottom: ct-spacing(4);
+    }
   }
 
   #{$root}__subcontent {

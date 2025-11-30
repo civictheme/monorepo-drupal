@@ -1,50 +1,64 @@
-// phpcs:ignoreFile
-import { knobNumber, knobRadios, knobText, randomLinks, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './service-card.twig';
 
-import CivicThemeServiceCard from './service-card.twig';
-
-export default {
+const meta = {
   title: 'Molecules/List/Service Card',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    summary: {
+      control: { type: 'text' },
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const ServiceCard = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Services category title across one or two lines', parentKnobs.title, parentKnobs.knobTab),
-    links: randomLinks(knobNumber(
-      'Number of links',
-      5,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.number_of_links,
-      parentKnobs.knobTab,
-    ), 10),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeServiceCard({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+export const ServiceCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Services category title across one or two lines',
+    summary: 'Summary',
+    links: [
+      {
+        text: 'Link text',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
+      },
+      {
+        text: 'Link title 2',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
+      },
+    ],
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

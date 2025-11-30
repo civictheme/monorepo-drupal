@@ -1,101 +1,78 @@
-// phpcs:ignoreFile
-import { knobBoolean, knobNumber, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
-import CivicThemeFieldset from './fieldset.twig';
-import { randomFields } from '../../02-molecules/field/field.utils';
+import Component from './fieldset.twig';
+import FieldData from '../../02-molecules/field/field.stories.data';
+import Field from '../../02-molecules/field/field.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Fieldset',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    legend: {
+      control: { type: 'text' },
+    },
+    description: {
+      control: { type: 'text' },
+    },
+    description_display: {
+      control: { type: 'radio' },
+      options: ['before', 'after', 'invisible'],
+    },
+    message: {
+      control: { type: 'text' },
+    },
+    message_type: {
+      control: { type: 'radio' },
+      options: ['error', 'information', 'warning', 'success'],
+    },
+    fields: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    required_text: {
+      control: { type: 'text' },
+    },
+    prefix: {
+      control: { type: 'text' },
+    },
+    suffix: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Fieldset = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    legend: knobText('Legend', 'Fieldset legend', parentKnobs.legend, parentKnobs.knobTab),
-    description: knobText('Description', 'Fieldset example description', parentKnobs.description, parentKnobs.knobTab),
-    description_display: knobRadios(
-      'Description display',
-      {
-        Before: 'before',
-        After: 'after',
-        Invisible: 'invisible',
-      },
-      'before',
-      parentKnobs.description_display,
-      parentKnobs.knobTab,
-    ),
-    message: knobText('Message', 'Example message', parentKnobs.message, parentKnobs.knobTab),
-    message_type: knobRadios(
-      'Type',
-      {
-        Error: 'error',
-        Information: 'information',
-        Warning: 'warning',
-        Success: 'success',
-      },
-      'error',
-      parentKnobs.message_type,
-      parentKnobs.knobTab,
-    ),
-    prefix: knobText('Prefix', '', parentKnobs.prefix, parentKnobs.knobTab),
-    suffix: knobText('Suffix', '', parentKnobs.suffix, parentKnobs.knobTab),
-    is_required: knobBoolean('Required', true, parentKnobs.is_required, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  const numberFields = knobNumber(
-    'Number of fields',
-    1,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    parentKnobs.number_fields,
-    parentKnobs.knobTab,
-  );
-
-  const numberNestedFieldsets = knobNumber(
-    'Number of nested fieldsets',
-    1,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    parentKnobs.number_nested_fieldsets,
-    parentKnobs.knobTab,
-  );
-
-  let nested = '';
-  for (let i = 0; i < numberNestedFieldsets; i++) {
-    nested = CivicThemeFieldset({
-      theme: knobs.theme,
-      legend: `Nested fieldset ${i + 1}. ${knobs.legend}`,
-      description: `Nested fieldset ${i + 1} description`,
-      fields: randomFields(numberFields, knobs.theme, true).join('') + nested,
-    });
-  }
-
-  const combinedKnobs = {
-    ...knobs,
-    fields: randomFields(numberFields, knobs.theme, true).join('') + nested,
-  };
-
-  return shouldRender(parentKnobs) ? CivicThemeFieldset(combinedKnobs) : combinedKnobs;
+export const Fieldset = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    legend: 'Fieldset legend',
+    description: 'Fieldset example description',
+    description_display: 'before',
+    message: 'Fieldset example message',
+    message_type: 'error',
+    fields: [
+      Field({ ...FieldData.args('light', { controls: true, is_required: true }), type: 'checkbox', description: '', message: '' }),
+      Field({ ...FieldData.args('light', { controls: true, is_required: true }), type: 'radio', message: '' }),
+    ].join('').trim(),
+    is_required: true,
+    required_text: '',
+    prefix: '',
+    suffix: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

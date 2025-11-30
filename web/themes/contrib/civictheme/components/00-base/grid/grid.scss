@@ -115,6 +115,8 @@ ul.row {
 // Utilities for fixed and auto columns.
 .col,
 [class*='col-'] {
+  box-sizing: border-box;
+
   &.col--reverse {
     display: flex;
     flex-direction: column-reverse;

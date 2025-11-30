@@ -1,62 +1,69 @@
-// phpcs:ignoreFile
-import CivicThemeCallout from './callout.twig';
-import { knobNumber, knobRadios, knobText, randomLinks, randomSentence, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Components from './callout.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Callout',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'large',
+  component: Components,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Callout = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Callout title from knob', parentKnobs.title, parentKnobs.knobTab),
-    content: knobText('Content', randomSentence(), parentKnobs.content, parentKnobs.knobTab),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    links: randomLinks(knobNumber(
-      'Count of links',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.count_of_links,
-      parentKnobs.knobTab,
-    )),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeCallout({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+export const Callout = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    links: [
+      {
+        text: 'Link 1',
+        url: 'https://example.com/link1',
+        is_new_window: false,
+        is_external: false,
+      },
+      {
+        text: 'Link 2',
+        url: 'https://example.com/link2',
+        is_new_window: true,
+        is_external: true,
+      },
+    ],
+    content_top: '',
+    content_bottom: '',
+    title: 'Callout title from knob',
+    content: 'Example content ut fugiat ex nulla enim ipsum proident aliqua in elit irure tempor elit nisi nisi enim labore nostrud mollit ut magna commodo',
+    vertical_spacing: 'none',
+    modifier_class: '',
+    attributes: '',
+  },
 };

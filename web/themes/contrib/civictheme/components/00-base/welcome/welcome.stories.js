@@ -1,25 +1,37 @@
-// phpcs:ignoreFile
-import './welcome.stories.scss';
-import WelcomeStoryTemplate from './welcome.stories.twig';
+import Component from './welcome.stories.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Welcome',
-  parameters: {
-    layout: 'fullscreen',
-    options: { showPanel: false },
-    showPanel: false,
-  },
-};
-
-export const Welcome = () => WelcomeStoryTemplate({
-  logos: {
-    primary: {
-      mobile: {
-        url: LOGOS.light.civictheme.mobile,
-      },
-      desktop: {
-        url: LOGOS.light.civictheme.desktop,
+  component: Component,
+  argTypes: {
+    logos: {
+      table: {
+        disable: true,
       },
     },
   },
-});
+};
+
+export default meta;
+
+export const Welcome = {
+  parameters: {
+    layout: 'fullscreen',
+    html: {
+      disable: true,
+    },
+  },
+  args: {
+    logos: {
+      primary: {
+        mobile: {
+          url: Constants.LOGOS.light.civictheme.mobile,
+        },
+        desktop: {
+          url: Constants.LOGOS.light.civictheme.desktop,
+        },
+      },
+    },
+  },
+};

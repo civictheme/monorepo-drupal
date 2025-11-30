@@ -1,30 +1,45 @@
-// phpcs:ignoreFile
-import merge from 'deepmerge';
-import CivicThemeIcon from './icon.twig';
-import { arrayCombine, knobRadios, knobSelect, knobText, shouldRender, toLabels } from '../storybook/storybook.utils';
+import Component from './icon.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Base/Icon',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    symbol: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    alt: {
+      control: { type: 'text' },
+    },
+    size: {
+      control: { type: 'radio' },
+      options: [
+        'auto',
+        ...Object.keys(Constants.SCSS_VARIABLES['ct-icon-sizes-default']),
+        ...Object.keys(Constants.SCSS_VARIABLES['ct-icon-sizes']),
+      ],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Icon = (parentKnobs = {}) => {
-  const defaultSizes = SCSS_VARIABLES['ct-icon-sizes-default'];
-  const customSizes = SCSS_VARIABLES['ct-icon-sizes'];
-  let sizes = Object.keys(merge(defaultSizes, customSizes));
+export default meta;
 
-  sizes = arrayCombine(toLabels(sizes), sizes);
-  sizes = merge({ Auto: 'auto' }, sizes);
-
-  const knobs = {
-    symbol: knobSelect('Symbol', ICONS, ICONS[0], parentKnobs.symbol, parentKnobs.knobTab),
-    alt: knobText('Alt', 'Icon alt text', parentKnobs.alt, parentKnobs.knobTab),
-    size: knobRadios('Size', sizes, 'auto', parentKnobs.size, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  return shouldRender(parentKnobs) ? CivicThemeIcon(knobs) : knobs;
+export const Icon = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    symbol: Constants.ICONS[0],
+    alt: 'Icon alt text',
+    size: 'auto',
+    modifier_class: '',
+    attributes: '',
+  },
 };

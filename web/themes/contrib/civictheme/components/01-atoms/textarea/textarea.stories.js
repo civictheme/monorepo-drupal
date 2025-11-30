@@ -1,49 +1,63 @@
-// phpcs:ignoreFile
-import CivicThemeTextarea from './textarea.twig';
-import { knobBoolean, knobNumber, knobRadios, knobText, randomId, randomName, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './textarea.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Textarea',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'small',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    rows: {
+      control: { type: 'number', min: 1, max: 10, step: 1 },
+    },
+    placeholder: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Textarea = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    rows: knobNumber(
-      'Number of rows',
-      5,
-      {
-        range: true,
-        min: 1,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.rows,
-      parentKnobs.knobTab,
-    ),
-    placeholder: knobText('Placeholder', 'Placeholder', parentKnobs.placeholder, parentKnobs.knobTab),
-    value: knobText('Value', '', parentKnobs.value, parentKnobs.knobTab),
-    name: randomName(),
-    id: randomId(),
-    is_required: knobBoolean('Required', false, parentKnobs.is_required, parentKnobs.knobTab),
-    is_invalid: knobBoolean('Has error', false, parentKnobs.is_invalid, parentKnobs.knobTab),
-    is_disabled: knobBoolean('Disabled', false, parentKnobs.is_disabled, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeTextarea(knobs) : knobs;
+export const Textarea = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    rows: 5,
+    placeholder: 'Placeholder',
+    value: '',
+    name: 'textarea-name',
+    id: 'textarea-id',
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

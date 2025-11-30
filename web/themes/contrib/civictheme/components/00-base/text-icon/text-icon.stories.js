@@ -1,38 +1,53 @@
-// phpcs:ignoreFile
-import CivicThemeTextIcon from './text-icon.twig';
-import { knobBoolean, knobRadios, knobSelect, knobText, shouldRender, randomText } from '../storybook/storybook.utils';
+import Component from './text-icon.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Base/Text Icon',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    text: {
+      control: { type: 'text' },
+    },
+    is_new_window: {
+      control: { type: 'boolean' },
+    },
+    is_external: {
+      control: { type: 'boolean' },
+    },
+    icon: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    icon_placement: {
+      control: { type: 'radio' },
+      options: ['before', 'after'],
+    },
+    icon_class: {
+      control: { type: 'text' },
+    },
+    icon_group_disabled: {
+      control: { type: 'boolean' },
+    },
+    icon_single_only: {
+      control: { type: 'boolean' },
+    },
   },
 };
 
-export const TextIcon = (parentKnobs = {}) => {
-  const knobs = {
-    text: knobText('Text', randomText(8), parentKnobs.text, parentKnobs.knobTab),
-    is_new_window: knobBoolean('Open in a new window', false, parentKnobs.is_new_window, parentKnobs.knobTab),
-    is_external: knobBoolean('Is external', false, parentKnobs.is_external, parentKnobs.knobTab),
-    with_icon: knobBoolean('With icon', false, parentKnobs.with_icon, parentKnobs.knobTab),
-  };
+export default meta;
 
-  const iconKnobs = knobs.with_icon ? {
-    icon_placement: knobRadios(
-      'Icon Position',
-      {
-        Before: 'before',
-        After: 'after',
-      },
-      'before',
-      parentKnobs.icon_placement,
-      parentKnobs.knobTab,
-    ),
-    icon: knobSelect('Icon', Object.values(ICONS), Object.values(ICONS)[0], parentKnobs.icon, parentKnobs.knobTab),
-    icon_class: knobText('Icon class', '', parentKnobs.icon_class, parentKnobs.knobTab),
-  } : null;
-
-  const combinedKnobs = { ...knobs, ...iconKnobs };
-
-  return shouldRender(parentKnobs) ? CivicThemeTextIcon(combinedKnobs) : combinedKnobs;
+export const TextIcon = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    text: 'Text icon example',
+    is_new_window: false,
+    is_external: false,
+    icon: Constants.ICONS[0],
+    icon_placement: 'before',
+    icon_class: '',
+    icon_group_disabled: false,
+    icon_single_only: false,
+  },
 };

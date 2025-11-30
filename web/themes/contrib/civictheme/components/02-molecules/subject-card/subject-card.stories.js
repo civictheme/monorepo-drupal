@@ -1,45 +1,53 @@
-// phpcs:ignoreFile
-import { demoImage, knobBoolean, knobRadios, knobText, randomUrl, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
-import CivicThemeSubjectCard from './subject-card.twig';
+import Component from './subject-card.twig';
 
-export default {
+const meta = {
   title: 'Molecules/List/Subject Card',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'small',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_over: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const SubjectCard = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Subject card title which runs across two or three lines', parentKnobs.title, parentKnobs.knobTab),
-    link: {
-      url: knobText('Link URL', randomUrl(), parentKnobs.link_url, parentKnobs.knobTab),
-      is_external: knobBoolean('Link is external', false, parentKnobs.link_is_external, parentKnobs.knobTab),
-      is_new_window: knobBoolean('Open in a new window', false, parentKnobs.link_is_new_window, parentKnobs.knobTab),
-    },
-    image: knobBoolean('With image', true, parentKnobs.with_image, parentKnobs.knobTab) ? {
-      url: demoImage(),
-      alt: 'Image alt text',
-    } : false,
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeSubjectCard({
-    ...knobs,
-    ...slotKnobs([
-      'image_over',
-    ]),
-  }) : knobs;
+export const SubjectCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Subject card title which runs across two or three lines',
+    link: {
+      url: 'https://example.com',
+      is_new_window: false,
+    },
+    image: {
+      url: './demo/images/demo1.jpg',
+      alt: 'Image alt text',
+    },
+    image_over: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

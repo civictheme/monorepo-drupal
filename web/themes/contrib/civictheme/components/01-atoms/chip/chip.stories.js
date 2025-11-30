@@ -1,63 +1,60 @@
-// phpcs:ignoreFile
-import CivicThemeChip from './chip.twig';
-import './chip';
+import Component from './chip.twig';
 import './chip.event.stories';
-import { knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
 
-export default {
+const meta = {
   title: 'Atoms/Chip',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    kind: {
+      control: { type: 'radio' },
+      options: {
+        Default: 'default',
+        Input: 'input',
+      },
+    },
+    size: {
+      control: { type: 'radio' },
+      options: {
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        None: '',
+      },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    is_selected: {
+      control: { type: 'boolean' },
+    },
+    is_multiple: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Chip = (parentKnobs = {}) => {
-  const theme = knobRadios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    parentKnobs.theme,
-    parentKnobs.knobTab,
-  );
+export default meta;
 
-  const size = knobRadios(
-    'Size',
-    {
-      Large: 'large',
-      Regular: 'regular',
-      Small: 'small',
-      None: '',
-    },
-    'regular',
-    parentKnobs.size,
-    parentKnobs.knobTab,
-  );
-
-  const kind = knobRadios(
-    'Kind',
-    {
-      Default: 'default',
-      Input: 'input',
-    },
-    'default',
-    parentKnobs.kind,
-    parentKnobs.knobTab,
-  );
-
-  // Keep parentKnobs above to preserve order.
-  const knobs = {
-    theme,
-    kind,
-    size,
-    is_multiple: (kind === 'input') ? knobBoolean('Is multiple', false, parentKnobs.is_multiple, parentKnobs.knobTab) : null,
-    is_selected: (kind === 'input') ? knobBoolean('Is selected', false, parentKnobs.is_selected, parentKnobs.knobTab) : null,
-    content: knobText('Chip label', 'Chip label', parentKnobs.content, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  return shouldRender(parentKnobs) ? CivicThemeChip(knobs) : knobs;
+export const Chip = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    kind: 'default',
+    size: 'regular',
+    content: 'Chip label',
+    is_selected: false,
+    is_multiple: false,
+  },
 };

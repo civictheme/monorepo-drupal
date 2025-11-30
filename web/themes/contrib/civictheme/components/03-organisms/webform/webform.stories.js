@@ -1,43 +1,44 @@
-// phpcs:ignoreFile
-import CivicThemeWebform from './webform.twig';
-import { knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './webform.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Webform',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    referenced_webform: {
+      control: { type: 'text' },
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Webform = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    referenced_webform: knobText('Title', 'Webform title', parentKnobs.webform_title, parentKnobs.knobTab),
-    with_background: knobBoolean('With background', false, parentKnobs.with_background, parentKnobs.knobTab),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeWebform(knobs) : knobs;
+export const Webform = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    referenced_webform: 'Webform title',
+    with_background: false,
+    vertical_spacing: 'none',
+    attributes: '',
+    modifier_class: '',
+  },
 };

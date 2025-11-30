@@ -1,60 +1,80 @@
-// phpcs:ignoreFile
-import CivicThemeinput from './input.twig';
-import { knobBoolean, knobRadios, knobText, randomId, randomName, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './input.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Input',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'small',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'radio' },
+      options: [
+        'color',
+        'date',
+        'email',
+        'file',
+        'image',
+        'month',
+        'number',
+        'password',
+        'range',
+        'search',
+        'tel',
+        'time',
+        'url',
+        'week',
+        'other',
+      ],
+    },
+    placeholder: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Input = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    type: knobRadios(
-      'Type',
-      {
-        Color: 'color',
-        Date: 'date',
-        Email: 'email',
-        File: 'file',
-        Image: 'image',
-        Month: 'month',
-        Number: 'number',
-        Password: 'password',
-        Range: 'range',
-        Search: 'search',
-        Tel: 'tel',
-        Time: 'time',
-        Url: 'url',
-        Week: 'week',
-        Other: 'other',
-      },
-      'email',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    placeholder: knobText('Placeholder', 'Placeholder', parentKnobs.placeholder, parentKnobs.knobTab),
-    value: knobText('Value', '', parentKnobs.value, parentKnobs.knobTab),
-    name: randomName(),
-    id: randomId(),
-    is_required: knobBoolean('Required', false, parentKnobs.is_required, parentKnobs.knobTab),
-    is_invalid: knobBoolean('Has error', false, parentKnobs.is_invalid, parentKnobs.knobTab),
-    is_disabled: knobBoolean('Disabled', false, parentKnobs.is_disabled, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeinput(knobs) : knobs;
+export const Input = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    type: 'email',
+    placeholder: 'Placeholder',
+    value: '',
+    name: 'input-name',
+    id: 'input-id',
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

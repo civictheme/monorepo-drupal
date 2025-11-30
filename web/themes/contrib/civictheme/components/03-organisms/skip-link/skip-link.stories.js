@@ -1,33 +1,35 @@
-// phpcs:ignoreFile
-import CivicThemeSkipLink from './skip-link.twig';
-import { knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './skip-link.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Skip Link',
-  parameters: {
-    layout: 'fullscreen',
-    docs: 'Press TAB on the keyboard for the Skip Link to appear',
-    docsSize: 'large',
-    docsPlacement: 'after',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const SkipLink = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    text: knobText('Text', 'Skip to main content', parentKnobs.text, parentKnobs.knobTab),
-    url: knobText('URL', '#main-content', parentKnobs.url, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeSkipLink(knobs) : knobs;
+export const SkipLink = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    text: 'Skip to main content',
+    url: '#main-content',
+    modifier_class: '',
+  },
 };

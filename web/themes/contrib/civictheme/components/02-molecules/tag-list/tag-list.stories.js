@@ -1,61 +1,51 @@
-// phpcs:ignoreFile
-import { knobNumber, knobRadios, knobText, randomTags, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './tag-list.twig';
 
-import CivicThemeTagList from './tag-list.twig';
-
-export default {
+const meta = {
   title: 'Molecules/Tag List',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'small',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    tags: {
+      control: { type: 'array' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const TagList = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    tags: randomTags(knobNumber(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.number_of_tags,
-      parentKnobs.knobTab,
-    ), true),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeTagList({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+export const TagList = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    tags: [
+      'Tag 1',
+      'Tag 2',
+    ],
+    vertical_spacing: 'none',
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

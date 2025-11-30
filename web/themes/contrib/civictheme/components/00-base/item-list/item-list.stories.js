@@ -1,59 +1,48 @@
-// phpcs:ignoreFile
-import CivicThemeItemList from './item-list.twig';
-import { generateItems, knobBoolean, knobNumber, knobRadios, knobText, placeholder, randomSentence, shouldRender } from '../storybook/storybook.utils';
+import Component from './item-list.twig';
 
-export default {
+const meta = {
   title: 'Base/Item List',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'large',
+  component: Component,
+  argTypes: {
+    direction: {
+      control: { type: 'radio' },
+      options: ['horizontal', 'vertical'],
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['large', 'regular', 'small'],
+    },
+    no_gap: {
+      control: { type: 'boolean' },
+    },
+    items: {
+      control: { type: 'array' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const ItemList = (parentKnobs = {}) => {
-  const knobs = {
-    direction: knobRadios(
-      'Direction',
-      {
-        Horizontal: 'horizontal',
-        Vertical: 'vertical',
-      },
-      'horizontal',
-      parentKnobs.direction,
-      parentKnobs.knobTab,
-    ),
-    size: knobRadios(
-      'Size',
-      {
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-      },
-      'regular',
-      parentKnobs.size,
-      parentKnobs.knobTab,
-    ),
-    no_gap: knobBoolean('No gap', false, parentKnobs.no_gap, parentKnobs.knobTab),
-    items_count: knobNumber(
-      'Items count',
-      5,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.items_count,
-      parentKnobs.knobTab,
-    ),
-    long_placeholder_text: knobBoolean('Long placeholder text', false, parentKnobs.long_placeholder_text, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
-  knobs.items = generateItems(
-    knobs.items_count,
-    placeholder(knobs.long_placeholder_text ? randomSentence(30) : 'Content placeholder'),
-  );
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeItemList(knobs) : knobs;
+export const ItemList = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    direction: 'horizontal',
+    size: 'regular',
+    no_gap: false,
+    items: [
+      '<div class="story-placeholder" contenteditable="true">Content placeholder<div>',
+      '<div class="story-placeholder" contenteditable="true">Content placeholder<div>',
+      '<div class="story-placeholder" contenteditable="true">Content placeholder<div>',
+    ],
+    modifier_class: '',
+    attributes: '',
+  },
 };

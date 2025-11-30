@@ -1,50 +1,68 @@
-// phpcs:ignoreFile
-import CivicThemeLabel from './label.twig';
-import { knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './label.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Label',
-  parameters: {
-    layout: 'centered',
-    knobs: {
-      escapeHTML: false,
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    tag: {
+      control: { type: 'radio' },
+      options: ['label', 'legend'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    size: {
+      control: { type: 'select' },
+      options: [
+        '',
+        'extra-small',
+        'small',
+        'regular',
+        'large',
+        'extra-large',
+      ],
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    required_text: {
+      control: { type: 'text' },
+    },
+    for: {
+      control: { type: 'text' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
     },
   },
 };
 
-export const Label = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    size: knobRadios(
-      'Size',
-      {
-        'Extra Large': 'extra-large',
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        'Extra Small': 'extra-small',
-        None: '',
-      },
-      'regular',
-      parentKnobs.size,
-      parentKnobs.knobTab,
-    ),
-    content: knobText('Content', 'Label content', parentKnobs.content, parentKnobs.knobTab),
-    for: knobText('For', '', parentKnobs.for, parentKnobs.knobTab),
-    is_required: knobBoolean('Required', false, parentKnobs.is_required, parentKnobs.knobTab),
-    allow_html: knobBoolean('Allow HTML in content', false, parentKnobs.allow_html, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeLabel(knobs) : knobs;
+export const Label = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    tag: 'label',
+    content: 'Label content',
+    size: 'regular',
+    is_required: false,
+    required_text: '',
+    for: '',
+    allow_html: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

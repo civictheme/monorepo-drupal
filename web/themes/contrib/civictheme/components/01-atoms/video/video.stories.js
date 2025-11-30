@@ -1,46 +1,68 @@
-// phpcs:ignoreFile
-import CivicThemeVideo from './video.twig';
-import { demoVideoPoster, demoVideos, knobBoolean, knobOptions, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './video.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Video',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    sources: {
+      control: { type: 'array' },
+    },
+    has_controls: {
+      control: { type: 'boolean' },
+    },
+    poster: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    fallback_text: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Video = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
+export default meta;
+
+export const Video = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    has_controls: true,
+    poster: 'demo/videos/demo_poster.png',
+    sources: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        url: 'demo/videos/demo.webm',
+        type: 'video/webm',
       },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    has_controls: knobBoolean('Has controls', true, parentKnobs.has_controls, parentKnobs.knobTab),
-    poster: knobBoolean('Has poster', false, parentKnobs.poster, parentKnobs.knobTab) ? demoVideoPoster() : null,
-    width: knobText('Width', '', parentKnobs.width, parentKnobs.knobTab),
-    height: knobText('Height', '', parentKnobs.height, parentKnobs.knobTab),
-    fallback_text: knobText('Fallback text', 'Your browser doesn\'t support HTML5 video tag.', parentKnobs.fallback_text, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  const sources = demoVideos();
-  const sourcesOptions = {};
-  for (const i in sources) {
-    sourcesOptions[sources[i].type.substr('video/'.length).toUpperCase()] = sources[i].type;
-  }
-  const optValues = knobOptions('Sources', sourcesOptions, Object.values(sourcesOptions), { display: 'check' }, parentKnobs.sources, 'Sources');
-  const sourcesKnobs = {
-    sources: sources.filter((x) => optValues.includes(x.type)),
-  };
-
-  const combinedKnobs = { ...knobs, ...sourcesKnobs };
-
-  return shouldRender(parentKnobs) ? CivicThemeVideo(combinedKnobs) : combinedKnobs;
+      {
+        url: 'demo/videos/demo.mp4',
+        type: 'video/mp4',
+      },
+      {
+        url: 'demo/videos/demo.avi',
+        type: 'video/avi',
+      },
+    ],
+    width: '',
+    height: '',
+    fallback_text: 'Your browser doesn\'t support HTML5 video tag.',
+    attributes: '',
+    modifier_class: '',
+  },
 };

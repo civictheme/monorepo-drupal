@@ -1,47 +1,44 @@
-// phpcs:ignoreFile
-import CivicThemeParagraph from './paragraph.twig';
-import { knobBoolean, knobRadios, knobText, randomSentence, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './paragraph.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Paragraph',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
-    knobs: {
-      escapeHTML: false,
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['extra-large', 'large', 'regular', 'small'],
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
     },
   },
 };
 
-export const Paragraph = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    content: knobText('Content', randomSentence(50, 'paragraph-content'), parentKnobs.content, parentKnobs.knobTab),
-    size: knobRadios(
-      'Size',
-      {
-        'Extra Large': 'extra-large',
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-      },
-      'regular',
-      parentKnobs.size,
-      parentKnobs.knobTab,
-    ),
-    allow_html: knobBoolean('Allow HTML in text', false, parentKnobs.allow_html, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeParagraph(knobs) : knobs;
+export const Paragraph = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.',
+    size: 'regular',
+    allow_html: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

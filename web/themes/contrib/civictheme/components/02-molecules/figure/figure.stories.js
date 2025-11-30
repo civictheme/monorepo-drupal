@@ -1,34 +1,51 @@
-// phpcs:ignoreFile
-import CivicThemeFigure from './figure.twig';
-import { demoImage, knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './figure.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Figure',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    alt: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    caption: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Figure = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    url: knobBoolean('With image', true, parentKnobs.with_image, parentKnobs.knobTab) ? demoImage() : false,
-    alt: knobText('Image alt text', 'Alternative text', parentKnobs.alt, parentKnobs.knobTab),
-    width: knobText('Width', '600', parentKnobs.width, parentKnobs.knobTab),
-    height: knobText('Height', '', parentKnobs.height, parentKnobs.knobTab),
-    caption: knobText('Caption', 'Figure image caption.', parentKnobs.caption, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeFigure(knobs) : knobs;
+export const Figure = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: './demo/images/demo1.jpg',
+    alt: 'Image alt text',
+    width: '600',
+    height: '',
+    caption: 'Figure image caption.',
+    modifier_class: '',
+    attributes: '',
+  },
 };

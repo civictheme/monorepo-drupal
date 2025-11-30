@@ -1,13 +1,17 @@
-// phpcs:ignoreFile
-import TypographyStoryTemplate from './typography.stories.twig';
+import Component from './typography.stories.twig';
 
-export default {
+const meta = {
   title: 'Base/Typography',
-  parameters: {
-    layout: 'centered',
-    docs: 'Demonstration of typography rules defined in the design system.<br/>For fully styled content, see <code>Basic&nbsp;content</code> component.',
-    docsSize: 'medium',
-  },
+  component: Component,
 };
 
-export const Typography = () => TypographyStoryTemplate();
+export default meta;
+
+export const Typography = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+};

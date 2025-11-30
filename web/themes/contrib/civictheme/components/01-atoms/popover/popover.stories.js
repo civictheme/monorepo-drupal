@@ -1,40 +1,51 @@
-// phpcs:ignoreFile
-import CivicThemePopover from './popover.twig';
-import { knobRadios, knobText, placeholder, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './popover.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Popover',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    trigger: {
+      control: { type: 'object' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    group: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Popover = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    trigger: {
-      text: knobText('Trigger text', 'Click me', parentKnobs.trigger_text, parentKnobs.knobTab),
-      url: knobText('Trigger URL', '', parentKnobs.trigger_url, parentKnobs.knobTab),
-    },
-    content: placeholder(),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemePopover({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+export const Popover = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    trigger: { text: 'Click me', url: '', is_new_window: false },
+    content: 'Popover content',
+    content_top: '',
+    content_bottom: '',
+    group: 'group-name',
+    modifier_class: '',
+    attributes: '',
+  },
 };

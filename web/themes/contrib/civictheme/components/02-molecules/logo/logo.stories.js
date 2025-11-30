@@ -1,74 +1,51 @@
-// phpcs:ignoreFile
-import { knobBoolean, knobRadios, knobText, randomUrl, shouldRender } from '../../00-base/storybook/storybook.utils';
-import CivicThemeLogo from './logo.twig';
+import Component from './logo.twig';
+import LogoData from './logo.stories.data';
 
-export default {
+const meta = {
   title: 'Molecules/Logo',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['default', 'stacked', 'inline', 'inline-stacked'],
+    },
+    logos: {
+      control: { type: 'object' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Logo = (parentKnobs = {}) => {
-  const theme = knobRadios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    parentKnobs.theme,
-    parentKnobs.knobTab,
-  );
+export default meta;
 
-  const knobs = {
-    theme,
-    type: knobRadios(
-      'Type',
-      {
-        Default: 'default',
-        Stacked: 'stacked',
-        Inline: 'inline',
-        'Inline-Stacked': 'inline-stacked',
-      },
-      'default',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    with_secondary_image: knobBoolean('With secondary image', false, parentKnobs.with_secondary_image, parentKnobs.knobTab),
-    logos: {
-      primary: {
-        mobile: {
-          url: LOGOS[theme].primary.mobile,
-          alt: 'Primary logo mobile alt text',
-        },
-        desktop: {
-          url: LOGOS[theme].primary.desktop,
-          alt: 'Primary logo desktop alt text',
-        },
-      },
-    },
-    url: knobText('Link', randomUrl(), parentKnobs.url, parentKnobs.knobTab),
-    title: knobText('Title', 'Logo title', parentKnobs.title, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
+export const Logo = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: LogoData.args('light'),
+};
 
-  knobs.logos = knobs.with_secondary_image ? {
-    ...knobs.logos,
-    ...{
-      secondary: {
-        mobile: {
-          url: LOGOS[theme].secondary.mobile,
-          alt: 'Secondary logo mobile alt text',
-        },
-        desktop: {
-          url: LOGOS[theme].secondary.desktop,
-          alt: 'Secondary logo desktop alt text',
-        },
-      },
+export const LogoDark = {
+  parameters: {
+    layout: 'centered',
+    backgrounds: {
+      default: 'Dark',
     },
-  } : knobs.logos;
-
-  return shouldRender(parentKnobs) ? CivicThemeLogo(knobs) : knobs;
+  },
+  args: LogoData.args('dark'),
 };

@@ -1,100 +1,89 @@
-// phpcs:ignoreFile
-import CivicThemeButton from './button.twig';
-import './button';
-import { knobBoolean, knobRadios, knobSelect, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './button.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Button',
+  component: Component,
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary', 'tertiary'],
+    },
+    kind: {
+      control: { type: 'radio' },
+      options: ['button', 'link', 'reset', 'submit'],
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['large', 'regular', 'small'],
+    },
+    icon: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    icon_placement: {
+      control: { type: 'radio' },
+      options: ['before', 'after'],
+    },
+    icon_group_disabled: {
+      control: { type: 'boolean' },
+    },
+    icon_single_only: {
+      control: { type: 'boolean' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    is_new_window: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    is_external: {
+      control: { type: 'boolean' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Button = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    text: knobText(
-      'Text',
-      'Button text',
-      parentKnobs.text,
-      parentKnobs.knobTab,
-    ),
-    type: knobRadios(
-      'Type',
-      {
-        Primary: 'primary',
-        Secondary: 'secondary',
-        Tertiary: 'tertiary',
-        None: '',
-      },
-      'primary',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    size: knobRadios(
-      'Size',
-      {
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        None: '',
-      },
-      'regular',
-      parentKnobs.size,
-      parentKnobs.knobTab,
-    ),
-    kind: knobRadios(
-      'Kind',
-      {
-        Button: 'button',
-        Link: 'link',
-        Reset: 'reset',
-        Submit: 'submit',
-      },
-      'button',
-      parentKnobs.kind,
-      parentKnobs.knobTab,
-    ),
-  };
+export default meta;
 
-  if (knobs.kind === 'link') {
-    knobs.url = knobText('URL', 'http://example.com', parentKnobs.url, parentKnobs.knobTab);
-    knobs.is_new_window = knobBoolean('Open in a new window', false, parentKnobs.is_new_window, parentKnobs.knobTab);
-  }
-
-  knobs.is_disabled = knobBoolean('Disabled', false, parentKnobs.is_disabled, parentKnobs.knobTab);
-  knobs.is_external = knobBoolean('Is external', false, parentKnobs.is_external, parentKnobs.knobTab);
-  knobs.allow_html = knobBoolean('Allow HTML in text', false, parentKnobs.allow_html, parentKnobs.knobTab);
-  knobs.modifier_class = knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab);
-  knobs.attributes = knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab);
-
-  const withIcon = knobBoolean('With icon', false, parentKnobs.with_icon, parentKnobs.knobTab);
-
-  const iconKnobTab = 'Icon';
-  const iconKnobs = {
-    icon: withIcon ? knobSelect('Icon', Object.values(ICONS), Object.values(ICONS)[0], parentKnobs.icon, iconKnobTab) : null,
-    icon_placement: withIcon ? knobRadios(
-      'Position',
-      {
-        Before: 'before',
-        After: 'after',
-      },
-      'after',
-      parentKnobs.icon_position,
-      iconKnobTab,
-    ) : null,
-  };
-
-  const combinedKnobs = { ...knobs, ...iconKnobs };
-
-  return shouldRender(parentKnobs) ? CivicThemeButton(combinedKnobs) : combinedKnobs;
+export const Button = {
+  args: {
+    theme: 'light',
+    type: 'primary',
+    kind: 'button',
+    size: 'regular',
+    icon: '',
+    icon_placement: 'after',
+    icon_group_disabled: false,
+    icon_single_only: false,
+    text: 'My title',
+    url: '',
+    allow_html: false,
+    is_new_window: false,
+    is_external: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };
