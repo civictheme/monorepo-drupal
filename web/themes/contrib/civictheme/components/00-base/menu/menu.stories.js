@@ -1,30 +1,103 @@
-// phpcs:ignoreFile
-import CivicThemeMenu from './menu.twig';
-import getMenuLinks from './menu.utils';
-import { knobRadios, knobText, shouldRender } from '../storybook/storybook.utils';
+import Component from './menu.twig';
 
-export default {
-  title: 'Base/Utilities/Menu Generator',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Base/Utilities/Menu',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    items: {
+      control: { type: 'object' },
+    },
+    is_collapsible: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const MenuGenerator = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    items: getMenuLinks({ knobTab: parentKnobs.knobTab }, null),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeMenu(knobs) : knobs;
+export const Menu = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    items: [
+      {
+        title: 'Link 1',
+        url: '#',
+        below: [
+          {
+            title: 'Sublink 1',
+            url: '#',
+            below: [
+              {
+                title: 'Subsublink 1',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+              {
+                title: 'Subsublink 2',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+            ],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+          {
+            title: 'Sublink 2',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+      {
+        title: 'Link 2',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+      {
+        title: 'Link 3',
+        url: '#',
+        below: [
+          {
+            title: 'Sublink 3',
+            url: '#',
+            below: [
+              {
+                title: 'Subsublink 3',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+            ],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+    ],
+    is_collapsible: false,
+    modifier_class: '',
+  },
 };

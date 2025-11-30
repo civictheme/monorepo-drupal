@@ -1,37 +1,63 @@
-// phpcs:ignoreFile
-import CivicThemeRadio from './radio.twig';
-import { knobBoolean, knobRadios, knobText, randomId, randomInt, randomName, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './radio.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Radio',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    label: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    is_checked: {
+      control: { type: 'boolean' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Radio = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    label: knobText('Label', 'Radio label', parentKnobs.label, parentKnobs.knobTab),
-    name: randomName(),
-    id: randomId(),
-    value: randomInt(1, 1000),
-    is_checked: knobBoolean('Checked', false, parentKnobs.is_checked, parentKnobs.knobTab),
-    is_required: knobBoolean('Required', false, parentKnobs.is_required, parentKnobs.knobTab),
-    is_invalid: knobBoolean('Has error', false, parentKnobs.is_invalid, parentKnobs.knobTab),
-    is_disabled: knobBoolean('Disabled', false, parentKnobs.is_disabled, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeRadio(knobs) : knobs;
+export const Radio = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    label: 'Radio label',
+    name: 'radio-name',
+    id: 'radio-id',
+    value: '123',
+    is_checked: false,
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

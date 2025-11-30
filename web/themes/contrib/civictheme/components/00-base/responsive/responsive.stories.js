@@ -1,15 +1,17 @@
-// phpcs:ignoreFile
-import ResponsiveStoryTemplate from './responsive.stories.twig';
-import './responsive';
-import '../collapsible/collapsible';
+import Component from './responsive.stories.twig';
 
-export default {
+const meta = {
   title: 'Base/Utilities/Responsive',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
-    docs: 'Try resizing your browser window to see how components react to a breakpoint change',
-  },
+  component: Component,
 };
 
-export const Responsive = () => ResponsiveStoryTemplate();
+export default meta;
+
+export const Responsive = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+};

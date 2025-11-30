@@ -1,24 +1,46 @@
-// phpcs:ignoreFile
-import CivicThemeTimestamp from './datetime.twig';
-import { dateIsValid, knobText, shouldRender } from '../storybook/storybook.utils';
+import Component from './datetime.twig';
 
-export default {
+const meta = {
   title: 'Base/Utilities/Datetime',
+  component: Component,
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    start: {
+      control: { type: 'text' },
+    },
+    end: {
+      control: { type: 'text' },
+    },
+    start_iso: {
+      control: { type: 'date' },
+    },
+    end_iso: {
+      control: { type: 'date' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
+  args: {
+    start: '',
+    end: '',
+    start_iso: '',
+    end_iso: '',
+  },
 };
 
-export const Datetime = (parentKnobs = {}) => {
-  const knobs = {
-    start: knobText('Start', '20 Jan 2023 11:00', parentKnobs.start, parentKnobs.knobTab),
-    end: knobText('End', '21 Jan 2023 15:00', parentKnobs.end, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  knobs.start_iso = dateIsValid(knobs.start) ? new Date(knobs.start).toISOString() : null;
-  knobs.end_iso = dateIsValid(knobs.end) ? new Date(knobs.end).toISOString() : null;
-
-  return shouldRender(parentKnobs) ? CivicThemeTimestamp(knobs) : knobs;
+export const Datetime = {
+  args: {
+    start: '20 Jan 2023 11:00',
+    end: '21 Jan 2023 15:00',
+    start_iso: '2023-01-20T00:00:00.000Z',
+    end_iso: '2023-01-21T04:00:00.000Z',
+  },
 };

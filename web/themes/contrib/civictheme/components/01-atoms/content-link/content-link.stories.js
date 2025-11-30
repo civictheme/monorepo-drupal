@@ -1,34 +1,49 @@
-// phpcs:ignoreFile
-import CivicThemeContentLink from './content-link.twig';
-import { knobBoolean, knobRadios, knobText, randomUrl, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './content-link.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Content Link',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    is_new_window: {
+      control: { type: 'boolean' },
+    },
+    is_external: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const ContentLink = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    text: knobText('Text', 'Link text', parentKnobs.text, parentKnobs.knobTab),
-    title: knobText('Title', 'Link title', parentKnobs.title, parentKnobs.knobTab),
-    url: knobText('URL', randomUrl(), parentKnobs.url, parentKnobs.knobTab),
-    is_external: knobBoolean('Is external', false, parentKnobs.is_external, parentKnobs.knobTab),
-    is_new_window: knobBoolean('Open in a new window', false, parentKnobs.is_new_window, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeContentLink(knobs) : knobs;
+export const ContentLink = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    text: 'Link text',
+    title: 'Link title',
+    url: 'https://example.com',
+    is_new_window: false,
+    is_external: false,
+  },
 };

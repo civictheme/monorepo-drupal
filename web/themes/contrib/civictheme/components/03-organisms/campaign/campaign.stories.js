@@ -1,92 +1,91 @@
-// phpcs:ignoreFile
-import { convertDate, demoImage, knobDate, knobNumber, knobRadios, knobText, randomLinks, randomSentence, randomTags, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './campaign.twig';
 
-import CivicThemeCampaign from './campaign.twig';
-
-export default {
+const meta = {
   title: 'Organisms/Campaign',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_position: {
+      control: { type: 'radio' },
+      options: ['left', 'right'],
+    },
+    tags: {
+      control: { type: 'array' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    date: {
+      control: { type: 'text' },
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Campaign = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Campaign heading which runs across two or three lines', parentKnobs.title, parentKnobs.knobTab),
-    content: knobText('Content', randomSentence(), parentKnobs.content, parentKnobs.knobTab),
-    date: knobDate('Date', new Date(), parentKnobs.date, parentKnobs.knobTab),
+export default meta;
+
+export const Campaign = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    title: 'Campaign heading which runs across two or three lines',
+    content: 'Quis non in nostrud incididunt voluptate ea enim cillum ex ut reprehenderit proident enim officia velit.',
+    date: '11 Dec 2024',
     image: {
-      url: demoImage(),
+      url: './demo/images/demo4.jpg',
       alt: 'Image alt text',
     },
-    image_position: knobRadios(
-      'Image position',
+    image_position: 'left',
+    tags: [
+      'Tag 1',
+    ],
+    links: [
       {
-        Left: 'left',
-        Right: 'right',
+        text: 'Link 1',
+        url: 'https://example.com/link',
+        is_new_window: false,
+        is_external: false,
       },
-      'left',
-      parentKnobs.image_position,
-      parentKnobs.knobTab,
-    ),
-    links: randomLinks(knobNumber(
-      'Number of links',
-      2,
       {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+        text: 'Link 2',
+        url: 'https://example.com/link-2',
+        is_new_window: false,
+        is_external: false,
       },
-      parentKnobs.number_of_links,
-      parentKnobs.knobTab,
-    ), 10),
-    tags: randomTags(knobNumber(
-      'Number of tags',
-      1,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.number_of_tags,
-      parentKnobs.knobTab,
-    ), true),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'both',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  knobs.date = convertDate(knobs.date);
-
-  return shouldRender(parentKnobs) ? CivicThemeCampaign({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_middle',
-      'content_bottom',
-    ]),
-  }) : knobs;
+    ],
+    vertical_spacing: 'both',
+    content_top: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

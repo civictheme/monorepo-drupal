@@ -1,17 +1,16 @@
-// phpcs:ignoreFile
-import CivicThemeBackToTop from './back-to-top.twig';
-import { shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './back-to-top.stories.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Back To Top',
-  parameters: {
-    layout: 'fullscreen',
-    docs: 'Back To Top button appears when the bottom of the red rectangle reaches the top of the page.',
-    docsSize: 'medium',
-    storyLayoutHtmlBefore: '<a id="top"></a><div class="story-container"><div class="story-container__page-content story-ct-back-to-top"></div>',
-  },
+  component: Component,
+  argTypes: {},
 };
 
-export const BackToTop = (parentKnobs = {}) => (shouldRender(parentKnobs)
-  ? CivicThemeBackToTop()
-  : '');
+export default meta;
+
+export const BackToTop = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {},
+};

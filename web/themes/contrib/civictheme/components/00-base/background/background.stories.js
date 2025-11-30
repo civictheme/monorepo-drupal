@@ -1,29 +1,33 @@
-// phpcs:ignoreFile
-import { knobColor, knobSelect, objectFromArray, shouldRender } from '../storybook/storybook.utils';
+import Component from './background.stories.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Base/Background',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'large',
-    storyLayoutClass: 'story-background-wrapper',
+  component: Component,
+  argTypes: {
+    blend_mode: {
+      control: { type: 'select' },
+      options: Constants.SCSS_VARIABLES['ct-background-blend-modes'],
+    },
+    color: {
+      control: { type: 'color' },
+    },
+    url: {
+      control: { type: 'select' },
+      options: Constants.BACKGROUNDS,
+    },
   },
 };
 
-export const Background = (parentKnobs = {}) => {
-  const knobs = {
-    url: knobSelect('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], parentKnobs.bgImageUrl, parentKnobs.knobTab),
-    color: knobColor('Background color', '#003a4f', parentKnobs.bgColor, parentKnobs.knobTab),
-    blend_mode: knobSelect(
-      'Blend mode',
-      objectFromArray(SCSS_VARIABLES['ct-background-blend-modes']),
-      SCSS_VARIABLES['ct-background-blend-modes'][0],
-      parentKnobs.blendMode,
-      parentKnobs.knobTab,
-    ),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs)
-    ? `<div class="ct-background ct-background--${knobs.blend_mode}" style="background-image: url('${BACKGROUNDS[knobs.url]}'); background-color: ${knobs.color}"></div>`
-    : knobs;
+export const Background = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    url: Constants.BACKGROUNDS[Object.keys(Constants.BACKGROUNDS)[0]],
+    color: '#003a4f',
+    blend_mode: Constants.SCSS_VARIABLES['ct-background-blend-modes'][0],
+  },
 };

@@ -1,78 +1,72 @@
-// phpcs:ignoreFile
-import CivicThemeAccordion from './accordion.twig';
-import '../../00-base/collapsible/collapsible';
-import { knobBoolean, knobNumber, knobRadios, knobText, randomSentence, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './accordion.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Accordion',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    expand_all: {
+      control: { type: 'boolean' },
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    panels: {
+      control: { type: 'object' },
+    },
   },
 };
 
-export const Accordion = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
+export default meta;
+
+export const Accordion = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    expand_all: false,
+    with_background: false,
+    vertical_spacing: 'none',
+    modifier_class: '',
+    attributes: '',
+    panels: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Accordion title 1',
+        content: 'Accordion content 1 <a href="https://example.com">Example link</a>',
+        expanded: false,
       },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    expand_all: knobBoolean('Expand all', false, parentKnobs.expand_all, parentKnobs.knobTab),
-    with_background: knobBoolean('With background', false, parentKnobs.with_background, parentKnobs.knobTab),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
       {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
+        title: 'Accordion title 2',
+        content: 'Accordion content 2 <a href="https://example.com">Example link</a>',
+        expanded: false,
       },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  // Adding dynamic number of accordion panels.
-  const panelsKnobTab = 'Panels';
-  const numOfPanels = knobNumber(
-    'Number of panels',
-    3,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    parentKnobs.number_of_panels,
-    panelsKnobTab,
-  );
-
-  const panels = [];
-  let itr = 1;
-  while (itr <= numOfPanels) {
-    panels.push({
-      title: knobText(`Panel ${itr} title `, `Accordion title ${itr}`, parentKnobs[`panel_title_${itr}`], panelsKnobTab),
-      content: `${knobText(`Panel ${itr} content`, randomSentence(100, 'accordion-panel'), parentKnobs[`panel_content_${itr}`], panelsKnobTab)} <a href="https://example.com">Example link</a>`,
-      expanded: knobBoolean(`Panel ${itr} initially expanded`, knobs.expand_all, parentKnobs[`panel_expanded_${itr}`], panelsKnobTab),
-    });
-    itr += 1;
-  }
-
-  const combinedKnobs = { ...knobs, panels };
-
-  return shouldRender(parentKnobs) ? CivicThemeAccordion({
-    ...combinedKnobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : combinedKnobs;
+      {
+        title: 'Accordion title 3',
+        content: 'Accordion content 3 <a href="https://example.com">Example link</a>',
+        expanded: false,
+      },
+    ],
+    content_top: '',
+    content_bottom: '',
+  },
 };

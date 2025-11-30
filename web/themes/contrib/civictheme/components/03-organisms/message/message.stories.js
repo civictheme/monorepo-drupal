@@ -1,40 +1,41 @@
-// phpcs:ignoreFile
-import CivicThemeMessage from './message.twig';
-import { knobRadios, knobText, randomText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './message.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Message',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'select' },
+      options: ['information', 'error', 'warning', 'success'],
+    },
+    description: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Message = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    type: knobRadios(
-      'Type',
-      {
-        Information: 'information',
-        Error: 'error',
-        Warning: 'warning',
-        Success: 'success',
-      },
-      'information',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'The information on this page is currently being updated.', parentKnobs.title, parentKnobs.knobTab),
-    description: knobText('Summary', `Message description ${randomText()}`, parentKnobs.description, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeMessage(knobs) : knobs;
+export const Message = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'The information on this page is currently being updated.',
+    type: 'information',
+    description: 'Message description',
+    attributes: '',
+    modifier_class: '',
+  },
 };

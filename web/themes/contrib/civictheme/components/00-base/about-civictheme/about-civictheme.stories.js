@@ -1,26 +1,37 @@
-// phpcs:ignoreFile
-import AboutCivicThemeStoryTemplate from './about-civictheme.stories.twig';
+import Component from './about-civictheme.stories.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'About CivicTheme',
-  parameters: {
-    layout: 'fullscreen',
-    options: { showPanel: false },
-    showPanel: false,
-  },
-};
-
-export const AboutCivicTheme = () => AboutCivicThemeStoryTemplate({
-  logos: {
-    primary: {
-      mobile: {
-        url: LOGOS.light.civictheme.mobile,
-      },
-      desktop: {
-        url: LOGOS.light.civictheme.desktop,
+  component: Component,
+  argTypes: {
+    logos: {
+      table: {
+        disable: true,
       },
     },
   },
-});
+};
 
-AboutCivicTheme.storyName = 'About CivicTheme';
+export default meta;
+
+export const AboutCivicTheme = {
+  parameters: {
+    layout: 'fullscreen',
+    html: {
+      disable: true,
+    },
+  },
+  args: {
+    logos: {
+      primary: {
+        mobile: {
+          url: Constants.LOGOS.light.civictheme.mobile,
+        },
+        desktop: {
+          url: Constants.LOGOS.light.civictheme.desktop,
+        },
+      },
+    },
+  },
+};

@@ -1,68 +1,54 @@
-// phpcs:ignoreFile
-import { knobBoolean, knobRadios, knobSelect, knobText, randomUrl, shouldRender } from '../../00-base/storybook/storybook.utils';
-import CivicThemeTag from './tag.twig';
+import Component from './tag.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Atoms/Tag',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary', 'tertiary'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    icon: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    icon_placement: {
+      control: { type: 'radio' },
+      options: ['before', 'after'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Tag = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    type: knobRadios(
-      'Type',
-      {
-        Primary: 'primary',
-        Secondary: 'secondary',
-        Tertiary: 'tertiary',
-      },
-      'primary',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    content: knobText('Content', 'Tag content', parentKnobs.content, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  const iconKnobTab = 'Icon';
-  const withIcon = knobBoolean('With icon', false, parentKnobs.with_icon, parentKnobs.knobTab);
-  const iconKnobs = {
-    icon: withIcon ? knobSelect('Icon', Object.values(ICONS), Object.values(ICONS)[0], parentKnobs.icon, iconKnobTab) : null,
-    icon_placement: withIcon ? knobRadios(
-      'Position',
-      {
-        Before: 'before',
-        After: 'after',
-      },
-      'before',
-      parentKnobs.icon_placement,
-      iconKnobTab,
-    ) : null,
-  };
-
-  const withLink = knobBoolean('With link', false, parentKnobs.with_link, parentKnobs.knobTab);
-
-  const linkKnobTab = 'Link';
-  const linkKnobs = {
-    url: withLink ? knobText('URL', randomUrl(), parentKnobs.link_url, linkKnobTab) : null,
-    is_external: withLink ? knobBoolean('Is external', false, parentKnobs.link_is_external, linkKnobTab) : null,
-    is_new_window: withLink ? knobBoolean('Open in a new window', false, parentKnobs.link_is_new_window, linkKnobTab) : null,
-  };
-
-  const combinedKnobs = { ...knobs, ...iconKnobs, ...linkKnobs };
-
-  return shouldRender(parentKnobs) ? CivicThemeTag(combinedKnobs) : combinedKnobs;
+export const Tag = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    type: 'primary',
+    content: 'Tag content',
+    icon: '',
+    icon_placement: 'before',
+    url: 'https://www.example.com',
+    is_new_window: false,
+    is_external: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

@@ -1,55 +1,74 @@
-// phpcs:ignoreFile
-import CivicThemePublicationCard from './publication-card.twig';
-import { convertDate, demoImage, knobBoolean, knobRadios, knobText, randomSentence, randomUrl, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './publication-card.twig';
 
-export default {
+const meta = {
   title: 'Molecules/List/Publication Card',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    summary: {
+      control: { type: 'text' },
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_over: {
+      control: { type: 'text' },
+    },
+    file: {
+      control: { type: 'object' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_middle: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const PublicationCard = (parentKnobs = {}) => {
-  const date = convertDate(null);
+export default meta;
 
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Publication or whitepaper main title', parentKnobs.title, parentKnobs.knobTab),
-    summary: knobText('Summary', randomSentence(), parentKnobs.summary, parentKnobs.knobTab),
-    image: knobBoolean('With image', true, parentKnobs.with_image, parentKnobs.knobTab) ? {
-      url: demoImage(),
+export const PublicationCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Promo card title',
+    summary: 'Summary of the promo card',
+    image: {
+      url: './demo/images/demo1.jpg',
       alt: 'Image alt text',
-    } : false,
-    file: knobBoolean('With file', true, parentKnobs.with_file, parentKnobs.knobTab) ? {
-      url: randomUrl(),
+    },
+    file: {
       name: 'Document.doc',
       ext: 'doc',
+      url: 'https://example.com/file.pdf',
       size: '42.88 KB',
-      created: date,
-      changed: date,
+      created: '2022-01-01',
+      changed: '2022-01-02',
       icon: 'word-file',
-    } : null,
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
-
-  return shouldRender(parentKnobs) ? CivicThemePublicationCard({
-    ...knobs,
-    ...slotKnobs([
-      'image_over',
-      'content_top',
-      'content_middle',
-      'content_bottom',
-    ]),
-  }) : knobs;
+    },
+    image_over: '',
+    content_top: '',
+    content_middle: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

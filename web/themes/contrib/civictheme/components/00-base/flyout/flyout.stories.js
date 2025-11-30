@@ -1,32 +1,34 @@
-// phpcs:ignoreFile
-import './flyout';
-import FlyoutStoryTemplate from './flyout.stories.twig';
-import { knobBoolean, knobNumber, knobRadios, shouldRender } from '../storybook/storybook.utils';
+import Component from './flyout.stories.twig';
 
-export default {
+const meta = {
   title: 'Base/Utilities/Flyout',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    direction: {
+      control: { type: 'select' },
+      options: ['top', 'bottom', 'left', 'right'],
+    },
+    expanded: {
+      control: { type: 'boolean' },
+    },
+    duration: {
+      control: { type: 'number' },
+    },
   },
 };
 
-export const Flyout = (parentKnobs = {}) => {
-  const knobs = {
-    direction: knobRadios(
-      'Flyout from',
-      {
-        Top: 'top',
-        Bottom: 'bottom',
-        Left: 'left',
-        Right: 'right',
-      },
-      'right',
-      parentKnobs.direction,
-      parentKnobs.knobTab,
-    ),
-    expanded: knobBoolean('Expanded', false, parentKnobs.expanded, parentKnobs.knobTab),
-    duration: knobNumber('Duration (ms)', 500, undefined, parentKnobs.duration, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? FlyoutStoryTemplate(knobs) : knobs;
+export const Flyout = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+  args: {
+    direction: 'right',
+    expanded: false,
+    duration: 500,
+  },
 };

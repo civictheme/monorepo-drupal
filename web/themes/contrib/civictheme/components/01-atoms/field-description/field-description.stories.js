@@ -1,45 +1,44 @@
-// phpcs:ignoreFile
-import CivicThemeFieldDescription from './field-description.twig';
-import { knobBoolean, knobRadios, knobText, randomLink, randomSentence, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './field-description.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Field Description',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'medium',
-    knobs: {
-      escapeHTML: false,
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['large', 'regular'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
     },
   },
 };
 
-export const FieldDescription = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    size: knobRadios(
-      'Size',
-      {
-        Large: 'large',
-        Regular: 'regular',
-      },
-      'regular',
-      parentKnobs.size,
-      parentKnobs.knobTab,
-    ),
-    content: knobText('Content', `Field message content sample. ${randomSentence(50)} ${randomLink()}`, parentKnobs.content, parentKnobs.knobTab),
-    allow_html: knobBoolean('Allow HTML in content', true, parentKnobs.allow_html, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeFieldDescription(knobs) : knobs;
+export const FieldDescription = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    size: 'regular',
+    content: 'Field message content sample.',
+    allow_html: true,
+    modifier_class: '',
+    attributes: '',
+  },
 };

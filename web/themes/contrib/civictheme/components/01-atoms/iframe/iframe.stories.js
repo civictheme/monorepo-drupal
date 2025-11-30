@@ -1,45 +1,52 @@
-// phpcs:ignoreFile
-import CivicThemeIframe from './iframe.twig';
-import { knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './iframe.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Iframe',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Iframe = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    url: knobText('URL', 'https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik', parentKnobs.url, parentKnobs.knobTab),
-    width: knobText('Width', '500', parentKnobs.width, parentKnobs.knobTab),
-    height: knobText('Height', '300', parentKnobs.height, parentKnobs.knobTab),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    with_background: knobBoolean('With background', false, parentKnobs.with_background, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeIframe(knobs) : knobs;
+export const Iframe = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: 'https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik',
+    width: '500',
+    height: '300',
+    vertical_spacing: 'none',
+    with_background: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

@@ -1,57 +1,69 @@
-// phpcs:ignoreFile
-import CivicThemePromo from './promo.twig';
-import { knobBoolean, knobRadios, knobText, randomSentence, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
+import Component from './promo.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Promo',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    is_contained: {
+      control: { type: 'boolean' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Promo = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'dark',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    title: knobText('Title', 'Sign up for industry news and updates from CivicTheme', parentKnobs.title, parentKnobs.knobTab),
-    content: knobText('Content', randomSentence(), parentKnobs.content, parentKnobs.knobTab),
-    is_contained: knobBoolean('Contained', true, parentKnobs.is_contained, parentKnobs.knobTab),
-    link: {
-      text: knobText('Link text', 'Sign up', parentKnobs.link_text, parentKnobs.knobTab),
-      url: knobText('Link URL', 'https://example.com', parentKnobs.link_url, parentKnobs.knobTab),
-      is_new_window: knobBoolean('Link opens in new window', true, parentKnobs.link_is_new_window, parentKnobs.knobTab),
-      is_external: knobBoolean('Link is external', true, parentKnobs.link_is_external, parentKnobs.knobTab),
-    },
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    with_background: knobBoolean('With background', false, parentKnobs.with_background, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemePromo({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+export const Promo = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    title: 'Sign up for industry news and updates from CivicTheme',
+    is_contained: true,
+    link: {
+      text: 'Sign up',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: true,
+    },
+    with_background: false,
+    vertical_spacing: 'none',
+    content_top: '',
+    content: 'Officia officia deserunt sint sint magna esse in ut elit aliquip nostrud laboris.',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

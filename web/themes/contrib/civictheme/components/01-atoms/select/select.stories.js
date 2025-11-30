@@ -1,37 +1,80 @@
-// phpcs:ignoreFile
-import CivicThemeSelect from './select.twig';
-import { generateSelectOptions, knobBoolean, knobRadios, knobText, randomId, randomName, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './select.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Form Controls/Select',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'small',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    is_multiple: {
+      control: { type: 'boolean' },
+    },
+    options: {
+      control: { type: 'array' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Select = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    is_multiple: knobBoolean('Is multiple', false, parentKnobs.is_multiple, parentKnobs.knobTab),
-    options: knobBoolean('With options', true, parentKnobs.options, parentKnobs.knobTab) ? generateSelectOptions(10, (knobBoolean('Options have groups', false, null, parentKnobs.knobTab) ? 'optgroup' : 'option')) : [],
-    name: randomName(),
-    id: randomId(),
-    is_required: knobBoolean('Required', false, parentKnobs.is_required, parentKnobs.knobTab),
-    is_invalid: knobBoolean('Has error', false, parentKnobs.is_invalid, parentKnobs.knobTab),
-    is_disabled: knobBoolean('Disabled', false, parentKnobs.is_disabled, parentKnobs.knobTab),
-    modifier_class: knobText('Additional classes', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeSelect(knobs) : knobs;
+export const Select = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    is_multiple: false,
+    options: [
+      {
+        type: 'optgroup',
+        label: 'Group label',
+        value: 'Group value',
+        selected: false,
+        options: [
+          {
+            label: 'Option label',
+            value: 'Option value',
+            is_selected: false,
+            is_disabled: false,
+          },
+        ],
+      },
+      {
+        type: 'option',
+        label: 'Option label',
+        value: 'Option value',
+        selected: false,
+      },
+    ],
+    name: 'Select name',
+    id: 'select-id',
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

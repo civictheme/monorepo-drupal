@@ -7,6 +7,7 @@
 
 html {
   $colors: map.deep-merge(variables.$ct-colors-default, variables.$ct-colors);
+  $colors: map.deep-merge($colors, variables.$ct-colors-brands);
 
   @each $theme, $colors in $colors {
     @each $name, $value in $colors {

@@ -1,46 +1,53 @@
-// phpcs:ignoreFile
-import CivicThemeNavigation from './navigation.twig';
-import getMenuLinks from '../../00-base/menu/menu.utils';
-import { knobBoolean, knobRadios, knobText, randomInt, randomSentence, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './navigation.twig';
+import NavigationData from './navigation.stories.data';
 
-export default {
+const meta = {
   title: 'Organisms/Navigation/Navigation',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    items: {
+      control: { type: 'array' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['none', 'inline', 'dropdown', 'drawer'],
+    },
+    dropdown_columns: {
+      control: { type: 'number' },
+    },
+    dropdown_columns_fill: {
+      control: { type: 'boolean' },
+    },
+    is_animated: {
+      control: { type: 'boolean' },
+    },
+    menu_id: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Navigation = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    name: knobText('Name', 'Primary', parentKnobs.name, parentKnobs.knobTab),
-    title: knobText('Title', 'Navigation title', parentKnobs.title, parentKnobs.knobTab),
-    type: knobRadios(
-      'Type',
-      {
-        None: 'none',
-        Inline: 'inline',
-        Dropdown: 'dropdown',
-        Drawer: 'drawer',
-      },
-      'none',
-      parentKnobs.type,
-      parentKnobs.knobTab,
-    ),
-    items: getMenuLinks({ knobTab: 'Links' }, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`),
-    is_animated: knobBoolean('Animated', true, parentKnobs.is_animated, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeNavigation(knobs) : knobs;
+export const Navigation = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: NavigationData.args('light'),
 };

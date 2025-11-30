@@ -1,67 +1,113 @@
-// phpcs:ignoreFile
-import { knobRadios, knobSelect, knobText, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
-import getMenuLinks from '../../00-base/menu/menu.utils';
-import CivicThemeMobileNavigation from './mobile-navigation.twig';
-import CivicThemeMobileNavigationTrigger from './mobile-navigation-trigger.twig';
+import MobileNavigationPanel from './mobile-navigation.twig';
+import MobileNavigationTrigger from './mobile-navigation-trigger.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Navigation/Mobile Navigation',
-  parameters: {
-    layout: 'fullscreen',
-    storyLayoutSize: 'small',
-    storyLayoutClass: 'story-container__page-content story-ct-mobile-navigation',
-    docs: 'Click on the mobile navigation trigger in the top left to open Mobile Navigation panel.',
-    docsPlacement: 'after',
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    top_menu: {
+      control: { type: 'array' },
+    },
+    bottom_menu: {
+      control: { type: 'array' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const MobileNavigation = (parentKnobs = {}) => {
-  const theme = knobRadios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
+export default meta;
+
+export const MobileNavigation = {
+  parameters: {
+    layout: 'centered',
+    viewport: {
+      defaultViewport: 'xs',
     },
-    'light',
-    parentKnobs.theme,
-    parentKnobs.knobTab,
-  );
-
-  const knobs = {
-    theme,
-    trigger_theme: knobRadios(
-      'Trigger Theme',
+  },
+  args: {
+    theme: 'light',
+    content_top: '',
+    top_menu: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Menu item 1',
+        url: 'https://example.com/menu-item-1',
+        in_active_trail: false,
+        is_expanded: false,
+        below: [
+          {
+            title: 'Menu subitem 1',
+            url: 'https://example.com/menu-item-1',
+            in_active_trail: false,
+            is_expanded: false,
+            below: false,
+          },
+          {
+            title: 'Menu subitem 2',
+            url: 'https://example.com/menu-item-1',
+            in_active_trail: false,
+            is_expanded: false,
+            below: [
+              {
+                title: 'Menu subsubitem 1',
+                url: 'https://example.com/menu-item-1',
+                in_active_trail: false,
+                is_expanded: false,
+                below: false,
+              },
+              {
+                title: 'Menu subsubitem 2',
+                url: 'https://example.com/menu-item-1',
+                in_active_trail: false,
+                is_expanded: false,
+                below: false,
+              },
+            ],
+          },
+        ],
       },
-      'light',
-      parentKnobs.trigger_theme,
-      parentKnobs.knobTab,
-    ),
-    trigger_text: knobText('Trigger Text', 'Menu', parentKnobs.trigger_text, parentKnobs.knobTab),
-    trigger_icon: knobSelect('Trigger Icon', Object.values(ICONS), 'bars', parentKnobs.trigger_icon, parentKnobs.knobTab),
-    top_menu: getMenuLinks({ knobTab: 'Top menu' }, 'Top '),
-    bottom_menu: getMenuLinks({ knobTab: 'Bottom menu' }, 'Bottom '),
-  };
-
-  const trigger = CivicThemeMobileNavigationTrigger({
-    theme,
-    icon: knobs.trigger_icon,
-    text: knobs.trigger_text,
-  });
-
-  const panel = CivicThemeMobileNavigation({
-    theme,
-    content_top: knobs.content_top,
-    top_menu: knobs.top_menu,
-    bottom_menu: knobs.bottom_menu,
-    content_bottom: knobs.content_bottom,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
-
-  return shouldRender(parentKnobs) ? `${trigger}${panel}` : knobs;
+      {
+        title: 'Menu item 2',
+        url: 'https://example.com/menu-item-2',
+        in_active_trail: false,
+        is_expanded: false,
+      },
+    ],
+    bottom_menu: [
+      {
+        title: 'Menu item 1',
+        url: 'https://example.com/menu-item-1',
+        in_active_trail: false,
+        is_expanded: false,
+      },
+      {
+        title: 'Menu item 2',
+        url: 'https://example.com/menu-item-2',
+        in_active_trail: false,
+        is_expanded: false,
+      },
+    ],
+    content_bottom: '',
+    modifier_class: '',
+  },
+  render: (args) => (`${
+    MobileNavigationTrigger({
+      theme: args.theme,
+      icon: 'bars',
+      text: 'Menu',
+      modifier_class: '',
+    })
+  }${
+    MobileNavigationPanel(args)
+  }`),
 };

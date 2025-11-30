@@ -1,107 +1,89 @@
-// phpcs:ignoreFile
-import { knobBoolean, knobNumber, knobRadios, knobText, randomLinks, randomTags, shouldRender, slotKnobs } from '../../00-base/storybook/storybook.utils';
-import { randomSlidesComponent } from './slider.utils';
-import './slider';
-import CivicThemeSlider from './slider.twig';
+import Component from './slider.twig';
 
-export default {
+import Slide from './slide.twig';
+
+const meta = {
   title: 'Organisms/Slider',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    slides: {
+      control: { type: 'text' },
+    },
+    previous_label: {
+      control: { type: 'text' },
+    },
+    next_label: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Slider = (parentKnobs = {}) => {
-  const theme = knobRadios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    parentKnobs.theme,
-    parentKnobs.knobTab,
-  );
+export default meta;
 
-  const slidesKnobTab = 'Slides';
-  const numOfSlides = knobNumber(
-    'Number of slides',
-    5,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    parentKnobs.number_of_slides,
-    slidesKnobTab,
-  );
-
-  const slides = randomSlidesComponent(numOfSlides, theme, true, {
-    image_position: knobRadios('Image Position', {
-      Left: 'left',
-      Right: 'right',
-    }, 'right', parentKnobs.image_position, slidesKnobTab),
-    tags: randomTags(knobNumber(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+export const Slider = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    title: 'Slider title',
+    slides: [1, 2, 3].map((idx) => Slide({
+      theme: 'light',
+      image: {
+        url: './demo/images/demo1.jpg',
+        alt: '',
       },
-      parentKnobs.number_of_tags,
-      slidesKnobTab,
-    ), true),
-    date: knobText('Date', '20 Jan 2023 11:00', parentKnobs.date, slidesKnobTab),
-    date_end: knobText('End date', '21 Jan 2023 15:00', parentKnobs.date_end, slidesKnobTab),
-    links: randomLinks(knobNumber(
-      'Number of links',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      parentKnobs.number_of_links,
-      slidesKnobTab,
-    ), 10),
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }).join(' ');
-
-  const knobs = {
-    theme,
-    title: knobText('Title', 'Slider title', parentKnobs.title, parentKnobs.knobTab),
-    with_background: knobBoolean('With background', false, parentKnobs.with_background, parentKnobs.knobTab),
-    vertical_spacing: knobRadios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      parentKnobs.vertical_spacing,
-      parentKnobs.knobTab,
-    ),
-    slides,
-    previous_label: knobText('Previous Label', 'Previous', parentKnobs.previous_label, parentKnobs.knobTab),
-    next_label: knobText('Next Label', 'Next', parentKnobs.next_label, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-  };
-
-  return shouldRender(parentKnobs) ? CivicThemeSlider({
-    ...knobs,
-    ...slotKnobs([
-      'content_top',
-      'content_bottom',
-    ]),
-  }) : knobs;
+      image_position: 'before',
+      tags: [`Tag ${idx}`],
+      date: '20 Jan 2023 11:00',
+      date_iso: '',
+      date_end: '21 Jan 2023 09:00',
+      date_end_iso: '',
+      title: `Slide ${idx}`,
+      content: 'Content',
+      links: [
+        {
+          text: `Link ${idx}`,
+          url: 'https://example.com/',
+          is_new_window: false,
+          is_external: false,
+        },
+      ],
+      attributes: '',
+    }).trim()).join(''),
+    previous_label: 'Previous',
+    next_label: 'Next',
+    vertical_spacing: 'none',
+    with_background: false,
+    content_top: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

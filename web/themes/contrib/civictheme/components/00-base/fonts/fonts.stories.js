@@ -1,40 +1,40 @@
-// phpcs:ignoreFile
-import merge from 'deepmerge';
-import { capitalizeFirstLetter, cleanCssIdentifier } from '../storybook/storybook.utils';
+import Component from './fonts.stories.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Base/Fonts',
-  parameters: {
-    layout: 'centered',
-    storyLayoutSize: 'large',
-    storyLayoutCenteredHorizontally: true,
-    storyLayoutClass: 'story-fonts-wrapper story-wrapper-size--large',
+  component: Component,
+  argTypes: {
+    fonts: {
+      table: {
+        disable: true,
+      },
+    },
+    weights: {
+      table: {
+        disable: true,
+      },
+    },
   },
 };
 
-export const Fonts = () => {
-  const fonts = Object.keys(merge(SCSS_VARIABLES['ct-fonts-default'], SCSS_VARIABLES['ct-fonts']));
-  const weights = merge(SCSS_VARIABLES['ct-font-weights-default'], SCSS_VARIABLES['ct-font-weights']);
+export default meta;
 
-  let html = '';
-
-  for (const i in Object.values(fonts)) {
-    html += `<div class="story-container">`;
-
-    html += `<div class="story-container__title">${capitalizeFirstLetter(fonts[i])}</div>`;
-
-    html += `<div class="story-container__content">`;
-    for (const weightName in weights) {
-      html += `<div class="story-container__subtitle">${capitalizeFirstLetter(weightName)}</div>`;
-      html += `<div class="story-container__subcontent story-font--${cleanCssIdentifier(weightName)}--${fonts[i]}">The quick brown fox jumps over the lazy dog</div>`;
-
-      html += `<div class="story-container__subtitle">${capitalizeFirstLetter(weightName)} Italic</div>`;
-      html += `<div class="story-container__subcontent story-font--italic--${cleanCssIdentifier(weightName)}--${fonts[i]}">The quick brown fox jumps over the lazy dog</div>`;
-    }
-    html += `</div>`;
-
-    html += `</div>`;
-  }
-
-  return html;
+export const Fonts = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+  args: {
+    fonts: Object.keys({
+      ...Constants.SCSS_VARIABLES['ct-fonts-default'],
+      ...Constants.SCSS_VARIABLES['ct-fonts'],
+    }),
+    weights: Object.keys({
+      ...Constants.SCSS_VARIABLES['ct-font-weights-default'],
+      ...Constants.SCSS_VARIABLES['ct-font-weights'],
+    }),
+  },
 };

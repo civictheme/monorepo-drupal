@@ -1,33 +1,47 @@
-// phpcs:ignoreFile
-import CivicThemeImage from './image.twig';
-import { demoImage, knobBoolean, knobRadios, knobText, shouldRender } from '../../00-base/storybook/storybook.utils';
+import Component from './image.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Image',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    alt: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Image = (parentKnobs = {}) => {
-  const knobs = {
-    theme: knobRadios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      parentKnobs.theme,
-      parentKnobs.knobTab,
-    ),
-    url: knobBoolean('Show image', true, parentKnobs.show_image, parentKnobs.knobTab) ? demoImage() : false,
-    alt: knobText('Image alt text', 'Alternative text', parentKnobs.alt, parentKnobs.knobTab),
-    width: knobText('Width', '', parentKnobs.width, parentKnobs.knobTab),
-    height: knobText('Height', '', parentKnobs.height, parentKnobs.knobTab),
-    modifier_class: knobText('Additional class', '', parentKnobs.modifier_class, parentKnobs.knobTab),
-    attributes: knobText('Additional attributes', '', parentKnobs.attributes, parentKnobs.knobTab),
-  };
+export default meta;
 
-  return shouldRender(parentKnobs) ? CivicThemeImage(knobs) : knobs;
+export const Image = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: './demo/images/demo5.jpg',
+    alt: 'Alternative text',
+    width: '',
+    height: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };
