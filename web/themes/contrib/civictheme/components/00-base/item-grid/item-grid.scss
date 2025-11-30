@@ -1,0 +1,23 @@
+//
+// Item grid component.
+//
+
+.ct-item-grid {
+  $root: &;
+
+  &--fill-width {
+    [class*='col-'] {
+      max-width: 100%;
+      flex-grow: 1;
+    }
+  }
+
+  &__items {
+    padding-inline-start: 0;
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: ct-spacing(3);
+  }
+}

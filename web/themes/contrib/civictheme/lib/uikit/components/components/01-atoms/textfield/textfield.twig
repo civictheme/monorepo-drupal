@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Textfield component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - placeholder: [string] Placeholder text.
+ * - disabled: [boolean] Disabled or not.
+ * - required: [boolean] Required or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
+{% set required_class = required ? 'ct-input--required required' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, modifier_class|default('')) %}
+
+<input
+  type="{{ type }}"
+  value="{{ value }}"
+  class="ct-textfield ct-input__element {{ modifier_class }}"
+  {{ disabled ? 'disabled' }}
+  {{ required ? 'required' }}
+  {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+/>

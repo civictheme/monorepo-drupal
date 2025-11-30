@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Skip Link component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Link text.
+ * - url: [string] Link URL.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set text = text|default('Skip to main content') %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if text is not empty %}
+  <div class="ct-skip-link {{ modifier_class }}">
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: text,
+      url: url,
+      title: text,
+      hidden_text: text,
+      modifier_class: 'ct-skip-link__link ct-visually-hidden ct-focusable',
+    } only %}
+  </div>
+{% endif %}

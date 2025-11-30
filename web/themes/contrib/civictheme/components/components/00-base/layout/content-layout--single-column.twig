@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Layout component: Single column edge-to-edge.
+ *
+ * Variables:
+ * - content: [string] The content for this layout.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% if content %}
+  <div class="ct-layout--single-column">
+    {% block content %}
+      <div class="ct-layout__content {{ modifier_class }}">
+        {{ content }}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

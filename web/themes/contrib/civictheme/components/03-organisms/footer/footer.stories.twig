@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * Footer component stories.
+ */
+#}
+
+{% extends './footer.twig' %}
+
+{% if logo %}
+  {% set content_top1 %}
+    {% include '@molecules/logo/logo.twig' with logo only %}
+  {% endset %}
+{% endif %}
+
+{% if show_social_links %}
+  {% set content_top2 %}
+    {% include '@organisms/social-links/social-links.twig' with {
+      theme: theme,
+      items: [
+        {
+          symbol: 'facebook',
+          url: 'https://www.facebook.com',
+          title: 'Facebook',
+        },
+        {
+          symbol: 'twitter',
+          url: 'https://www.facebook.com',
+          title: 'Twitter',
+        },
+        {
+          symbol: 'linkedin',
+          url: 'https://www.facebook.com',
+          title: 'LinkedIn',
+        },
+      ],
+      with_border: true,
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_middle_links %}
+  {% set content_middle1 %}
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: links1,
+      title: 'Services',
+    } only %}
+  {% endset %}
+  {% set content_middle2 %}
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: links2,
+      title: 'About us',
+    } only %}
+  {% endset %}
+  {% set content_middle3 %}
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: links3,
+      title: 'Help',
+    } only %}
+  {% endset %}
+  {% set content_middle4 %}
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: links4,
+      title: 'Resources',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_acknowledgement %}
+  {% set content_bottom1 %}
+    <div class="ct-footer__acknowledgement ct-text-regular">
+      We acknowledge the traditional owners of the country throughout
+      Australia
+      and their continuing connection to land, sea and community. We pay our
+      respect to them and their cultures and to the elders past and present.
+    </div>
+  {% endset %}
+
+  {%- block content_bottom1 %}
+    <div class="col-xxs-12 col-m-7">
+      <div class="ct-footer__bottom__content-bottom1">
+        {{- content_bottom1 -}}
+      </div>
+    </div>
+  {% endblock -%}
+{% endif %}
+
+{% if show_copyright %}
+  {% set content_bottom2 %}
+    <div class="copyright ct-text-regular">
+      ©Commonwealth of Australia
+    </div>
+  {% endset %}
+
+  {%- block content_bottom2 %}
+    <div class="col-xxs-12 col-m-5">
+      <div class="ct-footer__bottom__content-bottom2">
+        {{- content_bottom2 -}}
+      </div>
+    </div>
+  {% endblock -%}
+{% endif %}

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Mobile Navigation Nenu Trigger component.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - text: [string] Button text.
+ * - icon: [string] Icon symbol name.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set modifier_class = 'ct-mobile-navigation-trigger %s'|format(modifier_class|default('')) %}
+{% set icon = icon|default('bars') %}
+
+{% include '@atoms/button/button.twig' with {
+  theme: theme,
+  kind: 'button',
+  icon: icon,
+  icon_placement: 'after',
+  size: 'small',
+  text: text,
+  modifier_class: modifier_class,
+  attributes: 'data-flyout-open-trigger data-flyout-target=".ct-mobile-navigation" aria-expanded="false"',
+} only %}

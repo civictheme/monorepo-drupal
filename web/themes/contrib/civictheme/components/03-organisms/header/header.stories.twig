@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Header component stories.
+ */
+#}
+
+{% extends './header.twig' %}
+
+{% if show_content_top2 %}
+  {% set content_top2 %}
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: 'A design system by Salsa Digital'
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_content_top3 %}
+  {% set content_top3 %}
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: secondary_navigation_items,
+      type: 'dropdown',
+      modifier_class: 'ct-justify-content-end',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if logo %}
+  {% set content_middle2 %}
+    {% include '@molecules/logo/logo.twig' with logo only %}
+  {% endset %}
+{% endif %}
+
+{% if show_content_middle3 %}
+  {% set content_middle3 %}
+
+    {% include '@organisms/navigation/navigation.twig' with {
+      theme: theme,
+      items: primary_navigation_items,
+      type: 'drawer',
+      dropdown_columns: primary_navigation_dropdown_columns,
+      dropdown_columns_fill: primary_navigation_dropdown_columns_fill,
+      modifier_class: 'ct-justify-content-end',
+    } only %}
+
+    {% if with_search %}
+      {% include '@molecules/search/search.twig' with {
+        'theme': theme,
+        'text': with_search.text,
+        'url': with_search.url,
+        'modifier_class': 'ct-justify-content-end',
+      } only %}
+    {% endif %}
+
+    {% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
+      theme: theme,
+      text: 'Menu',
+    } %}
+
+    {% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+      theme: theme,
+      top_menu: primary_navigation_items,
+      bottom_menu: secondary_navigation_items,
+    } %}
+  {% endset %}
+{% endif %}

@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Fieldset component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - content: [string]  Content slot.
+ * - content_bottom: [string] Content slot.
+ * - sidebar: [string] Sidebar slot.
+ * - sidebar_attributes: [string] Sidebar attributes.
+ * - content_attributes: [string] Content attributes.
+ * - theme: [string] Theme: light, dark.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set form_element_type_class = 'ct-form-element--%s'|format(type|default('default')) %}
+{% set form_element_name_class = name is not empty ? 'ct-form-element--%s'|format(name) : '' %}
+{% set required_class = required ? 'ct-form-element--form-required' : '' %}
+{% set error_class = errors ? 'ct-form-element--error' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, form_element_type_class, form_element_name_class, required_class, error_class, modifier_class|default('')) %}
+
+<fieldset class="ct-fieldset ct-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% if legend is not empty %}
+    {% include '@atoms/label/label.twig' with {
+      theme: theme,
+      size: 'large',
+      content: legend,
+      modifier_class: 'ct-fieldset__legend',
+    } only %}
+  {% endif %}
+
+  <div class="ct-fieldset__wrapper">
+    {% if description is not empty %}
+      {% include '@atoms/paragraph/paragraph.twig' with {
+        theme: theme,
+        content: description,
+        modifier_class: 'ct-fieldset__description',
+      } only %}
+    {% endif %}
+
+    {% if errors %}
+      {% include '@atoms/field-message/field-message.twig' with {
+        theme: theme,
+        type: 'error',
+        content: errors,
+        modifier_class: 'ct-fieldset__message',
+      } only %}
+    {% endif %}
+
+    {% if prefix is not empty %}
+      <span class="ct-fieldset__prefix">{{ prefix }}</span>
+    {% endif %}
+
+    {% block children %}
+      {% if children is not empty %}
+        {{ children }}
+      {% endif %}
+    {% endblock %}
+
+    {% if suffix is not empty %}
+      <span class="ct-fieldset__suffix">{{ suffix }}</span>
+    {% endif %}
+  </div>
+</fieldset>

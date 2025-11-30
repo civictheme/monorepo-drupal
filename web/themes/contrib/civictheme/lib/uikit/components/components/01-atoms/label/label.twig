@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Label component.
+ *
+ * Variables:
+ * - content: [string] The label's content.
+ * - size: [string] Label size: extra-large, large, regular, small, extra-small.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
+{% set size_class = 'ct-label--%s'|format(size) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+
+{% if content is not empty -%}
+  <label
+    class="ct-label {{ modifier_class }}"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content }}
+  </label>
+{%- endif %}

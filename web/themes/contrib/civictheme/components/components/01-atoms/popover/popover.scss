@@ -1,0 +1,42 @@
+//
+// Tooltip component.
+//
+
+@use 'sass:math';
+
+.ct-popover {
+  $root: &;
+
+  position: relative;
+
+  #{$root}__content {
+    @include ct-elevation(4);
+
+    position: absolute;
+    z-index: $ct-popover-z-index;
+    border-radius: $ct-popover-description-border-radius;
+    margin-top: $ct-popover-top-offset;
+  }
+
+  #{$root}__content__inner {
+    min-width: $ct-popover-min-width;
+    min-height: ct-particle(12);
+    padding: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3);
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__content {
+      @include ct-component-property($root, $theme, content, background-color);
+    }
+  }
+}
+
+.no-js {
+  .ct-popover__content {
+    position: relative;
+  }
+}

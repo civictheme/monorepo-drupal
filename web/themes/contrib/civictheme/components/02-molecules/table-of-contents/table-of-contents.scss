@@ -1,0 +1,119 @@
+//
+// Table of Contents component.
+//
+
+.ct-table-of-contents {
+  $root: &;
+
+  width: 100%;
+
+  @include ct-breakpoint-upto('l') {
+    margin-top: ct-spacing(3);
+  }
+
+  @include ct-breakpoint-upto('m') {
+    margin-left: ct-spacing(2);
+  }
+
+  @include ct-breakpoint-upto('s') {
+    margin-left: ct-spacing(1);
+  }
+
+  @include ct-breakpoint(m) {
+    width: max-content;
+    max-width: $ct-table-of-contents-max-width;
+    min-width: $ct-table-of-contents-min-width;
+  }
+
+  &--position-before,
+  &--position-prepend {
+    margin-bottom: ct-spacing(4);
+  }
+
+  &--position-after,
+  &--position-append {
+    margin-top: ct-spacing(4);
+  }
+
+  &__title {
+    @include ct-typography('heading-4');
+
+    margin-top: 0;
+    margin-bottom: ct-spacing(3);
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    @include ct-typography('label-small');
+
+    display: block;
+    position: relative;
+    padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
+    border: 0;
+    border-style: solid;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: -1 * ct-particle(0.125);
+      bottom: -1 * ct-particle(0.125);
+      left: -1 * ct-particle(0.125);
+      width: ct-particle(0.5);
+    }
+
+    &:active {
+      outline: 0 !important;
+      border-radius: 0 $ct-table-of-contents-link-active-border-radius $ct-table-of-contents-link-active-border-radius 0;
+    }
+
+    &:focus-visible {
+      z-index: 1;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__title {
+      @include ct-component-property($root, $theme, title, color);
+    }
+
+    #{$root}__link {
+      @include ct-component-property($root, $theme, link, color);
+      @include ct-component-property($root, $theme, link, background-color);
+
+      &::before {
+        @include ct-component-property($root, $theme, link, stripe, background-color);
+      }
+
+      &:hover,
+      &:focus-visible,
+      &:active {
+        @include ct-component-property($root, $theme, link, hover, background-color);
+        @include ct-component-property($root, $theme, link, hover, color);
+
+        &::before {
+          @include ct-component-property($root, $theme, link, hover, stripe, background-color);
+        }
+      }
+
+      &:active {
+        @include ct-component-property($root, $theme, link, hover, border-color);
+
+        border-width: ct-particle(0.125);
+        border-left-width: 0;
+        padding-top: ct-spacing(1 - 0.125);
+        padding-bottom: ct-spacing(1 - 0.125);
+      }
+
+      &:focus-visible {
+        @include ct-outline-theme($theme);
+      }
+    }
+  }
+}

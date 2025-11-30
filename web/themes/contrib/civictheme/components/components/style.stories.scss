@@ -1,0 +1,16 @@
+//
+// Style for Storybook.
+//
+// This file replaces normal CSS to allow resolving of variables and mixins in
+// stories CSS.
+//
+// stylelint-disable scss/at-import-partial-extension
+//
+
+@import 'style';
+@import '00-base/**/*.stories.scss';
+@import '01-atoms/**/*.stories.scss';
+@import '02-molecules/**/*.stories.scss';
+@import '03-organisms/**/*.stories.scss';
+@import '04-templates/**/*.stories.scss';
+@import '05-pages/**/*.stories.scss';

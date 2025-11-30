@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Webform component.
+ *
+ * Variables:
+ * - referenced_webform: [webform] Rendered webform.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set with_background_class = with_background ? 'ct-webform--with-background' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% if referenced_webform is not empty %}
+  <div class="ct-webform {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {{ referenced_webform }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

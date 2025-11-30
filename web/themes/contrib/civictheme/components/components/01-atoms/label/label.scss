@@ -1,0 +1,42 @@
+//
+// Label component.
+//
+
+@use 'sass:map';
+@use 'sass:string';
+
+.ct-label {
+  $root: &;
+
+  display: block;
+  margin-bottom: ct-spacing();
+
+  @include ct-typography('label-regular');
+
+  &--required {
+    &::after {
+      content: ' (Required)';
+
+      @include ct-typography('label-small');
+    }
+  }
+
+  @each $name in map.keys(_ct-typography-all()) {
+    @if string.index(#{$name}, 'label-') {
+      $size: string.slice(#{$name}, 6, 100);
+      &.ct-label-#{$size} {
+        @include ct-typography($name);
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    #{$root}--required {
+      &::after {
+        @include ct-component-property($root, $theme, required, color);
+      }
+    }
+  }
+}

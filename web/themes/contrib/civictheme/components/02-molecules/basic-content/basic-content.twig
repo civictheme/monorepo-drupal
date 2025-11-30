@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Basic Content component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] Content.
+ * - is_contained: [boolean] Contained or not.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-basic-content--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% set is_contained = is_contained is not defined or is_contained != false ? true : false %}
+
+{% if content is not empty %}
+  <div class="ct-basic-content {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if is_contained %}
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {% endif %}
+              {{ content|raw }}
+            {% if is_contained %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

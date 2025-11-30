@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Button component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - kind: [string] Button kind: submit, reset, button, link.
+ * - type: [string] Button type: primary, primary, secondary, tertiary.
+ * - size: [string] Button size: large, regular, small.
+ * - icon: [string] Icon name.
+ * - icon_placement: [string] Icon position: left, right
+ * - text: [string] Button text.
+ * - url: [string] URL for the link button.
+ * - is_raw_text: [boolean] Output text as raw value.
+ * - is_new_window: [boolean] Open in a new window or not.
+ * - is_external: [boolean] If link is external or not.
+ * - is_disabled: [boolean] Disabled or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set kind = kind in ['button', 'link', 'reset', 'submit'] ? kind : 'button' %}
+{% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
+{% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set type_class = type ? 'ct-button--%s'|format(type) : '' %}
+{% set kind_class = kind ? 'ct-button--%s'|format(kind) : '' %}
+{% set size_class = 'ct-button--%s'|format(size) %}
+{% set dismiss_class = is_dismissable ? 'ct-button--dismiss' : '' %}
+{% set is_external = is_external ? 'ct-button--external' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, is_external, modifier_class|default('')) %}
+
+{% set content_markup %}
+  {% if icon %}
+    {% set icon_markup %}
+      {% include '@base/icon/icon.twig' with {
+        symbol: icon,
+        modifier_class: 'ct-button__icon',
+      } only %}
+    {% endset %}
+
+    {% if icon_placement == 'before' %}
+      {{ icon_markup }}{{ is_raw_text ? text|raw : text }}
+    {% else %}
+      {{ is_raw_text ? text|raw : text }}{{ icon_markup }}
+    {% endif %}
+
+  {% else %}
+    {{ is_raw_text ? text|raw : text }}
+  {% endif %}
+{% endset %}
+
+{% if is_new_window %}
+  {% set is_new_window_content %}
+    <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+  {% endset %}
+{% endif %}
+
+{% if is_external %}
+  {% set is_external_content %}
+    {% include '@base/icon/icon.twig' with {
+      symbol: 'upper-right-arrow',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if kind == 'button' %}
+  <button
+    class="ct-button {{ modifier_class }}"
+    data-component-name="button"
+    {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content_markup }}
+  </button>
+{% elseif kind == 'link' %}
+  <a
+    class="ct-button {{ modifier_class }}"
+    role="button"
+    data-component-name="button"
+    {% if url %}href="{{ url }}"{% endif %}
+    {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
+    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content_markup }}{{ is_new_window_content }}{{ is_external_content }}
+  </a>
+{% elseif kind in ['reset', 'submit'] %}
+  <input
+    type="{{ kind }}"
+    class="ct-button {{ modifier_class }}"
+    data-component-name="button"
+    value="{{ (is_raw_text ? text|raw : text)|trim }}"
+    {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  />
+{% endif %}

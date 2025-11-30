@@ -1,0 +1,74 @@
+//
+// Navigation Card component.
+//
+
+@use 'sass:map';
+
+.ct-navigation-card {
+  $root: &;
+
+  @include ct-elevation-interaction();
+
+  position: relative;
+  border-radius: $ct-navigation-card-border-radius;
+  width: 100%;
+
+  // Prevent image from "spilling" over the border radius.
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @include ct-breakpoint(m) {
+    flex-direction: row;
+  }
+
+  #{$root}__image {
+    @include ct-image-fit();
+
+    position: relative;
+    height: $ct-navigation-card-image-height-mobile;
+    width: auto;
+    min-width: $ct-navigation-card-image-width-mobile;
+
+    @include ct-breakpoint(m) {
+      width: $ct-navigation-card-image-width-desktop;
+      height: auto;
+      min-height: $ct-navigation-card-image-height-desktop;
+      flex-shrink: 0;
+    }
+  }
+
+  #{$root}__content {
+    width: 100%;
+    padding: ct-spacing(3);
+  }
+
+  #{$root}__icon {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__icon__image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+    @include ct-link-wide();
+  }
+
+  &#{$root}--with-link {
+    #{$root}__summary {
+      padding-right: ct-spacing(3);
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}

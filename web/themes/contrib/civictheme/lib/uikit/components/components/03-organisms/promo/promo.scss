@@ -1,0 +1,61 @@
+//
+// CivicTheme Promo component.
+//
+
+.ct-promo {
+  $root: &;
+
+  &#{$root}--with-background {
+    padding-left: $ct-promo-space-horizontal;
+    padding-right: $ct-promo-space-horizontal;
+  }
+
+  border-top: solid ct-particle(0.125);
+  border-bottom: solid ct-particle(0.125);
+
+  &__wrapper {
+    padding: ct-spacing(3) 0;
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(7) 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__inner {
+    @include ct-breakpoint(m) {
+      flex-grow: 1;
+      padding-right: ct-spacing(5);
+    }
+  }
+
+  &__links {
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: ct-spacing(1);
+  }
+
+  &__content {
+    margin-left: auto;
+  }
+
+  &__button {
+    width: auto;
+
+    @include ct-breakpoint(m) {
+      white-space: nowrap;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, border-color);
+  }
+}

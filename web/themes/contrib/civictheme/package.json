@@ -19,10 +19,12 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config ./webpack/webpack.dev.js",
-    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static,lib/uikit",
+    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php dist,storybook-static",
     "postinstall": "npm run add-lint-exclusions"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@popperjs/core": "^2.11.8"
+  },
   "devDependencies": {
     "@alexskrypnyk/scss-variables-extractor": "^0.1.1",
     "@babel/cli": "^7.23.9",

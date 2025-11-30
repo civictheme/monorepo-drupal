@@ -1,0 +1,29 @@
+//
+// Layout component.
+//
+
+.ct-layout {
+  $root: &;
+
+  &__sidebar {
+    @include ct-print-hide();
+
+    @include ct-breakpoint-upto('m') {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  &__main {
+    @include ct-print() {
+      flex-basis: 100% !important;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__inner {
+      background: ct-component-var($root, $theme, background-color);
+    }
+  }
+}

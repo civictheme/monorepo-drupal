@@ -1,0 +1,35 @@
+//
+// Elevation mixins.
+//
+
+@use 'sass:list';
+@use 'sass:string';
+
+//
+// Elevation from the pre-defined list of elevations.
+//
+@mixin ct-elevation($index: 1) {
+  @if list.nth($ct-elevations, $index) == null {
+    @error '"#{$index}" is not an available elevation.';
+  }
+
+  $box-shadow: list.nth($ct-elevations, $index);
+
+  @if ct-string-is-quoted($box-shadow) {
+    $box-shadow: string.unquote($box-shadow);
+  }
+
+  box-shadow: $box-shadow;
+}
+
+@mixin ct-elevation-interaction() {
+  @include ct-elevation(2);
+
+  &:hover {
+    @include ct-elevation(3);
+  }
+
+  &:active {
+    @include ct-elevation(1);
+  }
+}

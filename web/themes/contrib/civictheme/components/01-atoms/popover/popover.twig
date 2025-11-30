@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Popover component.
+ *
+ * Variables:
+ * - trigger: [object] Trigger link object:
+ *   - text: [string] Text.
+ *   - url: [string] Optional URL.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - content: [string] Content of popover panel.
+ * - group: [string] Group name.
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content is not empty %}
+  <div class="ct-popover {{ modifier_class }}" data-collapsible data-collapsible-collapsed data-collapsible-group="{{ group|default('') }}" data-collapsible-duration="250" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: trigger.text,
+      url: trigger.url is defined ? trigger.url : null,
+      is_new_window: trigger.is_new_window,
+      modifier_class: 'ct-popover__link',
+      attributes: 'data-collapsible-trigger',
+    } only %}
+
+    <div class="ct-popover__content" data-collapsible-panel>
+      <div class="ct-popover__content__inner">
+
+        {% block content_top %}
+          {% if content_top is not empty %}
+            <div class="ct-popover__content-top">
+              {{ content_top }}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+
+        {% block content_bottom %}
+          {% if content_bottom is not empty %}
+            <div class="ct-popover__content-bottom">
+              {{ content_bottom }}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endif %}

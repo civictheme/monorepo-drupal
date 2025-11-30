@@ -1,0 +1,65 @@
+//
+// Tabs component.
+//
+
+.ct-tabs {
+  $root: &;
+
+  #{$root}__links {
+    border-bottom-style: solid;
+    border-bottom-width: ct-particle(0.125);
+
+    .ct-link {
+      @include ct-typography('label-regular');
+      @include ct-link-decoration(false, false, false, false);
+
+      margin-bottom: -1 * ct-particle(0.125);
+      outline-offset: -1 * ct-particle(0.375);
+      display: block;
+      padding: ct-spacing(1) ct-spacing(2);
+      border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
+      border: solid ct-particle(0.125);
+
+      @include ct-breakpoint(m) {
+        padding: ct-spacing(1.5) ct-spacing(2);
+      }
+    }
+  }
+
+  .ct-tabs__panels {
+    margin-top: ct-spacing(3);
+  }
+
+  .ct-tabs__panels__panel {
+    display: none;
+
+    &.ct-tabs__panel--selected {
+      display: block;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__links {
+      border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
+    }
+
+    .ct-link {
+      @include ct-component-property($root, $theme, links, background-color);
+      @include ct-component-property($root, $theme, links, border-color);
+
+      border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
+
+      &#{$root}__tab--selected {
+        @include ct-component-property($root, $theme, links, active, background-color);
+        @include ct-component-property($root, $theme, links, active, border-color);
+
+        border-bottom-color: ct-component-var($root, $theme, links, stripe, border-color);
+      }
+    }
+
+    #{$root}__panels {
+      @include ct-component-property($root, $theme, panel, background-color);
+      @include ct-component-property($root, $theme, panel, border-color);
+    }
+  }
+}

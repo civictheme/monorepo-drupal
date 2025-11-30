@@ -1,0 +1,106 @@
+//
+// Select component.
+//
+
+.ct-select {
+  $root: &;
+
+  @include ct-typography('text-regular');
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: ct-particle(38);
+  height: ct-particle(6);
+  padding: 0.5em 3.5em 0.5em 1em;
+  background-position: calc(100% - 0.5rem), 100% 0;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 50%;
+  }
+
+  &[multiple] {
+    height: inherit;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  &:-webkit-scrollbar {
+    background-color: transparent;
+  }
+
+  &.ct-theme-light {
+    background-color: $ct-select-light-background-color;
+    border-color: $ct-input-light-border-color;
+    color: $ct-select-light-color;
+
+    &:hover {
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-hover-border-color;
+    }
+
+    &:focus-visible {
+      border-color: $ct-select-light-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-focus-border-color;
+    }
+
+    &.error,
+    &.ct-input--error {
+      border-color: $ct-select-light-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-error-border-color;
+    }
+
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $ct-select-light-option-background-color;
+          color: inherit;
+        }
+      }
+    }
+
+    &[multiple] {
+      background: none;
+    }
+  }
+
+  &.ct-theme-dark {
+    background-color: $ct-select-dark-background-color;
+    border-color: $ct-input-dark-border-color;
+    color: $ct-select-dark-color;
+
+    &:hover {
+      border-color: $ct-select-dark-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-hover-border-color;
+    }
+
+    &:focus-visible {
+      border-color: $ct-select-dark-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-focus-border-color;
+    }
+
+    &.error,
+    &.ct-input--error {
+      border-color: $ct-select-dark-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-error-border-color;
+    }
+
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $ct-select-dark-option-background-color;
+          color: inherit;
+        }
+      }
+    }
+
+    &[multiple] {
+      background: none;
+    }
+  }
+}

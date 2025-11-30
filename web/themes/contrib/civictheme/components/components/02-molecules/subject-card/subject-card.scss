@@ -1,0 +1,63 @@
+//
+// Subject Card component.
+//
+
+.ct-subject-card {
+  $root: &;
+
+  @include ct-elevation-interaction();
+
+  position: relative;
+  border-radius: $ct-service-card-border-radius;
+  width: 100%;
+
+  #{$root}__content {
+    @include ct-image-fit();
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: $ct-subject-card-image-height-mobile;
+    min-width: $ct-subject-card-image-width-mobile;
+    padding: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3);
+      min-height: $ct-subject-card-image-height-desktop;
+      min-width: $ct-subject-card-image-width-desktop;
+    }
+  }
+
+  #{$root}__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  #{$root}__title {
+    z-index: 1;
+  }
+
+  #{$root}__title__link {
+    @include ct-font-size-inherit();
+    @include ct-link-cover-parent();
+    @include ct-link-wide();
+
+    flex-direction: column;
+
+    .ct-link__icon {
+      @include ct-icon-size();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    #{$root}__image {
+      @include ct-component-property($root, $theme, image, opacity);
+    }
+  }
+}

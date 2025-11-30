@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Figure component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - url: [string] URL of the image.
+ * - alt: [string] Alternate text of the image.
+ * - width: [string] Width.
+ * - height: [string] Height.
+ * - caption: [string] Caption for the image.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if url is not empty %}
+  <figure class="ct-figure {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% include '@atoms/image/image.twig' with {
+      theme: theme,
+      url: url,
+      alt: alt,
+      width: width,
+      height: height,
+      modifier_class: 'ct-figure__image',
+    } only %}
+
+    {% if caption is not empty %}
+      <figcaption class="ct-figure__caption">
+        {% include '@base/icon/icon.twig' with {
+          symbol: 'image',
+        } only %}
+        {{ caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Time component.
+ *
+ * Variables:
+ * - start: [string] Formatted start time.
+ * - start_iso: [string] Start time in ISO format.
+ * - end: [string] Formatted end time.
+ * - end_iso: [string] End time in ISO format.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% if start is not empty %}
+  <span class="ct-time {{ modifier_class|default('') }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <time class="ct-time__start" datetime="{{ start_iso|default(start) }}">{{ start }}</time>
+    {% if end is not empty %}
+      &mdash;
+      <time class="ct-time__end" datetime="{{ end_iso|default(end) }}">{{ end }}</time>
+    {% endif %}
+  </span>
+{% endif %}

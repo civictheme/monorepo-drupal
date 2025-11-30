@@ -1,0 +1,63 @@
+{#
+/**
+  * @file
+  * Mobile Navigation component.
+  *
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - content_top: [string] Content slot.
+  * - content_bottom: [string] Content slot.
+  * - primary_navigation_items: [array] Array of menu items.
+  * - secondary_navigation_items: [array] Array of menu items.
+  * - modifier_class: [string] Additional classes.
+  */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right" data-flyout-focus=".ct-link">
+  <div data-flyout-panel class="ct-mobile-navigation__panel">
+    {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
+
+    {% block content_top %}
+      {% if content_top is not empty %}
+        <div class="ct-mobile-navigation__content_top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block top_menu %}
+      {% if top_menu is not empty %}
+        <div class="ct-mobile-navigation__top-menu-wrapper">
+          {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+            theme: theme,
+            items: top_menu,
+            modifier_class: 'ct-mobile-navigation__top-menu',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block bottom_menu %}
+      {% if bottom_menu is not empty %}
+        <div class="ct-mobile-navigation__bottom-menu-wrapper">
+          {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+            theme: theme,
+            items: bottom_menu,
+            modifier_class: 'ct-mobile-navigation__bottom-menu',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        <div class="ct-mobile-navigation__content_bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

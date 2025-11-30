@@ -1,0 +1,208 @@
+//
+// Side Navigation component.
+//
+
+.ct-side-navigation {
+  $root: &;
+
+  &__title {
+    @include ct-typography('heading-5');
+
+    margin-top: 0;
+    margin-bottom: ct-spacing(2);
+  }
+
+  @for $i from 0 through 10 {
+    .ct-menu--level-#{$i} {
+      .ct-menu__item__link {
+        padding-left: ($i + 1) * ct-spacing(2);
+      }
+    }
+  }
+
+  &__menu {
+    &,
+    .ct-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ct-menu__item--expanded {
+      .ct-menu {
+        display: block;
+      }
+    }
+
+    .ct-menu__item {
+      position: relative;
+    }
+
+    .ct-menu__item__link {
+      @include ct-typography('text-regular');
+
+      display: block;
+      position: relative;
+      padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
+      border-bottom-width: ct-particle(0.125);
+      border-bottom-style: solid;
+      text-decoration: none;
+
+      &:first-child {
+        border-top-width: ct-particle(0.125);
+        border-top-style: solid;
+      }
+
+      &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: -1 * ct-particle(0.125);
+        bottom: -1 * ct-particle(0.125);
+        left: -1 * ct-particle(0.125);
+        width: ct-particle(0.5);
+      }
+
+      &:active {
+        outline: 0 !important;
+        border-radius: 0 $ct-side-navigation-link-active-border-radius $ct-side-navigation-link-active-border-radius 0;
+      }
+
+      &:focus-visible {
+        z-index: 1;
+      }
+    }
+
+    [data-collapsible]:not([data-collapsible-trigger-no-icon]) .ct-menu__item__link-trigger[data-collapsible-trigger] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: ct-spacing(3);
+      height: ct-spacing(3);
+      padding: ct-spacing() ct-spacing(0.25);
+      z-index: 1;
+
+      @include ct-breakpoint(m) {
+        padding: ct-spacing(1.25) ct-spacing(0.25);
+      }
+    }
+  }
+
+  @mixin _ct-side-navigation-print-menu-item($background-color, $border-color, $color, $stripe-color) {
+    background-color: $background-color;
+    border-color: $border-color;
+    color: $color;
+
+    &::before {
+      background-color: $stripe-color;
+    }
+
+    &:focus-visible {
+      @include ct-outline();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__title {
+      @include ct-component-property($root, $theme, title, color);
+    }
+
+    #{$root}__menu {
+      .ct-menu__item {
+        .ct-menu__item__link-trigger {
+          @include ct-component-property($root, $theme, link, expanded, icon, color);
+        }
+
+        .ct-menu__item__link {
+          @include _ct-side-navigation-print-menu-item(
+            ct-component-var($root, $theme, link, child, background-color),
+            ct-component-var($root, $theme, link, child, border-color),
+            ct-component-var($root, $theme, link, child, color),
+            ct-component-var($root, $theme, link, child, stripe-color)
+          );
+
+          &:hover,
+          &:focus-visible {
+            @include _ct-side-navigation-print-menu-item(
+              ct-component-var($root, $theme, link, child, hover, background-color),
+              ct-component-var($root, $theme, link, child, hover, border-color),
+              ct-component-var($root, $theme, link, child, hover, color),
+              ct-component-var($root, $theme, link, child, hover, stripe-color)
+            );
+          }
+        }
+
+        &.ct-menu__item--active-trail {
+          > .ct-menu__item__link {
+            &,
+            &:active,
+            &:visited {
+              @include _ct-side-navigation-print-menu-item(
+                ct-component-var($root, $theme, link, child, active, background-color),
+                ct-component-var($root, $theme, link, child, active, border-color),
+                ct-component-var($root, $theme, link, child, active, color),
+                ct-component-var($root, $theme, link, child, active, stripe-color)
+              );
+            }
+
+            &:hover,
+            &:focus-visible {
+              @include _ct-side-navigation-print-menu-item(
+                ct-component-var($root, $theme, link, child, hover, background-color),
+                ct-component-var($root, $theme, link, child, hover, border-color),
+                ct-component-var($root, $theme, link, child, hover, color),
+                ct-component-var($root, $theme, link, child, hover, stripe-color)
+              );
+            }
+          }
+        }
+
+        &.ct-menu__item--level-0 {
+          > .ct-menu__item__link {
+            @include _ct-side-navigation-print-menu-item(
+              ct-component-var($root, $theme, link, parent, background-color),
+              ct-component-var($root, $theme, link, parent, border-color),
+              ct-component-var($root, $theme, link, parent, color),
+              ct-component-var($root, $theme, link, parent, stripe-color)
+            );
+
+            &:hover,
+            &:focus-visible {
+              @include _ct-side-navigation-print-menu-item(
+                ct-component-var($root, $theme, link, parent, hover, background-color),
+                ct-component-var($root, $theme, link, parent, hover, border-color),
+                ct-component-var($root, $theme, link, parent, hover, color),
+                ct-component-var($root, $theme, link, parent, hover, stripe-color)
+              );
+            }
+          }
+
+          &.ct-menu__item--active-trail {
+            > .ct-menu__item__link {
+              &,
+              &:active,
+              &:visited {
+                @include _ct-side-navigation-print-menu-item(
+                  ct-component-var($root, $theme, link, parent, active, background-color),
+                  ct-component-var($root, $theme, link, parent, active, border-color),
+                  ct-component-var($root, $theme, link, parent, active, color),
+                  ct-component-var($root, $theme, link, parent, active, stripe-color)
+                );
+              }
+
+              &:hover,
+              &:focus-visible {
+                @include _ct-side-navigation-print-menu-item(
+                  ct-component-var($root, $theme, link, parent, hover, background-color),
+                  ct-component-var($root, $theme, link, parent, hover, border-color),
+                  ct-component-var($root, $theme, link, parent, hover, color),
+                  ct-component-var($root, $theme, link, parent, hover, stripe-color)
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+//
+// Grid component stories.
+//
+
+.story-grid-wrapper {
+  background-color: #efefef;
+
+  .container {
+    box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) red inset;
+    background-color: white;
+
+    .row {
+      outline: ct-particle(0.125) solid rgba(#563d7c, 0.1);
+
+      // Column.
+      div {
+        outline: ct-particle(0.125) solid rgba(blue, 0.5);
+        background-color: rgba(#563d7c, 0.15);
+        height: ct-particle(10);
+
+        // Column content.
+        span {
+          box-shadow: 0 0 0 ct-particle(0.125) green inset;
+          height: ct-particle(10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

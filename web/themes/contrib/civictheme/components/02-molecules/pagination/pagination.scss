@@ -1,0 +1,98 @@
+//
+// Pagination component.
+//
+
+.ct-pager {
+  $root: &;
+
+  @include ct-typography('label-regular');
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+  border-top-width: ct-particle(0.125);
+  border-top-style: solid;
+  padding: ct-spacing(3);
+
+  @include ct-breakpoint(m) {
+    width: 100%;
+    border-bottom-width: ct-particle(0.125);
+    border-bottom-style: solid;
+  }
+
+  #{$root}__items_per_page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: ct-spacing(4);
+
+    @include ct-breakpoint(m) {
+      width: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  #{$root}__items_per_page__label {
+    align-self: center;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  #{$root}__items_per_page__select {
+    min-width: ct-particle(10);
+    margin-left: ct-spacing();
+    padding: 0 ct-spacing(2) 0 ct-spacing(2);
+  }
+
+  #{$root}__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    @include ct-breakpoint(m) {
+      margin-left: auto;
+    }
+  }
+
+  #{$root}__item--ellipsis {
+    padding: 0 ct-spacing();
+    text-align: center;
+  }
+
+  #{$root}__item--first,
+  #{$root}__item--previous {
+    padding: 0 ct-spacing(1) 0 0;
+
+    @include ct-breakpoint(m) {
+      padding: 0 ct-spacing(2) 0 0;
+    }
+  }
+
+  #{$root}__item--next,
+  #{$root}__item--last {
+    padding: 0 0 0 ct-spacing(1);
+
+    @include ct-breakpoint(m) {
+      padding: 0 0 0 ct-spacing(2);
+    }
+  }
+
+  #{$root}__item__link {
+    padding: 0 ct-spacing();
+    white-space: nowrap;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    border-top-color: ct-component-var($root, $theme, border-color);
+    border-bottom-color: ct-component-var($root, $theme, border-color);
+  }
+}

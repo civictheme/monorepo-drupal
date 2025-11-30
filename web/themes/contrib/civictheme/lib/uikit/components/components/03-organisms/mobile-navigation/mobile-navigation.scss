@@ -1,0 +1,233 @@
+//
+// Mobile Navigation component.
+//
+// Note: typography and icon sizes are specified explicitly as these elements
+// have custom appearance unique to mobile menu (i.e., no responsive sizing).
+
+@use 'sass:math';
+
+$ct-mobile-navigation-spacing: ct-spacing(2);
+
+.ct-mobile-navigation {
+  $root: &;
+
+  display: block;
+
+  @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  #{$root}__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #{$root}__top-menu-wrapper {
+    flex-grow: 1;
+
+    // Padding on the first and other panels looks the same, but specified
+    // separately as first panel contains other elements (not only menu items).
+    padding: 0 $ct-mobile-navigation-spacing;
+  }
+
+  #{$root}__bottom-menu-wrapper {
+    padding: 0 $ct-mobile-navigation-spacing;
+  }
+
+  .ct-menu {
+    padding: 0;
+  }
+
+  #{$root}__top-menu {
+    margin: 0;
+
+    .ct-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $ct-mobile-navigation-spacing;
+    }
+
+    .ct-menu__item {
+      border-bottom-width: ct-particle(0.125);
+      border-bottom-style: solid;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .ct-link {
+        width: 100%;
+        padding: ct-spacing(2);
+
+        @include ct-typography('label-large');
+        @include ct-link-decoration(false, false, false, false);
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: ct-particle(0.125);
+      border-left-style: solid;
+      padding: $ct-mobile-navigation-spacing;
+      border-radius: 0;
+
+      .ct-icon {
+        @include ct-icon-size();
+      }
+    }
+  }
+
+  #{$root}__bottom-menu {
+    .ct-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $ct-mobile-navigation-spacing;
+    }
+
+    .ct-menu__item {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .ct-link {
+        width: 100%;
+        padding: ct-spacing(2);
+
+        @include ct-link-decoration(false, false, false, false);
+        @include ct-typography('label-regular');
+
+        @include ct-breakpoint('xxs') {
+          font-weight: normal;
+        }
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: ct-particle(0.125);
+      border-left-style: solid;
+      padding: math.div($ct-mobile-navigation-spacing, 2);
+      border-radius: 0;
+
+      .ct-icon {
+        @include ct-icon-size('small');
+      }
+    }
+  }
+
+  // "Close a single panel" trigger.
+  #{$root}__close-trigger {
+    padding: $ct-mobile-navigation-spacing;
+    padding-top: 0;
+
+    [data-flyout-close-trigger] {
+      padding: 0;
+      float: none;
+      font-weight: bold;
+      background-color: transparent;
+
+      @include ct-typography('label-large');
+
+      .ct-icon {
+        display: block;
+        margin-bottom: ct-spacing();
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    [data-flyout-panel] {
+      @include ct-component-property($root, $theme, panel, background-color);
+    }
+
+    .ct-mobile-navigation__top-menu-wrapper {
+      @include ct-component-property($root, $theme, top-menu, background-color);
+    }
+
+    .ct-mobile-navigation__bottom-menu-wrapper {
+      @include ct-component-property($root, $theme, bottom-menu, background-color);
+    }
+
+    .ct-menu__item {
+      border-bottom-color: ct-component-var($root, $theme, menu-divider, border-color);
+
+      .ct-link {
+        @include ct-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+        @include ct-link-colors(
+          ct-component-var($root, $theme, menu-item, color),
+          ct-component-var($root, $theme, menu-item, hover-color)
+        );
+      }
+    }
+
+    #{$root}__open-subsection-trigger {
+      border-left-color: ct-component-var($root, $theme, menu-divider, border-color);
+      background-color: transparent;
+
+      &:focus-visible {
+        @include ct-outline-theme($theme);
+      }
+
+      .ct-icon {
+        @include ct-component-property($root, $theme, subsection-trigger, color);
+      }
+    }
+
+    #{$root}__close-trigger {
+      [data-flyout-close-trigger] {
+        color: ct-component-var($root, $theme, subsection-heading, color);
+
+        &:focus-visible {
+          @include ct-outline-theme($theme);
+        }
+
+        .ct-icon {
+          @include ct-component-property($root, $theme, subsection-heading, icon-color);
+        }
+      }
+    }
+  }
+}
+
+// Mobile navigation open trigger.
+.ct-mobile-navigation-trigger {
+  $root: &;
+
+  @include ct-print-hide();
+
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  @include ct-typography-ruleset(($ct-font-base-size * 0.875, ct-icon-size-dimension('regular', 'xxs', 'height'), 400, 'primary', 0));
+
+  display: inline;
+
+  @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  .ct-icon {
+    @include ct-icon-size('extra-small');
+
+    vertical-align: middle;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    &:focus-visible {
+      @include ct-outline-theme($theme);
+    }
+  }
+}
+
+// Mobile navigation close button.
+.ct-mobile-navigation-close {
+  text-align: right;
+  padding: $ct-mobile-navigation-spacing;
+
+  [data-flyout-close-all-trigger] {
+    float: none;
+  }
+}

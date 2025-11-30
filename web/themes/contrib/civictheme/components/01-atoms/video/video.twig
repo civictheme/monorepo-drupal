@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Video component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title of the video.
+ * - has_controls: [boolean] If video should have controls.
+ * - sources: [array] Array of sources:
+ *   - url: [string] URL of the source.
+ *   - type: [string] Type name like 'video/mp4'.
+ * - poster: [string] Optional URL of the video poster image.
+ * - width: [string] Optional width of the video.
+ * - height: [string] Optional height of the video.
+ * - fallback_text: [string] Message for browsers not supporting HTML5 video.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if sources is not empty %}
+  {% if fallback_text is empty %}
+    {% set fallback_text = "Your browser doesn't support HTML5 video." %}
+  {% endif %}
+
+  {% set attributes = attributes|default('') %}
+
+  {% if title is not empty %}
+    {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
+  {% endif %}
+
+  {% if has_controls %}
+    {% set attributes = attributes ~ 'controls' %}
+  {% endif %}
+
+  {% if poster is not empty %}
+    {% set attributes = attributes ~ 'poster="' ~ poster ~ '"' %}
+  {% endif %}
+
+  {% if width is not empty %}
+    {% set attributes = attributes ~ 'width="' ~ width ~ '"' %}
+  {% endif %}
+
+  {% if height is not empty %}
+    {% set attributes = attributes ~ 'height="' ~ height ~ '"' %}
+  {% endif %}
+
+  <video class="ct-video {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% for source in sources %}
+      <source src="{{ source.url }}" type="{{ source.type }}"/>
+    {% endfor %}
+    {{ fallback_text }}
+  </video>
+{% endif %}

@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Logo component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Type:
+     - default: Display a Primary logo.
+     - stacked: Display both Primary and Secondary logos stacked vertically.
+     - inline: Display both primary and secondary logos inline horizontally.
+       On mobile, Secondary logo will be hidden.
+     - inline-stacked: Display both primary and secondary logos inline horizontally.
+       On mobile, this will automatically converts to 'stacked'.
+ * - logos: [object] Object with 'primary' and 'secondary' keys:
+ *    - breakpoint: [object] Object with 'mobile' and 'desktop' keys:
+ *       - url: [string] URL for the logo.
+ *       - alt: [string] Image alt text.
+ * - url: [string] Optional URL that wraps the logo.
+ * - title: [string] Optional logo title attribute.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set type = type in ['default', 'inline', 'stacked', 'inline-stacked'] ? type : 'default' %}
+{% set type_class = 'ct-logo--%s'|format(type|default('default')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+
+{% if logos is not empty %}
+  {% if url is not empty %}
+    <a class="ct-logo {{ modifier_class }}" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% else %}
+    <div class="ct-logo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% endif %}
+
+  {% for logo_type, logo in logos %}
+    {% if (type == 'default' and logo_type == 'primary') or type != 'default' %}
+      {% if logo_type == 'secondary' %}
+        <span class="ct-logo__stripe {{ type == 'inline' ? 'hide-xxs show-l' : '' }}"></span>
+      {% endif %}
+      {% for breakpoint, img in logo %}
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          url: img.url,
+          alt: img.alt,
+          modifier_class: 'ct-logo__image ct-logo__image--' ~ breakpoint ~ ' ' ~ (breakpoint == 'mobile' ? (type == 'inline' and logo_type == 'secondary' ? 'hide-xxs' : 'hide-l') : 'hide-xxs show-l'),
+        } only %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if url is not empty %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
+{% endif %}

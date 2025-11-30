@@ -1,0 +1,21 @@
+//
+// Elevation stories.
+//
+
+@use 'sass:string';
+
+.story-elevation-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  @include ct-generate-class-variations-from-map($ct-elevations, 'story-elevation') using($key, $value, $index) {
+    width: ct-particle(20);
+    height: ct-particle(20);
+    margin: ct-spacing(6) ct-spacing(10)  ct-particle(12) 0;
+    border-radius: ct-spacing(0.5);
+    position: relative;
+    background-color: white;
+
+    @include ct-elevation($key);
+  }
+}

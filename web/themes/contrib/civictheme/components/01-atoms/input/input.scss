@@ -1,0 +1,76 @@
+//
+// Input component.
+//
+
+.ct-input {
+  $root: &;
+
+  margin-bottom: ct-spacing(2);
+
+  &--disabled {
+    opacity: 50%;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: ct-spacing();
+  }
+
+  &__element {
+    border: ct-particle(0.125) solid;
+    border-radius: $ct-input-border-radius;
+    padding: ct-spacing(1.5) ct-spacing(5) ct-spacing(1.5) ct-spacing(2);
+    width: 100%;
+
+    &::placeholder {
+      @include ct-typography('text-regular');
+    }
+  }
+
+  &--tel {
+    width: 50%;
+    margin: 0 auto 0 0;
+  }
+
+  &--radio {
+    display: inline;
+  }
+
+  &--checkbox {
+    display: inline;
+  }
+
+  &--hidden {
+    margin-bottom: 0;
+  }
+
+  &__state {
+    position: relative;
+    margin-left: - ct-spacing(4);
+
+    svg {
+      width: ct-spacing(2);
+      height: ct-spacing(2);
+      vertical-align: middle;
+    }
+  }
+
+  &.ct-theme-light {
+    #{$root}__element {
+      border-color: $ct-input-light-border-color;
+      background-color: $ct-input-light-background-color;
+
+      &:hover {
+        box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-border-color;
+      }
+
+      &:focus-visible {
+        background-color: $ct-input-light-focus-background-color;
+        color: $ct-input-light-focus-color;
+        outline: $ct-input-light-focus-outline-color;
+        border-color: $ct-input-light-focus-border-color;
+        box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
+      }
+    }
+  }
+}

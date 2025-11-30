@@ -1,0 +1,39 @@
+//
+// Service Card component.
+//
+
+.ct-service-card {
+  $root: &;
+
+  @include ct-elevation-interaction();
+  @include ct-highlight-stripe-horizontal($ct-service-card-stripe-height, $ct-service-card-border-radius, 0);
+
+  position: relative;
+  border-radius: $ct-service-card-border-radius;
+  width: 100%;
+
+  #{$root}__content {
+    padding: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(4);
+    }
+  }
+
+  #{$root}__title {
+    text-align: center;
+  }
+
+  #{$root}__links {
+    margin-top: ct-spacing(2);
+
+    .ct-item-list__item {
+      text-align: center;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+  }
+}

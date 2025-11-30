@@ -1,0 +1,89 @@
+//
+// Alert component.
+//
+
+@use 'sass:map';
+
+.ct-alert {
+  $root: &;
+
+  position: relative;
+  padding: ct-spacing(2);
+
+  @include ct-breakpoint(m) {
+    padding: ct-spacing(3);
+  }
+
+  @include ct-typography('label-small');
+
+  #{$root}__title {
+    @include ct-typography('heading-6');
+
+    display: flex;
+    align-items: center;
+
+    @include ct-breakpoint-upto('m') {
+      margin-bottom: ct-spacing();
+    }
+  }
+
+  #{$root}__icon {
+    width: ct-particle(3);
+    margin-right: ct-spacing();
+
+    @include ct-breakpoint(m) {
+      margin-right: ct-spacing(2);
+    }
+  }
+
+  #{$root}__summary {
+    display: flex;
+    align-items: center;
+
+    @include ct-breakpoint(m) {
+      position: relative;
+    }
+
+    p {
+      &:nth-last-child(-n+2) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  #{$root}__dismiss-button {
+    cursor: pointer;
+    margin-left: ct-spacing(3);
+    position: absolute;
+    top: ct-spacing(2);
+    right: ct-spacing(2);
+    background-color: transparent;
+    padding: 0;
+
+    @include ct-breakpoint(m) {
+      @include ct-typography('heading-6');
+
+      position: unset;
+      align-self: center;
+      margin-left: auto;
+      top: 50%;
+      bottom: 50%;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    $types: ('information', 'warning', 'error', 'success');
+
+    @each $type in $types {
+      &#{$root}--#{$type} {
+        @include ct-component-property($root, $theme, $type, background-color);
+        @include ct-component-property($root, $theme, $type, color);
+
+        #{$root}__dismiss-button,
+        #{$root}__icon {
+          @include ct-component-property($root, $theme, $type, icon, color);
+        }
+      }
+    }
+  }
+}

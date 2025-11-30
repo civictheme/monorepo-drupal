@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Page tempalte.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - links: [array] Array of links.
+ * - items: [array] Array of alternative links.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-page {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <a id="top"></a>
+
+  {% block header %}
+    {% include '@organisms/header/header.twig' with {
+      theme: header_theme,
+      content_top1: header_top_1,
+      content_top2: header_top_2,
+      content_top3: header_top_3,
+      content_middle1: header_middle_1,
+      content_middle2: header_middle_2,
+      content_middle3: header_middle_3,
+      content_bottom1: header_bottom_1,
+    } only %}
+  {% endblock %}
+
+  <a id="banner"></a>
+
+  {% block banner %}
+    {{ banner }}
+  {% endblock %}
+
+  {% if highlighted is not empty %}
+    {% block highlighted %}
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ highlighted }}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+  {% endif %}
+
+  {% block content %}
+    {% include '@base/layout/layout.twig' with {
+      content: content,
+      content_top: content_top,
+      content_bottom: content_bottom,
+      sidebar: sidebar,
+      hide_sidebar: hide_sidebar,
+      is_contained: content_contained,
+      vertical_spacing: vertical_spacing,
+      sidebar_attributes: sidebar_attributes,
+      content_attributes: content_attributes,
+    } only %}
+  {% endblock %}
+
+  {% block footer %}
+    {% include '@organisms/footer/footer.twig' with {
+      theme: footer_theme,
+      logo: footer_logo,
+      background_image: footer_background_image,
+      content_top1: footer_top_1,
+      content_top2: footer_top_2,
+      content_middle1: footer_middle_1,
+      content_middle2: footer_middle_2,
+      content_middle3: footer_middle_3,
+      content_middle4: footer_middle_4,
+      content_bottom1: footer_bottom_1,
+      content_bottom2: footer_bottom_2,
+    } only %}
+  {% endblock %}
+
+  {% block back_to_top %}
+    {% include '@organisms/back-to-top/back-to-top.twig' with {
+      theme: theme,
+    } only %}
+  {% endblock %}
+</div>

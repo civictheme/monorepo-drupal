@@ -1,0 +1,60 @@
+//
+// Content Link mixins.
+//
+
+@mixin ct-content-link-base() {
+  text-decoration: underline;
+  text-decoration-thickness: ct-particle(0.25);
+  text-underline-offset: ct-particle(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+  word-break: break-word;
+
+  &:hover {
+    text-decoration: none;
+    padding: ct-spacing(0.375) 0 ct-spacing(0.5);
+  }
+
+  &,
+  &.ct-theme-light {
+    color: $ct-content-link-light-color;
+
+    &:focus-visible {
+      @include ct-outline();
+    }
+
+    &:hover {
+      background-color: $ct-content-link-light-hover-background-color;
+      color: $ct-content-link-light-hover-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    color: $ct-content-link-dark-color;
+
+    &:focus-visible {
+      @include ct-outline(true);
+    }
+
+    &:hover {
+      background-color: $ct-content-link-dark-hover-background-color;
+      color: $ct-content-link-dark-hover-color;
+    }
+  }
+
+  &:visited {
+    @include ct-content-link-visited();
+  }
+}
+
+@mixin ct-content-link-visited() {
+  $root: &;
+
+  @include ct-component-theme($root) using($root, $theme) {
+    color: ct-component-var($root, $theme, visited, color);
+
+    &:hover {
+      @include ct-component-property($root, $theme, visited, hover, border-color);
+      @include ct-component-property($root, $theme, visited, hover, color);
+    }
+  }
+}

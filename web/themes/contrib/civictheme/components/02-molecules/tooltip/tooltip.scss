@@ -1,0 +1,163 @@
+//
+// Tooltip component.
+//
+
+@use 'sass:math';
+
+.ct-tooltip {
+  $root: &;
+
+  display: inline-block;
+  position: relative;
+
+  #{$root}__button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  #{$root}__description {
+    @include ct-typography('label-small');
+    @include ct-elevation(2);
+
+    display: flex;
+    align-items: center;
+    border-radius: $ct-tooltip-description-border-radius;
+    position: absolute;
+    width: $ct-tooltip-width-mobile;
+    min-height: math.div($ct-tooltip-width-mobile, 2);
+    z-index: $ct-tooltip-z-index;
+
+    &[data-popper-placement^='top'] > [data-tooltip-arrow] {
+      bottom: -$ct-tooltip-triangle-width;
+      width: $ct-tooltip-triangle-height * 2;
+      height: $ct-tooltip-triangle-width;
+
+      &::before {
+        border-left: $ct-tooltip-triangle-height solid transparent;
+        border-right: $ct-tooltip-triangle-height solid transparent;
+        border-top: $ct-tooltip-triangle-width solid;
+      }
+    }
+
+    &[data-popper-placement^='bottom'] > [data-tooltip-arrow] {
+      top: -$ct-tooltip-triangle-width;
+      width: $ct-tooltip-triangle-height * 2;
+      height: $ct-tooltip-triangle-width;
+
+      &::before {
+        border-left: $ct-tooltip-triangle-height solid transparent;
+        border-right: $ct-tooltip-triangle-height solid transparent;
+        border-bottom: $ct-tooltip-triangle-width solid;
+      }
+    }
+
+    &[data-popper-placement^='left'] > [data-tooltip-arrow] {
+      right: -$ct-tooltip-triangle-width;
+      height: $ct-tooltip-triangle-height * 2;
+
+      &::before {
+        border-top: $ct-tooltip-triangle-height solid transparent;
+        border-left: $ct-tooltip-triangle-width solid;
+        border-bottom: $ct-tooltip-triangle-height solid transparent;
+      }
+    }
+
+    &[data-popper-placement^='right'] > [data-tooltip-arrow] {
+      left: -$ct-tooltip-triangle-width;
+      height: $ct-tooltip-triangle-height * 2;
+
+      &::before {
+        border-top: $ct-tooltip-triangle-height solid transparent;
+        border-right: $ct-tooltip-triangle-width solid;
+        border-bottom: $ct-tooltip-triangle-height solid transparent;
+      }
+    }
+
+    @include ct-breakpoint(m) {
+      width: $ct-tooltip-width;
+    }
+
+    [data-tooltip-close] {
+      margin-left: auto;
+      padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing();
+      align-self: start;
+      cursor: pointer;
+    }
+  }
+
+  &:not([data-tooltip-visible]) {
+    #{$root}__description {
+      @include ct-visually-hidden();
+    }
+
+    #{$root}__arrow {
+      @include ct-visually-hidden();
+    }
+  }
+
+  #{$root}__description__inner {
+    padding: ct-spacing(3);
+  }
+
+  // Triangle.
+  #{$root}__arrow {
+    width: $ct-tooltip-triangle-width;
+    height: $ct-tooltip-triangle-height;
+    display: inline-block;
+    position: absolute;
+    z-index: -1;
+
+    &::before {
+      width: 0;
+      height: 0;
+      position: absolute;
+      z-index: $ct-tooltip-z-index;
+      content: '';
+      top: 0;
+      left: 0;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__button {
+      @include ct-component-property($root, $theme, icon, color);
+
+      &:focus-visible {
+        @include ct-outline-theme($theme);
+      }
+    }
+
+    #{$root}__description {
+      @include ct-component-property($root, $theme, description, color);
+      @include ct-component-property($root, $theme, description, background-color);
+
+      &[data-popper-placement^='top'] > [data-tooltip-arrow] {
+        &::before {
+          border-top-color: ct-component-var($root, $theme, description, background-color);
+        }
+      }
+
+      &[data-popper-placement^='bottom'] > [data-tooltip-arrow] {
+        &::before {
+          border-bottom-color: ct-component-var($root, $theme, description, background-color);
+        }
+      }
+
+      &[data-popper-placement^='left'] > [data-tooltip-arrow] {
+        &::before {
+          border-left-color: ct-component-var($root, $theme, description, background-color);
+        }
+      }
+
+      &[data-popper-placement^='right'] > [data-tooltip-arrow] {
+        &::before {
+          border-right-color: ct-component-var($root, $theme, description, background-color);
+        }
+      }
+    }
+  }
+}

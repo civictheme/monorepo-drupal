@@ -1,0 +1,23 @@
+//
+// Social Links component.
+//
+
+.ct-social-links {
+  $root: &;
+
+  #{$root}__button {
+    line-height: 0;
+  }
+
+  &#{$root}--with-border {
+    #{$root}__button {
+      border: ct-particle(0.125) solid currentcolor;
+      border-radius: ct-particle(12);
+      padding: ct-spacing(1.375);
+
+      @include ct-breakpoint(m) {
+        padding: ct-spacing(1.625);
+      }
+    }
+  }
+}

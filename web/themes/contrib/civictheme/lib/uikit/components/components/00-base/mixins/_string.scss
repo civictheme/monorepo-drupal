@@ -1,0 +1,76 @@
+//
+// String functions to extend SASS functionality.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+//
+// Replace $search with $replace in $string.
+//
+@function ct-str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + ct-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function ct-string-last-index($string, $needle) {
+  $index: string.index($string, $needle);
+  $result: $index;
+
+  @if $index {
+    @for $i from $index + string.length($needle) through string.length($string) {
+      @if string.slice($string, $i, $i + string.length($needle) - 1) == $needle {
+        $result: $i;
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function ct-string-is-quoted($string) {
+  @if type-of($string) != string {
+    @return false;
+  }
+
+  @return "#{$string#{''}}" != $string;
+}
+
+// Convert to string.
+@function ct-string($string) {
+  @if not ct-string-is-quoted($string) {
+    $string: "#{$string#{''}}";
+  }
+
+  @return $string;
+}
+
+@function ct-unquote($value) {
+  @if type-of($value) != string {
+    @return $value;
+  }
+
+  @return string.unquote($value);
+}
+
+@function ct-string-split($string, $separator) {
+  $result: ();
+  $index: string.index($string, $separator);
+
+  @while $index != null {
+    $substring: string.slice($string, 1, $index - 1);
+    $result: list.append($result, $substring);
+    $string: string.slice($string, $index + string.length($separator));
+    $index: string.index($string, $separator);
+  }
+
+  $split-arr: list.append($result, $string);
+
+  @return $split-arr;
+}

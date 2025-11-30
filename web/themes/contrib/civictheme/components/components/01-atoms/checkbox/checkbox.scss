@@ -1,0 +1,254 @@
+//
+// Checkbox component.
+//
+
+.ct-checkbox {
+  $root: &;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &--disabled {
+    opacity: 50%;
+  }
+
+  .ct-checkbox__element {
+    position: absolute;
+    // stylelint-disable-next-line alpha-value-notation
+    opacity: 0;
+    width: ct-particle(3.25);
+    height: ct-particle(3.25);
+    z-index: 1;
+    cursor: pointer;
+
+    & + .ct-checkbox__state {
+      &::before {
+        content: '';
+        border-radius: $ct-checkbox-border-radius;
+        border: ct-particle(0.125) solid;
+        display: block;
+        width: ct-particle(3) - rem(2px);
+        height: ct-particle(3) - rem(2px);
+        position: relative;
+        margin-right: ct-spacing();
+        vertical-align: middle;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      &::after {
+        position: absolute;
+        top: -1 * ct-particle(0.25);
+        left: ct-particle(0.25);
+        display: inline-block;
+        width: ct-particle(3) - rem(2px);
+        height: ct-particle(3) - rem(2px);
+        content: '';
+      }
+    }
+
+    &:checked {
+      & + .ct-checkbox__state {
+        &::before {
+          width: ct-particle(3) - rem(2px);
+          height: ct-particle(3) - rem(2px);
+          border-width: ct-particle(0.25);
+        }
+      }
+    }
+
+    &:focus-visible,
+    &:hover {
+      & + .ct-checkbox__state {
+        &::before {
+          box-shadow: 0 0 0 ct-particle(0.125);
+        }
+      }
+    }
+
+    &:disabled {
+      pointer-events: none;
+    }
+  }
+
+  #{$root}__label {
+    @include ct-typography('text-regular');
+  }
+
+  &.ct-theme-light {
+    #{$root}__label {
+      color: $ct-checkbox-label-light-color;
+    }
+
+    #{$root}__element {
+      & + .ct-checkbox__state {
+        &::before {
+          border-color: $ct-checkbox-light-border-color;
+        }
+      }
+
+      &:active {
+        & + .ct-checkbox__state {
+          &::before {
+            background-color: $ct-checkbox-light-active-background-color;
+            border-color: $ct-checkbox-light-active-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
+          }
+        }
+      }
+
+      &:focus-visible {
+        & + .ct-checkbox__state {
+          &::before {
+            @include ct-outline();
+
+            background-color: $ct-checkbox-light-selected-background-color;
+            border-color: $ct-checkbox-light-selected-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
+          }
+        }
+      }
+
+      &:hover {
+        & + .ct-checkbox__state {
+          &::before {
+            box-shadow: 0 0 0 ct-particle(0.125) $ct-checkbox-light-border-color;
+          }
+        }
+      }
+
+      &:checked {
+        & + .ct-checkbox__state {
+          &::before {
+            background-color: $ct-checkbox-light-selected-background-color;
+            border-color: $ct-checkbox-light-selected-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
+          }
+
+          &::after {
+            content: ct-color-svg-fill($ct-checkbox-check, $ct-checkbox-light-check-color);
+          }
+        }
+      }
+    }
+
+    &.ct-checkbox--success {
+      #{$root}__element {
+        &:checked + .ct-checkbox__state {
+          &::before {
+            border-color: $ct-input-light-success-border-color;
+            background-color: $ct-input-light-success-border-color;
+          }
+        }
+      }
+    }
+
+    &.ct-checkbox--error {
+      #{$root}__element {
+        & + .ct-checkbox__state {
+          &::before {
+            border-color: $ct-input-light-error-border-color;
+          }
+        }
+
+        &:checked {
+          & + .ct-checkbox__state {
+            &::before {
+              border-color: $ct-input-light-error-border-color;
+              background-color: $ct-input-light-error-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.ct-theme-dark {
+    #{$root}__label {
+      color: $ct-checkbox-label-dark-color;
+    }
+
+    #{$root}__element {
+      & + .ct-checkbox__state {
+        &::before {
+          border-color: $ct-checkbox-dark-border-color;
+        }
+      }
+
+      &:active {
+        & + .ct-checkbox__state {
+          &::before {
+            background-color: $ct-checkbox-dark-active-background-color;
+            border-color: $ct-checkbox-dark-active-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
+          }
+        }
+      }
+
+      &:focus-visible {
+        & + .ct-checkbox__state {
+          &::before {
+            @include ct-outline(true);
+
+            background-color: $ct-checkbox-dark-selected-background-color;
+            border-color: $ct-checkbox-dark-selected-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
+          }
+        }
+      }
+
+      &:hover {
+        & + .ct-checkbox__state {
+          &::before {
+            box-shadow: 0 0 0 ct-particle(0.125) $ct-checkbox-dark-border-color;
+          }
+        }
+      }
+
+      &:checked {
+        & + .ct-checkbox__state {
+          &::before {
+            background-color: $ct-checkbox-dark-selected-background-color;
+            border-color: $ct-checkbox-dark-selected-background-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
+          }
+
+          &::after {
+            content: ct-color-svg-fill($ct-checkbox-check, $ct-checkbox-dark-check-color);
+          }
+        }
+      }
+    }
+
+    &.ct-checkbox--success {
+      #{$root}__element {
+        &:checked + .ct-checkbox__state {
+          &::before {
+            border-color: $ct-input-dark-success-border-color;
+            background-color: $ct-input-dark-success-border-color;
+          }
+        }
+      }
+    }
+
+    &.ct-checkbox--error {
+      #{$root}__element {
+        & + .ct-checkbox__state {
+          &::before {
+            border-color: $ct-input-dark-error-border-color;
+          }
+        }
+
+        &:checked {
+          & + .ct-checkbox__state {
+            &::before {
+              border-color: $ct-input-dark-error-border-color;
+              background-color: $ct-input-dark-error-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Search component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Text for the link.
+ * - url: [string] Search page URL.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-search hide-xxs show-m-flex {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% include '@atoms/link/link.twig' with {
+    theme: theme|default('light'),
+    text: text,
+    url: url,
+    icon: 'magnifier',
+    icon_placement: 'after',
+    modifier_class: 'ct-search__link'
+  } only %}
+</div>

@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * Promo component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] Title text.
+ * - content: [string] Content.
+ * - is_contained: [boolean] Contained or not.
+ * - link: [object] Link:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Open link in the new window.
+ *   - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-promo--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_background_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% set is_contained = is_contained is not defined or is_contained != false ? true : false %}
+
+{% if title is not empty or content is not empty %}
+  <div class="ct-promo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if is_contained %}
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {% endif %}
+              {% block content_top %}
+                {% if content_top is not empty %}
+                  <div class="ct-promo__content-top">
+                    {{ content_top }}
+                  </div>
+                {% endif %}
+              {% endblock %}
+
+              {% block content %}
+                <div class="ct-promo__wrapper">
+                  {% block content_left %}
+                    <div class="ct-promo__inner">
+                      {% if title %}
+                        {% include '@atoms/heading/heading.twig' with {
+                          content: title,
+                          level: 4,
+                          theme: theme,
+                          modifier_class: 'ct-promo__title',
+                        } only %}
+                      {% endif %}
+
+                      {% if content is not empty %}
+                        {% include '@atoms/paragraph/paragraph.twig' with {
+                          theme: theme,
+                          content: content,
+                          allow_html: true,
+                          modifier_class: 'ct-promo__content',
+                        } only %}
+                      {% endif %}
+                    </div>
+                  {% endblock %}
+
+                  {% block content_right %}
+                    {% if link %}
+                      <div class="ct-promo__links">
+                        {% include '@atoms/button/button.twig' with {
+                          theme: theme,
+                          type: 'secondary',
+                          kind: 'link',
+                          size: 'large',
+                          text: link.text,
+                          url: link.url,
+                          is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                          is_external: link.is_external is defined ? link.is_external : false,
+                          modifier_class: 'ct-promo__button',
+                        } only %}
+                      </div>
+                    {% endif %}
+                  {% endblock %}
+                </div>
+              {% endblock %}
+
+              {% block content_bottom %}
+                {% if content_bottom is not empty %}
+                  <div class="ct-promo__content-bottom">
+                    {{ content_bottom }}
+                  </div>
+                {% endif %}
+              {% endblock %}
+            {% if is_contained %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

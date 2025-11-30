@@ -1,0 +1,28 @@
+//
+// Basic Content component.
+//
+
+.ct-basic-content {
+  $root: &;
+
+  &#{$root}--with-background {
+    padding-left: $ct-basic-content-space-horizontal;
+    padding-right: $ct-basic-content-space-horizontal;
+  }
+
+  @include ct-content();
+
+  .ct-content-link {
+    .ct-icon {
+      vertical-align: middle;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-content-theme($theme);
+
+    &.ct-basic-content--with-background {
+      @include ct-component-property($root, $theme, background-color);
+    }
+  }
+}

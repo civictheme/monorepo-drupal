@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Item grid component.
+ *
+ * Variables:
+ * - items: [array] Items array.
+ * - column_count: [number] Number of columns in the container.
+ * - fill_width: [boolean] Stretch "hanging" items to the full width of container or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set column_class = 'col-xxs-12 col-m-%s'|format(12 // column_count|default(1)) %}
+{% set fill_width_class = fill_width ? 'ct-item-grid--fill-width' : '' %}
+{% set modifier_class = '%s %s'|format(fill_width_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <div class="ct-item-grid {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} aria-live="polite">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          <ul class="row ct-item-grid__items">
+            {% for item in items %}
+              {% if item is not empty %}
+                <li class="ct-item-grid__item {{ column_class }}">
+                  {{ item }}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

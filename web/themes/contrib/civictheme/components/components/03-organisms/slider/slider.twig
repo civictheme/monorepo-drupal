@@ -1,0 +1,103 @@
+{#
+/**
+ * @file
+ * Slider component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - title: [string] Slider title.
+ * - slides: [string] Slides.
+ * - previous_label: [string] Text for previous button.
+ * - next_label: [string] Text for next button.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-slider--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_background_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if slides is not empty %}
+  <div class="ct-slider {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="ct-slider__content__top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          <div class="ct-slider__container" data-slider>
+            {% block top_controls %}
+              {% if title is not empty %}
+                {% include '@atoms/heading/heading.twig' with {
+                  theme: theme,
+                  content: title,
+                  level: 3,
+                  modifier_class: 'ct-slider__title'
+                } only %}
+              {% endif %}
+            {% endblock %}
+
+            {% block slides %}
+              <div class="ct-slider__slides" data-slider-panel>
+                <div class="ct-slider__slides__inner" data-slider-rail>
+                  {{ slides }}
+                </div>
+              </div>
+            {% endblock %}
+
+            {% block controls %}
+              <div class="ct-slider__controls">
+                <div class="ct-slider__controls__inner">
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    text: previous_label|default('Previous'),
+                    type: 'secondary',
+                    icon: 'left-arrow',
+                    icon_placement: 'before',
+                    modifier_class: 'ct-slider__controls__previous',
+                    attributes: 'data-slider-previous',
+                  } only %}
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    text: next_label|default('Next'),
+                    type: 'secondary',
+                    icon: 'right-arrow-2',
+                    icon_placement: 'after',
+                    modifier_class: 'ct-slider__controls__next',
+                    attributes: 'data-slider-next',
+                  } only %}
+                </div>
+
+                {% include '@atoms/tag/tag.twig' with {
+                  theme: theme,
+                  content: 'Slide 1',
+                  modifier_class: 'ct-slider__controls__progress-indicator',
+                  attributes: 'aria-live="polite" data-slider-progress tabindex="0"',
+                } only %}
+              </div>
+            {% endblock %}
+          </div>
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="ct-slider__content__bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

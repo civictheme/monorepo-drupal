@@ -1,0 +1,1157 @@
+//
+// CivicTheme components default variables.
+//
+//
+// Do not copy this file for customisations.
+// Use `components/variables.components.scss` instead.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to apply custom
+// heading color and have it propagated to components).
+//
+// Variables organisation rules:
+// 1. Variables are grouped by their atomic type alphabetically.
+// 2. For every component, variables are ordered by:
+//    a. generic values
+//    b. light theme
+//    c. dark theme
+// 3. For every light theme variable, there is a dark theme counterpart.
+// 4. Variables named according to the pattern:
+//    $ct-[component]-[theme]-[?subcomponent]-[?state]-[rule]
+//    where:
+//    a. [component] is a hyphen delimited name of the component
+//    b. [theme] is a theme name (light or dark)
+//    c. [subcomponent] is an optional hyphen-delimited name of the subcomponent
+//    d. [state] is a single or multiple hyphen-delimited name of the state
+//    e. [rule] is an exact CSS rule name
+//
+//    Example 1:
+//    $ct-link-light-visited-hover-background
+//    [component]=link
+//    [theme]=light
+//    [state]=hover over visited
+//    [rule]=background-color
+//
+//    Example 2:
+//    $ct-navigation-light-dropdown-menu-item-active-background-color
+//    [component]=secondary-navigation
+//    [theme]=light
+//    [subcomponent]=menu-item
+//    [state]=active
+//    [rule]=background-color
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+@import 'mixins';
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 BASE                                       //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Collapsible.
+//
+$ct-collapsible-icon-size: 'm' !default;
+$ct-collapsible-light-color: ct-color-light('body') !default;
+$ct-collapsible-light-icon-color: $ct-collapsible-light-color !default;
+$ct-collapsible-dark-color: ct-color-dark('body') !default;
+$ct-collapsible-dark-icon-color: $ct-collapsible-dark-color !default;
+
+// Outline.
+$ct-outline-light: ct-color-light('interaction-focus') !default;
+$ct-outline-dark: ct-color-dark('interaction-focus') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 ATOMS                                      //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Button.
+//
+$ct-button-border-radius: ct-particle(0.5) !default;
+$ct-button-border-width: ct-particle(0.25) !default;
+$ct-button-outline-offset: ct-particle(0.25) !default;
+$ct-button-outline-width: ct-particle(0.375) !default;
+
+// Primary button.
+$ct-button-light-primary-background-color: ct-color-light('interaction-background') !default;
+$ct-button-light-primary-border-color: $ct-button-light-primary-background-color !default;
+$ct-button-light-primary-color: ct-color-light('interaction-text') !default;
+$ct-button-light-primary-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-primary-hover-border-color: $ct-button-light-primary-hover-background-color !default;
+$ct-button-light-primary-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-button-light-primary-visited-background-color: $ct-button-light-primary-background-color !default;
+$ct-button-light-primary-visited-border-color: $ct-button-light-primary-border-color !default;
+$ct-button-light-primary-visited-color: $ct-button-light-primary-color !default;
+$ct-button-light-primary-active-background-color: $ct-button-light-primary-hover-background-color !default;
+$ct-button-light-primary-active-border-color: $ct-button-light-primary-hover-border-color !default;
+$ct-button-light-primary-active-color: $ct-button-light-primary-hover-color !default;
+$ct-button-light-primary-focus-background-color: false !default;
+$ct-button-light-primary-focus-border-color: false !default;
+$ct-button-light-primary-focus-color: false !default;
+$ct-button-light-primary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-primary-background-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-primary-border-color: $ct-button-dark-primary-background-color !default;
+$ct-button-dark-primary-color: ct-color-dark('interaction-text') !default;
+$ct-button-dark-primary-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-primary-hover-border-color: $ct-button-dark-primary-hover-background-color !default;
+$ct-button-dark-primary-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-button-dark-primary-visited-background-color: $ct-button-dark-primary-background-color !default;
+$ct-button-dark-primary-visited-border-color: $ct-button-dark-primary-border-color !default;
+$ct-button-dark-primary-visited-color: $ct-button-dark-primary-color !default;
+$ct-button-dark-primary-active-background-color: $ct-button-dark-primary-hover-background-color !default;
+$ct-button-dark-primary-active-border-color: $ct-button-dark-primary-hover-border-color !default;
+$ct-button-dark-primary-active-color: $ct-button-dark-primary-hover-color !default;
+$ct-button-dark-primary-focus-background-color: false !default;
+$ct-button-dark-primary-focus-border-color: false !default;
+$ct-button-dark-primary-focus-color: false !default;
+$ct-button-dark-primary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+// Secondary button.
+$ct-button-light-secondary-background-color: transparent !default;
+$ct-button-light-secondary-border-color: ct-color-light('interaction-background') !default;
+$ct-button-light-secondary-color: $ct-button-light-secondary-border-color !default;
+$ct-button-light-secondary-hover-background-color: $ct-button-light-secondary-background-color !default;
+$ct-button-light-secondary-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-secondary-hover-color: $ct-button-light-secondary-hover-border-color !default;
+$ct-button-light-secondary-visited-background-color: $ct-button-light-secondary-background-color !default;
+$ct-button-light-secondary-visited-border-color: $ct-button-light-secondary-border-color !default;
+$ct-button-light-secondary-visited-color: $ct-button-light-secondary-color !default;
+$ct-button-light-secondary-active-background-color: $ct-button-light-secondary-hover-background-color !default;
+$ct-button-light-secondary-active-border-color: $ct-button-light-secondary-hover-border-color !default;
+$ct-button-light-secondary-active-color: $ct-button-light-secondary-hover-color !default;
+$ct-button-light-secondary-focus-background-color: false !default;
+$ct-button-light-secondary-focus-border-color: false !default;
+$ct-button-light-secondary-focus-color: false !default;
+$ct-button-light-secondary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-secondary-background-color: transparent !default;
+$ct-button-dark-secondary-border-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-secondary-color: $ct-button-dark-secondary-border-color !default;
+$ct-button-dark-secondary-hover-background-color: $ct-button-dark-secondary-background-color !default;
+$ct-button-dark-secondary-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-secondary-hover-color: $ct-button-dark-secondary-hover-border-color !default;
+$ct-button-dark-secondary-visited-background-color: $ct-button-dark-secondary-background-color !default;
+$ct-button-dark-secondary-visited-border-color: $ct-button-dark-secondary-border-color !default;
+$ct-button-dark-secondary-visited-color: $ct-button-dark-secondary-color !default;
+$ct-button-dark-secondary-active-background-color: $ct-button-dark-secondary-hover-background-color !default;
+$ct-button-dark-secondary-active-border-color: $ct-button-dark-secondary-hover-border-color !default;
+$ct-button-dark-secondary-active-color: $ct-button-dark-secondary-hover-color !default;
+$ct-button-dark-secondary-focus-background-color: false !default;
+$ct-button-dark-secondary-focus-border-color: false !default;
+$ct-button-dark-secondary-focus-color: false !default;
+$ct-button-dark-secondary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+// Tertiary button.
+$ct-button-light-tertiary-background-color: transparent !default;
+$ct-button-light-tertiary-border-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-color: ct-color-light('interaction-background') !default;
+$ct-button-light-tertiary-hover-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-hover-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-tertiary-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-tertiary-visited-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-tertiary-visited-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-tertiary-visited-color: $ct-button-light-tertiary-color !default;
+$ct-button-light-tertiary-active-background-color: $ct-button-light-tertiary-hover-background-color !default;
+$ct-button-light-tertiary-active-border-color: $ct-button-light-tertiary-hover-border-color !default;
+$ct-button-light-tertiary-active-color: $ct-button-light-tertiary-hover-color !default;
+$ct-button-light-tertiary-focus-background-color: false !default;
+$ct-button-light-tertiary-focus-border-color: false !default;
+$ct-button-light-tertiary-focus-color: false !default;
+$ct-button-light-tertiary-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-tertiary-background-color: transparent !default;
+$ct-button-dark-tertiary-border-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-tertiary-hover-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-hover-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-tertiary-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-tertiary-visited-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-tertiary-visited-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-tertiary-visited-color: $ct-button-dark-tertiary-color !default;
+$ct-button-dark-tertiary-active-background-color: $ct-button-dark-tertiary-hover-background-color !default;
+$ct-button-dark-tertiary-active-border-color: $ct-button-dark-tertiary-hover-border-color !default;
+$ct-button-dark-tertiary-active-color: $ct-button-dark-tertiary-hover-color !default;
+$ct-button-dark-tertiary-focus-background-color: false !default;
+$ct-button-dark-tertiary-focus-border-color: false !default;
+$ct-button-dark-tertiary-focus-color: false !default;
+$ct-button-dark-tertiary-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Chip.
+//
+$ct-chip-border-width: ct-particle(0.125) !default;
+$ct-chip-light-background-color: ct-color-light('interaction-text') !default;
+$ct-chip-light-border-color: ct-color-light('interaction-background') !default;
+$ct-chip-light-color: ct-color-light('interaction-background') !default;
+$ct-chip-light-selected-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-selected-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-chip-light-selected-color: ct-color-light('interaction-hover-text') !default;
+$ct-chip-light-hover-background-color: $ct-chip-light-selected-background-color !default;
+$ct-chip-light-hover-border-color: $ct-chip-light-selected-border-color !default;
+$ct-chip-light-hover-color: $ct-chip-light-selected-color !default;
+$ct-chip-light-focus-background-color: false !default;
+$ct-chip-light-focus-border-color: false !default;
+$ct-chip-light-focus-color: false !default;
+$ct-chip-light-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-chip-dark-background-color: ct-color-dark('interaction-text') !default;
+$ct-chip-dark-border-color: ct-color-dark('interaction-background') !default;
+$ct-chip-dark-color: ct-color-dark('interaction-background') !default;
+$ct-chip-dark-selected-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-selected-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-chip-dark-selected-color: ct-color-dark('interaction-hover-text') !default;
+$ct-chip-dark-hover-background-color: $ct-chip-dark-selected-background-color !default;
+$ct-chip-dark-hover-border-color: $ct-chip-dark-selected-border-color !default;
+$ct-chip-dark-hover-color: $ct-chip-dark-selected-color !default;
+$ct-chip-dark-focus-background-color: false !default;
+$ct-chip-dark-focus-border-color: false !default;
+$ct-chip-dark-focus-color: false !default;
+$ct-chip-dark-focus-outline-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Input.
+//
+$ct-input-border-radius: $ct-border-radius, 1 !default;
+$ct-input-light-background-color: ct-color-light('background-light') !default;
+$ct-input-light-border-color: ct-color-light('border-light') !default;
+$ct-input-light-color: ct-color-light('body') !default;
+$ct-input-light-hover-border-color: ct-color-light('interaction-background') !default;
+$ct-input-light-focus-background-color: ct-color-light('background-light') !default;
+$ct-input-light-focus-color: ct-color-light('body') !default;
+$ct-input-light-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-input-light-focus-border-color: ct-color-light('border') !default;
+$ct-input-light-error-border-color: ct-color-light('error') !default;
+$ct-input-light-success-border-color: ct-color-light('success') !default;
+$ct-input-dark-background-color: ct-color-dark('background-light') !default;
+$ct-input-dark-border-color: ct-color-dark('border-light') !default;
+$ct-input-dark-color: ct-color-dark('body') !default;
+$ct-input-dark-hover-border-color: ct-color-dark('interaction-background') !default;
+$ct-input-dark-focus-border-color: ct-color-dark('border') !default;
+$ct-input-dark-error-border-color: ct-color-dark('error') !default;
+$ct-input-dark-success-border-color: ct-color-dark('success') !default;
+
+//
+// Radio.
+//
+$ct-radio-label-light-color: ct-color-light('body') !default;
+$ct-radio-light-border-color: ct-color-light('border-light') !default;
+$ct-radio-light-selected-background-color: ct-color-light('interaction-background') !default;
+$ct-radio-light-active-background-color: ct-color-light('body') !default;
+$ct-radio-light-check-color: ct-color-light('interaction-text') !default;
+$ct-radio-label-dark-color: ct-color-dark('body') !default;
+$ct-radio-dark-border-color: ct-color-dark('border-dark') !default;
+$ct-radio-dark-selected-background-color: ct-color-dark('interaction-background') !default;
+$ct-radio-dark-active-background-color: ct-color-dark('body') !default;
+$ct-radio-dark-check-color: ct-color-dark('interaction-text') !default;
+
+//
+// Checkbox.
+//
+$ct-checkbox-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-checkbox-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' title='approvetick' width='22' height='22' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M18.7104 7.20998C18.6175 7.11625 18.5069 7.04186 18.385 6.99109C18.2632 6.94032 18.1324 6.91418 18.0004 6.91418C17.8684 6.91418 17.7377 6.94032 17.6159 6.99109C17.494 7.04186 17.3834 7.11625 17.2904 7.20998L9.84044 14.67L6.71044 11.53C6.61392 11.4367 6.49998 11.3634 6.37512 11.3142C6.25026 11.265 6.11694 11.2409 5.98276 11.2432C5.84858 11.2455 5.71617 11.2743 5.59309 11.3278C5.47001 11.3812 5.35868 11.4585 5.26544 11.555C5.1722 11.6515 5.09889 11.7654 5.04968 11.8903C5.00048 12.0152 4.97635 12.1485 4.97867 12.2827C4.98099 12.4168 5.00972 12.5493 5.06321 12.6723C5.1167 12.7954 5.19392 12.9067 5.29044 13L9.13044 16.84C9.2234 16.9337 9.334 17.0081 9.45586 17.0589C9.57772 17.1096 9.70843 17.1358 9.84044 17.1358C9.97245 17.1358 10.1032 17.1096 10.225 17.0589C10.3469 17.0081 10.4575 16.9337 10.5504 16.84L18.7104 8.67998C18.8119 8.58634 18.893 8.47269 18.9484 8.34619C19.0038 8.21969 19.0324 8.08308 19.0324 7.94498C19.0324 7.80688 19.0038 7.67028 18.9484 7.54378C18.893 7.41728 18.8119 7.30363 18.7104 7.20998Z'%3E%3C/path%3E%3C/svg%3E") !default;
+$ct-checkbox-label-light-color: ct-color-light('body') !default;
+$ct-checkbox-light-border-color: ct-color-light('border-light') !default;
+$ct-checkbox-light-selected-background-color: ct-color-light('interaction-background') !default;
+$ct-checkbox-light-active-background-color: ct-color-light('body') !default;
+$ct-checkbox-light-check-color: ct-color-light('interaction-text') !default;
+$ct-checkbox-label-dark-color: ct-color-dark('body') !default;
+$ct-checkbox-dark-border-color: ct-color-dark('border-dark') !default;
+$ct-checkbox-dark-selected-background-color: ct-color-dark('interaction-background') !default;
+$ct-checkbox-dark-active-background-color: ct-color-dark('body') !default;
+$ct-checkbox-dark-check-color: ct-color-dark('interaction-text') !default;
+
+//
+// Field description.
+//
+$ct-field-description-light-color: ct-color-light('body') !default;
+$ct-field-description-dark-color: ct-color-dark('body') !default;
+
+//
+// Field message.
+//
+$ct-field-message-border-radius: $ct-border-radius !default;
+$ct-field-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 85) !default;
+$ct-field-message-light-error-border-color: ct-color-light('error') !default;
+$ct-field-message-light-error-color: ct-color-light('body') !default;
+$ct-field-message-light-error-icon-color: $ct-field-message-light-error-color !default;
+$ct-field-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 85) !default;
+$ct-field-message-light-information-border-color: ct-color-light('information') !default;
+$ct-field-message-light-information-color: ct-color-light('body') !default;
+$ct-field-message-light-information-icon-color: $ct-field-message-light-information-color !default;
+$ct-field-message-light-success-border-color: ct-color-light('success') !default;
+$ct-field-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 85) !default;
+$ct-field-message-light-success-color: ct-color-light('body') !default;
+$ct-field-message-light-success-icon-color: $ct-field-message-light-success-color !default;
+$ct-field-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 85) !default;
+$ct-field-message-light-warning-border-color: ct-color-light('warning') !default;
+$ct-field-message-light-warning-color: ct-color-light('body') !default;
+$ct-field-message-light-warning-icon-color: $ct-field-message-light-warning-color !default;
+$ct-field-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
+$ct-field-message-dark-error-border-color: ct-color-dark('error') !default;
+$ct-field-message-dark-error-color: ct-color-dark('body') !default;
+$ct-field-message-dark-error-icon-color: $ct-field-message-dark-error-color !default;
+$ct-field-message-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 30) !default;
+$ct-field-message-dark-information-border-color: ct-color-dark('information') !default;
+$ct-field-message-dark-information-color: ct-color-dark('body') !default;
+$ct-field-message-dark-information-icon-color: $ct-field-message-dark-information-color !default;
+$ct-field-message-dark-success-border-color: ct-color-dark('success') !default;
+$ct-field-message-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 30) !default;
+$ct-field-message-dark-success-color: ct-color-dark('body') !default;
+$ct-field-message-dark-success-icon-color: $ct-field-message-dark-success-color !default;
+$ct-field-message-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 30) !default;
+$ct-field-message-dark-warning-border-color: ct-color-dark('warning') !default;
+$ct-field-message-dark-warning-color: ct-color-dark('body') !default;
+$ct-field-message-dark-warning-icon-color: $ct-field-message-dark-warning-color !default;
+
+//
+// Field label.
+//
+$ct-label-light-color: ct-color-light('heading') !default;
+$ct-label-light-required-color: ct-color-light('error') !default;
+$ct-label-dark-color: ct-color-dark('heading') !default;
+$ct-label-dark-required-color: ct-color-dark('error') !default;
+
+//
+// Select.
+//
+$ct-select-light-background-color: ct-color-light('background-light') !default;
+$ct-select-light-color: ct-color-light('body') !default;
+$ct-select-light-hover-border-color: ct-color-light('border-light') !default;
+$ct-select-light-focus-border-color: ct-color-light('interaction-background') !default;
+$ct-select-light-error-border-color: ct-color-light('error') !default;
+$ct-select-light-option-background-color: $ct-select-light-background-color !default;
+$ct-select-dark-background-color: ct-color-dark('background-light') !default;
+$ct-select-dark-color: ct-color-dark('body') !default;
+$ct-select-dark-hover-border-color: ct-color-dark('border-light') !default;
+$ct-select-dark-focus-border-color: ct-color-dark('interaction-background') !default;
+$ct-select-dark-error-border-color: ct-color-dark('error') !default;
+$ct-select-dark-option-background-color: $ct-select-dark-background-color !default;
+
+//
+// Content Link.
+//
+$ct-content-link-light-color: ct-color-light('interaction-background') !default;
+$ct-content-link-light-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-content-link-light-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-content-link-light-visited-color: ct-color-light('body') !default;
+$ct-content-link-light-visited-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-content-link-light-visited-hover-border-color: ct-color-light('interaction-focus') !default;
+$ct-content-link-dark-color: ct-color-dark('interaction-background') !default;
+$ct-content-link-dark-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-content-link-dark-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-content-link-dark-visited-color: ct-color-dark('body') !default;
+$ct-content-link-dark-visited-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-content-link-dark-visited-hover-border-color: ct-color-dark('interaction-focus') !default;
+
+//
+// Link.
+//
+$ct-link-light-color: ct-color-light('interaction-background') !default;
+$ct-link-light-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-link-light-visited-color: $ct-link-light-color !default;
+$ct-link-light-active-color: ct-color-light('body') !default;
+$ct-link-dark-color: ct-color-dark('interaction-background') !default;
+$ct-link-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-link-dark-visited-color: $ct-link-dark-color !default;
+$ct-link-dark-active-color: ct-color-dark('body') !default;
+
+//
+// Heading.
+//
+$ct-heading-light-color: ct-color-light('heading') !default;
+$ct-heading-dark-color: ct-color-dark('heading') !default;
+
+//
+// Tag.
+//
+$ct-tag-border-radius: $ct-border-radius !default;
+$ct-tag-border-width: ct-particle(0.125) !default;
+$ct-tag-light-primary-background-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-primary-border-color: $ct-tag-light-primary-background-color !default;
+$ct-tag-light-primary-color: ct-color-light('interaction-text') !default;
+$ct-tag-light-secondary-background-color: transparent !default;
+$ct-tag-light-secondary-border-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-secondary-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-tertiary-background-color: transparent !default;
+$ct-tag-light-tertiary-border-color: transparent !default;
+$ct-tag-light-tertiary-color: ct-color-light('interaction-background') !default;
+$ct-tag-dark-primary-background-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-primary-border-color: $ct-tag-dark-primary-background-color !default;
+$ct-tag-dark-primary-color: ct-color-dark('interaction-text') !default;
+$ct-tag-dark-secondary-background-color: transparent !default;
+$ct-tag-dark-secondary-border-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-secondary-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-tertiary-background-color: transparent !default;
+$ct-tag-dark-tertiary-border-color: transparent !default;
+$ct-tag-dark-tertiary-color: ct-color-dark('interaction-background') !default;
+
+//
+// Table.
+//
+$ct-table-breakpoint: 'm' !default;
+$ct-table-cell-vertical-align: top !default;
+$ct-table-light-background-color: ct-color-light('background-light') !default;
+$ct-table-light-border-color: ct-color-light('border') !default;
+$ct-table-light-caption-color: ct-color-light('body') !default;
+$ct-table-light-color: ct-color-light('body') !default;
+$ct-table-light-footer-border-color: ct-color-light('border') !default;
+$ct-table-light-footer-color: ct-color-light('heading') !default;
+$ct-table-light-header-border-color: ct-color-light('border') !default;
+$ct-table-light-header-color: ct-color-light('heading') !default;
+$ct-table-light-row-even-background-color: ct-color-light('background') !default;
+$ct-table-light-row-even-color: ct-color-light('body') !default;
+$ct-table-light-row-odd-background-color: ct-color-light('background-light') !default;
+$ct-table-light-row-odd-color: ct-color-light('body') !default;
+$ct-table-dark-background-color: ct-color-dark('background') !default;
+$ct-table-dark-border-color: ct-color-dark('border') !default;
+$ct-table-dark-caption-color: ct-color-dark('body') !default;
+$ct-table-dark-color: ct-color-dark('body') !default;
+$ct-table-dark-footer-border-color: ct-color-dark('border') !default;
+$ct-table-dark-footer-color: ct-color-dark('heading') !default;
+$ct-table-dark-header-border-color: ct-color-dark('border') !default;
+$ct-table-dark-header-color: ct-color-dark('heading') !default;
+$ct-table-dark-row-even-background-color: ct-color-dark('background-light') !default;
+$ct-table-dark-row-even-color: ct-color-dark('body') !default;
+$ct-table-dark-row-odd-background-color: ct-color-dark('background') !default;
+$ct-table-dark-row-odd-color: ct-color-dark('body') !default;
+
+//
+// Iframe.
+//
+$ct-iframe-space-horizontal: ct-spacing(7) !default;
+$ct-iframe-light-wrapper-background-color: ct-color-light('background-light') !default;
+$ct-iframe-dark-wrapper-background-color: ct-color-dark('background-light') !default;
+
+//
+// Popover.
+//
+$ct-popover-min-width: ct-particle(35) !default;
+$ct-popover-description-border-radius: $ct-border-radius !default;
+$ct-popover-z-index: 99 !default;
+$ct-popover-top-offset: ct-particle(2) !default;
+$ct-popover-light-content-background-color: ct-color-light('background-light') !default;
+$ct-popover-dark-content-background-color: ct-color-dark('background') !default;
+
+//
+// Video
+//
+$ct-video-ratio-width: 16 !default;
+$ct-video-ratio-height: 9 !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               MOLECULES                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Attachment.
+//
+$ct-attachment-border-radius: $ct-border-radius !default;
+$ct-attachment-space-horizontal: ct-spacing(7) !default;
+$ct-attachment-light-background-color: ct-color-light('background-light') !default;
+$ct-attachment-light-border-color: ct-color-light('border-light') !default;
+$ct-attachment-light-color: ct-color-light('body') !default;
+$ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-attachment-dark-background-color: ct-color-dark('background') !default;
+$ct-attachment-dark-border-color: ct-color-dark('border') !default;
+$ct-attachment-dark-color: ct-color-dark('body') !default;
+$ct-attachment-dark-wrapper-background-color: ct-color-dark('background') !default;
+
+//
+// Basic content.
+//
+$ct-basic-content-blockquote-border-radius: $ct-border-radius !default;
+$ct-basic-content-list-marker-margin: ct-particle(2) !default;
+$ct-basic-content-list-marker-width: ct-particle(3.5) !default;
+$ct-basic-content-space-horizontal: ct-spacing(7) !default;
+$ct-basic-content-vertical-spacing: 1.5rem !default;
+$ct-basic-content-light-base-color: ct-color-light('body') !default;
+$ct-basic-content-light-blockquote-stripe-background-color: ct-color-light('highlight') !default;
+$ct-basic-content-light-blockquote-color: ct-color-light('body') !default;
+$ct-basic-content-light-blockquote-background-color: ct-color-light('background-light') !default;
+$ct-basic-content-light-blockquote-author-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-1-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-2-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-3-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-4-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-5-color: ct-color-light('heading') !default;
+$ct-basic-content-light-heading-6-color: ct-color-light('heading') !default;
+$ct-basic-content-light-ol-li-color: ct-color-light('body') !default;
+$ct-basic-content-light-ol-li-marker-color: ct-color-light('body') !default;
+$ct-basic-content-light-ul-li-color: ct-color-light('body') !default;
+$ct-basic-content-light-ul-li-marker-color: ct-color-light('body') !default;
+$ct-basic-content-light-background-color: ct-color-light('background') !default;
+$ct-basic-content-dark-base-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-blockquote-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-basic-content-dark-blockquote-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-blockquote-background-color: ct-color-dark('background-light') !default;
+$ct-basic-content-dark-blockquote-author-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-1-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-2-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-3-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-4-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-5-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-heading-6-color: ct-color-dark('heading') !default;
+$ct-basic-content-dark-ol-li-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ol-li-marker-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ul-li-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-ul-li-marker-color: ct-color-dark('body') !default;
+$ct-basic-content-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Callout.
+//
+$ct-callout-border-radius: $ct-border-radius !default;
+$ct-callout-stripe-width: $ct-stripe-size !default;
+$ct-callout-light-background-color: ct-color-light('background') !default;
+$ct-callout-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-callout-dark-background-color: ct-color-dark('background') !default;
+$ct-callout-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Dropdown filter.
+//
+$ct-dropdown-filter-zindex: 9 !default;
+$ct-dropdown-filter-light-filter-options-background-color: ct-color-light('background-light') !default;
+$ct-dropdown-filter-light-filter-options-border-color: transparent !default;
+$ct-dropdown-filter-light-filter-text-color: ct-color-light('body') !default;
+$ct-dropdown-filter-light-filter-text-icon-color: ct-color-light('body') !default;
+$ct-dropdown-filter-light-inline-filter-text-color: ct-color-light('body') !default;
+$ct-dropdown-filter-dark-filter-options-background-color: ct-color-dark('background') !default;
+$ct-dropdown-filter-dark-filter-options-border-color: transparent !default;
+$ct-dropdown-filter-dark-filter-text-color: ct-color-dark('body') !default;
+$ct-dropdown-filter-dark-filter-text-icon-color: ct-color-dark('body') !default;
+$ct-dropdown-filter-dark-inline-filter-text-color: ct-color-dark('body') !default;
+
+//
+// Campaign.
+//
+$ct-campaign-image-border-radius: $ct-border-radius !default;
+$ct-campaign-image-shadow-offset-x: ct-particle(2) !default;
+$ct-campaign-image-shadow-offset-y: ct-particle(2) !default;
+$ct-campaign-mobile-height: ct-particle(30) !default;
+$ct-campaign-desktop-height: ct-particle(65) !default;
+$ct-campaign-light-background-color: ct-color-light('background-light') !default;
+$ct-campaign-light-image-shadow-color: ct-color-light('background') !default;
+$ct-campaign-dark-background-color: ct-color-dark('background') !default;
+$ct-campaign-dark-image-shadow-color: ct-color-dark('background-dark') !default;
+
+//
+// Cards/Event card.
+//
+$ct-event-card-border-radius: $ct-border-radius !default;
+$ct-event-card-image-height-desktop: ct-particle(30) !default;
+$ct-event-card-image-height-mobile: ct-particle(25) !default;
+$ct-event-card-image-width-desktop: auto !default;
+$ct-event-card-image-width-mobile: auto !default;
+$ct-event-card-stripe-height: $ct-stripe-size !default;
+$ct-event-card-light-background-color: ct-color-light('background-light') !default;
+$ct-event-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-event-card-dark-background-color: ct-color-dark('background') !default;
+$ct-event-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Cards/Navigation card.
+//
+$ct-navigation-card-border-radius: $ct-border-radius !default;
+$ct-navigation-card-image-height-mobile: ct-particle(35) !default;
+$ct-navigation-card-image-width-mobile: auto !default;
+$ct-navigation-card-image-height-desktop: ct-particle(32) !default;
+$ct-navigation-card-image-width-desktop: ct-particle(36) !default;
+$ct-navigation-card-light-background-color: ct-color-light('background-light') !default;
+$ct-navigation-card-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Cards/Promo card.
+//
+$ct-promo-card-border-radius: $ct-border-radius !default;
+$ct-promo-card-image-height-desktop: ct-particle(30) !default;
+$ct-promo-card-image-height-mobile: ct-particle(25) !default;
+$ct-promo-card-image-width-desktop: auto !default;
+$ct-promo-card-image-width-mobile: auto !default;
+$ct-promo-card-stripe-height: $ct-stripe-size !default;
+$ct-promo-card-light-background-color: ct-color-light('background-light') !default;
+$ct-promo-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-promo-card-dark-background-color: ct-color-dark('background') !default;
+$ct-promo-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Cards/Publication card.
+//
+$ct-publication-card-border-radius: $ct-border-radius !default;
+$ct-publication-card-image-height-mobile: ct-particle(23) !default;
+$ct-publication-card-image-width-mobile: auto !default;
+$ct-publication-card-image-height-desktop: ct-particle(23) !default;
+$ct-publication-card-image-width-desktop: 50% !default;
+$ct-publication-card-light-background-color: ct-color-light('background-light') !default;
+$ct-publication-card-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Cards/Service card.
+//
+$ct-service-card-border-radius: $ct-border-radius !default;
+$ct-service-card-stripe-height: $ct-stripe-size !default;
+$ct-service-card-light-background-color: ct-color-light('background-light') !default;
+$ct-service-card-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-service-card-dark-background-color: ct-color-dark('background') !default;
+$ct-service-card-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Cards/Subject card.
+//
+$ct-subject-card-border-radius: $ct-border-radius !default;
+$ct-subject-card-image-height-mobile: ct-particle(20) !default;
+$ct-subject-card-image-width-mobile: auto !default;
+$ct-subject-card-image-height-desktop: ct-particle(28) !default;
+$ct-subject-card-image-width-desktop: auto !default;
+$ct-subject-card-light-background-color: ct-color-light('background-light') !default;
+$ct-subject-card-light-image-opacity: 30% !default;
+$ct-subject-card-dark-background-color: ct-color-dark('background') !default;
+$ct-subject-card-dark-image-opacity: 20% !default;
+
+//
+// Figure.
+//
+$ct-figure-border-radius: $ct-border-radius !default;
+$ct-figure-light-caption-color: ct-color-light('body') !default;
+$ct-figure-dark-caption-color: ct-color-dark('body') !default;
+
+//
+// Form/Form element.
+//
+$ct-form-element-light-color: ct-color-light('body') !default;
+$ct-form-element-dark-color: ct-color-dark('body') !default;
+
+//
+// Single filter.
+//
+$ct-single-filter-light-border-color: ct-color-light('border-light') !default;
+$ct-single-filter-dark-border-color: ct-color-dark('border') !default;
+
+//
+// Group filter.
+//
+$ct-group-filter-light-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-border-color: ct-color-light('border-light') !default;
+$ct-group-filter-light-dropdown-filter-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-filters-legend-color: ct-color-light('body') !default;
+$ct-group-filter-light-mobile-filter-title-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-overlay-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-toggle-background-color: ct-color-light('background') !default;
+$ct-group-filter-light-mobile-toggle-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-mobile-toggle-color: ct-color-light('interaction-background') !default;
+$ct-group-filter-light-mobile-toggle-display-border-color: ct-color-light('border') !default;
+$ct-group-filter-light-mobile-toggle-display-color: ct-color-light('background') !default;
+$ct-group-filter-light-selected-filters-border-color: ct-color-light('border-light') !default;
+$ct-group-filter-light-selected-filters-title-color: ct-color-light('body') !default;
+$ct-group-filter-dark-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-border-color: ct-color-dark('border') !default;
+$ct-group-filter-dark-dropdown-filter-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-filters-legend-color: ct-color-dark('body') !default;
+$ct-group-filter-dark-mobile-filter-title-color: ct-color-dark('body') !default;
+$ct-group-filter-dark-mobile-overlay-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-background-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-mobile-toggle-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-mobile-toggle-display-border-color: ct-color-dark('interaction-background') !default;
+$ct-group-filter-dark-mobile-toggle-display-color: ct-color-dark('background') !default;
+$ct-group-filter-dark-selected-filters-border-color: ct-color-dark('border-light') !default;
+$ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') !default;
+
+//
+// Logo.
+//
+$ct-logo-breakpoint: 'l' !default;
+$ct-logo-image-height-max-desktop: ct-particle(5) !default;
+$ct-logo-image-height-max-mobile: ct-particle(5) !default;
+$ct-logo-light-stripe-background-color: ct-color-light('border-dark') !default;
+$ct-logo-dark-stripe-background-color: ct-color-dark('border-light') !default;
+
+//
+// Map.
+//
+$ct-map-padding-bottom: 56.25% !default;
+$ct-map-space-horizontal: ct-spacing(7) !default;
+$ct-map-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
+
+//
+// Next steps.
+//
+$ct-next-step-border-radius: $ct-border-radius !default;
+$ct-next-step-stripe-width: $ct-stripe-size !default;
+$ct-next-step-light-background-color: ct-color-light('background-light') !default;
+$ct-next-step-light-border-color: ct-color-light('border-light') !default;
+$ct-next-step-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-next-step-dark-background-color: ct-color-dark('background') !default;
+$ct-next-step-dark-border-color: ct-color-dark('border') !default;
+$ct-next-step-dark-stripe-background-color: ct-color-dark('highlight') !default;
+
+//
+// Table Of Contents.
+//
+$ct-table-of-contents-link-active-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-table-of-contents-max-width: 50% !default;
+$ct-table-of-contents-min-width: 50% !default;
+$ct-table-of-contents-light-link-background-color: ct-color-light('background-light') !default;
+$ct-table-of-contents-light-link-color: ct-color-light('heading') !default;
+$ct-table-of-contents-light-link-hover-background-color: ct-color-light('background') !default;
+$ct-table-of-contents-light-link-hover-border-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-color: $ct-table-of-contents-light-link-color !default;
+$ct-table-of-contents-light-link-stripe-background-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-table-of-contents-light-title-color: ct-color-light('heading') !default;
+$ct-table-of-contents-dark-link-background-color: ct-color-dark('background-light') !default;
+$ct-table-of-contents-dark-link-color: ct-color-dark('heading') !default;
+$ct-table-of-contents-dark-link-hover-background-color: ct-color-dark('background') !default;
+$ct-table-of-contents-dark-link-hover-border-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-color: $ct-table-of-contents-dark-link-color !default;
+$ct-table-of-contents-dark-link-stripe-background-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
+
+//
+// Tabs.
+//
+$ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
+$ct-tabs-light-links-stripe-background-color: ct-color-light('border-light') !default;
+$ct-tabs-light-links-background-color: ct-color-light('background') !default;
+$ct-tabs-light-links-border-color: ct-color-light('border-light') !default;
+$ct-tabs-light-links-active-background-color: ct-color-light('background-light') !default;
+$ct-tabs-light-links-active-border-color: ct-color-light('border-light') !default;
+$ct-tabs-light-panel-background-color: ct-color-light('background') !default;
+$ct-tabs-light-panel-border-color: ct-color-light('border') !default;
+$ct-tabs-dark-links-stripe-background-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-links-background-color: ct-color-dark('background') !default;
+$ct-tabs-dark-links-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !default;
+$ct-tabs-dark-links-active-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-panel-background-color: ct-color-dark('background') !default;
+$ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
+
+//
+// Breadcrumb.
+//
+$ct-breadcrumb-light-color: ct-color-light('body') !default;
+$ct-breadcrumb-light-active-color: $ct-breadcrumb-light-color !default;
+$ct-breadcrumb-dark-color: ct-color-dark('body') !default;
+$ct-breadcrumb-dark-active-color: $ct-breadcrumb-dark-color !default;
+
+//
+// Snippet.
+//
+$ct-snippet-light-background-color: transparent !default;
+$ct-snippet-dark-background-color: transparent !default;
+
+//
+// Tooltip.
+//
+$ct-tooltip-description-border-radius: $ct-border-radius !default;
+$ct-tooltip-width: ct-particle(60) !default;
+$ct-tooltip-width-mobile: ct-particle(40) !default;
+$ct-tooltip-triangle-width: ct-spacing(3.2) !default;
+$ct-tooltip-triangle-height: ct-spacing(2.6) !default;
+$ct-tooltip-z-index: 99 !default;
+$ct-tooltip-light-description-background-color: ct-color-light('interaction-background') !default;
+$ct-tooltip-light-description-color: ct-color-light('interaction-text') !default;
+$ct-tooltip-light-icon-color: ct-color-light('interaction-background') !default;
+$ct-tooltip-dark-description-background-color: ct-color-dark('interaction-background') !default;
+$ct-tooltip-dark-description-color: ct-color-dark('interaction-text') !default;
+$ct-tooltip-dark-icon-color: ct-color-dark('interaction-background') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               ORGANISMS                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Accordion.
+//
+$ct-accordion-button-border-radius: $ct-border-radius !default;
+$ct-accordion-header-border-radius: $ct-border-radius !default;
+$ct-accordion-item-border-radius: $ct-border-radius !default;
+$ct-accordion-stripe-width: $ct-stripe-size !default;
+$ct-accordion-space-horizontal: ct-spacing(7) !default;
+$ct-accordion-light-background-color: ct-color-light('background-light') !default;
+$ct-accordion-light-border-color: ct-color-light('border-light') !default;
+$ct-accordion-light-color: ct-color-light('body') !default;
+$ct-accordion-light-button-background-color: ct-color-light('background-light') !default;
+$ct-accordion-light-button-color: ct-color-light('heading') !default;
+$ct-accordion-light-icon-color: ct-color-light('interaction-background') !default;
+$ct-accordion-light-stripe-background-color: ct-color-light('highlight') !default;
+$ct-accordion-light-wrapper-background-color: ct-color-light('background') !default;
+$ct-accordion-button-border-radius: $ct-border-radius !default;
+$ct-accordion-header-border-radius: $ct-border-radius !default;
+$ct-accordion-item-border-radius: $ct-border-radius !default;
+$ct-accordion-dark-background-color: ct-color-dark('background-light') !default;
+$ct-accordion-dark-border-color: ct-color-dark('border') !default;
+$ct-accordion-dark-color: ct-color-dark('body') !default;
+$ct-accordion-dark-button-background-color: ct-color-dark('background-light') !default;
+$ct-accordion-dark-button-color: ct-color-dark('heading') !default;
+$ct-accordion-dark-icon-color: ct-color-dark('interaction-background') !default;
+$ct-accordion-dark-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-accordion-dark-wrapper-background-color: ct-color-dark('background-dark') !default;
+
+//
+// Alert.
+//
+$ct-alert-light-divider-color: ct-color-light('interaction-background') !default;
+$ct-alert-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 90) !default;
+$ct-alert-light-error-color: ct-color-light('body') !default;
+$ct-alert-light-error-icon-color: $ct-alert-light-error-color !default;
+$ct-alert-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 90) !default;
+$ct-alert-light-information-color: ct-color-light('body') !default;
+$ct-alert-light-information-icon-color: $ct-alert-light-information-color !default;
+$ct-alert-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 90) !default;
+$ct-alert-light-success-color: ct-color-light('body') !default;
+$ct-alert-light-success-icon-color: $ct-alert-light-success-color !default;
+$ct-alert-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 90) !default;
+$ct-alert-light-warning-color: ct-color-light('body') !default;
+$ct-alert-light-warning-icon-color: $ct-alert-light-warning-color !default;
+$ct-alert-dark-divider-color: ct-color-dark('interaction-background') !default;
+$ct-alert-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
+$ct-alert-dark-error-color: ct-color-dark('body') !default;
+$ct-alert-dark-error-icon-color: $ct-alert-dark-error-color !default;
+$ct-alert-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 30) !default;
+$ct-alert-dark-information-color: ct-color-dark('body') !default;
+$ct-alert-dark-information-icon-color: $ct-alert-dark-information-color !default;
+$ct-alert-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 30) !default;
+$ct-alert-dark-success-color: ct-color-dark('body') !default;
+$ct-alert-dark-success-icon-color: $ct-alert-dark-success-color !default;
+$ct-alert-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 30) !default;
+$ct-alert-dark-warning-color: ct-color-dark('body') !default;
+$ct-alert-dark-warning-icon-color: $ct-alert-dark-warning-color !default;
+
+//
+// Back to top.
+//
+$ct-back-to-top-space-bottom: ct-spacing(8) !default;
+$ct-back-to-top-space-right: ct-spacing(2) !default;
+$ct-back-to-top-background-color: ct-color-light('interaction-background') !default;
+$ct-back-to-top-color: ct-color-light('interaction-text') !default;
+$ct-back-to-top-outline-color: transparent !default;
+
+//
+// Banner.
+//
+$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(2)}), 0% 100%) !default;
+$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(6)}), 0% 100%) !default;
+$ct-banner-featured-image-width: 40% !default;
+$ct-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
+$ct-banner-light-background-color: ct-color-light('background') !default;
+$ct-banner-light-featured-image-shadow-color: ct-color-light('background-light') !default;
+$ct-banner-dark-background-color: ct-color-dark('background') !default;
+$ct-banner-dark-featured-image-shadow-color: ct-color-dark('background') !default;
+
+//
+// Layout.
+//
+$ct-layout-light-background-color: inherit !default;
+$ct-layout-dark-background-color: inherit !default;
+
+//
+// Form/Fieldset.
+//
+$ct-fieldset-light-required-color: ct-color-light('error') !default;
+$ct-fieldset-dark-required-color: ct-color-dark('error') !default;
+
+//
+// Footer.
+//
+$ct-footer-light-background-color: ct-color-light('background') !default;
+$ct-footer-light-border-color: ct-color-light('border-light') !default;
+$ct-footer-light-color: ct-color-light('body') !default;
+$ct-footer-dark-background-color: ct-color-dark('background-dark') !default;
+$ct-footer-dark-border-color: ct-color-dark('border') !default;
+$ct-footer-dark-color: ct-color-dark('body') !default;
+
+//
+// Header.
+//
+$ct-header-desktop-menu-breakpoint: 'm' !default;
+$ct-header-light-middle-background-color: ct-color-light('background-light') !default;
+$ct-header-light-middle-border-color: ct-color-light('border-light') !default;
+$ct-header-light-top-background-color: ct-color-light('background') !default;
+$ct-header-light-top-color: ct-color-light('body') !default;
+$ct-header-dark-middle-background-color: ct-color-dark('background') !default;
+$ct-header-dark-middle-border-color: ct-color-dark('border') !default;
+$ct-header-dark-top-background-color: ct-color-dark('background-dark') !default;
+$ct-header-dark-top-color: ct-color-dark('body') !default;
+
+//
+// Listing.
+//
+$ct-list-light-background-color: ct-color-light('background') !default;
+$ct-list-light-color: ct-color-light('body') !default;
+$ct-list-dark-background-color: ct-color-dark('background') !default;
+$ct-list-dark-color: ct-color-dark('body') !default;
+
+//
+// Message.
+//
+$ct-message-border-radius: $ct-border-radius !default;
+$ct-message-light-error-background-color: ct-color-tint(ct-color-constant-light('error'), 90) !default;
+$ct-message-light-error-border-color: ct-color-light('error') !default;
+$ct-message-light-error-color: ct-color-light('body') !default;
+$ct-message-light-error-icon-color: $ct-message-light-error-color !default;
+$ct-message-light-information-background-color: ct-color-tint(ct-color-constant-light('information'), 90) !default;
+$ct-message-light-information-border-color: ct-color-light('information') !default;
+$ct-message-light-information-color: ct-color-light('body') !default;
+$ct-message-light-information-icon-color: $ct-message-light-information-color !default;
+$ct-message-light-success-border-color: ct-color-light('success') !default;
+$ct-message-light-success-background-color: ct-color-tint(ct-color-constant-light('success'), 90) !default;
+$ct-message-light-success-color: ct-color-light('body') !default;
+$ct-message-light-success-icon-color: $ct-message-light-success-color !default;
+$ct-message-light-warning-background-color: ct-color-tint(ct-color-constant-light('warning'), 90) !default;
+$ct-message-light-warning-border-color: ct-color-light('warning') !default;
+$ct-message-light-warning-color: ct-color-light('body') !default;
+$ct-message-light-warning-icon-color: $ct-message-light-warning-color !default;
+$ct-message-dark-error-background-color: ct-color-shade(ct-color-constant-dark('error'), 30) !default;
+$ct-message-dark-error-border-color: ct-color-dark('error') !default;
+$ct-message-dark-error-color: ct-color-dark('body') !default;
+$ct-message-dark-error-icon-color: $ct-message-dark-error-color !default;
+$ct-message-dark-information-background-color: ct-color-shade(ct-color-constant-dark('information'), 30) !default;
+$ct-message-dark-information-border-color: ct-color-dark('information') !default;
+$ct-message-dark-information-color: ct-color-dark('body') !default;
+$ct-message-dark-information-icon-color: $ct-message-dark-information-color !default;
+$ct-message-dark-success-border-color: ct-color-dark('success') !default;
+$ct-message-dark-success-background-color: ct-color-shade(ct-color-constant-dark('success'), 30) !default;
+$ct-message-dark-success-color: ct-color-dark('body') !default;
+$ct-message-dark-success-icon-color: $ct-message-dark-success-color !default;
+$ct-message-dark-warning-background-color: ct-color-shade(ct-color-constant-dark('warning'), 30) !default;
+$ct-message-dark-warning-border-color: ct-color-dark('warning') !default;
+$ct-message-dark-warning-color: ct-color-dark('body') !default;
+$ct-message-dark-warning-icon-color: $ct-message-dark-warning-color !default;
+
+//
+// Navigation
+//
+// Navigation can be rendered in 3 ways: plain, with dropdown and with drawer.
+
+// Inline.
+$ct-navigation-inline-column-gutter: $ct-item-list-horizontal-regular-column-gap !default;
+$ct-navigation-inline-row-gutter: $ct-item-list-horizontal-regular-column-gap !default;
+
+// Dropdown.
+$ct-navigation-dropdown-zindex: 11 !default;
+$ct-navigation-dropdown-border-radius: $ct-border-radius !default;
+
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-dropdown-top-offset: ct-spacing() !default;
+
+// Colors.
+$ct-navigation-light-dropdown-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-dark-dropdown-sub-menu-background-color: ct-color-dark('background-light') !default;
+
+// Drawer.
+$ct-navigation-drawer-zindex: 10 !default;
+
+// Maximum number of columns a drawer may have.
+$ct-navigation-drawer-cols: 4 !default;
+
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-drawer-top-offset: ct-spacing(2) !default;
+
+// Gutter size between the drawer columns.
+$ct-navigation-drawer-column-gutter: ct-spacing(4) !default;
+
+// Colors.
+$ct-navigation-light-menu-border-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-active-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-item-background-color: transparent !default;
+$ct-navigation-light-menu-item-border-color: transparent !default;
+$ct-navigation-light-menu-item-hover-background-color: transparent !default;
+$ct-navigation-light-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-menu-item-active-background-color: transparent !default;
+$ct-navigation-light-menu-item-active-border-color: ct-color-light('highlight') !default;
+$ct-navigation-light-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-menu-item-active-trail-color: ct-color-light('background') !default;
+$ct-navigation-light-drawer-border-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-active-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-active-border-color: ct-color-light('highlight') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-color: ct-color-light('background') !default;
+$ct-navigation-light-drawer-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-light-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-hover-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-active-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-background-color: ct-color-light('body') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-color: ct-color-light('background') !default;
+$ct-navigation-dark-menu-border-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-active-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-item-background-color: transparent !default;
+$ct-navigation-dark-menu-item-border-color: transparent !default;
+$ct-navigation-dark-menu-item-hover-background-color: transparent !default;
+$ct-navigation-dark-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-menu-item-active-background-color: transparent !default;
+$ct-navigation-dark-menu-item-active-border-color: ct-color-dark('highlight') !default;
+$ct-navigation-dark-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-menu-item-active-trail-color: ct-color-dark('background') !default;
+$ct-navigation-dark-drawer-border-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-active-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-active-border-color: ct-color-dark('highlight') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-color: ct-color-dark('background') !default;
+$ct-navigation-dark-drawer-sub-menu-background-color: ct-color-dark('background-light') !default;
+$ct-navigation-dark-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-hover-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-active-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-background-color: ct-color-dark('body') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-color: ct-color-dark('background') !default;
+
+// @todo Remove this in favour of inline classes.
+$ct-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
+
+//
+// Navigation/Side navigation.
+//
+$ct-side-navigation-link-active-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-side-navigation-light-title-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-expanded-icon-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-parent-background-color: ct-color-light('background-light') !default;
+$ct-side-navigation-light-link-parent-border-color: ct-color-light('border-light') !default;
+$ct-side-navigation-light-link-parent-color: ct-color-light('heading') !default;
+$ct-side-navigation-light-link-parent-stripe-background-color: ct-color-light('border-light') !default;
+$ct-side-navigation-light-link-parent-hover-background-color: ct-color-light('background-dark') !default;
+$ct-side-navigation-light-link-parent-hover-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-parent-hover-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-parent-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-parent-active-background-color: ct-color-light('background') !default;
+$ct-side-navigation-light-link-parent-active-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-parent-active-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-parent-active-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-child-background-color: $ct-side-navigation-light-link-parent-background-color !default;
+$ct-side-navigation-light-link-child-border-color: $ct-side-navigation-light-link-parent-border-color !default;
+$ct-side-navigation-light-link-child-color: $ct-side-navigation-light-link-parent-color !default;
+$ct-side-navigation-light-link-child-stripe-background-color: $ct-side-navigation-light-link-parent-stripe-background-color !default;
+$ct-side-navigation-light-link-child-hover-background-color: $ct-side-navigation-light-link-parent-hover-background-color !default;
+$ct-side-navigation-light-link-child-hover-border-color: $ct-side-navigation-light-link-child-border-color !default;
+$ct-side-navigation-light-link-child-hover-color: $ct-side-navigation-light-link-child-color !default;
+$ct-side-navigation-light-link-child-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-side-navigation-light-link-child-active-background-color: ct-color-light('background') !default;
+$ct-side-navigation-light-link-child-active-border-color: $ct-side-navigation-light-link-child-border-color !default;
+$ct-side-navigation-light-link-child-active-color: $ct-side-navigation-light-link-child-color !default;
+$ct-side-navigation-light-link-child-active-stripe-background-color: $ct-side-navigation-light-link-child-stripe-background-color !default;
+$ct-side-navigation-dark-title-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-expanded-icon-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-parent-background-color: ct-color-dark('background-light') !default;
+$ct-side-navigation-dark-link-parent-border-color: ct-color-dark('interaction-text') !default;
+$ct-side-navigation-dark-link-parent-color: ct-color-dark('heading') !default;
+$ct-side-navigation-dark-link-parent-stripe-background-color: ct-color-dark('interaction-text') !default;
+$ct-side-navigation-dark-link-parent-hover-background-color: ct-color-dark('background-dark') !default;
+$ct-side-navigation-dark-link-parent-hover-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-parent-hover-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-parent-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-parent-active-background-color: ct-color-dark('background') !default;
+$ct-side-navigation-dark-link-parent-active-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-parent-active-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-parent-active-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-child-background-color: $ct-side-navigation-dark-link-parent-background-color !default;
+$ct-side-navigation-dark-link-child-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
+$ct-side-navigation-dark-link-child-color: $ct-side-navigation-dark-link-parent-color !default;
+$ct-side-navigation-dark-link-child-stripe-background-color: $ct-side-navigation-dark-link-parent-stripe-background-color !default;
+$ct-side-navigation-dark-link-child-hover-background-color: $ct-side-navigation-dark-link-parent-hover-background-color !default;
+$ct-side-navigation-dark-link-child-hover-border-color: $ct-side-navigation-dark-link-child-border-color !default;
+$ct-side-navigation-dark-link-child-hover-color: $ct-side-navigation-dark-link-child-color !default;
+$ct-side-navigation-dark-link-child-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-side-navigation-dark-link-child-active-background-color: ct-color-dark('background') !default;
+$ct-side-navigation-dark-link-child-active-border-color: $ct-side-navigation-dark-link-child-border-color !default;
+$ct-side-navigation-dark-link-child-active-color: $ct-side-navigation-dark-link-child-color !default;
+$ct-side-navigation-dark-link-child-active-stripe-background-color: $ct-side-navigation-dark-link-child-stripe-background-color !default;
+
+//
+// Mobile navigation.
+//
+$ct-mobile-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
+$ct-mobile-navigation-light-panel-background-color: ct-color-light('background-light') !default;
+$ct-mobile-navigation-light-top-menu-background-color: $ct-mobile-navigation-light-panel-background-color !default;
+$ct-mobile-navigation-light-bottom-menu-background-color: ct-color-light('background') !default;
+$ct-mobile-navigation-light-menu-item-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-light-menu-item-hover-color: $ct-mobile-navigation-light-menu-item-color !default;
+$ct-mobile-navigation-light-menu-divider-border-color: ct-color-light('border-light') !default;
+$ct-mobile-navigation-light-subsection-heading-color: ct-color-light('heading') !default;
+$ct-mobile-navigation-light-subsection-heading-icon-color: $ct-mobile-navigation-light-subsection-heading-color !default;
+$ct-mobile-navigation-light-subsection-trigger-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-trigger-light-color: ct-color-light('interaction-background') !default;
+$ct-mobile-navigation-dark-panel-background-color: ct-color-dark('background') !default;
+$ct-mobile-navigation-dark-top-menu-background-color: $ct-mobile-navigation-dark-panel-background-color !default;
+$ct-mobile-navigation-dark-bottom-menu-background-color: ct-color-dark('background-dark') !default;
+$ct-mobile-navigation-dark-menu-item-color: ct-color-dark('interaction-background') !default;
+$ct-mobile-navigation-dark-menu-item-hover-color: $ct-mobile-navigation-dark-menu-item-color !default;
+$ct-mobile-navigation-dark-menu-divider-border-color: ct-color-dark('border') !default;
+$ct-mobile-navigation-dark-subsection-heading-color: ct-color-dark('heading') !default;
+$ct-mobile-navigation-dark-subsection-heading-icon-color: $ct-mobile-navigation-dark-subsection-heading-color !default;
+$ct-mobile-navigation-dark-subsection-trigger-color: ct-color-dark('interaction-background') !default;
+$ct-mobile-navigation-trigger-dark-color: ct-color-dark('interaction-background') !default;
+
+//
+// Promo.
+//
+$ct-promo-light-background-color: ct-color-light('background-light') !default;
+$ct-promo-light-border-color: ct-color-light('border-light') !default;
+$ct-promo-dark-background-color: ct-color-dark('background') !default;
+$ct-promo-dark-border-color: ct-color-dark('border') !default;
+$ct-promo-space-horizontal: ct-spacing(7) !default;
+
+//
+// Skip link.
+//
+$ct-skip-link-light-background-color: ct-color-light('background') !default;
+$ct-skip-link-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Slider.
+//
+$ct-slider-border-radius: $ct-border-radius !default;
+$ct-slider-space-horizontal: ct-spacing(7) !default;
+$ct-slider-slide-desktop-min-height: ct-particle(35) !default;
+$ct-slider-slide-mobile-min-height: ct-particle(35) !default;
+$ct-slider-mobile-transition: 0.5s !default;
+$ct-slider-desktop-transition: 1s !default;
+$ct-slider-light-background-color: ct-color-light('background-light') !default;
+$ct-slider-light-slide-background-color: ct-color-light('background') !default;
+$ct-slider-dark-background-color: ct-color-dark('background') !default;
+$ct-slider-dark-slide-background-color: ct-color-dark('background-dark') !default;
+
+//
+// Webform.
+//
+$ct-webform-space-horizontal: ct-spacing(7) !default;
+$ct-webform-light-background-color: ct-color-light('background') !default;
+$ct-webform-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Pagination.
+//
+$ct-pager-light-color: ct-color-light('interaction-background') !default;
+$ct-pager-light-border-color: ct-color-light('border-light') !default;
+$ct-pager-dark-color: ct-color-dark('interaction-background') !default;
+$ct-pager-dark-border-color: ct-color-dark('border') !default;

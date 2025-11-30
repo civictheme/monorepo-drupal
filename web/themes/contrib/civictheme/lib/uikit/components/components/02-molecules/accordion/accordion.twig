@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Accordion component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - expand_all: [boolean] Expand all panels or not.
+ * - panels: [array] Array of panels:
+ *   - title: [string] Panel title.
+ *   - content: [string] Panel content.
+ *   - expanded: [boolean] Panel is expanded or not.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - with_background: [boolean] With background or not.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-accordion--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% if panels is not empty %}
+  <div class="ct-accordion {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="ct-accordion__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block content %}
+            <div class="ct-accordion__content">
+              <ul class="ct-accordion__panels">
+                {% for panel in panels %}
+                  {% if panel.title is not empty and panel.content is not empty %}
+                    {% set is_expanded = panel.expanded == true or expand_all == true %}
+                    <li class="ct-accordion__panels__panel" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250" data-collapsible-trigger-wide>
+                      <div class="ct-accordion__panels__panel__header">
+                        <button class="ct-accordion__panels__panel__header__button" data-collapsible-trigger aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
+                          {{ panel.title }}
+                        </button>
+                      </div>
+
+                      <div class="ct-accordion__panels__panel__content" data-collapsible-panel aria-hidden="{{ is_expanded ? 'false' : 'true' }}">
+                        {% include '@atoms/paragraph/paragraph.twig' with {
+                          theme: theme,
+                          content: panel.content,
+                          allow_html: true,
+                          modifier_class: 'ct-accordion__panels__panel__content__inner',
+                        } only %}
+                      </div>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="ct-accordion__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

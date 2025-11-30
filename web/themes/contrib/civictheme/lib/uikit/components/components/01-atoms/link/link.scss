@@ -1,0 +1,46 @@
+//
+// Link component.
+//
+
+.ct-link {
+  $root: &;
+
+  @include ct-typography('label-regular');
+  @include ct-link-decoration(false, false, true, false);
+  @include ct-disabled();
+
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+  word-break: break-word;
+
+  &:focus-visible {
+    @include ct-outline();
+    @include ct-outline-border();
+  }
+
+  &#{$root}--only-icon {
+    display: inline-block;
+    line-height: 0;
+
+    // Increase "clickable" area if there is only icon.
+    padding: ct-spacing(1);
+    margin: -1 * ct-spacing(1);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    &:hover,
+    &:visited:hover {
+      @include ct-component-property($root, $theme, hover, color);
+    }
+
+    &:visited {
+      @include ct-component-property($root, $theme, visited, color);
+    }
+
+    &#{$root}--active,
+    &:active {
+      @include ct-component-property($root, $theme, active, color);
+    }
+  }
+}

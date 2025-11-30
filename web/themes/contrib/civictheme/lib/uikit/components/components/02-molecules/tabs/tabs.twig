@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Tabs component.
+ *
+ * Variables:
+ * - panels: [array] Array of panels:
+ *   - title: [string] Panel title.
+ *   - content: [string] Panel content.
+ *   - id: [string] Panel id.
+ *   - is_selected: [bolean] Panel is selected or not
+ * - links: [array] Optional array of links (if not provided - will be generated
+     from panel):
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - modifier_class: [string] Additional link classes.
+ *   - attributes: [string] Additional link attributes.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional classes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{# Create links from panels if not provided. #}
+{% if links is empty and panels is not empty %}
+  {% set links = [] %}
+  {% for k, panel in panels %}
+    {% set link_id = panel.id ~ '-tab' %}
+    {% set links = links|merge([{
+      text: panel.title,
+      url: '#' ~ link_id,
+      attributes: 'role="tab" id="' ~ link_id ~ '" aria-controls="' ~ panel.id ~ '"',
+      link_id: link_id,
+    }]) %}
+  {% endfor %}
+{% endif %}
+
+{% set link_items = [] %}
+{% for k, link in links %}
+  {%- set link %}
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: link.text,
+      url: link.url,
+      is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+      is_external: link.is_external is defined ? link.is_external : false,
+      modifier_class: link.modifier_class ? link.modifier_class : '',
+      attributes: 'data-tabs-tab ' ~ (link.attributes ? link.attributes : ''),
+    } only %}
+  {% endset -%}
+  {% set link_items = link_items|merge([link]) %}
+{% endfor %}
+
+{% if panels is not empty or link_items is not empty %}
+  <div class="ct-tabs {{ modifier_class }}" data-tabs-panel {% if attributes is not empty %}{{ attributes }}{% endif %}>
+    {% include '@base/item-list/item-list.twig' with {
+      items: link_items,
+      no_gap: true,
+      modifier_class: 'ct-tabs__links',
+    } only %}
+
+    {% if panels is not empty %}
+      <div class="ct-tabs__panels">
+        {% for k, panel in panels %}
+          {% if panel.content is not empty %}
+            <div class="ct-tabs__panels__panel {{ panel.is_selected ? 'selected' : '' }}" data-tabs-panel id="{{ panel.id }}" role="tabpanel" aria-labelledby="{{ links[k].link_id }}">
+              {{ panel.content }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

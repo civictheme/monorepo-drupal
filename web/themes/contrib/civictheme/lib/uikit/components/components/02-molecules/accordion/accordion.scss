@@ -1,0 +1,97 @@
+//
+// Accordion component.
+//
+
+.ct-accordion {
+  $root: &;
+
+  &#{$root}--with-background {
+    padding-left: $ct-accordion-space-horizontal;
+    padding-right: $ct-accordion-space-horizontal;
+  }
+
+  #{$root}__content {
+    display: block;
+  }
+
+  #{$root}__panels {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #{$root}__panels__panel {
+    position: relative;
+    border: ct-particle(0.125) solid;
+    border-radius: $ct-accordion-item-border-radius;
+    margin-bottom: ct-spacing(2);
+
+    @include ct-highlight-stripe-vertical($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
+
+    &::before {
+      z-index: 1;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  #{$root}__panels__panel__header {
+    display: block;
+    margin: 0;
+    border-top-left-radius: $ct-accordion-header-border-radius;
+    border-top-right-radius: $ct-accordion-header-border-radius;
+  }
+
+  #{$root}__panels__panel__header__button {
+    @include ct-typography('heading-6');
+
+    border-radius: $ct-accordion-button-border-radius;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    text-align: left;
+    margin: 0;
+    padding: ct-spacing(3);
+    justify-content: stretch;
+    width: 100%;
+
+    [data-collapsible-collapsed] > & {
+      border-bottom: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  #{$root}__panels__panel__content__inner {
+    padding: 0 ct-spacing(3) ct-spacing(3);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    &#{$root}--with-background {
+      @include ct-component-property($root, $theme, wrapper, background-color);
+    }
+
+    #{$root}__panels__panel__header__button {
+      @include ct-component-property($root, $theme, button, background-color);
+      @include ct-component-property($root, $theme, button, color);
+
+      &:focus-visible {
+        @include ct-outline-theme($theme);
+      }
+
+      .ct-collapsible__icon {
+        @include ct-component-property($root, $theme, icon, color);
+      }
+    }
+
+    #{$root}__panels__panel {
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-component-property($root, $theme, border-color);
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+    }
+  }
+}

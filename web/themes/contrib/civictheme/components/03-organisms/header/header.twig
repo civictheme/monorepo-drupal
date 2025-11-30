@@ -1,0 +1,124 @@
+{#
+/**
+ * @file
+ * Header component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top1: [string] Content slot.
+ * - content_top2: [string] Content slot.
+ * - content_top3: [string] Content slot.
+ * - content_middle1: [string] Content slot.
+ * - content_middle2: [string] Content slot.
+ * - content_middle3: [string] Content slot.
+ * - content_bottom1: [string] Content slot.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty or content_bottom1 is not empty %}
+  <header class="ct-header {{ modifier_class }}" role="banner">
+
+    {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty %}
+      <div class="ct-header__top hide-xxs show-m">
+
+        {% if content_top1 is not empty %}
+          {% block content_top1 %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  <div class="ct-header__content-top1">
+                    {{ content_top1 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+        {% endif %}
+
+        {% if content_top2 is not empty or content_top3 is not empty %}
+          <div class="container">
+            <div class="row">
+
+              {% block content_top2 %}
+                <div class="col-xxs-12 col-m-4">
+                  <div class="ct-header__content-top2">
+                    {{ content_top2 }}
+                  </div>
+                </div>
+              {% endblock %}
+
+              {% block content_top3 %}
+                <div class="col-xxs-12 col-m-8">
+                  <div class="ct-header__content-top3">
+                    {{ content_top3 }}
+                  </div>
+                </div>
+              {% endblock %}
+
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty %}
+      <div class="ct-header__middle">
+
+        {% if content_middle1 is not empty %}
+          {% block content_middle1 %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  <div class="ct-header__content-middle1">
+                    {{ content_middle1 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+        {% endif %}
+
+        {% if content_middle2 is not empty or content_middle3 is not empty %}
+          <div class="container">
+            <div class="row row--no-wrap">
+              {% block content_middle2 %}
+                <div class="col col--no-grow">
+                  <div class="ct-header__content-middle2">
+                    {{ content_middle2 }}
+                  </div>
+                </div>
+              {% endblock %}
+
+              {% block content_middle3 %}
+                <div class="col">
+                  <div class="ct-header__content-middle3">
+                    {{ content_middle3 }}
+                  </div>
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_bottom1 is not empty %}
+      {% block content_bottom1 %}
+        <div class="container">
+          <div class="row">
+            <div class="col-xxs-12">
+              <div class="ct-header__content-bottom1">
+                {{ content_bottom1 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endblock %}
+    {% endif %}
+
+  </header>
+{% endif %}

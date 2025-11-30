@@ -1,0 +1,59 @@
+//
+// Tag component.
+//
+
+.ct-tag {
+  $root: &;
+
+  border-radius: $ct-tag-border-radius;
+  border-style: solid;
+  border-width: $ct-tag-border-width;
+  display: inline-block;
+
+  @include ct-typography('label-small');
+  @include ct-link-no-decoration();
+
+  &--icon-before {
+    .ct-icon {
+      @include ct-icon-size('small');
+
+      margin-right: ct-spacing(0.25);
+    }
+  }
+
+  &--icon-after {
+    .ct-icon {
+      @include ct-icon-size('small');
+
+      margin-left: ct-spacing(0.25);
+    }
+  }
+
+  &#{$root}--primary {
+    padding: ct-spacing(0.5) ct-spacing();
+  }
+
+  &#{$root}--secondary {
+    padding: ct-spacing(0.5) ct-spacing();
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &#{$root}--primary {
+      @include ct-component-property($root, $theme, primary, background-color);
+      @include ct-component-property($root, $theme, primary, border-color);
+      @include ct-component-property($root, $theme, primary, color);
+    }
+
+    &#{$root}--secondary {
+      @include ct-component-property($root, $theme, secondary, background-color);
+      @include ct-component-property($root, $theme, secondary, border-color);
+      @include ct-component-property($root, $theme, secondary, color);
+    }
+
+    &#{$root}--tertiary {
+      @include ct-component-property($root, $theme, tertiary, background-color);
+      @include ct-component-property($root, $theme, tertiary, border-color);
+      @include ct-component-property($root, $theme, tertiary, color);
+    }
+  }
+}

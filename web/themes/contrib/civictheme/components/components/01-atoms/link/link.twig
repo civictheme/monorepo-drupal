@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Link component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Link text.
+ * - url: [string] URL.
+ * - title: [string] Title of a link.
+ * - is_new_window: [boolean] Open in a new window.
+ * - is_external: [boolean] Link is external.
+ * - is_active [boolean] Link is active.
+ * - is_disabled: [boolean] Disabled state.
+ * - icon: [string] Icon name.
+ * - icon_placement: [string] Icon position: before, after.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set text = text|default('') %}
+{% set only_icon_class = icon is not empty and text is empty ? 'ct-link--only-icon' : '' %}
+{% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set is_external_class = is_external ? 'ct-link--external' : '' %}
+{% set is_active_class = is_active ? 'ct-link--active' : '' %}
+{% set is_disabled_class = is_disabled ? 'ct-link--disabled' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, is_external_class, is_active_class, is_disabled_class, only_icon_class, modifier_class|default(''))|trim %}
+
+{% set attributes = is_disabled ? attributes ~ ' disabled' : attributes %}
+
+{% if text is not empty or icon is not empty %}
+  {% set content_markup %}
+    {% if icon and not is_external %}
+      {% set icon_markup %}
+        {% include '@base/icon/icon.twig' with {
+          symbol: icon,
+          modifier_class: 'ct-link__icon',
+        } only %}
+      {% endset %}
+
+      {% if icon_placement == 'before' %}
+        {{ icon_markup }}{{ text|raw }}
+      {% else %}
+        {{ text|raw }}{{ icon_markup }}
+      {% endif %}
+
+    {% else %}
+      {{ text|raw }}
+    {% endif %}
+  {% endset %}
+
+  {% if is_new_window %}
+    {% set is_new_window_content %}
+      <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+    {% endset %}
+  {% endif %}
+
+  {% if is_external and text is not empty %}
+    {% set is_external_content %}
+      {% include '@base/icon/icon.twig' with {
+        symbol: 'upper-right-arrow',
+      } only %}
+    {% endset %}
+  {% endif %}
+
+  <a
+    class="ct-link {{ modifier_class }}"
+    {% if url is not empty %}href="{{ url }}"{% endif %}
+    {% if title is not empty %}title="{{ title }}"{% endif %}
+    {{ is_new_window ? 'target="_blank" aria-label="Opens in a new tab"' }}
+    {{ disabled ? 'disabled' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content_markup }}{{ is_new_window_content }}{{ is_external_content }}
+  </a>
+{% endif %}

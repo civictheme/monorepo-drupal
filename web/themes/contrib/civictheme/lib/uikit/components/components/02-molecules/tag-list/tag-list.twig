@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Tag List component.
+ *
+ * Variables:
+ * - content_top: [string] Content slot.
+ * - tags: [array] Array of tags.
+ * - content_bottom: [string] Content slot.
+ * - theme: [string] Theme: light, dark.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class:[string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if tags is not empty %}
+  <div class="ct-tag-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% block content_top %}
+      {% if content_top is not empty %}
+        <div class="ct-tag-list__content-top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content %}
+      {% if tags %}
+        {% set tag_items = [] %}
+        {% for tag in tags %}
+          {% set tag_item %}
+            {% include '@atoms/tag/tag.twig' with {
+              theme: theme,
+              content: tag,
+            } only %}
+          {% endset %}
+          {% set tag_items = tag_items|merge([tag_item]) %}
+        {% endfor %}
+        {% include '@base/item-list/item-list.twig' with {
+          items: tag_items,
+          size: 'small',
+          modifier_class: 'ct-tag-list__content',
+        } only %}
+      {% endif %}
+    {% endblock %}
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        <div class="ct-tag-list__content-bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+{% endif %}

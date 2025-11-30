@@ -1,0 +1,221 @@
+//
+// Grid mixins.
+//
+// Grid system taken from: http://sassflexboxgrid.com/
+// Modified for use with CivicTheme.
+// - added gutters support
+// - added offset (outside gutters) support
+// - added grid overlay support
+// - added utility grid classes
+//
+
+@use 'sass:math';
+@use 'sass:map';
+
+@mixin ct-row($gutters: $ct-grid-gutters) {
+  margin: 0 auto;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include _ct-print-all-gutters($gutters, margin, -1);
+}
+
+@mixin ct-row-reverse() {
+  flex-direction: row-reverse;
+}
+
+@mixin ct-row-natural-height() {
+  align-items: flex-start;
+}
+
+@mixin ct-row-flex-column() {
+  flex-direction: column;
+}
+
+@mixin ct-col-reverse() {
+  flex-direction: column-reverse;
+}
+
+@mixin ct-flex-align-right() {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+//
+// Print all gutters at their breakpoints.
+//
+// Do not use directly.
+//
+@mixin _ct-print-all-gutters($gutters: $ct-grid-gutters, $rulePrefix: padding, $scale: 1) {
+  @if $gutters {
+    @each $bp, $gutter in $gutters {
+      @if $bp == $ct-grid-lowest-breakpoint {
+        #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
+        #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
+      }
+      @else {
+        @include ct-breakpoint($bp) {
+          #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
+          #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
+        }
+      }
+    }
+  }
+}
+
+//
+// Condition to run inside of the col mixin.
+//
+// Do not use directly.
+//
+@mixin _ct-col-condition($col-number) {
+  @if type-of($col-number) == number {
+    @if $col-number > $ct-grid-columns or $col-number == 0 {
+      @warn 'Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$ct-grid-columns})';
+    }
+    @else {
+      flex-basis: math.div(100%, $ct-grid-columns) * $col-number;
+      max-width: math.div(100%, $ct-grid-columns) * $col-number;
+
+      @include _ct-print-all-gutters();
+    }
+  }
+
+  // If no col number is passed then arg is set to "auto" by default
+  // "auto" mode fills the horizontal space with evenly sized containers
+  @else if $col-number == 'auto' {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+
+    @include _ct-print-all-gutters();
+  }
+  @else {
+    @warn "Column number argument must either be the string 'auto' or a number greater than 0 and less than or equal to total number of columns in the grid (#{$ct-grid-columns})";
+  }
+}
+
+//
+// Condition to run inside of the col mixin.
+//
+// Do not use directly.
+//
+@mixin _ct-grid-col($breakpoint: 'xs', $col-number: 'auto') {
+  // If no breakpoint is passed and a col number is just use the first arg as
+  // the col number and act like xs.
+  @if type-of($breakpoint) == number {
+    $col-number: $breakpoint;
+
+    @include _ct-col-condition($col-number);
+  }
+  @else if $breakpoint == $ct-grid-lowest-breakpoint {
+    @include _ct-col-condition($col-number);
+  }
+  @else {
+    @include ct-breakpoint($breakpoint) {
+      @include _ct-col-condition($col-number);
+    }
+  }
+}
+
+//
+// Mixin to run inside of for loop - creates col/breakpoint classes.
+//
+// Do not use directly.
+//
+@mixin _ct-col-factory($bp) {
+  .col-#{$bp} {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+
+    @include _ct-print-all-gutters();
+  }
+
+  @for $i from 1 through $ct-grid-columns {
+    .col-#{$bp}-#{$i} {
+      flex-basis: math.div(100%, $ct-grid-columns) * $i;
+      max-width: math.div(100%, $ct-grid-columns) * $i;
+
+      @include _ct-print-all-gutters();
+    }
+
+    .col-#{$bp}-offset-#{$i} {
+      margin-left: math.div(100%, $ct-grid-columns) * $i;
+    }
+  }
+
+  .col-#{$bp}-offset-0 {
+    margin-left: 0;
+  }
+
+  .row.start-#{$bp} {
+    justify-content: flex-start;
+  }
+
+  .row.center-#{$bp} {
+    justify-content: center;
+  }
+
+  .row.end-#{$bp} {
+    justify-content: flex-end;
+  }
+
+  .row.top-#{$bp} {
+    align-items: flex-start;
+  }
+
+  .row.middle-#{$bp} {
+    align-items: center;
+  }
+
+  .row.bottom-#{$bp} {
+    align-items: flex-end;
+  }
+
+  .row.around-#{$bp} {
+    justify-content: space-around;
+  }
+
+  .row.between-#{$bp} {
+    justify-content: space-between;
+  }
+
+  .first-#{$bp} {
+    order: -1;
+  }
+
+  .last-#{$bp} {
+    order: 1;
+  }
+}
+
+//
+// Offset column.
+//
+@mixin ct-col-offset($column_num) {
+  margin-left: math.div(100%, $ct-grid-columns) * $column_num;
+}
+
+//
+// Container class should wrap every row.
+//
+@mixin ct-container() {
+  margin: 0 auto;
+
+  // Support super-narrow screens as well.
+  $width: map.get($ct-grid-offsets, xs) * 2;
+
+  // Use vw instead of % so it calculates on viewport and not parent container.
+  max-width: calc(100vw - #{$width});
+
+  // Set width for container at each breakpoint accounting for offsets at this
+  // breakpoint.
+  @each $bp, $value in $ct-breakpoints {
+    @include ct-breakpoint($bp) {
+      max-width: map.get($ct-breakpoints, $bp) - (map.get($ct-grid-offsets, $bp) * 2);
+    }
+  }
+}

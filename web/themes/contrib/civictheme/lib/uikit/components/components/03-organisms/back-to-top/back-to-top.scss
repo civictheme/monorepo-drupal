@@ -1,0 +1,29 @@
+//
+// Back to Top component.
+//
+
+.ct-back-to-top {
+  $root: &;
+
+  @include ct-print-hide();
+
+  position: fixed;
+  right: $ct-back-to-top-space-right;
+  bottom: $ct-back-to-top-space-bottom;
+
+  #{$root}__button {
+    &,
+    &:focus-visible,
+    &:active,
+    &:visited,
+    &:hover {
+      border-radius: ct-particle(12);
+      padding: ct-spacing();
+      background-color: $ct-back-to-top-background-color;
+      border-color: $ct-back-to-top-background-color;
+      color: $ct-back-to-top-color;
+      line-height: 0;
+      outline-color: $ct-back-to-top-outline-color;
+    }
+  }
+}

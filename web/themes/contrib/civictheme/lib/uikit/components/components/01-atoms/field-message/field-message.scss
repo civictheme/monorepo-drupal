@@ -1,0 +1,96 @@
+//
+// Field message component.
+//
+
+@use 'sass:map';
+
+//
+// Mixins.
+//
+
+.ct-field-message {
+  $root: &;
+
+  display: block;
+  border-radius: $ct-field-message-border-radius;
+  padding: ct-spacing();
+  border-width: ct-particle(0.125);
+  border-style: solid;
+
+  @include ct-typography('text-regular');
+
+  $map: (
+    'information': (
+      'light': (
+        'color': $ct-field-message-light-information-color,
+        'background-color': $ct-field-message-light-information-background-color,
+        'border-color': $ct-field-message-light-information-border-color,
+        'icon-color': $ct-field-message-light-information-icon-color,
+      ),
+      'dark': (
+        'color': $ct-field-message-dark-information-color,
+        'background-color': $ct-field-message-dark-information-background-color,
+        'border-color': $ct-field-message-dark-information-border-color,
+        'icon-color': $ct-field-message-dark-information-icon-color,
+      )
+    ),
+    'warning': (
+      'light': (
+        'color': $ct-field-message-light-warning-color,
+        'background-color': $ct-field-message-light-warning-background-color,
+        'border-color': $ct-field-message-light-warning-border-color,
+        'icon-color': $ct-field-message-light-warning-icon-color,
+      ),
+      'dark': (
+        'color': $ct-field-message-dark-warning-color,
+        'background-color': $ct-field-message-dark-warning-background-color,
+        'border-color': $ct-field-message-dark-warning-border-color,
+        'icon-color': $ct-field-message-dark-warning-icon-color,
+      )
+    ),
+    'error': (
+      'light': (
+        'color': $ct-field-message-light-error-color,
+        'background-color': $ct-field-message-light-error-background-color,
+        'border-color': $ct-field-message-light-error-border-color,
+        'icon-color': $ct-field-message-light-error-icon-color,
+      ),
+      'dark': (
+        'color': $ct-field-message-dark-error-color,
+        'background-color': $ct-field-message-dark-error-background-color,
+        'border-color': $ct-field-message-dark-error-border-color,
+        'icon-color': $ct-field-message-dark-error-icon-color,
+      )
+    ),
+    'success': (
+      'light': (
+        'color': $ct-field-message-light-success-color,
+        'background-color': $ct-field-message-light-success-background-color,
+        'border-color': $ct-field-message-light-success-border-color,
+        'icon-color': $ct-field-message-light-success-icon-color,
+      ),
+      'dark': (
+        'color': $ct-field-message-dark-success-color,
+        'background-color': $ct-field-message-dark-success-background-color,
+        'border-color': $ct-field-message-dark-success-border-color,
+        'icon-color': $ct-field-message-dark-success-icon-color,
+      )
+    ),
+  );
+
+  @each $type, $type-map in $map {
+    &#{$root}--#{$type} {
+      @each $theme, $values in $type-map {
+        &.ct-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          color: map.get($values, 'color');
+          border-color: map.get($values, 'border-color');
+
+          #{$root}__icon {
+            color: map.get($values, 'icon-color');
+          }
+        }
+      }
+    }
+  }
+}

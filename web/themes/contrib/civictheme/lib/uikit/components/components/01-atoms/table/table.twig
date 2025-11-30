@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Table component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - caption: [string] Table caption.
+ * - caption_position: [string] The position of caption: before, after
+ * - header: [array] Array of header cells.
+ * - rows: [array] Array of rows.
+ * - footer: [array] Array of footer cells.
+ * - is_striped: [boolean] Flag to show as striped.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set striped_class = is_striped ? 'ct-table--%s'|format('striped') : '' %}
+{% set caption_position_class = caption_position == 'after' ? 'ct-table--caption-after' : 'ct-table--caption-before' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, caption_position_class, striped_class, modifier_class|default('')) %}
+
+{% if rows is not empty or header is not empty or footer is not empty or caption is not empty%}
+  <table class="ct-table {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if caption %}
+      <caption>{{ caption }}</caption>
+    {% endif %}
+
+    {% if header is not empty %}
+      <thead>
+        <tr>
+          {% for item in header %}
+            <th scope="col">{{ item }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+
+    {% if rows is not empty %}
+      <tbody>
+      {% for row in rows %}
+        <tr>
+          {% for col in row %}
+            <td {% if header is not empty and header[loop.index0] %}data-title="{{ header[loop.index0] }}"{% endif %}>
+              {{ col|raw }}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    {% endif %}
+
+    {% if footer is not empty %}
+      <tfoot>
+        <tr>
+          {% for item in footer %}
+            <th scope="col">{{ item }}</th>
+          {% endfor %}
+        </tr>
+      </tfoot>
+    {% endif %}
+  </table>
+{% endif %}

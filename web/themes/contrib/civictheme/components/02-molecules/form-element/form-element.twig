@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Footer component.
+ *
+ * Variables:
+ * - type: [string] Type.
+ * - name: [string] Name.
+ * - label_display: [string] Display label: before, after.
+ * - description: [string] Field description.
+ * - description_display: [string] Display description: before, after, invisible.
+ * - disabled: [boolean] Disabled or not.
+ * - errors: [array] Optional array of errors.
+ * - theme: [string] Theme: light, dark.
+ * - description_modifier_class: [string] Additional classes for description.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ * - id: [string] DOM Id.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class = type is not empty ? 'ct-form-element--%s'|format(type) : '' %}
+{% set name_class = name is not empty ? 'ct-form-element--%s'|format(name) : '' %}
+{% set label_class = label_display not in ['after', 'before'] ? 'ct-form-element--no-label' : 'ct-form-element--label--%s'|format(title_display) %}
+{% set description_class = description_display not in ['after', 'before'] ? 'ct-form-element--no-description' : 'ct-form-element--label--%s'|format(description_display) %}
+{% set disabled_class = disabled == 'disabled' ? 'ct-form-element--form-disabled' : '' %}
+{% set error_class = errors is not empty ? 'ct-form-element--error' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, description_class, disabled_class, error_class, modifier_class|default('')) %}
+
+{% set description_modifier_class = '%s %s'|format(description_visibility_class|default(''), description_display_class|default('')) %}
+
+<div class="ct-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% if label is not empty and label_display in ['before', 'invisible'] %}
+    {% include '@atoms/label/label.twig' with {
+      theme: theme,
+      content: label,
+      modifier_class: 'ct-form-element__label' ~ (label_display == 'invisible' ? 'ct-visually-hidden' : ''),
+      attributes: id ? 'for="' ~ id ~ '"' : '',
+    } only %}
+  {% endif %}
+
+  {% if prefix is not empty %}
+    <span class="ct-form-element__prefix">{{ prefix }}</span>
+  {% endif %}
+
+  {% if description is not empty and description_display == 'before' %}
+    {% include '@atoms/field-description/field-description.twig' with {
+      theme: theme,
+      content: description,
+      modifier_class: 'ct-form-element__description ' ~ description_modifier_class,
+    } only %}
+  {% endif %}
+
+  {% if children is not empty %}
+    {{ children }}
+  {% endif %}
+
+  {% if suffix is not empty %}
+    <span class="ct-form-element__suffix">{{ suffix }}</span>
+  {% endif %}
+
+  {% if label is not empty and label_display == 'after' %}
+    {% include '@atoms/label/label.twig' with {
+      theme: theme,
+      content: label,
+      attributes: id ? 'for="' ~ id ~ '"' : '',
+      modifier_class: 'ct-form-element__label',
+    } only %}
+  {% endif %}
+
+  {% if description is not empty and description_display in ['after', 'invisible'] %}
+    {% include '@atoms/field-description/field-description.twig' with {
+      theme: theme,
+      content: description,
+      modifier_class: 'ct-form-element__description' ~ (description_display == 'invisible' ? 'ct-visually-hidden' : ''),
+    } only %}
+  {% endif %}
+
+  {% if errors %}
+    {% include '@atoms/field-message/field-message.twig' with {
+      theme: theme,
+      type: 'error',
+      content: errors,
+      modifier_class: 'ct-form-element__message',
+    } only %}
+  {% endif %}
+</div>

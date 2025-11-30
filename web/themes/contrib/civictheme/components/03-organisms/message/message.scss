@@ -1,0 +1,48 @@
+//
+// Message component.
+//
+
+@use 'sass:map';
+
+.ct-message {
+  $root: &;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  border-radius: $ct-message-border-radius;
+  border-left: solid ct-particle(0.75) transparent;
+  padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(1);
+  margin: ct-spacing(3) 0;
+  width: 100%;
+
+  @include ct-typography('text-regular');
+
+  #{$root}__icon {
+    margin-right: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    font-weight: 600;
+  }
+
+  #{$root}__summary {
+    margin-top: ct-spacing();
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    $types: ('information', 'warning', 'error', 'success');
+
+    @each $type in $types {
+      &#{$root}--#{$type} {
+        @include ct-component-property($root, $theme, $type, background-color);
+        @include ct-component-property($root, $theme, $type, color);
+        @include ct-component-property($root, $theme, $type, border-color);
+
+        #{$root}__icon {
+          @include ct-component-property($root, $theme, $type, icon, color);
+        }
+      }
+    }
+  }
+}

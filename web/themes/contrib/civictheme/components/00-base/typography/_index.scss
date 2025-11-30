@@ -1,0 +1,65 @@
+//
+// Typography component.
+//
+
+@use 'sass:map';
+
+@each $name in map.keys(_ct-typography-all()) {
+  .ct-#{$name} {
+    @include ct-typography($name);
+  }
+}
+
+@for $level from 1 through 6 {
+  h#{$level} {
+    @include ct-typography('heading-#{$level}');
+  }
+}
+
+p {
+  @include ct-typography('text-regular');
+
+  margin-top: $ct-basic-content-vertical-spacing;
+  margin-bottom: $ct-basic-content-vertical-spacing;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  @include ct-typography('quote');
+
+  position: relative;
+  margin: 0;
+  margin-top: $ct-basic-content-vertical-spacing;
+  margin-bottom: $ct-basic-content-vertical-spacing;
+  padding: ct-spacing(2) ct-spacing(3);
+
+  &::before {
+    content: '';
+    width: ct-particle(0.75);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $ct-basic-content-blockquote-border-radius;
+  }
+}
+
+ol {
+  list-style-type: decimal;
+
+  ol {
+    list-style-type: lower-alpha;
+
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+}

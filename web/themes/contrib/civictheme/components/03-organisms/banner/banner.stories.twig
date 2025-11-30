@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Banner component stories.
+ */
+#}
+
+{% extends './banner.twig' %}
+
+{% if show_content_text %}
+  {% set content %}
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: '<p>Government grade set of high quality design themes that are accessible, inclusive and provide a consistent digital experience for your citizen. </p>',
+      modifier_class: 'ct-banner__content__example',
+    } only %}
+
+    {% include '@atoms/button/button.twig' with {
+      text: 'Learn about our mission',
+      type: 'primary',
+      theme: theme,
+      modifier_class: 'ct-banner__content__example',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_content_below %}
+  {% set card %}
+    {% include '@molecules/navigation-card/navigation-card.twig' with {
+      theme: theme,
+      title: 'Register for a workshop',
+      summary: 'Optional summary in the breakdown of tasks.',
+      icon: 'mortarboard',
+    } only %}
+  {% endset %}
+
+  {% set content_below %}
+    {% include '@base/item-grid/item-grid.twig' with {
+      column_count: 4,
+      items: [card, card, card, card],
+      modifier_class: 'ct-banner__content__example',
+    } only %}
+  {% endset %}
+{% endif %}
