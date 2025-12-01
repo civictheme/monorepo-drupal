@@ -139,7 +139,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__link(array &$variabl
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_link', TRUE);
   if ($link !== NULL) {
     $variables['link'] = [
-      'text' => Xss::filter($link->get('title')->getString()),
+      'text' => html_entity_decode(Xss::filter($link->get('title')->getString())),
       'url' => $link->getUrl()->toString(),
       'is_new_window' => $link->isExternal(),
       'is_external' => $link->isExternal(),
