@@ -1,38 +1,35 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import Component from './skip-link.twig';
 
-import CivicThemeSkipLink from './skip-link.twig';
-
-export default {
+const meta = {
   title: 'Organisms/Skip Link',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const SkipLink = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    text: text('Text', 'Skip to main content', generalKnobTab),
-    url: text('URL', '#main-content', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  let html = CivicThemeSkipLink({
-    ...generalKnobs,
-  });
-
-  html += '<div class="docs-container docs-container--large">Press TAB on the keyboard for the Skip Link to appear</div>';
-
-  return html;
+export const SkipLink = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    text: 'Skip to main content',
+    url: '#main-content',
+    modifier_class: '',
+  },
 };

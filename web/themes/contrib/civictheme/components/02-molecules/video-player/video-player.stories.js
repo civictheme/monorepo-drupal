@@ -1,69 +1,135 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import Component from './video-player.twig';
 
-import CivicThemeVideo from './video-player.twig';
-import { demoVideoPoster, demoVideos } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Molecules/Video Player',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    sources: {
+      control: { type: 'array' },
+    },
+    poster: {
+      control: { type: 'text' },
+    },
+    embedded_source: {
+      control: { type: 'text' },
+    },
+    raw_source: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    transcript_link: {
+      control: { type: 'object' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const VideoPlayer = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const sourceKnobTab = 'Source';
-  const transcriptLinkKnobTab = 'Transcript Link';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Sources = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: '',
+    width: '550',
+    height: '400',
+    sources: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        url: 'demo/videos/demo.webm',
+        type: 'video/webm',
       },
-      'light',
-      generalKnobTab,
-    ),
-    source_type: radios('Source type', {
-      File: 'file',
-      Embedded: 'embedded',
-      Raw: 'raw',
-    }, 'file', generalKnobTab),
-    title: text('Title', 'Test video', generalKnobTab),
-    width: text('Width', '', generalKnobTab),
-    height: text('Height', '500', generalKnobTab),
-    with_transcript_link: boolean('With Transcript link', true, generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  const sourceKnobs = {};
-  if (generalKnobs.source_type === 'file') {
-    sourceKnobs.sources = boolean('With sources', true, sourceKnobTab) ? demoVideos() : null;
-    if (sourceKnobs.sources) {
-      sourceKnobs.poster = boolean('With poster', true, sourceKnobTab) ? demoVideoPoster() : null;
-    }
-  } else if (generalKnobs.source_type === 'embedded') {
-    sourceKnobs.embedded_source = text('Embedded source', 'https://www.youtube.com/embed/C0DPdy98e4c', sourceKnobTab);
-  } else {
-    sourceKnobs.raw_source = boolean('With raw input', true, sourceKnobTab) ? '<iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/C0DPdy98e4c" width="420"></iframe>' : null;
-  }
-
-  let transcriptLinkKnobs = {};
-  if (generalKnobs.with_transcript_link) {
-    transcriptLinkKnobs = {
-      transcript_link: {
-        text: text('Text', 'View transcript', transcriptLinkKnobTab),
-        title: text('Title', 'Open transcription in a new window', transcriptLinkKnobTab),
-        url: text('URL', 'https://example.com', transcriptLinkKnobTab),
-        is_new_window: boolean('Open in a new window', true, transcriptLinkKnobTab),
-        is_external: boolean('Is external', false, transcriptLinkKnobTab),
+      {
+        url: 'demo/videos/demo.mp4',
+        type: 'video/mp4',
       },
-    };
-  }
+      {
+        url: 'demo/videos/demo.avi',
+        type: 'video/avi',
+      },
+    ],
+    poster: 'demo/videos/demo_poster.png',
+    embedded_source: '',
+    raw_source: '',
+    transcript_link: {
+      text: 'View transcript',
+      title: 'Open transcription in a new window',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: false,
+      attributes: '',
+    },
+    attributes: '',
+    modifier_class: '',
+  },
+};
 
-  return CivicThemeVideo({
-    ...generalKnobs,
-    ...sourceKnobs,
-    ...transcriptLinkKnobs,
-  });
+export const EmbeddedSource = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Test video',
+    width: '550',
+    height: '400',
+    sources: null,
+    poster: '',
+    embedded_source: 'https://www.youtube.com/embed/C0DPdy98e4c',
+    raw_source: '',
+    transcript_link: {
+      text: 'View transcript',
+      title: 'Open transcription in a new window',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: false,
+      attributes: '',
+    },
+    attributes: '',
+    modifier_class: '',
+  },
+};
+
+export const RawSources = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: '',
+    width: '550',
+    height: '400',
+    sources: null,
+    poster: '',
+    embedded_source: '',
+    raw_source: '<iframe allowfullscreen="" frameborder="0" height="400" src="https://www.youtube.com/embed/C0DPdy98e4c" width="550"></iframe>',
+    transcript_link: {
+      text: 'View transcript',
+      title: 'Open transcription in a new window',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: false,
+      attributes: '',
+    },
+    attributes: '',
+    modifier_class: '',
+  },
 };

@@ -1,66 +1,116 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, select, text,
-} from '@storybook/addon-knobs';
-import { demoImage, getSlots, objectFromArray } from '../../00-base/base.utils';
-import CivicThemeBannerExample from './banner.stories.twig';
-import { Breadcrumb } from '../../02-molecules/breadcrumb/breadcrumb.stories';
+import Component from './banner.stories.twig';
+import BreadcrumbComponent from '../../02-molecules/breadcrumb/breadcrumb.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
+import { demoImage, getSlots } from '../../00-base/base.utils';
 
-export default {
+const breadcrumbLinks = [
+  { text: 'Home', url: '/' },
+  { text: 'Parent page', url: '/parent' },
+  { text: 'Current page', url: '/parent/current' },
+];
+
+const meta = {
   title: 'Organisms/Banner',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  render: (args) => {
+    const breadcrumb = args.with_breadcrumb ? BreadcrumbComponent({
+      theme: args.theme,
+      links: breadcrumbLinks,
+      active_is_link: false,
+    }) : '';
+
+    return Component({
+      theme: args.theme,
+      title: args.title,
+      background_image: args.with_background_image ? Constants.BACKGROUNDS[args.background] : null,
+      background_image_blend_mode: args.with_background_image ? args.blend_mode : null,
+      featured_image: args.with_featured_image ? {
+        url: demoImage(0),
+        alt: 'Featured image alt text',
+      } : null,
+      is_decorative: args.is_decorative,
+      site_section: args.with_site_section ? 'Site section name' : '',
+      breadcrumb,
+      show_content_text: args.show_content_text,
+      show_content_below: args.show_content_below,
+      modifier_class: args.modifier_class,
+      ...getSlots([
+        'content_top1',
+        'content_top2',
+        'content_top3',
+        'content_middle',
+        'content',
+        'content_bottom',
+      ], args.show_slots),
+    });
+  },
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    with_background_image: {
+      control: { type: 'boolean' },
+    },
+    background: {
+      control: { type: 'select' },
+      options: Object.keys(Constants.BACKGROUNDS),
+      if: { arg: 'with_background_image' },
+    },
+    blend_mode: {
+      control: { type: 'select' },
+      options: Constants.SCSS_VARIABLES['ct-background-blend-modes'],
+      if: { arg: 'with_background_image' },
+    },
+    with_featured_image: {
+      control: { type: 'boolean' },
+    },
+    is_decorative: {
+      control: { type: 'boolean' },
+    },
+    with_site_section: {
+      control: { type: 'boolean' },
+    },
+    with_breadcrumb: {
+      control: { type: 'boolean' },
+    },
+    show_content_text: {
+      control: { type: 'boolean' },
+    },
+    show_content_below: {
+      control: { type: 'boolean' },
+    },
+    show_slots: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Banner = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const breadcrumbKnobTab = 'Breadcrumb';
-  const bgImageKnobTab = 'Background Image';
+export default meta;
 
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'dark',
-    generalKnobTab,
-  );
-
-  const withBgImage = boolean('With background image', true, generalKnobTab);
-
-  const generalKnobs = {
-    theme,
-    title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
-    background_image: withBgImage ? BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], bgImageKnobTab)] : null,
-    background_image_blend_mode: withBgImage ? select(
-      'Blend mode',
-      objectFromArray(SCSS_VARIABLES['ct-background-blend-modes']),
-      SCSS_VARIABLES['ct-background-blend-modes'][0],
-      bgImageKnobTab,
-    ) : null,
-    featured_image: boolean('With featured image', true, generalKnobTab) ? {
-      url: demoImage(0),
-      alt: 'Featured image alt text',
-    } : null,
-    is_decorative: boolean('Decorative', true, generalKnobTab),
-    site_section: boolean('With site section', true, generalKnobTab) ? 'Site section name' : '',
-    breadcrumb: boolean('With breadcrumb', true, generalKnobTab) ? Breadcrumb(breadcrumbKnobTab, false) : '',
-    show_content_text: boolean('With content text', true, generalKnobTab),
-    show_content_below: boolean('With content below', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  return CivicThemeBannerExample({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top1',
-      'content_top2',
-      'content_top3',
-      'content_middle',
-      'content',
-      'content_bottom',
-    ]),
-  });
+export const Banner = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'dark',
+    title: 'Providing visually engaging digital experiences',
+    with_background_image: true,
+    background: Object.keys(Constants.BACKGROUNDS)[0],
+    blend_mode: Constants.SCSS_VARIABLES['ct-background-blend-modes'][0],
+    with_featured_image: true,
+    is_decorative: true,
+    with_site_section: true,
+    with_breadcrumb: true,
+    show_content_text: true,
+    show_content_below: false,
+    show_slots: false,
+    modifier_class: '',
+  },
 };

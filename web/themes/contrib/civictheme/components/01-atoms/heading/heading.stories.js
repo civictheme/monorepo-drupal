@@ -1,41 +1,40 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeHeading from './heading.twig';
+import Component from './heading.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Heading',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    level: {
+      control: { type: 'radio' },
+      options: ['1', '2', '3', '4', '5', '6'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Heading = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    level: radios('Level', {
-      1: '1',
-      2: '2',
-      3: '3',
-      4: '4',
-      5: '5',
-      6: '6',
-    }, '1', generalKnobTab),
-    content: text('Content', 'Heading content', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeHeading({
-    ...generalKnobs,
-  });
+export const Heading = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    level: '1',
+    content: 'Heading content',
+    modifier_class: '',
+    attributes: '',
+  },
 };

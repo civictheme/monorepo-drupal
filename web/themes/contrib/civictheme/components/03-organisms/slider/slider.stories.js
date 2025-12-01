@@ -1,106 +1,89 @@
-// phpcs:ignoreFile
-import {
-  boolean,
-  number, radios, text,
-} from '@storybook/addon-knobs';
-import { getSlots, randomLinks, randomTags } from '../../00-base/base.utils';
-import { randomSlidesComponent } from './slider.utils';
-import CivicThemeSlider from './slider.twig';
+import Component from './slider.twig';
 
-export default {
+import Slide from './slide.twig';
+
+const meta = {
   title: 'Organisms/Slider',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    slides: {
+      control: { type: 'text' },
+    },
+    previous_label: {
+      control: { type: 'text' },
+    },
+    next_label: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Slider = () => {
-  const generalKnobTab = 'General';
-  const slidesKnobTab = 'Slide';
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
+export default meta;
 
-  const numOfSlides = number(
-    'Number of slides',
-    5,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    slidesKnobTab,
-  );
-
-  const slides = randomSlidesComponent(numOfSlides, theme, true, {
-    image_position: radios('Image Position', {
-      Left: 'left',
-      Right: 'right',
-    }, 'right', slidesKnobTab),
-    tags: randomTags(number(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+export const Slider = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    title: 'Slider title',
+    slides: [1, 2, 3].map((idx) => Slide({
+      theme: 'light',
+      image: {
+        url: './demo/images/demo1.jpg',
+        alt: '',
       },
-      slidesKnobTab,
-    ), true),
-    date: text('Date', '20 Jan 2023 11:00', slidesKnobTab),
-    date_end: text('End date', '21 Jan 2023 15:00', slidesKnobTab),
-    links: randomLinks(number(
-      'Number of links',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      slidesKnobTab,
-    ), 10),
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  }).join(' ');
-
-  const generalKnobs = {
-    theme,
-    title: text('Title', 'Slider title', generalKnobTab),
-    with_background: boolean('With background', false, generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    slides,
-    previous_label: text('Previous Label', 'Previous', generalKnobTab),
-    next_label: text('Next Label', 'Next', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  return CivicThemeSlider({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+      image_position: 'before',
+      tags: [`Tag ${idx}`],
+      date: '20 Jan 2023 11:00',
+      date_iso: '',
+      date_end: '21 Jan 2023 09:00',
+      date_end_iso: '',
+      title: `Slide ${idx}`,
+      content: 'Content',
+      links: [
+        {
+          text: `Link ${idx}`,
+          url: 'https://example.com/',
+          is_new_window: false,
+          is_external: false,
+        },
+      ],
+      attributes: '',
+    }).trim()).join(''),
+    previous_label: 'Previous',
+    next_label: 'Next',
+    vertical_spacing: 'none',
+    with_background: false,
+    content_top: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

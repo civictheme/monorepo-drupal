@@ -1,9 +1,17 @@
-// phpcs:ignoreFile
-import CivicThemeCollapsible from './collapsible.stories.twig';
-import './collapsible';
+import Component from './collapsible.stories.twig';
 
-export default {
-  title: 'Base/Collapsible',
+const meta = {
+  title: 'Base/Utilities/Collapsible',
+  component: Component,
 };
 
-export const Collapsible = CivicThemeCollapsible;
+export default meta;
+
+export const Collapsible = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+};

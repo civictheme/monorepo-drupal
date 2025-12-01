@@ -1,0 +1,87 @@
+//
+// Custom layouts for Storybook.
+//
+// Storybook does not provide a simple way to add custom layouts to be
+// used in the story parameters, so we have to use our own decorator that
+// provides a wrapper around story with custom sizes.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+
+.sb-show-main {
+  overflow-y: scroll;
+
+  // Remove padding so we can clearly see where the edges of the elements sit.
+  &.sb-main-fullscreen,
+  &.sb-main-centered {
+    #root {
+      padding: 0;
+    }
+  }
+}
+
+#root {
+  font-family: sans-serif;
+  padding: ct-spacing(2);
+
+  > .story-layout {
+    $root: &;
+
+    // Only apply wrappers used directly in preview, but not within other
+    // components.
+    &.story-layout-size--small {
+      // Make the wrapper smaller than the mobile size to make sure any overflow
+      // is visible on the screen.
+      max-width: map.get($ct-breakpoints, 'xs') - ct-particle-px(4);
+
+      @include ct-breakpoint(s) {
+        max-width: map.get($ct-breakpoints, 's') - ct-particle-px(4);
+      }
+    }
+
+    &.story-layout-size--medium {
+      max-width: map.get($ct-breakpoints, 'm');
+    }
+
+    &.story-layout-size--large {
+      max-width: map.get($ct-breakpoints, 'xxl');
+    }
+
+    &.story-layout--resizable {
+      border: solid ct-particle(0.125) yellowgreen;
+      padding: ct-particle(2);
+      width: 85vw;
+      height: 95vh;
+      resize: horizontal;
+      overflow: auto;
+    }
+
+    &.story-layout--container {
+      container-type: inline-size;
+    }
+
+    &.story-layout--resizable,
+    &.story-layout--container {
+      &.story-layout-size--small {
+        max-width: initial;
+        width: rem(map.get($ct-breakpoints, 'xs')) + ct-spacing(8);
+      }
+
+      &.story-layout-size--medium {
+        max-width: initial;
+        width: rem(map.get($ct-breakpoints, 's')) + ct-spacing(8);
+      }
+
+      &.story-layout-size--large {
+        max-width: initial;
+        width: rem(map.get($ct-breakpoints, 'xxl')) + ct-spacing(8);
+      }
+    }
+  }
+}
+
+.sb-main-fullscreen #root .story-layout.story-layout--centered-vertically {
+  margin-top: 30vh;
+}

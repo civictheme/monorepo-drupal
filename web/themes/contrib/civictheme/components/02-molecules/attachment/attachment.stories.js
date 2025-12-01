@@ -1,138 +1,115 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomSentence, randomUrl } from '../../00-base/base.utils';
-import CivicThemeAttachment from './attachment.twig';
+import Component from './attachment.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Attachment',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    files: {
+      control: { type: 'object' },
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Attachment = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const date = new Date().toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
-  const files = [
-    {
-      url: randomUrl(),
-      name: 'Document.doc',
-      ext: 'doc',
-      size: '42.88 KB',
-      created: date,
-      changed: date,
-      icon: 'word-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.doc',
-      ext: 'docx',
-      size: '32.48 KB',
-      created: date,
-      changed: date,
-      icon: 'word-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.pdf',
-      ext: 'pdf',
-      size: '42.82 KB',
-      created: date,
-      changed: date,
-      icon: 'pdf-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.ppt',
-      ext: 'ppt',
-      size: '12.88 KB',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.xlsx',
-      ext: 'xlsx',
-      size: '34.45 KB',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.xls',
-      ext: 'xls',
-      size: '65.67 KB',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.xls',
-      size: '65.67 KB',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.xls',
-      ext: 'XLS',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-    {
-      url: randomUrl(),
-      name: 'Document.xls',
-      created: date,
-      changed: date,
-      icon: 'download-file',
-    },
-  ];
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Attachment = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    title: 'Attachments',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    files: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        url: 'https://example.com/document.doc',
+        name: 'Document.doc',
+        ext: 'doc',
+        size: '42.88 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'word-file',
       },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Attachments', generalKnobTab),
-    content: text('Content', randomSentence(), generalKnobTab),
-    files: boolean('With files', true, generalKnobTab) ? files : null,
-    with_background: boolean('With background', false, generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
       {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
+        url: 'https://example.com/document.docx',
+        name: 'Document.docx',
+        ext: 'docx',
+        size: '32.48 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'word-file',
       },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeAttachment({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+      {
+        url: 'https://example.com/document.pdf',
+        name: 'Document.pdf',
+        ext: 'pdf',
+        size: '42.82 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'pdf-file',
+      },
+      {
+        url: 'https://example.com/document.ppt',
+        name: 'Document.ppt',
+        ext: 'ppt',
+        size: '12.88 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'download-file',
+      },
+      {
+        url: 'https://example.com/document.xlsx',
+        name: 'Document.xlsx',
+        ext: 'xlsx',
+        size: '34.45 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'download-file',
+      },
+      {
+        url: 'https://example.com/document.xls',
+        name: 'Document.xls',
+        ext: 'xls',
+        size: '65.67 KB',
+        created: '2022-01-01',
+        changed: '2022-01-01',
+        icon: 'download-file',
+      },
+    ],
+    with_background: false,
+    vertical_spacing: 'none',
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

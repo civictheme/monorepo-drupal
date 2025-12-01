@@ -1,38 +1,47 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import Component from './image.twig';
 
-import CivicThemeImage from './image.twig';
-import { demoImage } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Atoms/Image',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    alt: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Image = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    url: boolean('Show image', true, generalKnobTab) ? demoImage() : false,
-    alt: text('Image alt text', 'Alternative text', generalKnobTab),
-    width: text('Width', '', generalKnobTab),
-    height: text('Height', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeImage({
-    ...generalKnobs,
-  });
+export const Image = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: './demo/images/demo5.jpg',
+    alt: 'Alternative text',
+    width: '',
+    height: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

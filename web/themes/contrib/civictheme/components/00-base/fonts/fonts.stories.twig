@@ -1,0 +1,15 @@
+<div class="story-fonts-wrapper">
+  {% for font in fonts %}
+    <div class="story-container">
+      <div class="story-container__title">{{ font|capitalize }}</div>
+      <div class="story-container__content">
+        {% for weight in weights %}
+          <div class="story-container__subtitle">{{ weight|capitalize }}</div>
+          <div class="story-container__subcontent story-font--{{ weight }}--{{ font }}">The quick brown fox jumps over the lazy dog</div>
+          <div class="story-container__subtitle">{{ weight|capitalize }} Italic</div>
+          <div class="story-container__subcontent story-font--italic--{{ weight }}--{{ font }}">The quick brown fox jumps over the lazy dog</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

@@ -1,49 +1,44 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeWebform from './webform.twig';
+import Component from './webform.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Webform',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    referenced_webform: {
+      control: { type: 'text' },
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Webform = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
-
-  const generalKnobs = {
-    theme,
-    referenced_webform: text('Title', 'Webform title', generalKnobTab),
-    with_background: boolean('With background', false, generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeWebform({
-    ...generalKnobs,
-  });
+export const Webform = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    referenced_webform: 'Webform title',
+    with_background: false,
+    vertical_spacing: 'none',
+    attributes: '',
+    modifier_class: '',
+  },
 };

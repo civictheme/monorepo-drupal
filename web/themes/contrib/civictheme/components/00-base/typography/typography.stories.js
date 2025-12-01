@@ -1,8 +1,17 @@
-// phpcs:ignoreFile
-import CivicThemeTypography from './typography.stories.twig';
+import Component from './typography.stories.twig';
 
-export default {
+const meta = {
   title: 'Base/Typography',
+  component: Component,
 };
 
-export const Typography = () => CivicThemeTypography();
+export default meta;
+
+export const Typography = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+};

@@ -1,0 +1,64 @@
+<div class="story-container story-layout-size--large story-layout--centered">
+  <div class="story-container__title">Spacing</div>
+  <div class="story-container__content">
+    <div class="story-spacing-wrapper ">
+      <div class="story-spacing--10">
+        <div class="story-spacing--9">
+          <div class="story-spacing--8">
+            <div class="story-spacing--7">
+              <div class="story-spacing--6">
+                <div class="story-spacing--5">
+                  <div class="story-spacing--4">
+                    <div class="story-spacing--3">
+                      <div class="story-spacing--2">
+                        <div class="story-spacing--1"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="story-container story-layout-size--large story-layout--centered">
+  <div class="story-container__title">Component Vertical Spacing</div>
+  <div class="story-container__content">
+    <div class="story-vertical-spacing-wrapper">
+      {% set component_spacings = ['top', 'bottom', 'both', 'none'] %}
+      {% for type in component_spacings %}
+        <div class="story-vertical-spacing-container">
+          <div class="story-vertical-spacing ct-vertical-spacing--{{ type }}">
+            <div class="story-placeholder" contenteditable="true">
+              Content <code>ct-vertical-spacing--{{ type }}</code>
+            </div>
+          </div>
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="story-container story-layout-size--large story-layout--centered">
+  <div class="story-container__title">Component Vertical Spacing Inset</div>
+  <div class="story-container__content">
+    <div class="story-vertical-spacing-wrapper">
+      {% set component_spacings = ['top', 'bottom', 'both', 'none'] %}
+      {% for type in component_spacings %}
+        <div class="story-vertical-spacing-container">
+          <div class="story-vertical-spacing ct-vertical-spacing-inset--{{ type }}">
+            <div class="story-placeholder" contenteditable="true">
+              Content <code>ct-vertical-spacing-inset--{{ type }}</code>
+            </div>
+          </div>
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,46 +1,53 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import { demoImage, getSlots, randomUrl } from '../../00-base/base.utils';
-import CivicThemeSubjectCard from './subject-card.twig';
+import Component from './subject-card.twig';
 
-export default {
-  title: 'Molecules/Subject Card',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Molecules/List/Subject Card',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_over: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const SubjectCard = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Subject card title which runs across two or three lines', generalKnobTab),
+export const SubjectCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Subject card title which runs across two or three lines',
     link: {
-      url: text('Link URL', randomUrl(), generalKnobTab),
-      is_external: boolean('Link is external', false, generalKnobTab),
-      is_new_window: boolean('Open in a new window', false, generalKnobTab),
+      url: 'https://example.com',
+      is_new_window: false,
     },
-    image: boolean('With image', true, generalKnobTab) ? {
-      url: demoImage(),
+    image: {
+      url: './demo/images/demo1.jpg',
       alt: 'Image alt text',
-    } : false,
-    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeSubjectCard({
-    ...generalKnobs,
-    ...getSlots([
-      'image_over',
-    ]),
-  });
+    },
+    image_over: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

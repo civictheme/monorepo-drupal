@@ -1,26 +1,33 @@
-// phpcs:ignoreFile
-import { color, select } from '@storybook/addon-knobs';
-import { objectFromArray } from '../base.utils';
+import Component from './background.stories.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Base/Background',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    blend_mode: {
+      control: { type: 'select' },
+      options: Constants.SCSS_VARIABLES['ct-background-blend-modes'],
+    },
+    color: {
+      control: { type: 'color' },
+    },
+    url: {
+      control: { type: 'select' },
+      options: Constants.BACKGROUNDS,
+    },
   },
 };
 
-export const Background = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const bgImageUrl = select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab);
-  const bgColor = color('Background color', '#003a4f', generalKnobTab);
-
-  const blendMode = select(
-    'Blend mode',
-    objectFromArray(SCSS_VARIABLES['ct-background-blend-modes']),
-    SCSS_VARIABLES['ct-background-blend-modes'][0],
-    generalKnobTab,
-  );
-
-  return `<div class="story-background-wrapper story-wrapper-size--large ct-background ct-background--${blendMode}" style="background-image: url('${BACKGROUNDS[bgImageUrl]}'); background-color: ${bgColor}"></div>`;
+export const Background = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    url: Constants.BACKGROUNDS[Object.keys(Constants.BACKGROUNDS)[0]],
+    color: '#003a4f',
+    blend_mode: Constants.SCSS_VARIABLES['ct-background-blend-modes'][0],
+  },
 };

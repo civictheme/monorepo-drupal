@@ -1,31 +1,34 @@
-// phpcs:ignoreFile
-import { boolean, number, radios } from '@storybook/addon-knobs';
+import Component from './flyout.stories.twig';
 
-import './flyout';
-import CivicThemeFlyout from './flyout.stories.twig';
-
-export default {
-  title: 'Base/Flyout',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Base/Utilities/Flyout',
+  component: Component,
+  argTypes: {
+    direction: {
+      control: { type: 'select' },
+      options: ['top', 'bottom', 'left', 'right'],
+    },
+    expanded: {
+      control: { type: 'boolean' },
+    },
+    duration: {
+      control: { type: 'number' },
+    },
   },
 };
 
-export const Flyout = () => {
-  const html = CivicThemeFlyout({
-    direction: radios(
-      'Flyout from',
-      {
-        Top: 'top',
-        Bottom: 'bottom',
-        Left: 'left',
-        Right: 'right',
-      },
-      'right',
-    ),
-    expanded: boolean('Expanded', false),
-    duration: number('Duration (ms)', 500),
-  });
+export default meta;
 
-  return `<div class="story-wrapper-size--medium">${html}</div>`;
+export const Flyout = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
+  args: {
+    direction: 'right',
+    expanded: false,
+    duration: 500,
+  },
 };

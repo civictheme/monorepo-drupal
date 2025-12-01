@@ -1,100 +1,91 @@
-// phpcs:ignoreFile
-import {
-  date, number, radios, text,
-} from '@storybook/addon-knobs';
-import {
-  demoImage,
-  getSlots, randomLinks, randomSentence,
-  randomTags,
-} from '../../00-base/base.utils';
+import Component from './campaign.twig';
 
-import CivicThemeCampaign from './campaign.twig';
-
-export default {
+const meta = {
   title: 'Organisms/Campaign',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_position: {
+      control: { type: 'radio' },
+      options: ['left', 'right'],
+    },
+    tags: {
+      control: { type: 'array' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    date: {
+      control: { type: 'text' },
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Campaign = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Campaign heading which runs across two or three lines', generalKnobTab),
-    content: text('Content', randomSentence(), generalKnobTab),
-    date: date('Date', new Date(), generalKnobTab),
+export const Campaign = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    title: 'Campaign heading which runs across two or three lines',
+    content: 'Quis non in nostrud incididunt voluptate ea enim cillum ex ut reprehenderit proident enim officia velit.',
+    date: '11 Dec 2024',
     image: {
-      url: demoImage(),
+      url: './demo/images/demo4.jpg',
       alt: 'Image alt text',
     },
-    image_position: radios(
-      'Image position',
+    image_position: 'left',
+    tags: [
+      'Tag 1',
+    ],
+    links: [
       {
-        Left: 'left',
-        Right: 'right',
+        text: 'Link 1',
+        url: 'https://example.com/link',
+        is_new_window: false,
+        is_external: false,
       },
-      'left',
-      generalKnobTab,
-    ),
-    links: randomLinks(number(
-      'Number of links',
-      2,
       {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+        text: 'Link 2',
+        url: 'https://example.com/link-2',
+        is_new_window: false,
+        is_external: false,
       },
-      generalKnobTab,
-    ), 10),
-    tags: randomTags(number(
-      'Number of tags',
-      1,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ), true),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
-  return CivicThemeCampaign({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_middle',
-      'content_bottom',
-    ]),
-  });
+    ],
+    vertical_spacing: 'both',
+    content_top: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

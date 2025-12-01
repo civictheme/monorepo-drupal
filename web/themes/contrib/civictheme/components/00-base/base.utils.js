@@ -1,10 +1,7 @@
-// phpcs:ignoreFile
 //
 // Shared JS helpers for Storybook stories.
 //
 
-import { boolean } from '@storybook/addon-knobs';
-import { LoremIpsum } from 'lorem-ipsum';
 import CivicThemeInput from '../01-atoms/input/input.twig';
 import CivicThemeSelect from '../01-atoms/select/select.twig';
 import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
@@ -13,13 +10,15 @@ import CivicThemeFormElement
   from '../02-molecules/form-element/form-element.twig';
 import CivicThemeLabel from '../01-atoms/label/label.twig';
 
+// Simple lorem ipsum words for generating random text.
+const loremWords = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+
 export const getThemes = () => ({
   light: 'Light',
   dark: 'Dark',
 });
 
-export const getSlots = (names) => {
-  const showSlots = boolean('Show story-slots', false, 'Slots');
+export const getSlots = (names, showSlots = false) => {
   const obj = {};
 
   if (showSlots) {
@@ -32,18 +31,11 @@ export const getSlots = (names) => {
 };
 
 export const randomText = (words) => {
-  const lorem = new LoremIpsum({
-    sentencesPerParagraph: {
-      max: 8,
-      min: 4,
-    },
-    wordsPerSentence: {
-      max: 16,
-      min: 4,
-    },
-  });
-
-  return lorem.generateWords(words);
+  const result = [];
+  for (let i = 0; i < words; i++) {
+    result.push(loremWords[Math.floor(Math.random() * loremWords.length)]);
+  }
+  return result.join(' ');
 };
 
 export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;

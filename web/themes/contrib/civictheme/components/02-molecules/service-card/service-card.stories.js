@@ -1,51 +1,64 @@
-// phpcs:ignoreFile
-import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomLinks } from '../../00-base/base.utils';
+import Component from './service-card.twig';
 
-import CivicThemeServiceCard from './service-card.twig';
-
-export default {
-  title: 'Molecules/Service Card',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Molecules/List/Service Card',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    summary: {
+      control: { type: 'text' },
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const ServiceCard = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  // Current component parameters.
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const ServiceCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Services category title across one or two lines',
+    summary: 'Summary',
+    links: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        text: 'Link text',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
       },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Services category title across one or two lines', generalKnobTab),
-    links: randomLinks(number(
-      'Number of links',
-      5,
       {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+        text: 'Link title 2',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
       },
-      generalKnobTab,
-    ), 10),
-    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeServiceCard({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+    ],
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

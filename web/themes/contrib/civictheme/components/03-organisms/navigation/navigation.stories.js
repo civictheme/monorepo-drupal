@@ -1,48 +1,53 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeNavigation from './navigation.twig';
-import getMenuLinks from '../../00-base/menu/menu.utils';
-import { randomInt, randomSentence } from '../../00-base/base.utils';
+import Component from './navigation.twig';
+import NavigationData from './navigation.stories.data';
 
-export default {
-  title: 'Organisms/Navigation',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Organisms/Navigation/Navigation',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    items: {
+      control: { type: 'array' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['none', 'inline', 'dropdown', 'drawer'],
+    },
+    dropdown_columns: {
+      control: { type: 'number' },
+    },
+    dropdown_columns_fill: {
+      control: { type: 'boolean' },
+    },
+    is_animated: {
+      control: { type: 'boolean' },
+    },
+    menu_id: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Navigation = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Navigation title', generalKnobTab),
-    type: radios(
-      'Type',
-      {
-        None: 'none',
-        Inline: 'inline',
-        Dropdown: 'dropdown',
-        Drawer: 'drawer',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    items: getMenuLinks('Links', (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`),
-    is_animated: boolean('Animated', true, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeNavigation({
-    ...generalKnobs,
-  });
+export const Navigation = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: NavigationData.args('light'),
 };

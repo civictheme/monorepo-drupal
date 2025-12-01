@@ -1,36 +1,62 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeCheckbox from './checkbox.twig';
+import Component from './checkbox.twig';
 
-export default {
-  title: 'Atoms/Checkbox',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Checkbox',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    label: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    is_checked: {
+      control: { type: 'boolean' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Checkbox = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    content: text('Content', 'Checkbox label', generalKnobTab),
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeCheckbox({
-    ...generalKnobs,
-  });
+export const Checkbox = {
+  title: 'Atoms/Form Controls/Checkbox',
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    label: 'This is a checkbox',
+    name: 'name',
+    id: 'id-name',
+    value: '50',
+    is_checked: false,
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+  },
 };

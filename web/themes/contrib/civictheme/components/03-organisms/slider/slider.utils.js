@@ -4,23 +4,15 @@
  * Slider component utilities.
  */
 
-import {
-  dateIsValid,
-  demoImage,
-  randomBool,
-  randomInt,
-  randomString,
-  randomText,
-  randomUrl,
-} from '../../00-base/base.utils';
-import Slide from './slide.twig';
-import Tag from '../../01-atoms/tag/tag.twig';
-import Button from '../../01-atoms/button/button.twig';
+import { dateIsValid, demoImage, randomBool, randomInt, randomString, randomText, randomUrl } from '../../00-base/storybook/storybook.utils';
+import CivicThemeSlide from './slide.twig';
+import CivicThemeTag from '../../01-atoms/tag/tag.twig';
+import CivicThemeButton from '../../01-atoms/button/button.twig';
 
 export const randomTagsComponent = (count, theme) => {
   const tags = [];
   for (let i = 0; i < count; i++) {
-    tags.push(Tag({
+    tags.push(CivicThemeTag({
       theme,
       text: randomString(randomInt(3, 8)),
     }));
@@ -31,7 +23,7 @@ export const randomTagsComponent = (count, theme) => {
 export const randomButtonsComponent = (count, theme) => {
   const buttons = [];
   for (let i = 0; i < count; i++) {
-    buttons.push(Button({
+    buttons.push(CivicThemeButton({
       theme,
       kind: 'button',
       text: randomString(randomInt(3, 8)),
@@ -60,12 +52,12 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
     const url = template && template.url ? template.url : (randomBool() ? randomUrl() : null);
     const content = template && template.content ? template.content : `Content ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
     const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
-    const attributes = template && template.attributes ? template.attributes : 'data-slider-slide';
+    const attributes = template && template.attributes ? template.attributes : '';
 
     const dateIso = dateIsValid(date) ? new Date(date).toISOString() : null;
     const dateEndIso = dateIsValid(dateEnd) ? new Date(dateEnd).toISOString() : null;
 
-    slides.push(Slide({
+    slides.push(CivicThemeSlide({
       theme,
       image,
       image_position: imagePosition,

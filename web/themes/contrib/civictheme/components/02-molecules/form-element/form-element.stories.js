@@ -1,174 +1,154 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeFormElement from './form-element.twig';
+import Component from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
+import Radio from '../../01-atoms/radio/radio.twig';
+import Checkbox from '../../01-atoms/checkbox/checkbox.twig';
 import { randomName } from '../../00-base/base.utils';
-import { Radio } from '../../01-atoms/radio/radio.stories';
-import { Checkbox } from '../../01-atoms/checkbox/checkbox.stories';
 
-export default {
+const meta = {
   title: 'Molecules/Form Element',
+  component: Component,
+  render: (args) => {
+    const children = [];
+    const controlArgs = {
+      theme: args.theme,
+      state: args.state,
+      is_disabled: args.is_disabled,
+      is_required: args.is_required,
+    };
+
+    switch (args.type) {
+      case 'radio':
+        children.push(Radio({
+          ...controlArgs,
+          label: 'Radio option',
+          name: 'radio-name',
+          value: 'radio-value',
+        }));
+        break;
+
+      case 'checkbox':
+        children.push(Checkbox({
+          ...controlArgs,
+          label: 'Checkbox option',
+          name: 'checkbox-name',
+          value: 'checkbox-value',
+        }));
+        break;
+
+      case 'select':
+        children.push(Select({
+          theme: args.theme,
+          state: args.state,
+          is_disabled: args.is_disabled,
+          options: [
+            { type: 'option', value: 'option1', label: 'Option 1' },
+            { type: 'option', value: 'option2', label: 'Option 2' },
+            { type: 'option', value: 'option3', label: 'Option 3' },
+            { type: 'option', value: 'option4', label: 'Option 4' },
+          ],
+        }));
+        break;
+
+      default:
+        children.push(Input({
+          theme: args.theme,
+          type: args.type,
+          value: args.value,
+          placeholder: args.placeholder,
+          state: args.state,
+          is_disabled: args.is_disabled,
+          is_required: args.is_required,
+        }));
+    }
+
+    const id = randomName(5);
+
+    const html = Component({
+      theme: args.theme,
+      type: args.type,
+      label: args.label,
+      label_display: args.label_display,
+      description: args.description,
+      description_display: args.description_display,
+      errors: args.with_error ? 'Sample error message' : false,
+      required: args.is_required,
+      modifier_class: args.modifier_class,
+      attributes: args.attributes,
+      id,
+      children,
+    });
+
+    return `<div class="container"><div class="row"><div class="col-xxs-12">${html}</div></div></div>`;
+  },
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'select' },
+      options: ['text', 'textarea', 'email', 'tel', 'password', 'select', 'radio', 'checkbox'],
+    },
+    label: {
+      control: { type: 'text' },
+    },
+    label_display: {
+      control: { type: 'radio' },
+      options: ['before', 'after', 'invisible'],
+    },
+    description: {
+      control: { type: 'text' },
+    },
+    description_display: {
+      control: { type: 'radio' },
+      options: ['before', 'after', 'invisible'],
+    },
+    with_error: {
+      control: { type: 'boolean' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    placeholder: {
+      control: { type: 'text' },
+    },
+    state: {
+      control: { type: 'radio' },
+      options: ['default', 'error', 'success'],
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const FormElement = () => {
-  const generalKnobTab = 'General';
-  const inputKnobTab = 'Input';
+export default meta;
 
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
-
-  const inputType = radios(
-    'Type',
-    {
-      Text: 'text',
-      Textarea: 'textarea',
-      Email: 'email',
-      Tel: 'tel',
-      Password: 'password',
-      Select: 'select',
-      Radio: 'radio',
-      Checkbox: 'checkbox',
-    },
-    'text',
-    generalKnobTab,
-  );
-
-  const generalKnobs = {
-    theme,
-    label: text('Label', 'Label for input', generalKnobTab),
-    label_display: radios(
-      'Label display',
-      {
-        Before: 'before',
-        After: 'after',
-        Invisible: 'invisible',
-      },
-      'before',
-      generalKnobTab,
-    ),
-    description: text('Description', 'Example input description', generalKnobTab),
-    description_display: radios(
-      'Description display',
-      {
-        Before: 'before',
-        After: 'after',
-        Invisible: 'invisible',
-      },
-      'after',
-      generalKnobTab,
-    ),
-    errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
-    required: boolean('Required', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  const states = {
-    None: 'default',
-    Error: 'error',
-    Success: 'success',
-  };
-
-  const inputKnobs = {
-    theme,
-    value: text('Value', 'Form element value', inputKnobTab),
-    placeholder: text('Placeholder', 'Form element placeholder', inputKnobTab),
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
-
-  const selectKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    disabled: boolean('Disabled', false, inputKnobTab),
-    options: [
-      { type: 'option', value: 'option1', label: 'Option 1' },
-      { type: 'option', value: 'option2', label: 'Option 2' },
-      { type: 'option', value: 'option3', label: 'Option 3' },
-      { type: 'option', value: 'option4', label: 'Option 4' },
-    ],
-  };
-
-  const radioKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
-
-  const checkboxKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
-
-  const children = [];
-
-  switch (inputType) {
-    case 'radio':
-      children.push(Radio({
-        type: inputType,
-        ...radioKnobs,
-      }));
-      break;
-
-    case 'checkbox':
-      children.push(Checkbox({
-        type: inputType,
-        ...checkboxKnobs,
-      }));
-      break;
-
-    case 'select':
-      children.push(Select({
-        ...selectKnobs,
-      }));
-      break;
-
-    default:
-      children.push(Input({
-        type: inputType,
-        ...inputKnobs,
-      }));
-  }
-
-  generalKnobs.id = randomName(5);
-
-  const html = CivicThemeFormElement({
-    ...generalKnobs,
-    type: inputType,
-    children,
-  });
-
-  return `<div class="container"><div class="row"><div class="col-xxs-12">${html}</div></div></div>`;
+export const FormElement = {
+  args: {
+    theme: 'light',
+    type: 'text',
+    label: 'Label for input',
+    label_display: 'before',
+    description: 'Example input description',
+    description_display: 'after',
+    with_error: false,
+    is_required: false,
+    value: 'Form element value',
+    placeholder: 'Form element placeholder',
+    state: 'default',
+    is_disabled: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

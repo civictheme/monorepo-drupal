@@ -1,29 +1,44 @@
-// phpcs:ignoreFile
-import { text } from '@storybook/addon-knobs';
-import CivicThemeTime from './time.twig';
+import Component from './time.twig';
 import { dateIsValid } from '../base.utils';
 
-export default {
+const meta = {
   title: 'Base/Time',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  render: (args) => {
+    const start_iso = dateIsValid(args.start) ? new Date(args.start).toISOString() : null;
+    const end_iso = dateIsValid(args.end) ? new Date(args.end).toISOString() : null;
+    return Component({
+      ...args,
+      start_iso,
+      end_iso,
+    });
+  },
+  argTypes: {
+    start: {
+      control: { type: 'text' },
+    },
+    end: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Time = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    start: text('Start', '20 Jan 2023 11:00', generalKnobTab),
-    end: text('End', '21 Jan 2023 15:00', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  generalKnobs.start_iso = dateIsValid(generalKnobs.start) ? new Date(generalKnobs.start).toISOString() : null;
-  generalKnobs.end_iso = dateIsValid(generalKnobs.end) ? new Date(generalKnobs.end).toISOString() : null;
-
-  return CivicThemeTime({
-    ...generalKnobs,
-  });
+export const Time = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    start: '20 Jan 2023 11:00',
+    end: '21 Jan 2023 15:00',
+    modifier_class: '',
+    attributes: '',
+  },
 };

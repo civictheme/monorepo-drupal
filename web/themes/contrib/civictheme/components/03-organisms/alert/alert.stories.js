@@ -1,101 +1,101 @@
-// phpcs:ignoreFile
-import {
-  button, number, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeAlert from './alert.twig';
+import Component from './alert.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Alert',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['information', 'error', 'warning', 'success'],
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    description: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Alert = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    type: radios(
-      'Type',
-      {
-        Information: 'information',
-        Error: 'error',
-        Warning: 'warning',
-        Success: 'success',
-      },
-      'information',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Site information', generalKnobTab),
-    description: text('Description', 'Alert description filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
+export default meta;
 
-  const numOfAlerts = number(
-    'Number of alerts',
-    1,
-    {
-      range: true,
-      min: 1,
-      max: 5,
-      step: 1,
-    },
-    generalKnobTab,
-  );
-  let html = '';
-  for (let i = 0; i < numOfAlerts; i++) {
-    html += CivicThemeAlert({
-      ...generalKnobs,
-      id: i,
-    });
-  }
-
-  return html;
+export const Alert = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    type: 'information',
+    id: 'alert-1',
+    title: 'Site information',
+    description: 'Alert description',
+    attributes: '',
+    modifier_class: '',
+  },
 };
 
-export const AlertApi = () => {
-  const endpointType = radios(
-    'Payload',
-    {
-      Default: 'default',
-      Updated: 'updated',
-      Invalid: 'invalid',
+export const AlertApi = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  argTypes: {
+    endpoint_type: {
+      control: { type: 'radio' },
+      options: ['default', 'updated', 'invalid'],
     },
-    'default',
-  );
-
-  let endpoint;
-  switch (endpointType) {
-    case 'updated':
-      endpoint = 'api/alerts2.json';
-      break;
-
-    case 'invalid':
-      endpoint = 'api/alerts3.json';
-      break;
-
-    default:
-      endpoint = 'api/alerts1.json';
-  }
-
-  button('Clear cookie', () => {
-    document.cookie = 'ct-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  });
-
-  let docs = '';
-  docs += 'Dismiss alerts by clicking on [X] button.<br/><br/>';
-  docs += 'Navigate to another component and return here to assert that dismissed alerts do not appear.<br/><br/>';
-  docs += 'Dismissed alerts will be revealed if their content was updated. Change payload to "Updated" to see dismissed alerts appear again.<br/><br/>';
-  docs += 'Press "Clear cookie" button to clear alert dismissal settings.';
-
-  return `<div data-component-name="ct-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
+    theme: {
+      table: { disable: true },
+    },
+    type: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
+    title: {
+      table: { disable: true },
+    },
+    description: {
+      table: { disable: true },
+    },
+    attributes: {
+      table: { disable: true },
+    },
+    modifier_class: {
+      table: { disable: true },
+    },
+  },
+  args: {
+    endpoint_type: 'default',
+  },
+  render: (args) => {
+    let endpoint = '';
+    switch (args.endpoint_type) {
+      case 'updated':
+        endpoint = 'api/alerts2.json';
+        break;
+      case 'invalid':
+        endpoint = 'api/alerts3.json';
+        break;
+      default:
+        endpoint = 'api/alerts1.json';
+    }
+    return `
+      <div data-component-name="ct-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div>
+      <button style="margin-top: 24px;" onclick="document.cookie = 'ct-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'; window.location.reload();">Clear cookie</button>
+    `;
+  },
 };
