@@ -96,6 +96,7 @@ $settings['trusted_host_patterns'] = [
   // Local URL.
   '^.+\.docker\.amazee\.io$',
   '^.+\.apps\.quantgovsites\.com$',
+  '^.+\.civictheme\.io$',
   // URL when accessed from Behat tests.
   '^nginx$',
 ];
