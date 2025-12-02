@@ -1023,3 +1023,73 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(
 
   return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' from field instance, field storage, and all civictheme_iframe paragraph displays (view and form) if they existed.");
 }
+
+/**
+ * Migrate deprecated layouts to civictheme_three_columns.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_migrate_one_column_layouts(): string {
+  $outdated_layouts = [
+    'civictheme_one_column',
+    'civictheme_one_column_contained',
+  ];
+
+  $messages = [];
+  $entity_displays = LayoutBuilderEntityViewDisplay::loadMultiple();
+  $updated_entity_displays = [];
+  foreach ($entity_displays as $entity_display) {
+    if (!$entity_display->isLayoutBuilderEnabled()) {
+      continue;
+    }
+    // Update allowed layouts if the deprecated ones are present.
+    $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction');
+    if (!empty($entity_view_mode_restriction['allowed_layouts'])) {
+      $allowed_layouts = $entity_view_mode_restriction['allowed_layouts'];
+      $replaced = FALSE;
+      foreach ($allowed_layouts as $idx => $layout_name) {
+        if (in_array($layout_name, $outdated_layouts)) {
+          unset($allowed_layouts[$idx]);
+          $replaced = TRUE;
+        }
+      }
+      if ($replaced) {
+        $allowed_layouts[] = 'civictheme_three_columns';
+        $entity_view_mode_restriction['allowed_layouts'] = array_values($allowed_layouts);
+        $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+        $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+      }
+    }
+    // Replace layouts in layout builder sections.
+    $layout_builder_sections = $entity_display->getThirdPartySetting('layout_builder', 'sections');
+    if (!empty($layout_builder_sections)) {
+      foreach ($layout_builder_sections as $index => $section) {
+        $layout_name = $section->getLayoutId();
+        if (in_array($layout_name, $outdated_layouts)) {
+          $section_as_array = $section->toArray();
+          $section_as_array['layout_id'] = 'civictheme_three_columns';
+          $section_as_array['layout_settings']['label'] = 'CivicTheme Three Columns';
+          $section_as_array['layout_settings']['is_contained'] = ($layout_name === 'civictheme_one_column_contained');
+          // Move all components to 'main'.
+          foreach ($section_as_array['components'] as &$component) {
+            if ($component['region'] === 'content') {
+              $component['region'] = 'main';
+            }
+          }
+          $layout_builder_sections[$index] = Section::fromArray($section_as_array);
+          $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+        }
+      }
+      $entity_display->setThirdPartySetting('layout_builder', 'sections', $layout_builder_sections);
+    }
+    if (in_array($entity_display->id(), $updated_entity_displays)) {
+      $entity_display->save();
+      $messages[] = (string) (new TranslatableMarkup('Updated @display_id display, replaced deprecated CivicTheme single-column layouts with civictheme_three_columns.', [
+        '@display_id' => $entity_display->id(),
+      ]));
+    }
+  }
+  return implode("\n", $messages);
+}
