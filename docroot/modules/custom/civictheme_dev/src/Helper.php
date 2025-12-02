@@ -193,7 +193,7 @@ class Helper {
    *
    * @SuppressWarnings(PHPMD.MissingImport)
    */
-  public static function saveMenuTree($menu_name, array $tree, MenuLinkContent $parent_menu_link = NULL) {
+  public static function saveMenuTree($menu_name, array $tree, ?MenuLinkContent $parent_menu_link = NULL) {
     $created_mlids = [];
     $weight = 0;
     foreach ($tree as $title => $leaf) {

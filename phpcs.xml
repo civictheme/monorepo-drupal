@@ -4,10 +4,9 @@
 
     <rule ref="Drupal"/>
     <rule ref="DrupalPractice"/>
-    <rule ref="Generic.Debug.ESLint"/>
     <rule ref="PHPCompatibility"/>
 
-    <arg name="extensions" value="css,inc,info,install,js,module,php,profile,test,theme,twig"/>
+    <arg name="extensions" value="css,inc,info,install,module,php,profile,test,theme,twig"/>
     <arg name="colors"/>
     <arg value="sp"/>
     <arg name="cache"/>

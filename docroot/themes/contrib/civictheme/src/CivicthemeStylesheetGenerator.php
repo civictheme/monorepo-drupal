@@ -136,7 +136,7 @@ class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
   }
 
   /**
-   * Generate stylesheet using provided variables..
+   * Generate stylesheet using provided variables.
    *
    * @param array $variables
    *   Array of variables to use for the generation.
