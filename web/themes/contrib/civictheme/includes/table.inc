@@ -20,6 +20,16 @@ function civictheme_preprocess_table(array &$variables): void {
     }
 
     $variables['header'] = $rows;
+
+    // Create sanitised header array with HTML stripped.
+    $header_sanitized = [];
+    foreach ($variables['header'] as $header_item) {
+      $rendered = (string) \Drupal::service('renderer')->render($header_item);
+      // Set to empty string if visually-hidden class is present.
+      $has_visually_hidden = preg_match('/class=["\'][^"\']*\b(?:visually-hidden|ct-visually-hidden)\b[^"\']*["\']/', $rendered);
+      $header_sanitized[] = $has_visually_hidden ? '' : strip_tags($rendered);
+    }
+    $variables['header_sanitized'] = $header_sanitized;
   }
 
   // Rows, Footer.
