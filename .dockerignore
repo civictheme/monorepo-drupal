@@ -27,6 +27,7 @@ node_modules
 
 # Do not ignore other required files.
 !.docker/scripts
+!.docker/entrypoints
 !.docker/config
 !.env
 !.eslintrc.json
