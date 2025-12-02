@@ -7,8 +7,8 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystem;
-use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Image\ImageFactory;
@@ -190,7 +190,7 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
     $upload_element = NestedArray::getValue($form, $upload_field_name_key);
 
     if ($upload_element) {
-      $file = _file_save_upload_from_form($upload_element, $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+      $file = _file_save_upload_from_form($upload_element, $form_state, 0, FileExists::Replace);
       if ($file) {
         $form_state->setValue($upload_field_name_key, $file);
         // Do not validate the path as it will be re-written in the submit

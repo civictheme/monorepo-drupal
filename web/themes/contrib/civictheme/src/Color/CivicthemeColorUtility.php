@@ -76,7 +76,7 @@ class CivicthemeColorUtility {
       (1 - $percentage) * $color[2] + $percentage * $mixer[2],
     ];
 
-    $result = '#' . self::intToHex($result[0]) . self::intToHex($result[1]) . self::intToHex($result[2]);
+    $result = '#' . self::intToHex((int) $result[0]) . self::intToHex((int) $result[1]) . self::intToHex((int) $result[2]);
 
     return $result;
   }

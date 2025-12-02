@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @file
  * Variations for CivicTheme Page nodes.
@@ -32,6 +34,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         'title' => 'Dark, ' . $helper::staticSentence(3),
         'link' => $helper::staticLinkFieldValue(),
         'theme' => $helper::civicthemeThemeDark(),
+      ],
+
+      [
+        'type' => 'promo',
+        'title' => 'Light, BG, ' . $helper::staticSentence(3),
+        'link' => $helper::staticLinkFieldValue(),
+        'theme' => $helper::civicthemeThemeLight(),
+        'background' => TRUE,
+      ],
+      [
+        'type' => 'promo',
+        'title' => 'Dark, BG, ' . $helper::staticSentence(3),
+        'link' => $helper::staticLinkFieldValue(),
+        'theme' => $helper::civicthemeThemeDark(),
+        'background' => TRUE,
       ],
 
       [

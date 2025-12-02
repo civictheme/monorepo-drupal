@@ -13,7 +13,7 @@ const paths = fs.readdirSync(basePath);
 function getBackgrounds() {
   const urls = {};
   paths.forEach((path) => {
-    urls[path] = `${dir.replace('../../../', '')}/${path}`;
+    urls[path] = `${dir.replace('../../../', '')} / ${path}`;
   });
   return urls;
 }

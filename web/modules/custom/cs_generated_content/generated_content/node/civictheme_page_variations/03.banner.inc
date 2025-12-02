@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @file
  * Variations for CivicTheme Page nodes.
@@ -20,7 +22,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $variations = [
+  return [
     [
       'title' => 'Page. Banner default, Light, Background, Content',
       'banner_theme' => $helper::civicthemeThemeLight(),
@@ -205,6 +207,4 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
   ];
-
-  return $variations;
 }

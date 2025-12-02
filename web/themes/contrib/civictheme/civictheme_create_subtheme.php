@@ -206,10 +206,10 @@ function process_stub(string $dir, array $options): void {
   // Resolve CivicTheme's location relative to the new theme.
   $current_dir = __DIR__;
   $relative_dir = file_get_relative_dir($options['path'], $current_dir);
-  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'webpack.common.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
-  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
+  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/gulpfile.js');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/webpack.common.js');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/webpack/theme_js.js');
+  file_replace_file_content('../../../contrib/civictheme/', $relative_dir, $dir . '/package.json');
 
   // Adjust per-file settings.
   //
@@ -267,7 +267,7 @@ function process_stub(string $dir, array $options): void {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function find_starter_kit_dir() {
+function find_starter_kit_dir(): string {
   $dir = __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_starter_kit';
 
   if (!file_exists($dir)) {
@@ -591,7 +591,7 @@ function file_is_excluded_from_processing(string $filename): bool {
  *
  * @SuppressWarnings(PHPMD.MissingImport)
  */
-function file_tempdir(string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
+function file_tempdir(?string $dir = NULL, string $prefix = 'tmp_', int $mode = 0700, int $max_attempts = 1000): string {
   if (is_null($dir)) {
     $dir = sys_get_temp_dir();
   }

@@ -5,6 +5,8 @@
  * Install file for CivicTheme Generated Content.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Url;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\redirect\Entity\Redirect;

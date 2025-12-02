@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\cs_generated_content;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -37,7 +39,7 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
    * @return string
    *   URL with a path.
    */
-  public static function staticUrl(string $domain = NULL): string {
+  public static function staticUrl(?string $domain = NULL): string {
     $parts = [];
     $parts[] = 'https://';
     $parts[] = $domain ? rtrim($domain, '/') : 'www.example.com';
@@ -104,11 +106,10 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
   /**
    * {@inheritdoc}
    */
-  public static function staticRichText($paragraphs = 4, $prefix = ''): string {
+  public static function staticRichText(int $paragraphs = 4, string $prefix = ''): string {
     $content = parent::staticRichText($paragraphs, $prefix);
-    $content .= '<a href="' . self::staticUrl() . '">' . self::staticSentence(2) . '</a>';
 
-    return $content;
+    return $content . ('<a href="' . self::staticUrl() . '">' . self::staticSentence(2) . '</a>');
   }
 
   /**

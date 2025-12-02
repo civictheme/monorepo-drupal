@@ -193,7 +193,7 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
    * @dataProvider dataProviderParseVariableName
    * @runInSeparateProcess
    */
-  public function testParseVariableName(string $name, string $prefix, string|array $expected, string $expectExceptionMessage = NULL): void {
+  public function testParseVariableName(string $name, string $prefix, string|array $expected, ?string $expectExceptionMessage = NULL): void {
     if ($expectExceptionMessage) {
       $this->expectException(\Exception::class);
       $this->expectExceptionMessage($expectExceptionMessage);

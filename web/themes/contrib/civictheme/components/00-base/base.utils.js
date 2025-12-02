@@ -23,7 +23,7 @@ export const getSlots = (names, showSlots = false) => {
 
   if (showSlots) {
     for (const i in names) {
-      obj[names[i]] = `<div class="story-slot story-slot--${names[i]}">{{ ${names[i]} }}</div>`;
+      obj[names[i]] = ` < div class = "story-slot story-slot--${names[i]}" > {{ ${names[i]} }} < / div > `;
     }
   }
 
@@ -38,7 +38,7 @@ export const randomText = (words) => {
   return result.join(' ');
 };
 
-export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;
+export const placeholder = (content = 'Content placeholder') => ` < div class = "story-placeholder" > ${content} < / div > `;
 
 export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -64,7 +64,7 @@ export const randomSentence = (words) => {
 
 export const randomUrl = (domain) => {
   domain = domain || 'http://example.com';
-  return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
+  return `${domain} / ${(Math.random() + 1).toString(36).substring(7)}`;
 };
 
 export const randomLinks = (count, length, domain, prefix) => {
@@ -138,7 +138,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     label: CivicThemeLabel({
       theme,
       content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
-      attributes: `for="form-element-${itr}"`,
+      attributes: `for = "form-element-${itr}"`,
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
@@ -149,7 +149,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     children: [],
     attributes: options.form_element_attributes,
   };
-  let attributes = `id="form-element-${itr}"`;
+  let attributes = `id = "form-element-${itr}"`;
   if (typeof options.attributes !== 'undefined') {
     attributes += options.attributes;
   }
@@ -166,15 +166,18 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     case 'radio':
       formElementOptions.children.push(CivicThemeRadio(inputOptions));
       break;
+
     case 'checkbox':
       formElementOptions.children.push(CivicThemeCheckbox(inputOptions));
       break;
+
     case 'select':
       formElementOptions.children.push(CivicThemeSelect({
         ...inputOptions,
         options: inputOptions.value,
       }));
       break;
+
     default:
       formElementOptions.children.push(CivicThemeInput(inputOptions));
   }
@@ -250,7 +253,7 @@ export const objectFromArray = (array) => {
 export const cleanCssIdentifier = function (string) {
   return string.toLowerCase()
     .replace(/(&\w+?;)/gim, ' ')
-    .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
+    .replace( / [_.~" < > % | '!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
     .replace(/(^\s+)|(\s+$)/gim, '')
     .replace(/\s+/gm, '-');
 };

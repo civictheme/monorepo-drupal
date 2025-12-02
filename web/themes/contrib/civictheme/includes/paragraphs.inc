@@ -226,7 +226,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
 /**
  * Pre-process for Summary node field.
  */
-function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, string $bundle = NULL): void {
+function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
   if ($node) {
     $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);

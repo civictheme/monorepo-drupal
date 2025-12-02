@@ -104,7 +104,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_image_get_variables(MediaInterface $media, string $image_style = NULL): ?array {
+function civictheme_media_image_get_variables(MediaInterface $media, ?string $image_style = NULL): ?array {
   if (!in_array($media->bundle(), ['civictheme_image', 'civictheme_icon'])) {
     return NULL;
   }
@@ -161,7 +161,7 @@ function civictheme_media_get_url(MediaInterface $media, bool $is_relative = TRU
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function civictheme_media_image_get_url(MediaInterface $media, string $image_style = NULL, bool $is_relative = TRUE): ?string {
+function civictheme_media_image_get_url(MediaInterface $media, ?string $image_style = NULL, bool $is_relative = TRUE): ?string {
   $src = NULL;
 
   $file = File::load($media->getSource()->getSourceFieldValue($media));
@@ -732,6 +732,7 @@ function _civictheme_get_configurable_component_name_from_bundle(string $bundle)
   // Accommodate for existing and additional components that could be added in
   // the sub-themes.
   if (preg_match('/civictheme_(.*_card|.*_?snippet).*/', $bundle, $matches)) {
+    // @phpstan-ignore-next-line
     if (!empty($matches[1])) {
       return $matches[1];
     }

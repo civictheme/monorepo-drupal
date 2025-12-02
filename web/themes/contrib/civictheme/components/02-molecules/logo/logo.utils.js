@@ -21,7 +21,7 @@ function getLogos() {
         urls[theme] = urls[theme] || {};
         urls[theme].primary = urls[theme].primary || {};
         urls[theme].primary[type] = urls[theme].primary[type] || {};
-        urls[theme].primary[type] = `${dir.replace('../../../', '')}/${path}`;
+        urls[theme].primary[type] = `${dir.replace('../../../', '')} / ${path}`;
       }
     }
     const secondaryMatches = path.matchAll(/logo_secondary_([^_]+)+_([^.]+)/g);
@@ -32,7 +32,7 @@ function getLogos() {
         urls[theme] = urls[theme] || {};
         urls[theme].secondary = urls[theme].secondary || {};
         urls[theme].secondary[type] = urls[theme].secondary[type] || {};
-        urls[theme].secondary[type] = `${dir.replace('../../../', '')}/${path}`;
+        urls[theme].secondary[type] = `${dir.replace('../../../', '')} / ${path}`;
       }
     }
     const customMatches = path.matchAll(/logo_custom_([^_]+)+_([^_]+)+_([^.]+)/g);
@@ -44,7 +44,7 @@ function getLogos() {
         urls[theme] = urls[theme] || {};
         urls[theme][name] = urls[theme][name] || {};
         urls[theme][name][type] = urls[theme][name][type] || {};
-        urls[theme][name][type] = `${dir.replace('../../../', '')}/${path}`;
+        urls[theme][name][type] = `${dir.replace('../../../', '')} / ${path}`;
       }
     }
   });

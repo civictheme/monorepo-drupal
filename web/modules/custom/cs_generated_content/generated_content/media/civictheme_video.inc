@@ -5,6 +5,8 @@
  * Create generated videos.
  */
 
+declare(strict_types=1);
+
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
@@ -41,13 +43,14 @@ function cs_generated_content_generated_content_create_media_civictheme_video():
     $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_MP4);
     $name = sprintf('Generated static video media %s %s', $i + 1, $helper::staticSentence(2));
 
-    if (!$file) {
+    if ($file === NULL) {
       continue;
     }
 
     $media = Media::create([
       'bundle' => 'civictheme_video',
       'name' => $name,
+      'moderation_state' => 'published',
     ]);
 
     $media->field_c_m_video_file->setValue([

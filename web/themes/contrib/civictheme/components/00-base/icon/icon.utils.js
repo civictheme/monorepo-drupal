@@ -15,7 +15,7 @@ function getIconPaths() {
 
   iconFiles.forEach((file) => {
     if (pathUtil.extname(file).toLowerCase() === EXTENSION) {
-      iconPaths.push(`${basePath}/${file}`);
+      iconPaths.push(`${basePath} / ${file}`);
     }
   });
 

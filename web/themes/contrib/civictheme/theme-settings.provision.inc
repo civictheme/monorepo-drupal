@@ -19,7 +19,7 @@ use Drupal\civictheme\CivicthemeConfigImporter;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Config\FileStorage;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
@@ -409,7 +409,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_provision_place_block(string $label, string $region, string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
+function civictheme_provision_place_block(string $label, string $region, ?string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
 
   $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
@@ -547,7 +547,7 @@ function civictheme_provision__files(): void {
   $default_file_scheme = \Drupal::config('system.file')->get('default_scheme') . '://';
   foreach ($filepaths as $filepath) {
     if (file_exists($filepath)) {
-      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
+      $file_repository->writeData((string) file_get_contents($filepath), $default_file_scheme . basename($filepath), FileExists::Replace);
       continue;
     }
     throw new \Exception(sprintf('File %s does not exist.', $filepath));
@@ -1074,11 +1074,12 @@ function civictheme_enable_modules(bool $include_optional = TRUE): void {
  *   Array of dependency names.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_get_theme_dependencies(string $theme_name, bool $include_optional = TRUE): array {
-  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
-  $theme_handler = \Drupal::getContainer()->get('theme_handler');
-  $theme_data = $theme_handler->rebuildThemeData();
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_list */
+  $theme_list = \Drupal::service('extension.list.theme');
+  $theme_data = $theme_list->reset()->getList();
 
   // Merge dependencies from the theme's info file and from the 'optional'
   // config. We are deliberately not including dependencies from the 'install'

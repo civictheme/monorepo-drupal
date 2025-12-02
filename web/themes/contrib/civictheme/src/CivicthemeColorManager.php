@@ -343,7 +343,8 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
     $this->cacheTagsInvalidator->invalidateTags(['library_info']);
 
     // Force browser reload by changing the dummy query string.
-    _drupal_flush_css_js();
+    // @phpstan-ignore-next-line
+    \Drupal::service('asset.query_string')->reset(); // phpcs:ignore DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
 
     return $this;
   }

@@ -8,6 +8,7 @@ use FriendsOfTwig\Twigcs;
 $excluded = [
   '.components-civictheme',
   'components_combined',
+  'node_modules',
 ];
 
 // Filter-out stories templates

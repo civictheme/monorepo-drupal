@@ -147,7 +147,8 @@ trait CivicthemeTestHelperTrait {
     // @phpstan-ignore-next-line
     $mock = $this->getMockBuilder($class);
     $mock = !empty($args) ? $mock->enableOriginalConstructor()->setConstructorArgs($args) : $mock->disableOriginalConstructor();
-    $mock = $mock->addMethods($methods)->getMock();
+    // @phpstan-ignore-next-line
+    $mock = $mock->onlyMethods($methods)->getMock();
 
     return $mock;
   }

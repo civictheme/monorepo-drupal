@@ -97,7 +97,7 @@ class CivicthemeCommands extends DrushCommands {
    *
    * @SuppressWarnings(StaticAccess)
    */
-  public function stylesheet(string $suffix = NULL): void {
+  public function stylesheet(?string $suffix = NULL): void {
     $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
 
     if (empty($suffix)) {

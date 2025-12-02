@@ -31,7 +31,7 @@ final class CivicthemeGovcmsManager {
    *   The entity type manager.
    */
   public function __construct(
-    EntityTypeManagerInterface $entity_type_manager
+    EntityTypeManagerInterface $entity_type_manager,
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->removalList = [
@@ -154,6 +154,7 @@ final class CivicthemeGovcmsManager {
     foreach ($info as $entity_type => $field_info) {
       foreach ($field_info as $bundle => $field_names) {
         try {
+          // @phpstan-ignore-next-line
           field_entity_bundle_delete($entity_type, $bundle);
         }
         catch (\Exception $e) {
