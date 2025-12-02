@@ -2,33 +2,12 @@ import Logo from '../../02-molecules/logo/logo.twig';
 import LogoData from '../../02-molecules/logo/logo.stories.data';
 import Navigation from '../navigation/navigation.twig';
 import NavigationData from '../navigation/navigation.stories.data';
-import SocialLinks from '../../02-molecules/social-links/social-links.twig';
 
 export default {
   args: (theme = 'light') => ({
     theme,
     content_top1: Logo(LogoData.args(theme)),
-    content_top2: SocialLinks({
-      theme,
-      with_border: true,
-      items: [
-        {
-          title: 'Facebook',
-          icon: 'facebook',
-          url: 'https://www.facebook.com',
-        },
-        {
-          title: 'X',
-          icon: 'x',
-          url: 'https://www.twitter.com',
-        },
-        {
-          title: 'LinkedIn',
-          icon: 'linkedin',
-          url: 'https://www.linkedin.com',
-        },
-      ],
-    }).trim(),
+    content_top2: null,
     content_middle1: Navigation({ ...NavigationData.args(theme), title: 'Services' }),
     content_middle2: Navigation({ ...NavigationData.args(theme), title: 'About us' }),
     content_middle3: Navigation({ ...NavigationData.args(theme), title: 'Help' }),

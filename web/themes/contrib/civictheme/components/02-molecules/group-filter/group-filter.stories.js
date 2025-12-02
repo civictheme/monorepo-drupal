@@ -1,68 +1,43 @@
-// phpcs:ignoreFile
-import {
-  radios, number, text,
-} from '@storybook/addon-knobs';
+import Component from './group-filter.twig';
+import GroupFilterData from './group-filter.stories.data';
 
-import {
-  getSlots, randomFormElements, randomInt, randomString,
-} from '../../00-base/base.utils';
-
-import CivicThemeGroupFilter from './group-filter.twig';
-
-export default {
-  title: 'Molecules/Group Filter',
-  parameters: {
-    layout: 'fullscreen',
+const meta = {
+  title: 'Molecules/List/Group Filter',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    filters: {
+      control: { type: 'array' },
+    },
+    submit_text: {
+      control: { type: 'text' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const GroupFilter = () => {
-  const generalKnobTab = 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    filter_number: number(
-      'Number of filters',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ),
-    title: text('Filter title', 'Filter search results by:', generalKnobTab),
-    submit_text: text('Submit button text', 'Apply', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  const filters = [];
-
-  if (generalKnobs.filter_number > 0) {
-    for (let i = 0; i < generalKnobs.filter_number; i++) {
-      filters.push({
-        content: randomFormElements(1, generalKnobs.theme, true)[0],
-        title: `Filter ${randomString(randomInt(3, 8))} ${i + 1}`,
-      });
-    }
-  }
-
-  return CivicThemeGroupFilter({
-    ...generalKnobs,
-    filters,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+export const GroupFilter = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: GroupFilterData.args('light'),
 };

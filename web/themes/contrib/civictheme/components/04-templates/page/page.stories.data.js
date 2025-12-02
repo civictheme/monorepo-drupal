@@ -1,5 +1,4 @@
 import Banner from '../../03-organisms/banner/banner.twig';
-import BannerData from '../../03-organisms/banner/banner.stories.data';
 import HeaderData from '../../03-organisms/header/header.stories.data';
 import FooterData from '../../03-organisms/footer/footer.stories.data';
 import SideNavigation from '../../03-organisms/side-navigation/side-navigation.twig';
