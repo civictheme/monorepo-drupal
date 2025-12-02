@@ -1,0 +1,5 @@
+name: Single Directory Component Validator
+type: module
+description: 'Validator for Single Directory components.'
+package: Custom
+core_version_requirement: ^10 || ^11
