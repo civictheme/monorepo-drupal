@@ -45,6 +45,8 @@ jobs:
         # Remove leading hyphen from image_suffix for image_suffix parameter
         suffix="${{ steps.init.outputs.image_suffix }}"
         clean_suffix="${suffix#-}"
+        # Sanitize: convert dots and underscores to hyphens for Quant Cloud compatibility
+        clean_suffix=$(echo "$clean_suffix" | tr '._' '-')
         echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
         echo "is_production=${{ steps.init.outputs.is_production }}" >> $GITHUB_OUTPUT
         echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
