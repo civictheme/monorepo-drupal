@@ -68,29 +68,6 @@ regions:
 features:
   - favicon
 
-components:
-  namespaces:
-    base:
-      - components/00-base
-    atoms:
-      - components/01-atoms
-    molecules:
-      - components/02-molecules
-    organisms:
-      - components/03-organisms
-    templates:
-      - components/04-templates
-    ct-base:
-      - components/00-base
-    ct-atoms:
-      - components/01-atoms
-    ct-molecules:
-      - components/02-molecules
-    ct-organisms:
-      - components/03-organisms
-    ct-templates:
-      - components/04-templates
-
 ckeditor5-stylesheets:
   - dist/civictheme.editor.css
   - dist/civictheme.variables.css
