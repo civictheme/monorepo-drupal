@@ -10,3 +10,4 @@ FROM ${CLI_IMAGE:-cli} as cli
 FROM uselagoon/php-8.3-fpm:25.11.0
 
 COPY --from=cli /app /app
+COPY .docker/entrypoints/php/* /quant-entrypoint.d/

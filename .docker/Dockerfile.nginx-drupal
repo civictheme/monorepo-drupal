@@ -11,6 +11,12 @@ FROM uselagoon/nginx-drupal:25.11.0
 COPY ./.docker/config/nginx/. /etc/nginx/conf.d/
 RUN fix-permissions /etc/nginx
 
+COPY .docker/entrypoints/nginx/* /quant-entrypoint.d/
+
+# Copy custom nginx configuration for CDN header handling
+COPY .docker/config/nginx/location_drupal_prepend_host.conf /etc/nginx/conf.d/drupal/
+RUN chmod 0644 /etc/nginx/conf.d/drupal/location_drupal_prepend_host.conf
+
 ENV WEBROOT=docroot
 
 COPY --from=cli /app /app
