@@ -146,13 +146,13 @@ commands:
   fei:
     usage: Install front-end assets.
     cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME}/civictheme_library install"
+      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME}/components install"
       ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
     cmd: |
-      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd web/themes/contrib/${DRUPAL_THEME}/civictheme_library && npm run build"
+      [ "${CIVICTHEME_LIBRARY_INSTALL_SKIP}" != "1" ] && ahoy cli "cd web/themes/contrib/${DRUPAL_THEME}/components && npm run build"
       ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
 
   lint:

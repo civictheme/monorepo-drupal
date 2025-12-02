@@ -91,13 +91,11 @@ RUN if [ -n "${GITHUB_TOKEN}" ]; then export COMPOSER_AUTH="{\"github-oauth\": {
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
-COPY web/themes/contrib/civictheme/civictheme_library/package.json web/themes/contrib/civictheme/civictheme_library/package* /app/web/themes/contrib/civictheme/civictheme_library/
 COPY web/themes/contrib/civictheme/ web/themes/contrib/civictheme/package* /app/web/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencies here - they are not exposed in any way.
-RUN npm --prefix web/themes/contrib/civictheme/civictheme_library install --no-audit --no-progress --unsafe-perm
 RUN npm --prefix web/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
@@ -106,7 +104,6 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd /app/web/themes/contrib/civictheme/civictheme_library && npm run build
 RUN cd /app/web/themes/contrib/civictheme && npm run build
 
 # Create subtheme.

@@ -1,0 +1,5 @@
+name: CivicTheme Visual Regression
+type: module
+description: Visual regression testing support for CivicTheme.
+core_version_requirement: ^10 || ^11
+package: CivicTheme

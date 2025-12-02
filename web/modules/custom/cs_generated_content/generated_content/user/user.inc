@@ -39,7 +39,7 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
   $users = [];
 
-  $roles = user_roles();
+  $roles = Role::loadMultiple();
   foreach ($roles as $role) {
     if (in_array($role->id(), [
       'anonymous', 'authenticated',

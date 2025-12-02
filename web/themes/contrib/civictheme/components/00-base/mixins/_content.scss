@@ -3,6 +3,7 @@
 //
 
 @mixin ct-content {
+  @include ct-reset-basic-content();
   @include ct-typography('text-regular');
 
   h1,

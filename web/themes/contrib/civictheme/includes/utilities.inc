@@ -12,6 +12,7 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
@@ -83,7 +84,7 @@ function civictheme_media_get_variables(MediaInterface $media): ?array {
     'name' => t('@name', ['@name' => $file->label()]),
     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?: '',
     'url' => civictheme_media_get_url($media),
-    'size' => format_size($file->getSize()),
+    'size' => ByteSizeMarkup::create($file->getSize()),
     'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
     'changed' => civictheme_format_date('civictheme_short_date', $media->getChangedTime()),
     'icon' => civictheme_get_icon_from_file($file),

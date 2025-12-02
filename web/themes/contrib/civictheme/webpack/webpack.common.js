@@ -5,29 +5,23 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { isOutdated, printHeader } = require('../civictheme_library/webpack/info');
+const { printHeader, isOutdated } = require('./info');
 
 printHeader();
 
 module.exports = {
   entry: (function (pattern) {
-    // Splitting entries into three chunks:
-    // main: all styles used in components and drupal theme -> output: civictheme.css
+    // Splitting entries into two chunks:
+    // main: all styles used in components -> output: civictheme.css
     // variables: CSS variables -> output: civictheme.variables.css
-    // editor: nested styles used in editor -> output: civictheme.editor.css
     const entries = {
       main: [],
       variables: [],
-      editor: [],
     };
-
     // Scan for all JS.
     entries.main = glob.sync(pattern);
-    // Add explicitly imported entries from components.
-    entries.main.push(path.resolve(__dirname, 'components_css.js'));
-    // Add explicitly imported entries from the current theme.
-    entries.main.push(path.resolve(__dirname, 'theme_js.js'));
-    entries.main.push(path.resolve(__dirname, 'theme_css.js'));
+    // Add explicitly imported (S)CSS entries from css.js.
+    entries.main.push(path.resolve(__dirname, 'css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
 
     // Add libraries.
@@ -36,11 +30,8 @@ module.exports = {
     // Add explicitly css_variables.js.
     entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
 
-    // Add explicitly editor.scss
-    entries.editor.push(path.resolve(__dirname, 'editor_css.js'));
-
     return entries;
-  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
+  }('../components/**/!(*.stories|*.component|*.min|*.test|*.utils).js')),
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -53,11 +44,6 @@ module.exports = {
           test: 'css/mini-extract',
           name: 'variables',
           chunks: (chunk) => (chunk.name === 'variables'),
-        },
-        editor: {
-          test: 'css/mini-extract',
-          name: 'editor',
-          chunks: (chunk) => (chunk.name === 'editor'),
         },
       },
     },
@@ -76,8 +62,6 @@ module.exports = {
       cleanAfterEveryBuildPatterns: [
         '../dist/civictheme-variables.js',
         '../dist/civictheme-variables.js.map',
-        '../dist/civictheme-editor.js',
-        '../dist/civictheme-editor.js.map',
       ],
     }),
   ],
@@ -107,7 +91,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: '/themes/contrib/civictheme/dist/assets/';`,
+              additionalData: `$ct-outdated: ${isOutdated() ? 'true' : 'false'}; $ct-assets-directory: './assets/';`,
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -135,7 +119,7 @@ module.exports = {
           loader: 'twigjs-loader',
         }],
       },
-      // Wrap JS into Drupal.behaviours.
+      // Wrap JS with DOMContentLoaded.
       {
         test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
@@ -147,7 +131,7 @@ module.exports = {
             ],
             plugins: [
               './node_modules/babel-plugin-syntax-dynamic-import',
-              './webpack/babel-plugin-drupal-behavior-wrapper.js',
+              './webpack/babel-plugin-script-wrapper.js',
             ],
           },
         }],
