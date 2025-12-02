@@ -45,6 +45,12 @@ function civictheme_preprocess_input(array &$variables): void {
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
   }
+
+  $element = $variables['element'] ?? [];
+
+  if (isset($element['#type']) && in_array($element['#type'], ['submit', 'button'])) {
+    $variables['value'] = $variables['attributes']['value'] ?? 'Submit';
+  }
 }
 
 /**

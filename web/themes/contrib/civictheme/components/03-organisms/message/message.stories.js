@@ -1,42 +1,41 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeMessage from './message.twig';
+import Component from './message.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Message',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'select' },
+      options: ['information', 'error', 'warning', 'success'],
+    },
+    description: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Message = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    type: radios(
-      'Type',
-      {
-        Information: 'information',
-        Error: 'error',
-        Warning: 'warning',
-        Success: 'success',
-      },
-      'information',
-      generalKnobTab,
-    ),
-    title: text('Title', 'The information on this page is currently being updated.', generalKnobTab),
-    description: text('Summary', 'Filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeMessage({
-    ...generalKnobs,
-  });
+export const Message = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'The information on this page is currently being updated.',
+    type: 'information',
+    description: 'Message description',
+    attributes: '',
+    modifier_class: '',
+  },
 };

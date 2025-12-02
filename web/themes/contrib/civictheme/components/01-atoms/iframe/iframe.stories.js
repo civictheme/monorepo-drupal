@@ -1,47 +1,52 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeIframe from './iframe.twig';
+import Component from './iframe.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Iframe',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Iframe = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    url: text('URL', 'https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik', generalKnobTab),
-    width: text('Width', '500', generalKnobTab),
-    height: text('Height', '300', generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    with_background: boolean('With background', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeIframe({
-    ...generalKnobs,
-  });
+export const Iframe = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: 'https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik',
+    width: '500',
+    height: '300',
+    vertical_spacing: 'none',
+    with_background: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

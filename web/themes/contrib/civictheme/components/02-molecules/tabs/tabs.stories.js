@@ -1,91 +1,74 @@
-// phpcs:ignoreFile
-import {
-  boolean, number, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeTabs from './tabs.twig';
-import './tabs';
-import { placeholder, randomText, randomUrl } from '../../00-base/base.utils';
+import Component from './tabs.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Tabs',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    panels: {
+      control: { type: 'array' },
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Tabs = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Tabs = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    panels: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Panel title',
+        content: 'Panel content',
+        id: 'panel-1',
+        is_selected: true,
       },
-      'light',
-      generalKnobTab,
-    ),
-    // Dynamic number of tabs/panels.
-    tabs_count: number(
-      'Tabs count',
-      3,
       {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+        title: 'Panel title 2',
+        content: 'Panel content 2',
+        id: 'panel-2',
+        is_selected: false,
       },
-      generalKnobTab,
-    ),
-    with_panels: boolean('With panels', true, generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
+    ],
+    links: [
       {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
+        text: 'Link text',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
+        modifier_class: '',
+        attributes: 'id="panel-1-tab"',
       },
-      'none',
-      generalKnobTab,
-    ),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-  };
-
-  let panelKnobs = {};
-
-  if (generalKnobs.with_panels) {
-    // Use panels.
-    const panels = [];
-
-    for (let i = 1; i <= generalKnobs.tabs_count; i++) {
-      panels.push({
-        id: `tab-${i}`,
-        title: `Panel ${i} title `,
-        content: placeholder(`Panel ${i} content ${randomText()}`),
-      });
-    }
-
-    panelKnobs = {
-      panels,
-    };
-  } else {
-    // Use tabs.
-    const links = [];
-    for (let i = 1; i <= generalKnobs.tabs_count; i++) {
-      links.push({
-        text: `Tab ${i} title `,
-        url: randomUrl(),
-        modifier_class: i === 1 ? 'ct-tabs__tab--selected' : '',
-      });
-    }
-
-    panelKnobs = {
-      links,
-    };
-  }
-
-  return CivicThemeTabs({
-    ...generalKnobs,
-    ...panelKnobs,
-  });
+      {
+        text: 'Link text 2',
+        url: 'https://example.com',
+        is_new_window: false,
+        is_external: false,
+        modifier_class: '',
+        attributes: 'id="panel-2-tab"',
+      },
+    ],
+    vertical_spacing: 'none',
+    attributes: '',
+    modifier_class: '',
+  },
 };

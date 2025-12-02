@@ -1,53 +1,60 @@
-// phpcs:ignoreFile
-import { radios, text, boolean } from '@storybook/addon-knobs';
-import CivicThemeNextSteps from './next-step.twig';
-import { getSlots } from '../../00-base/base.utils';
+import Component from './next-step.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Next Steps',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const NextSteps = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Next steps title from knob', generalKnobTab),
-    content: text('Content', 'Short summary explaining why this link is relevant.', generalKnobTab),
+export const NextSteps = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Next steps title from knob',
+    content: 'Short summary explaining why this link is relevant.',
     link: {
-      text: text('Link text', 'Sign up', generalKnobTab),
-      url: text('Link URL', 'https://example.com', generalKnobTab),
-      is_new_window: boolean('Link opens in new window', true, generalKnobTab),
-      is_external: boolean('Link is external', true, generalKnobTab),
+      text: 'Sign up',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: true,
     },
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  return CivicThemeNextSteps({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

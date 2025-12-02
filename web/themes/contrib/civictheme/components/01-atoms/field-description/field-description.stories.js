@@ -1,33 +1,44 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeFieldDescription from './field-description.twig';
+import Component from './field-description.twig';
 
-export default {
-  title: 'Atoms/Field Description',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Field Description',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['large', 'regular'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const FieldDescription = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    content: text('Content', 'We will only use this to respond to your question.', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeFieldDescription({
-    ...generalKnobs,
-  });
+export const FieldDescription = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    size: 'regular',
+    content: 'Field message content sample.',
+    allow_html: true,
+    modifier_class: '',
+    attributes: '',
+  },
 };

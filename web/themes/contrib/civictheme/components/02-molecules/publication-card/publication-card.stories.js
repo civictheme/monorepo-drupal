@@ -1,67 +1,74 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, text,
-} from '@storybook/addon-knobs';
+import Component from './publication-card.twig';
 
-import CivicThemePublicationCard from './publication-card.twig';
-import {
-  demoImage,
-  getSlots,
-  randomSentence, randomUrl,
-} from '../../00-base/base.utils';
-
-export default {
-  title: 'Molecules/Publication Card',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Molecules/List/Publication Card',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    summary: {
+      control: { type: 'text' },
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    image_over: {
+      control: { type: 'text' },
+    },
+    file: {
+      control: { type: 'object' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_middle: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const PublicationCard = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const date = new Date().toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Publication or whitepaper main title', generalKnobTab),
-    summary: text('Summary', randomSentence(), generalKnobTab),
-    image: boolean('With image', true, generalKnobTab) ? {
-      url: demoImage(),
+export const PublicationCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    title: 'Promo card title',
+    summary: 'Summary of the promo card',
+    image: {
+      url: './demo/images/demo1.jpg',
       alt: 'Image alt text',
-    } : false,
-    file: boolean('With file', true, generalKnobTab) ? {
-      url: randomUrl(),
+    },
+    file: {
       name: 'Document.doc',
       ext: 'doc',
+      url: 'https://example.com/file.pdf',
       size: '42.88 KB',
-      created: date,
-      changed: date,
+      created: '2022-01-01',
+      changed: '2022-01-02',
       icon: 'word-file',
-    } : null,
-    modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemePublicationCard({
-    ...generalKnobs,
-    ...getSlots([
-      'image_over',
-      'content_top',
-      'content_middle',
-      'content_bottom',
-    ]),
-  });
+    },
+    image_over: '',
+    content_top: '',
+    content_middle: '',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

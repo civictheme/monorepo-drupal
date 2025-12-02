@@ -1,56 +1,69 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemePromo from './promo.twig';
-import { getSlots, randomSentence } from '../../00-base/base.utils';
+import Component from './promo.twig';
 
-export default {
+const meta = {
   title: 'Organisms/Promo',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    is_contained: {
+      control: { type: 'boolean' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Promo = () => {
-  const generalKnobTab = 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'dark',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Sign up for industry news and updates from CivicTheme', generalKnobTab),
-    content: text('Content', randomSentence(), generalKnobTab),
+export const Promo = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    title: 'Sign up for industry news and updates from CivicTheme',
+    is_contained: true,
     link: {
-      text: text('Link text', 'Sign up', generalKnobTab),
-      url: text('Link URL', 'https://example.com', generalKnobTab),
-      is_new_window: boolean('Link opens in new window', true, generalKnobTab),
-      is_external: boolean('Link is external', true, generalKnobTab),
+      text: 'Sign up',
+      url: 'https://example.com',
+      is_new_window: true,
+      is_external: true,
     },
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-  };
-
-  return CivicThemePromo({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+    with_background: false,
+    vertical_spacing: 'none',
+    content_top: '',
+    content: 'Officia officia deserunt sint sint magna esse in ut elit aliquip nostrud laboris.',
+    content_bottom: '',
+    attributes: '',
+    modifier_class: '',
+  },
 };

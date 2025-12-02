@@ -1,76 +1,90 @@
-// phpcs:ignoreFile
-import {
-  boolean, number, radios, text,
-} from '@storybook/addon-knobs';
-import {
-  dateIsValid,
-  demoImage,
-  getSlots, randomSentence,
-  randomTags,
-  randomUrl,
-} from '../../00-base/base.utils';
+import Component from './event-card.twig';
 
-import CivicThemeEventCard from './event-card.twig';
-
-export default {
-  title: 'Molecules/Event Card',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Molecules/List/Event Card',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    date: {
+      control: { type: 'text' },
+    },
+    date_end: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    location: {
+      control: { type: 'text' },
+    },
+    summary: {
+      control: { type: 'text' },
+    },
+    link: {
+      control: { type: 'object' },
+    },
+    image: {
+      control: { type: 'object' },
+    },
+    tags: {
+      control: { type: 'array' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    image_over: {
+      control: { type: 'text' },
+    },
+    content_middle: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const EventCard = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    date: text('Date', '20 Jan 2023 11:00', generalKnobTab),
-    date_end: text('End date', '21 Jan 2023 15:00', generalKnobTab),
-    title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
-    location: text('Location', 'Suburb, State – 16:00–17:00', generalKnobTab),
-    summary: text('Summary', randomSentence(), generalKnobTab),
+export const EventCard = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    content_top: '',
+    image_over: '',
+    content_middle: '',
+    content_bottom: '',
+    theme: 'light',
+    date: '20 Jan 2023 11:00',
+    date_iso: '',
+    date_end: '21 Jan 2023 15:00',
+    date_end_iso: '',
+    title: 'Event name which runs across two or three lines',
+    location: 'Suburb, State – 16:00–17:00',
+    summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     link: {
-      url: text('Link URL', randomUrl(), generalKnobTab),
-      is_external: boolean('Link is external', false, generalKnobTab),
-      is_new_window: boolean('Open in a new window', false, generalKnobTab),
+      url: 'https://example.com/event',
+      is_new_window: false,
     },
-    image: boolean('With image', true, generalKnobTab) ? {
-      url: demoImage(),
+    image: {
+      url: './demo/images/demo1.jpg',
       alt: 'Image alt text',
-    } : null,
-    tags: randomTags(number(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ), true),
-    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  generalKnobs.date_iso = dateIsValid(generalKnobs.date) ? new Date(generalKnobs.date).toISOString() : null;
-  generalKnobs.date_end_iso = dateIsValid(generalKnobs.date_end) ? new Date(generalKnobs.date_end).toISOString() : null;
-
-  return CivicThemeEventCard({
-    ...generalKnobs,
-    ...getSlots([
-      'image_over',
-      'content_top',
-      'content_middle',
-      'content_bottom',
-    ]),
-  });
+    },
+    tags: [
+      'Tag 1',
+      'Tag 2',
+    ],
+    modifier_class: '',
+    attributes: '',
+  },
 };

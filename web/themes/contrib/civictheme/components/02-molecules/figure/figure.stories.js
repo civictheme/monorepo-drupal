@@ -1,39 +1,51 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import Component from './figure.twig';
 
-import CivicThemeFigure from './figure.twig';
-import { demoImage } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Molecules/Figure',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    alt: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    caption: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Figure = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    url: boolean('With image', true, generalKnobTab) ? demoImage() : false,
-    alt: text('Image alt text', 'Alternative text', generalKnobTab),
-    width: text('Width', '600', generalKnobTab),
-    height: text('Height', '', generalKnobTab),
-    caption: text('Caption', 'Figure image caption.', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeFigure({
-    ...generalKnobs,
-  });
+export const Figure = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    url: './demo/images/demo1.jpg',
+    alt: 'Image alt text',
+    width: '600',
+    height: '',
+    caption: 'Figure image caption.',
+    modifier_class: '',
+    attributes: '',
+  },
 };

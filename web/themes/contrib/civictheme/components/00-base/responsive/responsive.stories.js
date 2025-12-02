@@ -1,14 +1,17 @@
-// phpcs:ignoreFile
-import CivicThemeResponsive from './responsive.stories.twig';
-import './responsive';
-import '../collapsible/collapsible';
+import Component from './responsive.stories.twig';
 
-export default {
-  title: 'Base/Responsive',
+const meta = {
+  title: 'Base/Utilities/Responsive',
+  component: Component,
 };
 
-export const Responsive = () => {
-  const html = CivicThemeResponsive();
+export default meta;
 
-  return `<div class="story-wrapper--centered story-wrapper-size--medium">${html}</div>`;
+export const Responsive = {
+  parameters: {
+    layout: 'centered',
+    html: {
+      disable: true,
+    },
+  },
 };

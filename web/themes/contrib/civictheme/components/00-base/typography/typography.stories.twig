@@ -1,13 +1,13 @@
 {#
 /**
  * @file
- * Typography.
+ * Typography story template.
  */
 #}
 
-<div class="example-container">
-  <div class="example-container__title">Headings</div>
-  <div class="example-container__content">
+<div class="story-container">
+  <div class="story-container__title">Headings</div>
+  <div class="story-container__content">
     {% for level in 1..6 %}
       <h{{ level }}>
         The quick brown fox jumps over the lazy dog
@@ -16,10 +16,10 @@
   </div>
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Text</div>
+<div class="story-container">
+  <div class="story-container__title">Text</div>
   {% for type in ['extra-large', 'large', 'regular', 'small'] %}
-    <div class="example-container__content ct-text-{{ type }}">
+    <div class="story-container__content ct-text-{{ type }}">
       Text - {{ type }}. Pellentesque in ipsum id orci porta dapibus. convallis
       at tellus Curabitur non nulla sit amet nisl tempus convallis quis ac
       lectus.
@@ -27,18 +27,18 @@
   {% endfor %}
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Labels</div>
+<div class="story-container">
+  <div class="story-container__title">Labels</div>
   {% for type in ['extra-large', 'large', 'regular', 'small', 'extra-small'] %}
-    <div class="example-container__content ct-label-{{ type }}">
+    <div class="story-container__content ct-label-{{ type }}">
       Label - {{ type }}
     </div>
   {% endfor %}
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Text styles</div>
-  <div class="example-container__content">
+<div class="story-container">
+  <div class="story-container__title">Text styles</div>
+  <div class="story-container__content">
     <p>
       Nulla quis lorem ut <a href="https://example.com">example link in
         paragraph</a> libero malesuada feugiat.
@@ -56,9 +56,9 @@
   </div>
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Paragraphs</div>
-  <div class="example-container__content">
+<div class="story-container">
+  <div class="story-container__title">Paragraphs</div>
+  <div class="story-container__content">
     <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
       Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
       Pellentesque in ipsum id orci porta dapibus.
@@ -74,9 +74,9 @@
   </div>
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Blockquote</div>
-  <div class="example-container__content">
+<div class="story-container">
+  <div class="story-container__title">Blockquote</div>
+  <div class="story-container__content">
     <p>
       Pellentesque in ipsum id orci porta dapibus. convallis at tellus
       Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
@@ -96,9 +96,9 @@
   </div>
 </div>
 
-<div class="example-container">
-  <div class="example-container__title">Unordered list</div>
-  <div class="example-container__content">
+<div class="story-container">
+  <div class="story-container__title">Unordered list</div>
+  <div class="story-container__content">
     <ul>
       <li>List item 1</li>
       <li>List item 2</li>
@@ -108,9 +108,9 @@
     </ul>
   </div>
 
-  <div class="example-container__title">Unordered list with sub unordered list
+  <div class="story-container__title">Unordered list with sub unordered list
   </div>
-  <div class="example-container__content">
+  <div class="story-container__content">
     <ul>
       <li>List item 1</li>
       <li>List item 2
@@ -132,9 +132,9 @@
     </ul>
   </div>
 
-  <div class="example-container__title">Unordered list with sub ordered list
+  <div class="story-container__title">Unordered list with sub ordered list
   </div>
-  <div class="example-container__content">
+  <div class="story-container__content">
     <ul>
       <li>List item 1</li>
       <li>List item 2
@@ -156,8 +156,8 @@
     </ul>
   </div>
 
-  <div class="example-container__title">Ordered list</div>
-  <div class="example-container__content">
+  <div class="story-container__title">Ordered list</div>
+  <div class="story-container__content">
     <ol>
       <li>Ordered list item 1</li>
       <li>Ordered list item 2</li>
@@ -167,8 +167,8 @@
     </ol>
   </div>
 
-  <div class="example-container__title">Ordered list with sub ordered list</div>
-  <div class="example-container__content">
+  <div class="story-container__title">Ordered list with sub ordered list</div>
+  <div class="story-container__content">
     <ol>
       <li>
         Ordered list item 1
@@ -197,9 +197,9 @@
     </ol>
   </div>
 
-  <div class="example-container__title">Ordered list with sub unordered list
+  <div class="story-container__title">Ordered list with sub unordered list
   </div>
-  <div class="example-container__content">
+  <div class="story-container__content">
     <ol>
       <li>Ordered list item 1
         <ul>

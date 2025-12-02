@@ -1,51 +1,113 @@
-// phpcs:ignoreFile
-import { radios, select, text } from '@storybook/addon-knobs';
-import CivicThemeMobileNavigationExample from './mobile-navigation.stories.twig';
-import { getSlots } from '../../00-base/base.utils';
-import getMenuLinks from '../../00-base/menu/menu.utils';
+import MobileNavigationPanel from './mobile-navigation.twig';
+import MobileNavigationTrigger from './mobile-navigation-trigger.twig';
 
-export default {
-  title: 'Organisms/Mobile Navigation',
-  parameters: {
-    layout: 'fullscreen',
+const meta = {
+  title: 'Organisms/Navigation/Mobile Navigation',
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    top_menu: {
+      control: { type: 'array' },
+    },
+    bottom_menu: {
+      control: { type: 'array' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const MobileNavigation = () => {
-  const generalKnobTab = 'Menu';
-  const topMenuKnobTab = 'Top menu';
-  const bottomMenuKnobTab = 'Bottom menu';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const MobileNavigation = {
+  parameters: {
+    layout: 'centered',
+    viewport: {
+      defaultViewport: 'xs',
+    },
+  },
+  args: {
+    theme: 'light',
+    content_top: '',
+    top_menu: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Menu item 1',
+        url: 'https://example.com/menu-item-1',
+        in_active_trail: false,
+        is_expanded: false,
+        below: [
+          {
+            title: 'Menu subitem 1',
+            url: 'https://example.com/menu-item-1',
+            in_active_trail: false,
+            is_expanded: false,
+            below: false,
+          },
+          {
+            title: 'Menu subitem 2',
+            url: 'https://example.com/menu-item-1',
+            in_active_trail: false,
+            is_expanded: false,
+            below: [
+              {
+                title: 'Menu subsubitem 1',
+                url: 'https://example.com/menu-item-1',
+                in_active_trail: false,
+                is_expanded: false,
+                below: false,
+              },
+              {
+                title: 'Menu subsubitem 2',
+                url: 'https://example.com/menu-item-1',
+                in_active_trail: false,
+                is_expanded: false,
+                below: false,
+              },
+            ],
+          },
+        ],
       },
-      'light',
-      generalKnobTab,
-    ),
-    trigger_theme: radios(
-      'Trigger Theme',
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Menu item 2',
+        url: 'https://example.com/menu-item-2',
+        in_active_trail: false,
+        is_expanded: false,
       },
-      'light',
-      generalKnobTab,
-    ),
-    trigger_text: text('Trigger Text', 'Menu', generalKnobTab),
-    trigger_icon: select('Trigger Icon', Object.values(ICONS), 'bars', generalKnobTab),
-    top_menu: getMenuLinks(topMenuKnobTab, 'Top '),
-    bottom_menu: getMenuLinks(bottomMenuKnobTab, 'Bottom '),
-  };
-
-  return CivicThemeMobileNavigationExample({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+    ],
+    bottom_menu: [
+      {
+        title: 'Menu item 1',
+        url: 'https://example.com/menu-item-1',
+        in_active_trail: false,
+        is_expanded: false,
+      },
+      {
+        title: 'Menu item 2',
+        url: 'https://example.com/menu-item-2',
+        in_active_trail: false,
+        is_expanded: false,
+      },
+    ],
+    content_bottom: '',
+    modifier_class: '',
+  },
+  render: (args) => (`${
+    MobileNavigationTrigger({
+      theme: args.theme,
+      icon: 'bars',
+      text: 'Menu',
+      modifier_class: '',
+    })
+  }${
+    MobileNavigationPanel(args)
+  }`),
 };

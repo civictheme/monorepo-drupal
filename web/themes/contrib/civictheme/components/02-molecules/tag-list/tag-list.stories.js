@@ -1,60 +1,51 @@
-// phpcs:ignoreFile
-import { number, radios, text } from '@storybook/addon-knobs';
-import { getSlots, randomTags } from '../../00-base/base.utils';
+import Component from './tag-list.twig';
 
-import CivicThemeTagList from './tag-list.twig';
-
-export default {
+const meta = {
   title: 'Molecules/Tag List',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    tags: {
+      control: { type: 'array' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const TagList = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    tags: randomTags(number(
-      'Number of tags',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ), true),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeTagList({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+export const TagList = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    tags: [
+      'Tag 1',
+      'Tag 2',
+    ],
+    vertical_spacing: 'none',
+    content_top: '',
+    content_bottom: '',
+    modifier_class: '',
+    attributes: '',
+  },
 };

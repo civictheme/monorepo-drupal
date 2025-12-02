@@ -1,35 +1,59 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeTextfield from './textfield.twig';
+import Component from './textfield.twig';
 
-export default {
-  title: 'Atoms/Textfield',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Textfield',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    placeholder: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Textfield = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    placeholder: text('Placeholder', 'Placeholder', generalKnobTab),
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeTextfield({
-    ...generalKnobs,
-  });
+export const Textfield = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    placeholder: 'Placeholder',
+    value: '',
+    name: 'textarea-name',
+    id: 'textarea-id',
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

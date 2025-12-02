@@ -1,9 +1,7 @@
-// phpcs:ignoreFile
 export default {
-  title: 'Base/Grid',
   parameters: {
-    layout: 'fullscreen',
-  },
+    layout: 'centered',
+  }
 };
 
 export const Grid = () => `

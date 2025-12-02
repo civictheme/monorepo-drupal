@@ -1,21 +1,14 @@
-// phpcs:ignoreFile
-export default {
+import Component from './elevation.stories.twig';
+
+const meta = {
   title: 'Base/Elevation',
+  component: Component,
 };
 
-export const Elevation = () => {
-  let html = ``;
+export default meta;
 
-  html += `<div class="story-elevation-wrapper">`;
-
-  for (let i = 1; i <= 4; i++) {
-    html += `<div class="example-container">`;
-    html += `<div class="example-container__title">Elevation ${i}</div>`;
-    html += `<div class="example-container__content story-elevation--${i}"></div>`;
-    html += `</div>`;
-  }
-
-  html += `</div>`;
-
-  return html;
+export const Elevation = {
+  parameters: {
+    layout: 'centered',
+  },
 };

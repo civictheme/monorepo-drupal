@@ -27,6 +27,7 @@ regions:
   footer_middle_4: 'Footer middle 4'
   footer_bottom_1: 'Footer bottom 1'
   footer_bottom_2: 'Footer bottom 2'
+  hidden: 'Hidden'
 
 features:
   - favicon
@@ -67,5 +68,3 @@ components:
       - components/03-organisms
     templates:
       - components/04-templates
-    pages:
-      - components/05-pages

@@ -1,13 +1,12 @@
-// phpcs:ignoreFile
 /**
  * @file
  * Icon component utilities.
  */
 
-const fs = require('fs');
-const pathUtil = require('path');
+import fs from 'fs';
+import pathUtil from 'path';
 
-const basePath = pathUtil.resolve(__dirname, '../../../assets/icons');
+const basePath = pathUtil.resolve(import.meta.dirname, '../../../assets/icons');
 
 function getIconPaths() {
   const iconPaths = [];
@@ -31,6 +30,6 @@ function getIcons() {
   return getIconPaths().map((path) => getIconNameFromPath(path));
 }
 
-module.exports = {
-  getIcons,
-};
+export default {
+  getIcons
+}

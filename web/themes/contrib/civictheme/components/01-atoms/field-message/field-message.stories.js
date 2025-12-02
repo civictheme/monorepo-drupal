@@ -1,44 +1,44 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeFieldMessage from './field-message.twig';
+import Component from './field-message.twig';
 
-export default {
-  title: 'Atoms/Field Message',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Field Message',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    type: {
+      control: { type: 'radio' },
+      options: ['error', 'information', 'warning', 'success'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const FieldMessage = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    type: radios(
-      'Type',
-      {
-        Error: 'error',
-        Information: 'information',
-        Warning: 'warning',
-        Success: 'success',
-      },
-      'error',
-      generalKnobTab,
-    ),
-    content: text('Content', 'Field message content', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeFieldMessage({
-    ...generalKnobs,
-  });
+export const FieldMessage = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    type: 'error',
+    content: 'Field message content sample.',
+    allow_html: true,
+    modifier_class: '',
+    attributes: '',
+  },
 };

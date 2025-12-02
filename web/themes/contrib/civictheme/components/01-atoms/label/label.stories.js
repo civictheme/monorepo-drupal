@@ -1,45 +1,68 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeLabel from './label.twig';
+import Component from './label.twig';
 
-export default {
-  title: 'Atoms/Label',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Label',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    tag: {
+      control: { type: 'radio' },
+      options: ['label', 'legend'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    size: {
+      control: { type: 'select' },
+      options: [
+        '',
+        'extra-small',
+        'small',
+        'regular',
+        'large',
+        'extra-large',
+      ],
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    required_text: {
+      control: { type: 'text' },
+    },
+    for: {
+      control: { type: 'text' },
+    },
+    allow_html: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Label = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    size: radios(
-      'Size', {
-        'Extra Large': 'extra-large',
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        'Extra Small': 'extra-small',
-        None: '',
-      },
-      'regular',
-      generalKnobTab,
-    ),
-    content: text('Content', 'Label content', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeLabel({
-    ...generalKnobs,
-  });
+export const Label = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    tag: 'label',
+    content: 'Label content',
+    size: 'regular',
+    is_required: false,
+    required_text: '',
+    for: '',
+    allow_html: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };
