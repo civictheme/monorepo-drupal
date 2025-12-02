@@ -15,3 +15,4 @@ FROM uselagoon/php-8.3-fpm:25.11.0
 RUN apk add --no-cache tzdata
 
 COPY --from=cli /app /app
+COPY .docker/entrypoints/php/* /quant-entrypoint.d/

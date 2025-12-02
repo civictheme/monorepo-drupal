@@ -7,7 +7,6 @@
 
     <rule ref="Drupal"/>
     <rule ref="DrupalPractice"/>
-    <rule ref="Generic.Debug.ESLint"/>
     <rule ref="PHPCompatibility"/>
     <rule ref="Generic.PHP.RequireStrictTypes"/>
 
