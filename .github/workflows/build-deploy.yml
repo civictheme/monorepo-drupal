@@ -57,7 +57,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./.docker/cli.dockerfile
+        file: ./.docker/Dockerfile.cli
         platforms: linux/arm64
         push: true
         tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
@@ -73,7 +73,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./.docker/nginx-drupal.dockerfile
+        file: ./.docker/Dockerfile.nginx-drupal
         platforms: linux/arm64
         push: true
         tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
@@ -89,7 +89,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./.docker/php.dockerfile
+        file: ./.docker/Dockerfile.php
         platforms: linux/arm64
         push: true
         tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
