@@ -1,36 +1,39 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeSearch from './search.twig';
+import Component from './search.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Search',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Search = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    text: text('Text', 'Search', generalKnobTab),
-    link: text('Search URL', '/search', generalKnobTab),
-    modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  const html = CivicThemeSearch({
-    ...generalKnobs,
-  });
-
-  return `${html}`;
+export const Search = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    text: 'Search',
+    url: '/search',
+    modifier_class: '',
+    attributes: '',
+  },
 };

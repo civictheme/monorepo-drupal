@@ -1,59 +1,81 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, text, select,
-} from '@storybook/addon-knobs';
-import CivicThemeLink from './link.twig';
-import { randomUrl } from '../../00-base/base.utils';
+import Component from './link.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-export default {
+const meta = {
   title: 'Atoms/Link',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    hidden_text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    is_external: {
+      control: { type: 'boolean' },
+    },
+    is_active: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    is_new_window: {
+      control: { type: 'boolean' },
+    },
+    icon_placement: {
+      control: { type: 'radio' },
+      options: ['before', 'after'],
+    },
+    icon_group_disabled: {
+      control: { type: 'boolean' },
+    },
+    icon_single_only: {
+      control: { type: 'boolean' },
+    },
+    icon: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Link = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    text: text('Text', 'Link text', generalKnobTab),
-    title: text('Title', 'Link title', generalKnobTab),
-    hidden_text: text('Link hidden text', 'Link hidden text', generalKnobTab),
-    url: text('URL', randomUrl(), generalKnobTab),
-    is_external: boolean('Is external', false, generalKnobTab),
-    is_active: boolean('Is active', false, generalKnobTab),
-    is_disabled: boolean('Is disabled', false, generalKnobTab),
-    is_new_window: boolean('Open in a new window', false, generalKnobTab),
-    with_icon: boolean('With icon', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  const iconKnobTab = 'Icon';
-  const iconKnobs = generalKnobs.with_icon ? {
-    icon_placement: radios(
-      'Icon Position',
-      {
-        Before: 'before',
-        After: 'after',
-      },
-      'before',
-      iconKnobTab,
-    ),
-    icon: select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab),
-  } : null;
-
-  return CivicThemeLink({
-    ...generalKnobs,
-    ...iconKnobs,
-  });
+export const Link = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    text: 'Link text',
+    title: 'Link title',
+    url: 'https://www.example.com',
+    is_external: false,
+    is_active: false,
+    is_disabled: false,
+    is_new_window: false,
+    icon: '',
+    icon_placement: 'before',
+    icon_group_disabled: false,
+    icon_single_only: false,
+    modifier_class: '',
+    attributes: '',
+  },
 };

@@ -1,61 +1,69 @@
-// phpcs:ignoreFile
-import { number, radios, text } from '@storybook/addon-knobs';
-import CivicThemeCallout from './callout.twig';
-import { getSlots, randomLinks, randomSentence } from '../../00-base/base.utils';
+import Components from './callout.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Callout',
-  parameters: {
-    layout: 'centered',
+  component: Components,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    links: {
+      control: { type: 'array' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Callout = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Callout = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    links: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        text: 'Link 1',
+        url: 'https://example.com/link1',
+        is_new_window: false,
+        is_external: false,
       },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Callout title from knob', generalKnobTab),
-    content: text('Content', randomSentence(), generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
       {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
+        text: 'Link 2',
+        url: 'https://example.com/link2',
+        is_new_window: true,
+        is_external: true,
       },
-      'none',
-      generalKnobTab,
-    ),
-    links: randomLinks(number(
-      'Count of links',
-      2,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    )),
-    modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeCallout({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+    ],
+    content_top: '',
+    content_bottom: '',
+    title: 'Callout title from knob',
+    content: 'Example content ut fugiat ex nulla enim ipsum proident aliqua in elit irure tempor elit nisi nisi enim labore nostrud mollit ut magna commodo',
+    vertical_spacing: 'none',
+    modifier_class: '',
+    attributes: '',
+  },
 };

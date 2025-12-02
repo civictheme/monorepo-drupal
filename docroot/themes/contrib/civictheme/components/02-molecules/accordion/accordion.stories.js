@@ -1,84 +1,72 @@
-// phpcs:ignoreFile
-import {
-  boolean, number, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeAccordion from './accordion.twig';
+import Component from './accordion.twig';
 
-import '../../00-base/collapsible/collapsible';
-import { getSlots } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Molecules/Accordion',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    expand_all: {
+      control: { type: 'boolean' },
+    },
+    with_background: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    panels: {
+      control: { type: 'object' },
+    },
   },
 };
 
-export const Accordion = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Accordion = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    theme: 'light',
+    expand_all: false,
+    with_background: false,
+    vertical_spacing: 'none',
+    modifier_class: '',
+    attributes: '',
+    panels: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Accordion title 1',
+        content: 'Accordion content 1 <a href="https://example.com">Example link</a>',
+        expanded: false,
       },
-      'light',
-      generalKnobTab,
-    ),
-    expand_all: boolean('Expand all', false, generalKnobTab),
-    with_background: boolean('With background', false, generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
       {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
+        title: 'Accordion title 2',
+        content: 'Accordion content 2 <a href="https://example.com">Example link</a>',
+        expanded: false,
       },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  // Adding dynamic number of accordion panels.
-  const panelsKnobTab = 'Panels';
-  const numOfPanels = number(
-    'Number of panels',
-    3,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    panelsKnobTab,
-  );
-
-  const panels = [];
-  let itr = 1;
-  while (itr <= numOfPanels) {
-    panels.push({
-      title: text(`Panel ${itr} title `, `Accordion title ${itr}`, panelsKnobTab),
-      content: `${text(`Panel ${itr} content`, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.', panelsKnobTab)} <a href="https://example.com">Example link</a>`,
-      expanded: boolean(`Panel ${itr} initially expanded`, generalKnobs.expand_all, panelsKnobTab),
-    });
-    itr += 1;
-  }
-
-  const panelKnobs = {
-    panels,
-  };
-
-  return CivicThemeAccordion({
-    ...generalKnobs,
-    ...panelKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+      {
+        title: 'Accordion title 3',
+        content: 'Accordion content 3 <a href="https://example.com">Example link</a>',
+        expanded: false,
+      },
+    ],
+    content_top: '',
+    content_bottom: '',
+  },
 };

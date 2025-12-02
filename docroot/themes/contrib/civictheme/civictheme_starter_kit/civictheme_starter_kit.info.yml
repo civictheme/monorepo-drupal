@@ -27,6 +27,7 @@ regions:
   footer_middle_4: 'Footer middle 4'
   footer_bottom_1: 'Footer bottom 1'
   footer_bottom_2: 'Footer bottom 2'
+  hidden: 'Hidden'
 
 features:
   - favicon
@@ -47,8 +48,13 @@ libraries-override:
       theme:
         dist/civictheme.variables.css: dist/styles.variables.css
 
-ckeditor_stylesheets:
+ckeditor5-stylesheets:
   - dist/styles.editor.css
+  - dist/styles.variables.css
+  # Using colors from the Color Selector is not supported until the issue
+  # below is resolved.
+  # @see https://www.drupal.org/project/drupal/issues/3406959
+  # - /sites/default/files/css-variables.civictheme_starter_kit.css
 
 components:
   namespaces:
@@ -62,5 +68,3 @@ components:
       - components/03-organisms
     templates:
       - components/04-templates
-    pages:
-      - components/05-pages

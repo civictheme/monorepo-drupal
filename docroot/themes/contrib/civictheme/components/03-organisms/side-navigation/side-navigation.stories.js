@@ -1,46 +1,38 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeSideNavigation from './side-navigation.twig';
-import getMenuLinks from '../../00-base/menu/menu.utils';
+import Component from './side-navigation.twig';
+import SideNavigationData from './side-navigation.stories.data';
 
-export default {
-  title: 'Organisms/Side Navigation',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Organisms/Navigation/Side Navigation',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    items: {
+      control: { type: 'array' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const SideNavigation = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Side Navigation title', generalKnobTab),
-    items: getMenuLinks('Links'),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeSideNavigation({
-    ...generalKnobs,
-  });
+export const SideNavigation = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: SideNavigationData.args('light'),
 };

@@ -1,4 +1,3 @@
-// phpcs:ignoreFile
 /**
  * @file
  * Chip component event binding example.

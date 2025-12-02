@@ -1,45 +1,51 @@
-// phpcs:ignoreFile
-import {
-  radios, text,
-} from '@storybook/addon-knobs';
+import Component from './popover.twig';
 
-import CivicThemePopover from './popover.twig';
-import { getSlots, placeholder } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Atoms/Popover',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    trigger: {
+      control: { type: 'object' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    content_top: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    group: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Popover = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    trigger: {
-      text: text('Trigger text', 'Click me', generalKnobTab),
-      url: text('Trigger URL', null, generalKnobTab),
-    },
-    content: placeholder(),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemePopover({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+export const Popover = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    trigger: { text: 'Click me', url: '', is_new_window: false },
+    content: 'Popover content',
+    content_top: '',
+    content_bottom: '',
+    group: 'group-name',
+    modifier_class: '',
+    attributes: '',
+  },
 };

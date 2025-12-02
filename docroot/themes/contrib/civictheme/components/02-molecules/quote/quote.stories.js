@@ -1,45 +1,45 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeQuote from './quote.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Quote',
+  component: CivicThemeQuote,
   parameters: {
     layout: 'fullscreen',
   },
+  render: (args) => CivicThemeQuote(args),
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    author: {
+      control: { type: 'text' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Quote = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    content: text('Content', 'Quote content', generalKnobTab),
-    author: text('Author', 'Quote author', generalKnobTab),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-  };
-
-  return CivicThemeQuote({
-    ...generalKnobs,
-  });
+export const Quote = {
+  args: {
+    theme: 'light',
+    content: 'Quote content',
+    author: 'Quote author',
+    vertical_spacing: 'none',
+    attributes: '',
+    modifier_class: '',
+  },
 };

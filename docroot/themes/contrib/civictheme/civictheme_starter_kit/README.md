@@ -23,4 +23,5 @@ See [Version update](https://docs.civictheme.io/drupal-theme/version-update)
 
 ---
 
-For additional information, please refer to the [Documentation site](https://docs.civictheme.io/drupal-theme)
+For additional information, please refer to
+the [Documentation site](https://docs.civictheme.io/drupal-theme)

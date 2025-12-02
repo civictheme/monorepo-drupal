@@ -1,54 +1,52 @@
-// phpcs:ignoreFile
-import {
-  boolean, number, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeBreadcrumb from './breadcrumb.twig';
-import { randomLinks } from '../../00-base/base.utils';
+import Components from './breadcrumb.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Breadcrumb',
+  component: Components,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    active_is_link: {
+      control: { type: 'boolean' },
+    },
+    links: {
+      control: { type: 'object' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const Breadcrumb = (knobTab, doRender = true) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Breadcrumb = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    active_is_link: false,
+    links: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        text: 'Link 1',
+        url: 'https://example.com/link1',
       },
-      'light',
-      generalKnobTab,
-    ),
-    active_is_link: boolean('Active is a link', false, generalKnobTab),
-    links: randomLinks(number(
-      'Count of links',
-      3,
       {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
+        text: 'Link 2',
+        url: 'https://example.com/link2',
       },
-      generalKnobTab,
-    ), number(
-      'Length of links',
-      6,
       {
-        range: true,
-        min: 6,
-        max: 100,
-        step: 1,
+        text: 'Link 3',
+        url: 'https://example.com/link3',
       },
-      generalKnobTab,
-    ) - 6),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return doRender ? CivicThemeBreadcrumb({
-    ...generalKnobs,
-  }) : generalKnobs;
+    ],
+    modifier_class: '',
+    attributes: '',
+  },
 };

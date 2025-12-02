@@ -18,7 +18,13 @@
 {% if symbol is not empty %}
   {% set source = source(assets_dir ~ '/icons/' ~ symbol ~ '.svg', true) %}
   {% if source is not empty %}
-    {% set attributes = 'class="ct-icon ' ~ (size ? 'ct-icon--size-' ~ size : '') ~ ' ' ~ modifier_class|default('') ~ '" aria-hidden="true" role="img" ' ~ (alt is defined ? 'alt="' ~ alt  ~ '"' : '') ~ attributes|default('') %}
+    {% set size_class = size ? 'ct-icon--size-' ~ size : '' %}
+    {% set base_class = 'ct-icon ' ~ size_class %}
+    {% set modifier = modifier_class|default('') %}
+    {% set aria_attributes = 'aria-hidden="true" role="img"' %}
+    {% set alt_attribute = alt is defined ? 'alt="' ~ alt ~ '"' : '' %}
+    {% set additional_attributes = attributes|default('') %}
+    {% set attributes = 'class="' ~ base_class ~ ' ' ~ modifier ~ '" ' ~ aria_attributes ~ ' ' ~ alt_attribute ~ ' ' ~ additional_attributes %}
     {{ source|replace({'<svg ': '<svg ' ~ attributes ~ ' '})|raw }}
   {% endif %}
 {% endif %}

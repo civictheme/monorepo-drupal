@@ -1,36 +1,63 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeRadio from './radio.twig';
+import Component from './radio.twig';
 
-export default {
-  title: 'Atoms/Radio',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Radio',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    label: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+    is_checked: {
+      control: { type: 'boolean' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Radio = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    content: text('Content', 'Radio label', generalKnobTab),
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-  };
-
-  return CivicThemeRadio({
-    ...generalKnobs,
-  });
+export const Radio = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    label: 'Radio label',
+    name: 'radio-name',
+    id: 'radio-id',
+    value: '123',
+    is_checked: false,
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

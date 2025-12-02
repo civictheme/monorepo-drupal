@@ -1,62 +1,62 @@
-// phpcs:ignoreFile
 import {
-  radios, number, text,
-} from '@storybook/addon-knobs';
-
-import { randomFormElements } from '../../00-base/base.utils';
+  randomFormElements, randomInt, randomString,
+} from '../../00-base/base.utils';
 
 import CivicThemeGroupFilter from './group-filter.twig';
 
-export default {
+const meta = {
   title: 'Molecules/Group Filter',
+  component: CivicThemeGroupFilter,
   parameters: {
     layout: 'fullscreen',
   },
+  render: (args) => {
+    const filters = [];
+    if (args.filter_number > 0) {
+      for (let i = 0; i < args.filter_number; i++) {
+        filters.push({
+          content: randomFormElements(1, args.theme, true)[0],
+          title: `Filter ${randomString(randomInt(3, 8))} ${i + 1}`,
+        });
+      }
+    }
+    return CivicThemeGroupFilter({
+      ...args,
+      filters,
+    });
+  },
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    filter_number: {
+      control: { type: 'range', min: 0, max: 10, step: 1 },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    submit_text: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
-export const GroupFilter = () => {
-  const generalKnobTab = 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    filter_number: number(
-      'Number of filters',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    ),
-    title: text('Filter title', 'Filter search results by:', generalKnobTab),
-    submit_text: text('Submit button text', 'Apply', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  const filters = [];
-
-  if (generalKnobs.filter_number > 0) {
-    for (let i = 0; i < generalKnobs.filter_number; i++) {
-      filters.push({
-        content: randomFormElements(1, generalKnobs.theme, true)[0],
-        title: `Filter ${i + 1}`,
-      });
-    }
-  }
-
-  return CivicThemeGroupFilter({
-    ...generalKnobs,
-    filters,
-  });
+export const GroupFilter = {
+  args: {
+    theme: 'light',
+    filter_number: 3,
+    title: 'Filter search results by:',
+    submit_text: 'Apply',
+    attributes: '',
+    modifier_class: '',
+  },
 };

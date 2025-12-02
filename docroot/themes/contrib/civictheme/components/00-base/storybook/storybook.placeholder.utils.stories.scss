@@ -1,0 +1,74 @@
+//
+// Placeholders and slots.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+
+// Placeholder is a temporary element that occupies the space of a component
+// to demonstrate its dimensions.
+.story-placeholder,
+.story-placeholder--hugged,
+.story-placeholder--fixed {
+  $_color: #548992;
+
+  display: inline-block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  font-family: sans-serif;
+  background-color: color.adjust($_color, $alpha: -0.7);
+  border: dashed 1px color.adjust($_color, $alpha: -0.3);
+  color: color.adjust($_color, $lightness: -30%);
+
+  .ct-theme-dark & {
+    background-color: color.adjust(color.adjust($_color, $lightness: 10%), $alpha: -0.3);
+    border: dashed 1px color.adjust(color.adjust($_color, $lightness: 50%), $alpha: -0.1);
+    color: color.adjust($_color, $lightness: 50%);
+  }
+}
+
+.story-placeholder {
+  width: 100%;
+}
+
+.story-placeholder--hugged {
+  width: auto;
+}
+
+.story-placeholder--fixed {
+  width: math.div(ct-breakpoint-next($ct-grid-lowest-breakpoint), 2);
+}
+
+// Slot demonstrates empty "slots" within a component.
+.story-slot {
+  display: grid;
+  align-items: center;
+  background-color: color.adjust(purple, $alpha: -0.7);
+  padding: 1em;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  border: dotted ct-particle(0.125) purple;
+  white-space: nowrap;
+  height: 100%;
+
+  .ct-theme-dark & {
+    background-color: color.adjust(white, $alpha: -0.7);
+    border: dotted ct-particle(0.125) purple;
+  }
+
+  code {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+  }
+}
+
+.story-slot--image_over {
+  position: absolute;
+  top: 4em;
+  left: 0;
+  right: 0;
+}

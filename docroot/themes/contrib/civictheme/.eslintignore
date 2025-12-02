@@ -1,2 +1,6 @@
 **/*.min.js
+**/*.utils.js
 .storybook/drupal_behaviors.js
+node_modules
+storybook-static
+vendor

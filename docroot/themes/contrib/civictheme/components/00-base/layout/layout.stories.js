@@ -1,83 +1,88 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeLayout from './layout.twig';
-import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
-import CivicThemeLayoutSingleColumnContained
-  from './content-layout--single-column-contained.twig';
-import { getSlots, placeholder } from '../base.utils';
+import Component from './layout.twig';
 
-export default {
+const meta = {
   title: 'Base/Layout',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  argTypes: {
+    content_top: {
+      control: { type: 'text' },
+    },
+    sidebar_top_left: {
+      control: { type: 'text' },
+    },
+    sidebar_top_right: {
+      control: { type: 'text' },
+    },
+    content: {
+      control: { type: 'text' },
+    },
+    sidebar_bottom_left: {
+      control: { type: 'text' },
+    },
+    sidebar_bottom_right: {
+      control: { type: 'text' },
+    },
+    content_bottom: {
+      control: { type: 'text' },
+    },
+    sidebar_top_right_attributes: {
+      control: { type: 'text' },
+    },
+    content_attributes: {
+      control: { type: 'text' },
+    },
+    sidebar_bottom_left_attributes: {
+      control: { type: 'text' },
+    },
+    sidebar_bottom_right_attributes: {
+      control: { type: 'text' },
+    },
+    hide_sidebar_left: {
+      control: { type: 'boolean' },
+    },
+    hide_sidebar_right: {
+      control: { type: 'boolean' },
+    },
+    is_contained: {
+      control: { type: 'boolean' },
+    },
+    vertical_spacing: {
+      control: { type: 'radio' },
+      options: ['none', 'top', 'bottom', 'both'],
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Layout = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    content: boolean('Show content', true, generalKnobTab) ? placeholder('Content placeholder') : '',
-    sidebar: boolean('Show sidebar', false, generalKnobTab) ? placeholder('Sidebar placeholder') : '',
-    is_contained: boolean('Is contained', false, generalKnobTab),
-    layout: radios(
-      'Layout',
-      {
-        'Single Column': 'single_column',
-        'Single Column Contained': 'single_column_contained',
-      },
-      'single_column',
-      generalKnobTab,
-    ),
-    vertical_spacing: radios(
-      'Vertical spacing',
-      {
-        None: 'none',
-        Top: 'top',
-        Bottom: 'bottom',
-        Both: 'both',
-      },
-      'none',
-      generalKnobTab,
-    ),
-    content_attributes: text('Content attributes', '', generalKnobTab),
-    sidebar_attributes: text('Sidebar attributes', '', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  if (generalKnobs.content) {
-    switch (generalKnobs.layout) {
-      case 'single_column':
-        generalKnobs.content = CivicThemeLayoutSingleColumn({
-          content: generalKnobs.content,
-        });
-        break;
-
-      case 'single_column_contained':
-        generalKnobs.content = CivicThemeLayoutSingleColumnContained({
-          content: generalKnobs.content,
-        });
-        break;
-
-      default:
-        generalKnobs.content = '';
-    }
-  }
-
-  return CivicThemeLayout({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top',
-      'content_bottom',
-    ]),
-  });
+export const Layout = {
+  parameters: {
+    layout: 'padded',
+  },
+  args: {
+    content_top: '<div class="story-placeholder" contenteditable="true">content_top</div>',
+    sidebar_top_left: '<div class="story-placeholder" contenteditable="true">sidebar_top_left</div>',
+    sidebar_top_right: '<div class="story-placeholder" contenteditable="true">sidebar_top_right</div>',
+    content: '<div class="story-placeholder" contenteditable="true">content</div>',
+    sidebar_bottom_left: '<div class="story-placeholder" contenteditable="true">sidebar_bottom_left</div>',
+    sidebar_bottom_right: '<div class="story-placeholder" contenteditable="true">sidebar_bottom_right</div>',
+    content_bottom: '<div class="story-placeholder" contenteditable="true">content_bottom</div>',
+    sidebar_top_left_attributes: '',
+    sidebar_top_right_attributes: '',
+    content_attributes: '',
+    sidebar_bottom_left_attributes: '',
+    sidebar_bottom_right_attributes: '',
+    hide_sidebar_left: false,
+    hide_sidebar_right: false,
+    is_contained: false,
+    vertical_spacing: 'none',
+    attributes: '',
+    modifier_class: '',
+  },
 };

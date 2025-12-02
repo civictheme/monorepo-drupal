@@ -1,39 +1,80 @@
-// phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeSelect from './select.twig';
-import { randomOptions, randomInt } from '../../00-base/base.utils';
+import Component from './select.twig';
 
-export default {
-  title: 'Atoms/Select',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Atoms/Form Controls/Select',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    is_multiple: {
+      control: { type: 'boolean' },
+    },
+    options: {
+      control: { type: 'array' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    is_required: {
+      control: { type: 'boolean' },
+    },
+    is_invalid: {
+      control: { type: 'boolean' },
+    },
+    is_disabled: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Select = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const numOfOptions = randomInt(3, 5);
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Select = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    is_multiple: false,
+    options: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        type: 'optgroup',
+        label: 'Group label',
+        value: 'Group value',
+        selected: false,
+        options: [
+          {
+            label: 'Option label',
+            value: 'Option value',
+            is_selected: false,
+            is_disabled: false,
+          },
+        ],
       },
-      'light',
-      generalKnobTab,
-    ),
-    is_multiple: boolean('Is multiple', false, generalKnobTab),
-    options: boolean('With options', true, generalKnobTab) ? randomOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-  };
-
-  return CivicThemeSelect({
-    ...generalKnobs,
-  });
+      {
+        type: 'option',
+        label: 'Option label',
+        value: 'Option value',
+        selected: false,
+      },
+    ],
+    name: 'Select name',
+    id: 'select-id',
+    is_required: false,
+    is_invalid: false,
+    is_disabled: false,
+    attributes: '',
+    modifier_class: '',
+  },
 };

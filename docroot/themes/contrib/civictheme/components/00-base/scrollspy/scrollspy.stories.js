@@ -1,17 +1,18 @@
-// phpcs:ignoreFile
-import './scrollspy';
+import Component from './scrollspy.stories.twig';
 
-export default {
-  title: 'Base/Scrollspy',
+const meta = {
+  title: 'Base/Utilities/Scrollspy',
+  component: Component,
 };
 
-export const Scrollspy = () => `
-  <div class="example-container">
-    <div class="example-container__page-content example-scrollspy"></div>
-    <button class="example-scrollspy-target1" data-scrollspy data-scrollspy-offset="400">
-      Button to scrollspy at 400px
-    </button>
-    <button class="example-scrollspy-target2" data-scrollspy data-scrollspy-offset="600">
-      Button to scrollspy at 600px
-    </button>
-  </div>`;
+export default meta;
+
+export const Scrollspy = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: 'Scroll the viewport to see elements appear when it reaches a specific pixel threshold.',
+    html: {
+      disable: true,
+    },
+  },
+};

@@ -1,68 +1,100 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, select, text,
-} from '@storybook/addon-knobs';
+import Component from './footer.stories.twig';
+import LogoComponent from '../../02-molecules/logo/logo.twig';
+import LogoData from '../../02-molecules/logo/logo.stories.data';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 import { getSlots } from '../../00-base/base.utils';
-import CivicThemeFooter from './footer.stories.twig';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
-import { generateMenuLinks } from '../../00-base/menu/menu.utils';
-import { Logo } from '../../02-molecules/logo/logo.stories';
 
-export default {
+const meta = {
   title: 'Organisms/Footer',
-  parameters: {
-    layout: 'fullscreen',
+  component: Component,
+  render: (args) => {
+    const logo = args.show_logo ? LogoComponent(LogoData.args(args.theme)) : null;
+
+    const links1 = args.show_middle_links ? generateMenuLinks(4, 1, false) : null;
+    const links2 = args.show_middle_links ? generateMenuLinks(4, 1, false) : null;
+    const links3 = args.show_middle_links ? generateMenuLinks(4, 1, false) : null;
+    const links4 = args.show_middle_links ? generateMenuLinks(4, 1, false) : null;
+
+    return Component({
+      theme: args.theme,
+      logo,
+      show_social_links: args.show_social_links,
+      show_middle_links: args.show_middle_links,
+      show_acknowledgement: args.show_acknowledgement,
+      show_copyright: args.show_copyright,
+      links1,
+      links2,
+      links3,
+      links4,
+      background_image: args.show_background_image ? Constants.BACKGROUNDS[args.background] : null,
+      modifier_class: args.modifier_class,
+      ...getSlots([
+        'content_top1',
+        'content_top2',
+        'content_middle1',
+        'content_middle2',
+        'content_middle3',
+        'content_middle4',
+        'content_bottom1',
+        'content_bottom2',
+      ], args.show_slots),
+    });
+  },
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    show_logo: {
+      control: { type: 'boolean' },
+    },
+    show_social_links: {
+      control: { type: 'boolean' },
+    },
+    show_middle_links: {
+      control: { type: 'boolean' },
+    },
+    show_acknowledgement: {
+      control: { type: 'boolean' },
+    },
+    show_copyright: {
+      control: { type: 'boolean' },
+    },
+    show_background_image: {
+      control: { type: 'boolean' },
+    },
+    background: {
+      control: { type: 'select' },
+      options: Object.keys(Constants.BACKGROUNDS),
+      if: { arg: 'show_background_image' },
+    },
+    show_slots: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Footer = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
-
-  const generalKnobs = {
-    theme,
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  generalKnobs.logo = boolean('Show logo', true, generalKnobTab) ? Logo('Logo', false) : null;
-
-  generalKnobs.show_social_links = boolean('Show social links', true, generalKnobTab);
-  generalKnobs.show_middle_links = boolean('Show middle links', true, generalKnobTab);
-  generalKnobs.show_acknowledgement = boolean('Show acknowledgement', true, generalKnobTab);
-  generalKnobs.show_copyright = boolean('Show copyright', true, generalKnobTab);
-
-  if (generalKnobs.show_middle_links) {
-    generalKnobs.links1 = generateMenuLinks(4, 1, false);
-    generalKnobs.links2 = generateMenuLinks(4, 1, false);
-    generalKnobs.links3 = generateMenuLinks(4, 1, false);
-    generalKnobs.links4 = generateMenuLinks(4, 1, false);
-  }
-
-  if (boolean('Show background image', false, generalKnobTab)) {
-    generalKnobs.background_image = BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)];
-  }
-
-  return CivicThemeFooter({
-    ...generalKnobs,
-    ...getSlots([
-      'content_top1',
-      'content_top2',
-      'content_middle1',
-      'content_middle2',
-      'content_middle3',
-      'content_middle4',
-      'content_bottom1',
-      'content_bottom2',
-    ]),
-  });
+export const Footer = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    theme: 'light',
+    show_logo: true,
+    show_social_links: true,
+    show_middle_links: true,
+    show_acknowledgement: true,
+    show_copyright: true,
+    show_background_image: false,
+    background: Object.keys(Constants.BACKGROUNDS)[0],
+    show_slots: false,
+    modifier_class: '',
+  },
 };

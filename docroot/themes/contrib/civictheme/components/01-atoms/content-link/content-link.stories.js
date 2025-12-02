@@ -1,40 +1,49 @@
-// phpcs:ignoreFile
-import {
-  boolean, radios, text,
-} from '@storybook/addon-knobs';
-import CivicThemeContentLink from './content-link.twig';
-import { randomUrl } from '../../00-base/base.utils';
+import Component from './content-link.twig';
 
-export default {
+const meta = {
   title: 'Atoms/Content Link',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    text: {
+      control: { type: 'text' },
+    },
+    url: {
+      control: { type: 'text' },
+    },
+    title: {
+      control: { type: 'text' },
+    },
+    is_new_window: {
+      control: { type: 'boolean' },
+    },
+    is_external: {
+      control: { type: 'boolean' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const ContentLink = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    text: text('Text', 'Link text', generalKnobTab),
-    title: text('Title', 'Link title', generalKnobTab),
-    url: text('URL', randomUrl(), generalKnobTab),
-    is_external: boolean('Is external', false, generalKnobTab),
-    is_new_window: boolean('Open in a new window', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeContentLink({
-    ...generalKnobs,
-  });
+export const ContentLink = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    text: 'Link text',
+    title: 'Link title',
+    url: 'https://example.com',
+    is_new_window: false,
+    is_external: false,
+  },
 };

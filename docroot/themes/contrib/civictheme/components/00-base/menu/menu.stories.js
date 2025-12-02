@@ -1,33 +1,103 @@
-// phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeMenu from './menu.twig';
-import getMenuLinks from './menu.utils';
+import Component from './menu.twig';
 
-export default {
-  title: 'Base/Menu Generator',
-  parameters: {
-    layout: 'centered',
+const meta = {
+  title: 'Base/Utilities/Menu',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    items: {
+      control: { type: 'object' },
+    },
+    is_collapsible: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const MenuGenerator = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+export default meta;
 
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
+export const Menu = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    items: [
       {
-        Light: 'light',
-        Dark: 'dark',
+        title: 'Link 1',
+        url: '#',
+        below: [
+          {
+            title: 'Sublink 1',
+            url: '#',
+            below: [
+              {
+                title: 'Subsublink 1',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+              {
+                title: 'Subsublink 2',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+            ],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+          {
+            title: 'Sublink 2',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
       },
-      'light',
-      generalKnobTab,
-    ),
-    items: getMenuLinks(),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  return CivicThemeMenu({
-    ...generalKnobs,
-  });
+      {
+        title: 'Link 2',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+      {
+        title: 'Link 3',
+        url: '#',
+        below: [
+          {
+            title: 'Sublink 3',
+            url: '#',
+            below: [
+              {
+                title: 'Subsublink 3',
+                url: '#',
+                below: [],
+                is_expanded: false,
+                in_active_trail: false,
+              },
+            ],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+    ],
+    is_collapsible: false,
+    modifier_class: '',
+  },
 };

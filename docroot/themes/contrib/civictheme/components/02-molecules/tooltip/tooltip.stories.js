@@ -1,57 +1,52 @@
-// phpcs:ignoreFile
-import { text, radios, select } from '@storybook/addon-knobs';
-import merge from 'deepmerge';
-import CivicThemeTooltip from './tooltip.twig';
-import './tooltip';
+import Component from './tooltip.twig';
+import Constants from '../../../dist/constants.json'; // eslint-disable-line import/no-unresolved
 
-import '../../00-base/collapsible/collapsible';
-import { randomText } from '../../00-base/base.utils';
-
-export default {
+const meta = {
   title: 'Molecules/Tooltip',
-  parameters: {
-    layout: 'centered',
+  component: Component,
+  argTypes: {
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
+    },
+    position: {
+      control: { type: 'radio' },
+      options: ['auto', 'left', 'right', 'top', 'bottom'],
+    },
+    icon: {
+      control: { type: 'select' },
+      options: Constants.ICONS,
+    },
+    icon_size: {
+      control: { type: 'select' },
+      options: [
+        ...Object.keys(Constants.SCSS_VARIABLES['ct-icon-sizes-default']),
+        ...Object.keys(Constants.SCSS_VARIABLES['ct-icon-sizes']),
+      ],
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+    attributes: {
+      control: { type: 'text' },
+    },
   },
 };
 
-export const Tooltip = () => {
-  const generalKnobTab = 'General';
+export default meta;
 
-  const defaultSizes = SCSS_VARIABLES['ct-icon-sizes-default'];
-  const customSizes = SCSS_VARIABLES['ct-icon-sizes'];
-  const sizes = Object.keys(merge(defaultSizes, customSizes));
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    position: radios(
-      'Position',
-      {
-        Auto: 'auto',
-        Left: 'left',
-        Right: 'right',
-        Top: 'top',
-        Bottom: 'bottom',
-      },
-      'auto',
-      generalKnobTab,
-    ),
-    icon: select('Icon', Object.values(ICONS), 'information-mark', generalKnobTab),
-    icon_size: radios('Icon size', sizes, sizes[2], generalKnobTab),
-    title: text('Title', 'Toggle tooltip display', generalKnobTab),
-    content: text('Content', randomText(), generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
-
-  return CivicThemeTooltip({
-    ...generalKnobs,
-  });
+export const Tooltip = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    position: 'auto',
+    icon: Constants.ICONS[0],
+    icon_size: Object.keys(Constants.SCSS_VARIABLES['ct-icon-sizes-default'])[2],
+    title: 'Toggle tooltip display',
+    content: 'Ullamco incididunt laborum aliquip.',
+    modifier_class: '',
+    attributes: '',
+  },
 };
