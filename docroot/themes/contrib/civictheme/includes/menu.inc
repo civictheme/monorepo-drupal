@@ -29,14 +29,14 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
 /**
  * Add required element for external link.
  */
-function _civictheme_preprocess_menu_items(&$items) {
+function _civictheme_preprocess_menu_items(&$items, $default = FALSE) {
   foreach ($items as &$item) {
     $item += [
       'is_new_window' => $item['url']->isExternal(),
       'is_external' => $item['url']->isExternal(),
     ];
 
-    if (empty($item['original_link']->getPluginDefinition()['expanded'])) {
+    if (($default == TRUE) && empty($item['original_link']->getPluginDefinition()['expanded'])) {
       $item['below'] = [];
       $item['is_expanded'] = FALSE;
     }
