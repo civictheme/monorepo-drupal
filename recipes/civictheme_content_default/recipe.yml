@@ -1,6 +1,8 @@
 name: 'CivicTheme Default Content'
 description: 'Install civictheme default profile content'
 type: 'Theme'
+recipes:
+  - civictheme_content_generated_static
 config:
   actions:
     system.site:
