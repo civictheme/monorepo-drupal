@@ -164,7 +164,7 @@ default:
           field_c_p_content:
             -
               value: 'Non officia officiis quibusdam vero. Autem facilis hic.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_date:
             -
               value: '2022-12-22'
@@ -221,7 +221,7 @@ default:
           field_c_p_content:
             -
               value: 'Expedita officia quod recusandae. Earum expedita maiores molestiae.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_date:
             -
               value: '2022-12-22'
@@ -278,7 +278,7 @@ default:
           field_c_p_content:
             -
               value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_date:
             -
               value: '2022-12-22'
@@ -335,7 +335,7 @@ default:
           field_c_p_content:
             -
               value: 'At cumque hic laborum quo repellat. Cumque delectus.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_date:
             -
               value: '2022-12-22'

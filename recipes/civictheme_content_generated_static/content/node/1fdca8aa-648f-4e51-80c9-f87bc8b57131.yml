@@ -137,7 +137,7 @@ default:
           field_c_p_content:
             -
               value: 'Excepturi laborum minus necessitatibus. Minus nam officiis sunt.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Ducimus-eligendi-nobis.-Debitis-eligendi.'
@@ -176,7 +176,7 @@ default:
           field_c_p_content:
             -
               value: 'Et itaque provident rerum. Delectus dignissimos facere hic.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Alias-aut-quas-ut.-Assumenda.'
@@ -215,7 +215,7 @@ default:
           field_c_p_content:
             -
               value: 'Blanditiis deserunt fuga itaque quo reiciendis repellendus sapiente.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Delectus-dolores-eligendi-hic-laborum.'
@@ -254,7 +254,7 @@ default:
           field_c_p_content:
             -
               value: 'Animi aut culpa maiores. Dignissimos dolor est laborum.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Facilis-laborum-officiis-quidem-quod.'

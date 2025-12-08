@@ -92,7 +92,7 @@ default:
           field_c_p_content:
             -
               value: 'Minus molestias mollitia officiis qui. Id in molestiae.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
@@ -136,7 +136,7 @@ default:
           field_c_p_content:
             -
               value: 'Expedita officia quod recusandae. Earum expedita maiores molestiae.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
@@ -176,7 +176,7 @@ default:
           field_c_p_content:
             -
               value: 'Impedit non optio quod quos repudiandae sapiente tenetur.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
@@ -216,7 +216,7 @@ default:
           field_c_p_content:
             -
               value: 'Cupiditate est maiores non repellendus. Dolorum itaque maiores.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark
@@ -256,7 +256,7 @@ default:
           field_c_p_content:
             -
               value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: light
@@ -296,7 +296,7 @@ default:
           field_c_p_content:
             -
               value: 'Cumque delectus hic mollitia necessitatibus nihil nobis repellat.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_theme:
             -
               value: dark

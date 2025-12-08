@@ -450,7 +450,7 @@ default:
           field_c_p_content:
             -
               value: 'Facere id maxime nihil odio perferendis repellendus voluptas.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_list_column_count:
             -
               value: 2

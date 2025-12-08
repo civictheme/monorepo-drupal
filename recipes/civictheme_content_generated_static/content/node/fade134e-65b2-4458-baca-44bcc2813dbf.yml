@@ -232,7 +232,7 @@ default:
           field_c_p_content:
             -
               value: 'Impedit non optio quod quos repudiandae sapiente tenetur.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
@@ -274,7 +274,7 @@ default:
           field_c_p_content:
             -
               value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem.'
-              format: ''
+              format: civictheme_rich_text
           field_c_p_link:
             -
               uri: 'https://www.example.com/Distinctio-harum-praesentium-quod-quos.'
