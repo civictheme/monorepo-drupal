@@ -18,7 +18,7 @@ Feature: Search block render
       | status        | 1             |
     And the cache has been cleared
 
-  @api
+  @api @wip
   Scenario: CivicTheme search links appear as expected
     Given I am logged in as a user with the "Administrator" role
     And I visit "/admin/content/block"

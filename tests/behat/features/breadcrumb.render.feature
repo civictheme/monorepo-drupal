@@ -25,7 +25,7 @@ Feature: Breadcrumb render
     And  I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in "nav.ct-breadcrumb .ct-item-list.show-m-flex"
     And I should see "[TEST] Page breadcrumb test" in the ".ct-breadcrumb .ct-item-list.show-m-flex" element
 
-  @api @security
+  @api @security @javascript
   Scenario: XSS - Ensure banner correctly filters breadcrumbs
     Given "civictheme_page" content:
       | title                                                       | status | pathauto | path | moderation_state | nid    |
@@ -35,4 +35,4 @@ Feature: Breadcrumb render
     When I visit "/node/988883"
     Then I should not see an "script#test-xss-parent" element
     Then I should not see an "script#test-xss-child" element
-    And I should see "child alert" in the ".ct-breadcrumb" element
+    And I should see "alert('child alert')" in the ".ct-breadcrumb" element

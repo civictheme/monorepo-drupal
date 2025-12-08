@@ -56,7 +56,8 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   if (!empty($featured_image)) {
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
-  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $title = $route !== NULL ? \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route) : '';
   $title = (string) (is_array($title) ? reset($title) : ((string) $title));
   $title = [
     '#type' => 'markup',
