@@ -33,7 +33,7 @@ echo "[INFO] Enabling theme modules."
     drush config-set node.settings use_admin_theme 1
   fi
 
-  if [[ "$DRUPAL_PROFILE" != /app/recipes/* ]] || [[ "$DRUPAL_PROFILE" != "/app/recipes/civictheme_site_install" ]]; then
+  if [[ "$DRUPAL_PROFILE" != "/app/recipes/civictheme_site_install" ]]; then
     echo "  > Enable CivicTheme theme and set as default."
     drush theme-enable civictheme
     drush config-set system.theme default civictheme
