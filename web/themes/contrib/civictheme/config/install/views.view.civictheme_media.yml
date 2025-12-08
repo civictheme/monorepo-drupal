@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.civictheme_medium
+    - image.style.thumbnail
     - taxonomy.vocabulary.civictheme_media_tags
   module:
     - image
@@ -133,7 +133,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: civictheme_medium
+            image_style: thumbnail
             image_loading:
               attribute: lazy
           group_column: ''

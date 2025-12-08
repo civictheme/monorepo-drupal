@@ -36,8 +36,6 @@ dependencies:
   - paragraphs:paragraphs
   - pathauto:pathauto
   - redirect:redirect
-  - search_api:search_api
-  - search_api_db:search_api_db
   - webform:webform
 
 regions:
