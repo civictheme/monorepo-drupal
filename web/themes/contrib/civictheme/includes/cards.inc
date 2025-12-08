@@ -150,7 +150,7 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(array &$va
   _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 
-  $document = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE) ?? NULL;
+  $document = civictheme_get_field_value($variables['paragraph'], 'field_c_p_document', TRUE, build: $variables) ?? NULL;
   if ($document) {
     $vars = civictheme_media_get_variables($document);
     if ($vars) {

@@ -41,6 +41,9 @@
     <exclude-pattern>\.components-civictheme/*</exclude-pattern>
     <exclude-pattern>components_combined/*</exclude-pattern>
 
+    <!-- Exclude settings.php file. -->
+    <exclude-pattern>web\/sites\/default\/settings\.php</exclude-pattern>
+
     <!-- Exclude array-heavy files without any logic. -->
     <exclude-pattern>web\/modules\/custom\/cs_generated_content\/generated_content\/node\/civictheme_page_variations\/.*</exclude-pattern>
 

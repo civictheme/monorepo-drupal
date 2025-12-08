@@ -19,7 +19,7 @@ function _civictheme_preprocess_html__site_section(array &$variables): void {
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface) {
-    $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE) ?? FALSE;
+    $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE, build: $variables) ?? FALSE;
 
     if ($site_section) {
       $variables['attributes']['class'][] = 'ct-site-section--' . Html::cleanCssIdentifier(strtolower((string) $site_section->getName()));

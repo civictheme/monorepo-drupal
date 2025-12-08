@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#fe12e68b86846b234df168e5a6c43d3442dd2d37"
+    "@civictheme/sdc": "1.12.2"
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
