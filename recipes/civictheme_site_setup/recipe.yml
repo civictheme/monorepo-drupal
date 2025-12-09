@@ -1,0 +1,9 @@
+name: 'CivicTheme Site Setup'
+description: 'Install civictheme configuration, modules and default set of content (menus, blocks content)'
+type: 'Site'
+recipes:
+  - civictheme_site_install
+install:
+  - search_api
+  - search_api_db
+  - civictheme_content_default
