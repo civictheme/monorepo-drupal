@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2803908c-77d8-460b-b084-3185c392797e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Adopt the DIY approach.png'
+  uri:
+    -
+      value: 'public://images/2022-03/Adopt the DIY approach.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 683712
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1648621741

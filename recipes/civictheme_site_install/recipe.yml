@@ -21,6 +21,8 @@ install:
   - field_ui
   - views_ui
   - shortcut
+  - search_api
+  - search_api_db
   - civictheme
 config:
   import:

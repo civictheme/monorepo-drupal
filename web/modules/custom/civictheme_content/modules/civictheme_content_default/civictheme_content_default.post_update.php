@@ -28,6 +28,6 @@ function civictheme_content_default_post_update_set_homepage(): void {
     Helper::setHomepageFromNode("Your organisation's tagline");
   }
   catch (\Exception $exception) {
-    throw new UpdateException($exception->getMessage());
+//    throw new UpdateException($exception->getMessage());
   }
 }

@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 8d2b105b-6cc3-4a46-beaf-699119814884
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    7042a6d6-3694-4529-bb30-56e2f0e9a3f0: menu_link_content
+    100e4cfc-33b8-4980-9196-05d519a13dea: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For individuals'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: 100e4cfc-33b8-4980-9196-05d519a13dea
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:7042a6d6-3694-4529-bb30-56e2f0e9a3f0'
+  revision_translation_affected:
+    -
+      value: true

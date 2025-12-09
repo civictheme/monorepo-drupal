@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 209291bc-81be-41c7-912c-70d695e9376c
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    044c817e-14ba-43ad-b98e-07f860d1bf1a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Do it yourself - The DIY approach.png'
+  created:
+    -
+      value: 1648621832
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 044c817e-14ba-43ad-b98e-07f860d1bf1a
+      alt: 'Illustrated person sitting in front of a large PC screen'
+      title: ''
+      width: 2400
+      height: 1572

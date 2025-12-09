@@ -1,0 +1,110 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 9c4229fe-7dd7-4a10-a389-3868d27ae469
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    2b8021df-e474-4b3a-8b91-62844aefe844: media
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'For businesses'
+  created:
+    -
+      value: 1648616400
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /businesses
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5cb4b21b-d76d-4b35-a0ce-df62a746d448
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648616420
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Heading 2</h2>\r\n\r\n<p>Content component - add general page content in this area.&nbsp;</p>\r\n\r\n<p>Body text can include a variety headings and sub-headings up to six levels deep, images, embedded video, block quotes, etc.</p>\r\n\r\n<h3>Components (Heading 3)</h3>\r\n\r\n<p>You can add different components on pages like this, including a variety of navigation cards, content listing, promo content, or accordions, and webforms.</p>\r\n\r\n<p>Here are just a few examples:</p>\r\n\r\n<ol>\r\n\t<li><a href=\"/node/54\">Navigation cards</a></li>\r\n\t<li><a href=\"/node/30\">Navigation cards for 2x columns</a></li>\r\n\t<li><a href=\"/node/11\">Slider</a></li>\r\n\t<li><a href=\"/node/2\">Content listing page</a></li>\r\n\t<li><a href=\"/node/12\">Promo content</a></li>\r\n</ol>\r\n\r\n<p>Examples of all the available variations of these components are included in CivicTheme and available in the admin content area.&nbsp;</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_thumbnail:
+    -
+      entity: 2b8021df-e474-4b3a-8b91-62844aefe844
+  field_c_n_topics:
+    -
+      entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+  field_c_n_vertical_spacing:
+    -
+      value: both

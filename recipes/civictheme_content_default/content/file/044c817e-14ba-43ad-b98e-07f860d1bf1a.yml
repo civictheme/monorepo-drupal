@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 044c817e-14ba-43ad-b98e-07f860d1bf1a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Do it yourself - The DIY approach.png'
+  uri:
+    -
+      value: 'public://images/2022-03/Do it yourself - The DIY approach.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 2302101
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1648621832

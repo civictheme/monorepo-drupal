@@ -1,0 +1,545 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 45b59dbe-af6c-4b71-b12a-a79b39ee140c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    100e4cfc-33b8-4980-9196-05d519a13dea: node
+    e07cdb41-1bd4-463f-9e7c-126302b24740: media
+    9c4229fe-7dd7-4a10-a389-3868d27ae469: node
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    6d2fbfa0-5402-461e-9357-9eb7efb850f5: node
+    68d50fea-aae4-4dde-832c-b385ff9731e1: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: "Your organisation's tagline"
+  created:
+    -
+      value: 1637029497
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ff60a8d7-1c67-42c7-bf2a-908f5d7c0784
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637029511
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_components_bott:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0787b004-028c-4029-bca3-03cfb46a80c1
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637029628
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 4
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6a3b2057-5f5f-4ef0-9cad-31adafdf9a59
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1637029642
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Short summary of a quick link goes here'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Call to action 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4a61fc20-d744-47b4-bd45-5f37e5f0a2e4
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1637029680
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Short summary of a quick link goes here'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Call to action 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9d83914f-5acd-489a-91f9-3eaedb753e1f
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1637029683
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Short summary of a quick link goes here'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Call to action 3'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4e71f96e-87a9-49f5-b4e7-becdc3af0440
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1637029685
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Short summary of a quick link goes here'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Call to action 4'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: large
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 17c4bba7-140e-40f1-86fd-6b967620534b
+          bundle: civictheme_automated_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637029852
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_content_type:
+            -
+              value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_item_theme:
+            -
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 3
+          field_c_p_list_limit_type:
+            -
+              value: limited
+          field_c_p_list_topics:
+            -
+              entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 57eca1d1-bb72-4087-9ab6-eb3ac0e51a96
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637029956
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 4
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b12f42c1-8fa0-468f-9127-142bf1c6351e
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1637029977
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+                  field_c_p_link:
+                    -
+                      target_uuid: 100e4cfc-33b8-4980-9196-05d519a13dea
+                      title: 'For Individuals'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Subject nav card 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fa9a20b3-8737-42bd-a3a6-724d3f453ff9
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198514
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: e07cdb41-1bd4-463f-9e7c-126302b24740
+                  field_c_p_link:
+                    -
+                      target_uuid: 9c4229fe-7dd7-4a10-a389-3868d27ae469
+                      title: 'For Businesses'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Subject nav card 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c0bff4a0-1eb1-4577-a1bd-b134e2179a52
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198553
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      target_uuid: 6d2fbfa0-5402-461e-9357-9eb7efb850f5
+                      title: 'For government'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Subject nav card 3'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 92ef0bfc-69aa-4f1f-999f-82a1d73369fd
+                  bundle: civictheme_subject_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198565
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Link text'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Subject nav card 4'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Design systems'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6f3b9ff5-1e71-42da-9d74-593701cf6720
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637030694
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Short summary area for the callout to promote any content.'
+              format: civictheme_rich_text
+          field_c_p_links:
+            -
+              uri: 'internal:/'
+              title: 'Callout text link '
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Callout component - title'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: true
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: top

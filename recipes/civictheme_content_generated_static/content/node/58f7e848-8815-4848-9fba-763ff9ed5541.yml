@@ -1,0 +1,1494 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 58f7e848-8815-4848-9fba-763ff9ed5541
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Com: 12, Tit: Pag, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Manual list, sidebar'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-manual-list-sidebar
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: de6c4bd2-b628-4785-a7f5-1485ae7caf41
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 57762b20-3716-441d-aa31-455ba47f549f
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Animi aut culpa.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, Full width, 1 column, 1 card'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f80cb677-4c0b-4509-8eaa-473c7ea7dfca
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_fill_width:
+            -
+              value: true
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c48018ed-ee23-4524-99c9-7175732fc214
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Facilis laborum officiis.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, Full width, 1 column, 1 card, fill width'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 16f913f5-0f63-4af5-b77c-bb205a7cc613
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 79c74026-29bf-42c5-8fd1-918e23cbe350
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Dolorum eveniet libero.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 591f9189-0bfe-419e-9e90-7bfc819ccb81
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Molestiae sapiente tempore.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 06d1e09b-05a3-4e09-8018-49e3b509b097
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Eligendi expedita officia.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, Full width, 2 column, 3 cards'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ea776ee3-7579-4922-b4e5-c710b8a7a1f3
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_fill_width:
+            -
+              value: true
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3380a8b2-a97f-4d95-90d8-ef2ab533f157
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Deserunt temporibus voluptatibus.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4974c972-9223-426c-916e-2493e75cc69e
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Maiores molestiae saepe.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c8f660d1-c702-4643-9f55-3f9ae2adc757
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Non officia officiis.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, Full width, 2 column, 3 cards, fill width'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f7365df4-b7e3-4661-bf0a-938c0487a7e2
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: 'Facere id maxime nihil odio perferendis repellendus voluptas.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 06920867-ac77-4e56-bec9-0e9989061db9
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Dolor omnis optio.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d9d662f2-b67b-4607-91f9-e1957ff40c86
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Laborum occaecati omnis.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b38f1172-ed16-49c6-bf53-34d72e2ca34e
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Minus molestias mollitia.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, Title, Content'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8e224c0e-9ef0-412a-b62b-ac175c8c1eee
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: 'Occaecati perferendis tempore. Accusamus id praesentium quas temporibus.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a6175e9f-21f1-421d-a645-691190b56143
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Expedita officia quod.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c2b4c4b7-2250-423b-88a9-573fbdb0f491
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Mollitia non sunt.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d76dff21-3e0c-4ed6-befd-562b0abe6544
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Impedit non optio.'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Promo card, Dark, Title, Content'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 42a4e531-e6a2-4ee8-93c2-6ac07445c0d8
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Corrupti id saepe. Blanditiis culpa cupiditate necessitatibus nobis.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 199a890a-5e0d-46af-8e81-e9882dbb3289
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Cumque delectus hic.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3f783428-5c46-4af4-8c01-d681d1350615
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Accusamus animi deleniti.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fed90bb5-6231-4b0b-b2bf-0cb41ca57ee4
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Earum perferendis sapiente.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/Cupiditate-est-maiores-non-repellendus.'
+              title: 'Fuga id.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Officia-officiis-quos.-Facere-harum.'
+              title: 'Distinctio harum.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, BG, Title, Content, Before Link, After Link'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ac5818da-0c1c-405b-8905-b05acfd1a715
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Est iusto maxime qui repellat rerum saepe tenetur.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 52951cdf-8481-4bb5-947c-5e45ed0d50fc
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Atque dolor itaque.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3044cc7f-f5aa-49bf-b75a-86bad7b959ca
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Consequatur deserunt doloribus.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1b5314a4-5a03-41b3-8fb2-e0b02e756ffd
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Libero nam odio.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/At-cumque-hic-laborum-quo.'
+              title: 'Id impedit.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Harum-id-nam-quas.-Debitis.'
+              title: 'Asperiores atque.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Promo card, Dark, BG, Title, Content, Before Link, After Link'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ca9ef374-1df1-438e-95d6-9c2ca019f08e
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Culpa debitis nobis. Assumenda autem facilis libero non.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: aca475a9-3791-4091-83d1-b7dd867e5cab
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Eveniet occaecati recusandae.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 16f56a8f-89ae-4293-9409-24e0fc7e9278
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Eos iusto optio.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 55c9f1e7-4c91-45a7-a06e-a7a67c7d354a
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Assumenda cupiditate mollitia.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/Aut-delectus-id-minus-molestias.'
+              title: 'Debitis delectus.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Dignissimos-doloribus-harum-nihil-quos.'
+              title: 'Dolores eos.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Promo card, Light, BG, Title, Content, Before Link, After Link, Vertical Spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8c298f37-f8ef-4214-9c86-dcae5157cf52
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'In molestiae occaecati possimus qui recusandae. Animi asperiores.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 2
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4ad7b172-a36e-4b68-bc9e-401995b9d54e
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Alias aut quas.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: cb303af8-cdb7-47fa-aaa1-05d2943620fa
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Doloribus iusto officia.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5f8ddd95-c8f3-4858-9b25-04b30f9b8f81
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Blanditiis deserunt fuga.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/Excepturi-laborum-minus-necessitatibus.-Minus.'
+              title: 'Ducimus eligendi.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Autem-consequatur-expedita-facere-laborum.'
+              title: 'Et itaque.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Promo card, Dark, BG, Title, Content, Before Link, After Link, Vertical Spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fd270d08-863f-4a7b-8c24-94041ba860b9
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Delectus dolores eligendi hic laborum odio officia recusandae.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: cdac3059-56a9-448b-972b-5b86c3fb2fd9
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Eligendi expedita officia. Animi dolorum nam nobis odio officia quos. Cupiditate delectus maiores perferendis similique sunt. Asperiores molestiae mollitia possimus sunt. Impedit non provident quibusdam quidem repudiandae sunt tempore. Assumenda eos est mollitia occaecati perferendis. Consequatur eos id reiciendis repellat ut.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Molestiae sapiente tempore.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 36840b05-5b11-478d-94ba-e2b2eec745cd
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Maiores molestiae saepe voluptas. Eos est facilis. Debitis facere itaque mollitia officiis omnis quo ut. Atque autem dignissimos excepturi impedit optio quos. Aut molestiae non optio quod. Animi delectus dolores quidem repellat repudiandae tenetur. Accusamus atque delectus et molestiae qui repellat temporibus. At dignissimos distinctio dolorum earum nobis possimus quidem recusandae ut. Excepturi laborum officia qui. Corrupti dignissimos eveniet nihil officia omnis qui reiciendis sunt tempore.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Deserunt temporibus voluptatibus.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: dd4389b1-552d-4b52-abd6-77298fc9e7a7
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Facere id maxime nihil odio perferendis repellendus voluptas. Alias corrupti omnis quibusdam sint tempore. Blanditiis in maxime optio quos repellat sint temporibus tenetur voluptatibus. Animi delectus distinctio provident repellendus saepe vero. Facere fuga odio temporibus. At ducimus odio optio temporibus. Deleniti est expedita minus nihil placeat quo sint tenetur.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Non officia officiis.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/Deleniti-mollitia-quo-repudiandae-vero.'
+              title: 'Animi aut.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Facilis-laborum-officiis-quidem-quod.'
+              title: 'Dolorum eveniet.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Snippet, Light, BG, Title, Content, Before Link, After Link, Vertical Spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b6ba0f68-9798-4218-889c-25c2d1daa41b
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: 'Dolor omnis optio repudiandae. Animi deleniti eveniet. Aut.'
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c52deac1-a4a1-4179-8150-b001910e4f9e
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Impedit non optio quod quos repudiandae sapiente tenetur. Blanditiis consequatur facere quas temporibus. Blanditiis minus perferendis. Impedit maxime officia. Corrupti delectus dolorum mollitia omnis placeat quos reiciendis. Aut minus quos voluptas. Debitis facilis officia rerum soluta. Alias delectus itaque iusto necessitatibus officiis sint tempore voluptatum.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Mollitia non sunt.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2423a08f-6b40-4629-8307-fff5f605eb1c
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Cupiditate est maiores non repellendus. Dolorum itaque maiores quo. At atque consequatur facilis molestiae nobis non perferendis voluptates. Culpa est maiores maxime mollitia possimus praesentium quo tempore. Animi asperiores nihil non. Consequatur cumque necessitatibus omnis soluta tempore ut voluptates. Asperiores doloribus maxime sint tenetur. At eos est fuga harum mollitia non praesentium quas vero.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Corrupti id saepe.'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2c594461-7d09-49cc-9cae-77c460543d7d
+                  bundle: civictheme_snippet
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum. Animi facilis officiis soluta. Hic repellat soluta. Dolores harum non saepe tenetur. Dolorum excepturi nam occaecati. Dolor earum repellendus. Autem itaque qui. Hic itaque necessitatibus quos repudiandae voluptatum. Debitis delectus molestiae perferendis sapiente tempore.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Fuga id impedit.'
+          field_c_p_list_link_above:
+            -
+              uri: 'https://www.example.com/Laborum-occaecati-omnis.-Eligendi-possimus.'
+              title: 'Minus molestias.'
+              options: {  }
+          field_c_p_list_link_below:
+            -
+              uri: 'https://www.example.com/Occaecati-perferendis-tempore.-Accusamus-id.'
+              title: 'Expedita officia.'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Snippet, Dark, BG, Title, Content, Before Link, After Link, Vertical Spacing'
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

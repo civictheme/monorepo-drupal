@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: e2b603ff-038b-4c31-bf8d-6e4eb7346b72
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    2d26321f-07ae-44be-9dfc-58566e94cfc8: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: civictheme_demo_background_1.png
+  created:
+    -
+      value: 1666996274
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_image:
+    -
+      entity: 2d26321f-07ae-44be-9dfc-58566e94cfc8
+      alt: ''
+      title: ''
+      width: 1176
+      height: 785

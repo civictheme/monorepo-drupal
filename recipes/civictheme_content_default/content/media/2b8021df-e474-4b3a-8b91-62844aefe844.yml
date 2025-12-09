@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 2b8021df-e474-4b3a-8b91-62844aefe844
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    a7807b15-8d13-4d42-9615-d7756db3a11d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Tried-and-tested-components.png'
+  created:
+    -
+      value: 1648621914
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: a7807b15-8d13-4d42-9615-d7756db3a11d
+      alt: 'Illustrated navigation cards in grid over a page design '
+      title: ''
+      width: 2400
+      height: 1572

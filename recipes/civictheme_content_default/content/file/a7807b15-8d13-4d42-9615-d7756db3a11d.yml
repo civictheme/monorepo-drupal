@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a7807b15-8d13-4d42-9615-d7756db3a11d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Tried-and-tested-components.png'
+  uri:
+    -
+      value: 'public://images/2022-03/Tried-and-tested-components.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1746553
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1648621914

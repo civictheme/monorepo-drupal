@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d83dffb5-13bd-4f86-87f9-f76e3407e1d4
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    62e4d359-347d-4f5f-af17-a153ad83a7a9: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 17 Et itaque.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Alias aut.'
+  field_c_m_image:
+    -
+      entity: 62e4d359-347d-4f5f-af17-a153ad83a7a9
+      alt: 'Alt for Generated static Image media 17 Et itaque.'
+      title: ''
+      width: 1552
+      height: 846

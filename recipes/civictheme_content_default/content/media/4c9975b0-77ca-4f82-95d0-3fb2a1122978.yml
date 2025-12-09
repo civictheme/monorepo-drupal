@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    4a5c5b53-bad3-4ac6-adb8-d07f3167bb28: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Forest
+  created:
+    -
+      value: 1631681047
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
+      alt: Forest
+      title: ''
+      width: 1600
+      height: 1067

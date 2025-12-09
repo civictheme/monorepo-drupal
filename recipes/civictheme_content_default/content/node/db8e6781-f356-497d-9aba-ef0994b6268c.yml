@@ -1,0 +1,133 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: db8e6781-f356-497d-9aba-ef0994b6268c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'News and events'
+  created:
+    -
+      value: 1648614464
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /news-and-events
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 80ebb324-7c2e-4129-bf9d-38c1add856e5
+          bundle: civictheme_automated_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648614490
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Content listing component for pages with News topic tagged displayed as navigation cards.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_list_column_count:
+            -
+              value: 3
+          field_c_p_list_content_type:
+            -
+              value: civictheme_page
+          field_c_p_list_fill_width:
+            -
+              value: false
+          field_c_p_list_item_theme:
+            -
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 15
+          field_c_p_list_limit_type:
+            -
+              value: limited
+          field_c_p_list_topics:
+            -
+              entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'List any content'
+          field_c_p_vertical_spacing:
+            -
+              value: bottom
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: top

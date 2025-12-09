@@ -1,0 +1,201 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2cd2c878-9d09-4703-9c8b-e39eda7b2516
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    b74f210b-6bdc-415b-8b39-348c3230c028: node
+    dfa24489-b5ee-409d-8aad-599d4b1dbace: node
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Ali: /ge, Com: 2, Sta: Y, Mod: pub, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Subject reference card'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/civictheme-no-sidebar/page-component-subject-reference-card
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c0f93d94-4e0a-4dea-bac5-fa9f43564f16
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 646f4957-8053-4b45-b5e5-f78af73f1985
+                  bundle: civictheme_subject_card_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: b74f210b-6bdc-415b-8b39-348c3230c028
+                  field_c_p_theme:
+                    -
+                      value: light
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8c68ef2f-5b38-4fe1-9db6-46fb9b709fb3
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6a000e71-064b-4217-b3c6-2a028287bad2
+                  bundle: civictheme_subject_card_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: dfa24489-b5ee-409d-8aad-599d4b1dbace
+                  field_c_p_theme:
+                    -
+                      value: dark
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none
