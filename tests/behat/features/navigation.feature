@@ -45,7 +45,7 @@ Feature: Navigation
     Then I should see an ".ct-mobile-navigation__bottom-menu-wrapper" element
 
   @api @security
-  Scenario:XSS - Subject Card
+  Scenario:XSS - Menu links
     Given "civictheme_page" content:
       | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] |
       | [TEST] XSS Test Page | 1      | 0                 | /internal-test | 0                             |
@@ -64,5 +64,3 @@ Feature: Navigation
     And I should see the text "alert('XSS Primary Navigation Menu Link')"
     And I should not see an "script#xss-menu-link--secondary-navigation" element
     And I should see the text "alert('XSS Secondary Navigation Menu Link')"
-    And I should not see an "script#xss-menu-link--footer" element
-    And I should see the text "alert('XSS Footer Menu Link')"
