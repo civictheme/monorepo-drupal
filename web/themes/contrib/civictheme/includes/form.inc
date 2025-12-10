@@ -134,11 +134,10 @@ function _civictheme_form_preprocess_hidden_form_elements(array &$variables): vo
     'form_token',
   ];
 
-  $output = '';
+  $output = [];
   foreach (Element::children($form) as $field_name) {
     if (in_array($field_name, $field_names)) {
-      $els = [$form[$field_name]];
-      $output .= civictheme_render($els);
+      $output[] = $form[$field_name];
     }
   }
 
