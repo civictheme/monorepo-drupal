@@ -1,0 +1,274 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 9a01179f-0b73-4a1b-9815-2d91b21d3453
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Com: 6, Tit: Pag, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Content, Quote, sidebar'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-content-quote-sidebar
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f2751faf-d005-427d-bac6-f11c31acd1c6
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Light, Content, Accusamus animi deleniti.</blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6f4289a6-5009-4dce-8603-af4da9398ac3
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Dark, Content, Earum perferendis sapiente.</blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 75c60682-6d65-4b40-a418-acf50b95f24c
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Light, Content, Author, Est iusto maxime.<cite>atcumquehiclabor</cite></blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5242862e-bb5b-4b67-9735-6e8060e7a60e
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Dark, Content, Author, Id impedit maxime.<cite>harumidnamquasde</cite></blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: feb17046-c726-4ca9-8b7d-6fb23f05794c
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Light, Content, Author, Vertical spacing, Asperiores atque molestias.<cite>atquedoloritaque</cite></blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c74dc1fe-f5d4-457a-9cc4-c293c8d03d74
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: '<blockquote>Dark, Content, Author, Vertical spacing, Consequatur deserunt doloribus.<cite>liberonamodiooff</cite></blockquote>'
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: both
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

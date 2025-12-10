@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bacf5f41-0323-4774-a849-19f7ba33640e
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    d82881bf-76f5-4078-b819-a55d5226d74f: media
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 05. Et itaque provident.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-05-et-itaque-provident
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Doloribus iusto officia ut. Culpa</h2>
+        <p>Blanditiis deserunt fuga itaque quo reiciendis repellendus sapiente sunt. Distinctio minus repellat voluptatibus voluptatum. Corrupti distinctio dolorum earum eligendi repellat repellendus sapiente. Doloribus excepturi expedita maiores molestiae officia tenetur ut voluptas. Cupiditate dolores odio quas. Animi aut consequatur doloribus laborum sunt. Asperiores deleniti ducimus et excepturi maiores quas qui voluptates. Deleniti dignissimos excepturi mollitia voluptas.</p>
+        <p>Delectus dolores eligendi hic laborum odio officia recusandae ut voluptatum. Corrupti est nobis quibusdam. Autem distinctio mollitia odio. At delectus fuga impedit maiores molestiae repellendus rerum vero. Consequatur distinctio et maxime nam non officiis placeat temporibus. Alias ducimus eligendi et in molestias quidem quod reiciendis voluptatum. Atque est non optio quos repellendus voluptatibus. Autem debitis hic officia qui quod repellendus soluta voluptatibus.</p>
+        <h3>Deleniti mollitia quo repudiandae vero</h3>
+        <p>Animi aut culpa maiores. Dignissimos dolor est laborum optio provident reiciendis. Doloribus facere fuga temporibus voluptas. Deleniti earum iusto maxime. Cumque facilis nam odio officia optio placeat possimus quidem quos. Libero repellat vero voluptatibus. Id maiores sint. Dolor et expedita itaque molestias mollitia quo sunt voluptatibus. Atque distinctio hic placeat saepe voluptatibus. Deleniti distinctio dolores itaque maxime officiis placeat praesentium qui.</p><a href="https://www.example.com/Facilis-laborum-officiis-quidem-quod.">Dolorum eveniet.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a96dbb3b-a3f0-4a94-856d-f9ddf02a2d77
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Eligendi expedita officia.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Molestiae-sapiente-tempore.-At-maxime.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Deserunt-temporibus-voluptatibus-voluptatum.-Debitis.'
+              title: 'Maiores molestiae.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Alias aut quas ut. Assumenda consequatur dignissimos dolor et hic id occaecati possimus sunt. Autem facere id necessitatibus recusandae repudiandae.'
+  field_c_n_thumbnail:
+    -
+      entity: d82881bf-76f5-4078-b819-a55d5226d74f
+  field_c_n_topics:
+    -
+      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+  field_c_n_vertical_spacing:
+    -
+      value: both

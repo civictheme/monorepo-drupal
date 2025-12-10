@@ -1,0 +1,121 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 992a6e73-f384-41f9-8a9e-25bab59c8a33
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    9468e905-6a82-401c-93ed-9ae6b6f1cd5d: media
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Thu: Y, Sum: Sum, Top: 1, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page 18. Facere id maxime.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-18-facere-id-maxime
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 88ae7945-4f13-4018-ad37-50f516a0de35
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Occaecati perferendis tempore. Accusamus id</h2>
+                <p>Expedita officia quod recusandae. Earum expedita maiores molestiae repellat. Distinctio maiores odio quas soluta tenetur. Asperiores assumenda odio optio praesentium quas repellat sint tenetur. Corrupti facilis officia. Delectus in occaecati perferendis quo tenetur.</p>
+                <p>Mollitia non sunt. Animi eos impedit non occaecati officiis recusandae reiciendis voluptatibus. Asperiores impedit itaque quas repudiandae sapiente tenetur voluptas. Autem ducimus in praesentium similique. Autem earum et itaque repellat. Delectus dolorum non. Consequatur cupiditate doloribus eveniet in iusto nihil non possimus.</p>
+                <h3>Impedit non optio quod quos</h3>
+                <p>Corrupti id saepe. Blanditiis culpa cupiditate necessitatibus nobis repudiandae similique temporibus. Atque cupiditate eos facilis maiores recusandae reiciendis voluptates. Doloribus est expedita impedit molestias occaecati similique soluta voluptatum. Doloribus itaque odio. Debitis id quo.</p><a href="https://www.example.com/Cupiditate-est-maiores-non-repellendus.">Fuga id.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Dolor omnis optio repudiandae. Animi deleniti eveniet. Aut eos est praesentium saepe voluptatum. Aut dignissimos eligendi excepturi molestiae molestias sint tenetur vero. Est iusto nihil quod repellendus tempore. Laborum occaecati omnis. Eligendi possimus praesentium qui. Corrupti cupiditate eos laborum possimus quibusdam sunt temporibus. Et quos similique. Atque deserunt dolor fuga minus mollitia quos reiciendis voluptatibus. Alias asperiores atque ducimus et expedita praesentium. Assumenda blanditiis cupiditate dignissimos maiores nam non recusandae repellendus voluptatum. Corrupti deleniti expedita nam nobis soluta. Assumenda dolorum et facere maxime necessitatibus quod recusandae ut. Minus molestias mollitia officiis qui. Id in molestiae omnis quidem repudiandae voluptatum. Delectus.'
+  field_c_n_thumbnail:
+    -
+      entity: 9468e905-6a82-401c-93ed-9ae6b6f1cd5d
+  field_c_n_topics:
+    -
+      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+  field_c_n_vertical_spacing:
+    -
+      value: none

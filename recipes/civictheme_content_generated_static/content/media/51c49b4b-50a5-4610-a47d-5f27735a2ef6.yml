@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 51c49b4b-50a5-4610-a47d-5f27735a2ef6
+  bundle: civictheme_document
+  default_langcode: en
+  depends:
+    f1e88e78-5f38-4afb-861b-a9af59e4526e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Document media 18 Atque dolor.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_document:
+    -
+      entity: f1e88e78-5f38-4afb-861b-a9af59e4526e
+      display: false
+      description: ''

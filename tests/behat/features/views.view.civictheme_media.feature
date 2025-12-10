@@ -15,7 +15,7 @@ Feature: CivicTheme media renders on views pages with filters
       | name                      | field_c_m_image | field_c_m_media_tags       |
       | [TEST] CivicTheme Image 1 | test_image.jpg  | [TEST] Tag 1               |
       | [TEST] CivicTheme Image 2 | test_image.jpg  | [TEST] Tag 1, [TEST] Tag 2 |
-    
+
   @api
   Scenario: Filter fields are present.
     Given I am logged in as a user with the "Site Administrator" role
