@@ -1,0 +1,681 @@
+diff --git a/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/button/button.twig b/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/button/button.twig
+index 4ddbf11d..b7072b91 100644
+--- a/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/button/button.twig
++++ b/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/button/button.twig
+@@ -12,7 +12,6 @@
+  * - icon_placement: [string] Icon position: left, right
+  * - text: [string] Button text.
+  * - url: [string] URL for the link button.
+- * - is_raw_text: [boolean] Output text as raw value.
+  * - is_new_window: [boolean] Open in a new window or not.
+  * - is_external: [boolean] If link is external or not.
+  * - is_disabled: [boolean] Disabled or not.
+@@ -43,13 +42,13 @@
+     {% endset %}
+ 
+     {% if icon_placement == 'before' %}
+-      {{ icon_markup }}{{ is_raw_text ? text|raw : text }}
++      {{ icon_markup }}{{ text }}
+     {% else %}
+-      {{ is_raw_text ? text|raw : text }}{{ icon_markup }}
++      {{ text }}{{ icon_markup }}
+     {% endif %}
+ 
+   {% else %}
+-    {{ is_raw_text ? text|raw : text }}
++    {{ text }}
+   {% endif %}
+ {% endset %}
+ 
+diff --git a/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/heading/heading.twig b/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/heading/heading.twig
+index 137c3929..9f199289 100644
+--- a/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/heading/heading.twig
++++ b/docroot/themes/contrib/civictheme/civictheme_library/components/01-atoms/heading/heading.twig
+@@ -19,6 +19,6 @@
+ 
+ {% if content %}
+   <h{{ level }} class="ct-heading {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+-    {{- content|raw -}}
++    {{- content -}}
+   </h{{ level }}>
+ {% endif %}
+diff --git a/docroot/themes/contrib/civictheme/includes/banner.inc b/docroot/themes/contrib/civictheme/includes/banner.inc
+index cd3c6237..bb32ba72 100644
+--- a/docroot/themes/contrib/civictheme/includes/banner.inc
++++ b/docroot/themes/contrib/civictheme/includes/banner.inc
+@@ -6,6 +6,7 @@
+  */
+ 
+ use Drupal\civictheme\CivicthemeConstants;
++use Drupal\Component\Utility\Xss;
+ use Drupal\Core\Cache\Cache;
+ use Drupal\Core\Link;
+ 
+@@ -54,7 +55,11 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
+     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
+   }
+ 
+-  $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
++  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
++  $title = (string) (is_array($title) ? reset($title) : ((string) $title));
++  $title = Xss::filter($title);
++  $title = strip_tags($title);
++  $variables['title'] = $title;
+ 
+   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
+ 
+@@ -165,8 +170,9 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables
+   // Gather existing links. Note that some profiles (GovCMS) may already have
+   // the functionality to add current page as a last item implemented.
+   foreach ($breadcrumb->getLinks() as $link) {
++    $link_text = $link->getText();
+     $variables['breadcrumb']['links'][] = [
+-      'text' => $link->getText(),
++      'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
+       'url' => $link->getUrl()->toString(),
+     ];
+   }
+@@ -179,8 +185,9 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables
+     $link = Link::createFromRoute($title, '<none>');
+     // Check if the link already exists and add it if not.
+     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
++      $link_text = $link->getText();
+       $variables['breadcrumb']['links'][] = [
+-        'text' => $link->getText(),
++        'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
+         'url' => $link->getUrl()->toString(),
+       ];
+     }
+diff --git a/docroot/themes/contrib/civictheme/includes/manual_list.inc b/docroot/themes/contrib/civictheme/includes/manual_list.inc
+index 3fe8a3de..c1cf4fdd 100644
+--- a/docroot/themes/contrib/civictheme/includes/manual_list.inc
++++ b/docroot/themes/contrib/civictheme/includes/manual_list.inc
+@@ -6,6 +6,7 @@
+  */
+ 
+ use Drupal\Component\Utility\Html;
++use Drupal\Core\Entity\EntityInterface;
+ 
+ /**
+  * Implements template_preprocess_paragraph().
+@@ -34,11 +35,19 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
+     'cache_tags' => $paragraph->getCacheTags(),
+   ];
+ 
+-  $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items');
++  /** @var \Drupal\Core\Entity\ContentEntityInterface[] $items */
++  $items = civictheme_get_field_referenced_entities($paragraph, 'field_c_p_list_items', $variables);
+   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+   if ($items) {
+     foreach ($items as $item) {
+-      $variables['rows'][] = $builder->view($item);
++      if (!$item->hasField('field_c_p_reference')) {
++        $variables['rows'][] = $builder->view($item);
++        continue;
++      }
++      $referenced_item = civictheme_get_field_referenced_entity($item, 'field_c_p_reference', $variables);
++      if ($referenced_item instanceof EntityInterface) {
++        $variables['rows'][] = $builder->view($item);
++      }
+     }
+   }
+ 
+diff --git a/docroot/themes/contrib/civictheme/includes/menu.inc b/docroot/themes/contrib/civictheme/includes/menu.inc
+index c40f35c5..0b193d6e 100644
+--- a/docroot/themes/contrib/civictheme/includes/menu.inc
++++ b/docroot/themes/contrib/civictheme/includes/menu.inc
+@@ -6,6 +6,7 @@
+  */
+ 
+ use Drupal\civictheme\CivicthemeConstants;
++use Drupal\Component\Utility\Xss;
+ 
+ /**
+  * Preprocess for footer menu block.
+@@ -28,21 +29,25 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
+ 
+ /**
+  * Add required element for external link.
++ *
++ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
++ * @SuppressWarnings(PHPMD.StaticAccess)
+  */
+-function _civictheme_preprocess_menu_items(&$items, $default = FALSE) {
++function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FALSE): void {
+   foreach ($items as &$item) {
+     $item += [
+-      'is_new_window' => $item['url']->isExternal(),
+-      'is_external' => $item['url']->isExternal(),
++      'is_new_window' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
++      'is_external' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
+     ];
+ 
+-    if (($default == TRUE) && empty($item['original_link']->getPluginDefinition()['expanded'])) {
+-      $item['below'] = [];
+-      $item['is_expanded'] = FALSE;
+-    }
++    // Set as expanded based on $expand_all or item's own value or FALSE.
++    $item['is_expanded'] = $expand_all || ($item['is_expanded'] ?? FALSE);
++    // Initialize 'below' as an empty array if not set.
++    $item['below'] = $item['below'] ?? [];
++    $item['title'] = isset($item['title']) ? Xss::filter($item['title']) : '';
+ 
+-    if (count($item['below'])) {
+-      _civictheme_preprocess_menu_items($item['below']);
++    if (!empty($item['below'])) {
++      _civictheme_preprocess_menu_items($item['below'], $expand_all);
+     }
+   }
+ }
+diff --git a/docroot/themes/contrib/civictheme/includes/mobile_navigation.inc b/docroot/themes/contrib/civictheme/includes/mobile_navigation.inc
+index a318f91b..bb67e7db 100644
+--- a/docroot/themes/contrib/civictheme/includes/mobile_navigation.inc
++++ b/docroot/themes/contrib/civictheme/includes/mobile_navigation.inc
+@@ -5,6 +5,10 @@
+  * CivicTheme mobile menu block theme alterations.
+  */
+ 
++declare(strict_types=1);
++
++use Drupal\block\BlockInterface;
++use Drupal\block_content\BlockContentInterface;
+ use Drupal\civictheme\CivicthemeConstants;
+ use Drupal\Core\Cache\CacheableMetadata;
+ use Drupal\Core\Menu\MenuTreeParameters;
+@@ -13,14 +17,11 @@
+  * Pre-process for Mobile Navigation block.
+  *
+  * @SuppressWarnings(PHPMD.StaticAccess)
++ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+  */
+-function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables) {
+-  if ($variables['base_plugin_id'] != 'block_content') {
+-    return;
+-  }
+-
+-  $entity = $variables['elements']['content']['#block_content'];
+-  if ($entity->bundle() != 'civictheme_mobile_navigation') {
++function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
++  $entity = $variables['elements']['content']['#block_content'] ?? NULL;
++  if (!$entity instanceof BlockContentInterface || $entity->bundle() !== 'civictheme_mobile_navigation') {
+     return;
+   }
+ 
+@@ -31,39 +32,51 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
+ 
+   // Get primary and secondary menu links by building menu tree based on
+   // menu block settings.
+-  $cache_tags = $entity->getCacheTags();
++  $entity_cache_tags = $entity->getCacheTags();
+   $cacheability = new CacheableMetadata();
+   foreach ($menu_fields as $menu_key => $menu_field) {
+-    $menu_block = civictheme_get_field_referenced_entities($entity, $menu_field, TRUE);
+-    if ($menu_block) {
+-      if (str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
+-        $menu_name = str_replace('menu_block:', '', $menu_block->get('settings')['id']);
+-        $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'] ?? '')) ? '' : $menu_block->get('settings')['parent'];
+-
+-        $menu_parameters = new MenuTreeParameters();
+-        // Only set max depth if the depth was provided (greater than 0).
+-        if ($menu_block->get('settings')['depth'] ?? 0) {
+-          $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
+-        }
+-        $menu_parameters->setRoot($root);
+-        $menu_parameters->excludeRoot();
+-        $menu_tree_service = \Drupal::service('menu.link_tree');
+-
+-        $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+-        $manipulators = [
+-          ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+-        ];
+-        $tree = $menu_tree_service->transform($tree, $manipulators);
++    $menu_block = civictheme_get_field_referenced_entity($entity, $menu_field, $variables);
+ 
+-        $build = $menu_tree_service->build($tree);
+-        $variables[$menu_key] = $build['#items'] ?? [];
++    if (!$menu_block instanceof BlockInterface || !str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
++      continue;
++    }
+ 
+-        _civictheme_preprocess_menu_items($variables[$menu_key]);
++    $block_settings = $menu_block->get('settings');
+ 
+-        $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build), $cache_tags, $menu_block->getCacheTags());
+-      }
++    $menu_name = str_replace('menu_block:', '', (string) $block_settings['id']);
++    $root = empty(str_replace($menu_name . ':', '', $block_settings['parent'] ?? '')) ? '' : $block_settings['parent'];
++
++    $expand_all_items = $block_settings['expand_all_items'] ?? FALSE;
++    $menu_parameters = new MenuTreeParameters();
++    if (!$expand_all_items) {
++      $menu_tree = \Drupal::menuTree();
++      $menu_parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
+     }
++    // Only set max depth if the depth was provided (greater than 0).
++    if ($block_settings['depth'] ?? 0) {
++      $menu_parameters->setMaxDepth($block_settings['depth']);
++    }
++
++    $menu_parameters->setRoot($root);
++    $menu_parameters->excludeRoot();
++    $menu_tree_service = \Drupal::service('menu.link_tree');
++
++    $tree = $menu_tree_service->load($menu_name, $menu_parameters);
++    $manipulators = [
++      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
++    ];
++    $tree = $menu_tree_service->transform($tree, $manipulators);
++
++    $build = $menu_tree_service->build($tree);
++    $variables[$menu_key] = $build['#items'] ?? [];
++    _civictheme_preprocess_top_mobile_menu($variables, $menu_key);
++    _civictheme_preprocess_menu_items($variables[$menu_key], $expand_all_items);
++
++    $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build));
++    $cacheability->addCacheTags($entity_cache_tags);
++    $cacheability->addCacheTags($menu_block->getCacheTags());
+   }
++
+   $cacheability->applyTo($variables);
+ 
+   $variables['trigger_text'] = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
+@@ -72,3 +85,71 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
+   $context_theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+   $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
+ }
++
++/**
++ * Additional preprocessing of the mobile top menu.
++ *
++ * @param array $variables
++ *   Preprocess variables.
++ * @param string $menu_key
++ *   Menu key.
++ *
++ * @SuppressWarnings(PHPMD.StaticAccess)
++ */
++function _civictheme_preprocess_top_mobile_menu(array &$variables, string $menu_key): void {
++  if ($menu_key !== 'top_menu') {
++    return;
++  }
++  // Add search links to end of top menu.
++  $search_links = _civictheme_get_mobile_search_links();
++  $cacheable_metadata = CacheableMetadata::createFromRenderArray($variables);
++  $cacheable_metadata = $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($search_links));
++  $cacheable_metadata->applyTo($variables);
++  foreach ($search_links['items'] as $search_link) {
++    $variables[$menu_key][] = [
++      'url' => $search_link['url'],
++      'title' => $search_link['text'],
++      'is_new_window' => FALSE,
++      'is_external' => FALSE,
++      'is_expanded' => FALSE,
++      'icon' => 'magnifier',
++      'below' => [],
++    ];
++  }
++}
++
++/**
++ * Gets the mobile search links from search blocks.
++ *
++ * @return array<array>
++ *   Search links to append to mobile navigation top menu.
++ *
++ * @SuppressWarnings(PHPMD.StaticAccess)
++ */
++function _civictheme_get_mobile_search_links(): array {
++  // If we have multiple search blocks, they can all add links to the mobile
++  // menu.
++  $block_storage = \Drupal::entityTypeManager()->getStorage('block_content');
++  $blocks = $block_storage->loadByProperties(['type' => 'civictheme_search']);
++  $cacheable_metadata = new CacheableMetadata();
++  $search_links = [
++    'items' => [],
++  ];
++  /** @var \Drupal\block_content\Entity\BlockContent $block */
++  foreach ($blocks as $block) {
++    $cacheable_metadata->addCacheableDependency($block);
++    $link_in_mobile_menu = civictheme_get_field_value($block, 'field_c_b_link_in_mobile_menu') ?? FALSE;
++
++    if ($link_in_mobile_menu) {
++      $link = civictheme_get_field_value($block, 'field_c_b_link', TRUE);
++      if ($link !== NULL) {
++        $search_links['items'][] = [
++          'url' => $link->getUrl()->toString(),
++          'text' => $link->get('title')->getString(),
++        ];
++      }
++    }
++  }
++  $cacheable_metadata->applyTo($search_links);
++  return $search_links;
++}
+diff --git a/docroot/themes/contrib/civictheme/includes/utilities.inc b/docroot/themes/contrib/civictheme/includes/utilities.inc
+index dee1e749..2712033c 100644
+--- a/docroot/themes/contrib/civictheme/includes/utilities.inc
++++ b/docroot/themes/contrib/civictheme/includes/utilities.inc
+@@ -10,8 +10,11 @@
+ use Drupal\civictheme\CivicthemeConfigManager;
+ use Drupal\civictheme\CivicthemeConstants;
+ use Drupal\Component\Utility\UrlHelper;
++use Drupal\Component\Utility\Xss;
++use Drupal\Core\Cache\CacheableMetadata;
+ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Entity\FieldableEntityInterface;
++use Drupal\Core\StringTranslation\ByteSizeMarkup;
+ use Drupal\Core\Template\Attribute;
+ use Drupal\file\Entity\File;
+ use Drupal\image\Entity\ImageStyle;
+@@ -86,7 +89,7 @@ function civictheme_media_get_variables(MediaInterface $media) {
+     'name' => t('@name', ['@name' => $file->label()]),
+     'ext' => pathinfo($file->getFileUri(), PATHINFO_EXTENSION) ?? '',
+     'url' => civictheme_media_get_url($media),
+-    'size' => format_size($file->getSize()),
++    'size' => ByteSizeMarkup::create($file->getSize()),
+     'created' => civictheme_format_date('civictheme_short_date', $media->getCreatedTime()),
+     'changed' => civictheme_format_date('civictheme_short_date', $media->getChangedTime()),
+     'icon' => civictheme_get_icon_from_file($file),
+@@ -189,22 +192,89 @@ function civictheme_media_image_get_url(MediaInterface $media, $image_style = NU
+  * @param array $css_classes
+  *   Array of CSS classes to add.
+  *
+- * @return string
+- *   Loaded SVG or FALSE if unable to load SVG.
++ * @return string|null
++ *   Loaded SVG or NULL if unable to load SVG.
+  */
+-function civictheme_embed_svg($url, array $css_classes = []) {
+-  $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
++function civictheme_embed_svg(string $url, array $css_classes = []): ?string {
++  $svg_path = DRUPAL_ROOT . (str_starts_with($url, 'http') ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
+   if (!file_exists($svg_path)) {
+-    return FALSE;
++    return NULL;
+   }
+ 
+-  $content = file_get_contents($svg_path);
++  $content = (string) file_get_contents($svg_path);
+ 
+   if (!empty($css_classes)) {
+     $content = str_replace('<svg ', '<svg class="' . implode(' ', $css_classes) . '" ', $content);
+   }
+ 
+-  return $content;
++  // Tag list taken from
++  // https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element.
++  // // Excludes <a>, <script> and <style>.
++
++  $supported_svg_tags = implode('', [
++    '<animate>',
++    '<animateMotion>',
++    '<animateTransform>',
++    '<circle>',
++    '<clipPath>',
++    '<defs>',
++    '<desc>',
++    '<ellipse>',
++    '<feBlend>',
++    '<feColorMatrix>',
++    '<feComponentTransfer>',
++    '<feComposite>',
++    '<feConvolveMatrix>',
++    '<feDiffuseLighting>',
++    '<feDisplacementMap>',
++    '<feDistantLight>',
++    '<feDropShadow>',
++    '<feFlood>',
++    '<feFuncA>',
++    '<feFuncB>',
++    '<feFuncG>',
++    '<feFuncR>',
++    '<feGaussianBlur>',
++    '<feImage>',
++    '<feMerge>',
++    '<feMergeNode>',
++    '<feMorphology>',
++    '<feOffset>',
++    '<fePointLight>',
++    '<feSpecularLighting>',
++    '<feSpotLight>',
++    '<feTile>',
++    '<feTurbulence>',
++    '<filter>',
++    '<foreignObject>',
++    '<g>',
++    '<image>',
++    '<line>',
++    '<linearGradient>',
++    '<marker>',
++    '<mask>',
++    '<metadata>',
++    '<mpath>',
++    '<path>',
++    '<pattern>',
++    '<polygon>',
++    '<polyline>',
++    '<radialGradient>',
++    '<rect>',
++    '<set>',
++    '<stop>',
++    '<svg>',
++    '<switch>',
++    '<symbol>',
++    '<text>',
++    '<textPath>',
++    '<title>',
++    '<tspan>',
++    '<use>',
++    '<view>',
++  ]);
++
++  return strip_tags($content, $supported_svg_tags);
+ }
+ 
+ /**
+@@ -267,8 +337,11 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
+ /**
+  * Gets values from fields that CivicTheme regularly uses.
+  *
+- * It is not a replacement for the field api system for getting values. It gets
+- * commonly required types of values by CivicTheme.
++ * This function complements the field API system, providing a convenient way to
++ * retrieve commonly used field values specific to CivicTheme.
++ *
++ * If a field type is not listed, and you need to retrieve its value, consider
++ * using the field API system directly.
+  *
+  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+  *   Entity to check field existence.
+@@ -278,14 +351,18 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
+  *   Return only the first value of a multi-value field.
+  * @param mixed $default
+  *   Default value to return.
+- *
++ * @param array<string, mixed> $build
++ *   Render array to apply cacheability metadata to.
++ *   (required for entity reference fields).
+  * @return mixed|null
+  *   Whether the field exists and is not empty.
+  *
+  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
++ * @SuppressWarnings(PHPMD.ElseExpression)
++ * @SuppressWarnings(PHPMD.StaticAccess)
+  */
+-function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE, $default = NULL) {
++function civictheme_get_field_value(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE, mixed $default = NULL, array &$build = []): mixed {
+   $value = $default;
+ 
+   if (!civictheme_field_has_value($entity, $field_name)) {
+@@ -301,8 +378,6 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
+       break;
+ 
+     case 'integer':
+-      $value = (integer) $field->getString();
+-      break;
+ 
+     case 'list_integer':
+       $value = (int) $field->getString();
+@@ -312,6 +387,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
+     case 'string':
+     case 'string_long':
+       $value = $field->getString();
++      $value = Xss::filter($value);
+       break;
+ 
+     // Field types where we want to return field item.
+@@ -328,17 +404,26 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
+     // Field types where we want to return entities.
+     case 'entity_reference':
+     case 'entity_reference_revisions':
+-      $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
++      if ($only_first) {
++        $value = civictheme_get_field_referenced_entity($entity, $field_name, $build);
++      }
++      else {
++        $value = civictheme_get_field_referenced_entities($entity, $field_name, $build);
++      }
+       break;
+ 
+     case 'text_long':
+-      // Opinionated. We want to render field if single or allow view() to
+-      // handle it if it's all values.
++    case 'text_with_summary':
++    case 'text':
++      // Opinionated.
++      // This implementation renders the field if it has a single value.
++      // If the field contains multiple values, it relies on view() to handle
++      // the rendering.
+       if ($only_first) {
+         $field = $field->first();
+         $field_value = $field->get('value')->getString();
+         $field_format = $field->get('format')->getString();
+-        $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
++        $value = empty($field_format) ? $field_value : check_markup($field_value, $field_format);
+         break;
+       }
+ 
+@@ -350,57 +435,97 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
+ }
+ 
+ /**
+- * Gets the entity referenced entities in a field of an entity.
++ * Gets the referenced entities in a field of an entity.
+  *
+  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+  *   The host entity.
+  * @param string $field_name
+  *   The entity reference field.
+- *
+- * @return \Drupal\Core\Entity\EntityInterface[]|EntityInterface|null
+- *   Referenced entities, or referenced entity if $only_first is TRUE.
+- *
+- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+- * @SuppressWarnings(PHPMD.ElseExpression)
++ * @param array<string, mixed> $build
++ *   Render array to apply cacheability metadata to.
++ * * @return array<int|string, \Drupal\Core\Entity\EntityInterface>
++ *   Referenced entities.
+  */
+-function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, $field_name, bool $only_first = FALSE) {
+-  $entities = NULL;
+-
++function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, array &$build = []): array {
++  $trigger_bc = empty($build);
++  if ($trigger_bc) {
++    @trigger_error('Calling ' . __FUNCTION__ . ' without the $build argument is deprecated in civictheme:1.12.0 It will be required in civictheme:1.13.0. Triggered when getting entity for ' . $field_name . '. See https://www.drupal.org/node/3552745', E_USER_DEPRECATED);
++  }
+   if (civictheme_field_has_value($entity, $field_name)) {
+-    /** @var \Drupal\Core\Entity\EntityInterface[] $entities */
+-    $entities = $entity->get($field_name)->referencedEntities();
+-    if ($only_first) {
+-      $entities = reset($entities);
++    /** @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
++    $referenced_entities = $entity->get($field_name)->referencedEntities();
++    if (empty($referenced_entities)) {
++      return [];
+     }
+-    else {
+-      $keyed_entities = [];
+-      foreach ($entities as $entity) {
+-        $keyed_entities[$entity->id()] = $entity;
++    $access_checked_referenced_entities = [];
++    foreach ($referenced_entities as $referenced_entity) {
++      $access = $referenced_entity->access('view', NULL, TRUE);
++      $cacheability = $cacheability ?? CacheableMetadata::createFromRenderArray($build);
++      $cacheability->addCacheableDependency($access);
++      $cacheability->addCacheableDependency($referenced_entity);
++
++      if ($access->isAllowed()) {
++        $access_checked_referenced_entities[$referenced_entity->id()] = $referenced_entity;
+       }
+-      $entities = $keyed_entities;
++    }
++    $cacheability->applyTo($build);
++    if ($trigger_bc && \Drupal::service('renderer')->hasRenderContext()) {
++      // The calling code didn't pass a render array that we can attach
++      // cacheable metadata to. There is a render context and $build has had
++      // cacheability metadata added, so we can simply render it, and it will
++      // bubble up to the current theme hook.
++      \Drupal::service('renderer')->render($build);
+     }
+   }
+ 
+-  return $entities;
++  return $access_checked_referenced_entities ?? [];
+ }
+ 
+ /**
+- * Get the label of referenced entities in a field of an entity.
++ * Gets the first referenced entity in a field of an entity.
+  *
+- * @param \Drupal\Core\Entity\FieldableEntityInterface|null $entity
++ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+  *   The host entity.
+  * @param string $field_name
+  *   The entity reference field.
++ * @param array<string, mixed> $build
++ *   Render array to apply cacheability metadata to.
+  *
+- * @return string[]
++ * @return \Drupal\Core\Entity\EntityInterface|null
++ *   Referenced entity.
++ */
++function civictheme_get_field_referenced_entity(FieldableEntityInterface $entity, string $field_name, array &$build = []): ?EntityInterface {
++  $referenced_entity = NULL;
++
++  $entities = civictheme_get_field_referenced_entities($entity, $field_name, $build);
++  if (!empty($entities)) {
++    $referenced_entity = reset($entities);
++    if (!$referenced_entity instanceof EntityInterface) {
++      $referenced_entity = NULL;
++    }
++  }
++
++  return $referenced_entity;
++}
++
++/**
++ * Get labels of the referenced entities.
++ *
++ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
++ *   The host entity.
++ * @param string $field_name
++ *   The entity reference field.
++ * @return array<int,string>
+  *   The label(s).
++ *
++ * @SuppressWarnings(PHPMD.StaticAccess)
+  */
+-function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, $field_name) {
++function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name): array {
+   $labels = [];
+   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
+   foreach ($referenced_entities as $referenced_entity) {
+     if ($referenced_entity instanceof EntityInterface) {
+-      $labels[] = $referenced_entity->label();
++      $labels[] = Xss::filter((string) $referenced_entity->label());
+     }
+   }
+ 

@@ -19,6 +19,6 @@
 
 {% if content %}
   <h{{ level }} class="ct-heading {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {{- content|raw -}}
+    {{- content -}}
   </h{{ level }}>
 {% endif %}

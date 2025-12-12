@@ -6,6 +6,7 @@
  */
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
 
@@ -54,7 +55,11 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
 
-  $variables['title'] = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+  $title = (string) (is_array($title) ? reset($title) : ((string) $title));
+  $title = Xss::filter($title);
+  $title = strip_tags($title);
+  $variables['title'] = $title;
 
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
@@ -165,8 +170,9 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables
   // Gather existing links. Note that some profiles (GovCMS) may already have
   // the functionality to add current page as a last item implemented.
   foreach ($breadcrumb->getLinks() as $link) {
+    $link_text = $link->getText();
     $variables['breadcrumb']['links'][] = [
-      'text' => $link->getText(),
+      'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -179,8 +185,9 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(&$variables
     $link = Link::createFromRoute($title, '<none>');
     // Check if the link already exists and add it if not.
     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+      $link_text = $link->getText();
       $variables['breadcrumb']['links'][] = [
-        'text' => $link->getText(),
+        'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
         'url' => $link->getUrl()->toString(),
       ];
     }

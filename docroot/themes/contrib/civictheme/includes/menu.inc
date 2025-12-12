@@ -6,6 +6,7 @@
  */
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 
 /**
  * Preprocess for footer menu block.
@@ -28,21 +29,25 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
 
 /**
  * Add required element for external link.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_menu_items(&$items, $default = FALSE) {
+function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FALSE): void {
   foreach ($items as &$item) {
     $item += [
-      'is_new_window' => $item['url']->isExternal(),
-      'is_external' => $item['url']->isExternal(),
+      'is_new_window' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
+      'is_external' => $item['url'] instanceof Url ? $item['url']->isExternal() : FALSE,
     ];
 
-    if (($default == TRUE) && empty($item['original_link']->getPluginDefinition()['expanded'])) {
-      $item['below'] = [];
-      $item['is_expanded'] = FALSE;
-    }
+    // Set as expanded based on $expand_all or item's own value or FALSE.
+    $item['is_expanded'] = $expand_all || ($item['is_expanded'] ?? FALSE);
+    // Initialize 'below' as an empty array if not set.
+    $item['below'] = $item['below'] ?? [];
+    $item['title'] = isset($item['title']) ? Xss::filter($item['title']) : '';
 
-    if (count($item['below'])) {
-      _civictheme_preprocess_menu_items($item['below']);
+    if (!empty($item['below'])) {
+      _civictheme_preprocess_menu_items($item['below'], $expand_all);
     }
   }
 }

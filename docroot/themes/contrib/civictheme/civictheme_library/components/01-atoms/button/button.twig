@@ -12,7 +12,6 @@
  * - icon_placement: [string] Icon position: left, right
  * - text: [string] Button text.
  * - url: [string] URL for the link button.
- * - is_raw_text: [boolean] Output text as raw value.
  * - is_new_window: [boolean] Open in a new window or not.
  * - is_external: [boolean] If link is external or not.
  * - is_disabled: [boolean] Disabled or not.
@@ -43,13 +42,13 @@
     {% endset %}
 
     {% if icon_placement == 'before' %}
-      {{ icon_markup }}{{ is_raw_text ? text|raw : text }}
+      {{ icon_markup }}{{ text }}
     {% else %}
-      {{ is_raw_text ? text|raw : text }}{{ icon_markup }}
+      {{ text }}{{ icon_markup }}
     {% endif %}
 
   {% else %}
-    {{ is_raw_text ? text|raw : text }}
+    {{ text }}
   {% endif %}
 {% endset %}
 
