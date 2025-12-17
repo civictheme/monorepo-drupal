@@ -156,3 +156,45 @@ Feature: Slider render
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 1"
+
+  @api @javascript @security
+  Scenario:XSS - Slider
+    Given "civictheme_image" media:
+      | name                 | field_c_m_image |
+      | [TEST] Image Slide 1 | test_image.jpg  |
+
+    And "civictheme_topics" terms:
+      | name            |
+      | [TEST] Topic 11 |
+
+    And "civictheme_page" content:
+      | title                    | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  |
+      | [TEST] Page slider test  | 1      |            |                        |                                  |                      |
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page slider test" has "civictheme_slider" paragraph:
+      | field_c_p_title            | [TEST] Slider |
+      | field_c_p_theme            | light         |
+      | field_c_p_vertical_spacing | both          |
+      | field_c_p_background       | 0             |
+    And "field_c_p_slides" in "civictheme_slider" "paragraph" with "field_c_p_title" of "[TEST] Slider" has "civictheme_slider_slide" paragraph:
+      | field_c_p_title          | <script id="test-slider-slide--field_c_p_title">alert('[TEST] Slider slide field_c_p_title')</script>                                                                                                                                        |
+      | field_c_p_image          | [TEST] Image Slide 1                                                                                                                                        |
+      | field_c_p_date           | 2021-04-29                                                                                                                                                  |
+      | field_c_p_content:value  | <script id="test-slider-slide--field_c_p_content">alert('[TEST] Slider slide field_c_p_content')</script> |
+      | field_c_p_content:format | civictheme_rich_text                                                                                                                                        |
+      | field_c_p_image_position | left                                                                                                                                                        |
+      | field_c_p_links          | 0: <script id="test-slider-slide--field_c_p_link--0">alert('field_c_p_link--0');</script> - 1: https://example.com/link11, 0: <script id="test-slider-slide--field_c_p_link--1">alert('field_c_p_link--1');</script> - 1: https://example.com/link12                                                        |
+      | field_c_p_topics         | [TEST] Topic 11                                                                                                                            |
+
+    When I visit "civictheme_page" "[TEST] Page slider test"
+    And I wait 5 second
+    Then I should see an ".ct-slider" element
+    And I should not see an "script#test-slider-slide--field_c_p_title" element
+    And I should see the text "alert('[TEST] Slider slide field_c_p_title')"
+    And I should not see an "script#test-slider-slide--field_c_p_content" element
+    And I should see the text "alert('[TEST] Slider slide field_c_p_content')"
+    And I should not see an "script#test-slider-slide--field_c_p_link--0" element
+    And I should see the text "alert('field_c_p_link--0')"
+    And I should not see an "script#test-slider-slide--field_c_p_link--1" element
+    And I should see the text "alert('field_c_p_link--1')"

@@ -44,3 +44,29 @@ Feature: Service card render
     And I should see the text "Test link 1"
     And I should see the text "Test link 2"
     And I should see the text "Test link 3"
+
+  @api @security
+  Scenario:XSS - Service Card
+    And "civictheme_page" content:
+      | title                          | status | field_c_n_site_section |
+      | [TEST] Page Service cards test | 1      |                        |
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Service cards test" has "civictheme_manual_list" paragraph:
+      | field_c_p_title             | [TEST] Service manual list                         |
+      | field_c_p_list_column_count | 3                                                  |
+      | field_c_p_list_link_above   | 0: View all Service cards - 1: https://example.com |
+      | field_c_p_list_fill_width   | 0                                                  |
+    And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Service manual list" has "civictheme_service_card" paragraph:
+      | field_c_p_title | <script id="test-service-card--field_c_p_title">alert('[TEST] Service card field_c_p_title')</script>                                                              |
+      | field_c_p_links | 0: <script id="test-service-card--field_c_p_link--0">alert('field_c_p_link--0');</script> - 1: https://example.com, 0: <script id="test-service-card--field_c_p_link--1">alert('field_c_p_link--1');</script> - 1: https://example.com |
+      | field_c_p_theme | light                                                                             |
+
+    When I visit "civictheme_page" "[TEST] Page Service cards test"
+    And I should see an ".ct-service-card" element
+    And I should not see an "script#test-service-card--field_c_p_title" element
+    And I should see the text "alert('[TEST] Service card field_c_p_title')"
+    And I should not see an "script#test-service-card--field_c_p_link--0" element
+    And I should see the text "alert('field_c_p_link--0')"
+    And I should not see an "script#test-service-card--field_c_p_link--1" element
+    And I should see the text "alert('field_c_p_link--1')"

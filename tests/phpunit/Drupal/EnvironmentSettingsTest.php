@@ -227,6 +227,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['trusted_host_patterns'] = [
       '^.+\.docker\.amazee\.io$',
       '^.+\.apps\.quantgovsites\.com$',
+      '^.+\.civictheme\.io$',
       '^nginx$',
     ];
     $this->assertSettings($settings);
@@ -272,6 +273,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['trusted_host_patterns'] = [
       '^.+\.docker\.amazee\.io$',
       '^.+\.apps\.quantgovsites\.com$',
+      '^.+\.civictheme\.io$',
       '^nginx$',
     ];
     $this->assertSettings($settings);
@@ -317,6 +319,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['trusted_host_patterns'] = [
       '^.+\.docker\.amazee\.io$',
       '^.+\.apps\.quantgovsites\.com$',
+      '^.+\.civictheme\.io$',
       '^nginx$',
     ];
 
@@ -367,6 +370,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
     $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
     $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
+    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
     $settings['trusted_host_patterns'][] = '^nginx$';
     $settings['trusted_host_patterns'][] = '^nginx\-php$';
     $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
@@ -418,6 +422,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
     $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
     $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
+    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
     $settings['trusted_host_patterns'][] = '^nginx$';
     $settings['trusted_host_patterns'][] = '^nginx\-php$';
     $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
@@ -469,6 +474,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
     $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
     $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
+    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
     $settings['trusted_host_patterns'][] = '^nginx$';
     $settings['trusted_host_patterns'][] = '^nginx\-php$';
     $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
@@ -520,6 +526,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
     $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
     $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
+    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
     $settings['trusted_host_patterns'][] = '^nginx$';
     $settings['trusted_host_patterns'][] = '^nginx\-php$';
     $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';

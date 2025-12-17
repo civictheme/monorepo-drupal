@@ -49,6 +49,10 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $breakpoints = ['desktop', 'mobile'];
     $logo_types = ['primary', 'secondary'];
 
+    $allowed_extensions = $this->imageFactory->getSupportedExtensions();
+    $allowed_extensions[] = 'svg';
+    $allowed_extensions = implode(' ', $allowed_extensions);
+
     foreach ($logo_types as $logo_type) {
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
@@ -81,9 +85,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
             '#default_value' => $this->themeConfigManager->load(sprintf('components.logo.%s.%s.%s.path', $logo_type, $theme, $breakpoint)),
           ];
 
-          $allowed_extensions = $this->imageFactory->getSupportedExtensions();
-          $allowed_extensions[] = 'svg';
-          $allowed_extensions = implode(' ', $allowed_extensions);
           $upload_validators = [
             'FileExtension' => ['extensions' => $allowed_extensions],
           ];
@@ -192,6 +193,10 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#default_value' => $this->themeConfigManager->load('components.footer.background_image.path'),
     ];
 
+    $upload_validators = [
+      'FileExtension' => ['extensions' => $allowed_extensions],
+      'FileIsImage' => [],
+    ];
     $form['components']['footer']['background_image']['upload'] = [
       '#type' => 'file',
       '#title' => $this->t('Upload footer background image'),
@@ -199,9 +204,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t("Uploading a file will replace the image path above. File will be uploaded into <code>@public</code> directory and will replace an existing file with the same name.", [
         '@public' => rtrim($this->toFriendlyFilePath($this->getDefaultFileScheme()), '/'),
       ]),
-      '#upload_validators' => [
-        'file_validate_is_image' => [],
-      ],
+      '#upload_validators' => $upload_validators,
     ];
 
     $form['components']['navigation'] = [

@@ -50,3 +50,24 @@ Feature: Next step render
     And I should see an ".ct-next-step__title" element
     And I should see an ".ct-next-step__content" element
     And the response should contain "https://example.com/link2"
+
+  @api @security
+  Scenario:XSS - Next step
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next step test" has "civictheme_next_step" paragraph:
+      | field_c_p_title            | <script id="test-next-step--field_c_p_title">alert('[TEST] Next step field_c_p_title')</script>                          |
+      | field_c_p_theme            | light                                           |
+      | field_c_p_content:value    | <script id="test-next-step--field_c_p_content">alert('[TEST] Next step field_c_p_content')</script>                             |
+      | field_c_p_content:format   | civictheme_rich_text                            |
+      | field_c_p_vertical_spacing | both                                            |
+      | field_c_p_link             | 0: [TEST] link 1 - 1: https://example.com/link1 |
+
+    When I visit "civictheme_page" "[TEST] Page Next step test"
+    And I should see an ".ct-next-step" element
+    And I should see an ".ct-next-step.ct-theme-light" element
+    And I should see an ".ct-next-step__title" element
+    And I should not see an "script#test-next-step--field_c_p_title" element
+    And I should see the text "alert('[TEST] Next step field_c_p_title')"
+    And I should see an ".ct-next-step__content" element
+    And I should not see an "script#test-next-step--field_c_p_content" element
+    And I should see the text "alert('[TEST] Next step field_c_p_content')"
