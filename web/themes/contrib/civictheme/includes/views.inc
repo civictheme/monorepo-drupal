@@ -315,10 +315,10 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__results_count(array &$variables): void {
-  if (empty($variables['results_count'])) {
+  if (empty($variables['results_count']['#markup']) || !is_string($variables['results_count']['#markup'])) {
     return;
   }
-  if (!str_contains($variables['results_count'], '@keywords')) {
+  if (!str_contains($variables['results_count']['#markup'], '@keywords')) {
     return;
   }
 
