@@ -96,3 +96,23 @@ Feature: Attachment render
     And I check the box "Confirm settings reset"
     And I press "reset_to_defaults"
     Then I should see the text "Theme configuration was reset to defaults."
+
+  @api @security
+  Scenario:XSS - Attachment
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
+      | field_c_p_title          | <script id="test-attachment--field_c_p_title">alert('[TEST] Attachment field_c_p_title')</script>     |
+      | field_c_p_content:value  | <script id="test-attachment--field_c_p_content">alert('[TEST] Attachment field_c_p_content')</script>          |
+      | field_c_p_content:format | civictheme_rich_text  |
+      | field_c_p_theme          | light                 |
+      | field_c_p_background     | 0                     |
+      | field_c_p_attachments    | [TEST] CivicTheme PDF |
+
+    When I visit "civictheme_page" "[TEST] Page attachment test"
+    And I should see an ".ct-attachment" element
+    And I should see an ".ct-attachment__title" element
+    And I should not see an "script#test-attachment--field_c_p_title" element
+    And I should see the text "alert('[TEST] Attachment field_c_p_title')"
+    And I should see an ".ct-attachment__content" element
+    And I should not see an "script#test-attachment--field_c_p_content" element
+    And I should see the text "alert('[TEST] Attachment field_c_p_content')"

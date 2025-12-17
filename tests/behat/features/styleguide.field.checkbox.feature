@@ -63,7 +63,7 @@ Feature: Field, Checkbox
     # Validate: Checkbox, Title visible, default value, no description, disabled
     And I should see an ".ct-field.js-form-item-test-checkbox-5" element
     And I should see an ".ct-field.js-form-item-test-checkbox-5 legend.ct-field__title" element
-    And I should not see an ".ct-field.js-form-item-test-checkbox-5 legend.ct-field__title[for='edit-test-checkbox-5']" element
+    And I should not see an ".ct-field.js-form-item-test-checkbox-5 label.ct-field__title[for='edit-test-checkbox-5']" element
     And I should see an ".ct-field.js-form-item-test-checkbox-5 label[for='edit-test-checkbox-5']" element
     And I should not see a ".ct-field.js-form-item-test-checkbox-5 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-checkbox-5 input[type='checkbox']" element

@@ -20,10 +20,6 @@ Feature: IFrame fields
     And should not see an "[name='field_c_n_components[0][subform][field_c_p_height][0][value]'].required" element
     And should not see an "[name='field_c_n_components[0][subform][field_c_p_height][0][value]'][disabled]" element
 
-    And should see an "[name='field_c_n_components[0][subform][field_c_p_attributes][0][value]']" element
-    And should not see an "[name='field_c_n_components[0][subform][field_c_p_attributes][0][value]'].required" element
-    And should not see an "[name='field_c_n_components[0][subform][field_c_p_attributes][0][value]'][disabled]" element
-
     And should see an "[name='field_c_n_components[0][subform][field_c_p_theme]']" element
 
     And should see an "[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element

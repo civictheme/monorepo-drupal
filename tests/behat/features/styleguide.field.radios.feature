@@ -9,7 +9,7 @@ Feature: Field, Radios
 
     # Validate: Radios, Title visible, no default value, no description, no error
     And I should see an ".ct-field.js-form-item-test-radios-1" element
-    And I should see an ".ct-field.js-form-item-test-radios-1 legend" element
+    And I should see an ".ct-field.js-form-item-test-radios-1 label" element
     And I should see an ".ct-field.js-form-item-test-radios-1 legend:contains('Radios, Title visible, no default value, no description, no error')" element
     And I should not see a ".ct-field.js-form-item-test-radios-1 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-radios-1 ul.ct-item-list" element
@@ -28,7 +28,7 @@ Feature: Field, Radios
     And I should not see a ".ct-field.js-form-item-test-radios-2.test-class" element
     And I should see a ".ct-field.js-form-item-test-radios-2[data-wrapper-test='test-wrapper-attribute-value']" element
     And I should not see a ".ct-field.js-form-item-test-radios-2[data-test='test-attribute-value']" element
-    And I should see an ".ct-field.js-form-item-test-radios-2 legend" element
+    And I should see an ".ct-field.js-form-item-test-radios-2 label" element
     And I should see an ".ct-field.js-form-item-test-radios-2 legend:contains('Radios, Title visible, default value, no description, no error, required, with attributes')" element
     And I should not see a ".ct-field.js-form-item-test-radios-2 .ct-field-description" element
     And I should see a ".ct-field.js-form-item-test-radios-2 ul.ct-item-list" element
