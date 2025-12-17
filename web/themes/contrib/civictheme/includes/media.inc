@@ -23,7 +23,7 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
     return;
   }
 
-  $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image');
+  $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image', $variables);
   if ($image_file instanceof FileInterface) {
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
     if ($image->isValid()) {
@@ -92,7 +92,10 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
       $html = $doc->saveHTML($iframe_elements[0]);
     }
 
-    $variables['raw_source'] = $html;
+    $variables['raw_source'] = [
+      '#type' => 'inline_template',
+      '#template' => $html,
+    ];
 
     _civictheme_preprocess_media__civictheme_video_links($variables);
     _civictheme_preprocess_media__civictheme_video_transcript($variables);

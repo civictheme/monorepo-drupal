@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Component\Utility\Xss;
 
 /**
  * Pre-process for With background paragraph field.
@@ -51,7 +52,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__date(array &$variabl
  * Pre-process for Date node field.
  */
 function _civictheme_preprocess_paragraph__node_field__date(array &$variables): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $variables['date'] = civictheme_format_datetime($node->getChangedTime(), 'civictheme_short_date');
     $variables['date_iso'] = civictheme_format_datetime_iso($node->getChangedTime());
@@ -77,7 +78,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__date_range(array &$v
  * Pre-process for Date range node field.
  */
 function _civictheme_preprocess_paragraph__node_field__date_range(array &$variables): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
     if ($date) {
@@ -102,7 +103,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__fill_width(array &$v
  * Pre-process for Image paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__image(array &$variables, ?string $image_style = NULL): void {
-  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image', TRUE);
+  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_image', TRUE, build: $variables);
   if ($media) {
     $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
   }
@@ -112,9 +113,9 @@ function _civictheme_preprocess_paragraph__paragraph_field__image(array &$variab
  * Pre-process for Thumbnail node field.
  */
 function _civictheme_preprocess_paragraph__node_field__image(array &$variables, ?string $image_style = NULL): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
-    $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE);
+    $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
     if ($media) {
       $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
     }
@@ -130,13 +131,15 @@ function _civictheme_preprocess_paragraph__paragraph_field__image_position(array
 
 /**
  * Pre-process for Link paragraph field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__paragraph_field__link(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_link', TRUE);
   if ($link !== NULL) {
     $variables['link'] = [
-      'text' => $link->get('title')->getString(),
+      'text' => html_entity_decode(Xss::filter($link->get('title')->getString())),
       'url' => $link->getUrl()->toString(),
       'is_new_window' => $link->isExternal(),
       'is_external' => $link->isExternal(),
@@ -180,7 +183,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__link_below(array &$v
  * Pre-process for Link node field.
  */
 function _civictheme_preprocess_paragraph__node_field__link(array &$variables): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $variables['link'] = [
       'text' => $node->getTitle(),
@@ -193,6 +196,8 @@ function _civictheme_preprocess_paragraph__node_field__link(array &$variables): 
 
 /**
  * Pre-process for Links paragraph field.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__paragraph_field__links(array &$variables): void {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem[]|null $links */
@@ -200,7 +205,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__links(array &$variab
   if ($links) {
     foreach ($links as $link) {
       $variables['links'][] = [
-        'text' => $link->get('title')->getString(),
+        'text' => Xss::filter($link->get('title')->getString()),
         'url' => $link->getUrl()->toString(),
         'is_new_window' => $link->isExternal(),
         'is_external' => $link->isExternal(),
@@ -240,7 +245,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
     if (!empty($summary)) {
@@ -280,7 +285,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__title(array &$variab
  * Pre-process for Title node field.
  */
 function _civictheme_preprocess_paragraph__node_field__title(array &$variables): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $variables['title'] = $node->getTitle();
   }
@@ -290,16 +295,16 @@ function _civictheme_preprocess_paragraph__node_field__title(array &$variables):
  * Pre-process for Topics paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__topics(array &$variables): void {
-  $variables['tags'] = civictheme_get_referenced_entity_labels($variables['paragraph'], 'field_c_p_topics');
+  $variables['tags'] = civictheme_get_referenced_entity_labels($variables['paragraph'], 'field_c_p_topics', build: $variables);
 }
 
 /**
  * Pre-process for Topics node field.
  */
 function _civictheme_preprocess_paragraph__node_field__topics(array &$variables): void {
-  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
-    $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
+    $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
   }
 }
 
@@ -316,10 +321,10 @@ function _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing(arr
 function _civictheme_preprocess_paragraph__node_field__location(array &$variables): void {
   // Location is a field on the paragraph attached to an Event node through
   // 'field_c_n_location' field. We are only using a first location.
-  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE);
+  $node = civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     /** @var \Drupal\paragraphs\Entity\Paragraph[] $locations */
-    $locations = civictheme_get_field_value($node, 'field_c_n_location');
+    $locations = civictheme_get_field_value($node, 'field_c_n_location', build: $variables);
     if (!empty($locations)) {
       foreach ($locations as $location) {
         $address = civictheme_get_field_value($location, 'field_c_p_address', TRUE);

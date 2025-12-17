@@ -15,7 +15,6 @@ Feature: IFrame render
       | field_c_p_vertical_spacing | both              |
       | field_c_p_height           | 600               |
       | field_c_p_width            | 400               |
-      | field_c_p_attributes       | attr1=val1        |
       | field_c_p_background       | 0                 |
       | field_c_p_url              | http://nginx:8080 |
 
@@ -25,7 +24,6 @@ Feature: IFrame render
     And I should see an "iframe.ct-iframe.ct-vertical-spacing-inset--both" element
     And I should see an "iframe[height=600]" element
     And I should see an "iframe[width=400]" element
-    And I should see an "iframe[attr1=val1]" element
     And I should see an "iframe[src^=http]" element
 
   @api
@@ -36,7 +34,6 @@ Feature: IFrame render
       | field_c_p_vertical_spacing | both              |
       | field_c_p_height           | 600               |
       | field_c_p_width            | 400               |
-      | field_c_p_attributes       | attr1=val1        |
       | field_c_p_background       | 1                 |
       | field_c_p_url              | http://nginx:8080 |
 
@@ -47,5 +44,4 @@ Feature: IFrame render
     And I should see an "iframe.ct-iframe--with-background" element
     And I should see an "iframe[height=600]" element
     And I should see an "iframe[width=400]" element
-    And I should see an "iframe[attr1=val1]" element
     And I should see an "iframe[src^=http]" element
