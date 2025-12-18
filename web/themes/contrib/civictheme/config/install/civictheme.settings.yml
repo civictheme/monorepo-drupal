@@ -67,6 +67,10 @@ components:
     summary_length: 160
   attachment:
     use_media_name: true
+  search:
+    keyword_fields:
+      - keywords
+      - title
 colors:
   use_color_selector: true
   use_brand_colors: true

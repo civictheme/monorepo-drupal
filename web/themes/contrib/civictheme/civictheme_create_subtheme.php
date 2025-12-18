@@ -212,6 +212,24 @@ function process_stub(string $dir, array $options): void {
   if (file_exists($info_file)) {
     $content = file_get_contents($info_file) ?: '';
     $content = str_replace("hidden: true\n", '', $content);
+    // Remove Drupal.org packaging that is added to the starter theme info.yml.
+    // @see https://www.drupal.org/project/civictheme/issues/3554770
+    $lines = $content ? explode("\n", $content) : [];
+    $lines = array_filter($lines, static function ($line) {
+      $lines_to_remove = [
+        '# Information added by Drupal.org',
+        'version:',
+        'project:',
+        'datestamp:',
+      ];
+      foreach ($lines_to_remove as $line_to_remove) {
+        if (str_starts_with($line, $line_to_remove)) {
+          return FALSE;
+        }
+      }
+      return TRUE;
+    });
+    $content = implode("\n", $lines);
     file_put_contents($info_file, $content);
   }
 

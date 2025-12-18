@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\filter\Entity\FilterFormat;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\DocumentElement;
@@ -596,6 +597,74 @@ class FeatureContext extends DrupalContext {
    */
   protected function fixStepArgument($argument): string {
     return str_replace('\\"', '"', $argument);
+  }
+
+  /**
+   * Add optout to theme settings.
+   *
+   * @When I add :optout optout to theme settings
+   */
+  public function addThemeOptout(string $optout): void {
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    $theme_settings = \Drupal::service('config.factory')->getEditable($theme_name . '.settings');
+    $optouts = $theme_settings->get('optouts') ?? [];
+
+    if (!in_array($optout, $optouts)) {
+      $optouts[] = $optout;
+      $theme_settings->set('optouts', $optouts)->save();
+    }
+  }
+
+  /**
+   * Remove optout from theme settings.
+   *
+   * @When I remove :optout optout from theme settings
+   */
+  public function removeThemeOptout(string $optout): void {
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    $theme_settings = \Drupal::service('config.factory')->getEditable($theme_name . '.settings');
+    $optouts = $theme_settings->get('optouts') ?? [];
+
+    if (in_array($optout, $optouts)) {
+      $optouts = array_values(array_diff($optouts, [$optout]));
+      $theme_settings->set('optouts', $optouts)->save();
+    }
+  }
+
+  /**
+   * Disable filter on text format.
+   *
+   * @When I disable :filter filter on :text_format
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function disableFilterOnTextFormat(string $filter, string $text_format): void {
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load($text_format);
+    if (!$format instanceof FilterFormat) {
+      throw new \Exception(sprintf('Text format "%s" not found', $text_format));
+    }
+
+    $format->setFilterConfig($filter, ['status' => FALSE]);
+    $format->save();
+  }
+
+  /**
+   * Enable filter on text format.
+   *
+   * @When I enable :filter filter on :text_format
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function enableFilterOnTextFormat(string $filter, string $text_format): void {
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load($text_format);
+    if (!$format instanceof FilterFormat) {
+      throw new \Exception(sprintf('Text format "%s" not found', $text_format));
+    }
+
+    $format->setFilterConfig($filter, ['status' => TRUE]);
+    $format->save();
   }
 
 }

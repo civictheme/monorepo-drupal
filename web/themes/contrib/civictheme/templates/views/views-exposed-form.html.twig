@@ -29,6 +29,11 @@
     form_attributes: form_attributes,
     form_suffix: form_suffix,
   } %}
+{% elseif inline_filter %}
+  {% include 'civictheme:inline-filter' with {
+    theme: theme,
+    items: filter_items,
+  } only %}
 {% else %}
   {{ form }}
 {% endif %}
