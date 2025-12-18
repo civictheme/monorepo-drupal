@@ -225,6 +225,15 @@ civictheme.settings:
             use_media_name:
               label: 'Use name of media'
               type: boolean
+        search:
+          type: mapping
+          label: 'Search settings'
+          mapping:
+            keyword_fields:
+              label: 'Keyword fields'
+              type: sequence
+              sequence:
+                type: string
     colors:
       type: mapping
       label: Colors
