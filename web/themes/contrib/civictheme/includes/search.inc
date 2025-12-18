@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeUtility;
 
 /**
  * Implements template_preprocess_block().
@@ -35,4 +36,39 @@ function civictheme_preprocess_block__civictheme_search(array &$variables): void
   }
 
   $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_html__search_head_title(array &$variables): void {
+  // Load search fields from theme settings.
+  $setting_keyword_fields = civictheme_get_theme_config_manager()->load('components.search.keyword_fields') ?? '';
+  if (empty($setting_keyword_fields)) {
+    return;
+  }
+
+  // Add search keywords to head title.
+  $keywords = NULL;
+  $search_fields = CivicthemeUtility::multilineToArray($setting_keyword_fields);
+  foreach ($search_fields as $field) {
+    $query_field = \Drupal::request()->query->get($field);
+    if (!empty($query_field)) {
+      $keywords = $query_field;
+      break;
+    }
+  }
+  if (empty($keywords)) {
+    return;
+  }
+  $head_title = (string) ($variables['head_title']['title'] ?? '');
+  if (empty($head_title)) {
+    return;
+  }
+  $variables['head_title']['title'] = t("@title - Searching for '@keywords'", [
+    '@title' => $head_title,
+    '@keywords' => $keywords,
+  ]);
 }
