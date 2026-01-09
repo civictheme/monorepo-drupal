@@ -6,24 +6,25 @@ import '../dist/scripts.base'; // eslint-disable-line import/no-unresolved
 export default {
   parameters: {
     backgrounds: {
-      default: 'White',
-      values: [
-        {
+      options: {
+        white: {
           name: 'White',
           value: '#ffffff',
         },
-        {
+
+        light: {
           name: 'Light',
           value: '#f2f4f5',
         },
-        {
+
+        dark: {
           name: 'Dark',
           value: '#003f56',
-        },
-      ],
+        }
+      }
     },
     viewport: {
-      viewports: {
+      options: {
         xs: {
           name: 'XS',
           styles: {
@@ -138,6 +139,7 @@ export default {
       },
     },
   },
+
   html: {
     prettier: {
       tabWidth: 4,
@@ -145,4 +147,10 @@ export default {
       htmlWhitespaceSensitivity: 'strict',
     },
   },
+
+  initialGlobals: {
+    backgrounds: {
+      value: 'white'
+    }
+  }
 };

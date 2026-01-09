@@ -5,8 +5,8 @@ const config = {
   ],
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
     '@whitespace/storybook-addon-html',
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/html-vite',
