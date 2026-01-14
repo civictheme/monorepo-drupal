@@ -6,11 +6,14 @@
 #}
 {% for type, messages in message_list %}
   {% for message in messages %}
+    {% set id_suffix = type == 'error' ? loop.parent.loop.index ~ '-' ~ loop.index : '' %}
+    {% set id_attr = type == 'error' ? 'id="error-summary-' ~ id_suffix ~ '" tabindex="-1"' : '' %}
     {% include 'civictheme:message' with {
       title: status_headings[type] ? status_headings[type] : type|capitalize,
       content: message,
       type: (type == 'status' or type == 'info') ? 'information' : type,
       vertical_spacing: 'both',
+      attributes: id_attr,
     } only %}
   {% endfor %}
 {% endfor %}
