@@ -1,0 +1,45 @@
+From 3c87c94941ff5939d6b9604df1b4114a391fc625 Mon Sep 17 00:00:00 2001
+From: rgaunt <richard.gaunt@protonmail.com>
+Date: Wed, 14 Jan 2026 18:54:54 +1100
+Subject: [PATCH] Moved resetSystem to before installing default configuration.
+
+---
+ core/lib/Drupal/Core/Extension/ThemeInstaller.php | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/core/lib/Drupal/Core/Extension/ThemeInstaller.php b/core/lib/Drupal/Core/Extension/ThemeInstaller.php
+index 2fafe9070147..566cf032167d 100644
+--- a/core/lib/Drupal/Core/Extension/ThemeInstaller.php
++++ b/core/lib/Drupal/Core/Extension/ThemeInstaller.php
+@@ -162,8 +162,15 @@ public function install(array $theme_list, $install_dependencies = TRUE) {
+       // Reset theme listing.
+       $this->themeHandler->reset();
+ 
++      // Add new themes to the list of installed themes.
++      $register_themes = array_merge(array_keys($installed_themes), $themes_installed);
++      // Get list of extensions for the new list of themes.
++      $register_themes = array_intersect_key($theme_data, array_flip($register_themes));
++      // Reset system to clear caches and register plugins.
++      $this->resetSystem($register_themes);
++
+       // Only install default configuration if this theme has not been installed
+-      // already.
++      // previously.
+       if (!isset($installed_themes[$key])) {
+         // Install default configuration of the theme.
+         $this->configInstaller->installDefaultConfig('theme', $key);
+@@ -175,11 +182,6 @@ public function install(array $theme_list, $install_dependencies = TRUE) {
+     }
+ 
+     $this->cssCollectionOptimizer->deleteAll();
+-    // Add new themes to the list of installed themes.
+-    $register_themes = array_merge(array_keys($installed_themes), $themes_installed);
+-    // Get list of extensions for the new list of themes.
+-    $register_themes = array_intersect_key($theme_data, array_flip($register_themes));
+-    $this->resetSystem($register_themes);
+ 
+     // Invoke hook_themes_installed() after the themes have been installed.
+     $this->moduleHandler->invokeAll('themes_installed', [$themes_installed]);
+-- 
+GitLab
+
