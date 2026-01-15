@@ -353,7 +353,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['event_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on event cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -369,7 +369,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['navigation_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on navigation cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -385,7 +385,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['promo_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on promo cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -401,7 +401,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['publication_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on publication cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -424,7 +424,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['snippet']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on snippets.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
