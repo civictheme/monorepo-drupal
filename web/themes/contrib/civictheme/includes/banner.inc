@@ -119,6 +119,12 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
 
   $variables['title'] = civictheme_get_field_value($node, 'field_c_n_banner_title') ?: $variables['title'];
 
+  // Fix for empty titles on revision pages.
+  // @see https://www.drupal.org/project/drupal/issues/3567604.
+  if ($variables['title'] === '' || isset($variables['title']['#markup']) && $variables['title']['#markup'] === '') {
+    $variables['title'] = $node->label();
+  }
+
   if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
     $variables['breadcrumb'] = NULL;
   }
