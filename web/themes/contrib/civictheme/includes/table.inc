@@ -11,6 +11,8 @@ use Drupal\civictheme\CivicthemeConstants;
 
 /**
  * Implements template_preprocess_table().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_preprocess_table(array &$variables): void {
   if (!empty($variables['header'])) {
