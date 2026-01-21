@@ -26,7 +26,7 @@ function civictheme_preprocess_table(array &$variables): void {
     // Create sanitised header array with HTML stripped.
     $header_sanitized = [];
     foreach ($variables['header'] as $header_item) {
-      if (!empty($header_item) && !is_array($header_item) && get_class($header_item) == 'Drupal\Core\StringTranslation\TranslatableMarkup') {
+      if (!empty($header_item) && !is_array($header_item) && $header_item instanceof \Drupal\Core\StringTranslation\TranslatableMarkup) {
         // Ensure correct render structure.
         $header_item = ['#title' => $header_item];
       }
