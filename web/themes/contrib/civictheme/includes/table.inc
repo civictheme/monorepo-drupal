@@ -8,9 +8,12 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements template_preprocess_table().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_preprocess_table(array &$variables): void {
   if (!empty($variables['header'])) {
@@ -24,6 +27,10 @@ function civictheme_preprocess_table(array &$variables): void {
     // Create sanitised header array with HTML stripped.
     $header_sanitized = [];
     foreach ($variables['header'] as $header_item) {
+      if (!empty($header_item) && !is_array($header_item) && $header_item instanceof TranslatableMarkup) {
+        // Ensure correct render structure.
+        $header_item = ['#title' => $header_item];
+      }
       $rendered = (string) \Drupal::service('renderer')->render($header_item);
       // Set to empty string if visually-hidden class is present.
       $has_visually_hidden = preg_match('/class=["\'][^"\']*\b(?:visually-hidden|ct-visually-hidden)\b[^"\']*["\']/', $rendered);

@@ -55,7 +55,7 @@
     <div class="ct-layout__inner {{ is_contained_class }}">
       {% if content.main is not empty %}
         {% block content_block %}
-          <section class="ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes -}}{% endif %}>
+          <section data-region="main" class="layout-builder__region js-layout-builder-region ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes -}}{% endif %}>
             {{- content.main -}}
           </section>
         {% endblock %}
@@ -63,7 +63,7 @@
 
       {% if content.sidebar_top_left is not empty and has_sidebar_left %}
         {% block sidebar_top_left_block %}
-          <aside class="ct-layout__sidebar_top_left" {% if content.sidebar_top_left_attributes is not empty %}{{- content.sidebar_top_left_attributes -}}{% endif %}>
+          <aside data-region="sidebar_top_left" class="layout-builder__region js-layout-builder-region layout__region layout__region--sidebar_top_left ct-layout__sidebar_top_left" {% if content.sidebar_top_left_attributes is not empty %}{{- content.sidebar_top_left_attributes -}}{% endif %}>
             {{- content.sidebar_top_left -}}
           </aside>
         {% endblock %}
@@ -71,7 +71,7 @@
 
       {% if content.sidebar_top_right is not empty and has_sidebar_right %}
         {% block sidebar_top_right_block %}
-          <aside class="ct-layout__sidebar_top_right" {% if content.sidebar_top_right_attributes is not empty %}{{- content.sidebar_top_right_attributes -}}{% endif %}>
+          <aside data-region="sidebar_top_right" class="layout-builder__region js-layout-builder-region layout__region layout__region--sidebar_top_right ct-layout__sidebar_top_right" {% if content.sidebar_top_right_attributes is not empty %}{{- content.sidebar_top_right_attributes -}}{% endif %}>
             {{- content.sidebar_top_right -}}
           </aside>
         {% endblock %}
@@ -79,7 +79,7 @@
 
       {% if content.sidebar_bottom_left is not empty and has_sidebar_left %}
         {% block sidebar_bottom_left_block %}
-          <aside class="ct-layout__sidebar_bottom_left" {% if content.sidebar_bottom_left_attributes is not empty %}{{- content.sidebar_bottom_left_attributes -}}{% endif %}>
+          <aside data-region="sidebar_bottom_left" class="layout-builder__region js-layout-builder-region layout__region layout__region--sidebar_bottom_left ct-layout__sidebar_bottom_left" {% if content.sidebar_bottom_left_attributes is not empty %}{{- content.sidebar_bottom_left_attributes -}}{% endif %}>
             {{- content.sidebar_bottom_left -}}
           </aside>
         {% endblock %}
@@ -87,7 +87,7 @@
 
       {% if content.sidebar_bottom_right is not empty and has_sidebar_right %}
         {% block sidebar_bottom_right_block %}
-          <aside class="ct-layout__sidebar_bottom_right" {% if content.sidebar_bottom_right_attributes is not empty %}{{- content.sidebar_bottom_right_attributes -}}{% endif %}>
+          <aside data-region="sidebar_bottom_right" class="layout-builder__region js-layout-builder-region layout__region layout__region--sidebar_bottom_right ct-layout__sidebar_bottom_right" {% if content.sidebar_bottom_right_attributes is not empty %}{{- content.sidebar_bottom_right_attributes -}}{% endif %}>
             {{- content.sidebar_bottom_right -}}
           </aside>
         {% endblock %}
