@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements template_preprocess_table().
@@ -26,7 +27,7 @@ function civictheme_preprocess_table(array &$variables): void {
     // Create sanitised header array with HTML stripped.
     $header_sanitized = [];
     foreach ($variables['header'] as $header_item) {
-      if (!empty($header_item) && !is_array($header_item) && $header_item instanceof \Drupal\Core\StringTranslation\TranslatableMarkup) {
+      if (!empty($header_item) && !is_array($header_item) && $header_item instanceof TranslatableMarkup) {
         // Ensure correct render structure.
         $header_item = ['#title' => $header_item];
       }
