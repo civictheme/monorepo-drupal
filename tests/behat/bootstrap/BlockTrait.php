@@ -116,7 +116,8 @@ trait BlockTrait {
           break;
 
         case 'region':
-          $block->setRegion($value);
+          $value = is_array($value) ? reset($value) : $value;
+          $block->setRegion((string) $value);
           break;
 
         case 'status':
