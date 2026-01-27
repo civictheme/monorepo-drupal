@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_link
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
+  module:
+    - link
+    - options
+id: paragraph.civictheme_fast_fact_card.default
+targetEntityType: paragraph
+bundle: civictheme_fast_fact_card
+mode: default
+content:
+  field_c_p_icon:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_c_p_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_c_p_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_c_p_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

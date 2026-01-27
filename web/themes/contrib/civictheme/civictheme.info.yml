@@ -131,6 +131,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_event_card.default
     - core.entity_form_display.paragraph.civictheme_event_card_ref.default
     - core.entity_form_display.paragraph.civictheme_iframe.default
+    - core.entity_form_display.paragraph.civictheme_fast_fact_card.default
     - core.entity_form_display.paragraph.civictheme_manual_list.default
     - core.entity_form_display.paragraph.civictheme_map.default
     - core.entity_form_display.paragraph.civictheme_message.default
@@ -193,6 +194,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_event_card.default
     - core.entity_view_display.paragraph.civictheme_event_card_ref.default
     - core.entity_view_display.paragraph.civictheme_iframe.default
+    - core.entity_view_display.paragraph.civictheme_fast_fact_card.default
     - core.entity_view_display.paragraph.civictheme_manual_list.default
     - core.entity_view_display.paragraph.civictheme_map.default
     - core.entity_view_display.paragraph.civictheme_message.default
@@ -356,6 +358,11 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_url
     - field.field.paragraph.civictheme_iframe.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_iframe.field_c_p_width
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_link
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme
+    - field.field.paragraph.civictheme_fast_fact_card.field_c_p_title
     - field.field.paragraph.civictheme_manual_list.field_c_p_background
     - field.field.paragraph.civictheme_manual_list.field_c_p_content
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_column_count
@@ -579,6 +586,7 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_event_card
     - paragraphs.paragraphs_type.civictheme_event_card_ref
     - paragraphs.paragraphs_type.civictheme_iframe
+    - paragraphs.paragraphs_type.civictheme_fast_fact_card
     - paragraphs.paragraphs_type.civictheme_manual_list
     - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_message

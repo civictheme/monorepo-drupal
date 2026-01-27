@@ -201,3 +201,17 @@ function civictheme_preprocess_paragraph__civictheme_service_card(array &$variab
   _civictheme_preprocess_paragraph__paragraph_field__links($variables);
   _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function civictheme_preprocess_paragraph__civictheme_fast_fact_card(array &$variables): void {
+  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
+  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
+  $media = civictheme_get_field_value($variables['paragraph'], 'field_c_p_icon', TRUE);
+  if ($media) {
+    $variables['image'] = civictheme_media_image_get_variables($media);
+  }
+}
