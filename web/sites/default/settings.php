@@ -24,7 +24,7 @@ declare(strict_types=1);
 ////////////////////////////////////////////////////////////////////////////////
 ///                       ENVIRONMENT CONSTANTS                              ///
 ////////////////////////////////////////////////////////////////////////////////
-
+ini_set('zend.assertions', 1);
 // Use these constants anywhere in code to alter behaviour for a specific
 // environment.
 // @codeCoverageIgnoreStart
