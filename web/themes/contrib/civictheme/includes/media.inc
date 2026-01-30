@@ -92,7 +92,10 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
       $html = $doc->saveHTML($iframe_elements[0]);
     }
 
-    $variables['raw_source'] = $html;
+    $variables['raw_source'] = [
+      '#type' => 'inline_template',
+      '#template' => $html,
+    ];
 
     _civictheme_preprocess_media__civictheme_video_links($variables);
     _civictheme_preprocess_media__civictheme_video_transcript($variables);

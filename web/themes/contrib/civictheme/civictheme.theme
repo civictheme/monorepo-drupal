@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
 
 require_once __DIR__ . '/includes/utilities.inc';
@@ -161,6 +162,7 @@ function civictheme_preprocess_last(array &$variables, string $hook): void {
 function civictheme_preprocess_html(array &$variables): void {
   _civictheme_preprocess_html__skip_link($variables);
   _civictheme_preprocess_html__site_section($variables);
+  _civictheme_preprocess_html__search_head_title($variables);
 
   // Disable modifier_class as this template is provided by Drupal.
   $variables['modifier_class'] = FALSE;
@@ -275,4 +277,5 @@ function civictheme_page_attachments_alter(array &$attachments) {
   catch (ComponentNotFoundException $exception) {
     \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
   }
+  $attachments['#cache']['contexts'] = Cache::mergeContexts($attachments['#cache']['contexts'] ?? [], ['url.query_args']);
 }

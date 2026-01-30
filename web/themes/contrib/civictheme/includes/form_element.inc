@@ -369,6 +369,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     $title_display = 'hidden';
   }
   $variables['title_display'] = $title_display;
+  $variables['title_size'] = $element['#title_size'] ?? '';
 
   $variables['orientation'] = $variables['orientation'] ?? $title_display === 'inline' ? 'horizontal' : 'vertical';
 

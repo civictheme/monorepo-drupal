@@ -8,10 +8,12 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -21,6 +23,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__view($variables);
   _civictheme_preprocess_views_view__pager($variables);
   _civictheme_preprocess_views_view__search_page($variables);
+  _civictheme_preprocess_views_view__results_count($variables);
 }
 
 /**
@@ -40,13 +43,13 @@ function _civictheme_preprocess_views_view__view(array &$variables): void {
   if (!empty($view->header) && is_array($view->header)) {
     // Extract 'results' into own variable.
     if (!empty($view->header['result'])) {
-      $variables['results_count'] = civictheme_render($view->header['result']->render());
+      $variables['results_count'] = $view->header['result']->render();
       unset($view->header['result']);
     }
 
     // Render the rest of the header.
     foreach ($view->header as $header_item) {
-      $variables['rows_above'][] = civictheme_render($header_item->render());
+      $variables['rows_above'][] = $header_item->render();
     }
   }
 
@@ -160,11 +163,55 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
 
   if ($field_count == 1) {
+    // Use inline filter on search and auto pages if a single text field exists.
+    if (_civictheme_preprocess_views__exposed_form__inline_filter($variables, $view, $fields)) {
+      return;
+    }
+
+    // Use single filter.
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
   }
   elseif ($field_count > 1) {
     _civictheme_preprocess_views__exposed_form__group_filter($variables);
   }
+}
+
+/**
+ * Preprocess views exposed form to convert it to the Inline filter.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param \Drupal\views\ViewExecutable|null $view
+ *   The view object.
+ * @param array $fields
+ *   Form fields.
+ *
+ * @return bool
+ *   TRUE if inline filter was processed, FALSE otherwise.
+ */
+function _civictheme_preprocess_views__exposed_form__inline_filter(array &$variables, $view, array $fields): bool {
+  if (!($view instanceof ViewExecutable)) {
+    return FALSE;
+  }
+
+  if (!in_array($view->id(), ['civictheme_search', 'civictheme_automated_list'])) {
+    return FALSE;
+  }
+
+  $keyword_field = reset($fields);
+  if ($keyword_field['#type'] !== 'textfield') {
+    return FALSE;
+  }
+
+  $variables['inline_filter'] = TRUE;
+  $keyword_field['#title_size'] = 'extra-large';
+  $variables['filter_items'] = $keyword_field;
+  $submit_field = $variables['form']['actions']['submit'] ?? NULL;
+  if (!empty($submit_field)) {
+    $variables['submit_text'] = $submit_field['#value'] ?? '';
+  }
+
+  return TRUE;
 }
 
 /**
@@ -203,7 +250,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
 
     $variables['filter_items'][] = [
       'text' => $title,
-      'attributes' => (string) $attributes,
+      'attributes' => $attributes,
       'is_selected' => in_array($value, is_array($field['#value'] ?? []) ? $field['#value'] : [$field['#value']]),
     ];
   }
@@ -234,7 +281,7 @@ function _civictheme_preprocess_views__exposed_form__group_filter(array &$variab
   $filters = [];
   foreach ($fields as $field) {
     $filter = [
-      'content' => civictheme_render($field),
+      'content' => $field,
       'title' => $field['#title'] ?? NULL,
     ];
 
@@ -260,4 +307,41 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
   if ($view->id() == 'civictheme_search' && $view->current_display == 'page_1') {
     $variables['vertical_spacing'] = 'top';
   }
+}
+
+/**
+ * Pre-process results count for views.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_views_view__results_count(array &$variables): void {
+  if (empty($variables['results_count']['#markup']) || !is_string($variables['results_count']['#markup'])) {
+    return;
+  }
+  if (!str_contains($variables['results_count']['#markup'], '@keywords')) {
+    return;
+  }
+
+  // Load search fields from theme settings.
+  $setting_keyword_fields = civictheme_get_theme_config_manager()->load('components.search.keyword_fields') ?? '';
+  if (empty($setting_keyword_fields)) {
+    // Strip the @keywords token because it exists but won't be populated.
+    $variables['results_count'] = str_replace('@keywords', '', $variables['results_count']);
+    return;
+  }
+
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'] ?? [], ['url.query_args']);
+
+  $keywords = '';
+  $exposed_input = $variables['view']->getExposedInput();
+  $search_fields = CivicthemeUtility::multilineToArray($setting_keyword_fields);
+
+  foreach ($search_fields as $field) {
+    if (!empty($exposed_input[$field])) {
+      $keywords = t("for '@keywords'", ['@keywords' => $exposed_input[$field]])->__toString();
+      break;
+    }
+  }
+
+  $variables['results_count'] = str_replace('@keywords', $keywords, $variables['results_count']);
 }

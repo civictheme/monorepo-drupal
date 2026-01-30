@@ -8,7 +8,7 @@
   {% for message in messages %}
     {% include 'civictheme:message' with {
       title: status_headings[type] ? status_headings[type] : type|capitalize,
-      content: message|render,
+      content: message,
       type: (type == 'status' or type == 'info') ? 'information' : type,
       vertical_spacing: 'both',
     } only %}

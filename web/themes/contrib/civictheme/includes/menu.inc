@@ -8,7 +8,6 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Component\Utility\Xss;
 use Drupal\Core\Url;
 
 /**
@@ -28,7 +27,7 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
     $item['is_expanded'] = $expand_all || ($item['is_expanded'] ?? FALSE);
     // Initialize 'below' as an empty array if not set.
     $item['below'] = $item['below'] ?? [];
-    $item['title'] = isset($item['title']) ? Xss::filter($item['title']) : '';
+    $item['title'] = isset($item['title']) ? strip_tags($item['title']) : '';
 
     if (!empty($item['below'])) {
       _civictheme_preprocess_menu_items($item['below'], $expand_all);
