@@ -4,4 +4,8 @@
  * CivicTheme implementation to display a footer menu block.
  */
 #}
-{% include 'civictheme:navigation' %}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {% include 'civictheme:navigation' %}
+{% endblock %}
