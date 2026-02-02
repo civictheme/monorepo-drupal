@@ -7,7 +7,7 @@
 {% for type, messages in message_list %}
   {% for message in messages %}
     {% set id_suffix = type == 'error' ? loop.parent.loop.index ~ '-' ~ loop.index : '' %}
-    {% set message_attributes = type == 'error' ? create_attribute({'id': 'error-summary-' ~ id_suffix, 'tabindex': '-1'}) : create_attribute() %}
+    {% set message_attributes = type == 'error' ? create_attribute({id: 'error-summary-' ~ id_suffix, tabindex: '-1'}) : create_attribute() %}
     {% include 'civictheme:message' with {
       title: status_headings[type] ? status_headings[type] : type|capitalize,
       content: message,
