@@ -223,6 +223,7 @@ function civictheme_preprocess_form_element__civictheme_field__search(array &$va
   if (!empty($element['#attributes']['placeholder'])) {
     $attributes->setAttribute('placeholder', $element['#attributes']['placeholder']);
   }
+  $variables['control'][0]['attributes'] = $attributes;
 }
 
 /**
