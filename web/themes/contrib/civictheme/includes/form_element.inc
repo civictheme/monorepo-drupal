@@ -215,7 +215,7 @@ function civictheme_preprocess_form_element__civictheme_field__search(array &$va
   }
   $element = $variables['element'];
   $variables['control'][0]['type'] = 'search';
-  $variables['control'][0]['name'] = 'search--' . random_int(0, 10000);
+  $variables['control'][0]['name'] = !empty($variables['control'][0]['name']) ? $variables['control'][0]['name'] : 'search--' . random_int(0, 10000);
   $attributes = $variables['control'][0]['attributes'] ?? new Attribute();
   if (!empty($element['#attributes']['title'])) {
     $attributes->setAttribute('title', $element['#attributes']['title']);
