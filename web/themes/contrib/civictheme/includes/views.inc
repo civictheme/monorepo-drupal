@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeUtility;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
@@ -25,6 +26,7 @@ function civictheme_preprocess_views_view(array &$variables): void {
   _civictheme_preprocess_views_view__pager($variables);
   _civictheme_preprocess_views_view__search_page($variables);
   _civictheme_preprocess_views_view__selected_filters($variables);
+  _civictheme_preprocess_views_view__results_count($variables);
 }
 
 /**
@@ -165,11 +167,55 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
 
   if ($field_count == 1) {
+    // Use inline filter on search and auto pages if a single text field exists.
+    if (_civictheme_preprocess_views__exposed_form__inline_filter($variables, $view, $fields)) {
+      return;
+    }
+
+    // Use single filter.
     _civictheme_preprocess_views__exposed_form__single_filter($variables);
   }
   elseif ($field_count > 1) {
     _civictheme_preprocess_views__exposed_form__group_filter($variables);
   }
+}
+
+/**
+ * Preprocess views exposed form to convert it to the Inline filter.
+ *
+ * @param array $variables
+ *   Variables array.
+ * @param \Drupal\views\ViewExecutable|null $view
+ *   The view object.
+ * @param array $fields
+ *   Form fields.
+ *
+ * @return bool
+ *   TRUE if inline filter was processed, FALSE otherwise.
+ */
+function _civictheme_preprocess_views__exposed_form__inline_filter(array &$variables, $view, array $fields): bool {
+  if (!($view instanceof ViewExecutable)) {
+    return FALSE;
+  }
+
+  if (!in_array($view->id(), ['civictheme_search', 'civictheme_automated_list'])) {
+    return FALSE;
+  }
+
+  $keyword_field = reset($fields);
+  if ($keyword_field['#type'] !== 'textfield') {
+    return FALSE;
+  }
+
+  $variables['inline_filter'] = TRUE;
+  $keyword_field['#title_size'] = 'extra-large';
+  $variables['filter_items'] = $keyword_field;
+  $submit_field = $variables['form']['actions']['submit'] ?? NULL;
+  if (!empty($submit_field)) {
+    $variables['submit_text'] = $submit_field['#value'] ?? '';
+  }
+
+  return TRUE;
 }
 
 /**
@@ -292,6 +338,43 @@ function _civictheme_preprocess_views_view__search_page(array &$variables): void
 }
 
 /**
+ * Pre-process results count for views.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_views_view__results_count(array &$variables): void {
+  if (empty($variables['results_count']['#markup']) || !is_string($variables['results_count']['#markup'])) {
+    return;
+  }
+  if (!str_contains($variables['results_count']['#markup'], '@keywords')) {
+    return;
+  }
+
+  // Load search fields from theme settings.
+  $setting_keyword_fields = civictheme_get_theme_config_manager()->load('components.search.keyword_fields') ?? '';
+  if (empty($setting_keyword_fields)) {
+    // Strip the @keywords token because it exists but won't be populated.
+    $variables['results_count'] = str_replace('@keywords', '', $variables['results_count']);
+    return;
+  }
+
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'] ?? [], ['url.query_args']);
+
+  $keywords = '';
+  $exposed_input = $variables['view']->getExposedInput();
+  $search_fields = CivicthemeUtility::multilineToArray($setting_keyword_fields);
+
+  foreach ($search_fields as $field) {
+    if (!empty($exposed_input[$field])) {
+      $keywords = t("for '@keywords'", ['@keywords' => $exposed_input[$field]])->__toString();
+      break;
+    }
+  }
+
+  $variables['results_count'] = str_replace('@keywords', $keywords, $variables['results_count']);
+}
+
+/**
  * Preprocess the selected filters list.
  */
 function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
@@ -300,6 +383,10 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
   $current_values = array_filter($query_params, function ($value) {
     return !empty($value);
   });
+  $current_values = array_filter(
+    $query_params,
+    fn($v) => !($v === '') && $v !== NULL
+  );
 
   // Only process keys for available filters.
   $permitted_keys = array_keys($filter_types);
