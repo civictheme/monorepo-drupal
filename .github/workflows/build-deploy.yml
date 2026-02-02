@@ -6,13 +6,13 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - master
     - develop
     - quant-cloud-migration
-    - feature/*
     - content/*
-    - pr-*
+    - release/*
+    - hotfix/*
+    - feature/editorial-*
+    - project/*
     tags:
     - '*'
-  pull_request:
-    branches: '*'
 
 concurrency:
   group: build-and-push-${{ github.ref }}
@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
 
     - name: Checkout code
@@ -38,28 +38,18 @@ jobs:
         quant_application: civictheme-monorepo-drupal
         master_branch_override: main
 
-    - name: Override outputs for quant-cloud-migration branch
+    - name: Override outputs for special branches
       id: override-outputs
       run: |-
-        # Override outputs for quant-cloud-migration branch to treat it as production
-        if [[ "${{ github.ref }}" == "refs/heads/quant-cloud-migration" ]]; then
-          echo "image_suffix=-latest" >> $GITHUB_OUTPUT
-          echo "image_suffix_clean=latest" >> $GITHUB_OUTPUT
-          echo "is_production=true" >> $GITHUB_OUTPUT
-          echo "environment_name=production" >> $GITHUB_OUTPUT
-          echo "environment_exists=true" >> $GITHUB_OUTPUT
-          echo "Overriding outputs for quant-cloud-migration branch: using -latest suffix and production environment"
-        else
-          # Use the original action outputs
-          echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
-          # Remove leading hyphen from image_suffix for image_suffix parameter
-          suffix="${{ steps.init.outputs.image_suffix }}"
-          clean_suffix="${suffix#-}"
-          echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
-          echo "is_production=${{ steps.init.outputs.is_production }}" >> $GITHUB_OUTPUT
-          echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
-          echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
-        fi
+        echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
+        # Remove leading hyphen from image_suffix for image_suffix parameter
+        suffix="${{ steps.init.outputs.image_suffix }}"
+        clean_suffix="${suffix#-}"
+        echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
+        echo "is_production=${{ steps.init.outputs.is_production }}" >> $GITHUB_OUTPUT
+        echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
+        echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
+
 
     - name: Build and push cli image
       uses: docker/build-push-action@v5
@@ -119,21 +109,6 @@ jobs:
         environment_name: ${{ steps.override-outputs.outputs.environment_name }}
         from_environment: production
         image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
-
-    - name: Sync database from production to new environment
-      if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' && steps.override-outputs.outputs.environment_name
-        != 'production' }}
-      uses: quantcdn/quant-cloud-environment-sync-action@v1.0.0
-      with:
-        api_key: ${{ secrets.QUANT_API_KEY }}
-        organization: ${{ secrets.QUANT_ORGANIZATION }}
-        app_name: ${{ steps.init.outputs.quant_application }}
-        environment_name: ${{ steps.override-outputs.outputs.environment_name }}
-        source: production
-        type: database
-        wait: true
-        wait_interval: 10
-        max_retries: 30
 
     - name: Redeploy existing environment
       if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'true' }}

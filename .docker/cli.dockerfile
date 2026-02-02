@@ -10,7 +10,7 @@
 # @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
 #
 # hadolint global ignore=DL3018
-FROM uselagoon/php-8.3-cli-drupal:25.1.0
+FROM uselagoon/php-8.3-cli-drupal:25.11.0
 
 # Add missing variables.
 # @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
@@ -111,3 +111,6 @@ RUN cd /app/web/themes/contrib/civictheme \
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
 COPY .docker/entrypoints/cli/* /quant-entrypoint.d/
+
+# Custom PHP configuration.
+COPY .docker/config/php/*.ini /usr/local/etc/php/conf.d/

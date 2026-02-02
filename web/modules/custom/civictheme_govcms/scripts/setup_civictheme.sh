@@ -144,7 +144,7 @@ fi
 # --- 1. Extract CivicTheme ---
 THEME_DOWNLOAD_URL="https://ftp.drupal.org/files/projects/civictheme-${ARG_CIVICTHEME_VERSION}.tar.gz"
 THEME_ARCHIVE_NAME="civictheme-${ARG_CIVICTHEME_VERSION}.tar.gz"
-CUSTOM_THEMES_PATH="themes/custom" # Relative to project root
+CUSTOM_THEMES_PATH="themes" # Relative to project root
 EXPECTED_EXTRACTED_THEME_DIR="${CUSTOM_THEMES_PATH}/civictheme"
 
 echo "[info]: Step 1: Downloading and extracting CivicTheme version ${ARG_CIVICTHEME_VERSION}..."
@@ -230,7 +230,7 @@ ahoy_cli_govcms_script=$(cat <<'EOF'
   DOWNLOAD_URL="$1"
   ARCHIVE_FILENAME="$2"
   EXTRACTED_DIR_NAME="$3"
-  MODULES_DIR="/app/web/themes/custom/custom/civictheme/modules"
+  MODULES_DIR="/app/web/themes/custom/civictheme/modules"
   TARGET_MODULE_DIR_NAME="civictheme_govcms"
 
   echo "[info] (container): Preparing directory: ${MODULES_DIR}"
@@ -312,9 +312,9 @@ ahoy_cli_subtheme_script=$(cat <<'EOF'
   SUBTHEME_HUMAN_NAME_ARG="$2"
   SUBTHEME_DESCRIPTION_ARG="$3"
   PROVISION_CONTENT_ARG="$4"
-  CIVICTHEME_BASE_PATH="/app/web/themes/custom/custom/civictheme"
+  CIVICTHEME_BASE_PATH="/app/web/themes/custom/civictheme"
   SUBTHEME_PATH_RELATIVE_TO_CUSTOM_THEMES="../${SUBTHEME_MACHINE_NAME_ARG}"
-  SUBTHEME_FULL_PATH="/app/web/themes/custom/custom/${SUBTHEME_MACHINE_NAME_ARG}"
+  SUBTHEME_FULL_PATH="/app/web/themes/custom/${SUBTHEME_MACHINE_NAME_ARG}"
 
   echo "[info] (container): Changing to CivicTheme base theme directory: ${CIVICTHEME_BASE_PATH}"
   cd "${CIVICTHEME_BASE_PATH}"

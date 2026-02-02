@@ -11,9 +11,9 @@ Feature: Image styles
     Examples:
       | style            | machine_name                | effect                             |
       | Campaign         | civictheme_campaign         | Focal Point Scale and Crop 600×600 |
-      | Event Card       | civictheme_event_card       | Focal Point Scale and Crop 600×600 |
+      | Event Card       | civictheme_event_card       | Focal Point Scale and Crop 800×480 |
       | Navigation card  | civictheme_navigation_card  | Focal Point Scale and crop 600×600 |
-      | Promo card       | civictheme_promo_card       | Focal Point Scale and crop 600×600 |
+      | Promo card       | civictheme_promo_card       | Focal Point Scale and crop 800×480 |
       | Publication Card | civictheme_publication_card | Focal Point Scale and Crop 600×600 |
       | Slider Slide     | civictheme_slider_slide     | Focal Point Scale and Crop 600×600 |
       | Subject Card     | civictheme_subject_card     | Focal Point Scale and Crop 600×600 |

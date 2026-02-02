@@ -58,8 +58,10 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   }
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
   $title = (string) (is_array($title) ? reset($title) : ((string) $title));
-  $title = Xss::filter($title);
-  $title = strip_tags($title);
+  $title = [
+    '#type' => 'markup',
+    '#markup' => $title,
+  ];
   $variables['title'] = $title;
 
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
@@ -131,7 +133,12 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $updated_date . '</p>',
+      '#content' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#attributes' => ['class' => ['ct-banner__last_updated']],
+        '#value' => 'Last updated: ' . $updated_date,
+      ],
     ];
   }
 
@@ -185,8 +192,10 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
   if (!empty($title)) {
     $title = (string) (is_array($title) ? reset($title) : ((string) $title));
-    $title = Xss::filter($title);
-    $title = strip_tags($title);
+    $title = [
+      '#type' => 'markup',
+      '#markup' => $title,
+    ];
     $breadcrumb_links = $breadcrumb->getLinks();
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
@@ -194,7 +203,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
       $link_text = $link->getText();
       $variables['breadcrumb']['links'][] = [
-        'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
+        'text' => is_array($link_text) ? $link_text : (string) $link_text,
         'url' => $link->getUrl()->toString(),
       ];
     }
