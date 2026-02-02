@@ -55,3 +55,9 @@
 .layout-builder-block {
   padding: 1px;
 }
+
+#drupal-off-canvas-wrapper label.ct-visually-hidden {
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+  overflow: hidden;
+  word-wrap: normal;
+}

@@ -20,31 +20,3 @@ civictheme_three_columns:
       label: 'Sidebar Top Right'
     sidebar_bottom_right:
       label: 'Sidebar Bottom Right'
-
-# Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
-civictheme_one_column:
-  label: 'Deprecated. Single column - edge to edge content.'
-  library: civictheme/layouts
-  category: 'CivicTheme Layouts'
-  path: templates/layout/
-  template: layout--single-column
-  default_region: content
-  icon_map:
-    - [ content ]
-  regions:
-    content:
-      label: Main content
-
-# Deprecated and will be removed in 1.9. Switch to civictheme_three_columns.
-civictheme_one_column_contained:
-  label: 'Deprecated. Single column - contained content'
-  library: civictheme/layouts
-  category: 'CivicTheme Layouts'
-  path: templates/layout/
-  template: layout--single-column-contained
-  default_region: content
-  icon_map:
-    - [ content ]
-  regions:
-    content:
-      label: Main content
