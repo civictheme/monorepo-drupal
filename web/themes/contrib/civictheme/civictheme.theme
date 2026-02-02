@@ -133,7 +133,14 @@ function civictheme_theme_registry_alter(array &$theme_registry): void {
   // Define a new preprocess hook that will always run last.
   $hook = 'civictheme_preprocess_last';
 
+  // civictheme_preprocess_last() converts $variables['attributes']['class'] to
+  // $variables['modififer_class'] which civictheme components use to
+  // add in additional classes but if the template is not a civictheme component
+  // then we do not want to do this because Drupal has no concept of this.
   foreach ($theme_registry as $name => $info) {
+    if (isset($info['path']) && (str_starts_with($info['path'], 'core') || str_starts_with($info['path'], 'module'))) {
+      continue;
+    }
     if (in_array($hook, $theme_registry[$name]['preprocess functions'] ?? [])) {
       foreach ($info['preprocess functions'] as $k => $function) {
         if ($function == $hook) {
