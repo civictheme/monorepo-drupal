@@ -1101,7 +1101,7 @@ function civictheme_post_update_migrate_one_column_layouts(): string {
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_post_update_migrate_one_column_layouts(): string {
+function civictheme_post_update_migrate_one_column_layouts_2(): string {
   $outdated_layouts = [
     'civictheme_one_column',
     'civictheme_one_column_contained',
