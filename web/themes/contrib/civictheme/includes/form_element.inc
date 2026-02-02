@@ -209,6 +209,26 @@ function civictheme_preprocess_form_element__civictheme_field(array &$variables)
 /**
  * Implements template_preprocess_form_element().
  */
+function civictheme_preprocess_form_element__civictheme_field__search(array &$variables): void {
+  if (empty($variables['control'][0])) {
+    return;
+  }
+  $element = $variables['element'];
+  $variables['control'][0]['type'] = 'search';
+  $variables['control'][0]['name'] = !empty($variables['control'][0]['name']) ? $variables['control'][0]['name'] : 'search--' . random_int(0, 10000);
+  $attributes = $variables['control'][0]['attributes'] ?? new Attribute();
+  if (!empty($element['#attributes']['title'])) {
+    $attributes->setAttribute('title', $element['#attributes']['title']);
+  }
+  if (!empty($element['#attributes']['placeholder'])) {
+    $attributes->setAttribute('placeholder', $element['#attributes']['placeholder']);
+  }
+  $variables['control'][0]['attributes'] = $attributes;
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ */
 function civictheme_preprocess_form_element__civictheme_field__select(array &$variables): void {
   $variables['control'][0]['options'] = form_select_options($variables['element']);
 
