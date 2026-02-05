@@ -4,4 +4,8 @@
  * CivicTheme implementation to display a Search block.
  */
 #}
-{% include 'civictheme:search' %}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {% include 'civictheme:search' %}
+{% endblock %}
