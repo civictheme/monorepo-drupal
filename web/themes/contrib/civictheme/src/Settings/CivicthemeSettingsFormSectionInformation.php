@@ -29,8 +29,8 @@ class CivicthemeSettingsFormSectionInformation extends CivicthemeSettingsFormSec
     $message = $this->t('<div class="messages messages--info">@documentation<br/>@design_system<br/>@repository<br/>@issues</div>', [
       '@documentation' => Link::fromTextAndUrl('Documentation', Url::fromUri('https://docs.civictheme.io/'))->toString(),
       '@design_system' => Link::fromTextAndUrl('Design system (Figma)', Url::fromUri('https://www.civictheme.io/figma'))->toString(),
-      '@repository' => Link::fromTextAndUrl('Code repository (GitHub)', Url::fromUri('https://github.com/civictheme/civictheme'))->toString(),
-      '@issues' => Link::fromTextAndUrl('Report issues', Url::fromUri('https://github.com/civictheme/monorepo-drupal/issues'))->toString(),
+      '@repository' => Link::fromTextAndUrl('Code repository (GitHub)', Url::fromUri('https://github.com/civictheme/monorepo-drupal'))->toString(),
+      '@issues' => Link::fromTextAndUrl('Report issues', Url::fromUri('https://www.drupal.org/project/issues/civictheme?categories=All'))->toString(),
     ]);
 
     $form['civictheme_information'] = [

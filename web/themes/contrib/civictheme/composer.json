@@ -3,10 +3,10 @@
     "description": "CivicTheme is a Drupal 10 component-based theme.",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
-    "homepage": "https://github.com/civictheme/civictheme",
+    "homepage": "https://civictheme.io",
     "support": {
         "source": "https://github.com/civictheme/monorepo-drupal",
-        "issues": "https://github.com/civictheme/monorepo-drupal/issues"
+        "issues": "https://www.drupal.org/project/issues/civictheme?categories=All"
     },
     "require": {
         "php": ">=8.3",
