@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.civictheme_event.field_c_n_body
     - field.field.node.civictheme_event.field_c_n_custom_last_updated
     - field.field.node.civictheme_event.field_c_n_date_range
+    - field.field.node.civictheme_event.field_c_n_hide_sidebar
     - field.field.node.civictheme_event.field_c_n_location
     - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
@@ -98,6 +99,7 @@ third_party_settings:
       children:
         - field_c_n_thumbnail
         - field_c_n_vertical_spacing
+        - field_c_n_hide_sidebar
       label: Appearance
       region: content
       parent_name: group_content
@@ -175,6 +177,13 @@ content:
     weight: 13
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_c_n_hide_sidebar:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_c_n_location:
     type: paragraphs

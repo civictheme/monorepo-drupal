@@ -76,10 +76,6 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   // Note that per-node overrides above may adjust cache tags as required.
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
-
-  // 'attributes' field includes an id which conflicts with the template
-  // `main-content` id.
-  unset($variables['attributes']);
 }
 
 /**

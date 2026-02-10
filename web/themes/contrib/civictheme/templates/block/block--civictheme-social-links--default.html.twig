@@ -4,4 +4,8 @@
  * CivicTheme implementation to a Social Links block.
  */
 #}
-{% include 'civictheme:social-links' %}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {% include 'civictheme:social-links' %}
+{% endblock %}

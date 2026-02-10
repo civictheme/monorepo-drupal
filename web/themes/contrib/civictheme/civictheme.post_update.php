@@ -1163,3 +1163,45 @@ function civictheme_post_update_migrate_one_column_layouts_2(): string {
   }
   return implode("\n", $messages);
 }
+
+/**
+ * Add field_c_n_hide_sidebar to civictheme_event content type.
+ *
+ * Adds the field and places it under the Appearance group on the form display.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+
+  $new_configs = [
+    'field.field.node.civictheme_event.field_c_n_hide_sidebar' => 'field_config',
+  ];
+  $helper->createConfigs($new_configs, $config_path);
+
+  $form_display_field_config = [
+    'field_c_n_hide_sidebar' => [
+      'type' => 'boolean_checkbox',
+      'weight' => 8,
+      'region' => 'content',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+      'third_party_settings' => [],
+    ],
+  ];
+  $form_display_group_config = [
+    'group_appearance' => [
+      'field_c_n_hide_sidebar',
+    ],
+  ];
+  $helper->updateFormDisplayConfig(
+    'node',
+    'civictheme_event',
+    $form_display_field_config,
+    $form_display_group_config
+  );
+
+  return (string) new TranslatableMarkup('Added field_c_n_hide_sidebar to civictheme_event content type and placed it under Appearance.');
+}

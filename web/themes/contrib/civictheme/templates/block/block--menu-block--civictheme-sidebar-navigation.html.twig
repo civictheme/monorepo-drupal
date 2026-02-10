@@ -4,8 +4,12 @@
  * CivicTheme implementation to display a Sidebar Navigation menu block.
  */
 #}
-{% include 'civictheme:side-navigation' with {
-  theme,
-  items,
-  modifier_class: 'ct-sidebar-navigation ' ~ modifier_class|default(''),
-} only %}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {% include 'civictheme:side-navigation' with {
+    theme,
+    items,
+    modifier_class: 'ct-sidebar-navigation ' ~ modifier_class|default(''),
+  } only %}
+{% endblock %}
