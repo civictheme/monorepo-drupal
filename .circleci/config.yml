@@ -604,7 +604,6 @@ workflows:
               only: /.*/
       - build-drupal-cms:
           requires:
-            - build-isolated-php-82
             - build-isolated-php-83
             - build-isolated-php-83-legacy
             - build-isolated-php-83-next
