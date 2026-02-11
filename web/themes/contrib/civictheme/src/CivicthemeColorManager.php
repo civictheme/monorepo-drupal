@@ -264,10 +264,10 @@ final class CivicthemeColorManager implements ContainerInjectionInterface {
    *   Optional file suffix for the generated stylesheet. Defaults to 'default'.
    *   Usually provided to separate stylesheets produced in multiple contexts.
    *
-   * @return string
+   * @return null|string
    *   URI of the stylesheet file.
    */
-  public function stylesheet(string $file_suffix = 'default'): string {
+  public function stylesheet(string $file_suffix = 'default'): null|string {
     return $this->stylesheetGenerator
       ->setStylesheetUriSuffix($file_suffix)
       ->generate($this->getColors(self::COLOR_TYPE_PALETTE), ['html'], self::CSS_VARIABLES_PREFIX);
