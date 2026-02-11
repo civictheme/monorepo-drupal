@@ -45,6 +45,9 @@ Feature: CivicTheme Event content type fields
     And should see an "[name='field_c_n_vertical_spacing'].required" element
     And should not see an "[name='field_c_n_vertical_spacing'][disabled]" element
 
+    And I should see the text "Hide sidebar"
+    And should see an "[name='field_c_n_hide_sidebar[value]']" element
+
     And I should see the text "Start date"
     And should see an "[name='field_c_n_date_range[0][value][date]']" element
     And should not see an "[name='field_c_n_date_range[0][value][date]'].required" element

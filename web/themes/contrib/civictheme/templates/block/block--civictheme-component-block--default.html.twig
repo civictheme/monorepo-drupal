@@ -4,4 +4,8 @@
  * CivicTheme theme implementation to display a civictheme_component block.
  */
 #}
-{{ content }}
+{% extends 'block.html.twig' %}
+
+{% block content_block %}
+  {{ content }}
+{% endblock %}
