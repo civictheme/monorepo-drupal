@@ -46,6 +46,7 @@ web/sites/default/*
 /vendor
 /node_modules
 web/themes/**/node_modules
+scripts/civictheme-uikit-version-manager/node_modules
 
 # Assets.
 web/themes/**/build
