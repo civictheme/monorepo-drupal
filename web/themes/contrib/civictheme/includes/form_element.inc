@@ -380,23 +380,31 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $element = $variables['element'];
   $variables['type'] = $element['#type'] ?? 'input';
 
-  $variables['title'] = $element['#title'] ?? '';
+  $variables['title'] = (string) ($element['#title'] ?? '');
 
   $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
   $title_display = $title_display === 'none' ? 'hidden' : $title_display;
   $title_display = $title_display === 'visually_hidden' ? 'invisible' : $title_display;
+  // Drupal uses 'before'/'after' for label position; map to component enum "visible".
+  if (in_array((string) $title_display, ['before', 'after', 'inline'], TRUE)) {
+    $title_display = 'visible';
+  }
   if (empty($variables['title'])) {
     $title_display = 'hidden';
   }
   $variables['title_display'] = $title_display;
-  $variables['title_size'] = $element['#title_size'] ?? '';
+  $title_size = $element['#title_size'] ?? '';
+  $variables['title_size'] = $title_size !== '' ? $title_size : 'regular';
 
   $variables['orientation'] = $variables['orientation'] ?? $title_display === 'inline' ? 'horizontal' : 'vertical';
 
   $variables['is_required'] = $element['#required'] ?? FALSE;
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['description'] = $element['#description'] ?? '';
+  // Label component requires required_text to be string; pass empty when not required.
+  $variables['required_text'] = ($variables['is_required'] ? (string) t('(Required)') : '');
   $variables['is_invalid'] = !empty($element['#errors']);
+  $variables['message'] = $variables['message'] ?? ['content' => ''];
   if ($variables['is_invalid']) {
     $variables['attributes']['aria-invalid'] = 'true';
     $variables['message']['content'] = $element['#errors'] ?? '';
@@ -488,7 +496,8 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
  * Sets form element theme based on attributes passed from parent components.
  */
 function _civictheme_preprocess_form_element__theme(array &$variables): void {
-  // Setting theme for form element.
+  // Setting theme for form element. Default to light for component schema validation.
+  $variables['theme'] = CivicthemeConstants::THEME_LIGHT;
   if (
     isset($variables['element']['#attributes']['#civictheme_theme'])
     && in_array($variables['element']['#attributes']['#civictheme_theme'], civictheme_theme_options(TRUE))
@@ -549,7 +558,8 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
  * Preprocesses form element description.
  */
 function _civictheme_preprocess_form_element__description(array &$variables): void {
-  $variables['description'] = $variables['element']['#description'] ?? NULL;
+  // Use empty string instead of NULL for SDC component schema (string required).
+  $variables['description'] = $variables['element']['#description'] ?? '';
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
 }
 

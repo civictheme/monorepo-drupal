@@ -138,9 +138,11 @@ provision_from_db() {
 #
 provision_from_profile() {
   local opts=()
+  local install_profile="${DRUPAL_PROFILE}"
+  [ "${install_profile}" = "govcms" ] && install_profile="minimal"
 
   opts+=(
-    "${DRUPAL_PROFILE}"
+    "${install_profile}"
     --site-name="${DRUPAL_SITE_NAME}"
     --site-mail="${DRUPAL_SITE_EMAIL}"
     --account-name=admin

@@ -28,7 +28,7 @@ echo "[INFO] Enabling theme modules."
     # Enable stable9 theme and set as default theme.
     # This is required to remove other theme to avoid polluting configuration.
     drush theme-enable stable9
-    drush config-set system.theme default stable9
+    drush config-set system.theme default stable9 || true
 
     # Remove other themes.
     drush theme-uninstall govcms_bartik || true

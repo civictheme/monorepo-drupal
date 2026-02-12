@@ -7,7 +7,7 @@
 
 {% include 'civictheme:field' with {
   theme: theme,
-  title: title,
+  title: title|default(''),
   title_display: title_display,
   type: type,
   orientation: orientation,
@@ -22,4 +22,5 @@
   modifier_class: modifier_class,
   prefix: prefix,
   suffix: suffix,
+  required_text: required_text|default(''),
 } only %}
