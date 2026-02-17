@@ -15,6 +15,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\Xss;
+use Drupal\media\MediaInterface;
 
 /**
  * Pre-process for With background paragraph field.
@@ -116,7 +117,7 @@ function _civictheme_preprocess_paragraph__node_field__image(array &$variables, 
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
-    if ($media) {
+    if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
       $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
     }
   }
