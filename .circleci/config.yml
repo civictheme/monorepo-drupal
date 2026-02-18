@@ -379,6 +379,7 @@ jobs:
         default: true
         type: boolean
     environment:
+      DRUPAL_VERSION: 10.3
       DRUPAL_PROFILE: govcms
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
@@ -400,6 +401,7 @@ jobs:
         default: true
         type: boolean
     environment:
+      DRUPAL_VERSION: 10.3
       DRUPAL_PROFILE: govcms
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
@@ -409,6 +411,7 @@ jobs:
   build-govcms-subtheme-sibling:
     <<: *runner_config
     environment:
+      DRUPAL_VERSION: 10.3
       DRUPAL_PROFILE: govcms
       CIVICTHEME_INSTALL_SIBLING: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
