@@ -1,0 +1,7 @@
+{
+    "name": "drupal/civictheme_content_generated_static",
+    "description": "Install civictheme generated static content for visual comparison",
+    "type": "recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {}
+}

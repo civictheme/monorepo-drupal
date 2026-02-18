@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f5615546-86c4-4d6c-8bf6-931e6079c987
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    8212ed57-5c2a-4e77-b905-fcf768dc49ae: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 48 Maiores molestiae.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Non officia.'
+  field_c_m_image:
+    -
+      entity: 8212ed57-5c2a-4e77-b905-fcf768dc49ae
+      alt: 'Alt for Generated static Image media 48 Maiores molestiae.'
+      title: ''
+      width: 500
+      height: 846

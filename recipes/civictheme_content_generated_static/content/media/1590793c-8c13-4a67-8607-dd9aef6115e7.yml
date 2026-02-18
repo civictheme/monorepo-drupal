@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1590793c-8c13-4a67-8607-dd9aef6115e7
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    2a53199e-3cd3-419c-b044-16a509602752: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 45 Animi aut.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Facilis laborum.'
+  field_c_m_image:
+    -
+      entity: 2a53199e-3cd3-419c-b044-16a509602752
+      alt: 'Alt for Generated static Image media 45 Animi aut.'
+      title: ''
+      width: 500
+      height: 846
