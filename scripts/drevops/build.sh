@@ -32,6 +32,12 @@ DREVOPS_COMPOSER_VERBOSE="${DREVOPS_COMPOSER_VERBOSE:-1}"
 # Print debug information from NPM install.
 DREVOPS_NPM_VERBOSE="${DREVOPS_NPM_VERBOSE:-0}"
 
+# Drupal version custom adjustments.
+if [ "${DRUPAL_VERSION:-}" = "10" ] || [ "${DRUPAL_VERSION:-}" = "10.3" ]; then
+  export COMPOSER=composer.d10.json
+  export DREVOPS_COMPOSER_VALIDATE_LOCK=0
+fi
+
 # ------------------------------------------------------------------------------
 
 # @formatter:off
