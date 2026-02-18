@@ -49,6 +49,9 @@ RUN apk update \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
+# Enable assertions for development.
+RUN sed -i 's/zend.assertions = -1/zend.assertions = 1/' /usr/local/etc/php/php.ini
+
 RUN curl -L -o shipshape "https://github.com/salsadigitalauorg/shipshape/releases/download/v0.3.1/shipshape-$(uname -s)-$(uname -m)" && \
     chmod +x shipshape && \
     mv shipshape /usr/local/bin/shipshape

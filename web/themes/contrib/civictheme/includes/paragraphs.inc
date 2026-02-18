@@ -15,7 +15,6 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\Xss;
-use Drupal\media\MediaInterface;
 
 /**
  * Pre-process for With background paragraph field.

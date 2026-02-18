@@ -60,5 +60,9 @@ docker-compose.override.yml
 # Ignore configuration as this site is installed from profile.
 /config/*
 
+# Ignore recipes except for custom ones.
+/recipes/*
+!/recipes/civictheme_content_generated_static/
+
 # Build artifacts for twig linter.
 .twig-cs-fixer.cache
