@@ -245,10 +245,10 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL): void {
+function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL, string $field_name = 'field_c_n_summary'): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
-    $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
+    $summary = civictheme_get_field_value($node, $field_name, TRUE);
     if (!empty($summary)) {
       $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
