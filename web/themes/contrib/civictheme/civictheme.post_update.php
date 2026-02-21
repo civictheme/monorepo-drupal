@@ -1205,3 +1205,66 @@ function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
 
   return (string) new TranslatableMarkup('Added field_c_n_hide_sidebar to civictheme_event content type and placed it under Appearance.');
 }
+
+/**
+ * Migrate legacy logo image_alt to primary and secondary logo image_alt.
+ *
+ * Copies the old single components.logo.image_alt value into
+ * components.logo.primary.image_alt and components.logo.secondary.image_alt
+ * when the old value is not empty and the new fields are empty.
+ * Runs for CivicTheme and all its subthemes (themes that have civictheme
+ * in their base theme chain).
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_migrate_logo_image_alt_to_per_type(): TranslatableMarkup {
+  $config_factory = \Drupal::configFactory();
+  $theme_list = \Drupal::service('extension.list.theme');
+  $themes = $theme_list->getList();
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+  $theme_names_to_migrate = $helper->logoAltThemesWithCivicthemeBase($themes);
+
+  $migrated = [];
+  foreach ($theme_names_to_migrate as $theme_name) {
+    $config_name = $theme_name . '.settings';
+    $config = $config_factory->getEditable($config_name);
+    if ($config->isNew()) {
+      continue;
+    }
+
+    $old_alt = $config->get('components.logo.image_alt');
+    if ($old_alt === NULL || (is_string($old_alt) && trim($old_alt) === '')) {
+      continue;
+    }
+
+    $updated = FALSE;
+    $primary_alt = $config->get('components.logo.primary.image_alt');
+    if ($primary_alt === NULL || (is_string($primary_alt) && trim($primary_alt) === '')) {
+      $config->set('components.logo.primary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $secondary_alt = $config->get('components.logo.secondary.image_alt');
+    if ($secondary_alt === NULL || (is_string($secondary_alt) && trim($secondary_alt) === '')) {
+      $config->set('components.logo.secondary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $config->clear('components.logo.image_alt');
+    if ($updated) {
+      $config->save();
+      $migrated[] = $theme_name;
+    }
+    else {
+      $config->save();
+    }
+  }
+
+  if (!empty($migrated)) {
+    return new TranslatableMarkup('Migrated legacy logo image alt text to Primary and Secondary logo alt fields for: @themes.', [
+      '@themes' => implode(', ', $migrated),
+    ]);
+  }
+
+  return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
+}

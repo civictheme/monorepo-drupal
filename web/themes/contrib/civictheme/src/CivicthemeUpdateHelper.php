@@ -299,4 +299,45 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
     return NULL;
   }
 
+  /**
+   * Returns theme names that are CivicTheme or have CivicTheme as a base theme.
+   *
+   * @param \Drupal\Core\Extension\Extension[] $themes
+   *   Theme extension list keyed by theme name.
+   *
+   * @return string[]
+   *   Theme machine names.
+   */
+  public function logoAltThemesWithCivicthemeBase(array $themes): array {
+    $result = [];
+    foreach (array_keys($themes) as $theme_name) {
+      if ($this->logoAltThemeExtendsCivictheme($themes, $theme_name)) {
+        $result[] = $theme_name;
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * Checks if a theme is CivicTheme or has CivicTheme in its base theme chain.
+   *
+   * @param \Drupal\Core\Extension\Extension[] $themes
+   *   Theme extension list keyed by theme name.
+   * @param string $theme_name
+   *   Theme machine name.
+   *
+   * @return bool
+   *   TRUE if the theme is CivicTheme or has it in its base theme chain.
+   */
+  public function logoAltThemeExtendsCivictheme(array $themes, string $theme_name): bool {
+    if ($theme_name === 'civictheme') {
+      return TRUE;
+    }
+    if (!isset($themes[$theme_name]) || !isset($themes[$theme_name]->info['base theme'])) {
+      return FALSE;
+    }
+    $base_theme = $themes[$theme_name]->info['base theme'];
+    return $this->logoAltThemeExtendsCivictheme($themes, $base_theme);
+  }
+
 }

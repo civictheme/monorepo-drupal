@@ -52,9 +52,12 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
+                image_alt:
+                  label: 'Primary logo image "alt" text'
+                  type: string
             secondary:
               type: mapping
-              label: Primary
+              label: Secondary
               mapping:
                 light:
                   type: mapping
@@ -92,9 +95,9 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
-            image_alt:
-              label: 'Logo image "alt" text'
-              type: string
+                image_alt:
+                  label: 'Secondary logo image "alt" text'
+                  type: string
         header:
           type: mapping
           label: 'Header settings'
