@@ -54,6 +54,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $allowed_extensions = implode(' ', $allowed_extensions);
 
     foreach ($logo_types as $logo_type) {
+      /** @phpstan-ignore-next-line */
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
         '#title' => $this->t('@logo_type logo', [
@@ -72,7 +73,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       ];
       foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
-          // @phpstan-ignore-next-line
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
             '#title' => $this->t('@logo_type logo @theme @breakpoint', [
