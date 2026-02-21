@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * CivicTheme utilities.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
 

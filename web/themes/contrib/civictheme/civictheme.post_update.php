@@ -1216,6 +1216,9 @@ function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
  * in their base theme chain).
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_post_update_migrate_logo_image_alt_to_per_type(): TranslatableMarkup {
   $config_factory = \Drupal::configFactory();
@@ -1251,12 +1254,9 @@ function civictheme_post_update_migrate_logo_image_alt_to_per_type(): Translatab
     }
 
     $config->clear('components.logo.image_alt');
+    $config->save();
     if ($updated) {
-      $config->save();
       $migrated[] = $theme_name;
-    }
-    else {
-      $config->save();
     }
   }
 
