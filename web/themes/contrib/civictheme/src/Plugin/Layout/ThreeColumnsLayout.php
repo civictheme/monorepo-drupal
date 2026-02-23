@@ -12,12 +12,28 @@ use Drupal\Core\Plugin\PluginFormInterface;
 class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
+   * Default mobile stack order for the five layout regions.
+   *
+   * Keys are CSS custom property names used by the layout SCSS.
+   */
+  const MOBILE_STACK_ORDER_DEFAULTS = [
+    'stl' => 1,
+    'str' => 2,
+    'm' => 3,
+    'sbl' => 4,
+    'sbr' => 5,
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
     $configuration = parent::defaultConfiguration();
 
-    return $configuration + ['is_contained' => FALSE];
+    return $configuration + [
+      'is_contained' => FALSE,
+      'mobile_stack_order' => self::MOBILE_STACK_ORDER_DEFAULTS,
+    ];
   }
 
   /**
@@ -44,7 +60,47 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
       ],
     ];
 
+    $weight_options = array_combine(range(1, 5), range(1, 5));
+    $mobile_stack_order = $this->configuration['mobile_stack_order'] ?? self::MOBILE_STACK_ORDER_DEFAULTS;
+
+    $region_labels = [
+      'stl' => $this->t('Sidebar top left'),
+      'str' => $this->t('Sidebar top right'),
+      'm' => $this->t('Main'),
+      'sbl' => $this->t('Sidebar bottom left'),
+      'sbr' => $this->t('Sidebar bottom right'),
+    ];
+
+    $form['mobile_stack_order'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Mobile stack order'),
+      '#description' => $this->t('Configure the order in which regions stack on mobile. Lower numbers appear first. Each weight must be unique.'),
+      '#tree' => TRUE,
+    ];
+
+    foreach ($region_labels as $key => $label) {
+      $form['mobile_stack_order'][$key] = [
+        '#type' => 'select',
+        '#title' => $label,
+        '#default_value' => $mobile_stack_order[$key] ?? self::MOBILE_STACK_ORDER_DEFAULTS[$key],
+        '#options' => $weight_options,
+      ];
+    }
+
     return parent::buildConfigurationForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+    $mobile_stack_order = $form_state->getValue('mobile_stack_order');
+    if (is_array($mobile_stack_order)) {
+      $values = array_map('intval', $mobile_stack_order);
+      if (count($values) !== count(array_unique($values))) {
+        $form_state->setErrorByName('mobile_stack_order', $this->t('Each mobile stack order weight must be unique.'));
+      }
+    }
   }
 
   /**
@@ -54,6 +110,10 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
     parent::submitConfigurationForm($form, $form_state);
     $this->configuration['is_contained'] = $form_state->getValue('is_contained');
     $this->configuration['vertical_spacing'] = $form_state->getValue('vertical_spacing');
+    $mobile_stack_order = $form_state->getValue('mobile_stack_order');
+    if (is_array($mobile_stack_order)) {
+      $this->configuration['mobile_stack_order'] = array_map('intval', $mobile_stack_order);
+    }
   }
 
 }

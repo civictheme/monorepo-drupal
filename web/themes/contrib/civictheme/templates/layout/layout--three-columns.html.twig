@@ -52,7 +52,15 @@
       {% endif %}
     {% endblock %}
 
-    <div class="ct-layout__inner {{ is_contained_class }}">
+    {% set stack_style_parts = [] %}
+    {% if mobile_stack_order is defined and mobile_stack_order is not empty %}
+      {% for var, weight in mobile_stack_order %}
+        {% set stack_style_parts = stack_style_parts|merge(['--' ~ var ~ ':' ~ weight]) %}
+      {% endfor %}
+    {% endif %}
+    {% set stack_style = stack_style_parts|join(';') %}
+
+    <div class="ct-layout__inner {{ is_contained_class }}"{% if stack_style %} style="{{ stack_style }}"{% endif %}>
       {% if content.main is not empty %}
         {% block content_block %}
           <section data-region="main" class="layout-builder__region js-layout-builder-region ct-layout__main" {% if content_attributes is not empty %}{{- content_attributes -}}{% endif %}>
