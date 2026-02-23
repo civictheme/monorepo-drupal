@@ -225,6 +225,32 @@ civictheme.settings:
             use_media_name:
               label: 'Use name of media'
               type: boolean
+        layout:
+          type: mapping
+          label: 'Layout settings'
+          mapping:
+            mobile_stack_order_enabled:
+              label: 'Enable custom mobile stack order'
+              type: boolean
+            mobile_stack_order:
+              type: mapping
+              label: 'Mobile stack order'
+              mapping:
+                stl:
+                  label: 'Sidebar top left'
+                  type: integer
+                str:
+                  label: 'Sidebar top right'
+                  type: integer
+                m:
+                  label: 'Main'
+                  type: integer
+                sbl:
+                  label: 'Sidebar bottom left'
+                  type: integer
+                sbr:
+                  label: 'Sidebar bottom right'
+                  type: integer
         search:
           type: mapping
           label: 'Search settings'
@@ -405,3 +431,22 @@ layout_plugin.settings.civictheme_three_columns:
     is_contained:
       type: boolean
       label: 'Is Contained'
+    mobile_stack_order:
+      type: mapping
+      label: 'Mobile stack order'
+      mapping:
+        stl:
+          label: 'Sidebar top left'
+          type: integer
+        str:
+          label: 'Sidebar top right'
+          type: integer
+        m:
+          label: 'Main'
+          type: integer
+        sbl:
+          label: 'Sidebar bottom left'
+          type: integer
+        sbr:
+          label: 'Sidebar bottom right'
+          type: integer

@@ -1205,3 +1205,42 @@ function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
 
   return (string) new TranslatableMarkup('Added field_c_n_hide_sidebar to civictheme_event content type and placed it under Appearance.');
 }
+
+/**
+ * Add mobile stack order settings to theme configuration.
+ *
+ * Existing sites get the feature disabled so behaviour is unchanged.
+ * New installs receive it enabled via config/install.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_mobile_stack_order_settings(): string {
+  /** @var \Drupal\Core\Theme\ActiveTheme $theme */
+  $theme = \Drupal::service('theme.manager')->getActiveTheme();
+  $config_name = $theme->getName() . '.settings';
+
+  $config = \Drupal::configFactory()->getEditable($config_name);
+
+  if ($config->isNew()) {
+    return (string) new TranslatableMarkup('Theme settings config @config does not exist. Skipping update.', [
+      '@config' => $config_name,
+    ]);
+  }
+
+  $defaults = [
+    'stl' => 1,
+    'str' => 2,
+    'm' => 3,
+    'sbl' => 4,
+    'sbr' => 5,
+  ];
+
+  // Disabled by default for existing sites.
+  $config->set('components.layout.mobile_stack_order_enabled', FALSE);
+  $config->set('components.layout.mobile_stack_order', $defaults);
+  $config->save();
+
+  return (string) new TranslatableMarkup('Added mobile stack order settings to @config with feature disabled.', [
+    '@config' => $config_name,
+  ]);
+}

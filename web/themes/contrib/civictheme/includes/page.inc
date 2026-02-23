@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\Plugin\Layout\ThreeColumnsLayout;
 use Drupal\Core\Cache\Cache;
 
 /**
@@ -23,6 +24,20 @@ function _civictheme_preprocess_page(array &$variables): void {
   // For nodes this is set to false via _civictheme_preprocess_page_node as
   // layout is controlled via layout templates.
   $variables['page']['content_contained'] = $variables['page']['content_contained'] ?? TRUE;
+
+  // Set mobile stack order from theme settings.
+  $mobile_stack_order_enabled = civictheme_get_theme_config_manager()->load('components.layout.mobile_stack_order_enabled', FALSE);
+  if ($mobile_stack_order_enabled) {
+    $defaults = ThreeColumnsLayout::MOBILE_STACK_ORDER_DEFAULTS;
+    $mobile_stack_order = [];
+    foreach ($defaults as $key => $default) {
+      $mobile_stack_order[$key] = (int) civictheme_get_theme_config_manager()->load('components.layout.mobile_stack_order.' . $key, $default);
+    }
+    // Only pass custom order if it differs from defaults.
+    if ($mobile_stack_order !== $defaults) {
+      $variables['page']['mobile_stack_order'] = $mobile_stack_order;
+    }
+  }
 }
 
 /**
