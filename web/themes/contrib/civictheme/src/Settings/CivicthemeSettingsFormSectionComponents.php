@@ -54,15 +54,25 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $allowed_extensions = implode(' ', $allowed_extensions);
 
     foreach ($logo_types as $logo_type) {
+      /** @phpstan-ignore-next-line */
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
         '#title' => $this->t('@logo_type logo', [
           '@logo_type' => ucfirst($logo_type),
         ]),
       ];
+      $form['components']['logo'][$logo_type]['image_alt'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('@logo_type logo image "alt" text', [
+          '@logo_type' => ucfirst($logo_type),
+        ]),
+        '#description' => $this->t('Text for the <code>alt</code> attribute of the @logo_type logo image.', [
+          '@logo_type' => ucfirst($logo_type),
+        ]),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.logo.%s.image_alt', $logo_type)),
+      ];
       foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
-          // @phpstan-ignore-next-line
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
             '#title' => $this->t('@logo_type logo @theme @breakpoint', [
@@ -104,13 +114,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         }
       }
     }
-
-    $form['components']['logo']['image_alt'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Logo image "alt" text'),
-      '#description' => $this->t('Text for the <code>alt</code> attribute of the site logo image.'),
-      '#default_value' => $this->themeConfigManager->load('components.logo.image_alt'),
-    ];
 
     $form['components']['site_slogan'] = [
       '#type' => 'details',

@@ -39,9 +39,9 @@ function civictheme_preprocess_block__system_branding_block(array &$variables): 
     $logo_type = $is_footer_region ? civictheme_get_theme_config_manager()->load('components.footer.logo_type') : civictheme_get_theme_config_manager()->load('components.header.logo_type');
     $variables['type'] = str_replace('_', '-', $logo_type ?? CivicthemeConstants::LOGO_TYPE_DEFAULT);
     civictheme_add_modifier_class($variables, $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo');
-    $logo_alt = civictheme_get_theme_config_manager()->load('components.logo.image_alt') ?? '';
 
     foreach (['primary', 'secondary'] as $type) {
+      $logo_alt = civictheme_get_theme_config_manager()->load(sprintf('components.logo.%s.image_alt', $type)) ?? '';
       foreach (['desktop', 'mobile'] as $breakpoint) {
         $logo_image = civictheme_get_theme_config_manager()->load(sprintf('components.logo.%s.%s.%s.path', $type, $theme, $breakpoint), '');
         if (!empty($logo_image)) {

@@ -63,10 +63,10 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
    *   Optional prefix to add to every generated variables.
    *   Should not include '--' (the CSS variable prefix).
    *
-   * @return string
+   * @return string|null
    *   Generated stylesheet URI.
    */
-  public function generate(array $variables, array $parent_selectors = ['html'], string $prefix = ''): string {
+  public function generate(array $variables, array $parent_selectors = ['html'], string $prefix = ''): null|string {
     $filepath = $this->getStylesheetUri();
     if (is_file($filepath) && file_exists($filepath)) {
       return $filepath;
