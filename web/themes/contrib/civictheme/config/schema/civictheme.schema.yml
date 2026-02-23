@@ -431,6 +431,9 @@ layout_plugin.settings.civictheme_three_columns:
     is_contained:
       type: boolean
       label: 'Is Contained'
+    mobile_stack_order_enabled:
+      type: boolean
+      label: 'Enable custom mobile stack order'
     mobile_stack_order:
       type: mapping
       label: 'Mobile stack order'

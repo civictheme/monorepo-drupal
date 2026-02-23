@@ -32,6 +32,7 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
     return $configuration + [
       'is_contained' => FALSE,
+      'mobile_stack_order_enabled' => FALSE,
       'mobile_stack_order' => self::MOBILE_STACK_ORDER_DEFAULTS,
     ];
   }
@@ -60,6 +61,13 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
       ],
     ];
 
+    $form['mobile_stack_order_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable custom mobile stack order'),
+      '#default_value' => $this->configuration['mobile_stack_order_enabled'],
+      '#description' => $this->t('Override the default mobile stacking order of layout regions for this section.'),
+    ];
+
     $weight_options = array_combine(range(1, 5), range(1, 5));
     $mobile_stack_order = $this->configuration['mobile_stack_order'] ?? self::MOBILE_STACK_ORDER_DEFAULTS;
 
@@ -76,6 +84,11 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
       '#title' => $this->t('Mobile stack order'),
       '#description' => $this->t('Configure the order in which regions stack on mobile. Lower numbers appear first. Each weight must be unique.'),
       '#tree' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="layout_settings[mobile_stack_order_enabled]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     foreach ($region_labels as $key => $label) {
@@ -94,6 +107,9 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+    if (!$form_state->getValue('mobile_stack_order_enabled')) {
+      return;
+    }
     $mobile_stack_order = $form_state->getValue('mobile_stack_order');
     if (is_array($mobile_stack_order)) {
       $values = array_map('intval', $mobile_stack_order);
@@ -110,6 +126,7 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
     parent::submitConfigurationForm($form, $form_state);
     $this->configuration['is_contained'] = $form_state->getValue('is_contained');
     $this->configuration['vertical_spacing'] = $form_state->getValue('vertical_spacing');
+    $this->configuration['mobile_stack_order_enabled'] = (bool) $form_state->getValue('mobile_stack_order_enabled');
     $mobile_stack_order = $form_state->getValue('mobile_stack_order');
     if (is_array($mobile_stack_order)) {
       $this->configuration['mobile_stack_order'] = array_map('intval', $mobile_stack_order);

@@ -1240,7 +1240,52 @@ function civictheme_post_update_add_mobile_stack_order_settings(): string {
   $config->set('components.layout.mobile_stack_order', $defaults);
   $config->save();
 
-  return (string) new TranslatableMarkup('Added mobile stack order settings to @config with feature disabled.', [
+  // Also update any existing Layout Builder sections to disable the feature.
+  // Prior to this update, sections may have mobile_stack_order configured
+  // without an enabled flag, so we ensure the override is explicitly disabled.
+  $entity_displays = LayoutBuilderEntityViewDisplay::loadMultiple();
+  $updated_displays = [];
+
+  foreach ($entity_displays as $entity_display) {
+    if (!$entity_display->isLayoutBuilderEnabled()) {
+      continue;
+    }
+
+    $sections = $entity_display->getThirdPartySetting('layout_builder', 'sections');
+    if (empty($sections)) {
+      continue;
+    }
+
+    $display_updated = FALSE;
+    foreach ($sections as $section) {
+      if ($section->getLayoutId() !== 'civictheme_three_columns') {
+        continue;
+      }
+
+      $settings = $section->getLayoutSettings();
+      if (!isset($settings['mobile_stack_order_enabled'])) {
+        $settings['mobile_stack_order_enabled'] = FALSE;
+        $section->setLayoutSettings($settings);
+        $display_updated = TRUE;
+      }
+    }
+
+    if ($display_updated) {
+      $entity_display->setThirdPartySetting('layout_builder', 'sections', $sections);
+      $entity_display->save();
+      $updated_displays[] = $entity_display->id();
+    }
+  }
+
+  $message = (string) new TranslatableMarkup('Added mobile stack order settings to @config with feature disabled.', [
     '@config' => $config_name,
   ]);
+
+  if (!empty($updated_displays)) {
+    $message .= ' ' . (string) new TranslatableMarkup('Updated Layout Builder displays: @displays.', [
+      '@displays' => implode(', ', $updated_displays),
+    ]);
+  }
+
+  return $message;
 }

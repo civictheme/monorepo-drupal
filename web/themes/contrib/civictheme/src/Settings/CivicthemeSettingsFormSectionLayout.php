@@ -74,6 +74,8 @@ class CivicthemeSettingsFormSectionLayout extends CivicthemeSettingsFormSectionB
 
   /**
    * Validate callback for layout settings.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
    */
   public function validateLayout(array &$form, FormStateInterface $form_state): void {
     $enabled = $form_state->getValue(['components', 'layout', 'mobile_stack_order_enabled']);

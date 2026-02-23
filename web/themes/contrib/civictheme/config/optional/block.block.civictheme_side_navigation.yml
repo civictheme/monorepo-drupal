@@ -33,3 +33,11 @@ visibility:
     id: request_path
     negate: true
     pages: /search
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      civictheme_alert: civictheme_alert
+      civictheme_event: civictheme_event
