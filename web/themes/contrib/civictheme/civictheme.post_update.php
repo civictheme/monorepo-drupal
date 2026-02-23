@@ -965,6 +965,55 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
 }
 
 /**
+ * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
+  $new_configs = [
+    // Paragraph type definition.
+    'paragraphs.paragraphs_type.civictheme_fast_fact_card' => 'paragraphs_type',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_link' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_title' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_fast_fact_card.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_fast_fact_card.default' => 'entity_view_display',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($new_configs, $config_path);
+
+  // Enable civictheme_fast_fact_card for civictheme_manual_list.
+  $field_config_name = 'field.field.paragraph.civictheme_manual_list.field_c_p_list_items';
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+  if (!$field_config->isNew()) {
+    $handler_settings = $field_config->get('settings.handler_settings') ?: [];
+    // Ensure target_bundles exists.
+    if (!isset($handler_settings['target_bundles'])) {
+      $handler_settings['target_bundles'] = [];
+    }
+    $handler_settings['target_bundles']['civictheme_fast_fact_card'] = 'civictheme_fast_fact_card';
+
+    // Ensure target_bundles_drag_drop exists.
+    if (!isset($handler_settings['target_bundles_drag_drop'])) {
+      $handler_settings['target_bundles_drag_drop'] = [];
+    }
+    $handler_settings['target_bundles_drag_drop']['civictheme_fast_fact_card'] = [
+      'weight' => -54,
+      'enabled' => TRUE,
+    ];
+
+    $field_config->set('settings.handler_settings', $handler_settings);
+    $field_config->save();
+  }
+
+  return (string) new TranslatableMarkup('Added civictheme_fast_fact_card paragraph type and enabled it for manual list.');
+}
+
+/**
  * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
