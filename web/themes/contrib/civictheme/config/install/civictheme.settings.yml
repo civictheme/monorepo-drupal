@@ -17,6 +17,7 @@ components:
           path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_desktop.svg
         mobile:
           path: themes/contrib/civictheme/dist/assets/logos/logo_primary_dark_mobile.svg
+      image_alt: 'Logo image'
     secondary:
       light:
         desktop:
@@ -28,7 +29,7 @@ components:
           path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_dark_desktop.png
         mobile:
           path: themes/contrib/civictheme/dist/assets/logos/logo_secondary_dark_mobile.png
-    image_alt: 'Logo image'
+      image_alt: 'Logo image'
   header:
     theme: light
     logo_type: inline
