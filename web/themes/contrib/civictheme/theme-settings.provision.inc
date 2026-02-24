@@ -929,7 +929,7 @@ function _civictheme_provision__blocks__copyright(array $block, $theme_name): vo
     'type' => 'civictheme_content',
   ]);
   $paragraph->set('field_c_p_content', [
-    'value' => "<p class=\"text-align-right ct-text-small\">©2024 Commonwealth of Australia</p>\r\n",
+    'value' => "<p class=\"text-align-right ct-text-small\">© 2026 Commonwealth of Australia</p>\r\n",
     'format' => 'civictheme_rich_text',
   ]);
   $paragraph->set('field_c_p_theme', CivicthemeConstants::THEME_DARK);
