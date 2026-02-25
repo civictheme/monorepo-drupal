@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Url;
 
 /**
@@ -263,7 +264,7 @@ function civictheme_preprocess_field__file(array &$variables): void {
       'name' => $file->getFilename(),
       'ext' => pathinfo($file->getFilename(), PATHINFO_EXTENSION),
       'url' => $file_url_generator->generateAbsoluteString($file->getFileUri()),
-      'size' => format_size($file->getSize()),
+      'size' => ByteSizeMarkup::create($file->getSize()),
       'changed' => $date_formatter->format($file->getChangedTime(), 'civictheme_short_date'),
     ];
   }
