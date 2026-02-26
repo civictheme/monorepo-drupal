@@ -541,6 +541,16 @@ jobs:
             fi
           when: always
 
+      - run:
+          name: Extract comparison statistics
+          command: ./scripts/ci/vr-extract-stats.sh
+          when: always
+
+      - run:
+          name: Post visual regression results to PR
+          command: ./scripts/ci/vr-post-pr-comment.sh
+          when: always
+
       - store_artifacts:
           path: /tmp/vr-screenshots
           destination: visual-regression/screenshots
