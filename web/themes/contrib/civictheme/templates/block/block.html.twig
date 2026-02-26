@@ -12,7 +12,13 @@
 <div{{ drupal_attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    {% include 'civictheme:heading' with {
+      content: label,
+      theme: theme|default('light'),
+      level:  label_heading_level|default('2'),
+      modifier_class: title_attributes.getAttribute('class'),
+      attributes: title_attributes.removeAttribute('class'),
+    } %}
   {% endif %}
   {{ title_suffix }}
   {% block content_block %}
