@@ -31,7 +31,6 @@ node_modules
 !.docker/scripts
 !.docker/entrypoints
 !.docker/config
-!.visual-regression
 !.env
 !.eslintrc.json
 !.sass-lint.yml

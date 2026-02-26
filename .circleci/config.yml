@@ -465,6 +465,13 @@ jobs:
             docker compose exec -T cli sh -c "apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefont"
             docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal"
 
+      # Copy VR project config into the container (not included in Docker build context).
+      - run:
+          name: Copy visual regression config into container
+          command: |
+            docker compose exec -T cli sh -c "mkdir -p /app/.visual-regression/civictheme-ci"
+            docker compose cp .visual-regression/civictheme-ci/project.json cli:/app/.visual-regression/civictheme-ci/project.json
+
       # Take screenshots for the current branch.
       - run:
           name: Take visual regression screenshots
