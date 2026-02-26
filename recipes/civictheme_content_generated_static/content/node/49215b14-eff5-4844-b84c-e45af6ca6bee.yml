@@ -1,0 +1,423 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 49215b14-eff5-4844-b84c-e45af6ca6bee
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    48632cac-2e8d-436d-9938-2ccdf0efa903: media
+    833511b2-aae8-40ad-a584-cc0246189ec2: taxonomy_term
+    6b72fc35-5061-40e5-88c4-e4166fcd9ade: taxonomy_term
+    106e6e14-0c6d-40cf-85dd-bcf0eb87fa03: taxonomy_term
+    9fd5e9cd-37d3-4d07-9235-9141bf6ab2db: taxonomy_term
+    69b264ff-cb55-4156-bf72-e244a7bbc92d: taxonomy_term
+    310e5590-9cf1-4cda-b63f-ea8c61e3a442: taxonomy_term
+    10229b37-ed3a-4971-aec1-4167f6bf2e5b: taxonomy_term
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+    bba1ff94-2e5b-429c-985d-30141c5c8234: taxonomy_term
+    f2b12e05-3b89-467e-9d7f-6a69164646af: media
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Ali: /ge, Com: 2, Sta: Y, Mod: pub, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Promo card'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/civictheme-no-sidebar/page-component-promo-card
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5ad02eb1-40c9-4684-809a-1d9533bdd6b7
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4ccb833b-1b9e-4424-b474-05ff80767e2b
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 48632cac-2e8d-436d-9938-2ccdf0efa903
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Excepturi-laborum-minus-necessitatibus.-Minus.'
+                      title: 'Ducimus eligendi.'
+                      options: {  }
+                  field_c_p_subtitle:
+                    -
+                      value: 'Assumenda cupiditate.'
+                  field_c_p_summary:
+                    -
+                      value: 'In molestiae occaecati possimus qui recusandae. Animi asperiores.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Eos iusto optio.'
+                  field_c_p_topics:
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6df29c82-6cd9-4e71-8fe2-ef4f61b9a43d
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Doloribus-iusto-officia-ut.-Culpa.'
+                      title: 'Blanditiis deserunt.'
+                      options: {  }
+                  field_c_p_subtitle:
+                    -
+                      value: 'Et itaque.'
+                  field_c_p_summary:
+                    -
+                      value: 'Alias aut quas ut. Assumenda consequatur dignissimos dolor.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'No image, Autem consequatur expedita.'
+                  field_c_p_topics:
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: adfe1548-758a-42f4-bcbe-c0c8127b151b
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_subtitle:
+                    -
+                      value: 'Deleniti mollitia.'
+                  field_c_p_summary:
+                    -
+                      value: 'Animi aut culpa maiores. Dignissimos dolor est laborum.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'No image, no link, Delectus dolores eligendi.'
+                  field_c_p_topics:
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+                    -
+                      entity: bba1ff94-2e5b-429c-985d-30141c5c8234
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e51f7782-48ed-4f8b-a1c7-3b2e2c21c429
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1108b854-6980-4d92-b2e7-0d05e4e7e32f
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: f2b12e05-3b89-467e-9d7f-6a69164646af
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Eligendi-expedita-officia.-Animi-dolorum.'
+                      title: 'Deserunt temporibus.'
+                      options: {  }
+                  field_c_p_subtitle:
+                    -
+                      value: 'Dolorum eveniet.'
+                  field_c_p_summary:
+                    -
+                      value: 'Molestiae sapiente tempore. At maxime quas quod repellat.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Facilis laborum officiis.'
+                  field_c_p_topics:
+                    -
+                      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+                    -
+                      entity: 833511b2-aae8-40ad-a584-cc0246189ec2
+                    -
+                      entity: 6b72fc35-5061-40e5-88c4-e4166fcd9ade
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 3bc79e7f-0090-4b3e-adbc-d5f69f442ad4
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'https://www.example.com/Dolor-omnis-optio-repudiandae.-Animi.'
+                      title: 'Laborum occaecati.'
+                      options: {  }
+                  field_c_p_subtitle:
+                    -
+                      value: 'Non officia.'
+                  field_c_p_summary:
+                    -
+                      value: 'Facere id maxime nihil odio perferendis repellendus voluptas.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'No image, Maiores molestiae saepe.'
+                  field_c_p_topics:
+                    -
+                      entity: 106e6e14-0c6d-40cf-85dd-bcf0eb87fa03
+                    -
+                      entity: 9fd5e9cd-37d3-4d07-9235-9141bf6ab2db
+                    -
+                      entity: 69b264ff-cb55-4156-bf72-e244a7bbc92d
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6a994175-a382-4dc0-8549-4a3996f0ff33
+                  bundle: civictheme_promo_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_subtitle:
+                    -
+                      value: 'Occaecati perferendis.'
+                  field_c_p_summary:
+                    -
+                      value: 'Expedita officia quod recusandae. Earum expedita maiores molestiae.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'No image, no link, Minus molestias mollitia.'
+                  field_c_p_topics:
+                    -
+                      entity: 310e5590-9cf1-4cda-b63f-ea8c61e3a442
+                    -
+                      entity: 10229b37-ed3a-4971-aec1-4167f6bf2e5b
+                    -
+                      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

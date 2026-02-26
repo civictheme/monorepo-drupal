@@ -1,0 +1,131 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 96b4c744-41e9-4270-a6e8-949df9cd39e1
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Automated list, Light, Pages, View as Promo card, Light card, Unlimited, Title, Multi exposed filter'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-component-automated-list-light-pages-view-promo-card-light-card-unlimited-title-multi-exposed-filter
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2c64f6f6-4411-43d2-a542-8bb919124c8d
+          bundle: civictheme_automated_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_list_column_count:
+            -
+              value: 4
+          field_c_p_list_content_type:
+            -
+              value: civictheme_page
+          field_c_p_list_filters_exp:
+            -
+              value: topic
+            -
+              value: type
+            -
+              value: title
+          field_c_p_list_item_theme:
+            -
+              value: light
+          field_c_p_list_item_view_as:
+            -
+              value: civictheme_promo_card
+          field_c_p_list_limit:
+            -
+              value: 0
+          field_c_p_list_limit_type:
+            -
+              value: unlimited
+          field_c_p_list_type:
+            -
+              value: civictheme_automated_list__block1
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Automated list title'
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none
