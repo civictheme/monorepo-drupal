@@ -157,12 +157,5 @@
     }
   },
   "createdAt": "2026-02-26T11:36:50.524Z",
-  "updatedAt": "2026-02-26T11:36:50.524Z",
-  "snapshots": {
-    "develop": {
-      "directory": "screenshot-sets/sets/develop",
-      "date": "2026-02-26T11:40:03.112Z",
-      "count": 360
-    }
-  }
+  "updatedAt": "2026-02-26T11:36:50.524Z"
 }
