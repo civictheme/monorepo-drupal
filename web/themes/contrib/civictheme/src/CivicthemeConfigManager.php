@@ -7,6 +7,7 @@ namespace Drupal\civictheme;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
+use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,8 +37,10 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The extension list.
    * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
+   * @param \Drupal\Core\Extension\ThemeSettingsProvider $themeSettingsProvider
+   *   The theme settings provider.
    */
-  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter) {
+  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected ThemeSettingsProvider $themeSettingsProvider) {
     $this->setTheme($this->themeManager->getActiveTheme());
   }
 
@@ -49,7 +52,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('config.factory'),
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
-      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class)
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
+      $container->get(ThemeSettingsProvider::class)
     );
   }
 
@@ -66,11 +70,11 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    */
   public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
-    if ($key == 'components.site_slogan.content') {
+    if ($key === 'components.site_slogan.content') {
       return $this->configFactory->getEditable('system.site')->get('slogan');
     }
 
-    return theme_get_setting($key, $this->theme->getName()) ?? $default;
+    return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
   }
 
   /**

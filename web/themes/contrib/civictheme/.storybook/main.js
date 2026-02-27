@@ -6,7 +6,7 @@ const config = {
   addons: [
     '@storybook/addon-links',
     '@whitespace/storybook-addon-html',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/html-vite',
