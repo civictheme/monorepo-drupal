@@ -1,4 +1,6 @@
-civictheme-local/
+civictheme-local/*
 !civictheme-local/project.json
-civictheme-ci/
+!civictheme-local/.gitignore
+civictheme-ci/*
 !civictheme-ci/project.json
+!civictheme-ci/.gitignore
