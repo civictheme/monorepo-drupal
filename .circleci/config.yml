@@ -77,7 +77,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:24.4.0
+      - image: drevops/ci-runner:26.1.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -524,15 +524,6 @@ jobs:
       - run:
           name: Extract comparison statistics
           command: ./scripts/ci/vr-extract-stats.sh
-          when: always
-
-      - run:
-          name: Upgrade Node.js for Netlify CLI
-          command: |
-            source /opt/circleci/.nvm/nvm.sh
-            nvm install 20
-            nvm use 20
-            echo 'source /opt/circleci/.nvm/nvm.sh && nvm use 20' >> "$BASH_ENV"
           when: always
 
       - run:
