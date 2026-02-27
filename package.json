@@ -1,8 +1,11 @@
 {
+  "workspaces": [
+    "scripts/civictheme-uikit-version-manager"
+  ],
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#4968efdb7fe4d36323b21e3e9a6b523ca748733c"
+    "@civictheme/uikit": "github:civictheme/uikit#ef12b4f20bb4e831f90adffb1f2ea8fa039fdb70"
   },
   "scripts": {
-    "uikit-change": "node scripts/civictheme-uikit-version-manager/index.mjs"
+    "uikit-change": "npm start --workspace=civictheme-uikit-version-change"
   }
 }

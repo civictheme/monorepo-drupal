@@ -258,11 +258,7 @@ commands:
   change-uikit:
     usage: Change the version of CivicTheme UI Kit the repository is using
     aliases: ["bump-uikit"]
-    cmd: |
-      pushd scripts/civictheme-uikit-version-manager
-      ([ -d "node_modules" ] || npm install)
-      npm run start
-      popd
+    cmd: npm run uikit-change
   local:
     usage: Custom local commands. See `ahoy local help`.
     cmd: |
