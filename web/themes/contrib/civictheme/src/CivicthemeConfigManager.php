@@ -7,7 +7,6 @@ namespace Drupal\civictheme;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
-use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,10 +36,10 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The extension list.
    * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
-   * @param \Drupal\Core\Extension\ThemeSettingsProvider $themeSettingsProvider
-   *   The theme settings provider.
+   * @param mixed $themeSettingsProvider
+   *   The theme settings provider (D11.3+), or NULL for D10.
    */
-  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected ThemeSettingsProvider $themeSettingsProvider) {
+  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected mixed $themeSettingsProvider = NULL) {
     $this->setTheme($this->themeManager->getActiveTheme());
   }
 
@@ -53,7 +52,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->get('Drupal\Core\Extension\ThemeSettingsProvider')
+      // @phpstan-ignore ternary.alwaysTrue
+      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL
     );
   }
 
@@ -74,7 +74,12 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->configFactory->getEditable('system.site')->get('slogan');
     }
 
-    return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
+    if ($this->themeSettingsProvider !== NULL) {
+      return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
+    }
+
+    // @phpstan-ignore function.deprecated
+    return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
   /**
