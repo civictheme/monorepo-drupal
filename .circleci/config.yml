@@ -527,6 +527,15 @@ jobs:
           when: always
 
       - run:
+          name: Upgrade Node.js for Netlify CLI
+          command: |
+            source /opt/circleci/.nvm/nvm.sh
+            nvm install 20
+            nvm use 20
+            echo 'source /opt/circleci/.nvm/nvm.sh && nvm use 20' >> "$BASH_ENV"
+          when: always
+
+      - run:
           name: Deploy visual regression report to Netlify
           command: ./scripts/ci/vr-deploy-netlify.sh
           when: always

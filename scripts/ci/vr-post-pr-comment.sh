@@ -4,7 +4,7 @@
 #
 # Expects /tmp/vr-stats.env to have been written by vr-extract-stats.sh and
 # optionally vr-deploy-netlify.sh (for VR_NETLIFY_URL).
-# Requires GITHUB_TOKEN, CIRCLE_PROJECT_USERNAME, CIRCLE_PROJECT_REPONAME,
+# Requires GITHUB_CT_PR_COMMENT, CIRCLE_PROJECT_USERNAME, CIRCLE_PROJECT_REPONAME,
 # CIRCLE_BRANCH, and CIRCLE_WORKFLOW_JOB_ID environment variables.
 #
 
@@ -16,7 +16,7 @@ REPO="${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
 COMMENT_MARKER="<!-- vr-drupal-comment -->"
 
 # Find the PR number for this branch.
-PR_NUMBER=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
+PR_NUMBER=$(curl -s -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
   "https://api.github.com/repos/${REPO}/pulls?head=${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}&state=open" \
   | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8'); const pr=JSON.parse(d); console.log(pr[0]?.number || '')")
 
@@ -67,7 +67,7 @@ ${COMMENT_MARKER}"
 fi
 
 # Check for existing comment to update.
-COMMENT_ID=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
+COMMENT_ID=$(curl -s -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
   "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments" \
   | node -e "
     const d=require('fs').readFileSync('/dev/stdin','utf8');
@@ -80,14 +80,14 @@ PAYLOAD=$(node -e "console.log(JSON.stringify({body: process.argv[1]}))" "${BODY
 
 if [ -n "${COMMENT_ID}" ]; then
   curl -s -X PATCH \
-    -H "Authorization: token ${GITHUB_TOKEN}" \
+    -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
     -H "Content-Type: application/json" \
     -d "${PAYLOAD}" \
     "https://api.github.com/repos/${REPO}/issues/comments/${COMMENT_ID}"
   echo "Updated existing PR comment ${COMMENT_ID}."
 else
   curl -s -X POST \
-    -H "Authorization: token ${GITHUB_TOKEN}" \
+    -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
     -H "Content-Type: application/json" \
     -d "${PAYLOAD}" \
     "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments"
