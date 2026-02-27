@@ -100,6 +100,8 @@ function _civictheme_preprocess_field__wrap_basic_content(array &$variables): vo
  * Collect field items into a single civictheme:tag-list component.
  *
  * Drupal's list formatter already resolves keys to human-readable labels.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_field__wrap_tag_list(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
@@ -247,6 +249,8 @@ function civictheme_preprocess_field__email(array &$variables): void {
 
 /**
  * Implements hook_preprocess_field__file().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_field__file(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
