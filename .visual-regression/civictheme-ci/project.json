@@ -2,7 +2,7 @@
   "name": "civictheme-ci",
   "directoryName": "civictheme-ci",
   "visual-diff": {
-    "base_path": "http://civictheme.docker.amazee.io",
+    "base_path": "http://nginx:8080",
     "paths": [
       "/generated-content/civictheme_event/event-14-minus-molestias-mollitia",
       "/generated-content/civictheme_event/event-08-aut-delectus-id",
