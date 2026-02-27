@@ -482,27 +482,12 @@ jobs:
               cli vr-drupal take civictheme-ci --id current --no-interactive
           no_output_timeout: 30m
 
-      # Debug: check where screenshots are stored in the container.
-      - run:
-          name: List screenshot files in container
-          command: docker compose exec -T cli find /app/.visual-regression/civictheme-ci/screenshot-sets -type f | head -20
-          when: always
-
       # Copy screenshots out of container to runner (for caching/artifacts).
       - run:
           name: Export screenshots from container
           command: |
             mkdir -p /tmp/vr-screenshots
             docker compose cp cli:/app/.visual-regression/civictheme-ci/screenshot-sets/sets/current /tmp/vr-screenshots/current
-          when: always
-
-      # Debug: verify what was exported to the host.
-      - run:
-          name: List exported screenshots on host
-          command: |
-            echo "File count:" && find /tmp/vr-screenshots -type f | wc -l
-            echo "Total size:" && du -sh /tmp/vr-screenshots
-            find /tmp/vr-screenshots -type f | head -10
           when: always
 
       # On develop: save screenshots as baseline cache for feature branch comparisons.
