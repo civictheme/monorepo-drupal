@@ -31,9 +31,10 @@
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
+    "@storybook/addon-docs": "10.2.13",
     "@storybook/addon-links": "10.2.13",
     "@storybook/html-vite": "10.2.13",
-    "@whitespace/storybook-addon-html": "^7.0.0",
+    "@whitespace/storybook-addon-html": "^9.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import-newlines": "^1.4.0",
     "glob": "^11.0.1",
@@ -43,10 +44,6 @@
     "stylelint-config-standard": "^23.0.0",
     "stylelint-config-standard-scss": "^2.0.1",
     "vite": "^6.3.6",
-    "vite-plugin-twig-drupal": "^1.6.0",
-    "@storybook/addon-docs": "10.2.13"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.11.8"
+    "vite-plugin-twig-drupal": "^1.6.0"
   }
 }
