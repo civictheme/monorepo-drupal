@@ -53,7 +53,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->get(ThemeSettingsProvider::class)
+      $container->get('Drupal\Core\Extension\ThemeSettingsProvider')
     );
   }
 
