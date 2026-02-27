@@ -52,7 +52,6 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      // @phpstan-ignore ternary.alwaysTrue
       $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL
     );
   }
@@ -78,7 +77,6 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
-    // @phpstan-ignore function.deprecated
     return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
