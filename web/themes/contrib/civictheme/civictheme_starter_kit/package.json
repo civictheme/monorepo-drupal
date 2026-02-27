@@ -45,5 +45,8 @@
     "stylelint-config-standard-scss": "^2.0.1",
     "vite": "^6.3.6",
     "vite-plugin-twig-drupal": "^1.6.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8"
   }
 }
