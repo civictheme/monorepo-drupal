@@ -11,10 +11,21 @@
     <exclude-pattern>*/web/core/*</exclude-pattern>
     <exclude-pattern>*/web/profiles/contrib/*</exclude-pattern>
     <exclude-pattern>*/web/modules/contrib/*</exclude-pattern>
-    <exclude-pattern>*/web/themes/contrib/*</exclude-pattern>
     <exclude-pattern>*/web/sites/*</exclude-pattern>
     <exclude-pattern>*/scripts/*</exclude-pattern>
     <exclude-pattern>*/tests/*Test.php</exclude-pattern>
+
+    <!-- Exclude other contrib themes. -->
+    <exclude-pattern>*/web/themes/contrib/gin/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/drupal_cms_olivero/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/easy_email_theme/*</exclude-pattern>
+
+    <!-- Include civictheme base theme but exclude its built/generated assets. -->
+    <exclude-pattern>*/web/themes/contrib/civictheme/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme/dist/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme/storybook-static/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme/.storybook/*</exclude-pattern>
+    <exclude-pattern>*/web/themes/contrib/civictheme/civictheme_starter_kit/*</exclude-pattern>
 
     <rule ref="rulesets/unusedcode.xml"/>
     <rule ref="rulesets/codesize.xml"/>
