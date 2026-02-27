@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0fcb4792-b6de-4c64-a3ea-15c12b9b3fd7
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    78ccf538-7b2b-49fe-ab15-8f2c8eb894be: media
+    4069c2f7-3b9b-47b9-977c-c6b57ecce127: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 10. Dolor omnis optio.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-10-dolor-omnis-optio
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Minus molestias mollitia officiis qui</h2>
+        <p>Occaecati perferendis tempore. Accusamus id praesentium quas temporibus. Consequatur expedita mollitia optio voluptas. Accusamus dolor et. Itaque necessitatibus possimus praesentium. Aut consequatur deleniti hic necessitatibus placeat rerum ut voluptas voluptatum. Aut est fuga iusto officia perferendis praesentium recusandae tenetur. Officia qui reiciendis similique sint. Animi eligendi id. At debitis dolorum eos eveniet occaecati quibusdam reiciendis voluptatibus.</p>
+        <p>Expedita officia quod recusandae. Earum expedita maiores molestiae repellat. Distinctio maiores odio quas soluta tenetur. Asperiores assumenda odio optio praesentium quas repellat sint tenetur. Corrupti facilis officia. Delectus in occaecati perferendis quo tenetur.</p>
+        <h3>Mollitia non sunt. Animi eos</h3>
+        <p>Impedit non optio quod quos repudiandae sapiente tenetur. Blanditiis consequatur facere quas temporibus. Blanditiis minus perferendis. Impedit maxime officia. Corrupti delectus dolorum mollitia omnis placeat quos reiciendis. Aut minus quos voluptas. Debitis facilis officia rerum soluta. Alias delectus itaque iusto necessitatibus officiis sint tempore voluptatum.</p><a href="https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.">Cupiditate est.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3ecd0ee0-a07d-487c-8036-dca994d42d9d
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Officia officiis quos.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Fuga-id-impedit-necessitatibus-soluta.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Distinctio-harum-praesentium-quod-quos.'
+              title: 'Cumque delectus.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Laborum occaecati omnis. Eligendi possimus praesentium qui. Corrupti cupiditate eos laborum possimus quibusdam sunt temporibus. Et quos similique. Atque deserunt.'
+  field_c_n_thumbnail:
+    -
+      entity: 78ccf538-7b2b-49fe-ab15-8f2c8eb894be
+  field_c_n_topics:
+    -
+      entity: 4069c2f7-3b9b-47b9-977c-c6b57ecce127
+  field_c_n_vertical_spacing:
+    -
+      value: both

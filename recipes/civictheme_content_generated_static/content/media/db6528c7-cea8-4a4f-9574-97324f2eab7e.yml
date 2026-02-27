@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: db6528c7-cea8-4a4f-9574-97324f2eab7e
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    e2f86086-0269-4ad0-92c1-96670e613c18: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 34 Asperiores atque.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Atque dolor.'
+  field_c_m_image:
+    -
+      entity: e2f86086-0269-4ad0-92c1-96670e613c18
+      alt: 'Alt for Generated static Image media 34 Asperiores atque.'
+      title: ''
+      width: 1552
+      height: 846

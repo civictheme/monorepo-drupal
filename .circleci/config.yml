@@ -439,6 +439,109 @@ jobs:
       DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
     <<: *job-build
 
+  # Visual regression testing.
+  visual-regression:
+    <<: *runner_config
+    environment:
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - checkout
+      - *step_process_codebase
+      - *step_setup_remote_docker
+      - *step_setup_docker_network
+
+      # Build the site (reuse existing build script).
+      - run:
+          name: Build site
+          command: ./scripts/drevops/build.sh
+          no_output_timeout: 30m
+
+      # Install Chromium + vr-drupal in the CLI container.
+      - run:
+          name: Install visual regression tools
+          command: |
+            docker compose exec -T cli sh -c "apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefont"
+            docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal"
+
+      # Copy VR project config into the container (not included in Docker build context).
+      - run:
+          name: Copy visual regression config into container
+          command: |
+            docker compose exec -T cli sh -c "mkdir -p /app/.visual-regression/civictheme-ci"
+            docker compose cp .visual-regression/civictheme-ci/project.json cli:/app/.visual-regression/civictheme-ci/project.json
+
+      # Take screenshots for the current branch.
+      - run:
+          name: Take visual regression screenshots
+          command: |
+            docker compose exec -T \
+              -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+              -e PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
+              cli vr-drupal take civictheme-ci --id current --no-interactive
+          no_output_timeout: 30m
+
+      # Copy screenshots out of container to runner (for caching/artifacts).
+      - run:
+          name: Export screenshots from container
+          command: |
+            mkdir -p /tmp/vr-screenshots
+            docker compose cp cli:/app/.visual-regression/civictheme-ci/screenshot-sets/sets/current /tmp/vr-screenshots/current
+          when: always
+
+      # On develop: save as baseline cache.
+      - run:
+          name: Prepare baseline (develop only)
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "develop" ]; then
+              mkdir -p /tmp/vr-baseline
+              cp -r /tmp/vr-screenshots/current /tmp/vr-baseline/baseline
+              echo "Baseline saved for caching."
+            else
+              echo "Not develop branch, skipping baseline save."
+            fi
+          when: always
+
+      - save_cache:
+          key: vr-baseline-v1-{{ .BuildNum }}
+          paths:
+            - /tmp/vr-baseline
+          when: always
+
+      # On feature branches: restore baseline and compare.
+      - restore_cache:
+          keys:
+            - vr-baseline-v1-
+
+      - run:
+          name: Compare against baseline
+          command: ./scripts/ci/vr-compare-baseline.sh
+          when: always
+
+      - run:
+          name: Extract comparison statistics
+          command: ./scripts/ci/vr-extract-stats.sh
+          when: always
+
+      - run:
+          name: Deploy visual regression report to Netlify
+          command: ./scripts/ci/vr-deploy-netlify.sh
+          when: always
+
+      - run:
+          name: Post visual regression results to PR
+          command: ./scripts/ci/vr-post-pr-comment.sh
+          when: always
+
+      - store_artifacts:
+          path: /tmp/vr-screenshots
+          destination: visual-regression/screenshots
+
+      - store_artifacts:
+          path: /tmp/vr-report
+          destination: visual-regression/report
+
   # Deploy artifact.
   deploy_artifact:
     <<: *runner_config
@@ -614,6 +717,17 @@ workflows:
             - build-isolated-php-83-next
             # - build-isolated-php-84
             # - build-isolated-php-84-next
+          filters:
+            branches:
+              ignore: /^content\/.*/
+            tags:
+              only: /.*/
+
+      - visual-regression:
+          requires:
+            - build-isolated-php-83
+            - build-isolated-php-83-legacy
+            - build-isolated-php-83-next
           filters:
             branches:
               ignore: /^content\/.*/

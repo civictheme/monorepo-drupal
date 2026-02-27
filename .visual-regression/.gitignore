@@ -1,0 +1,4 @@
+civictheme-local/
+!civictheme-local/project.json
+civictheme-ci/
+!civictheme-ci/project.json
