@@ -1,0 +1,112 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4fec9451-baa9-42a1-8213-3a539182678e
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Sum: Duc, Com: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Summary, Content'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-summary-content
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 84adcefa-241f-4bef-ab41-b17344d72548
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Autem consequatur expedita facere laborum</h2>
+                <p>Et itaque provident rerum. Delectus dignissimos facere hic id laborum maiores molestias quo. Atque culpa delectus distinctio itaque quo sunt tenetur voluptates. Deserunt dolores maxime molestiae. Animi atque est excepturi fuga quas soluta. Autem dignissimos harum nam voluptas. Dolor earum eveniet. Distinctio facere iusto voluptatum. Blanditiis corrupti debitis doloribus excepturi itaque quibusdam repellat soluta tenetur.</p>
+                <p>Alias aut quas ut. Assumenda consequatur dignissimos dolor et hic id occaecati possimus sunt. Autem facere id necessitatibus recusandae repudiandae. Alias assumenda blanditiis facere perferendis saepe. Aut cumque id libero repellat voluptatibus. Asperiores atque consequatur distinctio facilis fuga provident quibusdam quo voluptatibus. Eligendi eos et expedita tempore voluptatum. Maxime minus molestiae saepe. Alias cupiditate sunt vero. Consequatur cupiditate in nobis non voluptas.</p>
+                <h3>Doloribus iusto officia ut. Culpa</h3>
+                <p>Blanditiis deserunt fuga itaque quo reiciendis repellendus sapiente sunt. Distinctio minus repellat voluptatibus voluptatum. Corrupti distinctio dolorum earum eligendi repellat repellendus sapiente. Doloribus excepturi expedita maiores molestiae officia tenetur ut voluptas. Cupiditate dolores odio quas. Animi aut consequatur doloribus laborum sunt. Asperiores deleniti ducimus et excepturi maiores quas qui voluptates. Deleniti dignissimos excepturi mollitia voluptas.</p><a href="https://www.example.com/Delectus-dolores-eligendi-hic-laborum.">Deleniti mollitia.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Ducimus eligendi nobis. Debitis eligendi est hic iusto quibusdam vero voluptatum. Aut distinctio facilis officia repudiandae sunt. Assumenda autem eligendi iusto odio repellat voluptas voluptatum. Autem corrupti est fuga officia saepe soluta. Animi aut iusto maxime nobis provident. Accusamus asperiores culpa harum libero non sapiente ut voluptates. Deserunt eligendi hic laborum quod recusandae temporibus voluptas. Aut ducimus impedit necessitatibus officia optio possimus quod similique voluptatibus.'
+  field_c_n_vertical_spacing:
+    -
+      value: none

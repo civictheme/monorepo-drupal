@@ -1,0 +1,120 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7aafb0f1-57c8-47a9-881e-29d2f373dfe9
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    ecdf9f4b-73de-4d84-9b50-7f91efd73352: media
+    78d9bda2-9d9a-4355-ac3a-248bf56de1b2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Eve, Thu: Y, Sum: Sum, Top: 1, Bod: 2, Fie: Y, Ver: bot, Sho: Y, Dat: 2, Loc: 1, Sta: Y, Mod: pub, Ali: /ge'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Event 08. Aut delectus id.'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_event/event-08-aut-delectus-id
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: |-
+        <h2>Dignissimos doloribus harum nihil quos</h2>
+        <p>Dolores eos maxime temporibus. Asperiores aut doloribus dolorum id nobis tempore. Assumenda blanditiis corrupti debitis earum fuga nobis provident qui recusandae. Placeat quod tenetur. Deleniti eligendi eos sint. Culpa deserunt iusto libero officia optio praesentium tenetur. Accusamus animi deserunt fuga libero quod. Accusamus blanditiis cumque dolor id laborum placeat quibusdam similique.</p>
+        <p>Eveniet occaecati recusandae. Consequatur debitis dignissimos dolorum hic mollitia quidem reiciendis rerum sunt. Accusamus aut culpa maxime necessitatibus non quas. Accusamus expedita libero maiores maxime optio saepe sunt voluptatum. Cupiditate ducimus quibusdam. Blanditiis dolor id iusto libero recusandae. Deserunt maxime necessitatibus non. Alias asperiores at omnis. Dolores doloribus excepturi libero perferendis. Cumque dolor excepturi laborum mollitia quas quo temporibus.</p>
+        <h3>Eos iusto optio quidem similique</h3>
+        <p>Assumenda cupiditate mollitia quos repellendus. Alias culpa earum eligendi hic nam. Necessitatibus optio perferendis quidem. Dolores eligendi impedit itaque iusto omnis repellendus tenetur. Autem dignissimos possimus sunt. At cupiditate eligendi excepturi facere maiores molestiae officia optio. Consequatur culpa dignissimos maxime similique sunt tenetur. Animi consequatur cupiditate debitis occaecati optio placeat quibusdam quod. Consequatur distinctio est facere iusto libero sapiente voluptas voluptates.</p><a href="https://www.example.com/In-molestiae-occaecati-possimus-qui.">Excepturi laborum.</a>
+      format: civictheme_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-06-30T23:45:00'
+      end_value: '2022-08-14T05:30:00'
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 40d3e20c-4112-4d1b-9aae-a4a491b0a001
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Autem consequatur expedita.'
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.example.com/Ducimus-eligendi-nobis.-Debitis-eligendi.'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: both
+          field_c_p_view_link:
+            -
+              uri: 'https://www.example.com/Et-itaque-provident-rerum.-Delectus.'
+              title: 'Alias aut.'
+              options: {  }
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Summary Debitis delectus et in non rerum. At atque doloribus eligendi eos nobis omnis provident qui repudiandae. Asperiores doloribus excepturi id.'
+  field_c_n_thumbnail:
+    -
+      entity: ecdf9f4b-73de-4d84-9b50-7f91efd73352
+  field_c_n_topics:
+    -
+      entity: 78d9bda2-9d9a-4355-ac3a-248bf56de1b2
+  field_c_n_vertical_spacing:
+    -
+      value: both
