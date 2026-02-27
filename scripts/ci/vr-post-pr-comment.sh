@@ -2,7 +2,8 @@
 ##
 # Post or update a visual regression results comment on the GitHub PR.
 #
-# Expects /tmp/vr-stats.env to have been written by vr-extract-stats.sh.
+# Expects /tmp/vr-stats.env to have been written by vr-extract-stats.sh and
+# optionally vr-deploy-netlify.sh (for VR_NETLIFY_URL).
 # Requires GITHUB_TOKEN, CIRCLE_PROJECT_USERNAME, CIRCLE_PROJECT_REPONAME,
 # CIRCLE_BRANCH, and CIRCLE_WORKFLOW_JOB_ID environment variables.
 #
@@ -24,9 +25,15 @@ if [ -z "${PR_NUMBER}" ]; then
   exit 0
 fi
 
-# Build artifact URL.
-ARTIFACT_BASE="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0"
-REPORT_URL="${ARTIFACT_BASE}/visual-regression/report/baseline--current/index.html"
+# Build report URL — prefer Netlify, fall back to CircleCI artifact.
+if [ -n "${VR_NETLIFY_URL:-}" ]; then
+  REPORT_URL="${VR_NETLIFY_URL}"
+  REPORT_SOURCE="Netlify"
+else
+  ARTIFACT_BASE="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0"
+  REPORT_URL="${ARTIFACT_BASE}/visual-regression/report/baseline--current/index.html"
+  REPORT_SOURCE="CircleCI artifact"
+fi
 
 # Build comment body.
 if [ "${VR_HAS_RESULTS}" = "true" ]; then
@@ -50,7 +57,7 @@ if [ "${VR_HAS_RESULTS}" = "true" ]; then
 
 **Status:** ${STATUS_TEXT}
 
-[View full comparison report](${REPORT_URL}) (CircleCI artifact)
+[View full comparison report](${REPORT_URL}) (${REPORT_SOURCE})
 
 ${COMMENT_MARKER}"
 else

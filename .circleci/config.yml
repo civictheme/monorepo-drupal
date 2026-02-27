@@ -532,7 +532,7 @@ jobs:
               docker compose exec -T \
                 -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
                 -e PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
-                cli vr-drupal compare civictheme-ci --source baseline --target current --no-interactive || true
+                cli vr-drupal compare civictheme-ci --source baseline --target current --no-interactive --aggregate-screenshots || true
               # Copy comparison report out.
               mkdir -p /tmp/vr-report
               docker compose cp cli:/app/.visual-regression/civictheme-ci/screenshot-sets/comparisons/. /tmp/vr-report/ || true
@@ -544,6 +544,11 @@ jobs:
       - run:
           name: Extract comparison statistics
           command: ./scripts/ci/vr-extract-stats.sh
+          when: always
+
+      - run:
+          name: Deploy visual regression report to Netlify
+          command: ./scripts/ci/vr-deploy-netlify.sh
           when: always
 
       - run:
