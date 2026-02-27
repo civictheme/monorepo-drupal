@@ -463,7 +463,7 @@ jobs:
           name: Install visual regression tools
           command: |
             docker compose exec -T cli sh -c "apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefont"
-            docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal"
+            docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal@latest --prefer-online"
 
       # Copy VR project config into the container (not included in Docker build context).
       - run:
