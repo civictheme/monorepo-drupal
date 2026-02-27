@@ -503,17 +503,18 @@ jobs:
             fi
           when: always
 
-      # Only save cache on develop to avoid feature branches overwriting with empty data.
+      # Save cache with branch name in key. Feature branch caches are harmless
+      # throwaways — restore_cache only matches the develop prefix.
       - save_cache:
-          key: vr-baseline-v1-develop-{{ .BuildNum }}
+          key: vr-baseline-v2-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - /tmp/vr-baseline
           when: always
 
-      # On feature branches: restore baseline and compare.
+      # On feature branches: restore the latest develop baseline.
       - restore_cache:
           keys:
-            - vr-baseline-v1-develop-
+            - vr-baseline-v2-develop-
 
       - run:
           name: Compare against baseline
