@@ -77,7 +77,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:25.3.0
+      - image: drevops/ci-runner:26.1.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -226,6 +226,13 @@ job-build: &job-build
     - attach_workspace:
         at: /tmp/workspace
     - checkout
+    - run:
+        name: Install Ahoy
+        command: |
+          version=2.5.0
+          curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64"
+          chmod +x /usr/local/bin/ahoy
+          ahoy --version
     - *step_process_codebase
     - *step_setup_remote_docker
     - *step_setup_docker_network
@@ -534,6 +541,15 @@ jobs:
       - run:
           name: Post visual regression results to PR
           command: ./scripts/ci/vr-post-pr-comment.sh
+          when: always
+
+      - run:
+          name: Clean up artifacts on non-develop branches
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "develop" ]; then
+              rm -rf /tmp/vr-screenshots /tmp/vr-report
+              echo "Skipping artifact upload on non-develop branch."
+            fi
           when: always
 
       - store_artifacts:
