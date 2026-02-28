@@ -52,9 +52,13 @@ Feature: Components settings are available in the theme settings
     And I should see an "input#edit-components-logo-secondary-dark-mobile-path" element
     And I should not see an "input#edit-components-logo-secondary-dark-mobile-path.required" element
 
-    And I see field 'Logo image "alt" text'
-    And I should see an "input[name='components[logo][image_alt]']" element
-    And I should not see an "edit-components-logo-alt.required" element
+    And I see field 'Primary logo image "alt" text'
+    And I should see an "input[name='components[logo][primary][image_alt]']" element
+    And I should not see an "input#edit-components-logo-primary-image-alt.required" element
+
+    And I see field 'Secondary logo image "alt" text'
+    And I should see an "input[name='components[logo][secondary][image_alt]']" element
+    And I should not see an "input#edit-components-logo-secondary-image-alt.required" element
 
     And I should see the text "Theme"
     And I should see an "input[name='components[header][theme]']" element

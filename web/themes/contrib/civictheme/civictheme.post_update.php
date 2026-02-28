@@ -965,6 +965,55 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
 }
 
 /**
+ * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
+  $new_configs = [
+    // Paragraph type definition.
+    'paragraphs.paragraphs_type.civictheme_fast_fact_card' => 'paragraphs_type',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_link' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_title' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_fast_fact_card.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_fast_fact_card.default' => 'entity_view_display',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($new_configs, $config_path);
+
+  // Enable civictheme_fast_fact_card for civictheme_manual_list.
+  $field_config_name = 'field.field.paragraph.civictheme_manual_list.field_c_p_list_items';
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+  if (!$field_config->isNew()) {
+    $handler_settings = $field_config->get('settings.handler_settings') ?: [];
+    // Ensure target_bundles exists.
+    if (!isset($handler_settings['target_bundles'])) {
+      $handler_settings['target_bundles'] = [];
+    }
+    $handler_settings['target_bundles']['civictheme_fast_fact_card'] = 'civictheme_fast_fact_card';
+
+    // Ensure target_bundles_drag_drop exists.
+    if (!isset($handler_settings['target_bundles_drag_drop'])) {
+      $handler_settings['target_bundles_drag_drop'] = [];
+    }
+    $handler_settings['target_bundles_drag_drop']['civictheme_fast_fact_card'] = [
+      'weight' => -54,
+      'enabled' => TRUE,
+    ];
+
+    $field_config->set('settings.handler_settings', $handler_settings);
+    $field_config->save();
+  }
+
+  return (string) new TranslatableMarkup('Added civictheme_fast_fact_card paragraph type and enabled it for manual list.');
+}
+
+/**
  * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -1204,4 +1253,67 @@ function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
   );
 
   return (string) new TranslatableMarkup('Added field_c_n_hide_sidebar to civictheme_event content type and placed it under Appearance.');
+}
+
+/**
+ * Migrate legacy logo image_alt to primary and secondary logo image_alt.
+ *
+ * Copies the old single components.logo.image_alt value into
+ * components.logo.primary.image_alt and components.logo.secondary.image_alt
+ * when the old value is not empty and the new fields are empty.
+ * Runs for CivicTheme and all its subthemes (themes that have civictheme
+ * in their base theme chain).
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
+function civictheme_post_update_migrate_logo_image_alt_to_per_type(): TranslatableMarkup {
+  $config_factory = \Drupal::configFactory();
+  $theme_list = \Drupal::service('extension.list.theme');
+  $themes = $theme_list->getList();
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+  $theme_names_to_migrate = $helper->logoAltThemesWithCivicthemeBase($themes);
+
+  $migrated = [];
+  foreach ($theme_names_to_migrate as $theme_name) {
+    $config_name = $theme_name . '.settings';
+    $config = $config_factory->getEditable($config_name);
+    if ($config->isNew()) {
+      continue;
+    }
+
+    $old_alt = $config->get('components.logo.image_alt');
+    if ($old_alt === NULL || (is_string($old_alt) && trim($old_alt) === '')) {
+      continue;
+    }
+
+    $updated = FALSE;
+    $primary_alt = $config->get('components.logo.primary.image_alt');
+    if ($primary_alt === NULL || (is_string($primary_alt) && trim($primary_alt) === '')) {
+      $config->set('components.logo.primary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $secondary_alt = $config->get('components.logo.secondary.image_alt');
+    if ($secondary_alt === NULL || (is_string($secondary_alt) && trim($secondary_alt) === '')) {
+      $config->set('components.logo.secondary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $config->clear('components.logo.image_alt');
+    $config->save();
+    if ($updated) {
+      $migrated[] = $theme_name;
+    }
+  }
+
+  if (!empty($migrated)) {
+    return new TranslatableMarkup('Migrated legacy logo image alt text to Primary and Secondary logo alt fields for: @themes.', [
+      '@themes' => implode(', ', $migrated),
+    ]);
+  }
+
+  return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
 }
