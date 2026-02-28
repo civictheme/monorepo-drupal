@@ -21,19 +21,26 @@ if [ ! -d "${REPORT_DIR}" ]; then
   exit 0
 fi
 
+echo "Contents of ${REPORT_DIR}:"
+ls -lR "${REPORT_DIR}"
+
 if [ -z "${NETLIFY_AUTH_TOKEN:-}" ] || [ -z "${NETLIFY_SITE_ID:-}" ]; then
   echo "NETLIFY_AUTH_TOKEN or NETLIFY_SITE_ID not set. Skipping Netlify deploy."
   exit 0
 fi
 
+echo "Deploying to Netlify..."
 DEPLOY_OUTPUT=$(npx netlify-cli deploy \
   --dir="${REPORT_DIR}" \
   --site="${NETLIFY_SITE_ID}" \
   --auth="${NETLIFY_AUTH_TOKEN}" \
   --message="VR report: ${CIRCLE_BRANCH} (build ${CIRCLE_BUILD_NUM})" \
-  --json)
+  --json 2>&1) || true
 
-DEPLOY_URL=$(echo "${DEPLOY_OUTPUT}" | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8'); console.log(JSON.parse(d).deploy_ssl_url || '')")
+echo "Netlify response:"
+echo "${DEPLOY_OUTPUT}"
+
+DEPLOY_URL=$(echo "${DEPLOY_OUTPUT}" | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8'); console.log(JSON.parse(d).deploy_ssl_url || '')" 2>/dev/null) || DEPLOY_URL=""
 
 if [ -n "${DEPLOY_URL}" ]; then
   echo "export VR_NETLIFY_URL='${DEPLOY_URL}'" >> "${STATS_FILE}"

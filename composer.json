@@ -180,7 +180,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch"
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch",
+                "Installation of CT failing due to missing layout column plugin": "patches/modules/core/14337.patch"
             },
             "drupal/sdc_devel": {
                 "Change visibility of the rules constants in TwigValidatorRulePluginBase - https://www.drupal.org/project/sdc_devel/issues/3517321": "./patches/modules/sdc_devel/3517321--updated-visibility-of-rule-constants.patch",
