@@ -226,6 +226,13 @@ job-build: &job-build
     - attach_workspace:
         at: /tmp/workspace
     - checkout
+    - run:
+        name: Install Ahoy
+        command: |
+          version=2.5.0
+          curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64"
+          chmod +x /usr/local/bin/ahoy
+          ahoy --version
     - *step_process_codebase
     - *step_setup_remote_docker
     - *step_setup_docker_network
