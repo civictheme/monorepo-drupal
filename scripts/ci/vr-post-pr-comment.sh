@@ -109,9 +109,6 @@ else
     "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments") || true
 fi
 
-echo "GitHub API response:"
-echo "${RESULT}"
-
 # Check for errors in the response.
 if echo "${RESULT}" | grep -q '"message"'; then
   echo "Warning: GitHub API returned an error."

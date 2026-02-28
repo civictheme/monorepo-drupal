@@ -37,9 +37,6 @@ DEPLOY_OUTPUT=$(npx netlify-cli deploy \
   --message="VR report: ${CIRCLE_BRANCH} (build ${CIRCLE_BUILD_NUM})" \
   --json 2>&1) || true
 
-echo "Netlify response:"
-echo "${DEPLOY_OUTPUT}"
-
 DEPLOY_URL=""
 if echo "${DEPLOY_OUTPUT}" > /tmp/netlify-response.json 2>/dev/null; then
   DEPLOY_URL=$(sed -n 's/.*"deploy_url": *"\([^"]*\)".*/\1/p' /tmp/netlify-response.json) || true
