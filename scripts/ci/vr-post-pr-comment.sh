@@ -81,27 +81,31 @@ if echo "${COMMENTS_RESPONSE}" > /tmp/gh-comments-response.json 2>/dev/null; the
   COMMENT_ID=$(grep -B5 "${COMMENT_MARKER}" /tmp/gh-comments-response.json | sed -n 's/.*"id": *\([0-9]*\).*/\1/p' | tail -1) || true
 fi
 
-# Build JSON payload safely.
-PAYLOAD=$(printf '%s' "${BODY}" | python3 -c "import sys,json; print(json.dumps({'body': sys.stdin.read()}))" 2>/dev/null) || true
+# Build JSON payload safely by escaping and writing to a temp file.
+printf '%s' "${BODY}" > /tmp/vr-comment-body.txt
+ESCAPED_BODY=$(awk '{gsub(/\\/, "\\\\"); gsub(/"/, "\\\""); gsub(/\t/, "\\t"); if(NR>1) printf "\\n"; printf "%s", $0}' /tmp/vr-comment-body.txt) || true
+echo "{\"body\":\"${ESCAPED_BODY}\"}" > /tmp/vr-comment-payload.json
 
-if [ -z "${PAYLOAD}" ]; then
+if [ ! -s /tmp/vr-comment-payload.json ]; then
   echo "Failed to build JSON payload. Skipping comment."
   exit 1
 fi
+
+echo "Payload built successfully."
 
 if [ -n "${COMMENT_ID}" ]; then
   echo "Updating existing PR comment ${COMMENT_ID}..."
   RESULT=$(curl -s -X PATCH \
     -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
     -H "Content-Type: application/json" \
-    -d "${PAYLOAD}" \
+    -d @/tmp/vr-comment-payload.json \
     "https://api.github.com/repos/${REPO}/issues/comments/${COMMENT_ID}") || true
 else
   echo "Posting new PR comment..."
   RESULT=$(curl -s -X POST \
     -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
     -H "Content-Type: application/json" \
-    -d "${PAYLOAD}" \
+    -d @/tmp/vr-comment-payload.json \
     "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments") || true
 fi
 
