@@ -114,7 +114,9 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
   }
 
   $variables['title'] = civictheme_get_field_value($node, 'field_c_n_banner_title') ?: $variables['title'];
-
+  if (isset($variables['title']['#markup']) && empty($variables['title']['#markup'])) {
+    $variables['title']['#markup'] = $node->getTitle();
+  }
   if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
     $variables['breadcrumb'] = NULL;
   }
