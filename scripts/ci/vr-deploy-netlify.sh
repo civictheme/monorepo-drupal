@@ -40,7 +40,10 @@ DEPLOY_OUTPUT=$(npx netlify-cli deploy \
 echo "Netlify response:"
 echo "${DEPLOY_OUTPUT}"
 
-DEPLOY_URL=$(echo "${DEPLOY_OUTPUT}" | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8'); console.log(JSON.parse(d).deploy_ssl_url || '')" 2>/dev/null) || DEPLOY_URL=""
+DEPLOY_URL=""
+if echo "${DEPLOY_OUTPUT}" > /tmp/netlify-response.json 2>/dev/null; then
+  DEPLOY_URL=$(sed -n 's/.*"deploy_url": *"\([^"]*\)".*/\1/p' /tmp/netlify-response.json) || true
+fi
 
 if [ -n "${DEPLOY_URL}" ]; then
   echo "export VR_NETLIFY_URL='${DEPLOY_URL}'" >> "${STATS_FILE}"
