@@ -21,6 +21,9 @@ if [ ! -d "${REPORT_DIR}" ]; then
   exit 0
 fi
 
+echo "Contents of ${REPORT_DIR}:"
+ls -lR "${REPORT_DIR}"
+
 if [ -z "${NETLIFY_AUTH_TOKEN:-}" ] || [ -z "${NETLIFY_SITE_ID:-}" ]; then
   echo "NETLIFY_AUTH_TOKEN or NETLIFY_SITE_ID not set. Skipping Netlify deploy."
   exit 0
