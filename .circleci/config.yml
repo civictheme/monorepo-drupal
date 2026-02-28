@@ -543,6 +543,15 @@ jobs:
           command: ./scripts/ci/vr-post-pr-comment.sh
           when: always
 
+      - run:
+          name: Clean up artifacts on non-develop branches
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "develop" ]; then
+              rm -rf /tmp/vr-screenshots /tmp/vr-report
+              echo "Skipping artifact upload on non-develop branch."
+            fi
+          when: always
+
       - store_artifacts:
           path: /tmp/vr-screenshots
           destination: visual-regression/screenshots
