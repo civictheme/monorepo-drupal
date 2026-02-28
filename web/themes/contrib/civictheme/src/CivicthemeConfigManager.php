@@ -36,8 +36,10 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    *   The extension list.
    * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
+   * @param mixed $themeSettingsProvider
+   *   The theme settings provider (D11.3+), or NULL for D10.
    */
-  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter) {
+  public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected mixed $themeSettingsProvider = NULL) {
     $this->setTheme($this->themeManager->getActiveTheme());
   }
 
@@ -49,7 +51,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('config.factory'),
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
-      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class)
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
+      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL
     );
   }
 
@@ -66,8 +69,12 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    */
   public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
-    if ($key == 'components.site_slogan.content') {
+    if ($key === 'components.site_slogan.content') {
       return $this->configFactory->getEditable('system.site')->get('slogan');
+    }
+
+    if ($this->themeSettingsProvider !== NULL) {
+      return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
     return theme_get_setting($key, $this->theme->getName()) ?? $default;
