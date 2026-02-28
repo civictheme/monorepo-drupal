@@ -1,4 +1,7 @@
 {
+  "workspaces": [
+    "scripts/civictheme-uikit-version-manager"
+  ],
   "dependencies": {
     "@civictheme/uikit": "github:civictheme/uikit#cad32f0100c7f50fe791d0bf084588ee0a1820ec"
   },
