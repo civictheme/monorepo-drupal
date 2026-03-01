@@ -607,5 +607,5 @@ function _civictheme_form_element_get_component_theme(array $element): string {
  * Check if form element is set to have multiple values.
  */
 function _civictheme_form_element_is_multiple(array $element): bool {
-  return $element['#type'] == 'checkboxes' || ($element['#type'] == 'select' && ($element["#multiple"] ?? FALSE));
+  return $element['#type'] === 'checkboxes' || ($element['#type'] === 'select' && ($element["#multiple"] ?? FALSE));
 }
