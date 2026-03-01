@@ -268,6 +268,9 @@ job-build: &job-build
         name: Lint Drupal theme schema
         command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
     - run:
+        name: Lint components smoke test
+        command: docker compose exec -T cli bash -c "./scripts/lint.components.sh" || [ "${DREVOPS_CI_LINT_COMPONENTS_IGNORE_FAILURE:-0}" -eq 1 ]
+    - run:
         name: Run assets tests
         command: ./scripts/test.assets.sh
     - run:
@@ -370,6 +373,7 @@ jobs:
     <<: *runner_config
     environment:
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      PHP_DEBUG: 1
     <<: *job-build
 
   build-minimal-subtheme:

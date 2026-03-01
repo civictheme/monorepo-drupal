@@ -181,6 +181,10 @@ commands:
     usage: Lint CivicTheme Single Directory Components
     cmd: |
       ahoy cli "vendor/bin/drush sdcv civictheme --xdebug"
+  lint-components-smoke:
+    usage: Smoke test CivicTheme components by visiting pages and checking for errors.
+    cmd: |
+      ahoy cli "./scripts/lint.components.sh"
   lint-component:
     usage: Lint CivicTheme Single Directory Component
     cmd: |
