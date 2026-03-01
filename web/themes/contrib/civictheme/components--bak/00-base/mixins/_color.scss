@@ -1,0 +1,137 @@
+//
+// Color mixins.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
+//
+// Retrieve light theme color.
+//
+@function ct-color-light($name) {
+  @return _ct-color($name, 'light');
+}
+
+//
+// Retrieve dark theme color.
+//
+@function ct-color-dark($name) {
+  @return _ct-color($name, 'dark');
+}
+
+//
+// Retrieve light theme color as a constant color value.
+//
+@function ct-color-constant-light($name) {
+  @return _ct-color($name, 'light', true);
+}
+
+//
+// Retrieve dark theme color as a constant color value.
+//
+@function ct-color-constant-dark($name) {
+  @return _ct-color($name, 'dark', true);
+}
+
+//
+// Color shade. Do not use on components directly - map to a color variant instead.
+//
+@function ct-color-shade($color, $number) {
+  @return color.mix(black, $color, math.percentage(math.div($number, 100)));
+}
+
+//
+// Color tint. Do not use on components directly - map to a color variant instead.
+//
+@function ct-color-tint($color, $number) {
+  @return color.mix(white, $color, math.percentage(math.div($number, 100)));
+}
+
+//
+// Color tone. Do not use on components directly - map to a color variant instead.
+//
+@function ct-color-tone($base, $color) {
+  $neutral: color.adjust(color.adjust($base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($base) - 5%, 0%));
+
+  @return color.mix($neutral, white, math.percentage(math.div($color, 100)));
+}
+
+//
+// Encode color to be suitable for embedding.
+//
+@function ct-color-encode($string) {
+  @if type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote('#{$hex}');
+
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}
+
+//
+// String to fill SVG with color.
+//
+@function ct-color-svg-fill($svg, $color) {
+  @return ct-str-replace($svg, "fill=''", "fill='#{ct-color-encode($color)}'");
+}
+
+//
+// Get a color from the pre-defined list of colors.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-color($name, $theme, $is-flat: false) {
+  @if $theme != 'light' and $theme != 'dark' {
+    @error '"#{$theme}" is not an available theme.';
+  }
+
+  $colors: map.deep-merge(_ct-colors(), _ct-colors-brands());
+  $color: map.get(map.get($colors, $theme), $name);
+
+  @if $color == null {
+    @error '"#{$name}" is not an available color.';
+  }
+
+  @if not $is-flat {
+    $color: ct-component-var(ct, color, $theme, $name);
+  }
+
+  @return $color;
+}
+
+//
+// Retrieve all palette colors.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-colors() {
+  $ct-colors-default: (
+    'light': (),
+    'dark': ()
+  ) !default;
+  $ct-colors: (
+    'light': (),
+    'dark': ()
+  ) !default;
+
+  @return map.deep-merge($ct-colors-default, $ct-colors);
+}
+
+//
+// Retrieve all brand colors.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-colors-brands() {
+  $ct-colors-brands: (
+    'light': (),
+    'dark': ()
+  ) !default;
+
+  @return $ct-colors-brands;
+}

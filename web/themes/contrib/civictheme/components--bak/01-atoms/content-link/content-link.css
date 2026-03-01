@@ -1,0 +1,53 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-content-link {
+  text-decoration: underline;
+  text-decoration-thickness: 0.0625rem;
+  text-underline-offset: 0.1875rem;
+  padding: 0.1875rem 0 0.125rem;
+  word-break: break-word;
+}
+.ct-content-link:hover {
+  text-decoration: none;
+  padding: 0.1875rem 0 0.25rem;
+}
+.ct-content-link, .ct-content-link.ct-theme-light {
+  color: var(--ct-content-link-light-color);
+}
+.ct-content-link:focus-visible, .ct-content-link.ct-theme-light:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+}
+.ct-content-link:hover, .ct-content-link.ct-theme-light:hover {
+  background-color: var(--ct-content-link-light-hover-background-color);
+  color: var(--ct-content-link-light-hover-color);
+}
+.ct-content-link:visited, .ct-content-link.ct-theme-light:visited {
+  color: var(--ct-content-link-light-visited-color);
+}
+.ct-content-link:visited:hover, .ct-content-link.ct-theme-light:visited:hover {
+  color: var(--ct-content-link-light-visited-hover-color);
+}
+.ct-content-link.ct-theme-dark {
+  color: var(--ct-content-link-dark-color);
+}
+.ct-content-link.ct-theme-dark:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-dark);
+}
+.ct-content-link.ct-theme-dark:hover {
+  background-color: var(--ct-content-link-dark-hover-background-color);
+  color: var(--ct-content-link-dark-hover-color);
+}
+.ct-content-link.ct-theme-dark:visited {
+  color: var(--ct-content-link-dark-visited-color);
+}
+.ct-content-link.ct-theme-dark:visited:hover {
+  color: var(--ct-content-link-dark-visited-hover-color);
+}

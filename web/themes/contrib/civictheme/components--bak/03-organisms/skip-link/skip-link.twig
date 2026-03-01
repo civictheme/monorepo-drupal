@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * CivicTheme Skip Link component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - text: [string] Link text.
+ * - url: [string] Link URL.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set text = text|default('Skip to main content') %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if text %}
+  <div class="ct-skip-link {{ modifier_class -}}" {% if attributes %}{{ attributes }}{% endif %}>
+    {% include 'civictheme:link' with {
+      theme: theme,
+      text: text,
+      url: url,
+      title: text,
+      hidden_text: text,
+      attributes: create_attribute({'data-platform': ''}),
+      modifier_class: 'ct-skip-link__link ct-visually-hidden',
+    } only %}
+  </div>
+{% endif %}

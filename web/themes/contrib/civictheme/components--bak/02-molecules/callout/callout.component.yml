@@ -1,0 +1,91 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Callout
+status: stable
+description: Content component for highlighting important information with title, content and links
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    vertical_spacing:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Vertical spacing
+      description: Vertical spacing position (top, bottom, both).
+      enum:
+      - top
+      - bottom
+      - both
+      - ''
+      - null
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.
+    links:
+      type: array
+      title: Links
+      description: Callout links.
+      items:
+        type: object
+        properties:
+          text:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Text
+            description: Link text.
+          url:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: URL
+            description: Link URL.
+          is_new_window:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: New window
+            description: Whether to open link in a new window.
+          is_external:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: External
+            description: Whether the link is external.
+slots:
+  title:
+    title: Title
+    description: Title text.
+  content:
+    title: Content
+    description: Content text.
+  content_top:
+    title: Top content
+    description: Callout top content.
+  content_bottom:
+    title: Bottom content
+    description: Callout bottom content.

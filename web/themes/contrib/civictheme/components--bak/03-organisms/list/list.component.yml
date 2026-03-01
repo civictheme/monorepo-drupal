@@ -1,0 +1,128 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: List
+status: stable
+description: List component for item collections with filtering and pagination
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    vertical_spacing:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Vertical Spacing
+      description: List vertical spacing (top, bottom, or both).
+      enum:
+      - top
+      - bottom
+      - both
+      - ''
+      - null
+    with_background:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: With Background
+      description: Whether to display with a background.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+    link_above:
+      type: object
+      title: Link Above
+      description: Above list link object.
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Link text.
+        url:
+          type: string
+          title: URL
+          description: Link URL.
+        is_new_window:
+          type: boolean
+          title: New window
+          description: Whether to open link in a new window.
+        is_external:
+          type: boolean
+          title: External
+          description: Whether the link is external.
+    link_below:
+      type: object
+      title: Link Below
+      description: Below list link object.
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Link text.
+        url:
+          type: string
+          title: URL
+          description: Link URL.
+        is_new_window:
+          type: boolean
+          title: New window
+          description: Whether to open link in a new window.
+        is_external:
+          type: boolean
+          title: External
+          description: Whether the link is external.
+    rows_above:
+      type: array
+      title: Rows Above
+      description: Above rows content.
+      items:
+        type: string
+        description: Content to display above rows.
+    rows_below:
+      type: array
+      title: Rows Below
+      description: Below rows content.
+      items:
+        type: string
+        description: Content to display below rows.
+slots:
+  title:
+    title: Title
+    description: List title.
+  content:
+    title: Content
+    description: List main content.
+  filters:
+    title: Filters
+    description: Exposed filters content.
+  results_count:
+    title: Results Count
+    description: Results count text.
+  rows:
+    title: Rows
+    description: Rows content.
+  empty:
+    title: Empty
+    description: No results content.
+  pagination:
+    title: Pagination
+    description: Pagination content.
+  footer:
+    title: Footer
+    description: Footer content.

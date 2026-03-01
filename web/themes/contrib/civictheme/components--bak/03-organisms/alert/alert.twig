@@ -1,0 +1,76 @@
+{#
+/**
+ * @file
+ * CivicTheme Alert component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - type: [string] Alert type (information, error, warning, success).
+ * - id: [string] Unique identifier for the alert.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - title: Alert title.
+ * - description: Alert description content.
+ */
+#}
+
+{% set theme = theme|default('light') %}
+{% set theme = theme in ['light', 'dark'] ? theme : 'light' %}
+{% set theme_class = 'ct-theme-%s'|format(theme) %}
+{% set type = type in ['information', 'error', 'warning', 'success'] ? type : 'information' %}
+{% set type_class = 'ct-alert--%s'|format(type|default('information')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+
+{% set icons = {
+  information: 'information-mark',
+  warning: 'exclamation-mark-2',
+  error: 'exclamation-mark-1',
+  success: 'megaphone',
+} %}
+
+{% if description is not empty %}
+  <div
+    class="ct-alert {{ modifier_class -}}"
+    data-alert-id="{{ id }}"
+    data-alert-type="{{ type }}"
+    data-component-name="ct-alert"
+    role="alert"
+    {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+  >
+    <div class="container">
+      <div class="row">
+        <div class="ct-alert__title col-xxs-12 col-m-3">
+          {% if icons[type] is defined %}
+            <span class="ct-alert__icon">
+              {% include 'civictheme:icon' with {
+                symbol: icons[type],
+                size: 'regular',
+              } only %}
+            </span>
+          {% endif %}
+          {{ title }}
+        </div>
+
+        <div class="ct-alert__summary col-xxs-12 col-m-9">
+          {{ description }}
+          {% include 'civictheme:button' with {
+            kind: 'button',
+            theme: theme,
+            type: 'tertiary',
+            modifier_class: 'ct-alert__dismiss-button',
+            text: '',
+            icon: 'cancel',
+            size: 'regular',
+            attributes: create_attribute({
+              id: 'dismiss-alert-' ~ id,
+              'data-alert-dismiss-trigger': '',
+              title: 'close ' ~ type ~ ' alert',
+            }),
+          } %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,11 @@
+//
+// Scrollspy component.
+//
+
+[data-scrollspy='true'] {
+  display: none;
+
+  &.ct-scrollspy-scrolled {
+    display: block;
+  }
+}

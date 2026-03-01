@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * CivicTheme Mobile Navigation Trigger component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - text: [string] Button text.
+ * - icon: [string] Icon symbol name.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set modifier_class = 'ct-mobile-navigation-trigger %s'|format(modifier_class|default('')) %}
+{% set icon = icon|default('bars') %}
+{% set attributes = attributes is defined and attributes is not null ? attributes : create_attribute({}) %}
+
+{% include 'civictheme:button' with {
+  theme: theme,
+  kind: 'button',
+  icon: icon,
+  icon_placement: 'after',
+  size: 'small',
+  text: text,
+  modifier_class: modifier_class,
+  attributes: attributes.setAttribute('data-flyout-open-trigger', '').setAttribute('data-flyout-target', '.ct-mobile-navigation').setAttribute('aria-expanded', 'false'),
+} only %}

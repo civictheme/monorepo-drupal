@@ -1,0 +1,64 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Popover
+status: stable
+description: Interactive popover component with collapsible content panel
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    trigger:
+      type: object
+      title: Trigger
+      description: Popover trigger link object.
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Trigger text.
+        url:
+          type: string
+          title: URL
+          description: Optional URL for the trigger.
+        is_new_window:
+          type: boolean
+          title: New window
+          description: Whether to open link in a new window.
+        is_external:
+          type: boolean
+          title: External
+          description: Whether the link is external.
+    group:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Group
+      description: Group name for controlling multiple popovers together.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.
+slots:
+  content:
+    title: Content
+    description: Popover panel content.
+  content_top:
+    title: Top Content
+    description: Top popover content.
+  content_bottom:
+    title: Bottom Content
+    description: Bottom popover content.

@@ -1,0 +1,62 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-label {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+  display: block;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  -webkit-tap-highlight-color: transparent;
+}
+.ct-label.ct-label--extra-large {
+  font-size: var(--ct-typography-label-extra-large-font-size);
+  line-height: var(--ct-typography-label-extra-large-line-height);
+  font-family: var(--ct-typography-label-extra-large-font-name);
+  font-weight: var(--ct-typography-label-extra-large-font-weight);
+  letter-spacing: var(--ct-typography-label-extra-large-letter-spacing);
+}
+.ct-label.ct-label--large {
+  font-size: var(--ct-typography-label-large-font-size);
+  line-height: var(--ct-typography-label-large-line-height);
+  font-family: var(--ct-typography-label-large-font-name);
+  font-weight: var(--ct-typography-label-large-font-weight);
+  letter-spacing: var(--ct-typography-label-large-letter-spacing);
+}
+.ct-label.ct-label--regular {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-label.ct-label--small {
+  font-size: var(--ct-typography-label-small-font-size);
+  line-height: var(--ct-typography-label-small-line-height);
+  font-family: var(--ct-typography-label-small-font-name);
+  font-weight: var(--ct-typography-label-small-font-weight);
+  letter-spacing: var(--ct-typography-label-small-letter-spacing);
+}
+.ct-label.ct-label--extra-small {
+  font-size: var(--ct-typography-label-extra-small-font-size);
+  line-height: var(--ct-typography-label-extra-small-line-height);
+  font-family: var(--ct-typography-label-extra-small-font-name);
+  font-weight: var(--ct-typography-label-extra-small-font-weight);
+  letter-spacing: var(--ct-typography-label-extra-small-letter-spacing);
+}
+.ct-label.ct-theme-light {
+  color: var(--ct-label-light-color);
+}
+.ct-label.ct-theme-light .ct-label__required {
+  color: var(--ct-label-light-required-color);
+}
+.ct-label.ct-theme-dark {
+  color: var(--ct-label-dark-color);
+}
+.ct-label.ct-theme-dark .ct-label__required {
+  color: var(--ct-label-dark-required-color);
+}

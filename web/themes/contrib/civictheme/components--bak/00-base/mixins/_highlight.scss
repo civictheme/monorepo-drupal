@@ -1,0 +1,84 @@
+//
+// Highlight mixins.
+//
+
+//
+// Add highlight stripe to an element.
+//
+@mixin ct-highlight-stripe-vertical($width, $border-radius: 0, $border-width: ct-particle(0.125), $position: 'left') {
+  $_stripe_size: $width;
+
+  @if $border-width != 0 {
+    $_stripe_size: calc(#{$width} + #{$border-width});
+  }
+
+  & {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -$border-width;
+    bottom: -$border-width;
+    left: -$border-width;
+    width: $_stripe_size;
+
+    @if $position == 'left' {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+    @else {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    @if $ct-animation-enabled {
+      transition: width 0.25s;
+    }
+  }
+}
+
+//
+// Add highlight stripe to an element.
+//
+@mixin ct-highlight-stripe-horizontal($height, $border-radius, $border-width: ct-particle(0.125), $position: 'top') {
+  $_stripe_size: $height;
+
+  @if $border-width != 0 {
+    $_stripe_size: calc(#{$height} + #{$border-width});
+  }
+
+  & {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -$border-width;
+    right: -$border-width;
+    height: $_stripe_size;
+
+    @if $position == 'top' {
+      top: -$border-width;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+    @else {
+      bottom: -$border-width;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    @if $ct-animation-enabled {
+      transition: height 0.25s;
+    }
+  }
+}
+
+@mixin ct-highlight-stripe-background-color($color) {
+  &::before {
+    background-color: $color;
+  }
+}

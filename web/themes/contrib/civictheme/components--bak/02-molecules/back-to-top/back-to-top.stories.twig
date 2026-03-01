@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme Back to Top component stories.
+ */
+#}
+
+<a id="top"></a>
+<div class="story-container">
+  <div class="story-container__page-content story-ct-back-to-top">
+    {% include 'civictheme:back-to-top' with {
+      attributes: attributes,
+      modifier_class: modifier_class,
+    } only %}
+  </div>
+</div>

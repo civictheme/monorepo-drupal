@@ -1,0 +1,69 @@
+//
+// CivicTheme Message component styles.
+//
+
+@use 'sass:map';
+
+.ct-message {
+  $root: &;
+
+  #{$root}__inner {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    border-radius: var(--ct-message-border-radius);
+    border-left: solid ct-particle(0.75) transparent;
+    padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(1);
+    width: 100%;
+
+    @include ct-typography('text-regular');
+  }
+
+  #{$root}__icon {
+    @include ct-icon-align-with-text('text-regular');
+
+    margin-right: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    font-weight: 600;
+  }
+
+  #{$root}__content {
+    margin-top: ct-spacing();
+    margin-bottom: 0;
+
+    // Reset the spacing of the content if title is not present.
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // Reset the spacing of the message if it has a vertical spacing class.
+  &[class*='ct-vertical-spacing-'] {
+    #{$root}__inner {
+      margin: 0;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &#{$root}--with-background {
+      @include ct-component-property($root, $theme, background-color);
+    }
+
+    $types: ('information', 'warning', 'error', 'success');
+
+    @each $type in $types {
+      &#{$root}--#{$type} #{$root}__inner {
+        @include ct-component-property($root, $theme, $type, background-color);
+        @include ct-component-property($root, $theme, $type, color);
+        @include ct-component-property($root, $theme, $type, border-color);
+
+        #{$root}__icon {
+          @include ct-component-property($root, $theme, $type, icon, color);
+        }
+      }
+    }
+  }
+}

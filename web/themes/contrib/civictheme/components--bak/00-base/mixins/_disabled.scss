@@ -1,0 +1,11 @@
+//
+// Disabled mixins.
+//
+
+@mixin ct-disabled() {
+  &[disabled] {
+    pointer-events: none;
+    user-select: none;
+    opacity: 50%;
+  }
+}

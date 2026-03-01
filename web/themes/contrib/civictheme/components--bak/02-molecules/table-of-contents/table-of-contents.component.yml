@@ -1,0 +1,68 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Table of Contents
+status: stable
+description: Component for page section links table of contents
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    title:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title
+      description: Link title.
+    position:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Position
+      description: TOC position ('before', 'after', 'prepend', 'append').
+      enum:
+      - before
+      - after
+      - prepend
+      - append
+      - ''
+      - null
+    anchor_selector:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Anchor Selector
+      description: CSS selector for headings to include in TOC (e.g. 'h2, h3').
+    scope_selector:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Scope Selector
+      description: CSS selector for the content area to generate TOC from.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+slots:
+  links:
+    title: Links
+    description: Table of contents links.
+  content:
+    title: Content
+    description: Content (only displays when links are not provided).

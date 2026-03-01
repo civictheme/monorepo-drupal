@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * CivicTheme Content Link component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - text: [string] Link text.
+ * - url: [string] Link URL.
+ * - title: [string] Link title.
+ * - is_new_window: [boolean] Whether to open in a new window.
+ * - is_external: [boolean] Whether the link is external.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set is_external = is_external ? 'ct-content-link--external' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
+
+{% if text is not empty %}
+  {% set link_content %}
+    {%- include 'civictheme:text-icon' with {
+      text: text,
+      is_new_window: is_new_window,
+      is_external: is_external,
+    } only -%}
+  {% endset %}
+
+  <a
+    class="ct-content-link {{ modifier_class -}}"
+    {% if url is not empty %}href="{{ url }}"{% endif %}
+    {% if title is not empty %}title="{{ title }}"{% endif %}
+    {% if is_new_window %}target="_blank" aria-label="Opens in a new tab"{% endif %}
+    {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+  >
+    {{- link_content -}}
+  </a>
+{% endif %}

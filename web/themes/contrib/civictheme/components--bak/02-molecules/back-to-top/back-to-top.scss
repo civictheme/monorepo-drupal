@@ -1,0 +1,39 @@
+//
+// CivicTheme Back to Top component styles.
+//
+
+.ct-back-to-top {
+  $root: &;
+
+  @include ct-print-hide();
+
+  & {
+    position: fixed;
+    right: var(--ct-back-to-top-space-right);
+    bottom: var(--ct-back-to-top-space-bottom);
+  }
+
+  #{$root}__button {
+    &,
+    &:focus-visible,
+    &:active,
+    &:visited,
+    &:hover {
+      display: inline-block;
+      border-radius: ct-particle(12);
+      padding: ct-spacing();
+      background-color: var(--ct-back-to-top-background-color);
+      border-color: var(--ct-back-to-top-border-color);
+      color: var(--ct-back-to-top-color);
+      line-height: 0;
+      outline-color: var(--ct-back-to-top-outline-color);
+      outline-offset: var(--ct-button-outline-offset);
+      outline-width: var(--ct-button-outline-width);
+      appearance: none;
+    }
+
+    &:focus-visible {
+      outline-style: solid;
+    }
+  }
+}

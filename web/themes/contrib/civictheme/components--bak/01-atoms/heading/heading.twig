@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme Heading component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - content: [string] Heading content.
+ * - level: [string] Heading level (1-6).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% set level = level|default('2') %}
+
+{% if content %}
+  <h{{ level }} class="ct-heading {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {{- content -}}
+  </h{{ level }}>
+{% endif %}

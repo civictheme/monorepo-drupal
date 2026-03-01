@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * CivicTheme Tabs component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] Vertical spacing for the tabs (none, top, bottom, both).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - panels: [array] Tab panels:
+ *   Each item contains:
+ *   - title: [string] Panel title.
+ *   - content: [string] Panel content.
+ *   - id: [string] Panel ID.
+ *   - is_selected: [boolean] Whether the panel is selected.
+ * - links: [array] Optional links (if not provided - will be generated from panels):
+ *   Each item contains:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - modifier_class: [string] Additional CSS classes.
+ *   - attributes: [object] Additional HTML attributes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{# Create links from panels if not provided. #}
+{% if links is empty and panels is not empty %}
+  {% set links = [] %}
+  {% for k, panel in panels %}
+    {% set link_id = panel.id ~ '-tab' %}
+    {% set links = links|merge([{
+      text: panel.title,
+      url: '#' ~ link_id,
+      attributes: create_attribute({role: 'tab', id: link_id, 'aria-controls': panel.id}),
+      link_id: link_id,
+    }]) %}
+  {% endfor %}
+{% endif %}
+
+{% set link_items = [] %}
+{% for k, link in links %}
+  {%- set link %}
+    {% set link_attributes = link.attributes is defined and link.attributes is not null ? link.attributes : create_attribute({}) %}
+    {% include 'civictheme:link' with {
+      theme: theme,
+      text: link.text,
+      url: link.url,
+      is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+      is_external: link.is_external is defined ? link.is_external : false,
+      modifier_class: link.modifier_class ? link.modifier_class : '',
+      attributes: link_attributes.setAttribute('data-tabs-tab', ''),
+    } only %}
+  {% endset -%}
+  {% set link_items = link_items|merge([link]) %}
+{% endfor %}
+
+{% if panels is not empty or link_items is not empty %}
+  <div class="ct-tabs {{ modifier_class -}}" data-tabs-panel {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% include 'civictheme:item-list' with {
+      items: link_items,
+      no_gap: true,
+      modifier_class: 'ct-tabs__links',
+    } only %}
+
+    {% if panels is not empty %}
+      <div class="ct-tabs__panels">
+        {% for k, panel in panels %}
+          {% if panel.content is not empty %}
+            <div class="ct-tabs__panels__panel {% if panel.is_selected %}selected{% endif %}" data-tabs-panel id="{{ panel.id }}" role="tabpanel" aria-labelledby="{{ links[k].link_id }}">
+              {{ panel.content }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

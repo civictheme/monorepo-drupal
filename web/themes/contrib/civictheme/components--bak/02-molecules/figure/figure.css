@@ -1,0 +1,29 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-figure {
+  margin: 0;
+  display: block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+.ct-figure .ct-figure__image {
+  border-radius: var(--ct-figure-border-radius);
+  object-fit: contain;
+}
+.ct-figure .ct-figure__caption {
+  font-size: var(--ct-typography-label-extra-small-font-size);
+  line-height: var(--ct-typography-label-extra-small-line-height);
+  font-family: var(--ct-typography-label-extra-small-font-name);
+  font-weight: var(--ct-typography-label-extra-small-font-weight);
+  letter-spacing: var(--ct-typography-label-extra-small-letter-spacing);
+}
+.ct-figure.ct-theme-light .ct-figure__caption {
+  color: var(--ct-figure-light-caption-color);
+}
+.ct-figure.ct-theme-dark .ct-figure__caption {
+  color: var(--ct-figure-dark-caption-color);
+}

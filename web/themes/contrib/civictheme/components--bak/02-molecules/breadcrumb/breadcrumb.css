@@ -1,0 +1,23 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-breadcrumb {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-breadcrumb.ct-theme-light .ct-breadcrumb__links__separator {
+  color: var(--ct-breadcrumb-light-color);
+}
+.ct-breadcrumb.ct-theme-light .ct-breadcrumb__links__link--active {
+  color: var(--ct-breadcrumb-light-active-color);
+}
+.ct-breadcrumb.ct-theme-dark .ct-breadcrumb__links__separator {
+  color: var(--ct-breadcrumb-dark-color);
+}
+.ct-breadcrumb.ct-theme-dark .ct-breadcrumb__links__link--active {
+  color: var(--ct-breadcrumb-dark-active-color);
+}

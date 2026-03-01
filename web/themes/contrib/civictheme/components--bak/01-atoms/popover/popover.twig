@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * CivicTheme Popover component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - trigger: [object] Popover trigger link object.
+ *   Each property contains:
+ *   - text: [string] Trigger text.
+ *   - url: [string] Optional URL for the trigger.
+ *   - is_new_window: [boolean] Whether to open link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ * - group: [string] Group name for controlling multiple popovers together.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - content: Popover panel content.
+ * - content_top: Top popover content.
+ * - content_bottom: Bottom popover content.
+ *
+ * Blocks:
+ * - content_top_block
+ * - content_block
+ * - content_bottom_block
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content is not empty %}
+  <div class="ct-popover {{ modifier_class -}}" data-collapsible data-collapsible-collapsed data-collapsible-group="{{ group|default('') }}" data-collapsible-duration="250" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% include 'civictheme:link' with {
+      theme: theme,
+      text: trigger.text,
+      url: trigger.url is defined ? trigger.url : null,
+      is_new_window: trigger.is_new_window,
+      modifier_class: 'ct-popover__link',
+      attributes: create_attribute({'data-collapsible-trigger': '', tabindex: '0'}),
+    } only %}
+
+    <div class="ct-popover__content" data-collapsible-panel>
+      <div class="ct-popover__content__inner">
+
+        {% block content_top_block %}
+          {% if content_top is not empty %}
+            <div class="ct-popover__content-top">
+              {{- content_top -}}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block content_block %}
+          {{- content -}}
+        {% endblock %}
+
+        {% block content_bottom_block %}
+          {% if content_bottom is not empty %}
+            <div class="ct-popover__content-bottom">
+              {{- content_bottom -}}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endif %}

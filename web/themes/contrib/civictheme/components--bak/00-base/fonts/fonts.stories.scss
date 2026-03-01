@@ -1,0 +1,28 @@
+//
+// Font component stories.
+//
+
+@use 'sass:string';
+
+.story-fonts-wrapper {
+  $all-fonts: _ct-font-map-all();
+  $all-weights: _ct-font-weights-all();
+  $font-size: ct-particle(6);
+
+  @each $weightName, $weight in $all-weights {
+    $weightName: string.to-lower-case($weightName);
+
+    @include ct-generate-class-variations-from-map($all-fonts, 'story-font--#{$weightName}') using($key, $value, $index) {
+      font-family: ct-font($key);
+      font-weight: $weight;
+      font-size: $font-size;
+    }
+
+    @include ct-generate-class-variations-from-map($all-fonts, 'story-font--italic--#{$weightName}') using($key, $value, $index) {
+      font-family: ct-font($key);
+      font-weight: $weight;
+      font-style: italic;
+      font-size: $font-size;
+    }
+  }
+}

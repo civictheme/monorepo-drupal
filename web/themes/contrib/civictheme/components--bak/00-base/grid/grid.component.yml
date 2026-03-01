@@ -1,0 +1,111 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Grid
+status: stable
+description: Grid component for creating responsive layouts
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: Column items.
+      items:
+        type: [string, 'null', integer, object]
+        description: Content of a grid item. Can include HTML.
+    row_element:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Row element
+      description: Row element.
+      default: div
+    row_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Row class
+      description: Optional row class override (defaults to 'row').
+    column_element:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Column element
+      description: Column element.
+      default: div
+    column_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Column class
+      description: Optional column class override (defaults to 'col' if template_column_count is 0).
+    use_container:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Use container
+      description: Whether to use container or not.
+      default: true
+    is_fluid:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Is fluid
+      description: Whether the grid is fluid or not (applies only if use_container is true).
+      default: false
+    template_column_count:
+      type:
+      - number
+      - string
+      - 'null'
+      title: Template column count
+      description: Row columns count (0 for auto columns). If 0 - the auto columns will be used where column width will be calculated automatically.
+      default: 0
+    auto_breakpoint:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Auto breakpoint
+      description: Switch between columns (starting at template_column_count) as the screen reduces.
+      default: false
+    fill_width:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Fill width
+      description: Stretch "hanging" items to row full width.
+      default: false
+    column_attributes:
+      type:
+      - object
+      - 'null'
+      - string
+      - integer
+      title: Column attributes
+      description: Additional HTML attributes for columns.
+    row_attributes:
+      type:
+      - object
+      - 'null'
+      - string
+      - integer
+      title: Row attributes
+      description: Additional HTML attributes for the row.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

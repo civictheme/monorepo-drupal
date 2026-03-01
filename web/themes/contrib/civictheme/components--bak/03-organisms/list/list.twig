@@ -1,0 +1,263 @@
+{#
+/**
+ * @file
+ * CivicTheme List component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] List vertical spacing (top, bottom, or both).
+ * - with_background: [boolean] Whether to display with a background.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - link_above: [object] Above list link object.
+ *   Each property contains:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ * - link_below: [object] Below list link object.
+ *   Each property contains:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ * - rows_above: [array] Above rows content.
+ *   Each item contains:
+ *   - items [string]
+ * - rows_below: [array] Below rows content.
+ *   Each item contains:
+ *   - items [string]
+ *
+ * Slots:
+ * - title: List title.
+ * - content: List main content.
+ * - filters: Exposed filters content.
+ * - results_count: Results count text.
+ * - rows: Rows content.
+ * - empty: No results content.
+ * - pagination: Pagination content.
+ * - footer: Footer content.
+ *
+ * Blocks:
+ * - header_block
+ * - title_block
+ * - link_above_block
+ * - content_block
+ * - list_block
+ * - filters_block
+ * - rows_block
+ * - rows_above_block
+ * - results_count_block
+ * - rows_below_block
+ * - empty_block
+ * - list_below_block
+ * - pagination_block
+ * - footer_block
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-list--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_background_class, vertical_spacing_class, modifier_class|default('')) %}
+
+<div class="ct-list {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  <div class="ct-list__inner">
+    {% block header_block %}
+      {% if title is not empty or link_above is not empty %}
+        <div class="ct-list__header">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12 col-m-9">
+                {% block title_block %}
+                  {% if title -%}
+                    {% include 'civictheme:heading' with {
+                      content: title,
+                      level: 2,
+                      theme: theme,
+                      modifier_class: 'ct-list__title',
+                    } only %}
+                  {% endif %}
+                {% endblock %}
+              </div>
+              <div class="col-xxs-12 col-m-3">
+                {% block link_above_block %}
+                  {% if link_above %}
+                    <div class="ct-list__link-above ct-flex-justify-content-center">
+                      {% include 'civictheme:button' with {
+                        theme: theme,
+                        type: 'secondary',
+                        kind: 'link',
+                        size: 'regular',
+                        text: link_above.text,
+                        url: link_above.url,
+                        is_new_window: link_above.is_external,
+                        is_external: link_above.is_external,
+                        icon: link_above.is_external ? '' : 'right-arrow-2',
+                        modifier_class: 'ct-list__link-above__link',
+                      } only %}
+                    </div>
+                  {% endif %}
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content_block %}
+      {% if content %}
+        <div class="ct-list__content">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {% include 'civictheme:paragraph' with {
+                  content: content,
+                  theme: theme,
+                  modifier_class: 'ct-list__content__inner',
+                } only %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block list_block %}
+      {% block filters_block %}
+        {% if filters -%}
+          <div class="ct-list__filters">
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  {{ filters }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block rows_block %}
+        {% if rows -%}
+
+          {% block rows_above_block %}
+            {% if rows_above -%}
+              <div class="container ct-list__rows-above">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% if rows_above is not iterable %}
+                      {% set rows_above = [rows_above] %}
+                    {% endif %}
+                    {% for rows_above_row in rows_above %}
+                      {{- rows_above_row -}}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block results_count_block %}
+            {% if results_count -%}
+              <div class="container">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    <div class="ct-list__results-count">{{ results_count }}</div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          <div class="ct-list__rows">
+            {{ rows }}
+          </div>
+
+          {% block rows_below_block %}
+            {% if rows_below %}
+              <div class="container ct-list__rows-below">
+                <div class="row">
+                  <div class="col-xxs-12">
+                    {% if rows_below is not iterable %}
+                      {% set rows_below = [rows_below] %}
+                    {% endif %}
+                    {% for rows_below_row in rows_below %}
+                      {{- rows_below_row -}}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+        {% endif %}
+      {% endblock %}
+
+      {% block empty_block %}
+        {% if empty is defined and (rows is not defined or rows is empty) -%}
+          <div class="container ct-list__empty-results">
+            <div class="row">
+              <div class="col-xxs-12">
+                {% include 'civictheme:paragraph' with {
+                  content: empty,
+                  theme: theme,
+                  modifier_class: 'ct-list__empty-results__inner',
+                } only %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endblock %}
+
+    {% block list_below_block %}
+      {% if link_below %}
+        <div class="ct-list__link-below ct-flex-justify-content-center">
+          {% include 'civictheme:button' with {
+            theme: theme,
+            type: 'secondary',
+            kind: 'link',
+            size: 'large',
+            text: link_below.text,
+            url: link_below.url,
+            is_new_window: link_below.is_external,
+            is_external: link_below.is_external,
+            icon: link_below.is_external ? '' : 'right-arrow-2',
+            modifier_class: 'ct-list__link-below__link',
+          } only %}
+        </div>
+      {% endif %}
+
+      {% if pagination is defined and pagination is not empty %}
+        <div class="ct-list__results-below">
+          {% block pagination_block %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  <div class="ct-list__pagination">
+                    {{ pagination }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block footer_block %}
+      {% if footer is not empty -%}
+        <footer class="ct-list__footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {{ footer }}
+              </div>
+            </div>
+          </div>
+        </footer>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

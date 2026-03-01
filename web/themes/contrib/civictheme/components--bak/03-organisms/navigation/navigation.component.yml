@@ -1,0 +1,139 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Navigation
+status: stable
+description: Navigation component for menu with various display types
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    name:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Name
+      description: Navigation name for nav element.
+    menu_id:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Menu ID
+      description: Optional menu ID used for grouping dropdown items.
+    type:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Type
+      description: Navigation display type (none, inline, dropdown, drawer).
+      enum:
+      - none
+      - inline
+      - dropdown
+      - drawer
+      - ''
+      - null
+    variant:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Variant
+      description: 'One of: primary, secondary.'
+      enum:
+      - primary
+      - secondary
+      - ''
+      - null
+    dropdown_columns:
+      type:
+      - integer
+      - string
+      - 'null'
+      title: Dropdown Columns
+      description: Dropdown drawer column count.
+    dropdown_columns_fill:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Dropdown Columns Fill
+      description: Whether to fill columns.
+    is_animated:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Animated
+      description: Whether to use animation for transitions.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+    items:
+      type: array
+      title: Items
+      description: Menu items
+      items:
+        type: object
+        properties:
+          title:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Title
+            description: Navigation item title.
+          url:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: URL
+            description: URL of the menu item.
+          in_active_trail:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: In Active Trail
+            description: Whether the item is in the active trail.
+          is_expanded:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: Is Expanded
+            description: Whether the item is expanded.
+          below:
+            type: array
+            title: Below
+            description: Submenu items.
+            items:
+              type: object
+              description: Submenu item with the same structure as parent items.
+slots:
+  title:
+    title: Title
+    description: Navigation title.

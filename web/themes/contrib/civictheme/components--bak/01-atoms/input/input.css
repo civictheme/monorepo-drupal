@@ -1,0 +1,114 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-input {
+  appearance: none;
+  margin: 0;
+  font-size: var(--ct-typography-label-small-font-size);
+  line-height: var(--ct-typography-label-small-line-height);
+  font-family: var(--ct-typography-label-small-font-name);
+  font-weight: var(--ct-typography-label-small-font-weight);
+  letter-spacing: var(--ct-typography-label-small-letter-spacing);
+}
+.ct-input[disabled] {
+  opacity: var(--ct-input-disabled-opacity);
+  pointer-events: none;
+}
+.ct-input {
+  border-radius: var(--ct-input-border-radius);
+  border-style: solid;
+  border-width: 0.0625rem;
+  padding: 0.8125rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+.ct-input[type=color] {
+  padding: 0.40625rem 0.5rem;
+  width: 2.875rem;
+}
+.ct-input[type=button], .ct-input[type=reset], .ct-input[type=submit] {
+  appearance: button;
+}
+.ct-input[type=number]::-webkit-inner-spin-button, .ct-input[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+.ct-input[type=search] {
+  appearance: textfield;
+  outline-offset: -2px;
+}
+.ct-input[type=search]::-webkit-search-decoration {
+  appearance: none;
+}
+.ct-input::-webkit-file-upload-button {
+  appearance: button;
+  font: inherit;
+}
+.ct-input:focus-visible {
+  outline-style: solid;
+  outline-width: var(--ct-input-outline-width);
+  outline-offset: var(--ct-input-outline-offset);
+}
+.ct-input.ct-theme-light:focus-visible {
+  outline-color: var(--ct-input-light-outline-color);
+}
+.ct-input.ct-theme-light:not(.ct-input--is-invalid) {
+  color: var(--ct-input-light-color);
+  border-color: var(--ct-input-light-border-color);
+  background-color: var(--ct-input-light-background-color);
+}
+.ct-input.ct-theme-light:not(.ct-input--is-invalid)::placeholder {
+  color: var(--ct-input-light-color);
+}
+.ct-input.ct-theme-light:not(.ct-input--is-invalid):hover {
+  color: var(--ct-input-light-hover-color);
+  border-color: var(--ct-input-light-hover-border-color);
+  background-color: var(--ct-input-light-hover-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-input-light-hover-border-color);
+}
+.ct-input.ct-theme-light:not(.ct-input--is-invalid):focus-visible {
+  color: var(--ct-input-light-focus-color);
+  border-color: var(--ct-input-light-focus-border-color);
+  background-color: var(--ct-input-light-focus-background-color);
+}
+.ct-input.ct-theme-light.ct-input--is-invalid {
+  color: var(--ct-input-light-invalid-color);
+  border-color: var(--ct-input-light-invalid-border-color);
+  background-color: var(--ct-input-light-invalid-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-input-light-invalid-border-color);
+}
+.ct-input.ct-theme-light.ct-input--is-invalid::placeholder {
+  color: var(--ct-input-light-invalid-color);
+}
+.ct-input.ct-theme-dark:focus-visible {
+  outline-color: var(--ct-input-dark-outline-color);
+}
+.ct-input.ct-theme-dark:not(.ct-input--is-invalid) {
+  color: var(--ct-input-dark-color);
+  border-color: var(--ct-input-dark-border-color);
+  background-color: var(--ct-input-dark-background-color);
+  color-scheme: dark;
+}
+.ct-input.ct-theme-dark:not(.ct-input--is-invalid)::placeholder {
+  color: var(--ct-input-dark-color);
+}
+.ct-input.ct-theme-dark:not(.ct-input--is-invalid):hover {
+  color: var(--ct-input-dark-hover-color);
+  border-color: var(--ct-input-dark-hover-border-color);
+  background-color: var(--ct-input-dark-hover-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-input-dark-hover-border-color);
+}
+.ct-input.ct-theme-dark:not(.ct-input--is-invalid):focus-visible {
+  color: var(--ct-input-dark-focus-color);
+  border-color: var(--ct-input-dark-focus-border-color);
+  background-color: var(--ct-input-dark-focus-background-color);
+}
+.ct-input.ct-theme-dark.ct-input--is-invalid {
+  color: var(--ct-input-dark-invalid-color);
+  border-color: var(--ct-input-dark-invalid-border-color);
+  background-color: var(--ct-input-dark-invalid-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-input-dark-invalid-border-color);
+}
+.ct-input.ct-theme-dark.ct-input--is-invalid::placeholder {
+  color: var(--ct-input-dark-invalid-color);
+}

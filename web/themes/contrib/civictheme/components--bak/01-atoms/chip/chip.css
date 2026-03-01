@@ -1,0 +1,163 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-chip {
+  cursor: pointer;
+  border: var(--ct-chip-border-width) solid transparent;
+  border-radius: 3rem;
+}
+.ct-chip {
+  text-decoration: none;
+}
+.ct-chip .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-chip:hover .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-chip--active .ct-text-icon__text, .ct-chip:active .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-chip:focus-visible .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-chip--multiple .ct-chip__dismiss {
+  display: none;
+}
+.ct-chip--multiple:has(.ct-chip__input[checked]) .ct-chip__dismiss {
+  display: initial;
+}
+.ct-chip {
+  display: inline-block;
+  text-decoration: none;
+  outline-offset: var(--ct-button-outline-offset);
+  outline-width: var(--ct-button-outline-width);
+}
+.ct-chip {
+  transition: all var(--ct-button-animation-duration) ease;
+}
+.ct-chip:focus-visible, .ct-chip:hover, .ct-chip:active {
+  text-decoration: none;
+}
+.ct-chip[disabled] {
+  text-decoration: none;
+  pointer-events: none;
+  user-select: none;
+  opacity: 50%;
+}
+.ct-chip input {
+  position: absolute !important;
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+  overflow: hidden;
+  height: 1px !important;
+  width: 1px !important;
+  word-wrap: normal;
+}
+.ct-chip input.ct-focusable:active, .ct-chip input.ct-focusable:focus-visible, .ct-chip input.ct-focusable:hover {
+  position: static !important;
+  overflow: visible;
+  clip: auto;
+  width: auto !important;
+  height: auto !important;
+}
+.ct-chip.ct-theme-light {
+  background-color: var(--ct-chip-light-background-color);
+  border-color: var(--ct-chip-light-border-color);
+  color: var(--ct-chip-light-color);
+}
+.ct-chip.ct-theme-light:hover {
+  background-color: var(--ct-chip-light-hover-background-color);
+  border-color: var(--ct-chip-light-hover-border-color);
+  color: var(--ct-chip-light-hover-color);
+}
+.ct-chip.ct-theme-light:focus-visible, .ct-chip.ct-theme-light.focus {
+  outline-color: var(--ct-chip-light-focus-outline-color);
+  outline-style: solid;
+}
+.ct-chip.ct-theme-light.selected, .ct-chip.ct-theme-light.selected:hover, .ct-chip.ct-theme-light.selected:active, .ct-chip.ct-theme-light.selected:hover:active {
+  background-color: var(--ct-chip-light-selected-background-color);
+  border-color: var(--ct-chip-light-selected-border-color);
+  color: var(--ct-chip-light-selected-color);
+}
+.ct-chip.ct-theme-light:active, .ct-chip.ct-theme-light.active {
+  background-color: var(--ct-chip-light-selected-background-color);
+  border-color: var(--ct-chip-light-selected-border-color);
+  color: var(--ct-chip-light-selected-color);
+}
+.ct-chip.ct-theme-light.active:hover {
+  background-color: var(--ct-chip-light-selected-hover-background-color);
+  border-color: var(--ct-chip-light-selected-hover-border-color);
+  color: var(--ct-chip-light-selected-hover-color);
+}
+.ct-chip.ct-theme-dark {
+  background-color: var(--ct-chip-dark-background-color);
+  border-color: var(--ct-chip-dark-border-color);
+  color: var(--ct-chip-dark-color);
+}
+.ct-chip.ct-theme-dark:hover {
+  background-color: var(--ct-chip-dark-hover-background-color);
+  border-color: var(--ct-chip-dark-hover-border-color);
+  color: var(--ct-chip-dark-hover-color);
+}
+.ct-chip.ct-theme-dark:focus-visible, .ct-chip.ct-theme-dark.focus {
+  outline-color: var(--ct-chip-dark-focus-outline-color);
+  outline-style: solid;
+}
+.ct-chip.ct-theme-dark.selected, .ct-chip.ct-theme-dark.selected:hover, .ct-chip.ct-theme-dark.selected:active, .ct-chip.ct-theme-dark.selected:hover:active {
+  background-color: var(--ct-chip-dark-selected-background-color);
+  border-color: var(--ct-chip-dark-selected-border-color);
+  color: var(--ct-chip-dark-selected-color);
+}
+.ct-chip.ct-theme-dark:active, .ct-chip.ct-theme-dark.active {
+  background-color: var(--ct-chip-dark-selected-background-color);
+  border-color: var(--ct-chip-dark-selected-border-color);
+  color: var(--ct-chip-dark-selected-color);
+}
+.ct-chip.ct-theme-dark.active:hover {
+  background-color: var(--ct-chip-dark-selected-hover-background-color);
+  border-color: var(--ct-chip-dark-selected-hover-border-color);
+  color: var(--ct-chip-dark-selected-hover-color);
+}
+.ct-chip--large {
+  font-size: var(--ct-typography-label-large-font-size);
+  line-height: var(--ct-typography-label-large-line-height);
+  font-family: var(--ct-typography-label-large-font-name);
+  font-weight: var(--ct-typography-label-large-font-weight);
+  letter-spacing: var(--ct-typography-label-large-letter-spacing);
+}
+.ct-chip--large {
+  padding: 1rem 3rem;
+}
+.ct-chip--large__dismiss {
+  margin-left: 1.5rem;
+}
+.ct-chip--regular {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-chip--regular {
+  padding: 0.875rem 2.5rem;
+}
+.ct-chip--regular__dismiss {
+  margin-left: 1.5rem;
+}
+.ct-chip--small {
+  font-size: var(--ct-typography-label-extra-small-font-size);
+  line-height: var(--ct-typography-label-extra-small-line-height);
+  font-family: var(--ct-typography-label-extra-small-font-name);
+  font-weight: var(--ct-typography-label-extra-small-font-weight);
+  letter-spacing: var(--ct-typography-label-extra-small-letter-spacing);
+}
+.ct-chip--small {
+  border-width: calc(var(--ct-button-border-width) / 2);
+}
+.ct-chip--small {
+  padding: 0.5rem 2rem;
+}
+.ct-chip--small__dismiss {
+  margin-left: 1rem;
+}

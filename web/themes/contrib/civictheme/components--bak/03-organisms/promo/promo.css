@@ -1,0 +1,60 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+@media (min-width: 768px) {
+  .ct-promo.ct-promo--with-background {
+    padding-left: var(--ct-promo-space-horizontal);
+    padding-right: var(--ct-promo-space-horizontal);
+  }
+}
+.ct-promo {
+  border-top: solid 0.0625rem;
+  border-bottom: solid 0.0625rem;
+}
+.ct-promo__wrapper {
+  padding: 1.5rem 0;
+}
+@media (min-width: 768px) {
+  .ct-promo__wrapper {
+    padding: 3.5rem 0;
+    display: flex;
+    align-items: center;
+  }
+}
+@media (min-width: 768px) {
+  .ct-promo__inner {
+    flex-grow: 1;
+    padding-right: 2.5rem;
+  }
+}
+.ct-promo__links {
+  margin-top: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ct-promo__links {
+    margin-top: 0;
+  }
+}
+.ct-promo__title {
+  margin-bottom: 0.5rem;
+}
+.ct-promo__content {
+  margin-left: auto;
+}
+.ct-promo__button {
+  width: auto;
+}
+@media (min-width: 768px) {
+  .ct-promo__button {
+    white-space: nowrap;
+  }
+}
+.ct-promo.ct-theme-light {
+  background-color: var(--ct-promo-light-background-color);
+  border-color: var(--ct-promo-light-border-color);
+}
+.ct-promo.ct-theme-dark {
+  background-color: var(--ct-promo-dark-background-color);
+  border-color: var(--ct-promo-dark-border-color);
+}

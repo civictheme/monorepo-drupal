@@ -1,0 +1,37 @@
+.story-about-civictheme {
+  // CivicTheme's own brand color.
+  background-color: #003f56;
+
+  .ct-logo {
+    .ct-logo__image--mobile {
+      max-height: ct-particle(6);
+    }
+
+    .ct-logo__image--desktop {
+      max-height: ct-particle(12);
+    }
+  }
+
+  .ct-heading {
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  .ct-item-list__item {
+    display: flex;
+    padding-left: 0;
+    align-items: center;
+
+    .ct-paragraph {
+      padding-left: ct-spacing(2);
+      margin-bottom: 0;
+    }
+
+    .ct-icon {
+      overflow: visible;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+//
+// CSSGrid mixins.
+//
+
+@use 'sass:math';
+
+$ct-cssgrid-columns: 12;
+$ct-cssgrid-rows: 5;
+$ct-cssgrid-gap: ct-spacing(3);
+
+@mixin ct-cssgrid($breakpoint: null, $cols: $ct-cssgrid-columns, $rows: $ct-cssgrid-rows) {
+  $suffix: '';
+
+  @if $breakpoint {
+    $suffix: '-' + $breakpoint;
+  }
+
+  @if $cols <= $ct-cssgrid-columns and $cols >= 1 {
+    @if $rows <= $ct-cssgrid-rows and $rows >= 1 {
+      // Loop through rows and columns to generate grid classes.
+      @for $col from 1 through $cols {
+        @for $row from 1 through $rows {
+          .grid#{$suffix}-#{$col}-#{$row} {
+            display: grid;
+            grid-template-columns: repeat(#{$col}, 1fr);
+            grid-template-rows: repeat(#{$row}, auto);
+            grid-column: auto;
+            grid-row: auto;
+          }
+        }
+      }
+    }
+    @else {
+      @warn 'Invalid number of rows specified for ct-cssgrid-X. Please provide a value between 1 and #{$ct-cssgrid-rows}.';
+    }
+  }
+  @else {
+    @warn 'Invalid number of columns specified for ct-cssgrid-Y. Please provide a value between 1 and #{$ct-cssgrid-columns}.';
+  }
+}
+
+@mixin ct-cssgrid-col($breakpoint: null, $cols: $ct-cssgrid-columns) {
+  @if $cols > $ct-cssgrid-columns or $cols < 1 {
+    @warn 'Invalid number of columns specified for ct-cssgrid-Y. Please provide a value between 1 and #{$ct-cssgrid-columns}.';
+  }
+
+  $suffix: '';
+
+  @if $breakpoint {
+    $suffix: '-' + $breakpoint;
+  }
+
+  @for $col from 1 through $cols {
+    .g-col#{$suffix}-#{$col} {
+      grid-column-start: auto;
+      grid-column-end: span #{$col};
+    }
+
+    .g-col#{$suffix}-start-#{$col} {
+      grid-column-start: #{$col} !important;
+    }
+  }
+}
+
+@mixin ct-cssgrid-gap($breakpoint: null, $gap: $ct-cssgrid-gap) {
+  $suffix: '';
+
+  @if $breakpoint {
+    $suffix: '-' + $breakpoint;
+  }
+
+  .g-gap#{$suffix} {
+    grid-gap: $gap;
+  }
+
+  .g-gap#{$suffix}-row {
+    grid-row-gap: $gap;
+  }
+
+  .g-gap#{$suffix}-col {
+    grid-column-gap: $gap;
+  }
+}
+
+@mixin ct-cssgrid-row($breakpoint: null, $rows: $ct-cssgrid-rows) {
+  @if $rows > $ct-cssgrid-rows and $rows < 1 {
+    @warn 'Invalid number of rows specified for ct-cssgrid-X. Please provide a value between 1 and #{$ct-cssgrid-rows}.';
+  }
+
+  $suffix: '';
+
+  @if $breakpoint {
+    $suffix: '-' + $breakpoint;
+  }
+
+  @for $row from 1 through $rows {
+    .g-row#{$suffix}-#{$row} {
+      grid-row-start: auto;
+      grid-row-end: span #{$row};
+    }
+
+    .g-row#{$suffix}-start-#{$row} {
+      grid-row-start: #{$row} !important;
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{#
+/**
+ * @file
+ * CivicTheme Banner component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - is_decorative: [boolean] Whether to show as decorative.
+ * - background_image_blend_mode: [string] Background image blending type. Defaults to 'normal'.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - breadcrumb: [object] Breadcrumb navigation.
+ *   Each property contains:
+ *   - links: [array] Breadcrumb links.
+ *   - active_is_link: [boolean] Whether the active item is a link.
+ * - featured_image: [object] Featured image.
+ *   Each property contains:
+ *   - url: [string] Image source URL.
+ *   - alt: [string] Image alt text.
+ * - background_image: [object] Background image.
+ *   Each property contains:
+ *   - url: [string] Image source URL.
+ *   - alt: [string] Image alt text.
+ *
+ * Slots:
+ * - content_top1: Top section content.
+ * - content_top2: Second top section content.
+ * - content_top3: Third top section content.
+ * - content_middle: Middle section content.
+ * - content: Main content.
+ * - content_bottom: Bottom section content.
+ * - content_below: Below banner section content.
+ * - site_section: Site section name.
+ * - title: Banner title.
+ *
+ * Blocks:
+ * - content_top1_block
+ * - breadcrumb_block
+ * - content_top2_block
+ * - content_top3_block
+ * - site_section_block
+ * - title_block
+ * - content_middle_block
+ * - content_block
+ * - featured_image_block
+ * - content_below_block
+ * - content_bottom_block
+ */
+#}
+
+{% set is_decorative_class = is_decorative ? 'ct-banner--decorative' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_decorative_class, modifier_class|default('')) %}
+
+{% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or site_section is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
+  <div class="ct-banner {{ modifier_class -}}" id="main-content" tabindex="-1" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="ct-banner__wrapper">
+      <div
+        class="ct-banner__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
+        {% if background_image and background_image.url is defined and background_image.url is not empty %}style="background-image: url('{{ background_image.url }}');"{% endif %}
+      >
+        {% if background_image and background_image.alt is defined and background_image.alt is not empty %}
+          <span role="img" aria-label="{{ background_image.alt }}"> </span>
+        {% endif %}
+
+        <div class="container">
+
+          {% if content_top1 is not empty %}
+            <div class="row">
+              {%- block content_top1_block %}
+                <div class="col-xxs-12">
+                  <div class="ct-banner__content-top">
+                    {{- content_top1 -}}
+                  </div>
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+          {% if breadcrumb is not empty or content_top2 is not empty %}
+            <div class="row">
+              {% block breadcrumb_block %}
+                {% if breadcrumb is not empty %}
+                  <div class="{% if featured_image is not empty %}col-xxs-12 col-m-6{% else %}col-xxs-12{% endif %}">
+                    {% include 'civictheme:breadcrumb' with {
+                      theme: theme,
+                      links: breadcrumb.links,
+                      active_is_link: breadcrumb.active_is_link,
+                      modifier_class: 'ct-banner__breadcrumb',
+                    } only %}
+                  </div>
+                {% endif %}
+              {% endblock %}
+
+              {% if content_top2 is not empty %}
+                {%- block content_top2_block %}
+                  <div class="col-xxs-12 col-m-6">
+                    <div class="ct-banner__content-top2">
+                      {{- content_top2 -}}
+                    </div>
+                  </div>
+                {% endblock -%}
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if content_top3 is not empty %}
+            <div class="row">
+              {%- block content_top3_block %}
+                <div class="col-xxs-12">
+                  <div class="ct-banner__content-top3">
+                    {{- content_top3 -}}
+                  </div>
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+          {% if site_section is not empty %}
+            <div class="row">
+              {%- block site_section_block %}
+                <div class="col-xxs-12">
+                  {% include 'civictheme:heading' with {
+                    theme: theme,
+                    content: site_section,
+                    level: 5,
+                    modifier_class: 'ct-banner__site-section',
+                  } only %}
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+          {% if title is not empty %}
+            <div class="row">
+              {%- block title_block %}
+                <div class="{% if featured_image is not empty %}col-xxs-12 col-m-6{% else %}col-xxs-12{% endif %}">
+                  {% include 'civictheme:heading' with {
+                    theme: theme,
+                    content: title,
+                    level: 1,
+                    modifier_class: 'ct-banner__title',
+                  } only %}
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+          {% if content_middle is not empty %}
+            <div class="row">
+              {%- block content_middle_block %}
+                <div class="{% if featured_image is not empty %}col-xxs-12 col-m-6{% else %}col-xxs-12{% endif %}">
+                  <div class="ct-banner__content-middle">
+                    {{- content_middle -}}
+                  </div>
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+          {% if content is not empty %}
+            <div class="row">
+              {%- block content_block %}
+                <div class="{% if featured_image is not empty %}col-xxs-12 col-m-6{% else %}col-xxs-12{% endif %}">
+                  <div class="ct-banner__content">
+                    {{- content -}}
+                  </div>
+                </div>
+              {% endblock -%}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      {% block featured_image_block %}
+        {% if featured_image is not empty %}
+          <div class="ct-banner__featured-image__wrapper">
+            {% include 'civictheme:image' with {
+              theme: theme,
+              url: featured_image.url,
+              alt: featured_image.alt,
+              modifier_class: 'ct-banner__featured-image',
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+
+    {% if content_below is not empty %}
+      <div class="container">
+        <div class="row">
+          {%- block content_below_block %}
+            <div class="col-xxs-12">
+              <div class="ct-banner__content-below">
+                {{- content_below -}}
+              </div>
+            </div>
+          {% endblock -%}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if content_bottom is not empty %}
+      <div class="container">
+        <div class="row">
+          {%- block content_bottom_block %}
+            <div class="col-xxs-12">
+              <div class="ct-banner__content-bottom">
+                {{- content_bottom -}}
+              </div>
+            </div>
+          {% endblock -%}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

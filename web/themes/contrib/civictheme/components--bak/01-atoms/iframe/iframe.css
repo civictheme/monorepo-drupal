@@ -1,0 +1,24 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-iframe {
+  border: 0;
+  box-sizing: border-box;
+}
+.ct-iframe.ct-iframe--with-background {
+  padding-left: var(--ct-iframe-space-horizontal);
+  padding-right: var(--ct-iframe-space-horizontal);
+}
+.ct-iframe:not([width]) {
+  width: 100%;
+}
+.ct-iframe:not([height]) {
+  height: 100%;
+}
+.ct-iframe.ct-theme-light.ct-iframe--with-background {
+  background-color: var(--ct-iframe-light-wrapper-background-color);
+}
+.ct-iframe.ct-theme-dark.ct-iframe--with-background {
+  background-color: var(--ct-iframe-dark-wrapper-background-color);
+}

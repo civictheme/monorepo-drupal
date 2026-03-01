@@ -1,0 +1,130 @@
+{#
+/**
+ * @file
+ * CivicTheme Video Player component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - title: [string] Button title.
+ * - poster: [string] Optional video poster URL.
+ * - width: [string] Video width.
+ * - height: [string] Video height.
+ * - vertical_spacing: [string] Controls vertical spacing (top, bottom, or both).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - sources: [array] Video sources:
+ *   Each item contains:
+ *   - url: [string] URL for the video source.
+ *   - type: [string] Type name like 'video/mp4'.
+ * - embedded_source: [string] Iframe URL.
+ * - raw_source: [string] HTML of raw embedded video player.
+ * - transcript_link: [object] Video transcript link.
+ *   Each property contains:
+ *   - text: [string] Button text.
+ *   - title: [string] Button title.
+ *   - url: [string] URL for the link button.
+ *   - is_new_window: [boolean] Whether to open in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ *   - attributes: [object] Additional HTML attributes.
+ * - transcript_content: [string] HTML of transcript content to display in a collapsible.
+ * - transcript_expand_text: [string] Transcript collasible text to open. E.g. "Show transcript".
+ * - transcript_collapse_text: [string] Transcript collasible text to close. E.g. "Hide transcript".
+ *
+ * Blocks:
+ * - video_block
+ * - video_transcript_block
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+{% set attributes = attributes is defined and attributes is not null ? attributes : create_attribute({}) %}
+
+{% if sources is not empty or embedded_source is not empty or raw_source is defined %}
+  <div class="ct-video-player {{ modifier_class -}}">
+    {% block video_block %}
+      <div class="ct-video-player__wrapper">
+        {% if sources is not empty %}
+          {% include 'civictheme:video' with {
+            sources: sources,
+            poster: poster,
+            width: width,
+            height: height,
+            has_controls: true,
+          } only %}
+        {% elseif embedded_source is not empty %}
+          {% do attributes.setAttribute('allowfullscreen', '').setAttribute('data-chromatic', 'ignore') %}
+          {% if title is not empty %}
+            {% do attributes.setAttribute('title', title) %}
+          {% endif %}
+          {% include 'civictheme:iframe' with {
+            url: embedded_source,
+            attributes: attributes,
+            width: width,
+            height: height,
+          } only %}
+        {% else %}
+          {{ raw_source }}
+        {% endif %}
+      </div>
+    {% endblock %}
+
+    {% block video_transcript_block %}
+      {% if transcript_link is not empty or transcript_content is not empty %}
+        <div class="ct-video-player__transcript-block">
+          {% if transcript_link.url is defined and transcript_link.url is not empty %}
+            <div class="ct-video-player__links">
+              <div class="ct-video-player__links-transcript">
+                {% include 'civictheme:link' with {
+                  theme: theme,
+                  text: transcript_link.text,
+                  title: transcript_link.title,
+                  url: transcript_link.url,
+                  is_new_window: transcript_link.is_new_window,
+                  is_external: transcript_link.is_external,
+                  attributes: transcript_link.attributes,
+                  icon: 'eye',
+                  icon_placement: 'before',
+                  size: 'small',
+                } only %}
+              </div>
+            </div>
+          {% endif %}
+          {% if transcript_content is not empty %}
+            <div
+              class="ct-video-player__transcript"
+              data-collapsible
+              data-collapsible-collapsed
+              data-collapsible-duration="250"
+            >
+              {% set transcript_toggle_html %}
+                <span class="ct-video-player__transcript-trigger-expand">
+                  {{- transcript_expand_text|default('Show transcript') -}}
+                </span>
+                <span class="ct-video-player__transcript-trigger-collapse">
+                  {{- transcript_collapse_text|default('Hide transcript') -}}
+                </span>
+              {% endset %}
+              {% include 'civictheme:button' with {
+                theme: theme,
+                type: 'tertiary',
+                text: transcript_toggle_html,
+                attributes: create_attribute({'data-collapsible-trigger': ''}),
+                modifier_class: 'ct-video-player__transcript-toggle',
+              } only %}
+              <div class="ct-video-player__transcript-panel" data-collapsible-panel>
+                <div class="ct-video-player__transcript-panel-inner">
+                  {% include 'civictheme:basic-content' with {
+                    theme: theme,
+                    content: transcript_content,
+                  } only %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+{% endif %}

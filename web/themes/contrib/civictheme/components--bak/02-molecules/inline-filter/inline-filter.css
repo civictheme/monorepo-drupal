@@ -1,0 +1,53 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-inline-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.ct-inline-filter__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 992px) {
+  .ct-inline-filter__content {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+}
+.ct-inline-filter__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+@media (min-width: 992px) {
+  .ct-inline-filter__items {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-grow: 1;
+  }
+}
+.ct-inline-filter__submit-button {
+  box-sizing: border-box;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  width: 100%;
+  text-align: center;
+}
+.ct-inline-filter .ct-field {
+  margin-bottom: 0;
+}
+.ct-inline-filter .ct-label--extra-large {
+  margin-bottom: 1rem;
+}
+.ct-inline-filter.ct-theme-light .ct-inline-filter__title {
+  color: var(--ct-inline-filter-light-title-color);
+}
+.ct-inline-filter.ct-theme-dark .ct-inline-filter__title {
+  color: var(--ct-inline-filter-dark-title-color);
+}

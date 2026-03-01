@@ -1,0 +1,75 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-link {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-link {
+  text-decoration: none;
+}
+.ct-link .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-link:hover .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-link--active .ct-text-icon__text, .ct-link:active .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-link:focus-visible .ct-text-icon__text {
+  text-decoration: none;
+}
+.ct-link[disabled] {
+  pointer-events: none;
+  user-select: none;
+  opacity: 50%;
+}
+.ct-link {
+  padding: 0.1875rem 0 0.125rem;
+  word-break: break-word;
+}
+.ct-link:is(:hover, :focus-visible) .ct-text-icon__text {
+  text-decoration: underline;
+}
+.ct-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-link.ct-link--only-icon {
+  display: inline-block;
+  line-height: 0;
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+.ct-link.ct-theme-light {
+  color: var(--ct-link-light-color);
+}
+.ct-link.ct-theme-light:is(:hover, :focus-visible, :visited:hover, :visited:focus-visible) {
+  color: var(--ct-link-light-hover-color);
+}
+.ct-link.ct-theme-light:visited {
+  color: var(--ct-link-light-visited-color);
+}
+.ct-link.ct-theme-light.ct-link--active, .ct-link.ct-theme-light:active {
+  color: var(--ct-link-light-active-color);
+}
+.ct-link.ct-theme-dark {
+  color: var(--ct-link-dark-color);
+}
+.ct-link.ct-theme-dark:is(:hover, :focus-visible, :visited:hover, :visited:focus-visible) {
+  color: var(--ct-link-dark-hover-color);
+}
+.ct-link.ct-theme-dark:visited {
+  color: var(--ct-link-dark-visited-color);
+}
+.ct-link.ct-theme-dark.ct-link--active, .ct-link.ct-theme-dark:active {
+  color: var(--ct-link-dark-active-color);
+}

@@ -1,0 +1,39 @@
+//
+// Component mixins and functions.
+//
+
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:list';
+
+@mixin ct-component-theme($name) {
+  @each $theme in light, dark {
+    &.ct-theme-#{$theme} {
+      @content($name, $theme);
+    }
+  }
+}
+
+@mixin ct-component-property($args...) {
+  $property: list.nth($args, list.length($args));
+
+  #{$property}: ct-component-var($args...);
+}
+
+@function ct-component-var($args...) {
+  $var-name: ();
+
+  @for $i from 0 to list.length($args) {
+    $part: list.nth($args, $i + 1);
+    $part: ct-string($part);
+    $part: ct-str-replace($part, '.');
+    $part: ct-str-replace($part, '#');
+    $part: ct-str-replace($part, ',');
+    $var-name: list.append($var-name, $part);
+  }
+
+  $var-name: ct-string(ct-join-lists($var-name, '-'));
+  $css-var-name: '--' + $var-name;
+
+  @return var(#{$css-var-name});
+}

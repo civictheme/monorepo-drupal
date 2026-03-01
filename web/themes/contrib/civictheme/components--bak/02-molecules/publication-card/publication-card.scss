@@ -1,0 +1,148 @@
+//
+// CivicTheme Publication Card component styles.
+//
+
+@use 'sass:map';
+
+.ct-publication-card {
+  $root: &;
+
+  & {
+    @include ct-elevation(2);
+
+    position: relative;
+    border-radius: var(--ct-publication-card-border-radius);
+    width: 100%;
+
+    // Prevent image from "spilling" over the border radius.
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      outline: 1px solid transparent;
+    }
+  }
+
+  &--card-clickable {
+    @include ct-elevation-interaction();
+
+    #{$root}__title-link {
+      @include ct-link-cover-parent();
+    }
+  }
+
+  @include ct-breakpoint(m) {
+    flex-direction: row;
+  }
+
+  #{$root}__image {
+    @include ct-image-fit();
+
+    & {
+      position: relative;
+      height: var(--ct-publication-card-image-height-mobile);
+      width: auto;
+      min-width: var(--ct-publication-card-image-width-mobile);
+    }
+
+    @include ct-breakpoint(m) {
+      width: var(--ct-publication-card-image-width-desktop);
+      height: auto;
+      min-height: var(--ct-publication-card-image-height-desktop);
+      flex-shrink: 0;
+    }
+  }
+
+  #{$root}__content {
+    width: 100%;
+    padding: ct-spacing(3);
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    @include ct-typography('heading-4');
+  }
+
+  #{$root}__title-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: ct-spacing();
+  }
+
+  #{$root}__title-icon {
+    flex-shrink: 0;
+  }
+
+  #{$root}__title-link {
+    @include ct-font-size-inherit();
+
+    text-decoration: none;
+
+    &:focus-visible {
+      @include ct-outline();
+      @include ct-outline-border();
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  #{$root}__filename {
+    @include ct-typography('label-regular');
+
+    padding-right: ct-spacing(3);
+  }
+
+  #{$root}__content-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: ct-spacing(3);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    &#{$root}--card-clickable {
+      &:hover {
+        @include ct-component-property($root, $theme, hover, outline-color);
+
+        #{$root}__title-link {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    &:not(#{$root}--card-clickable) {
+      #{$root}__title-link {
+        &:hover {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    #{$root}__title,
+    #{$root}__title-link {
+      @include ct-component-property($root, $theme, title, color);
+    }
+
+    #{$root}__title-icon {
+      @include ct-component-property($root, $theme, title, icon, color);
+    }
+
+    #{$root}__filename {
+      @include ct-component-property($root, $theme, filename, color);
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * CivicTheme Back to Top component.
+ *
+ * Props:
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{%- set text -%}
+  <span class="ct-visually-hidden">Return focus to the top of the page</span>
+  {%- include 'civictheme:icon' with {symbol: 'up-arrow'} only -%}
+{%- endset -%}
+
+<div
+  class="ct-back-to-top {{ modifier_class|default('') }}"
+  data-component-name="back-to-top"
+  data-scrollspy
+  data-scrollspy-offset="400"
+  {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+>
+  {% include 'civictheme:button' with {
+    kind: 'link',
+    type: '',
+    url: '#top',
+    text: text,
+    attributes: create_attribute({'data-skip-to-target': ''}),
+    modifier_class: 'ct-back-to-top__button',
+  } only %}
+</div>

@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * CivicTheme Item List component.
+ *
+ * Props:
+ * - direction: [string] List direction (horizontal or vertical).
+ * - size: [string] List size (large, regular, or small).
+ * - no_gap: [boolean] Whether to render without gaps.
+ * - items: [array] List items.
+ *   Each item contains:
+ *   - items [string]
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set direction = direction in ['horizontal', 'vertical'] ? direction : 'horizontal' %}
+{% set size = size in ['small', 'regular', 'large'] ? size : 'regular' %}
+{% set direction_class = 'ct-item-list--%s'|format(direction) %}
+{% set size_class = 'ct-item-list--%s'|format(size) %}
+{% set no_gap_class = no_gap ? 'ct-item-list--no-gap' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(direction_class, size_class, no_gap_class, modifier_class|default('')) %}
+
+{% if items %}
+  <ul class="ct-item-list {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% for item in items %}
+      {% if item is not empty %}
+        <li class="ct-item-list__item">
+          {{- item -}}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

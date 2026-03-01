@@ -1,0 +1,85 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Textarea
+status: stable
+description: Multi-line text input form element with customizable appearance and states
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    name:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Name
+      description: DOM name (required).
+    id:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: ID
+      description: DOM ID attribute.
+    value:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Value
+      description: The textarea value.
+    placeholder:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Placeholder
+      description: Placeholder text.
+    rows:
+      type:
+      - integer
+      - string
+      - 'null'
+      title: Rows
+      description: Display rows count.
+    is_invalid:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Invalid
+      description: Whether the textarea is invalid.
+    is_disabled:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Disabled
+      description: Whether the textarea is disabled.
+    is_required:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Required
+      description: Whether the textarea is required.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

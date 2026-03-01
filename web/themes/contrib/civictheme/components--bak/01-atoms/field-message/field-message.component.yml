@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Field Message
+status: stable
+description: Component for form field messages with different status types
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    content:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Content
+      description: The message content.
+    type:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Type
+      description: Message type (error, information, warning, success).
+      enum:
+      - error
+      - information
+      - warning
+      - success
+      - ''
+      - null
+      default: information
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

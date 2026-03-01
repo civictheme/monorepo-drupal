@@ -1,0 +1,145 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Promo Card
+status: stable
+description: Card component for displaying promotional content with image, title, summary, date, and tags
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    image:
+      type: object
+      title: Image
+      description: Card image.
+      properties:
+        url:
+          type: string
+          title: URL
+          description: Image URL.
+        alt:
+          type: string
+          title: Alt text
+          description: Image alt text.
+    is_title_click:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Title click
+      description: Whether to make only the title clickable instead of the whole card.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+    date_iso:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: ISO Date
+      description: Start date and time in ISO format.
+    date:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Date
+      description: Start date and time.
+    date_end_iso:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: ISO End Date
+      description: End time in ISO format.
+    date_end:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: End Date
+      description: Formatted end time.
+    link:
+      type: object
+      title: Link
+      description: Card link object.
+      properties:
+        url:
+          type: string
+          title: URL
+          description: Link URL.
+        is_new_window:
+          type: boolean
+          title: New Window
+          description: Whether to open the link in a new window.
+        is_external:
+          type: boolean
+          title: External
+          description: Whether the link is external.
+    tags:
+      type: array
+      title: Tags
+      description: Card tags.
+      items:
+        type: object
+        properties:
+          text:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Text
+            description: Tag text.
+          url:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: URL
+            description: Tag URL.
+          is_new_window:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: New Window
+            description: Whether to open the tag in a new window.
+slots:
+  subtitle:
+    title: Subtitle
+    description: Subtitle text.
+  title:
+    title: Title
+    description: Card title text.
+  summary:
+    title: Summary
+    description: Card summary.
+  content_top:
+    title: Content Top
+    description: Top content area.
+  image_over:
+    title: Image Over
+    description: Image overlay content.
+  content_middle:
+    title: Content Middle
+    description: Middle content area.
+  content_bottom:
+    title: Content Bottom
+    description: Bottom content area.

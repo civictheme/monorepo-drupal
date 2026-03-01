@@ -1,0 +1,36 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-popover {
+  position: relative;
+}
+.ct-popover .ct-popover__content {
+  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
+}
+.ct-popover .ct-popover__content {
+  position: absolute;
+  z-index: var(--ct-popover-z-index);
+  border-radius: var(--ct-popover-description-border-radius);
+  margin-top: var(--ct-popover-top-offset);
+}
+.ct-popover .ct-popover__content__inner {
+  min-width: var(--ct-popover-min-width);
+  min-height: 6rem;
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .ct-popover .ct-popover__content__inner {
+    padding: 1.5rem;
+  }
+}
+.ct-popover.ct-theme-light .ct-popover__content {
+  background-color: var(--ct-popover-light-content-background-color);
+}
+.ct-popover.ct-theme-dark .ct-popover__content {
+  background-color: var(--ct-popover-dark-content-background-color);
+}
+
+.no-js .ct-popover__content {
+  position: relative;
+}

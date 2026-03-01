@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * CivicTheme Tooltip component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - position: [string] Tooltip position ('auto', 'auto-start', 'auto-end', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'right', 'right-start', 'right-end', 'left', 'left-start', 'left-end').
+ * - icon: [string] Symbol to use in the button. Defaults to 'information-mark'.
+ * - icon_size: [string] Icon size ('extra-large', 'large', 'regular', 'small', 'extra-small'.)
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - title: Text used within the button title and for screen readers.
+ * - content: Text to display within the popup.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content %}
+  <div class="ct-tooltip {{ modifier_class -}}" data-component-name="tooltip" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <button class="ct-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
+      {%- include 'civictheme:icon' with {
+        symbol: icon|default('information-mark'),
+        size: icon_size|default('large'),
+      } only -%}
+    </button>
+
+    <div class="ct-tooltip__description" data-tooltip-content>
+      <div class="ct-tooltip__description__inner">
+        {{- content -}}
+      </div>
+      <div data-tooltip-close>
+        {%- include 'civictheme:button' with {
+          type: 'tertiary',
+          kind: 'button',
+          icon: 'cancel',
+          size: 'regular',
+        } only -%}
+      </div>
+
+      <div class="ct-tooltip__arrow" data-tooltip-arrow></div>
+    </div>
+  </div>
+{% endif %}

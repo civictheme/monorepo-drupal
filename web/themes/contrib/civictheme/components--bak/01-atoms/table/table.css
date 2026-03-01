@@ -1,0 +1,213 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 0;
+  border-spacing: 0;
+  text-align: left;
+  vertical-align: middle;
+  font-size: var(--ct-typography-text-regular-font-size);
+  line-height: var(--ct-typography-text-regular-line-height);
+  font-family: var(--ct-typography-text-regular-font-name);
+  font-weight: var(--ct-typography-text-regular-font-weight);
+  letter-spacing: var(--ct-typography-text-regular-letter-spacing);
+}
+.ct-table thead,
+.ct-table tfoot {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-table tr th,
+.ct-table tr td {
+  padding: 0.75rem 1.5rem;
+  vertical-align: var(--ct-table-cell-vertical-align);
+}
+.ct-table caption {
+  text-align: left;
+  padding: 0.75rem 0;
+  font-size: var(--ct-typography-label-large-font-size);
+  line-height: var(--ct-typography-label-large-line-height);
+  font-family: var(--ct-typography-label-large-font-name);
+  font-weight: var(--ct-typography-label-large-font-weight);
+  letter-spacing: var(--ct-typography-label-large-letter-spacing);
+}
+.ct-table.ct-table--caption-after {
+  caption-side: bottom;
+}
+.ct-table.ct-table--caption-after caption {
+  font-size: var(--ct-typography-text-small-font-size);
+  line-height: var(--ct-typography-text-small-line-height);
+  font-family: var(--ct-typography-text-small-font-name);
+  font-weight: var(--ct-typography-text-small-font-weight);
+  letter-spacing: var(--ct-typography-text-small-letter-spacing);
+}
+@media (max-width: 767px) {
+  .ct-table:not(.ct-table--data) thead,
+  .ct-table:not(.ct-table--data) tfoot {
+    position: absolute !important;
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+    overflow: hidden;
+    height: 1px !important;
+    width: 1px !important;
+    word-wrap: normal;
+  }
+  .ct-table:not(.ct-table--data) thead.ct-focusable:active, .ct-table:not(.ct-table--data) thead.ct-focusable:focus-visible, .ct-table:not(.ct-table--data) thead.ct-focusable:hover,
+  .ct-table:not(.ct-table--data) tfoot.ct-focusable:active,
+  .ct-table:not(.ct-table--data) tfoot.ct-focusable:focus-visible,
+  .ct-table:not(.ct-table--data) tfoot.ct-focusable:hover {
+    position: static !important;
+    overflow: visible;
+    clip: auto;
+    width: auto !important;
+    height: auto !important;
+  }
+  .ct-table:not(.ct-table--data) tbody tr {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .ct-table:not(.ct-table--data) tbody tr td {
+    border: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+  .ct-table:not(.ct-table--data) tbody tr td:first-of-type::after {
+    visibility: hidden;
+  }
+  .ct-table:not(.ct-table--data) tbody tr td::after {
+    content: "";
+    width: calc(100% - 30px);
+    display: block;
+    margin: 0 auto;
+    height: 0.0625rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -6px;
+  }
+  .ct-table:not(.ct-table--data) tbody tr td::before {
+    content: attr(data-title);
+    display: table-cell;
+    height: 100%;
+    width: 30%;
+    max-width: 6rem;
+    flex-shrink: 0;
+    vertical-align: middle;
+    padding-right: 1rem;
+    font-size: var(--ct-typography-label-regular-font-size);
+    line-height: var(--ct-typography-label-regular-line-height);
+    font-family: var(--ct-typography-label-regular-font-name);
+    font-weight: var(--ct-typography-label-regular-font-weight);
+    letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+  }
+  .ct-table:not(.ct-table--data) tr th,
+  .ct-table:not(.ct-table--data) tr td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+.ct-table.ct-theme-light {
+  color: var(--ct-table-light-color);
+  background-color: var(--ct-table-light-background-color);
+}
+.ct-table.ct-theme-light thead {
+  color: var(--ct-table-light-header-color);
+}
+@media (min-width: 768px) {
+  .ct-table.ct-theme-light thead {
+    border-bottom: solid 0.0625rem var(--ct-table-light-header-border-color);
+  }
+}
+.ct-table.ct-theme-light thead tr:last-child {
+  border-bottom: solid 0.125rem var(--ct-table-light-header-border-color);
+}
+.ct-table.ct-theme-light tfoot {
+  color: var(--ct-table-light-footer-color);
+}
+@media (min-width: 768px) {
+  .ct-table.ct-theme-light tfoot {
+    border-top: solid 0.0625rem var(--ct-table-light-footer-border-color);
+  }
+}
+.ct-table.ct-theme-light tfoot tr:last-child {
+  border-top: solid 0.125rem var(--ct-table-light-footer-border-color);
+}
+.ct-table.ct-theme-light tbody tr {
+  border-bottom: solid 0.0625rem var(--ct-table-light-border-color);
+}
+.ct-table.ct-theme-light caption {
+  color: var(--ct-table-light-caption-color);
+}
+.ct-table.ct-theme-light.ct-table--data {
+  border-top: solid 0.0625rem var(--ct-table-light-footer-border-color);
+}
+.ct-table.ct-theme-light.ct-table--striped tbody tr:nth-child(odd) {
+  background: var(--ct-table-light-row-odd-background-color);
+}
+.ct-table.ct-theme-light.ct-table--striped tbody tr:nth-child(odd) td {
+  color: var(--ct-table-light-row-odd-color);
+}
+.ct-table.ct-theme-light.ct-table--striped tbody tr:nth-child(even) {
+  background: var(--ct-table-light-row-even-background-color);
+}
+.ct-table.ct-theme-light.ct-table--striped tbody tr:nth-child(even) td {
+  color: var(--ct-table-light-row-even-color);
+}
+.ct-table.ct-theme-dark {
+  color: var(--ct-table-dark-color);
+  background-color: var(--ct-table-dark-background-color);
+}
+.ct-table.ct-theme-dark thead {
+  color: var(--ct-table-dark-header-color);
+}
+@media (min-width: 768px) {
+  .ct-table.ct-theme-dark thead {
+    border-bottom: solid 0.0625rem var(--ct-table-dark-header-border-color);
+  }
+}
+.ct-table.ct-theme-dark thead tr:last-child {
+  border-bottom: solid 0.125rem var(--ct-table-dark-header-border-color);
+}
+.ct-table.ct-theme-dark tfoot {
+  color: var(--ct-table-dark-footer-color);
+}
+@media (min-width: 768px) {
+  .ct-table.ct-theme-dark tfoot {
+    border-top: solid 0.0625rem var(--ct-table-dark-footer-border-color);
+  }
+}
+.ct-table.ct-theme-dark tfoot tr:last-child {
+  border-top: solid 0.125rem var(--ct-table-dark-footer-border-color);
+}
+.ct-table.ct-theme-dark tbody tr {
+  border-bottom: solid 0.0625rem var(--ct-table-dark-border-color);
+}
+.ct-table.ct-theme-dark caption {
+  color: var(--ct-table-dark-caption-color);
+}
+.ct-table.ct-theme-dark.ct-table--data {
+  border-top: solid 0.0625rem var(--ct-table-dark-footer-border-color);
+}
+.ct-table.ct-theme-dark.ct-table--striped tbody tr:nth-child(odd) {
+  background: var(--ct-table-dark-row-odd-background-color);
+}
+.ct-table.ct-theme-dark.ct-table--striped tbody tr:nth-child(odd) td {
+  color: var(--ct-table-dark-row-odd-color);
+}
+.ct-table.ct-theme-dark.ct-table--striped tbody tr:nth-child(even) {
+  background: var(--ct-table-dark-row-even-background-color);
+}
+.ct-table.ct-theme-dark.ct-table--striped tbody tr:nth-child(even) td {
+  color: var(--ct-table-dark-row-even-color);
+}
+.ct-table--wrapper {
+  overflow: auto;
+  max-width: 100vw;
+}

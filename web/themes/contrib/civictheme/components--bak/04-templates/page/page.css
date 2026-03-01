@@ -1,0 +1,10 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-page.ct-theme-light {
+  background-color: var(--ct-page-light-background-color);
+}
+.ct-page.ct-theme-dark {
+  background-color: var(--ct-page-dark-background-color);
+}

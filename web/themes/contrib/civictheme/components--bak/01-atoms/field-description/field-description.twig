@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme Field Description component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - content: [string] The description's content.
+ * - size: [string] Description size (large, regular).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set size = size in ['large', 'regular'] ? size : 'regular' %}
+{% set size_class = 'ct-field-description--%s'|format(size) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+
+{% if content is not empty -%}
+  <div class="ct-field-description {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {{- content -}}
+  </div>
+{%- endif %}

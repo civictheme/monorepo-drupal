@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * CivicTheme Table of Contents component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - title: [string] Link title.
+ * - position: [string] TOC position ('before', 'after', 'prepend', 'append').
+ * - anchor_selector: [string] CSS selector for headings to include in TOC (e.g. 'h2, h3').
+ * - scope_selector: [string] CSS selector for the content area to generate TOC from.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - links: Table of contents links.
+ * - content: Content (only displays when links are not provided).
+ *
+ * Blocks:
+ * - content_block
+ */
+#}
+
+{% if links is not empty or scope_selector is not empty %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        {% if links %}
+          {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+          {% set position_class = 'ct-table-of-contents--position-%s'|format(position|default('before')) %}
+          {% set modifier_class = '%s %s %s'|format(theme_class, position_class, modifier_class|default('')) %}
+
+          <div class="ct-table-of-contents {{ modifier_class }}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+            {% if title %}
+              <h2 class="ct-table-of-contents__title">{{ title }}</h2>
+            {% endif %}
+            {% if links %}
+              <ul class="ct-table-of-contents__links">
+                {% for link in links %}
+                  <li class="ct-table-of-contents__link-item">
+                    <a class="ct-table-of-contents__link" href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% else %}
+          <div
+            data-table-of-contents-theme="{{ theme }}"
+            data-table-of-contents-title="{{ title }}"
+            data-table-of-contents-anchor-selector="{{ anchor_selector }}"
+            data-table-of-contents-anchor-scope-selector="{{ scope_selector }}"
+            data-table-of-contents-position="{{ position }}"
+          >
+            {%- block content_block -%}
+              {{- content -}}
+            {%- endblock -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}

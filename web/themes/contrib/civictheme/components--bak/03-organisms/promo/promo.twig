@@ -1,0 +1,113 @@
+{#
+/**
+ * @file
+ * CivicTheme Promo component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - is_contained: [boolean] Whether the content is contained in a container.
+ * - vertical_spacing: [string] Vertical spacing for the promo (top, bottom, or both).
+ * - with_background: [boolean] Whether to display with a background.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - link: [object] Call-to-action link.
+ *   Each property contains:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ *
+ * Slots:
+ * - content_top: Top content area.
+ * - title: Title text.
+ * - content: Main content text.
+ * - content_bottom: Bottom promo content.
+ *
+ * Blocks:
+ * - content_top_block
+ * - content_block
+ * - content_left_block
+ * - content_right_block
+ * - content_bottom_block
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-promo--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_background_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% set is_contained = is_contained is defined ? is_contained : true %}
+
+{% if title is not empty or content is not empty %}
+  <div class="ct-promo {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% if is_contained %}
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {% endif %}
+          {% block content_top_block %}
+            {% if content_top is not empty %}
+              <div class="ct-promo__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block content_block %}
+            <div class="ct-promo__wrapper">
+              {% block content_left_block %}
+                <div class="ct-promo__inner">
+                  {% if title %}
+                    {% include 'civictheme:heading' with {
+                      content: title,
+                      level: 4,
+                      theme: theme,
+                      modifier_class: 'ct-promo__title',
+                    } only %}
+                  {% endif %}
+
+                  {% if content is not empty %}
+                    {% include 'civictheme:paragraph' with {
+                      theme: theme,
+                      content: content,
+                      modifier_class: 'ct-promo__content',
+                    } only %}
+                  {% endif %}
+                </div>
+              {% endblock %}
+
+              {% block content_right_block %}
+                {% if link %}
+                  <div class="ct-promo__links">
+                    {% include 'civictheme:button' with {
+                      theme: theme,
+                      type: 'secondary',
+                      kind: 'link',
+                      size: 'large',
+                      text: link.text,
+                      url: link.url,
+                      is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                      is_external: link.is_external is defined ? link.is_external : false,
+                      modifier_class: 'ct-promo__button',
+                    } only %}
+                  </div>
+                {% endif %}
+              {% endblock %}
+            </div>
+          {% endblock %}
+
+          {% block content_bottom_block %}
+            {% if content_bottom is not empty %}
+              <div class="ct-promo__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+          {% if is_contained %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+{% endif %}

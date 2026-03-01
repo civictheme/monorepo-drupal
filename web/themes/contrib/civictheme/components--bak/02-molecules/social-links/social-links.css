@@ -1,0 +1,17 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-social-links .ct-social-links__button {
+  line-height: 0;
+}
+.ct-social-links.ct-social-links--with-border .ct-social-links__button {
+  border: 0.0625rem solid currentcolor;
+  border-radius: 6rem;
+  padding: 0.6875rem;
+}
+@media (min-width: 768px) {
+  .ct-social-links.ct-social-links--with-border .ct-social-links__button {
+    padding: 0.8125rem;
+  }
+}

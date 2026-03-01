@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * CivicTheme Radio component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - name: [string] DOM name (required).
+ * - id: [string] DOM id (required).
+ * - value: [string] DOM value.
+ * - label: [string] Label content.
+ * - is_checked: [boolean] Whether the radio is checked.
+ * - is_required: [boolean] Whether the radio is required.
+ * - is_invalid: [boolean] Whether the radio is invalid.
+ * - is_disabled: [boolean] Whether the radio is disabled.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set is_invalid_class = is_invalid ? 'ct-radio--is-invalid' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_invalid_class, modifier_class|default(''))|trim %}
+
+{% if name is not empty and id is not empty %}
+  <input
+    type="radio"
+    class="ct-radio {{ modifier_class -}}"
+    name="{{ name }}"
+    value="{{ value }}"
+    id="{{ id }}"
+    {% if is_checked %}checked{% endif %}
+    {% if is_required %}required{% endif %}
+    {% if is_disabled %}disabled{% endif %}
+    {% if is_invalid %}aria-invalid="true"{% endif %}
+    {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+  />
+  {% if label is not empty %}
+    {% include 'civictheme:label' with {
+      theme: theme,
+      content: label,
+      for: id,
+      size: 'small',
+      modifier_class: 'ct-radio__label',
+    } only %}
+  {% endif %}
+{% endif %}

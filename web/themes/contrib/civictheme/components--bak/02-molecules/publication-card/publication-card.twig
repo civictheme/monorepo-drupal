@@ -1,0 +1,162 @@
+{#
+/**
+ * @file
+ * CivicTheme Publication Card component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - image: [object] Card image.
+ *   Each property contains:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ * - file: [object] File object for download.
+ *   Each property contains:
+ *   - name: [string] File name.
+ *   - url: [string] File URL.
+ *   - ext: [string] File extension.
+ *   - size: [string] File size.
+ * - is_title_click: [boolean] Whether to make only the title clickable instead of the whole card.
+ * - filename_prefix: [string] Description of file details for accessibility.
+ *
+ * Slots:
+ * - image_over: Image overlay content.
+ * - content_top: Top content area.
+ * - title: Card title text.
+ * - content_middle: Middle content area.
+ * - summary: Card summary.
+ * - content_bottom: Bottom content area.
+ *
+ * Blocks:
+ * - image_block
+ * - image_over_block
+ * - content_top_block
+ * - title_block
+ * - content_middle_block
+ * - summary_block
+ * - link_block
+ * - content_bottom_block
+ */
+#}
+
+{% set with_image = image.url is not empty %}
+{% set with_image_class = with_image ? 'ct-publication-card--with-image' : '' %}
+{% set with_file = file is not empty and file.url is defined and file.url is not empty %}
+{% set is_card_clickable = with_file and is_title_click is empty and title is not empty %}
+{% set card_clickable_class = is_card_clickable ? 'ct-publication-card--card-clickable' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, card_clickable_class, modifier_class|default('')) %}
+
+{% set filename_prefix = filename_prefix|default('File details:') %}
+{% set has_ext = file.ext is not empty %}
+{% set has_size = file.size is not empty %}
+{% set extension_text = (has_ext and has_size) ? '%s, %s'|format(file.ext, file.size) : file.ext|default(file.size|default('')) %}
+{% set extension_text = extension_text ? '(%s)'|format(extension_text) : '' %}
+{% set filename_text = file.name is not empty ? file.name : '' %}
+{% set filename = '%s %s'|format(filename_text, extension_text)|trim %}
+
+{% if file is not empty %}
+  <div class="ct-publication-card {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% block image_block %}
+      {% if image.url is not empty %}
+        <div class="ct-publication-card__image">
+          {% include 'civictheme:image' with {
+            theme: theme,
+            url: image.url,
+            alt: image.alt,
+          } only %}
+
+          {% block image_over_block %}
+            {% if image_over is not empty %}
+              <div class="ct-publication-card__image__over">
+                {{ image_over }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    <div class="ct-publication-card__content">
+      {% block content_top_block %}
+        {% if content_top is not empty %}
+          <div class="ct-publication-card__content-top">
+            {{- content_top -}}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title_block %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% if with_file %}
+              {% set title_label = filename ? '%s. %s %s'|format(title, filename_prefix, filename) : '' %}
+              <a
+                class="ct-publication-card__title-link"
+                href="{{ file.url }}"
+                {% if title_label %}aria-label="{{ title_label }}"{% endif %}
+              >{{ title }}</a>
+            {% else %}
+              {{ title }}
+            {% endif %}
+          {% endset %}
+
+          <div class="ct-publication-card__title-bar">
+            <div class="ct-publication-card__title">{{ title_content }}</div>
+            {% include 'civictheme:icon' with {
+              symbol: 'download',
+              size: 'regular',
+              modifier_class: 'ct-publication-card__title-icon',
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block content_middle_block %}
+        {% if content_middle is not empty %}
+          <div class="ct-publication-card__content__middle">
+            {{- content_middle -}}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block summary_block %}
+        {% if summary is not empty %}
+          {% include 'civictheme:paragraph' with {
+            theme: theme,
+            content: summary,
+            no_margin: true,
+            modifier_class: 'ct-publication-card__summary',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block link_block %}
+        {% if filename is not empty %}
+          {% if title is not empty %}
+            <div class="ct-publication-card__filename">
+              <span class="ct-visually-hidden">{{ filename_prefix }}</span>
+              {{ filename }}
+            </div>
+          {% else %}
+            {% include 'civictheme:link' with {
+              theme: theme,
+              text: filename,
+              url: file.url,
+              modifier_class: 'ct-publication-card__link',
+            } only %}
+          {% endif %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_bottom_block %}
+        {% if content_bottom is not empty %}
+          <div class="ct-publication-card__content-bottom">
+            {{- content_bottom -}}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

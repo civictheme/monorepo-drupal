@@ -1,0 +1,106 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Chip
+status: stable
+description: Interactive chip component for filters, tags and input elements
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    kind:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Kind
+      description: Chip kind (default, input, link).
+      enum:
+      - default
+      - input
+      - link
+      - ''
+      - null
+      default: default
+    size:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Size
+      description: Chip size (large, regular, small).
+      enum:
+      - large
+      - regular
+      - small
+      - ''
+      - null
+      default: regular
+    content:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Content
+      description: Chip text.
+    url:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: URL
+      description: URL if kind = link.
+    label:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Label
+      description: Aria Label if kind = link.
+    is_selected:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Selected
+      description: Whether the chip is selected (for filter chips).
+    is_multiple:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Multiple
+      description: Whether multiple selection is allowed when kind = input. If enabled, shows close icon on selected chip.
+    is_dismissible:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Dismissible
+      description: Whether close icon should display when kind is not input, and is_multiple is false.
+    group_parent:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Group parent
+      description: Additional parent selector for radio group when kind = input.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

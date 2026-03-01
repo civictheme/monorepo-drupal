@@ -1,0 +1,85 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Label
+status: stable
+description: Label component for form elements with customizable appearance and states
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    tag:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Tag
+      description: HTML tag to use (label, legend).
+      enum:
+      - label
+      - legend
+      - ''
+      - null
+      default: label
+    content:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Content
+      description: The label's content.
+    size:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Size
+      description: Label size (extra-large, large, regular, small, extra-small).
+      enum:
+      - extra-large
+      - large
+      - regular
+      - small
+      - extra-small
+      - ''
+      - null
+      default: regular
+    is_required:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Required
+      description: Whether the label is required.
+    required_text:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Required text
+      description: Text to display within label element when required.
+      default: (required)
+    for:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: For
+      description: Form element ID this label belongs to.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

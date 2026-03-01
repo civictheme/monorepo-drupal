@@ -1,0 +1,104 @@
+//
+// CivicTheme Fast Fact Card component styles.
+//
+
+.ct-fast-fact-card {
+  $root: &;
+
+  @include ct-highlight-stripe-horizontal(var(--ct-fast-fact-card-stripe-height), var(--ct-fast-fact-card-border-radius), 0, 'bottom');
+
+  & {
+    @include ct-elevation(2);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+    border-radius: var(--ct-border-radius);
+    box-sizing: border-box;
+    padding: ct-spacing(4) ct-spacing(3) ct-spacing(3);
+
+    @include ct-breakpoint('m') {
+      padding: ct-spacing(5) ct-spacing(4) ct-spacing(3);
+    }
+
+    &:hover {
+      outline: 1px solid transparent;
+    }
+  }
+
+  &--card-clickable {
+    @include ct-elevation-interaction();
+
+    #{$root}__title-link {
+      @include ct-link-cover-parent();
+    }
+  }
+
+  &__image {
+    img {
+      display: flex;
+      margin: auto;
+      max-width: var(--ct-fast-fact-card-max-width);
+      max-height: var(--ct-fast-fact-card-max-height);
+    }
+  }
+
+  &__title {
+    @include ct-typography('display');
+
+    text-align: center;
+  }
+
+  &__title-link {
+    @include ct-font-size-inherit();
+
+    text-decoration: none;
+
+    &:focus-visible {
+      @include ct-outline();
+      @include ct-outline-border();
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  &__summary {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+
+    &#{$root}--card-clickable {
+      &:hover {
+        @include ct-component-property($root, $theme, hover, outline-color);
+
+        #{$root}__title-link {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    &:not(#{$root}--card-clickable) {
+      #{$root}__title-link {
+        &:hover {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    #{$root}__title,
+    #{$root}__title-link {
+      @include ct-component-property($root, $theme, title, color);
+    }
+  }
+}

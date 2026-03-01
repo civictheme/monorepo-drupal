@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * CivicTheme Inline Filter component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - title: [string] Filter title.
+ * - submit_text: [string] The text of the submit button.
+ * - modifier_class: [string] Additional CSS classes.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ *
+ * Slots:
+ * - items: Field items to display. Ideally a single text field.
+ * - items_end: Field items to appear after the 'items' slot.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-inline-filter {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  {% if title is not empty %}
+    <div class="ct-inline-filter__title">{{ title }}</div>
+  {% endif %}
+  <div class="ct-inline-filter__content">
+    {% if items is not empty %}
+      <div class="ct-inline-filter__items">
+        {{ items }}
+        <div class="ct-inline-filter__actions">
+          {% include 'civictheme:button' with {
+            theme: theme,
+            kind: 'button',
+            type: 'primary',
+            text: submit_text|default('Search'),
+            attributes: create_attribute({type: 'submit'}),
+            modifier_class: 'ct-inline-filter__submit-button',
+          } only %}
+        </div>
+      </div>
+    {% endif %}
+    {% if items_end is not empty %}
+      <div class="ct-inline-filter__items-end">
+        {{ items_end }}
+      </div>
+    {% endif %}
+  </div>
+</div>

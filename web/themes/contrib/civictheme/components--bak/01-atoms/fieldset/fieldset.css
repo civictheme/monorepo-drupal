@@ -1,0 +1,33 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-fieldset {
+  border: none;
+  padding: 1rem 0;
+}
+.ct-fieldset legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+}
+.ct-fieldset legend + * {
+  clear: left;
+}
+.ct-fieldset__wrapper > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.ct-fieldset__fields > .ct-field:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.ct-fieldset .ct-fieldset {
+  margin-top: 2rem;
+  border-left: solid var(--ct-fieldset-stripe-width);
+  padding-left: calc(1.5rem - var(--ct-fieldset-stripe-width));
+}
+.ct-fieldset.ct-theme-light .ct-fieldset {
+  border-color: var(--ct-fieldset-light-stripe-border-color);
+}
+.ct-fieldset.ct-theme-dark .ct-fieldset {
+  border-color: var(--ct-fieldset-dark-stripe-border-color);
+}

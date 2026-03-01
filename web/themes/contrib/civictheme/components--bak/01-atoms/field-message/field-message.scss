@@ -1,0 +1,108 @@
+//
+// CivicTheme Field Message component styles.
+//
+
+@use 'sass:map';
+@use 'sass:math';
+
+//
+// Mixins.
+//
+
+.ct-field-message {
+  $root: &;
+  $_padding: ct-spacing();
+
+  display: block;
+  border-radius: var(--ct-field-message-border-radius);
+  padding: $_padding;
+  border-width: ct-particle(0.125);
+  border-style: solid;
+
+  @include ct-typography('text-regular');
+
+  #{$root}__icon {
+    vertical-align: top;
+
+    @include ct-icon-align-with-text('text-regular');
+  }
+
+  $map: (
+    'information': (
+      'light': (
+        'color': var(--ct-field-message-light-information-color),
+        'background-color': var(--ct-field-message-light-information-background-color),
+        'border-color': var(--ct-field-message-light-information-border-color),
+        'icon-color': var(--ct-field-message-light-information-icon-color),
+      ),
+      'dark': (
+        'color': var(--ct-field-message-dark-information-color),
+        'background-color': var(--ct-field-message-dark-information-background-color),
+        'border-color': var(--ct-field-message-dark-information-border-color),
+        'icon-color': var(--ct-field-message-dark-information-icon-color),
+      )
+    ),
+    'warning': (
+      'light': (
+        'color': var(--ct-field-message-light-warning-color),
+        'background-color': var(--ct-field-message-light-warning-background-color),
+        'border-color': var(--ct-field-message-light-warning-border-color),
+        'icon-color': var(--ct-field-message-light-warning-icon-color),
+      ),
+      'dark': (
+        'color': var(--ct-field-message-dark-warning-color),
+        'background-color': var(--ct-field-message-dark-warning-background-color),
+        'border-color': var(--ct-field-message-dark-warning-border-color),
+        'icon-color': var(--ct-field-message-dark-warning-icon-color),
+      )
+    ),
+    'error': (
+      'light': (
+        'color': var(--ct-field-message-light-error-color),
+        'background-color': var(--ct-field-message-light-error-background-color),
+        'border-color': var(--ct-field-message-light-error-border-color),
+        'icon-color': var(--ct-field-message-light-error-icon-color),
+      ),
+      'dark': (
+        'color': var(--ct-field-message-dark-error-color),
+        'background-color': var(--ct-field-message-dark-error-background-color),
+        'border-color': var(--ct-field-message-dark-error-border-color),
+        'icon-color': var(--ct-field-message-dark-error-icon-color),
+      )
+    ),
+    'success': (
+      'light': (
+        'color': var(--ct-field-message-light-success-color),
+        'background-color': var(--ct-field-message-light-success-background-color),
+        'border-color': var(--ct-field-message-light-success-border-color),
+        'icon-color': var(--ct-field-message-light-success-icon-color),
+      ),
+      'dark': (
+        'color': var(--ct-field-message-dark-success-color),
+        'background-color': var(--ct-field-message-dark-success-background-color),
+        'border-color': var(--ct-field-message-dark-success-border-color),
+        'icon-color': var(--ct-field-message-dark-success-icon-color),
+      )
+    ),
+  );
+
+  @each $type, $type-map in $map {
+    &#{$root}--#{$type} {
+      @each $theme, $values in $type-map {
+        &.ct-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          color: map.get($values, 'color');
+          border-color: map.get($values, 'border-color');
+
+          #{$root}__icon {
+            color: map.get($values, 'icon-color');
+          }
+
+          a:not(.ct-link.ct-theme-light):not(.ct-link.ct-theme-dark) {
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}

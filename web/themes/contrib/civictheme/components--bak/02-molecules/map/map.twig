@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * CivicTheme Map component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] Vertical spacing position (top, bottom, both).
+ * - with_background: [boolean] Whether to display with a background.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - address: [string] Optional address.
+ * - url: [string] URL for the map iframe.
+ * - view_url: [string] URL for the external map.
+ * - view_text: [string] Text for the external map link.
+ *
+ * Slots:
+ * - content_top: Map top content.
+ * - content_bottom: Map bottom content.
+ *
+ * Blocks:
+ * - content_top_block
+ * - map_block
+ * - links_block
+ * - content_bottom_block
+ */
+#}
+
+{% set view_text = view_text|default('View in Google Maps') %}
+{% set with_background_class = with_background ? 'ct-map--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% if url is not empty %}
+  <div class="ct-map {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {% block content_top_block %}
+            {% if content_top is not empty %}
+              <div class="ct-map__content-top">
+                {{- content_top -}}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block map_block %}
+            <div class="ct-map__canvas">
+              {% set iframe_attributes = create_attribute({allowfullscreen: '', 'data-chromatic': 'ignore'}) %}
+              {% if address is not empty %}
+                {% do iframe_attributes.setAttribute('title', address) %}
+              {% endif %}
+              {% include 'civictheme:iframe' with {
+                url: url,
+                attributes: iframe_attributes,
+                modifier_class: 'ct-map__iframe',
+              } only %}
+            </div>
+          {% endblock %}
+
+          {% block links_block %}
+            {% if view_url is not empty %}
+              {% include 'civictheme:link' with {
+                theme: theme,
+                text: view_text,
+                url: view_url,
+                is_new_window: true,
+                is_external: true,
+                modifier_class: 'ct-map__link',
+              } only %}
+            {% endif %}
+          {% endblock %}
+
+          {% block content_bottom_block %}
+            {% if content_bottom is not empty %}
+              <div class="ct-map__content-bottom">
+                {{- content_bottom -}}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

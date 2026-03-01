@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * CivicTheme Message component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - type: [string] Message type (information, error, warning, success).
+ * - vertical_spacing: [string] Message vertical spacing (none, top, bottom, both).
+ * - with_background: [boolean] Whether to display with a background.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - title: Title text.
+ * - content: Content text.
+ */
+#}
+
+{% set type = type in ['information', 'error', 'warning', 'success'] ? type : 'information' %}
+{% set type_class = 'ct-message--%s'|format(type) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set with_background_class = with_background ? 'ct-message--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set has_aria = has_aria is not defined ? true : has_aria %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, with_background_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% set icons = {
+  information: 'information-mark',
+  warning: 'exclamation-mark-2',
+  error: 'exclamation-mark-1',
+  success: 'approve',
+} %}
+
+{% if title or content %}
+  <div class="ct-message {{ modifier_class }}"
+    {% if has_aria %}
+      role="{{ type == 'error' ? 'alert' : 'contentinfo' }}"
+      aria-label="{{ type }}"
+      aria-live="assertive"
+    {% endif %}
+    {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+  >
+    <div class="ct-message__inner">
+      {% if icons[type] is defined %}
+        <div class="ct-message__icon">
+          {% include 'civictheme:icon' with {
+            symbol: icons[type],
+            size: 'regular',
+          } only %}
+        </div>
+      {% endif %}
+
+      <div class="ct-message__inner-wrapper">
+        {% if title %}
+          <div class="ct-message__title">{{ title }}</div>
+        {% endif %}
+
+        {% if content %}
+          {% include 'civictheme:paragraph' with {
+            theme: theme,
+            content: content,
+            modifier_class: 'ct-message__content',
+          } only %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}

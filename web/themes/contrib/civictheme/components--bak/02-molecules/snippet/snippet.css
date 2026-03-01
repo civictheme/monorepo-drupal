@@ -1,0 +1,62 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-snippet {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.ct-snippet .ct-snippet__content {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ct-snippet .ct-snippet__title {
+  font-size: var(--ct-typography-heading-4-font-size);
+  line-height: var(--ct-typography-heading-4-line-height);
+  font-family: var(--ct-typography-heading-4-font-name);
+  font-weight: var(--ct-typography-heading-4-font-weight);
+  letter-spacing: var(--ct-typography-heading-4-letter-spacing);
+}
+.ct-snippet .ct-snippet__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+}
+.ct-snippet .ct-snippet__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-snippet .ct-snippet__title-link:hover {
+  text-decoration: none;
+}
+.ct-snippet .ct-snippet__title-link:visited {
+  color: inherit;
+}
+.ct-snippet.ct-theme-light {
+  background-color: var(--ct-snippet-light-background-color);
+}
+.ct-snippet.ct-theme-light .ct-snippet__title,
+.ct-snippet.ct-theme-light .ct-snippet__title-link {
+  color: var(--ct-snippet-light-title-color);
+}
+.ct-snippet.ct-theme-light .ct-snippet__title-link:hover {
+  color: var(--ct-snippet-light-title-hover-color);
+}
+.ct-snippet.ct-theme-dark {
+  background-color: var(--ct-snippet-dark-background-color);
+}
+.ct-snippet.ct-theme-dark .ct-snippet__title,
+.ct-snippet.ct-theme-dark .ct-snippet__title-link {
+  color: var(--ct-snippet-dark-title-color);
+}
+.ct-snippet.ct-theme-dark .ct-snippet__title-link:hover {
+  color: var(--ct-snippet-dark-title-hover-color);
+}

@@ -1,0 +1,125 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-subject-card {
+  position: relative;
+  border-radius: var(--ct-subject-card-border-radius);
+  width: 100%;
+}
+.ct-subject-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-subject-card:hover {
+  outline: 1px solid transparent;
+}
+.ct-subject-card--card-clickable {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-subject-card--card-clickable:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+.ct-subject-card--card-clickable:active {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.ct-subject-card--card-clickable .ct-subject-card__title-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ct-subject-card .ct-subject-card__content img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.ct-subject-card .ct-subject-card__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: var(--ct-subject-card-image-height-mobile);
+  min-width: var(--ct-subject-card-image-width-mobile);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .ct-subject-card .ct-subject-card__content {
+    padding: 1.5rem;
+    min-height: var(--ct-subject-card-image-height-desktop);
+    min-width: var(--ct-subject-card-image-width-desktop);
+  }
+}
+.ct-subject-card .ct-subject-card__image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.ct-subject-card .ct-subject-card__title {
+  font-size: var(--ct-typography-heading-4-font-size);
+  line-height: var(--ct-typography-heading-4-line-height);
+  font-family: var(--ct-typography-heading-4-font-name);
+  font-weight: var(--ct-typography-heading-4-font-weight);
+  letter-spacing: var(--ct-typography-heading-4-letter-spacing);
+  z-index: 1;
+}
+.ct-subject-card .ct-subject-card__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+.ct-subject-card .ct-subject-card__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-subject-card .ct-subject-card__title-link:hover {
+  text-decoration: underline;
+}
+.ct-subject-card .ct-subject-card__title-link:visited {
+  color: inherit;
+}
+.ct-subject-card.ct-theme-light {
+  background-color: var(--ct-subject-card-light-background-color);
+}
+.ct-subject-card.ct-theme-light.ct-subject-card--card-clickable:hover {
+  outline-color: var(--ct-subject-card-light-hover-outline-color);
+}
+.ct-subject-card.ct-theme-light.ct-subject-card--card-clickable:hover .ct-subject-card__title-link {
+  color: var(--ct-subject-card-light-title-hover-color);
+}
+.ct-subject-card.ct-theme-light:not(.ct-subject-card--card-clickable) .ct-subject-card__title-link:hover {
+  color: var(--ct-subject-card-light-title-hover-color);
+}
+.ct-subject-card.ct-theme-light .ct-subject-card__title,
+.ct-subject-card.ct-theme-light .ct-subject-card__title-link {
+  color: var(--ct-subject-card-light-title-color);
+}
+.ct-subject-card.ct-theme-light .ct-subject-card__image {
+  opacity: var(--ct-subject-card-light-image-opacity);
+}
+.ct-subject-card.ct-theme-dark {
+  background-color: var(--ct-subject-card-dark-background-color);
+}
+.ct-subject-card.ct-theme-dark.ct-subject-card--card-clickable:hover {
+  outline-color: var(--ct-subject-card-dark-hover-outline-color);
+}
+.ct-subject-card.ct-theme-dark.ct-subject-card--card-clickable:hover .ct-subject-card__title-link {
+  color: var(--ct-subject-card-dark-title-hover-color);
+}
+.ct-subject-card.ct-theme-dark:not(.ct-subject-card--card-clickable) .ct-subject-card__title-link:hover {
+  color: var(--ct-subject-card-dark-title-hover-color);
+}
+.ct-subject-card.ct-theme-dark .ct-subject-card__title,
+.ct-subject-card.ct-theme-dark .ct-subject-card__title-link {
+  color: var(--ct-subject-card-dark-title-color);
+}
+.ct-subject-card.ct-theme-dark .ct-subject-card__image {
+  opacity: var(--ct-subject-card-dark-image-opacity);
+}

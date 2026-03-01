@@ -1,0 +1,154 @@
+//
+// CivicTheme Slider component styles.
+//
+
+[data-slider] {
+  position: relative;
+}
+
+[data-slider-panel] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-slider-rail] {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  left: 0;
+  transition-property: left;
+
+  @if $ct-animation-enabled {
+    transition-duration: var(--ct-slider-mobile-transition);
+
+    @include ct-breakpoint(m) {
+      transition-duration: var(--ct-slider-desktop-transition);
+    }
+  }
+}
+
+.ct-slider {
+  $root: &;
+
+  &#{$root}--with-background {
+    padding-left: var(--ct-slider-space-horizontal);
+    padding-right: var(--ct-slider-space-horizontal);
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  #{$root}__slides {
+    @include ct-elevation(3);
+
+    & {
+      border-radius: var(--ct-slider-border-radius);
+    }
+  }
+
+  #{$root}__controls {
+    margin-top: ct-spacing(2);
+    text-align: center;
+
+    @include ct-breakpoint(m) {
+      display: flex;
+      align-items: center;
+      text-align: unset;
+    }
+  }
+
+  #{$root}__controls__inner {
+    display: flex;
+    gap: ct-spacing(2);
+  }
+
+  #{$root}__controls__previous,
+  #{$root}__controls__next {
+    padding-left: ct-spacing(2);
+    padding-right: ct-spacing(2);
+    width: calc(50% - #{ct-spacing()});
+
+    @include ct-breakpoint(m) {
+      width: auto;
+      min-width: ct-particle(20);
+    }
+  }
+
+  #{$root}__controls__progress-indicator {
+    padding: ct-spacing(0.5) ct-spacing();
+    margin-left: auto;
+    margin-top: ct-spacing(2);
+    text-align: center;
+    display: inline-block;
+
+    @include ct-breakpoint(m) {
+      display: block;
+      margin-top: 0;
+      text-align: left;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    &#{$root}--with-background {
+      @include ct-component-property($root, $theme, background-color);
+    }
+  }
+}
+
+.ct-slide {
+  $root: &;
+
+  #{$root}__row {
+    @include ct-breakpoint(m) {
+      height: 100%;
+    }
+  }
+
+  #{$root}__inner {
+    padding: ct-spacing(4);
+
+    @include ct-breakpoint(m) {
+      padding: ct-particle(10) 0;
+    }
+  }
+
+  #{$root}__image {
+    height: var(--ct-slide-mobile-height);
+
+    @include ct-image-fit();
+
+    @include ct-breakpoint(m) {
+      @include ct-image-container-square();
+
+      padding: 0;
+      height: 100%;
+    }
+  }
+
+  #{$root}__content,
+  #{$root}__tags {
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
+  #{$root}__date,
+  #{$root}__title {
+    margin-bottom: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(2);
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property(ct-slider, $theme, slide, background-color);
+  }
+}

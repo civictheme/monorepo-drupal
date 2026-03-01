@@ -1,0 +1,138 @@
+{#
+/**
+ * @file
+ * CivicTheme Page Template component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - header_theme: [string] Theme variation for header (light or dark).
+ * - hide_sidebar_left: [boolean] Whether to hide the left sidebar.
+ * - hide_sidebar_right: [boolean] Whether to hide the right sidebar.
+ * - content_contained: [boolean] Whether page content should be contained.
+ * - vertical_spacing: [string] Controls vertical spacing (top, bottom, or both).
+ * - footer_theme: [string] Theme variation for footer (light or dark).
+ * - footer_background_image: [string] Background image for footer.
+ *
+ * Slots:
+ * - banner: Banner content.
+ * - highlighted: Highlighted content.
+ * - header_top_1: Header top section 1 content.
+ * - header_top_2: Header top section 2 content.
+ * - header_top_3: Header top section 3 content.
+ * - header_middle_1: Header middle section 1 content.
+ * - header_middle_2: Header middle section 2 content.
+ * - header_middle_3: Header middle section 3 content.
+ * - header_bottom_1: Header bottom section 1 content.
+ * - content_top: Main content area top content.
+ * - sidebar_top_left: Top left sidebar content.
+ * - sidebar_top_left_attributes: HTML attributes for top left sidebar.
+ * - sidebar_top_right: Top right sidebar content.
+ * - sidebar_top_right_attributes: HTML attributes for top right sidebar.
+ * - content: Main content.
+ * - content_attributes: HTML attributes for main content.
+ * - sidebar_bottom_left: Bottom left sidebar content.
+ * - sidebar_bottom_left_attributes: HTML attributes for bottom left sidebar.
+ * - sidebar_bottom_right: Bottom right sidebar content.
+ * - sidebar_bottom_right_attributes: HTML attributes for bottom right sidebar.
+ * - sidebar: Legacy sidebar content.
+ * - sidebar_attributes: Legacy sidebar HTML attributes
+ * - content_bottom: Main content area bottom content.
+ * - footer_top_1: Footer top section 1 content.
+ * - footer_top_2: Footer top section 2 content.
+ * - footer_middle_1: Footer middle section 1 content.
+ * - footer_middle_2: Footer middle section 2 content.
+ * - footer_middle_3: Footer middle section 3 content.
+ * - footer_middle_4: Footer middle section 4 content.
+ * - footer_bottom_1: Footer bottom section 1 content.
+ * - footer_bottom_2: Footer bottom section 2 content.
+ *
+ * Blocks:
+ * - header_block
+ * - banner_block
+ * - highlighted_block
+ * - content_block
+ * - footer_block
+ * - back_to_top_block
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-page {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  <a id="top" tab-index="-1" aria-hidden="true"></a>
+
+  {% block header_block %}
+    {% include 'civictheme:header' with {
+      theme: header_theme,
+      content_top1: header_top_1,
+      content_top2: header_top_2,
+      content_top3: header_top_3,
+      content_middle1: header_middle_1,
+      content_middle2: header_middle_2,
+      content_middle3: header_middle_3,
+      content_bottom1: header_bottom_1,
+    } only %}
+  {% endblock %}
+
+  {% block banner_block %}
+    {% if banner is not empty %}
+      {{ banner }}
+    {% endif %}
+  {% endblock %}
+
+  {% if highlighted is not empty %}
+    {% block highlighted_block %}
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-12">
+            {{ highlighted }}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+  {% endif %}
+
+  {% block content_block %}
+    {% include 'civictheme:layout' with {
+      content_top: content_top,
+      hide_sidebar_left: hide_sidebar_left,
+      hide_sidebar_right: hide_sidebar_right,
+      sidebar_top_left: sidebar_top_left,
+      sidebar_top_left_attributes: sidebar_top_left_attributes,
+      sidebar_top_right: sidebar_top_right,
+      sidebar_top_right_attributes: sidebar_top_right_attributes,
+      content: content,
+      content_attributes: content_attributes,
+      sidebar_bottom_left: sidebar_bottom_left|default(sidebar),
+      sidebar_bottom_left_attributes: sidebar_bottom_left_attributes|default(sidebar_attributes),
+      sidebar_bottom_right: sidebar_bottom_right,
+      sidebar_bottom_right_attributes: sidebar_bottom_right_attributes,
+      is_contained: content_contained,
+      content_bottom: content_bottom,
+      vertical_spacing: vertical_spacing,
+      attributes: (banner is empty) ? create_attribute({id: 'main-content', tabindex: '-1'}) : create_attribute(),
+    } only %}
+  {% endblock %}
+
+  {% block footer_block %}
+    {% include 'civictheme:footer' with {
+      theme: footer_theme,
+      background_image: footer_background_image,
+      content_top1: footer_top_1,
+      content_top2: footer_top_2,
+      content_middle1: footer_middle_1,
+      content_middle2: footer_middle_2,
+      content_middle3: footer_middle_3,
+      content_middle4: footer_middle_4,
+      content_bottom1: footer_bottom_1,
+      content_bottom2: footer_bottom_2,
+    } only %}
+  {% endblock %}
+
+  {% block back_to_top_block %}
+    {% include 'civictheme:back-to-top' with {} only %}
+  {% endblock %}
+</div>

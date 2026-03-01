@@ -1,0 +1,55 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-header {
+  border-bottom: solid 0.0625rem;
+}
+.ct-header__top {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.ct-header__content-top2 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.ct-header__content-top3 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.ct-header__middle {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.ct-header__content-middle2 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.ct-header__content-middle3 {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.ct-header__content-bottom1 {
+  display: flex;
+}
+.ct-header.ct-theme-light {
+  border-color: var(--ct-header-light-border-color);
+  background-color: var(--ct-header-light-background-color);
+}
+.ct-header.ct-theme-light .ct-header__top {
+  background-color: var(--ct-header-light-top-background-color);
+  color: var(--ct-header-light-top-color);
+}
+.ct-header.ct-theme-dark {
+  border-color: var(--ct-header-dark-border-color);
+  background-color: var(--ct-header-dark-background-color);
+}
+.ct-header.ct-theme-dark .ct-header__top {
+  background-color: var(--ct-header-dark-top-background-color);
+  color: var(--ct-header-dark-top-color);
+}

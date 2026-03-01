@@ -1,0 +1,112 @@
+//
+// CivicTheme Subject Card component styles.
+//
+
+.ct-subject-card {
+  $root: &;
+
+  & {
+    @include ct-elevation(2);
+
+    position: relative;
+    border-radius: var(--ct-subject-card-border-radius);
+    width: 100%;
+
+    &:hover {
+      outline: 1px solid transparent;
+    }
+  }
+
+  &--card-clickable {
+    @include ct-elevation-interaction();
+
+    #{$root}__title-link {
+      @include ct-link-cover-parent();
+    }
+  }
+
+  #{$root}__content {
+    @include ct-image-fit();
+
+    & {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: var(--ct-subject-card-image-height-mobile);
+      min-width: var(--ct-subject-card-image-width-mobile);
+      padding: ct-spacing(2);
+      box-sizing: border-box;
+    }
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3);
+      min-height: var(--ct-subject-card-image-height-desktop);
+      min-width: var(--ct-subject-card-image-width-desktop);
+    }
+  }
+
+  #{$root}__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  #{$root}__title {
+    @include ct-typography('heading-4');
+
+    z-index: 1;
+  }
+
+  #{$root}__title-link {
+    @include ct-font-size-inherit();
+
+    text-decoration: none;
+
+    &:focus-visible {
+      @include ct-outline();
+      @include ct-outline-border();
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    &#{$root}--card-clickable {
+      &:hover {
+        @include ct-component-property($root, $theme, hover, outline-color);
+
+        #{$root}__title-link {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    &:not(#{$root}--card-clickable) {
+      #{$root}__title-link {
+        &:hover {
+          @include ct-component-property($root, $theme, title, hover, color);
+        }
+      }
+    }
+
+    #{$root}__title,
+    #{$root}__title-link {
+      @include ct-component-property($root, $theme, title, color);
+    }
+
+    #{$root}__image {
+      @include ct-component-property($root, $theme, image, opacity);
+    }
+  }
+}

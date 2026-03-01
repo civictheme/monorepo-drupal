@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * CivicTheme Fast Fact Card component.
+ *
+ * Props:
+ * - theme: [string] Theme variant ('light' or 'dark')
+ * - image: [object] Image data containing URL and alt text
+ *   Each property contains:
+ *   - url: [string] URL of the image
+ *   - alt: [string] Alt text for the image
+ * - title: [string] Title text for the card
+ * - summary: [string] Summary text content, can contain HTML
+ * - link: [object] Link object for making the title clickable
+ *   Each property contains:
+ *   - url: [string] URL for the link
+ *   - is_new_window: [boolean] Open link in a new window
+ * - is_title_click: [boolean] Whether to make only the title clickable instead of the whole card.
+ * - modifier_class: [string] Additional classes to modify the component
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ *
+ * Blocks:
+ * - image_block
+ * - title_block
+ * - summary_block
+ */
+#}
+
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set is_card_clickable = with_link and is_title_click is empty %}
+{% set card_clickable_class = is_card_clickable ? 'ct-fast-fact-card--card-clickable' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, card_clickable_class, modifier_class|default('')) %}
+
+<div class="ct-fast-fact-card {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  {% block image_block %}
+    {% if image and image.url %}
+      <div class="ct-fast-fact-card__image">
+        {% include 'civictheme:image' with {
+          theme: theme,
+          url: image.url,
+          alt: image.alt|default(''),
+        } only %}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block title_block %}
+    {% if title is not empty %}
+      <div class="ct-fast-fact-card__title">
+        {% if with_link %}
+          <a
+            class="ct-fast-fact-card__title-link"
+            href="{{ link.url }}"
+            {% if link.is_new_window %}target="_blank"{% endif %}
+          >{{ title }}</a>
+        {% else %}
+          {{ title }}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block summary_block %}
+    {% if summary is not empty %}
+      {% include 'civictheme:paragraph' with {
+        theme: theme,
+        content: summary,
+        size: 'large',
+        modifier_class: 'ct-fast-fact-card__summary',
+      } only %}
+    {% endif %}
+  {% endblock %}
+</div>

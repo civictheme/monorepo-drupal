@@ -1,0 +1,164 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-promo-card {
+  position: relative;
+  border-radius: var(--ct-promo-card-border-radius);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ct-promo-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-promo-card:hover {
+  outline: 1px solid transparent;
+}
+.ct-promo-card--card-clickable {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-promo-card--card-clickable:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+.ct-promo-card--card-clickable:active {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.ct-promo-card--card-clickable .ct-promo-card__title-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ct-promo-card:not(.ct-promo-card--with-image) {
+  position: relative;
+}
+.ct-promo-card:not(.ct-promo-card--with-image)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--ct-promo-card-stripe-height);
+  top: 0;
+  border-top-left-radius: var(--ct-promo-card-border-radius);
+  border-top-right-radius: var(--ct-promo-card-border-radius);
+  transition: height 0.25s;
+}
+.ct-promo-card .ct-promo-card__image img {
+  aspect-ratio: var(--ct-promo-card-image-aspect-ratio);
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.ct-promo-card .ct-promo-card__content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ct-promo-card .ct-promo-card__title {
+  font-size: var(--ct-typography-heading-4-font-size);
+  line-height: var(--ct-typography-heading-4-line-height);
+  font-family: var(--ct-typography-heading-4-font-name);
+  font-weight: var(--ct-typography-heading-4-font-weight);
+  letter-spacing: var(--ct-typography-heading-4-letter-spacing);
+}
+.ct-promo-card .ct-promo-card__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+.ct-promo-card .ct-promo-card__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-promo-card .ct-promo-card__title-link:hover {
+  text-decoration: underline;
+}
+.ct-promo-card .ct-promo-card__title-link:visited {
+  color: inherit;
+}
+.ct-promo-card .ct-promo-card__tags {
+  display: flex;
+  margin-top: auto;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.ct-promo-card .ct-promo-card__link-graphic {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}
+.ct-promo-card .ct-promo-card__link-graphic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: var(--ct-promo-card-link-graphic-hover-opacity);
+  border-radius: 100%;
+}
+.ct-promo-card.ct-theme-light {
+  background-color: var(--ct-promo-card-light-background-color);
+}
+.ct-promo-card.ct-theme-light.ct-promo-card--card-clickable:hover {
+  outline-color: var(--ct-promo-card-light-hover-outline-color);
+}
+.ct-promo-card.ct-theme-light.ct-promo-card--card-clickable:hover .ct-promo-card__title-link {
+  color: var(--ct-promo-card-light-title-hover-color);
+}
+.ct-promo-card.ct-theme-light.ct-promo-card--card-clickable:hover .ct-promo-card__link-graphic::before {
+  background-color: var(--ct-promo-card-light-link-graphic-hover-background-color);
+}
+.ct-promo-card.ct-theme-light:not(.ct-promo-card--card-clickable) .ct-promo-card__title-link:hover {
+  color: var(--ct-promo-card-light-title-hover-color);
+}
+.ct-promo-card.ct-theme-light .ct-promo-card__title,
+.ct-promo-card.ct-theme-light .ct-promo-card__title-link {
+  color: var(--ct-promo-card-light-title-color);
+}
+.ct-promo-card.ct-theme-light .ct-promo-card__link-graphic {
+  color: var(--ct-promo-card-light-link-graphic-color);
+}
+.ct-promo-card.ct-theme-light.ct-promo-card:not(.ct-promo-card--with-image)::before {
+  background-color: var(--ct-promo-card-light-stripe-background-color);
+}
+.ct-promo-card.ct-theme-dark {
+  background-color: var(--ct-promo-card-dark-background-color);
+}
+.ct-promo-card.ct-theme-dark.ct-promo-card--card-clickable:hover {
+  outline-color: var(--ct-promo-card-dark-hover-outline-color);
+}
+.ct-promo-card.ct-theme-dark.ct-promo-card--card-clickable:hover .ct-promo-card__title-link {
+  color: var(--ct-promo-card-dark-title-hover-color);
+}
+.ct-promo-card.ct-theme-dark.ct-promo-card--card-clickable:hover .ct-promo-card__link-graphic::before {
+  background-color: var(--ct-promo-card-dark-link-graphic-hover-background-color);
+}
+.ct-promo-card.ct-theme-dark:not(.ct-promo-card--card-clickable) .ct-promo-card__title-link:hover {
+  color: var(--ct-promo-card-dark-title-hover-color);
+}
+.ct-promo-card.ct-theme-dark .ct-promo-card__title,
+.ct-promo-card.ct-theme-dark .ct-promo-card__title-link {
+  color: var(--ct-promo-card-dark-title-color);
+}
+.ct-promo-card.ct-theme-dark .ct-promo-card__link-graphic {
+  color: var(--ct-promo-card-dark-link-graphic-color);
+}
+.ct-promo-card.ct-theme-dark.ct-promo-card:not(.ct-promo-card--with-image)::before {
+  background-color: var(--ct-promo-card-dark-stripe-background-color);
+}

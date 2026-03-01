@@ -1,0 +1,58 @@
+//
+// CivicTheme Inline Filter component styles.
+//
+
+.ct-inline-filter {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: ct-spacing(3);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(3);
+
+    @include ct-breakpoint($ct-inline-filter-breakpoint) {
+      display: flex;
+      flex-direction: row;
+      gap: ct-spacing(1);
+      align-items: flex-end;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(1);
+
+    @include ct-breakpoint($ct-inline-filter-breakpoint) {
+      flex-direction: row;
+      align-items: flex-end;
+      flex-grow: 1;
+    }
+  }
+
+  &__submit-button {
+    box-sizing: border-box;
+    padding-top: ct-spacing(1.5);
+    padding-bottom: ct-spacing(1.5);
+    width: 100%;
+    text-align: center;
+  }
+
+  .ct-field {
+    margin-bottom: 0;
+  }
+
+  .ct-label--extra-large {
+    margin-bottom: ct-spacing(2);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__title {
+      color: ct-component-var($root, $theme, title, color);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+//
+// Content Link mixins.
+//
+
+@mixin ct-content-link-base() {
+  text-decoration: underline;
+  text-decoration-thickness: ct-particle(0.125);
+  text-underline-offset: ct-particle(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+  word-break: break-word;
+
+  &:hover {
+    text-decoration: none;
+    padding: ct-spacing(0.375) 0 ct-spacing(0.5);
+  }
+}
+
+@mixin ct-content-link-light() {
+  color: var(--ct-content-link-light-color);
+
+  &:focus-visible {
+    @include ct-outline();
+  }
+
+  &:hover {
+    background-color: var(--ct-content-link-light-hover-background-color);
+    color: var(--ct-content-link-light-hover-color);
+  }
+
+  &:visited {
+    color: var(--ct-content-link-light-visited-color);
+
+    &:hover {
+      color: var(--ct-content-link-light-visited-hover-color);
+    }
+  }
+}
+
+@mixin ct-content-link-dark() {
+  color: var(--ct-content-link-dark-color);
+
+  &:focus-visible {
+    @include ct-outline(true);
+  }
+
+  &:hover {
+    background-color: var(--ct-content-link-dark-hover-background-color);
+    color: var(--ct-content-link-dark-hover-color);
+  }
+
+  &:visited {
+    color: var(--ct-content-link-dark-visited-color);
+
+    &:hover {
+      color: var(--ct-content-link-dark-visited-hover-color);
+    }
+  }
+}

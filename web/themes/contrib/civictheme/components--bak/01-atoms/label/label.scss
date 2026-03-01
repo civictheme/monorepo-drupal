@@ -1,0 +1,34 @@
+//
+// CivicTheme Label component styles.
+//
+
+@use 'sass:map';
+@use 'sass:string';
+
+.ct-label {
+  $root: &;
+
+  @include ct-typography('label-regular');
+
+  display: block;
+  margin: 0;
+  margin-bottom: ct-spacing();
+  -webkit-tap-highlight-color: transparent;
+
+  @each $name in map.keys(_ct-typography-all()) {
+    @if string.index(#{$name}, 'label-') {
+      $size: string.slice(#{$name}, 6, 100);
+      &.ct-label-#{$size} {
+        @include ct-typography($name);
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, color);
+
+    #{$root}__required {
+      @include ct-component-property($root, $theme, required, color);
+    }
+  }
+}

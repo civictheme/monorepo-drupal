@@ -1,0 +1,17 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.story-container__page-content.story-ct-back-to-top {
+  height: 2000px;
+}
+.story-container__page-content.story-ct-back-to-top::before {
+  box-shadow: 0 0 0.0625rem 0.0625rem #f00 inset;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  content: "";
+}

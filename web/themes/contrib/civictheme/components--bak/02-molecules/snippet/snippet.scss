@@ -1,0 +1,60 @@
+//
+// CivicTheme Snippet component styles.
+//
+
+@use 'sass:map';
+
+.ct-snippet {
+  $root: &;
+
+  position: relative;
+  width: 100%;
+  display: flex;
+
+  #{$root}__content {
+    padding-top: ct-spacing(1);
+    padding-bottom: ct-spacing(1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+  }
+
+  #{$root}__title {
+    @include ct-typography('heading-4');
+  }
+
+  #{$root}__title-link {
+    @include ct-font-size-inherit();
+
+    text-decoration: underline;
+
+    &:focus-visible {
+      @include ct-outline();
+      @include ct-outline-border();
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+
+    #{$root}__title,
+    #{$root}__title-link {
+      @include ct-component-property($root, $theme, title, color);
+    }
+
+    #{$root}__title-link {
+      &:hover {
+        @include ct-component-property($root, $theme, title, hover, color);
+      }
+    }
+  }
+}

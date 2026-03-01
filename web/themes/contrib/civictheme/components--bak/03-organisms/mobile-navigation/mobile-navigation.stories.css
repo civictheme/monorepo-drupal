@@ -1,0 +1,14 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+@media (min-width: 768px) {
+  .story-container__page-content.story-ct-mobile-navigation .ct-mobile-navigation {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .story-container__page-content.story-ct-mobile-navigation .ct-mobile-navigation-trigger {
+    display: inline;
+  }
+}

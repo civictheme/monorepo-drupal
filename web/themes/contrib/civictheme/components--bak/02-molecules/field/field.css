@@ -1,0 +1,60 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-field {
+  width: 100%;
+}
+.ct-field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.ct-field.ct-field--radio .ct-field__wrapper, .ct-field.ct-field--checkbox .ct-field__wrapper {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.ct-field > *:not(:last-child), .ct-field__wrapper > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+.ct-field .ct-item-list__item {
+  line-height: 1.25rem;
+}
+.ct-field.ct-field--horizontal {
+  display: flex;
+  flex-flow: row;
+  align-items: start;
+  column-gap: 0.5rem;
+}
+.ct-field.ct-field--horizontal.ct-field--horizontal--fluid .ct-field__title {
+  min-width: auto;
+  max-width: fit-content;
+}
+.ct-field.ct-field--horizontal .ct-field__title {
+  flex: 0 1 auto;
+  min-width: var(--ct-field-horizontal-label-min-width);
+  max-width: var(--ct-field-horizontal-label-max-width);
+  margin-top: 0.9375rem;
+}
+.ct-field.ct-field--horizontal.ct-field--with-fixed-title--15 .ct-field__title {
+  min-width: 7.5rem;
+}
+.ct-field.ct-field--horizontal.ct-field--with-fixed-title--25 .ct-field__title {
+  min-width: 12.5rem;
+}
+.ct-field.ct-field--horizontal.ct-field--radio .ct-field__title, .ct-field.ct-field--horizontal.ct-field--checkbox .ct-field__title, .ct-field.ct-field--horizontal.ct-field--select[multiple] .ct-field__title {
+  margin-top: 0;
+}
+.ct-field.ct-field--horizontal .ct-field__wrapper {
+  flex: 1 0 0;
+  display: flex;
+  flex-flow: column;
+}
+.ct-field.ct-field--horizontal .ct-field__control {
+  order: 1;
+}
+.ct-field.ct-field--horizontal .ct-field__description {
+  order: 2;
+}
+.ct-field.ct-field--horizontal .ct-field__message {
+  order: 3;
+}

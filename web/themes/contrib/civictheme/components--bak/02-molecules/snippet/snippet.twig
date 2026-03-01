@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * CivicTheme Snippet component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - content_top: Top content area.
+ * - content_middle: Middle content area.
+ * - content_bottom: Bottom content area.
+ * - title: Snippet title text.
+ * - summary: Snippet summary text.
+ * - link: Snippet link object.
+ * - tags: Snippet tags.
+ *
+ * Blocks:
+ * - content_block
+ * - content_top_block
+ * - title_block
+ * - content_middle_block
+ * - summary_block
+ * - content_tags_block
+ * - content_bottom_block
+ */
+#}
+
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-snippet {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% block content_block %}
+      <div class="ct-snippet__content">
+        {% block content_top_block %}
+          {% if content_top is not empty %}
+            <div class="ct-snippet__content-top">
+              {{- content_top -}}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block title_block %}
+          {% if title is not empty %}
+            {% set title_content %}
+              {% if with_link %}
+                <a
+                  class="ct-snippet__title-link"
+                  href="{{ link.url }}"
+                  {% if link.is_new_window %}target="_blank"{% endif %}
+                >{{ title }}</a>
+              {% else %}
+                {{ title }}
+              {% endif %}
+            {% endset %}
+            <div class='ct-snippet__title'>{{ title_content }}</div>
+          {% endif %}
+        {% endblock %}
+
+        {% block content_middle_block %}
+          {% if content_middle is not empty %}
+            <div class="ct-snippet__content-middle">
+              {{- content_middle -}}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block summary_block %}
+          {% if summary is not empty %}
+            {% include 'civictheme:paragraph' with {
+              theme: theme,
+              content: summary,
+              no_margin: true,
+              modifier_class: 'ct-snippet__summary',
+            } only %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content_tags_block %}
+          {% if tags %}
+            <div class="ct-snippet__tags">
+              {% include 'civictheme:tag-list' with {
+                theme: theme,
+                tags: tags,
+              } only %}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {% block content_bottom_block %}
+          {% if content_bottom is not empty %}
+            <div class="ct-snippet__content-bottom">
+              {{- content_bottom -}}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

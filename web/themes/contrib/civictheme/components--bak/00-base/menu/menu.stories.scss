@@ -1,0 +1,11 @@
+//
+// CivicTheme Menu component story styles.
+//
+
+.ct-menu__item--active-trail {
+  > .ct-menu__item__link {
+    &::after {
+      content: ' (A)';
+    }
+  }
+}

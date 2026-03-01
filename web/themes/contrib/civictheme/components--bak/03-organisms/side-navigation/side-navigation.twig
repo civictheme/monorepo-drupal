@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * CivicTheme Side Navigation component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] Navigation vertical spacing (top, bottom, or both).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - items: [array] Menu items:
+ *   Each item contains:
+ *   - title: [string] Navigation title.
+ *   - url: [string] Menu item URL.
+ *   - in_active_trail: [boolean] Whether the item is in the active trail.
+ *   - is_expanded: [boolean] Whether the item is expanded.
+ *   - below: [array] Submenu items.
+ *
+ * Slots:
+ * - title: Navigation title.
+ *
+ * Blocks:
+ * - title_block
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <div class="ct-side-navigation {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% include 'civictheme:skip-link' with {
+      theme: theme,
+      url: '#main-content',
+    } only %}
+    {% if title %}
+      {% block title_block %}
+        {% include 'civictheme:heading' with {
+          content: title,
+          level: 2,
+          theme: theme,
+          modifier_class: 'ct-side-navigation__title',
+        } only %}
+      {% endblock %}
+    {% endif %}
+    {% include 'civictheme:menu' with {
+      theme: theme,
+      items: items,
+      modifier_class: 'ct-side-navigation__menu',
+      is_collapsible: true,
+    } only %}
+  </div>
+{% endif %}

@@ -1,0 +1,32 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-field-description {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--ct-typography-text-regular-font-size);
+  line-height: var(--ct-typography-text-regular-line-height);
+  font-family: var(--ct-typography-text-regular-font-name);
+  font-weight: var(--ct-typography-text-regular-font-weight);
+  letter-spacing: var(--ct-typography-text-regular-letter-spacing);
+}
+.ct-field-description--large {
+  font-size: var(--ct-typography-text-large-font-size);
+  line-height: var(--ct-typography-text-large-line-height);
+  font-family: var(--ct-typography-text-large-font-name);
+  font-weight: var(--ct-typography-text-large-font-weight);
+  letter-spacing: var(--ct-typography-text-large-letter-spacing);
+}
+.ct-field-description.ct-theme-light {
+  color: var(--ct-field-description-light-color);
+}
+.ct-field-description.ct-theme-light a:not(.ct-link.ct-theme-light):not(.ct-link.ct-theme-dark) {
+  color: inherit;
+}
+.ct-field-description.ct-theme-dark {
+  color: var(--ct-field-description-dark-color);
+}
+.ct-field-description.ct-theme-dark a:not(.ct-link.ct-theme-light):not(.ct-link.ct-theme-dark) {
+  color: inherit;
+}

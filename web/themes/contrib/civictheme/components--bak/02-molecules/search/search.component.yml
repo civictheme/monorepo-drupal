@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Search
+status: stable
+description: Search component with icon and text
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+slots:
+  text:
+    title: Text
+    description: Text for the search link.
+  url:
+    title: URL
+    description: Search page URL.

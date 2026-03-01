@@ -1,0 +1,206 @@
+{#
+/**
+ * @file
+ * CivicTheme Field component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - type: [string] Type defined by a control type (required).
+ * - title: [string] Field title.
+ * - title_display: [string] How to display the field title (visible, invisible, hidden).
+ * - title_size: [string] The size of the title (extra-small, small, regular, large, extra-large).
+ * - label: [string] Control label (required only for a radio group or checkbox).
+ * - description: [string] Field description.
+ * - name: [string] Control DOM name (propagated from `name` if not defined).
+ * - value: [string] Control DOM value (propagated from `value` if not defined).
+ * - id: [string] Control DOM ID.
+ * - is_invalid: [boolean] Whether the control is invalid (propagated from `is_invalid` if not defined).
+ * - is_disabled: [boolean] Whether the control is disabled (propagated from `is_disabled` if not defined).
+ * - is_required: [boolean] Whether the control is required (propagated from `is_required` if not defined).
+ * - required_text: [string] Text to display within label element when required (propagated).
+ * - orientation: [string] Elements orientation (vertical or horizontal).
+ * - is_inline: [boolean] Whether the complex control is shown inline.
+ * - control: [object,array] Object or objects collection with control's properties (required for complex controls).
+ * - options: [array] Options for the field input:
+ *   Each item contains:
+ *   - value: [string] Option value
+ *   - label: [string] Option label
+ * - is_multiple: [boolean] Whether the field allows multiple values.
+ * - placeholder: [string] Placeholder text for field.
+ * - message: [object] Message object for showing messages.
+ *   Each property contains:
+ *   - content: [string] Message content.
+ * - prefix: [string] Content to add before the field.
+ * - suffix: [string] Content to add after the field.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set type = type is defined ? type : 'hidden' %}
+{% set title_display = title_display is defined and title_display in ['visible', 'invisible', 'hidden'] ? title_display : 'visible' %}
+{% set title_size = (title_size is defined and title_size in ['extra-small', 'small', 'regular', 'large', 'extra-large']) ? title_size : '' %}
+{% set is_invalid = is_invalid is defined ? is_invalid : false %}
+{% set is_disabled = is_disabled is defined ? is_disabled : false %}
+{% set is_required = is_required is defined ? is_required : false %}
+{% set orientation = orientation in ['vertical', 'horizontal'] ? orientation : 'vertical' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'ct-field--%s'|format(type) %}
+{% set is_required_class = is_required ? 'ct-field--required' : '' %}
+{% set is_disabled_class = is_disabled ? 'ct-field--disabled' : '' %}
+{% set is_invalid_class = is_invalid ? 'ct-field--invalid' : '' %}
+{% set orientation_class = 'ct-field--%s'|format(orientation) %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, orientation_class, is_required_class, is_disabled_class, is_invalid_class, modifier_class|default('')) %}
+
+{# Initialise empty control and convert to an array. #}
+{% if control is not defined or control is not iterable %}
+  {% set control = [{name: name}] %}
+{% else %}
+  {% set first_key = control|keys|first %}
+  {% set control = first_key is not empty and first_key matches '/^[0-9]+$/' ? control : [control] %}
+{% endif %}
+
+{% set _controls = [] %}
+{% for c in control %}
+  {% set default_options = [] %}
+  {% if options is defined %}
+    {% set default_options = options %}
+  {% endif %}
+
+  {% set default_is_multiple = false %}
+  {% if is_multiple is defined %}
+    {% set default_is_multiple = is_multiple %}
+  {% endif %}
+
+  {% set c = {
+    theme: c.theme is defined ? c.theme : theme,
+    label: c.label is defined ? c.label : title,
+    name: c.name is defined ? c.name : name,
+    value: c.value is defined ? c.value : value,
+    id: c.id is defined ? c.id : id,
+    options: c.options is defined ? c.options : default_options,
+    is_multiple: c.is_multiple is defined ? c.is_multiple : default_is_multiple,
+    placeholder: placeholder is defined ? placeholder : '',
+    is_required: c.is_required is defined ? c.is_required : is_required,
+    required_text: c.required_text ? c.required_text : required_text,
+    is_invalid: c.is_invalid is defined ? c.is_invalid : is_invalid,
+    is_disabled: c.is_disabled is defined ? c.is_disabled : is_disabled,
+    is_checked: c.is_checked is defined ? c.is_checked : false,
+    attributes: c.attributes is defined and c.attributes is not null ? c.attributes : null,
+    modifier_class: c.modifier_class is defined ? 'ct-field__control ' ~ c.modifier_class : 'ct-field__control',
+  } %}
+  {% set _controls = _controls|merge([c]) %}
+{% endfor %}
+{% set control = _controls %}
+{% set field_wrapper = type in ['checkbox', 'radio'] ? 'fieldset' : 'div' %}
+
+{% if control[0].name is defined %}
+  <div class="ct-field {{ modifier_class -}}" {% if attributes %}{{- attributes -}}{% endif %}>
+    {% if title is not empty and title_display != 'hidden' and type not in ['hidden', 'checkbox', 'radio'] %}
+      {% include 'civictheme:label' with {
+        theme: theme,
+        content: label is not empty ? label : title,
+        size: title_size is not empty ? title_size : 'regular',
+        is_required: is_required,
+        required_text: required_text,
+        for: control[0].id and type not in ['radio', 'checkbox'] ? control[0].id : null,
+        modifier_class: 'ct-field__title' ~ (title_display == 'invisible' ? ' ct-visually-hidden' : ''),
+      } only %}
+    {% endif %}
+
+    <{{ field_wrapper }} class="ct-field__wrapper">
+      {% if title is not empty and title_display != 'hidden' and type in ['checkbox', 'radio'] %}
+        {% include 'civictheme:label' with {
+          theme: theme,
+          tag: 'legend',
+          content: title,
+          is_required: is_required,
+          for: control[0].id and type not in ['radio', 'checkbox'] ? control[0].id : null,
+          modifier_class: 'ct-field__title' ~ (title_display == 'invisible' ? ' ct-visually-hidden' : ''),
+        } only %}
+      {% endif %}
+      {% if (description) and type != 'hidden' %}
+        {% set error_message = 'Field has an error' %}
+        {% if label is not empty %}
+          {% set error_message = 'Field <em>' ~ label ~ '</em> has an error' %}
+        {% endif %}
+
+        {% set description_content = description %}
+        {% if not description and is_invalid %}
+          {% set description_content = error_message %}
+        {% endif %}
+
+        {% include 'civictheme:field-description' with {
+          theme: theme,
+          content: description_content,
+          modifier_class: 'ct-field__description',
+        } only %}
+      {% endif %}
+
+      {% if prefix is not empty %}
+        <div class="ct-field__prefix">{{- prefix -}}</div>
+      {% endif %}
+
+      {% if type == 'textfield' %}
+        {% include 'civictheme:textfield' with control[0] only %}
+
+      {% elseif type == 'textarea' %}
+        {% include 'civictheme:textarea' with control[0] only %}
+
+      {% elseif type == 'select' %}
+        {% include 'civictheme:select' with control[0] only %}
+
+      {% elseif type == 'checkbox' or type == 'radio' %}
+
+        {% set list_items = [] %}
+        {% for item in control %}
+          {% set list_item %}
+            {% if type == 'checkbox' %}
+              {% include 'civictheme:checkbox' with item only %}
+            {% else %}
+              {% include 'civictheme:radio' with item only %}
+            {% endif %}
+          {% endset %}
+          {% set list_items = list_items|merge([list_item]) %}
+        {% endfor %}
+        {% include 'civictheme:item-list' with {
+          direction: is_inline ? 'horizontal' : 'vertical',
+          items: list_items,
+        } only %}
+
+      {% else %}
+        {% set control0 = control[0] %}
+        {% set control0 = control0|merge({type: type}) %}
+        {% include 'civictheme:input' with control0 only %}
+      {% endif %}
+
+      {% if suffix is not empty %}
+        <div class="ct-field__suffix">{{- suffix -}}</div>
+      {% endif %}
+
+      {% if (message or is_invalid) and type != 'hidden' %}
+        {% set error_message = 'Field has an error' %}
+        {% if title is not empty %}
+          {% set error_message = 'Field <em>' ~ title ~ '</em> has an error' %}
+        {% endif %}
+
+        {% set message_content = null %}
+        {% if is_invalid %}
+          {% set message_content = error_message %}
+        {% endif %}
+
+        {% if message is defined and message.content is defined %}
+          {% set message_content = message.content %}
+        {% endif %}
+
+        {% include 'civictheme:field-message' with {
+          theme: theme,
+          type: is_invalid ? 'error' : 'information',
+          content: message_content,
+          modifier_class: 'ct-field__message',
+          attributes: message.attributes|default(create_attribute({})),
+        } only %}
+      {% endif %}
+    </{{ field_wrapper }}>
+  </div>
+{% endif %}

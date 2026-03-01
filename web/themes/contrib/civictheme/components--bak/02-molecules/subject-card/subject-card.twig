@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * CivicTheme Subject Card component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - image: [object] Card image.
+ *   Each property contains:
+ *   - url: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ * - link: [object] Card link object.
+ *   Each property contains:
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open the link in a new window.
+ * - is_title_click: [boolean] Whether to make only the title clickable instead of the whole card.
+ *
+ * Slots:
+ * - image_over: Image overlay content.
+ * - title: Card title.
+ *
+ * Blocks:
+ * - image_block
+ * - image_over_block
+ * - title_block
+ */
+#}
+
+{% set with_link = link is not empty and link.url is defined and link.url is not empty %}
+{% set with_image = image.url is defined and image.url is not empty %}
+{% set with_image_class = with_image ? 'ct-subject-card--with-image' : '' %}
+{% set is_card_clickable = with_link and is_title_click is empty %}
+{% set card_clickable_class = is_card_clickable ? 'ct-subject-card--card-clickable' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, with_image_class, card_clickable_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-subject-card {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="ct-subject-card__content">
+      {% block image_block %}
+        {% if image.url is defined and image.url is not empty %}
+          <div class="ct-subject-card__image">
+            {% include 'civictheme:image' with {
+              theme: theme,
+              url: image.url,
+              alt: image.alt,
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block image_over_block %}
+        {% if image_over is not empty %}
+          <div class="ct-subject-card__image__over">
+            {{ image_over }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title_block %}
+        {% if title is not empty %}
+          {% set title_content %}
+            {% if with_link %}
+              <a
+                class="ct-subject-card__title-link"
+                href="{{ link.url }}"
+                {% if link.is_new_window %}target="_blank"{% endif %}
+              >{{ title }}</a>
+            {% else %}
+              {{ title }}
+            {% endif %}
+          {% endset %}
+
+          <div class='ct-subject-card__title'>{{ title_content }}</div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

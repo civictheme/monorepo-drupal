@@ -1,0 +1,75 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.3.x/core/assets/schemas/v1/metadata.schema.json
+name: Fast Fact Card
+status: stable
+description: Fast fact card component with image, title, summary, and optional link
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variant ('light' or 'dark')
+      default: light
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    image:
+      type: object
+      title: Image
+      description: Image data containing URL and alt text
+      properties:
+        url:
+          type: string
+          title: Image URL
+          description: URL of the image
+        alt:
+          type: string
+          title: Alt Text
+          description: Alt text for the image
+    title:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title
+      description: Title text for the card
+    summary:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Summary
+      description: Summary text content, can contain HTML
+    link:
+      type: object
+      title: Link
+      description: Link object for making the title clickable
+      properties:
+        url:
+          type: string
+          title: URL
+          description: URL for the link
+        is_new_window:
+          type: boolean
+          title: Open in New Window
+          description: Open link in a new window
+    is_title_click:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Title click
+      description: Whether to make only the title clickable instead of the whole card.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional classes to modify the component

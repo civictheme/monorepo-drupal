@@ -1,0 +1,55 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-service-card {
+  position: relative;
+}
+.ct-service-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--ct-service-card-stripe-height);
+  top: 0;
+  border-top-left-radius: var(--ct-service-card-border-radius);
+  border-top-right-radius: var(--ct-service-card-border-radius);
+  transition: height 0.25s;
+}
+.ct-service-card {
+  position: relative;
+  border-radius: var(--ct-service-card-border-radius);
+  width: 100%;
+}
+.ct-service-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-service-card .ct-service-card__content {
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ct-service-card .ct-service-card__content {
+    padding: 2rem;
+  }
+}
+.ct-service-card .ct-service-card__title {
+  text-align: center;
+}
+.ct-service-card .ct-service-card__links {
+  margin-top: 1rem;
+}
+.ct-service-card .ct-service-card__links .ct-item-list__item {
+  text-align: center;
+}
+.ct-service-card.ct-theme-light {
+  background-color: var(--ct-service-card-light-background-color);
+}
+.ct-service-card.ct-theme-light::before {
+  background-color: var(--ct-service-card-light-stripe-background-color);
+}
+.ct-service-card.ct-theme-dark {
+  background-color: var(--ct-service-card-dark-background-color);
+}
+.ct-service-card.ct-theme-dark::before {
+  background-color: var(--ct-service-card-dark-stripe-background-color);
+}

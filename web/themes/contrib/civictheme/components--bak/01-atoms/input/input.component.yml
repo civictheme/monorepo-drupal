@@ -1,0 +1,85 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Input
+status: stable
+description: Generic input form element with customizable appearance and states
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    type:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Input type
+      description: Input type (text, password, email, etc.).
+    name:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Name
+      description: DOM name (required).
+    id:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: ID
+      description: DOM id.
+    value:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Value
+      description: The input value.
+    placeholder:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Placeholder
+      description: Placeholder text.
+    is_invalid:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Invalid
+      description: Whether the input is invalid.
+    is_disabled:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Disabled
+      description: Whether the input is disabled.
+    is_required:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Required
+      description: Whether the input is required.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

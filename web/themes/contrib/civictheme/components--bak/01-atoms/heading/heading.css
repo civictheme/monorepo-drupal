@@ -1,0 +1,16 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-heading {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+.ct-heading.ct-theme-light {
+  color: var(--ct-heading-light-color);
+}
+.ct-heading.ct-theme-dark {
+  color: var(--ct-heading-dark-color);
+}

@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * CivicTheme Webform component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] Webform vertical spacing (top, bottom, or both).
+ * - with_background: [boolean] Whether to display with a background.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - referenced_webform: Rendered webform HTML.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set with_background_class = with_background ? 'ct-webform--with-background' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
+
+{% if referenced_webform is not empty %}
+  <div class="ct-webform {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          {{ referenced_webform }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * CivicTheme Logo component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - type: [string] Logo display type (default, stacked, inline, inline-stacked).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - logos: [object] Object with 'primary' and 'secondary' keys.
+ *   Each property contains:
+ *   - primary: [object] Primary logo configuration
+ *   Each property contains:
+ *     - mobile: [object] Mobile logo configuration
+ *   Each property contains:
+ *       - url: [string] Optional URL that wraps the logo.
+ *       - alt: [string] Logo image alt text.
+ *     - desktop: [object] Desktop logo configuration
+ *   Each property contains:
+ *       - url: [string] Optional URL that wraps the logo.
+ *       - alt: [string] Logo image alt text.
+ *   - secondary: [object] Secondary logo configuration
+ *   Each property contains:
+ *     - mobile: [object] Mobile logo configuration
+ *   Each property contains:
+ *       - url: [string] Optional URL that wraps the logo.
+ *       - alt: [string] Logo image alt text.
+ *     - desktop: [object] Desktop logo configuration
+ *   Each property contains:
+ *       - url: [string] Optional URL that wraps the logo.
+ *       - alt: [string] Logo image alt text.
+ * - url: [string] Optional URL that wraps the logo.
+ * - title: [string] Optional logo title attribute.
+ */
+#}
+
+{% set type = type in ['default', 'inline', 'stacked', 'inline-stacked'] ? type : 'default' %}
+{% set type_class = 'ct-logo--%s'|format(type|default('default')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+
+{% if logos is not empty %}
+  {% if url is not empty %}
+    <a class="ct-logo {{ modifier_class -}}" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  {% else %}
+    <div class="ct-logo {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  {% endif %}
+
+  {% for logo_type, logo in logos %}
+    {% if (type == 'default' and logo_type == 'primary') or type != 'default' %}
+      {% if logo_type == 'secondary' %}
+        <span class="ct-logo__stripe {% if type == 'inline' %}hide-xxs show-l{% endif %}"></span>
+      {% endif %}
+      {% for breakpoint, img in logo %}
+        {% include 'civictheme:image' with {
+          theme: theme,
+          url: img.url,
+          alt: img.alt,
+          modifier_class: 'ct-logo__image ct-logo__image--' ~ breakpoint ~ ' ' ~ (breakpoint == 'mobile' ? (type == 'inline' and logo_type == 'secondary' ? 'hide-xxs' : 'hide-l') : 'hide-xxs show-l'),
+        } only %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if url is not empty %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
+{% endif %}

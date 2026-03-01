@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * CivicTheme Figure component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - url: [string] Image URL.
+ * - alt: [string] Image alt text.
+ * - width: [string] Image width.
+ * - height: [string] Image height.
+ *
+ * Slots:
+ * - caption: Image caption.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if url is not empty %}
+  <figure class="ct-figure {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% include 'civictheme:image' with {
+      theme: theme,
+      url: url,
+      alt: alt,
+      width: width,
+      height: height,
+      modifier_class: 'ct-figure__image',
+    } only %}
+
+    {% if caption is not empty %}
+      <figcaption class="ct-figure__caption">
+        {% include 'civictheme:icon' with {
+          symbol: 'image',
+        } only %}
+        {{ caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

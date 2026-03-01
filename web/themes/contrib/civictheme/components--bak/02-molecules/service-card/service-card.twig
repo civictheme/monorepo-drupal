@@ -1,0 +1,89 @@
+{#
+/**
+ * @file
+ * CivicTheme Service Card component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - links: [array] Card links:
+ *   Each item contains:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open the link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ *
+ * Slots:
+ * - content_top: Top content area.
+ * - title: Card title text.
+ * - content_bottom: Bottom content area.
+ *
+ * Blocks:
+ * - content_top_block
+ * - title_block
+ * - links_block
+ * - content_bottom_block
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if title %}
+  <div class="ct-service-card {{ modifier_class -}}" {% if attributes %}{{- attributes -}}{% endif %}>
+    <div class="ct-service-card__content">
+      {% block content_top_block %}
+        {% if content_top %}
+          <div class="ct-service-card__content-top">
+            {{- content_top -}}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block title_block %}
+        {% if title %}
+          {% include 'civictheme:heading' with {
+            theme: theme,
+            content: title,
+            level: 4,
+            modifier_class: 'ct-service-card__title',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block links_block %}
+        {% if links %}
+          {% set list_items = [] %}
+          {% for link in links %}
+            {% if link.text %}
+              {% set list_item %}
+                {% include 'civictheme:link' with {
+                  theme: theme,
+                  text: link.text,
+                  url: link.url,
+                  is_new_window: link.is_new_window ? link.is_new_window : false,
+                  is_external: link.is_external ? link.is_external : false,
+                } only %}
+              {% endset %}
+              {% set list_items = list_items|merge([list_item]) %}
+            {% endif %}
+          {% endfor %}
+          {% include 'civictheme:item-list' with {
+            items: list_items,
+            direction: 'vertical',
+            modifier_class: 'ct-service-card__links',
+          } only %}
+        {% endif %}
+      {% endblock %}
+
+      {% block content_bottom_block %}
+        {% if content_bottom %}
+          <div class="ct-service-card__content-bottom">
+            {{- content_bottom -}}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endif %}

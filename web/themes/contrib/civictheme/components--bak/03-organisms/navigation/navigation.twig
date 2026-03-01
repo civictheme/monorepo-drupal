@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * CivicTheme Navigation component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - name: [string] Navigation name for nav element.
+ * - menu_id: [string] Optional menu ID used for grouping dropdown items.
+ * - type: [string] Navigation display type (none, inline, dropdown, drawer).
+ * - variant: [string] One of: primary, secondary.
+ * - dropdown_columns: [integer] Dropdown drawer column count.
+ * - dropdown_columns_fill: [boolean] Whether to fill columns.
+ * - is_animated: [boolean] Whether to use animation for transitions.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - items: [array] Menu items:
+ *   Each item contains:
+ *   - title: [string] Navigation item title.
+ *   - url: [string] URL of the menu item.
+ *   - in_active_trail: [boolean] Whether the item is in the active trail.
+ *   - is_expanded: [boolean] Whether the item is expanded.
+ *   - below: [array] Submenu items.
+ *     Each item contains:
+ *     - items [object]
+ *
+ * Slots:
+ * - title: Navigation title.
+ *
+ * Blocks:
+ * - title_block
+ */
+#}
+
+{% set menu_id = menu_id|default('navigation') %}
+{% set dropdown_class = 'ct-navigation--%s'|format(type|default('none')) %}
+{% set variant_class = variant ? 'ct-navigation--%s'|format(variant) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, dropdown_class, variant_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  {% set menu_level_classes = {} %}
+  {% if type in ['dropdown', 'drawer'] %}
+    {% for key in items|keys %}
+      {% if items[key].below %}
+        {# Item attributes to convert them into a collapsible element. #}
+        {% set item_attributes = create_attribute({
+          'data-collapsible': '',
+          'data-collapsible-collapsed': '',
+          'data-collapsible-icon-group': '',
+          'data-collapsible-group': menu_id,
+          'data-collapsible-duration': is_animated ? '250' : '0',
+        }) %}
+
+        {% if type == 'drawer' %}
+          {# Item classes to style dynamically. #}
+          {% set item_dropdown_columns_class = dropdown_columns ? 'ct-navigation__dropdown-columns--%s'|format(dropdown_columns) : '' %}
+          {% set item_dropdown_columns_fill_class = dropdown_columns_fill ? 'ct-navigation__dropdown-columns--fill' : '' %}
+          {% set item_modifier_class = 'ct-navigation__has-dropdown %s %s'|format(item_dropdown_columns_class, item_dropdown_columns_fill_class) %}
+          {% set menu_level_classes = {1: 'container'} %}
+          {# Update item with attributes and classes. #}
+          {% set new_item = items[key]|merge({attributes: item_attributes, modifier_class: item_modifier_class}) %}
+          {% set items = items|merge({(key): new_item}) %}
+        {% else %}
+          {# Item classes to style dynamically. #}
+          {% set item_modifier_class = 'ct-navigation__has-dropdown' %}
+          {# Update item with attributes and classes. #}
+          {% set new_item = items[key]|merge({attributes: item_attributes, modifier_class: item_modifier_class}) %}
+          {% set items = items|merge({(key): new_item}) %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% for key in items|keys %}
+      {% if items[key].below %}
+        {% set items_without_below = items[key]|merge({below: null}) %}
+        {% set items = items|merge({(key): items_without_below}) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <div class="ct-navigation {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% if title %}
+      {% block title_block %}
+        {% include 'civictheme:heading' with {
+          theme: theme,
+          level: 2,
+          content: title,
+          modifier_class: 'ct-navigation__title',
+        } only %}
+      {% endblock %}
+    {% endif %}
+
+    <nav
+      class="ct-navigation__items"
+      {% if name is not empty %}aria-label="{{ name }}"{% endif %}
+    >
+    {% include 'civictheme:menu' with {
+        theme: theme,
+        items: items,
+        modifier_class: 'ct-navigation__menu',
+        menu_level_modifier_class: menu_level_classes,
+      } only %}
+    </nav>
+  </div>
+{% endif %}

@@ -1,0 +1,35 @@
+//
+// CivicTheme Callout component styles.
+//
+
+.ct-callout {
+  $root: &;
+
+  &__wrapper {
+    border-radius: var(--ct-callout-border-radius);
+    padding: ct-spacing(3) ct-spacing(3);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
+    }
+
+    @include ct-highlight-stripe-vertical(var(--ct-callout-stripe-width), var(--ct-callout-border-radius), 0);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: ct-spacing(2);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__wrapper {
+      @include ct-component-property($root, $theme, background-color);
+      @include ct-highlight-stripe-background-color(ct-component-var($root, $theme, stripe, background-color));
+    }
+  }
+}

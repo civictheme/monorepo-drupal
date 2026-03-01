@@ -1,0 +1,28 @@
+//
+// CivicTheme Skip Link component styles.
+//
+
+.ct-skip-link {
+  $root: &;
+
+  &__link {
+    display: inline-block;
+    margin: ct-spacing(2) ct-spacing(3);
+
+    &:not([data-platform='ios']) {
+      &:active,
+      &:focus-visible,
+      &:hover {
+        position: static !important;
+        overflow: visible;
+        clip: auto;
+        width: auto !important;
+        height: auto !important;
+      }
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}

@@ -1,0 +1,424 @@
+//
+// CivicTheme Navigation component styles.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+.ct-navigation {
+  $root: &;
+
+  #{$root}__title {
+    @include ct-typography('heading-5');
+
+    margin-block: ct-spacing(2);
+  }
+
+  // Common menu styles across all variants
+  #{$root}__items {
+    #{$root}__menu {
+      &.ct-menu,
+      .ct-menu {
+        @include ct-print-hide();
+
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  &#{$root}--primary {
+    #{$root}__items {
+      height: 100%;
+
+      #{$root}__menu {
+        &.ct-menu--level-0 {
+          gap: ct-spacing(0);
+        }
+
+        .ct-menu__item--level-0 {
+          & > .ct-menu__item__link {
+            @include ct-link-no-decoration();
+
+            border-bottom: solid ct-particle(0.5) transparent;
+            position: relative;
+            padding: ct-spacing(2);
+            font-weight: 600;
+            display: block;
+            text-align: center;
+
+            &::after {
+              right: ct-spacing();
+              margin-top: -1 * ct-particle(0.25);
+              top: ct-spacing(2);
+            }
+          }
+
+          &.ct-menu__item--active-trail > .ct-menu__item__link::after {
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      #{$root}__items {
+        #{$root}__menu {
+          .ct-menu__item {
+            // Links - level 0.
+            &--level-0 {
+              .ct-menu__item__link {
+                border-bottom-color: ct-component-var($root, $theme, menu-item, border-color);
+
+                &:is(:hover, :focus-visible) {
+                  border-bottom-color: ct-component-var($root, $theme, menu-item, hover, border-color);
+                  outline-offset: ct-particle(0.25);
+                }
+
+                &:active {
+                  border-bottom-color: ct-component-var($root, $theme, menu-item, active, border-color);
+                }
+              }
+
+              &[data-collapsible] {
+                .ct-menu__item__link {
+                  @if $theme == 'light' {
+                    color: var(--ct-navigation-light-menu-color);
+                  }
+                  @else {
+                    color: var(--ct-navigation-dark-menu-color);
+                  }
+
+                  border-bottom-color: ct-component-var($root, $theme, menu, border-color);
+
+                  &:is(:hover, :focus-visible) {
+                    @if $theme == 'light' {
+                      color: var(--ct-navigation-light-menu-hover-color);
+                    }
+                    @else {
+                      color: var(--ct-navigation-dark-menu-hover-color);
+                    }
+
+                    border-bottom-color: ct-component-var($root, $theme, menu-item, hover, border-color);
+                  }
+
+                  &:active {
+                    border-bottom-color: ct-component-var($root, $theme, menu-item, active, border-color);
+                  }
+                }
+              }
+
+              &[data-collapsible-collapsed] {
+                .ct-menu__item__link {
+                  border-bottom-color: ct-component-var($root, $theme, menu-item, border-color);
+                }
+              }
+
+              &.ct-menu__item--active-trail {
+                .ct-menu__item__link {
+                  border-bottom-color: ct-component-var($root, $theme, menu, border-color);
+                }
+              }
+
+              & > .ct-menu__item__link {
+                @include ct-component-property($root, $theme, menu, color);
+
+                &:is(:hover, :focus-visible) {
+                  @include ct-component-property($root, $theme, menu, hover, color);
+                }
+
+                &[aria-expanded='true'],
+                &:active {
+                  @include ct-component-property($root, $theme, menu, active, color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &#{$root}--secondary {
+    #{$root}__items {
+      height: 100%;
+
+      #{$root}__menu {
+        &.ct-menu--level-0 {
+          gap: ct-spacing(2);
+          height: 100%;
+          align-items: center;
+        }
+      }
+    }
+
+    &#{$root}--dropdown,
+    &#{$root}--inline {
+      #{$root}__items {
+        #{$root}__menu {
+          .ct-menu__item {
+            // Links - level 0
+            &--level-0 {
+              & > .ct-menu__item__link {
+                text-align: center;
+                padding-block: ct-spacing();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // None variant specific styles
+  &#{$root}--none {
+    #{$root}__items {
+      #{$root}__menu {
+        .ct-menu__item {
+          margin-bottom: ct-spacing(2);
+          margin-left: ct-spacing(2);
+        }
+
+        &.ct-menu > .ct-menu__item {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &#{$root}--inline,
+  &#{$root}--drawer,
+  &#{$root}--dropdown {
+    // Base styles for all first-level menus
+    .ct-menu--level-0 {
+      display: flex;
+      gap: ct-spacing(2); // Consistent spacing between items
+    }
+  }
+
+  // Inline variant specific styles
+  &#{$root}--inline {
+    #{$root}__items {
+      #{$root}__menu {
+        &.ct-menu--level-0 {
+          flex-wrap: wrap;
+          row-gap: var(--ct-navigation-inline-row-gutter);
+        }
+      }
+    }
+  }
+
+  // Drawer variant specific styles
+  &#{$root}--drawer {
+    #{$root}__items {
+      align-items: center;
+      height: 100%;
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+      }
+
+      #{$root}__menu {
+        &.ct-menu--level-0 {
+          flex-wrap: nowrap;
+        }
+      }
+
+      #{$root}__has-dropdown {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin-top: var(--ct-navigation-drawer-top-offset);
+          z-index: var(--ct-navigation-drawer-zindex);
+          box-shadow: 0 ct-spacing(2) ct-spacing(4) rgba(0, 0, 0, 20%);
+
+          .ct-menu__sub-menu {
+            &.ct-menu--level-1 {
+              margin-left: auto;
+              margin-right: auto;
+              display: flex;
+              flex-wrap: wrap;
+              gap: ct-spacing(4);
+              padding: 0;
+              margin-bottom: ct-spacing(4);
+            }
+          }
+
+          .ct-menu__item--level-1 {
+            margin-top: ct-spacing(4);
+            flex-basis: calc(100% / var(--ct-navigation-drawer-cols));
+
+            & > .ct-menu__item__link {
+              @include ct-typography('heading-5');
+            }
+          }
+
+          // Consistent spacing for nested levels
+          .ct-menu__sub-menu__wrapper--level-2 {
+            margin-top: ct-spacing(4);
+          }
+
+          // Nested level items
+          .ct-menu__item:is(.ct-menu__item--level-2, .ct-menu__item--level-3, .ct-menu__item--level-4, .ct-menu__item--level-5) {
+            width: 100%;
+            margin-bottom: ct-spacing();
+
+            & > .ct-menu__item__link {
+              @include ct-link-no-decoration();
+
+              display: inline-flex;
+              align-items: center;
+              border-radius: var(--ct-border-radius);
+              padding: ct-spacing();
+
+              &--external {
+                padding-right: ct-spacing(3);
+
+                &::after {
+                  top: ct-spacing(0.65);
+                }
+              }
+            }
+          }
+
+          // Consistent indentation for nested levels
+          .ct-menu__item--level-3 { padding-left: ct-spacing(2); }
+          .ct-menu__item--level-4 { padding-left: ct-spacing(4); }
+          .ct-menu__item--level-5 { padding-left: ct-spacing(6); }
+        }
+      }
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            @include ct-component-property($root, $theme, drawer-sub-menu, background-color);
+
+            // Reset some styles for all links in the dropdown.
+            .ct-menu__item__link {
+              background: none;
+
+              &:is(:hover, :active, :focus-visible) {
+                background: none;
+              }
+            }
+
+            .ct-menu__item--level-1 {
+              & > .ct-menu__item__link {
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, color);
+
+                &:is(:hover, :focus-visible) {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, hover, color);
+                }
+
+                &:active {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, heading, active, color);
+                }
+              }
+            }
+
+            .ct-menu__item:is(.ct-menu__item--level-2, .ct-menu__item--level-3, .ct-menu__item--level-4, .ct-menu__item--level-5) {
+              & > .ct-menu__item__link {
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, background-color);
+                @include ct-component-property($root, $theme, drawer-sub-menu-item, color);
+
+                &:is(:hover, :focus-visible) {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, hover, background-color);
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, hover, color);
+                }
+
+                &:active {
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, active, background-color);
+                  @include ct-component-property($root, $theme, drawer-sub-menu-item, active, color);
+                }
+              }
+
+              &.ct-menu__item--active-trail {
+                & > .ct-menu__item__link {
+                  @include ct-component-property($root, $theme, drawer-menu-item, active-trail, background-color);
+                  @include ct-component-property($root, $theme, drawer-menu-item, active-trail, color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Dropdown variant specific styles
+  &#{$root}--dropdown {
+    #{$root}__items {
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+        align-items: center;
+      }
+
+      #{$root}__menu {
+        &.ct-menu--level-0 {
+          flex-wrap: wrap;
+        }
+
+        // Base styles for all second-level menus
+        .ct-menu--level-1 {
+          .ct-menu__sub-menu {
+            margin-left: ct-spacing(2);
+          }
+        }
+      }
+
+      #{$root}__has-dropdown {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          z-index: var(--ct-navigation-dropdown-zindex);
+          margin-top: var(--ct-navigation-dropdown-top-offset);
+          border-bottom-left-radius: var(--ct-navigation-dropdown-border-radius);
+          border-bottom-right-radius: var(--ct-navigation-dropdown-border-radius);
+
+          @include ct-elevation(4);
+
+          .ct-menu__sub-menu {
+            &.ct-menu--level-1 {
+              padding: ct-spacing(2) ct-spacing(4) ct-spacing(4);
+            }
+          }
+        }
+      }
+    }
+
+    @include ct-component-theme($root) using($root, $theme) {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          @if $theme == 'light' {
+            color: var(--ct-link-light-color);
+          }
+          @else {
+            color: var(--ct-link-dark-color);
+          }
+
+          .ct-menu__item__link {
+            &:is(:hover, :focus-visible) {
+              @if $theme == 'light' {
+                color: var(--ct-link-light-hover-color);
+              }
+              @else {
+                color: var(--ct-link-dark-hover-color);
+              }
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-1 {
+            @include ct-component-property($root, $theme, dropdown-sub-menu, background-color);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * CivicTheme Next Step component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - vertical_spacing: [string] Vertical spacing position (top, bottom, both).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - link: [object] Next step link.
+ *   Each property contains:
+ *   - url: [string] Link URL.
+ *   - is_new_window: [boolean] Whether to open link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ *
+ * Slots:
+ * - title: Next step title.
+ * - content: Next step content.
+ * - content_top: Top next step content.
+ * - content_bottom: Bottom next step content.
+ *
+ * Blocks:
+ * - content_top_block
+ * - content_block
+ * - title_block
+ * - content_bottom_block
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if title is not empty %}
+  <div class="ct-next-step {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+          <div class="ct-next-step__wrapper">
+            {% block content_top_block %}
+              {% if content_top is not empty %}
+                <div class="ct-next-step__content-top">
+                  {{- content_top -}}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content_block %}
+              {% if title is not empty or content is not empty %}
+                <div class="ct-next-step__inner">
+                  {% block title_block %}
+                    {% if title is not empty %}
+                      {% set title_content %}
+                        {% if link.url is defined and link.url is not empty %}
+                          {% include 'civictheme:link' with {
+                            theme: theme,
+                            text: title,
+                            url: link.url,
+                            icon: 'right-arrow-2',
+                            icon_group_disabled: true,
+                            icon_single_only: true,
+                            is_new_window: link.is_new_window,
+                            is_external: link.is_external,
+                            modifier_class: 'ct-next-step__title__link',
+                          } only %}
+                        {% else %}
+                          {{ title }}
+                        {% endif %}
+                      {% endset %}
+
+                      {% include 'civictheme:heading' with {
+                        content: title_content,
+                        level: 4,
+                        theme: theme,
+                        modifier_class: 'ct-next-step__title',
+                      } only %}
+                    {% endif %}
+                  {% endblock %}
+
+                  {% if content is not empty %}
+                    {% include 'civictheme:paragraph' with {
+                      theme: theme,
+                      content: content,
+                      modifier_class: 'ct-next-step__content',
+                    } only %}
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content_bottom_block %}
+              {% if content_bottom is not empty %}
+                <div class="ct-next-step__content-bottom">
+                  {{- content_bottom -}}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

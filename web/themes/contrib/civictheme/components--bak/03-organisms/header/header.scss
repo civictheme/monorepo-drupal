@@ -1,0 +1,58 @@
+//
+// CivicTheme Header component styles.
+//
+
+.ct-header {
+  $root: &;
+
+  border-bottom: solid ct-particle(0.125);
+
+  &__top {
+    padding-top: ct-spacing();
+    padding-bottom: ct-spacing();
+  }
+
+  &__content-top2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content-top3 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__middle {
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(2);
+  }
+
+  &__content-middle2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content-middle3 {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__content-bottom1 {
+    display: flex;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, border-color);
+    @include ct-component-property($root, $theme, background-color);
+
+    #{$root}__top {
+      @include ct-component-property($root, $theme, top, background-color);
+      @include ct-component-property($root, $theme, top, color);
+    }
+  }
+}

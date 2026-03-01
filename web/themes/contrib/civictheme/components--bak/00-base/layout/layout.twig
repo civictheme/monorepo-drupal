@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * CivicTheme Layout component.
+ *
+ * Props:
+ * - hide_sidebar_left: [boolean] Whether to hide the left sidebar.
+ * - hide_sidebar_right: [boolean] Whether to hide the right sidebar.
+ * - is_contained: [boolean] Whether the page content should be contained.
+ * - vertical_spacing: [string] Controls vertical spacing (top, bottom, or both).
+ * - sidebar_top_left_attributes: [Drupal\Core\Template\Attribute] HTML attributes for top left sidebar.
+ * - sidebar_top_right_attributes: [Drupal\Core\Template\Attribute] HTML attributes for top right sidebar.
+ * - content_attributes: [Drupal\Core\Template\Attribute] HTML attributes for main content.
+ * - sidebar_bottom_left_attributes: [Drupal\Core\Template\Attribute] HTML attributes for bottom left sidebar.
+ * - sidebar_bottom_right_attributes: [Drupal\Core\Template\Attribute] HTML attributes for bottom right sidebar.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - content_top: Main content area top content.
+ * - sidebar_top_left: Top left sidebar content.
+ * - sidebar_top_right: Top right sidebar content.
+ * - content: Main content.
+ * - sidebar_bottom_left: Bottom left sidebar content.
+ * - sidebar_bottom_right: Bottom right sidebar content.
+ * - content_bottom: Main content area bottom content.
+ *
+ * Blocks:
+ * - content_top_block
+ * - content_block
+ * - sidebar_top_left_block
+ * - sidebar_top_right_block
+ * - sidebar_bottom_left_block
+ * - sidebar_bottom_right_block
+ * - content_bottom_block
+ */
+#}
+
+{% set has_sidebar_left = (sidebar_top_left is not empty or sidebar_bottom_left is not empty) and not (hide_sidebar_left is defined ? hide_sidebar_left : false) %}
+{% set has_sidebar_right = (sidebar_top_right is not empty or sidebar_bottom_right is not empty) and not (hide_sidebar_right is defined ? hide_sidebar_right : false) %}
+
+{% set is_contained = is_contained is defined ? is_contained : false %}
+{% set is_contained = is_contained or has_sidebar_left or has_sidebar_right %}
+
+{% set vertical_spacing = has_sidebar_left or has_sidebar_right ? 'top' : vertical_spacing %}
+
+{% set no_sidebar_left_class = hide_sidebar_left ? 'ct-layout--no-sidebar-left' : '' %}
+{% set no_sidebar_right_class = hide_sidebar_right ? 'ct-layout--no-sidebar-right' : '' %}
+{% set no_tl_class = sidebar_top_left is empty or hide_sidebar_left ? 'ct-layout--no-top-left' : '' %}
+{% set no_tr_class = sidebar_top_right is empty or hide_sidebar_right ? 'ct-layout--no-top-right' : '' %}
+{% set no_bl_class = sidebar_bottom_left is empty or hide_sidebar_left ? 'ct-layout--no-bottom-left' : '' %}
+{% set no_br_class = sidebar_bottom_right is empty or hide_sidebar_right ? 'ct-layout--no-bottom-right' : '' %}
+{% set is_contained_class = is_contained ? 'container' : 'container-fluid' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+
+{% set modifier_class = '%s %s %s %s %s %s %s %s'|format(no_sidebar_left_class, no_sidebar_right_class, no_tl_class, no_tr_class, no_bl_class, no_br_class, vertical_spacing_class, modifier_class|default('')) %}
+{% set modifier_class = modifier_class|trim %}
+
+{% if content %}
+  <main class="ct-layout {{ modifier_class -}}" role="main" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% block content_top_block %}
+      {% if content_top is not empty %}
+        {{- content_top -}}
+      {% endif %}
+    {% endblock %}
+
+    <div class="ct-layout__inner {{ is_contained_class }}">
+      {% if content is not empty %}
+        {% block content_block %}
+          <section class="ct-layout__main" {% if content_attributes is defined and content_attributes is not null %}{{- content_attributes -}}{% endif %}>
+            {{- content -}}
+          </section>
+        {% endblock %}
+      {% endif %}
+
+      {% if sidebar_top_left is not empty and has_sidebar_left %}
+        {% block sidebar_top_left_block %}
+          <aside class="ct-layout__sidebar_top_left" {% if sidebar_top_left_attributes is defined and sidebar_top_left_attributes is not null %}{{- sidebar_top_left_attributes -}}{% endif %}>
+            {{- sidebar_top_left -}}
+          </aside>
+        {% endblock %}
+      {% endif %}
+
+      {% if sidebar_top_right is not empty and has_sidebar_right %}
+        {% block sidebar_top_right_block %}
+          <aside class="ct-layout__sidebar_top_right" {% if sidebar_top_right_attributes is defined and sidebar_top_right_attributes is not null %}{{- sidebar_top_right_attributes -}}{% endif %}>
+            {{- sidebar_top_right -}}
+          </aside>
+        {% endblock %}
+      {% endif %}
+
+      {% if sidebar_bottom_left is not empty and has_sidebar_left %}
+        {% block sidebar_bottom_left_block %}
+          <aside class="ct-layout__sidebar_bottom_left" {% if sidebar_bottom_left_attributes is defined and sidebar_bottom_left_attributes is not null %}{{- sidebar_bottom_left_attributes -}}{% endif %}>
+            {{- sidebar_bottom_left -}}
+          </aside>
+        {% endblock %}
+      {% endif %}
+
+      {% if sidebar_bottom_right is not empty and has_sidebar_right %}
+        {% block sidebar_bottom_right_block %}
+          <aside class="ct-layout__sidebar_bottom_right" {% if sidebar_bottom_right_attributes is defined and sidebar_bottom_right_attributes is not null %}{{- sidebar_bottom_right_attributes -}}{% endif %}>
+            {{- sidebar_bottom_right -}}
+          </aside>
+        {% endblock %}
+      {% endif %}
+    </div>
+
+    {% block content_bottom_block %}
+      {% if content_bottom is not empty %}
+        {{- content_bottom -}}
+      {% endif %}
+    {% endblock %}
+  </main>
+{% endif %}

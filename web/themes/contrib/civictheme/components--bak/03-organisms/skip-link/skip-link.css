@@ -1,0 +1,21 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-skip-link__link {
+  display: inline-block;
+  margin: 1rem 1.5rem;
+}
+.ct-skip-link__link:not([data-platform=ios]):active, .ct-skip-link__link:not([data-platform=ios]):focus-visible, .ct-skip-link__link:not([data-platform=ios]):hover {
+  position: static !important;
+  overflow: visible;
+  clip: auto;
+  width: auto !important;
+  height: auto !important;
+}
+.ct-skip-link.ct-theme-light {
+  background-color: var(--ct-skip-link-light-background-color);
+}
+.ct-skip-link.ct-theme-dark {
+  background-color: var(--ct-skip-link-dark-background-color);
+}

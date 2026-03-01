@@ -1,0 +1,115 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-select {
+  appearance: none;
+  margin: 0;
+  font-size: var(--ct-typography-label-small-font-size);
+  line-height: var(--ct-typography-label-small-line-height);
+  font-family: var(--ct-typography-label-small-font-name);
+  font-weight: var(--ct-typography-label-small-font-weight);
+  letter-spacing: var(--ct-typography-label-small-letter-spacing);
+}
+.ct-select[disabled] {
+  opacity: var(--ct-select-disabled-opacity);
+  pointer-events: none;
+}
+.ct-select {
+  width: 100%;
+  min-width: calc(4.3125rem + var(--ct-font-average-character-width) * 5rem);
+  border-radius: var(--ct-select-border-radius);
+  border-style: solid;
+  border-width: 0.0625rem;
+  padding: 0.8125rem 3.3125rem 0.8125rem 1rem;
+  background-position: calc(100% - 0.0625rem);
+  background-repeat: no-repeat;
+  background-size: 2.3125rem;
+}
+.ct-select:focus-visible {
+  outline-style: solid;
+  outline-width: var(--ct-select-outline-width);
+  outline-offset: var(--ct-select-outline-offset);
+}
+.ct-select.ct-theme-light {
+  background-image: var(--ct-select-light-icon);
+}
+.ct-select.ct-theme-light[multiple] {
+  background: none;
+}
+.ct-select.ct-theme-light:focus-visible {
+  outline-color: var(--ct-select-light-outline-color);
+}
+.ct-select.ct-theme-light:not(.ct-select--is-invalid) {
+  color: var(--ct-select-light-color);
+  border-color: var(--ct-select-light-border-color);
+  background-color: var(--ct-select-light-background-color);
+}
+.ct-select.ct-theme-light:not(.ct-select--is-invalid)::placeholder {
+  color: var(--ct-select-light-color);
+}
+.ct-select.ct-theme-light:not(.ct-select--is-invalid) option:checked {
+  background-color: var(--ct-select-light-option-background-color);
+  color: var(--ct-select-light-option-color);
+}
+.ct-select.ct-theme-light:not(.ct-select--is-invalid):hover {
+  color: var(--ct-select-light-hover-color);
+  border-color: var(--ct-select-light-hover-border-color);
+  background-color: var(--ct-select-light-hover-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-select-light-hover-border-color);
+}
+.ct-select.ct-theme-light:not(.ct-select--is-invalid):focus-visible {
+  color: var(--ct-select-light-focus-color);
+  border-color: var(--ct-select-light-focus-border-color);
+  background-color: var(--ct-select-light-focus-background-color);
+}
+.ct-select.ct-theme-light.ct-select--is-invalid {
+  color: var(--ct-select-light-invalid-color);
+  border-color: var(--ct-select-light-invalid-border-color);
+  background-color: var(--ct-select-light-invalid-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-select-light-invalid-border-color);
+}
+.ct-select.ct-theme-light.ct-select--is-invalid::placeholder {
+  color: var(--ct-select-light-invalid-color);
+}
+.ct-select.ct-theme-dark {
+  background-image: var(--ct-select-dark-icon);
+}
+.ct-select.ct-theme-dark[multiple] {
+  background: none;
+}
+.ct-select.ct-theme-dark:focus-visible {
+  outline-color: var(--ct-select-dark-outline-color);
+}
+.ct-select.ct-theme-dark:not(.ct-select--is-invalid) {
+  color: var(--ct-select-dark-color);
+  border-color: var(--ct-select-dark-border-color);
+  background-color: var(--ct-select-dark-background-color);
+}
+.ct-select.ct-theme-dark:not(.ct-select--is-invalid)::placeholder {
+  color: var(--ct-select-dark-color);
+}
+.ct-select.ct-theme-dark:not(.ct-select--is-invalid) option:checked {
+  background-color: var(--ct-select-dark-option-background-color);
+  color: var(--ct-select-dark-option-color);
+}
+.ct-select.ct-theme-dark:not(.ct-select--is-invalid):hover {
+  color: var(--ct-select-dark-hover-color);
+  border-color: var(--ct-select-dark-hover-border-color);
+  background-color: var(--ct-select-dark-hover-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-select-dark-hover-border-color);
+}
+.ct-select.ct-theme-dark:not(.ct-select--is-invalid):focus-visible {
+  color: var(--ct-select-dark-focus-color);
+  border-color: var(--ct-select-dark-focus-border-color);
+  background-color: var(--ct-select-dark-focus-background-color);
+}
+.ct-select.ct-theme-dark.ct-select--is-invalid {
+  color: var(--ct-select-dark-invalid-color);
+  border-color: var(--ct-select-dark-invalid-border-color);
+  background-color: var(--ct-select-dark-invalid-background-color);
+  box-shadow: inset 0 0 0 0.0625rem var(--ct-select-dark-invalid-border-color);
+}
+.ct-select.ct-theme-dark.ct-select--is-invalid::placeholder {
+  color: var(--ct-select-dark-invalid-color);
+}

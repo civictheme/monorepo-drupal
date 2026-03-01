@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * CivicTheme Search component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - text: Text for the search link.
+ * - url: Search page URL.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set search_text -%}
+  <span class="ct-search__link-text">{{ text }}</span>
+{%- endset %}
+
+<div class="ct-search {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+  {% include 'civictheme:link' with {
+    theme: theme|default('light'),
+    text: search_text,
+    url: url,
+    icon: 'magnifier',
+    icon_placement: 'after',
+    icon_group_disabled: true,
+    modifier_class: 'ct-search__link',
+  } only %}
+</div>

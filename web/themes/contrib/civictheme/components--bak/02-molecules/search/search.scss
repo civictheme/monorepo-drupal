@@ -1,0 +1,74 @@
+//
+// CivicTheme Search component styles.
+//
+
+.ct-search {
+  $root: &;
+
+  @include ct-print-hide();
+
+  // Make button appear as a "Navigation with Drawer" item.
+  // @see navigation.scss
+  & {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    @include ct-typography('label-regular');
+
+    & {
+      @include ct-link-no-decoration();
+
+      border-bottom: solid ct-particle(0.5);
+      padding-left: ct-spacing(2);
+      padding-right: ct-spacing(2);
+      padding-top: var(--ct-navigation-drawer-top-offset);
+      padding-bottom: var(--ct-navigation-drawer-top-offset);
+      text-align: center;
+    }
+
+    &:focus-visible {
+      outline-offset: ct-particle(0.25);
+    }
+
+    .ct-button__icon {
+      margin-left: ct-spacing(0.5);
+    }
+  }
+
+  // Hide text on small screens.
+  &__link-text {
+    @include ct-breakpoint-upto($ct-header-desktop-menu-breakpoint) {
+      @include ct-visually-hidden();
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    & > #{$root}__link {
+      @include ct-component-property(ct-navigation, $theme, drawer, menu-item, background-color);
+      @include ct-component-property(ct-navigation, $theme, menu, color);
+
+      & {
+        border-bottom-color: ct-component-var(ct-navigation, $theme, menu, item, border-color);
+      }
+
+      &:is(:hover, :focus-visible) {
+        @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
+          @include ct-component-property(ct-navigation, $theme, drawer, menu-item, hover, background-color);
+          @include ct-component-property(ct-navigation, $theme, menu, hover, color);
+
+          border-bottom-color: ct-component-var(ct-navigation, $theme, menu, item, hover, border-color);
+        }
+      }
+
+      &[aria-expanded='true'],
+      &:active {
+        @include ct-component-property(ct-navigation, $theme, drawer, menu-item, active, background-color);
+        @include ct-component-property(ct-navigation, $theme, menu, active, color);
+
+        border-bottom-color: ct-component-var(ct-navigation, $theme, menu, item, active, border-color);
+      }
+    }
+  }
+}

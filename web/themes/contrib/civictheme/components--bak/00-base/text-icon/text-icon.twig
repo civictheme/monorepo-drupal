@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * CivicTheme Text Icon component.
+ *
+ * Props:
+ * - text: [string] Text content.
+ * - is_new_window: [boolean] Whether to open in a new window.
+ * - is_external: [boolean] Whether the link is external.
+ * - icon: [string] Icon name.
+ * - icon_placement: [string] Icon position (before or after).
+ * - icon_class: [string] Class for custom icon.
+ * - icon_group_disabled: [boolean] Whether to disable icon and last word grouping.
+ * - icon_single_only: [boolean] Whether to show only one icon (if both icon and is_external are present, external takes preference).
+ */
+#}
+
+{%- set icon = (is_external and icon_single_only) ? 'upper-right-arrow' : (icon|default('')) -%}
+
+{%- set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' -%}
+
+{%- set content_markup -%}
+  {%- if icon or is_external -%}
+
+    {%- if icon -%}
+      {%- set icon_markup -%}
+        {%- include 'civictheme:icon' with {
+          symbol: icon,
+          modifier_class: icon_class|default(''),
+        } only -%}
+      {%- endset -%}
+    {%- endif -%}
+
+    {%- if text is not empty -%}
+      {# Prepare the text #}
+      {% set rendered_text -%}
+        {{- text -}}
+      {%- endset %}
+      {%- set text_arr = rendered_text|striptags|trim|split(' ') -%}
+      {%- set text_start = text_arr|slice(0, -1)|join(' ') -%}
+      {%- set text_end = text_arr|last -%}
+      {%- set show_full_text = icon_group_disabled or (icon_placement == 'before' and is_external == false) -%}
+      {%- set display_text = show_full_text ? text : text_start ~ ' ' -%}
+      {%- set before_text = icon_placement == 'before' ? icon_markup : '' -%}
+
+      {# Prepare the after elements #}
+      {%- set after_text -%}
+        {%- set after_icons -%}
+          {%- if icon_placement == 'after' -%}
+            {{- icon_markup -}}
+          {%- endif -%}
+          {%- if is_external and not icon_single_only -%}
+            {%- include 'civictheme:icon' with {symbol: 'upper-right-arrow'} only -%}
+          {%- endif -%}
+        {%- endset -%}
+        {%- if show_full_text %} {% endif -%}{# This line adds some space between full text and after icons #}
+        {%- if not show_full_text -%}
+          <span class="ct-text-icon__group"><span class="ct-text-icon__text">{{ text_end }}</span> {{ after_icons -}}</span>
+        {%- else -%}
+          {{- after_icons -}}
+        {%- endif -%}
+      {%- endset -%}
+
+{{- before_text -}}<span class="ct-text-icon__text">{{- display_text -}}</span>{{- after_text -}}
+    {%- else -%}
+      {{- icon_markup -}}
+    {%- endif -%}
+
+  {%- else -%}
+    <span class="ct-text-icon__text">{{- text -}}</span>
+  {%- endif -%}
+{%- endset -%}
+
+{%- if is_new_window -%}
+  {%- set is_new_window_content -%}
+    <span class="ct-visually-hidden">(Opens in a new tab/window)</span>
+  {%- endset -%}
+{%- endif -%}
+
+{{- content_markup -}}{{- is_new_window_content -}}

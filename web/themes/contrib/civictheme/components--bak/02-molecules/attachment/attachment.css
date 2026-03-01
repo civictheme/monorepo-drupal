@@ -1,0 +1,53 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+@media (min-width: 768px) {
+  .ct-attachment.ct-attachment--with-background {
+    padding-left: var(--ct-attachment-space-horizontal);
+    padding-right: var(--ct-attachment-space-horizontal);
+  }
+}
+.ct-attachment .ct-attachment__wrapper {
+  border: solid 0.0625rem;
+  border-radius: var(--ct-attachment-border-radius);
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ct-attachment .ct-attachment__wrapper {
+    padding: 2rem;
+  }
+}
+.ct-attachment .ct-attachment__title {
+  margin-bottom: 1rem;
+}
+.ct-attachment .ct-attachment__content {
+  margin-bottom: 1rem;
+}
+.ct-attachment .ct-attachment__links .ct-item-list__item {
+  display: flex;
+  gap: 0 0.5rem;
+}
+.ct-attachment .ct-attachment__links__link__extension {
+  text-transform: uppercase;
+}
+.ct-attachment.ct-theme-light {
+  color: var(--ct-attachment-light-color);
+}
+.ct-attachment.ct-theme-light.ct-attachment--with-background {
+  background-color: var(--ct-attachment-light-wrapper-background-color);
+}
+.ct-attachment.ct-theme-light .ct-attachment__wrapper {
+  border-color: var(--ct-attachment-light-border-color);
+  background-color: var(--ct-attachment-light-background-color);
+}
+.ct-attachment.ct-theme-dark {
+  color: var(--ct-attachment-dark-color);
+}
+.ct-attachment.ct-theme-dark.ct-attachment--with-background {
+  background-color: var(--ct-attachment-dark-wrapper-background-color);
+}
+.ct-attachment.ct-theme-dark .ct-attachment__wrapper {
+  border-color: var(--ct-attachment-dark-border-color);
+  background-color: var(--ct-attachment-dark-background-color);
+}

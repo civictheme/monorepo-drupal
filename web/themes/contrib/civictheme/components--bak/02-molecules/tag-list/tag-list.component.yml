@@ -1,0 +1,78 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tag List
+status: stable
+description: Component for tags
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    vertical_spacing:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Vertical Spacing
+      description: Tag list vertical spacing (none, top, bottom, both).
+      enum:
+      - none
+      - top
+      - bottom
+      - both
+      - ''
+      - null
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+    tags:
+      type: array
+      title: Tags
+      description: Tags.
+      items:
+        type: object
+        properties:
+          text:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Text
+            description: Tag text.
+          url:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: URL
+            description: Tag URL.
+          is_new_window:
+            type:
+            - boolean
+            - 'null'
+            - string
+            - integer
+            title: New Window
+            description: Whether to open the tag in a new window.
+slots:
+  content_top:
+    title: Content Top
+    description: Top content area.
+  content_bottom:
+    title: Content Bottom
+    description: Bottom content area.

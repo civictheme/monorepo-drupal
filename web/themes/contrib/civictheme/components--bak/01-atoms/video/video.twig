@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * CivicTheme Video component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - title: [string] Video title.
+ * - has_controls: [boolean] Whether the video should have controls.
+ * - sources: [array] Video sources:
+ *   Each item contains:
+ *   - url: [string] Source URL.
+ *   - type: [string] MIME type (like 'video/mp4').
+ * - poster: [string] Video poster URL.
+ * - width: [string] Video width.
+ * - height: [string] Video height.
+ * - fallback_text: [string] Message for browsers not supporting HTML5 video.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if sources is not empty %}
+  {% if fallback_text is empty %}
+    {% set fallback_text = "Your browser doesn't support HTML5 video." %}
+  {% endif %}
+
+  {% set attributes = attributes is defined and attributes is not null ? attributes : create_attribute({}) %}
+
+  {% if title is not empty %}
+    {% set attributes = attributes.setAttribute('title', title) %}
+  {% endif %}
+
+  {% if has_controls %}
+    {% set attributes = attributes.setAttribute('controls', '') %}
+  {% endif %}
+
+  {% if poster is not empty %}
+    {% set attributes = attributes.setAttribute('poster', poster) %}
+  {% endif %}
+
+  {% if width is not empty %}
+    {% set attributes = attributes.setAttribute('width', width) %}
+  {% endif %}
+
+  {% if height is not empty %}
+    {% set attributes = attributes.setAttribute('height', height) %}
+  {% endif %}
+
+  <video class="ct-video {{ modifier_class -}}" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    {% for source in sources %}
+      <source src="{{ source.url }}" type="{{ source.type }}"/>
+    {% endfor %}
+    {{ fallback_text }}
+  </video>
+{% endif %}

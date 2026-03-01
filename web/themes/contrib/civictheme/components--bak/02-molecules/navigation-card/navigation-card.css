@@ -1,0 +1,180 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-navigation-card {
+  position: relative;
+  border-radius: var(--ct-navigation-card-border-radius);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ct-navigation-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-navigation-card:hover {
+  outline: 1px solid transparent;
+}
+.ct-navigation-card--card-clickable {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-navigation-card--card-clickable:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+.ct-navigation-card--card-clickable:active {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.ct-navigation-card--card-clickable .ct-navigation-card__title-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+@container (min-width: 36rem) {
+  .ct-navigation-card {
+    flex-direction: row;
+  }
+}
+.ct-navigation-card .ct-navigation-card__image {
+  position: relative;
+}
+.ct-navigation-card .ct-navigation-card__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.ct-navigation-card .ct-navigation-card__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.ct-navigation-card .ct-navigation-card__image {
+  height: var(--ct-navigation-card-image-height-mobile);
+  width: auto;
+  min-width: var(--ct-navigation-card-image-width-mobile);
+}
+@container (min-width: 36rem) {
+  .ct-navigation-card .ct-navigation-card__image {
+    width: var(--ct-navigation-card-image-max-width-desktop);
+    min-width: var(--ct-navigation-card-image-min-width-desktop);
+    height: auto;
+    min-height: var(--ct-navigation-card-image-min-height-desktop);
+    flex-shrink: 0;
+  }
+}
+.ct-navigation-card .ct-navigation-card__content {
+  width: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ct-navigation-card .ct-navigation-card__icon {
+  margin-bottom: 1rem;
+  color: inherit;
+}
+.ct-navigation-card .ct-navigation-card__icon__image img {
+  height: 1em;
+  width: 1em;
+  object-fit: cover;
+}
+.ct-navigation-card .ct-navigation-card__title {
+  font-size: var(--ct-typography-heading-4-font-size);
+  line-height: var(--ct-typography-heading-4-line-height);
+  font-family: var(--ct-typography-heading-4-font-name);
+  font-weight: var(--ct-typography-heading-4-font-weight);
+  letter-spacing: var(--ct-typography-heading-4-letter-spacing);
+}
+.ct-navigation-card .ct-navigation-card__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+.ct-navigation-card .ct-navigation-card__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-navigation-card .ct-navigation-card__title-link:hover {
+  text-decoration: underline;
+}
+.ct-navigation-card .ct-navigation-card__title-link:visited {
+  color: inherit;
+}
+.ct-navigation-card .ct-navigation-card__tags {
+  margin-top: auto;
+}
+.ct-navigation-card .ct-navigation-card__link-graphic {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}
+.ct-navigation-card .ct-navigation-card__link-graphic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: var(--ct-navigation-card-link-graphic-hover-opacity);
+  border-radius: 100%;
+}
+.ct-navigation-card.ct-theme-light {
+  background-color: var(--ct-navigation-card-light-background-color);
+  color: var(--ct-navigation-card-light-icon-color);
+}
+.ct-navigation-card.ct-theme-light.ct-navigation-card--card-clickable:hover {
+  outline-color: var(--ct-navigation-card-light-hover-outline-color);
+}
+.ct-navigation-card.ct-theme-light.ct-navigation-card--card-clickable:hover .ct-navigation-card__title-link {
+  color: var(--ct-navigation-card-light-title-hover-color);
+}
+.ct-navigation-card.ct-theme-light.ct-navigation-card--card-clickable:hover .ct-navigation-card__link-graphic::before {
+  background-color: var(--ct-navigation-card-light-link-graphic-hover-background-color);
+}
+.ct-navigation-card.ct-theme-light:not(.ct-navigation-card--card-clickable) .ct-navigation-card__title-link:hover {
+  color: var(--ct-navigation-card-light-title-hover-color);
+}
+.ct-navigation-card.ct-theme-light .ct-navigation-card__title,
+.ct-navigation-card.ct-theme-light .ct-navigation-card__title-link {
+  color: var(--ct-navigation-card-light-title-color);
+}
+.ct-navigation-card.ct-theme-light .ct-navigation-card__link-graphic {
+  color: var(--ct-navigation-card-light-link-graphic-color);
+}
+.ct-navigation-card.ct-theme-dark {
+  background-color: var(--ct-navigation-card-dark-background-color);
+  color: var(--ct-navigation-card-dark-icon-color);
+}
+.ct-navigation-card.ct-theme-dark.ct-navigation-card--card-clickable:hover {
+  outline-color: var(--ct-navigation-card-dark-hover-outline-color);
+}
+.ct-navigation-card.ct-theme-dark.ct-navigation-card--card-clickable:hover .ct-navigation-card__title-link {
+  color: var(--ct-navigation-card-dark-title-hover-color);
+}
+.ct-navigation-card.ct-theme-dark.ct-navigation-card--card-clickable:hover .ct-navigation-card__link-graphic::before {
+  background-color: var(--ct-navigation-card-dark-link-graphic-hover-background-color);
+}
+.ct-navigation-card.ct-theme-dark:not(.ct-navigation-card--card-clickable) .ct-navigation-card__title-link:hover {
+  color: var(--ct-navigation-card-dark-title-hover-color);
+}
+.ct-navigation-card.ct-theme-dark .ct-navigation-card__title,
+.ct-navigation-card.ct-theme-dark .ct-navigation-card__title-link {
+  color: var(--ct-navigation-card-dark-title-color);
+}
+.ct-navigation-card.ct-theme-dark .ct-navigation-card__link-graphic {
+  color: var(--ct-navigation-card-dark-link-graphic-color);
+}

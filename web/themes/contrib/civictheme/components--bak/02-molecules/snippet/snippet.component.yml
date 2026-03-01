@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Snippet
+status: stable
+description: Component for displaying a content snippet with title, summary, tags, and link
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+slots:
+  content_top:
+    title: Content Top
+    description: Top content area.
+  content_middle:
+    title: Content Middle
+    description: Middle content area.
+  content_bottom:
+    title: Content Bottom
+    description: Bottom content area.
+  title:
+    title: Title
+    description: Snippet title text.
+  summary:
+    title: Summary
+    description: Snippet summary text.
+  link:
+    title: Link
+    description: Snippet link object.
+  tags:
+    title: Tags
+    description: Snippet tags.

@@ -1,0 +1,171 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-event-card {
+  position: relative;
+  border-radius: var(--ct-event-card-border-radius);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ct-event-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-event-card:hover {
+  outline: 1px solid transparent;
+}
+.ct-event-card--card-clickable {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-event-card--card-clickable:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+.ct-event-card--card-clickable:active {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.ct-event-card--card-clickable .ct-event-card__title-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ct-event-card:not(.ct-event-card--with-image) {
+  position: relative;
+}
+.ct-event-card:not(.ct-event-card--with-image)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--ct-event-card-stripe-height);
+  top: 0;
+  border-top-left-radius: var(--ct-event-card-border-radius);
+  border-top-right-radius: var(--ct-event-card-border-radius);
+  transition: height 0.25s;
+}
+.ct-event-card .ct-event-card__image img {
+  aspect-ratio: var(--ct-event-card-image-aspect-ratio);
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.ct-event-card .ct-event-card__content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ct-event-card .ct-event-card__title {
+  font-size: var(--ct-typography-heading-4-font-size);
+  line-height: var(--ct-typography-heading-4-line-height);
+  font-family: var(--ct-typography-heading-4-font-name);
+  font-weight: var(--ct-typography-heading-4-font-weight);
+  letter-spacing: var(--ct-typography-heading-4-letter-spacing);
+}
+.ct-event-card .ct-event-card__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+.ct-event-card .ct-event-card__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-event-card .ct-event-card__title-link:hover {
+  text-decoration: underline;
+}
+.ct-event-card .ct-event-card__title-link:visited {
+  color: inherit;
+}
+.ct-event-card .ct-event-card__location {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-event-card .ct-event-card__tags {
+  display: flex;
+  margin-top: auto;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.ct-event-card .ct-event-card__link-graphic {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}
+.ct-event-card .ct-event-card__link-graphic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: var(--ct-event-card-link-graphic-hover-opacity);
+  border-radius: 100%;
+}
+.ct-event-card.ct-theme-light {
+  background-color: var(--ct-event-card-light-background-color);
+}
+.ct-event-card.ct-theme-light.ct-event-card--card-clickable:hover {
+  outline-color: var(--ct-event-card-light-hover-outline-color);
+}
+.ct-event-card.ct-theme-light.ct-event-card--card-clickable:hover .ct-event-card__title-link {
+  color: var(--ct-event-card-light-title-hover-color);
+}
+.ct-event-card.ct-theme-light.ct-event-card--card-clickable:hover .ct-event-card__link-graphic::before {
+  background-color: var(--ct-event-card-light-link-graphic-hover-background-color);
+}
+.ct-event-card.ct-theme-light:not(.ct-event-card--card-clickable) .ct-event-card__title-link:hover {
+  color: var(--ct-event-card-light-title-hover-color);
+}
+.ct-event-card.ct-theme-light .ct-event-card__title,
+.ct-event-card.ct-theme-light .ct-event-card__title-link {
+  color: var(--ct-event-card-light-title-color);
+}
+.ct-event-card.ct-theme-light .ct-event-card__link-graphic {
+  color: var(--ct-event-card-light-link-graphic-color);
+}
+.ct-event-card.ct-theme-light.ct-event-card:not(.ct-event-card--with-image)::before {
+  background-color: var(--ct-event-card-light-stripe-background-color);
+}
+.ct-event-card.ct-theme-dark {
+  background-color: var(--ct-event-card-dark-background-color);
+}
+.ct-event-card.ct-theme-dark.ct-event-card--card-clickable:hover {
+  outline-color: var(--ct-event-card-dark-hover-outline-color);
+}
+.ct-event-card.ct-theme-dark.ct-event-card--card-clickable:hover .ct-event-card__title-link {
+  color: var(--ct-event-card-dark-title-hover-color);
+}
+.ct-event-card.ct-theme-dark.ct-event-card--card-clickable:hover .ct-event-card__link-graphic::before {
+  background-color: var(--ct-event-card-dark-link-graphic-hover-background-color);
+}
+.ct-event-card.ct-theme-dark:not(.ct-event-card--card-clickable) .ct-event-card__title-link:hover {
+  color: var(--ct-event-card-dark-title-hover-color);
+}
+.ct-event-card.ct-theme-dark .ct-event-card__title,
+.ct-event-card.ct-theme-dark .ct-event-card__title-link {
+  color: var(--ct-event-card-dark-title-color);
+}
+.ct-event-card.ct-theme-dark .ct-event-card__link-graphic {
+  color: var(--ct-event-card-dark-link-graphic-color);
+}
+.ct-event-card.ct-theme-dark.ct-event-card:not(.ct-event-card--with-image)::before {
+  background-color: var(--ct-event-card-dark-stripe-background-color);
+}

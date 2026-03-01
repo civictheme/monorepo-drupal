@@ -1,0 +1,85 @@
+//
+// Reset mixins.
+//
+
+//
+// Reset the box model dimensions.
+//
+@mixin ct-reset-box-model() {
+  @include ct-reset-margins();
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+//
+// Reset margins.
+//
+@mixin ct-reset-margins() {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+//
+// Subset of normalize.css
+// v8.0.1 | MIT License | github.com/necolas/normalize.css.
+//
+@mixin ct-reset-basic-content {
+  // 1. Add the correct box sizing in Firefox.
+  // 2. Show the overflow in Edge and IE.
+  hr {
+    box-sizing: content-box; // 1
+    height: 0; // 1
+    overflow: visible; // 2
+  }
+
+  // 1. Correct the inheritance and scaling of font size in all browsers.
+  // 2. Correct the odd `em` font sizing in all browsers.
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: monospace; // 1
+    font-size: 1em; // 2
+  }
+
+  // 1. Remove the bottom border in Chrome 57-
+  // 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+  abbr[title] {
+    border-bottom: none; // 1
+    text-decoration: underline; // 2
+    text-decoration: underline dotted; // 2
+  }
+
+  // Add the correct font weight in Chrome, Edge, and Safari.
+  b,
+  strong {
+    font-weight: bolder;
+  }
+
+  // Add the correct font size in all browsers.
+  small {
+    font-size: 80%;
+  }
+
+  // Prevent `sub` and `sup` elements from affecting the line height in
+  // all browsers.
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+}

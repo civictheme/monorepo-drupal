@@ -1,0 +1,108 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Banner
+status: stable
+description: Banner component with multiple content areas, breadcrumb, featured image and background
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    is_decorative:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Decorative
+      description: Whether to show as decorative.
+    background_image_blend_mode:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Background Image Blend Mode
+      description: Background image blending type. Defaults to 'normal'.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier Class
+      description: Additional CSS classes.
+    breadcrumb:
+      type: object
+      title: Breadcrumb
+      description: Breadcrumb navigation.
+      properties:
+        links:
+          type: array
+          title: Links
+          description: Breadcrumb links.
+        active_is_link:
+          type: boolean
+          title: Active Is Link
+          description: Whether the active item is a link.
+    featured_image:
+      type: object
+      title: Featured Image
+      description: Featured image.
+      properties:
+        url:
+          type: string
+          title: URL
+          description: Image source URL.
+        alt:
+          type: string
+          title: Alt text
+          description: Image alt text.
+    background_image:
+      type: object
+      title: Background Image
+      description: Background image.
+      properties:
+        url:
+          type: string
+          title: URL
+          description: Image source URL.
+        alt:
+          type: string
+          title: Alt text
+          description: Image alt text.
+slots:
+  content_top1:
+    title: Content Top 1
+    description: Top section content.
+  content_top2:
+    title: Content Top 2
+    description: Second top section content.
+  content_top3:
+    title: Content Top 3
+    description: Third top section content.
+  content_middle:
+    title: Content Middle
+    description: Middle section content.
+  content:
+    title: Content
+    description: Main content.
+  content_bottom:
+    title: Content Bottom
+    description: Bottom section content.
+  content_below:
+    title: Content Below
+    description: Below banner section content.
+  site_section:
+    title: Site Section
+    description: Site section name.
+  title:
+    title: Title
+    description: Banner title.

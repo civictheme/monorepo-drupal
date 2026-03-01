@@ -1,0 +1,35 @@
+//
+// Generator mixins.
+//
+
+//
+// Generate classes variations from provided map with optional prefix.
+//
+@mixin ct-generate-class-variations-from-map($map, $prefix: false, $use-value: false) {
+  $index: 0;
+
+  @each $key, $value in $map {
+    // Handle lists.
+    @if type-of($map) == 'list' or $value == null {
+      $value: $key;
+      $key: $index + 1;
+    }
+
+    $classname: $key;
+    $suffix: $key;
+
+    @if $use-value != false {
+      $suffix: $value;
+    }
+
+    @if $prefix != false {
+      $classname: #{$prefix}--#{$suffix};
+    }
+
+    .#{$classname} {
+      @content($key, $value, $index);
+    }
+
+    $index: $index + 1;
+  }
+}

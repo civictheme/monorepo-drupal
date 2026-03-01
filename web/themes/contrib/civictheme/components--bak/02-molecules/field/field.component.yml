@@ -1,0 +1,224 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Field
+status: stable
+description: Main entry point component for building form fields with labels, descriptions, and validation
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    type:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Type
+      description: Type defined by a control type (required).
+    title:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title
+      description: Field title.
+    title_display:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title display
+      description: How to display the field title (visible, invisible, hidden).
+      enum:
+      - visible
+      - invisible
+      - hidden
+      - ''
+      - null
+      default: visible
+    title_size:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title size
+      description: The size of the title (extra-small, small, regular, large, extra-large).
+      enum:
+      - extra-small
+      - small
+      - regular
+      - large
+      - extra-large
+      - ''
+      - null
+      default: regular
+    label:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Label
+      description: Control label (required only for a radio group or checkbox).
+    description:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Description
+      description: Field description.
+    name:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Name
+      description: Control DOM name (propagated from `name` if not defined).
+    value:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Value
+      description: Control DOM value (propagated from `value` if not defined).
+    id:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: ID
+      description: Control DOM ID.
+    is_invalid:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Invalid
+      description: Whether the control is invalid (propagated from `is_invalid` if not defined).
+    is_disabled:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Disabled
+      description: Whether the control is disabled (propagated from `is_disabled` if not defined).
+    is_required:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Required
+      description: Whether the control is required (propagated from `is_required` if not defined).
+    required_text:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Required text
+      description: Text to display within label element when required (propagated).
+    orientation:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Orientation
+      description: Elements orientation (vertical or horizontal).
+      enum:
+      - vertical
+      - horizontal
+      - ''
+      - null
+      default: vertical
+    is_inline:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Inline
+      description: Whether the complex control is shown inline.
+    control:
+      type:
+      - object
+      - array
+      title: Control
+      description: Object or objects collection with control's properties (required for complex controls).
+    options:
+      type: array
+      title: Options
+      description: Options for the field input.
+      items:
+        type: object
+        properties:
+          value:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Value
+            description: Option value
+          label:
+            type:
+            - string
+            - 'null'
+            - integer
+            - object
+            title: Label
+            description: Option label
+    is_multiple:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Multiple
+      description: Whether the field allows multiple values.
+    placeholder:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Placeholder
+      description: Placeholder text for field.
+    message:
+      type: object
+      title: Message
+      description: Message object for showing messages.
+      properties:
+        content:
+          type: string
+          title: Content
+          description: Message content.
+    prefix:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Prefix
+      description: Content to add before the field.
+    suffix:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Suffix
+      description: Content to add after the field.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

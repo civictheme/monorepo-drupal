@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * CivicTheme Image component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - url: [string] Image URL.
+ * - alt: [string] Image alt text.
+ * - width: [string] Image width.
+ * - height: [string] Image height.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{# Handle Drupal edge case where empty alt may be passed as literal '""' string #}
+{% set alt = (alt == '""') ? '' : (alt|default('')) %}
+
+{% if url is not empty %}
+  <img
+    class="ct-image {{ modifier_class -}}"
+    src="{{ url }}"
+    alt="{{ alt }}"
+    {% if width is not empty %}width="{{ width }}"{% endif %}
+    {% if height is not empty %}height="{{ height }}"{% endif %}
+    {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}
+  />
+{% endif %}

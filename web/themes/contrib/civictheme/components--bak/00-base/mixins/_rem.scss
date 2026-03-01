@@ -1,0 +1,20 @@
+//
+// Functions to work with REM.
+//
+
+@use 'sass:math';
+
+//
+// Convert a pixel value into a rem value.
+//
+// Exception case where we are not prefixing a function with `ct-` for brevity.
+//
+@function rem($pxval, $base: null) {
+  @if $base == null {
+    $base: $ct-font-base-size;
+  }
+
+  $pxbase: $base;
+
+  @return math.div($pxval, $pxbase) * 1rem;
+}

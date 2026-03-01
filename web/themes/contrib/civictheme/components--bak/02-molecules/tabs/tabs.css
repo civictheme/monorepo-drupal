@@ -1,0 +1,71 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-tabs .ct-tabs__links {
+  border-bottom-style: solid;
+  border-bottom-width: 0.0625rem;
+}
+.ct-tabs .ct-tabs__links .ct-link {
+  font-size: var(--ct-typography-label-regular-font-size);
+  line-height: var(--ct-typography-label-regular-line-height);
+  font-family: var(--ct-typography-label-regular-font-name);
+  font-weight: var(--ct-typography-label-regular-font-weight);
+  letter-spacing: var(--ct-typography-label-regular-letter-spacing);
+}
+.ct-tabs .ct-tabs__links .ct-link {
+  margin-bottom: -0.0625rem;
+  outline-offset: -0.1875rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--ct-tabs-link-border-radius) var(--ct-tabs-link-border-radius) 0 0;
+  border: solid 0.0625rem;
+}
+@media (min-width: 768px) {
+  .ct-tabs .ct-tabs__links .ct-link {
+    padding: 0.75rem 1rem;
+  }
+}
+.ct-tabs .ct-tabs__panels {
+  margin-top: 1.5rem;
+}
+.ct-tabs .ct-tabs__panels__panel {
+  display: none;
+}
+.ct-tabs .ct-tabs__panels__panel.ct-tabs__panel--selected {
+  display: block;
+}
+.ct-tabs.ct-theme-light .ct-tabs__links {
+  border-bottom-color: var(--ct-tabs-light-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-light .ct-link {
+  background-color: var(--ct-tabs-light-links-background-color);
+  border-color: var(--ct-tabs-light-links-border-color);
+  border-bottom-color: var(--ct-tabs-light-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-light .ct-link.ct-tabs__tab--selected {
+  background-color: var(--ct-tabs-light-links-active-background-color);
+  border-color: var(--ct-tabs-light-links-active-border-color);
+  border-bottom-color: var(--ct-tabs-light-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-light .ct-tabs__panels {
+  background-color: var(--ct-tabs-light-panel-background-color);
+  border-color: var(--ct-tabs-light-panel-border-color);
+}
+.ct-tabs.ct-theme-dark .ct-tabs__links {
+  border-bottom-color: var(--ct-tabs-dark-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-dark .ct-link {
+  background-color: var(--ct-tabs-dark-links-background-color);
+  border-color: var(--ct-tabs-dark-links-border-color);
+  border-bottom-color: var(--ct-tabs-dark-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-dark .ct-link.ct-tabs__tab--selected {
+  background-color: var(--ct-tabs-dark-links-active-background-color);
+  border-color: var(--ct-tabs-dark-links-active-border-color);
+  border-bottom-color: var(--ct-tabs-dark-links-stripe-border-color);
+}
+.ct-tabs.ct-theme-dark .ct-tabs__panels {
+  background-color: var(--ct-tabs-dark-panel-background-color);
+  border-color: var(--ct-tabs-dark-panel-border-color);
+}

@@ -1,0 +1,115 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Link
+status: stable
+description: Link component with configurable styles and states
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    text:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Text
+      description: Link text.
+    url:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: URL
+      description: Link URL.
+    title:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Title
+      description: Title attribute for the link.
+    is_new_window:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: New window
+      description: Open link in a new window.
+    is_external:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: External
+      description: Indicates if the link is external.
+    is_active:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Active
+      description: Indicates if the link is active
+    is_disabled:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Disabled
+      description: Indicates if the link is disabled.
+    icon:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Icon
+      description: Icon name.
+    icon_placement:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Icon placement
+      description: Icon position (before or after).
+      enum:
+      - before
+      - after
+      - ''
+      - null
+      default: after
+    icon_group_disabled:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Disable icon grouping
+      description: Disable icon and last word grouping.
+    icon_single_only:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: Single icon only
+      description: Only show 1 icon (if both icon and is_external are present, external takes preference).
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

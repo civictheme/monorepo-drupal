@@ -1,0 +1,30 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+@media print {
+  .ct-back-to-top {
+    display: none !important;
+  }
+}
+.ct-back-to-top {
+  position: fixed;
+  right: var(--ct-back-to-top-space-right);
+  bottom: var(--ct-back-to-top-space-bottom);
+}
+.ct-back-to-top .ct-back-to-top__button, .ct-back-to-top .ct-back-to-top__button:focus-visible, .ct-back-to-top .ct-back-to-top__button:active, .ct-back-to-top .ct-back-to-top__button:visited, .ct-back-to-top .ct-back-to-top__button:hover {
+  display: inline-block;
+  border-radius: 6rem;
+  padding: 0.5rem;
+  background-color: var(--ct-back-to-top-background-color);
+  border-color: var(--ct-back-to-top-border-color);
+  color: var(--ct-back-to-top-color);
+  line-height: 0;
+  outline-color: var(--ct-back-to-top-outline-color);
+  outline-offset: var(--ct-button-outline-offset);
+  outline-width: var(--ct-button-outline-width);
+  appearance: none;
+}
+.ct-back-to-top .ct-back-to-top__button:focus-visible {
+  outline-style: solid;
+}

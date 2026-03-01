@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * CivicTheme Icon component.
+ *
+ * Props:
+ * - symbol: [string] Icon name (required).
+ * - size: [string] Icon size.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ * - assets_dir: [string] Directory containing icon assets.
+ */
+#}
+
+{%- set assets_dir = assets_dir|default('@civictheme/../assets') -%}
+
+{%- if symbol is not empty %}
+  {%- set source = source(assets_dir ~ '/icons/' ~ symbol ~ '.svg', true) -%}
+  {%- if source is not empty -%}
+
+    {%- set attr = attributes is defined and attributes is not null ? attributes : create_attribute({}) -%}
+    {%- do attr.addClass('ct-icon') -%}
+    {%- if size -%}
+      {%- do attr.addClass('ct-icon--size-' ~ size) -%}
+    {%- endif -%}
+    {%- set class_arr = modifier_class|split(' ') -%}
+    {%- for class in class_arr -%}
+      {%- do attr.addClass(class) -%}
+    {%- endfor -%}
+    {%- do attr.setAttribute('aria-hidden', 'true') -%}
+    {%- do attr.setAttribute('role', 'img') -%}
+
+    {{- source|replace({'<svg ': '<svg ' ~ attr ~ ' '})|raw -}}
+  {%- endif -%}
+{%- endif -%}

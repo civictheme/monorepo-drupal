@@ -1,0 +1,129 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-fast-fact-card {
+  position: relative;
+}
+.ct-fast-fact-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--ct-fast-fact-card-stripe-height);
+  bottom: 0;
+  border-bottom-left-radius: var(--ct-fast-fact-card-border-radius);
+  border-bottom-right-radius: var(--ct-fast-fact-card-border-radius);
+  transition: height 0.25s;
+}
+.ct-fast-fact-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: var(--ct-border-radius);
+  box-sizing: border-box;
+  padding: 2rem 1.5rem 1.5rem;
+}
+.ct-fast-fact-card {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 768px) {
+  .ct-fast-fact-card {
+    padding: 2.5rem 2rem 1.5rem;
+  }
+}
+.ct-fast-fact-card:hover {
+  outline: 1px solid transparent;
+}
+.ct-fast-fact-card--card-clickable {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+.ct-fast-fact-card--card-clickable:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+.ct-fast-fact-card--card-clickable:active {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.ct-fast-fact-card--card-clickable .ct-fast-fact-card__title-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ct-fast-fact-card__image img {
+  display: flex;
+  margin: auto;
+  max-width: var(--ct-fast-fact-card-max-width);
+  max-height: var(--ct-fast-fact-card-max-height);
+}
+.ct-fast-fact-card__title {
+  font-size: var(--ct-typography-display-font-size);
+  line-height: var(--ct-typography-display-line-height);
+  font-family: var(--ct-typography-display-font-name);
+  font-weight: var(--ct-typography-display-font-weight);
+  letter-spacing: var(--ct-typography-display-letter-spacing);
+  text-align: center;
+}
+.ct-fast-fact-card__title-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+.ct-fast-fact-card__title-link:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-fast-fact-card__title-link:hover {
+  text-decoration: underline;
+}
+.ct-fast-fact-card__title-link:visited {
+  color: inherit;
+}
+.ct-fast-fact-card__summary {
+  text-align: center;
+  margin-bottom: 0;
+}
+.ct-fast-fact-card.ct-theme-light {
+  background-color: var(--ct-fast-fact-card-light-background-color);
+}
+.ct-fast-fact-card.ct-theme-light::before {
+  background-color: var(--ct-fast-fact-card-light-stripe-background-color);
+}
+.ct-fast-fact-card.ct-theme-light.ct-fast-fact-card--card-clickable:hover {
+  outline-color: var(--ct-fast-fact-card-light-hover-outline-color);
+}
+.ct-fast-fact-card.ct-theme-light.ct-fast-fact-card--card-clickable:hover .ct-fast-fact-card__title-link {
+  color: var(--ct-fast-fact-card-light-title-hover-color);
+}
+.ct-fast-fact-card.ct-theme-light:not(.ct-fast-fact-card--card-clickable) .ct-fast-fact-card__title-link:hover {
+  color: var(--ct-fast-fact-card-light-title-hover-color);
+}
+.ct-fast-fact-card.ct-theme-light .ct-fast-fact-card__title,
+.ct-fast-fact-card.ct-theme-light .ct-fast-fact-card__title-link {
+  color: var(--ct-fast-fact-card-light-title-color);
+}
+.ct-fast-fact-card.ct-theme-dark {
+  background-color: var(--ct-fast-fact-card-dark-background-color);
+}
+.ct-fast-fact-card.ct-theme-dark::before {
+  background-color: var(--ct-fast-fact-card-dark-stripe-background-color);
+}
+.ct-fast-fact-card.ct-theme-dark.ct-fast-fact-card--card-clickable:hover {
+  outline-color: var(--ct-fast-fact-card-dark-hover-outline-color);
+}
+.ct-fast-fact-card.ct-theme-dark.ct-fast-fact-card--card-clickable:hover .ct-fast-fact-card__title-link {
+  color: var(--ct-fast-fact-card-dark-title-hover-color);
+}
+.ct-fast-fact-card.ct-theme-dark:not(.ct-fast-fact-card--card-clickable) .ct-fast-fact-card__title-link:hover {
+  color: var(--ct-fast-fact-card-dark-title-hover-color);
+}
+.ct-fast-fact-card.ct-theme-dark .ct-fast-fact-card__title,
+.ct-fast-fact-card.ct-theme-dark .ct-fast-fact-card__title-link {
+  color: var(--ct-fast-fact-card-dark-title-color);
+}

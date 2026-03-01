@@ -1,0 +1,129 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:list';
+@use '00-base/variables';
+@use '00-base/mixins/color';
+@import '00-base/variables'; // Needs to import twice; font/typography don't support @use.
+@import '00-base/mixins/font';
+@import '00-base/mixins/typography';
+@import '00-base/mixins/map';
+@import '00-base/mixins/string';
+
+html {
+  $colors: map.deep-merge(variables.$ct-colors-default, variables.$ct-colors);
+  $colors: map.deep-merge($colors, variables.$ct-colors-brands);
+
+  @each $theme, $colors in $colors {
+    @each $name, $value in $colors {
+      --#{ct-string(ct-join-lists(('ct', 'color', $theme, $name), '-'))}: #{$value};
+    }
+  }
+
+  $typography: map.merge($ct-typography-default, $ct-typography);
+  $breakpoints: map.keys($ct-breakpoints);
+
+  // First, loop through typography and collect rules by breakpoint
+  $breakpoint-typography: ();
+
+  @each $typography-name, $typography-ruleset in $typography {
+    // Check if this typography has rules for this breakpoint
+    @if type-of($typography-ruleset) == map {
+      @each $breakpoint, $rules in $typography-ruleset {
+        // Initialize breakpoint map if it doesn't exist
+        @if not map.has-key($breakpoint-typography, $breakpoint) {
+          $breakpoint-typography: map.set($breakpoint-typography, $breakpoint, ());
+        }
+
+        // Extract rules for this specific breakpoint
+        $breakpoint-ruleset: _ct-typography-extract-rules($rules);
+
+        // Add typography rules to the breakpoint map
+        $breakpoint-typography: map.set(
+          $breakpoint-typography,
+          $breakpoint,
+          map.merge(
+            map.get($breakpoint-typography, $breakpoint),
+            ($typography-name: $breakpoint-ruleset)
+          )
+        );
+      }
+    }
+
+    // Handle typography rulesets that are lists (default/fallback values)
+    @else if type-of($typography-ruleset) == list {
+      // Initialize default breakpoint map if it doesn't exist
+      @if not map.has-key($breakpoint-typography, 'xxs') {
+        $breakpoint-typography: map.set($breakpoint-typography, 'xxs', ());
+      }
+
+      $default-ruleset: _ct-typography-extract-rules($typography-ruleset);
+
+      // Add default typography rules to the xxs breakpoint map
+      $breakpoint-typography: map.set(
+        $breakpoint-typography,
+        'xxs',
+        map.merge(
+          map.get($breakpoint-typography, 'xxs'),
+          ($typography-name: $default-ruleset)
+        )
+      );
+    }
+  }
+
+  // Now output all typography rules grouped by breakpoint
+  @each $breakpoint, $typography-rules in $breakpoint-typography {
+    @if $breakpoint == 'xxs' {
+      // Default breakpoint - no media query
+      @each $typography-name, $ruleset in $typography-rules {
+        @include _ct-typography-print-css-variables($typography-name, $ruleset);
+      }
+    }
+    @else {
+      // Specific breakpoint - wrap in media query
+      @include ct-breakpoint($breakpoint) {
+        @each $typography-name, $ruleset in $typography-rules {
+          @include _ct-typography-print-css-variables($typography-name, $ruleset);
+        }
+      }
+    }
+  }
+
+  @each $name, $value in meta.module-variables('variables') {
+    $ignore-variables-containing: (
+      'ct-assets-directory',
+      'ct-checkbox-check',
+      'ct-font-base-line-height',
+      'ct-font-base-size',
+      'ct-particle',
+      'ct-spacing',
+      'ct-cssgrid-',
+      'ct-grid-',
+      'ct-item-list-',
+      'ct-navigation-card-orientation-threshold',
+      'ct-layout-',
+      '-breakpoint',
+    );
+    $ignore-types: (
+      'map',
+      'list',
+      'bool',
+    );
+
+    // Only filter by CivicTheme variables.
+    @if str-index($name, 'ct-') {
+      @if not list.index($ignore-types, type-of($value)) {
+        $contains-ignored: false;
+
+        @each $prefix in $ignore-variables-containing {
+          @if str-index($name, $prefix) {
+            $contains-ignored: true;
+          }
+        }
+
+        @if not $contains-ignored {
+          --#{$name}: #{$value};
+        }
+      }
+    }
+  }
+}

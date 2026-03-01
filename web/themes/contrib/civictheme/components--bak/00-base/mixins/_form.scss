@@ -1,0 +1,30 @@
+//
+// Form mixins.
+//
+
+//
+// Hide native form control.
+//
+@mixin ct-form-control-no-appearance() {
+  appearance: none;
+
+  // Not removed via appearance.
+  margin: 0;
+}
+
+//
+// Disabled form control.
+//
+@mixin ct-form-control-disabled($opacity: 40%) {
+  &[disabled] {
+    opacity: $opacity;
+    pointer-events: none;
+  }
+}
+
+//
+// Set inset border for a control.
+//
+@mixin ct-form-control-border-inset($color, $width: ct-particle(0.125)) {
+  box-shadow: inset 0 0 0 $width $color;
+}

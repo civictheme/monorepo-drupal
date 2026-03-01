@@ -1,0 +1,38 @@
+.story-menu-multiple-inline-with-absolute-panels [data-collapsible] {
+  position: relative;
+}
+
+.story-menu-multiple-inline-with-absolute-panels [data-collapsible] [data-collapsible-panel] {
+  top: 1.5em;
+}
+
+.story-menu-multiple-inline-with-absolute-panels ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.story-menu-multiple-inline-with-absolute-panels ul li {
+  white-space: nowrap;
+}
+
+.story-menu-multiple-inline-with-absolute-panels ul li[data-collapsible] li a {
+  display: block;
+  padding: 1em;
+}
+
+.story-menu-multiple-inline-with-absolute-panels ul li[data-collapsible] li a:hover {
+  background: cornflowerblue;
+}
+
+.story-menu-focus *:focus {
+  outline: solid 2px green;
+}
+
+.story-menu-focus button:focus {
+  outline: solid 2px orange;
+}
+
+.story-menu-focus [data-collapsible-trigger]:focus {
+  outline: solid 2px red;
+}

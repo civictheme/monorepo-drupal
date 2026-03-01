@@ -1,0 +1,29 @@
+//
+// Debug mixins.
+//
+
+//
+// Add outline to a block without introducing changes to element dimensions.
+//
+@mixin ct-block-debug($color: #f00, $text: false, $left: true, $padding: 10px) {
+  // Outline without changing element's dimensions.
+  box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) $color inset;
+
+  @if $text {
+    &::before {
+      border: ct-particle(0.125) solid $color;
+      color: $color;
+      content: $text;
+      padding: $padding;
+      position: absolute;
+      z-index: 10000;
+
+      @if $left {
+        left: 0;
+      }
+      @else {
+        right: 0;
+      }
+    }
+  }
+}

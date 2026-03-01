@@ -1,0 +1,53 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-logo {
+  line-height: 0;
+  display: inline-block;
+}
+.ct-logo:focus-visible {
+  outline-offset: var(--ct-outline-offset);
+  outline-width: var(--ct-outline-width);
+  outline-style: solid;
+  outline-color: var(--ct-outline-light);
+  border-radius: var(--ct-outline-border-radius);
+}
+.ct-logo .ct-logo__image {
+  line-height: 0;
+  display: block;
+  max-height: var(--ct-logo-image-height-max-mobile);
+}
+@media (min-width: 992px) {
+  .ct-logo .ct-logo__image {
+    max-height: var(--ct-logo-image-height-max-desktop);
+  }
+}
+.ct-logo.ct-logo--stacked, .ct-logo.ct-logo--inline, .ct-logo.ct-logo--inline-stacked {
+  text-align: center;
+}
+.ct-logo.ct-logo--stacked .ct-logo__stripe, .ct-logo.ct-logo--inline .ct-logo__stripe, .ct-logo.ct-logo--inline-stacked .ct-logo__stripe {
+  display: block;
+  border: 0;
+  margin: 1rem 0;
+  height: 0.0625rem;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .ct-logo.ct-logo--inline, .ct-logo.ct-logo--inline-stacked {
+    display: flex;
+    align-items: center;
+  }
+  .ct-logo.ct-logo--inline .ct-logo__stripe, .ct-logo.ct-logo--inline-stacked .ct-logo__stripe {
+    align-self: stretch;
+    margin: 0 1rem;
+    height: auto;
+    width: 0.0625rem;
+  }
+}
+.ct-logo.ct-theme-light .ct-logo__stripe {
+  background-color: var(--ct-logo-light-stripe-background-color);
+}
+.ct-logo.ct-theme-dark .ct-logo__stripe {
+  background-color: var(--ct-logo-dark-stripe-background-color);
+}

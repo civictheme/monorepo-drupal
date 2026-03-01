@@ -1,0 +1,90 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tag
+status: stable
+description: Tag component for categorization elements with various styles
+props:
+  type: object
+  properties:
+    theme:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Theme
+      description: Theme variation (light or dark).
+      enum:
+      - light
+      - dark
+      - ''
+      - null
+    type:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Type
+      description: Tag type (primary, secondary, tertiary).
+      enum:
+      - primary
+      - secondary
+      - tertiary
+      - ''
+      - null
+      default: primary
+    content:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Content
+      description: Tag content.
+    icon:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Icon
+      description: Icon name.
+    icon_placement:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Icon placement
+      description: Icon position (before, after).
+      enum:
+      - before
+      - after
+      - ''
+      - null
+      default: after
+    url:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: URL
+      description: Optional URL to convert to a link.
+    is_new_window:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: New window
+      description: Whether to open in a new window (only if URL is provided).
+    is_external:
+      type:
+      - boolean
+      - 'null'
+      - string
+      - integer
+      title: External
+      description: Whether the link is external.
+    modifier_class:
+      type:
+      - string
+      - 'null'
+      - integer
+      title: Modifier classes
+      description: Additional CSS classes.

@@ -1,0 +1,40 @@
+//
+// Particle mixins.
+//
+
+@use 'sass:list';
+@use 'sass:math';
+
+//
+// Get a particle multiplied by a number.
+//
+@function ct-particle($multiplier: 1) {
+  @return _ct-particle($multiplier);
+}
+
+//
+// Get a pixel value of the particle multiplied by a number.
+//
+@function ct-particle-px($multiplier: 1) {
+  @return _ct-particle($multiplier, false);
+}
+
+//
+// Get a particle multiplied by a number as a rem or pixel value.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-particle($multiplier: 1, $use-rem: true) {
+  @if type-of($multiplier) != number {
+    @error '"#{$multiplier}" is not a valid number!';
+  }
+
+  $value: $ct-particle * $multiplier;
+
+  @if $use-rem {
+    $value: rem($value);
+  }
+
+  @return $value;
+}

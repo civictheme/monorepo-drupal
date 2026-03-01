@@ -1,0 +1,179 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-checkbox {
+  appearance: none;
+  margin: 0;
+  border-radius: var(--ct-checkbox-border-radius);
+  border-style: solid;
+  box-sizing: border-box;
+  height: 1.625rem;
+  width: 1.625rem;
+  border-width: 0.0625rem;
+  cursor: pointer;
+  margin-right: calc(-1rem * var(--ct-font-average-character-width));
+  vertical-align: top;
+  margin-top: -0.1875rem;
+}
+.ct-checkbox[disabled] {
+  opacity: var(--ct-checkbox-disabled-opacity);
+  pointer-events: none;
+}
+.ct-checkbox + label {
+  cursor: pointer;
+  display: inline;
+  margin-left: 0.5rem;
+}
+.ct-checkbox:hover {
+  border-width: 0.125rem;
+}
+.ct-checkbox:checked {
+  border-width: 0.125rem;
+}
+.ct-checkbox:checked:hover {
+  border-width: 0.125rem;
+}
+.ct-checkbox:checked::before {
+  content: "";
+  display: block;
+  border-radius: calc(var(--ct-checkbox-border-radius) / 2);
+  width: 1.1249875rem;
+  height: 1.1249875rem;
+  margin: 0.12500625rem auto;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1.1249875rem 1.1249875rem' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.9 0H17.1C17.3387 0 17.5676 0.0948211 17.7364 0.263604C17.9052 0.432387 18 0.661305 18 0.9V17.1C18 17.3387 17.9052 17.5676 17.7364 17.7364C17.5676 17.9052 17.3387 18 17.1 18H0.9C0.661305 18 0.432387 17.9052 0.263604 17.7364C0.0948211 17.5676 0 17.3387 0 17.1V0.9C0 0.661305 0.0948211 0.432387 0.263604 0.263604C0.432387 0.0948211 0.661305 0 0.9 0ZM6.48885 14.1746C6.57252 14.259 6.67206 14.326 6.78173 14.3716C6.8914 14.4173 7.00904 14.4409 7.12785 14.4409C7.24666 14.4409 7.3643 14.4173 7.47397 14.3716C7.58364 14.326 7.68318 14.259 7.76685 14.1746L15.9388 6.00264C16.1083 5.83317 16.2035 5.60331 16.2035 5.36364C16.2035 5.12397 16.1083 4.89412 15.9388 4.72464C15.7694 4.55517 15.5395 4.45996 15.2998 4.45996C15.0602 4.45996 14.8303 4.55517 14.6608 4.72464L7.12785 12.2666L4.23885 9.36864C4.06938 9.19917 3.83952 9.10396 3.59985 9.10396C3.36018 9.10396 3.13032 9.19917 2.96085 9.36864C2.79138 9.53812 2.69617 9.76797 2.69617 10.0076C2.69617 10.2473 2.79138 10.4772 2.96085 10.6466L6.48885 14.1746Z' fill='currentcolor'/%3E%3C/svg%3E%0A");
+  transform: scale(0);
+  animation: check-grow var(--ct-checkbox-animation-duration) forwards;
+}
+@keyframes check-grow {
+  to {
+    transform: scale(1);
+  }
+}
+.ct-checkbox:focus-visible {
+  outline-style: solid;
+  outline-width: var(--ct-checkbox-outline-width);
+  outline-offset: var(--ct-checkbox-outline-offset);
+}
+.ct-checkbox:disabled + label {
+  opacity: var(--ct-checkbox-disabled-opacity);
+  pointer-events: none;
+}
+.ct-checkbox.ct-theme-light:focus-visible {
+  outline-color: var(--ct-checkbox-light-outline-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid) {
+  border-color: var(--ct-checkbox-light-border-color);
+  background-color: var(--ct-checkbox-light-background-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):hover {
+  border-color: var(--ct-checkbox-light-hover-border-color);
+  background-color: var(--ct-checkbox-light-hover-background-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):hover + label {
+  color: var(--ct-checkbox-light-hover-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid) + label {
+  color: var(--ct-checkbox-light-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid) + label:hover {
+  color: var(--ct-checkbox-light-hover-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked {
+  border-color: var(--ct-checkbox-light-checked-border-color);
+  background-color: var(--ct-checkbox-light-checked-background-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked:hover {
+  border-color: var(--ct-checkbox-light-checked-hover-border-color);
+  background-color: var(--ct-checkbox-light-checked-hover-background-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked:hover::before {
+  background-color: var(--ct-checkbox-light-checked-hover-border-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked:hover + label {
+  color: var(--ct-checkbox-light-checked-hover-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked::before {
+  background-color: var(--ct-checkbox-light-checked-border-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked + label {
+  color: var(--ct-checkbox-light-checked-color);
+}
+.ct-checkbox.ct-theme-light:not(.ct-checkbox--is-invalid):checked + label:hover {
+  color: var(--ct-checkbox-light-checked-hover-color);
+}
+.ct-checkbox.ct-theme-light.ct-checkbox--is-invalid {
+  border-color: var(--ct-checkbox-light-invalid-border-color);
+  background-color: var(--ct-checkbox-light-invalid-background-color);
+}
+.ct-checkbox.ct-theme-light.ct-checkbox--is-invalid:hover + label {
+  color: var(--ct-checkbox-light-invalid-color);
+}
+.ct-checkbox.ct-theme-light.ct-checkbox--is-invalid + label {
+  color: var(--ct-checkbox-light-invalid-color);
+}
+.ct-checkbox.ct-theme-light.ct-checkbox--is-invalid + label:hover {
+  color: var(--ct-checkbox-light-invalid-color);
+}
+.ct-checkbox.ct-theme-light.ct-checkbox--is-invalid:checked::before {
+  background-color: var(--ct-checkbox-light-invalid-border-color);
+}
+.ct-checkbox.ct-theme-dark:focus-visible {
+  outline-color: var(--ct-checkbox-dark-outline-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid) {
+  border-color: var(--ct-checkbox-dark-border-color);
+  background-color: var(--ct-checkbox-dark-background-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):hover {
+  border-color: var(--ct-checkbox-dark-hover-border-color);
+  background-color: var(--ct-checkbox-dark-hover-background-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):hover + label {
+  color: var(--ct-checkbox-dark-hover-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid) + label {
+  color: var(--ct-checkbox-dark-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid) + label:hover {
+  color: var(--ct-checkbox-dark-hover-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked {
+  border-color: var(--ct-checkbox-dark-checked-border-color);
+  background-color: var(--ct-checkbox-dark-checked-background-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked:hover {
+  border-color: var(--ct-checkbox-dark-checked-hover-border-color);
+  background-color: var(--ct-checkbox-dark-checked-hover-background-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked:hover::before {
+  background-color: var(--ct-checkbox-dark-checked-hover-border-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked:hover + label {
+  color: var(--ct-checkbox-dark-checked-hover-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked::before {
+  background-color: var(--ct-checkbox-dark-checked-border-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked + label {
+  color: var(--ct-checkbox-dark-checked-color);
+}
+.ct-checkbox.ct-theme-dark:not(.ct-checkbox--is-invalid):checked + label:hover {
+  color: var(--ct-checkbox-dark-checked-hover-color);
+}
+.ct-checkbox.ct-theme-dark.ct-checkbox--is-invalid {
+  border-color: var(--ct-checkbox-dark-invalid-border-color);
+  background-color: var(--ct-checkbox-dark-invalid-background-color);
+}
+.ct-checkbox.ct-theme-dark.ct-checkbox--is-invalid:hover + label {
+  color: var(--ct-checkbox-dark-invalid-color);
+}
+.ct-checkbox.ct-theme-dark.ct-checkbox--is-invalid + label {
+  color: var(--ct-checkbox-dark-invalid-color);
+}
+.ct-checkbox.ct-theme-dark.ct-checkbox--is-invalid + label:hover {
+  color: var(--ct-checkbox-dark-invalid-color);
+}
+.ct-checkbox.ct-theme-dark.ct-checkbox--is-invalid:checked::before {
+  background-color: var(--ct-checkbox-dark-invalid-border-color);
+}

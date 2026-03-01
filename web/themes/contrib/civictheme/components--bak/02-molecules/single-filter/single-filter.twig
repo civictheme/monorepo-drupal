@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * CivicTheme Single Filter component.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - is_multiple: [boolean] Whether to allow selection of multiple filter values.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ * - modifier_class: [string] Additional CSS classes.
+ *
+ * Slots:
+ * - content_top: Top content area.
+ * - title: Title for filters.
+ * - form_attributes: Form attributes (if empty, the form will not be printed).
+ * - form_hidden_fields: Form hidden fields.
+ * - items: Filter links.
+ * - submit_text: Text on the submit button.
+ * - reset_text: Text on the reset button.
+ * - content_bottom: Bottom content area.
+ *
+ * Blocks:
+ * - content_top_block
+ * - filters_block
+ * - content_bottom_block
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  {% set title = title|default('Filter results by:') %}
+
+  <div class="ct-single-filter {{ modifier_class -}}" data-component-name="ct-single-filter" {% if attributes is defined and attributes is not null %}{{- attributes -}}{% endif %}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+
+          {% block content_top_block %}
+            {% if content_top is not empty %}
+              <div class="ct-single-filter__content-top">
+                {{- content_top -}}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block filters_block %}
+            {% set filter_items = [] %}
+            {% for item in items %}
+              {% set filter_item %}
+                {% if item.text is not empty %}
+                  {% set item_attributes = item.attributes is defined and item.attributes is not null ? item.attributes : create_attribute({}) %}
+                  {% if item_attributes.name is not defined %}
+                    {% set multiple_name = is_multiple ? 'single-filter-' ~ loop.index : 'single-filter' %}
+                    {% set item_name = item.name is defined ? item.name : multiple_name %}
+                    {% do item_attributes.setAttribute('name', item_name) %}
+                  {% endif %}
+                  {% include 'civictheme:chip' with {
+                    theme: theme,
+                    kind: 'input',
+                    size: 'small',
+                    is_multiple: is_multiple,
+                    is_selected: item.is_selected is defined ? item.is_selected : false,
+                    content: item.text,
+                    group_parent: '.ct-single-filter',
+                    attributes: item_attributes,
+                  } only %}
+                {% endif %}
+              {% endset %}
+              {% set filter_items = filter_items|merge([filter_item]) %}
+            {% endfor %}
+
+            {% if form_attributes is defined and form_attributes is not null %}
+              <form {{ form_attributes }}>
+            {% endif %}
+
+            {% if title %}
+              <div class="ct-single-filter__title">{{ title }}</div>
+            {% endif %}
+
+            <div class="ct-single-filter__wrapper">
+              <div class="ct-single-filter__items">
+                {% include 'civictheme:item-list' with {
+                  items: filter_items,
+                  size: 'small',
+                  modifier_class: 'ct-single-filter__list',
+                } only %}
+              </div>
+              <div class="ct-single-filter__actions">
+                {% include 'civictheme:button' with {
+                  theme: theme,
+                  kind: 'button',
+                  type: 'primary',
+                  size: 'small',
+                  text: submit_text|default('Apply filter'),
+                  icon: 'approve',
+                  icon_placement: 'after',
+                  attributes: create_attribute({type: 'submit'}),
+                  modifier_class: 'ct-single-filter__submit',
+                } only %}
+
+                {% if reset_text is not empty %}
+                  {% include 'civictheme:button' with {
+                    theme: theme,
+                    kind: 'reset',
+                    type: 'secondary',
+                    size: 'small',
+                    text: reset_text|default('Clear all'),
+                    icon: 'close-outline',
+                    icon_placement: 'after',
+                    attributes: create_attribute({type: 'submit'}),
+                    modifier_class: 'ct-single-filter__submit',
+                  } only %}
+                {% endif %}
+              </div>
+            </div>
+
+            {% if form_hidden_fields is defined %}
+              {{ form_hidden_fields }}
+            {% endif %}
+
+            {% if form_attributes is defined and form_attributes is not null %}
+              </form>
+            {% endif %}
+          {% endblock %}
+
+          {% block content_bottom_block %}
+            {% if content_bottom is not empty %}
+              <div class="ct-single-filter__content-bottom">
+                {{- content_bottom -}}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
