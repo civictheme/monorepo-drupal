@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a content message.
  */
 #}
-{% include 'civictheme:message' %}
+{% include 'civictheme:message' with { theme: theme|default('light') } %}

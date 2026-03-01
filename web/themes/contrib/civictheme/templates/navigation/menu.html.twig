@@ -4,4 +4,6 @@
  * CivicTheme implementation to display a menu.
  */
 #}
-{% include 'civictheme:menu' %}
+{% include 'civictheme:menu' with {
+  theme: theme|default('light'),
+} %}

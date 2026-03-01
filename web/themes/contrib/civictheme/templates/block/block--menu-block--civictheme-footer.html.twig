@@ -7,5 +7,7 @@
 {% extends 'block.html.twig' %}
 
 {% block content_block %}
-  {% include 'civictheme:navigation' %}
+  {% include 'civictheme:navigation' with {
+    theme: theme|default('light'),
+  } %}
 {% endblock %}

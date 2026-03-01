@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a Remote video media.
  */
 #}
-{% include 'civictheme:video-player' %}
+{% include 'civictheme:video-player' with { theme: theme|default('light') } %}

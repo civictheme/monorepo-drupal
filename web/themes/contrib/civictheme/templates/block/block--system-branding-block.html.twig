@@ -12,7 +12,7 @@
       logos: logos,
       url: url,
       title: title,
-      theme: theme,
+      theme: theme|default('light'),
       modifier_class: modifier_class,
       type: type ?? 'default',
     } only %}
@@ -20,7 +20,7 @@
 
   {% if show_site_name and site_name %}
     {% include 'civictheme:link' with {
-      theme: theme,
+      theme: theme|default('light'),
       text: site_name,
       url: path('<front>'),
       attributes: 'rel="home"',
@@ -29,7 +29,7 @@
 
   {% if show_site_slogan and site_slogan %}
     {% include 'civictheme:paragraph' with {
-      theme: theme,
+      theme: theme|default('light'),
       content: site_slogan,
     } only %}
   {% endif %}

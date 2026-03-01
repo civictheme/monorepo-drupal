@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a promo card.
  */
 #}
-{% include 'civictheme:attachment' %}
+{% include 'civictheme:attachment' with { theme: theme|default('light') } %}

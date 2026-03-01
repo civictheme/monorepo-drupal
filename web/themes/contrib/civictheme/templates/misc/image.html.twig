@@ -4,4 +4,4 @@
  * CivicTheme implementation to display an image.
  */
 #}
-{% include 'civictheme:image' %}
+{% include 'civictheme:image' with { theme: theme|default('light') } %}

@@ -5,4 +5,4 @@
  *
  */
 #}
-{% include 'civictheme:map' %}
+{% include 'civictheme:map' with { theme: theme|default('light') } %}

@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a Campaign Paragraph.
  */
 #}
-{% include 'civictheme:campaign' %}
+{% include 'civictheme:campaign' with { theme: theme|default('light') } %}

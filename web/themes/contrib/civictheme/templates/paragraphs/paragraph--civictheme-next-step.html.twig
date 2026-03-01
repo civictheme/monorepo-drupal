@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a Next step.
  */
 #}
-{% include 'civictheme:next-step' %}
+{% include 'civictheme:next-step' with { theme: theme|default('light') } %}

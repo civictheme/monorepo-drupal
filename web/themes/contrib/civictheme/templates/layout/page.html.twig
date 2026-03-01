@@ -9,7 +9,7 @@
 # variables without the need to change this template.
 #}
 
-{% include 'civictheme:page' %}
+{% include 'civictheme:page' with { theme: theme|default('light') } %}
 
 {# Hidden region #}
 {% block hidden_block %}

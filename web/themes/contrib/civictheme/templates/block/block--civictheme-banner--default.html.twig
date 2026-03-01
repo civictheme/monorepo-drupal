@@ -7,5 +7,7 @@
 {% extends 'block.html.twig' %}
 
 {% block content_block %}
-  {% include 'civictheme:banner' %}
+  {% include 'civictheme:banner' with {
+    theme: theme|default('light'),
+  } %}
 {% endblock %}

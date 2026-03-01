@@ -9,6 +9,7 @@
     <div{{ attributes }}>
       {% for item in items %}
         {% include 'civictheme:paragraph' with {
+          theme: theme|default('light'),
           content: item.content,
         } only %}
       {% endfor %}
@@ -16,6 +17,7 @@
   {% else %}
     {% for item in items %}
       {% include 'civictheme:paragraph' with {
+        theme: theme|default('light'),
         content: item.content,
       } only %}
     {% endfor %}
@@ -23,6 +25,7 @@
 {% else %}
   <div{{ attributes }}>
     {% include 'civictheme:label' with {
+      theme: theme|default('light'),
       content: label,
     } only %}
     {% if multiple %}
@@ -30,6 +33,7 @@
       {% endif %}
       {% for item in items %}
         {% include 'civictheme:paragraph' with {
+          theme: theme|default('light'),
           content: item.content,
         } only %}
       {% endfor %}

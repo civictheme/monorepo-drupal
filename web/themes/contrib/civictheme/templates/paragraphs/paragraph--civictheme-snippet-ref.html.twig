@@ -4,4 +4,4 @@
  * CivicTheme implementation to display a Snippet reference.
  */
 #}
-{% include 'civictheme:snippet' %}
+{% include 'civictheme:snippet' with { theme: theme|default('light') } %}

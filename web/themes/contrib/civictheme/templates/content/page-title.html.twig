@@ -7,6 +7,7 @@
 {{ title_prefix }}
 {% if title %}
   {% include 'civictheme:heading' with {
+    theme: theme|default('light'),
     content: title,
     level: '1',
   } only %}

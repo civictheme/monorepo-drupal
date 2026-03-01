@@ -7,5 +7,7 @@
 {% extends 'block.html.twig' %}
 
 {% block content_block %}
-  {% include 'civictheme:social-links' %}
+  {% include 'civictheme:social-links' with {
+    theme: theme|default('light'),
+  } %}
 {% endblock %}
