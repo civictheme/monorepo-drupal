@@ -471,10 +471,13 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
   }
 
   $attributes = new Attribute($attributes);
-
+  $is_multiple = FALSE;
+  if (isset($element['#value']) && is_array($element['#value']) && isset($element['#multiple']) && $element['#multiple'] === TRUE) {
+    $is_multiple = TRUE;
+  }
   $variables['control'][] = [
     'name' => $element['#attributes']['name'] ?? ($element['#name'] ?? ''),
-    'value' => (string) ($element['#value'] ?? ''),
+    'value' => $is_multiple ? $element['#value'] : (string) ($element['#value'] ?? ''),
     'id' => $element['#id'] ?? '',
     'options' => $variables['options'] ?? [],
     'is_multiple' => $variables['is_multiple'] ?? FALSE,
