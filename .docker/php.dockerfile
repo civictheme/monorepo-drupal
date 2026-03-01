@@ -14,8 +14,6 @@ FROM uselagoon/php-8.3-fpm:25.11.0
 
 RUN apk add --no-cache tzdata
 
-# Enable assertions for development.
-RUN sed -i 's/zend.assertions = -1/zend.assertions = 1/' /usr/local/etc/php/php.ini
-
 COPY --from=cli /app /app
 COPY .docker/entrypoints/php/* /quant-entrypoint.d/
+COPY .docker/entrypoints/php/01-php-debug.sh /lagoon/entrypoints/99-php-debug.sh

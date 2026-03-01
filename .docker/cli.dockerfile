@@ -49,9 +49,6 @@ RUN apk update \
     && ln -sf python3 /usr/bin/python \
     && rm -rf /var/cache/apk/*
 
-# Enable assertions for development.
-RUN sed -i 's/zend.assertions = -1/zend.assertions = 1/' /usr/local/etc/php/php.ini
-
 RUN curl -L -o shipshape "https://github.com/salsadigitalauorg/shipshape/releases/download/v0.3.1/shipshape-$(uname -s)-$(uname -m)" && \
     chmod +x shipshape && \
     mv shipshape /usr/local/bin/shipshape
@@ -114,6 +111,7 @@ RUN cd /app/web/themes/contrib/civictheme \
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
 COPY .docker/entrypoints/cli/* /quant-entrypoint.d/
+COPY .docker/entrypoints/cli/00-php-debug.sh /lagoon/entrypoints/99-php-debug.sh
 
 # Custom PHP configuration.
 COPY .docker/config/php/*.ini /usr/local/etc/php/conf.d/
