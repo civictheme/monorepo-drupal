@@ -184,6 +184,7 @@ commands:
   lint-components-smoke:
     usage: Smoke test CivicTheme components by visiting pages and checking for errors.
     cmd: |
+      ahoy drush cr
       ahoy cli "./scripts/lint.components.sh"
   lint-component:
     usage: Lint CivicTheme Single Directory Component

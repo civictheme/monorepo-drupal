@@ -14,6 +14,9 @@ use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Pre-process for Social Links block.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_block__civictheme_social_links(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {

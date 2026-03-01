@@ -143,7 +143,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
       'url' => $link->getUrl()->toString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
-      'attributes' => $has_custom_link_title ? '' : $transcript_attributes,
+      'attributes' => $has_custom_link_title ? new Attribute() : $transcript_attributes,
     ];
   }
 }
