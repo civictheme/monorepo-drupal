@@ -53,9 +53,10 @@ function _civictheme_preprocess_node__civictheme_page__full(array &$variables): 
   if (!civictheme_get_field_value($node, 'field_c_n_hide_tags')) {
     $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
     if (!empty($topics)) {
+      $tags = array_map(static fn($label) => ['text' => (string) $label], $topics);
       $variables['content'][] = [
         '#theme' => 'civictheme_tag_list',
-        '#tags' => $topics,
+        '#tags' => $tags,
         '#vertical_spacing' => 'both',
       ];
     }

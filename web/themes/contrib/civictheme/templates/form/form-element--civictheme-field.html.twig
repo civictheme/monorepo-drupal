@@ -6,7 +6,7 @@
 #}
 
 {% include 'civictheme:field' with {
-  theme: theme,
+  theme: theme|default('light'),
   title: title|default(''),
   title_display: title_display,
   title_size: title_size,
@@ -16,11 +16,11 @@
   is_required: is_required,
   is_disabled: is_disabled,
   is_invalid: is_invalid,
-  description: description,
+  description: description|default(''),
   message: message,
   control: control,
   attributes: attributes,
-  modifier_class: modifier_class,
+  modifier_class: modifier_class|default(''),
   prefix: prefix,
   suffix: suffix,
   required_text: required_text|default(''),

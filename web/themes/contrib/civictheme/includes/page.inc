@@ -39,7 +39,10 @@ function _civictheme_preprocess_page__node(array &$variables): void {
     return;
   }
 
-  $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
+  $vertical_spacing = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
+  if (in_array($vertical_spacing, ['top', 'bottom', 'both'], TRUE)) {
+    $variables['vertical_spacing'] = $vertical_spacing;
+  }
 
   // @todo Add support for hiding of the right sidebar through a node field.
   $variables['hide_sidebar_left'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;

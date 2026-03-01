@@ -118,7 +118,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['title']['#markup'] = $node->getTitle();
   }
   if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
-    $variables['breadcrumb'] = NULL;
+    unset($variables['breadcrumb']);
   }
 
   $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE, build: $variables);
@@ -181,7 +181,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
   foreach ($breadcrumb->getLinks() as $link) {
     $link_text = $link->getText();
     $variables['breadcrumb']['links'][] = [
-      'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
+      'text' => (string) (is_array($link_text) ? implode(' ', $link_text) : Xss::filter((string) $link_text)),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -201,7 +201,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
       $link_text = $link->getText();
       $variables['breadcrumb']['links'][] = [
-        'text' => is_array($link_text) ? $link_text : (string) $link_text,
+        'text' => is_array($link_text) ? (string) ($link_text['#markup'] ?? '') : (string) $link_text,
         'url' => $link->getUrl()->toString(),
       ];
     }

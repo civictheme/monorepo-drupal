@@ -16,6 +16,6 @@ function civictheme_preprocess_paragraph__civictheme_iframe(array &$variables): 
   _civictheme_preprocess_paragraph__paragraph_field__background($variables);
 
   $variables['url'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_url');
-  $variables['width'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_width');
-  $variables['height'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_height');
+  $variables['width'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_width', default: '');
+  $variables['height'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_height', default: '');
 }
