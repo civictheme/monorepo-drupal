@@ -176,7 +176,7 @@ commands:
   lint-check:
     cmd: |
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
-  lint-components-smoke:
+  lint-components:
     usage: Smoke test CivicTheme components by visiting pages and checking for errors.
     cmd: |
       ahoy drush cr

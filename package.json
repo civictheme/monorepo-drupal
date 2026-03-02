@@ -3,7 +3,7 @@
     "scripts/civictheme-uikit-version-manager"
   ],
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#829e4ca01d7e7e6176b53e15eb6f662caad527d2"
+    "@civictheme/uikit": "github:civictheme/uikit#a9226b9dd0181e1c75022bba10b173024cd75fc9"
   },
   "scripts": {
     "uikit-change": "npm start --workspace=civictheme-uikit-version-change"
