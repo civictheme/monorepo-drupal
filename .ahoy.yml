@@ -177,15 +177,6 @@ commands:
     cmd: |
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
 
-  lint-components:
-    usage: Lint CivicTheme Single Directory Components
-    cmd: |
-      ahoy cli "vendor/bin/drush sdcv civictheme --xdebug"
-  lint-component:
-    usage: Lint CivicTheme Single Directory Component
-    cmd: |
-      ahoy cli "vendor/bin/drush sdcv civictheme" "$@" "--xdebug"
-
   lint-config:
     usage: Lint config
     cmd: |
