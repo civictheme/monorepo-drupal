@@ -27,8 +27,8 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
   if ($image_file instanceof FileInterface) {
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
     if ($image->isValid()) {
-      $variables['width'] = $image->getWidth();
-      $variables['height'] = $image->getHeight();
+      $variables['width'] = (int) $image->getWidth();
+      $variables['height'] = (int) $image->getHeight();
       $image_url = \Drupal::service('file_url_generator')->generateString($image_file->getFileUri());
       $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($image_url);
       $variables['alt'] = $media->get('field_c_m_image')->first()->get('alt')->getString();

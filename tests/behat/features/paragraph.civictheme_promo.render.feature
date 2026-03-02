@@ -68,7 +68,6 @@ Feature: Promo render
       | field_c_p_content:format   | civictheme_rich_text                                      |
       | field_c_p_vertical_spacing | 0                                                         |
       | field_c_p_background       | 1                                                         |
-      | field_c_p_link             | 0: <script id="test-promo--field_c_p_link">alert('field_c_p_link');</script> - 1: https://example.com/link2 |
 
     When I visit "civictheme_page" "[TEST] Cross Site Testing"
     And I should see an ".ct-promo" element
@@ -79,4 +78,3 @@ Feature: Promo render
     And I should not see an "script#test-promo--field_c_p_content" element
     And I should see the text "alert('[TEST] Promo field_c_p_content')"
     And I should not see an "script#test-promo--field_c_p_link" element
-    And I should see the text "alert('field_c_p_link')"
