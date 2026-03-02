@@ -13,6 +13,6 @@
   modifier_class: modifier_class|default(''),
 } %}
 {% if vertical_spacing is defined and vertical_spacing is not null %}
-  {% set props = props|merge({vertical_spacing: vertical_spacing, theme: theme|default('light')}) %}
+  {% set props = props|merge({vertical_spacing: vertical_spacing}) %}
 {% endif %}
 {% include 'civictheme:basic-content' with props only %}

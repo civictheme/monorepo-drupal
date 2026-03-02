@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -24,4 +25,13 @@ function _civictheme_preprocess_block__drupal(array &$variables): void {
   }
 
   $variables['drupal_attributes'] = new Attribute($attributes);
+}
+
+
+/**
+ * Preprocess a block to add default civictheme theme.
+ *
+ */
+function _civictheme_preprocess_block__theme(array &$variables): void {
+  $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 }

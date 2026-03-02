@@ -8,7 +8,6 @@
 
 {% block content_block %}
   {% include 'civictheme:navigation' with {
-    theme: theme|default('light'),
     items,
     type: dropdown == 'none' ? 'inline' : dropdown,
     dropdown_columns,

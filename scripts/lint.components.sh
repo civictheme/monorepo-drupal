@@ -49,26 +49,28 @@ fi
 
 TOTAL=$(echo "${PATHS}" | wc -l)
 COUNT=0
+COL=0
+MAX_COL=70
 
 while IFS= read -r path; do
   COUNT=$((COUNT + 1))
   URL="${BASE_PATH}${path}"
-  printf "[%d/%d] Checking %s ... " "${COUNT}" "${TOTAL}" "${path}"
 
   HTTP_CODE=$(curl -s -o /tmp/lint-components-response.html -w "%{http_code}" -L "${URL}" 2>/dev/null) || true
 
   if [ -z "${HTTP_CODE}" ] || [ "${HTTP_CODE}" = "000" ]; then
-    echo "ERROR (connection failed)"
     echo ""
-    echo "ERROR: Could not connect to ${URL}"
+    echo "[${COUNT}/${TOTAL}] ERROR (connection failed): ${path}"
+    echo "Could not connect to ${URL}"
     rm -f /tmp/lint-components-response.html
     exit 1
   fi
 
   if [ "${HTTP_CODE}" -ge 500 ]; then
-    echo "ERROR (HTTP ${HTTP_CODE})"
     echo ""
-    echo "--- Response body for ${path} ---"
+    echo "[${COUNT}/${TOTAL}] ERROR (HTTP ${HTTP_CODE}): ${path}"
+    echo ""
+    echo "--- Response body ---"
     cat /tmp/lint-components-response.html
     echo ""
     echo "--- End of response body ---"
@@ -76,9 +78,15 @@ while IFS= read -r path; do
     exit 1
   fi
 
-  echo "OK (${HTTP_CODE})"
+  printf "."
+  COL=$((COL + 1))
+  if [ "${COL}" -ge "${MAX_COL}" ]; then
+    echo ""
+    COL=0
+  fi
 done <<< "${PATHS}"
 
 rm -f /tmp/lint-components-response.html
+echo ""
 echo ""
 echo "  > OK: All ${TOTAL} pages returned successful responses."

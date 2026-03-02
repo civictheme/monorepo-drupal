@@ -10,7 +10,6 @@
   {% set rendered_rows = rendered_rows|merge([rendered_row]) %}
 {% endfor %}
 {% include 'civictheme:grid' with {
-  theme: theme|default('light'),
   items: rendered_rows,
   template_column_count: options.columns,
   fill_width: fill_width|default(false),
