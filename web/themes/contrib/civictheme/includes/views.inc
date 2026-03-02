@@ -128,6 +128,8 @@ function civictheme_preprocess_views_view_grid(array &$variables): void {
 
 /**
  * Implements hook_form_views_exposed_form_alter().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   $storage = $form_state->getStorage();
@@ -525,6 +527,9 @@ function _civictheme_preprocess_views_view__selected_filters_list__create_filter
  *
  * @return int[]
  *   Term IDs from the contextual argument, or empty if none/any.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_get_topics_contextual_argument_tids(ViewExecutable $view): array {
   $display = $view->getDisplay();
@@ -572,6 +577,8 @@ function _civictheme_get_topics_contextual_argument_tids(ViewExecutable $view): 
  *
  * @return array<int|string, string>
  *   Options array keyed by term ID, value is term name.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_build_topic_options_from_tids(array $tids): array {
   if ($tids === []) {
