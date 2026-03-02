@@ -356,7 +356,7 @@ Feature: Automated list render
     And the ".ct-list .ct-list__rows" element should contain "Test page content in list"
     And the ".ct-list .ct-list__rows" element should not contain "Test page with Automated list non self referenced"
 
-  @api @security @wip
+  @api @security
   Scenario:XSS - Automated list
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:

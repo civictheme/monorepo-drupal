@@ -58,7 +58,7 @@ Feature: Promo render
     And the response should contain "PromoTest"
     And the response should contain "https://example.com/link2"
 
-  @api @security @wip
+  @api @security
   Scenario:XSS - Promo
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Cross Site Testing" has "civictheme_promo" paragraph:
