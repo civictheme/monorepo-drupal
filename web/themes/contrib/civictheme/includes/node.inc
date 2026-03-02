@@ -124,7 +124,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
       '#langcode' => $body['#langcode'],
     ];
   }
-  $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
+  $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type', default: 'information');
 }
 
 /**

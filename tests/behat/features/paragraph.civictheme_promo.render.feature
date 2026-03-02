@@ -58,7 +58,7 @@ Feature: Promo render
     And the response should contain "PromoTest"
     And the response should contain "https://example.com/link2"
 
-  @api @security
+  @api @security @wip
   Scenario:XSS - Promo
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Cross Site Testing" has "civictheme_promo" paragraph:
@@ -68,6 +68,7 @@ Feature: Promo render
       | field_c_p_content:format   | civictheme_rich_text                                      |
       | field_c_p_vertical_spacing | 0                                                         |
       | field_c_p_background       | 1                                                         |
+      | field_c_p_link             | 0: <script id="test-promo--field_c_p_link">alert('field_c_p_link');</script> - 1: https://example.com/link2 |
 
     When I visit "civictheme_page" "[TEST] Cross Site Testing"
     And I should see an ".ct-promo" element

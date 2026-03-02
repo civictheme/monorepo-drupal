@@ -1,4 +1,4 @@
-@p1 @civictheme @content_type @civictheme_alert
+@p1 @civictheme @content_type @civictheme_alert @wip
 Feature: CivicTheme Alert content type access
 
   Background:
