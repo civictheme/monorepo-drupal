@@ -11,6 +11,7 @@
       content: message,
       type: (type == 'status' or type == 'info') ? 'information' : type,
       vertical_spacing: 'both',
+      theme: theme|default('light'),
     } only %}
   {% endfor %}
 {% endfor %}

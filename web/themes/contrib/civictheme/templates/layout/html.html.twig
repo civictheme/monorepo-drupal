@@ -22,7 +22,7 @@
 
 {% include 'civictheme:skip-link' with {
   url: '#main-content',
-  theme: skip_link_theme,
+  theme: skip_link_theme|default('light'),
 } only %}
 
 {{ page_top }}

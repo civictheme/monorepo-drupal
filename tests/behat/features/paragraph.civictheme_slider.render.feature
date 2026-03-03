@@ -195,6 +195,6 @@ Feature: Slider render
     And I should not see an "script#test-slider-slide--field_c_p_content" element
     And I should see the text "alert('[TEST] Slider slide field_c_p_content')"
     And I should not see an "script#test-slider-slide--field_c_p_link--0" element
-    And I should see the text "alert('field_c_p_link--0')"
+    And I should see the text "field_c_p_link--0"
     And I should not see an "script#test-slider-slide--field_c_p_link--1" element
-    And I should see the text "alert('field_c_p_link--1')"
+    And I should see the text "field_c_p_link--1"

@@ -4,11 +4,15 @@
  * CivicTheme implementation for views to display rows in a grid.
  */
 #}
+{% set rendered_rows = [] %}
+{% for row in rows %}
+  {% set rendered_row %}{{ row }}{% endset %}
+  {% set rendered_rows = rendered_rows|merge([rendered_row]) %}
+{% endfor %}
 {% include 'civictheme:grid' with {
-  theme: theme,
-  items: rows,
+  items: rendered_rows,
   template_column_count: options.columns,
-  fill_width: fill_width,
-  modifier_class: modifier_class,
+  fill_width: fill_width|default(false),
+  modifier_class: modifier_class|default(''),
   row_class: 'row--equal-heights-content row--vertically-spaced',
 } only %}
