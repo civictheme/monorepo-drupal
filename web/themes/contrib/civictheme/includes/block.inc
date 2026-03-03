@@ -27,10 +27,8 @@ function _civictheme_preprocess_block__drupal(array &$variables): void {
   $variables['drupal_attributes'] = new Attribute($attributes);
 }
 
-
 /**
  * Preprocess a block to add default civictheme theme.
- *
  */
 function _civictheme_preprocess_block__theme(array &$variables): void {
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
