@@ -107,7 +107,7 @@ function civictheme_theme(): array {
         'scope_selector' => NULL,
         'content' => NULL,
         'attributes' => NULL,
-        'modifier_class' => NULL,
+        'modifier_class' => '',
       ],
       'template' => 'misc/table-of-contents',
     ],

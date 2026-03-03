@@ -8,7 +8,7 @@
 
 {% block content_block %}
   {% include 'civictheme:side-navigation' with {
-    theme,
+    theme: theme|default('light'),
     items,
     modifier_class: 'ct-sidebar-navigation ' ~ modifier_class|default(''),
   } only %}

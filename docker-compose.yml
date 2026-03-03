@@ -53,6 +53,8 @@ x-environment: &default-environment
   XDEBUG_ENABLE: ${XDEBUG_ENABLE:-}
   # Pass-through 'CI' variable used to identify the CI environment.
   CI: ${CI:-}
+  # Set to 1 to enable verbose PHP error display with stack traces.
+  PHP_DEBUG: ${PHP_DEBUG:-}
   # Forward emails to Mailhog locally.
   SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
   # Drupal Shield credentials.

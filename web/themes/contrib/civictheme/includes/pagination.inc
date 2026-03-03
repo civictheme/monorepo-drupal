@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Core\Pager\Pager;
+use Drupal\Core\Template\Attribute;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -115,8 +116,8 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
     $items_per_page[] = [
       'type' => 'option',
       'label' => $value,
-      'value' => (int) $value,
-      'selected' => (int) $value === $current_items_per_page,
+      'value' => (string) $value,
+      'selected' => (int) $value === $current_items_per_page ? 'selected' : '',
     ];
   }
 
@@ -129,5 +130,5 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
 
   $variables['items_per_page_name'] = 'items_per_page';
   $variables['items_per_page_id'] = $exposed_widgets['#id'] ?? 0;
-  $variables['items_per_page_attributes'] = 'form="' . ($exposed_widgets['#id'] ?? 0) . '"';
+  $variables['items_per_page_attributes'] = new Attribute(['form' => $exposed_widgets['#id'] ?? '0']);
 }

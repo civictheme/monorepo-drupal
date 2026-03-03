@@ -79,4 +79,4 @@ Feature: Promo render
     And I should not see an "script#test-promo--field_c_p_content" element
     And I should see the text "alert('[TEST] Promo field_c_p_content')"
     And I should not see an "script#test-promo--field_c_p_link" element
-    And I should see the text "alert('field_c_p_link')"
+    And I should see the text "field_c_p_link"

@@ -282,7 +282,7 @@ function _civictheme_preprocess_views__exposed_form__single_filter(array &$varia
     $attributes = new Attribute($attributes);
 
     $variables['filter_items'][] = [
-      'text' => $title,
+      'text' => (string) $title,
       'attributes' => $attributes,
       'is_selected' => in_array($value, is_array($field['#value'] ?? []) ? $field['#value'] : [$field['#value']]),
     ];

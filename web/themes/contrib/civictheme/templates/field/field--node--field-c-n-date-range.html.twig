@@ -6,7 +6,7 @@
 #}
 {% include 'civictheme:datetime' with {
   start: date,
-  start_iso: date_iso ?? null,
-  end: date_end ?? null,
-  end_iso: date_end_iso ?? null,
+  start_iso: date_iso|default(''),
+  end: date_end|default(''),
+  end_iso: date_end_iso|default(''),
 } only %}

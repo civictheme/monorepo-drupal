@@ -7,12 +7,16 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Render\Markup;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Pre-process for Social Links block.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_block__civictheme_social_links(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -44,10 +48,8 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
     if ($media instanceof MediaInterface) {
       $image = civictheme_media_image_get_variables($media);
       if ($image) {
-        $item['icon_html'] = [
-          '#type' => 'inline_template',
-          '#template' => civictheme_embed_svg($image['url'], ['ct-icon']),
-        ];
+        $svg = civictheme_embed_svg($image['url'], ['ct-icon']);
+        $item['icon_html'] = $svg !== NULL ? Markup::create($svg) : '';
       }
     }
 

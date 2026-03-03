@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\FileInterface;
@@ -23,12 +24,13 @@ function civictheme_preprocess_media__civictheme_image(array &$variables): void 
     return;
   }
 
+  _civictheme_preprocess_media__civictheme_video_theme($variables);
   $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image', $variables);
   if ($image_file instanceof FileInterface) {
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
     if ($image->isValid()) {
-      $variables['width'] = $image->getWidth();
-      $variables['height'] = $image->getHeight();
+      $variables['width'] = (int) $image->getWidth();
+      $variables['height'] = (int) $image->getHeight();
       $image_url = \Drupal::service('file_url_generator')->generateString($image_file->getFileUri());
       $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($image_url);
       $variables['alt'] = $media->get('field_c_m_image')->first()->get('alt')->getString();
@@ -56,7 +58,7 @@ function civictheme_preprocess_media__civictheme_video(array &$variables): void 
       'type' => $video_file->getMimeType(),
     ];
   }
-
+  _civictheme_preprocess_media__civictheme_video_theme($variables);
   if (!empty($variables['sources'])) {
     _civictheme_preprocess_media__civictheme_video_links($variables);
     _civictheme_preprocess_media__civictheme_video_transcript($variables);
@@ -96,13 +98,20 @@ function civictheme_preprocess_media__civictheme_remote_video(array &$variables)
       '#type' => 'inline_template',
       '#template' => $html,
     ];
-
+    _civictheme_preprocess_media__civictheme_video_theme($variables);
     _civictheme_preprocess_media__civictheme_video_links($variables);
     _civictheme_preprocess_media__civictheme_video_transcript($variables);
   }
   catch (Exception) {
     // Handling any oEmbed exceptions in rendering remote video.
   }
+}
+
+/**
+ * Pre-process civictheme_video media theme.
+ */
+function _civictheme_preprocess_media__civictheme_video_theme(array &$variables): void {
+  $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 }
 
 /**
@@ -143,7 +152,7 @@ function _civictheme_preprocess_media__civictheme_video_links(array &$variables)
       'url' => $link->getUrl()->toString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
-      'attributes' => $has_custom_link_title ? '' : $transcript_attributes,
+      'attributes' => $has_custom_link_title ? new Attribute() : $transcript_attributes,
     ];
   }
 }
