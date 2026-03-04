@@ -191,8 +191,8 @@ function civictheme_media_image_get_variables(MediaInterface $media, ?string $im
     ->first()
     ->getValue();
 
-  $variables['alt'] = $image['alt'] ?? NULL;
-  $variables['title'] = $image['title'] ?? NULL;
+  $variables['alt'] = $image['alt'] ?? '';
+  $variables['title'] = $image['title'] ?? '';
 
   return $variables;
 }

@@ -7,6 +7,10 @@
       "/generated-content/civictheme_event/event-14-minus-molestias-mollitia",
       "/generated-content/civictheme_event/event-08-aut-delectus-id",
       "/generated-content/civictheme_page/page-06-culpa-debitis-nobis",
+      "/",
+      "/search",
+      "/form/civictheme-test-webform-fields",
+      "/form/contact",
       "/generated-content/civictheme_event/event-09-doloribus-iusto-officia",
       "/generated-content/civictheme_event/event-18-expedita-officia-quod",
       "/generated-content/civictheme_page/page-banner-large-light-background-content",
@@ -123,7 +127,9 @@
       "/generated-content/civictheme_page/page-component-automated-list-light-pages-view-promo-card-light-card-unlimited-6-title",
       "/generated-content/civictheme_page/page-component-accordion-sidebar",
       "/generated-content/civictheme_page/page-component-iframe",
-      "/generated-content/civictheme_page/page-component-promo-sidebar"
+      "/generated-content/civictheme_page/page-component-promo-sidebar",
+      "/civictheme-no-sidebar/table-mini-pager"
+
     ],
     "viewports": [
       {

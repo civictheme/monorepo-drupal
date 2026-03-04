@@ -77,7 +77,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       GIT_MIRROR_SSH_FINGERPRINT: *git_mirror_ssh_fingerprint
     docker:
-      - image: drevops/ci-runner:24.4.0
+      - image: drevops/ci-runner:26.1.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -226,6 +226,13 @@ job-build: &job-build
     - attach_workspace:
         at: /tmp/workspace
     - checkout
+    - run:
+        name: Install Ahoy
+        command: |
+          version=2.5.0
+          curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64"
+          chmod +x /usr/local/bin/ahoy
+          ahoy --version
     - *step_process_codebase
     - *step_setup_remote_docker
     - *step_setup_docker_network
@@ -260,6 +267,14 @@ job-build: &job-build
     - run:
         name: Lint Drupal theme schema
         command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
+    - run:
+        name: Copy visual regression config into container
+        command: |
+          docker compose exec -T cli sh -c "mkdir -p /app/.visual-regression/civictheme-ci"
+          docker compose cp .visual-regression/civictheme-ci/project.json cli:/app/.visual-regression/civictheme-ci/project.json
+    - run:
+        name: Lint components smoke test
+        command: docker compose exec -T cli bash -c "./scripts/lint.components.sh" || [ "${DREVOPS_CI_LINT_COMPONENTS_IGNORE_FAILURE:-0}" -eq 1 ]
     - run:
         name: Run assets tests
         command: ./scripts/test.assets.sh
@@ -363,6 +378,7 @@ jobs:
     <<: *runner_config
     environment:
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
+      PHP_DEBUG: 1
     <<: *job-build
 
   build-minimal-subtheme:
@@ -463,7 +479,7 @@ jobs:
           name: Install visual regression tools
           command: |
             docker compose exec -T cli sh -c "apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefont"
-            docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal"
+            docker compose exec -T cli sh -c "npm install -g @richardgaunt/visual-regression-for-drupal@latest --prefer-online"
 
       # Copy VR project config into the container (not included in Docker build context).
       - run:
@@ -503,17 +519,18 @@ jobs:
             fi
           when: always
 
-      # Only save cache on develop to avoid feature branches overwriting with empty data.
+      # Save cache with branch name in key. Feature branch caches are harmless
+      # throwaways — restore_cache only matches the develop prefix.
       - save_cache:
-          key: vr-baseline-v1-develop-{{ .BuildNum }}
+          key: vr-baseline-v2-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - /tmp/vr-baseline
           when: always
 
-      # On feature branches: restore baseline and compare.
+      # On feature branches: restore the latest develop baseline.
       - restore_cache:
           keys:
-            - vr-baseline-v1-develop-
+            - vr-baseline-v2-develop-
 
       - run:
           name: Compare against baseline
@@ -533,6 +550,15 @@ jobs:
       - run:
           name: Post visual regression results to PR
           command: ./scripts/ci/vr-post-pr-comment.sh
+          when: always
+
+      - run:
+          name: Clean up artifacts on non-develop branches
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "develop" ]; then
+              rm -rf /tmp/vr-screenshots /tmp/vr-report
+              echo "Skipping artifact upload on non-develop branch."
+            fi
           when: always
 
       - store_artifacts:

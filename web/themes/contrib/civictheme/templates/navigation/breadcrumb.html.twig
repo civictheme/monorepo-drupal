@@ -4,4 +4,6 @@
  * CivicTheme implementation to display a breadcrumb.
  */
 #}
-{% include 'civictheme:breadcrumb' %}
+{% include 'civictheme:breadcrumb' with {
+  theme: theme|default('light'),
+} %}

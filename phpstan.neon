@@ -74,3 +74,20 @@ parameters:
       message: '#Parameter \#1 \$callback of function call_user_func expects callable.*#'
       paths:
         - web/modules/custom/cs_generated_content/src/CsGeneratedContentCivicthemeTrait.php
+    -
+      # D10/D11 compatibility: ThemeSettingsProvider service may or may not exist.
+      identifier: ternary.alwaysTrue
+      paths:
+        - web/themes/contrib/civictheme/src/CivicthemeConfigManager.php
+      reportUnmatched: false
+    -
+      identifier: ternary.alwaysFalse
+      paths:
+        - web/themes/contrib/civictheme/src/CivicthemeConfigManager.php
+      reportUnmatched: false
+    -
+      # D10 fallback: theme_get_setting() is deprecated in D11.3.
+      identifier: function.deprecated
+      paths:
+        - web/themes/contrib/civictheme/src/CivicthemeConfigManager.php
+      reportUnmatched: false

@@ -8,12 +8,11 @@
 
 {% block content_block %}
   {% include 'civictheme:mobile-navigation-trigger' with {
-    theme: trigger_theme,
+    theme: trigger_theme|default('light'),
     text: trigger_text,
   } %}
 
   {% include 'civictheme:mobile-navigation' with {
-    theme: theme,
     top_menu: top_menu,
     bottom_menu: bottom_menu,
   } %}
