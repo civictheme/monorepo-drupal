@@ -513,6 +513,10 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "develop" ]; then
               mkdir -p /tmp/vr-baseline
               cp -r /tmp/vr-screenshots/current /tmp/vr-baseline/baseline
+              # Update set.json so the directory points to baseline, not current.
+              if [ -f /tmp/vr-baseline/baseline/set.json ]; then
+                sed -i 's|screenshot-sets/sets/current|screenshot-sets/sets/baseline|g' /tmp/vr-baseline/baseline/set.json
+              fi
               echo "Baseline saved for caching."
             else
               echo "Not develop branch, skipping baseline save."
