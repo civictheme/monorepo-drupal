@@ -14,6 +14,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\views\Plugin\views\filter\FilterPluginBase;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
@@ -127,6 +128,8 @@ function civictheme_preprocess_views_view_grid(array &$variables): void {
 
 /**
  * Implements hook_form_views_exposed_form_alter().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
   $storage = $form_state->getStorage();
@@ -134,6 +137,31 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
   // @see civictheme_preprocess_views_exposed_form()
   if (!empty($storage['view'])) {
     $form['#attributes']['view_id'] = $storage['view']->id();
+  }
+
+  // Restrict Topics exposed filter to contextual filter term(s) when present.
+  $view = $form_state->get('view');
+  if (!$view instanceof ViewExecutable || $view->id() !== 'civictheme_automated_list') {
+    return;
+  }
+  if (!isset($form['topic']) || !isset($form['topic']['#type'])) {
+    return;
+  }
+  try {
+    $contextual_filter_tids = _civictheme_get_topics_contextual_argument_tids($view);
+    if ($contextual_filter_tids !== []) {
+      $options = _civictheme_build_topic_options_from_tids($contextual_filter_tids);
+      if ($options !== []) {
+        $form['topic']['#empty_option'] = t('- Any -');
+        $form['topic']['#empty_value'] = '';
+        $form['topic']['#options'] = $options;
+      }
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('civictheme')->warning('Exposed form alter failed: @message', [
+      '@message' => $e->getMessage(),
+    ]);
   }
 }
 
@@ -488,4 +516,81 @@ function _civictheme_preprocess_views_view__selected_filters_list__create_filter
       $value_label = $value;
   }
   return $filter_types[$key]['name'] . ': ' . $value_label;
+}
+
+/**
+ * Gets term IDs from the Topics contextual filter (term_node_tid_depth).
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ *   The view.
+ *
+ * @return int[]
+ *   Term IDs from the contextual argument, or empty if none/any.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ */
+function _civictheme_get_topics_contextual_argument_tids(ViewExecutable $view): array {
+  $display = $view->getDisplay();
+  if (!method_exists($display, 'getOption')) {
+    return [];
+  }
+
+  $argument_options = $display->getOption('arguments') ?? [];
+  if (!is_array($argument_options)) {
+    return [];
+  }
+
+  $argument_ids = array_keys($argument_options);
+  $argument_index = array_search('term_node_tid_depth', $argument_ids, TRUE);
+  if ($argument_index === FALSE) {
+    return [];
+  }
+
+  $args = $view->args;
+  if (!isset($args[$argument_index]) || $args[$argument_index] === '' || $args[$argument_index] === 'all') {
+    return [];
+  }
+
+  $parts = preg_split('/[\s+]+/', (string) $args[$argument_index]);
+  if ($parts === FALSE) {
+    return [];
+  }
+
+  $tids = [];
+  foreach ($parts as $part) {
+    $part = trim($part);
+    if ($part !== '' && is_numeric($part)) {
+      $tids[] = (int) $part;
+    }
+  }
+
+  return array_unique($tids);
+}
+
+/**
+ * Builds option list for the Topics exposed filter from term IDs.
+ *
+ * @param int[] $tids
+ *   Taxonomy term IDs (civictheme_topics).
+ *
+ * @return array<int|string, string>
+ *   Options array keyed by term ID, value is term name.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_build_topic_options_from_tids(array $tids): array {
+  if ($tids === []) {
+    return [];
+  }
+
+  $terms = Term::loadMultiple($tids);
+  $options = [];
+  foreach ($terms as $term) {
+    if ($term !== NULL) {
+      $options[$term->id()] = (string) $term->label();
+    }
+  }
+
+  return $options;
 }
