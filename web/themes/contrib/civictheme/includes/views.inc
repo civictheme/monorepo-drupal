@@ -131,7 +131,7 @@ function civictheme_preprocess_views_view_grid(array &$variables): void {
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
   $storage = $form_state->getStorage();
   // Pass view ID in attributes to the exposed filter preprocessor.
   // @see civictheme_preprocess_views_exposed_form()
@@ -140,9 +140,6 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
   }
 
   // Restrict Topics exposed filter to contextual filter term(s) when present.
-  if ($form_id !== 'views_exposed_form') {
-    return;
-  }
   $view = $form_state->get('view');
   if (!$view instanceof ViewExecutable || $view->id() !== 'civictheme_automated_list') {
     return;
@@ -151,11 +148,13 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
     return;
   }
   try {
-    $context_tids = _civictheme_get_topics_contextual_argument_tids($view);
-    if ($context_tids !== []) {
-      $options = _civictheme_build_topic_options_from_tids($context_tids);
+    $contextual_filter_tids = _civictheme_get_topics_contextual_argument_tids($view);
+    if ($contextual_filter_tids !== []) {
+      $options = _civictheme_build_topic_options_from_tids($contextual_filter_tids);
       if ($options !== []) {
-        $form['topic']['#options'] = ['All' => '- Any -'] + $options;
+        $form['topic']['#empty_option'] = t('- Any -');
+        $form['topic']['#empty_value'] = '';
+        $form['topic']['#options'] = $options;
       }
     }
   }
@@ -543,17 +542,17 @@ function _civictheme_get_topics_contextual_argument_tids(ViewExecutable $view): 
   }
 
   $argument_ids = array_keys($argument_options);
-  $pos = array_search('term_node_tid_depth', $argument_ids, TRUE);
-  if ($pos === FALSE) {
+  $argument_index = array_search('term_node_tid_depth', $argument_ids, TRUE);
+  if ($argument_index === FALSE) {
     return [];
   }
 
   $args = $view->args;
-  if (!isset($args[$pos]) || $args[$pos] === '' || $args[$pos] === 'all') {
+  if (!isset($args[$argument_index]) || $args[$argument_index] === '' || $args[$argument_index] === 'all') {
     return [];
   }
 
-  $parts = preg_split('/[\s+]+/', (string) $args[$pos]);
+  $parts = preg_split('/[\s+]+/', (string) $args[$argument_index]);
   if ($parts === FALSE) {
     return [];
   }
