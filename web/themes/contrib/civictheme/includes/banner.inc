@@ -178,10 +178,14 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
 
   // Gather existing links. Note that some profiles (GovCMS) may already have
   // the functionality to add current page as a last item implemented.
+  $renderer = \Drupal::service('renderer');
   foreach ($breadcrumb->getLinks() as $link) {
     $link_text = $link->getText();
+    if (is_array($link_text)) {
+      $link_text = (string) $renderer->renderInIsolation($link_text);
+    }
     $variables['breadcrumb']['links'][] = [
-      'text' => (string) (is_array($link_text) ? implode(' ', $link_text) : Xss::filter((string) $link_text)),
+      'text' => Xss::filter((string) $link_text),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -198,10 +202,13 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
     // Check if the link already exists and add it if not.
-    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $link->getUrl())) {
       $link_text = $link->getText();
+      if (is_array($link_text)) {
+        $link_text = (string) $renderer->renderInIsolation($link_text);
+      }
       $variables['breadcrumb']['links'][] = [
-        'text' => is_array($link_text) ? (string) ($link_text['#markup'] ?? '') : (string) $link_text,
+        'text' => Xss::filter((string) $link_text),
         'url' => $link->getUrl()->toString(),
       ];
     }
