@@ -202,7 +202,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
     // Check if the link already exists and add it if not.
-    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
+    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $link->getUrl())) {
       $link_text = $link->getText();
       if (is_array($link_text)) {
         $link_text = (string) $renderer->renderInIsolation($link_text);
