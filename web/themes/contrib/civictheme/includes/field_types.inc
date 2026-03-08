@@ -85,7 +85,7 @@ function _civictheme_preprocess_field__wrap_basic_content(array &$variables): vo
   foreach ($variables['items'] as &$item) {
     $item['content'] = [
       '#type' => 'component',
-      '#component' => 'civictheme:basic-content',
+      '#component' => 'civictheme:paragraph',
       '#props' => [
         'theme' => $theme,
       ],

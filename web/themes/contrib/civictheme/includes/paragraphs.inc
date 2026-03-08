@@ -35,7 +35,7 @@ function _civictheme_preprocess_paragraph__paragraph_field__column_count(array &
  * Pre-process for Content paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__content(array &$variables): void {
-  $variables['content'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_content');
+  $variables['content'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_content', TRUE);
 }
 
 /**
