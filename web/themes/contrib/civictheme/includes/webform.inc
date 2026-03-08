@@ -17,6 +17,6 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 
   $paragraph = $variables['paragraph'] ?? NULL;
   if ($paragraph && civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
-    $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
+    $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view(['label' => 'hidden']);
   }
 }

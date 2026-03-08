@@ -158,14 +158,39 @@ function civictheme_preprocess_field__integer(array &$variables): void {
  * Implements hook_preprocess_field__datetime().
  */
 function civictheme_preprocess_field__datetime(array &$variables): void {
-  _civictheme_preprocess_field__wrap_paragraph($variables);
+  foreach ($variables['items'] as $delta => &$item) {
+    $element = $variables['element'][$delta] ?? [];
+    $item['content'] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:datetime',
+      '#props' => [
+        'start' => $element['#text'] ?? '',
+        'start_iso' => $element['#attributes']['datetime'] ?? '',
+      ],
+    ];
+  }
 }
 
 /**
  * Implements hook_preprocess_field__daterange().
  */
 function civictheme_preprocess_field__daterange(array &$variables): void {
-  _civictheme_preprocess_field__wrap_paragraph($variables);
+  foreach ($variables['items'] as $delta => &$item) {
+    $element = $variables['element'][$delta] ?? [];
+    $props = [
+      'start' => $element['start_date']['#text'] ?? '',
+      'start_iso' => $element['start_date']['#attributes']['datetime'] ?? '',
+    ];
+    if (!empty($element['end_date']['#text'])) {
+      $props['end'] = $element['end_date']['#text'];
+      $props['end_iso'] = $element['end_date']['#attributes']['datetime'] ?? '';
+    }
+    $item['content'] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:datetime',
+      '#props' => $props,
+    ];
+  }
 }
 
 /**
