@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: b272bf9d-bd55-4a92-a0fd-b904240017a4
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    3d72e253-d3fd-4dae-a9d8-ce5005749650: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Image media 40 In molestiae.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_caption:
+    -
+      value: 'Excepturi laborum.'
+  field_c_m_image:
+    -
+      entity: 3d72e253-d3fd-4dae-a9d8-ce5005749650
+      alt: 'Alt for Generated static Image media 40 In molestiae.'
+      title: ''
+      width: 1552
+      height: 846

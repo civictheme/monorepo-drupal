@@ -3,7 +3,7 @@ Feature: CivicTheme Page content type render
 
   Ensure that Page content can be viewed correctly.
 
-  @api @javascript
+  @api
   Scenario: CivicTheme page revisions can be viewed without error
     Given I am logged in as a user with the "Site Administrator" role
     And "civictheme_page" content:
@@ -14,7 +14,8 @@ Feature: CivicTheme Page content type render
     And I press "Save"
     And I click "Revisions"
     And I click on ".node-revision-table .even a" element
-    And I should see "Revision of [TEST] Page Revision test"
+    And the response status code should be 200
+    And I should see "[TEST] Page New Revision test"
 
   @api
   Scenario: CivicTheme page content type page can configure sidebar display

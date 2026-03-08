@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: cb0748f0-7bee-4c5f-a00d-01cda40001b3
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_pdf_file_3_etit.pdf
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_pdf_file_3_etit.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 30278
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

@@ -233,6 +233,9 @@ function civictheme_preprocess_form_element__civictheme_field__select(array &$va
   $variables['control'][0]['options'] = form_select_options($variables['element']);
 
   foreach ($variables['control'][0]['options'] as &$option) {
+    if (isset($option['label'])) {
+      $option['label'] = (string) $option['label'];
+    }
     if (isset($option['selected'])) {
       $option['is_selected'] = $option['selected'];
       unset($option['selected']);
@@ -276,8 +279,8 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
     $is_checked = is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value;
     $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
     $control[] = [
-      'label' => $label,
-      'value' => $value,
+      'label' => (string) $label,
+      'value' => (string) $value,
       'name' => $name . '[' . $value . ']',
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
       'is_checked' => $is_checked,
@@ -286,6 +289,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__checkbo
       'is_required' => FALSE,
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
+      'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
     ];
   }
 
@@ -317,14 +321,15 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(
     // Cannot do strict value check as integer values returned as string.
     $is_checked = $value == $selected_value;
     $control[] = [
-      'label' => $label,
-      'value' => $value,
+      'label' => (string) $label,
+      'value' => (string) $value,
       'name' => $name,
       'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
       'is_checked' => $is_checked,
       'is_disabled' => isset($element['#attributes']['disabled']),
       'attributes' => $attributes,
       'modifier_class' => $modifier_class,
+      'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
     ];
   }
 
@@ -380,23 +385,31 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $element = $variables['element'];
   $variables['type'] = $element['#type'] ?? 'input';
 
-  $variables['title'] = $element['#title'] ?? '';
+  $variables['title'] = (string) ($element['#title'] ?? '');
 
   $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
   $title_display = $title_display === 'none' ? 'hidden' : $title_display;
   $title_display = $title_display === 'visually_hidden' ? 'invisible' : $title_display;
+  // Drupal uses 'before'/'after' for label position; map to component enum "visible".
+  if (in_array((string) $title_display, ['before', 'after', 'inline'], TRUE)) {
+    $title_display = 'visible';
+  }
   if (empty($variables['title'])) {
     $title_display = 'hidden';
   }
   $variables['title_display'] = $title_display;
-  $variables['title_size'] = $element['#title_size'] ?? '';
+  $title_size = $element['#title_size'] ?? '';
+  $variables['title_size'] = $title_size !== '' ? $title_size : 'regular';
 
   $variables['orientation'] = $variables['orientation'] ?? $title_display === 'inline' ? 'horizontal' : 'vertical';
 
   $variables['is_required'] = $element['#required'] ?? FALSE;
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['description'] = $element['#description'] ?? '';
+  // Label component requires required_text to be string; pass empty when not required.
+  $variables['required_text'] = ($variables['is_required'] ? (string) t('(Required)') : '');
   $variables['is_invalid'] = !empty($element['#errors']);
+  $variables['message'] = $variables['message'] ?? ['content' => ''];
   if ($variables['is_invalid']) {
     $variables['attributes']['aria-invalid'] = 'true';
     $variables['message']['content'] = $element['#errors'] ?? '';
@@ -458,15 +471,15 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
   }
 
   $attributes = new Attribute($attributes);
-
   $variables['control'][] = [
     'name' => $element['#attributes']['name'] ?? ($element['#name'] ?? ''),
-    'value' => $element['#value'] ?? '',
+    'value' => isset($element['#value']) && is_array($element['#value']) ? $element['#value'] : (string) ($element['#value'] ?? ''),
     'id' => $element['#id'] ?? '',
     'options' => $variables['options'] ?? [],
     'is_multiple' => $variables['is_multiple'] ?? FALSE,
     'attributes' => $attributes,
     'modifier_class' => $modifier_class,
+    'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
   ];
 
   // Set control name for search elements if not already set.
@@ -503,6 +516,11 @@ function _civictheme_preprocess_form_element__theme(array &$variables): void {
     if (isset($variables['label']['#attributes'])) {
       $variables['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
     }
+  }
+
+  // Default theme to 'light' when not set.
+  if (empty($variables['theme'])) {
+    $variables['theme'] = 'light';
   }
 }
 
@@ -599,5 +617,5 @@ function _civictheme_form_element_get_component_theme(array $element): string {
  * Check if form element is set to have multiple values.
  */
 function _civictheme_form_element_is_multiple(array $element): bool {
-  return $element['#type'] == 'checkboxes' || ($element['#type'] == 'select' && ($element["#multiple"] ?? FALSE));
+  return $element['#type'] === 'checkboxes' || ($element['#type'] === 'select' && ($element["#multiple"] ?? FALSE));
 }

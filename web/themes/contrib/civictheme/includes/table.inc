@@ -31,6 +31,7 @@ function civictheme_preprocess_table(array &$variables): void {
         // Ensure correct render structure.
         $header_item = ['#title' => $header_item];
       }
+      $header_item = $header_item ?? '';
       $rendered = (string) \Drupal::service('renderer')->render($header_item);
       // Set to empty string if visually-hidden class is present.
       $has_visually_hidden = preg_match('/class=["\'][^"\']*\b(?:visually-hidden|ct-visually-hidden)\b[^"\']*["\']/', $rendered);

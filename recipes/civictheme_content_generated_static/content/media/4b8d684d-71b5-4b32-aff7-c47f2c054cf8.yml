@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4b8d684d-71b5-4b32-aff7-c47f2c054cf8
+  bundle: civictheme_document
+  default_langcode: en
+  depends:
+    3e8fcfa3-5b62-4d17-9505-27dc9be21047: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Document media 20 Libero nam.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_document:
+    -
+      entity: 3e8fcfa3-5b62-4d17-9505-27dc9be21047
+      display: false
+      description: ''

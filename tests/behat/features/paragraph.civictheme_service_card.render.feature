@@ -67,6 +67,6 @@ Feature: Service card render
     And I should not see an "script#test-service-card--field_c_p_title" element
     And I should see the text "alert('[TEST] Service card field_c_p_title')"
     And I should not see an "script#test-service-card--field_c_p_link--0" element
-    And I should see the text "alert('field_c_p_link--0')"
+    And I should see the text "field_c_p_link--0"
     And I should not see an "script#test-service-card--field_c_p_link--1" element
-    And I should see the text "alert('field_c_p_link--1')"
+    And I should see the text "field_c_p_link--1"

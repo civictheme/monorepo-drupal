@@ -6,16 +6,16 @@
 #}
 
 {% include 'civictheme:fieldset' with {
-  theme: theme,
-  legend: legend.title,
-  description: description,
-  description_display: description_display,
-  message: errors,
-  message_type: message_type,
+  theme: theme|default('light'),
+  legend: legend.title|default(''),
+  description: description|default(''),
+  description_display: description_display|default('before'),
+  message: errors|default(''),
+  message_type: message_type|default('error'),
   fields: children,
-  is_required: required,
-  prefix: prefix,
-  suffix: suffix,
+  is_required: is_required|default(required|default(false)),
+  prefix: prefix|default(''),
+  suffix: suffix|default(''),
   attributes: attributes,
-  modifier_class: modifier_class,
+  modifier_class: modifier_class|default(''),
 } only %}

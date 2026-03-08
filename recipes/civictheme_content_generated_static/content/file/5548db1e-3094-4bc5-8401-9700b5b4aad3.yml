@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5548db1e-3094-4bc5-8401-9700b5b4aad3
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_1_accu.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_1_accu.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 295717
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

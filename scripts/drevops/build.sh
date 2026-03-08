@@ -92,6 +92,11 @@ fi
 
 info "Building Docker images and starting containers."
 
+# Build the CLI image first so that dependent images (nginx, php) can
+# reference it in their multi-stage FROM instructions. BuildKit may
+# otherwise attempt to pull the image from a registry instead of using
+# the locally built one.
+docker compose build cli 1>"${docker_verbose_output}" 2>"${docker_verbose_output}"
 docker compose up -d --build --force-recreate 1>"${docker_verbose_output}" 2>"${docker_verbose_output}"
 if docker compose logs | grep -q "\[Error\]"; then fail "Unable to build Docker images and start containers" && docker compose logs && exit 1; fi
 pass "Built Docker images and started containers."
