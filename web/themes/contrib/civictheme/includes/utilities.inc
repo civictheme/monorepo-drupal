@@ -19,6 +19,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\File\Exception\InvalidStreamWrapperException;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
@@ -564,6 +565,56 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       }
       $value = $field->view(['label' => 'hidden']);
       break;
+  }
+
+  return $value;
+}
+
+/**
+ * Gets a processed WYSIWYG field value with theme-aware HTML processing.
+ *
+ * This function retrieves the value of a WYSIWYG (text_long, text_with_summary,
+ * text) field and processes the HTML content through CivicTheme's HTML content
+ * processor, applying link processing and theme-aware CSS class replacements.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   Entity to get the field value from.
+ * @param string $field_name
+ *   Field name to get the value for.
+ * @param bool $only_first
+ *   Return only the first value of a multi-value field.
+ * @param string $theme
+ *   Theme to apply to HTML content processing.
+ * @param mixed $default
+ *   Default value to return.
+ * @param array<string, mixed> $build
+ *   Render array to apply cacheability metadata to.
+ *
+ * @return mixed|null
+ *   The processed field value render array, or the default value.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ */
+function civictheme_get_wysiwyg_field_value(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE, string $theme = CivicthemeConstants::THEME_LIGHT, mixed $default = NULL, array &$build = []): mixed {
+  $value = civictheme_get_field_value($entity, $field_name, $only_first, $default, $build);
+
+  if ($value === $default || !is_array($value)) {
+    return $value;
+  }
+
+  $options = ['theme' => $theme];
+
+  if ($only_first) {
+    if (!empty($value['#text'])) {
+      $value['#text'] = _civictheme_process__html_content($value['#text'], $options, $value['#format'] ?? NULL);
+    }
+  }
+  else {
+    foreach (Element::children($value) as $key) {
+      if (!empty($value[$key]['#text'])) {
+        $value[$key]['#text'] = _civictheme_process__html_content($value[$key]['#text'], $options, $value[$key]['#format'] ?? NULL);
+      }
+    }
   }
 
   return $value;
