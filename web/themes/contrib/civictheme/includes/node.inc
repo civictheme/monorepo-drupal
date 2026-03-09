@@ -27,9 +27,14 @@ function _civictheme_preprocess_node(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for civictheme_page full.
+ * Implements hook_preprocess_node__BUNDLE() for civictheme_page.
  */
-function civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_page(array &$variables): void {
+  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
+  if (!in_array($view_mode, ['full', 'default'])) {
+    return;
+  }
+
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;
@@ -64,11 +69,16 @@ function civictheme_preprocess_node__civictheme_page__full(array &$variables): v
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for civictheme_alert full.
+ * Implements hook_preprocess_node__BUNDLE() for civictheme_alert.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_alert(array &$variables): void {
+  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
+  if (!in_array($view_mode, ['full', 'default'])) {
+    return;
+  }
+
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;
