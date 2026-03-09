@@ -427,3 +427,89 @@ function civictheme_preprocess_field__file(array &$variables): void {
   ],
   ];
 }
+
+/**
+ * Card view modes and their default column counts.
+ *
+ * @return array<string, int>
+ *   Map of view mode machine name to default column count.
+ */
+function _civictheme_card_view_modes(): array {
+  return [
+    'civictheme_promo_card' => 3,
+    'civictheme_navigation_card' => 3,
+    'civictheme_subject_card' => 4,
+    'civictheme_snippet' => 1,
+  ];
+}
+
+/**
+ * Detect the entity view mode from a field's render element.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return string|null
+ *   The view mode, or NULL if not detectable.
+ */
+function _civictheme_field_get_entity_view_mode(array $variables): ?string {
+  foreach ($variables['element'] as $key => $child) {
+    if (!is_numeric($key) || !is_array($child)) {
+      continue;
+    }
+    if (isset($child['#view_mode'])) {
+      return $child['#view_mode'];
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Check if a field's entity view mode is a known card type.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return bool
+ *   TRUE if the field renders entities in a card view mode.
+ */
+function _civictheme_field_is_card_view_mode(array $variables): bool {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+
+  return $view_mode !== NULL && isset(_civictheme_card_view_modes()[$view_mode]);
+}
+
+/**
+ * Wrap entity reference items in a card list when rendered as cards.
+ *
+ * When the formatter view mode is a known card type, collects rendered items
+ * into $variables['rows'] and sets grid properties. The template
+ * field--civictheme-card-list.html.twig renders these in a civictheme:list
+ * with a civictheme:grid.
+ *
+ * @see field--civictheme-card-list.html.twig
+ */
+function _civictheme_preprocess_field__wrap_entity_reference(array &$variables): void {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+  if (!$view_mode || !isset(_civictheme_card_view_modes()[$view_mode])) {
+    return;
+  }
+
+  $variables['theme'] = _civictheme_field_get_theme($variables);
+  $variables['vertical_spacing'] = _civictheme_field_get_vertical_spacing($variables);
+  $variables['with_background'] = _civictheme_field_get_with_background($variables);
+
+  // Column count and fill width from layout builder settings, falling back
+  // to defaults per card view mode.
+  $lb_column_count = _civictheme_field_get_layout_builder_setting($variables, 'column_count');
+  $variables['column_count'] = $lb_column_count ? (int) $lb_column_count : _civictheme_card_view_modes()[$view_mode];
+  $lb_fill_width = _civictheme_field_get_layout_builder_setting($variables, 'fill_width');
+  $variables['fill_width'] = $lb_fill_width !== NULL ? !empty($lb_fill_width) : FALSE;
+
+  $items = [];
+  foreach ($variables['items'] as $item) {
+    $items[] = $item['content'];
+  }
+  $variables['items'] = $items;
+}

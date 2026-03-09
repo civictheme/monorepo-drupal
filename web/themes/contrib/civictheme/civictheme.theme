@@ -130,6 +130,15 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_field_alter(array &$suggestions, array $variables): void {
+  if (_civictheme_field_is_card_view_mode($variables)) {
+    $suggestions[] = 'field__civictheme_card_list';
+  }
+}
+
+/**
  * Implements hook_theme_registry_alter().
  */
 function civictheme_theme_registry_alter(array &$theme_registry): void {
@@ -312,6 +321,7 @@ function civictheme_preprocess_field(array &$variables): void {
   _civictheme_preprocess_wysiwyg_field($variables);
   _civictheme_preprocess_date_range_field($variables);
   _civictheme_preprocess_field__civictheme_layout_builder_settings($variables);
+  _civictheme_preprocess_field__wrap_entity_reference($variables);
 }
 
 /**

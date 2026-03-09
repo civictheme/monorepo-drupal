@@ -104,6 +104,28 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
       ],
     ],
   ];
+
+  // Add list settings when the formatter uses a card view mode.
+  $view_mode = $formatter['settings']['view_mode'] ?? NULL;
+  $card_view_modes = _civictheme_card_view_modes();
+  if ($view_mode && isset($card_view_modes[$view_mode])) {
+    $form['civictheme_settings']['column_count'] = [
+      '#type' => 'select',
+      '#title' => t('List column count'),
+      '#options' => array_combine([1, 2, 3, 4], [1, 2, 3, 4]),
+      '#default_value' => $settings['column_count'] ?? $card_view_modes[$view_mode],
+      '#states' => $enabled_state,
+    ];
+
+    $form['civictheme_settings']['fill_width'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Fill width'),
+      '#description' => t('Stretch remaining items to fill the full row width.'),
+      '#default_value' => $settings['fill_width'] ?? FALSE,
+      '#states' => $enabled_state,
+    ];
+  }
+
   $form['actions']['#weight'] = 100;
 
   array_unshift($form['#submit'], 'civictheme_layout_builder_block_submit');
