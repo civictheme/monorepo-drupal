@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(sudo rm:*)",
+      "Bash(git:*)",
+      "Bash(ahoy lint-components:*)",
+      "Bash(chmod +x:*)",
+      "Bash(grep:*)",
+      "Bash(gh pr:*)",
+      "Bash(dcm field:*)",
+      "Bash(vendor/bin/drush cr:*)"
+    ]
+  }
+}

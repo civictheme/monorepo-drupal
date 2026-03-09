@@ -22,9 +22,33 @@ use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Url;
 
 /**
+ * Get a CivicTheme layout builder setting from field variables.
+ *
+ * Reads from the formatter's third party settings set via layout builder
+ * block configuration.
+ *
+ * @param array $variables
+ *   The field template variables.
+ * @param string $key
+ *   The setting key (e.g. 'theme', 'vertical_spacing', 'with_background').
+ *
+ * @return mixed|null
+ *   The setting value, or NULL if not set or not enabled.
+ */
+function _civictheme_field_get_layout_builder_setting(array $variables, string $key): mixed {
+  $settings = $variables['element']['#third_party_settings']['civictheme'] ?? NULL;
+  if (!$settings || empty($settings['enabled'])) {
+    return NULL;
+  }
+
+  return $settings[$key] ?? NULL;
+}
+
+/**
  * Resolve theme from parent entity for field preprocessing.
  *
- * Checks the parent entity's theme field to determine light/dark theme.
+ * Checks layout builder settings first, then falls back to the parent
+ * entity's theme field to determine light/dark theme.
  *
  * @param array $variables
  *   The field template variables.
@@ -33,6 +57,11 @@ use Drupal\Core\Url;
  *   The resolved theme value ('light' or 'dark').
  */
 function _civictheme_field_get_theme(array $variables): string {
+  $lb_theme = _civictheme_field_get_layout_builder_setting($variables, 'theme');
+  if ($lb_theme) {
+    return (string) $lb_theme;
+  }
+
   $entity = $variables['element']['#object'] ?? NULL;
 
   if (!$entity instanceof FieldableEntityInterface) {
@@ -54,6 +83,83 @@ function _civictheme_field_get_theme(array $variables): string {
   }
 
   return CivicthemeConstants::THEME_LIGHT;
+}
+
+/**
+ * Resolve vertical spacing for field preprocessing.
+ *
+ * Checks layout builder settings first, then falls back to the parent
+ * entity's vertical spacing field.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return string|null
+ *   The vertical spacing value ('top', 'bottom', 'both'), or NULL.
+ */
+function _civictheme_field_get_vertical_spacing(array $variables): ?string {
+  $lb_value = _civictheme_field_get_layout_builder_setting($variables, 'vertical_spacing');
+  if ($lb_value && $lb_value !== 'none') {
+    return (string) $lb_value;
+  }
+
+  $entity = $variables['element']['#object'] ?? NULL;
+
+  if (!$entity instanceof FieldableEntityInterface) {
+    return NULL;
+  }
+
+  $fields = [
+    'node' => ['field_c_n_vertical_spacing'],
+    'paragraph' => ['field_c_p_vertical_spacing'],
+  ];
+
+  foreach ($fields[$entity->getEntityTypeId()] ?? [] as $field_name) {
+    $value = civictheme_get_field_value($entity, $field_name, TRUE);
+    if (in_array($value, ['top', 'bottom', 'both'], TRUE)) {
+      return (string) $value;
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Resolve background setting for field preprocessing.
+ *
+ * Checks layout builder settings first, then falls back to the parent
+ * entity's background field.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return bool
+ *   TRUE if a background should be applied.
+ */
+function _civictheme_field_get_with_background(array $variables): bool {
+  $lb_value = _civictheme_field_get_layout_builder_setting($variables, 'with_background');
+  if ($lb_value !== NULL) {
+    return !empty($lb_value);
+  }
+
+  $entity = $variables['element']['#object'] ?? NULL;
+
+  if (!$entity instanceof FieldableEntityInterface) {
+    return FALSE;
+  }
+
+  $fields = [
+    'paragraph' => ['field_c_p_background'],
+  ];
+
+  foreach ($fields[$entity->getEntityTypeId()] ?? [] as $field_name) {
+    $value = civictheme_get_field_value($entity, $field_name, TRUE);
+    if ($value) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
 
 /**
@@ -81,13 +187,17 @@ function _civictheme_preprocess_field__wrap_paragraph(array &$variables): void {
  */
 function _civictheme_preprocess_field__wrap_basic_content(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
 
   foreach ($variables['items'] as &$item) {
     $item['content'] = [
       '#type' => 'component',
-      '#component' => 'civictheme:paragraph',
+      '#component' => 'civictheme:basic-content',
       '#props' => [
         'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
       ],
       '#slots' => [
         'content' => $item['content'],
@@ -105,6 +215,7 @@ function _civictheme_preprocess_field__wrap_basic_content(array &$variables): vo
  */
 function _civictheme_preprocess_field__wrap_tag_list(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
   $tags = [];
 
   foreach ($variables['items'] as $item) {
@@ -118,6 +229,7 @@ function _civictheme_preprocess_field__wrap_tag_list(array &$variables): void {
       '#component' => 'civictheme:tag-list',
       '#props' => [
         'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
         'tags' => $tags,
       ],
     ],
@@ -279,6 +391,8 @@ function civictheme_preprocess_field__email(array &$variables): void {
  */
 function civictheme_preprocess_field__file(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
   $files = [];
   $file_url_generator = \Drupal::service('file_url_generator');
   $date_formatter = \Drupal::service('date.formatter');
@@ -304,6 +418,8 @@ function civictheme_preprocess_field__file(array &$variables): void {
       '#component' => 'civictheme:attachment',
       '#props' => [
         'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
         'files' => $files,
       ],
     ],
