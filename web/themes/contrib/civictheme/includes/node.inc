@@ -64,21 +64,6 @@ function civictheme_preprocess_node__civictheme_page__full(array &$variables): v
 }
 
 /**
- * Implements hook_preprocess_node__VIEW_MODE() for full view mode.
- */
-function civictheme_preprocess_node__full(array &$variables): void {
-}
-
-/**
- * Implements hook_preprocess_node__VIEW_MODE() for default view mode.
- *
- * Falls back to the full view mode preprocessing.
- */
-function civictheme_preprocess_node__default(array &$variables): void {
-  civictheme_preprocess_node__full($variables);
-}
-
-/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for civictheme_alert full.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
