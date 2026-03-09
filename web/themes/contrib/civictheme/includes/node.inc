@@ -27,9 +27,9 @@ function _civictheme_preprocess_node(array &$variables): void {
 }
 
 /**
- * Pre-process CivicTheme page nodes.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for civictheme_page full.
  */
-function _civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;
@@ -64,43 +64,26 @@ function _civictheme_preprocess_node__civictheme_page__full(array &$variables): 
 }
 
 /**
- * Pre-process Full view mode of nodes.
+ * Implements hook_preprocess_node__VIEW_MODE() for full view mode.
  */
-function _civictheme_preprocess_node__full(array &$variables): void {
-  $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface) {
-    return;
-  }
-
-  $type = $node->getType();
-  $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
-  if (function_exists($type_callback)) {
-    $type_callback($variables);
-  }
+function civictheme_preprocess_node__full(array &$variables): void {
 }
 
 /**
- * Default view mode fallback preprocessor for nodes.
+ * Implements hook_preprocess_node__VIEW_MODE() for default view mode.
+ *
+ * Falls back to the full view mode preprocessing.
  */
-function _civictheme_preprocess_node__default(array &$variables): void {
-  $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface) {
-    return;
-  }
-
-  $type = $node->getType();
-  $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
-  if (function_exists($type_callback)) {
-    $type_callback($variables);
-  }
+function civictheme_preprocess_node__default(array &$variables): void {
+  civictheme_preprocess_node__full($variables);
 }
 
 /**
- * Pre-process CivicTheme Alert nodes.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for civictheme_alert full.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;

@@ -32,11 +32,11 @@ function civictheme_preprocess_paragraph__civictheme_snippet_ref(array &$variabl
 }
 
 /**
- * Implements template_preprocess_node().
+ * Implements hook_preprocess_node__VIEW_MODE() for civictheme_snippet.
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_node__civictheme_snippet(array &$variables): void {
+function civictheme_preprocess_node__civictheme_snippet(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables, $variables['view_mode'] ?? 'civictheme_snippet');
   _civictheme_preprocess_paragraph__node_field__link($variables);
