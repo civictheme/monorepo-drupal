@@ -594,6 +594,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *   The processed field value render array, or the default value.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_get_wysiwyg_field_value(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE, string $theme = CivicthemeConstants::THEME_LIGHT, mixed $default = NULL, array &$build = []): mixed {
   $value = civictheme_get_field_value($entity, $field_name, $only_first, $default, $build);
@@ -607,13 +608,12 @@ function civictheme_get_wysiwyg_field_value(FieldableEntityInterface $entity, st
   if ($only_first) {
     if (!empty($value['#text'])) {
       $value['#text'] = _civictheme_process__html_content($value['#text'], $options, $value['#format'] ?? NULL);
+      return $value;
     }
   }
-  else {
-    foreach (Element::children($value) as $key) {
-      if (!empty($value[$key]['#text'])) {
-        $value[$key]['#text'] = _civictheme_process__html_content($value[$key]['#text'], $options, $value[$key]['#format'] ?? NULL);
-      }
+  foreach (Element::children($value) as $key) {
+    if (!empty($value[$key]['#text'])) {
+      $value[$key]['#text'] = _civictheme_process__html_content($value[$key]['#text'], $options, $value[$key]['#format'] ?? NULL);
     }
   }
 
