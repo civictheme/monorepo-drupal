@@ -273,6 +273,7 @@ function civictheme_preprocess_node(array &$variables): void {
  */
 function civictheme_preprocess_block(array &$variables): void {
   _civictheme_preprocess_block__drupal($variables);
+  _civictheme_preprocess_block__label_heading_level($variables);
   _civictheme_preprocess_block__system_main_block($variables);
   _civictheme_preprocess_block__civictheme_banner($variables);
   _civictheme_preprocess_block__navigation($variables);
