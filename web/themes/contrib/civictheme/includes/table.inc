@@ -8,13 +8,14 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements template_preprocess_table().
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_table(array &$variables): void {
   if (!empty($variables['header'])) {
