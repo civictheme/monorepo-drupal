@@ -20,6 +20,8 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Url;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
 
 /**
  * Get a CivicTheme layout builder setting from field variables.
@@ -564,4 +566,250 @@ function _civictheme_preprocess_field__wrap_entity_reference(array &$variables):
     $items[] = $item['content'];
   }
   $variables['items'] = $items;
+}
+
+/**
+ * Implements hook_preprocess_field__entity_reference().
+ *
+ * Renders media entity references using CivicTheme SDC components when
+ * the formatter view mode is 'component'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_field__entity_reference(array &$variables): void {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+  if ($view_mode !== 'component') {
+    return;
+  }
+
+  $items = $variables['element']['#items'] ?? NULL;
+  if (!$items) {
+    return;
+  }
+
+  $entity = $items->first()?->entity ?? NULL;
+  if (!$entity instanceof MediaInterface) {
+    return;
+  }
+
+  $bundle = $entity->bundle();
+  $handlers = [
+    'civictheme_image' => '_civictheme_preprocess_field__media_image',
+    'civictheme_video' => '_civictheme_preprocess_field__media_video',
+    'civictheme_remote_video' => '_civictheme_preprocess_field__media_remote_video',
+  ];
+
+  if (isset($handlers[$bundle])) {
+    $handlers[$bundle]($variables);
+  }
+}
+
+/**
+ * Preprocess media image fields into civictheme:figure components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_image(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+  $image_factory = \Drupal::service('image.factory');
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  $figures = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image');
+    if (!$image_file instanceof FileInterface) {
+      continue;
+    }
+
+    $image = $image_factory->get($image_file->getFileUri());
+    if (!$image->isValid()) {
+      continue;
+    }
+
+    $image_url = $file_url_generator->generateString($image_file->getFileUri());
+    $caption = $media->get('field_c_m_caption')->getString();
+
+    $figure = [
+      '#type' => 'component',
+      '#component' => 'civictheme:figure',
+      '#props' => [
+        'theme' => $theme,
+        'url' => $file_url_generator->transformRelative($image_url),
+        'alt' => $media->get('field_c_m_image')->first()->get('alt')->getString(),
+        'width' => (string) $image->getWidth(),
+        'height' => (string) $image->getHeight(),
+      ],
+    ];
+
+    if (!empty($caption)) {
+      $figure['#slots']['caption'] = ['#markup' => $caption];
+    }
+
+    $figures[] = $figure;
+  }
+
+  if (empty($figures)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $figures,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
+}
+
+/**
+ * Preprocess media video fields into civictheme:video-player components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_video(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $players = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $sources = [];
+    foreach ($media->get('field_c_m_video_file')->referencedEntities() as $video_file) {
+      if (!$video_file instanceof FileInterface) {
+        continue;
+      }
+
+      $sources[] = [
+        'url' => $video_file->createFileUrl(),
+        'type' => $video_file->getMimeType(),
+      ];
+    }
+
+    if (empty($sources)) {
+      continue;
+    }
+
+    $players[] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:video-player',
+      '#props' => [
+        'theme' => $theme,
+        'sources' => $sources,
+      ],
+    ];
+  }
+
+  if (empty($players)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
+}
+
+/**
+ * Preprocess media remote video fields into civictheme:video-player components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_preprocess_field__media_remote_video(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $players = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    try {
+      $oembed_field = $media->get('field_c_m_oembed_video')->first();
+      if (!$oembed_field) {
+        continue;
+      }
+
+      $resource_url = \Drupal::service('media.oembed.url_resolver')
+        ->getResourceUrl($oembed_field->getValue()['value']);
+      $resource = \Drupal::service('media.oembed.resource_fetcher')
+        ->fetchResource($resource_url);
+
+      $html = $resource->getHtml();
+
+      // Set 'title' attribute on the oEmbed iframe element.
+      $doc = _civictheme_get_dom_document($html);
+      $iframe_elements = $doc->getElementsByTagName('iframe');
+      if (!empty($iframe_elements[0])) {
+        $iframe_elements[0]->setAttribute('title', $media->getName());
+        $html = $doc->saveHTML($iframe_elements[0]);
+      }
+
+      $players[] = [
+        '#type' => 'component',
+        '#component' => 'civictheme:video-player',
+        '#props' => [
+          'theme' => $theme,
+          'raw_source' => $html,
+        ],
+      ];
+    }
+    catch (\Exception) {
+      // Skip media items that fail oEmbed resolution.
+    }
+  }
+
+  if (empty($players)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
 }
