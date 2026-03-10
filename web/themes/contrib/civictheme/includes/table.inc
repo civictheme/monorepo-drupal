@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -40,20 +41,36 @@ function civictheme_preprocess_table(array &$variables): void {
     $variables['header_sanitized'] = $header_sanitized;
   }
 
-  // Rows, Footer.
+  // Rows, Footer - preserve row and cell attributes for table drag and other
+  // Drupal behaviors (e.g. Layout Builder block order).
   foreach (['rows', 'footer'] as $section) {
     $rows = [];
 
     if (!empty($variables[$section])) {
       foreach ($variables[$section] as $row_key => $row) {
         $row_cells = $row['cells'] ?? $row['columns'] ?? [];
+        $row_attrs = $row['attributes'] ?? [];
+        $rows[$row_key] = [
+          // Store as array so Element::children() does not receive an object.
+          'attributes' => $row_attrs instanceof Attribute ? $row_attrs->toArray() : (array) $row_attrs,
+        ];
         foreach ($row_cells as $cell) {
-          $cell = $cell['content'] ?? '';
-          $cell = civictheme_render($cell);
-          $cell = _civictheme_process__html_content($cell);
-          $rows[$row_key][] = [
-            '#type' => 'markup',
-            '#markup' => $cell,
+          $cell_content = is_array($cell) ? ($cell['content'] ?? $cell['data'] ?? '') : $cell;
+          $cell_attributes = isset($cell['attributes']) && $cell['attributes'] instanceof Attribute
+            ? clone $cell['attributes']
+            : new Attribute(is_array($cell) && isset($cell['attributes']) ? $cell['attributes'] : []);
+          if (is_array($cell_content) && !empty($cell_content['#attributes'])) {
+            $cell_attributes->merge(new Attribute($cell_content['#attributes']));
+          }
+          $cell_content = civictheme_render($cell_content);
+          $cell_content = _civictheme_process__html_content($cell_content);
+          $rows[$row_key]['cols'][] = [
+            'content' => [
+              '#type' => 'markup',
+              '#markup' => $cell_content,
+            ],
+            // Store as array so Element::children() does not receive an object.
+            'attributes' => $cell_attributes->toArray(),
           ];
         }
       }
