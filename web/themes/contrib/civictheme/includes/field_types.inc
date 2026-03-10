@@ -335,11 +335,17 @@ function civictheme_preprocess_field__list_integer(array &$variables): void {
 
 /**
  * Implements hook_preprocess_field__link().
+ *
+ * Renders link fields using civictheme:link. Multi-value fields are wrapped
+ * in a civictheme:item-list component.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_field__link(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
 
-  foreach ($variables['items'] as $delta => &$item) {
+  $links = [];
+  foreach ($variables['items'] as $delta => $item) {
     $element = $variables['element'][$delta] ?? [];
 
     $url = $element['#url'] ?? NULL;
@@ -347,9 +353,9 @@ function civictheme_preprocess_field__link(array &$variables): void {
     $url_string = $url instanceof Url ? $url->toString() : '';
     $is_external = $url instanceof Url ? $url->isExternal() : FALSE;
 
-    $item['content'] = [
+    $links[] = [
       '#type' => 'component',
-      '#component' => 'civictheme:content-link',
+      '#component' => 'civictheme:link',
       '#props' => [
         'theme' => $theme,
         'text' => $title,
@@ -359,6 +365,52 @@ function civictheme_preprocess_field__link(array &$variables): void {
       ],
     ];
   }
+
+  // Single link: render directly without item-list wrapper.
+  if (count($links) === 1) {
+    $inner = $links[0];
+  }
+  else {
+    // Multiple links: render each, then wrap in an item-list.
+    $direction = _civictheme_field_get_layout_builder_setting($variables, 'direction') ?? 'vertical';
+    $size = _civictheme_field_get_layout_builder_setting($variables, 'size') ?? 'regular';
+    $no_gap = !empty(_civictheme_field_get_layout_builder_setting($variables, 'no_gap'));
+
+    $rendered_links = [];
+    foreach ($links as $link) {
+      $rendered_links[] = \Drupal::service('renderer')->renderInIsolation($link);
+    }
+
+    $inner = [
+      '#type' => 'component',
+      '#component' => 'civictheme:item-list',
+      '#props' => [
+        'direction' => $direction,
+        'size' => $size,
+        'no_gap' => $no_gap,
+        'items' => $rendered_links,
+      ],
+    ];
+  }
+
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $inner,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
 }
 
 /**

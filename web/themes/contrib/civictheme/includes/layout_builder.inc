@@ -105,6 +105,8 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
     ],
   ];
 
+  _civictheme_layout_builder_block_form_alter_link($form, $formatter, $settings, $enabled_state);
+
   // Add list settings when the formatter uses a card view mode.
   $view_mode = $formatter['settings']['view_mode'] ?? NULL;
   $card_view_modes = _civictheme_card_view_modes();
@@ -190,4 +192,54 @@ function _civictheme_preprocess_field__civictheme_layout_builder_settings(array 
   $variables['theme'] = _civictheme_field_get_theme($variables);
   $variables['vertical_spacing'] = _civictheme_field_get_vertical_spacing($variables);
   $variables['with_background'] = _civictheme_field_get_with_background($variables);
+}
+
+/**
+ * Add item-list settings to the layout builder block form for link formatters.
+ *
+ * @param array $form
+ *   The form array.
+ * @param array $formatter
+ *   The formatter configuration.
+ * @param array $settings
+ *   The existing CivicTheme third party settings.
+ * @param array $enabled_state
+ *   The #states array for visibility when CivicTheme settings are enabled.
+ */
+function _civictheme_layout_builder_block_form_alter_link(array &$form, array $formatter, array $settings, array $enabled_state): void {
+  $formatter_type = $formatter['type'] ?? NULL;
+  if ($formatter_type !== 'link') {
+    return;
+  }
+
+  $form['civictheme_settings']['direction'] = [
+    '#type' => 'radios',
+    '#title' => t('Direction'),
+    '#options' => [
+      'horizontal' => t('Horizontal'),
+      'vertical' => t('Vertical'),
+    ],
+    '#default_value' => $settings['direction'] ?? 'vertical',
+    '#states' => $enabled_state,
+  ];
+
+  $form['civictheme_settings']['size'] = [
+    '#type' => 'radios',
+    '#title' => t('Size'),
+    '#options' => [
+      'large' => t('Large'),
+      'regular' => t('Regular'),
+      'small' => t('Small'),
+    ],
+    '#default_value' => $settings['size'] ?? 'regular',
+    '#states' => $enabled_state,
+  ];
+
+  $form['civictheme_settings']['no_gap'] = [
+    '#type' => 'checkbox',
+    '#title' => t('No gap'),
+    '#description' => t('Remove gaps between list items.'),
+    '#default_value' => $settings['no_gap'] ?? FALSE,
+    '#states' => $enabled_state,
+  ];
 }
