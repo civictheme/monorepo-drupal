@@ -413,7 +413,8 @@ function civictheme_preprocess_field__link(array &$variables): void {
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
 
 /**
@@ -686,7 +687,8 @@ function _civictheme_preprocess_field__media_image(array &$variables): void {
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
 
 /**
@@ -750,7 +752,8 @@ function _civictheme_preprocess_field__media_video(array &$variables): void {
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
 
 /**
@@ -824,7 +827,8 @@ function _civictheme_preprocess_field__media_remote_video(array &$variables): vo
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
 
 /**
@@ -861,7 +865,8 @@ function _civictheme_preprocess_field__taxonomy_tag_list(array &$variables): voi
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
 
 /**
@@ -913,7 +918,8 @@ function _civictheme_preprocess_field__entity_reference_label(array &$variables)
     $variables['items'] = [[
       'content' => $items_render[0],
       'attributes' => $variables['items'][0]['attributes'] ?? [],
-    ]];
+    ],
+    ];
 
     return;
   }
@@ -940,5 +946,6 @@ function _civictheme_preprocess_field__entity_reference_label(array &$variables)
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
-  ]];
+  ],
+  ];
 }
