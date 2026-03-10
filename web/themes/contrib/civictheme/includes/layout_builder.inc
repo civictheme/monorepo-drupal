@@ -195,7 +195,10 @@ function _civictheme_preprocess_field__civictheme_layout_builder_settings(array 
 }
 
 /**
- * Add item-list settings to the layout builder block form for link formatters.
+ * Add item-list settings to the layout builder block form for list formatters.
+ *
+ * Applies to link and entity_reference_label formatters which render as
+ * civictheme:item-list when multi-value.
  *
  * @param array $form
  *   The form array.
@@ -208,7 +211,7 @@ function _civictheme_preprocess_field__civictheme_layout_builder_settings(array 
  */
 function _civictheme_layout_builder_block_form_alter_link(array &$form, array $formatter, array $settings, array $enabled_state): void {
   $formatter_type = $formatter['type'] ?? NULL;
-  if ($formatter_type !== 'link') {
+  if (!in_array($formatter_type, ['link', 'entity_reference_label'], TRUE)) {
     return;
   }
 

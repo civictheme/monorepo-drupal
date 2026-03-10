@@ -22,6 +22,7 @@ use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Url;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Get a CivicTheme layout builder setting from field variables.
@@ -571,16 +572,13 @@ function _civictheme_preprocess_field__wrap_entity_reference(array &$variables):
 /**
  * Implements hook_preprocess_field__entity_reference().
  *
- * Renders media entity references using CivicTheme SDC components when
- * the formatter view mode is 'component'.
+ * Dispatches entity reference fields to CivicTheme SDC component handlers
+ * based on view mode and referenced entity type/bundle.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_field__entity_reference(array &$variables): void {
   $view_mode = _civictheme_field_get_entity_view_mode($variables);
-  if ($view_mode !== 'component') {
-    return;
-  }
 
   $items = $variables['element']['#items'] ?? NULL;
   if (!$items) {
@@ -588,19 +586,34 @@ function civictheme_preprocess_field__entity_reference(array &$variables): void 
   }
 
   $entity = $items->first()?->entity ?? NULL;
-  if (!$entity instanceof MediaInterface) {
+
+  // Media fields with 'component' view mode.
+  if ($view_mode === 'component' && $entity instanceof MediaInterface) {
+    $handlers = [
+      'civictheme_image' => '_civictheme_preprocess_field__media_image',
+      'civictheme_video' => '_civictheme_preprocess_field__media_video',
+      'civictheme_remote_video' => '_civictheme_preprocess_field__media_remote_video',
+    ];
+
+    $bundle = $entity->bundle();
+    if (isset($handlers[$bundle])) {
+      $handlers[$bundle]($variables);
+    }
+
     return;
   }
 
-  $bundle = $entity->bundle();
-  $handlers = [
-    'civictheme_image' => '_civictheme_preprocess_field__media_image',
-    'civictheme_video' => '_civictheme_preprocess_field__media_video',
-    'civictheme_remote_video' => '_civictheme_preprocess_field__media_remote_video',
-  ];
+  // Taxonomy term fields with 'civictheme_tag' view mode.
+  if ($view_mode === 'civictheme_tag' && $entity instanceof TermInterface) {
+    _civictheme_preprocess_field__taxonomy_tag_list($variables);
 
-  if (isset($handlers[$bundle])) {
-    $handlers[$bundle]($variables);
+    return;
+  }
+
+  // Entity reference label formatter.
+  $formatter = $variables['element']['#formatter'] ?? NULL;
+  if ($formatter === 'entity_reference_label') {
+    _civictheme_preprocess_field__entity_reference_label($variables);
   }
 }
 
@@ -808,6 +821,122 @@ function _civictheme_preprocess_field__media_remote_video(array &$variables): vo
       ],
       '#slots' => [
         'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
+}
+
+/**
+ * Preprocess taxonomy term fields into a civictheme:tag-list component.
+ */
+function _civictheme_preprocess_field__taxonomy_tag_list(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+
+  $tags = [];
+  foreach ($variables['element']['#items']->referencedEntities() as $term) {
+    if (!$term instanceof TermInterface) {
+      continue;
+    }
+
+    $tags[] = [
+      'content' => $term->label(),
+      'url' => (string) $term->toUrl()->toString(),
+    ];
+  }
+
+  if (empty($tags)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:tag-list',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'tags' => $tags,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ]];
+}
+
+/**
+ * Preprocess entity reference label fields into link/item-list components.
+ *
+ * Renders labels as civictheme:link when linked, or plain text in an
+ * item-list when not linked. Single items render without the list wrapper.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__entity_reference_label(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+
+  $items_render = [];
+  foreach ($variables['items'] as $delta => $item) {
+    $element = $variables['element'][$delta] ?? [];
+
+    if (isset($element['#type']) && $element['#type'] === 'link') {
+      $url = $element['#url'] ?? NULL;
+      $title = $element['#title'] ?? '';
+      $url_string = $url instanceof Url ? $url->toString() : '';
+      $is_external = $url instanceof Url ? $url->isExternal() : FALSE;
+
+      $items_render[] = [
+        '#type' => 'component',
+        '#component' => 'civictheme:link',
+        '#props' => [
+          'theme' => $theme,
+          'text' => $title,
+          'url' => (string) $url_string,
+          'is_external' => $is_external,
+          'is_new_window' => $is_external,
+        ],
+      ];
+    }
+    else {
+      $items_render[] = [
+        '#markup' => $element['#plain_text'] ?? '',
+      ];
+    }
+  }
+
+  if (empty($items_render)) {
+    return;
+  }
+
+  // Single item: render directly without item-list wrapper.
+  if (count($items_render) === 1) {
+    $variables['items'] = [[
+      'content' => $items_render[0],
+      'attributes' => $variables['items'][0]['attributes'] ?? [],
+    ]];
+
+    return;
+  }
+
+  // Multiple items: wrap in an item-list.
+  $direction = _civictheme_field_get_layout_builder_setting($variables, 'direction') ?? 'vertical';
+  $size = _civictheme_field_get_layout_builder_setting($variables, 'size') ?? 'regular';
+  $no_gap = !empty(_civictheme_field_get_layout_builder_setting($variables, 'no_gap'));
+
+  $rendered_items = [];
+  foreach ($items_render as $render) {
+    $rendered_items[] = \Drupal::service('renderer')->renderInIsolation($render);
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:item-list',
+      '#props' => [
+        'direction' => $direction,
+        'size' => $size,
+        'no_gap' => $no_gap,
+        'items' => $rendered_items,
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
