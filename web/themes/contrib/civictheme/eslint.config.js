@@ -33,6 +33,9 @@ export default [
   js.configs.recommended,
 
   {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'off',
+    },
     plugins: {
       'import-newlines': importNewlines,
     },
