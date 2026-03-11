@@ -57,12 +57,9 @@ function civictheme_preprocess_table(array &$variables): void {
         ];
         foreach ($row_cells as $cell) {
           $cell_content = is_array($cell) ? ($cell['content'] ?? $cell['data'] ?? '') : $cell;
-          $cell_attributes = isset($cell['attributes']) && $cell['attributes'] instanceof Attribute
+          $cell_attributes = is_array($cell) && isset($cell['attributes']) && $cell['attributes'] instanceof Attribute
             ? clone $cell['attributes']
             : new Attribute(is_array($cell) && isset($cell['attributes']) ? $cell['attributes'] : []);
-          if (is_array($cell_content) && !empty($cell_content['#attributes'])) {
-            $cell_attributes->merge(new Attribute($cell_content['#attributes']));
-          }
           $cell_content = civictheme_render($cell_content);
           $cell_content = _civictheme_process__html_content($cell_content);
           $rows[$row_key]['cols'][] = [
