@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements template_preprocess_paragraph().
@@ -33,6 +34,13 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $parent = $paragraph->getParentEntity();
+  if ($parent instanceof Paragraph && $parent->bundle() === 'civictheme_slider') {
+    $variables['heading_level'] = civictheme_field_has_value($parent, 'field_c_p_title') ? 3 : 2;
+  }
+
   _civictheme_preprocess_paragraph__paragraph_field__image($variables, CivicthemeConstants::SLIDER_SLIDE_IMAGE_STYLE);
   _civictheme_preprocess_paragraph__paragraph_field__image_position($variables);
   _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
@@ -51,6 +59,11 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variab
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+
+  $parent = $paragraph->getParentEntity();
+  if ($parent instanceof Paragraph && $parent->bundle() === 'civictheme_slider') {
+    $variables['heading_level'] = civictheme_field_has_value($parent, 'field_c_p_title') ? 3 : 2;
+  }
 
   /** @var \Drupal\node\NodeInterface|null $node */
   $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE, build: $variables);
