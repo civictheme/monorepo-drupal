@@ -3,7 +3,7 @@
   <img height=100px src="web/themes/contrib/civictheme/assets/logos/logo_secondary_light_mobile.png" alt="CivicTheme logo"></a>
 </p>
 
-<h1 align="center">CivicTheme - Development source site</h1>
+<h1 align="center">CivicTheme - Development source site - Test.</h1>
 
 <p>Monorepo used to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.</p>
 
