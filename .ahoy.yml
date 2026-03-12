@@ -21,74 +21,98 @@ commands:
       ahoy info
 
   build-minimal:
-    usage: Build with minimal profile (no sub-theme).
+    usage: Build with minimal profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export DRUPAL_PROFILE=minimal &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-minimal-subtheme:
-    usage: Build with minimal profile (with sub-theme).
+    usage: Build with minimal profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export DRUPAL_PROFILE=minimal &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-govcms:
-    usage: Build with GovCMS profile (no sub-theme).
+    usage: Build with GovCMS profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-govcms-subtheme:
-    usage: Build with GovCMS profile (with sub-theme).
+    usage: Build with GovCMS profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export DRUPAL_PROFILE=govcms &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-govcms-subtheme-sibling:
-    usage: Build with GovCMS profile (sub-theme as sibling).
+    usage: Build with GovCMS profile (sub-theme as sibling). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_INSTALL_SIBLING=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-content-corporate:
-    usage: Build with corporate content profile.
+    usage: Build with corporate content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export CIVICTHEME_CONTENT_PROFILE=corporate &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-content-highereducation:
-    usage: Build with higher education content profile.
+    usage: Build with higher education content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export CIVICTHEME_CONTENT_PROFILE=highereducation &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   build-content-government:
-    usage: Build with government content profile.
+    usage: Build with government content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
       export CIVICTHEME_CONTENT_PROFILE=government &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        ahoy provision && ahoy info
+      else
+        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+        ./scripts/drevops/build.sh && ahoy info
+      fi
 
   info:
     usage: Show information about this project.
@@ -155,7 +179,7 @@ commands:
     # will then be forwarded to the container.
     # Escape double quotes with \" (slash double-quote) when passing arguments
     # with spaces.
-    cmd: if \[ "${#}" -ne 0 \]; then docker compose exec $(env | cut -f1 -d= | grep "TERM\|COMPOSE_\|GITHUB_\|DOCKER_\DRUPAL_\|DREVOPS_" | sed 's/^/-e /') -T cli bash -c "$*"; else docker compose exec cli bash; fi
+    cmd: if \[ "${#}" -ne 0 \]; then docker compose exec $(env | cut -f1 -d= | grep "TERM\|COMPOSE_\|GITHUB_\|DOCKER_\|DRUPAL_\|DREVOPS_\|CIVICTHEME_" | sed 's/^/-e /') -T cli bash -c "$*"; else docker compose exec cli bash; fi
 
   composer:
     usage: Run Composer commands in the CLI service container.
