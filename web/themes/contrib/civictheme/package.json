@@ -35,6 +35,7 @@
     "storybook": "storybook dev -p 6007",
     "storybook-build": "npm run dist && storybook build",
     "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\"",
+    "uikit-clean-install": "rm -Rf components > /dev/null 2>&1 && rm -Rf node_modules/@civictheme > /dev/null 2>&1 && npm install && npm run uikit-install",
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && ([ -d \"node_modules/@civictheme/uikit/packages/sdc/components\" ] && cp -R node_modules/@civictheme/uikit/packages/sdc/components components || ([ -d \"node_modules/@civictheme/sdc/components\" ] && cp -R node_modules/@civictheme/sdc/components components || (echo \"Error: No components directory found\" && exit 1)))"
   },
   "dependencies": {
