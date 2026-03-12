@@ -185,6 +185,9 @@
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch",
                 "Installation of CT failing due to missing layout column plugin": "patches/modules/core/14337.patch"
+            },
+            "drupal/simple_sitemap": {
+                "Fix error on installation - incorrect route name": "patches/modules/simple_sitemap/fix-error-on-install.patch"
             }
         },
         "preserve-paths": [
