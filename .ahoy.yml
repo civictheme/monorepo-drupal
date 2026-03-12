@@ -43,11 +43,18 @@ commands:
         ./scripts/drevops/build.sh && ahoy info
       fi
 
+  composer-install-govcms:
+    usage: Install GovCMS composer dependencies from lock file.
+    cmd: |
+      export COMPOSER=composer.govcms.json &&
+      ahoy composer install
+
   build-govcms:
     usage: Build with GovCMS profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         ahoy provision && ahoy info
       else
@@ -59,6 +66,7 @@ commands:
     usage: Build with GovCMS profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
       export DRUPAL_PROFILE=govcms &&
+      export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         ahoy provision && ahoy info
       else
@@ -71,6 +79,7 @@ commands:
     cmd: |
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_INSTALL_SIBLING=1 &&
+      export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         ahoy provision && ahoy info
       else
@@ -221,6 +230,63 @@ commands:
   provision:
     usage: Provision a site from the database dump or profile.
     cmd: ahoy cli ./scripts/drevops/provision.sh
+
+  provision-minimal:
+    usage: Provision with minimal profile (no sub-theme).
+    cmd: |
+      export DRUPAL_PROFILE=minimal &&
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      ahoy provision && ahoy info
+
+  provision-minimal-subtheme:
+    usage: Provision with minimal profile (with sub-theme).
+    cmd: |
+      export DRUPAL_PROFILE=minimal &&
+      ahoy provision && ahoy info
+
+  provision-govcms:
+    usage: Provision with GovCMS profile (no sub-theme).
+    cmd: |
+      export DRUPAL_PROFILE=govcms &&
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      export COMPOSER=composer.govcms.json &&
+      ahoy provision && ahoy info
+
+  provision-govcms-subtheme:
+    usage: Provision with GovCMS profile (with sub-theme).
+    cmd: |
+      export DRUPAL_PROFILE=govcms &&
+      export COMPOSER=composer.govcms.json &&
+      ahoy provision && ahoy info
+
+  provision-govcms-subtheme-sibling:
+    usage: Provision with GovCMS profile (sub-theme as sibling).
+    cmd: |
+      export DRUPAL_PROFILE=govcms &&
+      export CIVICTHEME_INSTALL_SIBLING=1 &&
+      export COMPOSER=composer.govcms.json &&
+      ahoy provision && ahoy info
+
+  provision-content-corporate:
+    usage: Provision with corporate content profile.
+    cmd: |
+      export CIVICTHEME_CONTENT_PROFILE=corporate &&
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      ahoy provision && ahoy info
+
+  provision-content-highereducation:
+    usage: Provision with higher education content profile.
+    cmd: |
+      export CIVICTHEME_CONTENT_PROFILE=highereducation &&
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      ahoy provision && ahoy info
+
+  provision-content-government:
+    usage: Provision with government content profile.
+    cmd: |
+      export CIVICTHEME_CONTENT_PROFILE=government &&
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      ahoy provision && ahoy info
 
   export-db:
     usage: Export database dump or database image (if DREVOPS_DB_DOCKER_IMAGE variable is set).
