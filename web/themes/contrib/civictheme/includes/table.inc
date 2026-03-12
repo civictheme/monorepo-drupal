@@ -16,6 +16,7 @@ use Drupal\Core\Template\Attribute;
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_preprocess_table(array &$variables): void {
   if (!empty($variables['header'])) {
@@ -34,7 +35,13 @@ function civictheme_preprocess_table(array &$variables): void {
         $header_item = ['#title' => $header_item];
       }
       $header_item = $header_item ?? '';
-      $rendered = (string) \Drupal::service('renderer')->render($header_item);
+      // Renderer::render() requires an array in Drupal 11.3+;.
+      if (is_array($header_item)) {
+        $rendered = (string) \Drupal::service('renderer')->render($header_item);
+      }
+      else {
+        $rendered = (string) $header_item;
+      }
       // Set to empty string if visually-hidden class is present.
       $has_visually_hidden = preg_match('/class=["\'][^"\']*\b(?:visually-hidden|ct-visually-hidden)\b[^"\']*["\']/', $rendered);
       $header_sanitized[] = $has_visually_hidden ? '' : strip_tags($rendered);
