@@ -43,11 +43,11 @@ commands:
         ./scripts/drevops/build.sh && ahoy info
       fi
 
-  composer-install-govcms:
-    usage: Install GovCMS composer dependencies from lock file.
+  composer-govcms:
+    usage: Run Composer commands with the GovCMS composer file (e.g. ahoy composer-govcms install, ahoy composer-govcms update).
     cmd: |
       export COMPOSER=composer.govcms.json &&
-      ahoy composer install
+      ahoy composer "$@"
 
   build-govcms:
     usage: Build with GovCMS profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
@@ -257,7 +257,7 @@ commands:
     cmd: |
       if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
         echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-install-govcms
+        ahoy composer-govcms install
       fi
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
@@ -269,7 +269,7 @@ commands:
     cmd: |
       if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
         echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-install-govcms
+        ahoy composer-govcms install
       fi
       export DRUPAL_PROFILE=govcms &&
       export COMPOSER=composer.govcms.json &&
@@ -280,7 +280,7 @@ commands:
     cmd: |
       if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
         echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-install-govcms
+        ahoy composer-govcms install
       fi
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_INSTALL_SIBLING=1 &&
