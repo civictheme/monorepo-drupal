@@ -9,7 +9,6 @@ libraries:
   - 'civictheme/css-variables'
 
 dependencies:
-  - components:components
   - drupal:block_content
   - drupal:ckeditor5
   - drupal:config
@@ -37,6 +36,20 @@ dependencies:
   - pathauto:pathauto
   - redirect:redirect
   - webform:webform
+  - drupal:block
+  - drupal:contextual
+  - drupal:datetime
+  - drupal:editor
+  - entity_reference_revisions:entity_reference_revisions
+  - drupal:file
+  - drupal:filter
+  - drupal:link
+  - drupal:menu_ui
+  - drupal:node
+  - drupal:path
+  - drupal:serialization
+  - drupal:system
+  - drupal:text
 
 regions:
   header_top_1: 'Header top 1'
