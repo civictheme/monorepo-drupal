@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 const THEME_DIR = path.resolve(__dirname, '../../web/themes/contrib/civictheme');
 const yaml = require(path.join(THEME_DIR, 'node_modules/js-yaml'));
@@ -44,18 +43,46 @@ function getInfoDependencies() {
   return modules;
 }
 
-function findModulePath(mod) {
-  try {
-    const output = execSync(
-      `find "${WEB_DIR}/core" "${WEB_DIR}/modules/contrib" "${WEB_DIR}/modules/custom" -name "${mod}.info.yml" -type f 2>/dev/null || true`,
-      { encoding: 'utf8' }
-    ).trim();
+function findFileRecursive(dir, filename) {
+  if (!fs.existsSync(dir)) {
+    return null;
+  }
 
-    if (output) {
-      return output.split('\n')[0];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isFile() && entry.name === filename) {
+      return fullPath;
     }
-  } catch {
-    // ignore
+    if (entry.isDirectory()) {
+      const result = findFileRecursive(fullPath, filename);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  return null;
+}
+
+function findModulePath(mod) {
+  // Drupal machine names are alphanumeric with underscores only.
+  if (!/^[a-z0-9_]+$/i.test(mod)) {
+    return null;
+  }
+
+  const filename = `${mod}.info.yml`;
+  const searchDirs = [
+    path.join(WEB_DIR, 'core'),
+    path.join(WEB_DIR, 'modules', 'contrib'),
+    path.join(WEB_DIR, 'modules', 'custom'),
+  ];
+
+  for (const dir of searchDirs) {
+    const result = findFileRecursive(dir, filename);
+    if (result) {
+      return result;
+    }
   }
 
   return null;
