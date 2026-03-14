@@ -22,6 +22,5 @@ $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\TrailingSpaceRule());
 $config = new TwigCsFixer\Config\Config();
 $config->setRuleset($ruleset);
 $config->allowNonFixableRules();
-$config->addTokenParser(new Drupal\Core\Template\TwigTransTokenParser());
 
 return $config;
