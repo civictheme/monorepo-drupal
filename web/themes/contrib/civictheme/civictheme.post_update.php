@@ -1317,3 +1317,27 @@ function civictheme_post_update_migrate_logo_image_alt_to_per_type(): Translatab
 
   return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
 }
+
+/**
+ * Update custom date field label display to hidden on civictheme_page.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_custom_date_label_display(): string {
+  $config_name = 'core.entity_view_display.node.civictheme_page.default';
+  $config = \Drupal::configFactory()->getEditable($config_name);
+
+  if ($config->isNew()) {
+    return (string) new TranslatableMarkup('Entity view display config not found. No update needed.');
+  }
+
+  $label = $config->get('content.field_c_n_custom_last_updated.label');
+  if ($label === 'hidden') {
+    return (string) new TranslatableMarkup('Custom date field label is already hidden. No update needed.');
+  }
+
+  $config->set('content.field_c_n_custom_last_updated.label', 'hidden');
+  $config->save();
+
+  return (string) new TranslatableMarkup('Updated custom date field label display to hidden on civictheme_page.');
+}

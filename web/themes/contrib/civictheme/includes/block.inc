@@ -33,3 +33,13 @@ function _civictheme_preprocess_block__drupal(array &$variables): void {
 function _civictheme_preprocess_block__theme(array &$variables): void {
   $variables['theme'] = $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT;
 }
+
+/**
+ * Preprocess a block to set the default label heading level.
+ *
+ * Override this in a sub-theme's preprocess to change the heading level
+ * for block labels.
+ */
+function _civictheme_preprocess_block__label_heading_level(array &$variables): void {
+  $variables['label_heading_level'] = $variables['label_heading_level'] ?? '2';
+}

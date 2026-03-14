@@ -41,8 +41,8 @@ third_party_settings:
         layout_id: civictheme_three_columns
         layout_settings:
           label: 'CivicTheme Three Columns'
-          is_contained: false
           context_mapping: {  }
+          is_contained: false
         components:
           5cf72ad7-c313-4cf3-9d4e-0573bbfa84a0:
             uuid: 5cf72ad7-c313-4cf3-9d4e-0573bbfa84a0
@@ -83,12 +83,15 @@ third_party_settings:
             region: main
             configuration:
               id: 'field_block:node:civictheme_page:field_c_n_custom_last_updated'
+              label: 'Custom Last updated date'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: datetime_default
-                label: above
+                label: hidden
                 settings:
                   timezone_override: ''
                   format_type: medium
@@ -143,7 +146,7 @@ content:
     region: content
   field_c_n_custom_last_updated:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: medium

@@ -26,11 +26,13 @@ require_once __DIR__ . '/includes/manual_list.inc';
 require_once __DIR__ . '/includes/cards.inc';
 require_once __DIR__ . '/includes/form_element.inc';
 require_once __DIR__ . '/includes/form.inc';
+require_once __DIR__ . '/includes/field_types.inc';
 require_once __DIR__ . '/includes/iframe.inc';
 require_once __DIR__ . '/includes/image.inc';
 require_once __DIR__ . '/includes/link.inc';
 require_once __DIR__ . '/includes/automated_list.inc';
 require_once __DIR__ . '/includes/layout.inc';
+require_once __DIR__ . '/includes/layout_builder.inc';
 require_once __DIR__ . '/includes/local_tasks.inc';
 require_once __DIR__ . '/includes/libraries.inc';
 require_once __DIR__ . '/includes/map.inc';
@@ -131,6 +133,14 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
  * Implements hook_theme_registry_alter().
  */
 function civictheme_theme_registry_alter(array &$theme_registry): void {
+  // Register view-mode-specific node preprocess functions on all matching
+  // suggestion entries. Drupal only auto-discovers preprocess functions for
+  // exact registry entry names (e.g. node__civictheme_promo_card), but when a
+  // more specific template like node--civictheme-page--civictheme-promo-card
+  // is used, the view-mode preprocess won't run. This ensures view-mode
+  // preprocesses run for all bundle+view_mode combinations.
+  _civictheme_theme_registry_alter__node_preprocess($theme_registry);
+
   // Define a new preprocess hook that will always run last.
   $hook = 'civictheme_preprocess_last';
 
@@ -152,6 +162,56 @@ function civictheme_theme_registry_alter(array &$theme_registry): void {
     }
     else {
       $theme_registry[$name]['preprocess functions'][] = $hook;
+    }
+  }
+}
+
+/**
+ * Register node view-mode preprocess functions on all matching suggestions.
+ *
+ * For each node suggestion entry in the theme registry (e.g.
+ * node__civictheme_page__civictheme_promo_card), this checks whether a
+ * view-mode preprocess function exists (e.g.
+ * civictheme_preprocess_node__civictheme_promo_card) and registers it.
+ *
+ * This handles all themes in the chain (base theme + sub-themes) so that
+ * sub-theme preprocess functions are also discovered and registered.
+ *
+ * This also handles content-type-specific preprocesses for the full and
+ * default view modes (e.g. civictheme_preprocess_node__civictheme_page__full).
+ */
+function _civictheme_theme_registry_alter__node_preprocess(array &$theme_registry): void {
+  // Collect all theme names in the chain (base themes + active theme).
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  $theme_names = array_keys($active_theme->getBaseThemeExtensions());
+  $theme_names[] = $active_theme->getName();
+
+  foreach ($theme_registry as $name => $info) {
+    // Only process node suggestion entries.
+    if (!str_starts_with($name, 'node__') || ($info['base hook'] ?? NULL) !== 'node') {
+      continue;
+    }
+
+    $parts = explode('__', $name);
+    // Extract the view mode (last part) from entries like
+    // node__bundle__view_mode.
+    $view_mode = end($parts);
+
+    foreach ($theme_names as $theme_name) {
+      // Register the view-mode preprocess function.
+      $view_mode_function = $theme_name . '_preprocess_node__' . $view_mode;
+      if (function_exists($view_mode_function) && !in_array($view_mode_function, $theme_registry[$name]['preprocess functions'] ?? [])) {
+        $theme_registry[$name]['preprocess functions'][] = $view_mode_function;
+      }
+
+      // Register the bundle+view_mode preprocess function for entries with
+      // 3+ parts (e.g. node__civictheme_page__full).
+      if (count($parts) >= 3) {
+        $bundle_view_mode_function = $theme_name . '_preprocess_' . $name;
+        if (function_exists($bundle_view_mode_function) && !in_array($bundle_view_mode_function, $theme_registry[$name]['preprocess functions'] ?? [])) {
+          $theme_registry[$name]['preprocess functions'][] = $bundle_view_mode_function;
+        }
+      }
     }
   }
 }
@@ -207,15 +267,6 @@ function civictheme_preprocess_page(array &$variables): void {
 function civictheme_preprocess_node(array &$variables): void {
   // All nodes.
   _civictheme_preprocess_node($variables);
-
-  // Preprocessing for each node view mode.
-  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
-  if ($view_mode) {
-    $preprocessor_function = '_civictheme_preprocess_node__' . $view_mode;
-    if (function_exists($preprocessor_function)) {
-      $preprocessor_function($variables);
-    }
-  }
 }
 
 /**
@@ -223,6 +274,8 @@ function civictheme_preprocess_node(array &$variables): void {
  */
 function civictheme_preprocess_block(array &$variables): void {
   _civictheme_preprocess_block__drupal($variables);
+  _civictheme_preprocess_block__label_heading_level($variables);
+  _civictheme_preprocess_block__civictheme_layout_builder_settings($variables);
   _civictheme_preprocess_block__system_main_block($variables);
   _civictheme_preprocess_block__civictheme_banner($variables);
   _civictheme_preprocess_block__navigation($variables);
@@ -258,6 +311,7 @@ function civictheme_preprocess_menu(array &$variables): void {
 function civictheme_preprocess_field(array &$variables): void {
   _civictheme_preprocess_wysiwyg_field($variables);
   _civictheme_preprocess_date_range_field($variables);
+  _civictheme_preprocess_field__civictheme_layout_builder_settings($variables);
 }
 
 /**

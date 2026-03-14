@@ -27,9 +27,14 @@ function _civictheme_preprocess_node(array &$variables): void {
 }
 
 /**
- * Pre-process CivicTheme page nodes.
+ * Implements hook_preprocess_node__BUNDLE() for civictheme_page.
  */
-function _civictheme_preprocess_node__civictheme_page__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_page(array &$variables): void {
+  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
+  if (!in_array($view_mode, ['full', 'default'])) {
+    return;
+  }
+
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;
@@ -64,43 +69,16 @@ function _civictheme_preprocess_node__civictheme_page__full(array &$variables): 
 }
 
 /**
- * Pre-process Full view mode of nodes.
- */
-function _civictheme_preprocess_node__full(array &$variables): void {
-  $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface) {
-    return;
-  }
-
-  $type = $node->getType();
-  $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
-  if (function_exists($type_callback)) {
-    $type_callback($variables);
-  }
-}
-
-/**
- * Default view mode fallback preprocessor for nodes.
- */
-function _civictheme_preprocess_node__default(array &$variables): void {
-  $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface) {
-    return;
-  }
-
-  $type = $node->getType();
-  $type_callback = '_civictheme_preprocess_node__' . $type . '__full';
-  if (function_exists($type_callback)) {
-    $type_callback($variables);
-  }
-}
-
-/**
- * Pre-process CivicTheme Alert nodes.
+ * Implements hook_preprocess_node__BUNDLE() for civictheme_alert.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_node__civictheme_alert__full(array &$variables): void {
+function civictheme_preprocess_node__civictheme_alert(array &$variables): void {
+  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
+  if (!in_array($view_mode, ['full', 'default'])) {
+    return;
+  }
+
   $node = $variables['node'] ?? NULL;
   if (!$node instanceof NodeInterface) {
     return;
@@ -109,21 +87,9 @@ function _civictheme_preprocess_node__civictheme_alert__full(array &$variables):
   $variables['id'] = $node->id();
   $variables['title'] = Xss::filter((string) $node->label());
   $variables['title'] = strip_tags($variables['title']);
-  $body_values = civictheme_get_field_value($node, 'field_c_n_body');
-  $body = is_array($body_values) && !empty($body_values) ? $body_values[0] : NULL;
-  if ($body !== NULL && !empty($body['#text']) && !empty($body['#format'])) {
-    $text_format = $body['#format'];
-    $variables['description'] = [
-      '#type' => 'processed_text',
-      '#text' => _civictheme_process__html_content($body['#text'], [
-        // Force dark theme to make sure that text colour has enough contrast
-        // with a background.
-        'theme' => CivicthemeConstants::THEME_DARK,
-      ], $text_format),
-      '#format' => $text_format,
-      '#langcode' => $body['#langcode'],
-    ];
-  }
+  // Force dark theme to make sure that text colour has enough contrast
+  // with a background.
+  $variables['description'] = civictheme_get_wysiwyg_field_value($node, 'field_c_n_body', TRUE, CivicthemeConstants::THEME_DARK);
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type', default: 'information');
 }
 

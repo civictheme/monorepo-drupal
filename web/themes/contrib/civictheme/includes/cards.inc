@@ -42,11 +42,11 @@ function civictheme_preprocess_paragraph__civictheme_promo_card_ref(array &$vari
 }
 
 /**
- * Implements template_preprocess_node().
+ * Implements hook_preprocess_node__VIEW_MODE() for civictheme_promo_card.
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-function _civictheme_preprocess_node__civictheme_promo_card(array &$variables): void {
+function civictheme_preprocess_node__civictheme_promo_card(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
@@ -119,9 +119,9 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(array &$var
 }
 
 /**
- * Implements template_preprocess_node().
+ * Implements hook_preprocess_node__VIEW_MODE() for civictheme_navigation_card.
  */
-function _civictheme_preprocess_node__civictheme_navigation_card(array &$variables): void {
+function civictheme_preprocess_node__civictheme_navigation_card(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::NAVIGATION_CARD_IMAGE_STYLE);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__summary($variables, 'civictheme_navigation_card');
@@ -173,9 +173,9 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(array &$variab
 }
 
 /**
- * Implements template_preprocess_node().
+ * Implements hook_preprocess_node__VIEW_MODE() for civictheme_subject_card.
  */
-function _civictheme_preprocess_node__civictheme_subject_card(array &$variables): void {
+function civictheme_preprocess_node__civictheme_subject_card(array &$variables): void {
   _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::SUBJECT_CARD_IMAGE_STYLE);
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__link($variables);
