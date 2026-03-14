@@ -5,4 +5,6 @@
  */
 #}
 {% include 'civictheme:video-player' %}
-{% include 'civictheme:basic-content' %}
+{% include 'civictheme:basic-content' with {
+  vertical_spacing: vertical_spacing|default('none'),
+} %}

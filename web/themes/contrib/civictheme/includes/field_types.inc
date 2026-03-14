@@ -195,9 +195,9 @@ function _civictheme_preprocess_field__wrap_basic_content(array &$variables): vo
       '#type' => 'component',
       '#component' => 'civictheme:basic-content',
       '#props' => [
-        'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
-        'with_background' => $with_background,
+        'theme' => $theme ?? 'light',
+        'vertical_spacing' => $vertical_spacing ?? 'none',
+        'with_background' => $with_background ?? FALSE,
       ],
       '#slots' => [
         'content' => $item['content'],
@@ -228,8 +228,8 @@ function _civictheme_preprocess_field__wrap_tag_list(array &$variables): void {
       '#type' => 'component',
       '#component' => 'civictheme:tag-list',
       '#props' => [
-        'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
+        'theme' => $theme ?? 'light',
+        'vertical_spacing' => $vertical_spacing ?? 'none',
         'tags' => $tags,
       ],
     ],
@@ -417,9 +417,9 @@ function civictheme_preprocess_field__file(array &$variables): void {
       '#type' => 'component',
       '#component' => 'civictheme:attachment',
       '#props' => [
-        'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
-        'with_background' => $with_background,
+        'theme' => $theme ?? 'light',
+        'vertical_spacing' => $vertical_spacing ?? 'none',
+        'with_background' => $with_background ?? FALSE,
         'files' => $files,
       ],
     ],
