@@ -6,6 +6,7 @@
     "@civictheme/uikit": "github:civictheme/uikit#86641cbbd51fd6a4127ae59d100ecad8c1b6bad4"
   },
   "scripts": {
-    "uikit-change": "npm start --workspace=civictheme-uikit-version-change"
+    "uikit-change": "npm start --workspace=civictheme-uikit-version-change",
+    "uikit-sync": "node scripts/civictheme-component-sync/index.js"
   }
 }
