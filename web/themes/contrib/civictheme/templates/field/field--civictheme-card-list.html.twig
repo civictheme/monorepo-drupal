@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * CivicTheme field template for entity references rendered as card lists.
+ *
+ * Wraps entity reference items in a civictheme:list with a civictheme:grid.
+ *
+ * @see _civictheme_preprocess_field__wrap_entity_reference()
+ */
+#}
+{% extends 'civictheme:list' %}
+
+{% block rows_block %}
+  {% if items -%}
+    <div class="ct-list__rows">
+      {% include 'civictheme:grid' with {
+        template_column_count: column_count,
+        fill_width: fill_width,
+        items: items,
+        with_background: with_background,
+        row_class: 'row--equal-heights-content row--vertically-spaced',
+      } only %}
+    </div>
+  {% endif %}
+{% endblock %}

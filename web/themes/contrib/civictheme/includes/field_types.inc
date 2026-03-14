@@ -20,6 +20,9 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Url;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Get a CivicTheme layout builder setting from field variables.
@@ -335,21 +338,28 @@ function civictheme_preprocess_field__list_integer(array &$variables): void {
 
 /**
  * Implements hook_preprocess_field__link().
+ *
+ * Renders link fields using civictheme:link. Multi-value fields are wrapped
+ * in a civictheme:item-list component.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_field__link(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
 
-  foreach ($variables['items'] as $delta => &$item) {
-    $element = $variables['element'][$delta] ?? [];
+  $links = [];
+  $keys = array_keys($variables['items']);
+  foreach ($keys as $key) {
+    $element = $variables['element'][$key] ?? [];
 
     $url = $element['#url'] ?? NULL;
     $title = $element['#title'] ?? '';
     $url_string = $url instanceof Url ? $url->toString() : '';
     $is_external = $url instanceof Url ? $url->isExternal() : FALSE;
 
-    $item['content'] = [
+    $links[] = [
       '#type' => 'component',
-      '#component' => 'civictheme:content-link',
+      '#component' => 'civictheme:link',
       '#props' => [
         'theme' => $theme,
         'text' => $title,
@@ -359,6 +369,54 @@ function civictheme_preprocess_field__link(array &$variables): void {
       ],
     ];
   }
+
+  // Single link: render directly without item-list wrapper.
+  if (count($links) === 1) {
+    $inner = $links[0];
+  }
+
+  // Multiple links: render each, then wrap in an item-list.
+  if (count($links) !== 1) {
+    $direction = _civictheme_field_get_layout_builder_setting($variables, 'direction') ?? 'vertical';
+    $size = _civictheme_field_get_layout_builder_setting($variables, 'size') ?? 'regular';
+    $no_gap = !empty(_civictheme_field_get_layout_builder_setting($variables, 'no_gap'));
+
+    $rendered_links = [];
+    foreach ($links as $link) {
+      $rendered_links[] = \Drupal::service('renderer')->renderInIsolation($link);
+    }
+
+    $inner = [
+      '#type' => 'component',
+      '#component' => 'civictheme:item-list',
+      '#props' => [
+        'direction' => $direction,
+        'size' => $size,
+        'no_gap' => $no_gap,
+        'items' => $rendered_links,
+      ],
+    ];
+  }
+
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $inner,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
 }
 
 /**
@@ -421,6 +479,527 @@ function civictheme_preprocess_field__file(array &$variables): void {
         'vertical_spacing' => $vertical_spacing ?? 'none',
         'with_background' => $with_background,
         'files' => $files,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Card view modes and their default column counts.
+ *
+ * @return array<string, int>
+ *   Map of view mode machine name to default column count.
+ */
+function _civictheme_card_view_modes(): array {
+  return [
+    'civictheme_promo_card' => 3,
+    'civictheme_navigation_card' => 3,
+    'civictheme_subject_card' => 4,
+    'civictheme_snippet' => 1,
+  ];
+}
+
+/**
+ * Detect the entity view mode from a field's render element.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return string|null
+ *   The view mode, or NULL if not detectable.
+ */
+function _civictheme_field_get_entity_view_mode(array $variables): ?string {
+  foreach ($variables['element'] as $key => $child) {
+    if (!is_numeric($key) || !is_array($child)) {
+      continue;
+    }
+    if (isset($child['#view_mode'])) {
+      return $child['#view_mode'];
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Check if a field's entity view mode is a known card type.
+ *
+ * @param array $variables
+ *   The field template variables.
+ *
+ * @return bool
+ *   TRUE if the field renders entities in a card view mode.
+ */
+function _civictheme_field_is_card_view_mode(array $variables): bool {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+
+  return $view_mode !== NULL && isset(_civictheme_card_view_modes()[$view_mode]);
+}
+
+/**
+ * Wrap entity reference items in a card list when rendered as cards.
+ *
+ * When the formatter view mode is a known card type, collects rendered items
+ * into $variables['rows'] and sets grid properties. The template
+ * field--civictheme-card-list.html.twig renders these in a civictheme:list
+ * with a civictheme:grid.
+ *
+ * @see field--civictheme-card-list.html.twig
+ */
+function _civictheme_preprocess_field__wrap_entity_reference(array &$variables): void {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+  if (!$view_mode || !isset(_civictheme_card_view_modes()[$view_mode])) {
+    return;
+  }
+
+  $variables['theme'] = _civictheme_field_get_theme($variables);
+  $variables['vertical_spacing'] = _civictheme_field_get_vertical_spacing($variables);
+  $variables['with_background'] = _civictheme_field_get_with_background($variables);
+
+  // Column count and fill width from layout builder settings, falling back
+  // to defaults per card view mode.
+  $lb_column_count = _civictheme_field_get_layout_builder_setting($variables, 'column_count');
+  $variables['column_count'] = $lb_column_count ? (int) $lb_column_count : _civictheme_card_view_modes()[$view_mode];
+  $lb_fill_width = _civictheme_field_get_layout_builder_setting($variables, 'fill_width');
+  $variables['fill_width'] = $lb_fill_width !== NULL ? !empty($lb_fill_width) : FALSE;
+
+  $items = [];
+  foreach ($variables['items'] as $item) {
+    $items[] = $item['content'];
+  }
+  $variables['items'] = $items;
+}
+
+/**
+ * Implements hook_preprocess_field__entity_reference().
+ *
+ * Dispatches entity reference fields to CivicTheme SDC component handlers
+ * based on view mode and referenced entity type/bundle.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_field__entity_reference(array &$variables): void {
+  $view_mode = _civictheme_field_get_entity_view_mode($variables);
+
+  $items = $variables['element']['#items'] ?? NULL;
+  if (!$items) {
+    return;
+  }
+
+  $entity = $items->first()?->entity ?? NULL;
+
+  // Media fields with 'component' view mode.
+  if ($view_mode === 'component' && $entity instanceof MediaInterface) {
+    $handlers = [
+      'civictheme_image' => '_civictheme_preprocess_field__media_image',
+      'civictheme_video' => '_civictheme_preprocess_field__media_video',
+      'civictheme_remote_video' => '_civictheme_preprocess_field__media_remote_video',
+      'civictheme_document' => '_civictheme_preprocess_field__media_document',
+    ];
+
+    $bundle = $entity->bundle();
+    if (isset($handlers[$bundle])) {
+      $handlers[$bundle]($variables);
+    }
+
+    return;
+  }
+
+  // Taxonomy term fields with 'civictheme_tag' view mode.
+  if ($view_mode === 'civictheme_tag' && $entity instanceof TermInterface) {
+    _civictheme_preprocess_field__taxonomy_tag_list($variables);
+
+    return;
+  }
+
+  // Entity reference label formatter.
+  $formatter = $variables['element']['#formatter'] ?? NULL;
+  if ($formatter === 'entity_reference_label') {
+    _civictheme_preprocess_field__entity_reference_label($variables);
+  }
+}
+
+/**
+ * Preprocess media image fields into civictheme:figure components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_image(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+  $image_factory = \Drupal::service('image.factory');
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  $figures = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $image_file = civictheme_get_field_referenced_entity($media, 'field_c_m_image');
+    if (!$image_file instanceof FileInterface) {
+      continue;
+    }
+
+    $image = $image_factory->get($image_file->getFileUri());
+    if (!$image->isValid()) {
+      continue;
+    }
+
+    $image_url = $file_url_generator->generateString($image_file->getFileUri());
+    $caption = $media->get('field_c_m_caption')->getString();
+
+    $figure = [
+      '#type' => 'component',
+      '#component' => 'civictheme:figure',
+      '#props' => [
+        'theme' => $theme,
+        'url' => $file_url_generator->transformRelative($image_url),
+        'alt' => $media->get('field_c_m_image')->first()->get('alt')->getString(),
+        'width' => (string) $image->getWidth(),
+        'height' => (string) $image->getHeight(),
+      ],
+    ];
+
+    if (!empty($caption)) {
+      $figure['#slots']['caption'] = ['#markup' => $caption];
+    }
+
+    $figures[] = $figure;
+  }
+
+  if (empty($figures)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $figures,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess media video fields into civictheme:video-player components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_video(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $players = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $sources = [];
+    foreach ($media->get('field_c_m_video_file')->referencedEntities() as $video_file) {
+      if (!$video_file instanceof FileInterface) {
+        continue;
+      }
+
+      $sources[] = [
+        'url' => $video_file->createFileUrl(),
+        'type' => $video_file->getMimeType(),
+      ];
+    }
+
+    if (empty($sources)) {
+      continue;
+    }
+
+    $players[] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:video-player',
+      '#props' => [
+        'theme' => $theme,
+        'sources' => $sources,
+      ],
+    ];
+  }
+
+  if (empty($players)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess media remote video fields into civictheme:video-player components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_preprocess_field__media_remote_video(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+
+  $players = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    try {
+      $oembed_field = $media->get('field_c_m_oembed_video')->first();
+      if (!$oembed_field) {
+        continue;
+      }
+
+      $resource_url = \Drupal::service('media.oembed.url_resolver')
+        ->getResourceUrl($oembed_field->getValue()['value']);
+      $resource = \Drupal::service('media.oembed.resource_fetcher')
+        ->fetchResource($resource_url);
+
+      $html = $resource->getHtml();
+
+      // Set 'title' attribute on the oEmbed iframe element.
+      $doc = _civictheme_get_dom_document($html);
+      $iframe_elements = $doc->getElementsByTagName('iframe');
+      if (!empty($iframe_elements[0])) {
+        $iframe_elements[0]->setAttribute('title', $media->getName());
+        $html = $doc->saveHTML($iframe_elements[0]);
+      }
+
+      $players[] = [
+        '#type' => 'component',
+        '#component' => 'civictheme:video-player',
+        '#props' => [
+          'theme' => $theme,
+          'raw_source' => $html,
+        ],
+      ];
+    }
+    catch (\Exception) {
+      // Skip media items that fail oEmbed resolution.
+    }
+  }
+
+  if (empty($players)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:basic-content',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'with_background' => $with_background,
+      ],
+      '#slots' => [
+        'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess media document fields into civictheme:attachment components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_document(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+  $file_url_generator = \Drupal::service('file_url_generator');
+  $date_formatter = \Drupal::service('date.formatter');
+
+  $files = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $file = civictheme_get_field_referenced_entity($media, 'field_c_m_document');
+    if (!$file instanceof FileInterface) {
+      continue;
+    }
+
+    $files[] = [
+      'name' => $media->getName(),
+      'ext' => pathinfo($file->getFilename(), PATHINFO_EXTENSION),
+      'url' => $file_url_generator->generateAbsoluteString($file->getFileUri()),
+      'size' => ByteSizeMarkup::create($file->getSize()),
+      'changed' => $date_formatter->format($file->getChangedTime(), 'civictheme_short_date'),
+    ];
+  }
+
+  if (empty($files)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:attachment',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing ?? 'none',
+        'with_background' => $with_background,
+        'files' => $files,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess taxonomy term fields into a civictheme:tag-list component.
+ */
+function _civictheme_preprocess_field__taxonomy_tag_list(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+
+  $tags = [];
+  foreach ($variables['element']['#items']->referencedEntities() as $term) {
+    if (!$term instanceof TermInterface) {
+      continue;
+    }
+
+    $tags[] = [
+      'content' => $term->label(),
+      'url' => (string) $term->toUrl()->toString(),
+    ];
+  }
+
+  if (empty($tags)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:tag-list',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing,
+        'tags' => $tags,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess entity reference label fields into link/item-list components.
+ *
+ * Renders labels as civictheme:link when linked, or plain text in an
+ * item-list when not linked. Single items render without the list wrapper.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__entity_reference_label(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+
+  $items_render = [];
+  $keys = array_keys($variables['items']);
+  foreach ($keys as $key) {
+    $element = $variables['element'][$key] ?? [];
+
+    if (isset($element['#type']) && $element['#type'] === 'link') {
+      $url = $element['#url'] ?? NULL;
+      $title = $element['#title'] ?? '';
+      $url_string = $url instanceof Url ? $url->toString() : '';
+      $is_external = $url instanceof Url ? $url->isExternal() : FALSE;
+
+      $items_render[] = [
+        '#type' => 'component',
+        '#component' => 'civictheme:link',
+        '#props' => [
+          'theme' => $theme,
+          'text' => $title,
+          'url' => (string) $url_string,
+          'is_external' => $is_external,
+          'is_new_window' => $is_external,
+        ],
+      ];
+      continue;
+    }
+
+    $items_render[] = [
+      '#markup' => $element['#plain_text'] ?? '',
+    ];
+  }
+
+  if (empty($items_render)) {
+    return;
+  }
+
+  // Single item: render directly without item-list wrapper.
+  if (count($items_render) === 1) {
+    $variables['items'] = [[
+      'content' => $items_render[0],
+      'attributes' => $variables['items'][0]['attributes'] ?? [],
+    ],
+    ];
+
+    return;
+  }
+
+  // Multiple items: wrap in an item-list.
+  $direction = _civictheme_field_get_layout_builder_setting($variables, 'direction') ?? 'vertical';
+  $size = _civictheme_field_get_layout_builder_setting($variables, 'size') ?? 'regular';
+  $no_gap = !empty(_civictheme_field_get_layout_builder_setting($variables, 'no_gap'));
+
+  $rendered_items = [];
+  foreach ($items_render as $render) {
+    $rendered_items[] = \Drupal::service('renderer')->renderInIsolation($render);
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:item-list',
+      '#props' => [
+        'direction' => $direction,
+        'size' => $size,
+        'no_gap' => $no_gap,
+        'items' => $rendered_items,
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
