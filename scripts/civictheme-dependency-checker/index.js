@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_DIR = path.resolve(__dirname, '../../web/themes/contrib/civictheme');
-const yaml = require(path.join(THEME_DIR, 'node_modules/js-yaml'));
+const yaml = require('js-yaml');
 const WEB_DIR = path.resolve(__dirname, '../../web');
 const CONFIG_DIRS = ['config/install'];
 const INFO_PATH = path.join(THEME_DIR, 'civictheme.info.yml');
