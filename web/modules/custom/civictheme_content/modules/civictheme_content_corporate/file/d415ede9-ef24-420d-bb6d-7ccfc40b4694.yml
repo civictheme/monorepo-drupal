@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d415ede9-ef24-420d-bb6d-7ccfc40b4694
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: civictheme_demo_background_1.png
+  uri:
+    -
+      value: 'public://civictheme_demo_background_1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 671168
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1667006922

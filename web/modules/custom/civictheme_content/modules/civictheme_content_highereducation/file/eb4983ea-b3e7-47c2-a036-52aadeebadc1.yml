@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: eb4983ea-b3e7-47c2-a036-52aadeebadc1
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'civictheme_background_2 1.png'
+  uri:
+    -
+      value: 'public://images/2022-11/civictheme_background_2 1.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 491515
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1669025702

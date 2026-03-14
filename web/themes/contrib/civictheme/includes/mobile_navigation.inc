@@ -38,6 +38,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
     $menu_block = civictheme_get_field_referenced_entity($entity, $menu_field, $variables);
 
     if (!$menu_block instanceof BlockInterface || !str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
+      $variables[$menu_key] = [];
       continue;
     }
 
