@@ -149,6 +149,7 @@ function civictheme_theme_registry_alter(array &$theme_registry): void {
   // is used, the view-mode preprocess won't run. This ensures view-mode
   // preprocesses run for all bundle+view_mode combinations.
   _civictheme_theme_registry_alter__node_preprocess($theme_registry);
+  _civictheme_theme_registry_alter__paragraph_preprocess($theme_registry);
 
   // Define a new preprocess hook that will always run last.
   $hook = 'civictheme_preprocess_last';
@@ -220,6 +221,34 @@ function _civictheme_theme_registry_alter__node_preprocess(array &$theme_registr
         if (function_exists($bundle_view_mode_function) && !in_array($bundle_view_mode_function, $theme_registry[$name]['preprocess functions'] ?? [])) {
           $theme_registry[$name]['preprocess functions'][] = $bundle_view_mode_function;
         }
+      }
+    }
+  }
+}
+
+/**
+ * Register paragraph preprocess functions on all matching suggestions.
+ *
+ * Mirrors _civictheme_theme_registry_alter__node_preprocess() but for
+ * paragraph suggestion entries. This ensures that sub-theme preprocess
+ * functions like mytheme_preprocess_paragraph__civictheme_content() are
+ * auto-discovered and registered for all matching paragraph template
+ * suggestions.
+ */
+function _civictheme_theme_registry_alter__paragraph_preprocess(array &$theme_registry): void {
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  $theme_names = array_keys($active_theme->getBaseThemeExtensions());
+  $theme_names[] = $active_theme->getName();
+
+  foreach ($theme_registry as $name => $info) {
+    if (!str_starts_with($name, 'paragraph__') || ($info['base hook'] ?? NULL) !== 'paragraph') {
+      continue;
+    }
+
+    foreach ($theme_names as $theme_name) {
+      $preprocess_function = $theme_name . '_preprocess_' . $name;
+      if (function_exists($preprocess_function) && !in_array($preprocess_function, $theme_registry[$name]['preprocess functions'] ?? [])) {
+        $theme_registry[$name]['preprocess functions'][] = $preprocess_function;
       }
     }
   }

@@ -20,23 +20,33 @@ use Drupal\views\Views;
 function civictheme_preprocess_paragraph__civictheme_automated_list(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $theme = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $modifier_class = civictheme_extract_modifier_class($variables);
 
-  // Remove existing content.
-  $variables['content'] = NULL;
+  // Extract content values for the list component.
+  $link_above = NULL;
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_above_item */
+  $link_above_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_above', TRUE);
+  if ($link_above_item !== NULL) {
+    $link_above = [
+      'text' => $link_above_item->get('title')->getString(),
+      'url' => $link_above_item->getUrl()->toString(),
+      'is_new_window' => $link_above_item->isExternal(),
+      'is_external' => $link_above_item->isExternal(),
+    ];
+  }
 
-  // The paragraph contains 2 types of values:
-  // 1. Content values that should be passed as variables to the render image.
-  // 2. View settings values that should be passed to a view for alterations
-  // in child preprocess hooks.
-  //
-  // Content values.
-  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__content($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__link_above($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__link_below($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__background($variables);
+  $link_below = NULL;
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_below_item */
+  $link_below_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_below', TRUE);
+  if ($link_below_item !== NULL) {
+    $link_below = [
+      'text' => $link_below_item->get('title')->getString(),
+      'url' => $link_below_item->getUrl()->toString(),
+      'is_new_window' => $link_below_item->isExternal(),
+      'is_external' => $link_below_item->isExternal(),
+    ];
+  }
 
   // Views settings.
   // We want to have a single place to gather all initial view settings to pass
@@ -61,7 +71,7 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   $settings['item_theme'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme');
   $settings['topics'] = civictheme_get_field_value($paragraph, 'field_c_p_list_topics', build: $variables);
   $settings['site_sections'] = civictheme_get_field_value($paragraph, 'field_c_p_list_site_sections', build: $variables);
-  $settings['theme'] = $variables['theme'];
+  $settings['theme'] = $theme;
   _civictheme_preprocess_paragraph__paragraph_field__theme($settings);
   _civictheme_preprocess_paragraph__paragraph_field__title($settings);
   _civictheme_preprocess_paragraph__paragraph_field__column_count($settings);
@@ -90,20 +100,38 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   _civictheme_automated_list__update_view($view);
 
   // Render view as rows.
-  $variables['rows'] = $view->executeDisplay();
+  $rows = $view->executeDisplay();
 
-  // Pass the CSS class from the view display to the template.
+  // Include the CSS class from the view display in modifier_class.
   $css_class = $view->getDisplay()->getOption('css_class');
   if (!empty($css_class)) {
-    $variables['modifier_class'] = $variables['modifier_class'] ?? '' . $css_class;
+    $modifier_class = trim(($modifier_class ?? '') . ' ' . $css_class) ?: NULL;
   }
 
-  // Add unique HTML ID.
-  $attributes = [];
+  // Add unique HTML ID via wrapper attributes.
+  $attributes = $variables['attributes'] ?? [];
   $attributes['id'] = Html::getUniqueId('ct-automated-list-' . $paragraph->id());
 
-  // Run merging of the attributes last. Do not add any code below this line.
-  $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:list',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
+      'with_background' => (bool) civictheme_get_field_value($paragraph, 'field_c_p_background'),
+      'link_above' => $link_above,
+      'link_below' => $link_below,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ? ['#markup' => civictheme_get_field_value($paragraph, 'field_c_p_title')] : NULL,
+      'content' => civictheme_get_wysiwyg_field_value($paragraph, 'field_c_p_content', TRUE, $theme ?? 'light'),
+      'rows' => $rows,
+    ]),
+  ];
+
+  // Preserve attributes for the wrapper.
+  $variables['attributes'] = $attributes;
 }
 
 /**

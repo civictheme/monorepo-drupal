@@ -413,6 +413,39 @@ function civictheme_convert_attributes_to_modifier_class(array &$variables): voi
 }
 
 /**
+ * Extract modifier_class from variables for use in SDC render arrays.
+ *
+ * Computes the modifier_class by combining any existing modifier_class value
+ * with CSS classes from the attributes array. After extraction, disables
+ * civictheme_preprocess_last() modifier_class conversion since the value has
+ * already been captured into the render array.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_extract_modifier_class(array &$variables): ?string {
+  $classes = [];
+
+  if (!empty($variables['modifier_class']) && $variables['modifier_class'] !== FALSE) {
+    $classes = array_merge($classes, explode(' ', (string) $variables['modifier_class']));
+  }
+
+  if (!empty($variables['attributes']['class'])) {
+    $attr_classes = $variables['attributes']['class'];
+    if ($attr_classes instanceof Attribute) {
+      $attr_classes = $attr_classes->getClass()->value();
+    }
+    $classes = array_merge($classes, (array) $attr_classes);
+  }
+
+  // Prevent civictheme_preprocess_last() from re-processing.
+  $variables['modifier_class'] = FALSE;
+
+  $classes = array_unique(array_filter($classes));
+
+  return $classes ? implode(' ', $classes) : NULL;
+}
+
+/**
  * Format date and time.
  *
  * This is a centralized function for formatting dates in CivicTheme.

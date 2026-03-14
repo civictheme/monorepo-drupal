@@ -8,27 +8,102 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Component\Utility\Xss;
 
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_snippet(array &$variables): void {
-  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__summary($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__link($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__topics($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+  $paragraph = $variables['paragraph'];
+  $theme = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $link_slot = NULL;
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_item */
+  $link_item = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link_item !== NULL) {
+    $link_slot = [
+      '#type' => 'component',
+      '#component' => 'civictheme:link',
+      '#props' => [
+        'text' => html_entity_decode(Xss::filter($link_item->get('title')->getString())),
+        'url' => $link_item->getUrl()->toString(),
+        'is_new_window' => $link_item->isExternal(),
+        'is_external' => $link_item->isExternal(),
+      ],
+    ];
+  }
+
+  $tags = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topics', build: $variables);
+  $tags_slot = NULL;
+  if (!empty($tags)) {
+    $tags_slot = ['#markup' => implode(', ', array_map(fn($label) => (string) $label, $tags))];
+  }
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:snippet',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ? ['#markup' => civictheme_get_field_value($paragraph, 'field_c_p_title')] : NULL,
+      'summary' => _civictheme_build_summary_slot($paragraph, 'field_c_p_summary', $paragraph->bundle()),
+      'link' => $link_slot,
+      'tags' => $tags_slot,
+    ]),
+  ];
 }
 
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_snippet_ref(array &$variables): void {
-  _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__summary($variables);
-  _civictheme_preprocess_paragraph__node_field__link($variables);
-  _civictheme_preprocess_paragraph__node_field__topics($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
+  $paragraph = $variables['paragraph'];
+  $theme = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  /** @var \Drupal\node\NodeInterface|null $node */
+  $node = civictheme_get_field_value($paragraph, 'field_c_p_reference', TRUE, build: $variables);
+
+  $title = NULL;
+  $link_slot = NULL;
+  $tags_slot = NULL;
+  $summary_slot = NULL;
+  if ($node) {
+    $title = $node->getTitle();
+    $link_slot = [
+      '#type' => 'component',
+      '#component' => 'civictheme:link',
+      '#props' => [
+        'text' => $node->getTitle(),
+        'url' => $node->toUrl()->toString(),
+        'is_new_window' => FALSE,
+        'is_external' => FALSE,
+      ],
+    ];
+    $labels = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+    if (!empty($labels)) {
+      $tags_slot = ['#markup' => implode(', ', array_map(fn($label) => (string) $label, $labels))];
+    }
+    $summary_slot = _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', $paragraph->bundle());
+  }
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:snippet',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+      'summary' => $summary_slot,
+      'link' => $link_slot,
+      'tags' => $tags_slot,
+    ]),
+  ];
 }
 
 /**
