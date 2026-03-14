@@ -348,8 +348,9 @@ function civictheme_preprocess_field__link(array &$variables): void {
   $theme = _civictheme_field_get_theme($variables);
 
   $links = [];
-  foreach ($variables['items'] as $delta => $item) {
-    $element = $variables['element'][$delta] ?? [];
+  $keys = array_keys($variables['items']);
+  foreach ($keys as $key) {
+    $element = $variables['element'][$key] ?? [];
 
     $url = $element['#url'] ?? NULL;
     $title = $element['#title'] ?? '';
@@ -373,8 +374,9 @@ function civictheme_preprocess_field__link(array &$variables): void {
   if (count($links) === 1) {
     $inner = $links[0];
   }
-  else {
-    // Multiple links: render each, then wrap in an item-list.
+
+  // Multiple links: render each, then wrap in an item-list.
+  if (count($links) !== 1) {
     $direction = _civictheme_field_get_layout_builder_setting($variables, 'direction') ?? 'vertical';
     $size = _civictheme_field_get_layout_builder_setting($variables, 'size') ?? 'regular';
     $no_gap = !empty(_civictheme_field_get_layout_builder_setting($variables, 'no_gap'));
@@ -881,8 +883,9 @@ function _civictheme_preprocess_field__entity_reference_label(array &$variables)
   $theme = _civictheme_field_get_theme($variables);
 
   $items_render = [];
-  foreach ($variables['items'] as $delta => $item) {
-    $element = $variables['element'][$delta] ?? [];
+  $keys = array_keys($variables['items']);
+  foreach ($keys as $key) {
+    $element = $variables['element'][$key] ?? [];
 
     if (isset($element['#type']) && $element['#type'] === 'link') {
       $url = $element['#url'] ?? NULL;
@@ -901,12 +904,12 @@ function _civictheme_preprocess_field__entity_reference_label(array &$variables)
           'is_new_window' => $is_external,
         ],
       ];
+      continue;
     }
-    else {
-      $items_render[] = [
-        '#markup' => $element['#plain_text'] ?? '',
-      ];
-    }
+
+    $items_render[] = [
+      '#markup' => $element['#plain_text'] ?? '',
+    ];
   }
 
   if (empty($items_render)) {

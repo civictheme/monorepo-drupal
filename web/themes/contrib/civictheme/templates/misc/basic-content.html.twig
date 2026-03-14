@@ -11,7 +11,7 @@
   with_background: with_background,
   attributes: attributes,
   modifier_class: modifier_class|default(''),
-  vertical_spacing: vertical_spacing|default('none')
+  vertical_spacing: vertical_spacing|default('none'),
 } %}
 {% if vertical_spacing is defined and vertical_spacing is not null %}
   {% set props = props|merge({vertical_spacing: vertical_spacing}) %}

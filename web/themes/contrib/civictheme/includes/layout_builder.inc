@@ -35,6 +35,29 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
   $formatter = $plugin->getConfiguration()['formatter'] ?? [];
   $settings = $formatter['third_party_settings']['civictheme'] ?? [];
 
+  $enabled_state = [
+    'visible' => [
+      ':input[name="civictheme_settings_enabled"]' => ['checked' => TRUE],
+    ],
+  ];
+
+  _civictheme_layout_builder_block_form_alter_enabled_toggle($form, $settings);
+  _civictheme_layout_builder_block_form_alter_theme($form, $settings, $enabled_state);
+  _civictheme_layout_builder_block_form_alter_spacing($form, $settings, $enabled_state);
+  _civictheme_layout_builder_block_form_alter_background($form, $settings, $enabled_state);
+  _civictheme_layout_builder_block_form_alter_label_heading($form, $settings);
+  _civictheme_layout_builder_block_form_alter_link($form, $formatter, $settings, $enabled_state);
+  _civictheme_layout_builder_block_form_alter_card_list($form, $formatter, $settings, $enabled_state);
+
+  $form['actions']['#weight'] = 100;
+
+  array_unshift($form['#submit'], 'civictheme_layout_builder_block_submit');
+}
+
+/**
+ * Add the CivicTheme settings enabled toggle and fieldset container.
+ */
+function _civictheme_layout_builder_block_form_alter_enabled_toggle(array &$form, array $settings): void {
   $form['civictheme_settings_enabled'] = [
     '#type' => 'checkbox',
     '#title' => t('Use block settings to set CivicTheme component settings'),
@@ -53,13 +76,12 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
       ],
     ],
   ];
+}
 
-  $enabled_state = [
-    'visible' => [
-      ':input[name="civictheme_settings_enabled"]' => ['checked' => TRUE],
-    ],
-  ];
-
+/**
+ * Add theme radios to the layout builder block form.
+ */
+function _civictheme_layout_builder_block_form_alter_theme(array &$form, array $settings, array $enabled_state): void {
   $form['civictheme_settings']['theme'] = [
     '#type' => 'radios',
     '#title' => t('Theme'),
@@ -70,7 +92,12 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
     '#default_value' => $settings['theme'] ?? 'light',
     '#states' => $enabled_state,
   ];
+}
 
+/**
+ * Add vertical spacing radios to the layout builder block form.
+ */
+function _civictheme_layout_builder_block_form_alter_spacing(array &$form, array $settings, array $enabled_state): void {
   $form['civictheme_settings']['vertical_spacing'] = [
     '#type' => 'radios',
     '#title' => t('Vertical spacing'),
@@ -83,7 +110,12 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
     '#default_value' => $settings['vertical_spacing'] ?? 'none',
     '#states' => $enabled_state,
   ];
+}
 
+/**
+ * Add background checkbox to the layout builder block form.
+ */
+function _civictheme_layout_builder_block_form_alter_background(array &$form, array $settings, array $enabled_state): void {
   $form['civictheme_settings']['with_background'] = [
     '#type' => 'checkbox',
     '#title' => t('Background'),
@@ -91,7 +123,12 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
     '#default_value' => $settings['with_background'] ?? FALSE,
     '#states' => $enabled_state,
   ];
+}
 
+/**
+ * Add label heading level select to the layout builder block form.
+ */
+function _civictheme_layout_builder_block_form_alter_label_heading(array &$form, array $settings): void {
   $form['civictheme_settings']['label_heading_level'] = [
     '#type' => 'select',
     '#title' => t('Label heading level'),
@@ -104,33 +141,33 @@ function _civictheme_layout_builder_block_form_alter(array &$form, FormStateInte
       ],
     ],
   ];
+}
 
-  _civictheme_layout_builder_block_form_alter_link($form, $formatter, $settings, $enabled_state);
-
-  // Add list settings when the formatter uses a card view mode.
+/**
+ * Add card list settings to the layout builder block form.
+ */
+function _civictheme_layout_builder_block_form_alter_card_list(array &$form, array $formatter, array $settings, array $enabled_state): void {
   $view_mode = $formatter['settings']['view_mode'] ?? NULL;
   $card_view_modes = _civictheme_card_view_modes();
-  if ($view_mode && isset($card_view_modes[$view_mode])) {
-    $form['civictheme_settings']['column_count'] = [
-      '#type' => 'select',
-      '#title' => t('List column count'),
-      '#options' => array_combine([1, 2, 3, 4], [1, 2, 3, 4]),
-      '#default_value' => $settings['column_count'] ?? $card_view_modes[$view_mode],
-      '#states' => $enabled_state,
-    ];
-
-    $form['civictheme_settings']['fill_width'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Fill width'),
-      '#description' => t('Stretch remaining items to fill the full row width.'),
-      '#default_value' => $settings['fill_width'] ?? FALSE,
-      '#states' => $enabled_state,
-    ];
+  if (!$view_mode || !isset($card_view_modes[$view_mode])) {
+    return;
   }
 
-  $form['actions']['#weight'] = 100;
+  $form['civictheme_settings']['column_count'] = [
+    '#type' => 'select',
+    '#title' => t('List column count'),
+    '#options' => array_combine([1, 2, 3, 4], [1, 2, 3, 4]),
+    '#default_value' => $settings['column_count'] ?? $card_view_modes[$view_mode],
+    '#states' => $enabled_state,
+  ];
 
-  array_unshift($form['#submit'], 'civictheme_layout_builder_block_submit');
+  $form['civictheme_settings']['fill_width'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Fill width'),
+    '#description' => t('Stretch remaining items to fill the full row width.'),
+    '#default_value' => $settings['fill_width'] ?? FALSE,
+    '#states' => $enabled_state,
+  ];
 }
 
 /**
