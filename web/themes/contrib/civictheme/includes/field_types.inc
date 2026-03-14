@@ -596,6 +596,7 @@ function civictheme_preprocess_field__entity_reference(array &$variables): void 
       'civictheme_image' => '_civictheme_preprocess_field__media_image',
       'civictheme_video' => '_civictheme_preprocess_field__media_video',
       'civictheme_remote_video' => '_civictheme_preprocess_field__media_remote_video',
+      'civictheme_document' => '_civictheme_preprocess_field__media_document',
     ];
 
     $bundle = $entity->bundle();
@@ -826,6 +827,59 @@ function _civictheme_preprocess_field__media_remote_video(array &$variables): vo
       ],
       '#slots' => [
         'content' => $players,
+      ],
+    ],
+    'attributes' => $variables['items'][0]['attributes'] ?? [],
+  ],
+  ];
+}
+
+/**
+ * Preprocess media document fields into civictheme:attachment components.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_field__media_document(array &$variables): void {
+  $theme = _civictheme_field_get_theme($variables);
+  $vertical_spacing = _civictheme_field_get_vertical_spacing($variables);
+  $with_background = _civictheme_field_get_with_background($variables);
+  $file_url_generator = \Drupal::service('file_url_generator');
+  $date_formatter = \Drupal::service('date.formatter');
+
+  $files = [];
+  foreach ($variables['element']['#items'] as $item) {
+    $media = $item->entity;
+    if (!$media instanceof MediaInterface) {
+      continue;
+    }
+
+    $file = civictheme_get_field_referenced_entity($media, 'field_c_m_document');
+    if (!$file instanceof FileInterface) {
+      continue;
+    }
+
+    $files[] = [
+      'name' => $media->getName(),
+      'ext' => pathinfo($file->getFilename(), PATHINFO_EXTENSION),
+      'url' => $file_url_generator->generateAbsoluteString($file->getFileUri()),
+      'size' => ByteSizeMarkup::create($file->getSize()),
+      'changed' => $date_formatter->format($file->getChangedTime(), 'civictheme_short_date'),
+    ];
+  }
+
+  if (empty($files)) {
+    return;
+  }
+
+  $variables['items'] = [[
+    'content' => [
+      '#type' => 'component',
+      '#component' => 'civictheme:attachment',
+      '#props' => [
+        'theme' => $theme,
+        'vertical_spacing' => $vertical_spacing ?? 'none',
+        'with_background' => $with_background,
+        'files' => $files,
       ],
     ],
     'attributes' => $variables['items'][0]['attributes'] ?? [],
