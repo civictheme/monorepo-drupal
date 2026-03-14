@@ -32,6 +32,7 @@ require_once __DIR__ . '/includes/image.inc';
 require_once __DIR__ . '/includes/link.inc';
 require_once __DIR__ . '/includes/automated_list.inc';
 require_once __DIR__ . '/includes/layout.inc';
+require_once __DIR__ . '/includes/layout_builder.inc';
 require_once __DIR__ . '/includes/local_tasks.inc';
 require_once __DIR__ . '/includes/libraries.inc';
 require_once __DIR__ . '/includes/map.inc';
@@ -273,6 +274,8 @@ function civictheme_preprocess_node(array &$variables): void {
  */
 function civictheme_preprocess_block(array &$variables): void {
   _civictheme_preprocess_block__drupal($variables);
+  _civictheme_preprocess_block__label_heading_level($variables);
+  _civictheme_preprocess_block__civictheme_layout_builder_settings($variables);
   _civictheme_preprocess_block__system_main_block($variables);
   _civictheme_preprocess_block__civictheme_banner($variables);
   _civictheme_preprocess_block__navigation($variables);
@@ -308,6 +311,7 @@ function civictheme_preprocess_menu(array &$variables): void {
 function civictheme_preprocess_field(array &$variables): void {
   _civictheme_preprocess_wysiwyg_field($variables);
   _civictheme_preprocess_date_range_field($variables);
+  _civictheme_preprocess_field__civictheme_layout_builder_settings($variables);
 }
 
 /**
