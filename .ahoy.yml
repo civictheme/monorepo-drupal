@@ -26,7 +26,7 @@ commands:
       export DRUPAL_PROFILE=minimal &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-minimal && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -37,7 +37,7 @@ commands:
     cmd: |
       export DRUPAL_PROFILE=minimal &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-minimal-subtheme && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -56,7 +56,7 @@ commands:
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
       export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-govcms && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -68,7 +68,7 @@ commands:
       export DRUPAL_PROFILE=govcms &&
       export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-govcms-subtheme && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -81,7 +81,7 @@ commands:
       export CIVICTHEME_INSTALL_SIBLING=1 &&
       export COMPOSER=composer.govcms.json &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-govcms-subtheme-sibling && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -93,7 +93,7 @@ commands:
       export CIVICTHEME_CONTENT_PROFILE=corporate &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-content-corporate && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -105,7 +105,7 @@ commands:
       export CIVICTHEME_CONTENT_PROFILE=highereducation &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-content-highereducation && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -117,7 +117,7 @@ commands:
       export CIVICTHEME_CONTENT_PROFILE=government &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision && ahoy info
+        ahoy provision-content-government && ahoy info
       else
         ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
         ./scripts/drevops/build.sh && ahoy info
@@ -261,7 +261,6 @@ commands:
       fi
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      export COMPOSER=composer.govcms.json &&
       ahoy provision && ahoy info
 
   provision-govcms-subtheme:
@@ -272,7 +271,6 @@ commands:
         ahoy composer-govcms install
       fi
       export DRUPAL_PROFILE=govcms &&
-      export COMPOSER=composer.govcms.json &&
       ahoy provision && ahoy info
 
   provision-govcms-subtheme-sibling:
@@ -284,7 +282,6 @@ commands:
       fi
       export DRUPAL_PROFILE=govcms &&
       export CIVICTHEME_INSTALL_SIBLING=1 &&
-      export COMPOSER=composer.govcms.json &&
       ahoy provision && ahoy info
 
   provision-content-corporate:
