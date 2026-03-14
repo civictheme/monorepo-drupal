@@ -48,6 +48,10 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */
@@ -120,6 +124,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variab
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */

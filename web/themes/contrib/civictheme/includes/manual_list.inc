@@ -18,22 +18,28 @@ use Drupal\Core\Entity\EntityInterface;
 function civictheme_preprocess_paragraph__civictheme_manual_list(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_field_value($paragraph, 'field_c_p_theme');
-  $modifier_class = civictheme_extract_modifier_class($variables);
 
-  $card_theme = civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme');
-  $with_background = (bool) civictheme_get_field_value($paragraph, 'field_c_p_background');
-  $column_count = civictheme_get_field_value($paragraph, 'field_c_p_list_column_count', TRUE, 1);
-  $fill_width = civictheme_get_field_value($paragraph, 'field_c_p_list_fill_width', TRUE, FALSE);
+  // Remove existing content.
+  $variables['content'] = NULL;
+
+  // Content values set directly on $variables for use by the list component
+  // template. The template uses {% extends 'civictheme:list' %} with a
+  // rows_block override to wrap rows in a grid component.
+  $variables['theme'] = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
+  $variables['content'] = civictheme_get_wysiwyg_field_value($paragraph, 'field_c_p_content', TRUE, $variables['theme'] ?? 'light');
+  $variables['vertical_spacing'] = civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing');
+  $variables['with_background'] = (bool) civictheme_get_field_value($paragraph, 'field_c_p_background');
+  $variables['column_count'] = civictheme_get_field_value($paragraph, 'field_c_p_list_column_count', TRUE, 1);
+  $variables['fill_width'] = civictheme_get_field_value($paragraph, 'field_c_p_list_fill_width', TRUE, FALSE);
 
   // Set cache tags.
   $variables['#cache']['tags'] = $paragraph->getCacheTags();
 
-  $link_above = NULL;
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_above_item */
   $link_above_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_above', TRUE);
   if ($link_above_item !== NULL) {
-    $link_above = [
+    $variables['link_above'] = [
       'text' => $link_above_item->get('title')->getString(),
       'url' => $link_above_item->getUrl()->toString(),
       'is_new_window' => $link_above_item->isExternal(),
@@ -41,11 +47,10 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(array &$variabl
     ];
   }
 
-  $link_below = NULL;
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_below_item */
   $link_below_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_below', TRUE);
   if ($link_below_item !== NULL) {
-    $link_below = [
+    $variables['link_below'] = [
       'text' => $link_below_item->get('title')->getString(),
       'url' => $link_below_item->getUrl()->toString(),
       'is_new_window' => $link_below_item->isExternal(),
@@ -70,45 +75,12 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(array &$variabl
       }
     }
   }
+  $variables['rows'] = $rows;
 
-  // Wrap rows in a grid component.
-  $rows_slot = NULL;
-  if (!empty($rows)) {
-    $rows_slot = [
-      '#type' => 'component',
-      '#component' => 'civictheme:grid',
-      '#props' => array_filter([
-        'template_column_count' => (int) $column_count,
-        'fill_width' => (bool) $fill_width,
-        'items' => $rows,
-        'with_background' => $with_background,
-        'row_class' => 'row--equal-heights-content row--vertically-spaced',
-      ], fn ($v) => $v !== NULL),
-    ];
-  }
-
-  // Add unique HTML ID via wrapper attributes.
-  $attributes = $variables['attributes'] ?? [];
+  // Add unique HTML ID.
+  $attributes = [];
   $attributes['id'] = Html::getUniqueId('ct-manual-list-' . $paragraph->id());
 
-  $variables['content'] = [
-    '#type' => 'component',
-    '#component' => 'civictheme:list',
-    '#props' => array_filter([
-      'theme' => $theme,
-      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
-      'with_background' => $with_background,
-      'link_above' => $link_above,
-      'link_below' => $link_below,
-      'modifier_class' => $modifier_class,
-    ], fn ($v) => $v !== NULL),
-    '#slots' => array_filter([
-      'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ? ['#markup' => civictheme_get_field_value($paragraph, 'field_c_p_title')] : NULL,
-      'content' => civictheme_get_wysiwyg_field_value($paragraph, 'field_c_p_content', TRUE, $theme ?? 'light'),
-      'rows' => $rows_slot,
-    ]),
-  ];
-
-  // Preserve attributes for the wrapper.
-  $variables['attributes'] = $attributes;
+  // Run merging of the attributes last. Do not add any code below this line.
+  $variables['attributes'] = ($variables['attributes'] ?? []) + $attributes;
 }

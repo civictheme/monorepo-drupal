@@ -22,6 +22,8 @@ use Drupal\node\NodeInterface;
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_promo_card(array &$variables): void {
   $paragraph = $variables['paragraph'];
@@ -166,6 +168,8 @@ function civictheme_preprocess_node__civictheme_promo_card(array &$variables): v
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_event_card(array &$variables): void {
   $paragraph = $variables['paragraph'];
@@ -226,6 +230,8 @@ function civictheme_preprocess_paragraph__civictheme_event_card(array &$variable
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_preprocess_paragraph__civictheme_event_card_ref(array &$variables): void {
   $paragraph = $variables['paragraph'];
@@ -303,6 +309,8 @@ function civictheme_preprocess_paragraph__civictheme_event_card_ref(array &$vari
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_navigation_card(array &$variables): void {
   $paragraph = $variables['paragraph'];
@@ -449,6 +457,8 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(array &$va
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_subject_card(array &$variables): void {
   $paragraph = $variables['paragraph'];
@@ -547,6 +557,8 @@ function civictheme_preprocess_paragraph__civictheme_subject_card_ref(array &$va
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_service_card(array &$variables): void {
   $paragraph = $variables['paragraph'];

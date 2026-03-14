@@ -4,4 +4,10 @@
  * CivicTheme implementation for Automated list.
  */
 #}
-{{ content }}
+{% extends 'civictheme:list' %}
+
+{% block rows_block %}
+  {% if rows -%}
+    {{ rows }}
+  {% endif %}
+{% endblock %}

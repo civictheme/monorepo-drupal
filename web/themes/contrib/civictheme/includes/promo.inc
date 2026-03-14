@@ -11,6 +11,8 @@ use Drupal\Component\Utility\Xss;
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_promo(array &$variables): void {
   $paragraph = $variables['paragraph'];
