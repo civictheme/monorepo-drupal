@@ -9,7 +9,7 @@
 {% block content_block %}
   {% if show_site_logo %}
     {% include 'civictheme:logo' with {
-      logos: logos,
+      logos: logos|default({}),
       url: url,
       title: title,
       theme: theme|default('light'),

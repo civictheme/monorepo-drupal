@@ -1,8 +1,8 @@
 // phpcs:ignoreFile
-import '../dist/civictheme.stories.css?module'; // eslint-disable-line import/no-unresolved
-import '../dist/civictheme.base.css'; // eslint-disable-line import/no-unresolved
-import '../dist/civictheme.variables.css'; // eslint-disable-line import/no-unresolved
-import '../dist/civictheme.base'; // eslint-disable-line import/no-unresolved
+import '../dist/civictheme.stories.css?module';
+import '../dist/civictheme.base.css';
+import '../dist/civictheme.variables.css';
+import '../dist/civictheme.base';
 
 export default {
   parameters: {

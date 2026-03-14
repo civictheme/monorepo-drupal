@@ -35,11 +35,12 @@
     "storybook": "storybook dev -p 6007",
     "storybook-build": "npm run dist && storybook build",
     "storybook-dev": "npm run dist && node build.js cli \"dist:watch\" \"storybook\"",
+    "uikit-clean-install": "rm -Rf components > /dev/null 2>&1 && rm -Rf node_modules/@civictheme > /dev/null 2>&1 && npm install && npm run uikit-install",
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && ([ -d \"node_modules/@civictheme/uikit/packages/sdc/components\" ] && cp -R node_modules/@civictheme/uikit/packages/sdc/components components || ([ -d \"node_modules/@civictheme/sdc/components\" ] && cp -R node_modules/@civictheme/sdc/components components || (echo \"Error: No components directory found\" && exit 1)))"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#3872be929e857d0609420810d27ee05b3e6da977"
+    "@civictheme/uikit": "github:civictheme/uikit#86641cbbd51fd6a4127ae59d100ecad8c1b6bad4"
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
@@ -47,14 +48,17 @@
     "@storybook/addon-links": "10.2.13",
     "@storybook/html-vite": "10.2.13",
     "@whitespace/storybook-addon-html": "^9.0.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import-newlines": "^1.4.0",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/stylelint-plugin": "^5.0.1",
+    "eslint": "^10.0.3",
+    "eslint-plugin-import-newlines": "^2.0.0",
+    "globals": "^17.4.0",
     "glob": "^11.0.1",
     "sass-embedded": "1.77.5",
     "storybook": "10.2.13",
-    "stylelint": "^14.16.1",
-    "stylelint-config-standard": "^23.0.0",
-    "stylelint-config-standard-scss": "^2.0.1",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "vite": "^6.3.6",
     "vite-plugin-twig-drupal": "^1.6.0"
   }

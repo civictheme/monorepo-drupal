@@ -199,7 +199,7 @@ function _civictheme_preprocess_field__wrap_basic_content(array &$variables): vo
       '#component' => 'civictheme:basic-content',
       '#props' => [
         'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
+        'vertical_spacing' => $vertical_spacing ?? 'none',
         'with_background' => $with_background,
       ],
       '#slots' => [
@@ -232,7 +232,7 @@ function _civictheme_preprocess_field__wrap_tag_list(array &$variables): void {
       '#component' => 'civictheme:tag-list',
       '#props' => [
         'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
+        'vertical_spacing' => $vertical_spacing ?? 'none',
         'tags' => $tags,
       ],
     ],
@@ -474,7 +474,7 @@ function civictheme_preprocess_field__file(array &$variables): void {
       '#component' => 'civictheme:attachment',
       '#props' => [
         'theme' => $theme,
-        'vertical_spacing' => $vertical_spacing,
+        'vertical_spacing' => $vertical_spacing ?? 'none',
         'with_background' => $with_background,
         'files' => $files,
       ],
