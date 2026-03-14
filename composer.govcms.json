@@ -104,6 +104,12 @@
         "platform": {
             "php": "8.3.8"
         },
+        "audit": {
+            "ignore": {
+                "PKSA-pr5h-1dpm-9x4k": "GovCMS upstream dependency - simplesamlphp/xmlseclibs",
+                "PKSA-sxbn-dpg6-6ng9": "GovCMS upstream dependency - simplesamlphp/xml-security"
+            }
+        },
         "process-timeout": 0,
         "sort-packages": true
     },
