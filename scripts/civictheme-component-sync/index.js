@@ -2,10 +2,39 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
-const THEME_COMPONENTS = path.resolve(__dirname, '../../web/themes/contrib/civictheme/components');
-const UIKIT_COMPONENTS = process.argv[2] || path.resolve(__dirname, '../../../civictheme-uikit/packages/sdc/components');
+// Load .env.local if it exists (without requiring dotenv dependency).
+const envLocalPath = path.resolve(__dirname, '../../.env.local');
+if (fs.existsSync(envLocalPath)) {
+  for (const line of fs.readFileSync(envLocalPath, 'utf8').split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue;
+    }
+    const eqIndex = trimmed.indexOf('=');
+    if (eqIndex === -1) {
+      continue;
+    }
+    const key = trimmed.slice(0, eqIndex);
+    // Only set if not already in environment (real env takes precedence).
+    if (!(key in process.env)) {
+      process.env[key] = trimmed.slice(eqIndex + 1);
+    }
+  }
+}
+
+const THEME_COMPONENTS = process.env.CIVICTHEME_COMPONENTS_DIR
+  || path.resolve(__dirname, '../../web/themes/contrib/civictheme/components');
+const UIKIT_COMPONENTS = process.env.CIVICTHEME_UIKIT_COMPONENTS_DIR
+  || process.argv[2];
+
+if (!UIKIT_COMPONENTS) {
+  console.error('No target directory specified.');
+  console.error('Set CIVICTHEME_UIKIT_COMPONENTS_DIR or pass as argument:');
+  console.error('  export CIVICTHEME_UIKIT_COMPONENTS_DIR=/path/to/civictheme-uikit/packages/sdc/components');
+  console.error('  npm run uikit-sync');
+  process.exit(1);
+}
 
 if (!fs.existsSync(THEME_COMPONENTS)) {
   console.error(`Source directory not found: ${THEME_COMPONENTS}`);
@@ -14,7 +43,6 @@ if (!fs.existsSync(THEME_COMPONENTS)) {
 
 if (!fs.existsSync(UIKIT_COMPONENTS)) {
   console.error(`Target directory not found: ${UIKIT_COMPONENTS}`);
-  console.error('Usage: node index.js [path-to-uikit-sdc-components]');
   process.exit(1);
 }
 
