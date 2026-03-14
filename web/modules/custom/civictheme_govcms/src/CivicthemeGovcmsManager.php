@@ -59,7 +59,7 @@ final class CivicthemeGovcmsManager {
    * @param string $preserve
    *   The list of config types to preserve.
    */
-  public function civicthemeGovcmsRemoveConfig(string $preserve = ''): void {
+  public function civicthemeGovcmsRemoveConfig(?string $preserve = ''): void {
     $preserve_list = [];
     if (!empty($preserve)) {
       $preserve_list = explode(',', $preserve);
