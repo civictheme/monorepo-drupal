@@ -30,6 +30,8 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  * CivicTheme config importer.
  *
  * Imports configurations from specified files.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 final class CivicthemeConfigImporter implements ContainerInjectionInterface {
 
