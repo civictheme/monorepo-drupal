@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Xss;
 
 /**
@@ -110,14 +109,45 @@ function civictheme_preprocess_paragraph__civictheme_snippet_ref(array &$variabl
 
 /**
  * Implements hook_preprocess_node__VIEW_MODE() for civictheme_snippet.
- *
- * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_preprocess_node__civictheme_snippet(array &$variables): void {
-  _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__summary($variables, $variables['view_mode'] ?? 'civictheme_snippet');
-  _civictheme_preprocess_paragraph__node_field__link($variables);
-  _civictheme_preprocess_paragraph__node_field__topics($variables);
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
   // @see civictheme_preprocess_views_view_grid()
-  $variables['theme'] = $variables['node']->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+  $theme = _civictheme_node_get_component_theme($node);
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $title = $node->getTitle();
+
+  $link_slot = [
+    '#type' => 'component',
+    '#component' => 'civictheme:link',
+    '#props' => [
+      'text' => $node->getTitle(),
+      'url' => $node->toUrl()->toString(),
+      'is_new_window' => FALSE,
+      'is_external' => FALSE,
+    ],
+  ];
+
+  $labels = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+  $tags_slot = NULL;
+  if (!empty($labels)) {
+    $tags_slot = ['#markup' => implode(', ', array_map(fn($label) => (string) $label, $labels))];
+  }
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:snippet',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+      'summary' => _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', $variables['view_mode'] ?? 'civictheme_snippet'),
+      'link' => $link_slot,
+      'tags' => $tags_slot,
+    ]),
+  ];
 }

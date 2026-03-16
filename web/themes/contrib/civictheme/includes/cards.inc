@@ -134,35 +134,102 @@ function civictheme_preprocess_paragraph__civictheme_promo_card_ref(array &$vari
 /**
  * Implements hook_preprocess_node__VIEW_MODE() for civictheme_promo_card.
  *
+ * For Event nodes, swaps to the event-card component since it is not possible
+ * to switch the view mode based on result type in views.
+ *
  * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_node__civictheme_promo_card(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-
-  _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::PROMO_CARD_IMAGE_STYLE);
-  _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__link($variables);
-  _civictheme_preprocess_paragraph__node_field__topics($variables);
   // @see civictheme_preprocess_views_view_grid()
-  $variables['theme'] = $variables['node']->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+  $theme = _civictheme_node_get_component_theme($node);
+  $modifier_class = civictheme_extract_modifier_class($variables);
 
-  // Special handling for Event nodes as we are swapping the Promo card with
-  // Event card FE component.
-  //
-  // For nodes rendered in views, it is not possible to switch the view mode
-  // based on the result type in the theme layer (the hook does not run).
-  // So we are swapping a FE component for Promo card view mode on Event content
-  // type to 'Event card' FE component.
-  //
-  // @see node--civictheme-event--civictheme-promo-card.html.twig
+  $image = NULL;
+  $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
+  if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
+    $image = civictheme_media_image_get_variables($media, CivicthemeConstants::PROMO_CARD_IMAGE_STYLE);
+  }
+
+  $link = [
+    'text' => $node->getTitle(),
+    'url' => $node->toUrl()->toString(),
+    'is_new_window' => FALSE,
+    'is_external' => FALSE,
+  ];
+
+  $labels = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+  $tags = array_map(static fn($label) => ['content' => (string) $label], $labels);
+
+  $title = $node->getTitle();
+
+  // Special handling for Event nodes: swap Promo card with Event card
+  // component. For nodes rendered in views, it is not possible to switch the
+  // view mode based on the result type in the theme layer.
   if ($node->bundle() == 'civictheme_event') {
-    _civictheme_preprocess_paragraph__node_field__date_range($variables);
-    _civictheme_preprocess_paragraph__node_field__summary($variables, 'civictheme_event_card');
+    $date_props = [];
+    $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
+    if ($date) {
+      $date_props['date'] = civictheme_format_datetime($date->get('value')->getDateTime());
+      $date_props['date_iso'] = civictheme_format_datetime_iso($date->get('value')->getDateTime());
+      if ($date->get('end_value')->getDateTime()) {
+        $date_props['date_end'] = civictheme_format_datetime($date->get('end_value')->getDateTime());
+        $date_props['date_end_iso'] = civictheme_format_datetime_iso($date->get('end_value')->getDateTime());
+      }
+    }
+
+    $location_slot = NULL;
+    /** @var \Drupal\paragraphs\Entity\Paragraph[] $locations */
+    $locations = civictheme_get_field_value($node, 'field_c_n_location', build: $variables) ?? [];
+    foreach ($locations as $location) {
+      $address = civictheme_get_field_value($location, 'field_c_p_address', TRUE);
+      if (!empty($address)) {
+        $location_slot = ['#markup' => $address];
+        break;
+      }
+    }
+
+    $variables['content'] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:event-card',
+      '#props' => array_filter([
+        'theme' => $theme,
+        'image' => $image,
+        'link' => $link,
+        'tags' => $tags ?: NULL,
+        'modifier_class' => $modifier_class,
+      ] + $date_props, fn ($v) => $v !== NULL),
+      '#slots' => array_filter([
+        'title' => $title ? ['#markup' => $title] : NULL,
+        'summary' => _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', 'civictheme_event_card'),
+        'location' => $location_slot,
+      ]),
+    ];
   }
   else {
-    _civictheme_preprocess_paragraph__node_field__summary($variables, 'civictheme_promo_card');
-    _civictheme_preprocess_paragraph__node_field__date($variables);
+    $date_props = [
+      'date' => civictheme_format_datetime($node->getChangedTime(), 'civictheme_short_date'),
+      'date_iso' => civictheme_format_datetime_iso($node->getChangedTime()),
+    ];
+
+    $variables['content'] = [
+      '#type' => 'component',
+      '#component' => 'civictheme:promo-card',
+      '#props' => array_filter([
+        'theme' => $theme,
+        'image' => $image,
+        'link' => $link,
+        'tags' => $tags ?: NULL,
+        'modifier_class' => $modifier_class,
+      ] + $date_props, fn ($v) => $v !== NULL),
+      '#slots' => array_filter([
+        'title' => $title ? ['#markup' => $title] : NULL,
+        'summary' => _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', 'civictheme_promo_card'),
+      ]),
+    ];
   }
 }
 
@@ -356,12 +423,41 @@ function civictheme_preprocess_paragraph__civictheme_navigation_card(array &$var
  * Implements hook_preprocess_node__VIEW_MODE() for civictheme_navigation_card.
  */
 function civictheme_preprocess_node__civictheme_navigation_card(array &$variables): void {
-  _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::NAVIGATION_CARD_IMAGE_STYLE);
-  _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__summary($variables, 'civictheme_navigation_card');
-  _civictheme_preprocess_paragraph__node_field__link($variables);
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
   // @see civictheme_preprocess_views_view_grid()
-  $variables['theme'] = $variables['node']->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+  $theme = _civictheme_node_get_component_theme($node);
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $image = NULL;
+  $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
+  if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
+    $image = civictheme_media_image_get_variables($media, CivicthemeConstants::NAVIGATION_CARD_IMAGE_STYLE);
+  }
+
+  $link = [
+    'text' => $node->getTitle(),
+    'url' => $node->toUrl()->toString(),
+    'is_new_window' => FALSE,
+    'is_external' => FALSE,
+  ];
+
+  $title = $node->getTitle();
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:navigation-card',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'image' => $image,
+      'link' => $link,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+      'summary' => _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', 'civictheme_navigation_card'),
+    ]),
+  ];
 }
 
 /**
@@ -502,11 +598,40 @@ function civictheme_preprocess_paragraph__civictheme_subject_card(array &$variab
  * Implements hook_preprocess_node__VIEW_MODE() for civictheme_subject_card.
  */
 function civictheme_preprocess_node__civictheme_subject_card(array &$variables): void {
-  _civictheme_preprocess_paragraph__node_field__image($variables, CivicthemeConstants::SUBJECT_CARD_IMAGE_STYLE);
-  _civictheme_preprocess_paragraph__node_field__title($variables);
-  _civictheme_preprocess_paragraph__node_field__link($variables);
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
   // @see civictheme_preprocess_views_view_grid()
-  $variables['theme'] = $variables['node']->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+  $theme = _civictheme_node_get_component_theme($node);
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $image = NULL;
+  $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
+  if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
+    $image = civictheme_media_image_get_variables($media, CivicthemeConstants::SUBJECT_CARD_IMAGE_STYLE);
+  }
+
+  $link = [
+    'text' => $node->getTitle(),
+    'url' => $node->toUrl()->toString(),
+    'is_new_window' => FALSE,
+    'is_external' => FALSE,
+  ];
+
+  $title = $node->getTitle();
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:subject-card',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'image' => $image,
+      'link' => $link,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+    ]),
+  ];
 }
 
 /**

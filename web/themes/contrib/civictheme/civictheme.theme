@@ -189,6 +189,11 @@ function civictheme_theme_registry_alter(array &$theme_registry): void {
  *
  * This also handles content-type-specific preprocesses for the full and
  * default view modes (e.g. civictheme_preprocess_node__civictheme_page__full).
+ *
+ * Additionally, for view-mode entries (node__VIEW_MODE) that have a preprocess
+ * function, this creates missing bundle+view_mode registry entries
+ * (node__BUNDLE__VIEW_MODE) for all node bundles. This ensures the view-mode
+ * preprocess runs even when no bundle-specific template file exists.
  */
 function _civictheme_theme_registry_alter__node_preprocess(array &$theme_registry): void {
   // Collect all theme names in the chain (base themes + active theme).
@@ -196,6 +201,71 @@ function _civictheme_theme_registry_alter__node_preprocess(array &$theme_registr
   $theme_names = array_keys($active_theme->getBaseThemeExtensions());
   $theme_names[] = $active_theme->getName();
 
+  // Shared component template used for all node view modes that render as
+  // SDC components (cards, snippets, slides, alerts). This avoids needing
+  // individual template files for each view mode and bundle combination.
+  // Resolve the base theme path where the component template lives.
+  $base_theme_path = NULL;
+  foreach ($active_theme->getBaseThemeExtensions() as $name => $extension) {
+    if ($name === 'civictheme') {
+      $base_theme_path = $extension->getPath();
+      break;
+    }
+  }
+  // Fall back to active theme if civictheme is the active theme itself.
+  $base_theme_path = $base_theme_path ?? $active_theme->getPath();
+
+  $component_template = [
+    'template' => 'node--civictheme-component',
+    'path' => $base_theme_path . '/templates/content',
+  ];
+
+  // Get all node view modes and find those with a matching preprocess function.
+  // These are view modes where the preprocess builds the entire output as an
+  // SDC render array, so they use the shared component template instead of
+  // core's node.html.twig. Full/default view modes are excluded as they use
+  // layout builder.
+  $all_view_modes = array_keys(\Drupal::service('entity_display.repository')->getViewModes('node'));
+  $component_view_modes = array_filter($all_view_modes, static function (string $view_mode) use ($theme_names): bool {
+    if (in_array($view_mode, ['full', 'default'], TRUE)) {
+      return FALSE;
+    }
+    foreach ($theme_names as $theme_name) {
+      if (function_exists($theme_name . '_preprocess_node__' . $view_mode)) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  });
+
+  // Create or update view-mode entries (node__VIEW_MODE) to use the shared
+  // component template, and create bundle+view_mode entries for all node
+  // bundles. This ensures the preprocess chain works without requiring
+  // template files for every combination.
+  $node_bundles = array_keys(\Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple());
+  $base_node_entry = $theme_registry['node'] ?? [];
+
+  foreach ($component_view_modes as $view_mode) {
+    $view_mode_name = 'node__' . $view_mode;
+
+    // Create or update the view-mode entry to use the component template.
+    if (!isset($theme_registry[$view_mode_name])) {
+      $theme_registry[$view_mode_name] = $base_node_entry;
+      $theme_registry[$view_mode_name]['base hook'] = 'node';
+    }
+    $theme_registry[$view_mode_name]['template'] = $component_template['template'];
+    $theme_registry[$view_mode_name]['path'] = $component_template['path'];
+
+    // Create missing bundle+view_mode entries for all node bundles.
+    foreach ($node_bundles as $bundle) {
+      $bundle_entry = 'node__' . $bundle . '__' . $view_mode;
+      if (!isset($theme_registry[$bundle_entry])) {
+        $theme_registry[$bundle_entry] = $theme_registry[$view_mode_name];
+      }
+    }
+  }
+
+  // Register preprocess functions on all node entries.
   foreach ($theme_registry as $name => $info) {
     // Only process node suggestion entries.
     if (!str_starts_with($name, 'node__') || ($info['base hook'] ?? NULL) !== 'node') {

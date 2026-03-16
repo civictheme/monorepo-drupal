@@ -121,6 +121,80 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variab
 }
 
 /**
+ * Implements hook_preprocess_node__VIEW_MODE() for civictheme_slider_slide.
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ */
+function civictheme_preprocess_node__civictheme_slider_slide(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  // @see civictheme_preprocess_views_view_grid()
+  $theme = _civictheme_node_get_component_theme($node);
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $image = NULL;
+  $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
+  if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
+    $image = civictheme_media_image_get_variables($media, CivicthemeConstants::SLIDER_SLIDE_IMAGE_STYLE);
+  }
+
+  $labels = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+  $tags = array_map(static fn($label) => ['content' => (string) $label], $labels);
+
+  $date_props = [];
+  if ($node->bundle() == 'civictheme_event') {
+    $date = civictheme_get_field_value($node, 'field_c_n_date_range', TRUE);
+    if ($date) {
+      $date_props['date'] = civictheme_format_datetime($date->get('value')->getDateTime());
+      $date_props['date_iso'] = civictheme_format_datetime_iso($date->get('value')->getDateTime());
+      if ($date->get('end_value')->getDateTime()) {
+        $date_props['date_end'] = civictheme_format_datetime($date->get('end_value')->getDateTime());
+        $date_props['date_end_iso'] = civictheme_format_datetime_iso($date->get('end_value')->getDateTime());
+      }
+    }
+  }
+  else {
+    $date_props['date'] = civictheme_format_datetime($node->getChangedTime(), 'civictheme_short_date');
+    $date_props['date_iso'] = civictheme_format_datetime_iso($node->getChangedTime());
+  }
+
+  $content_slot = NULL;
+  $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
+  if (!empty($summary)) {
+    $summary_text = _civictheme_truncate_summary($summary, 'civictheme_slider_slide');
+    if ($summary_text) {
+      $content_slot = ['#markup' => $summary_text];
+    }
+  }
+
+  $links = [];
+  $links[] = [
+    'text' => $node->getTitle(),
+    'url' => $node->toUrl()->toString(),
+    'is_external' => $node->toUrl()->isExternal(),
+    'is_new_window' => $node->toUrl()->isExternal(),
+  ];
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:slide',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'image' => $image,
+      'tags' => $tags ?: NULL,
+      'links' => $links,
+      'modifier_class' => $modifier_class,
+    ] + $date_props, fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $node->getTitle() ? ['#markup' => $node->getTitle()] : NULL,
+      'content' => $content_slot,
+    ]),
+  ];
+}
+
+/**
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.ElseExpression)
