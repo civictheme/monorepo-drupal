@@ -31,7 +31,7 @@ function civictheme_preprocess_paragraph__civictheme_next_step(array &$variables
     '#component' => 'civictheme:next-step',
     '#props' => array_filter([
       'theme' => $theme,
-      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing', default: 'none'),
       'link' => $link,
       'modifier_class' => $modifier_class,
     ], fn ($v) => $v !== NULL),

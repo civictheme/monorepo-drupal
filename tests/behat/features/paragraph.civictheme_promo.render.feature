@@ -40,7 +40,7 @@ Feature: Promo render
       | field_c_p_theme            | dark                                                      |
       | field_c_p_content:value    | [TEST] Content text                                       |
       | field_c_p_content:format   | civictheme_rich_text                                      |
-      | field_c_p_vertical_spacing | 0                                                         |
+      | field_c_p_vertical_spacing | none                                                         |
       | field_c_p_background       | 1                                                         |
       | field_c_p_link             | 0: [TEST] link 2 PromoTest - 1: https://example.com/link2 |
 
@@ -66,7 +66,7 @@ Feature: Promo render
       | field_c_p_theme            | dark                                                      |
       | field_c_p_content:value    | <script id="test-promo--field_c_p_content">alert('[TEST] Promo field_c_p_content')</script>                                       |
       | field_c_p_content:format   | civictheme_rich_text                                      |
-      | field_c_p_vertical_spacing | 0                                                         |
+      | field_c_p_vertical_spacing | none                                                      |
       | field_c_p_background       | 1                                                         |
       | field_c_p_link             | 0: <script id="test-promo--field_c_p_link">alert('field_c_p_link');</script> - 1: https://example.com/link2 |
 

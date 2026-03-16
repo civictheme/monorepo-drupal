@@ -31,7 +31,7 @@ function civictheme_preprocess_paragraph__civictheme_accordion(array &$variables
     '#component' => 'civictheme:accordion',
     '#props' => array_filter([
       'theme' => $theme,
-      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing'),
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing', default: 'none'),
       'with_background' => (bool) civictheme_get_field_value($paragraph, 'field_c_p_background'),
       'expand_all' => civictheme_get_field_value($paragraph, 'field_c_p_expand') ?? FALSE,
       'panels' => $panels ?: NULL,
