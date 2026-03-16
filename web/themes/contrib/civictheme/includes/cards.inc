@@ -181,17 +181,6 @@ function civictheme_preprocess_node__civictheme_promo_card(array &$variables): v
       }
     }
 
-    $location_slot = NULL;
-    /** @var \Drupal\paragraphs\Entity\Paragraph[] $locations */
-    $locations = civictheme_get_field_value($node, 'field_c_n_location', build: $variables) ?? [];
-    foreach ($locations as $location) {
-      $address = civictheme_get_field_value($location, 'field_c_p_address', TRUE);
-      if (!empty($address)) {
-        $location_slot = ['#markup' => $address];
-        break;
-      }
-    }
-
     $variables['content'] = [
       '#type' => 'component',
       '#component' => 'civictheme:event-card',
@@ -205,7 +194,6 @@ function civictheme_preprocess_node__civictheme_promo_card(array &$variables): v
       '#slots' => array_filter([
         'title' => $title ? ['#markup' => $title] : NULL,
         'summary' => _civictheme_build_summary_slot_from_node($node, 'field_c_n_summary', 'civictheme_event_card'),
-        'location' => $location_slot,
       ]),
     ];
   }
