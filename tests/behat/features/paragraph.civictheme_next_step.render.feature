@@ -37,7 +37,7 @@ Feature: Next step render
       | field_c_p_theme            | dark                                            |
       | field_c_p_content:value    | [TEST] Content text                             |
       | field_c_p_content:format   | civictheme_rich_text                            |
-      | field_c_p_vertical_spacing | 0                                               |
+      | field_c_p_vertical_spacing | none                                               |
       | field_c_p_link             | 0: [TEST] link 2 - 1: https://example.com/link2 |
 
     When I visit "civictheme_page" "[TEST] Page Next step test 1"

@@ -20,9 +20,22 @@ function _civictheme_preprocess_node(array &$variables): void {
     return;
   }
 
+  $bundle = str_replace('_', '-', $node->bundle());
+  $view_mode = str_replace('_', '-', $variables['view_mode'] ?? '');
+
   $variables['attributes']['class'][] = 'node';
+  $variables['attributes']['class'][] = 'node--type-' . $bundle;
+  if ($node->isPromoted()) {
+    $variables['attributes']['class'][] = 'node--promoted';
+  }
+  if ($node->isSticky()) {
+    $variables['attributes']['class'][] = 'node--sticky';
+  }
   if (!$node->isPublished()) {
     $variables['attributes']['class'][] = 'node--unpublished';
+  }
+  if ($view_mode) {
+    $variables['attributes']['class'][] = 'node--view-mode-' . $view_mode;
   }
 }
 
@@ -84,13 +97,42 @@ function civictheme_preprocess_node__civictheme_alert(array &$variables): void {
     return;
   }
 
-  $variables['id'] = $node->id();
-  $variables['title'] = Xss::filter((string) $node->label());
-  $variables['title'] = strip_tags($variables['title']);
-  // Force dark theme to make sure that text colour has enough contrast
-  // with a background.
-  $variables['description'] = civictheme_get_wysiwyg_field_value($node, 'field_c_n_body', TRUE, CivicthemeConstants::THEME_DARK);
-  $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type', default: 'information');
+  $modifier_class = civictheme_extract_modifier_class($variables);
+  $title = strip_tags(Xss::filter((string) $node->label()));
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:alert',
+    '#props' => array_filter([
+      'id' => $node->id(),
+      'type' => civictheme_get_field_value($node, 'field_c_n_alert_type', default: 'information'),
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+      // Force dark theme to make sure that text colour has enough contrast
+      // with a background.
+      'description' => civictheme_get_wysiwyg_field_value($node, 'field_c_n_body', TRUE, CivicthemeConstants::THEME_DARK),
+    ]),
+  ];
+}
+
+/**
+ * Get the validated component theme from a node.
+ *
+ * Returns the node's component_theme if it is a valid SDC theme value
+ * ('light' or 'dark'), otherwise falls back to 'light'. The
+ * component_theme property is set by the views grid preprocessor and may
+ * contain values like 'inherit' which are not valid for SDC components.
+ *
+ * @see civictheme_preprocess_views_view_grid()
+ */
+function _civictheme_node_get_component_theme(NodeInterface $node): string {
+  $theme = $node->component_theme ?? CivicthemeConstants::THEME_LIGHT;
+
+  return in_array($theme, [CivicthemeConstants::THEME_LIGHT, CivicthemeConstants::THEME_DARK], TRUE)
+    ? $theme
+    : CivicthemeConstants::THEME_LIGHT;
 }
 
 /**

@@ -16,6 +16,7 @@ use Drupal\views\Views;
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function civictheme_preprocess_paragraph__civictheme_automated_list(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -25,18 +26,41 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   $variables['content'] = NULL;
 
   // The paragraph contains 2 types of values:
-  // 1. Content values that should be passed as variables to the render image.
+  // 1. Content values that should be passed as variables to the template
+  //    (which extends civictheme:list).
   // 2. View settings values that should be passed to a view for alterations
-  // in child preprocess hooks.
+  //    in child preprocess hooks.
   //
-  // Content values.
-  _civictheme_preprocess_paragraph__paragraph_field__title($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__content($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__link_above($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__link_below($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__theme($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing($variables);
-  _civictheme_preprocess_paragraph__paragraph_field__background($variables);
+  // Content values set directly on $variables for use by the list component
+  // template. The template uses {% extends 'civictheme:list' %} with a
+  // rows_block override to avoid wrapping the view output in ct-list__rows.
+  $variables['theme'] = civictheme_get_field_value($paragraph, 'field_c_p_theme');
+  $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
+  $variables['content'] = civictheme_get_wysiwyg_field_value($paragraph, 'field_c_p_content', TRUE, $variables['theme'] ?? 'light');
+  $variables['vertical_spacing'] = civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing');
+  $variables['with_background'] = (bool) civictheme_get_field_value($paragraph, 'field_c_p_background');
+
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_above_item */
+  $link_above_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_above', TRUE);
+  if ($link_above_item !== NULL) {
+    $variables['link_above'] = [
+      'text' => $link_above_item->get('title')->getString(),
+      'url' => $link_above_item->getUrl()->toString(),
+      'is_new_window' => $link_above_item->isExternal(),
+      'is_external' => $link_above_item->isExternal(),
+    ];
+  }
+
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link_below_item */
+  $link_below_item = civictheme_get_field_value($paragraph, 'field_c_p_list_link_below', TRUE);
+  if ($link_below_item !== NULL) {
+    $variables['link_below'] = [
+      'text' => $link_below_item->get('title')->getString(),
+      'url' => $link_below_item->getUrl()->toString(),
+      'is_new_window' => $link_below_item->isExternal(),
+      'is_external' => $link_below_item->isExternal(),
+    ];
+  }
 
   // Views settings.
   // We want to have a single place to gather all initial view settings to pass
@@ -95,7 +119,7 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
   // Pass the CSS class from the view display to the template.
   $css_class = $view->getDisplay()->getOption('css_class');
   if (!empty($css_class)) {
-    $variables['modifier_class'] = $variables['modifier_class'] ?? '' . $css_class;
+    $variables['modifier_class'] = ($variables['modifier_class'] ?? '') . ' ' . $css_class;
   }
 
   // Add unique HTML ID.

@@ -401,6 +401,42 @@ civictheme.settings:
       type: mapping
       label: 'Opt-out flags'
 
+field.formatter.third_party.civictheme:
+  type: mapping
+  label: 'CivicTheme formatter settings'
+  nullable: true
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enabled'
+    theme:
+      type: string
+      label: 'Theme'
+    vertical_spacing:
+      type: string
+      label: 'Vertical spacing'
+    with_background:
+      type: boolean
+      label: 'With background'
+    label_heading_level:
+      type: string
+      label: 'Label heading level'
+    column_count:
+      type: integer
+      label: 'Column count'
+    fill_width:
+      type: boolean
+      label: 'Fill width'
+    direction:
+      type: string
+      label: 'Direction'
+    size:
+      type: string
+      label: 'Size'
+    no_gap:
+      type: boolean
+      label: 'No gap'
+
 layout_plugin.settings.civictheme_three_columns:
   type: layout_plugin.settings
   label: 'CivicTheme Three Columns Layout Settings'
