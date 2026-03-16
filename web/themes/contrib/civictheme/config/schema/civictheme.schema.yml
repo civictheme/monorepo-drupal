@@ -401,9 +401,10 @@ civictheme.settings:
       type: mapping
       label: 'Opt-out flags'
 
-field.formatter.third_party_settings.civictheme:
+field.formatter.third_party.civictheme:
   type: mapping
   label: 'CivicTheme formatter settings'
+  nullable: true
   mapping:
     enabled:
       type: boolean
