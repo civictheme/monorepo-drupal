@@ -150,6 +150,7 @@ function civictheme_theme_registry_alter(array &$theme_registry): void {
   // preprocesses run for all bundle+view_mode combinations.
   _civictheme_theme_registry_alter__node_preprocess($theme_registry);
   _civictheme_theme_registry_alter__paragraph_preprocess($theme_registry);
+  _civictheme_theme_registry_alter__block_preprocess($theme_registry);
 
   // Define a new preprocess hook that will always run last.
   $hook = 'civictheme_preprocess_last';
@@ -325,6 +326,72 @@ function _civictheme_theme_registry_alter__paragraph_preprocess(array &$theme_re
 }
 
 /**
+ * Register block preprocess functions on all CivicTheme block suggestions.
+ *
+ * Creates registry entries for CivicTheme block suggestions that may not have
+ * corresponding template files (because preprocessing builds SDC render arrays
+ * instead). All entries point to the base block.html.twig template.
+ *
+ * This also discovers and registers preprocess functions from all themes in the
+ * chain (base theme + sub-themes) on all block suggestion entries.
+ */
+function _civictheme_theme_registry_alter__block_preprocess(array &$theme_registry): void {
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  $theme_names = array_keys($active_theme->getBaseThemeExtensions());
+  $theme_names[] = $active_theme->getName();
+
+  // Block suggestions that CivicTheme uses. Registry entries are needed for
+  // these so that preprocess functions are discovered even when no template
+  // file exists.
+  $block_suggestions = [
+    // block_content blocks (civictheme bundles).
+    'block__civictheme_banner__default',
+    'block__civictheme_search__default',
+    'block__civictheme_social_links__default',
+    'block__civictheme_mobile_navigation__default',
+    'block__civictheme_component_block__default',
+    // menu_block derivatives.
+    'block__menu_block__civictheme_primary_navigation',
+    'block__menu_block__civictheme_secondary_navigation',
+    'block__menu_block__civictheme_sidebar_navigation',
+    'block__menu_block__civictheme_footer',
+  ];
+
+  $base_block_entry = $theme_registry['block'] ?? [];
+
+  // Ensure registry entries exist for all CivicTheme block suggestions.
+  foreach ($block_suggestions as $suggestion) {
+    if (!isset($theme_registry[$suggestion])) {
+      $theme_registry[$suggestion] = $base_block_entry;
+      $theme_registry[$suggestion]['base hook'] = 'block';
+    }
+  }
+
+  // Register preprocess functions on all block suggestion entries.
+  foreach ($theme_registry as $name => $info) {
+    if (!str_starts_with($name, 'block__') || ($info['base hook'] ?? NULL) !== 'block') {
+      continue;
+    }
+
+    // Build all intermediate function names from the suggestion parts.
+    // For 'block__menu_block__civictheme_primary_navigation', this checks:
+    //   - THEME_preprocess_block__menu_block
+    //   - THEME_preprocess_block__menu_block__civictheme_primary_navigation
+    $parts = explode('__', $name);
+    foreach ($theme_names as $theme_name) {
+      $accumulated = $parts[0]; // 'block'
+      for ($i = 1; $i < count($parts); $i++) {
+        $accumulated .= '__' . $parts[$i];
+        $preprocess_function = $theme_name . '_preprocess_' . $accumulated;
+        if (function_exists($preprocess_function) && !in_array($preprocess_function, $theme_registry[$name]['preprocess functions'] ?? [])) {
+          $theme_registry[$name]['preprocess functions'][] = $preprocess_function;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_last().
  */
 function civictheme_preprocess_last(array &$variables, string $hook): void {
@@ -382,14 +449,9 @@ function civictheme_preprocess_node(array &$variables): void {
  */
 function civictheme_preprocess_block(array &$variables): void {
   _civictheme_preprocess_block__drupal($variables);
+  _civictheme_preprocess_block__theme($variables);
   _civictheme_preprocess_block__label_heading_level($variables);
   _civictheme_preprocess_block__civictheme_layout_builder_settings($variables);
-  _civictheme_preprocess_block__system_main_block($variables);
-  _civictheme_preprocess_block__civictheme_banner($variables);
-  _civictheme_preprocess_block__navigation($variables);
-  _civictheme_preprocess_block__content($variables);
-  _civictheme_preprocess_block__civictheme_mobile_navigation($variables);
-  _civictheme_preprocess_block__civictheme_social_links($variables);
 }
 
 /**

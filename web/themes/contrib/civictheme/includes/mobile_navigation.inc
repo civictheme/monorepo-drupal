@@ -14,12 +14,12 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Menu\MenuTreeParameters;
 
 /**
- * Pre-process for Mobile Navigation block.
+ * Implements template_preprocess_block__HOOK().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
+function civictheme_preprocess_block__civictheme_mobile_navigation__default(array &$variables): void {
   $entity = $variables['elements']['content']['#block_content'] ?? NULL;
   if (!$entity instanceof BlockContentInterface || $entity->bundle() !== 'civictheme_mobile_navigation') {
     return;
@@ -32,6 +32,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
 
   // Get primary and secondary menu links by building menu tree based on
   // menu block settings.
+  $menus = ['top_menu' => [], 'bottom_menu' => []];
   $entity_cache_tags = $entity->getCacheTags();
   $cacheability = new CacheableMetadata();
   foreach ($menu_fields as $menu_key => $menu_field) {
@@ -68,9 +69,9 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
     $tree = $menu_tree_service->transform($tree, $manipulators);
 
     $build = $menu_tree_service->build($tree);
-    $variables[$menu_key] = $build['#items'] ?? [];
-    _civictheme_preprocess_top_mobile_menu($variables, $menu_key);
-    _civictheme_preprocess_menu_items($variables[$menu_key], $expand_all_items);
+    $menus[$menu_key] = $build['#items'] ?? [];
+    _civictheme_preprocess_top_mobile_menu_items($menus, $menu_key);
+    _civictheme_preprocess_menu_items($menus[$menu_key], $expand_all_items);
 
     $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build));
     $cacheability->addCacheTags($entity_cache_tags);
@@ -79,34 +80,49 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(array &$vari
 
   $cacheability->applyTo($variables);
 
-  $variables['trigger_text'] = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
-  $variables['theme'] = civictheme_get_field_theme_value($entity);
-
+  $trigger_text = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
+  $theme = civictheme_get_field_theme_value($entity);
   $context_theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
-  $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
+  $trigger_theme = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
+
+  $variables['content'] = [];
+  $variables['content']['trigger'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:mobile-navigation-trigger',
+    '#props' => array_filter([
+      'theme' => $trigger_theme,
+      'text' => $trigger_text,
+    ], fn ($v) => $v !== NULL),
+  ];
+  $variables['content']['navigation'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:mobile-navigation',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'top_menu' => $menus['top_menu'] ?: NULL,
+      'bottom_menu' => $menus['bottom_menu'] ?: NULL,
+    ], fn ($v) => $v !== NULL),
+  ];
 }
 
 /**
  * Additional preprocessing of the mobile top menu.
  *
- * @param array $variables
- *   Preprocess variables.
+ * @param array $menus
+ *   Array of menus keyed by menu position.
  * @param string $menu_key
  *   Menu key.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_top_mobile_menu(array &$variables, string $menu_key): void {
+function _civictheme_preprocess_top_mobile_menu_items(array &$menus, string $menu_key): void {
   if ($menu_key !== 'top_menu') {
     return;
   }
   // Add search links to end of top menu.
   $search_links = _civictheme_get_mobile_search_links();
-  $cacheable_metadata = CacheableMetadata::createFromRenderArray($variables);
-  $cacheable_metadata = $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($search_links));
-  $cacheable_metadata->applyTo($variables);
   foreach ($search_links['items'] as $search_link) {
-    $variables[$menu_key][] = [
+    $menus[$menu_key][] = [
       'url' => $search_link['url'],
       'title' => $search_link['text'],
       'is_new_window' => FALSE,

@@ -13,18 +13,14 @@ use Drupal\media\MediaInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
- * Pre-process for Social Links block.
+ * Implements template_preprocess_block__HOOK().
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_block__civictheme_social_links(array &$variables): void {
-  if ($variables['base_plugin_id'] != 'block_content') {
-    return;
-  }
-
-  $entity = $variables['elements']['content']['#block_content'];
-  if ($entity->bundle() != 'civictheme_social_links' || !civictheme_field_has_value($entity, 'field_c_b_social_icons')) {
+function civictheme_preprocess_block__civictheme_social_links__default(array &$variables): void {
+  $entity = $variables['elements']['content']['#block_content'] ?? NULL;
+  if (!$entity || !civictheme_field_has_value($entity, 'field_c_b_social_icons')) {
     return;
   }
 
@@ -56,8 +52,18 @@ function _civictheme_preprocess_block__civictheme_social_links(array &$variables
     $items[] = $item;
   }
 
-  $variables['items'] = $items;
+  $theme = civictheme_get_field_theme_value($entity);
+  $with_border = civictheme_get_field_value($entity, 'field_c_b_with_border') ?? FALSE;
+  $modifier_class = civictheme_extract_modifier_class($variables);
 
-  $variables['theme'] = civictheme_get_field_theme_value($entity);
-  $variables['with_border'] = civictheme_get_field_value($entity, 'field_c_b_with_border') ?? FALSE;
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:social-links',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'with_border' => $with_border,
+      'items' => $items ?: NULL,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+  ];
 }

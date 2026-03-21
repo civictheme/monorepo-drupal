@@ -13,69 +13,99 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
 
 /**
- * Pre-process for Banner block.
+ * Implements template_preprocess_block__HOOK() for Banner block.
  *
  * 3 parts:
  * 1. Properties from the block.
  * 2. Properties from the node that may override properties from the block.
- * 3. Cache tags.
+ * 3. Build SDC render array.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_preprocess_block__civictheme_banner(array &$variables): void {
-  if ($variables['base_plugin_id'] != 'block_content') {
+function civictheme_preprocess_block__civictheme_banner__default(array &$variables): void {
+  $block = $variables['elements']['content']['#block_content'] ?? NULL;
+  if (!$block || ($block->hasField('field_c_b_type') && $block->field_c_b_type->isEmpty())) {
     return;
   }
 
-  $block = $variables['elements']['content']['#block_content'];
-  if ($block->bundle() != 'civictheme_banner' || ($block->hasField('field_c_b_type') && $block->field_c_b_type->isEmpty())) {
-    return;
-  }
-
-  // Explicitly defined variables to allow additional preprocessing.
+  // Explicitly defined variables to allow additional preprocessing by
+  // sub-themes. These are collected into slots at the end.
   $variables['content_top1'] = NULL;
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
   $variables['content_bottom'] = NULL;
+  $variables['content_middle'] = NULL;
+  $variables['content_below'] = NULL;
+  $variables['site_section'] = NULL;
 
   $variables['theme'] = civictheme_get_field_value($block, 'field_c_b_theme', TRUE, CivicthemeConstants::BANNER_THEME_DEFAULT);
-  $variables['type'] = civictheme_get_field_value($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
+  $variables['banner_type'] = civictheme_get_field_value($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
 
-  // Remove existing content.
-  $variables['content'] = NULL;
+  // Remove existing content so we can build an SDC render array.
+  $variables['banner_content'] = NULL;
 
+  $variables['background_image'] = NULL;
+  $variables['background_image_blend_mode'] = NULL;
   $background_image = civictheme_get_field_value($block, 'field_c_b_background_image', TRUE, build: $variables);
   if (!empty($background_image)) {
     $variables['background_image'] = civictheme_media_image_get_variables($background_image);
     $variables['background_image_blend_mode'] = civictheme_get_field_value($block, 'field_c_b_banner_blend_mode', TRUE);
   }
 
+  $variables['featured_image'] = NULL;
   $featured_image = civictheme_get_field_value($block, 'field_c_b_featured_image', TRUE, build: $variables);
   if (!empty($featured_image)) {
     $variables['featured_image'] = civictheme_media_image_get_variables($featured_image);
   }
+
   $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
   $title = (string) (is_array($title) ? reset($title) : ((string) $title));
-  $title = [
+  $variables['title'] = [
     '#type' => 'markup',
     '#markup' => $title,
   ];
-  $variables['title'] = $title;
 
+  $variables['breadcrumb'] = NULL;
   _civictheme_preprocess_block__civictheme_banner__breadcrumb($variables);
 
   // Per-node overrides.
   _civictheme_preprocess_block__civictheme_banner__node($variables);
 
-  if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
-    $variables['is_decorative'] = TRUE;
-  }
+  $variables['is_decorative'] = $variables['banner_type'] == CivicthemeConstants::BANNER_TYPE_LARGE;
 
-  // Note that per-node overrides above may adjust cache tags as required.
+  // Cache contexts.
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
+
+  // Build SDC render array from accumulated variables.
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:banner',
+    '#props' => array_filter([
+      'theme' => $variables['theme'],
+      'is_decorative' => $variables['is_decorative'] ?? NULL,
+      'background_image' => $variables['background_image'],
+      'background_image_blend_mode' => $variables['background_image_blend_mode'],
+      'featured_image' => $variables['featured_image'],
+      'breadcrumb' => $variables['breadcrumb'],
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $variables['title'],
+      'site_section' => $variables['site_section'] ? ['#markup' => $variables['site_section']] : NULL,
+      'content_top1' => $variables['content_top1'],
+      'content_top2' => $variables['content_top2'],
+      'content_top3' => $variables['content_top3'],
+      'content_middle' => $variables['content_middle'],
+      'content' => $variables['banner_content'],
+      'content_bottom' => $variables['content_bottom'],
+      'content_below' => $variables['content_below'],
+    ]),
+  ];
 }
 
 /**
@@ -97,7 +127,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
   }
 
   $type = civictheme_get_field_value($node, 'field_c_n_banner_type', TRUE, CivicthemeConstants::INHERIT);
-  $variables['type'] = $type == CivicthemeConstants::INHERIT ? ($variables['type'] ?? CivicthemeConstants::BANNER_TYPE_DEFAULT) : $type;
+  $variables['banner_type'] = $type == CivicthemeConstants::INHERIT ? ($variables['banner_type'] ?? CivicthemeConstants::BANNER_TYPE_DEFAULT) : $type;
 
   $theme = civictheme_get_field_value($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
   $variables['theme'] = $theme == CivicthemeConstants::INHERIT ? ($variables['theme'] ?? CivicthemeConstants::BANNER_THEME_DEFAULT) : $theme;
@@ -118,7 +148,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
     $variables['title']['#markup'] = $node->getTitle();
   }
   if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
-    unset($variables['breadcrumb']);
+    $variables['breadcrumb'] = NULL;
   }
 
   $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE, build: $variables);
@@ -143,7 +173,7 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
   $banner_components = civictheme_get_field_value($node, 'field_c_n_banner_components');
   if (!empty($banner_components)) {
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-    $variables['content'][] = $render_controller->viewMultiple($banner_components, 'default');
+    $variables['banner_content'][] = $render_controller->viewMultiple($banner_components, 'default');
   }
 
   $banner_below_components = civictheme_get_field_value($node, 'field_c_n_banner_components_bott');
