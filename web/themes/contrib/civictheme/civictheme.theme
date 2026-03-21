@@ -349,7 +349,7 @@ function _civictheme_theme_registry_alter__block_preprocess(array &$theme_regist
 
     // Build all intermediate function names from the suggestion parts.
     // For 'block__menu_block', this checks:
-    //   - THEME_preprocess_block__menu_block.
+    // - THEME_preprocess_block__menu_block.
     $parts = explode('__', $name);
     foreach ($theme_names as $theme_name) {
       $accumulated = $parts[0];
