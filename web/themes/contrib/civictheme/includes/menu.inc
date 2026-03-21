@@ -42,50 +42,55 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
 }
 
 /**
- * Preprocess for primary navigation menu block.
+ * Implements template_preprocess_block__HOOK() for all menu_block blocks.
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * Dispatches to per-menu preprocess functions based on the menu name or
+ * suggestion config. This function is auto-discovered by Drupal's registry
+ * builder, which creates the block__menu_block entry — eliminating the need
+ * to register multi-level menu_block suggestions explicitly.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_block__navigation(array &$variables): void {
-  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
-    return;
+function civictheme_preprocess_block__menu_block(array &$variables): void {
+  $menu_name = strtr($variables['elements']['#derivative_plugin_id'] ?? '', '-', '_');
+
+  // Allow the menu_block 'suggestion' config to override the menu name.
+  $suggestion = $variables['elements']['#configuration']['suggestion'] ?? '';
+  if (!empty($suggestion)) {
+    $menu_name = $suggestion;
   }
 
-  $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
+  $callback = '_civictheme_preprocess_block__menu_block__' . $menu_name;
+  if (function_exists($callback)) {
+    $callback($variables);
+  }
+}
 
-  $menu_theme_list = [
-    'civictheme_primary_navigation',
-    'civictheme_secondary_navigation',
-    'civictheme_sidebar_navigation',
-    'civictheme_footer',
+/**
+ * Preprocess for footer navigation menu block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_block__menu_block__civictheme_footer(array &$variables): void {
+  $theme = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
+  $items = $variables['content']['#items'] ?? [];
+  $title = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
+  _civictheme_preprocess_menu_items($items);
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:navigation',
+    // Override default empty string to prevent SDC injecting it as a prop.
+    '#variant' => NULL,
+    '#props' => array_filter([
+      'theme' => $theme,
+      'items' => $items ?: NULL,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'title' => $title ? ['#markup' => $title] : NULL,
+    ]),
   ];
-
-  if (!empty($variables['elements']['#configuration']['suggestion']) && in_array($variables['elements']['#configuration']['suggestion'], $menu_theme_list)) {
-    $menu_name = $variables['elements']['#configuration']['suggestion'];
-  }
-
-  if ($menu_name === 'civictheme_primary_navigation' || $menu_name === 'civictheme_secondary_navigation') {
-    $key = substr($menu_name, strlen('civictheme_'));
-    // Set menu theme as per footer theme.
-    $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
-    // Set name for aria-label of <nav> element.
-    $variables['name'] = strtr($key, '_navigation', '');
-    $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name === 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
-    $variables['dropdown_columns'] = (int) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
-    $variables['dropdown_columns_fill'] = (boolean) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
-    $variables['is_animated'] = (boolean) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);
-    $variables['variant'] = $menu_name === 'civictheme_primary_navigation' ? 'primary' : 'secondary';
-    $expand_all_items = $variables['elements']['#configuration']['expand_all_items'] ?? FALSE;
-    _civictheme_preprocess_menu_items($variables['items'], $expand_all_items);
-  }
-
-  if ($menu_name === 'civictheme_footer') {
-    // Set menu theme as per footer theme.
-    $variables['theme'] = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
-    $variables['items'] = $variables['content']['#items'] ?? [];
-    $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
-
-    _civictheme_preprocess_menu_items($variables['items']);
-  }
 }

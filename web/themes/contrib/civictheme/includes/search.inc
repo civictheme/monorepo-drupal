@@ -11,7 +11,7 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
 
 /**
- * Implements template_preprocess_block().
+ * Implements template_preprocess_block__HOOK().
  */
 function civictheme_preprocess_block__civictheme_search(array &$variables): void {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -23,19 +23,33 @@ function civictheme_preprocess_block__civictheme_search(array &$variables): void
     return;
   }
 
-  $variables['content'] = NULL;
+  $theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+  $modifier_class = civictheme_extract_modifier_class($variables);
+
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
   $link = civictheme_get_field_value($entity, 'field_c_b_link', TRUE);
+  $url = NULL;
+  $text = NULL;
   if ($link !== NULL) {
-    $variables['url'] = $link->getUrl()->toString();
-    $variables['text'] = $link->get('title')->getString();
+    $url = $link->getUrl()->toString();
+    $text = $link->get('title')->getString();
     if (civictheme_get_field_value($entity, 'field_c_b_link_in_mobile_menu')) {
-      // Hide search block on mobile view.
-      $variables['modifier_class'] = 'hide-xxs show-m-flex';
+      $modifier_class = trim('hide-xxs show-m-flex ' . ($modifier_class ?? ''));
     }
   }
 
-  $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:search',
+    '#props' => array_filter([
+      'theme' => $theme,
+      'modifier_class' => $modifier_class,
+    ], fn ($v) => $v !== NULL),
+    '#slots' => array_filter([
+      'url' => $url ? ['#markup' => $url] : NULL,
+      'text' => $text ? ['#markup' => $text] : NULL,
+    ]),
+  ];
 }
 
 /**

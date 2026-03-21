@@ -2,19 +2,15 @@
 
 /**
  * @file
- * Block content related functions.
+ * System main block theme alterations.
  */
 
 declare(strict_types=1);
 
 /**
- * Preprocess for system_main_block block.
+ * Implements template_preprocess_block__HOOK().
  */
-function _civictheme_preprocess_block__system_main_block(array &$variables): void {
-  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'system_main_block') {
-    return;
-  }
-
+function civictheme_preprocess_block__system_main_block(array &$variables): void {
   // Add the most generic class to make text appear styled.
   $variables['attributes']['class'][] = 'ct-text-regular';
   $variables['modifier_class'] = FALSE;
