@@ -24,7 +24,7 @@ use Drupal\Core\Link;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function civictheme_preprocess_block__civictheme_banner__default(array &$variables): void {
+function civictheme_preprocess_block__civictheme_banner(array &$variables): void {
   $block = $variables['elements']['content']['#block_content'] ?? NULL;
   if (!$block || ($block->hasField('field_c_b_type') && $block->field_c_b_type->isEmpty())) {
     return;

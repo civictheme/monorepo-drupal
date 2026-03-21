@@ -10,11 +10,13 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 
 /**
- * Implements template_preprocess_block__HOOK() for header primary navigation.
+ * Preprocess for primary navigation menu block.
+ *
+ * Called from civictheme_preprocess_block__menu_block().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(array &$variables): void {
+function _civictheme_preprocess_block__menu_block__civictheme_primary_navigation(array &$variables): void {
   $theme = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
   $items = $variables['content']['#items'] ?? [];
   $title = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';

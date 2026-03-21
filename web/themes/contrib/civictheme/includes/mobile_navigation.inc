@@ -20,7 +20,7 @@ use Drupal\Core\Menu\MenuTreeParameters;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function civictheme_preprocess_block__civictheme_mobile_navigation__default(array &$variables): void {
+function civictheme_preprocess_block__civictheme_mobile_navigation(array &$variables): void {
   $entity = $variables['elements']['content']['#block_content'] ?? NULL;
   if (!$entity instanceof BlockContentInterface || $entity->bundle() !== 'civictheme_mobile_navigation') {
     return;

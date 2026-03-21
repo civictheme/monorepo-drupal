@@ -42,11 +42,36 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
 }
 
 /**
- * Implements template_preprocess_block__HOOK() for footer navigation.
+ * Implements template_preprocess_block__HOOK() for all menu_block blocks.
+ *
+ * Dispatches to per-menu preprocess functions based on the menu name or
+ * suggestion config. This function is auto-discovered by Drupal's registry
+ * builder, which creates the block__menu_block entry — eliminating the need
+ * to register multi-level menu_block suggestions explicitly.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_block__menu_block__civictheme_footer(array &$variables): void {
+function civictheme_preprocess_block__menu_block(array &$variables): void {
+  $menu_name = strtr($variables['elements']['#derivative_plugin_id'] ?? '', '-', '_');
+
+  // Allow the menu_block 'suggestion' config to override the menu name.
+  $suggestion = $variables['elements']['#configuration']['suggestion'] ?? '';
+  if (!empty($suggestion)) {
+    $menu_name = $suggestion;
+  }
+
+  $callback = '_civictheme_preprocess_block__menu_block__' . $menu_name;
+  if (function_exists($callback)) {
+    $callback($variables);
+  }
+}
+
+/**
+ * Preprocess for footer navigation menu block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_block__menu_block__civictheme_footer(array &$variables): void {
   $theme = civictheme_get_theme_config_manager()->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT);
   $items = $variables['content']['#items'] ?? [];
   $title = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';

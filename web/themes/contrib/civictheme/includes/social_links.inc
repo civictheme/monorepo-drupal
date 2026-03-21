@@ -18,7 +18,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_preprocess_block__civictheme_social_links__default(array &$variables): void {
+function civictheme_preprocess_block__civictheme_social_links(array &$variables): void {
   $entity = $variables['elements']['content']['#block_content'] ?? NULL;
   if (!$entity || !civictheme_field_has_value($entity, 'field_c_b_social_icons')) {
     return;
