@@ -375,11 +375,12 @@ function _civictheme_theme_registry_alter__block_preprocess(array &$theme_regist
 
     // Build all intermediate function names from the suggestion parts.
     // For 'block__menu_block__civictheme_primary_navigation', this checks:
-    //   - THEME_preprocess_block__menu_block
-    //   - THEME_preprocess_block__menu_block__civictheme_primary_navigation
+    // - THEME_preprocess_block__menu_block
+    // - THEME_preprocess_block__menu_block__civictheme_primary_navigation.
     $parts = explode('__', $name);
     foreach ($theme_names as $theme_name) {
-      $accumulated = $parts[0]; // 'block'
+      // 'block'
+      $accumulated = $parts[0];
       for ($i = 1; $i < count($parts); $i++) {
         $accumulated .= '__' . $parts[$i];
         $preprocess_function = $theme_name . '_preprocess_' . $accumulated;
