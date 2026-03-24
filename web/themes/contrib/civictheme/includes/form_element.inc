@@ -569,6 +569,10 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
 function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
+  if (!\Drupal::moduleHandler()->moduleExists('webform') && !WebformElementHelper::isWebformElement($variables['element'])) {
+    return;
+  }
+  $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
 }
 
 /**
