@@ -379,11 +379,14 @@ function civictheme_preprocess_input__submit(array &$variables): void {
  * Implements template_preprocess_form_element_label().
  */
 function civictheme_preprocess_form_element_label(array &$variables): void {
-  $variables['content'] = $variables['title'];
+  $variables['content'] = $variables['title'] ?? '';
   $variables['tag'] = 'label';
   $variables['size'] = 'regular';
   $variables['is_required'] = $variables['required'] ?? FALSE;
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
   $variables['for'] = $variables['attributes']['for'] ?? '';
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['modifier_class'] = $variables['modifier_class'] ?? '';
   unset($variables['attributes']['for']);
 }
 
