@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Pre-process for Webform paragraph.
  */
@@ -19,4 +21,27 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
   if ($paragraph && civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
+}
+
+/**
+ * Implements hook_preprocess_webform_html_editor_markup().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
+  $markup = (string) $variables['markup'];
+  $processed = Markup::create(_civictheme_process__html_content($markup));
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:basic-content',
+    '#props' => [
+      'vertical_spacing' => 'both',
+      'is_contained' => TRUE,
+    ],
+    '#slots' => [
+      'content' => [
+        '#markup' => $processed,
+      ],
+    ],
+  ];
 }
