@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+use Drupal\webform\Utility\WebformElementHelper;
+
 /**
  * Pre-process for Webform paragraph.
  */
@@ -19,4 +21,16 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
   if ($paragraph && civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['referenced_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
+}
+
+/**
+ * Implements hook_preprocess_webform__container().
+ */
+function civictheme_preprocess_webform__container(&$variables): void {
+  if (!WebformElementHelper::isWebformElement($variables['element'])) {
+    return;
+  }
+  _civictheme_preprocess_form_element__webform__overrides($variables);
+  $variables['content'] = $variables['children'];
+  unset($variables['children']);
 }

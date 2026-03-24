@@ -94,6 +94,7 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
+use Drupal\webform\Utility\WebformElementHelper;
 
 /**
  * Implements hook_theme_suggestions_form_element_alter().
@@ -259,6 +260,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
   _civictheme_preprocess_form_element__control($variables);
+  _civictheme_preprocess_form_element__webform__overrides($variables);
 }
 
 /**
@@ -494,6 +496,35 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
   if ($element['#type'] === 'checkbox') {
     $variables['control'][0]['is_checked'] = $element['#value'] ?? FALSE;
     $variables['control'][0]['is_checked'] = (bool) $variables['control'][0]['is_checked'];
+  }
+}
+
+/**
+ * Allows override of CivicTheme component settings from webform settings.
+ *
+ * These are set via customer settings (yaml) in webform elements.
+ *
+ * @see https://www.drupal.org/project/civictheme/issues/3581086
+ */
+function _civictheme_preprocess_form_element__webform__overrides(array &$variables): void {
+  $element = $variables['element'];
+  if (!\Drupal::moduleHandler()->moduleExists('webform') || !WebformElementHelper::isWebformElement($element)) {
+    return;
+  }
+
+  $webform_settings = WebformElementHelper::getProperties($element);
+  $overrideable_settings = [
+    'theme',
+    'is_contained',
+    'vertical_spacing',
+    'with_background',
+    'modifier_class',
+  ];
+  foreach ($overrideable_settings as $setting) {
+    $webform_setting_id = '#' . $setting;
+    if (isset($webform_settings[$webform_setting_id])) {
+      $variables[$setting] = $webform_settings[$webform_setting_id];
+    }
   }
 }
 
