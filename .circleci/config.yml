@@ -268,6 +268,12 @@ job-build: &job-build
         name: Lint Drupal theme schema
         command: docker compose exec -T cli bash -c "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
     - run:
+        name: Install dependency checker dependencies
+        command: docker compose exec -T cli bash -c "npm --prefix scripts/civictheme-dependency-checker install"
+    - run:
+        name: Check theme module dependencies
+        command: docker compose exec -T cli bash -c "node scripts/civictheme-dependency-checker/index.js check"
+    - run:
         name: Copy visual regression config into container
         command: |
           docker compose exec -T cli sh -c "mkdir -p /app/.visual-regression/civictheme-ci"
@@ -395,6 +401,7 @@ jobs:
         default: true
         type: boolean
     environment:
+      COMPOSER: composer.govcms.json
       DRUPAL_PROFILE: govcms
       CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
@@ -409,6 +416,7 @@ jobs:
         default: true
         type: boolean
     environment:
+      COMPOSER: composer.govcms.json
       DRUPAL_PROFILE: govcms
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1
       DREVOPS_EXPORT_CODE_DIR: '/tmp/workspace/code_unused'
@@ -418,6 +426,7 @@ jobs:
   build-govcms-subtheme-sibling:
     <<: *runner_config
     environment:
+      COMPOSER: composer.govcms.json
       DRUPAL_PROFILE: govcms
       CIVICTHEME_INSTALL_SIBLING: 1
       DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: 1

@@ -9,27 +9,40 @@ libraries:
   - 'civictheme/css-variables'
 
 dependencies:
-  - components:components
+  - drupal:block
   - drupal:block_content
   - drupal:ckeditor5
   - drupal:config
   - drupal:content_moderation
+  - drupal:contextual
+  - drupal:datetime
   - drupal:datetime_range
-  - drupal:focal_point
+  - drupal:editor
+  - drupal:file
+  - drupal:filter
   - drupal:help
   - drupal:image
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
+  - drupal:link
   - drupal:media
   - drupal:media_library
+  - drupal:menu_ui
+  - drupal:node
   - drupal:options
+  - drupal:path
   - drupal:rest
+  - drupal:serialization
   - drupal:shortcut
+  - drupal:system
   - drupal:taxonomy
+  - drupal:text
   - drupal:user
   - drupal:views
+  - entity_reference_revisions:entity_reference_revisions
   - field_group:field_group
+  - focal_point:focal_point
   - layout_builder_restrictions:layout_builder_restrictions
   - linkit:linkit
   - menu_block:menu_block

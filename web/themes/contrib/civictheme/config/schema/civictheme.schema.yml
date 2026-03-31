@@ -228,6 +228,14 @@ civictheme.settings:
             use_media_name:
               label: 'Use name of media'
               type: boolean
+        site_slogan:
+          type: mapping
+          label: 'Site slogan settings'
+          mapping:
+            content:
+              label: 'Site slogan content'
+              type: string
+              nullable: true
         search:
           type: mapping
           label: 'Search settings'

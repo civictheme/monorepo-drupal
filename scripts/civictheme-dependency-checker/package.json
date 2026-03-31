@@ -1,0 +1,10 @@
+{
+  "name": "civictheme-dependency-checker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Checks and fixes Drupal module dependencies for CivicTheme.",
+  "main": "index.js",
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

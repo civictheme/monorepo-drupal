@@ -17,6 +17,7 @@ components:
           path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_desktop.svg
         mobile:
           path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_primary_dark_mobile.svg
+      image_alt: 'CivicTheme higher education profile'
     secondary:
       light:
         desktop:
@@ -28,7 +29,7 @@ components:
           path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_secondary_dark_desktop.png
         mobile:
           path: modules/custom/civictheme_content/modules/civictheme_content_highereducation/assets/logos/logo_secondary_dark_mobile.png
-    image_alt: 'Logo image'
+      image_alt: 'CivicTheme higher education profile'
   header:
     theme: light
     logo_type: inline
@@ -62,6 +63,15 @@ components:
     summary_length: 160
   publication_card:
     summary_length: 160
+    use_media_name: true
+  snippet:
+    summary_length: 160
+  attachment:
+    use_media_name: true
+  site_slogan:
+    content: 'A design system by Salsa Digital'
+  search:
+    keyword_fields: {  }
 colors:
   use_color_selector: true
   use_brand_colors: true
@@ -113,3 +123,4 @@ colors:
       warning: '#e38444'
       error: '#e85653'
       success: '#12b0ae'
+optouts: {  }
