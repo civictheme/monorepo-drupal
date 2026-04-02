@@ -66,6 +66,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    *
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
@@ -77,7 +79,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
-    return theme_get_setting($key, $this->theme->getName()) ?? $default;
+    // @phpstan-ignore-next-line
+    return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
   }
 
   /**
