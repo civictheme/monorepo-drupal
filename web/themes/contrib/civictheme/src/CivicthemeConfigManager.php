@@ -79,8 +79,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
-    // @phpstan-ignore-next-line
-    return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
+    // @phpstan-ignore function.deprecated
+    return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
   /**
