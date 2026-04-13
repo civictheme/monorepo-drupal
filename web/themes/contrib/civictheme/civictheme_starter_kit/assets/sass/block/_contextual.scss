@@ -1,0 +1,33 @@
+//
+// Contextual links overrides.
+//
+// Drupal core's contextual module anchors the edit pencil to its region with
+// `position: relative` on .contextual-region + `position: absolute` on
+// .contextual. That forces every contextual region to create a new
+// containing block, which interferes with our own layout positioning.
+//
+// CSS anchor positioning lets us pin the trigger to the region without
+// making the region itself positioned, so the region stays in the normal
+// flow (static) and layouts that rely on ancestor containing blocks are
+// unaffected.
+.contextual-region {
+  position: static;
+  anchor-name: --contextual-region;
+  // Scope the anchor name to this region's subtree so each .contextual
+  // inside resolves to its own parent region rather than some other
+  // .contextual-region elsewhere on the page.
+  anchor-scope: --contextual-region;
+}
+
+.contextual {
+  position: absolute;
+  position-anchor: --contextual-region;
+  top: calc(anchor(top) + 6px);
+  right: anchor(right); /* LTR */
+  left: auto;
+}
+
+[dir='rtl'] .contextual {
+  right: auto;
+  left: anchor(left);
+}
