@@ -111,6 +111,13 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
     $suggestions[] = 'form_element__civictheme_field';
     $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
   }
+
+  // Datetime composite elements are rendered through a dedicated template
+  // that wraps the two inner date/time inputs inside a fieldset/legend for
+  // accessible grouping (a single <label for> cannot reference two inputs).
+  if (($variables['element']['#type'] ?? '') === 'datetime') {
+    $suggestions[] = 'form_element__datetime';
+  }
 }
 
 /**
@@ -224,6 +231,88 @@ function civictheme_preprocess_form_element__civictheme_field__search(array &$va
     $attributes->setAttribute('placeholder', $element['#attributes']['placeholder']);
   }
   $variables['control'][0]['attributes'] = $attributes;
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ *
+ * Map the Drupal `webform_time` element type to the HTML5 `time` input type
+ * so the rendered input is a native time picker rather than a plain text
+ * input fallback (`<input type="webform_time">`).
+ */
+function civictheme_preprocess_form_element__civictheme_field__webform_time(array &$variables): void {
+  if (!empty($variables['control'][0])) {
+    $variables['control'][0]['type'] = 'time';
+  }
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ *
+ * Map the Drupal `webform_date` element type to the HTML5 `date` input type.
+ */
+function civictheme_preprocess_form_element__civictheme_field__webform_date(array &$variables): void {
+  if (!empty($variables['control'][0])) {
+    $variables['control'][0]['type'] = 'date';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for form_element__datetime.
+ *
+ * Prepares variables for the accessible datetime composite wrapper so it is
+ * rendered through the CivicTheme Fieldset component, grouping the inner
+ * date and time inputs inside a <fieldset>/<legend>.
+ */
+function civictheme_preprocess_form_element__datetime(array &$variables): void {
+  $element = $variables['element'];
+
+  $classes = $variables['attributes']['class'] ?? [];
+  if (is_string($classes)) {
+    $classes = [$classes];
+  }
+  $classes[] = 'ct-field';
+  $variables['attributes']['class'] = $classes;
+
+  $variables['legend_title'] = (string) ($element['#title'] ?? '');
+  $variables['is_required'] = !empty($element['#required']);
+  $variables['description'] = $element['#description'] ?? '';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for datetime_form.
+ *
+ * Replaces the inner datetime_form content with a CivicTheme Grid component
+ * that lays out the date and time sub-elements side-by-side.
+ */
+function civictheme_preprocess_datetime_form(array &$variables): void {
+  $element = $variables['element'];
+  if (empty($element['date']) || empty($element['time'])) {
+    return;
+  }
+
+  $variables['type'] = 'datetime';
+  if (!empty($element['#name'])) {
+    $variables['name'] = $element['#name'];
+  }
+  _civictheme_preprocess_form_element__classes($variables);
+
+  $grid_attributes = new Attribute($variables['attributes'] ?? []);
+  $variables['attributes'] = [];
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:grid',
+    '#props' => [
+      'template_column_count' => 2,
+      'use_container' => FALSE,
+      'attributes' => $grid_attributes,
+      'items' => [
+        $element['date'],
+        $element['time'],
+      ],
+    ],
+  ];
 }
 
 /**
