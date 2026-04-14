@@ -41,6 +41,7 @@
  * | Theme Hook Suggestions Generated                   |
  * | - form_element__civictheme_field                   |
  * | - form_element__civictheme_field__<type>           |
+ * | - form_element__datetime (for datetime composites) |
  * | - fieldset__form_element__civictheme_field         |
  * | - fieldset__form_element__civictheme_field__<type> |
  * +----------------------------------------------------+
@@ -235,25 +236,19 @@ function civictheme_preprocess_form_element__civictheme_field__search(array &$va
 
 /**
  * Implements template_preprocess_form_element().
- *
- * Map the Drupal `webform_time` element type to the HTML5 `time` input type
- * so the rendered input is a native time picker rather than a plain text
- * input fallback (`<input type="webform_time">`).
  */
 function civictheme_preprocess_form_element__civictheme_field__webform_time(array &$variables): void {
-  if (!empty($variables['control'][0])) {
-    $variables['control'][0]['type'] = 'time';
+  if (!empty($variables['type']) && $variables['type'] === 'webform_time') {
+    $variables['type'] = 'time';
   }
 }
 
 /**
  * Implements template_preprocess_form_element().
- *
- * Map the Drupal `webform_date` element type to the HTML5 `date` input type.
  */
 function civictheme_preprocess_form_element__civictheme_field__webform_date(array &$variables): void {
-  if (!empty($variables['control'][0])) {
-    $variables['control'][0]['type'] = 'date';
+  if (!empty($variables['type']) && $variables['type'] === 'webform_date') {
+    $variables['type'] = 'date';
   }
 }
 
