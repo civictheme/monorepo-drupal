@@ -1,16 +1,23 @@
 //
-// Contextual links overrides.
+// Contextual links base styles.
 //
-// Drupal core's contextual module anchors the edit pencil to its region with
-// `position: relative` on .contextual-region + `position: absolute` on
-// .contextual. That forces every contextual region to create a new
-// containing block, which interferes with our own layout positioning.
+// Core's contextual.module.css is suppressed via libraries-override in
+// civictheme.info.yml; this file re-declares the equivalent rules so the
+// theme owns them and can control their specificity.
 //
-// CSS anchor positioning lets us pin the trigger to the region without
-// making the region itself positioned, so the region stays in the normal
-// flow (static) and layouts that rely on ancestor containing blocks are
-// unaffected.
-.contextual-region {
+// The .contextual-region rule is wrapped in :where() so it contributes
+// zero specificity. Any component class on the same element (e.g.
+// .ct-promo-card) wins the cascade automatically — no !important, no
+// higher-specificity hacks — because :where() is the only mechanism that
+// lets us define a sensible default while guaranteeing components can
+// override it without knowing contextual exists. Matching specificity +
+// source order isn't robust here because contextual CSS and component CSS
+// both live in the component group.
+//
+// We also use CSS anchor positioning (anchor-name / position-anchor) so
+// the edit-pencil trigger still anchors to its region without forcing the
+// region to become a containing block.
+:where(.contextual-region) {
   position: static;
   anchor-name: --contextual-region;
   // Scope the anchor name to this region's subtree so each .contextual
@@ -30,4 +37,20 @@
 [dir='rtl'] .contextual {
   right: auto;
   left: anchor(left);
+}
+
+// .contextual-links display toggling and .trigger:focus stay at normal
+// specificity — they target standalone contextual-owned elements that
+// don't collide with component classes.
+.contextual-links {
+  display: none;
+}
+
+.contextual.open .contextual-links {
+  display: block;
+}
+
+.contextual .trigger:focus {
+  /* Override the .focusable position: static */
+  position: relative !important;
 }

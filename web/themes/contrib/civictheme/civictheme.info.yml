@@ -8,6 +8,15 @@ libraries:
   - 'civictheme/global'
   - 'civictheme/css-variables'
 
+# Suppress core's contextual.module.css — the theme owns these base styles
+# via assets/sass/block/_contextual.scss so .contextual-region can be
+# wrapped in :where() and stop blocking component positioning.
+libraries-override:
+  contextual/drupal.contextual-links:
+    css:
+      component:
+        css/contextual.module.css: false
+
 dependencies:
   - drupal:block
   - drupal:block_content
