@@ -14,7 +14,7 @@
  */
 #}
 {% include 'civictheme:fieldset' with {
-  theme: 'light',
+  theme: theme|default('light'),
   legend: legend_title,
   is_required: is_required,
   required_text: is_required ? '(required)'|t : '',
