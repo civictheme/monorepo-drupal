@@ -453,6 +453,15 @@ commands:
         echo "Copy .ahoy.local.example.yml to .ahoy.local.yml and rerun this command.";
       fi
 
+  worktree:
+    usage: Manage parallel worktree instances. Run `ahoy worktree` to list subcommands.
+    cmd: |
+      if [ -f .ahoy.worktree.yml ]; then
+        ahoy -f ".ahoy.worktree.yml" "$@"
+      else
+        echo ".ahoy.worktree.yml does not exist."
+      fi
+
   export-config:
     usage: Export theme config.
     cmd: |

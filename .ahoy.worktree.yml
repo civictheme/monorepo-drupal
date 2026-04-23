@@ -1,0 +1,30 @@
+#
+# Ahoy worktree commands.
+#
+# Dispatched via `ahoy worktree <subcommand>`. See scripts/custom/worktree.sh
+# for the implementation.
+#
+---
+ahoyapi: v2
+
+commands:
+
+  build:
+    usage: Create a worktree for <branch>, copy .env.local, and run ahoy build.
+    cmd: ./scripts/custom/worktree.sh build "$@"
+
+  ls:
+    usage: List all worktree instances and their running status.
+    cmd: ./scripts/custom/worktree.sh ls
+
+  up:
+    usage: Start the docker stack for <branch>.
+    cmd: ./scripts/custom/worktree.sh up "$@"
+
+  stop:
+    usage: Stop the docker stack for <branch>.
+    cmd: ./scripts/custom/worktree.sh stop "$@"
+
+  rm:
+    usage: Tear down the stack and remove the worktree for <branch>.
+    cmd: ./scripts/custom/worktree.sh rm "$@"
