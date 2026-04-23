@@ -1,7 +1,7 @@
 #
 # Ahoy worktree commands.
 #
-# Dispatched via `ahoy worktree <subcommand>`. See scripts/custom/worktree.sh
+# Dispatched via `ahoy worktree <subcommand>`. See scripts/worktrees/worktree.sh
 # for the implementation.
 #
 ---
@@ -11,20 +11,36 @@ commands:
 
   build:
     usage: Create a worktree for <branch>, copy .env.local, and run ahoy build.
-    cmd: ./scripts/custom/worktree.sh build "$@"
+    cmd: ./scripts/worktrees/worktree.sh build "$@"
+
+  fast-up:
+    usage: Create a worktree and spin it up from prebuilt images in the local registry (default --from = main repo's current branch).
+    cmd: ./scripts/worktrees/worktree.sh fast-up "$@"
 
   ls:
     usage: List all worktree instances and their running status.
-    cmd: ./scripts/custom/worktree.sh ls
+    cmd: ./scripts/worktrees/worktree.sh ls
 
   up:
     usage: Start the docker stack for <branch>.
-    cmd: ./scripts/custom/worktree.sh up "$@"
+    cmd: ./scripts/worktrees/worktree.sh up "$@"
 
   stop:
     usage: Stop the docker stack for <branch>.
-    cmd: ./scripts/custom/worktree.sh stop "$@"
+    cmd: ./scripts/worktrees/worktree.sh stop "$@"
+
+  provision:
+    usage: Run `ahoy provision` inside the worktree for <branch>.
+    cmd: ./scripts/worktrees/worktree.sh provision "$@"
+
+  composer:
+    usage: Run `ahoy composer <args>` inside the worktree for <branch>.
+    cmd: ./scripts/worktrees/worktree.sh composer "$@"
+
+  clear-cache:
+    usage: Remove this project's shared composer + npm cache volumes (next build/up repopulates).
+    cmd: ./scripts/worktrees/worktree.sh clear-cache "$@"
 
   rm:
     usage: Tear down the stack and remove the worktree for <branch>.
-    cmd: ./scripts/custom/worktree.sh rm "$@"
+    cmd: ./scripts/worktrees/worktree.sh rm "$@"
