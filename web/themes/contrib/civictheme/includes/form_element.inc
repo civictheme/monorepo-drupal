@@ -259,6 +259,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
   _civictheme_preprocess_form_element__control($variables);
+  _civictheme_preprocess_form_element__webform__overrides($variables);
 }
 
 /**
@@ -376,6 +377,21 @@ function civictheme_preprocess_input__submit(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_form_element_label().
+ */
+function civictheme_preprocess_form_element_label(array &$variables): void {
+  $variables['content'] = $variables['title'] ?? '';
+  $variables['tag'] = 'label';
+  $variables['size'] = 'regular';
+  $variables['is_required'] = $variables['required'] ?? FALSE;
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
+  $variables['for'] = $variables['attributes']['for'] ?? '';
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['modifier_class'] = $variables['modifier_class'] ?? '';
+  unset($variables['attributes']['for']);
+}
+
+/**
  * Preprocesses a generic form element.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -421,8 +437,16 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     }
   }
   $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
-  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
-  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $prefix = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['prefix'] = !empty($prefix) ? [
+    '#type' => 'markup',
+    '#markup' => $prefix,
+  ] : $prefix;
+  $suffix = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $variables['suffix'] = !empty($suffix) ? [
+    '#type' => 'markup',
+    '#markup' => $suffix,
+  ] : $suffix;
 }
 
 /**
@@ -498,6 +522,34 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
 }
 
 /**
+ * Allows override of CivicTheme component settings from webform settings.
+ *
+ * These are set via customer settings (yaml) in webform elements.
+ *
+ * @see https://www.drupal.org/project/civictheme/issues/3581086
+ */
+function _civictheme_preprocess_form_element__webform__overrides(array &$variables): void {
+  $element = $variables['element'];
+  if (!civictheme_is_webform_element($element)) {
+    return;
+  }
+
+  $overrideable_settings = [
+    'theme',
+    'is_contained',
+    'vertical_spacing',
+    'with_background',
+    'modifier_class',
+  ];
+  foreach ($overrideable_settings as $setting) {
+    $webform_setting_id = '#' . $setting;
+    if (isset($element[$webform_setting_id])) {
+      $variables[$setting] = $element[$webform_setting_id];
+    }
+  }
+}
+
+/**
  * Sets form element theme based on attributes passed from parent components.
  */
 function _civictheme_preprocess_form_element__theme(array &$variables): void {
@@ -569,7 +621,7 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
 function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
-  if (!\Drupal::moduleHandler()->moduleExists('webform') && !WebformElementHelper::isWebformElement($variables['element'])) {
+  if (civictheme_is_webform_element($variables['element'] ?? [])) {
     return;
   }
   $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
