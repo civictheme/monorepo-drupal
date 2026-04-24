@@ -376,6 +376,21 @@ function civictheme_preprocess_input__submit(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_form_element_label().
+ */
+function civictheme_preprocess_form_element_label(array &$variables): void {
+  $variables['content'] = $variables['title'] ?? '';
+  $variables['tag'] = 'label';
+  $variables['size'] = 'regular';
+  $variables['is_required'] = $variables['required'] ?? FALSE;
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
+  $variables['for'] = $variables['attributes']['for'] ?? '';
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['modifier_class'] = $variables['modifier_class'] ?? '';
+  unset($variables['attributes']['for']);
+}
+
+/**
  * Preprocesses a generic form element.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -421,8 +436,16 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     }
   }
   $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
-  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
-  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $prefix = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['prefix'] = !empty($prefix) ? [
+    '#type' => 'markup',
+    '#markup' => $prefix,
+  ] : $prefix;
+  $suffix = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $variables['suffix'] = !empty($suffix) ? [
+    '#type' => 'markup',
+    '#markup' => $suffix,
+  ] : $suffix;
 }
 
 /**

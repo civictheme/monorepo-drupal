@@ -3,8 +3,8 @@ Feature: Message render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status |
-      | [TEST] Page message test | 1      |
+      | title                    | status | moderation_state |
+      | [TEST] Page message test | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with message light

@@ -48,7 +48,7 @@ default:
     # Capture HTML and JPG screenshots on demand and on failure.
     DrevOps\BehatScreenshotExtension:
       dir: '%paths.base%/.logs/screenshots'
-      purge: false # Change to 'true' (no quotes) to purge screenshots on each run.
+      purge: true # Change to 'true' (no quotes) to purge screenshots on each run.
     # Show explicit fail information and continue the test run.
     DrevOps\BehatFormatProgressFail\FormatExtension: ~
 
