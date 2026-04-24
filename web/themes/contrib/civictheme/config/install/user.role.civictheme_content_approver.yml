@@ -27,6 +27,7 @@ permissions:
   - 'use civictheme_editorial transition archive'
   - 'use civictheme_editorial transition create_new_draft'
   - 'use civictheme_editorial transition needs_review'
+  - 'use civictheme_editorial transition needs_review_to_needs_review'
   - 'use civictheme_editorial transition publish'
   - 'use civictheme_editorial transition restore'
   - 'use civictheme_editorial transition restore_to_draft'
