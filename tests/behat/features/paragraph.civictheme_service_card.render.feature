@@ -3,8 +3,8 @@ Feature: Service card render
 
   Background:
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section |
-      | [TEST] Page Service cards test | 1      |                        |
+      | title                          | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Service cards test | 1      |                        | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Service cards
@@ -48,8 +48,8 @@ Feature: Service card render
   @api @security
   Scenario:XSS - Service Card
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section |
-      | [TEST] Page Service cards test | 1      |                        |
+      | title                          | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Service cards test | 1      |                        | published        |
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Service cards test" has "civictheme_manual_list" paragraph:

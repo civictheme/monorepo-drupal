@@ -3,9 +3,9 @@ Feature: Breadcrumb render
 
   Background:
     Given civictheme_page content:
-      | title                              | status |
-      | [TEST] Page breadcrumb parent test | 1      |
-      | [TEST] Page breadcrumb test        | 1      |
+      | title                              | status | moderation_state |
+      | [TEST] Page breadcrumb parent test | 1      | published        |
+      | [TEST] Page breadcrumb test        | 1      | published        |
 
   @api
   Scenario: CivicTheme breadcrumb component shows the name of the parent item on desktop and mobile.

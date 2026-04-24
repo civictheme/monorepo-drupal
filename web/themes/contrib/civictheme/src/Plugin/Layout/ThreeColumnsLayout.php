@@ -17,7 +17,10 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
   public function defaultConfiguration() {
     $configuration = parent::defaultConfiguration();
 
-    return $configuration + ['is_contained' => FALSE];
+    return $configuration + [
+      'is_contained' => FALSE,
+      'vertical_spacing' => 'auto',
+    ];
   }
 
   /**

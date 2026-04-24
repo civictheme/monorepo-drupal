@@ -804,6 +804,25 @@ function _civictheme_get_dom_document(string $content): \DOMDocument {
 }
 
 /**
+ * Check whether element is a webform element.
+ *
+ * Inlined to avoid a hard dependency on the webform module's classes.
+ *
+ * @see \Drupal\webform\Utility\WebformElementHelper::isWebformElement()
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_is_webform_element(array $element): bool {
+  if (!\Drupal::service('module_handler')->moduleExists('webform')) {
+    return FALSE;
+  }
+  if (isset($element['#webform_key']) || isset($element['#webform_element'])) {
+    return TRUE;
+  }
+  return \Drupal::service('webform.request')->isWebformAdminRoute();
+}
+
+/**
  * Check if the provided field is wysiwyg.
  *
  * @param string $field_type

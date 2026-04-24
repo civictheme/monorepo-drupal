@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme override for the `datetime` composite form element.
+ *
+ * Renders the outer wrapper as a CivicTheme Fieldset (<fieldset>/<legend>)
+ * so screen readers announce the two inner inputs (date + time) as a
+ * single labelled group. The inner inputs keep their own per-input labels
+ * (one label per input), satisfying the HTML rule that a single <label>
+ * cannot reference two form controls.
+ *
+ * @see civictheme_preprocess_form_element__datetime()
+ * @see civictheme_preprocess_datetime_form()
+ */
+#}
+{% include 'civictheme:fieldset' with {
+  theme: theme|default('light'),
+  legend: legend_title,
+  is_required: is_required,
+  required_text: is_required ? '(required)'|t : '',
+  description: description,
+  attributes: attributes,
+  fields: children,
+} only %}

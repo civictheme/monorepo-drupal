@@ -41,6 +41,7 @@
  * | Theme Hook Suggestions Generated                   |
  * | - form_element__civictheme_field                   |
  * | - form_element__civictheme_field__<type>           |
+ * | - form_element__datetime (for datetime composites) |
  * | - fieldset__form_element__civictheme_field         |
  * | - fieldset__form_element__civictheme_field__<type> |
  * +----------------------------------------------------+
@@ -110,6 +111,13 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
   if ($supported_form_element) {
     $suggestions[] = 'form_element__civictheme_field';
     $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+  }
+
+  // Datetime composite elements are rendered through a dedicated template
+  // that wraps the two inner date/time inputs inside a fieldset/legend for
+  // accessible grouping (a single <label for> cannot reference two inputs).
+  if (($variables['element']['#type'] ?? '') === 'datetime') {
+    $suggestions[] = 'form_element__datetime';
   }
 }
 
@@ -229,6 +237,82 @@ function civictheme_preprocess_form_element__civictheme_field__search(array &$va
 /**
  * Implements template_preprocess_form_element().
  */
+function civictheme_preprocess_form_element__civictheme_field__webform_time(array &$variables): void {
+  if (!empty($variables['type']) && $variables['type'] === 'webform_time') {
+    $variables['type'] = 'time';
+  }
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ */
+function civictheme_preprocess_form_element__civictheme_field__webform_date(array &$variables): void {
+  if (!empty($variables['type']) && $variables['type'] === 'webform_date') {
+    $variables['type'] = 'date';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for form_element__datetime.
+ *
+ * Prepares variables for the accessible datetime composite wrapper so it is
+ * rendered through the CivicTheme Fieldset component, grouping the inner
+ * date and time inputs inside a <fieldset>/<legend>.
+ */
+function civictheme_preprocess_form_element__datetime(array &$variables): void {
+  $element = $variables['element'];
+
+  $classes = $variables['attributes']['class'] ?? [];
+  if (is_string($classes)) {
+    $classes = [$classes];
+  }
+  $classes[] = 'ct-field';
+  $variables['attributes']['class'] = $classes;
+
+  $variables['legend_title'] = (string) ($element['#title'] ?? '');
+  $variables['is_required'] = !empty($element['#required']);
+  $variables['description'] = $element['#description'] ?? '';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for datetime_form.
+ *
+ * Replaces the inner datetime_form content with a CivicTheme Grid component
+ * that lays out the date and time sub-elements side-by-side.
+ */
+function civictheme_preprocess_datetime_form(array &$variables): void {
+  $element = $variables['element'];
+  if (empty($element['date']) || empty($element['time'])) {
+    return;
+  }
+
+  $variables['type'] = 'datetime';
+  if (!empty($element['#name'])) {
+    $variables['name'] = $element['#name'];
+  }
+  _civictheme_preprocess_form_element__classes($variables);
+
+  $grid_attributes = new Attribute($variables['attributes'] ?? []);
+  $variables['attributes'] = [];
+
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:grid',
+    '#props' => [
+      'template_column_count' => 2,
+      'use_container' => FALSE,
+      'attributes' => $grid_attributes,
+      'items' => [
+        $element['date'],
+        $element['time'],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ */
 function civictheme_preprocess_form_element__civictheme_field__select(array &$variables): void {
   $variables['control'][0]['options'] = form_select_options($variables['element']);
 
@@ -259,6 +343,7 @@ function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
   _civictheme_preprocess_form_element__control($variables);
+  _civictheme_preprocess_form_element__webform__overrides($variables);
 }
 
 /**
@@ -376,6 +461,21 @@ function civictheme_preprocess_input__submit(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_form_element_label().
+ */
+function civictheme_preprocess_form_element_label(array &$variables): void {
+  $variables['content'] = $variables['title'] ?? '';
+  $variables['tag'] = 'label';
+  $variables['size'] = 'regular';
+  $variables['is_required'] = $variables['required'] ?? FALSE;
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
+  $variables['for'] = $variables['attributes']['for'] ?? '';
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['modifier_class'] = $variables['modifier_class'] ?? '';
+  unset($variables['attributes']['for']);
+}
+
+/**
  * Preprocesses a generic form element.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -421,8 +521,16 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     }
   }
   $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
-  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
-  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $prefix = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['prefix'] = !empty($prefix) ? [
+    '#type' => 'markup',
+    '#markup' => $prefix,
+  ] : $prefix;
+  $suffix = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $variables['suffix'] = !empty($suffix) ? [
+    '#type' => 'markup',
+    '#markup' => $suffix,
+  ] : $suffix;
 }
 
 /**
@@ -498,6 +606,34 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
 }
 
 /**
+ * Allows override of CivicTheme component settings from webform settings.
+ *
+ * These are set via customer settings (yaml) in webform elements.
+ *
+ * @see https://www.drupal.org/project/civictheme/issues/3581086
+ */
+function _civictheme_preprocess_form_element__webform__overrides(array &$variables): void {
+  $element = $variables['element'];
+  if (!civictheme_is_webform_element($element)) {
+    return;
+  }
+
+  $overrideable_settings = [
+    'theme',
+    'is_contained',
+    'vertical_spacing',
+    'with_background',
+    'modifier_class',
+  ];
+  foreach ($overrideable_settings as $setting) {
+    $webform_setting_id = '#' . $setting;
+    if (isset($element[$webform_setting_id])) {
+      $variables[$setting] = $element[$webform_setting_id];
+    }
+  }
+}
+
+/**
  * Sets form element theme based on attributes passed from parent components.
  */
 function _civictheme_preprocess_form_element__theme(array &$variables): void {
@@ -569,6 +705,10 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
 function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
+  if (civictheme_is_webform_element($variables['element'] ?? [])) {
+    return;
+  }
+  $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
 }
 
 /**
