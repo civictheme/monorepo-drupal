@@ -416,3 +416,6 @@ layout_plugin.settings.civictheme_three_columns:
     is_contained:
       type: boolean
       label: 'Is Contained'
+    vertical_spacing:
+      type: string
+      label: 'Vertical Spacing'

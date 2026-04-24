@@ -22,6 +22,27 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 }
 
 /**
+ * Implements hook_preprocess_webform_html_editor_markup().
+ */
+function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
+  $markup = (string) $variables['markup'];
+  $processed = _civictheme_process__html_content($markup);
+  $variables['content'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:basic-content',
+    '#props' => [
+      'vertical_spacing' => 'both',
+      'is_contained' => TRUE,
+    ],
+    '#slots' => [
+      'content' => [
+        '#markup' => $processed,
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_webform__container().
  */
 function civictheme_preprocess_webform__container(array &$variables): void {
