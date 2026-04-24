@@ -37,12 +37,12 @@ parameters:
       reportUnmatched: false
     -
       # D10/D11 compatibility: ThemeSettingsProvider service may or may not exist.
-      identifier: ternary.alwaysTrue
+      identifier: ternary.alwaysFalse
       paths:
         - '*/CivicthemeConfigManager.php'
       reportUnmatched: false
     -
-      identifier: ternary.alwaysFalse
+      identifier: ternary.alwaysTrue
       paths:
         - '*/CivicthemeConfigManager.php'
       reportUnmatched: false
