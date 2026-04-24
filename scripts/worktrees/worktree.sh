@@ -46,7 +46,7 @@ Usage: ahoy worktree <subcommand> [args]
 
 Subcommands:
   build <branch>                  Create a worktree for <branch>, copy .env.local, and run ahoy build.
-  fast-up <branch> [--from=<t>]   Create a worktree and spin it up from prebuilt images in the
+  spinup <branch> [--from=<t>]   Create a worktree and spin it up from prebuilt images in the
                                   local registry. Default --from tag is the main repo's current
                                   branch. Skips docker build + DB import.
   ls                              List all worktree instances and their status.
@@ -62,7 +62,7 @@ Project identity (auto-derived — override via env vars if needed):
   worktrees dir:    ../${WORKTREES_DIRNAME}/<branch>
   cache volumes:    ${CACHE_VOLUMES[0]}, ${CACHE_VOLUMES[1]}
 
-Instance URLs are https://${INSTANCE_PREFIX}--<branch>.docker.amazee.io
+Instance URLs are http://${INSTANCE_PREFIX}--<branch>.docker.amazee.io
 EOF
 }
 
@@ -178,9 +178,9 @@ resolve_safe_name() {
 
 sync_env_local() {
   local wt="$1" safe="$2"
-  # Optional 3rd arg: explicit DREVOPS_DB_DOCKER_IMAGE (from fast-up). If not
+  # Optional 3rd arg: explicit DREVOPS_DB_DOCKER_IMAGE (from spinup). If not
   # given, we preserve any existing value already written to the worktree's
-  # .env.local so `up`/`provision` don't silently revert a fast-up instance to
+  # .env.local so `up`/`provision` don't silently revert a spinup instance to
   # build-from-dump mode on a later sync.
   local db_image_override="${3:-}"
   local main project url
@@ -208,15 +208,49 @@ sync_env_local() {
     echo "COMPOSE_PROJECT_NAME=$project"
     echo "DREVOPS_LOCALDEV_URL=$url"
     if [ -n "$db_image" ]; then
-      echo "# --- Prebuilt DB image (from 'ahoy worktree fast-up') ---"
+      echo "# --- Prebuilt DB image (from 'ahoy worktree spinup') ---"
       echo "DREVOPS_DB_DOCKER_IMAGE=$db_image"
     fi
   } >> "$wt/.env.local"
 
-  if grep -q '^GITHUB_TOKEN=' "$wt/.env.local"; then
-    echo "[worktree] GITHUB_TOKEN present in worktree .env.local"
+  # Newer Vortex uses PACKAGE_TOKEN; older DrevOps used GITHUB_TOKEN. Accept either.
+  if grep -qE '^(PACKAGE_TOKEN|GITHUB_TOKEN)=' "$wt/.env.local"; then
+    local token_var
+    token_var="$(grep -oE '^(PACKAGE_TOKEN|GITHUB_TOKEN)' "$wt/.env.local" | head -n 1)"
+    echo "[worktree] ${token_var} present in worktree .env.local"
   else
-    echo "[worktree] WARNING: GITHUB_TOKEN missing from $wt/.env.local — composer installs against private/rate-limited repos will fail" >&2
+    echo "[worktree] WARNING: neither PACKAGE_TOKEN nor GITHUB_TOKEN set in $wt/.env.local — composer installs against private/rate-limited repos will fail" >&2
+  fi
+}
+
+# Export PACKAGE_TOKEN into the current shell so subsequent `ahoy composer`
+# / `ahoy build` invocations bake it into COMPOSER_AUTH.
+#
+# Why this is needed even though ahoy's entrypoint dotenv-loads .env.local:
+# Vortex's `ahoy composer` wrapper expands ${PACKAGE_TOKEN:-} on the host
+# side, so the var must be set in the outer ahoy shell. Ahoy's entrypoint
+# only propagates it if the worktree's .env.local is picked up correctly —
+# belt-and-braces here avoids silent auth failures on private composer repos.
+#
+# Also normalises the legacy name: older projects use GITHUB_TOKEN, newer
+# Vortex only reads PACKAGE_TOKEN. We alias one to the other so spinup
+# doesn't care which vintage of project it's running in.
+export_package_token() {
+  local env_file="$1"
+  if [ -n "${PACKAGE_TOKEN:-}" ]; then return 0; fi
+  local tok=""
+  if [ -f "$env_file" ]; then
+    tok="$(grep -E '^PACKAGE_TOKEN=' "$env_file" | tail -n 1 | cut -d= -f2- || true)"
+    if [ -z "$tok" ]; then
+      tok="$(grep -E '^GITHUB_TOKEN=' "$env_file" | tail -n 1 | cut -d= -f2- || true)"
+    fi
+  fi
+  if [ -z "$tok" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
+    tok="$GITHUB_TOKEN"
+  fi
+  if [ -n "$tok" ]; then
+    export PACKAGE_TOKEN="$tok"
+    echo "[worktree] exported PACKAGE_TOKEN (so 'ahoy composer' can authenticate)"
   fi
 }
 
@@ -249,7 +283,7 @@ cmd_build() {
   ensure_cache_volumes
   write_cache_override "$wt"
 
-  echo "[worktree] URL will be: https://$url"
+  echo "[worktree] URL will be: http://$url"
   echo "[worktree] running 'ahoy build' inside $wt"
   (cd "$wt" && AHOY_CONFIRM_RESPONSE=y AHOY_CONFIRM_WAIT_SKIP=1 ahoy build)
 
@@ -368,7 +402,7 @@ cmd_clear_cache() {
       return 1
     fi
   done
-  echo "[worktree] done. Next build/fast-up/up will recreate empty volumes and repopulate them."
+  echo "[worktree] done. Next build/spinup/up will recreate empty volumes and repopulate them."
 }
 
 read_main_env_var() {
@@ -386,7 +420,7 @@ read_main_env_var() {
   done
 }
 
-cmd_fast_up() {
+cmd_spinup() {
   require_branch_arg "${1:-}"
   local branch="$1"
   shift || true
@@ -404,7 +438,7 @@ cmd_fast_up() {
   # that branch is the natural base. Falls back to "develop" on detached HEAD.
   if [ -z "$from_tag" ]; then
     from_tag="$(git -C "$(main_worktree_path)" symbolic-ref --short HEAD 2>/dev/null || echo develop)"
-    echo "[fast-up] --from not specified; defaulting to main repo's current branch: $from_tag"
+    echo "[spinup] --from not specified; defaulting to main repo's current branch: $from_tag"
   fi
   # Sanitize to a valid docker tag (same rules as image-publish.sh), so callers
   # can paste a branch name like "project/field-preprocessing" as --from.
@@ -420,7 +454,7 @@ cmd_fast_up() {
   if [ -e "$wt" ]; then
     echo "error: worktree already exists at $wt" >&2
     echo "hint: 'ahoy worktree up $branch' to start it normally," >&2
-    echo "      or 'ahoy worktree rm $branch' first to re-fast-up from a fresh image" >&2
+    echo "      or 'ahoy worktree rm $branch' first to re-spinup from a fresh image" >&2
     exit 1
   fi
 
@@ -433,15 +467,15 @@ cmd_fast_up() {
   local cli_remote="${registry}/${namespace}/cli:${from_tag}"
   local db_remote="${registry}/${namespace}/db:${from_tag}"
 
-  echo "[fast-up] branch:    $branch (safe: $safe)"
-  echo "[fast-up] worktree:  $wt"
-  echo "[fast-up] project:   $project"
-  echo "[fast-up] from-tag:  $from_tag"
-  echo "[fast-up] cli image: $cli_remote"
-  echo "[fast-up] db image:  $db_remote"
+  echo "[spinup] branch:    $branch (safe: $safe)"
+  echo "[spinup] worktree:  $wt"
+  echo "[spinup] project:   $project"
+  echo "[spinup] from-tag:  $from_tag"
+  echo "[spinup] cli image: $cli_remote"
+  echo "[spinup] db image:  $db_remote"
   echo
 
-  echo "[fast-up] verifying images exist in registry..."
+  echo "[spinup] verifying images exist in registry..."
   if ! docker manifest inspect "$cli_remote" >/dev/null 2>&1; then
     echo "error: cli image '$cli_remote' not found in registry" >&2
     echo "hint: publish from the base branch first: 'ahoy image-publish $from_tag'" >&2
@@ -454,7 +488,7 @@ cmd_fast_up() {
   fi
 
   mkdir -p "$(dirname "$wt")"
-  echo "[fast-up] creating git worktree at $wt"
+  echo "[spinup] creating git worktree at $wt"
   if git -C "$main" show-ref --verify --quiet "refs/heads/$branch"; then
     git -C "$main" worktree add "$wt" "$branch"
   elif git -C "$main" ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
@@ -467,43 +501,68 @@ cmd_fast_up() {
   ensure_cache_volumes
   write_cache_override "$wt"
 
-  echo "[fast-up] pulling $cli_remote"
+  echo "[spinup] pulling $cli_remote"
   docker pull "$cli_remote"
-  echo "[fast-up] tagging as ${project}:latest so docker-compose uses it without rebuilding"
+  echo "[spinup] tagging as ${project}:latest so docker-compose uses it without rebuilding"
   docker tag "$cli_remote" "${project}:latest"
 
-  echo "[fast-up] pulling $db_remote (mariadb service's build base)"
+  echo "[spinup] pulling $db_remote (mariadb service's build base)"
   docker pull "$db_remote"
 
-  # Rebuild locally-derived services (mariadb/nginx/php) so the newly-pulled
+  # Rebuild locally-derived services (DB/nginx/php) so the newly-pulled
   # bases actually land in their built images. Without this, `ahoy up` would
-  # reuse a stale compose-service image from a prior fast-up (e.g. empty-DB
-  # mariadb image baked in). cli is NOT rebuilt — it was pulled + tagged.
-  echo "[fast-up] rebuilding mariadb/nginx/php against the freshly-pulled bases"
+  # reuse a stale compose-service image from a prior spinup (e.g. empty-DB
+  # image baked in). cli is NOT rebuilt — it was pulled + tagged.
+  #
+  # The DB compose-service name varies across Vortex/DrevOps versions:
+  # newer Vortex uses `database`, some setups use `db`, older DrevOps used
+  # `mariadb`. Probe the rendered compose config for whichever one is defined.
+  local db_service=""
+  local services_out
+  services_out="$(cd "$wt" && \
+    DREVOPS_DB_DOCKER_IMAGE="$db_remote" \
+    COMPOSE_PROJECT_NAME="$project" \
+    docker compose config --services 2>/dev/null || true)"
+  for candidate in database db mariadb; do
+    if printf '%s\n' "$services_out" | grep -qx "$candidate"; then
+      db_service="$candidate"
+      break
+    fi
+  done
+  if [ -z "$db_service" ]; then
+    echo "error: no DB compose service found (tried: database, db, mariadb)" >&2
+    echo "       services present: $(printf '%s' "$services_out" | tr '\n' ' ')" >&2
+    exit 1
+  fi
+  echo "[spinup] rebuilding ${db_service}/nginx/php against the freshly-pulled bases"
   (cd "$wt" && \
     DREVOPS_DB_DOCKER_IMAGE="$db_remote" \
     COMPOSE_PROJECT_NAME="$project" \
-    docker compose build mariadb nginx php)
+    docker compose build "$db_service" nginx php)
 
-  echo "[fast-up] bringing stack up"
+  # Make PACKAGE_TOKEN available to the ahoy invocations below so composer
+  # can authenticate against private/rate-limited repos.
+  export_package_token "$wt/.env.local"
+
+  echo "[spinup] bringing stack up"
   (cd "$wt" && ahoy up)
 
-  echo "[fast-up] running composer install (uses shared composer cache)"
+  echo "[spinup] running composer install (uses shared composer cache)"
   (cd "$wt" && ahoy composer install)
 
-  echo "[fast-up] running 'drush deploy' (updb + config:import + cache rebuild)"
+  echo "[spinup] running 'drush deploy' (updb + config:import + cache rebuild)"
   (cd "$wt" && ahoy drush deploy) || {
-    echo "[fast-up] WARN: 'drush deploy' failed — the prebuilt DB image may be stale for this branch." >&2
-    echo "[fast-up]       consider 'ahoy worktree rm $branch' and 'ahoy worktree build $branch' instead." >&2
+    echo "[spinup] WARN: 'drush deploy' failed — the prebuilt DB image may be stale for this branch." >&2
+    echo "[spinup]       consider 'ahoy worktree rm $branch' and 'ahoy worktree build $branch' instead." >&2
   }
 
-  echo "[fast-up] building frontend assets (uses shared npm cache)"
-  (cd "$wt" && ahoy fei && ahoy fe) || echo "[fast-up] WARN: frontend build step failed — continuing" >&2
+  echo "[spinup] building frontend assets (uses shared npm cache)"
+  (cd "$wt" && ahoy fei && ahoy fe) || echo "[spinup] WARN: frontend build step failed — continuing" >&2
 
   run_custom_hooks "$wt" "$branch" "$safe"
 
   echo
-  echo "[fast-up] DONE. Access at: https://${url}"
+  echo "[spinup] DONE. Access at: http://${url}"
 }
 
 cmd_rm() {
@@ -533,7 +592,7 @@ shift || true
 
 case "$sub" in
   build)        cmd_build "$@" ;;
-  fast-up)      cmd_fast_up "$@" ;;
+  spinup)      cmd_spinup "$@" ;;
   ls)           cmd_ls "$@" ;;
   up)           cmd_up "$@" ;;
   stop)         cmd_stop "$@" ;;

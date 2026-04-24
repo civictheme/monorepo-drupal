@@ -13,9 +13,9 @@ commands:
     usage: Create a worktree for <branch>, copy .env.local, and run ahoy build.
     cmd: ./scripts/worktrees/worktree.sh build "$@"
 
-  fast-up:
+  spinup:
     usage: Create a worktree and spin it up from prebuilt images in the local registry (default --from = main repo's current branch).
-    cmd: ./scripts/worktrees/worktree.sh fast-up "$@"
+    cmd: ./scripts/worktrees/worktree.sh spinup "$@"
 
   ls:
     usage: List all worktree instances and their running status.

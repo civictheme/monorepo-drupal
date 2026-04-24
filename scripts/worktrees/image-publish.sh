@@ -16,7 +16,7 @@
 #      Docker doesn't discard the write — data lands as a proper image layer.
 #   6. Push.
 #
-#   At fast-up time, pulling this image and running a container from it
+#   At spinup time, pulling this image and running a container from it
 #   produces a mariadb whose datadir already contains the data — no SQL
 #   import, no file-copy entrypoint needed.
 #
@@ -25,7 +25,7 @@
 #   ahoy image-publish <tag>        # explicit tag (e.g. "develop", "v2.x")
 #
 # Env:
-#   DREVOPS_IMAGE_REGISTRY        registry host:port (default: localhost:5000)
+#   DREVOPS_IMAGE_REGISTRY        registry host (default: registry.docker.amazee.io)
 #   DREVOPS_IMAGE_NAMESPACE       required — project namespace under the registry
 #   DREVOPS_DB_DOCKER_IMAGE_BASE  seeder image for the side container
 #                                 (default: drevops/mariadb-drupal-data:latest)
@@ -33,7 +33,7 @@
 
 set -euo pipefail
 
-REGISTRY="${DREVOPS_IMAGE_REGISTRY:-localhost:5000}"
+REGISTRY="${DREVOPS_IMAGE_REGISTRY:-registry.docker.amazee.io}"
 NAMESPACE="${DREVOPS_IMAGE_NAMESPACE:-}"
 SEED_IMAGE="${DREVOPS_DB_DOCKER_IMAGE_BASE:-drevops/mariadb-drupal-data:latest}"
 PROJECT="${COMPOSE_PROJECT_NAME:-${PWD##*/}}"
@@ -173,7 +173,14 @@ fi
 echo "[publish] seeder mysql is ready"
 
 echo "[publish] restoring dump into seeder (this can take a few minutes for big DBs)"
-gunzip -c "$DUMP_HOST" | docker exec -i "$SIDE_NAME" mysql -u drupal -pdrupal drupal
+# Rewrite MySQL-8-only collations on the fly so a MySQL-8 source dump can
+# restore into the MariaDB seeder. utf8mb4_0900_* collations are MySQL-8+
+# and unknown to MariaDB (ERROR 1273). utf8mb4_unicode_520_ci is the closest
+# MariaDB-supported equivalent; utf8mb4_bin matches the MySQL binary variant.
+# Local dev DB snapshot — byte-identical collation semantics are not required.
+gunzip -c "$DUMP_HOST" \
+  | sed -E 's/utf8mb4_0900_ai_ci/utf8mb4_unicode_520_ci/g; s/utf8mb4_0900_as_cs/utf8mb4_unicode_520_ci/g; s/utf8mb4_0900_bin/utf8mb4_bin/g' \
+  | docker exec -i "$SIDE_NAME" mysql -u drupal -pdrupal drupal
 
 echo "[publish] clean-shutting down seeder mysql so data is flushed to disk"
 # SIGTERM triggers mysqld's graceful shutdown path. Generous timeout for large DBs.
@@ -220,4 +227,4 @@ echo "[publish] DONE. Images pushed:"
 echo "  $CLI_DST"
 echo "  $DB_DST"
 echo
-echo "View: http://localhost:5001  or  https://registry-ui.docker.amazee.io"
+echo "View: http://drevops-registry.docker.amazee.io"
