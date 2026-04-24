@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\webform\Utility\WebformElementHelper;
-
 /**
  * Pre-process for Webform paragraph.
  */
@@ -26,8 +24,8 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 /**
  * Implements hook_preprocess_webform__container().
  */
-function civictheme_preprocess_webform__container(&$variables): void {
-  if (!WebformElementHelper::isWebformElement($variables['element'])) {
+function civictheme_preprocess_webform__container(array &$variables): void {
+  if (!civictheme_is_webform_element($variables['element'])) {
     return;
   }
   _civictheme_preprocess_form_element__webform__overrides($variables);

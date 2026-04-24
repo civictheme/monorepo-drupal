@@ -94,7 +94,6 @@ use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
-use Drupal\webform\Utility\WebformElementHelper;
 
 /**
  * Implements hook_theme_suggestions_form_element_alter().
@@ -531,11 +530,10 @@ function _civictheme_preprocess_form_element__control(array &$variables): void {
  */
 function _civictheme_preprocess_form_element__webform__overrides(array &$variables): void {
   $element = $variables['element'];
-  if (!\Drupal::moduleHandler()->moduleExists('webform') || !WebformElementHelper::isWebformElement($element)) {
+  if (!civictheme_is_webform_element($element)) {
     return;
   }
 
-  $webform_settings = WebformElementHelper::getProperties($element);
   $overrideable_settings = [
     'theme',
     'is_contained',
@@ -545,8 +543,8 @@ function _civictheme_preprocess_form_element__webform__overrides(array &$variabl
   ];
   foreach ($overrideable_settings as $setting) {
     $webform_setting_id = '#' . $setting;
-    if (isset($webform_settings[$webform_setting_id])) {
-      $variables[$setting] = $webform_settings[$webform_setting_id];
+    if (isset($element[$webform_setting_id])) {
+      $variables[$setting] = $element[$webform_setting_id];
     }
   }
 }
