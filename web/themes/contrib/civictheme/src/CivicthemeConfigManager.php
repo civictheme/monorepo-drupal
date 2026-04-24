@@ -37,7 +37,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
    * @param mixed $themeSettingsProvider
-   *   The theme settings provider (D11.3+), or NULL for D10.
+   *   The theme settings provider service (D11.3+), or NULL when unavailable.
    */
   public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected mixed $themeSettingsProvider = NULL) {
     $this->setTheme($this->themeManager->getActiveTheme());
@@ -52,7 +52,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL
+      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL,
     );
   }
 
@@ -66,6 +66,8 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    *
    * @return mixed|null
    *   The value of the requested setting, NULL if the setting does not exist.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function load($key, mixed $default = NULL) {
     // Return site slogan from system site settings.
