@@ -7,7 +7,6 @@ namespace Drupal\civictheme;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
-use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -53,7 +52,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->has(ThemeSettingsProvider::class) ? $container->get(ThemeSettingsProvider::class) : NULL,
+      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL,
     );
   }
 
@@ -80,7 +79,6 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       return $this->themeSettingsProvider->getSetting($key, $this->theme->getName()) ?? $default;
     }
 
-    // @phpstan-ignore function.deprecated
     return theme_get_setting($key, $this->theme->getName()) ?? $default;
   }
 
