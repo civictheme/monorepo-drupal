@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Fallback CivicTheme theme implementation for a form element label.
+
+ * Only used when the form element being rendered is not a CivicTheme supported element.
+ *
+ * Available variables:
+ * - theme: [string] Theme variation (light or dark).
+ * - tag: [string] HTML tag to use (label, legend).
+ * - content: [string] The label's content.
+ * - size: [string] Label size (extra-large, large, regular, small, extra-small).
+ * - is_required: [boolean] Whether the label is required.
+ * - required_text: [string,null] Text to display within label element when required.
+ * - for: [string,null] Form element ID this label belongs to.
+ * - modifier_class: [string] Additional CSS classes.
+ * - attributes: [Drupal\Core\Template\Attribute] Additional HTML attributes.
+ *
+ * @see civictheme_preprocess_form_element_label()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include 'civictheme:label' %}
