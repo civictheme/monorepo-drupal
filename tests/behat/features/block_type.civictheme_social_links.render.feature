@@ -8,14 +8,14 @@ Feature: Social Links Block Render
       | test_xss_svg.svg | public://civictheme_test/test_xss_svg.svg | test_xss_svg.svg |
 
     And "civictheme_icon" media:
-      | name                       | field_c_m_icon   |
-      | [TEST] CivicTheme Icon     | test_svg.svg     |
-      | [TEST] CivicTheme XSS Icon | test_xss_svg.svg |
+      | name                       | field_c_m_icon   | moderation_state |
+      | [TEST] CivicTheme Icon     | test_svg.svg     | published        |
+      | [TEST] CivicTheme XSS Icon | test_xss_svg.svg | published        |
 
     Given "civictheme_social_links" block_content:
-      | info            | field_b_theme | status | region       |
-      | Social Link 1   | light         | 1      | header_top_1 |
-      | XSS Social Link | dark          | 1      | header_top_1 |
+      | info            | field_b_theme | status | region       | moderation_state |
+      | Social Link 1   | light         | 1      | header_top_1 | published        |
+      | XSS Social Link | dark          | 1      | header_top_1 | published        |
     And "field_c_b_social_icons" in "civictheme_social_links" "block_content" with "info" of "Social Link 1" has "civictheme_social_icon" paragraph:
       | field_c_p_icon                 | [TEST] CivicTheme Icon                |
       | field_c_p_link                 | 0: Test link - 1: https://example.com/test2 |
