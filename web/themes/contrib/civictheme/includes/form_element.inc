@@ -421,8 +421,16 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     }
   }
   $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
-  $variables['prefix'] = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
-  $variables['suffix'] = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $prefix = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+  $variables['prefix'] = !empty($prefix) ? [
+    '#type' => 'markup',
+    '#markup' => $prefix,
+  ] : $prefix;
+  $suffix = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  $variables['suffix'] = !empty($suffix) ? [
+    '#type' => 'markup',
+    '#markup' => $suffix,
+  ] : $suffix;
 }
 
 /**
