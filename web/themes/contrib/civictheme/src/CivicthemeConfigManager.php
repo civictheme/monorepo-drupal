@@ -7,6 +7,7 @@ namespace Drupal\civictheme;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
+use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,7 +38,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
    * @param \Drupal\civictheme\CivicthemeConfigImporter $configImporter
    *   The config importer.
    * @param mixed $themeSettingsProvider
-   *   The theme settings provider (D11.3+), or NULL for D10.
+   *   The theme settings provider service (D11.3+), or NULL when unavailable.
    */
   public function __construct(protected ConfigFactory $configFactory, protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected CivicthemeConfigImporter $configImporter, protected mixed $themeSettingsProvider = NULL) {
     $this->setTheme($this->themeManager->getActiveTheme());
@@ -52,7 +53,7 @@ final class CivicthemeConfigManager implements ContainerInjectionInterface {
       $container->get('theme.manager'),
       $container->get('extension.list.theme'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigImporter::class),
-      $container->has('Drupal\Core\Extension\ThemeSettingsProvider') ? $container->get('Drupal\Core\Extension\ThemeSettingsProvider') : NULL
+      $container->has(ThemeSettingsProvider::class) ? $container->get(ThemeSettingsProvider::class) : NULL,
     );
   }
 
