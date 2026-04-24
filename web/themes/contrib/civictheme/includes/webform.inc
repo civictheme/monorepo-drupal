@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Render\Markup;
-
 /**
  * Pre-process for Webform paragraph.
  */
@@ -25,12 +23,10 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 
 /**
  * Implements hook_preprocess_webform_html_editor_markup().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
   $markup = (string) $variables['markup'];
-  $processed = Markup::create(_civictheme_process__html_content($markup));
+  $processed = _civictheme_process__html_content($markup);
   $variables['content'] = [
     '#type' => 'component',
     '#component' => 'civictheme:basic-content',
