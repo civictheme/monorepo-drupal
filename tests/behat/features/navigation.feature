@@ -20,8 +20,8 @@ Feature: Navigation
   @api @basetheme
   Scenario: External menu links open in a new tab.
     Given "civictheme_page" content:
-      | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] |
-      | [TEST] Page Internal | 1      | 0                 | /internal-test | 0                             |
+      | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] | moderation_state |
+      | [TEST] Page Internal | 1      | 0                 | /internal-test | 0                             | published        |
     And 'Footer' menu_links:
       | title                       | enabled | uri                 |
       | [TEST] External Footer link | 1       | https://example.com |
@@ -47,8 +47,8 @@ Feature: Navigation
   @api @security
   Scenario:XSS - Subject Card
     Given "civictheme_page" content:
-      | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] |
-      | [TEST] XSS Test Page | 1      | 0                 | /internal-test | 0                             |
+      | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] | moderation_state |
+      | [TEST] XSS Test Page | 1      | 0                 | /internal-test | 0                             | published        |
     And 'Footer' menu_links:
       | title                       | enabled | uri                 |
       | <script id="xss-menu-link--footer">alert('XSS Footer Menu Link');</script> | 1       | internal:/internal-test |

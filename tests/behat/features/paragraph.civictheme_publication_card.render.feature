@@ -12,19 +12,19 @@ Feature: Publication card render
       | test_pdf4.pdf  | public://civictheme_test/test_pdf4.pdf  | test_pdf.pdf   |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        |
 
     And "civictheme_page" content:
-      | title                              | status | field_c_n_site_section |
-      | [TEST] Page Publication cards test | 1      |                        |
+      | title                              | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Publication cards test | 1      |                        | published        |
 
     And "civictheme_document" media:
-      | name              | field_c_m_document |
-      | [TEST] Document 1 | test_pdf1.pdf      |
-      | [TEST] Document 2 | test_pdf2.pdf      |
-      | [TEST] Document 3 | test_pdf3.pdf      |
-      | [TEST] Document 4 | test_pdf4.pdf      |
+      | name              | field_c_m_document | moderation_state |
+      | [TEST] Document 1 | test_pdf1.pdf      | published        |
+      | [TEST] Document 2 | test_pdf2.pdf      | published        |
+      | [TEST] Document 3 | test_pdf3.pdf      | published        |
+      | [TEST] Document 4 | test_pdf4.pdf      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Publication cards
@@ -114,16 +114,16 @@ Feature: Publication card render
       | test_pdf1.pdf  | public://civictheme_test/test_pdf1.pdf  | test_pdf.pdf   |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        |
 
     And "civictheme_page" content:
-      | title                              | status | field_c_n_site_section |
-      | [TEST] Page Publication cards test | 1      |                        |
+      | title                              | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Publication cards test | 1      |                        | published        |
 
     And "civictheme_document" media:
-      | name              | field_c_m_document |
-      | [TEST] Document 1 | test_pdf1.pdf      |
+      | name              | field_c_m_document | moderation_state |
+      | [TEST] Document 1 | test_pdf1.pdf      | published        |
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Publication cards test" has "civictheme_manual_list" paragraph:
