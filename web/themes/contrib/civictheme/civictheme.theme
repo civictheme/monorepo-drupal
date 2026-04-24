@@ -132,7 +132,7 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function civictheme_theme_suggestions_container_alter(array &$suggestions, array $variables): void {
-  if (!\Drupal::moduleHandler()->moduleExists('webform') || !WebformElementHelper::isWebformElement($variables['element'])) {
+  if (!civictheme_is_webform_element($variables['element'])) {
     return;
   }
   $suggestions[] = 'webform__container';

@@ -1,4 +1,4 @@
-@p0 @civictheme @block_type @block_civictheme_banner @wip
+@p0 @civictheme @block_type @block_civictheme_banner
 Feature: Banner render
 
   Background:
