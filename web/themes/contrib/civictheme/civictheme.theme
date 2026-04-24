@@ -10,7 +10,6 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
-use Drupal\webform\Utility\WebformElementHelper;
 
 require_once __DIR__ . '/includes/utilities.inc';
 require_once __DIR__ . '/includes/process.inc';
