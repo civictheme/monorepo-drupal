@@ -41,3 +41,15 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
     ],
   ];
 }
+
+/**
+ * Implements hook_preprocess_webform__container().
+ */
+function civictheme_preprocess_webform__container(array &$variables): void {
+  if (!civictheme_is_webform_element($variables['element'])) {
+    return;
+  }
+  _civictheme_preprocess_form_element__webform__overrides($variables);
+  $variables['content'] = $variables['children'];
+  unset($variables['children']);
+}
