@@ -2678,17 +2678,17 @@
         },
         {
             "name": "drupal/redirect",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/redirect.git",
-                "reference": "8.x-1.12"
+                "reference": "8.x-1.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.12.zip",
-                "reference": "8.x-1.12",
-                "shasum": "1cdee11356a25b9f9a10329aec0eeb293e0023de"
+                "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.13.zip",
+                "reference": "8.x-1.13",
+                "shasum": "57185d3b9d9e2a549584b903eab838aeaa72a218"
             },
             "require": {
                 "drupal/core": "^10 || ^11"
@@ -2696,8 +2696,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.12",
-                    "datestamp": "1756419163",
+                    "version": "8.x-1.13",
+                    "datestamp": "1777006978",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3041,24 +3041,21 @@
         },
         {
             "name": "drupal/testmode",
-            "version": "2.6.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/testmode.git",
-                "reference": "2.6.0"
+                "reference": "2.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/testmode-2.6.0.zip",
-                "reference": "2.6.0",
-                "shasum": "62324042d517aa18db127e6d26bdb62ecd3c33ec"
+                "url": "https://ftp.drupal.org/files/projects/testmode-2.7.0.zip",
+                "reference": "2.7.0",
+                "shasum": "6b9436d5db7b031239109e3627fdfc5aefa84e35"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
                 "php": ">=8.2"
-            },
-            "require-dev": {
-                "drupal/autologout": "^2"
             },
             "suggest": {
                 "drupal/search_api": "^1.25"
@@ -3066,8 +3063,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.6.0",
-                    "datestamp": "1732698068",
+                    "version": "2.7.0",
+                    "datestamp": "1775890885",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
