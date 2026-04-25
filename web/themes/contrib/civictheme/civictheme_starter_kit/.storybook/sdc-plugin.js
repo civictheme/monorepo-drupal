@@ -120,7 +120,8 @@ export default (options = {}) => ({
       }
 
       // For component js files - wrap in DOMContentLoaded event.
-      if (id.endsWith('.js') && !id.endsWith('stories.data.js')) {
+      // Exclude storybook utility files that use ES module exports.
+      if (id.endsWith('.js') && !id.endsWith('stories.data.js') && !id.includes('/storybook/storybook.')) {
         return {
           code: `document.addEventListener('DOMContentLoaded', () => {\n${code}\n});`,
           map: null,
