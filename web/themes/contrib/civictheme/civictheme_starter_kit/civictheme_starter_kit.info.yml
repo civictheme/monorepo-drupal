@@ -53,6 +53,14 @@ libraries-override:
       theme:
         dist/civictheme.variables.css: dist/styles.variables.css
 
+  # Suppress core's contextual.module.css — the starter kit owns these base
+  # styles via assets/sass/block/_contextual.scss so .contextual-region can
+  # be wrapped in :where() and stop blocking component positioning.
+  contextual/drupal.contextual-links:
+    css:
+      component:
+        css/contextual.module.css: false
+
 ckeditor5-stylesheets:
   - dist/styles.editor.css
   - dist/styles.variables.css
