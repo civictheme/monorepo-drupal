@@ -329,6 +329,45 @@ Feature: Automated list render
     And I should not see an ".ct-group-filter__filters select[name=type]" element
     And I should see an ".ct-group-filter__filters input[name=title]" element
 
+  @api @javascript
+  Scenario: Automated list, selected filter chips render after applying topic filter
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Test page with Automated list content" has "civictheme_automated_list" paragraph:
+      | field_c_p_title            | [TEST] Automated list title |
+      | field_c_p_list_limit_type  | unlimited                   |
+      # Two filters required so the exposed form takes the group-filter path
+      # (single filter routes through single-filter, which has no selected-filter UI).
+      | field_c_p_list_filters_exp | topic, type                 |
+
+    When I visit "civictheme_page" "Test page with Automated list content"
+    Then I should see an ".ct-group-filter__filters select[name='topic[]']" element
+
+    # Open the Topics popover so the select inside becomes interactable.
+    # Filters render in view order (type, topic) so Topics is the 2nd item.
+    When I click on ".ct-group-filter__filters li:nth-of-type(2) .ct-popover__link" element
+    And I wait for AJAX to finish
+
+    # Select two topics and submit the exposed filter form.
+    When I select "[TEST] Topic 1" from "topic[]"
+    And I additionally select "[TEST] Topic 2" from "topic[]"
+    And I press "Apply filters"
+    And I wait for AJAX to finish
+
+    # The selected-filter block now renders.
+    Then I should see a ".ct-group-filter__selected-filter-controls" element
+    And I should see a ".ct-chip[aria-label='Remove filter: Topics: [TEST] Topic 1']" element
+    And I should see a ".ct-chip[aria-label='Remove filter: Topics: [TEST] Topic 2']" element
+    And I should see "Clear all" in the ".ct-group-filter__selected-clear" element
+
+    # Dismissing one chip removes only that filter.
+    When I click on ".ct-chip[aria-label='Remove filter: Topics: [TEST] Topic 1']" element
+    Then I should not see a ".ct-chip[aria-label='Remove filter: Topics: [TEST] Topic 1']" element
+    And I should see a ".ct-chip[aria-label='Remove filter: Topics: [TEST] Topic 2']" element
+
+    # Clear all removes the entire selected-filter block.
+    When I click on ".ct-group-filter__selected-clear .ct-button" element
+    Then I should not see a ".ct-group-filter__selected-filter-controls" element
+
   @api
   Scenario: Automated list, is not self referenced
     Given "civictheme_page" content:

@@ -133,10 +133,12 @@ function civictheme_preprocess_views_view_grid(array &$variables): void {
  */
 function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
   $storage = $form_state->getStorage();
-  // Pass view ID in attributes to the exposed filter preprocessor.
+  // Pass view ID and display ID in attributes to the exposed filter
+  // preprocessor.
   // @see civictheme_preprocess_views_exposed_form()
-  if (!empty($storage['view'])) {
+  if (!empty($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $form['#attributes']['view_id'] = $storage['view']->id();
+    $form['#attributes']['view_display'] = $storage['view']->current_display;
   }
 
   // Restrict Topics exposed filter to contextual filter term(s) when present.
@@ -167,15 +169,10 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
 
 /**
  * Implements hook_preprocess_HOOK().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_views_exposed_form(array &$variables): void {
-  $view = NULL;
-  if (!empty($variables['form']['#attributes']['view_id'])) {
-    $view = Views::getView($variables['form']['#attributes']['view_id']);
-    unset($variables['form']['#attributes']['view_id']);
-  }
+  $view = _civictheme_preprocess_views_exposed_form__load_view($variables);
+  _civictheme_preprocess_views_exposed_form__add_selected_filters($variables, $view);
 
   // Allow to opt-out from using the exposed form.
   if (_civictheme_feature_is_optedout('views', CivicthemeConstants::OPTOUT_VIEWS_EXPOSED_FILTER, $view)) {
@@ -205,6 +202,49 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
   elseif ($field_count > 1) {
     _civictheme_preprocess_views__exposed_form__group_filter($variables);
+  }
+}
+
+/**
+ * Load and prepare the view referenced by the exposed form attributes.
+ *
+ * The form alter hook stashes view_id and view_display on the form's
+ * attributes; this helper recovers the view, sets its display, and removes
+ * the temporary attributes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_views_exposed_form__load_view(array &$variables): ?ViewExecutable {
+  if (empty($variables['form']['#attributes']['view_id'])) {
+    return NULL;
+  }
+  $view = Views::getView($variables['form']['#attributes']['view_id']);
+  unset($variables['form']['#attributes']['view_id']);
+  $display_id = $variables['form']['#attributes']['view_display'] ?? NULL;
+  unset($variables['form']['#attributes']['view_display']);
+  if (!$view instanceof ViewExecutable) {
+    return NULL;
+  }
+  if (!empty($display_id)) {
+    $view->setDisplay($display_id);
+  }
+  return $view;
+}
+
+/**
+ * Populate selected-filter chip data on the exposed-form template variables.
+ *
+ * Skipped when the view uses AJAX, since dismiss URLs in the chips would not
+ * trigger a re-render.
+ */
+function _civictheme_preprocess_views_exposed_form__add_selected_filters(array &$variables, ?ViewExecutable $view): void {
+  if (!$view instanceof ViewExecutable || $view->ajaxEnabled()) {
+    return;
+  }
+  $data = _civictheme_view_selected_filters_data($view);
+  $variables['selected_filters'] = $data['selected_filters'];
+  if (!empty($data['selected_filters_clear_link'])) {
+    $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
   }
 }
 
@@ -341,15 +381,39 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
     return;
   }
 
-  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
+  $data = _civictheme_view_selected_filters_data($view);
+  $variables['selected_filters'] = $data['selected_filters'];
+  if (!empty($data['selected_filters_clear_link'])) {
+    $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
+  }
+}
 
-  if (!empty($variables['selected_filters'])) {
-    $variables['selected_filters_clear_link'] = [
-      'url' => Url::fromRoute('<current>')->toString(),
+/**
+ * Build selected filters and clear link data for a given view.
+ *
+ * Shared by views-view and views-exposed-form preprocessors.
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ *   The view executable, with display set.
+ *
+ * @return array
+ *   Array with keys 'selected_filters' and 'selected_filters_clear_link'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_view_selected_filters_data(ViewExecutable $view): array {
+  $selected_filters = _civictheme_preprocess_views_view__selected_filters_list($view);
+  $clear_link = NULL;
+  if (!empty($selected_filters)) {
+    $clear_link = [
       'text' => t('Clear all'),
-      'attributes' => 'aria-label="' . t('Clear all filters') . '"',
+      'url' => Url::fromRoute('<current>')->toString(),
     ];
   }
+  return [
+    'selected_filters' => $selected_filters,
+    'selected_filters_clear_link' => $clear_link,
+  ];
 }
 
 /**
@@ -403,50 +467,72 @@ function _civictheme_preprocess_views_view__results_count(array &$variables): vo
 }
 
 /**
- * Preprocess the selected filters list.
+ * Build dismissible chip data for each applied exposed filter value.
+ *
+ * Returns one entry per submitted value of an exposed filter. Each entry has
+ * the URL that drops just that value (preserving the rest of the query), the
+ * human-readable filter text, and an aria-label for the dismiss link.
+ *
+ * Query parameters that don't correspond to an exposed filter are ignored.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
-  $filter_types = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
-  $query_params = \Drupal::request()->query->all();
-  $current_values = array_filter($query_params, function ($value) {
-    return !empty($value);
-  });
-  $current_values = array_filter(
-    $query_params,
-    fn($v) => !($v === '') && $v !== NULL
-  );
-
-  // Only process keys for available filters.
-  $permitted_keys = array_keys($filter_types);
-  $selected_filters = [];
+  $exposed_filters = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
+  $request_query = \Drupal::request()->query->all();
   $base_url = Url::fromRoute('<current>')->toString();
 
-  foreach ($current_values as $key => $value) {
-    if (!in_array($key, $permitted_keys)) {
+  $chips = [];
+  foreach ($request_query as $filter_id => $submitted_value) {
+    if (!isset($exposed_filters[$filter_id])) {
       continue;
     }
-    $new_query_params = $query_params;
-    if (is_string($value)) {
-      unset($new_query_params[$key]);
-      $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $new_query_params, $key, $value, $filter_types);
-      $selected_filters[$key] = $filter_url;
-      continue;
+    if (is_string($submitted_value)) {
+      _civictheme_preprocess_views_view__selected_filters_add_single($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
     }
-    if (is_array($value)) {
-      foreach ($value as $value_key => $item) {
-        if (!empty($item)) {
-          $temp_query_params = $query_params;
-          unset($temp_query_params[$key][$value_key]);
-          if (empty($temp_query_params[$key])) {
-            unset($temp_query_params[$key]);
-          }
-          $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $temp_query_params, $key, $item, $filter_types);
-          $selected_filters[$key . '_' . $item . '_' . $value_key] = $filter_url;
-        }
-      }
+    elseif (is_array($submitted_value)) {
+      _civictheme_preprocess_views_view__selected_filters_add_multi($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
     }
   }
-  return $selected_filters;
+
+  return $chips;
+}
+
+/**
+ * Append a chip for a single-value submission (text input, single select).
+ */
+function _civictheme_preprocess_views_view__selected_filters_add_single(array &$chips, string $base_url, array $request_query, string $filter_id, string $submitted_value, array $exposed_filters): void {
+  if ($submitted_value === '') {
+    return;
+  }
+  $remaining_query = $request_query;
+  unset($remaining_query[$filter_id]);
+  $chips[$filter_id] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+    $base_url, $remaining_query, $filter_id, $submitted_value, $exposed_filters
+  );
+}
+
+/**
+ * Append one chip per submitted value of a multi-value filter.
+ *
+ * Each chip is keyed by "<filter>.<index>" so it can be dismissed
+ * independently of its siblings.
+ */
+function _civictheme_preprocess_views_view__selected_filters_add_multi(array &$chips, string $base_url, array $request_query, string $filter_id, array $submitted_values, array $exposed_filters): void {
+  foreach ($submitted_values as $value_index => $value) {
+    if ($value === '' || $value === NULL) {
+      continue;
+    }
+    $remaining_query = $request_query;
+    unset($remaining_query[$filter_id][$value_index]);
+    if (empty($remaining_query[$filter_id])) {
+      unset($remaining_query[$filter_id]);
+    }
+    $chip_key = sprintf('%s.%s', $filter_id, $value_index);
+    $chips[$chip_key] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+      $base_url, $remaining_query, $filter_id, $value, $exposed_filters
+    );
+  }
 }
 
 /**
@@ -454,9 +540,11 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
  */
 function _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
   $query = http_build_query($query_params);
+  $text = _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types);
   return [
     'url' => !empty($query) ? ($base_url . '?' . $query) : $base_url,
-    'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
+    'text' => $text,
+    'label' => t('Remove filter: @filter', ['@filter' => $text])->__toString(),
   ];
 }
 
