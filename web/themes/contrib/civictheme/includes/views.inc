@@ -136,7 +136,7 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
   // Pass view ID and display ID in attributes to the exposed filter
   // preprocessor.
   // @see civictheme_preprocess_views_exposed_form()
-  if (!empty($storage['view'])) {
+  if (!empty($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $form['#attributes']['view_id'] = $storage['view']->id();
     $form['#attributes']['view_display'] = $storage['view']->current_display;
   }
