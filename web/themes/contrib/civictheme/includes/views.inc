@@ -443,47 +443,58 @@ function _civictheme_preprocess_views_view__results_count(array &$variables): vo
 }
 
 /**
- * Preprocess the selected filters list.
+ * Build dismissible chip data for each applied exposed filter value.
+ *
+ * Returns one entry per submitted value of an exposed filter. Each entry has
+ * the URL that drops just that value (preserving the rest of the query), the
+ * human-readable filter text, and an aria-label for the dismiss link.
+ *
+ * Query parameters that don't correspond to an exposed filter are ignored.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
-  $filter_types = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
-  $query_params = \Drupal::request()->query->all();
-  $current_values = array_filter(
-    $query_params,
-    fn($query_param) => !($query_param === '') && $query_param !== NULL
-  );
-
-  // Only process keys for available filters.
-  $permitted_keys = array_keys($filter_types);
-  $selected_filters = [];
+  $exposed_filters = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
+  $request_query = \Drupal::request()->query->all();
   $base_url = Url::fromRoute('<current>')->toString();
 
-  foreach ($current_values as $key => $value) {
-    if (!in_array($key, $permitted_keys)) {
+  $chips = [];
+  foreach ($request_query as $filter_id => $submitted_value) {
+    if (!isset($exposed_filters[$filter_id])) {
       continue;
     }
-    $new_query_params = $query_params;
-    if (is_string($value)) {
-      unset($new_query_params[$key]);
-      $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $new_query_params, $key, $value, $filter_types);
-      $selected_filters[$key] = $filter_url;
+
+    // Single-value filter (text input, single select).
+    if (is_string($submitted_value) && $submitted_value !== '') {
+      $remaining_query = $request_query;
+      unset($remaining_query[$filter_id]);
+      $chips[$filter_id] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+        $base_url, $remaining_query, $filter_id, $submitted_value, $exposed_filters
+      );
       continue;
     }
-    if (is_array($value)) {
-      foreach ($value as $value_key => $item) {
-        if (!empty($item)) {
-          $temp_query_params = $query_params;
-          unset($temp_query_params[$key][$value_key]);
-          if (empty($temp_query_params[$key])) {
-            unset($temp_query_params[$key]);
-          }
-          $filter_url = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url($base_url, $temp_query_params, $key, $item, $filter_types);
-          $selected_filters[$key . '_' . $item . '_' . $value_key] = $filter_url;
+
+    // Multi-value filter (multi-select, checkboxes). Each submitted value
+    // becomes its own chip so it can be dismissed independently.
+    if (is_array($submitted_value)) {
+      foreach ($submitted_value as $value_index => $value) {
+        if ($value === '' || $value === NULL) {
+          continue;
         }
+        $remaining_query = $request_query;
+        unset($remaining_query[$filter_id][$value_index]);
+        if (empty($remaining_query[$filter_id])) {
+          unset($remaining_query[$filter_id]);
+        }
+        $chip_key = sprintf('%s.%s', $filter_id, $value_index);
+        $chips[$chip_key] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+          $base_url, $remaining_query, $filter_id, $value, $exposed_filters
+        );
       }
     }
   }
-  return $selected_filters;
+
+  return $chips;
 }
 
 /**
