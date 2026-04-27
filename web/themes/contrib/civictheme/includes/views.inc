@@ -169,29 +169,10 @@ function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterfa
 
 /**
  * Implements hook_preprocess_HOOK().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_views_exposed_form(array &$variables): void {
-  $view = NULL;
-  if (!empty($variables['form']['#attributes']['view_id'])) {
-    $view = Views::getView($variables['form']['#attributes']['view_id']);
-    unset($variables['form']['#attributes']['view_id']);
-    if ($view instanceof ViewExecutable && !empty($variables['form']['#attributes']['view_display'])) {
-      $view->setDisplay($variables['form']['#attributes']['view_display']);
-    }
-    unset($variables['form']['#attributes']['view_display']);
-  }
-
-  // Build selected filters for the exposed form template scope. Skip when the
-  // view uses AJAX since the chip dismiss URLs would not trigger a re-render.
-  if ($view instanceof ViewExecutable && !$view->ajaxEnabled()) {
-    $data = _civictheme_view_selected_filters_data($view);
-    $variables['selected_filters'] = $data['selected_filters'];
-    if (!empty($data['selected_filters_clear_link'])) {
-      $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
-    }
-  }
+  $view = _civictheme_preprocess_views_exposed_form__load_view($variables);
+  _civictheme_preprocess_views_exposed_form__add_selected_filters($variables, $view);
 
   // Allow to opt-out from using the exposed form.
   if (_civictheme_feature_is_optedout('views', CivicthemeConstants::OPTOUT_VIEWS_EXPOSED_FILTER, $view)) {
@@ -221,6 +202,49 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   }
   elseif ($field_count > 1) {
     _civictheme_preprocess_views__exposed_form__group_filter($variables);
+  }
+}
+
+/**
+ * Load and prepare the view referenced by the exposed form attributes.
+ *
+ * The form alter hook stashes view_id and view_display on the form's
+ * attributes; this helper recovers the view, sets its display, and removes
+ * the temporary attributes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_views_exposed_form__load_view(array &$variables): ?ViewExecutable {
+  if (empty($variables['form']['#attributes']['view_id'])) {
+    return NULL;
+  }
+  $view = Views::getView($variables['form']['#attributes']['view_id']);
+  unset($variables['form']['#attributes']['view_id']);
+  $display_id = $variables['form']['#attributes']['view_display'] ?? NULL;
+  unset($variables['form']['#attributes']['view_display']);
+  if (!$view instanceof ViewExecutable) {
+    return NULL;
+  }
+  if (!empty($display_id)) {
+    $view->setDisplay($display_id);
+  }
+  return $view;
+}
+
+/**
+ * Populate selected-filter chip data on the exposed-form template variables.
+ *
+ * Skipped when the view uses AJAX, since dismiss URLs in the chips would not
+ * trigger a re-render.
+ */
+function _civictheme_preprocess_views_exposed_form__add_selected_filters(array &$variables, ?ViewExecutable $view): void {
+  if (!$view instanceof ViewExecutable || $view->ajaxEnabled()) {
+    return;
+  }
+  $data = _civictheme_view_selected_filters_data($view);
+  $variables['selected_filters'] = $data['selected_filters'];
+  if (!empty($data['selected_filters_clear_link'])) {
+    $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
   }
 }
 
@@ -463,38 +487,52 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
     if (!isset($exposed_filters[$filter_id])) {
       continue;
     }
-
-    // Single-value filter (text input, single select).
-    if (is_string($submitted_value) && $submitted_value !== '') {
-      $remaining_query = $request_query;
-      unset($remaining_query[$filter_id]);
-      $chips[$filter_id] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
-        $base_url, $remaining_query, $filter_id, $submitted_value, $exposed_filters
-      );
-      continue;
+    if (is_string($submitted_value)) {
+      _civictheme_preprocess_views_view__selected_filters_add_single($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
     }
-
-    // Multi-value filter (multi-select, checkboxes). Each submitted value
-    // becomes its own chip so it can be dismissed independently.
-    if (is_array($submitted_value)) {
-      foreach ($submitted_value as $value_index => $value) {
-        if ($value === '' || $value === NULL) {
-          continue;
-        }
-        $remaining_query = $request_query;
-        unset($remaining_query[$filter_id][$value_index]);
-        if (empty($remaining_query[$filter_id])) {
-          unset($remaining_query[$filter_id]);
-        }
-        $chip_key = sprintf('%s.%s', $filter_id, $value_index);
-        $chips[$chip_key] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
-          $base_url, $remaining_query, $filter_id, $value, $exposed_filters
-        );
-      }
+    elseif (is_array($submitted_value)) {
+      _civictheme_preprocess_views_view__selected_filters_add_multi($chips, $base_url, $request_query, $filter_id, $submitted_value, $exposed_filters);
     }
   }
 
   return $chips;
+}
+
+/**
+ * Append a chip for a single-value submission (text input, single select).
+ */
+function _civictheme_preprocess_views_view__selected_filters_add_single(array &$chips, string $base_url, array $request_query, string $filter_id, string $submitted_value, array $exposed_filters): void {
+  if ($submitted_value === '') {
+    return;
+  }
+  $remaining_query = $request_query;
+  unset($remaining_query[$filter_id]);
+  $chips[$filter_id] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+    $base_url, $remaining_query, $filter_id, $submitted_value, $exposed_filters
+  );
+}
+
+/**
+ * Append one chip per submitted value of a multi-value filter.
+ *
+ * Each chip is keyed by "<filter>.<index>" so it can be dismissed
+ * independently of its siblings.
+ */
+function _civictheme_preprocess_views_view__selected_filters_add_multi(array &$chips, string $base_url, array $request_query, string $filter_id, array $submitted_values, array $exposed_filters): void {
+  foreach ($submitted_values as $value_index => $value) {
+    if ($value === '' || $value === NULL) {
+      continue;
+    }
+    $remaining_query = $request_query;
+    unset($remaining_query[$filter_id][$value_index]);
+    if (empty($remaining_query[$filter_id])) {
+      unset($remaining_query[$filter_id]);
+    }
+    $chip_key = sprintf('%s.%s', $filter_id, $value_index);
+    $chips[$chip_key] = _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(
+      $base_url, $remaining_query, $filter_id, $value, $exposed_filters
+    );
+  }
 }
 
 /**
