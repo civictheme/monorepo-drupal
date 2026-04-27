@@ -627,9 +627,15 @@ function _civictheme_preprocess_form_element__webform__overrides(array &$variabl
   ];
   foreach ($overrideable_settings as $setting) {
     $webform_setting_id = '#' . $setting;
+    if ($setting === 'theme') {
+      $webform_setting_id = '#component_theme';
+    }
     if (isset($element[$webform_setting_id])) {
       $variables[$setting] = $element[$webform_setting_id];
     }
+  }
+  if (!empty($variables['children'])) {
+    $variables['content'] = $variables['children'];
   }
 }
 
@@ -705,7 +711,7 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
 function _civictheme_preprocess_form_element__description(array &$variables): void {
   $variables['description'] = $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
-  if (civictheme_is_webform_element($variables['element'] ?? [])) {
+  if (!civictheme_is_webform_element($variables['element'] ?? [])) {
     return;
   }
   $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
