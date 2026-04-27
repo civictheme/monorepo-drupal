@@ -133,10 +133,12 @@ function civictheme_preprocess_views_view_grid(array &$variables): void {
  */
 function civictheme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
   $storage = $form_state->getStorage();
-  // Pass view ID in attributes to the exposed filter preprocessor.
+  // Pass view ID and display ID in attributes to the exposed filter
+  // preprocessor.
   // @see civictheme_preprocess_views_exposed_form()
   if (!empty($storage['view'])) {
     $form['#attributes']['view_id'] = $storage['view']->id();
+    $form['#attributes']['view_display'] = $storage['view']->current_display;
   }
 
   // Restrict Topics exposed filter to contextual filter term(s) when present.
@@ -175,6 +177,20 @@ function civictheme_preprocess_views_exposed_form(array &$variables): void {
   if (!empty($variables['form']['#attributes']['view_id'])) {
     $view = Views::getView($variables['form']['#attributes']['view_id']);
     unset($variables['form']['#attributes']['view_id']);
+    if ($view instanceof ViewExecutable && !empty($variables['form']['#attributes']['view_display'])) {
+      $view->setDisplay($variables['form']['#attributes']['view_display']);
+    }
+    unset($variables['form']['#attributes']['view_display']);
+  }
+
+  // Build selected filters for the exposed form template scope. Skip when the
+  // view uses AJAX since the chip dismiss URLs would not trigger a re-render.
+  if ($view instanceof ViewExecutable && !$view->ajaxEnabled()) {
+    $data = _civictheme_view_selected_filters_data($view);
+    $variables['selected_filters'] = $data['selected_filters'];
+    if (!empty($data['selected_filters_clear_link'])) {
+      $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
+    }
   }
 
   // Allow to opt-out from using the exposed form.
@@ -341,15 +357,39 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
     return;
   }
 
-  $variables['selected_filters'] = _civictheme_preprocess_views_view__selected_filters_list($view);
+  $data = _civictheme_view_selected_filters_data($view);
+  $variables['selected_filters'] = $data['selected_filters'];
+  if (!empty($data['selected_filters_clear_link'])) {
+    $variables['selected_filters_clear_link'] = $data['selected_filters_clear_link'];
+  }
+}
 
-  if (!empty($variables['selected_filters'])) {
-    $variables['selected_filters_clear_link'] = [
-      'url' => Url::fromRoute('<current>')->toString(),
+/**
+ * Build selected filters and clear link data for a given view.
+ *
+ * Shared by views-view and views-exposed-form preprocessors.
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ *   The view executable, with display set.
+ *
+ * @return array
+ *   Array with keys 'selected_filters' and 'selected_filters_clear_link'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_view_selected_filters_data(ViewExecutable $view): array {
+  $selected_filters = _civictheme_preprocess_views_view__selected_filters_list($view);
+  $clear_link = NULL;
+  if (!empty($selected_filters)) {
+    $clear_link = [
       'text' => t('Clear all'),
-      'attributes' => 'aria-label="' . t('Clear all filters') . '"',
+      'url' => Url::fromRoute('<current>')->toString(),
     ];
   }
+  return [
+    'selected_filters' => $selected_filters,
+    'selected_filters_clear_link' => $clear_link,
+  ];
 }
 
 /**
@@ -408,12 +448,9 @@ function _civictheme_preprocess_views_view__results_count(array &$variables): vo
 function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
   $filter_types = _civictheme_preprocess_views_view__selected_filters_get_filter_types($view);
   $query_params = \Drupal::request()->query->all();
-  $current_values = array_filter($query_params, function ($value) {
-    return !empty($value);
-  });
   $current_values = array_filter(
     $query_params,
-    fn($v) => !($v === '') && $v !== NULL
+    fn($query_param) => !($query_param === '') && $query_param !== NULL
   );
 
   // Only process keys for available filters.
@@ -454,9 +491,11 @@ function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable
  */
 function _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
   $query = http_build_query($query_params);
+  $text = _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types);
   return [
     'url' => !empty($query) ? ($base_url . '?' . $query) : $base_url,
-    'text' => _civictheme_preprocess_views_view__selected_filters_list__create_filter_label($key, $value, $filter_types),
+    'text' => $text,
+    'label' => t('Remove filter: @filter', ['@filter' => $text])->__toString(),
   ];
 }
 
