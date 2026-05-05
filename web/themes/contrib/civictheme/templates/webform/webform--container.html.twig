@@ -1,0 +1,8 @@
+{% include 'civictheme:basic-content' with {
+  theme: theme|default('light'),
+  is_contained: is_contained|default(true),
+  vertical_spacing: vertical_spacing|default('none'),
+  with_background: with_background|default(false),
+  modifier_class: modifier_class|default(''),
+  content: content,
+} %}

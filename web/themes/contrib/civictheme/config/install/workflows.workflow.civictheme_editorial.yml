@@ -49,20 +49,26 @@ type_settings:
       from:
         - published
       to: archived
-      weight: 2
+      weight: 0
     create_new_draft:
       label: 'Create New Draft'
       from:
         - draft
         - published
       to: draft
-      weight: -2
+      weight: -5
     needs_review:
       label: 'Needs Review'
       from:
         - draft
       to: needs_review
-      weight: -1
+      weight: -4
+    needs_review_to_needs_review:
+      label: 'Needs Review to Needs Review'
+      from:
+        - needs_review
+      to: needs_review
+      weight: -3
     publish:
       label: Publish
       from:
@@ -70,31 +76,31 @@ type_settings:
         - needs_review
         - published
       to: published
-      weight: 1
+      weight: -1
     restore:
       label: Restore
       from:
         - archived
       to: published
-      weight: 5
+      weight: 3
     restore_to_draft:
       label: 'Restore to Draft'
       from:
         - archived
       to: draft
-      weight: 3
+      weight: 1
     restore_to_needs_review:
       label: 'Restore to Needs Review'
       from:
         - archived
       to: needs_review
-      weight: 4
+      weight: 2
     send_back_to_draft:
       label: 'Send back to Draft'
       from:
         - needs_review
       to: draft
-      weight: 0
+      weight: -2
   entity_types:
     block_content:
       - civictheme_banner
@@ -113,4 +119,4 @@ type_settings:
       - civictheme_alert
       - civictheme_event
       - civictheme_page
-  default_moderation_state: published
+  default_moderation_state: draft

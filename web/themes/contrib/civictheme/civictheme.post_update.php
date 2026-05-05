@@ -965,6 +965,55 @@ function civictheme_post_update_update_field_c_p_background_description(): strin
 }
 
 /**
+ * Add civictheme_fast_fact_card paragraph type and enable it for manual list.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_fast_fact_card_paragraph_type(): string {
+  $new_configs = [
+    // Paragraph type definition.
+    'paragraphs.paragraphs_type.civictheme_fast_fact_card' => 'paragraphs_type',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_icon' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_link' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_summary' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_theme' => 'field_config',
+    'field.field.paragraph.civictheme_fast_fact_card.field_c_p_title' => 'field_config',
+    'core.entity_form_display.paragraph.civictheme_fast_fact_card.default' => 'entity_form_display',
+    'core.entity_view_display.paragraph.civictheme_fast_fact_card.default' => 'entity_view_display',
+  ];
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  \Drupal::classResolver(CivicthemeUpdateHelper::class)->createConfigs($new_configs, $config_path);
+
+  // Enable civictheme_fast_fact_card for civictheme_manual_list.
+  $field_config_name = 'field.field.paragraph.civictheme_manual_list.field_c_p_list_items';
+  $field_config = \Drupal::configFactory()->getEditable($field_config_name);
+
+  if (!$field_config->isNew()) {
+    $handler_settings = $field_config->get('settings.handler_settings') ?: [];
+    // Ensure target_bundles exists.
+    if (!isset($handler_settings['target_bundles'])) {
+      $handler_settings['target_bundles'] = [];
+    }
+    $handler_settings['target_bundles']['civictheme_fast_fact_card'] = 'civictheme_fast_fact_card';
+
+    // Ensure target_bundles_drag_drop exists.
+    if (!isset($handler_settings['target_bundles_drag_drop'])) {
+      $handler_settings['target_bundles_drag_drop'] = [];
+    }
+    $handler_settings['target_bundles_drag_drop']['civictheme_fast_fact_card'] = [
+      'weight' => -54,
+      'enabled' => TRUE,
+    ];
+
+    $field_config->set('settings.handler_settings', $handler_settings);
+    $field_config->save();
+  }
+
+  return (string) new TranslatableMarkup('Added civictheme_fast_fact_card paragraph type and enabled it for manual list.');
+}
+
+/**
  * Removes 'field_c_p_attributes' from civictheme_iframe paragraph.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -1022,4 +1071,249 @@ function civictheme_post_update_remove_civictheme_iframe_field_c_p_attributes_2(
   }
 
   return (string) new TranslatableMarkup("Removed civictheme_iframe field 'field_c_p_attributes' from field instance, field storage, and all civictheme_iframe paragraph displays (view and form) if they existed.");
+}
+
+/**
+ * Migrate deprecated layouts to civictheme_three_columns.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_migrate_one_column_layouts(): string {
+  $outdated_layouts = [
+    'civictheme_one_column',
+    'civictheme_one_column_contained',
+  ];
+
+  $messages = [];
+  $entity_displays = LayoutBuilderEntityViewDisplay::loadMultiple();
+  $updated_entity_displays = [];
+  foreach ($entity_displays as $entity_display) {
+    if (!$entity_display->isLayoutBuilderEnabled()) {
+      continue;
+    }
+    // Update allowed layouts if the deprecated ones are present.
+    $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction');
+    if (!empty($entity_view_mode_restriction['allowed_layouts'])) {
+      $allowed_layouts = $entity_view_mode_restriction['allowed_layouts'];
+      $replaced = FALSE;
+      foreach ($allowed_layouts as $idx => $layout_name) {
+        if (in_array($layout_name, $outdated_layouts)) {
+          unset($allowed_layouts[$idx]);
+          $replaced = TRUE;
+        }
+      }
+      if ($replaced) {
+        $allowed_layouts[] = 'civictheme_three_columns';
+        $entity_view_mode_restriction['allowed_layouts'] = array_values($allowed_layouts);
+        $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+        $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+      }
+    }
+    // Replace layouts in layout builder sections.
+    $layout_builder_sections = $entity_display->getThirdPartySetting('layout_builder', 'sections');
+    if (!empty($layout_builder_sections)) {
+      foreach ($layout_builder_sections as $index => $section) {
+        $layout_name = $section->getLayoutId();
+        if (in_array($layout_name, $outdated_layouts)) {
+          $section_as_array = $section->toArray();
+          $section_as_array['layout_id'] = 'civictheme_three_columns';
+          $section_as_array['layout_settings']['label'] = 'CivicTheme Three Columns';
+          $section_as_array['layout_settings']['is_contained'] = ($layout_name === 'civictheme_one_column_contained');
+          // Move all components to 'main'.
+          foreach ($section_as_array['components'] as &$component) {
+            if ($component['region'] === 'content') {
+              $component['region'] = 'main';
+            }
+          }
+          $layout_builder_sections[$index] = Section::fromArray($section_as_array);
+          $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+        }
+      }
+      $entity_display->setThirdPartySetting('layout_builder', 'sections', $layout_builder_sections);
+    }
+    if (in_array($entity_display->id(), $updated_entity_displays)) {
+      $entity_display->save();
+      $messages[] = (string) (new TranslatableMarkup('Updated @display_id display, replaced deprecated CivicTheme single-column layouts with civictheme_three_columns.', [
+        '@display_id' => $entity_display->id(),
+      ]));
+    }
+  }
+  return implode("\n", $messages);
+}
+
+/**
+ * Migrate deprecated layouts to civictheme_three_columns.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_migrate_one_column_layouts_2(): string {
+  $outdated_layouts = [
+    'civictheme_one_column',
+    'civictheme_one_column_contained',
+  ];
+
+  $messages = [];
+  $entity_displays = LayoutBuilderEntityViewDisplay::loadMultiple();
+  $updated_entity_displays = [];
+  foreach ($entity_displays as $entity_display) {
+    if (!$entity_display->isLayoutBuilderEnabled()) {
+      continue;
+    }
+    // Update allowed layouts if the deprecated ones are present.
+    $entity_view_mode_restriction = $entity_display->getThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction');
+    if (!empty($entity_view_mode_restriction['allowed_layouts'])) {
+      $allowed_layouts = $entity_view_mode_restriction['allowed_layouts'];
+      $replaced = FALSE;
+      foreach ($allowed_layouts as $idx => $layout_name) {
+        if (in_array($layout_name, $outdated_layouts)) {
+          unset($allowed_layouts[$idx]);
+          $replaced = TRUE;
+        }
+      }
+      if ($replaced) {
+        $allowed_layouts[] = 'civictheme_three_columns';
+        $entity_view_mode_restriction['allowed_layouts'] = array_values($allowed_layouts);
+        $entity_display->setThirdPartySetting('layout_builder_restrictions', 'entity_view_mode_restriction', $entity_view_mode_restriction);
+        $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+      }
+    }
+    // Replace layouts in layout builder sections.
+    $layout_builder_sections = $entity_display->getThirdPartySetting('layout_builder', 'sections');
+    if (!empty($layout_builder_sections)) {
+      foreach ($layout_builder_sections as $index => $section) {
+        $layout_name = $section->getLayoutId();
+        if (in_array($layout_name, $outdated_layouts)) {
+          $section_as_array = $section->toArray();
+          $section_as_array['layout_id'] = 'civictheme_three_columns';
+          $section_as_array['layout_settings']['label'] = 'CivicTheme Three Columns';
+          $section_as_array['layout_settings']['is_contained'] = ($layout_name === 'civictheme_one_column_contained');
+          // Move all components to 'main'.
+          foreach ($section_as_array['components'] as &$component) {
+            if ($component['region'] === 'content') {
+              $component['region'] = 'main';
+            }
+          }
+          $layout_builder_sections[$index] = Section::fromArray($section_as_array);
+          $updated_entity_displays[$entity_display->id()] = $entity_display->id();
+        }
+      }
+      $entity_display->setThirdPartySetting('layout_builder', 'sections', $layout_builder_sections);
+    }
+    if (in_array($entity_display->id(), $updated_entity_displays)) {
+      $entity_display->save();
+      $messages[] = (string) (new TranslatableMarkup('Updated @display_id display, replaced deprecated CivicTheme single-column layouts with civictheme_three_columns.', [
+        '@display_id' => $entity_display->id(),
+      ]));
+    }
+  }
+  return implode("\n", $messages);
+}
+
+/**
+ * Add field_c_n_hide_sidebar to civictheme_event content type.
+ *
+ * Adds the field and places it under the Appearance group on the form display.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_field_c_n_hide_sidebar(): string {
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+
+  $new_configs = [
+    'field.field.node.civictheme_event.field_c_n_hide_sidebar' => 'field_config',
+  ];
+  $helper->createConfigs($new_configs, $config_path);
+
+  $form_display_field_config = [
+    'field_c_n_hide_sidebar' => [
+      'type' => 'boolean_checkbox',
+      'weight' => 8,
+      'region' => 'content',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+      'third_party_settings' => [],
+    ],
+  ];
+  $form_display_group_config = [
+    'group_appearance' => [
+      'field_c_n_hide_sidebar',
+    ],
+  ];
+  $helper->updateFormDisplayConfig(
+    'node',
+    'civictheme_event',
+    $form_display_field_config,
+    $form_display_group_config
+  );
+
+  return (string) new TranslatableMarkup('Added field_c_n_hide_sidebar to civictheme_event content type and placed it under Appearance.');
+}
+
+/**
+ * Migrate legacy logo image_alt to primary and secondary logo image_alt.
+ *
+ * Copies the old single components.logo.image_alt value into
+ * components.logo.primary.image_alt and components.logo.secondary.image_alt
+ * when the old value is not empty and the new fields are empty.
+ * Runs for CivicTheme and all its subthemes (themes that have civictheme
+ * in their base theme chain).
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
+function civictheme_post_update_migrate_logo_image_alt_to_per_type(): TranslatableMarkup {
+  $config_factory = \Drupal::configFactory();
+  $theme_list = \Drupal::service('extension.list.theme');
+  $themes = $theme_list->getList();
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+  $theme_names_to_migrate = $helper->logoAltThemesWithCivicthemeBase($themes);
+
+  $migrated = [];
+  foreach ($theme_names_to_migrate as $theme_name) {
+    $config_name = $theme_name . '.settings';
+    $config = $config_factory->getEditable($config_name);
+    if ($config->isNew()) {
+      continue;
+    }
+
+    $old_alt = $config->get('components.logo.image_alt');
+    if ($old_alt === NULL || (is_string($old_alt) && trim($old_alt) === '')) {
+      continue;
+    }
+
+    $updated = FALSE;
+    $primary_alt = $config->get('components.logo.primary.image_alt');
+    if ($primary_alt === NULL || (is_string($primary_alt) && trim($primary_alt) === '')) {
+      $config->set('components.logo.primary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $secondary_alt = $config->get('components.logo.secondary.image_alt');
+    if ($secondary_alt === NULL || (is_string($secondary_alt) && trim($secondary_alt) === '')) {
+      $config->set('components.logo.secondary.image_alt', $old_alt);
+      $updated = TRUE;
+    }
+
+    $config->clear('components.logo.image_alt');
+    $config->save();
+    if ($updated) {
+      $migrated[] = $theme_name;
+    }
+  }
+
+  if (!empty($migrated)) {
+    return new TranslatableMarkup('Migrated legacy logo image alt text to Primary and Secondary logo alt fields for: @themes.', [
+      '@themes' => implode(', ', $migrated),
+    ]);
+  }
+
+  return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
 }

@@ -54,15 +54,25 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $allowed_extensions = implode(' ', $allowed_extensions);
 
     foreach ($logo_types as $logo_type) {
+      /** @phpstan-ignore-next-line */
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
         '#title' => $this->t('@logo_type logo', [
           '@logo_type' => ucfirst($logo_type),
         ]),
       ];
+      $form['components']['logo'][$logo_type]['image_alt'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('@logo_type logo image "alt" text', [
+          '@logo_type' => ucfirst($logo_type),
+        ]),
+        '#description' => $this->t('Text for the <code>alt</code> attribute of the @logo_type logo image.', [
+          '@logo_type' => ucfirst($logo_type),
+        ]),
+        '#default_value' => $this->themeConfigManager->load(sprintf('components.logo.%s.image_alt', $logo_type)),
+      ];
       foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
-          // @phpstan-ignore-next-line
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
             '#title' => $this->t('@logo_type logo @theme @breakpoint', [
@@ -104,13 +114,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         }
       }
     }
-
-    $form['components']['logo']['image_alt'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Logo image "alt" text'),
-      '#description' => $this->t('Text for the <code>alt</code> attribute of the site logo image.'),
-      '#default_value' => $this->themeConfigManager->load('components.logo.image_alt'),
-    ];
 
     $form['components']['site_slogan'] = [
       '#type' => 'details',
@@ -353,7 +356,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['event_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on event cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -369,7 +372,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['navigation_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on navigation cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -385,7 +388,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['promo_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on promo cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -401,7 +404,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['publication_card']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on publication cards.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -424,7 +427,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
     $form['components']['snippet']['summary_length'] = [
       '#title' => $this->t('Summary length'),
-      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 for no limit.'),
+      '#description' => $this->t('Set the length of the Summary field: the content will be trimmed to this length and ellipsis will be added. Set to 0 to never show a summary on snippets.'),
       '#type' => 'number',
       '#required' => TRUE,
       '#min' => 0,
@@ -443,6 +446,21 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#title' => $this->t('Use name of media'),
       '#description' => $this->t('Use name of media rather than file name on attachment component.'),
       '#default_value' => $this->themeConfigManager->loadForComponent('attachment', 'use_media_name', TRUE),
+    ];
+
+    $form['components']['search'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Search'),
+      '#group' => 'components',
+      '#tree' => TRUE,
+    ];
+
+    $form['components']['search']['keyword_fields'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Search and Automated list keyword fields'),
+      '#description' => $this->t('A list of machine names for views exposed filters keyword search.<br/>Fields added here will populate the "Showing @start - @end of @total @keywords" where @keywords is replaced with "for [keyword_field_value]" if a value exists.<br/>It will also be used in the browser page title as "@title - Searching for \'@keywords\' | @suffix".<br/>One keyword field per line.'),
+      '#default_value' => CivicthemeUtility::arrayToMultiline($this->themeConfigManager->load('components.search.keyword_fields', [])),
+      '#rows' => 4,
     ];
 
     $form['#process'][] = $this->processForm(...);
@@ -589,6 +607,18 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       ['components', 'footer', 'background_image', 'upload'],
       ['components', 'footer', 'background_image', 'path']
     );
+  }
+
+  /**
+   * Submit callback for theme settings form of Search component.
+   *
+   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function submitSearch(array &$form, FormStateInterface $form_state): void {
+    $keyword_fields = $form_state->getValue(['components', 'search', 'keyword_fields'], '');
+    $keyword_fields = CivicthemeUtility::multilineToArray($keyword_fields);
+    $form_state->setValue(['components', 'search', 'keyword_fields'], $keyword_fields);
   }
 
   /**

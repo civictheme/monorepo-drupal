@@ -1,0 +1,224 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 8193de0a-844e-478b-997c-8b072b2d8be4
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Ali: /ge, Com: 2, Sta: Y, Mod: pub, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Component. Service card'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/civictheme-no-sidebar/page-component-service-card
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_blend_mode:
+    -
+      value: normal
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: inherit
+  field_c_n_banner_type:
+    -
+      value: inherit
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6cbf214a-bae6-413a-9bf7-468a42e2a55b
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 9b89ee9d-e35a-4aa1-bfad-4d9a22d96361
+                  bundle: civictheme_service_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Dolor-omnis-optio-repudiandae.-Animi.'
+                      title: 'Laborum occaecati.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Minus-molestias-mollitia-officiis-qui.'
+                      title: 'Occaecati perferendis.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Expedita-officia-quod-recusandae.-Earum.'
+                      title: 'Mollitia non.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Facere id maxime.'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: light
+          field_c_p_vertical_spacing:
+            -
+              value: none
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 770f6552-504d-4bc6-8a96-7d174cfe0f1e
+          bundle: civictheme_manual_list
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: true
+          field_c_p_list_column_count:
+            -
+              value: 1
+          field_c_p_list_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d08fb96e-31b0-483a-817f-ba17f258728a
+                  bundle: civictheme_service_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1758892277
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_links:
+                    -
+                      uri: 'https://www.example.com/Corrupti-id-saepe.-Blanditiis-culpa.'
+                      title: 'Cupiditate est.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Fuga-id-impedit-necessitatibus-soluta.'
+                      title: 'Officia officiis.'
+                      options: {  }
+                    -
+                      uri: 'https://www.example.com/Distinctio-harum-praesentium-quod-quos.'
+                      title: 'Cumque delectus.'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Impedit non optio.'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

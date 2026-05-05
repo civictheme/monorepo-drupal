@@ -52,9 +52,12 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
+                image_alt:
+                  label: 'Primary logo image "alt" text'
+                  type: string
             secondary:
               type: mapping
-              label: Primary
+              label: Secondary
               mapping:
                 light:
                   type: mapping
@@ -92,9 +95,9 @@ civictheme.settings:
                         path:
                           label: Path
                           type: string
-            image_alt:
-              label: 'Logo image "alt" text'
-              type: string
+                image_alt:
+                  label: 'Secondary logo image "alt" text'
+                  type: string
         header:
           type: mapping
           label: 'Header settings'
@@ -225,6 +228,23 @@ civictheme.settings:
             use_media_name:
               label: 'Use name of media'
               type: boolean
+        site_slogan:
+          type: mapping
+          label: 'Site slogan settings'
+          mapping:
+            content:
+              label: 'Site slogan content'
+              type: string
+              nullable: true
+        search:
+          type: mapping
+          label: 'Search settings'
+          mapping:
+            keyword_fields:
+              label: 'Keyword fields'
+              type: sequence
+              sequence:
+                type: string
     colors:
       type: mapping
       label: Colors
@@ -396,3 +416,6 @@ layout_plugin.settings.civictheme_three_columns:
     is_contained:
       type: boolean
       label: 'Is Contained'
+    vertical_spacing:
+      type: string
+      label: 'Vertical Spacing'

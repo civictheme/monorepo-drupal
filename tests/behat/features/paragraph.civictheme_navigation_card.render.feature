@@ -8,12 +8,12 @@ Feature: Navigation card render
       | test_svg.svg   | public://civictheme_test/test_svg.svg   | test_svg.svg   |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        |
 
     And "civictheme_page" content:
-      | title                             | status | field_c_n_site_section |
-      | [TEST] Page Navigation cards test | 1      |                        |
+      | title                             | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Navigation cards test | 1      |                        | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Navigation cards
@@ -67,12 +67,12 @@ Feature: Navigation card render
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
 
     And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
+      | name                    | field_c_m_image | moderation_state |
+      | [TEST] CivicTheme Image | test_image.jpg  | published        |
 
     And "civictheme_page" content:
-      | title                             | status | field_c_n_site_section |
-      | [TEST] Page Navigation cards test | 1      |                        |
+      | title                             | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Navigation cards test | 1      |                        | published        |
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Navigation cards test" has "civictheme_manual_list" paragraph:

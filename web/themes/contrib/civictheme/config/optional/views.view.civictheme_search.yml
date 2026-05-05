@@ -218,19 +218,16 @@ display:
           query_tags: {  }
       relationships: {  }
       header:
-        area:
-          id: area
+        result:
+          id: result
           table: views
-          field: area
+          field: result
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
+          plugin_id: result
           empty: false
-          content:
-            value: '<h3 class="ct-heading ct-list__title">Search results...</h3>'
-            format: civictheme_rich_text
-          tokenize: false
+          content: 'Showing @start - @end of @total @keywords'
       footer: {  }
       display_extenders: {  }
     cache_metadata:

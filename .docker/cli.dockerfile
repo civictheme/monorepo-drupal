@@ -111,6 +111,7 @@ RUN cd /app/web/themes/contrib/civictheme \
 RUN npm --prefix web/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/web/themes/custom/civictheme_demo && npm run build
 COPY .docker/entrypoints/cli/* /quant-entrypoint.d/
+COPY .docker/entrypoints/cli/00-php-debug.sh /lagoon/entrypoints/99-php-debug.sh
 
 # Custom PHP configuration.
 COPY .docker/config/php/*.ini /usr/local/etc/php/conf.d/

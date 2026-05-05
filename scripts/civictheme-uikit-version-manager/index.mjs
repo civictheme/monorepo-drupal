@@ -11,7 +11,6 @@
  */
 
 import { select, input, search } from '@inquirer/prompts';
-import axios from 'axios';
 import { promises as fs } from 'fs';
 import { execSync } from 'child_process';
 import path from 'path';
@@ -165,11 +164,12 @@ async function handleDevInstallation() {
 async function fetchNpmVersions(packageName) {
   try {
     console.log(`Fetching available versions for ${packageName}...`);
-    const response = await axios.get(`https://registry.npmjs.org/${packageName}`);
+    const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+    const data = await response.json();
 
-    if (response.data && response.data.versions) {
+    if (data && data.versions) {
       // Get all versions and sort them in descending order
-      const versions = Object.keys(response.data.versions);
+      const versions = Object.keys(data.versions);
 
       // Sort versions (newest first)
       versions.sort((a, b) => {
@@ -206,12 +206,12 @@ async function fetchNpmVersions(packageName) {
  */
 async function fetchGitHubBranches() {
   try {
-    const response = await axios.get(GITHUB_API_URL, {
+    const response = await fetch(GITHUB_API_URL, {
       headers: {
         'Accept': 'application/vnd.github+json'
       }
     });
-    return response.data;
+    return await response.json();
   } catch (error) {
     console.error('Error fetching branches:', error.message);
     console.log('Failed to fetch branches, using an empty list.');
@@ -225,15 +225,16 @@ async function fetchGitHubBranches() {
 async function fetchLatestCommitHash(branch) {
   try {
     console.log(`Fetching latest commit hash for branch '${branch}'...`);
-    const response = await axios.get(`${GITHUB_COMMITS_API_URL}${branch}`, {
+    const response = await fetch(`${GITHUB_COMMITS_API_URL}${branch}`, {
       headers: {
         'Accept': 'application/vnd.github+json'
       }
     });
+    const data = await response.json();
 
-    if (response.data && response.data.sha) {
-      console.log(`Found latest commit: ${response.data.sha.substring(0, 8)}...`);
-      return response.data.sha;
+    if (data && data.sha) {
+      console.log(`Found latest commit: ${data.sha.substring(0, 8)}...`);
+      return data.sha;
     }
 
     throw new Error('Could not retrieve commit hash from response');

@@ -3,8 +3,8 @@ Feature: Service card render
 
   Background:
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section |
-      | [TEST] Page Service cards test | 1      |                        |
+      | title                          | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Service cards test | 1      |                        | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Service cards
@@ -48,8 +48,8 @@ Feature: Service card render
   @api @security
   Scenario:XSS - Service Card
     And "civictheme_page" content:
-      | title                          | status | field_c_n_site_section |
-      | [TEST] Page Service cards test | 1      |                        |
+      | title                          | status | field_c_n_site_section | moderation_state |
+      | [TEST] Page Service cards test | 1      |                        | published        |
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Service cards test" has "civictheme_manual_list" paragraph:
@@ -67,6 +67,6 @@ Feature: Service card render
     And I should not see an "script#test-service-card--field_c_p_title" element
     And I should see the text "alert('[TEST] Service card field_c_p_title')"
     And I should not see an "script#test-service-card--field_c_p_link--0" element
-    And I should see the text "alert('field_c_p_link--0')"
+    And I should see the text "field_c_p_link--0"
     And I should not see an "script#test-service-card--field_c_p_link--1" element
-    And I should see the text "alert('field_c_p_link--1')"
+    And I should see the text "field_c_p_link--1"

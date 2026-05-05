@@ -1,0 +1,111 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6d1d51b2-cbf2-4e12-b129-02d3be7f3905
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    ebacfb78-235c-49bd-bb35-b8a4ebc04578: media
+default:
+  revision_uid:
+    -
+      target_id: 0
+  revision_log:
+    -
+      value: 'Generated content. Tit: Pag, Ban: dar, Ban: lar, Ban: Y, Ble: sof, Ban: 1, Sta: Y, Mod: pub, Ali: /ge, Ver: non'
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Page. Banner large, Light, Background, Content'
+  created:
+    -
+      value: 1758892277
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /generated-content/civictheme_page/page-banner-large-light-background-content
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: ebacfb78-235c-49bd-bb35-b8a4ebc04578
+  field_c_n_banner_blend_mode:
+    -
+      value: soft-light
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e7553d3f-40c3-4e37-a5f6-cb39a8587def
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1758892277
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |-
+                <h2>Fuga id impedit necessitatibus soluta</h2>
+                <p>Officia officiis quos. Facere harum omnis. Dignissimos quidem repellendus saepe sint temporibus. Distinctio occaecati odio quos. Facere reiciendis voluptas voluptatum. Animi facilis officiis soluta. Hic repellat soluta. Dolores harum non saepe tenetur. Dolorum excepturi nam occaecati. Dolor earum repellendus. Autem itaque qui. Hic itaque necessitatibus quos repudiandae voluptatum. Debitis delectus molestiae perferendis sapiente tempore.</p><a href="https://www.example.com/Distinctio-harum-praesentium-quod-quos.">Cumque delectus.</a>
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_vertical_spacing:
+            -
+              value: none
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: large
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_hide_tags:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_vertical_spacing:
+    -
+      value: none

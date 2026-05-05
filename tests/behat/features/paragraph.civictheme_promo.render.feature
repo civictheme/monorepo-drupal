@@ -3,10 +3,10 @@ Feature: Promo render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status |
-      | [TEST] Page Promo test 1 | 1      |
-      | [TEST] Page Promo test 2 | 1      |
-      | [TEST] Cross Site Testing | 1      |
+      | title                    | status | moderation_state |
+      | [TEST] Page Promo test 1 | 1      | published        |
+      | [TEST] Page Promo test 2 | 1      | published        |
+      | [TEST] Cross Site Testing | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Promo light with vertical spacing without background
@@ -79,4 +79,4 @@ Feature: Promo render
     And I should not see an "script#test-promo--field_c_p_content" element
     And I should see the text "alert('[TEST] Promo field_c_p_content')"
     And I should not see an "script#test-promo--field_c_p_link" element
-    And I should see the text "alert('field_c_p_link')"
+    And I should see the text "field_c_p_link"

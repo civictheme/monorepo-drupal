@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Render\Component\Exception\ComponentNotFoundException;
 
 require_once __DIR__ . '/includes/utilities.inc';
@@ -16,6 +17,7 @@ require_once __DIR__ . '/includes/accordion.inc';
 require_once __DIR__ . '/includes/alert.inc';
 require_once __DIR__ . '/includes/attachment.inc';
 require_once __DIR__ . '/includes/banner.inc';
+require_once __DIR__ . '/includes/block.inc';
 require_once __DIR__ . '/includes/block_content.inc';
 require_once __DIR__ . '/includes/callout.inc';
 require_once __DIR__ . '/includes/campaign.inc';
@@ -105,7 +107,7 @@ function civictheme_theme(): array {
         'scope_selector' => NULL,
         'content' => NULL,
         'attributes' => NULL,
-        'modifier_class' => NULL,
+        'modifier_class' => '',
       ],
       'template' => 'misc/table-of-contents',
     ],
@@ -126,13 +128,30 @@ function civictheme_theme_suggestions_block_alter(array &$suggestions, array $va
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_container_alter(array &$suggestions, array $variables): void {
+  if (!civictheme_is_webform_element($variables['element'])) {
+    return;
+  }
+  $suggestions[] = 'webform__container';
+}
+
+/**
  * Implements hook_theme_registry_alter().
  */
 function civictheme_theme_registry_alter(array &$theme_registry): void {
   // Define a new preprocess hook that will always run last.
   $hook = 'civictheme_preprocess_last';
 
+  // civictheme_preprocess_last() converts $variables['attributes']['class'] to
+  // $variables['modifier_class'] which civictheme components use to
+  // add in additional classes but if the template is not a civictheme component
+  // then we do not want to do this because Drupal has no concept of this.
   foreach ($theme_registry as $name => $info) {
+    if (isset($info['path']) && (str_starts_with($info['path'], 'core') || str_starts_with($info['path'], 'module'))) {
+      continue;
+    }
     if (in_array($hook, $theme_registry[$name]['preprocess functions'] ?? [])) {
       foreach ($info['preprocess functions'] as $k => $function) {
         if ($function == $hook) {
@@ -161,6 +180,7 @@ function civictheme_preprocess_last(array &$variables, string $hook): void {
 function civictheme_preprocess_html(array &$variables): void {
   _civictheme_preprocess_html__skip_link($variables);
   _civictheme_preprocess_html__site_section($variables);
+  _civictheme_preprocess_html__search_head_title($variables);
 
   // Disable modifier_class as this template is provided by Drupal.
   $variables['modifier_class'] = FALSE;
@@ -212,6 +232,7 @@ function civictheme_preprocess_node(array &$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_block(array &$variables): void {
+  _civictheme_preprocess_block__drupal($variables);
   _civictheme_preprocess_block__system_main_block($variables);
   _civictheme_preprocess_block__civictheme_banner($variables);
   _civictheme_preprocess_block__navigation($variables);
@@ -275,4 +296,5 @@ function civictheme_page_attachments_alter(array &$attachments) {
   catch (ComponentNotFoundException $exception) {
     \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
   }
+  $attachments['#cache']['contexts'] = Cache::mergeContexts($attachments['#cache']['contexts'] ?? [], ['url.query_args']);
 }

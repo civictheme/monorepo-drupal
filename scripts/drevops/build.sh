@@ -50,7 +50,7 @@ echo
 
 # Create an array of Docker Compose CLI options for 'exec' command as a shorthand.
 # $DREVOPS_*, $COMPOSE_* and $TERM variables will be passed to containers.
-dcopts=(-T) && while IFS='' read -r line; do dcopts+=("${line}"); done < <(env | cut -f1 -d= | grep "TERM\|COMPOSE_\|GITHUB_\|DOCKER_\DRUPAL_\|DREVOPS_" | sed 's/^/-e /')
+dcopts=(-T) && while IFS='' read -r line; do dcopts+=("${line}"); done < <(env | cut -f1 -d= | grep "TERM\|COMPOSE_\|COMPOSER\|GITHUB_\|DOCKER_\|DRUPAL_\|DREVOPS_\|CIVICTHEME_" | sed 's/^/-e /')
 
 # Check all pre-requisites before starting the stack.
 DREVOPS_DOCTOR_CHECK_PREFLIGHT=1 ./scripts/drevops/doctor.sh
@@ -92,6 +92,11 @@ fi
 
 info "Building Docker images and starting containers."
 
+# Build the CLI image first so that dependent images (nginx, php) can
+# reference it in their multi-stage FROM instructions. BuildKit may
+# otherwise attempt to pull the image from a registry instead of using
+# the locally built one.
+docker compose build cli 1>"${docker_verbose_output}" 2>"${docker_verbose_output}"
 docker compose up -d --build --force-recreate 1>"${docker_verbose_output}" 2>"${docker_verbose_output}"
 if docker compose logs | grep -q "\[Error\]"; then fail "Unable to build Docker images and start containers" && docker compose logs && exit 1; fi
 pass "Built Docker images and started containers."

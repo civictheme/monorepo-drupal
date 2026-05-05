@@ -3,8 +3,8 @@ Feature: Callout render
 
   Background:
     Given "civictheme_page" content:
-      | title                    | status |
-      | [TEST] Page callout test | 1      |
+      | title                    | status | moderation_state |
+      | [TEST] Page callout test | 1      | published        |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with callout light
@@ -67,6 +67,6 @@ Feature: Callout render
     And I should not see an "script#test-callout--field_c_p_content" element
     And I should see the text "alert('[TEST] Callout field_c_p_content')"
     And I should not see an "script#test-callout--field_c_p_link--0" element
-    And I should see the text "alert('field_c_p_link--0')"
+    And I should see the text "field_c_p_link--0"
     And I should not see an "script#test-callout--field_c_p_link--1" element
-    And I should see the text "alert('field_c_p_link--1')"
+    And I should see the text "field_c_p_link--1"

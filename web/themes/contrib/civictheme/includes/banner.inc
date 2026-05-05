@@ -76,10 +76,6 @@ function _civictheme_preprocess_block__civictheme_banner(array &$variables): voi
   // Note that per-node overrides above may adjust cache tags as required.
   $variables['#cache']['contexts'][] = 'url.path';
   $variables['#cache']['contexts'][] = 'url.query_args';
-
-  // 'attributes' field includes an id which conflicts with the template
-  // `main-content` id.
-  unset($variables['attributes']);
 }
 
 /**
@@ -118,9 +114,11 @@ function _civictheme_preprocess_block__civictheme_banner__node(array &$variables
   }
 
   $variables['title'] = civictheme_get_field_value($node, 'field_c_n_banner_title') ?: $variables['title'];
-
+  if (isset($variables['title']['#markup']) && empty($variables['title']['#markup'])) {
+    $variables['title']['#markup'] = $node->getTitle();
+  }
   if (civictheme_get_field_value($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
-    $variables['breadcrumb'] = NULL;
+    unset($variables['breadcrumb']);
   }
 
   $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE, build: $variables);
@@ -180,10 +178,14 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
 
   // Gather existing links. Note that some profiles (GovCMS) may already have
   // the functionality to add current page as a last item implemented.
+  $renderer = \Drupal::service('renderer');
   foreach ($breadcrumb->getLinks() as $link) {
     $link_text = $link->getText();
+    if (is_array($link_text)) {
+      $link_text = (string) $renderer->renderInIsolation($link_text);
+    }
     $variables['breadcrumb']['links'][] = [
-      'text' => is_array($link_text) ? $link_text : Xss::filter((string) $link_text),
+      'text' => Xss::filter((string) $link_text),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -199,11 +201,14 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     $breadcrumb_links = $breadcrumb->getLinks();
     $breadcrumb_last_link = end($breadcrumb_links);
     $link = Link::createFromRoute($title, '<none>');
+    $link_text = $link->getText();
+    if (is_array($link_text)) {
+      $link_text = (string) $renderer->renderInIsolation($link_text);
+    }
     // Check if the link already exists and add it if not.
-    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() != $link->getText() || $breadcrumb_last_link->getUrl() != $breadcrumb_last_link->getUrl())) {
-      $link_text = $link->getText();
+    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() !== $link_text || $breadcrumb_last_link->getUrl()->toString() !== $link->getUrl()->toString())) {
       $variables['breadcrumb']['links'][] = [
-        'text' => is_array($link_text) ? $link_text : (string) $link_text,
+        'text' => Xss::filter((string) $link_text),
         'url' => $link->getUrl()->toString(),
       ];
     }

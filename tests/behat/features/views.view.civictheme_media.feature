@@ -12,9 +12,9 @@ Feature: CivicTheme media renders on views pages with filters
       | filename       | uri                                     | path           |
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
     And "civictheme_image" media:
-      | name                      | field_c_m_image | field_c_m_media_tags       |
-      | [TEST] CivicTheme Image 1 | test_image.jpg  | [TEST] Tag 1               |
-      | [TEST] CivicTheme Image 2 | test_image.jpg  | [TEST] Tag 1, [TEST] Tag 2 |
+      | name                      | field_c_m_image | field_c_m_media_tags       | moderation_state |
+      | [TEST] CivicTheme Image 1 | test_image.jpg  | [TEST] Tag 1               | published        |
+      | [TEST] CivicTheme Image 2 | test_image.jpg  | [TEST] Tag 1, [TEST] Tag 2 | published        |
     
   @api
   Scenario: Filter fields are present.

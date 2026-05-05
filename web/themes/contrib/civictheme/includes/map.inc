@@ -21,7 +21,7 @@ function civictheme_preprocess_paragraph__civictheme_map(array &$variables): voi
     $variables['url'] = $link->getUrl()->toString();
   }
 
-  $variables['address'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_address');
+  $variables['address'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_address', default: '');
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $view_link */
   $view_link = civictheme_get_field_value($variables['paragraph'], 'field_c_p_view_link', TRUE);

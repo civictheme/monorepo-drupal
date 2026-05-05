@@ -6,10 +6,9 @@
 #}
 
 {% include 'civictheme:button' with {
-  theme: theme,
   type: type,
   kind: 'submit',
   text: value,
   attributes: attributes,
-  modifier_class: modifier_class,
+  modifier_class: modifier_class|default(''),
 } only %}

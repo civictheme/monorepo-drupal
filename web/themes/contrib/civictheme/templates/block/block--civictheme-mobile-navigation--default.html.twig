@@ -4,13 +4,16 @@
  * CivicTheme implementation to display a MObile Navigation block.
  */
 #}
-{% include 'civictheme:mobile-navigation-trigger' with {
-  theme: trigger_theme,
-  text: trigger_text,
-} %}
+{% extends 'block.html.twig' %}
 
-{% include 'civictheme:mobile-navigation' with {
-  theme: theme,
-  top_menu: top_menu,
-  bottom_menu: bottom_menu,
-} %}
+{% block content_block %}
+  {% include 'civictheme:mobile-navigation-trigger' with {
+    theme: trigger_theme|default('light'),
+    text: trigger_text,
+  } %}
+
+  {% include 'civictheme:mobile-navigation' with {
+    top_menu: top_menu,
+    bottom_menu: bottom_menu,
+  } %}
+{% endblock %}

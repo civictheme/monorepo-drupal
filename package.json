@@ -1,8 +1,14 @@
 {
+  "workspaces": [
+    "scripts/civictheme-uikit-version-manager",
+    "scripts/civictheme-dependency-checker"
+  ],
   "dependencies": {
-    "@civictheme/sdc": "1.12.2"
+    "@civictheme/sdc": "1.13.0"
   },
   "scripts": {
-    "uikit-change": "node scripts/civictheme-uikit-version-manager/index.mjs"
+    "uikit-change": "npm start --workspace=civictheme-uikit-version-change",
+    "check-deps": "node scripts/civictheme-dependency-checker/index.js check",
+    "fix-deps": "node scripts/civictheme-dependency-checker/index.js fix"
   }
 }

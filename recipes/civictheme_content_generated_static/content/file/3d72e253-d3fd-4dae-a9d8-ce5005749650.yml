@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3d72e253-d3fd-4dae-a9d8-ce5005749650
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: Generated_static_jpg_file_10_libe.jpg
+  uri:
+    -
+      value: 'public://generated_content/Generated_static_jpg_file_10_libe.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 295717
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1758892277

@@ -191,8 +191,8 @@ function civictheme_media_image_get_variables(MediaInterface $media, ?string $im
     ->first()
     ->getValue();
 
-  $variables['alt'] = $image['alt'] ?? NULL;
-  $variables['title'] = $image['title'] ?? NULL;
+  $variables['alt'] = $image['alt'] ?? '';
+  $variables['title'] = $image['title'] ?? '';
 
   return $variables;
 }
@@ -801,6 +801,25 @@ function _civictheme_get_dom_document(string $content): \DOMDocument {
   $doc->loadHTML($content);
 
   return $doc;
+}
+
+/**
+ * Check whether element is a webform element.
+ *
+ * Inlined to avoid a hard dependency on the webform module's classes.
+ *
+ * @see \Drupal\webform\Utility\WebformElementHelper::isWebformElement()
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_is_webform_element(array $element): bool {
+  if (!\Drupal::service('module_handler')->moduleExists('webform')) {
+    return FALSE;
+  }
+  if (isset($element['#webform_key']) || isset($element['#webform_element'])) {
+    return TRUE;
+  }
+  return \Drupal::service('webform.request')->isWebformAdminRoute();
 }
 
 /**

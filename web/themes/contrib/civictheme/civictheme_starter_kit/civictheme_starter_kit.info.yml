@@ -2,7 +2,7 @@ name: CivicTheme Starter Kit
 type: theme
 base theme: civictheme
 description: 'CivicTheme Starter Kit description.'
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^10.2 || ^11
 hidden: true
 
 regions:
@@ -53,6 +53,14 @@ libraries-override:
       theme:
         dist/civictheme.variables.css: dist/styles.variables.css
 
+  # Suppress core's contextual.module.css — the starter kit owns these base
+  # styles via assets/sass/block/_contextual.scss so .contextual-region can
+  # be wrapped in :where() and stop blocking component positioning.
+  contextual/drupal.contextual-links:
+    css:
+      component:
+        css/contextual.module.css: false
+
 ckeditor5-stylesheets:
   - dist/styles.editor.css
   - dist/styles.variables.css
@@ -60,16 +68,3 @@ ckeditor5-stylesheets:
   # below is resolved.
   # @see https://www.drupal.org/project/drupal/issues/3406959
   # - /sites/default/files/css-variables.civictheme_starter_kit.css
-
-components:
-  namespaces:
-    base:
-      - components/00-base
-    atoms:
-      - components/01-atoms
-    molecules:
-      - components/02-molecules
-    organisms:
-      - components/03-organisms
-    templates:
-      - components/04-templates

@@ -15,6 +15,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\Xss;
+use Drupal\media\MediaInterface;
 
 /**
  * Pre-process for With background paragraph field.
@@ -116,7 +117,7 @@ function _civictheme_preprocess_paragraph__node_field__image(array &$variables, 
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
     $media = civictheme_get_field_value($node, 'field_c_n_thumbnail', TRUE, build: $variables);
-    if ($media) {
+    if ($media instanceof MediaInterface && $media->getSource()->getPluginId() === 'image') {
       $variables['image'] = civictheme_media_image_get_variables($media, $image_style);
     }
   }
@@ -244,10 +245,10 @@ function _civictheme_preprocess_paragraph__paragraph_field__summary(array &$vari
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL): void {
+function _civictheme_preprocess_paragraph__node_field__summary(array &$variables, ?string $bundle = NULL, string $field_name = 'field_c_n_summary'): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
-    $summary = civictheme_get_field_value($node, 'field_c_n_summary', TRUE);
+    $summary = civictheme_get_field_value($node, $field_name, TRUE);
     if (!empty($summary)) {
       $length = CivicthemeConstants::COMPONENT_SUMMARY_DEFAULT_LENGTH;
 
@@ -295,7 +296,8 @@ function _civictheme_preprocess_paragraph__node_field__title(array &$variables):
  * Pre-process for Topics paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__topics(array &$variables): void {
-  $variables['tags'] = civictheme_get_referenced_entity_labels($variables['paragraph'], 'field_c_p_topics', build: $variables);
+  $labels = civictheme_get_referenced_entity_labels($variables['paragraph'], 'field_c_p_topics', build: $variables);
+  $variables['tags'] = array_map(static fn($label) => ['content' => (string) $label], $labels);
 }
 
 /**
@@ -304,7 +306,8 @@ function _civictheme_preprocess_paragraph__paragraph_field__topics(array &$varia
 function _civictheme_preprocess_paragraph__node_field__topics(array &$variables): void {
   $node = $variables['node'] ?? civictheme_get_field_value($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
   if ($node) {
-    $variables['tags'] = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+    $labels = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics', $variables);
+    $variables['tags'] = array_map(static fn($label) => ['content' => (string) $label], $labels);
   }
 }
 
@@ -312,7 +315,10 @@ function _civictheme_preprocess_paragraph__node_field__topics(array &$variables)
  * Pre-process for Vertical spacing paragraph field.
  */
 function _civictheme_preprocess_paragraph__paragraph_field__vertical_spacing(array &$variables): void {
-  $variables['vertical_spacing'] = civictheme_get_field_value($variables['paragraph'], 'field_c_p_vertical_spacing');
+  $value = civictheme_get_field_value($variables['paragraph'], 'field_c_p_vertical_spacing');
+  if (in_array($value, ['top', 'bottom', 'both'], TRUE)) {
+    $variables['vertical_spacing'] = $value;
+  }
 }
 
 /**

@@ -23,6 +23,12 @@ function _civictheme_preprocess_page(array &$variables): void {
   // For nodes this is set to false via _civictheme_preprocess_page_node as
   // layout is controlled via layout templates.
   $variables['page']['content_contained'] = $variables['page']['content_contained'] ?? TRUE;
+
+  // Set layout defaults for non-node pages (forms, search, homepage etc).
+  // Node pages override these in _civictheme_preprocess_page__node().
+  $variables['hide_sidebar_left'] = $variables['hide_sidebar_left'] ?? FALSE;
+  $variables['hide_sidebar_right'] = $variables['hide_sidebar_right'] ?? FALSE;
+  $variables['vertical_spacing'] = $variables['vertical_spacing'] ?? 'none';
 }
 
 /**
@@ -39,10 +45,12 @@ function _civictheme_preprocess_page__node(array &$variables): void {
     return;
   }
 
-  $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
+  $vertical_spacing = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
+  $variables['vertical_spacing'] = in_array($vertical_spacing, ['top', 'bottom', 'both'], TRUE) ? $vertical_spacing : 'none';
 
   // @todo Add support for hiding of the right sidebar through a node field.
-  $variables['hide_sidebar_left'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
+  $variables['hide_sidebar_left'] = (bool) (civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE);
+  $variables['hide_sidebar_right'] = FALSE;
 
   $layout_builder_settings_per_view_mode = civictheme_get_layout_builder_settings_per_view_mode($node->getEntityTypeId(), $node->bundle());
   if (!empty($layout_builder_settings_per_view_mode)) {

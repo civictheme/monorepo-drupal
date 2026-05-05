@@ -1,0 +1,47 @@
+//
+// Contextual links base styles.
+//
+// Core's contextual.module.css is suppressed via libraries-override in
+// civictheme.info.yml; this file re-declares the equivalent rules so the
+// theme owns them and can control their specificity.
+//
+// The .contextual-region rule is wrapped in :where() so it contributes
+// zero specificity.
+//
+// We also use CSS anchor positioning (anchor-name / position-anchor) so
+// the edit-pencil trigger still anchors to its region without forcing the
+// region to become a containing block.
+// @see core/modules/contextual/css/contextual.module.css
+:where(.contextual-region) {
+  position: static;
+  anchor-name: --contextual-region;
+  // Scope the anchor name to this region's subtree so each .contextual
+  // inside resolves to its own parent region rather than some other
+  // .contextual-region elsewhere on the page.
+  anchor-scope: --contextual-region;
+}
+
+.contextual {
+  position: absolute;
+  position-anchor: --contextual-region;
+  top: calc(anchor(top) + 6px);
+  right: anchor(right); /* LTR */
+  left: auto;
+}
+
+[dir='rtl'] .contextual {
+  right: auto;
+  left: anchor(left);
+}
+
+.contextual-links {
+  display: none;
+}
+
+.contextual.open .contextual-links {
+  display: block;
+}
+
+.contextual .trigger:focus {
+  position: relative !important;
+}

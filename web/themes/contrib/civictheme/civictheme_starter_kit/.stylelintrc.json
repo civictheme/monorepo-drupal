@@ -2,6 +2,9 @@
   "extends": [
     "stylelint-config-standard-scss"
   ],
+  "plugins": [
+    "@stylistic/stylelint-plugin"
+  ],
   "rules": {
     "at-rule-no-unknown": [
       true,
@@ -25,14 +28,25 @@
         ]
       }
     ],
-    "at-rule-name-space-after": "always",
-    "block-opening-brace-space-before": "always",
-    "block-closing-brace-newline-after": "always",
+    "@stylistic/at-rule-name-space-after": "always",
+    "@stylistic/block-opening-brace-space-before": "always",
+    "@stylistic/block-closing-brace-newline-after": "always",
+    "@stylistic/max-line-length": null,
+    "@stylistic/string-quotes": "single",
+    "alpha-value-notation": null,
+    "block-no-redundant-nested-style-rules": null,
+    "color-function-alias-notation": null,
     "color-function-notation": "legacy",
     "comment-no-empty": null,
     "declaration-block-no-redundant-longhand-properties": null,
-    "max-line-length": null,
+    "declaration-property-value-keyword-no-deprecated": null,
     "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
+    "no-invalid-position-declaration": null,
+    "property-no-deprecated": null,
+    "selector-class-pattern": null,
+    "selector-not-notation": null,
+    "shorthand-property-no-redundant-values": null,
     "scss/at-mixin-argumentless-call-parentheses": "always",
     "scss/at-mixin-pattern": "^_?ct-[a-z0-9\\-]+$",
     "scss/at-else-closing-brace-newline-after": null,
@@ -43,9 +57,11 @@
     "scss/at-if-no-null": null,
     "scss/comment-no-empty": null,
     "scss/comment-no-loud": true,
-    "scss/dollar-variable-pattern": ["^(root|_.+|ct-.+)$", {"ignore": "local"}],
+    "scss/dollar-variable-pattern": ["^(root|_?ct-.+)", {"ignore": "local"}],
     "scss/at-function-parentheses-space-before": "never",
-    "selector-class-pattern": null,
-    "string-quotes": "single"
+    "scss/load-partial-extension": null,
+    "scss/no-global-function-names": null,
+    "scss/at-function-pattern": null,
+    "scss/percent-placeholder-pattern": null
   }
 }

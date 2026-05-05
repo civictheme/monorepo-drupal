@@ -14,7 +14,7 @@
 
 {% if single_filter %}
   {% include 'civictheme:single-filter' with {
-    theme: theme,
+    theme: theme|default('light'),
     title: filter_title,
     items: filter_items,
     is_multiple: is_multiple,
@@ -23,12 +23,20 @@
   } only %}
 {% elseif group_filter %}
   {% include 'civictheme:group-filter' with {
-    theme: theme,
+    theme: theme|default('light'),
     title: filter_title,
     items: filter_items,
     form_attributes: form_attributes,
     form_suffix: form_suffix,
+    show_selected_filters: selected_filters is not empty,
+    selected_filters: selected_filters|default([]),
+    selected_clear_link: selected_filters_clear_link|default(null),
   } %}
+{% elseif inline_filter %}
+  {% include 'civictheme:inline-filter' with {
+    theme: theme|default('light'),
+    items: filter_items,
+  } only %}
 {% else %}
   {{ form }}
 {% endif %}

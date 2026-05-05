@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4e188906-d5cc-40ea-bb76-92cea2bb5ee9
+  bundle: civictheme_document
+  default_langcode: en
+  depends:
+    f1e88e78-5f38-4afb-861b-a9af59e4526e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Generated static Document media 8 Officia officiis.'
+  created:
+    -
+      value: 1758892277
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_c_m_document:
+    -
+      entity: f1e88e78-5f38-4afb-861b-a9af59e4526e
+      display: false
+      description: ''

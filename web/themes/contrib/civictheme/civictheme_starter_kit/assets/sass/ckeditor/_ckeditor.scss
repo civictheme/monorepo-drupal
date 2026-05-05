@@ -1,0 +1,17 @@
+//
+// Drupal CK editor.
+//
+
+.ct-figure {
+  &.align-left {
+    margin: ct-spacing(1) ct-spacing(6) ct-spacing(2) 0;
+  }
+
+  &.align-center {
+    text-align: center;
+  }
+
+  &.align-right {
+    margin: ct-spacing(1) 0 ct-spacing(2) ct-spacing(6);
+  }
+}

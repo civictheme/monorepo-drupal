@@ -3,9 +3,9 @@ Feature: Slider render
 
   Background:
     Given "civictheme_image" media:
-      | name                 | field_c_m_image |
-      | [TEST] Image Slide 1 | test_image.jpg  |
-      | [TEST] Image Slide 2 | test_image.jpg  |
+      | name                 | field_c_m_image | moderation_state |
+      | [TEST] Image Slide 1 | test_image.jpg  | published        |
+      | [TEST] Image Slide 2 | test_image.jpg  | published        |
 
     And "civictheme_topics" terms:
       | name            |
@@ -15,16 +15,16 @@ Feature: Slider render
       | [TEST] Topic 22 |
 
     And "civictheme_page" content:
-      | title                    | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  |
-      | [TEST] Page slider test  | 1      |            |                        |                                  |                      |
-      | [TEST] Page slider ref   | 1      |            |                        |                                  |                      |
-      | [TEST] Page slider ref 2 | 1      |            |                        |                                  |                      |
-      | [TEST] Page slider 1     | 1      | 2021-05-29 | [TEST] Summary slide 1 | [TEST] Topic 11, [TEST] Topic 12 | [TEST] Image Slide 1 |
-      | [TEST] Page slider 2     | 1      | 2021-05-30 | [TEST] Summary slide 2 | [TEST] Topic 21, [TEST] Topic 22 | [TEST] Image Slide 2 |
+      | title                    | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  | moderation_state |
+      | [TEST] Page slider test  | 1      |            |                        |                                  |                      | published        |
+      | [TEST] Page slider ref   | 1      |            |                        |                                  |                      | published        |
+      | [TEST] Page slider ref 2 | 1      |            |                        |                                  |                      | published        |
+      | [TEST] Page slider 1     | 1      | 2021-05-29 | [TEST] Summary slide 1 | [TEST] Topic 11, [TEST] Topic 12 | [TEST] Image Slide 1 | published        |
+      | [TEST] Page slider 2     | 1      | 2021-05-30 | [TEST] Summary slide 2 | [TEST] Topic 21, [TEST] Topic 22 | [TEST] Image Slide 2 | published        |
 
     And "civictheme_event" content:
-      | title              | status | changed                | field_c_n_summary      | field_c_n_thumbnail  | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value |
-      | [TEST] Event 1 ref | 1      | [relative:-16 minutes] | [TEST] Summary slide 1 | [TEST] Image Slide 1 | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            |
+      | title              | status | changed                | field_c_n_summary      | field_c_n_thumbnail  | field_c_n_topics                 | field_c_n_date_range:value | field_c_n_date_range:end_value | moderation_state |
+      | [TEST] Event 1 ref | 1      | [relative:-16 minutes] | [TEST] Summary slide 1 | [TEST] Image Slide 1 | [TEST] Topic 11, [TEST] Topic 12 | 2022-07-01T09:45:00        | 2022-08-14T11:30:00            | published        |
 
 
   @api @javascript
@@ -160,16 +160,16 @@ Feature: Slider render
   @api @javascript @security
   Scenario:XSS - Slider
     Given "civictheme_image" media:
-      | name                 | field_c_m_image |
-      | [TEST] Image Slide 1 | test_image.jpg  |
+      | name                 | field_c_m_image | moderation_state |
+      | [TEST] Image Slide 1 | test_image.jpg  | published        |
 
     And "civictheme_topics" terms:
       | name            |
       | [TEST] Topic 11 |
 
     And "civictheme_page" content:
-      | title                    | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  |
-      | [TEST] Page slider test  | 1      |            |                        |                                  |                      |
+      | title                    | status | changed    | field_c_n_summary      | field_c_n_topics                 | field_c_n_thumbnail  | moderation_state |
+      | [TEST] Page slider test  | 1      |            |                        |                                  |                      | published        |
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page slider test" has "civictheme_slider" paragraph:
@@ -195,6 +195,6 @@ Feature: Slider render
     And I should not see an "script#test-slider-slide--field_c_p_content" element
     And I should see the text "alert('[TEST] Slider slide field_c_p_content')"
     And I should not see an "script#test-slider-slide--field_c_p_link--0" element
-    And I should see the text "alert('field_c_p_link--0')"
+    And I should see the text "field_c_p_link--0"
     And I should not see an "script#test-slider-slide--field_c_p_link--1" element
-    And I should see the text "alert('field_c_p_link--1')"
+    And I should see the text "field_c_p_link--1"

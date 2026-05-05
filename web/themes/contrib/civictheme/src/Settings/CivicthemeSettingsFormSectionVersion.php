@@ -49,7 +49,7 @@ class CivicthemeSettingsFormSectionVersion extends CivicthemeSettingsFormSection
 
     $version = $this->versionManager->version();
     if ($version != CivicthemeVersionManager::DEFAULT_VERSION) {
-      $version_uri = $this->versionManager->homepage() . '/releases/tag/' . $version;
+      $version_uri = $this->versionManager->homepage() . '/releases/tag/v' . $version;
     }
 
     $form['civictheme_version'] = [

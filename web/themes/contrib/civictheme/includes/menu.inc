@@ -15,6 +15,7 @@ use Drupal\Core\Url;
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FALSE): void {
   foreach ($items as &$item) {
@@ -27,7 +28,12 @@ function _civictheme_preprocess_menu_items(array &$items, bool $expand_all = FAL
     $item['is_expanded'] = $expand_all || ($item['is_expanded'] ?? FALSE);
     // Initialize 'below' as an empty array if not set.
     $item['below'] = $item['below'] ?? [];
-    $item['title'] = isset($item['title']) ? strip_tags($item['title']) : '';
+    if (isset($item['title'])) {
+      $item['title'] = is_string($item['title']) ? strip_tags($item['title']) : $item['title'];
+    }
+    else {
+      $item['title'] = '';
+    }
 
     if (!empty($item['below'])) {
       _civictheme_preprocess_menu_items($item['below'], $expand_all);
@@ -66,9 +72,9 @@ function _civictheme_preprocess_block__navigation(array &$variables): void {
     $variables['name'] = strtr($key, '_navigation', '');
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['dropdown'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown', $key), $menu_name === 'civictheme_primary_navigation' ? CivicthemeConstants::NAVIGATION_DROPDOWN_DRAWER : CivicthemeConstants::NAVIGATION_DROPDOWN_DROPDOWN);
-    $variables['dropdown_columns'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
-    $variables['dropdown_columns_fill'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
-    $variables['is_animated'] = civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);
+    $variables['dropdown_columns'] = (int) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns', $key), 4);
+    $variables['dropdown_columns_fill'] = (boolean) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.dropdown_columns_fill', $key), FALSE);
+    $variables['is_animated'] = (boolean) civictheme_get_theme_config_manager()->load(sprintf('components.navigation.%s.is_animated', $key), FALSE);
     $variables['variant'] = $menu_name === 'civictheme_primary_navigation' ? 'primary' : 'secondary';
     $expand_all_items = $variables['elements']['#configuration']['expand_all_items'] ?? FALSE;
     _civictheme_preprocess_menu_items($variables['items'], $expand_all_items);
