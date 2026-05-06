@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import js from '@eslint/js';
 import globals from 'globals';
 import importNewlines from 'eslint-plugin-import-newlines';

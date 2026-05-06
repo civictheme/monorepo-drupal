@@ -54,7 +54,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $allowed_extensions = implode(' ', $allowed_extensions);
 
     foreach ($logo_types as $logo_type) {
-      /** @phpstan-ignore-next-line */
+      // @phpstan-ignore-next-line
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
         '#title' => $this->t('@logo_type logo', [
