@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUpdateHelper;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -1316,4 +1317,40 @@ function civictheme_post_update_migrate_logo_image_alt_to_per_type(): Translatab
   }
 
   return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
+}
+
+/**
+ * Create or refresh form display for civictheme_fast_fact_card paragraph.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_fast_fact_card_form_display(): string {
+  $config_name = 'core.entity_form_display.paragraph.civictheme_fast_fact_card.default';
+  $form_display_id = 'paragraph.civictheme_fast_fact_card.default';
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $source = new FileStorage($config_path);
+  $config_data = $source->read($config_name);
+  if (!is_array($config_data)) {
+    return (string) new TranslatableMarkup('Form display config not found in install path. Skipping update.');
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $existing = $storage->load($form_display_id);
+
+  if ($existing) {
+    $editable = \Drupal::configFactory()->getEditable($config_name);
+    unset($config_data['uuid'], $config_data['_core']);
+    $uuid = $editable->get('uuid');
+    if ($uuid) {
+      $config_data['uuid'] = $uuid;
+    }
+    $editable->setData($config_data)->save();
+    return (string) new TranslatableMarkup('Refreshed form display for civictheme_fast_fact_card paragraph from install config.');
+  }
+
+  $config_entity = $storage->createFromStorageRecord($config_data);
+  $config_entity->save();
+
+  return (string) new TranslatableMarkup('Created form display for civictheme_fast_fact_card paragraph.');
 }
