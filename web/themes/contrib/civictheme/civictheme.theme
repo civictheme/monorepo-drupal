@@ -134,7 +134,7 @@ function civictheme_theme_suggestions_container_alter(array &$suggestions, array
   if (!civictheme_is_webform_element($variables['element'])) {
     return;
   }
-  $suggestions[] = 'webform__container';
+  $suggestions[] = 'container__webform_container';
 }
 
 /**
