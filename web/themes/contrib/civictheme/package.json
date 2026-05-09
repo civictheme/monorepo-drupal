@@ -1,6 +1,6 @@
 {
   "name": "civictheme-theme",
-  "version": "1.11.0",
+  "version": "1.13.0",
   "private": true,
   "description": "CivicTheme Drupal theme.",
   "homepage": "https://github.com/civictheme/civictheme",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/sdc": "1.13.0"
+    "@civictheme/uikit": "github:civictheme/uikit#8ee69711edc96b3d5626f9db69441610b431cf67"
   },
   "devDependencies": {
     "@civictheme/scss-variables-extractor": "^0.2.1",
@@ -61,5 +61,10 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "vite": "^6.4.2",
     "vite-plugin-twig-drupal": "^1.6.0"
+  },
+  "overrides": {
+    "twig": "^3.0.0",
+    "drupal-attribute": "git+https://gitlab.com/richardgaunt/drupal-attribute.git#main",
+    "drupal-twig-extensions": "git+https://github.com/richardgaunt/drupal-twig-extensions.git#main"
   }
 }
