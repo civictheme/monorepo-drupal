@@ -1335,6 +1335,7 @@ function civictheme_post_update_add_fast_fact_card_form_display(): string {
     return (string) new TranslatableMarkup('Form display config not found in install path. Skipping update.');
   }
 
+  /** `@var` \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage */
   $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
   $existing = $storage->load($form_display_id);
 
