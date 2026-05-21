@@ -344,8 +344,8 @@ commands:
     cmd: ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
 
   lint:
-    usage: Lint back-end and front-end code.
-    cmd: ahoy lint-be && ahoy lint-fe
+    usage: Lint back-end and front-end code (custom modules/themes + CivicTheme base theme).
+    cmd: ahoy lint-be && ahoy lint-fe && ahoy lint-civictheme
 
   # Base theme has own tooling config files - use them with tools installed in
   # the project root. This allows to lint base theme code without installing
@@ -365,6 +365,15 @@ commands:
       ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
       ahoy cli "vendor/bin/twig-cs-fixer lint"
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
+
+  lint-civictheme:
+    usage: Lint CivicTheme base theme using theme-specific configs (matches isolated CI).
+    cmd: |
+      ahoy cli "vendor/bin/phpcs --standard=web/themes/contrib/civictheme/phpcs.xml --extensions=inc,info,install,module,php,profile,test,theme --ignore=*/node_modules/*,*/dist/*,*/build/* web/themes/contrib/civictheme"
+      ahoy cli "vendor/bin/phpstan analyse --configuration=web/themes/contrib/civictheme/phpstan.neon web/themes/contrib/civictheme"
+      ahoy cli "vendor/bin/rector process --config=web/themes/contrib/civictheme/rector.php --clear-cache --dry-run web/themes/contrib/civictheme"
+      ahoy cli "vendor/bin/phpmd web/themes/contrib/civictheme text web/themes/contrib/civictheme/phpmd.xml --exclude '*/node_modules/*,*/dist/*,*/build/*'"
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php --exclude=node_modules --exclude=dist --exclude=build /app/web/themes/contrib/civictheme"
   lint-check:
     cmd: |
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"

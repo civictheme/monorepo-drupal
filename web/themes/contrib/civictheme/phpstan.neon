@@ -19,6 +19,7 @@ parameters:
     - '*/vendor/*'
     - '*/node_modules/*'
     - '*/lib/*'
+    - '*/tests/*'
 
   ignoreErrors:
     -
