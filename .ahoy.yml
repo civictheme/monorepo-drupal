@@ -373,7 +373,7 @@ commands:
       ahoy cli "vendor/bin/phpstan analyse --configuration=web/themes/contrib/civictheme/phpstan.neon web/themes/contrib/civictheme"
       ahoy cli "vendor/bin/rector process --config=web/themes/contrib/civictheme/rector.php --clear-cache --dry-run web/themes/contrib/civictheme"
       ahoy cli "vendor/bin/phpmd web/themes/contrib/civictheme text web/themes/contrib/civictheme/phpmd.xml --exclude '*/node_modules/*,*/dist/*,*/build/*'"
-      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php --exclude=node_modules --exclude=dist --exclude=build /app/web/themes/contrib/civictheme"
+      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
   lint-check:
     cmd: |
       ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
