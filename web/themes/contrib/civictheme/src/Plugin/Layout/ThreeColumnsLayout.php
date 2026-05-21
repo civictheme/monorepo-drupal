@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Plugin\Layout;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -13,6 +15,9 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The default configuration.
    */
   public function defaultConfiguration() {
     $configuration = parent::defaultConfiguration();
@@ -25,6 +30,14 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The form structure.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form['is_contained'] = [
@@ -52,8 +65,13 @@ class ThreeColumnsLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The form structure.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
    */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
     parent::submitConfigurationForm($form, $form_state);
     $this->configuration['is_contained'] = $form_state->getValue('is_contained');
     $this->configuration['vertical_spacing'] = $form_state->getValue('vertical_spacing');

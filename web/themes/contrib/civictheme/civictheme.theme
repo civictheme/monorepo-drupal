@@ -282,7 +282,7 @@ function civictheme_library_info_alter(array &$libraries, string $extension): vo
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_page_attachments_alter(array &$attachments) {
+function civictheme_page_attachments_alter(array &$attachments): void {
   $current_user = \Drupal::currentUser();
   if ($current_user->isAuthenticated()) {
     $attachments['#attached']['library'][] = 'civictheme/admin';
