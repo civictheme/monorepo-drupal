@@ -185,7 +185,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
       $link_text = (string) $renderer->renderInIsolation($link_text);
     }
     $variables['breadcrumb']['links'][] = [
-      'text' => Xss::filter((string) $link_text),
+      'text' => html_entity_decode(Xss::filter((string) $link_text)),
       'url' => $link->getUrl()->toString(),
     ];
   }
@@ -208,7 +208,7 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     // Check if the link already exists and add it if not.
     if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() !== $link_text || $breadcrumb_last_link->getUrl()->toString() !== $link->getUrl()->toString())) {
       $variables['breadcrumb']['links'][] = [
-        'text' => Xss::filter((string) $link_text),
+        'text' => html_entity_decode(Xss::filter((string) $link_text)),
         'url' => $link->getUrl()->toString(),
       ];
     }
