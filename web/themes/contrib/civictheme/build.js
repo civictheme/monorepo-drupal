@@ -326,9 +326,14 @@ function buildStylesSdcCopyBack() {
 
 function buildJavascriptSdcBase() {
   if (config.sdc_base) {
+    const assetImports = globSync(JS_ASSET_IMPORTS)
+    // Test functions for `*.drupal.js` files.
+    const withoutDrupalFiles = (path) => path.indexOf('.drupal.js') < 0
+    const onlyDrupalFiles = (path) => path.indexOf('.drupal.js') >= 0
+
     const libJs = [
       ...JS_LIB_IMPORTS,
-      ...globSync(JS_ASSET_IMPORTS)
+      ...assetImports.filter(withoutDrupalFiles)
     ].map(loadJSFile).join('\n')
 
     // Load base components after DOM is ready
@@ -338,8 +343,9 @@ function buildJavascriptSdcBase() {
     const newDrupalBaseJs = [
       JS_LINT_EXCLUSION_HEADER,
       libJs,
+      assetImports.filter(onlyDrupalFiles).map(loadJSFile).join('\n'),
       `Drupal.behaviors.${THEME_NAME} = {attach: function (context, settings) {\n${baseComponentJs}\n}};`
-    ].join('\n')
+    ].filter(Boolean).join('\n')
     fs.writeFileSync(JS_SDC_BASE_FILE_OUT, newDrupalBaseJs, 'utf-8')
     successReporter(`Saved: SDC javascript base (drupal) ${time()}`)
 
@@ -348,7 +354,7 @@ function buildJavascriptSdcBase() {
       JS_LINT_EXCLUSION_HEADER,
       libJs,
       `document.addEventListener('DOMContentLoaded', () => {\n${baseComponentJs}\n});`
-    ].join('\n')
+    ].filter(Boolean).join('\n')
     fs.writeFileSync(JS_SDC_STORYBOOK_BASE_FILE_OUT, newBaseJs, 'utf-8')
     successReporter(`Saved: SDC javascript base (storybook) ${time()}`)
   }
