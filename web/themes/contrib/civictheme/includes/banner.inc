@@ -205,10 +205,23 @@ function _civictheme_preprocess_block__civictheme_banner__breadcrumb(array &$var
     if (is_array($link_text)) {
       $link_text = (string) $renderer->renderInIsolation($link_text);
     }
-    // Check if the link already exists and add it if not.
-    if ($breadcrumb_last_link instanceof Link && ($breadcrumb_last_link->getText() !== $link_text || $breadcrumb_last_link->getUrl()->toString() !== $link->getUrl()->toString())) {
+    // Check if the current page is already the last breadcrumb item and only
+    // add it if it is not. The appended link always uses the '<none>' route, so
+    // its URL can never match the existing crumb's URL; comparing by URL would
+    // always append a duplicate trailing item when the breadcrumb already ends
+    // with the current page (e.g. on GovCMS). Compare the rendered text only.
+    $last_link_text = NULL;
+    if ($breadcrumb_last_link instanceof Link) {
+      $last_link_text = $breadcrumb_last_link->getText();
+      if (is_array($last_link_text)) {
+        $last_link_text = (string) $renderer->renderInIsolation($last_link_text);
+      }
+      $last_link_text = html_entity_decode(Xss::filter((string) $last_link_text));
+    }
+    $new_link_text = html_entity_decode(Xss::filter((string) $link_text));
+    if ($last_link_text !== $new_link_text) {
       $variables['breadcrumb']['links'][] = [
-        'text' => html_entity_decode(Xss::filter((string) $link_text)),
+        'text' => $new_link_text,
         'url' => $link->getUrl()->toString(),
       ];
     }
