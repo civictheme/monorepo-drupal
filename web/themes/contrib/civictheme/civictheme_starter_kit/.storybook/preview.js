@@ -1,5 +1,5 @@
 import '../dist/styles.stories.css?module';
-import '../dist/styles.base.css';
+import '../dist/styles.stories.base.css';
 import '../dist/styles.variables.css';
 import '../dist/scripts.base';
 

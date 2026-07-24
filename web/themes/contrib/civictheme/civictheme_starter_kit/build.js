@@ -135,9 +135,11 @@ const CONSTANTS_ICON_UTIL       = `${COMPONENT_DIR}/00-base/icon/icon.utils.js`
 const CONSTANTS_LOGO_UTIL       = `${COMPONENT_DIR}/02-molecules/logo/logo.utils.js`
 
 const STYLE_SDC_COMMON_INCLUDES      = [VAR_CT_ASSETS_DIRECTORY, `@import '00-base/variables';`]
+const STYLE_SDC_SB_COMMON_INCLUDES   = [VAR_SB_ASSETS_DIRECTORY, `@import '00-base/variables';`]
 const STYLE_SDC_MIXIN_IMPORTS        = `00-base/mixins/**/*.scss`
 const STYLE_SDC_BASE_IMPORTS         = `00-base/**/!(*.stories|variables|_variables.*).scss`
 const STYLE_SDC_BASE_FILE_OUT        = `${DIR_OUT}/${STYLE_NAME}.base.css`;
+const STYLE_SDC_SB_BASE_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.stories.base.css`;
 const JS_SDC_BASE_FILE_OUT           = `${DIR_OUT}/${SCRIPT_NAME}.drupal.base.js`
 const JS_SDC_STORYBOOK_BASE_FILE_OUT = `${DIR_OUT}/${SCRIPT_NAME}.base.js`
 const JS_SDC_BASE_IMPORTS            = `${COMPONENT_DIR}/00-base/**/!(*.stories|*.test|*.data|*.stories.data|*.utils).js`
@@ -279,12 +281,14 @@ function buildStylesTheme() {
 
 function buildStylesSdcBase() {
   if (config.sdc_base) {
-    const baseCss = [
-      ...STYLE_SDC_COMMON_INCLUDES,
-      getImportsFromGlob(STYLE_SDC_BASE_IMPORTS, COMPONENT_DIR),
-    ].join('\n')
-    const compiled = sass.compileString(baseCss, { loadPaths: [COMPONENT_DIR] })
-    fs.writeFileSync(STYLE_SDC_BASE_FILE_OUT, SDC_HEADER + sortCssLines(compiled.css))
+    const baseImports = getImportsFromGlob(STYLE_SDC_BASE_IMPORTS, COMPONENT_DIR)
+    const generateSdcBase = (commonIncludes, writeFile) => {
+      const baseCss = [...commonIncludes, baseImports].join('\n')
+      const compiled = sass.compileString(baseCss, { loadPaths: [COMPONENT_DIR] })
+      fs.writeFileSync(writeFile, SDC_HEADER + sortCssLines(compiled.css))
+    }
+    generateSdcBase(STYLE_SDC_COMMON_INCLUDES, STYLE_SDC_BASE_FILE_OUT) // CT Base
+    generateSdcBase(STYLE_SDC_SB_COMMON_INCLUDES, STYLE_SDC_SB_BASE_FILE_OUT) // Storybook Base
     successReporter(`Saved: SDC styles (base) ${time()}`)
   }
 }
@@ -484,8 +488,9 @@ function lintExclusions() {
   const header = `${JS_LINT_EXCLUSION_HEADER}\n`
   lintExclusionPaths.forEach((lintExclusionPath) => {
     globSync(lintExclusionPath).forEach(filename => {
+      console.log(`Adding lint exclusion header to ${filename}`)
       const data = fs.readFileSync(filename, 'utf-8')
-      if (data.substr(0, header.length) !== header) {
+      if (data.substring(0, header.length) !== header) {
         fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
       }
     })
