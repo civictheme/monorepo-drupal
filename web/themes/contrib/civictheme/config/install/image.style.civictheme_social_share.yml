@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: civictheme_social_share
+label: 'Social share'
+effects:
+  fb1d4b6a-b1ec-49a4-a788-969ba6b20b16:
+    uuid: fb1d4b6a-b1ec-49a4-a788-969ba6b20b16
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      crop_type: focal_point

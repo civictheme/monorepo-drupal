@@ -27,6 +27,50 @@ already included as a set of compiled assets.
 
 See [Sub-theme](https://github.com/civictheme/docs/blob/main/development/drupal-theme/sub-theme.md)
 
+## Structured data (JSON-LD)
+
+CivicTheme can emit Schema.org JSON-LD structured data in the page head of
+canonical, published node pages. The feature is **disabled by default** and is
+enabled in _Appearance → CivicTheme settings → Structured data (JSON-LD)_.
+
+A single `<script type="application/ld+json">` element is emitted containing an
+`@graph` with:
+
+- `Organization` - the publisher and author, using the site name, the configured
+  logo and the official profile URLs.
+- `WebSite` - linked to the Organization.
+- The content entity - `WebPage`, one of the article types (`Article`,
+  `NewsArticle`, `BlogPosting`, `Report`) or `Event`, depending on the type
+  mapped to the content type.
+- `BreadcrumbList` - mirrors the breadcrumb rendered by the Banner component
+  (the site breadcrumb followed by the current page), omitted when it would only
+  contain a single item.
+
+Settings:
+
+| Setting | Description |
+| --- | --- |
+| Enable JSON-LD structured data | Master switch for the feature. |
+| Content type mapping | Schema.org type per content type. Content types left as _None_ receive no markup. |
+| Organization | Official profile URLs (`sameAs`) and the path to a raster logo. The organisation name comes from the site name. |
+| Image style | Image style applied to the featured image. Defaults to _Social share_ (1200x630). |
+| Description length | Maximum length of the description sourced from the content summary. |
+
+Values are read from the standard CivicTheme fields when they exist on the
+bundle - `field_c_n_summary`, `field_c_n_thumbnail`, `field_c_n_topics`,
+`field_c_n_custom_last_updated` and, for events, `field_c_n_date_range` and
+`field_c_n_location`.
+
+Site-specific properties, additional graph nodes and additional Schema.org types
+are added from a sub-theme or a module with
+`hook_civictheme_structured_data_alter()` and
+`hook_civictheme_structured_data_types_alter()` - see
+[civictheme.api.php](civictheme.api.php).
+
+The output can be validated with the
+[Schema Markup Validator](https://validator.schema.org) or Google's
+[Rich Results Test](https://search.google.com/test/rich-results).
+
 ## Development
 
 ### Local development
