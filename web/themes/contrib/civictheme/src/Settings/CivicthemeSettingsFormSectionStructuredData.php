@@ -75,7 +75,7 @@ class CivicthemeSettingsFormSectionStructuredData extends CivicthemeSettingsForm
     $form['structured_data']['organization'] = [
       '#type' => 'details',
       '#title' => $this->t('Organization'),
-      '#description' => $this->t('The publishing organisation, referenced as the publisher and the author of the mapped content. The organisation name is taken from the <em>Site name</em> in the basic site settings.'),
+      '#description' => $this->t('The publishing organization, referenced as the publisher and the author of the mapped content. The organization name is taken from the <em>Site name</em> in the basic site settings.'),
       '#open' => TRUE,
       '#states' => $visible_when_enabled,
       '#tree' => TRUE,
@@ -85,7 +85,7 @@ class CivicthemeSettingsFormSectionStructuredData extends CivicthemeSettingsForm
       '#type' => 'textarea',
       '#title' => $this->t('Official profile URLs'),
       '#rows' => 4,
-      '#description' => $this->t('Absolute URLs of the official pages and profiles of the organisation, one per line. Only include pages that the organisation controls, such as a government register record or its own social media profiles.'),
+      '#description' => $this->t('Absolute URLs of the official pages and profiles of the organization, one per line. Only include pages that the organization controls, such as a government register record or its own social media profiles.'),
       '#element_validate' => [[self::class, 'validateSameAs']],
       '#default_value' => implode("\n", (array) $this->themeConfigManager->load('structured_data.organization.same_as', [])),
     ];

@@ -44,6 +44,13 @@ use Drupal\paragraphs\ParagraphInterface;
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_page_attachments_alter__structured_data(array &$attachments): void {
+  // Depend on the theme settings before anything else, so that enabling the
+  // feature invalidates pages that were cached while it was disabled.
+  $settings = \Drupal::config(\Drupal::theme()->getActiveTheme()->getName() . '.settings');
+  $cache = CacheableMetadata::createFromRenderArray($attachments);
+  $cache->addCacheableDependency($settings);
+  $cache->applyTo($attachments);
+
   if (!civictheme_get_theme_config_manager()->load('structured_data.enabled', FALSE)) {
     return;
   }
@@ -99,15 +106,14 @@ function _civictheme_page_attachments_alter__structured_data(array &$attachments
     'civictheme_structured_data',
   ];
 
-  // Merge cacheability: existing attachments + the node + the referenced
-  // media/terms and the breadcrumb collected on $build (so the markup
-  // invalidates when any of them changes, including an image or its alt text)
-  // + the theme settings that drive the output.
+  // Merge cacheability: the attachments (which already carry the theme settings
+  // dependency added above) + the node + the referenced media/terms and the
+  // breadcrumb collected on $build, so that the markup invalidates when any of
+  // them changes, including an image or its alt text.
   $cache = CacheableMetadata::createFromRenderArray($attachments);
   $cache->addCacheableDependency($node);
   // merge() returns a new instance rather than mutating, so capture it.
   $cache = $cache->merge(CacheableMetadata::createFromRenderArray($build));
-  $cache->addCacheableDependency(\Drupal::config(\Drupal::theme()->getActiveTheme()->getName() . '.settings'));
   $cache->applyTo($attachments);
 }
 

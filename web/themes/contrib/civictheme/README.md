@@ -52,7 +52,7 @@ Settings:
 | --- | --- |
 | Enable JSON-LD structured data | Master switch for the feature. |
 | Content type mapping | Schema.org type per content type. Content types left as _None_ receive no markup. |
-| Organization | Official profile URLs (`sameAs`) and the path to a raster logo. The organisation name comes from the site name. |
+| Organization | Official profile URLs (`sameAs`) and the path to a raster logo. The organization name comes from the site name. |
 | Image style | Image style applied to the featured image. Defaults to _Social share_ (1200x630). |
 | Description length | Maximum length of the description sourced from the content summary. |
 
