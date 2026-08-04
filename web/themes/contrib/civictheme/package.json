@@ -43,7 +43,7 @@
     "@civictheme/uikit": "github:civictheme/uikit#83c43d321c0decb76ac1b2d135e37a288d8467a6"
   },
   "devDependencies": {
-    "@civictheme/drupal-attribute": "^2.0.0",
+    "@civictheme/drupal-attribute": "^2.0.1",
     "@civictheme/scss-variables-extractor": "^0.2.1",
     "@storybook/addon-docs": "10.2.13",
     "@storybook/addon-links": "10.2.13",
@@ -65,6 +65,7 @@
     "vite-plugin-twig-drupal": "^1.7.0"
   },
   "overrides": {
-    "drupal-attribute": "npm:@civictheme/drupal-attribute@^2.0.0"
+    "drupal-attribute": "npm:@civictheme/drupal-attribute@^2.0.1",
+    "drupal-twig-extensions": "github:civictheme/drupal-twig-extensions#092058b870917ffd6e15ce07503e32a471484147"
   }
 }
