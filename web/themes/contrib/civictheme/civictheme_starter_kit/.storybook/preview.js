@@ -1,7 +1,21 @@
+// phpcs:ignoreFile
+import Twig from 'twig';
+import { createAttribute } from '@civictheme/drupal-attribute';
 import '../dist/styles.stories.css?module';
 import '../dist/styles.base.css';
 import '../dist/styles.variables.css';
 import '../dist/scripts.base';
+
+// Every Twig module compiled by vite-plugin-twig-drupal calls
+// addDrupalExtensions(Twig) at import time, re-registering
+// drupal-twig-extensions' create_attribute(). That implementation builds its
+// collection with Object.keys(), which renders Twig.js' internal `_keys`
+// bookkeeping as an attribute and loses the authored key order. Patching
+// extendFunction makes every re-registration resolve back to the fixed
+// implementation from @civictheme/drupal-attribute.
+const extendFunction = Twig.extendFunction.bind(Twig);
+Twig.extendFunction = (name, definition) => extendFunction(name, name === 'create_attribute' ? createAttribute : definition);
+Twig.extendFunction('create_attribute', createAttribute);
 
 export default {
   parameters: {
