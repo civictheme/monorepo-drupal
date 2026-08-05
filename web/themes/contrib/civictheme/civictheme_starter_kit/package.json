@@ -49,13 +49,13 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "twig": "^3.0.0",
     "vite": "^6.4.2",
-    "vite-plugin-twig-drupal": "^1.7.0"
+    "vite-plugin-twig-drupal": "git+https://github.com/civictheme/vite-plugin-twig-drupal.git#semver:^1.7.1-ct.1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8"
   },
   "overrides": {
     "drupal-attribute": "npm:@civictheme/drupal-attribute@^2.0.1",
-    "drupal-twig-extensions": "github:civictheme/drupal-twig-extensions#092058b870917ffd6e15ce07503e32a471484147"
+    "drupal-twig-extensions": "github:civictheme/drupal-twig-extensions#semver:^1.0.0-beta.5.ct.1"
   }
 }
