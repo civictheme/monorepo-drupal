@@ -2,7 +2,7 @@
 import Twig from 'twig';
 import { createAttribute } from '@civictheme/drupal-attribute';
 import '../dist/styles.stories.css?module';
-import '../dist/styles.base.css';
+import '../dist/styles.base.storybook.css';
 import '../dist/styles.variables.css';
 import '../dist/scripts.base';
 
