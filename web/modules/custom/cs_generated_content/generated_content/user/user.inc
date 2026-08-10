@@ -56,9 +56,10 @@ function cs_generated_content_generated_content_create_user_user(): array {
 
         $name = sprintf('p.civictheme+%s_%s@salsa.digital', str_replace('civictheme_', '', $role_id), $i);
 
-        $existing_user = user_load_by_name($name);
-        if ($existing_user) {
-          \Drupal::entityTypeManager()->getStorage('user')->load($existing_user->id())->delete();
+        $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+        $existing_users = $user_storage->loadByProperties(['name' => $name]);
+        foreach ($existing_users as $existing_user) {
+          $existing_user->delete();
         }
 
         /** @var \Drupal\user\RoleInterface|null $role */
