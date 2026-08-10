@@ -107,6 +107,15 @@ php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('
 info "Merging configuration from extension's composer.json."
 php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('composer.json'), true),json_decode(file_get_contents('build/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
 
+# Core patches only apply to the core version they were built against, so they
+# are kept in per-major files and merged in only for a matching build. Note the
+# argument order: these entries have to win over the scaffold's empty "patches".
+drupal_major="${DRUPAL_VERSION%%.*}" && drupal_major="${drupal_major%%@*}"
+if [ -f "composer.patches.${drupal_major}.json" ]; then
+  info "Merging core patches for Drupal ${drupal_major}."
+  php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('build/composer.json'), true),json_decode(file_get_contents('composer.patches.${drupal_major}.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
+fi
+
 # Asset Packagist sometimes fails, so we remove it by default. If it's needed,
 # the lines below can be commented out.
 info "Remove asset-packagist"
