@@ -4,17 +4,31 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme_sdc\Unit;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Plugin\Component;
 use Drupal\Core\Render\Component\Exception\InvalidComponentException;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Theme\Component\ComponentValidator;
+use Drupal\Tests\UnitTestCase;
 use Symfony\Component\Yaml\Yaml;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for component validation.
  */
-class SingleDirectoryComponentValidatorTest extends TestCase {
+class SingleDirectoryComponentValidatorTest extends UnitTestCase {
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    // Validation errors are rendered through TranslatableMarkup, which needs
+    // the string translation service to be available on the container.
+    $container = new ContainerBuilder();
+    $container->set('string_translation', $this->getStringTranslationStub());
+    \Drupal::setContainer($container);
+  }
 
   /**
    * Tests that valid component definitions don't cause errors.
