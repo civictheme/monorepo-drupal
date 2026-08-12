@@ -28,9 +28,9 @@ Feature: Breadcrumb render
   @api @security
   Scenario: XSS - Ensure banner correctly filters breadcrumbs
     Given "civictheme_page" content:
-      | title                                                       | status | pathauto | path | moderation_state | nid    |
-      | <script id="test-xss-parent">alert('parent alert')</script> | 1      | 0        | /parent        | published        | 988882 |
-      | <script id="test-xss-child">alert('child alert')</script>   | 1      | 0        | /parent/child  | published        | 988883 |
+      | title                                                       | status | path          | moderation_state | nid    |
+      | <script id="test-xss-parent">alert('parent alert')</script> | 1      | /parent       | published        | 988882 |
+      | <script id="test-xss-child">alert('child alert')</script>   | 1      | /parent/child | published        | 988883 |
     Given I am logged in as an administrator
     When I visit "/node/988883"
     Then I should not see an "script#test-xss-parent" element

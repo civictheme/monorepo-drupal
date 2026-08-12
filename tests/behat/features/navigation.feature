@@ -17,11 +17,11 @@ Feature: Navigation
       | title                          | enabled | uri                 |
       | [TEST] External Secondary link | 1       | https://example.com |
 
-  @api @basetheme @wip
+  @api @basetheme
   Scenario: External menu links open in a new tab.
     Given "civictheme_page" content:
       | title                | status | field_c_n_hide_sidebar | moderation_state |
-      | [TEST] Page Internal | 1      | 0                             | published        |
+      | [TEST] Page Internal | 1      | 0                      | published        |
     And 'Footer' menu_links:
       | title                       | enabled | uri                 |
       | [TEST] External Footer link | 1       | https://example.com |
@@ -48,7 +48,7 @@ Feature: Navigation
   Scenario:XSS - Subject Card
     Given "civictheme_page" content:
       | title                | status | field_c_n_hide_sidebar | moderation_state |
-      | [TEST] XSS Test Page | 1      | 0                             | published        |
+      | [TEST] XSS Test Page | 1      | 0                      | published        |
     And 'Footer' menu_links:
       | title                       | enabled | uri                 |
       | <script id="xss-menu-link--footer">alert('XSS Footer Menu Link');</script> | 1       | internal:/internal-test |
