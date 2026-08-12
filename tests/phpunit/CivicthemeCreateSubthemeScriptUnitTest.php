@@ -157,42 +157,36 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
         'web/themes/contrib/civictheme',
         '',
         'web/themes/custom/new_theme',
-        '../../contrib/civictheme/',
       ],
       // CivicTheme in 'contrib', new theme in 'custom' dir. Same as default.
       [
         'web/themes/contrib/civictheme',
         '../../custom/new_theme',
         'web/themes/custom/new_theme',
-        '../../contrib/civictheme/',
       ],
       // CivicTheme in 'contrib', new theme not in 'custom' dir.
       [
         'web/themes/contrib/civictheme',
         '../../new_theme',
         'web/themes/new_theme',
-        '../contrib/civictheme/',
       ],
       // CivicTheme not in 'contrib', new theme not in 'custom' dir.
       [
         'web/themes/civictheme',
         '../new_theme',
         'web/themes/new_theme',
-        '../civictheme/',
       ],
       // CivicTheme in root, new theme in root dir.
       [
         'civictheme',
         '../new_theme',
         'new_theme',
-        '../civictheme/',
       ],
       // CivicTheme in root, new theme in 'custom' dir.
       [
         'civictheme',
         '../custom/new_theme',
         'custom/new_theme',
-        '../../civictheme/',
       ],
     ];
   }
