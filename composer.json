@@ -181,6 +181,9 @@
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2023-07-16/3204271-20-missing-layout-exception.patch",
                 "Moved resetSystem to before installing default configuration": "patches/modules/core/14337-11.4.patch"
+            },
+            "drevops/behat-steps": {
+                "Drupal extension now throws errors for fields that do not exist - file trait relies on non-fiedable path prop": "patches/packages/behat-steps/fix-file-trait.patch"
             }
         },
         "preserve-paths": [
