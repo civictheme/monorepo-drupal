@@ -192,9 +192,19 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
   }
 
   /**
+   * Asserts that '--remove-examples' is accepted and generation still succeeds.
+   *
+   * The starter kit no longer ships example components and the script no longer
+   * acts on this flag - both were removed in issue #3527182. The flag is still
+   * stripped from the arguments so that existing invocations passing it do not
+   * trip the argument count validation in main(), which is the only contract
+   * left to cover. There is deliberately no assertion that example artifacts
+   * are absent: nothing generates them any more, so such an assertion would
+   * pass whether or not the flag is honoured.
+   *
    * @runInSeparateProcess
    */
-  public function testExamplesRemoval(): void {
+  public function testRemoveExamplesFlagAccepted(): void {
     $civictheme_dir = 'web/themes/contrib/civictheme';
     $newtheme_rel_dir = '';
     $newtheme_name = 'new_theme';
