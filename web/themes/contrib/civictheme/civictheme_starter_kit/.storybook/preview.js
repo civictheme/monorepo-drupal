@@ -1,7 +1,17 @@
+// phpcs:ignoreFile
+import Twig from 'twig';
+import { createAttribute } from '@civictheme/drupal-attribute';
 import '../dist/styles.stories.css?module';
 import '../dist/styles.base.storybook.css';
 import '../dist/styles.variables.css';
 import '../dist/scripts.base';
+
+// drupal-twig-extensions' create_attribute() reads Object.keys(), so
+// attributes lose their template order. Patch rather than register once:
+// every compiled Twig module re-runs addDrupalExtensions(Twig).
+const extendFunction = Twig.extendFunction.bind(Twig);
+Twig.extendFunction = (name, definition) => extendFunction(name, name === 'create_attribute' ? createAttribute : definition);
+Twig.extendFunction('create_attribute', createAttribute);
 
 export default {
   parameters: {
