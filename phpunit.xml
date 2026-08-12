@@ -69,6 +69,9 @@
             <directory>web/modules/custom/*/tests/src/Unit</directory>
             <directory>web/themes/contrib/civictheme/tests/src/Unit</directory>
             <directory>web/themes/custom/*/tests/src/Unit</directory>
+            <!-- Claimed by the "sdc-unit" suite above. PHPUnit 11 warns when a
+                 file is added to more than one suite. -->
+            <exclude>web/modules/custom/civictheme_sdc/tests/src/Unit</exclude>
         </testsuite>
         <testsuite name="kernel">
             <directory>web/modules/custom/*/tests/src/Kernel</directory>
