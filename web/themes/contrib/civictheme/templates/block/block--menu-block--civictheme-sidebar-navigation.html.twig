@@ -5,8 +5,7 @@
  */
 #}
 {% extends 'block.html.twig' %}
-{# If the block's 'Display title' is on then it's value will get piped into the title variable passed to civictheme:side-navigation for display but we never want to show the block title. #}
-{% set label = '' %}
+
 {% block content_block %}
   {% include 'civictheme:side-navigation' with {
     title: title,
