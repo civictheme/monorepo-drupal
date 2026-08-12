@@ -16,6 +16,8 @@ Notes:
 */
 
 import fs from 'fs'
+import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
 import path from 'path'
 import { globSync } from 'glob'
 import { execSync, spawn } from 'child_process'
@@ -87,7 +89,7 @@ const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 
-const DIR_CIVICTHEME            = config.base ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
+const DIR_CIVICTHEME            = config.base || config.cli ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
 const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
 const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
 const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
@@ -121,7 +123,7 @@ const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
 const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
 const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
-const JS_LIB_IMPORTS            = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
+const JS_LIB_IMPORTS            = [path.join(modulePath('@popperjs/core').replace('dist/cjs/popper.js', 'dist/umd/popper.js'))]
 const JS_ASSET_IMPORTS          = [
                                     DIR_CIVICTHEME ? `${DIR_CIVICTHEME}/assets/js/**/*.js` : false,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
@@ -138,6 +140,7 @@ const STYLE_SDC_COMMON_INCLUDES      = [VAR_CT_ASSETS_DIRECTORY, `@import '00-ba
 const STYLE_SDC_MIXIN_IMPORTS        = `00-base/mixins/**/*.scss`
 const STYLE_SDC_BASE_IMPORTS         = `00-base/**/!(*.stories|variables|_variables.*).scss`
 const STYLE_SDC_BASE_FILE_OUT        = `${DIR_OUT}/${STYLE_NAME}.base.css`;
+const STYLE_SDC_SB_BASE_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.base.storybook.css`;
 const JS_SDC_BASE_FILE_OUT           = `${DIR_OUT}/${SCRIPT_NAME}.drupal.base.js`
 const JS_SDC_STORYBOOK_BASE_FILE_OUT = `${DIR_OUT}/${SCRIPT_NAME}.base.js`
 const JS_SDC_BASE_IMPORTS            = `${COMPONENT_DIR}/00-base/**/!(*.stories|*.test|*.data|*.stories.data|*.utils).js`
@@ -285,7 +288,17 @@ function buildStylesSdcBase() {
     ].join('\n')
     const compiled = sass.compileString(baseCss, { loadPaths: [COMPONENT_DIR] })
     fs.writeFileSync(STYLE_SDC_BASE_FILE_OUT, SDC_HEADER + sortCssLines(compiled.css))
-    successReporter(`Saved: SDC styles (base) ${time()}`)
+    successReporter(`Saved: SDC base styles (base) ${time()}`)
+  }
+}
+
+function buildStylesSdcBaseStorybook() {
+  if (config.sdc_base && config.styles_storybook) {
+    // Replace the asset path.
+    let file = fs.readFileSync(STYLE_SDC_BASE_FILE_OUT, 'utf-8')
+    file = file.replaceAll(DIR_CT_ASSETS, DIR_SB_ASSETS)
+    fs.writeFileSync(STYLE_SDC_SB_BASE_FILE_OUT, file, 'utf-8')
+    successReporter(`Saved: SDC base styles (storybook) ${time()}`)
   }
 }
 
@@ -440,6 +453,7 @@ async function build() {
     buildStylesStories()
     buildStylesTheme()
     buildStylesSdcBase()
+    buildStylesSdcBaseStorybook()
     await buildStylesSdcComponents()
     buildStylesSdcCopyBack()
     buildJavascript()
@@ -490,8 +504,9 @@ function lintExclusions() {
   const header = `${JS_LINT_EXCLUSION_HEADER}\n`
   lintExclusionPaths.forEach((lintExclusionPath) => {
     globSync(lintExclusionPath).forEach(filename => {
+      console.log(`Adding lint exclusion header to ${filename}`)
       const data = fs.readFileSync(filename, 'utf-8')
-      if (data.substr(0, header.length) !== header) {
+      if (data.substring(0, header.length) !== header) {
         fs.writeFileSync(filename, `${header}${data}`, 'utf-8')
       }
     })
@@ -543,6 +558,21 @@ function stripJS(js) {
 
 function fullPath(filepath) {
   return path.resolve(PATH, filepath)
+}
+
+function modulePath(moduleName) {
+  // Get the current file's directory
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  // Create a require function based on the current module
+  const require = createRequire(import.meta.url);
+
+  try {
+    // Try to resolve the module path using Node's resolution algorithm
+    return require.resolve(moduleName);
+  } catch (error) {
+    throw new Error(`Could not resolve module '${moduleName}'`);
+  }
 }
 
 function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
