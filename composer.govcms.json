@@ -16,7 +16,7 @@
         "drupal/search_api": "^1.30",
         "drupal/styleguide": "^2.2",
         "drush/drush": "^13",
-        "govcms/govcms": "^4",
+        "govcms/govcms": "dev-4.x-develop",
         "mglaman/composer-drupal-lenient": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
