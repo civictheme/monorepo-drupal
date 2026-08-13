@@ -107,13 +107,25 @@ php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('
 info "Merging configuration from extension's composer.json."
 php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('composer.json'), true),json_decode(file_get_contents('build/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
 
-# Core patches only apply to the core version they were built against, so they
-# are kept in per-major files and merged in only for a matching build. Note the
-# argument order: these entries have to win over the scaffold's empty "patches".
+# Core patches only apply to the core version they were built against, so the
+# monorepo keeps one list per major and only the list matching the version being
+# built is merged in. The lists and the patches themselves live at the monorepo
+# root - this build runs from within a monorepo checkout, so they are reachable,
+# and there is no second copy to keep in step.
+monorepo_root="../../../.."
 drupal_major="${DRUPAL_VERSION%%.*}" && drupal_major="${drupal_major%%@*}"
-if [ -f "composer.patches.${drupal_major}.json" ]; then
+patches_config="${monorepo_root}/patches/composer.patches.${drupal_major}.json"
+if [ -f "${patches_config}" ]; then
   info "Merging core patches for Drupal ${drupal_major}."
-  php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('build/composer.json'), true),json_decode(file_get_contents('composer.patches.${drupal_major}.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
+  # Note the argument order: these entries have to win over the scaffold's empty
+  # "patches" block.
+  php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('build/composer.json'), true),json_decode(file_get_contents('${patches_config}'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
+
+  info "Copying patches from the monorepo root."
+  mkdir -p "build/patches"
+  cp -r "${monorepo_root}/patches/"* "build/patches/"
+else
+  note "No core patches to apply for Drupal ${drupal_major}."
 fi
 
 # Asset Packagist sometimes fails, so we remove it by default. If it's needed,
