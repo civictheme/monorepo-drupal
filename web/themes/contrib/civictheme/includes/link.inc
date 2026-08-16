@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\filter\FilterPluginCollection;
 
@@ -36,14 +37,14 @@ function _civictheme_process_html_content_urls_to_links(string $html, ?string $f
     if ($filter->status === FALSE) {
       return $html;
     }
-    return _filter_url($html, $filter);
+    return $filter->process($html, LanguageInterface::LANGCODE_NOT_SPECIFIED)->getProcessedText();
   }
   // Fallback to a default instance.
   $filter_manager = \Drupal::service('plugin.manager.filter');
   $filter_collection = new FilterPluginCollection($filter_manager, []);
   $filter = $filter_collection->get('filter_url');
 
-  return _filter_url($html, $filter);
+  return $filter->process($html, LanguageInterface::LANGCODE_NOT_SPECIFIED)->getProcessedText();
 }
 
 /**

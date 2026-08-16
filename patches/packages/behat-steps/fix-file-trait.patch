@@ -1,0 +1,34 @@
+diff --git a/src/FileTrait.php b/src/FileTrait.php
+index f2590c5..c499a13 100644
+--- a/src/FileTrait.php
++++ b/src/FileTrait.php
+@@ -75,8 +75,14 @@ trait FileTrait {
+    * Create a single managed file.
+    */
+   protected function fileCreateManagedSingle(\StdClass $stub): FileInterface {
++    if (empty($stub->path)) {
++      throw new \RuntimeException('"path" property is required');
++    }
++
++    $path = ltrim($stub->path, '/');
++    unset($stub->path);
+     $this->parseEntityFields('file', $stub);
+-    $saved = $this->fileCreateEntity($stub);
++    $saved = $this->fileCreateEntity($stub, $path);
+ 
+     $this->fileEntities[] = $saved;
+ 
+@@ -95,12 +101,8 @@ trait FileTrait {
+    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+    * @SuppressWarnings(PHPMD.NPathComplexity)
+    */
+-  protected function fileCreateEntity(\StdClass $stub): FileInterface {
+-    if (empty($stub->path)) {
+-      throw new \RuntimeException('"path" property is required');
+-    }
++  protected function fileCreateEntity(\StdClass $stub, string $path): FileInterface {
+ 
+-    $path = ltrim($stub->path, '/');
+ 
+     // Get fixture file path.
+     if (!empty($this->getMinkParameter('files_path'))) {

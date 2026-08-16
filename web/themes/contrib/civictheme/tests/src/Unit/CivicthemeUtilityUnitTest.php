@@ -192,7 +192,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testAddModifierClass().
    */
-  public function dataProviderAddModifierClass() {
+  public static function dataProviderAddModifierClass(): array {
     return [
       'add single class' => [
         ['modifier_class' => 'class1'],
@@ -230,7 +230,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   /**
    * Data provider for testRemoveModifierClass().
    */
-  public function dataProviderRemoveModifierClass() {
+  public static function dataProviderRemoveModifierClass(): array {
     return [
       'remove single class' => [
         ['modifier_class' => 'class1 class2'],

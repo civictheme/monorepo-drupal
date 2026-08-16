@@ -1,6 +1,6 @@
 {
     "name": "drupal/civictheme",
-    "description": "CivicTheme is a Drupal 10 component-based theme.",
+    "description": "CivicTheme is a Drupal component-based theme.",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
     "homepage": "https://civictheme.io",
@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=8.3",
-"drupal/field_group": "^4.0",
+        "drupal/field_group": "^4.0",
         "drupal/focal_point": "^2.0",
         "drupal/layout_builder_restrictions": "^3",
         "drupal/linkit": "^7",
@@ -22,7 +22,6 @@
         "drupal/webform": "^6.2"
     },
     "suggest": {
-        "drupal/ckeditor": "CKEditor 4 - WYSIWYG HTML editor",
         "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
     }
 }

@@ -1138,8 +1138,7 @@ function _civictheme_get_theme_dependencies(string $theme_name, bool $include_op
   $dependencies = array_keys($theme_data['civictheme']->module_dependencies);
 
   if ($include_optional) {
-    // @phpstan-ignore-next-line
-    $theme_path = $theme_data[$theme_name]->subpath;
+    $theme_path = $theme_data[$theme_name]->getPath();
     $config_storage = new FileStorage($theme_path . '/config/optional');
 
     foreach ($config_storage->listAll() as $name) {
