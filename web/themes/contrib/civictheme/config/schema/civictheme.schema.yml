@@ -408,6 +408,38 @@ civictheme.settings:
     optouts:
       type: mapping
       label: 'Opt-out flags'
+    structured_data:
+      type: mapping
+      label: 'Structured data (JSON-LD)'
+      mapping:
+        enabled:
+          label: 'Enable JSON-LD structured data'
+          type: boolean
+        bundles:
+          label: 'Content type mapping'
+          type: sequence
+          sequence:
+            label: 'Schema.org type'
+            type: string
+        organization:
+          label: Organization
+          type: mapping
+          mapping:
+            same_as:
+              label: 'Official profile URLs'
+              type: sequence
+              sequence:
+                label: URL
+                type: string
+            logo_path:
+              label: 'Organization logo path'
+              type: string
+        image_style:
+          label: 'Image style'
+          type: string
+        description_length:
+          label: 'Description length'
+          type: integer
 
 layout_plugin.settings.civictheme_three_columns:
   type: layout_plugin.settings

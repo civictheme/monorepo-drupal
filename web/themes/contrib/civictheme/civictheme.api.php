@@ -121,3 +121,89 @@ function hook_civictheme_layout_suppress_page_regions_alter(array &$variables, a
     );
   }
 }
+
+/**
+ * Alter the Schema.org JSON-LD structured data graph before it is rendered.
+ *
+ * CivicTheme emits the properties that it can derive from its own fields. Use
+ * this hook to add site-specific properties, to add additional graph nodes or
+ * to remove the ones that are not wanted.
+ *
+ * The hook is only invoked when structured data is enabled in the theme
+ * settings and the node bundle is mapped to a Schema.org type.
+ *
+ * @param array $graph
+ *   The '@graph' array to alter, passed by reference. Graph nodes provided by
+ *   CivicTheme are, in order: Organization, WebSite, the content entity
+ *   (WebPage, Article family or Event) and, when available, BreadcrumbList.
+ * @param array $context
+ *   Context data with the following keys:
+ *   - node: (NodeInterface) The node the graph is built for, in the language
+ *     that is shown on the page.
+ *   - route_match: (RouteMatchInterface) The current route match.
+ *   - definition: (array) The type definition mapped to the node bundle.
+ * @param array $build
+ *   Render array to apply cacheability metadata to, passed by reference. Add
+ *   the cacheability of any additional data used here so that the markup is
+ *   invalidated with it.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function hook_civictheme_structured_data_alter(array &$graph, array $context, array &$build): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $context['node'];
+
+  foreach ($graph as &$item) {
+    // Only alter the node of the content entity itself.
+    if (!str_ends_with((string) $item['@id'], '#article')) {
+      continue;
+    }
+
+    // Keywords from the taxonomy fields of a custom content type. Passing
+    // $build collects the cacheability of the referenced terms.
+    $keywords = civictheme_get_referenced_entity_labels($node, 'field_program', $build);
+    if ($keywords) {
+      $item['keywords'] = array_values(array_unique($keywords));
+    }
+
+    // Publication status of a custom content type.
+    $status = civictheme_get_referenced_entity_labels($node, 'field_status', $build);
+    if ($status) {
+      $item['creativeWorkStatus'] = reset($status);
+    }
+
+    // All content on this site is publicly available.
+    $item['isAccessibleForFree'] = TRUE;
+  }
+}
+
+/**
+ * Alter the Schema.org types available for content type mapping.
+ *
+ * The types defined here appear in the content type mapping in the theme
+ * settings and drive the markup that is emitted for the mapped bundles.
+ *
+ * @param array $types
+ *   Type definitions keyed by the value stored in the theme settings. Each
+ *   definition has the following keys:
+ *   - label: (string) Human-readable label shown in the settings form.
+ *   - types: (array) Schema.org types emitted as '@type'. A single type is
+ *     emitted as a string, multiple types as an array.
+ *   - fragment: (string) Fragment appended to the node URL to form the '@id'.
+ *   - builder: (callable) Function that builds the graph node. It receives the
+ *     node, the type definition and the render array to apply cacheability
+ *     metadata to.
+ */
+function hook_civictheme_structured_data_types_alter(array &$types): void {
+  // Add a type for a custom "dataset" content type, reusing the generic
+  // CivicTheme builder for creative works.
+  $types['Dataset'] = [
+    'label' => 'Dataset',
+    'types' => ['Dataset'],
+    'fragment' => 'dataset',
+    'builder' => '_civictheme_structured_data_creative_work',
+  ];
+
+  // Emit a bare Article instead of a Report for publications.
+  $types['Report']['types'] = ['Article'];
+}

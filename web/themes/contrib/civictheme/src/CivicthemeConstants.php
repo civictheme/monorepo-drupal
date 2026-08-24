@@ -174,7 +174,20 @@ final class CivicthemeConstants {
   const PROMO_CARD_IMAGE_STYLE = 'civictheme_promo_card';
   const PUBLICATION_CARD_IMAGE_STYLE = 'civictheme_publication_card';
   const SLIDER_SLIDE_IMAGE_STYLE = 'civictheme_slider_slide';
+  const SOCIAL_SHARE_IMAGE_STYLE = 'civictheme_social_share';
   const SUBJECT_CARD_IMAGE_STYLE = 'civictheme_subject_card';
+
+  /**
+   * Defines the default structured data description length.
+   */
+  const STRUCTURED_DATA_DESCRIPTION_LENGTH = 300;
+
+  /**
+   * Defines the maximum structured data headline length.
+   *
+   * Search engines recommend keeping the headline within 110 characters.
+   */
+  const STRUCTURED_DATA_HEADLINE_LENGTH = 110;
 
   /**
    * Defines an optout string for views exposed filters.
