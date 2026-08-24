@@ -24,13 +24,13 @@ jobs:
     steps:
 
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@v4
 
     - name: Initialize Quant Cloud
-      uses: quantcdn/quant-cloud-init-action@v1.1.2
+      uses: quantcdn/quant-cloud-init-action@v4
       id: init
       with:
         quant_organization: ${{ secrets.QUANT_ORGANIZATION }}
@@ -52,7 +52,7 @@ jobs:
 
 
     - name: Build and push cli image
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./.docker/cli.dockerfile
@@ -68,7 +68,7 @@ jobs:
           }}:cli${{ steps.override-outputs.outputs.image_suffix }}
 
     - name: Build and push nginx image
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./.docker/nginx-drupal.dockerfile
@@ -84,7 +84,7 @@ jobs:
           }}:cli${{ steps.override-outputs.outputs.image_suffix }}
 
     - name: Build and push php image
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./.docker/php.dockerfile
@@ -101,7 +101,7 @@ jobs:
 
     - name: Create environment if it doesn't exist
       if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' }}
-      uses: quantcdn/quant-cloud-environment-action@v1.2.1
+      uses: quantcdn/quant-cloud-environment-action@v4
       with:
         api_key: ${{ secrets.QUANT_API_KEY }}
         organization: ${{ secrets.QUANT_ORGANIZATION }}
@@ -112,7 +112,7 @@ jobs:
 
     - name: Redeploy existing environment
       if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'true' }}
-      uses: quantcdn/quant-cloud-environment-state-action@v1
+      uses: quantcdn/quant-cloud-environment-state-action@v4
       with:
         api_key: ${{ secrets.QUANT_API_KEY }}
         organization: ${{ secrets.QUANT_ORGANIZATION }}
