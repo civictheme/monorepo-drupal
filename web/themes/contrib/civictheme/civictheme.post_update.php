@@ -798,6 +798,35 @@ function civictheme_post_update_alert_visibility_validation(): string {
 }
 
 /**
+ * Use raw alert visibility field values in the REST export.
+ *
+ * The raw values preserve path aliases containing HTML-sensitive characters,
+ * including <front> and ampersands.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_alert_visibility_raw_output(): string {
+  $config_name = 'views.view.civictheme_alerts';
+  $field_options_path = 'display.rest_export_civictheme_alerts.display_options.row.options.field_options';
+  $raw_output_path = $field_options_path . '.field_c_n_alert_page_visibility.raw_output';
+  $config_object = \Drupal::configFactory()->getEditable($config_name);
+  $field_options = $config_object->get($field_options_path);
+
+  if (!is_array($field_options) || !array_key_exists('field_c_n_alert_page_visibility', $field_options)) {
+    return (string) new TranslatableMarkup('Update to alert REST export skipped because the visibility field does not exist.');
+  }
+
+  if ($config_object->get($raw_output_path) === TRUE) {
+    return (string) new TranslatableMarkup('Alert REST export already uses raw visibility field values.');
+  }
+
+  $config_object->set($raw_output_path, TRUE);
+  $config_object->save();
+
+  return (string) new TranslatableMarkup('Updated alert REST export to use raw visibility field values.');
+}
+
+/**
  * Update the view mode 'civictheme_snippet' to 'civictheme_navigation_card'.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
