@@ -477,7 +477,7 @@ display:
               raw_output: false
             field_c_n_alert_page_visibility:
               alias: visibility
-              raw_output: false
+              raw_output: true
       display_comment: ''
       display_extenders: {  }
       path: api/civictheme-alerts

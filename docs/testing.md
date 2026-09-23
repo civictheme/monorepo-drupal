@@ -17,6 +17,13 @@ Behat configuration uses multiple extensions:
 
 Add `@skipped` tag to failing tests if you would like to skip them.
 
+### Alert REST export regression checks
+
+When changing the alert REST export, test visibility values with multiple lines,
+literal `<front>`, and ampersands. Also test an empty visibility value. The
+visibility field must use raw output so these path values reach the client
+without HTML escaping or markup.
+
 ### Authoring schema update tests
 
 > Available from CivicTheme 1.5
