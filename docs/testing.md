@@ -64,3 +64,10 @@ To update the database dumps:
    mkdir -p web/themes/contrib/civictheme/tests/fixtures/updates
    ahoy cli php web/core/scripts/dump-database-d8-mysql.php | gzip > "web/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DRUPAL_VERSION_FULL}.${DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.filled.php.gz"
    ```
+
+### Alert REST export
+
+The alert REST display must return all active alerts before the browser applies
+page visibility rules. When checking this behaviour, create more than 10 active
+alerts targeting different pages and verify that every eligible alert is present
+in `/api/civictheme-alerts`, including alerts outside the first 10 results.

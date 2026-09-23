@@ -1357,3 +1357,24 @@ function civictheme_post_update_add_fast_fact_card_form_display(): string {
 
   return (string) new TranslatableMarkup('Created form display for civictheme_fast_fact_card paragraph.');
 }
+
+/**
+ * Return all active alerts before client-side page visibility matching.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_remove_alert_export_limit(): string {
+  $config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
+  $display_path = 'display.rest_export_civictheme_alerts';
+  if ($config->isNew() || $config->get($display_path . '.display_plugin') !== 'rest_export') {
+    return (string) new TranslatableMarkup('Alert export pager update skipped: REST display does not exist.');
+  }
+
+  // REST exports need an explicit pager; changing the default is insufficient.
+  $config->set($display_path . '.display_options.pager', [
+    'type' => 'none',
+    'options' => ['offset' => 0],
+  ])->save();
+
+  return (string) new TranslatableMarkup('Updated the alert REST export to return all active alerts.');
+}

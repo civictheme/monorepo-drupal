@@ -459,6 +459,10 @@ display:
     display_plugin: rest_export
     position: 1
     display_options:
+      pager:
+        type: none
+        options:
+          offset: 0
       style:
         type: serializer
         options:
