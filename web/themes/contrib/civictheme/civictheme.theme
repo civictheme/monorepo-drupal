@@ -55,6 +55,7 @@ require_once __DIR__ . '/includes/skip_link.inc';
 require_once __DIR__ . '/includes/slider.inc';
 require_once __DIR__ . '/includes/snippet.inc';
 require_once __DIR__ . '/includes/social_links.inc';
+require_once __DIR__ . '/includes/structured_data.inc';
 require_once __DIR__ . '/includes/system_branding.inc';
 require_once __DIR__ . '/includes/table.inc';
 require_once __DIR__ . '/includes/views.inc';
@@ -299,4 +300,6 @@ function civictheme_page_attachments_alter(array &$attachments): void {
     \Drupal::logger('civictheme')->error('Unable to find alert component: %message', ['%message' => $exception->getMessage()]);
   }
   $attachments['#cache']['contexts'] = Cache::mergeContexts($attachments['#cache']['contexts'] ?? [], ['url.query_args']);
+
+  _civictheme_page_attachments_alter__structured_data($attachments);
 }

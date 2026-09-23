@@ -8,6 +8,7 @@ use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileUrlGenerator;
@@ -49,8 +50,10 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    *   Theme config manager.
    * @param \Drupal\Core\Image\ImageFactory $imageFactory
    *   The image factory.
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface|null $entityTypeBundleInfo
+   *   The entity type bundle info service.
    */
-  public function __construct(protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected FileSystemInterface $fileSystem, protected FileUrlGenerator $fileUrlgenerator, protected Messenger $messenger, protected ConfigManager $configManager, protected CivicthemeConfigManager $themeConfigManager, protected ImageFactory $imageFactory) {
+  public function __construct(protected ThemeManager $themeManager, protected ThemeExtensionList $themeExtensionList, protected FileSystemInterface $fileSystem, protected FileUrlGenerator $fileUrlgenerator, protected Messenger $messenger, protected ConfigManager $configManager, protected CivicthemeConfigManager $themeConfigManager, protected ImageFactory $imageFactory, protected ?EntityTypeBundleInfoInterface $entityTypeBundleInfo = NULL) {
   }
 
   /**
@@ -65,7 +68,8 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
       $container->get('messenger'),
       $container->get('config.manager'),
       $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class),
-      $container->get('image.factory')
+      $container->get('image.factory'),
+      $container->get('entity_type.bundle.info')
     );
   }
 
@@ -81,6 +85,14 @@ abstract class CivicthemeSettingsFormSectionBase implements ContainerInjectionIn
    */
   public function weight(): int {
     return 0;
+  }
+
+  /**
+   * Convert element value from multiline string to an array.
+   */
+  public static function multilineToArray(array $element, FormStateInterface $form_state): void {
+    $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", (string) $element['#value']));
+    $form_state->setValueForElement($element, array_values(array_filter(array_map('trim', $lines))));
   }
 
   /**
