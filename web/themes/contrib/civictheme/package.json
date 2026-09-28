@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#1259c36882a53a9b84d8b0e0e3e341ebe66fa9d7"
+    "@civictheme/uikit": "github:civictheme/uikit#583b7195145458734e4af4f4194b787f8290f15b"
   },
   "devDependencies": {
     "@civictheme/drupal-attribute": "^2.0.1",
