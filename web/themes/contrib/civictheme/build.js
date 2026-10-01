@@ -588,7 +588,9 @@ function modulePath(moduleName) {
 function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
   if (fs.existsSync(BUILD_CONFIG_DIR)) {
     const config = JSON.parse(fs.readFileSync(BUILD_CONFIG_DIR, 'utf-8'))
-    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(config.civicthemePath)) {
+    // Validate the cached path against the sub-theme directory, as the cache
+    // file may have been copied from another location (e.g. the starter kit).
+    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(path.resolve(subthemeDir, config.civicthemePath, 'civictheme.info.yml'))) {
       return config.civicthemePath
     }
   }
