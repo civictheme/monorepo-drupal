@@ -19,7 +19,7 @@ import fs from 'fs'
 import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import path from 'path'
-import { globSync } from 'glob'
+import { globSync } from 'node:fs'
 import { execSync, spawn } from 'child_process'
 import * as sass from 'sass-embedded'
 
@@ -598,7 +598,9 @@ function getDirInParent(currentDir, parent, destinationGlob) {
   const pathParts = currentDir.split('/')
   const parentIndex = pathParts.indexOf(parent)
   const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
-  return basePath ? globSync(`${basePath}${destinationGlob}`, { ignore: 'node_modules/**' }).pop() : null
+  // Node's globSync uses `exclude`, not `ignore`.
+  // @see https://nodejs.org/docs/latest-v22.x/api/fs.html#fsglobsyncpattern-options
+  return basePath ? globSync(`${basePath}${destinationGlob}`, { exclude: dir => path.basename(dir) === 'node_modules' }).pop() : null
 }
 
 function time(full) {
