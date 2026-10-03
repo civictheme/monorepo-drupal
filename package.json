@@ -4,7 +4,7 @@
     "scripts/civictheme-dependency-checker"
   ],
   "dependencies": {
-    "@civictheme/uikit": "github:civictheme/uikit#c5642c2ae204b6fef66f7ced063fdc15312e3882"
+    "@civictheme/uikit": "github:civictheme/uikit#0477ae3880ece99b4e6ffe68ca7abea9370bedac"
   },
   "scripts": {
     "uikit-change": "npm start --workspace=civictheme-uikit-version-change",
