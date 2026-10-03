@@ -178,10 +178,9 @@ function _civictheme_link_add_external_decorations(\DOMDocument $dom, \DOMElemen
 
   if ($text_node->nextSibling instanceof \DOMNode) {
     $parent->insertBefore($fragment, $text_node->nextSibling);
+    return;
   }
-  else {
-    $parent->appendChild($fragment);
-  }
+  $parent->appendChild($fragment);
 }
 
 /**
