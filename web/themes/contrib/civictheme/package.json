@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#fe4291907b1ea15cfc0ea5d9ca47d31964a5b91a"
+    "@civictheme/uikit": "github:civictheme/uikit#c5642c2ae204b6fef66f7ced063fdc15312e3882"
   },
   "devDependencies": {
     "@civictheme/drupal-attribute": "^2.0.1",
@@ -55,7 +55,7 @@
     "eslint-plugin-import-newlines": "^2.0.0",
     "globals": "^17.4.0",
     "glob": "^11.0.1",
-    "sass-embedded": "1.77.5",
+    "sass-embedded": "1.105.0",
     "storybook": "10.2.13",
     "stylelint": "^17.4.0",
     "stylelint-config-standard": "^40.0.0",
