@@ -311,9 +311,22 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   Theme machine names.
    */
   public function logoAltThemesWithCivicthemeBase(array $themes): array {
+    return $this->themesWithCivicthemeBase($themes);
+  }
+
+  /**
+   * Returns theme names that are CivicTheme or have CivicTheme as a base theme.
+   *
+   * @param \Drupal\Core\Extension\Extension[] $themes
+   *   Theme extension list keyed by theme name.
+   *
+   * @return string[]
+   *   Theme machine names.
+   */
+  public function themesWithCivicthemeBase(array $themes): array {
     $result = [];
     foreach (array_keys($themes) as $theme_name) {
-      if ($this->logoAltThemeExtendsCivictheme($themes, $theme_name)) {
+      if ($this->themeExtendsCivictheme($themes, $theme_name)) {
         $result[] = $theme_name;
       }
     }
@@ -332,6 +345,21 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
    *   TRUE if the theme is CivicTheme or has it in its base theme chain.
    */
   public function logoAltThemeExtendsCivictheme(array $themes, string $theme_name): bool {
+    return $this->themeExtendsCivictheme($themes, $theme_name);
+  }
+
+  /**
+   * Checks if a theme is CivicTheme or has CivicTheme in its base theme chain.
+   *
+   * @param \Drupal\Core\Extension\Extension[] $themes
+   *   Theme extension list keyed by theme name.
+   * @param string $theme_name
+   *   Theme machine name.
+   *
+   * @return bool
+   *   TRUE if the theme is CivicTheme or has it in its base theme chain.
+   */
+  public function themeExtendsCivictheme(array $themes, string $theme_name): bool {
     if ($theme_name === 'civictheme') {
       return TRUE;
     }
@@ -339,7 +367,7 @@ final class CivicthemeUpdateHelper implements ContainerInjectionInterface {
       return FALSE;
     }
     $base_theme = $themes[$theme_name]->info['base theme'];
-    return $this->logoAltThemeExtendsCivictheme($themes, $base_theme);
+    return $this->themeExtendsCivictheme($themes, $base_theme);
   }
 
 }

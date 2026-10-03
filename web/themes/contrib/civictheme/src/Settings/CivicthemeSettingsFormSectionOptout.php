@@ -59,12 +59,4 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
     ];
   }
 
-  /**
-   * Convert element value from multiline string to an array.
-   */
-  public static function multilineToArray(array $element, FormStateInterface $form_state): void {
-    $lines = is_array($element['#value']) ? $element['#value'] : explode("\n", str_replace("\r\n", "\n", (string) $element['#value']));
-    $form_state->setValueForElement($element, array_values(array_filter(array_map('trim', $lines))));
-  }
-
 }

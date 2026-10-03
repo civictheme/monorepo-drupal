@@ -1357,3 +1357,108 @@ function civictheme_post_update_add_fast_fact_card_form_display(): string {
 
   return (string) new TranslatableMarkup('Created form display for civictheme_fast_fact_card paragraph.');
 }
+
+/**
+ * Add structured data settings and the Social share image style.
+ *
+ * The structured data feature is disabled by default, so existing sites are not
+ * affected until it is enabled in the theme settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_structured_data_settings(): string {
+  $messages = [];
+
+  if (_civictheme_post_update_create_social_share_image_style()) {
+    $messages[] = (string) new TranslatableMarkup('Created the "Social share" image style.');
+  }
+
+  $seeded = _civictheme_post_update_seed_structured_data_settings();
+  if (!empty($seeded)) {
+    $messages[] = (string) new TranslatableMarkup('Added structured data settings (disabled) for: @themes.', [
+      '@themes' => implode(', ', $seeded),
+    ]);
+  }
+
+  return $messages === []
+    ? (string) new TranslatableMarkup('Structured data settings and the "Social share" image style are already in place.')
+    : implode(' ', $messages);
+}
+
+/**
+ * Creates the Social share image style from the theme install config.
+ *
+ * @return bool
+ *   TRUE if the image style was created.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_post_update_create_social_share_image_style(): bool {
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage */
+  $storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  if ($storage->load(CivicthemeConstants::SOCIAL_SHARE_IMAGE_STYLE)) {
+    return FALSE;
+  }
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $source = new FileStorage($config_path);
+  $config_data = $source->read('image.style.' . CivicthemeConstants::SOCIAL_SHARE_IMAGE_STYLE);
+  if (!is_array($config_data)) {
+    return FALSE;
+  }
+
+  $storage->createFromStorageRecord($config_data)->save();
+
+  return TRUE;
+}
+
+/**
+ * Seeds the structured data settings for CivicTheme and all its subthemes.
+ *
+ * Existing values are preserved.
+ *
+ * @return string[]
+ *   Names of the themes that were updated.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_post_update_seed_structured_data_settings(): array {
+  $defaults = [
+    'structured_data.enabled' => FALSE,
+    'structured_data.bundles' => [
+      'civictheme_page' => 'WebPage',
+      'civictheme_event' => 'Event',
+    ],
+    'structured_data.organization.same_as' => [],
+    'structured_data.organization.logo_path' => '',
+    'structured_data.image_style' => CivicthemeConstants::SOCIAL_SHARE_IMAGE_STYLE,
+    'structured_data.description_length' => CivicthemeConstants::STRUCTURED_DATA_DESCRIPTION_LENGTH,
+  ];
+
+  $config_factory = \Drupal::configFactory();
+  $helper = \Drupal::classResolver(CivicthemeUpdateHelper::class);
+  $theme_names = $helper->themesWithCivicthemeBase(\Drupal::service('extension.list.theme')->getList());
+
+  $updated_themes = [];
+  foreach ($theme_names as $theme_name) {
+    $config = $config_factory->getEditable($theme_name . '.settings');
+    if ($config->isNew()) {
+      continue;
+    }
+
+    $updated = FALSE;
+    foreach ($defaults as $key => $value) {
+      if ($config->get($key) === NULL) {
+        $config->set($key, $value);
+        $updated = TRUE;
+      }
+    }
+
+    if ($updated) {
+      $config->save();
+      $updated_themes[] = $theme_name;
+    }
+  }
+
+  return $updated_themes;
+}

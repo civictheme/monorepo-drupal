@@ -124,3 +124,13 @@ colors:
       error: '#e85653'
       success: '#14b0ae'
 optouts: {  }
+structured_data:
+  enabled: false
+  bundles:
+    civictheme_page: WebPage
+    civictheme_event: Event
+  organization:
+    same_as: {  }
+    logo_path: ''
+  image_style: civictheme_social_share
+  description_length: 300
