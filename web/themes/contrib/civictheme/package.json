@@ -39,23 +39,23 @@
     "uikit-install": "rm -Rf components > /dev/null 2>&1 && ([ -d \"node_modules/@civictheme/uikit/packages/sdc/components\" ] && cp -R node_modules/@civictheme/uikit/packages/sdc/components components || ([ -d \"node_modules/@civictheme/sdc/components\" ] && cp -R node_modules/@civictheme/sdc/components components || (echo \"Error: No components directory found\" && exit 1)))"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
-    "@civictheme/uikit": "github:civictheme/uikit#fe4291907b1ea15cfc0ea5d9ca47d31964a5b91a"
+    "@civictheme/uikit": "github:civictheme/uikit#0477ae3880ece99b4e6ffe68ca7abea9370bedac",
+    "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
     "@civictheme/drupal-attribute": "^2.0.1",
     "@civictheme/scss-variables-extractor": "^0.2.1",
-    "@storybook/addon-docs": "10.2.13",
-    "@storybook/addon-links": "10.2.13",
-    "@storybook/html-vite": "10.2.13",
-    "@whitespace/storybook-addon-html": "^9.0.0",
     "@eslint/js": "^10.0.1",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/addon-links": "10.6.0",
+    "@storybook/html-vite": "10.6.0",
     "@stylistic/stylelint-plugin": "^5.0.1",
+    "@whitespace/storybook-addon-html": "^9.0.0",
     "eslint": "^10.0.3",
     "eslint-plugin-import-newlines": "^2.0.0",
     "globals": "^17.4.0",
-    "sass-embedded": "1.77.5",
-    "storybook": "10.2.13",
+    "sass-embedded": "1.105.0",
+    "storybook": "10.6.0",
     "stylelint": "^17.4.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
