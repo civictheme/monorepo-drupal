@@ -9,9 +9,14 @@
  */
 
 use Drupal\Core\DrupalKernel;
+use Symfony\Component\HttpFoundation\Request;
 
-require_once 'autoload_runtime.php';
+$autoloader = require_once 'autoload.php';
 
-return static function () {
-  return new DrupalKernel('prod', require 'autoload.php');
-};
+$kernel = new DrupalKernel('prod', $autoloader);
+
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
+$response->send();
+
+$kernel->terminate($request, $response);
