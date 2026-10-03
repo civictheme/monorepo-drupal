@@ -62,7 +62,7 @@ settings:
         - '<img src alt data-entity-type data-entity-uuid>'
         - '<drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
         - '<span class>'
-        - '<svg role viewBox aria-hidden width height class="ct-icon">'
+        - '<svg role viewBox aria-hidden width height class="ct-icon ct-basic-content__external-icon">'
         - '<path d>'
         - '<blockquote cite>'
         - '<ul type>'

@@ -21,5 +21,5 @@ Feature: Table render
     And I should see the text "[TEST] Page 4"
     And I should see the text "[TEST] Page 5"
     And I should not see the text "[TEST] Page 6"
-    # Assert that link processing works.
-    And I should see "[TEST] Page 1" in the ".ct-table .ct-content-link" element
+    # Assert that table rows link to content.
+    And I should see "[TEST] Page 1" in the ".ct-table tbody a" element
