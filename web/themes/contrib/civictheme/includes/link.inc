@@ -222,7 +222,7 @@ function _civictheme_link_get_last_text_node(\DOMNode $node): ?\DOMText {
  * @param string $text
  *   The text to split.
  *
- * @return array|null
+ * @return array<int, string>|null
  *   Match array of the full text, the text before the last word, the last word
  *   and any whitespace after it, or NULL if the text holds no word.
  */
