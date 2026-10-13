@@ -160,6 +160,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * Submit callback for theme settings form of colours.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function submitColors(array &$form, FormStateInterface $form_state): void {
     // Invalidate caches only if changes were made.

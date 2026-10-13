@@ -1432,42 +1432,7 @@ function civictheme_post_update_convert_colors_to_recipe(): string {
       continue;
     }
 
-    $recipe = ['version' => 1];
-    if (!empty($colors['brand']) && is_array($colors['brand'])) {
-      $recipe['brands'] = $colors['brand'];
-    }
-
-    $overrides = [];
-    $css_blocks = [];
-    if (!empty($colors['palette']) && is_array($colors['palette'])) {
-      $selectors = [
-        CivicthemeConstants::THEME_LIGHT => ":root,\n.ct-theme-light",
-        CivicthemeConstants::THEME_DARK => '.ct-theme-dark',
-      ];
-      foreach ($selectors as $mode => $selector) {
-        if (empty($colors['palette'][$mode]) || !is_array($colors['palette'][$mode])) {
-          continue;
-        }
-        $lines = [];
-        foreach ($colors['palette'][$mode] as $slot => $value) {
-          $slot = str_replace('_', '-', (string) $slot);
-          $value = strtolower((string) $value);
-          $overrides['color.palette.' . $slot][$mode] = $value;
-          $lines[] = sprintf('  --ct-color-%s: %s;', $slot, $value);
-        }
-        $css_blocks[] = $selector . " {\n" . implode("\n", $lines) . "\n}\n";
-      }
-    }
-    if ($overrides !== []) {
-      $recipe['overrides'] = $overrides;
-    }
-
-    $config->set('colors', [
-      'use_color_selector' => !empty($colors['use_color_selector']),
-      'recipe' => json_encode($recipe, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n",
-      'css' => implode("\n", $css_blocks),
-    ])->save();
-
+    $config->set('colors', _civictheme_convert_colors_to_recipe($colors))->save();
     $converted[] = $theme_name;
   }
 
@@ -1482,4 +1447,51 @@ function civictheme_post_update_convert_colors_to_recipe(): string {
   }
 
   return (string) new TranslatableMarkup('Converted Color Selector settings to a colour recipe for: @themes.', ['@themes' => implode(', ', $converted)]);
+}
+
+/**
+ * Converts a 1.x 'colors' settings array to the 2.x recipe shape.
+ *
+ * @param array $colors
+ *   The 1.x colors settings: use_color_selector, brand and palette keys.
+ *
+ * @return array
+ *   The 2.x colors settings: use_color_selector, recipe and css keys.
+ */
+function _civictheme_convert_colors_to_recipe(array $colors): array {
+  $recipe = ['version' => 1];
+  if (!empty($colors['brand']) && is_array($colors['brand'])) {
+    $recipe['brands'] = $colors['brand'];
+  }
+
+  $palette = is_array($colors['palette'] ?? NULL) ? $colors['palette'] : [];
+  $selectors = [
+    CivicthemeConstants::THEME_LIGHT => ":root,\n.ct-theme-light",
+    CivicthemeConstants::THEME_DARK => '.ct-theme-dark',
+  ];
+
+  $overrides = [];
+  $css_blocks = [];
+  foreach ($selectors as $mode => $selector) {
+    if (empty($palette[$mode]) || !is_array($palette[$mode])) {
+      continue;
+    }
+    $lines = [];
+    foreach ($palette[$mode] as $slot => $value) {
+      $slot = str_replace('_', '-', (string) $slot);
+      $value = strtolower((string) $value);
+      $overrides['color.palette.' . $slot][$mode] = $value;
+      $lines[] = sprintf('  --ct-color-%s: %s;', $slot, $value);
+    }
+    $css_blocks[] = $selector . " {\n" . implode("\n", $lines) . "\n}\n";
+  }
+  if ($overrides !== []) {
+    $recipe['overrides'] = $overrides;
+  }
+
+  return [
+    'use_color_selector' => !empty($colors['use_color_selector']),
+    'recipe' => json_encode($recipe, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n",
+    'css' => implode("\n", $css_blocks),
+  ];
 }
