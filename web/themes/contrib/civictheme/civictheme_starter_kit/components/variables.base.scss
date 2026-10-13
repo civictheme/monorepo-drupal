@@ -9,35 +9,12 @@
 //
 // stylelint-disable scss/dollar-variable-pattern
 
-// Example to override existing CivicTheme's palette color and define
-// custom colors, which will automatically appear in Storybook.
-
-$ct-colors-brands: (
-  'light': (
-    'brand1': #00698f,
-    'brand2': #e6e9eb,
-    'brand3': #121313,
-  ),
-  'dark': (
-    'brand1': #61daff,
-    'brand2': #003a4f,
-    'brand3': #00698f,
-  )
-);
-
-// Example to override existing CivicTheme's palette color variants.
-$ct-colors: (
-  // Override palette color variant.
-  'light': (
-    'success': green,
-    'custom1': brown,
-  ),
-  'dark': (
-    'custom1': red,
-    'custom2': orange,
-    'custom3': blue,
-  ),
-);
+// Colours are not set in Sass in CivicTheme 2.x: the Sass colour maps
+// ($ct-colors-brands, $ct-colors) were removed with the uikit 2.x token
+// system. Customise colours with a recipe through the colour picker in the
+// theme settings form (Appearance > Settings), or on the command line with
+// `npx @civictheme/colour-picker` - overriding a `--ct-color-*` custom
+// property restyles everything that aliases it, with no Sass recompile.
 
 // Example to define 2 custom local fonts which will automatically appear
 // in Storybook.

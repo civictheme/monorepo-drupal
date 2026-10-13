@@ -74,53 +74,128 @@ components:
     keyword_fields: {  }
 colors:
   use_color_selector: true
-  use_brand_colors: true
-  brand:
-    light:
-      brand1: '#0b66b8'
-      brand2: '#f2f2f2'
-      brand3: '#024d8f'
-    dark:
-      brand1: '#39aee2'
-      brand2: '#0f305a'
-      brand3: '#e38444'
-  palette:
-    light:
-      heading: '#042849'
-      body: '#34434f'
-      background_light: '#fdfdfd'
-      background: '#f2f2f2'
-      background_dark: '#c1c1c1'
-      border_light: '#b5b5b5'
-      border: '#606060'
-      border_dark: '#181818'
-      interaction_text: '#fcfcfc'
-      interaction_background: '#0b66b8'
-      interaction_hover_text: '#fcfcfc'
-      interaction_hover_background: '#063d6e'
-      interaction_focus: '#8b5cd7'
-      highlight: '#024d8f'
-      information: '#007cbf'
-      warning: '#c95100'
-      error: '#ce3836'
-      success: '#008482'
-    dark:
-      heading: '#f5fafd'
-      body: '#e1f2fa'
-      background_light: '#1b3a62'
-      background: '#0f305a'
-      background_dark: '#0a213e'
-      border_light: '#abb6c5'
-      border: '#27446a'
-      border_dark: '#0a213e'
-      interaction_text: '#0f305a'
-      interaction_background: '#39aee2'
-      interaction_hover_text: '#0a213e'
-      interaction_hover_background: '#88ceed'
-      interaction_focus: '#8b5cd7'
-      highlight: '#e38444'
-      information: '#4cc4fc'
-      warning: '#e38444'
-      error: '#e75653'
-      success: '#12b0ae'
+  recipe: |
+    {
+      "version": 1,
+      "brands": {
+        "light": {
+          "brand1": "#0b66b8",
+          "brand2": "#f2f2f2",
+          "brand3": "#024d8f"
+        },
+        "dark": {
+          "brand1": "#39aee2",
+          "brand2": "#0f305a",
+          "brand3": "#e38444"
+        }
+      },
+      "overrides": {
+        "color.palette.heading": {
+          "light": "#042849",
+          "dark": "#f5fafd"
+        },
+        "color.palette.body": {
+          "light": "#34434f",
+          "dark": "#e1f2fa"
+        },
+        "color.palette.background-light": {
+          "light": "#fdfdfd",
+          "dark": "#1b3a62"
+        },
+        "color.palette.background": {
+          "light": "#f2f2f2",
+          "dark": "#0f305a"
+        },
+        "color.palette.background-dark": {
+          "light": "#c1c1c1",
+          "dark": "#0a213e"
+        },
+        "color.palette.border-light": {
+          "light": "#b5b5b5",
+          "dark": "#abb6c5"
+        },
+        "color.palette.border": {
+          "light": "#606060",
+          "dark": "#27446a"
+        },
+        "color.palette.border-dark": {
+          "light": "#181818",
+          "dark": "#0a213e"
+        },
+        "color.palette.interaction-text": {
+          "light": "#fcfcfc",
+          "dark": "#0f305a"
+        },
+        "color.palette.interaction-background": {
+          "light": "#0b66b8",
+          "dark": "#39aee2"
+        },
+        "color.palette.interaction-hover-text": {
+          "light": "#fcfcfc",
+          "dark": "#0a213e"
+        },
+        "color.palette.interaction-hover-background": {
+          "light": "#063d6e",
+          "dark": "#88ceed"
+        },
+        "color.palette.interaction-focus": {
+          "light": "#8b5cd7",
+          "dark": "#8b5cd7"
+        },
+        "color.palette.highlight": {
+          "light": "#024d8f",
+          "dark": "#e38444"
+        },
+        "color.palette.information": {
+          "light": "#007cbf",
+          "dark": "#4cc4fc"
+        },
+        "color.palette.warning": {
+          "light": "#c95100",
+          "dark": "#e38444"
+        },
+        "color.palette.error": {
+          "light": "#ce3836",
+          "dark": "#e75653"
+        },
+        "color.palette.success": {
+          "light": "#008482",
+          "dark": "#12b0ae"
+        }
+      }
+    }
+  css: |
+    :root,
+    .ct-theme-light {
+      --ct-color-heading: #042849;
+      --ct-color-body: #34434f;
+      --ct-color-background-light: #fdfdfd;
+      --ct-color-background: #f2f2f2;
+      --ct-color-background-dark: #c1c1c1;
+      --ct-color-border-light: #b5b5b5;
+      --ct-color-border: #606060;
+      --ct-color-border-dark: #181818;
+      --ct-color-interaction-text: #fcfcfc;
+      --ct-color-interaction-background: #0b66b8;
+      --ct-color-interaction-hover-text: #fcfcfc;
+      --ct-color-interaction-hover-background: #063d6e;
+      --ct-color-highlight: #024d8f;
+    }
+
+    .ct-theme-dark {
+      --ct-color-heading: #f5fafd;
+      --ct-color-body: #e1f2fa;
+      --ct-color-background-light: #1b3a62;
+      --ct-color-background: #0f305a;
+      --ct-color-background-dark: #0a213e;
+      --ct-color-border-light: #abb6c5;
+      --ct-color-border: #27446a;
+      --ct-color-border-dark: #0a213e;
+      --ct-color-interaction-text: #0f305a;
+      --ct-color-interaction-background: #39aee2;
+      --ct-color-interaction-hover-text: #0a213e;
+      --ct-color-interaction-hover-background: #88ceed;
+      --ct-color-highlight: #e38444;
+      --ct-color-error: #e75653;
+    }
 optouts: {  }

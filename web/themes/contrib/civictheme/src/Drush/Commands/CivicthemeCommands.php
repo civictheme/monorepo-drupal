@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Drush\Commands;
 
-use Drupal\civictheme\CivicthemeColorManager;
-use Drupal\civictheme\CivicthemeConstants;
+use Drupal\civictheme\CivicthemeColorRecipeManager;
 
 /**
  * CivicTheme Drush commands file.
@@ -27,56 +26,48 @@ use Drupal\civictheme\CivicthemeConstants;
 class CivicthemeCommands extends DrushCommands {
 
   /**
-   * The color manager.
+   * The colour recipe manager.
    *
-   * @var \Drupal\civictheme\CivicthemeColorManager
+   * @var \Drupal\civictheme\CivicthemeColorRecipeManager
    */
-  protected $colorManager;
+  protected $colorRecipeManager;
 
   /**
-   * Sets CivicTheme Brand colors which will update Palette colors.
+   * Imports a colour recipe and its emitted overrides CSS.
    *
-   * @param string $light_brand1
-   *   Light Brand 1 color.
-   * @param string $light_brand2
-   *   Light Brand 2 color.
-   * @param string $light_brand3
-   *   Light Brand 3 color.
-   * @param string $dark_brand1
-   *   Dark Brand 1 color.
-   * @param string $dark_brand2
-   *   Dark Brand 2 color.
-   * @param string $dark_brand3
-   *   Dark Brand 3 color.
+   * Both artefacts are produced by the CivicTheme UI Kit colour picker:
+   * either exported from the picker UI embedded in theme settings, or
+   * emitted on the command line with
+   * `npx @civictheme/colour-picker emit --recipe recipe.json --out out/`
+   * (use `out/overrides.scss` - it contains plain CSS - as the CSS file).
    *
-   * @command civictheme:set-brand-colors
-   * @usage drush civictheme:set-brand-colors #ff0000 #00ff00 #0000ff #00ffff #ffff00 #ff00ff
+   * @param string $recipe_file
+   *   Path to the recipe JSON file.
+   * @param string $css_file
+   *   Path to the emitted overrides CSS file.
+   *
+   * @command civictheme:import-colors
+   * @usage drush civictheme:import-colors recipe.json overrides.css
    *
    * @bootstrap full
    *
    * @SuppressWarnings(StaticAccess)
    */
-  public function setBrandColors($light_brand1, $light_brand2, $light_brand3, $dark_brand1, $dark_brand2, $dark_brand3): void {
+  public function importColors(string $recipe_file, string $css_file): void {
     // @phpstan-ignore-next-line
-    $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
+    $this->colorRecipeManager = \Drupal::classResolver(CivicthemeColorRecipeManager::class);
 
     try {
-      $this->colorManager->setColors([
-        CivicthemeColorManager::COLOR_TYPE_BRAND => [
-          CivicthemeConstants::THEME_LIGHT => [
-            'brand1' => $light_brand1,
-            'brand2' => $light_brand2,
-            'brand3' => $light_brand3,
-          ],
-          CivicthemeConstants::THEME_DARK => [
-            'brand1' => $dark_brand1,
-            'brand2' => $dark_brand2,
-            'brand3' => $dark_brand3,
-          ],
-        ],
-        CivicthemeColorManager::COLOR_TYPE_PALETTE => [],
-      ])
-        ->save(TRUE);
+      $recipe = $this->readFile($recipe_file);
+      $css = $this->readFile($css_file);
+
+      $decoded = json_decode($recipe, TRUE);
+      if (!is_array($decoded) || !array_key_exists('version', $decoded)) {
+        throw new \Exception(sprintf('File "%s" is not a valid colour recipe (expecting a JSON object with a "version" key).', $recipe_file));
+      }
+
+      $this->colorRecipeManager->save($recipe, $css);
+      $this->logger()->success('Successfully imported the colour recipe and overrides CSS.');
     }
     catch (\Exception $exception) {
       $this->logger()->error($exception->getMessage());
@@ -84,7 +75,7 @@ class CivicthemeCommands extends DrushCommands {
   }
 
   /**
-   * Generate stylesheet for the current theme.
+   * Generate the colour overrides stylesheet for the current theme.
    *
    * @command civictheme:stylesheet
    *
@@ -102,17 +93,17 @@ class CivicthemeCommands extends DrushCommands {
    */
   public function stylesheet(?string $suffix = NULL): void {
     // @phpstan-ignore-next-line
-    $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
+    $this->colorRecipeManager = \Drupal::classResolver(CivicthemeColorRecipeManager::class);
 
     if (empty($suffix)) {
       // @phpstan-ignore-next-line
       $suffix = \Drupal::theme()->getActiveTheme()->getName();
     }
 
-    $stylesheet_path = $this->colorManager->stylesheet($suffix);
+    $stylesheet_path = $this->colorRecipeManager->stylesheet($suffix);
 
     if (!$stylesheet_path) {
-      $this->logger()->error(sprintf('Unable to generate stylesheet with suffix "%s".', $suffix));
+      $this->logger()->error(sprintf('Unable to generate stylesheet with suffix "%s" - no overrides CSS is stored. Import a recipe first with civictheme:import-colors or save one in theme settings.', $suffix));
 
       return;
     }
@@ -134,8 +125,24 @@ class CivicthemeCommands extends DrushCommands {
    */
   public function clearCache(): void {
     // @phpstan-ignore-next-line
-    $this->colorManager = \Drupal::classResolver(CivicthemeColorManager::class);
-    $this->colorManager->invalidateCache();
+    $this->colorRecipeManager = \Drupal::classResolver(CivicthemeColorRecipeManager::class);
+    $this->colorRecipeManager->invalidateCache();
+  }
+
+  /**
+   * Read a file and return its contents.
+   */
+  protected function readFile(string $filepath): string {
+    if (!is_file($filepath) || !is_readable($filepath)) {
+      throw new \Exception(sprintf('File "%s" does not exist or is not readable.', $filepath));
+    }
+
+    $contents = file_get_contents($filepath);
+    if ($contents === FALSE) {
+      throw new \Exception(sprintf('Unable to read file "%s".', $filepath));
+    }
+
+    return $contents;
   }
 
 }

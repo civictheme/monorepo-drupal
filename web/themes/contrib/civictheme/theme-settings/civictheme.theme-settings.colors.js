@@ -1,217 +1,107 @@
 /**
  * @file
- * CivicTheme theme color settings.
- * phpcs:disable Generic.PHP.UpperCaseConstant.Found
+ * CivicTheme theme settings colour picker integration.
+ *
+ * Embeds the UI Kit colour picker (dist/colour-picker/ui/index.html, same
+ * origin) and syncs it with the form: the stored recipe loads into the
+ * picker, and every picker change writes the recipe JSON and the emitted
+ * overrides CSS back into the form fields that Drupal saves. All colour
+ * computation happens inside the picker's engine - this file only moves
+ * strings between the iframe and the form.
  */
-(function ($, Drupal) {
-  Drupal.behaviors.civicthemeColors = {
+(function (Drupal, once) {
+  'use strict';
+
+  var POLL_INTERVAL_MS = 100;
+  var POLL_ATTEMPTS = 300;
+
+  /**
+   * Store the picker state into the form fields.
+   */
+  function sync(picker, recipeField, cssField) {
+    recipeField.value = JSON.stringify(picker.getRecipe(), null, 2);
+    // Drop the `//` banner lines: they are valid in the .scss drop-in the
+    // picker exports, but the stored string is served as plain CSS where
+    // `//` comments would break parsing of the first block.
+    var css = picker.getOverridesCss()
+      .split('\n')
+      .filter(function (line) {
+        return line.trim().indexOf('//') !== 0;
+      })
+      .join('\n')
+      .replace(/^\n+/, '');
+    // An identity recipe emits a comment-only stylesheet - store nothing so
+    // no overrides file is attached to the site.
+    cssField.value = css.indexOf('{') === -1 ? '' : css;
+  }
+
+  /**
+   * Connect the booted picker to the form.
+   */
+  function init(picker, recipeField, cssField, status) {
+    var stored = recipeField.value.trim();
+    if (stored) {
+      try {
+        picker.setRecipe(JSON.parse(stored));
+      }
+      catch (error) {
+        // Keep the stored fields untouched: the picker shows stock colours
+        // and any change made in it will overwrite the fields below.
+        status.textContent = Drupal.t('The stored colour recipe could not be loaded into the picker: @message', { '@message': error.message });
+        picker.onChange(function () {
+          sync(picker, recipeField, cssField);
+          status.textContent = '';
+        });
+        return;
+      }
+    }
+    picker.onChange(function () {
+      sync(picker, recipeField, cssField);
+    });
+    sync(picker, recipeField, cssField);
+    status.textContent = '';
+  }
+
+  /**
+   * Poll the iframe for the picker embed API.
+   *
+   * Polling covers both boot orders: the `civicthemecolourpicker:ready`
+   * event may fire before this script can subscribe to the iframe window.
+   */
+  function connect(iframe, recipeField, cssField, status) {
+    var attempts = 0;
+    status.textContent = Drupal.t('Loading the colour picker…');
+    var timer = setInterval(function () {
+      attempts++;
+      var picker = null;
+      try {
+        picker = iframe.contentWindow && iframe.contentWindow.CivicThemeColourPicker;
+      }
+      catch (error) {
+        picker = null;
+      }
+      if (picker) {
+        clearInterval(timer);
+        init(picker, recipeField, cssField, status);
+      }
+      else if (attempts >= POLL_ATTEMPTS) {
+        clearInterval(timer);
+        status.textContent = Drupal.t('The colour picker could not be loaded. Rebuild the theme (npm run dist) and check that dist/colour-picker exists, or paste recipe JSON and overrides CSS produced by "npx @civictheme/colour-picker" into the Recipe data fields.');
+      }
+    }, POLL_INTERVAL_MS);
+  }
+
+  Drupal.behaviors.civicthemeColourPicker = {
     attach: function (context) {
-      var self = this;
-      $('[name^="colors[brand]"]', context).each(function () {
-        self.initDependants($(this), context);
-        self.initLines($(this), context);
-      });
-    },
-    initDependants: function ($source, context) {
-      var self = this;
-      $source.change(function () {
-        var dependants = self.getDependantsBySource($(this).attr('name'), context);
-        for (var i in dependants) {
-          var dependant = dependants[i];
-          dependant.update($(this).val());
+      once('civictheme-colour-picker', '[data-civictheme-colour-picker]', context).forEach(function (iframe) {
+        var recipeField = document.querySelector('[data-civictheme-colour-recipe]');
+        var cssField = document.querySelector('[data-civictheme-colour-css]');
+        var status = document.querySelector('[data-civictheme-colour-picker-status]');
+        if (!recipeField || !cssField || !status) {
+          return;
         }
-      });
-    },
-    getDependants: function (context) {
-      var self = this;
-      var deps = [];
-      $('[data-color-formula]', context).each(function () {
-        var $this = $(this);
-        deps.push({
-          $el: $this,
-          formula: self.parseFormula($this.data('color-formula')),
-          update: function (value) {
-            if (this.$el.is('input')) {
-              this.$el.val(self.applyFilters(value, this.formula.filters));
-              this.$el.siblings('label').addClass('js-color-updated');
-              this.$el.change(function () {
-                $(this).siblings('label').removeClass('js-color-updated');
-              });
-            }
-            else {
-              this.$el.css({
-                backgroundColor: value
-              });
-            }
-          }
-        });
-      });
-      return deps;
-    },
-    getDependantsBySource: function (source, context) {
-      var found = [];
-
-      var deps = this.getDependants(context);
-      for (var i in deps) {
-        for (var j in deps[i].formula) {
-          if (deps[i].formula.source === source) {
-            found.push(deps[i]);
-          }
-        }
-      }
-
-      return found;
-    },
-    parseFormula: function (value) {
-      var formula = {
-        source: null,
-        filters: [],
-      };
-
-      value = value || '';
-
-      var formulaParts = value.split('|');
-      formula.source = formulaParts.shift();
-
-      for (var i in formulaParts) {
-        var filterParts = formulaParts[i].split(',');
-        var filterName = filterParts.shift();
-        // Check if the filter is available.
-        if (!(filterName in this.filters())) {
-          continue;
-        }
-
-        formula.filters.push({
-          name: filterName,
-          args: filterParts,
-        });
-      }
-
-      return formula;
-    },
-    applyFilters: function (value, filters) {
-      for (var i in filters) {
-        value = this.filters()[filters[i].name].apply(null, [value].concat(filters[i].args));
-      }
-      return value;
-    },
-    filters: function () {
-      var self = this;
-      return {
-        shade: function (color, number) {
-          return self.colorMix(color, '#000', number)
-        },
-        tint: function (color, number) {
-          return self.colorMix(color, '#fff', number)
-        },
-      };
-    },
-    colorMix: function (color, mixer, number) {
-      number = Math.max(0, Math.min(parseInt(number), 100));
-      color = this.colorHexToRgb(color);
-      mixer = this.colorHexToRgb(mixer);
-      percentage = number / 100;
-
-      var result = [
-        (1 - percentage) * color[0] + percentage * mixer[0],
-        (1 - percentage) * color[1] + percentage * mixer[1],
-        (1 - percentage) * color[2] + percentage * mixer[2],
-      ];
-      result = '#' + this.intToHex(result[0]) + this.intToHex(result[1]) + this.intToHex(result[2]);
-      return result;
-    },
-    colorNormalize: function (value, preserveHash) {
-      if (typeof value !== 'string') {
-        throw new Error('Non-string color value provided.');
-      }
-
-      value = value.startsWith('#') && !preserveHash ? value.substring(1) : value;
-
-      if (value.length !== 3 && value.length !== 6) {
-        throw new Error('Invalid color value format provided.');
-      }
-
-      if (value.length === 3) {
-        value = value.split('').map(function (v) {
-          return v + v;
-        }).join('');
-      }
-
-      return value;
-    },
-    colorBrightness: function (value) {
-      value = this.colorHexToRgb(value);
-      return Math.round(
-        (
-          (value[0] * 299) +
-          (value[1] * 587) +
-          (value[2] * 114)
-        ) / 1000
-      );
-    },
-    colorHexToRgb: function (value) {
-      value = this.colorNormalize(value);
-      return [parseInt(value[0] + value[1], 16), parseInt(value[2] + value[3], 16), parseInt(value[4] + value[5], 16)];
-    },
-    intToHex: function (value) {
-      var hex = Math.floor(value).toString(16);
-      if (hex.length === 1) {
-        hex = '0' + hex;
-      }
-      return hex;
-    },
-    initLines: function ($source, $destination, context) {
-      var self = this;
-      var name = $source.attr('name').replace('-show-arrows', '') + '-show-arrows';
-      var $checkbox = $('[name="' + name + '"]');
-      if (!$checkbox.length) {
-        var id = 'id-' + Date.now() + Math.floor(Math.random() * 26);
-        var $wrapper = $('<div class="js-show-dependants-container"><input type="checkbox" id="' + id + '" name="' + name + '"><label for="' + id + '">Show dependants</label></div>').insertBefore($source);
-        $checkbox = $wrapper.find('[name="' + name + '"]');
-        $checkbox.change(function () {
-          var sourceName = $(this).attr('name').replace('-show-arrows', '');
-          var $source = $('[name="' + sourceName + '"]', context);
-          var val = $source.val();
-          if ($(this).is(':checked')) {
-            var dependants = self.getDependantsBySource(sourceName, context);
-            for (var i in dependants) {
-              var brightness = self.colorBrightness(val);
-              self.drawLine($source, dependants[i].$el, {
-                color: brightness < 128 ? val : self.filters().shade(val, (brightness * 100 / 256) - 50)
-              })
-            }
-          }
-          else {
-            self.removeLines($('[name="' + sourceName + '"]', context))
-          }
-        });
-      }
-    },
-    drawLine: function ($source, $destination, options) {
-      options = $.extend(true, {}, {
-        path: 'fluid',
-        dash: {
-          animation: false
-        },
-        animOptions: {
-          duration: 3000
-        },
-      }, options);
-
-      new LeaderLine(
-        $source.get(0),
-        $destination.get(0),
-        options
-      );
-
-      $('body>.leader-line:last-child').data('source', $source.attr('name'));
-    },
-    removeLines: function ($source) {
-      $('.leader-line').each(function () {
-        if ($(this).data('source') === $source.attr('name')) {
-          $(this).remove();
-        }
+        connect(iframe, recipeField, cssField, status);
       });
     }
-  }
-})(jQuery, Drupal);
+  };
+})(Drupal, once);

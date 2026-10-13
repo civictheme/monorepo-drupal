@@ -14,11 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface {
 
   /**
-   * Defines CSS variables parts separator.
-   */
-  const CSS_VARIABLES_SEPARATOR = '-';
-
-  /**
    * Defines stylesheet URI prefix.
    *
    * Used to generate and purge stylesheet files.
@@ -50,29 +45,24 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
   }
 
   /**
-   * Generate a stylesheet using provided variables.
+   * Generate a stylesheet from a CSS string.
    *
-   * Limited only to generation using variables.
+   * Returns the existing stylesheet when one was already generated for the
+   * current suffix; call purge() first to force regeneration.
    *
-   * @param array $variables
-   *   Array of variables to use for the generation.
-   * @param array $parent_selectors
-   *   Optional parent CSS selectors to wrap the variables with.
-   *   Defaults to 'html'.
-   * @param string $prefix
-   *   Optional prefix to add to every generated variables.
-   *   Should not include '--' (the CSS variable prefix).
+   * @param string $content
+   *   The stylesheet content to save.
    *
    * @return string|null
-   *   Generated stylesheet URI.
+   *   Generated stylesheet URI or NULL if the stylesheet cannot be saved.
    */
-  public function generate(array $variables, array $parent_selectors = ['html'], string $prefix = ''): null|string {
+  public function generateFromString(string $content): null|string {
     $filepath = $this->getStylesheetUri();
     if (is_file($filepath) && file_exists($filepath)) {
       return $filepath;
     }
 
-    return $this->generateStylesheet($variables, $parent_selectors, $prefix);
+    return $this->saveStylesheet($content);
   }
 
   /**
@@ -123,40 +113,6 @@ final class CivicthemeStylesheetGenerator implements ContainerInjectionInterface
     $files = glob($this->fileSystem->realpath(self::STYLESHEET_URI_PREFIX) . '*.css');
 
     return empty($files) ? [] : $files;
-  }
-
-  /**
-   * Generate stylesheet using provided variables.
-   *
-   * @param array $variables
-   *   Array of variables to use for the generation.
-   * @param array $parent_selectors
-   *   Optional parent CSS selectors to wrap the variables with.
-   *   Defaults to 'html'.
-   * @param string $prefix
-   *   Optional prefix to add to every generated variables.
-   *   Should not include '--' (the CSS variable prefix).
-   *
-   * @return string|null
-   *   URI to a stylesheet file or NULL if stylesheet cannot be generated.
-   *
-   * @SuppressWarnings(StaticAccess)
-   */
-  protected function generateStylesheet(array $variables, array $parent_selectors = ['html'], string $prefix = ''): ?string {
-    $variables = CivicthemeUtility::flattenArray($variables, self::CSS_VARIABLES_SEPARATOR);
-
-    foreach ($variables as $name => $value) {
-      $variables['--' . $prefix . self::CSS_VARIABLES_SEPARATOR . str_replace('_', '-', $name)] = (string) $value;
-      unset($variables[$name]);
-    }
-
-    $content = implode(';', CivicthemeUtility::arrayMergeKeysValues($variables, ':')) . ';';
-
-    foreach ($parent_selectors as $parent_selector) {
-      $content = sprintf('%s { %s }', $parent_selector, $content);
-    }
-
-    return $this->saveStylesheet($content);
   }
 
   /**

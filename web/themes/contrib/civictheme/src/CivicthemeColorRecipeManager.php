@@ -1,0 +1,119 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\civictheme;
+
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Manages the colour recipe and its generated overrides stylesheet.
+ *
+ * CivicTheme 2.x colours are driven by the UI Kit colour picker embedded in
+ * the theme settings form: an administrator edits a recipe (brand inputs
+ * plus token overrides and additions), the picker's engine emits the changed
+ * CSS custom properties in the browser, and both artefacts are stored as
+ * strings in theme settings ('colors.recipe' and 'colors.css').
+ *
+ * This class only stores strings and writes the overrides stylesheet file.
+ * No colour processing happens in PHP - resolution, contrast checking and
+ * palette generation all live in the @civictheme/colour-picker package.
+ */
+class CivicthemeColorRecipeManager implements ContainerInjectionInterface {
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\civictheme\CivicthemeConfigManager $themeConfigManager
+   *   Theme config manager.
+   * @param \Drupal\civictheme\CivicthemeStylesheetGenerator $stylesheetGenerator
+   *   Stylesheet generator.
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cacheTagsInvalidator
+   *   Cache tags invalidator.
+   */
+  public function __construct(
+    protected CivicthemeConfigManager $themeConfigManager,
+    protected CivicthemeStylesheetGenerator $stylesheetGenerator,
+    protected CacheTagsInvalidatorInterface $cacheTagsInvalidator,
+  ) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): self {
+    return new self(
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeConfigManager::class),
+      $container->get('class_resolver')->getInstanceFromDefinition(CivicthemeStylesheetGenerator::class),
+      $container->get('cache_tags.invalidator')
+    );
+  }
+
+  /**
+   * Get the stored recipe JSON string.
+   */
+  public function getRecipe(): string {
+    return (string) $this->themeConfigManager->load('colors.recipe', '');
+  }
+
+  /**
+   * Get the stored overrides CSS string.
+   */
+  public function getCss(): string {
+    return (string) $this->themeConfigManager->load('colors.css', '');
+  }
+
+  /**
+   * Store the recipe and its emitted overrides CSS.
+   */
+  public function save(string $recipe, string $css): static {
+    $this->themeConfigManager->save('colors.recipe', $recipe);
+    $this->themeConfigManager->save('colors.css', $css);
+    $this->invalidateCache();
+
+    return $this;
+  }
+
+  /**
+   * Generate (or return an existing) overrides stylesheet file.
+   *
+   * @param string $suffix
+   *   Stylesheet suffix, usually the active theme name.
+   *
+   * @return string
+   *   URI of the generated stylesheet, or an empty string when there is no
+   *   stored overrides CSS to write.
+   */
+  public function stylesheet(string $suffix): string {
+    $css = $this->getCss();
+    if ($css === '') {
+      return '';
+    }
+
+    return (string) $this->stylesheetGenerator
+      ->setStylesheetUriSuffix($suffix)
+      ->generateFromString($css);
+  }
+
+  /**
+   * Invalidate caches: purge generated stylesheets and refresh libraries.
+   *
+   * @return $this
+   *   Instance of the current class.
+   */
+  public function invalidateCache(): static {
+    $this->stylesheetGenerator->purge();
+
+    $this->cacheTagsInvalidator->invalidateTags(['library_info']);
+
+    // Force browser reload by changing the dummy query string.
+    // @codingStandardsIgnoreStart DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
+    // @phpstan-ignore-next-line
+    \Drupal::service('asset.query_string')->reset();
+    // @codingStandardsIgnoreEnd
+    return $this;
+  }
+
+}

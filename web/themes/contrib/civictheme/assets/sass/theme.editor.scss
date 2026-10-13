@@ -12,5 +12,9 @@
 .ck-editor__editable,
 .ck-content.ck-editor__editable {
   @include ct-content();
-  @include ct-content-light();
+
+  // 2.x: colour comes from theme-less custom properties resolved through the
+  // theme scope; the tokens stylesheet is loaded into the editor iframe via
+  // ckeditor5-stylesheets, and the light values apply through `:root`.
+  @include ct-content-colors();
 }

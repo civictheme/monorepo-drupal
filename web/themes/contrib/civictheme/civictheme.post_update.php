@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\civictheme\CivicthemeColorRecipeManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUpdateHelper;
 use Drupal\Core\Config\FileStorage;
@@ -1406,4 +1407,79 @@ function civictheme_post_update_remove_alert_export_limit(): string {
   ])->save();
 
   return (string) new TranslatableMarkup('Updated the alert REST export to return all active alerts.');
+}
+
+/**
+ * Converts 1.x Color Selector settings to the 2.x colour picker recipe.
+ *
+ * Brand colours become the recipe's brand inputs and palette colours become
+ * palette token overrides, so existing site colours are preserved under the
+ * uikit 2.x token model. The overrides CSS is built from the stored palette
+ * values; opening and saving the colour picker in theme settings regenerates
+ * it through the picker's engine.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_convert_colors_to_recipe(): string {
+  $converted = [];
+
+  /** @var \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  foreach (array_keys($theme_handler->listInfo()) as $theme_name) {
+    $config = \Drupal::configFactory()->getEditable($theme_name . '.settings');
+    $colors = $config->get('colors');
+    if (!is_array($colors) || (empty($colors['palette']) && empty($colors['brand']))) {
+      continue;
+    }
+
+    $recipe = ['version' => 1];
+    if (!empty($colors['brand']) && is_array($colors['brand'])) {
+      $recipe['brands'] = $colors['brand'];
+    }
+
+    $overrides = [];
+    $css_blocks = [];
+    if (!empty($colors['palette']) && is_array($colors['palette'])) {
+      $selectors = [
+        CivicthemeConstants::THEME_LIGHT => ":root,\n.ct-theme-light",
+        CivicthemeConstants::THEME_DARK => '.ct-theme-dark',
+      ];
+      foreach ($selectors as $mode => $selector) {
+        if (empty($colors['palette'][$mode]) || !is_array($colors['palette'][$mode])) {
+          continue;
+        }
+        $lines = [];
+        foreach ($colors['palette'][$mode] as $slot => $value) {
+          $slot = str_replace('_', '-', (string) $slot);
+          $value = strtolower((string) $value);
+          $overrides['color.palette.' . $slot][$mode] = $value;
+          $lines[] = sprintf('  --ct-color-%s: %s;', $slot, $value);
+        }
+        $css_blocks[] = $selector . " {\n" . implode("\n", $lines) . "\n}\n";
+      }
+    }
+    if ($overrides !== []) {
+      $recipe['overrides'] = $overrides;
+    }
+
+    $config->set('colors', [
+      'use_color_selector' => !empty($colors['use_color_selector']),
+      'recipe' => json_encode($recipe, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n",
+      'css' => implode("\n", $css_blocks),
+    ])->save();
+
+    $converted[] = $theme_name;
+  }
+
+  // Purge previously generated stylesheets so they are rebuilt from the
+  // converted configuration.
+  /** @var \Drupal\civictheme\CivicthemeColorRecipeManager $color_recipe_manager */
+  $color_recipe_manager = \Drupal::classResolver(CivicthemeColorRecipeManager::class);
+  $color_recipe_manager->invalidateCache();
+
+  if ($converted === []) {
+    return (string) new TranslatableMarkup('No Color Selector settings found to convert.');
+  }
+
+  return (string) new TranslatableMarkup('Converted Color Selector settings to a colour recipe for: @themes.', ['@themes' => implode(', ', $converted)]);
 }
