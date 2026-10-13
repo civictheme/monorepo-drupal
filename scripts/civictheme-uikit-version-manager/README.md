@@ -23,6 +23,18 @@ Run the tool from the project root with:
 npm run uikit-change
 ```
 
+### Non-interactive mode
+
+Pass a UI Kit branch name to skip the prompts and pin to the latest commit on
+that branch:
+
+```
+npm run uikit-change -- 2.x
+```
+
+In interactive mode, the UI Kit branch matching the current monorepo branch
+(e.g. `2.x`) is listed first, followed by `main`.
+
 ## How It Works
 
 The tool will ask you what version of CivicTheme UI Kit you want to install:

@@ -8,6 +8,10 @@
  * - Development version from GitHub repository (@civictheme/uikit)
  * - Main branch of the UI Kit repository
  * - Development/feature branch of the UI Kit repository
+ *
+ * Non-interactive mode: pass a UI Kit branch name as an argument to skip the
+ * prompts and pin to the latest commit on that branch:
+ *   npm run uikit-change -- 2.x
  */
 
 import { select, input, search } from '@inquirer/prompts';
@@ -45,6 +49,15 @@ async function main() {
 
     // Print current CivicTheme version
     await printCurrentVersion();
+
+    // Non-interactive mode: a branch name passed as an argument installs the
+    // latest commit from that UI Kit branch without prompting.
+    const branchArg = process.argv[2];
+    if (branchArg) {
+      console.log(`Installing latest commit from UI Kit branch '${branchArg}'...`);
+      await handleDevInstallation(branchArg);
+      return;
+    }
 
     // Ask what CivicTheme version to install
     const installType = await select({
@@ -111,37 +124,45 @@ async function handleReleaseInstallation() {
 
 /**
  * Handle the installation from a development branch.
+ * @param {string|null} preselectedBranch - Branch to install without prompting
  */
-async function handleDevInstallation() {
+async function handleDevInstallation(preselectedBranch = null) {
   try {
-    // Fetch branches from GitHub repository
-    console.log('Fetching branches from GitHub...');
-    const branches = await fetchGitHubBranches();
-    console.log('Number of Branches from GitHub... ' + branches.length);
-    if (!branches || branches.length === 0) {
-      throw new Error('No branches found or error fetching branches');
-    }
+    let branch = preselectedBranch;
 
-    // Extract branch names
-    const branchNames = branches.map(branch => branch.name);
+    if (!branch) {
+      // Fetch branches from GitHub repository
+      console.log('Fetching branches from GitHub...');
+      const branches = await fetchGitHubBranches();
+      console.log('Number of Branches from GitHub... ' + branches.length);
+      if (!branches || branches.length === 0) {
+        throw new Error('No branches found or error fetching branches');
+      }
 
-    // Make sure 'main' is at the top of the list if it exists
-    const mainIndex = branchNames.indexOf('main');
-    if (mainIndex > 0) {
-      branchNames.splice(mainIndex, 1);
-      branchNames.unshift('main');
+      // Extract branch names
+      const branchNames = branches.map(branch => branch.name);
+
+      // Put the UI Kit branch matching the current monorepo branch (e.g. 2.x)
+      // at the top of the list, followed by 'main'.
+      const priorityBranches = ['main', getCurrentGitBranch()]
+        .filter(name => name && branchNames.includes(name));
+      for (const name of priorityBranches) {
+        branchNames.splice(branchNames.indexOf(name), 1);
+        branchNames.unshift(name);
+      }
+
+      // Use search prompt for branch selection
+      branch = await search({
+        message: 'Search for a branch to install:',
+        source: async (input) => {
+          return input === undefined ? branchNames : branchNames
+            .filter((branch) => {
+              return branch.toLowerCase().includes(input.toLowerCase())
+            });
+        },
+        pageSize: 100
+      });
     }
-    // Use search prompt for branch selection
-    const branch = await search({
-      message: 'Search for a branch to install:',
-      source: async (input) => {
-        return input === undefined ? branchNames : branchNames
-          .filter((branch) => {
-            return branch.toLowerCase().includes(input.toLowerCase())
-          });
-      },
-      pageSize: 100
-    });
 
     // Fetch the latest commit hash for the selected branch
     const latestCommitHash = await fetchLatestCommitHash(branch);
@@ -223,6 +244,18 @@ async function fetchGitHubBranches() {
 }
 
 /**
+ * Get the current git branch of the monorepo.
+ * @returns {string|null} Branch name, or null if it cannot be determined
+ */
+function getCurrentGitBranch() {
+  try {
+    return execSync('git rev-parse --abbrev-ref HEAD', { cwd: ROOT_DIR }).toString().trim();
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
  * Fetch latest commit hash for a specific branch.
  */
 async function fetchLatestCommitHash(branch) {
@@ -240,7 +273,9 @@ async function fetchLatestCommitHash(branch) {
       return data.sha;
     }
 
-    throw new Error('Could not retrieve commit hash from response');
+    throw new Error(data && data.message
+      ? `Could not retrieve commit hash for '${branch}': ${data.message}`
+      : 'Could not retrieve commit hash from response');
   } catch (error) {
     console.error('Error fetching latest commit hash:', error.message);
     throw error;
