@@ -13,12 +13,8 @@
   .ct-link-list--local-tasks {
     padding: ct-spacing(4) 0 ct-spacing(4);
 
-    &.ct-theme-light {
-      background-color: ct-color-light('background');
-    }
-
-    &.ct-theme-dark {
-      background-color: ct-color-dark('background');
-    }
+    // 2.x: one theme-less rule - the `--ct-color-*` custom property resolves
+    // through the `.ct-theme-*` scope on the component root.
+    background-color: var(--ct-color-background);
   }
 }

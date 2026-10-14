@@ -392,6 +392,26 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
+   * Set a setting of the current theme.
+   *
+   * The default theme differs between jobs (CivicTheme itself or a generated
+   * sub-theme), and a sub-theme's own settings shadow the base theme's, so
+   * tests must write to the current theme's settings rather than hardcode
+   * 'civictheme.settings'.
+   *
+   * @When I set the current theme setting :key to :value
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public function themeSetCurrentThemeSetting(string $key, string $value): void {
+    $theme = \Drupal::theme()->getActiveTheme()->getName();
+    \Drupal::service('config.factory')
+      ->getEditable($theme . '.settings')
+      ->set($key, is_numeric($value) ? (int) $value : $value)
+      ->save();
+  }
+
+  /**
    * Visit a settings page of the theme.
    *
    * @When I visit :name theme settings page

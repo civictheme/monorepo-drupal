@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews:
+  auto_review:
+    # Also auto-review PRs targeting the 2.x line (defaults cover only the
+    # repository default branch).
+    base_branches:
+      - '^2\.x$'

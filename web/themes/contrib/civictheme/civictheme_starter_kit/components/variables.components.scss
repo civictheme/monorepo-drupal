@@ -6,6 +6,13 @@
 //
 // stylelint-disable scss/dollar-variable-pattern
 
-// Example to override component's variable - Back to Top should have a
-// 'custom1' colour background.
-$ct-back-to-top-light-background-color: ct-color-light('custom1');
+// Component COLOUR variables are not set in Sass in CivicTheme 2.x: colour
+// roles are CSS custom properties (e.g. --ct-back-to-top-background-color)
+// overridden through the colour recipe in theme settings, or in a stylesheet
+// loaded after the variables stylesheet:
+//
+// .ct-theme-light {
+//   --ct-back-to-top-background-color: brown;
+// }
+//
+// Non-colour component variables can still be overridden here.

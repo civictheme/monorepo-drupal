@@ -7,14 +7,17 @@
 
 declare(strict_types=1);
 
-use Drupal\civictheme\CivicthemeColorManager;
+use Drupal\civictheme\CivicthemeColorRecipeManager;
 use Drupal\civictheme\CivicthemeConfigManager;
 
 /**
- * Alter libraries to inject dynamically generated stylesheet.
+ * Alter libraries to attach the colour recipe overrides stylesheet.
  *
- * Override current CSS-variables file with a dynamically generated styles
- * or remove the file altogether if the Color Selector is not used in config.
+ * The base `css-variables` stylesheet (dist/civictheme.variables.css) carries
+ * the UI Kit token custom properties and always loads. When the Colour Picker
+ * is enabled and a recipe has been saved, the overrides CSS emitted from the
+ * recipe is written to a public file and appended after the base stylesheet
+ * so the recipe values win the cascade.
  *
  * This hook runs in a context of the extension that provides the library.
  * For themes, this means that a parent theme may provide a library used by
@@ -24,66 +27,42 @@ use Drupal\civictheme\CivicthemeConfigManager;
  * of sub-themes so that they do not have to implement this logic.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_library_info_alter__color_selector(array &$libraries, string $extension): void {
-  // Filter for the current theme or a parent theme (in case if current theme is
-  // a sub-theme of a theme that declares libraries).
+  // Filter for the current theme or a parent theme (in case if current theme
+  // is a sub-theme of a theme that declares libraries).
   $themes = \Drupal::service('theme_handler')->listInfo();
-  if (array_key_exists($extension, $themes)) {
-    // If there is no declaration of our library - there is nothing for us to do
-    // so we exit early.
-    if (empty($libraries['css-variables'])) {
-      return;
-    }
+  if (!array_key_exists($extension, $themes)) {
+    return;
+  }
 
-    $active_theme = \Drupal::theme()->getActiveTheme();
-    /** @var \Drupal\civictheme\CivicthemeConfigManager $theme_config_manager */
-    $theme_config_manager = \Drupal::classResolver(CivicthemeConfigManager::class);
-    /** @var \Drupal\civictheme\CivicthemeColorManager $color_manager */
-    $color_manager = \Drupal::classResolver(CivicthemeColorManager::class);
+  // If there is no declaration of our library - there is nothing for us to do
+  // so we exit early.
+  if (empty($libraries['css-variables'])) {
+    return;
+  }
 
-    $use_color_selector = $theme_config_manager->load('colors.use_color_selector', FALSE);
+  /** @var \Drupal\civictheme\CivicthemeConfigManager $theme_config_manager */
+  $theme_config_manager = \Drupal::classResolver(CivicthemeConfigManager::class);
 
-    // Only apply if Color Selector was explicitly enabled in configuration.
-    if ($use_color_selector) {
-      // Set CSS variables stylesheet path to use CSS variables as initial
-      // values within a Color Manager instance.
-      if (!empty($libraries['css-variables']['css']['theme'])) {
-        $css_filepath = key($libraries['css-variables']['css']['theme']);
-        // Sub-themes may override paths to CSS variables file via library
-        // overrides.
-        // Resolve sub-theme overrides as core overrides resolution
-        // is executed after this hook.
-        $overrides = $active_theme->getLibrariesOverride();
-        if (!empty($overrides[$active_theme->getPath()]['civictheme/css-variables']['css']['theme'])) {
-          $css_filepath = reset($overrides[$active_theme->getPath()]['civictheme/css-variables']['css']['theme']);
-        }
+  // Only apply if the Colour Picker was explicitly enabled in configuration.
+  if (!$theme_config_manager->load('colors.use_color_selector', FALSE)) {
+    return;
+  }
 
-        $color_manager->setCssColorsFilePath($active_theme->getPath() . DIRECTORY_SEPARATOR . $css_filepath);
-      }
+  /** @var \Drupal\civictheme\CivicthemeColorRecipeManager $color_recipe_manager */
+  $color_recipe_manager = \Drupal::classResolver(CivicthemeColorRecipeManager::class);
 
-      // Generate stylesheet suffixed with the current theme name.
-      $stylesheet_path = $color_manager->stylesheet($active_theme->getName());
+  // Generate a stylesheet suffixed with the current theme name. Generation
+  // may be skipped if no overrides CSS was stored - only proceed if we have
+  // a valid stylesheet path.
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  $stylesheet_path = $color_recipe_manager->stylesheet($active_theme->getName());
 
-      // Stylesheet generation may fail if, for example, no CSS styles or
-      // config provided - only proceed if we have a valid stylesheet path.
-      if ($stylesheet_path !== '' && $stylesheet_path !== '0') {
-        // Replace existing stylesheet with dynamically generated styles and
-        // exclude from pre-processing.
-        $libraries['css-variables']['css']['theme'] = [
-          $stylesheet_path => [
-            'preprocess' => FALSE,
-            'weight' => 10,
-          ],
-        ];
-      }
-    }
-    else {
-      // Disable inclusion of the stylesheet.
-      foreach (array_keys($libraries['css-variables']['css']['theme']) as $path) {
-        unset($libraries['css-variables']['css']['theme'][$path]);
-      }
-    }
+  if ($stylesheet_path !== '') {
+    $libraries['css-variables']['css']['theme'][$stylesheet_path] = [
+      'preprocess' => FALSE,
+      'weight' => 11,
+    ];
   }
 }

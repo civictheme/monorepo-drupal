@@ -45,6 +45,7 @@ const config = {
   sdc_components: false,
   assets: false,
   constants: false,
+  colour_picker: false,
   base: false,
 }
 
@@ -69,6 +70,7 @@ if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
     config.sdc_components = true
     config.assets = true
     config.constants = true
+    config.colour_picker = true
   } else {
     // Fully configured from command line - everything disabled by default.
     flags.forEach((flag) => {
@@ -129,6 +131,17 @@ const JS_ASSET_IMPORTS          = [
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
                                   ].filter(Boolean)
 const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
+
+// The uikit 2.x tokens stylesheet: colour custom properties generated from
+// the @civictheme/tokens package. The base theme sources it from the uikit
+// npm package and keeps a copy in components/ so sub-themes (which have no
+// uikit dependency) receive it through the combined components directory.
+const TOKENS_CSS_FILE           = 'style.tokens.css'
+// The colour picker app (replaces the 1.x PHP Color Selector): the picker
+// page is mount-relative and requires the two packages to be served as
+// siblings named colour-picker and colour-picker-tokens.
+const DIR_COLOUR_PICKER_OUT        = `${DIR_OUT}/colour-picker`
+const DIR_COLOUR_PICKER_TOKENS_OUT = `${DIR_OUT}/colour-picker-tokens`
 
 const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
 const CONSTANTS_SCSS_IMPORTER   = fullPath(`./.storybook/importer.scss_variables.js`)
@@ -206,7 +219,10 @@ function buildStyles() {
 
     const compiled = sass.compileString(stylecss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
     const compiledImportAtTop = sortCssLines(compiled.css)
-    fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
+    // Tokens CSS is appended (after the sorted @import lines) so the colour
+    // custom properties ship with the combined stylesheet, mirroring the
+    // uikit twig package build.
+    fs.writeFileSync(STYLE_FILE_OUT, [compiledImportAtTop, config.styles_variables ? loadTokensCss() : ''].filter(Boolean).join('\n'), 'utf-8')
     successReporter(`Saved: Component styles ${time()}`)
   }
 }
@@ -258,8 +274,40 @@ function buildStylesLayout() {
 function buildStylesVariables() {
   if (config.styles_variables) {
     const compiled = sass.compile(STYLE_VARIABLE_FILE_IN, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR] })
-    fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, compiled.css, 'utf-8')
+    // Colour custom properties come from the uikit tokens package (2.x has
+    // no Sass colour system); prepend them so the Sass-emitted scalar
+    // variables follow, matching the uikit packages' own variables builds.
+    fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, [loadTokensCss(), compiled.css].filter(Boolean).join('\n'), 'utf-8')
     successReporter(`Saved: Variable styles ${time()}`)
+  }
+}
+
+function buildColourPicker() {
+  if (config.colour_picker && config.base) {
+    const uikitDir = path.dirname(modulePath('@civictheme/uikit/package.json'))
+    fs.mkdirSync(DIR_COLOUR_PICKER_OUT, { recursive: true })
+    fs.mkdirSync(DIR_COLOUR_PICKER_TOKENS_OUT, { recursive: true })
+    runCommand(`rsync -a --delete --exclude stories --exclude tests --exclude skills --exclude node_modules --exclude cli.mjs --exclude README.md --exclude package.json ${uikitDir}/packages/colour-picker/ ${DIR_COLOUR_PICKER_OUT}/`)
+    runCommand(`rsync -a --delete --exclude tests --exclude node_modules --exclude figma --exclude 'resolved.*.json' --exclude README.md --exclude package.json ${uikitDir}/packages/tokens/ ${DIR_COLOUR_PICKER_TOKENS_OUT}/`)
+    // Browsers enforce a JavaScript MIME type for module scripts, and common
+    // Drupal hosting (e.g. nginx without an .mjs type mapping) serves .mjs as
+    // application/octet-stream, which blocks the picker app from booting.
+    // Ship the copies as .js, which every server maps correctly.
+    for (const dir of [DIR_COLOUR_PICKER_OUT, DIR_COLOUR_PICKER_TOKENS_OUT]) {
+      globSync('**/*.{mjs,html}', { cwd: dir }).forEach((file) => {
+        const filePath = path.join(dir, file)
+        fs.writeFileSync(filePath, fs.readFileSync(filePath, 'utf-8').replace(/\.mjs\b/g, '.js'), 'utf-8')
+        if (file.endsWith('.mjs')) {
+          fs.renameSync(filePath, filePath.replace(/\.mjs$/, '.js'))
+        }
+      })
+    }
+    // The picker probes serve-config.json to discover the CLI serve process
+    // (which backs the Generate button). The CLI writes the file when
+    // serving; ship a static stub so the embedded copy resolves it instead
+    // of logging a 404 on every theme settings page load.
+    fs.writeFileSync(`${DIR_COLOUR_PICKER_OUT}/ui/serve-config.json`, JSON.stringify({ generate: false }, null, 2), 'utf-8')
+    successReporter(`Saved: Colour picker app ${time()}`)
   }
 }
 
@@ -468,6 +516,7 @@ async function build() {
     buildJavascript()
     buildJavascriptSdcBase()
     buildAssetsDirectory()
+    buildColourPicker()
     await buildConstants()
   } catch (error) {
     // Exit non-zero so CI fails, but keep watch mode running.
@@ -539,6 +588,38 @@ function runCommand(command) {
       console.log(stdout)
     }
   })
+}
+
+function loadTokensCss() {
+  // Base theme: source the tokens stylesheet from the uikit package and keep
+  // a copy in components/ so the sub-theme combine step distributes it.
+  // Sub-theme: read the copy from the combined components directory.
+  let file = `${COMPONENT_DIR}/${TOKENS_CSS_FILE}`
+  if (config.base) {
+    const tokensDist = path.join(path.dirname(modulePath('@civictheme/uikit/package.json')), 'packages/tokens/dist')
+    file = `${DIR_COMPONENTS_IN}/${TOKENS_CSS_FILE}`
+    fs.copyFileSync(path.join(tokensDist, 'css/variables.css'), file)
+    // The uikit colours story imports the resolved tokens JSON from the
+    // tokens dist; keep copies in components/ so sub-theme storybooks (no
+    // uikit dependency) can alias the import into components_combined.
+    for (const resolved of ['resolved.light.json', 'resolved.dark.json']) {
+      const source = path.join(tokensDist, resolved)
+      if (fs.existsSync(source)) {
+        fs.copyFileSync(source, `${DIR_COMPONENTS_IN}/${resolved}`)
+      } else {
+        console.warn(`⚠️   Tokens JSON not found at ${source} - the colours story will not build in sub-theme storybooks.`)
+      }
+    }
+  }
+  if (!fs.existsSync(file)) {
+    const message = `Tokens CSS not found at ${file} - colour custom properties will be missing.`
+    if (config.base) {
+      throw new Error(message)
+    }
+    console.warn(`⚠️   ${message} Rebuild the parent CivicTheme theme (2.x) first.`)
+    return ''
+  }
+  return fs.readFileSync(file, 'utf-8')
 }
 
 function getImportsFromGlob(path, cwd) {
