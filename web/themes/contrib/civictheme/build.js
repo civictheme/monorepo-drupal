@@ -289,6 +289,19 @@ function buildColourPicker() {
     fs.mkdirSync(DIR_COLOUR_PICKER_TOKENS_OUT, { recursive: true })
     runCommand(`rsync -a --delete --exclude stories --exclude tests --exclude skills --exclude node_modules --exclude cli.mjs --exclude README.md --exclude package.json ${uikitDir}/packages/colour-picker/ ${DIR_COLOUR_PICKER_OUT}/`)
     runCommand(`rsync -a --delete --exclude tests --exclude node_modules --exclude figma --exclude 'resolved.*.json' --exclude README.md --exclude package.json ${uikitDir}/packages/tokens/ ${DIR_COLOUR_PICKER_TOKENS_OUT}/`)
+    // Browsers enforce a JavaScript MIME type for module scripts, and common
+    // Drupal hosting (e.g. nginx without an .mjs type mapping) serves .mjs as
+    // application/octet-stream, which blocks the picker app from booting.
+    // Ship the copies as .js, which every server maps correctly.
+    for (const dir of [DIR_COLOUR_PICKER_OUT, DIR_COLOUR_PICKER_TOKENS_OUT]) {
+      globSync('**/*.{mjs,html}', { cwd: dir }).forEach((file) => {
+        const filePath = path.join(dir, file)
+        fs.writeFileSync(filePath, fs.readFileSync(filePath, 'utf-8').replace(/\.mjs\b/g, '.js'), 'utf-8')
+        if (file.endsWith('.mjs')) {
+          fs.renameSync(filePath, filePath.replace(/\.mjs$/, '.js'))
+        }
+      })
+    }
     successReporter(`Saved: Colour picker app ${time()}`)
   }
 }
