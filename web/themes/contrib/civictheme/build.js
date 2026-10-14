@@ -302,6 +302,11 @@ function buildColourPicker() {
         }
       })
     }
+    // The picker probes serve-config.json to discover the CLI serve process
+    // (which backs the Generate button). The CLI writes the file when
+    // serving; ship a static stub so the embedded copy resolves it instead
+    // of logging a 404 on every theme settings page load.
+    fs.writeFileSync(`${DIR_COLOUR_PICKER_OUT}/ui/serve-config.json`, JSON.stringify({ generate: false }, null, 2), 'utf-8')
     successReporter(`Saved: Colour picker app ${time()}`)
   }
 }
