@@ -1,0 +1,53 @@
+{
+  "baseUrl": "http://civictheme.docker.amazee.io",
+  "runOnly": {
+    "type": "tag",
+    "values": ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]
+  },
+  "scenarios": [
+    {
+      "name": "webform-test-fields",
+      "path": "/form/civictheme-test-webform-fields",
+      "include": [["main"]]
+    },
+    {
+      "name": "contact",
+      "path": "/form/contact",
+      "include": [["main"]]
+    },
+    {
+      "name": "enquiry",
+      "path": "/enquiry",
+      "include": [["main"]]
+    },
+    {
+      "name": "enquiry-error-state",
+      "path": "/enquiry",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-actions-submit]" }
+      ]
+    },
+    {
+      "name": "feedback-step-1",
+      "path": "/feedback",
+      "include": [["main"]]
+    },
+    {
+      "name": "feedback-step-2",
+      "path": "/feedback",
+      "include": [["main"]],
+      "actions": [
+        { "type": "fill", "selector": "#edit-name", "value": "Test User" },
+        { "type": "fill", "selector": "#edit-email", "value": "test@example.com" },
+        { "type": "fill", "selector": "#edit-message", "value": "Test message" },
+        { "type": "click", "selector": "[data-drupal-selector=edit-actions-wizard-next]" }
+      ]
+    },
+    {
+      "name": "core-form-elements",
+      "path": "/civictheme-core-form-elements",
+      "include": [["main"]]
+    }
+  ]
+}

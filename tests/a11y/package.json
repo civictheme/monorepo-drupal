@@ -1,0 +1,14 @@
+{
+  "name": "civictheme-a11y-tests",
+  "version": "1.0.0",
+  "description": "axe-core accessibility scans of CivicTheme form pages.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node run.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "puppeteer-core": "^24.0.0"
+  }
+}

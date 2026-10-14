@@ -48,6 +48,7 @@ class FeatureContext extends DrupalContext {
 
   use BlockTrait;
   use BlockContentTrait;
+  use FormMarkupTrait;
   use ContentTrait;
   use DateTrait;
   use ElementTrait;
