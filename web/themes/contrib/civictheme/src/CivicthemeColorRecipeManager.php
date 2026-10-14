@@ -70,10 +70,27 @@ class CivicthemeColorRecipeManager implements ContainerInjectionInterface {
    */
   public function save(string $recipe, string $css): static {
     $this->themeConfigManager->save('colors.recipe', $recipe);
-    $this->themeConfigManager->save('colors.css', $css);
+    $this->themeConfigManager->save('colors.css', static::stripCssLineComments($css));
     $this->invalidateCache();
 
     return $this;
+  }
+
+  /**
+   * Strip `//` line comments from emitted overrides CSS.
+   *
+   * The picker's overrides export leads with `//` banner lines - valid in
+   * the .scss drop-in it is named for, but the stored string is served as
+   * plain CSS, where `//` comments would break parsing of the first block.
+   * Mirrors the stripping the theme settings form does client-side.
+   */
+  protected static function stripCssLineComments(string $css): string {
+    $lines = array_filter(explode("\n", $css), static fn (string $line): bool => !str_starts_with(ltrim($line), '//'));
+    $css = ltrim(implode("\n", $lines), "\n");
+
+    // A comment-only stylesheet (identity recipe) stores as empty so no
+    // overrides file is attached to the site.
+    return str_contains($css, '{') ? $css : '';
   }
 
   /**
