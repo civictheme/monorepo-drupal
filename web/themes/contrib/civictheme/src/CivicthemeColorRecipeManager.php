@@ -106,7 +106,10 @@ class CivicthemeColorRecipeManager implements ContainerInjectionInterface {
   public function invalidateCache(): static {
     $this->stylesheetGenerator->purge();
 
-    $this->cacheTagsInvalidator->invalidateTags(['library_info']);
+    // The attached stylesheet list is embedded in cached responses, so
+    // 'rendered' must be invalidated alongside the library definitions for
+    // page and dynamic page caches to pick up the change.
+    $this->cacheTagsInvalidator->invalidateTags(['library_info', 'rendered']);
 
     // Force browser reload by changing the dummy query string.
     // @codingStandardsIgnoreStart DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
