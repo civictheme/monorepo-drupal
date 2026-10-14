@@ -578,9 +578,20 @@ function loadTokensCss() {
   // Sub-theme: read the copy from the combined components directory.
   let file = `${COMPONENT_DIR}/${TOKENS_CSS_FILE}`
   if (config.base) {
-    const source = path.join(path.dirname(modulePath('@civictheme/uikit/package.json')), 'packages/tokens/dist/css/variables.css')
+    const tokensDist = path.join(path.dirname(modulePath('@civictheme/uikit/package.json')), 'packages/tokens/dist')
     file = `${DIR_COMPONENTS_IN}/${TOKENS_CSS_FILE}`
-    fs.copyFileSync(source, file)
+    fs.copyFileSync(path.join(tokensDist, 'css/variables.css'), file)
+    // The uikit colours story imports the resolved tokens JSON from the
+    // tokens dist; keep copies in components/ so sub-theme storybooks (no
+    // uikit dependency) can alias the import into components_combined.
+    for (const resolved of ['resolved.light.json', 'resolved.dark.json']) {
+      const source = path.join(tokensDist, resolved)
+      if (fs.existsSync(source)) {
+        fs.copyFileSync(source, `${DIR_COMPONENTS_IN}/${resolved}`)
+      } else {
+        console.warn(`⚠️   Tokens JSON not found at ${source} - the colours story will not build in sub-theme storybooks.`)
+      }
+    }
   }
   if (!fs.existsSync(file)) {
     const message = `Tokens CSS not found at ${file} - colour custom properties will be missing.`
