@@ -35,34 +35,32 @@ Feature: Colour settings are available in the theme settings
     And I press "Save configuration"
     Then I should see the text "The colour recipe must be valid recipe JSON"
 
-  @drush
+  @api
   Scenario: The colour overrides stylesheet is attached when the Colour Picker is used.
-    Given I am logged in as a user with the "Site Administrator" role
-
-    When I run drush 'config-set' 'civictheme.settings colors.css ":root{--ct-color-highlight:#ffcc00}"'
-    And I run drush 'config-set' 'civictheme.settings colors.use_color_selector 0'
+    Given I set the current theme setting "colors.css" to ":root{--ct-color-highlight:#ffcc00}"
+    And I set the current theme setting "colors.use_color_selector" to "0"
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
 
-    And I go to the homepage
+    When I go to the homepage
     Then the response should not contain "/sites/default/files/css-variables"
 
-    When I run drush 'config-set' 'civictheme.settings colors.use_color_selector 1'
+    When I set the current theme setting "colors.use_color_selector" to "1"
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
 
     And I go to the homepage
     Then the response should contain "/sites/default/files/css-variables"
 
-    When I run drush 'config-set' 'civictheme.settings colors.use_color_selector 0'
-    And I run drush 'config-set' 'civictheme.settings colors.css ""'
+    When I set the current theme setting "colors.use_color_selector" to "0"
+    And I set the current theme setting "colors.css" to ""
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'
 
-  @drush
+  @api
   Scenario: The colour overrides stylesheet can be generated through a Drush command.
-    Given I run drush 'config-set' 'civictheme.settings colors.css ":root{--ct-color-highlight:#ffcc00}"'
+    Given I set the current theme setting "colors.css" to ":root{--ct-color-highlight:#ffcc00}"
     And I run drush 'civictheme:stylesheet test' '--include=themes/contrib/civictheme/src/Drush'
 
     When I go to "/sites/default/files/css-variables.test.css"
     Then the response should contain "--ct-color-highlight:#ffcc00"
 
-    When I run drush 'config-set' 'civictheme.settings colors.css ""'
+    When I set the current theme setting "colors.css" to ""
     And I run drush 'civictheme:clear-cache' '--include=themes/contrib/civictheme/src/Drush'

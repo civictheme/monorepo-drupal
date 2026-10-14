@@ -130,6 +130,12 @@ const JS_ASSET_IMPORTS          = [
                                   ].filter(Boolean)
 const JS_LINT_EXCLUSION_HEADER  = '// phpcs:ignoreFile'
 
+// The uikit 2.x tokens stylesheet: colour custom properties generated from
+// the @civictheme/tokens package. The parent CivicTheme theme keeps a copy in
+// its components directory (sub-themes have no uikit dependency), which the
+// combine step distributes into the combined components directory.
+const TOKENS_CSS_FILE           = 'style.tokens.css'
+
 const CONSTANTS_FILE_OUT        = `${DIR_OUT}/constants.json`
 const CONSTANTS_SCSS_IMPORTER   = fullPath(`./.storybook/importer.scss_variables.js`)
 const CONSTANTS_BACKGROUND_UTIL = `${COMPONENT_DIR}/00-base/background/background.utils.js`
@@ -206,7 +212,10 @@ function buildStyles() {
 
     const compiled = sass.compileString(stylecss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
     const compiledImportAtTop = sortCssLines(compiled.css)
-    fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
+    // Tokens CSS is appended (after the sorted @import lines) so the colour
+    // custom properties ship with the combined stylesheet, mirroring the
+    // parent CivicTheme theme build.
+    fs.writeFileSync(STYLE_FILE_OUT, [compiledImportAtTop, config.styles_variables ? loadTokensCss() : ''].filter(Boolean).join('\n'), 'utf-8')
     successReporter(`Saved: Component styles ${time()}`)
   }
 }
@@ -258,7 +267,10 @@ function buildStylesLayout() {
 function buildStylesVariables() {
   if (config.styles_variables) {
     const compiled = sass.compile(STYLE_VARIABLE_FILE_IN, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR] })
-    fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, compiled.css, 'utf-8')
+    // Colour custom properties come from the uikit tokens package (2.x has
+    // no Sass colour system); prepend them so the Sass-emitted scalar
+    // variables follow, matching the parent CivicTheme theme build.
+    fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, [loadTokensCss(), compiled.css].filter(Boolean).join('\n'), 'utf-8')
     successReporter(`Saved: Variable styles ${time()}`)
   }
 }
@@ -539,6 +551,18 @@ function runCommand(command) {
       console.log(stdout)
     }
   })
+}
+
+function loadTokensCss() {
+  // The parent CivicTheme theme (2.x) keeps a copy of the uikit tokens
+  // stylesheet in its components directory and the combine step distributes
+  // it into the combined components directory.
+  const file = `${COMPONENT_DIR}/${TOKENS_CSS_FILE}`
+  if (!fs.existsSync(file)) {
+    console.warn(`⚠️   Tokens CSS not found at ${file} - colour custom properties will be missing. Rebuild the parent CivicTheme theme (2.x) first.`)
+    return ''
+  }
+  return fs.readFileSync(file, 'utf-8')
 }
 
 function getImportsFromGlob(path, cwd) {
