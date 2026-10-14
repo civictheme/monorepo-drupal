@@ -56,7 +56,7 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * {@inheritdoc}
    */
   public function form(array &$form, FormStateInterface $form_state): void {
-    $picker_url = '/' . $this->themeExtensionList->getPath('civictheme') . '/dist/colour-picker/ui/index.html';
+    $picker_url = base_path() . $this->themeExtensionList->getPath('civictheme') . '/dist/colour-picker/ui/index.html';
 
     $form['colors'] = [
       '#type' => 'details',
@@ -145,8 +145,17 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
    * Validate callback for theme settings form of colours.
    *
    * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function validateColors(array &$form, FormStateInterface $form_state): void {
+    // Normalise the overrides CSS the same way the drush import path does:
+    // the picker's export leads with `//` banner lines that are valid in the
+    // .scss drop-in but break parsing when served as plain CSS. The colour
+    // picker JS strips them client-side, but a value pasted without
+    // JavaScript would otherwise be stored raw.
+    $css = (string) $form_state->getValue(['colors', 'css'], '');
+    $form_state->setValue(['colors', 'css'], CivicthemeColorRecipeManager::stripCssLineComments($css));
+
     $recipe = trim((string) $form_state->getValue(['colors', 'recipe'], ''));
     if ($recipe !== '') {
       $decoded = json_decode($recipe, TRUE);
