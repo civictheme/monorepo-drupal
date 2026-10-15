@@ -142,11 +142,11 @@ trait FormMarkupTrait {
     $element = $this->formMarkupFindElement($selector);
     $value = $element->getAttribute($attribute);
 
-    if ($value === NULL || trim($value) === '') {
+    if ($value === NULL || trim((string) $value) === '') {
       throw new \Exception(sprintf('The "%s" attribute was not found or is empty on the element "%s".', $attribute, $selector));
     }
 
-    foreach (preg_split('/\s+/', trim($value)) ?: [] as $id) {
+    foreach (preg_split('/\s+/', trim((string) $value)) ?: [] as $id) {
       $target = $this->getSession()->getPage()->find('xpath', sprintf("//*[@id='%s']", $id));
       if ($target === NULL) {
         throw new \Exception(sprintf('The "%s" attribute of the element "%s" references the id "%s", but no element with that id exists.', $attribute, $selector, $id));
@@ -171,11 +171,11 @@ trait FormMarkupTrait {
     $content = $this->getSession()->getDriver()->getContent();
     $id_quoted = preg_quote($id, '~');
 
-    if (!preg_match('~<label[^>]*\bfor="' . $id_quoted . '"~', $content, $label_match, PREG_OFFSET_CAPTURE)) {
+    if (!preg_match('~<label[^>]*\bfor="' . $id_quoted . '"~', (string) $content, $label_match, PREG_OFFSET_CAPTURE)) {
       throw new \Exception(sprintf('Unable to locate the label for "%s" in the page markup.', $id));
     }
 
-    if (!preg_match('~<(?:input|select|textarea|button)[^>]*\bid="' . $id_quoted . '"~', $content, $field_match, PREG_OFFSET_CAPTURE)) {
+    if (!preg_match('~<(?:input|select|textarea|button)[^>]*\bid="' . $id_quoted . '"~', (string) $content, $field_match, PREG_OFFSET_CAPTURE)) {
       throw new \Exception(sprintf('Unable to locate a form control with id "%s" in the page markup.', $id));
     }
 
