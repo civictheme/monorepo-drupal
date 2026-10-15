@@ -146,7 +146,7 @@ trait FormMarkupTrait {
       throw new \Exception(sprintf('The "%s" attribute was not found or is empty on the element "%s".', $attribute, $selector));
     }
 
-    foreach (preg_split('/\s+/', trim($value)) as $id) {
+    foreach (preg_split('/\s+/', trim($value)) ?: [] as $id) {
       $target = $this->getSession()->getPage()->find('xpath', sprintf("//*[@id='%s']", $id));
       if ($target === NULL) {
         throw new \Exception(sprintf('The "%s" attribute of the element "%s" references the id "%s", but no element with that id exists.', $attribute, $selector, $id));
