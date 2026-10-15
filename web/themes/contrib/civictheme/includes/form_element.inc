@@ -78,6 +78,38 @@ function civictheme_preprocess_form_element(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_form_element() for form_element__checkbox.
+ *
+ * A single checkbox renders its label after the control (the Field
+ * component's "after" title position); registering this preprocess also
+ * registers the suggestion, so the universal form-element.html.twig template
+ * is reused.
+ */
+function civictheme_preprocess_form_element__checkbox(array &$variables): void {
+  _civictheme_preprocess_form_element__boolean($variables);
+}
+
+/**
+ * Implements template_preprocess_form_element() for form_element__radio.
+ */
+function civictheme_preprocess_form_element__radio(array &$variables): void {
+  _civictheme_preprocess_form_element__boolean($variables);
+}
+
+/**
+ * Prepares a single checkbox/radio form element.
+ */
+function _civictheme_preprocess_form_element__boolean(array &$variables): void {
+  $variables['title_position'] = 'after';
+
+  // A boolean control must keep an accessible label: a hidden title degrades
+  // to a visually hidden label instead of removing the label entirely.
+  if (($variables['title_display'] ?? '') === 'hidden' && $variables['title'] !== '') {
+    $variables['title_display'] = 'invisible';
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for form_element__datetime.
  *
  * Prepares variables for the accessible datetime composite wrapper so it is
