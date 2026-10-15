@@ -3,14 +3,30 @@
  * @file
  * CivicTheme implementation of the composite wrapper for a checkboxes group.
  *
- * The group's fieldset structure is rendered in checkboxes.html.twig, so the
- * core composite fieldset wrapper is reduced to a plain container that keeps
- * the wrapper attributes (ids and states wiring).
+ * Renders the group through the CivicTheme Field component from the
+ * core-prepared fieldset variables (the Claro pattern): the legend becomes
+ * the Field title and the core-rendered options pass through the control
+ * slot. The Field component derives the description and error message ids
+ * from the group id.
  */
 #}
 
-<div{{ attributes }}>
-  {{ prefix }}
-  {{ children }}
-  {{ suffix }}
-</div>
+{% include 'civictheme:field' with {
+  theme: theme|default('light'),
+  type: type|default('checkbox'),
+  title: element['#title']|default(''),
+  title_display: title_display|default('visible'),
+  orientation: element['#options_display']|default('') in ['inline', 'buttons_horizontal'] ? 'horizontal' : 'vertical',
+  is_required: required ? true : false,
+  is_disabled: element['#attributes']['disabled'] is defined,
+  is_invalid: element['#errors'] is not empty,
+  description: description.content|default(''),
+  id: element['#id']|default(''),
+  message: element['#errors'] is not empty ? { content: element['#errors'] } : null,
+  required_text: '(required)'|t,
+  prefix: prefix|default(''),
+  suffix: suffix|default(''),
+  control: children,
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}

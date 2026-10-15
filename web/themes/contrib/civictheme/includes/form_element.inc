@@ -21,10 +21,11 @@
  *   adjustments hook into the universal form_element__TYPE suggestions.
  * - input, select, textarea: thin preprocess adds the CivicTheme control
  *   classes and validation ARIA attributes to the core-rendered control.
- * - checkboxes, radios: checkboxes.html.twig and radios.html.twig render the
- *   group as a Field-style fieldset around the core-rendered options, while
- *   fieldset--checkboxes.html.twig and fieldset--radios.html.twig reduce the
- *   core composite wrapper to a plain container.
+ * - checkboxes, radios: the core composite fieldset wrapper around the group
+ *   renders through the CivicTheme Field component in
+ *   fieldset--checkboxes.html.twig and fieldset--radios.html.twig, mapped
+ *   from the variables core's fieldset preprocessing prepares (the Claro
+ *   pattern); the core-rendered options pass through the control slot.
  * - input__submit: input--submit.html.twig renders the Button component.
  *
  * Sub-themes override a single element type by providing the
@@ -54,9 +55,9 @@ function civictheme_theme_suggestions_form_element_alter(array &$suggestions, ar
  * Implements hook_theme_suggestions_fieldset_alter().
  */
 function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables): void {
-  // Checkboxes and radios groups render their own fieldset structure in
-  // checkboxes.html.twig / radios.html.twig, so the core composite fieldset
-  // wrapper around them is reduced to a plain container.
+  // Checkboxes and radios groups render their composite fieldset wrapper
+  // through the CivicTheme Field component in fieldset--checkboxes.html.twig
+  // and fieldset--radios.html.twig.
   $group_types = ['checkboxes', 'radios'];
   if (isset($variables['element']['#type']) && in_array($variables['element']['#type'], $group_types)) {
     $suggestions[] = 'fieldset__' . $variables['element']['#type'];
@@ -165,34 +166,38 @@ function civictheme_preprocess_datetime_form(array &$variables): void {
 }
 
 /**
- * Implements template_preprocess_checkboxes().
- */
-function civictheme_preprocess_checkboxes(array &$variables): void {
-  _civictheme_preprocess_form_element__group($variables, 'checkbox');
-}
-
-/**
- * Implements template_preprocess_radios().
- */
-function civictheme_preprocess_radios(array &$variables): void {
-  _civictheme_preprocess_form_element__group($variables, 'radio');
-}
-
-/**
  * Implements template_preprocess_fieldset() for fieldset__checkboxes.
  */
 function civictheme_preprocess_fieldset__checkboxes(array &$variables): void {
-  // The group renders its own structure in checkboxes.html.twig - keep the
-  // composite wrapper attributes (states wiring and ids) on the plain
-  // container by skipping the attributes-to-modifier_class conversion.
-  $variables['modifier_class'] = FALSE;
+  _civictheme_preprocess_fieldset__group($variables, 'checkbox');
 }
 
 /**
  * Implements template_preprocess_fieldset() for fieldset__radios.
  */
 function civictheme_preprocess_fieldset__radios(array &$variables): void {
-  $variables['modifier_class'] = FALSE;
+  _civictheme_preprocess_fieldset__group($variables, 'radio');
+}
+
+/**
+ * Prepares the composite fieldset wrapper of a checkboxes/radios group.
+ *
+ * Core's fieldset preprocessing prepares the legend, description, required
+ * state and the rendered options; the suggestion template maps them onto the
+ * CivicTheme Field component. This helper contributes the theme, the
+ * presentation type and the Drupal compat classes.
+ */
+function _civictheme_preprocess_fieldset__group(array &$variables, string $type): void {
+  _civictheme_preprocess_form_element__theme($variables);
+
+  $variables['type'] = $type;
+  $variables['name'] = $variables['element']['#name'] ?? '';
+  _civictheme_preprocess_form_element__classes($variables);
+
+  // The Field component renders the description with an id derived from the
+  // group id, so the core-added reference to the wrapper-id-based description
+  // would dangle; the theme keys must not print as attributes.
+  unset($variables['attributes']['aria-describedby'], $variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
 }
 
 /**
@@ -332,57 +337,6 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     '#type' => 'markup',
     '#markup' => $suffix,
   ] : '';
-}
-
-/**
- * Preprocesses a checkboxes/radios group.
- *
- * The group template renders a Field-style fieldset structure around the
- * core-rendered options passed in 'children'.
- *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
- */
-function _civictheme_preprocess_form_element__group(array &$variables, string $type): void {
-  $element = $variables['element'];
-
-  _civictheme_preprocess_form_element__theme($variables);
-
-  // Apply wrapper attributes to the group wrapper, keeping the attributes
-  // (such as the group id) prepared by core.
-  if (!empty($element['#wrapper_attributes'])) {
-    $wrapper_attributes = $element['#wrapper_attributes'];
-    $wrapper_classes = (array) ($wrapper_attributes['class'] ?? []);
-    unset($wrapper_attributes['class']);
-    $variables['attributes'] = $wrapper_attributes + $variables['attributes'];
-    $variables['attributes']['class'] = array_merge((array) ($variables['attributes']['class'] ?? []), $wrapper_classes);
-  }
-
-  $variables['type'] = $type;
-  $variables['title'] = (string) ($element['#title'] ?? '');
-  // The Field component accepts and normalises the core title_display
-  // vocabulary itself.
-  $variables['title_display'] = (string) ($element['#title_display'] ?? 'visible');
-
-  $variables['description'] = $element['#description'] ?? '';
-  $variables['is_required'] = !empty($element['#required']);
-  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
-  $variables['is_disabled'] = isset($element['#attributes']['disabled']);
-  $variables['is_invalid'] = !empty($element['#errors']);
-  $options_display = $element['#options_display'] ?? '';
-  $variables['orientation'] = in_array($options_display, ['inline', 'buttons_horizontal']) ? 'horizontal' : 'vertical';
-  $variables['name'] = $element['#name'] ?? '';
-
-  // The Field component derives the message id ({id}--error-message) from the
-  // group id.
-  $variables['message'] = ['content' => ''];
-  if ($variables['is_invalid']) {
-    $variables['message']['content'] = $element['#errors'];
-  }
-
-  $variables['element_id'] = $element['#id'] ?? '';
-
-  _civictheme_preprocess_form_element__classes($variables);
 }
 
 /**
