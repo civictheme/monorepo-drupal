@@ -15,10 +15,10 @@
  * The render pipeline:
  *
  * - form_element: form-element.html.twig passes the core-rendered control
- *   through the CivicTheme Field component's control slot. Per-type
- *   adjustments use the universal form_element__TYPE suggestions
- *   (form-element--checkbox.html.twig and form-element--radio.html.twig
- *   render the label after the control).
+ *   through the CivicTheme Field component's control slot. The component
+ *   understands the core title_display vocabulary directly (including the
+ *   'after' label layout of single checkboxes and radios); per-type
+ *   adjustments hook into the universal form_element__TYPE suggestions.
  * - input, select, textarea: thin preprocess adds the CivicTheme control
  *   classes and validation ARIA attributes to the core-rendered control.
  * - checkboxes, radios: checkboxes.html.twig and radios.html.twig render the
@@ -94,13 +94,14 @@ function civictheme_preprocess_form_element__radio(array &$variables): void {
 
 /**
  * Prepares a single checkbox/radio form element.
+ *
+ * The after-control label layout itself comes from the core title_display
+ * 'after' value, which the Field component understands directly.
  */
 function _civictheme_preprocess_form_element__boolean(array &$variables): void {
-  $variables['title_position'] = 'after';
-
   // A boolean control must keep an accessible label: a hidden title degrades
   // to a visually hidden label instead of removing the label entirely.
-  if (($variables['title_display'] ?? '') === 'hidden' && $variables['title'] !== '') {
+  if (in_array($variables['title_display'] ?? '', ['hidden', 'none'], TRUE) && $variables['title'] !== '') {
     $variables['title_display'] = 'invisible';
   }
 }
@@ -240,7 +241,6 @@ function civictheme_preprocess_input(array &$variables): void {
 function civictheme_preprocess_select(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
   _civictheme_form_control_prepare($variables, 'select');
-  $variables['civictheme_options'] = _civictheme_form_select_options($variables['options'] ?? []);
 }
 
 /**
@@ -300,22 +300,10 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
 
   $variables['title'] = (string) ($element['#title'] ?? '');
 
-  $raw_title_display = (string) ($element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible');
-
-  // An inline title renders the field horizontally.
-  $variables['orientation'] = $raw_title_display === 'inline' ? 'horizontal' : 'vertical';
-
-  $title_display = $raw_title_display === 'none' ? 'hidden' : $raw_title_display;
-  $title_display = $title_display === 'visually_hidden' ? 'invisible' : $title_display;
-  // Drupal uses 'before'/'after'/'inline' for the label position; map to the
-  // component's display enum.
-  if (in_array($title_display, ['before', 'after', 'inline'], TRUE)) {
-    $title_display = 'visible';
-  }
-  if (empty($variables['title'])) {
-    $title_display = 'hidden';
-  }
-  $variables['title_display'] = $title_display;
+  // The Field component accepts and normalises the core title_display
+  // vocabulary itself: 'after' renders the label after the control and
+  // 'inline' renders the field horizontally.
+  $variables['title_display'] = (string) ($element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible');
   $title_size = $element['#title_size'] ?? '';
   $variables['title_size'] = $title_size !== '' ? $title_size : 'regular';
 
@@ -326,14 +314,12 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
 
+  // The Field component derives the message id ({id}--error-message) from the
+  // control id, matching the aria-describedby reference on the control.
   $variables['is_invalid'] = !empty($element['#errors']);
   $variables['message'] = $variables['message'] ?? ['content' => ''];
   if ($variables['is_invalid']) {
     $variables['message']['content'] = $element['#errors'];
-    $element_id = $element['#id'] ?? $element['#attributes']['data-drupal-selector'] ?? '';
-    if (!empty($element_id)) {
-      $variables['message']['attributes'] = new Attribute(['id' => $element_id . '--error-message']);
-    }
   }
 
   $prefix = $element['#field_prefix'] ?? '';
@@ -374,15 +360,9 @@ function _civictheme_preprocess_form_element__group(array &$variables, string $t
 
   $variables['type'] = $type;
   $variables['title'] = (string) ($element['#title'] ?? '');
-
-  $title_display = (string) ($element['#title_display'] ?? 'visible');
-  $title_display = in_array($title_display, ['none', 'hidden'], TRUE) ? 'hidden' : $title_display;
-  $title_display = in_array($title_display, ['visually_hidden', 'invisible'], TRUE) ? 'invisible' : $title_display;
-  $title_display = in_array($title_display, ['hidden', 'invisible'], TRUE) ? $title_display : 'visible';
-  if (empty($variables['title'])) {
-    $title_display = 'hidden';
-  }
-  $variables['title_display'] = $title_display;
+  // The Field component accepts and normalises the core title_display
+  // vocabulary itself.
+  $variables['title_display'] = (string) ($element['#title_display'] ?? 'visible');
 
   $variables['description'] = $element['#description'] ?? '';
   $variables['is_required'] = !empty($element['#required']);
@@ -393,16 +373,14 @@ function _civictheme_preprocess_form_element__group(array &$variables, string $t
   $variables['orientation'] = in_array($options_display, ['inline', 'buttons_horizontal']) ? 'horizontal' : 'vertical';
   $variables['name'] = $element['#name'] ?? '';
 
+  // The Field component derives the message id ({id}--error-message) from the
+  // group id.
   $variables['message'] = ['content' => ''];
-  $element_id = $element['#id'] ?? '';
   if ($variables['is_invalid']) {
     $variables['message']['content'] = $element['#errors'];
-    if (!empty($element_id)) {
-      $variables['message']['attributes'] = new Attribute(['id' => $element_id . '--error-message']);
-    }
   }
 
-  $variables['element_id'] = $element_id;
+  $variables['element_id'] = $element['#id'] ?? '';
 
   _civictheme_preprocess_form_element__classes($variables);
 }
@@ -465,27 +443,6 @@ function _civictheme_form_control_prepare(array &$variables, string $kind): void
   $variables['attributes']['class'] = array_merge($existing, $classes);
   $variables['attributes'] += $attributes;
   unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
-}
-
-/**
- * Maps core select options to the Select component options structure.
- */
-function _civictheme_form_select_options(array $options): array {
-  $mapped = [];
-  foreach ($options as $option) {
-    $item = [
-      'type' => $option['type'] ?? 'option',
-      'label' => (string) ($option['label'] ?? ''),
-      'value' => $option['value'] ?? '',
-      'is_selected' => !empty($option['selected']),
-    ];
-    if ($item['type'] === 'optgroup') {
-      $item['options'] = _civictheme_form_select_options($option['options'] ?? []);
-    }
-    $mapped[] = $item;
-  }
-
-  return $mapped;
 }
 
 /**

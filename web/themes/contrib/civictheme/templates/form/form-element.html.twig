@@ -10,14 +10,14 @@
  */
 #}
 
+{# The Field component derives the title position and the orientation from
+   the core title_display value ('after' and 'inline' respectively). #}
 {% include 'civictheme:field' with {
   theme: theme|default('light'),
   type: type|default(''),
   title: title|default(''),
-  title_position: title_position|default('before'),
   title_display: title_display|default('visible'),
   title_size: title_size|default('regular'),
-  orientation: orientation|default('vertical'),
   is_required: is_required|default(false),
   is_disabled: is_disabled|default(false),
   is_invalid: is_invalid|default(false),
