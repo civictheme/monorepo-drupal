@@ -40,7 +40,7 @@ Feature: Form element markup target contract
   @api
   Scenario: The required marker text is consistent across labels and legends (D8)
     Given I go to "enquiry"
-    Then the page markup should not match ">\(required\)<"
+    Then the page markup should not match ">\(Required\)<"
 
   @api
   Scenario: Submit buttons do not render duplicate attributes (D9)
