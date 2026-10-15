@@ -117,7 +117,7 @@ function _civictheme_preprocess_pager__items_per_page(array &$variables, ViewExe
       'type' => 'option',
       'label' => $value,
       'value' => (string) $value,
-      'selected' => (int) $value === $current_items_per_page ? 'selected' : '',
+      'selected' => (int) $value === $current_items_per_page,
     ];
   }
 
