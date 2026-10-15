@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a textarea.
+ *
+ * Renders the control through the CivicTheme Textarea component, passing
+ * core's prepared attributes and value through.
+ */
+#}
+
+<div{{ wrapper_attributes.addClass('form-textarea-wrapper') }}>
+  {% include 'civictheme:textarea' with {
+    theme: theme|default('light'),
+    value: value,
+    is_invalid: is_invalid|default(false),
+    attributes: attributes,
+    modifier_class: modifier_class|default(''),
+  } only %}
+</div>

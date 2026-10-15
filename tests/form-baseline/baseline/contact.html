@@ -5,7 +5,10 @@ class="ct-label ct-theme-light ct-label--regular ct-label--required ct-field__ti
 for="edit-name" data-component-id="civictheme:label" >Your Name <span class="ct-label__required">(required)</span></label>
 <div class="ct-field__wrapper">
 <div class="ct-field__control">
-<input data-drupal-selector="edit-name" type="text" id="edit-name" name="name" value="" size="60" maxlength="255" class="form-text required ct-textfield ct-theme-light ct-field__control form-element form-element--type-textfield form-element--api-textfield form-control" required="required" />
+<input
+type="text"
+class="ct-textfield ct-theme-light form-text required ct-field__control form-element form-element--type-textfield form-element--api-textfield form-control"
+data-drupal-selector="edit-name" id="edit-name" name="name" value="" size="60" maxlength="255" required="required" data-component-id="civictheme:textfield" />
 </div>
 </div>
 </div>
@@ -15,7 +18,9 @@ class="ct-label ct-theme-light ct-label--regular ct-label--required ct-field__ti
 for="edit-email" data-component-id="civictheme:label" >Your Email <span class="ct-label__required">(required)</span></label>
 <div class="ct-field__wrapper">
 <div class="ct-field__control">
-<input data-drupal-selector="edit-email" type="email" id="edit-email" name="email" value="" size="60" maxlength="254" class="form-email required ct-input ct-theme-light ct-field__control form-element form-element--type-email form-element--api-email form-control" required="required" />
+<input
+class="ct-input ct-theme-light form-email required ct-field__control form-element form-element--type-email form-element--api-email form-control"
+data-drupal-selector="edit-email" type="email" id="edit-email" name="email" value="" size="60" maxlength="254" required="required" data-component-id="civictheme:input" />
 </div>
 </div>
 </div>
@@ -25,7 +30,10 @@ class="ct-label ct-theme-light ct-label--regular ct-label--required ct-field__ti
 for="edit-subject" data-component-id="civictheme:label" >Subject <span class="ct-label__required">(required)</span></label>
 <div class="ct-field__wrapper">
 <div class="ct-field__control">
-<input data-drupal-selector="edit-subject" type="text" id="edit-subject" name="subject" value="" size="60" maxlength="255" class="form-text required ct-textfield ct-theme-light ct-field__control form-element form-element--type-textfield form-element--api-textfield form-control" required="required" />
+<input
+type="text"
+class="ct-textfield ct-theme-light form-text required ct-field__control form-element form-element--type-textfield form-element--api-textfield form-control"
+data-drupal-selector="edit-subject" id="edit-subject" name="subject" value="" size="60" maxlength="255" required="required" data-component-id="civictheme:textfield" />
 </div>
 </div>
 </div>
@@ -35,8 +43,10 @@ class="ct-label ct-theme-light ct-label--regular ct-label--required ct-field__ti
 for="edit-message" data-component-id="civictheme:label" >Message <span class="ct-label__required">(required)</span></label>
 <div class="ct-field__wrapper">
 <div class="ct-field__control">
-<div>
-<textarea data-drupal-selector="edit-message" id="edit-message" name="message" rows="5" cols="60" class="form-textarea required resize-vertical ct-textarea ct-theme-light ct-field__control form-element form-element--type-textarea form-element--api-textarea form-control" required="required"></textarea>
+<div class="form-textarea-wrapper">
+<textarea
+class="ct-textarea ct-theme-light form-textarea required resize-vertical ct-field__control form-element form-element--type-textarea form-element--api-textarea form-control"
+data-drupal-selector="edit-message" id="edit-message" name="message" rows="5" cols="60" required="required" data-component-id="civictheme:textarea" ></textarea>
 </div>
 </div>
 </div>
@@ -55,6 +65,10 @@ data-drupal-selector="edit-actions-submit" id="edit-actions-submit" name="op" da
 </div>
 </div>
 </div>
-<input autocomplete="off" data-drupal-selector="form-9fxgsidmjk0a37lvrkksou2y2hwmonpkufk-sdaya4g" type="hidden" name="form_build_id" value="FORM_BUILD_ID" class="ct-input ct-theme-light ct-field__control form-element form-element--type-hidden form-element--api-hidden form-control" />
-<input data-drupal-selector="edit-webform-submission-contact-add-form" type="hidden" name="form_id" value="webform_submission_contact_add_form" class="ct-input ct-theme-light ct-field__control form-element form-element--type-hidden form-element--api-hidden form-control" />
+<input
+class="ct-input ct-theme-light ct-field__control form-element form-element--type-hidden form-element--api-hidden form-control"
+autocomplete="off" data-drupal-selector="form-tjsi38hggwhi3nhlxtaygzdrlmefzsps96lj5aipry4" type="hidden" name="form_build_id" value="FORM_BUILD_ID" data-component-id="civictheme:input" />
+<input
+class="ct-input ct-theme-light ct-field__control form-element form-element--type-hidden form-element--api-hidden form-control"
+data-drupal-selector="edit-webform-submission-contact-add-form" type="hidden" name="form_id" value="webform_submission_contact_add_form" data-component-id="civictheme:input" />
 </form>

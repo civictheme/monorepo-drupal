@@ -3,57 +3,28 @@
  * @file
  * CivicTheme implementation to display a checkboxes group.
  *
- * Renders the Field-style fieldset structure (legend first, then description
- * and the core-rendered options) inside the element carrying the group id,
- * replacing the core composite fieldset wrapper (reduced to a plain container
- * in fieldset--checkboxes.html.twig).
+ * Renders the group through the CivicTheme Field component (fieldset with
+ * the legend first, then description and the core-rendered options via the
+ * control slot) inside the element carrying the group id. The core composite
+ * fieldset wrapper is reduced to a plain container in
+ * fieldset--checkboxes.html.twig.
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set classes = [
-  'ct-field',
-  theme_class,
-  'ct-field--' ~ type|default('checkbox'),
-  'ct-field--' ~ orientation|default('vertical'),
-  is_required ? 'ct-field--required' : '',
-  is_disabled ? 'ct-field--disabled' : '',
-  is_invalid ? 'ct-field--invalid' : '',
-  modifier_class|default(''),
-]|join(' ')|trim %}
-
-<div class="{{ classes }}" {% if attributes %}{{- attributes -}}{% endif %}>
-  <fieldset class="ct-field__wrapper">
-    {% if title is not empty and title_display|default('visible') != 'hidden' %}
-      {% include 'civictheme:label' with {
-        theme: theme|default('light'),
-        tag: 'legend',
-        content: title,
-        is_required: is_required|default(false),
-        required_text: required_text|default(''),
-        modifier_class: 'ct-field__title' ~ (title_display|default('visible') == 'invisible' ? ' ct-visually-hidden' : ''),
-      } only %}
-    {% endif %}
-
-    {% if description is not empty %}
-      {% include 'civictheme:field-description' with {
-        theme: theme|default('light'),
-        content: description,
-        modifier_class: 'ct-field__description',
-        attributes: description_id is not empty ? create_attribute({id: description_id}) : null,
-      } only %}
-    {% endif %}
-
-    {{ children }}
-
-    {% if is_invalid %}
-      {% include 'civictheme:field-message' with {
-        theme: theme|default('light'),
-        type: 'error',
-        content: message.content|default(''),
-        modifier_class: 'ct-field__message',
-        attributes: message.attributes|default(create_attribute({})),
-      } only %}
-    {% endif %}
-  </fieldset>
-</div>
+{% include 'civictheme:field' with {
+  theme: theme|default('light'),
+  type: type|default('checkbox'),
+  title: title|default(''),
+  title_display: title_display|default('visible'),
+  orientation: orientation|default('vertical'),
+  is_required: is_required|default(false),
+  is_disabled: is_disabled|default(false),
+  is_invalid: is_invalid|default(false),
+  description: description|default(''),
+  id: element_id|default(''),
+  message: message|default(null),
+  required_text: required_text|default(''),
+  control: children,
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}

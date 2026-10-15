@@ -203,7 +203,7 @@ function civictheme_preprocess_input(array &$variables): void {
     default => 'input',
   };
 
-  _civictheme_form_control_attributes($variables, $kind);
+  _civictheme_form_control_prepare($variables, $kind);
 }
 
 /**
@@ -211,7 +211,8 @@ function civictheme_preprocess_input(array &$variables): void {
  */
 function civictheme_preprocess_select(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
-  _civictheme_form_control_attributes($variables, 'select');
+  _civictheme_form_control_prepare($variables, 'select');
+  $variables['civictheme_options'] = _civictheme_form_select_options($variables['options'] ?? []);
 }
 
 /**
@@ -219,7 +220,7 @@ function civictheme_preprocess_select(array &$variables): void {
  */
 function civictheme_preprocess_textarea(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
-  _civictheme_form_control_attributes($variables, 'textarea');
+  _civictheme_form_control_prepare($variables, 'textarea');
 }
 
 /**
@@ -373,32 +374,31 @@ function _civictheme_preprocess_form_element__group(array &$variables, string $t
     }
   }
 
-  $variables['description_id'] = !empty($element_id) && !empty($variables['description']) ? $element_id . '--description' : '';
+  $variables['element_id'] = $element_id;
 
   _civictheme_preprocess_form_element__classes($variables);
-
-  $variables['#attached']['library'][] = 'core/components.civictheme--field';
 }
 
 /**
- * Adds CivicTheme control classes and validation attributes to a control.
+ * Prepares a control for rendering through its CivicTheme component.
  *
- * Applies to controls rendered by the core input, select and textarea
- * templates. The classes stay in the element attributes (the conversion to
- * modifier_class is skipped) because core templates print attributes
- * directly.
+ * The control templates (input.html.twig, select.html.twig,
+ * textarea.html.twig) include the matching component, passing core's
+ * prepared attributes through. This helper contributes the Drupal-specific
+ * classes (the component adds its own ct-* classes), the validation state
+ * and the error message reference, and tells the template which component
+ * to use.
  *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_form_control_attributes(array &$variables, string $kind): void {
+function _civictheme_form_control_prepare(array &$variables, string $kind): void {
   $element = $variables['element'];
   $type = $element['#type'] ?? 'input';
-  $theme = $variables['theme'] ?? 'light';
+
+  $variables['civictheme_kind'] = $kind;
+  $variables['is_invalid'] = !empty($element['#errors']);
 
   $classes = [
-    'ct-' . $kind,
-    'ct-theme-' . $theme,
     'ct-field__control',
     'form-element',
     'form-element--type-' . $type,
@@ -412,33 +412,52 @@ function _civictheme_form_control_attributes(array &$variables, string $kind): v
   }
 
   $attributes = [];
-  if (!empty($element['#errors'])) {
-    $classes[] = 'ct-' . $kind . '--is-invalid';
-    $attributes['aria-invalid'] = 'true';
-    if (!empty($element['#id'])) {
-      $attributes['aria-describedby'] = $element['#id'] . '--error-message';
+  if ($variables['is_invalid'] && !empty($element['#id'])) {
+    $attributes['aria-describedby'] = $element['#id'] . '--error-message';
+  }
+
+  if ($variables['attributes'] instanceof Attribute) {
+    // Move the classes into modifier_class for the component, like the
+    // global attributes-to-modifier_class conversion does for array
+    // attributes in civictheme_preprocess_last().
+    $existing = (array) $variables['attributes']->getClass()->value();
+    $variables['attributes']->removeAttribute('class');
+    civictheme_add_modifier_class($variables, array_merge($existing, $classes));
+    foreach ($attributes as $name => $value) {
+      if (!$variables['attributes']->hasAttribute($name)) {
+        $variables['attributes']->setAttribute($name, $value);
+      }
     }
+    $variables['attributes']->removeAttribute('#civictheme_theme', '#component_theme');
+    return;
   }
 
-  if (!$variables['attributes'] instanceof Attribute) {
-    $variables['attributes'] = new Attribute($variables['attributes'] ?? []);
-  }
+  $existing = $variables['attributes']['class'] ?? [];
+  $existing = is_string($existing) ? [$existing] : $existing;
+  $variables['attributes']['class'] = array_merge($existing, $classes);
+  $variables['attributes'] += $attributes;
+  unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
+}
 
-  $variables['attributes']->addClass($classes);
-  foreach ($attributes as $name => $value) {
-    if (!$variables['attributes']->hasAttribute($name)) {
-      $variables['attributes']->setAttribute($name, $value);
+/**
+ * Maps core select options to the Select component options structure.
+ */
+function _civictheme_form_select_options(array $options): array {
+  $mapped = [];
+  foreach ($options as $option) {
+    $item = [
+      'type' => $option['type'] ?? 'option',
+      'label' => (string) ($option['label'] ?? ''),
+      'value' => $option['value'] ?? '',
+      'is_selected' => !empty($option['selected']),
+    ];
+    if ($item['type'] === 'optgroup') {
+      $item['options'] = _civictheme_form_select_options($option['options'] ?? []);
     }
+    $mapped[] = $item;
   }
-  $variables['attributes']->removeAttribute('#civictheme_theme', '#component_theme');
 
-  // The control markup is rendered by core templates, not by the component,
-  // so the component's auto-generated library must be attached explicitly.
-  $variables['#attached']['library'][] = 'core/components.civictheme--' . $kind;
-
-  // Keep the classes on the control: core templates print attributes
-  // directly, so skip the global attributes-to-modifier_class conversion.
-  $variables['modifier_class'] = FALSE;
+  return $mapped;
 }
 
 /**
