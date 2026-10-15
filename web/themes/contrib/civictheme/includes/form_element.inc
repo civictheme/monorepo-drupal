@@ -4,89 +4,32 @@
  * @file
  * Form elements.
  *
- * @phpcs:disable Drupal.Files.LineLength.TooLong
+ * CivicTheme renders form elements through 1:1 overrides of core form
+ * templates (the Claro/Olivero pattern): core prepares every variable and
+ * renders the control; the theme adds classes and small variables via thin
+ * preprocess functions and maps the prepared variables onto CivicTheme
+ * components in the template overrides. Controls are never rebuilt from the
+ * render array, so core and contrib behaviour (ids, states, selectors,
+ * checked state, ARIA) always survives.
  *
- * Drupal uses 'form element' as a unit of rendering for form elements: it is
- * a wrapper around specific form controls (input, select, textarea, etc.).
+ * The render pipeline:
  *
- * For some form elements, like checkboxes and radios, the form element is
- * rendered as a fieldset element first, and then the actual form controls are
- * rendered inside the fieldset element.
+ * - form_element: form-element.html.twig passes the core-rendered control
+ *   through the CivicTheme Field component's control slot. Per-type
+ *   adjustments use the universal form_element__TYPE suggestions
+ *   (form-element--checkbox.html.twig and form-element--radio.html.twig
+ *   render the label after the control).
+ * - input, select, textarea: thin preprocess adds the CivicTheme control
+ *   classes and validation ARIA attributes to the core-rendered control.
+ * - checkboxes, radios: checkboxes.html.twig and radios.html.twig render the
+ *   group as a Field-style fieldset around the core-rendered options, while
+ *   fieldset--checkboxes.html.twig and fieldset--radios.html.twig reduce the
+ *   core composite wrapper to a plain container.
+ * - input__submit: input--submit.html.twig renders the Button component.
  *
- * CivicTheme uses slightly different approach to render form elements: it uses
- * a centralised template (factory) called "Field" which is responsible for
- * rendering form elements in a consistent way - this allows to strictly align
- * form elements with the design system.
- *
- * The code below implements the necessary preprocessors to redirect rendering
- * to the dedicated form element template and allow to preprocess form elements
- * based on their type.
- *
- * Note that sub-themes can opt-out from this behavior by implementing
- * hook_theme_suggestions_form_element_alter() and
- * hook_theme_suggestions_fieldset_alter() and removing the suggestions
- * added here based on the required conditions.
- *
- * A render pipeline for form_element and fieldset looks like this:
- *
- * +-------------------------------------------------+
- * | civictheme_theme_suggestions_form_element_alter |
- * | civictheme_theme_suggestions_fieldset_alter     |
- * |    - Check element type                         |
- * |    - Add suggestions                            |
- * +-------------------------------------------------+
- *          |
- *          v
- * +----------------------------------------------------+
- * | Theme Hook Suggestions Generated                   |
- * | - form_element__civictheme_field                   |
- * | - form_element__civictheme_field__<type>           |
- * | - form_element__datetime (for datetime composites) |
- * | - fieldset__form_element__civictheme_field         |
- * | - fieldset__form_element__civictheme_field__<type> |
- * +----------------------------------------------------+
- *          |
- *          v
- * +-----------------------------------------------------+
- * | Sub-theme hook_theme_suggestions_form_element_alter |
- * |    - Check opt-out condition                        |
- * |    - Remove custom suggestions if opted out         |
- * +-----------------------------------------------------+
- *          |                             |
- *          v                             v
- * +------------------------+   +------------------------+      +------------------------+
- * | Not Opted-out          |   | Opted-out Condition    |  ->  | Core Template Render   |
- * | - Use custom templates |   | - Use core templates   |      | - form-element         |
- * +------------------------+   +------------------------+      | - fieldset             |
- *          |                                                   | - input--submit        |
- *          |                                                   +------------------------+
- *          v
- * +--------------------------------------------------------------------------+
- * | Preprocess Function Selection                                            |
- * | - form_element__civictheme_field                                         |
- * | - form_element__civictheme_field__<type>                                 |
- * | - civictheme_preprocess_fieldset__form_element__civictheme_field         |
- * | - civictheme_preprocess_fieldset__form_element__civictheme_field__<type> |
- * +--------------------------------------------------------------------------+
- *          |
- *          v
- * +----------------------------------------------------------------+
- * | Custom Template Render                                         |
- * |                                                                |
- * | - form-element--civictheme-field.html.twig                     |
- * |   All non-group components using CivicTheme's Field component. |
- * |                                                                |
- * | - form-element--civictheme-field--<type>.html.twig             |
- * |   Reserved for sub-theme overrides to allow using custom       |
- * |   components that may or may not be bases of CivicTheme's      |
- * |   Field component.                                             |
- * |                                                                |
- * | - fieldset--form-element--civictheme-field.html.twig           |
- * |   All group components using CivicTheme's Field component.     |
- * |                                                                |
- * | - fieldset.html.twig                                           |
- * |   <fieldset> using CivicTheme's Fieldset component.            |
- * +----------------------------------------------------------------+
+ * Sub-themes override a single element type by providing the
+ * form-element--TYPE.html.twig (or input--TYPE.html.twig) template - no PHP
+ * is required.
  */
 
 declare(strict_types=1);
@@ -100,156 +43,38 @@ use Drupal\Core\Template\Attribute;
  * Implements hook_theme_suggestions_form_element_alter().
  */
 function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables): void {
-  // Redirect rendering to a dedicated form element template and allow to
-  // preprocess form elements based on their type.
-  //
-  // Note that sub-themes can opt-out from this behavior by implementing
-  // hook_theme_suggestions_form_element_alter() and removing the suggestions
-  // added here based on some conditions.
-  // @see _civictheme_supported_form_element() for a list of supported types.
-  $supported_form_element = isset($variables['element']['#type']) && _civictheme_supported_form_element($variables['element']);
-  if ($supported_form_element) {
-    $suggestions[] = 'form_element__civictheme_field';
-    $suggestions[] = 'form_element__civictheme_field__' . $variables['element']['#type'];
+  // Provide a suggestion per element type so that element types can be
+  // overridden with a single template (core itself provides none).
+  if (!empty($variables['element']['#type'])) {
+    $suggestions[] = 'form_element__' . $variables['element']['#type'];
   }
-
-  // Datetime composite elements are rendered through a dedicated template
-  // that wraps the two inner date/time inputs inside a fieldset/legend for
-  // accessible grouping (a single <label for> cannot reference two inputs).
-  if (($variables['element']['#type'] ?? '') === 'datetime') {
-    $suggestions[] = 'form_element__datetime';
-  }
-}
-
-/**
- * Check whether form render element is supported directly by CivicTheme.
- *
- * @param array $form_element
- *   The form element.
- *
- *   This list has been derived with testing elements that extend
- *   \Drupal\Core\Render\Element\FormElement.
- *
- * @return bool
- *   Whether the form element is directly supported by CivicTheme.
- */
-function _civictheme_supported_form_element(array $form_element): bool {
-  // Form elements can be explictly opted with `#civictheme_form_element`
-  // property.
-  if (!empty($form_element[CivicthemeConstants::CIVICTHEME_FORM_ELEMENT_PROPERTY])) {
-    return TRUE;
-  }
-  // This is a list of form elements that CivicTheme works with currently
-  // This list may change with changes to Drupal and updates to CivicTheme.
-  $form_element_type = $form_element['#type'];
-  $supported_core_types = [
-    'button',
-    'checkbox',
-    'checkboxes',
-    'color',
-    'date',
-    'email',
-    'entity_autocomplete',
-    'file',
-    'image_button',
-    'linkit',
-    'machine_name',
-    'number',
-    'password',
-    'path',
-    'radio',
-    'radios',
-    'search',
-    'select',
-    'tableselect',
-    'textarea',
-    'textfield',
-    'url',
-    'weight',
-  ];
-
-  $supported_webform_types = [
-    'tel',
-    'webform_date',
-    'webform_email',
-    'webform_number',
-    'webform_select',
-    'webform_textarea',
-    'webform_time',
-    'webform_url',
-  ];
-
-  $supported_types = array_merge($supported_core_types, $supported_webform_types);
-
-  return in_array($form_element_type, $supported_types);
 }
 
 /**
  * Implements hook_theme_suggestions_fieldset_alter().
  */
 function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables): void {
-  // Checkboxes and radios are rendered through a fieldset element. We need to
-  // redirect the rendering to a dedicated form element template, but only for
-  // supported types to preserve the default rendering for other types of
-  // a fieldset.
-  //
-  // Note that sub-themes can opt-out from this behavior by implementing
-  // hook_theme_suggestions_fieldset_alter() and removing the suggestions
-  // added here based on some conditions.
-  $supported_types = ['checkboxes', 'radios'];
-  if (isset($variables['element']['#type']) && in_array($variables['element']['#type'], $supported_types)) {
-    $suggestions[] = 'fieldset__form_element__civictheme_field';
-    $suggestions[] = 'fieldset__form_element__civictheme_field__' . $variables['element']['#type'];
+  // Checkboxes and radios groups render their own fieldset structure in
+  // checkboxes.html.twig / radios.html.twig, so the core composite fieldset
+  // wrapper around them is reduced to a plain container.
+  $group_types = ['checkboxes', 'radios'];
+  if (isset($variables['element']['#type']) && in_array($variables['element']['#type'], $group_types)) {
+    $suggestions[] = 'fieldset__' . $variables['element']['#type'];
   }
 }
 
 /**
  * Implements template_preprocess_form_element().
  */
-function civictheme_preprocess_form_element__civictheme_field(array &$variables): void {
-  _civictheme_preprocess_form_element__generic($variables);
+function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
-  _civictheme_preprocess_form_element__control($variables);
-}
 
-/**
- * Implements template_preprocess_form_element().
- */
-function civictheme_preprocess_form_element__civictheme_field__search(array &$variables): void {
-  if (empty($variables['control'][0])) {
-    return;
-  }
-  $element = $variables['element'];
-  $variables['control'][0]['type'] = 'search';
-  $variables['control'][0]['name'] = !empty($variables['control'][0]['name']) ? $variables['control'][0]['name'] : 'search--' . random_int(0, 10000);
-  $attributes = $variables['control'][0]['attributes'] ?? new Attribute();
-  if (!empty($element['#attributes']['title'])) {
-    $attributes->setAttribute('title', $element['#attributes']['title']);
-  }
-  if (!empty($element['#attributes']['placeholder'])) {
-    $attributes->setAttribute('placeholder', $element['#attributes']['placeholder']);
-  }
-  $variables['control'][0]['attributes'] = $attributes;
-}
-
-/**
- * Implements template_preprocess_form_element().
- */
-function civictheme_preprocess_form_element__civictheme_field__webform_time(array &$variables): void {
-  if (!empty($variables['type']) && $variables['type'] === 'webform_time') {
-    $variables['type'] = 'time';
-  }
-}
-
-/**
- * Implements template_preprocess_form_element().
- */
-function civictheme_preprocess_form_element__civictheme_field__webform_date(array &$variables): void {
-  if (!empty($variables['type']) && $variables['type'] === 'webform_date') {
-    $variables['type'] = 'date';
-  }
+  // The checkbox/radio form element templates render the Field structure
+  // without rendering the component, so its library is not auto-attached.
+  $variables['#attached']['library'][] = 'core/components.civictheme--field';
 }
 
 /**
@@ -311,123 +136,34 @@ function civictheme_preprocess_datetime_form(array &$variables): void {
 }
 
 /**
- * Implements template_preprocess_form_element().
+ * Implements template_preprocess_checkboxes().
  */
-function civictheme_preprocess_form_element__civictheme_field__select(array &$variables): void {
-  $variables['control'][0]['options'] = form_select_options($variables['element']);
-
-  foreach ($variables['control'][0]['options'] as &$option) {
-    if (isset($option['label'])) {
-      $option['label'] = (string) $option['label'];
-    }
-    if (isset($option['selected'])) {
-      $option['is_selected'] = $option['selected'];
-      unset($option['selected']);
-    }
-    if (isset($option['disabled'])) {
-      $option['is_disabled'] = $option['disabled'];
-      unset($option['disabled']);
-    }
-  }
-  unset($option);
-  $variables['control'][0]['is_multiple'] = _civictheme_form_element_is_multiple($variables['element']);
+function civictheme_preprocess_checkboxes(array &$variables): void {
+  _civictheme_preprocess_form_element__group($variables, 'checkbox');
 }
 
 /**
- * Implements template_preprocess_fieldset().
+ * Implements template_preprocess_radios().
  */
-function civictheme_preprocess_fieldset__form_element__civictheme_field(array &$variables): void {
-  _civictheme_preprocess_form_element__generic($variables);
-  _civictheme_preprocess_form_element__theme($variables);
-  _civictheme_preprocess_form_element__wrapper_classes($variables);
-  _civictheme_preprocess_form_element__classes($variables);
-  _civictheme_preprocess_form_element__description($variables);
-  _civictheme_preprocess_form_element__control($variables);
-  _civictheme_preprocess_form_element__webform__overrides($variables);
+function civictheme_preprocess_radios(array &$variables): void {
+  _civictheme_preprocess_form_element__group($variables, 'radio');
 }
 
 /**
- * Implements template_preprocess_fieldset().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * Implements template_preprocess_fieldset() for fieldset__checkboxes.
  */
-function civictheme_preprocess_fieldset__form_element__civictheme_field__checkboxes(array &$variables): void {
-  $element = $variables['element'];
-
-  // Retrieve attributes and modifier class populated by other preprocessors.
-  $attributes = $variables['control'][0]['attributes'] ?? '';
-  $modifier_class = $variables['control'][0]['modifier_class'] ?? '';
-
-  // Prepare control array.
-  $control = [];
-  foreach ($element['#options'] as $value => $label) {
-    $is_checked = is_array($element['#value']) ? in_array($value, $element['#value']) : $element['#value'] == $value;
-    $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
-    $control[] = [
-      'label' => (string) $label,
-      'value' => (string) $value,
-      'name' => $name . '[' . $value . ']',
-      'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => $is_checked,
-      'is_disabled' => isset($element['#attributes']['disabled']),
-      // Checkboxes controls with a group cannot be required by definition.
-      'is_required' => FALSE,
-      'attributes' => $attributes,
-      'modifier_class' => $modifier_class,
-      'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
-    ];
-  }
-
-  $variables['control'] = $control;
-
-  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] === 'inline' || $element['#options_display'] === 'buttons_horizontal');
-  $variables['attributes']['id'] = $variables['element']['#id'] ?? '';
-  $variables['type'] = 'checkbox';
+function civictheme_preprocess_fieldset__checkboxes(array &$variables): void {
+  // The group renders its own structure in checkboxes.html.twig - keep the
+  // composite wrapper attributes (states wiring and ids) on the plain
+  // container by skipping the attributes-to-modifier_class conversion.
+  $variables['modifier_class'] = FALSE;
 }
 
 /**
- * Implements template_preprocess_fieldset().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * Implements template_preprocess_fieldset() for fieldset__radios.
  */
-function civictheme_preprocess_fieldset__form_element__civictheme_field__radios(array &$variables): void {
-  $element = $variables['element'];
-
-  // Retrieve attributes and modifier class populated by other preprocessors.
-  $attributes = $variables['control'][0]['attributes'] ?? '';
-  $modifier_class = $variables['control'][0]['modifier_class'] ?? '';
-
-  // Prepare control array.
-  $control = [];
-  foreach ($element['#options'] as $value => $label) {
-    $name = $element['#attributes']['name'] ?? ($element['#name'] ?? '');
-    $selected_value = $element['#value'] ?? NULL;
-    // Cannot do strict value check as integer values returned as string.
-    $is_checked = $value == $selected_value;
-    $control[] = [
-      'label' => (string) $label,
-      'value' => (string) $value,
-      'name' => $name,
-      'id' => Html::cleanCssIdentifier($element['#id'] . '-' . $value),
-      'is_checked' => $is_checked,
-      'is_disabled' => isset($element['#attributes']['disabled']),
-      'attributes' => $attributes,
-      'modifier_class' => $modifier_class,
-      'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
-    ];
-  }
-
-  $variables['control'] = $control;
-
-  $variables['is_inline'] = isset($element['#options_display']) && ($element['#options_display'] === 'inline' || $element['#options_display'] === 'buttons_horizontal');
-  // We do not use the inner div element for radios and checkboxes.
-  // For error messages anchors we need to use the wrapper id and not the
-  // wrapper.
-  if (!empty($variables['attributes']['id']) && str_ends_with($variables['attributes']['id'], '--wrapper')) {
-    $variables['attributes']['id'] = str_replace('--wrapper', '', $variables['attributes']['id']);
-  }
-  $variables['type'] = 'radio';
+function civictheme_preprocess_fieldset__radios(array &$variables): void {
+  $variables['modifier_class'] = FALSE;
 }
 
 /**
@@ -447,6 +183,47 @@ function civictheme_preprocess_fieldset(array &$variables): void {
 
 /**
  * Implements template_preprocess_input().
+ */
+function civictheme_preprocess_input(array &$variables): void {
+  $element = $variables['element'];
+  $type = $element['#type'] ?? 'input';
+
+  // Buttons render through the Button component in input--submit.html.twig
+  // and image buttons keep the core rendering.
+  if (in_array($type, ['submit', 'button', 'reset', 'image_button'])) {
+    return;
+  }
+
+  _civictheme_preprocess_form_element__theme($variables);
+
+  $kind = match ($type) {
+    'checkbox' => 'checkbox',
+    'radio' => 'radio',
+    'textfield' => 'textfield',
+    default => 'input',
+  };
+
+  _civictheme_form_control_attributes($variables, $kind);
+}
+
+/**
+ * Implements template_preprocess_select().
+ */
+function civictheme_preprocess_select(array &$variables): void {
+  _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_form_control_attributes($variables, 'select');
+}
+
+/**
+ * Implements template_preprocess_textarea().
+ */
+function civictheme_preprocess_textarea(array &$variables): void {
+  _civictheme_preprocess_form_element__theme($variables);
+  _civictheme_form_control_attributes($variables, 'textarea');
+}
+
+/**
+ * Implements template_preprocess_input() for input__submit.
  */
 function civictheme_preprocess_input__submit(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
@@ -472,26 +249,38 @@ function civictheme_preprocess_form_element_label(array &$variables): void {
   $variables['for'] = $variables['attributes']['for'] ?? '';
   $variables['theme'] = $variables['theme'] ?? 'light';
   $variables['modifier_class'] = $variables['modifier_class'] ?? '';
+  if (in_array($variables['title_display'] ?? '', ['invisible', 'visually_hidden'], TRUE)) {
+    $variables['modifier_class'] = trim($variables['modifier_class'] . ' ct-visually-hidden');
+  }
   unset($variables['attributes']['for']);
 }
 
 /**
  * Preprocesses a generic form element.
  *
+ * Maps the core-prepared form element variables onto the CivicTheme Field
+ * component props. The control itself stays untouched - it is rendered by
+ * core into 'children' and passed through the component's control slot.
+ *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $element = $variables['element'];
-  $variables['type'] = $element['#type'] ?? 'input';
+  $variables['type'] = _civictheme_form_element_presentation_type($element['#type'] ?? 'input');
 
   $variables['title'] = (string) ($element['#title'] ?? '');
 
-  $title_display = $element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible';
-  $title_display = $title_display === 'none' ? 'hidden' : $title_display;
+  $raw_title_display = (string) ($element['#_title_display'] ?? $element['#title_display'] ?? $variables['title_display'] ?? 'visible');
+
+  // An inline title renders the field horizontally.
+  $variables['orientation'] = $raw_title_display === 'inline' ? 'horizontal' : 'vertical';
+
+  $title_display = $raw_title_display === 'none' ? 'hidden' : $raw_title_display;
   $title_display = $title_display === 'visually_hidden' ? 'invisible' : $title_display;
-  // Drupal uses 'before'/'after' for label position; map to component enum "visible".
-  if (in_array((string) $title_display, ['before', 'after', 'inline'], TRUE)) {
+  // Drupal uses 'before'/'after'/'inline' for the label position; map to the
+  // component's display enum.
+  if (in_array($title_display, ['before', 'after', 'inline'], TRUE)) {
     $title_display = 'visible';
   }
   if (empty($variables['title'])) {
@@ -501,108 +290,167 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $title_size = $element['#title_size'] ?? '';
   $variables['title_size'] = $title_size !== '' ? $title_size : 'regular';
 
-  $variables['orientation'] = $variables['orientation'] ?? $title_display === 'inline' ? 'horizontal' : 'vertical';
-
-  $variables['is_required'] = $element['#required'] ?? FALSE;
+  // The label references the control via its id; #label_for allows elements
+  // (such as managed_file) to point the label at an inner control instead.
+  $variables['control_id'] = (string) (!empty($element['#label_for']) ? $element['#label_for'] : ($element['#id'] ?? ''));
+  $variables['is_required'] = !empty($element['#required']);
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
-  $variables['description'] = $element['#description'] ?? '';
-  // Label component requires required_text to be string; pass empty when not required.
-  $variables['required_text'] = ($variables['is_required'] ? (string) t('(Required)') : '');
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
+
   $variables['is_invalid'] = !empty($element['#errors']);
   $variables['message'] = $variables['message'] ?? ['content' => ''];
   if ($variables['is_invalid']) {
-    $variables['attributes']['aria-invalid'] = 'true';
-    $variables['message']['content'] = $element['#errors'] ?? '';
+    $variables['message']['content'] = $element['#errors'];
     $element_id = $element['#id'] ?? $element['#attributes']['data-drupal-selector'] ?? '';
     if (!empty($element_id)) {
-      $element_id .= '--error-message';
-      $variables['message']['attributes'] = new Attribute(['id' => $element_id]);
-      $variables['attributes']['aria-describedby'] = $element_id;
+      $variables['message']['attributes'] = new Attribute(['id' => $element_id . '--error-message']);
     }
   }
-  $variables['placeholder'] = $element['#placeholder'] ?? $element['#attributes']['placeholder'] ?? '';
-  $prefix = $element['#field_prefix'] ?? $element['#prefix'] ?? '';
+
+  $prefix = $element['#field_prefix'] ?? '';
   $variables['prefix'] = !empty($prefix) ? [
     '#type' => 'markup',
     '#markup' => $prefix,
-  ] : $prefix;
-  $suffix = $element['#field_suffix'] ?? $element['#suffix'] ?? '';
+  ] : '';
+  $suffix = $element['#field_suffix'] ?? '';
   $variables['suffix'] = !empty($suffix) ? [
     '#type' => 'markup',
     '#markup' => $suffix,
-  ] : $suffix;
+  ] : '';
 }
 
 /**
- * Preprocesses a form element control.
+ * Preprocesses a checkboxes/radios group.
+ *
+ * The group template renders a Field-style fieldset structure around the
+ * core-rendered options passed in 'children'.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_preprocess_form_element__control(array &$variables): void {
+function _civictheme_preprocess_form_element__group(array &$variables, string $type): void {
   $element = $variables['element'];
 
-  $allowed_attributes = ['size', 'maxlength', 'rows', 'autocomplete'];
+  _civictheme_preprocess_form_element__theme($variables);
 
-  $attributes = [];
+  // Apply wrapper attributes to the group wrapper, keeping the attributes
+  // (such as the group id) prepared by core.
+  if (!empty($element['#wrapper_attributes'])) {
+    $wrapper_attributes = $element['#wrapper_attributes'];
+    $wrapper_classes = (array) ($wrapper_attributes['class'] ?? []);
+    unset($wrapper_attributes['class']);
+    $variables['attributes'] = $wrapper_attributes + $variables['attributes'];
+    $variables['attributes']['class'] = array_merge((array) ($variables['attributes']['class'] ?? []), $wrapper_classes);
+  }
 
-  $allowed_attributes_map = array_map(function ($attribute) {
-    return '#' . $attribute;
-  }, $allowed_attributes);
+  $variables['type'] = $type;
+  $variables['title'] = (string) ($element['#title'] ?? '');
 
-  foreach ($allowed_attributes_map as $key) {
-    if (isset($element[$key])) {
-      $attributes[substr($key, 1)] = $element[$key];
+  $title_display = (string) ($element['#title_display'] ?? 'visible');
+  $title_display = in_array($title_display, ['none', 'hidden'], TRUE) ? 'hidden' : $title_display;
+  $title_display = in_array($title_display, ['visually_hidden', 'invisible'], TRUE) ? 'invisible' : $title_display;
+  $title_display = in_array($title_display, ['hidden', 'invisible'], TRUE) ? $title_display : 'visible';
+  if (empty($variables['title'])) {
+    $title_display = 'hidden';
+  }
+  $variables['title_display'] = $title_display;
+
+  $variables['description'] = $element['#description'] ?? '';
+  $variables['is_required'] = !empty($element['#required']);
+  $variables['required_text'] = $variables['is_required'] ? (string) t('(required)') : '';
+  $variables['is_disabled'] = isset($element['#attributes']['disabled']);
+  $variables['is_invalid'] = !empty($element['#errors']);
+  $options_display = $element['#options_display'] ?? '';
+  $variables['orientation'] = in_array($options_display, ['inline', 'buttons_horizontal']) ? 'horizontal' : 'vertical';
+  $variables['name'] = $element['#name'] ?? '';
+
+  $variables['message'] = ['content' => ''];
+  $element_id = $element['#id'] ?? '';
+  if ($variables['is_invalid']) {
+    $variables['message']['content'] = $element['#errors'];
+    if (!empty($element_id)) {
+      $variables['message']['attributes'] = new Attribute(['id' => $element_id . '--error-message']);
     }
   }
 
-  if (!empty($element['#attributes']) && is_iterable($element['#attributes'])) {
-    foreach ($element['#attributes'] as $key => $value) {
-      if (str_starts_with($key, 'data') || in_array($key, $allowed_attributes)) {
-        $attributes[$key] = is_array($value) ? implode(' ', $value) : $value;
-      }
-    }
-  }
+  $variables['description_id'] = !empty($element_id) && !empty($variables['description']) ? $element_id . '--description' : '';
 
-  $modifier_class = $element['#attributes']['class'] ?? [];
-  $modifier_class[] = 'form-element';
-  $modifier_class[] = 'form-element--type-' . $variables['type'];
-  $modifier_class[] = 'form-element--api-' . $element['#type'];
-  $modifier_class[] = 'form-control';
-  if (in_array($variables['type'], ['checkbox', 'radio'])) {
-    $modifier_class[] = 'form-boolean';
-    $modifier_class[] = Html::getClass('form-boolean--type-' . $variables['type']);
-  }
-  if (is_array($modifier_class)) {
-    $modifier_class = implode(' ', $modifier_class);
-  }
+  _civictheme_preprocess_form_element__classes($variables);
 
-  $attributes = new Attribute($attributes);
-  $variables['control'][] = [
-    'name' => $element['#attributes']['name'] ?? ($element['#name'] ?? ''),
-    'value' => isset($element['#value']) && is_array($element['#value']) ? $element['#value'] : (string) ($element['#value'] ?? ''),
-    'id' => $element['#id'] ?? '',
-    'options' => $variables['options'] ?? [],
-    'is_multiple' => $variables['is_multiple'] ?? FALSE,
-    'attributes' => $attributes,
-    'modifier_class' => $modifier_class,
-    'theme' => !empty($variables['theme']) ? $variables['theme'] : 'light',
+  $variables['#attached']['library'][] = 'core/components.civictheme--field';
+}
+
+/**
+ * Adds CivicTheme control classes and validation attributes to a control.
+ *
+ * Applies to controls rendered by the core input, select and textarea
+ * templates. The classes stay in the element attributes (the conversion to
+ * modifier_class is skipped) because core templates print attributes
+ * directly.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_control_attributes(array &$variables, string $kind): void {
+  $element = $variables['element'];
+  $type = $element['#type'] ?? 'input';
+  $theme = $variables['theme'] ?? 'light';
+
+  $classes = [
+    'ct-' . $kind,
+    'ct-theme-' . $theme,
+    'ct-field__control',
+    'form-element',
+    'form-element--type-' . $type,
+    'form-element--api-' . $type,
+    'form-control',
   ];
 
-  // Set control name for search elements if not already set.
-  if (
-    empty($variables['control'][0]['name']) &&
-    $element['#type'] === 'search' &&
-    !empty($element['#id'])
-  ) {
-    $variables['control'][0]['name'] = $element['#id'];
+  if (in_array($type, ['checkbox', 'radio'])) {
+    $classes[] = 'form-boolean';
+    $classes[] = Html::getClass('form-boolean--type-' . $type);
   }
 
-  if ($element['#type'] === 'checkbox') {
-    $variables['control'][0]['is_checked'] = $element['#value'] ?? FALSE;
-    $variables['control'][0]['is_checked'] = (bool) $variables['control'][0]['is_checked'];
+  $attributes = [];
+  if (!empty($element['#errors'])) {
+    $classes[] = 'ct-' . $kind . '--is-invalid';
+    $attributes['aria-invalid'] = 'true';
+    if (!empty($element['#id'])) {
+      $attributes['aria-describedby'] = $element['#id'] . '--error-message';
+    }
   }
+
+  if (!$variables['attributes'] instanceof Attribute) {
+    $variables['attributes'] = new Attribute($variables['attributes'] ?? []);
+  }
+
+  $variables['attributes']->addClass($classes);
+  foreach ($attributes as $name => $value) {
+    if (!$variables['attributes']->hasAttribute($name)) {
+      $variables['attributes']->setAttribute($name, $value);
+    }
+  }
+  $variables['attributes']->removeAttribute('#civictheme_theme', '#component_theme');
+
+  // The control markup is rendered by core templates, not by the component,
+  // so the component's auto-generated library must be attached explicitly.
+  $variables['#attached']['library'][] = 'core/components.civictheme--' . $kind;
+
+  // Keep the classes on the control: core templates print attributes
+  // directly, so skip the global attributes-to-modifier_class conversion.
+  $variables['modifier_class'] = FALSE;
+}
+
+/**
+ * Maps an element API type to the presentation type used for classes.
+ */
+function _civictheme_form_element_presentation_type(string $type): string {
+  $map = [
+    'webform_time' => 'time',
+    'webform_date' => 'date',
+  ];
+
+  return $map[$type] ?? $type;
 }
 
 /**
@@ -715,15 +563,6 @@ function _civictheme_preprocess_form_element__description(array &$variables): vo
     return;
   }
   $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
-}
-
-/**
- * Preprocesses form element wrapper classes.
- */
-function _civictheme_preprocess_form_element__wrapper_classes(array &$variables): void {
-  if (!empty($variables['element']['#wrapper_attributes'])) {
-    $variables['attributes'] = $variables['element']['#wrapper_attributes'];
-  }
 }
 
 /**

@@ -19,6 +19,26 @@ use Drupal\paragraphs\Entity\Paragraph;
 function civictheme_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   _civictheme_form_alter__webform_submission($form, $form_state, $form_id);
   _civictheme_form_alter__non_form_elements($form);
+  _civictheme_form_alter__required_radios($form);
+}
+
+/**
+ * Marks the options of required radios groups as required.
+ *
+ * Core does not propagate #required from a radios group to its options, so
+ * native browser validation never fires for them. Setting the attribute on
+ * the group element propagates it onto every option input via the element
+ * process callback.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_alter__required_radios(array &$elements): void {
+  foreach (Element::children($elements) as $key) {
+    if (($elements[$key]['#type'] ?? '') === 'radios' && !empty($elements[$key]['#required'])) {
+      $elements[$key]['#attributes']['required'] = 'required';
+    }
+    _civictheme_form_alter__required_radios($elements[$key]);
+  }
 }
 
 /**

@@ -12,7 +12,7 @@ Feature: Field, Radios
     And I should see an ".ct-field.js-form-item-test-radios-1 label" element
     And I should see an ".ct-field.js-form-item-test-radios-1 legend:contains('Radios, Title visible, no default value, no description, no error')" element
     And I should not see a ".ct-field.js-form-item-test-radios-1 .ct-field-description" element
-    And I should see a ".ct-field.js-form-item-test-radios-1 ul.ct-item-list" element
+    And I should see a ".ct-field.js-form-item-test-radios-1 fieldset.ct-field__wrapper" element
     And I should see a ".ct-field.js-form-item-test-radios-1 input[type='radio']" element
     And I should see a ".ct-field.js-form-item-test-radios-1 input[id='edit-test-radios-1-option-1']" element
     And I should see a ".ct-field.js-form-item-test-radios-1 input[id='edit-test-radios-1-option-2']" element
@@ -31,7 +31,7 @@ Feature: Field, Radios
     And I should see an ".ct-field.js-form-item-test-radios-2 label" element
     And I should see an ".ct-field.js-form-item-test-radios-2 legend:contains('Radios, Title visible, default value, no description, no error, required, with attributes')" element
     And I should not see a ".ct-field.js-form-item-test-radios-2 .ct-field-description" element
-    And I should see a ".ct-field.js-form-item-test-radios-2 ul.ct-item-list" element
+    And I should see a ".ct-field.js-form-item-test-radios-2 fieldset.ct-field__wrapper" element
     And I should see a ".ct-field.js-form-item-test-radios-2 input[type='radio']" element
     And I should see a ".ct-field.js-form-item-test-radios-2 input[id='edit-test-radios-2-option-1']" element
     And I should see a ".ct-field.js-form-item-test-radios-2 input[id='edit-test-radios-2-option-1'][checked]" element
@@ -57,7 +57,7 @@ Feature: Field, Radios
     And I should see an ".ct-field.js-form-item-test-radios-3 legend.ct-visually-hidden" element
     And I should see a ".ct-field.js-form-item-test-radios-3 legend:contains('Radios, Title visually hidden, default value, description, no error')" element
     And I should see a ".ct-field.js-form-item-test-radios-3 .ct-field-description:contains('This is a description')" element
-    And I should see a ".ct-field.js-form-item-test-radios-3 ul.ct-item-list" element
+    And I should see a ".ct-field.js-form-item-test-radios-3 fieldset.ct-field__wrapper" element
     And I should see a ".ct-field.js-form-item-test-radios-3 input[type='radio']" element
     And I should see a ".ct-field.js-form-item-test-radios-3 input[id='edit-test-radios-3-option-1']" element
     And I should see a ".ct-field.js-form-item-test-radios-3 input[id='edit-test-radios-3-option-2'][checked]" element
@@ -71,7 +71,7 @@ Feature: Field, Radios
     And I should see an ".ct-field.js-form-item-test-radios-4" element
     And I should not see a ".ct-field.js-form-item-test-radios-4 label.ct__title" element
     And I should see a ".ct-field.js-form-item-test-radios-4 .ct-field-description:contains('This is a description')" element
-    And I should see a ".ct-field.js-form-item-test-radios-4 ul.ct-item-list" element
+    And I should see a ".ct-field.js-form-item-test-radios-4 fieldset.ct-field__wrapper" element
     And I should see a ".ct-field.js-form-item-test-radios-4 input[type='radio']" element
     And I should see a ".ct-field.js-form-item-test-radios-4 input[id='edit-test-radios-4-option-1']" element
     And I should see a ".ct-field.js-form-item-test-radios-4 input[id='edit-test-radios-4-option-2']" element
@@ -87,7 +87,7 @@ Feature: Field, Radios
     And I should see an ".ct-field.js-form-item-test-radios-5 label" element
     And I should see an ".ct-field.js-form-item-test-radios-5 legend:contains('Radios, Title visible, default value, no description, disabled')" element
     And I should not see a ".ct-field.js-form-item-test-radios-5 .ct-field-description" element
-    And I should see a ".ct-field.js-form-item-test-radios-5 ul.ct-item-list" element
+    And I should see a ".ct-field.js-form-item-test-radios-5 fieldset.ct-field__wrapper" element
     And I should see a ".ct-field.js-form-item-test-radios-5 input[type='radio']" element
     And I should see a ".ct-field.js-form-item-test-radios-5 input[id='edit-test-radios-5-option-1'][checked]" element
     And I should see a ".ct-field.js-form-item-test-radios-5 input[id='edit-test-radios-5-option-2']" element

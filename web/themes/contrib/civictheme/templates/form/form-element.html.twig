@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a form element.
+ *
+ * Maps the core-prepared form element variables onto the CivicTheme Field
+ * component and passes the core-rendered control through the component's
+ * control slot. The control markup itself is produced by the core input,
+ * select and textarea templates with CivicTheme classes added in preprocess.
+ */
+#}
+
+{% include 'civictheme:field' with {
+  theme: theme|default('light'),
+  type: type|default(''),
+  title: title|default(''),
+  title_display: title_display|default('visible'),
+  title_size: title_size|default('regular'),
+  orientation: orientation|default('vertical'),
+  is_required: is_required|default(false),
+  is_disabled: is_disabled|default(false),
+  is_invalid: is_invalid|default(false),
+  description: description|default(''),
+  message: message|default(null),
+  id: control_id|default(''),
+  required_text: required_text|default(''),
+  prefix: prefix|default(''),
+  suffix: suffix|default(''),
+  control: children,
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}

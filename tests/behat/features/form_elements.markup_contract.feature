@@ -45,7 +45,7 @@ Feature: Form element markup contract
     Then the element "input#edit-first-name" should have a "required" attribute
     And the element "input#edit-email" should have a "required" attribute
     And the element "textarea#edit-enquiry" should have a "required" attribute
-    And I should see "(Required)" in the "label[for=edit-first-name]" element
+    And I should see "(required)" in the "label[for=edit-first-name]" element
     And I should see the "[data-drupal-selector=edit-actions-submit]" element with a "class" attribute containing "ct-button"
     And the element "[data-drupal-selector=edit-actions-submit]" should have a "value" attribute equal to "Send"
 

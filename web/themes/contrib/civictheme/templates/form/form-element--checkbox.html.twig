@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a checkbox form element.
+ *
+ * Renders the core-rendered control before its label (single checkboxes and
+ * group options alike), inside the Field wrapper structure.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set classes = [
+  'ct-field',
+  theme_class,
+  'ct-field--' ~ type|default('checkbox'),
+  'ct-field--' ~ orientation|default('vertical'),
+  is_required ? 'ct-field--required' : '',
+  is_disabled ? 'ct-field--disabled' : '',
+  is_invalid ? 'ct-field--invalid' : '',
+  modifier_class|default(''),
+]|join(' ')|trim %}
+
+<div class="{{ classes }}" {% if attributes %}{{- attributes -}}{% endif %}>
+  <div class="ct-field__wrapper">
+    {% if prefix is not empty %}
+      <div class="ct-field__prefix">{{- prefix -}}</div>
+    {% endif %}
+
+    <div class="ct-field__control">
+      {{- children -}}
+      {{ label }}
+    </div>
+
+    {% if description is not empty %}
+      {% include 'civictheme:field-description' with {
+        theme: theme|default('light'),
+        content: description.content|default(description),
+        modifier_class: 'ct-field__description',
+        attributes: control_id is not empty ? create_attribute({id: control_id ~ '--description'}) : null,
+      } only %}
+    {% endif %}
+
+    {% if suffix is not empty %}
+      <div class="ct-field__suffix">{{- suffix -}}</div>
+    {% endif %}
+
+    {% if is_invalid %}
+      {% include 'civictheme:field-message' with {
+        theme: theme|default('light'),
+        type: 'error',
+        content: message.content|default(''),
+        modifier_class: 'ct-field__message',
+        attributes: message.attributes|default(create_attribute({})),
+      } only %}
+    {% endif %}
+  </div>
+</div>

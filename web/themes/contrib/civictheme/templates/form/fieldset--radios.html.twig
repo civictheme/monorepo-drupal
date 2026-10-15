@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the composite wrapper for a radios group.
+ *
+ * The group's fieldset structure is rendered in radios.html.twig, so the
+ * core composite fieldset wrapper is reduced to a plain container that keeps
+ * the wrapper attributes (ids and states wiring).
+ */
+#}
+
+<div{{ attributes }}>
+  {{ prefix }}
+  {{ children }}
+  {{ suffix }}
+</div>
