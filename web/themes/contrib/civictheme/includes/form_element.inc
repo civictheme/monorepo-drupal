@@ -71,10 +71,6 @@ function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
-
-  // The checkbox/radio form element templates render the Field structure
-  // without rendering the component, so its library is not auto-attached.
-  $variables['#attached']['library'][] = 'core/components.civictheme--field';
 }
 
 /**
