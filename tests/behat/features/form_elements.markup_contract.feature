@@ -40,6 +40,15 @@ Feature: Form element markup contract
     And the element "select#edit-select option[value=Afghanistan]" should have a "value" attribute equal to "Afghanistan"
 
   @api
+  Scenario: Display-only webform markup elements render as basic content, not fields
+    Given I go to "form/civictheme-test-webform-fields"
+    Then I should see the "#edit-advanced-html-text" element with a "class" attribute containing "ct-basic-content"
+    And I should see the "#edit-advanced-html-text" element with a "class" attribute containing "js-form-item"
+    And I should not see a "#edit-advanced-html-text.ct-field" element
+    And I should not see a "#edit-advanced-html-text .container" element
+    And I should not see a "#edit-markup-container .container" element
+
+  @api
   Scenario: Required enquiry fields carry the required attribute and marker
     Given I go to "enquiry"
     Then the element "input#edit-first-name" should have a "required" attribute
