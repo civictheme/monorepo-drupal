@@ -22,7 +22,7 @@
   is_invalid: element['#errors'] is not empty,
   description: description.content|default(''),
   id: element['#id']|default(''),
-  message: element['#errors'] is not empty ? { content: element['#errors'] } : null,
+  message: element['#errors'] is not empty ? {content: element['#errors']} : null,
   required_text: '(required)'|t,
   prefix: prefix|default(''),
   suffix: suffix|default(''),
