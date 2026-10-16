@@ -5,27 +5,29 @@
  * Form elements.
  *
  * CivicTheme renders form elements through 1:1 overrides of core form
- * templates (the Claro/Olivero pattern): core prepares every variable and
- * renders the control; the theme adds classes and small variables via thin
- * preprocess functions and maps the prepared variables onto CivicTheme
- * components in the template overrides. Controls are never rebuilt from the
- * render array, so core and contrib behaviour (ids, states, selectors,
- * checked state, ARIA) always survives.
+ * templates (the Claro/Olivero pattern): core prepares every variable, and
+ * the template overrides render the CivicTheme components from those
+ * variables - the control atoms (input, select, textarea, checkbox, radio)
+ * for the controls, the Field component for the element wrapper - with thin
+ * preprocess functions contributing classes and small variables. Controls
+ * are never rebuilt from the render array, so core and contrib behaviour
+ * (ids, states, selectors, checked state, ARIA) always survives.
  *
  * The render pipeline:
  *
- * - form_element: form-element.html.twig passes the core-rendered control
- *   through the CivicTheme Field component's control slot. The component
- *   understands the core title_display vocabulary directly (including the
- *   'after' label layout of single checkboxes and radios); per-type
- *   adjustments hook into the universal form_element__TYPE suggestions.
- * - input, select, textarea: thin preprocess adds the CivicTheme control
- *   classes and validation ARIA attributes to the core-rendered control.
+ * - form_element: form-element.html.twig passes the rendered control through
+ *   the CivicTheme Field component's control slot. The component understands
+ *   the core title_display vocabulary directly (including the 'after' label
+ *   layout of single checkboxes and radios); per-type adjustments hook into
+ *   the universal form_element__TYPE suggestions.
+ * - input, select, textarea: the template overrides render the matching
+ *   CivicTheme control atom from core's prepared attributes; thin preprocess
+ *   contributes the Drupal control classes and validation ARIA attributes.
  * - checkboxes, radios: the core composite fieldset wrapper around the group
  *   renders through the CivicTheme Field component in
  *   fieldset--checkboxes.html.twig and fieldset--radios.html.twig, mapped
  *   from the variables core's fieldset preprocessing prepares (the Claro
- *   pattern); the core-rendered options pass through the control slot.
+ *   pattern); the rendered options pass through the control slot.
  * - input__submit: input--submit.html.twig renders the Button component.
  *
  * Sub-themes override a single element type by providing the
