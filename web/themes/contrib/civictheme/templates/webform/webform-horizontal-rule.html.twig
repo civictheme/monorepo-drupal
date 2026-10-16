@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the Webform horizontal rule element.
+ *
+ * Renders the Horizontal Rule component for a theme-aware rule. Webform's
+ * own style-modifier classes are kept on the element but its stylesheet is
+ * deliberately not attached: the component look applies consistently.
+ */
+#}
+
+{% include 'civictheme:horizontal-rule' with {
+  theme: theme|default('light'),
+  attributes: attributes,
+  modifier_class: 'webform-horizontal-rule',
+} only %}

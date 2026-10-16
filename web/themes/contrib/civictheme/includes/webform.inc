@@ -32,7 +32,10 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables): vo
     '#component' => 'civictheme:basic-content',
     '#props' => [
       'vertical_spacing' => 'both',
-      'is_contained' => TRUE,
+      // Rendered fragments (element markup, descriptions, confirmation
+      // messages) inherit their width from the surrounding layout: a nested
+      // grid container would misalign them inside forms and messages.
+      'is_contained' => FALSE,
     ],
     '#slots' => [
       'content' => [
@@ -40,6 +43,14 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables): vo
       ],
     ],
   ];
+}
+
+/**
+ * Implements template_preprocess_webform_horizontal_rule().
+ */
+function civictheme_preprocess_webform_horizontal_rule(array &$variables): void {
+  $variables['theme'] = _civictheme_form_element_get_component_theme($variables['element'] ?? []);
+  unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
 }
 
 /**
