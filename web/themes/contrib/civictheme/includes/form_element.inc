@@ -105,6 +105,12 @@ function _civictheme_preprocess_form_element__boolean(array &$variables): void {
   if (in_array($variables['title_display'] ?? '', ['hidden', 'none'], TRUE) && $variables['title'] !== '') {
     $variables['title_display'] = 'invisible';
   }
+
+  // A single control needs a label[for] whatever the title_display value: the
+  // Field component's before position renders checkbox and radio titles as a
+  // fieldset legend, which fits an option group, not a single control (core
+  // renders a label for a single checkbox even with a 'before' display).
+  $variables['title_position'] = 'after';
 }
 
 /**
@@ -192,6 +198,34 @@ function _civictheme_preprocess_fieldset__group(array &$variables, string $type)
 
   $variables['type'] = $type;
   $variables['name'] = $variables['element']['#name'] ?? '';
+
+  // Webform's composite pre-render merges #wrapper_attributes into the
+  // fieldset attributes; core's keeps the element's own #attributes - which
+  // its process callback also copies onto every child control - and drops
+  // #wrapper_attributes. Rebuild the core-prepared wrapper attributes the way
+  // form elements get them: the element's wrapper attributes plus the wrapper
+  // id and classes core's composite pre-render contributes, keeping the
+  // control attributes (classes, data attributes, the required marker) on the
+  // controls only.
+  // A group keeps its fieldset structure and an accessible group name: a
+  // hidden legend degrades to a visually hidden one instead of dropping the
+  // fieldset wrapper (the Field component only renders the fieldset when its
+  // legend renders).
+  $element = $variables['element'];
+  $title = (string) ($element['#title'] ?? '');
+  if (in_array($variables['title_display'] ?? '', ['hidden', 'none'], TRUE) && $title !== '') {
+    $variables['title_display'] = 'invisible';
+  }
+
+  if (!civictheme_is_webform_element($element)) {
+    $attributes = $element['#wrapper_attributes'] ?? [];
+    if (empty($attributes['id']) && !empty($variables['attributes']['id'])) {
+      $attributes['id'] = $variables['attributes']['id'];
+    }
+    $attributes['class'] = array_merge((array) ($attributes['class'] ?? []), ['fieldgroup', 'form-composite']);
+    $variables['attributes'] = $attributes;
+  }
+
   _civictheme_preprocess_form_element__classes($variables);
 
   // The Field component renders the description with an id derived from the
