@@ -27,8 +27,8 @@ Feature: Form element markup contract
   @api
   Scenario: Option groups render fieldsets with legends and item labels
     Given I go to "form/civictheme-test-webform-fields"
-    Then the element "#edit-checkboxes--wrapper fieldset" should contain a legend as its first child
-    And the element "#edit-radios--wrapper fieldset" should contain a legend as its first child
+    Then the element "fieldset#edit-checkboxes--wrapper" should contain a legend as its first child
+    And the element "fieldset#edit-radios--wrapper" should contain a legend as its first child
     And the field with id "edit-checkboxes-all" should have an associated label displayed after it
     And I should see the "#edit-checkboxes input[type=checkbox]" element with a "class" attribute containing "ct-checkbox"
     And I should see the "#edit-radios input[type=radio]" element with a "class" attribute containing "ct-radio"

@@ -27,7 +27,8 @@
  *   renders through the CivicTheme Field component in
  *   fieldset--checkboxes.html.twig and fieldset--radios.html.twig, mapped
  *   from the variables core's fieldset preprocessing prepares (the Claro
- *   pattern); the rendered options pass through the control slot.
+ *   pattern); the Field root is the <fieldset> (is_group) and the rendered
+ *   options pass through the control slot.
  * - input__submit: input--submit.html.twig renders the Button component.
  *
  * Sub-themes override a single element type by providing the
@@ -74,45 +75,6 @@ function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form_element__generic($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
-}
-
-/**
- * Implements template_preprocess_form_element() for form_element__checkbox.
- *
- * A single checkbox renders its label after the control (the Field
- * component's "after" title position); registering this preprocess also
- * registers the suggestion, so the universal form-element.html.twig template
- * is reused.
- */
-function civictheme_preprocess_form_element__checkbox(array &$variables): void {
-  _civictheme_preprocess_form_element__boolean($variables);
-}
-
-/**
- * Implements template_preprocess_form_element() for form_element__radio.
- */
-function civictheme_preprocess_form_element__radio(array &$variables): void {
-  _civictheme_preprocess_form_element__boolean($variables);
-}
-
-/**
- * Prepares a single checkbox/radio form element.
- *
- * The after-control label layout itself comes from the core title_display
- * 'after' value, which the Field component understands directly.
- */
-function _civictheme_preprocess_form_element__boolean(array &$variables): void {
-  // A boolean control must keep an accessible label: a hidden title degrades
-  // to a visually hidden label instead of removing the label entirely.
-  if (in_array($variables['title_display'] ?? '', ['hidden', 'none'], TRUE) && $variables['title'] !== '') {
-    $variables['title_display'] = 'invisible';
-  }
-
-  // A single control needs a label[for] whatever the title_display value: the
-  // Field component's before position renders checkbox and radio titles as a
-  // fieldset legend, which fits an option group, not a single control (core
-  // renders a label for a single checkbox even with a 'before' display).
-  $variables['title_position'] = 'after';
 }
 
 /**
@@ -209,16 +171,7 @@ function _civictheme_preprocess_fieldset__group(array &$variables, string $type)
   // id and classes core's composite pre-render contributes, keeping the
   // control attributes (classes, data attributes, the required marker) on the
   // controls only.
-  // A group keeps its fieldset structure and an accessible group name: a
-  // hidden legend degrades to a visually hidden one instead of dropping the
-  // fieldset wrapper (the Field component only renders the fieldset when its
-  // legend renders).
   $element = $variables['element'];
-  $title = (string) ($element['#title'] ?? '');
-  if (in_array($variables['title_display'] ?? '', ['hidden', 'none'], TRUE) && $title !== '') {
-    $variables['title_display'] = 'invisible';
-  }
-
   if (!civictheme_is_webform_element($element)) {
     $attributes = $element['#wrapper_attributes'] ?? [];
     if (empty($attributes['id']) && !empty($variables['attributes']['id'])) {
