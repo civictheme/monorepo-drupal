@@ -15,7 +15,7 @@ Feature: Field, Textfield
     And I should see an ".ct-field.js-form-item-test-textfield-1 input.ct-field__control.ct-textfield" element
     And I should see a ".ct-field.js-form-item-test-textfield-1 input[id='edit-test-textfield-1']" element
     And I should see a ".ct-field.js-form-item-test-textfield-1 input[maxlength='128']" element
-    And I should not see a ".ct-field.js-form-item-test-textfield-1 input[value='']" element
+    And I should see a ".ct-field.js-form-item-test-textfield-1 input[value='']" element
     And I should not see a ".ct-field.js-form-item-test-textfield-1 input[size]" element
     And I should not see a ".ct-field.js-form-item-test-textfield-1 input[required]" element
     And I should not see a ".ct-field.js-form-item-test-textfield-1 input[disabled]" element

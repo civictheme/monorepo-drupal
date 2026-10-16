@@ -140,7 +140,7 @@ Feature: Test a sample of the core form elements
     # Range (range)
     And I should see an "[name='range']" element
     And I should see an "[id='edit-range']" element
-    And I should not see an ".ct-input.ct-theme-light.ct-field__control.form-range" element
+    And I should see an ".ct-input.ct-theme-light.ct-field__control.form-range" element
 
     # Search (search)
     And I should see an "[name='search']" element
@@ -148,8 +148,8 @@ Feature: Test a sample of the core form elements
     And I should see an ".ct-input.ct-theme-light.ct-field__control.form-search" element
 
     # Select (select)
-    And I should not see an "[name='select']" element
-    And I should not see an "[id='edit-select']" element
+    And I should see an "[name='select']" element
+    And I should see an "[id='edit-select']" element
     And I should see an ".ct-select.ct-theme-light.ct-field__control.form-select" element
 
     # Submit (submit)
@@ -188,10 +188,12 @@ Feature: Test a sample of the core form elements
     And I should see an "[id='edit-weight']" element
     And I should see an ".ct-select.ct-theme-light.ct-field__control.form-select" element
 
-    # Markup within a form
+    # Markup within a form. Bare markup and html_tag elements render unwrapped
+    # (core parity): only webform markup-family elements, which carry a
+    # form_element wrapper, are themed via the Basic Content component.
     And I should see "Markup within a form" in the "h2" element
-    And I should see "Test content 1" in the "#edit-non-form-elements .ct-basic-content p" element
-    And I should see an ".ct-basic-content.ct-theme-light ul li" element
+    And I should see "Test content 1" in the "#edit-non-form-elements p" element
+    And I should see an "#edit-non-form-elements ul li" element
     And I should see the text "List Item 1"
     And I should see the text "List Item 2"
     And I should see the text "List Item 3"

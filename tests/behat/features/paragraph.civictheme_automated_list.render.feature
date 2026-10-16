@@ -346,6 +346,9 @@ Feature: Automated list render
     # Filters render in view order (type, topic) so Topics is the 2nd item.
     When I click on ".ct-group-filter__filters li:nth-of-type(2) .ct-popover__link" element
     And I wait for AJAX to finish
+    # The popover expands with a 250ms collapsible animation; interacting with
+    # the select mid-animation fails as not-interactable.
+    And I wait 1 second
 
     # Select two topics and submit the exposed filter form.
     When I select "[TEST] Topic 1" from "topic[]"

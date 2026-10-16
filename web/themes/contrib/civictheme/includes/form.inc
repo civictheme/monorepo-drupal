@@ -19,6 +19,26 @@ use Drupal\paragraphs\Entity\Paragraph;
 function civictheme_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   _civictheme_form_alter__webform_submission($form, $form_state, $form_id);
   _civictheme_form_alter__non_form_elements($form);
+  _civictheme_form_alter__required_radios($form);
+}
+
+/**
+ * Marks the options of required radios groups as required.
+ *
+ * Core does not propagate #required from a radios group to its options, so
+ * native browser validation never fires for them. Setting the attribute on
+ * the group element propagates it onto every option input via the element
+ * process callback.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_alter__required_radios(array &$elements): void {
+  foreach (Element::children($elements) as $key) {
+    if (($elements[$key]['#type'] ?? '') === 'radios' && !empty($elements[$key]['#required'])) {
+      $elements[$key]['#attributes']['required'] = 'required';
+    }
+    _civictheme_form_alter__required_radios($elements[$key]);
+  }
 }
 
 /**
@@ -66,17 +86,12 @@ function _civictheme_form_alter__non_form_elements(array &$elements): void {
       }
     }
     if ($element_type !== NULL) {
-      // Add elements to modify to this switch.
+      // Add elements to modify to this switch. Display-only markup elements
+      // (processed_text, webform_markup) are themed at the template layer
+      // via form_element suggestions instead of a render array rebuild.
       switch ($elements[$element_key]['#type']) {
         case 'link':
           _civictheme_form_alter__non_form_elements__link($elements[$element_key]);
-          break;
-
-        case 'html_tag':
-        case 'markup':
-        case 'processed_text':
-        case 'webform_markup':
-          _civictheme_form_element__non_form_elements__markup($elements[$element_key]);
           break;
 
         default:
@@ -102,18 +117,6 @@ function _civictheme_form_alter__non_form_elements__link(array &$element): void 
     return;
   }
   $element['#attributes']['class'][] = 'ct-link';
-}
-
-/**
- * Preprocesses markup render elements rendered in forms.
- */
-function _civictheme_form_element__non_form_elements__markup(array &$element): void {
-  $element = [
-    '#content' => $element,
-    '#component_theme' => _civictheme_form_element_get_component_theme($element),
-    '#vertical_spacing' => 'none',
-    '#theme' => 'civictheme_basic_content',
-  ];
 }
 
 /**

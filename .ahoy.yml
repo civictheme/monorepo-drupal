@@ -424,6 +424,13 @@ commands:
     usage: Run BDD tests.
     cmd: ahoy cli php -d memory_limit=-1 vendor/bin/behat --colors "$@"
 
+  test-a11y:
+    usage: Run accessibility tests (axe-core via the chromium container).
+    cmd: |
+      docker compose up -d chromium &&
+      docker compose exec -T -w /app/tests/a11y chromium npm install --no-audit --no-fund &&
+      docker compose exec -T -w /app/tests/a11y -e A11Y_BASE_URL=http://nginx:8080 chromium npm test
+
   test-bats:
     usage: Run Bats tests (host only).
     cmd: ./scripts/test.assets.sh

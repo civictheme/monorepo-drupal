@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a select element.
+ *
+ * Renders the control through the CivicTheme Select component, passing
+ * core's prepared attributes and options straight through (the component
+ * options structure matches core's).
+ */
+#}
+
+{% include 'civictheme:select' with {
+  theme: theme|default('light'),
+  options: options|default([]),
+  is_invalid: is_invalid|default(false),
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}

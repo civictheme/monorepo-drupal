@@ -8,6 +8,16 @@ refactor baseline.
 ## Run locally
 
 ```bash
+ahoy test-a11y
+```
+
+This starts the `chromium` sidecar container (Chromium + Node, local/CI only
+— `quant.type: none` / `lagoon.type: none`, never deployed) and runs the
+suite inside it against `http://nginx:8080`.
+
+To run against a host browser instead:
+
+```bash
 cd tests/a11y
 npm install
 npm test
@@ -38,6 +48,13 @@ written to `.logs/a11y/report.json`.
 
 ## CI wiring
 
-Mirror the visual-regression job: install Chromium in the `cli` container,
-`npm ci` in this directory, then run with
-`PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser A11Y_BASE_URL=http://nginx:8080 npm test`.
+Use the `chromium` compose service (it is part of the stack in CI):
+
+```bash
+docker compose up -d chromium
+docker compose exec -T -w /app/tests/a11y chromium npm ci
+docker compose exec -T -w /app/tests/a11y -e A11Y_BASE_URL=http://nginx:8080 chromium npm test
+```
+
+The visual-regression job could use the same container instead of installing
+Chromium into `cli` on every run.

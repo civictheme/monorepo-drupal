@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display an input.
+ *
+ * Renders the control through the matching CivicTheme component, passing
+ * core's prepared attributes through (the component adds its ct-* classes;
+ * modifier_class carries the core and Drupal-specific classes). Inputs not
+ * prepared by the theme (reset, image buttons) keep the core rendering;
+ * submit buttons render through input--submit.html.twig.
+ */
+#}
+
+{% if civictheme_kind is defined %}
+  {% if civictheme_kind == 'checkbox' %}
+    {% include 'civictheme:checkbox' with {
+      theme: theme|default('light'),
+      is_invalid: is_invalid|default(false),
+      attributes: attributes|without('type'),
+      modifier_class: modifier_class|default(''),
+    } only %}
+  {% elseif civictheme_kind == 'radio' %}
+    {% include 'civictheme:radio' with {
+      theme: theme|default('light'),
+      is_invalid: is_invalid|default(false),
+      attributes: attributes|without('type'),
+      modifier_class: modifier_class|default(''),
+    } only %}
+  {% elseif civictheme_kind == 'textfield' %}
+    {% include 'civictheme:textfield' with {
+      theme: theme|default('light'),
+      is_invalid: is_invalid|default(false),
+      attributes: attributes|without('type'),
+      modifier_class: modifier_class|default(''),
+    } only %}
+  {% else %}
+    {% include 'civictheme:input' with {
+      theme: theme|default('light'),
+      is_invalid: is_invalid|default(false),
+      attributes: attributes,
+      modifier_class: modifier_class|default(''),
+    } only %}
+  {% endif %}
+{% else %}
+  <input{{ attributes }} />
+{% endif %}
+{{ children }}

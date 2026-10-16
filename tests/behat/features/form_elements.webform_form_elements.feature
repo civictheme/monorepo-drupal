@@ -22,8 +22,8 @@ Feature: Test a sample of the webform elements in the webform
 
         # Radio buttons (select_to_display_textarea)
         And I should see an "[name='select_to_display_textarea']" element
-        And I should see an "[id='edit-select-to-display-textarea-Display-textarea']" element
-        And I should see an "[id='edit-select-to-display-textarea-Do-not-display-textarea']" element
+        And I should see an "[id='edit-select-to-display-textarea-display-textarea']" element
+        And I should see an "[id='edit-select-to-display-textarea-do-not-display-textarea']" element
         And I should see an ".ct-radio.ct-theme-light.ct-field__control" element
 
         # Textarea (textarea)

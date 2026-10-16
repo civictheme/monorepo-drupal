@@ -121,6 +121,15 @@ elements: |-
       '#type': processed_text
       '#text': "<p><strong>Lorem Ipsum</strong><span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and </span><em><span>scrambled it to make a type specimen book</span></em><span>. It has survived not only five centuries, but also the leap into electronic </span><s><span>typesetting, remaining essentially </span></s><span>unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>"
       '#format': civictheme_rich_text
+    basic_markup:
+      '#type': webform_markup
+      '#markup': '<p>Webform markup element content.</p>'
+    horizontal_rule:
+      '#type': webform_horizontal_rule
+    warning_message:
+      '#type': webform_message
+      '#message_type': warning
+      '#message_message': 'Webform warning message content.'
     label:
       '#type': label
       '#title': Label

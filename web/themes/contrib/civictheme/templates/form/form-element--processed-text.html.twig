@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a processed text element in a form.
+ *
+ * Webform markup-family elements carry a form_element theme wrapper but are
+ * display content, not controls: render the content through the Basic Content
+ * component for rich-text typography instead of the Field component. The
+ * wrapper attributes and compat classes are kept so webform states and
+ * conditional logic still target the wrapper.
+ */
+#}
+
+{% include 'civictheme:basic-content' with {
+  theme: theme|default('light'),
+  content: children,
+  is_contained: false,
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}
