@@ -24,6 +24,17 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 }
 
 /**
+ * Implements template_preprocess_webform().
+ *
+ * The webform theme wrapper renders the form tag: theme it from the keys the
+ * webform submission form alter sets on the form root.
+ */
+function civictheme_preprocess_webform(array &$variables): void {
+  $variables['theme'] = _civictheme_form_element_get_component_theme($variables['element'] ?? []);
+  unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
+}
+
+/**
  * Implements hook_preprocess_webform_html_editor_markup().
  */
 function civictheme_preprocess_webform_html_editor_markup(array &$variables): void {
