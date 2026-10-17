@@ -425,8 +425,6 @@ function _civictheme_form_element_relocate_help(array &$variables, mixed $title)
  * component renders its own description wrapper with the "{id}--description"
  * id the control references, so the id webform moved onto the inner
  * container is dropped before rendering to avoid duplicate ids.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_form_element_flatten_description(mixed $content): string|\Stringable|NULL {
   if (!is_array($content)) {
@@ -436,7 +434,7 @@ function _civictheme_form_element_flatten_description(mixed $content): string|\S
     $content['description']['#attributes']->removeAttribute('id');
   }
 
-  return \Drupal::service('renderer')->render($content);
+  return _civictheme_form_element_flatten_markup($content);
 }
 
 /**
