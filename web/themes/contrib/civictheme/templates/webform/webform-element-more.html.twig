@@ -5,8 +5,9 @@
  *
  * Keeps webform's structure, classes and library - its JavaScript owns the
  * disclosure behaviour (aria-expanded wiring and the show/hide toggle) - and
- * renders the toggle through the CivicTheme Link component and the disclosed
- * content through the Basic Content component for rich-text typography.
+ * renders the toggle through the CivicTheme Link component. The disclosed
+ * content arrives already wrapped in the Basic Content component by the
+ * webform html editor markup preprocess.
  */
 #}
 {{ attach_library('webform/webform.element.more') }}
@@ -30,10 +31,6 @@
     } only -%}
   </div>
   <div id="{{ attributes.id }}--content" class="webform-element-more--content">
-    {% include 'civictheme:basic-content' with {
-      theme: theme,
-      content: more,
-      is_contained: false,
-    } only %}
+    {{ more }}
   </div>
 </div>

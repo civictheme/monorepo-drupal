@@ -1,10 +1,18 @@
 {# Containers render inside the form, which already sits in the page grid:
-   never emit a nested grid container. #}
-{% include 'civictheme:basic-content' with {
-  theme: theme|default('light'),
-  is_contained: is_contained|default(false),
-  vertical_spacing: vertical_spacing|default('none'),
-  with_background: with_background|default(false),
-  modifier_class: modifier_class|default(''),
-  content: content,
-} %}
+   never emit a nested grid container. Without editor overrides (webform
+   custom properties: with_background, vertical_spacing, is_contained) the
+   container renders a plain wrapper - Basic Content typography belongs to
+   the markup-family display elements, not to the fields inside a container.
+   The two branches produce different markup shapes by design. #}
+{% if with_background|default(false) or is_contained|default(false) or vertical_spacing|default('none') != 'none' %}
+  {% include 'civictheme:basic-content' with {
+    theme: theme|default('light'),
+    is_contained: is_contained|default(false),
+    vertical_spacing: vertical_spacing|default('none'),
+    with_background: with_background|default(false),
+    modifier_class: modifier_class|default(''),
+    content: content,
+  } %}
+{% else %}
+  <div class="ct-theme-{{ theme|default('light') }} {{ modifier_class|default('') }}" {{ attributes }}>{{ content }}</div>
+{% endif %}

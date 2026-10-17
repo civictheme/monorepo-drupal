@@ -33,10 +33,10 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables): vo
     '#type' => 'component',
     '#component' => 'civictheme:basic-content',
     '#props' => [
-      'vertical_spacing' => 'both',
-      // Rendered fragments (element markup, descriptions, confirmation
-      // messages) inherit their width from the surrounding layout: a nested
-      // grid container would misalign them inside forms and messages.
+      // Rendered fragments (element markup, descriptions, more content,
+      // confirmation messages) inherit their width and rhythm from the
+      // surrounding layout: a nested grid container would misalign them and
+      // vertical spacing is the consumer's concern, not the fragment's.
       'is_contained' => FALSE,
     ],
     '#slots' => [

@@ -47,8 +47,10 @@ Feature: Form element markup contract
     And I should not see a "#edit-advanced-html-text.ct-field" element
     And I should not see a "#edit-advanced-html-text .container" element
     And I should not see a "#edit-markup-container .container" element
-    And I should see the "#edit-basic-markup" element with a "class" attribute containing "ct-basic-content"
+    And I should see the "#edit-basic-markup" element with a "class" attribute containing "js-form-item"
+    And I should see a "#edit-basic-markup > .ct-basic-content" element
     And I should not see a "#edit-basic-markup .container" element
+    And I should not see a ".ct-basic-content .ct-basic-content" element
     And I should see the "hr#edit-horizontal-rule" element with a "class" attribute containing "ct-horizontal-rule"
     And I should see "Webform warning message content." in the ".ct-message .ct-message__content" element
     And I should not see a ".ct-message .container" element
