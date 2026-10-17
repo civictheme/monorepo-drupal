@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the webform element help tooltip.
+ *
+ * Renders the element's #help content through the CivicTheme Tooltip
+ * component instead of webform's tippy.js span, so the help popup uses the
+ * component's own behaviour and styling (webform's help library is
+ * deliberately not attached). The preprocess relocates title-level help next
+ * to the label, keeping the tooltip button outside the <label> element.
+ */
+#}
+
+{% set content %}{{ help }}{% endset %}
+{% include 'civictheme:tooltip' with {
+  theme: theme|default('light'),
+  title: help_title|default(''),
+  content: content,
+  icon: 'help',
+  position: 'auto',
+  modifier_class: 'ct-webform-element-help',
+} only %}

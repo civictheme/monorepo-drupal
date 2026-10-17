@@ -41,6 +41,7 @@ declare(strict_types=1);
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -73,8 +74,49 @@ function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array 
 function civictheme_preprocess_form_element(array &$variables): void {
   _civictheme_preprocess_form_element__theme($variables);
   _civictheme_preprocess_form_element__generic($variables);
+  _civictheme_preprocess_form_element__help($variables);
   _civictheme_preprocess_form_element__classes($variables);
   _civictheme_preprocess_form_element__description($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for form_element__item.
+ *
+ * Webform computed elements (webform_computed_token, webform_computed_twig)
+ * convert themselves to #type 'item' during processing so #states keep
+ * working; their #template key identifies them among item elements.
+ */
+function civictheme_preprocess_form_element__item(array &$variables): void {
+  if (isset($variables['element']['#template'])) {
+    _civictheme_preprocess_form_element__display_content($variables);
+  }
+}
+
+/**
+ * Wraps a display element's rendered content in the Basic Content component.
+ *
+ * Computed elements render display markup, not a control, through the
+ * form_element pipeline: the Field wrapper keeps the title, description and
+ * required state, and the markup passing through the control slot gains
+ * rich-text typography.
+ */
+function _civictheme_preprocess_form_element__display_content(array &$variables): void {
+  if (empty($variables['children'])) {
+    return;
+  }
+  $variables['children'] = [
+    '#type' => 'component',
+    '#component' => 'civictheme:basic-content',
+    '#props' => [
+      'theme' => $variables['theme'] ?? CivicthemeConstants::THEME_LIGHT,
+      'is_contained' => FALSE,
+    ],
+    '#slots' => [
+      'content' => [
+        '#markup' => $variables['children'],
+      ],
+    ],
+  ];
 }
 
 /**
@@ -156,6 +198,8 @@ function civictheme_preprocess_fieldset__radios(array &$variables): void {
  * state and the rendered options; the suggestion template maps them onto the
  * CivicTheme Field component. This helper contributes the theme, the
  * presentation type and the Drupal compat classes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_fieldset__group(array &$variables, string $type): void {
   _civictheme_preprocess_form_element__theme($variables);
@@ -182,6 +226,15 @@ function _civictheme_preprocess_fieldset__group(array &$variables, string $type)
   }
 
   _civictheme_preprocess_form_element__classes($variables);
+
+  // Webform rebuilds the group description content as a nested build and
+  // appends the #help build to the legend title: flatten the description for
+  // the Field component and relocate the legend help next to the control.
+  $description = _civictheme_form_element_flatten_description($variables['description']['content'] ?? NULL);
+  if ($description !== NULL) {
+    $variables['description']['content'] = $description;
+  }
+  _civictheme_form_element_relocate_help($variables, $variables['legend']['title'] ?? NULL);
 
   // The Field component renders the description with an id derived from the
   // group id, so the core-added reference to the wrapper-id-based description
@@ -316,16 +369,74 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
     $variables['message']['content'] = $element['#errors'];
   }
 
-  $prefix = $element['#field_prefix'] ?? '';
-  $variables['prefix'] = !empty($prefix) ? [
-    '#type' => 'markup',
-    '#markup' => $prefix,
-  ] : '';
-  $suffix = $element['#field_suffix'] ?? '';
-  $variables['suffix'] = !empty($suffix) ? [
-    '#type' => 'markup',
-    '#markup' => $suffix,
-  ] : '';
+  // Core maps #field_prefix/#field_suffix onto prefix/suffix; module
+  // preprocess may replace them with builds (webform renders element-level
+  // #help through them) - flatten builds to markup for the component props.
+  $variables['prefix'] = _civictheme_form_element_flatten_markup($variables['prefix'] ?? $element['#field_prefix'] ?? '');
+  $variables['suffix'] = _civictheme_form_element_flatten_markup($variables['suffix'] ?? $element['#field_suffix'] ?? '');
+}
+
+/**
+ * Flattens a preprocess variable to markup for a string component prop.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_element_flatten_markup(mixed $value): string|\Stringable {
+  if (is_array($value)) {
+    return \Drupal::service('renderer')->render($value);
+  }
+
+  return $value instanceof \Stringable ? $value : (string) ($value ?? '');
+}
+
+/**
+ * Relocates webform's title-level help tooltip out of the label.
+ *
+ * Webform appends the #help build into the label render array; the Field
+ * component renders the title from the element, so the help would be lost.
+ */
+function _civictheme_preprocess_form_element__help(array &$variables): void {
+  _civictheme_form_element_relocate_help($variables, $variables['label']['#title'] ?? NULL);
+}
+
+/**
+ * Relocates a webform #help build from a title build into the prefix.
+ *
+ * A tooltip button inside the <label> or <legend> would nest interactive
+ * elements, so the help renders between the title block and the control
+ * instead, through the Field prefix.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_element_relocate_help(array &$variables, mixed $title): void {
+  $help = is_array($title) ? ($title['help'] ?? NULL) : NULL;
+  if (!is_array($help)) {
+    return;
+  }
+  $prefix = _civictheme_form_element_flatten_markup($variables['prefix'] ?? '');
+  $variables['prefix'] = Markup::create(\Drupal::service('renderer')->render($help) . $prefix);
+}
+
+/**
+ * Flattens a module-rebuilt description content build to markup.
+ *
+ * Webform rebuilds the description content as a nested build carrying the
+ * visually-hidden handling and the (read) more disclosure. The Field
+ * component renders its own description wrapper with the "{id}--description"
+ * id the control references, so the id webform moved onto the inner
+ * container is dropped before rendering to avoid duplicate ids.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_element_flatten_description(mixed $content): string|\Stringable|NULL {
+  if (!is_array($content)) {
+    return NULL;
+  }
+  if (isset($content['description']['#attributes']) && $content['description']['#attributes'] instanceof Attribute) {
+    $content['description']['#attributes']->removeAttribute('id');
+  }
+
+  return \Drupal::service('renderer')->render($content);
 }
 
 /**
@@ -504,12 +615,12 @@ function _civictheme_preprocess_form_element__classes(array &$variables): void {
  * Preprocesses form element description.
  */
 function _civictheme_preprocess_form_element__description(array &$variables): void {
-  $variables['description'] = $variables['element']['#description'] ?? NULL;
+  // Module preprocess may rebuild the description content as a nested build:
+  // webform adds the visually-hidden handling and the (read) more disclosure
+  // this way. Render such a build; other elements keep the raw description.
+  $description = _civictheme_form_element_flatten_description($variables['description']['content'] ?? NULL);
+  $variables['description'] = $description ?? $variables['element']['#description'] ?? NULL;
   $variables['description_display'] = $variables['element']['#description_display'] ?? NULL;
-  if (!civictheme_is_webform_element($variables['element'] ?? [])) {
-    return;
-  }
-  $variables['description'] = $variables['description'] ?? $variables['element']['#help_title'] ?? NULL;
 }
 
 /**

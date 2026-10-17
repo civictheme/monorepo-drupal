@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of a webform section element.
+ *
+ * Composes the section from existing components: the title renders through
+ * the Heading component (honouring #title_tag for h1-h6; any other tag
+ * degrades to h2), the description through the Field Description component
+ * and errors through the Field Message component. The webform classes are
+ * kept so webform states and conditional logic still target the section.
+ * Layout lives in the theme stylesheet (assets/sass/form/_form.scss).
+ */
+#}
+{% set theme = theme|default('light') %}
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+    'webform-section',
+    'ct-webform-section',
+    'ct-theme-' ~ theme,
+  ]
+%}
+{% set description_content %}{{ description.content }}{% endset %}
+<section{{ attributes.addClass(classes) }}>
+  {% if title %}
+    {% set title_content %}{{ title }}{% endset %}
+    {% set title_level = title_tag|default('h2')|replace({h: ''}) %}
+    {%
+      set title_classes = [
+        'ct-webform-section__title',
+        'webform-section-title',
+        required ? 'js-form-required',
+        required ? 'form-required',
+      ]|filter(c => c)|join(' ')
+    %}
+    {% include 'civictheme:heading' with {
+      theme: theme,
+      content: title_content,
+      level: title_level in ['1', '2', '3', '4', '5', '6'] ? title_level : '2',
+      modifier_class: title_classes,
+      attributes: title_attributes,
+    } only %}
+  {% endif %}
+  <div class="webform-section-wrapper">
+    {% if errors %}
+      {% include 'civictheme:field-message' with {
+        theme: theme,
+        type: 'error',
+        content: errors,
+        modifier_class: 'ct-webform-section__message',
+      } only %}
+    {% endif %}
+    {% if description_display in ['before', 'invisible'] and description_content|trim %}
+      {% include 'civictheme:field-description' with {
+        theme: theme,
+        content: description_content,
+        modifier_class: 'ct-webform-section__description' ~ (description_display == 'invisible' ? ' ct-visually-hidden' : ''),
+        attributes: description.attributes,
+      } only %}
+    {% endif %}
+    {% if prefix %}
+      <span class="field-prefix">{{ prefix }}</span>
+    {% endif %}
+    {{ children }}
+    {% if suffix %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+    {% if description_display == 'after' and description_content|trim %}
+      {% include 'civictheme:field-description' with {
+        theme: theme,
+        content: description_content,
+        modifier_class: 'ct-webform-section__description',
+        attributes: description.attributes,
+      } only %}
+    {% endif %}
+  </div>
+</section>

@@ -54,6 +54,22 @@ Feature: Form element markup contract
     And I should not see a ".ct-message .container" element
 
   @api
+  Scenario: Webform composites and display elements render through CivicTheme components
+    Given I go to "form/civictheme-test-webform-fields"
+    Then I should see "Indicates required field" in the ".ct-webform-required" element
+    And I should see the "section#edit-section-elements" element with a "class" attribute containing "ct-webform-section"
+    And I should see "Section title" in the "section#edit-section-elements h2.ct-heading" element
+    And I should see the "section#edit-section-elements .ct-webform-section__description" element with a "class" attribute containing "ct-field-description"
+    And the field with id "edit-section-text-field" should have an associated label displayed before it
+    And I should see a ".js-form-item-text-field .ct-tooltip button.ct-tooltip__button" element
+    And I should not see a ".js-form-item-text-field label .ct-tooltip" element
+    And I should see the "#edit-email--more" element with a "class" attribute containing "ct-webform-more"
+    And I should see the "#edit-email--more a" element with a "class" attribute containing "ct-link"
+    And I should see a "#edit-email--more--content .ct-basic-content" element
+    And I should see a ".js-form-item-computed-token .ct-basic-content" element
+    And I should see a ".js-form-item-computed-twig .ct-basic-content" element
+
+  @api
   Scenario: Required enquiry fields carry the required attribute and marker
     Given I go to "enquiry"
     Then the element "input#edit-first-name" should have a "required" attribute

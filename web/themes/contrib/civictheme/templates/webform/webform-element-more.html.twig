@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the webform element (read) more disclosure.
+ *
+ * Keeps webform's structure, classes and library - its JavaScript owns the
+ * disclosure behaviour (aria-expanded wiring and the show/hide toggle) - and
+ * renders the toggle through the CivicTheme Link component and the disclosed
+ * content through the Basic Content component for rich-text typography.
+ */
+#}
+{{ attach_library('webform/webform.element.more') }}
+{% set theme = theme|default('light') %}
+{%
+  set classes = [
+    'js-webform-element-more',
+    'webform-element-more',
+    'ct-webform-more',
+    'ct-theme-' ~ theme,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="webform-element-more--link">
+    {%- include 'civictheme:link' with {
+      theme: theme,
+      text: more_title,
+      url: '#' ~ attributes.id ~ '--content',
+      attributes: create_attribute({role: 'button'}),
+      modifier_class: 'ct-webform-more__link',
+    } only -%}
+  </div>
+  <div id="{{ attributes.id }}--content" class="webform-element-more--content">
+    {% include 'civictheme:basic-content' with {
+      theme: theme,
+      content: more,
+      is_contained: false,
+    } only %}
+  </div>
+</div>

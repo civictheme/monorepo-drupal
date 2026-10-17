@@ -1,0 +1,49 @@
+//
+// Drupal form composite styles.
+//
+// Layout for the webform composite templates (templates/webform/), which
+// compose existing components rather than introducing new ones: the layout
+// rules live here, outside of the components.
+//
+
+@import 'components/00-base/variables';
+
+.ct-webform-section {
+  &:not(:last-child) {
+    margin-bottom: ct-spacing(6);
+  }
+
+  .ct-webform-section__title {
+    margin-top: 0;
+    margin-bottom: ct-spacing(3);
+  }
+}
+
+// The actions wrapper renders core's container markup around the buttons:
+// lay the buttons out as a wrapping row, stacked on small screens.
+.ct-webform .form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: ct-spacing(2);
+  align-items: stretch;
+
+  @include ct-breakpoint('m') {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.ct-webform-more {
+  margin-top: ct-spacing(1);
+
+  .webform-element-more--content {
+    margin-top: ct-spacing(1);
+  }
+}
+
+.ct-webform-required {
+  @include ct-typography('text-regular');
+
+  margin-bottom: ct-spacing(3);
+}
