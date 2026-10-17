@@ -1,0 +1,194 @@
+//
+// Draft styles for potential CivicTheme form components.
+//
+// Each block styles a draft Drupal template (templates/form/,
+// templates/webform/) that prototypes a potential uikit component theme-side
+// until the component is implemented upstream. Colours reuse existing
+// component tokens, so the light/dark palette cascades from the themed form
+// wrapper.
+//
+
+// Resolved against the build's component dir loadPath (components/ in the
+// base theme build, components_combined/ in sub-theme builds), so this file
+// compiles when a sub-theme's theme stylesheet imports it.
+@import '00-base/variables';
+
+//
+// Range (draft of a potential Range slider component).
+//
+// @see templates/form/input--range.html.twig
+// @see https://github.com/civictheme/uikit/issues/1045
+//
+.ct-range {
+  $root: &;
+
+  display: block;
+
+  #{$root}__control {
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: ct-spacing(3);
+    margin: 0;
+    background-color: transparent;
+
+    &:focus-visible {
+      outline: var(--ct-input-outline-width) solid var(--ct-input-outline-color);
+      outline-offset: var(--ct-input-outline-offset);
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: ct-spacing(1);
+      border-radius: var(--ct-input-border-radius);
+      background-color: var(--ct-input-border-color);
+    }
+
+    &::-moz-range-track {
+      height: ct-spacing(1);
+      border-radius: var(--ct-input-border-radius);
+      background-color: var(--ct-input-border-color);
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: ct-spacing(3);
+      height: ct-spacing(3);
+      margin-top: calc((#{ct-spacing(1)} - #{ct-spacing(3)}) / 2);
+      border: 2px solid var(--ct-button-primary-border-color);
+      border-radius: 50%;
+      background-color: var(--ct-button-primary-background-color);
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: ct-spacing(3);
+      height: ct-spacing(3);
+      border: 2px solid var(--ct-button-primary-border-color);
+      border-radius: 50%;
+      background-color: var(--ct-button-primary-background-color);
+      cursor: pointer;
+    }
+  }
+
+  &#{$root}--is-invalid {
+    #{$root}__control {
+      &::-webkit-slider-runnable-track {
+        background-color: var(--ct-input-invalid-border-color);
+      }
+
+      &::-moz-range-track {
+        background-color: var(--ct-input-invalid-border-color);
+      }
+    }
+  }
+
+  #{$root}__limits {
+    @include ct-typography('text-small');
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: ct-spacing(1);
+    color: var(--ct-field-description-color);
+  }
+}
+
+//
+// Wizard progress indicator (draft of the potential Progress Indicator
+// component, uikit issue #1044).
+//
+// @see templates/webform/webform-progress-tracker.html.twig
+// @see https://github.com/civictheme/uikit/issues/1044
+//
+.ct-progress-indicator {
+  $root: &;
+
+  display: flex;
+  margin: 0 0 ct-spacing(6);
+  padding: 0;
+  list-style: none;
+
+  #{$root}__step {
+    @include ct-typography('label-small');
+
+    position: relative;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    gap: ct-spacing(1);
+    text-align: center;
+    color: var(--ct-field-description-color);
+
+    // Connector line to the previous step.
+    &:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: calc(#{ct-spacing(2)} - 1px);
+      right: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: var(--ct-input-border-color);
+    }
+  }
+
+  #{$root}__marker {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: ct-spacing(4);
+    height: ct-spacing(4);
+    border: 2px solid var(--ct-input-border-color);
+    border-radius: 50%;
+    background-color: var(--ct-input-background-color);
+    color: var(--ct-label-color);
+  }
+
+  #{$root}__step--done,
+  #{$root}__step--current {
+    color: var(--ct-label-color);
+
+    &::before {
+      background-color: var(--ct-button-primary-background-color);
+    }
+
+    #{$root}__marker {
+      border-color: var(--ct-button-primary-border-color);
+      background-color: var(--ct-button-primary-background-color);
+      color: var(--ct-button-primary-color);
+    }
+  }
+}
+
+//
+// Managed file (draft layout for a potential File Upload component).
+//
+// Lays out the flat children of the managed_file widget: the file input, the
+// upload/remove buttons and the uploaded file row.
+//
+// @see templates/form/file-managed-file.html.twig
+// @see https://github.com/civictheme/uikit/issues/1046
+//
+.ct-managed-file {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: ct-spacing(2);
+
+  input[type='file'] {
+    flex: 1 1 100%;
+
+    @include ct-breakpoint('m') {
+      flex: 1 1 auto;
+    }
+  }
+
+  .file {
+    @include ct-typography('text-regular');
+
+    display: inline-flex;
+    align-items: center;
+    gap: ct-spacing(1);
+  }
+}

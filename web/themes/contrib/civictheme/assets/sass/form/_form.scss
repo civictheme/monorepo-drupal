@@ -6,7 +6,10 @@
 // rules live here, outside of the components.
 //
 
-@import 'components/00-base/variables';
+// Resolved against the build's component dir loadPath (components/ in the
+// base theme build, components_combined/ in sub-theme builds), so this file
+// compiles when a sub-theme's theme stylesheet imports it.
+@import '00-base/variables';
 
 .ct-webform-section {
   &:not(:last-child) {

@@ -5,7 +5,7 @@ Feature: Webform render
   Scenario: Form inputs are correctly validated
     Given I am an anonymous user
     When I visit "/feedback"
-    And I should see 3 ".progress-step" elements
+    And I should see 3 ".ct-progress-indicator__step" elements
     And I should see the text "Personal information"
     And I should see the text "Additional information"
     And I should see an "[name='name']" element
