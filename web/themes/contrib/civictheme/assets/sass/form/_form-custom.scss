@@ -30,7 +30,21 @@
     width: 100%;
     height: ct-spacing(3);
     margin: 0;
-    background-color: transparent;
+
+    // The control also carries .ct-input (the form element class contract),
+    // whose text-field chrome - border, padding, fill, hover border inset -
+    // reaches 3-class specificity on state selectors; the doubled class
+    // outranks it in every state regardless of stylesheet load order.
+    &#{$root}__control {
+      &,
+      &:hover,
+      &:focus-visible {
+        border: 0;
+        padding: 0;
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
 
     &:focus-visible {
       outline: var(--ct-input-outline-width) solid var(--ct-input-outline-color);

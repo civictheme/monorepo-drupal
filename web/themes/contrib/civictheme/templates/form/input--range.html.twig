@@ -4,8 +4,10 @@
  * CivicTheme range input (draft).
  *
  * Draft of a potential CivicTheme Range component, composed theme-side: the
- * native range control is styled from the theme stylesheet
- * (assets/sass/form/_form-custom.scss) until a uikit component exists.
+ * control renders through civictheme:input (keeping the form element class
+ * contract - ct-input, theme class, modifier classes) and is styled from the
+ * theme stylesheet (assets/sass/form/_form-custom.scss) until a uikit
+ * component exists.
  *
  * children carries webform's optional <output> element, which the
  * webform.element.range library positions against the control.
@@ -18,7 +20,12 @@
   {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
   {% set invalid_class = is_invalid|default(false) ? 'ct-range--is-invalid' : '' %}
   <div class="ct-range {{ theme_class }} {{ invalid_class }}">
-    <input class="ct-range__control {{ modifier_class|default('') }}"{{ attributes }} />
+    {% include 'civictheme:input' with {
+      theme: theme|default('light'),
+      is_invalid: is_invalid|default(false),
+      attributes: attributes,
+      modifier_class: ('ct-range__control ' ~ modifier_class|default(''))|trim,
+    } only %}
     {{ children }}
     {% if attributes['min'] is not null and attributes['max'] is not null %}
       <span class="ct-range__limits" aria-hidden="true">
