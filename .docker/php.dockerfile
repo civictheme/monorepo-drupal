@@ -17,3 +17,6 @@ RUN apk add --no-cache tzdata
 COPY --from=cli /app /app
 COPY .docker/entrypoints/php/* /quant-entrypoint.d/
 COPY .docker/entrypoints/php/01-php-debug.sh /lagoon/entrypoints/99-php-debug.sh
+
+# Custom PHP configuration.
+COPY .docker/config/php/*.ini /usr/local/etc/php/conf.d/
