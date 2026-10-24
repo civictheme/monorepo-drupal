@@ -552,6 +552,7 @@ function file_ignore_paths(): array {
     'components_combined',
     'dist',
     'node_modules',
+    'package-lock.json',
     'storybook-static',
     'vendor',
   ], file_internal_paths());

@@ -102,13 +102,16 @@
             "wikimedia/composer-merge-plugin": true
         },
         "platform": {
-            "php": "8.3.8"
+            "php": "8.4.27"
         },
         "audit": {
             "ignore": {
                 "PKSA-pr5h-1dpm-9x4k": "GovCMS upstream dependency - simplesamlphp/xmlseclibs",
                 "PKSA-sxbn-dpg6-6ng9": "GovCMS upstream dependency - simplesamlphp/xml-security",
-                "SA-CONTRIB-2026-094": "GovCMS upstream dependency - govcms/govcms pins drupal/entity_browser to 2.15.0; fixed in 2.16.0, pending a GovCMS release"
+                "SA-CONTRIB-2026-200": "GovCMS upstream dependency - govcms/govcms pins drupal/linked_field to 1.7.0; fixed in 1.8.0, pending a GovCMS release",
+                "SA-CONTRIB-2026-242": "GovCMS upstream dependency - govcms/govcms pins drupal/simple_oauth to 6.1.1; fixed in 6.1.3, pending a GovCMS release",
+                "SA-CONTRIB-2026-243": "GovCMS upstream dependency - govcms/govcms pins drupal/media_bulk_upload to 3.0.5; fixed in 3.0.6, pending a GovCMS release",
+                "SA-CONTRIB-2026-248": "GovCMS upstream dependency - govcms/govcms pins drupal/shield to 1.8.0; fixed in 1.9.0, pending a GovCMS release"
             }
         },
         "process-timeout": 0,

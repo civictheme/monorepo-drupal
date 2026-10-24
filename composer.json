@@ -99,7 +99,7 @@
             "symfony/runtime": true
         },
         "platform": {
-            "php": "8.3.8"
+            "php": "8.4.27"
         },
         "process-timeout": 0,
         "sort-packages": true

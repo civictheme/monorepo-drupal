@@ -6,3 +6,4 @@ storybook-static
 dist
 build
 build-config.json
+civictheme_starter_kit/package-lock.json
