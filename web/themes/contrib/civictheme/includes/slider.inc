@@ -25,9 +25,23 @@ function civictheme_preprocess_paragraph__civictheme_slider(array &$variables): 
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
 
-  if (!empty($variables['content']['field_c_p_slides'])) {
-    $variables['slides'] = $variables['content']['field_c_p_slides'];
+  $slides = $variables['content']['field_c_p_slides'] ?? NULL;
+  if (!is_array($slides) || $slides === []) {
+    return;
   }
+
+  /** @var \Drupal\Core\Render\RendererInterface $renderer */
+  $renderer = \Drupal::service('renderer');
+
+  // Render slides so markup can be checked.
+  $output = $renderer->hasRenderContext() ? $renderer->render($slides) : $renderer->renderInIsolation($slides);
+
+  // Check for content in the rendered slides.
+  if (trim(strip_tags((string) $output, '<img><svg><drupal-render-placeholder>')) === '') {
+    return;
+  }
+
+  $variables['slides'] = $output;
 }
 
 /**
@@ -60,6 +74,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(array &$variab
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$variables): void {
+  $variables['slide_available'] = FALSE;
+
   /** @var \Drupal\paragraphs\Entity\Paragraph|null $paragraph */
   $paragraph = $variables['paragraph'] ?? NULL;
   if ($paragraph === NULL || !$paragraph instanceof Paragraph) {
@@ -76,6 +92,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(array &$va
   if (empty($node)) {
     return;
   }
+
+  $variables['slide_available'] = TRUE;
 
   _civictheme_preprocess_paragraph__node_field__title($variables);
   _civictheme_preprocess_paragraph__node_field__topics($variables);

@@ -12,9 +12,8 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutChangesToGlobalState="true"
          failOnWarning="true"
-         printerClass="\Drupal\Tests\Listeners\HtmlOutputPrinter"
          cacheResult="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd">
     <php>
         <!-- Set error reporting to E_ALL. -->
         <ini name="error_reporting" value="32767"/>
@@ -99,6 +98,16 @@
               pathCoverage="false"
               ignoreDeprecatedCodeUnits="true"
               disableCodeCoverageIgnore="false">
+        <report>
+            <html outputDirectory="../.logs/coverage/phpunit/.coverage-html" lowUpperBound="50" highLowerBound="90"/>
+            <cobertura outputFile="../.logs/coverage/phpunit/cobertura.xml"/>
+        </report>
+    </coverage>
+
+    <!-- Files that code coverage is collected for. Moved out of <coverage> in
+         PHPUnit 10; without it PHPUnit reports "No filter is configured, code
+         coverage will not be processed". -->
+    <source>
         <include>
             <directory>web/modules/custom</directory>
             <directory>web/themes/custom</directory>
@@ -110,10 +119,5 @@
             <file>web/modules/custom/civictheme/rector.php</file>
             <file>web/themes/custom/civictheme/rector.php</file>
         </exclude>
-
-        <report>
-            <html outputDirectory="../.logs/coverage/phpunit/.coverage-html" lowUpperBound="50" highLowerBound="90"/>
-            <cobertura outputFile="../.logs/coverage/phpunit/cobertura.xml"/>
-        </report>
-    </coverage>
+    </source>
 </phpunit>

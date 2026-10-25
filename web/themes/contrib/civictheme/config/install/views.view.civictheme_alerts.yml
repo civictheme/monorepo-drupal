@@ -459,6 +459,10 @@ display:
     display_plugin: rest_export
     position: 1
     display_options:
+      pager:
+        type: none
+        options:
+          offset: 0
       style:
         type: serializer
         options:
@@ -477,7 +481,7 @@ display:
               raw_output: false
             field_c_n_alert_page_visibility:
               alias: visibility
-              raw_output: false
+              raw_output: true
       display_comment: ''
       display_extenders: {  }
       path: api/civictheme-alerts

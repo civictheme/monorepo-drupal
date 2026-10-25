@@ -79,13 +79,14 @@ Feature: CivicTheme Alert content type render
     # Revisit same page - the alert should remain dismissed.
     And I visit "civictheme_page" "[TEST] Test alerts on pages"
     And I should not see the text "[TEST] Test dismissing alert body all pages"
-    # New session - the alert should not be visible for logged in user.
+    # New session - the alert should be visible again because dismissals are
+    # stored in a session cookie rather than against the user account.
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
     And wait 5 second
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body all pages"
-    And I should not see the text "[TEST] Test dismissing alert body all pages"
+    And I should see the text "[TEST] Test dismissing alert body all pages"
 
   @api @javascript
   Scenario: Alerts should be dismissed and shown if their content was updated
@@ -133,6 +134,7 @@ Feature: CivicTheme Alert content type render
       """
     And I press "Save"
     When I edit civictheme_page "[TEST] Test alert visibility"
+    And I expand details containing an element with id "edit-path-0-pathauto"
     And I uncheck the box "Generate automatic URL alias"
     Then I fill in the following:
       | edit-path-0-alias | /test-alert/test-1 |
@@ -142,6 +144,7 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body visibility"
     When I edit civictheme_page "[TEST] Test alert visibility"
+    And I expand details containing an element with id "edit-path-0-pathauto"
     And I uncheck the box "Generate automatic URL alias"
     Then I fill in the following:
       | edit-path-0-alias | /test-alert/test-2 |
@@ -151,6 +154,7 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body visibility"
     When I edit civictheme_page "[TEST] Test alert visibility"
+    And I expand details containing an element with id "edit-path-0-pathauto"
     And I uncheck the box "Generate automatic URL alias"
     Then I fill in the following:
       | edit-path-0-alias | /test-alert-page |
@@ -160,6 +164,7 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should see the text "[TEST] Test alert body visibility"
     When I edit civictheme_page "[TEST] Test alert visibility"
+    And I expand details containing an element with id "edit-path-0-pathauto"
     And I uncheck the box "Generate automatic URL alias"
     Then I fill in the following:
       | edit-path-0-alias | /test-alerts |
@@ -169,6 +174,7 @@ Feature: CivicTheme Alert content type render
     And I wait for AJAX to finish
     Then I should not see the text "[TEST] Test alert body visibility"
     When I edit civictheme_page "[TEST] Test alert visibility"
+    And I expand details containing an element with id "edit-path-0-pathauto"
     And I uncheck the box "Generate automatic URL alias"
     Then I fill in the following:
       | edit-path-0-alias | /test-random-alert-page |

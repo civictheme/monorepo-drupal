@@ -251,6 +251,34 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
+   * Expand all collapsed details elements wrapping an element with ID.
+   *
+   * Admin themes may render form sections as collapsed "details" elements,
+   * which leaves the fields inside without a layout box and unreachable for
+   * the browser driver. Expanding is idempotent, so this is safe to use
+   * regardless of the initial state of the section.
+   *
+   * @code
+   * When I expand details containing an element with id "edit-path-0-pathauto"
+   * @endcode
+   *
+   * @When /^I expand details containing an? element with id "([^"]*)"$/
+   */
+  public function iExpandDetailsContainingElementWithId(string $id): void {
+    $this->getSession()->executeScript("
+      var element = document.getElementById('" . $id . "');
+      while (element) {
+        element = element.closest('details');
+        if (!element) {
+          break;
+        }
+        element.setAttribute('open', 'open');
+        element = element.parentElement;
+      }
+    ");
+  }
+
+  /**
    * Assert link with a href does not exist.
    *
    * Note that simplified wildcard is supported in "href".

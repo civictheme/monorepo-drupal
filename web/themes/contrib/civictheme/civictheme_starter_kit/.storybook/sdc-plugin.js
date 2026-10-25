@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { globSync } from 'glob';
+import { globSync } from 'node:fs';
 
 /**
  * Scans story files and their dependencies to find and return a list of

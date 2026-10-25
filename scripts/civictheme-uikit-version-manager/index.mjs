@@ -27,6 +27,8 @@ const THEME_PACKAGE_JSON = path.join(ROOT_DIR, 'web/themes/contrib/civictheme/pa
 
 // GitHub repository information
 const GITHUB_API_URL = 'https://api.github.com/repos/civictheme/uikit/branches';
+// GitHub returns 30 branches per page by default; max is 100.
+const GITHUB_BRANCHES_PER_PAGE = 60;
 const GITHUB_COMMITS_API_URL = 'https://api.github.com/repos/civictheme/uikit/commits/';
 const GITHUB_REPO_URL = 'github:civictheme/uikit';
 const NPM_RELEASE_PACKAGE_NAME = '@civictheme/sdc';
@@ -83,14 +85,14 @@ async function handleReleaseInstallation() {
       source: async (input) => {
         if (input === undefined) {
           // Show first 20 versions by default
-          return availableVersions.slice(0, 20);
+          return availableVersions.slice(0, 100);
         }
         // Filter versions based on input
         return availableVersions
           .filter((ver) => ver.toLowerCase().includes(input.toLowerCase()))
-          .slice(0, 20); // Limit results for better performance
+          .slice(0, 100); // Limit results for better performance
       },
-      pageSize: 20
+      pageSize: 100
     });
 
     // Update package.json files
@@ -115,6 +117,7 @@ async function handleDevInstallation() {
     // Fetch branches from GitHub repository
     console.log('Fetching branches from GitHub...');
     const branches = await fetchGitHubBranches();
+    console.log('Number of Branches from GitHub... ' + branches.length);
     if (!branches || branches.length === 0) {
       throw new Error('No branches found or error fetching branches');
     }
@@ -137,7 +140,7 @@ async function handleDevInstallation() {
             return branch.toLowerCase().includes(input.toLowerCase())
           });
       },
-      pageSize: 50
+      pageSize: 100
     });
 
     // Fetch the latest commit hash for the selected branch
@@ -206,7 +209,7 @@ async function fetchNpmVersions(packageName) {
  */
 async function fetchGitHubBranches() {
   try {
-    const response = await fetch(GITHUB_API_URL, {
+    const response = await fetch(`${GITHUB_API_URL}?per_page=${GITHUB_BRANCHES_PER_PAGE}`, {
       headers: {
         'Accept': 'application/vnd.github+json'
       }

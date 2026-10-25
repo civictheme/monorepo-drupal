@@ -13,9 +13,9 @@ Feature: Social Links Block Render
       | [TEST] CivicTheme XSS Icon | test_xss_svg.svg | published        |
 
     Given "civictheme_social_links" block_content:
-      | info            | field_b_theme | status | region       | moderation_state |
-      | Social Link 1   | light         | 1      | header_top_1 | published        |
-      | XSS Social Link | dark          | 1      | header_top_1 | published        |
+      | info            | status | moderation_state |
+      | Social Link 1   | 1      | published        |
+      | XSS Social Link | 1      | published        |
     And "field_c_b_social_icons" in "civictheme_social_links" "block_content" with "info" of "Social Link 1" has "civictheme_social_icon" paragraph:
       | field_c_p_icon                 | [TEST] CivicTheme Icon                |
       | field_c_p_link                 | 0: Test link - 1: https://example.com/test2 |

@@ -4,7 +4,7 @@
     "scripts/civictheme-dependency-checker"
   ],
   "dependencies": {
-    "@civictheme/sdc": "1.13.0"
+    "@civictheme/sdc": "1.14.0"
   },
   "scripts": {
     "uikit-change": "npm start --workspace=civictheme-uikit-version-change",

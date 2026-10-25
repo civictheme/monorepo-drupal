@@ -328,6 +328,7 @@ jobs:
   # Isolated theme build within a vanilla Drupal installation.
   # This replicates (to a degree) what Drupal CI would do.
 
+  # Current Drupal version, matching the one the monorepo builds against.
   build-isolated-php-83:
     <<: *runner_config
     docker:
@@ -335,10 +336,11 @@ jobs:
     environment:
       # QUANT route to be used for Drush --uri.
       QUANT_ROUTE: $QUANT_ROUTE
-      DRUPAL_VERSION: 10.3
-      DRUPAL_PROJECT_SHA: 10.x
+      DRUPAL_VERSION: 11.4
+      DRUPAL_PROJECT_SHA: 11.x
     <<: *job-build-isolated
 
+  # Oldest supported Drupal version, matching core_version_requirement.
   build-isolated-php-83-legacy:
     <<: *runner_config
     docker:
@@ -346,7 +348,7 @@ jobs:
     environment:
       # QUANT route to be used for Drush --uri.
       QUANT_ROUTE: $QUANT_ROUTE
-      DRUPAL_VERSION: 10.3
+      DRUPAL_VERSION: 10.6
       DRUPAL_PROJECT_SHA: 10.x
     <<: *job-build-isolated
 

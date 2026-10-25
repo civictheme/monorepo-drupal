@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUpdateHelper;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -797,6 +798,35 @@ function civictheme_post_update_alert_visibility_validation(): string {
 }
 
 /**
+ * Use raw alert visibility field values in the REST export.
+ *
+ * The raw values preserve path aliases containing HTML-sensitive characters,
+ * including <front> and ampersands.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_alert_visibility_raw_output(): string {
+  $config_name = 'views.view.civictheme_alerts';
+  $field_options_path = 'display.rest_export_civictheme_alerts.display_options.row.options.field_options';
+  $raw_output_path = $field_options_path . '.field_c_n_alert_page_visibility.raw_output';
+  $config_object = \Drupal::configFactory()->getEditable($config_name);
+  $field_options = $config_object->get($field_options_path);
+
+  if (!is_array($field_options) || !array_key_exists('field_c_n_alert_page_visibility', $field_options)) {
+    return (string) new TranslatableMarkup('Update to alert REST export skipped because the visibility field does not exist.');
+  }
+
+  if ($config_object->get($raw_output_path) === TRUE) {
+    return (string) new TranslatableMarkup('Alert REST export already uses raw visibility field values.');
+  }
+
+  $config_object->set($raw_output_path, TRUE);
+  $config_object->save();
+
+  return (string) new TranslatableMarkup('Updated alert REST export to use raw visibility field values.');
+}
+
+/**
  * Update the view mode 'civictheme_snippet' to 'civictheme_navigation_card'.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -1316,4 +1346,64 @@ function civictheme_post_update_migrate_logo_image_alt_to_per_type(): Translatab
   }
 
   return new TranslatableMarkup('No legacy logo image alt value to migrate, or Primary and Secondary logo alt fields already set.');
+}
+
+/**
+ * Create or refresh form display for civictheme_fast_fact_card paragraph.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_add_fast_fact_card_form_display(): string {
+  $config_name = 'core.entity_form_display.paragraph.civictheme_fast_fact_card.default';
+  $form_display_id = 'paragraph.civictheme_fast_fact_card.default';
+
+  $config_path = \Drupal::service('extension.list.theme')->getPath('civictheme') . '/config/install';
+  $source = new FileStorage($config_path);
+  $config_data = $source->read($config_name);
+  if (!is_array($config_data)) {
+    return (string) new TranslatableMarkup('Form display config not found in install path. Skipping update.');
+  }
+
+  /**
+   * @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
+   */
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $existing = $storage->load($form_display_id);
+
+  if ($existing) {
+    $editable = \Drupal::configFactory()->getEditable($config_name);
+    unset($config_data['uuid'], $config_data['_core']);
+    $uuid = $editable->get('uuid');
+    if ($uuid) {
+      $config_data['uuid'] = $uuid;
+    }
+    $editable->setData($config_data)->save();
+    return (string) new TranslatableMarkup('Refreshed form display for civictheme_fast_fact_card paragraph from install config.');
+  }
+
+  $config_entity = $storage->createFromStorageRecord($config_data);
+  $config_entity->save();
+
+  return (string) new TranslatableMarkup('Created form display for civictheme_fast_fact_card paragraph.');
+}
+
+/**
+ * Return all active alerts before client-side page visibility matching.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_post_update_remove_alert_export_limit(): string {
+  $config = \Drupal::configFactory()->getEditable('views.view.civictheme_alerts');
+  $display_path = 'display.rest_export_civictheme_alerts';
+  if ($config->isNew() || $config->get($display_path . '.display_plugin') !== 'rest_export') {
+    return (string) new TranslatableMarkup('Alert export pager update skipped: REST display does not exist.');
+  }
+
+  // REST exports need an explicit pager; changing the default is insufficient.
+  $config->set($display_path . '.display_options.pager', [
+    'type' => 'none',
+    'options' => ['offset' => 0],
+  ])->save();
+
+  return (string) new TranslatableMarkup('Updated the alert REST export to return all active alerts.');
 }

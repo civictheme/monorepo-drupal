@@ -99,7 +99,7 @@ use Drupal\Core\Template\Attribute;
 /**
  * Implements hook_theme_suggestions_form_element_alter().
  */
-function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables): void {
   // Redirect rendering to a dedicated form element template and allow to
   // preprocess form elements based on their type.
   //
@@ -187,7 +187,7 @@ function _civictheme_supported_form_element(array $form_element): bool {
 /**
  * Implements hook_theme_suggestions_fieldset_alter().
  */
-function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+function civictheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables): void {
   // Checkboxes and radios are rendered through a fieldset element. We need to
   // redirect the rendering to a dedicated form element template, but only for
   // supported types to preserve the default rendering for other types of

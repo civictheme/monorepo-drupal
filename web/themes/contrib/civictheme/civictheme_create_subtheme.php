@@ -548,9 +548,11 @@ function file_ignore_paths(): array {
     '.idea',
     '.components-civictheme',
     '.data',
+    'build-config.json',
     'components_combined',
     'dist',
     'node_modules',
+    'package-lock.json',
     'storybook-static',
     'vendor',
   ], file_internal_paths());

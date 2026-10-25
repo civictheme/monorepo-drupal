@@ -122,7 +122,7 @@ function _civictheme_preprocess_top_mobile_menu(array &$variables, string $menu_
 /**
  * Gets the mobile search links from search blocks.
  *
- * @return array<array>
+ * @return array<string, mixed>
  *   Search links to append to mobile navigation top menu.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)

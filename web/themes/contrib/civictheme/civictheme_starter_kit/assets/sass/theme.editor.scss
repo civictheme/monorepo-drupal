@@ -9,7 +9,8 @@
 @import 'components_combined/00-base/**/fonts';
 @import 'components_combined/01-atoms/**/button/*.scss';
 
-.ck-editor__editable {
+.ck-editor__editable,
+.ck-content.ck-editor__editable {
   @include ct-content();
   @include ct-content-light();
 }

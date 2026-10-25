@@ -396,7 +396,7 @@ function _civictheme_preprocess_views_view__selected_filters(array &$variables):
  * @param \Drupal\views\ViewExecutable $view
  *   The view executable, with display set.
  *
- * @return array
+ * @return array<string, mixed>
  *   Array with keys 'selected_filters' and 'selected_filters_clear_link'.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -475,6 +475,9 @@ function _civictheme_preprocess_views_view__results_count(array &$variables): vo
  *
  * Query parameters that don't correspond to an exposed filter are ignored.
  *
+ * @return array<string, array<string, string>>
+ *   Chip data keyed by filter (or "<filter>.<index>" for multi-value filters).
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_views_view__selected_filters_list(ViewExecutable $view): array {
@@ -537,6 +540,9 @@ function _civictheme_preprocess_views_view__selected_filters_add_multi(array &$c
 
 /**
  * Create the URL for the selected filter.
+ *
+ * @return array<string, string>
+ *   Chip data with 'url', 'text' and 'label' keys.
  */
 function _civictheme_preprocess_views_view__selected_filters_list_create_filter_url(string $base_url, array $query_params, string $key, string|int $value, array $filter_types): array {
   $query = http_build_query($query_params);
@@ -554,7 +560,7 @@ function _civictheme_preprocess_views_view__selected_filters_list_create_filter_
  * @param \Drupal\views\ViewExecutable $view
  *   The view executable object.
  *
- * @return array
+ * @return array<string, array<string, mixed>>
  *   Array of exposed filters with their properties:
  *   - name: The human readable label
  *   - type: The filter plugin ID

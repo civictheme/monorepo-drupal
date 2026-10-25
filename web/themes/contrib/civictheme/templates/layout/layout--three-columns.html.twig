@@ -45,7 +45,7 @@
 {% set modifier_class = modifier_class|trim %}
 
 {% if content %}
-  <main class="ct-layout {{ modifier_class -}}" role="main" data-layout-builder-layout="true" {% if attributes is not empty %}{{- attributes -}}{% endif %}>
+  <div class="ct-layout {{ modifier_class -}}" data-layout-builder-layout="true" {% if attributes is not empty %}{{- attributes -}}{% endif %}>
     {% block content_top_block %}
       {% if content.content_top is not empty %}
         {{- content.content_top -}}
@@ -99,5 +99,5 @@
         {{- content.content_bottom -}}
       {% endif %}
     {% endblock %}
-  </main>
+  </div>
 {% endif %}

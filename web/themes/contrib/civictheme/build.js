@@ -16,8 +16,10 @@ Notes:
 */
 
 import fs from 'fs'
+import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
 import path from 'path'
-import { globSync } from 'glob'
+import { globSync } from 'node:fs'
 import { execSync, spawn } from 'child_process'
 import * as sass from 'sass-embedded'
 
@@ -87,7 +89,7 @@ const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 
-const DIR_CIVICTHEME            = config.base ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
+const DIR_CIVICTHEME            = config.base || config.cli ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
 const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
 const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
 const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
@@ -121,7 +123,7 @@ const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
 const JS_FILE_OUT               = `${DIR_OUT}/${SCRIPT_NAME}.js`
 const JS_STORYBOOK_FILE_OUT     = `${DIR_OUT}/${SCRIPT_NAME}.storybook.js`
 const JS_CIVIC_IMPORTS          = `${COMPONENT_DIR}/**/!(*.stories|*.stories.data|*.component|*.min|*.test|*.script|*.utils).js`
-const JS_LIB_IMPORTS            = [fullPath('./node_modules/@popperjs/core/dist/umd/popper.js')]
+const JS_LIB_IMPORTS            = [path.join(modulePath('@popperjs/core').replace('dist/cjs/popper.js', 'dist/umd/popper.js'))]
 const JS_ASSET_IMPORTS          = [
                                     DIR_CIVICTHEME ? `${DIR_CIVICTHEME}/assets/js/**/*.js` : false,
                                     `${DIR_ASSETS_IN}/js/**/*.js`,
@@ -138,6 +140,7 @@ const STYLE_SDC_COMMON_INCLUDES      = [VAR_CT_ASSETS_DIRECTORY, `@import '00-ba
 const STYLE_SDC_MIXIN_IMPORTS        = `00-base/mixins/**/*.scss`
 const STYLE_SDC_BASE_IMPORTS         = `00-base/**/!(*.stories|variables|_variables.*).scss`
 const STYLE_SDC_BASE_FILE_OUT        = `${DIR_OUT}/${STYLE_NAME}.base.css`;
+const STYLE_SDC_SB_BASE_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.base.storybook.css`;
 const JS_SDC_BASE_FILE_OUT           = `${DIR_OUT}/${SCRIPT_NAME}.drupal.base.js`
 const JS_SDC_STORYBOOK_BASE_FILE_OUT = `${DIR_OUT}/${SCRIPT_NAME}.base.js`
 const JS_SDC_BASE_IMPORTS            = `${COMPONENT_DIR}/00-base/**/!(*.stories|*.test|*.data|*.stories.data|*.utils).js`
@@ -145,6 +148,15 @@ const SDC_HEADER                     = '/**\n * This file was automatically gene
 const SDC_STYLE_FILES_IN             = `!(00-base)/**/*.scss`
 const SDC_COMPONENT_DIR              = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_IN
 const SDC_COMPLETE_COMPONENT_DIR     = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
+
+// @import is deprecated in Dart Sass but not removed until 3.0.0. The build
+// generates @import rules itself, so silence the warning until the codebase
+// moves to @use. Every other active deprecation fails the build, as Dart
+// Sass 2.0.0 turns most of them into errors.
+const SASS_OPTIONS                   = {
+  silenceDeprecations: ['import'],
+  fatalDeprecations: Object.values(sass.deprecations).filter(d => d.status === 'active' && d.id !== 'import'),
+}
 
 if (config.build) {
   build()
@@ -192,7 +204,7 @@ function buildStyles() {
       ].join('\n') : '',
     ].join('\n')
 
-    const compiled = sass.compileString(stylecss, { loadPaths: [COMPONENT_DIR, PATH] })
+    const compiled = sass.compileString(stylecss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
     const compiledImportAtTop = sortCssLines(compiled.css)
     fs.writeFileSync(STYLE_FILE_OUT, compiledImportAtTop, 'utf-8')
     successReporter(`Saved: Component styles ${time()}`)
@@ -216,7 +228,7 @@ function buildStylesEditor() {
       loadStyleFile(STYLE_EDITOR_FILE_IN, PATH),
     ].join('\n')
 
-    const compiled = sass.compileString(editorcss, { loadPaths: [PATH] })
+    const compiled = sass.compileString(editorcss, { ...SASS_OPTIONS, loadPaths: [PATH] })
     fs.writeFileSync(STYLE_EDITOR_FILE_OUT, compiled.css, 'utf-8')
     successReporter(`Saved: Editor styles ${time()}`)
   }
@@ -224,7 +236,7 @@ function buildStylesEditor() {
 
 function buildStylesAdmin() {
   if (config.styles_admin) {
-    const compiled = sass.compile(STYLE_ADMIN_FILE_IN, { loadPaths: [PATH] })
+    const compiled = sass.compile(STYLE_ADMIN_FILE_IN, { ...SASS_OPTIONS, loadPaths: [PATH] })
     fs.writeFileSync(STYLE_ADMIN_FILE_OUT, compiled.css, 'utf-8')
     successReporter(`Saved: Admin styles ${time()}`)
   }
@@ -237,7 +249,7 @@ function buildStylesLayout() {
       loadStyleFile(STYLE_LAYOUT_FILE_IN, PATH),
     ].join('\n')
 
-    const compiled = sass.compileString(layoutcss, { loadPaths: [PATH] })
+    const compiled = sass.compileString(layoutcss, { ...SASS_OPTIONS, loadPaths: [PATH] })
     fs.writeFileSync(STYLE_LAYOUT_FILE_OUT, compiled.css, 'utf-8')
     successReporter(`Saved: Layout styles ${time()}`)
   }
@@ -245,7 +257,7 @@ function buildStylesLayout() {
 
 function buildStylesVariables() {
   if (config.styles_variables) {
-    const compiled = sass.compile(STYLE_VARIABLE_FILE_IN, { loadPaths: [COMPONENT_DIR] })
+    const compiled = sass.compile(STYLE_VARIABLE_FILE_IN, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR] })
     fs.writeFileSync(STYLE_VARIABLE_FILE_OUT, compiled.css, 'utf-8')
     successReporter(`Saved: Variable styles ${time()}`)
   }
@@ -258,7 +270,7 @@ function buildStylesStories() {
       loadStyleFile(STYLE_STORIES_FILE_IN, COMPONENT_DIR),
     ].join('\n')
 
-    const compiled = sass.compileString(storybookcss, { loadPaths: [COMPONENT_DIR, PATH] })
+    const compiled = sass.compileString(storybookcss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
     fs.writeFileSync(STYLE_STORIES_FILE_OUT, compiled.css, 'utf-8')
     successReporter(`Saved: Stories styles ${time()}`)
   }
@@ -271,7 +283,7 @@ function buildStylesTheme() {
       getImportsFromGlob(STYLE_THEME_FILE_IN, PATH),
     ].join('\n')
 
-    const compiled = sass.compileString(themecss, { loadPaths: [COMPONENT_DIR, PATH] })
+    const compiled = sass.compileString(themecss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR, PATH] })
     fs.writeFileSync(STYLE_THEME_FILE_OUT, sortCssLines(compiled.css), 'utf-8')
     successReporter(`Saved: Component styles (theme) ${time()}`)
   }
@@ -283,9 +295,19 @@ function buildStylesSdcBase() {
       ...STYLE_SDC_COMMON_INCLUDES,
       getImportsFromGlob(STYLE_SDC_BASE_IMPORTS, COMPONENT_DIR),
     ].join('\n')
-    const compiled = sass.compileString(baseCss, { loadPaths: [COMPONENT_DIR] })
+    const compiled = sass.compileString(baseCss, { ...SASS_OPTIONS, loadPaths: [COMPONENT_DIR] })
     fs.writeFileSync(STYLE_SDC_BASE_FILE_OUT, SDC_HEADER + sortCssLines(compiled.css))
-    successReporter(`Saved: SDC styles (base) ${time()}`)
+    successReporter(`Saved: SDC base styles (base) ${time()}`)
+  }
+}
+
+function buildStylesSdcBaseStorybook() {
+  if (config.sdc_base && config.styles_storybook) {
+    // Replace the asset path.
+    let file = fs.readFileSync(STYLE_SDC_BASE_FILE_OUT, 'utf-8')
+    file = file.replaceAll(DIR_CT_ASSETS, DIR_SB_ASSETS)
+    fs.writeFileSync(STYLE_SDC_SB_BASE_FILE_OUT, file, 'utf-8')
+    successReporter(`Saved: SDC base styles (storybook) ${time()}`)
   }
 }
 
@@ -303,7 +325,7 @@ async function buildStylesSdcComponents() {
       const styleDir = filePath.substring(0, separator)
       const styleName = filePath.substring(separator, filePath.lastIndexOf('.'))
       const styleData = `${componentDependencies}\n@import '${filePath}';`
-      const result = await sass.compileStringAsync(styleData, { loadPaths: [SDC_COMPLETE_COMPONENT_DIR] })
+      const result = await sass.compileStringAsync(styleData, { ...SASS_OPTIONS, loadPaths: [SDC_COMPLETE_COMPONENT_DIR] })
       fs.writeFileSync(`${SDC_COMPONENT_DIR}/${styleDir}/${styleName}.css`, SDC_HEADER + result.css)
     }))
     successReporter(`Saved: SDC styles (components) ${time()}`)
@@ -326,9 +348,14 @@ function buildStylesSdcCopyBack() {
 
 function buildJavascriptSdcBase() {
   if (config.sdc_base) {
+    const assetImports = globSync(JS_ASSET_IMPORTS)
+    // Test functions for `*.drupal.js` files.
+    const withoutDrupalFiles = (path) => path.indexOf('.drupal.js') < 0
+    const onlyDrupalFiles = (path) => path.indexOf('.drupal.js') >= 0
+
     const libJs = [
       ...JS_LIB_IMPORTS,
-      ...globSync(JS_ASSET_IMPORTS)
+      ...assetImports.filter(withoutDrupalFiles)
     ].map(loadJSFile).join('\n')
 
     // Load base components after DOM is ready
@@ -338,8 +365,9 @@ function buildJavascriptSdcBase() {
     const newDrupalBaseJs = [
       JS_LINT_EXCLUSION_HEADER,
       libJs,
+      assetImports.filter(onlyDrupalFiles).map(loadJSFile).join('\n'),
       `Drupal.behaviors.${THEME_NAME} = {attach: function (context, settings) {\n${baseComponentJs}\n}};`
-    ].join('\n')
+    ].filter(Boolean).join('\n')
     fs.writeFileSync(JS_SDC_BASE_FILE_OUT, newDrupalBaseJs, 'utf-8')
     successReporter(`Saved: SDC javascript base (drupal) ${time()}`)
 
@@ -348,7 +376,7 @@ function buildJavascriptSdcBase() {
       JS_LINT_EXCLUSION_HEADER,
       libJs,
       `document.addEventListener('DOMContentLoaded', () => {\n${baseComponentJs}\n});`
-    ].join('\n')
+    ].filter(Boolean).join('\n')
     fs.writeFileSync(JS_SDC_STORYBOOK_BASE_FILE_OUT, newBaseJs, 'utf-8')
     successReporter(`Saved: SDC javascript base (storybook) ${time()}`)
   }
@@ -434,6 +462,7 @@ async function build() {
     buildStylesStories()
     buildStylesTheme()
     buildStylesSdcBase()
+    buildStylesSdcBaseStorybook()
     await buildStylesSdcComponents()
     buildStylesSdcCopyBack()
     buildJavascript()
@@ -441,7 +470,8 @@ async function build() {
     buildAssetsDirectory()
     await buildConstants()
   } catch (error) {
-    errorReporter(error);
+    // Exit non-zero so CI fails, but keep watch mode running.
+    errorReporter(error, !config.watch);
   }
 
   console.log(`Time taken: ${time(true)}`)
@@ -540,10 +570,27 @@ function fullPath(filepath) {
   return path.resolve(PATH, filepath)
 }
 
+function modulePath(moduleName) {
+  // Get the current file's directory
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  // Create a require function based on the current module
+  const require = createRequire(import.meta.url);
+
+  try {
+    // Try to resolve the module path using Node's resolution algorithm
+    return require.resolve(moduleName);
+  } catch (error) {
+    throw new Error(`Could not resolve module '${moduleName}'`);
+  }
+}
+
 function getCivicthemeDir(subthemeDir, parent, civicthemeGlob) {
   if (fs.existsSync(BUILD_CONFIG_DIR)) {
     const config = JSON.parse(fs.readFileSync(BUILD_CONFIG_DIR, 'utf-8'))
-    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(config.civicthemePath)) {
+    // Validate the cached path against the sub-theme directory, as the cache
+    // file may have been copied from another location (e.g. the starter kit).
+    if (config.civicthemeGlob === civicthemeGlob && fs.existsSync(path.resolve(subthemeDir, config.civicthemePath, 'civictheme.info.yml'))) {
       return config.civicthemePath
     }
   }
@@ -563,7 +610,9 @@ function getDirInParent(currentDir, parent, destinationGlob) {
   const pathParts = currentDir.split('/')
   const parentIndex = pathParts.indexOf(parent)
   const basePath = parentIndex >= 0 ? pathParts.slice(0, parentIndex + 1).join('/') : null
-  return basePath ? globSync(`${basePath}${destinationGlob}`, { ignore: 'node_modules/**' }).pop() : null
+  // Node's globSync uses `exclude`, not `ignore`.
+  // @see https://nodejs.org/docs/latest-v22.x/api/fs.html#fsglobsyncpattern-options
+  return basePath ? globSync(`${basePath}${destinationGlob}`, { exclude: dir => path.basename(dir) === 'node_modules' }).pop() : null
 }
 
 function time(full) {

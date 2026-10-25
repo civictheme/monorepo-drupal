@@ -121,6 +121,7 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(array &$vari
  * @see hook_civictheme_automated_list_view_info_alter()
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function _civictheme_automated_list__get_view(array &$settings): ViewExecutable {
   // Get information about a view and a display that will be used produce

@@ -19,8 +19,12 @@ $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\EmptyLinesRule());
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\IndentRule(2));
 $ruleset->addRule(new TwigCsFixer\Rules\Whitespace\TrailingSpaceRule());
 
+$finder = new TwigCsFixer\File\Finder();
+$finder->exclude(['node_modules', 'dist', 'build']);
+
 $config = new TwigCsFixer\Config\Config();
 $config->setRuleset($ruleset);
+$config->setFinder($finder);
 $config->allowNonFixableRules();
 
 return $config;

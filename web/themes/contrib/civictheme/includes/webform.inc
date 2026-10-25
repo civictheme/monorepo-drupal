@@ -24,7 +24,7 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 /**
  * Implements hook_preprocess_webform_html_editor_markup().
  */
-function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
+function civictheme_preprocess_webform_html_editor_markup(array &$variables): void {
   $markup = (string) $variables['markup'];
   $processed = _civictheme_process__html_content($markup);
   $variables['content'] = [
@@ -43,9 +43,9 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_webform__container().
+ * Implements hook_preprocess_container__webform_container().
  */
-function civictheme_preprocess_webform__container(array &$variables): void {
+function civictheme_preprocess_container__webform_container(array &$variables): void {
   if (!civictheme_is_webform_element($variables['element'])) {
     return;
   }

@@ -18,6 +18,7 @@ function civictheme_preprocess_block__menu_block__civictheme_sidebar_navigation(
   $variables['theme'] = civictheme_get_theme_config_manager()->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
   $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
+  $variables['label'] = '';
   $variables['in_sidebar'] = TRUE;
   $expand_all_items = $variables['configuration']['expand_all_items'] ?? FALSE;
   _civictheme_preprocess_menu_items($variables['items'], $expand_all_items);

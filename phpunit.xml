@@ -14,7 +14,7 @@
          failOnWarning="true"
          cacheResult="false"
          testdox="true"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd">
     <php>
         <!-- Set error reporting to E_ALL. -->
         <ini name="error_reporting" value="32767"/>
@@ -69,6 +69,9 @@
             <directory>web/modules/custom/*/tests/src/Unit</directory>
             <directory>web/themes/contrib/civictheme/tests/src/Unit</directory>
             <directory>web/themes/custom/*/tests/src/Unit</directory>
+            <!-- Claimed by the "sdc-unit" suite above. PHPUnit 11 warns when a
+                 file is added to more than one suite. -->
+            <exclude>web/modules/custom/civictheme_sdc/tests/src/Unit</exclude>
         </testsuite>
         <testsuite name="kernel">
             <directory>web/modules/custom/*/tests/src/Kernel</directory>
@@ -98,16 +101,21 @@
               pathCoverage="false"
               ignoreDeprecatedCodeUnits="true"
               disableCodeCoverageIgnore="false">
-        <include>
-            <directory>web/modules/custom</directory>
-            <directory>web/themes/custom</directory>
-            <directory>web/sites/default/includes</directory>
-            <directory>web/sites/default/settings.php</directory>
-        </include>
-
         <report>
             <html outputDirectory=".logs/coverage/phpunit/.coverage-html" lowUpperBound="50" highLowerBound="90"/>
             <cobertura outputFile=".logs/coverage/phpunit/cobertura.xml"/>
         </report>
     </coverage>
+
+    <!-- Files that code coverage is collected for. Moved out of <coverage> in
+         PHPUnit 10; without it PHPUnit reports "No filter is configured, code
+         coverage will not be processed". -->
+    <source>
+        <include>
+            <directory>web/modules/custom</directory>
+            <directory>web/themes/custom</directory>
+            <directory>web/sites/default/includes</directory>
+            <file>web/sites/default/settings.php</file>
+        </include>
+    </source>
 </phpunit>
