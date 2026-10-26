@@ -7,7 +7,7 @@
  * core-prepared fieldset variables (the Claro pattern): the Field root is
  * the <fieldset> (is_group), the legend becomes the Field title and the
  * options - each rendered through the Field and Checkbox components - pass
- * through the control slot. The Field component derives the description and
+ * through the children slot. The Field component derives the description and
  * error message ids from the group id.
  */
 #}
@@ -28,7 +28,7 @@
   required_text: '(required)'|t,
   prefix: prefix|default(''),
   suffix: suffix|default(''),
-  control: children,
+  children: children,
   attributes: attributes,
   modifier_class: modifier_class|default(''),
 } only %}

@@ -4,7 +4,7 @@
  * CivicTheme implementation to display a form element.
  *
  * Maps the core-prepared form element variables onto the CivicTheme Field
- * component and passes the rendered control through the component's control
+ * component and passes the rendered control through the component's children
  * slot. The control markup is produced by the input, select and textarea
  * template overrides, which render the matching CivicTheme control atom with
  * core's prepared attributes passed through.
@@ -28,7 +28,7 @@
   required_text: required_text|default(''),
   prefix: prefix|default(''),
   suffix: suffix|default(''),
-  control: children,
+  children: children,
   attributes: attributes,
   modifier_class: modifier_class|default(''),
 } only %}
