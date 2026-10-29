@@ -14,9 +14,15 @@
         },
         {
             "groupName": "Major all - skipped to update manually",
-            "matchDatasources": ["packagist", "npm"],
+            "matchDatasources": ["packagist"],
             "matchUpdateTypes": ["major"],
             "matchPackagePatterns": [".*"],
+            "enabled": false
+        },
+        {
+            "groupName": "Major npm - skipped to update manually",
+            "matchManagers": ["npm"],
+            "matchUpdateTypes": ["major"],
             "enabled": false
         },
         {
@@ -47,12 +53,12 @@
             "groupName": "Minor and Patch NPM",
             "groupSlug": "npm-minor-patch",
             "schedule": ["before 3am"],
-            "matchDatasources": ["npm"],
+            "matchManagers": ["npm"],
             "matchUpdateTypes": ["minor", "patch"]
         },
         {
             "groupName": "CivicTheme UIKit pin - updated manually",
-            "matchDatasources": ["npm"],
+            "matchManagers": ["npm"],
             "matchPackageNames": ["@civictheme/sdc", "@civictheme/uikit"],
             "enabled": false
         },
