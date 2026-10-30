@@ -37,8 +37,16 @@ services:
     #   - `amazeeio-network`: the shared external bridge that pygmy's haproxy
     #     listens on, so http://<project>.docker.amazee.io routes to us.
     networks:
-      - default
-      - amazeeio-network
+      default:
+        # Chrome 155+ applies the HSTS-preload entries for Google's gTLDs
+        # (.app, .dev, …) to bare single-label hostnames too: it rewrites
+        # http://app to https://app with no fallback, and neither flags nor
+        # enterprise policy can override the preload list. Behat's selenium
+        # chrome therefore reaches the site as app.test — .test is
+        # IANA-reserved and can never be preloaded.
+        aliases:
+          - app.test
+      amazeeio-network: {}
     # Pygmy's haproxy discovers backends via these labels (and reads
     # LAGOON_LOCALDEV_URL from the env block below to derive the route).
     labels:

@@ -26,8 +26,12 @@ default:
     Drupal\MinkExtension:
       browserkit_http: ~
       # Behat runs inside the app container; apache serves on :80 there, and
-      # the `app` service name resolves from the chrome container too.
-      base_url: http://app
+      # this alias (docker-compose.override.yml) resolves from the chrome
+      # container too. NOT the bare `app` service name: Chrome 155+ applies
+      # the HSTS-preload entry for Google's .app gTLD to the single-label
+      # hostname and force-upgrades http://app to https://app (no fallback,
+      # no opt-out). .test is IANA-reserved and can never be preloaded.
+      base_url: http://app.test
       files_path: '%paths.base%/tests/behat/fixtures'
       browser_name: chrome
       selenium2:
