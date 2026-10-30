@@ -42,6 +42,12 @@ default:
       blackbox: ~
       api_driver: drupal
       drush_driver: drush
+      # Retry the logged-in check for up to this many seconds after submitting
+      # the login form. With 0 (the default) a single DOM query runs the
+      # instant the submit click returns, and in real browsers that query can
+      # land mid-navigation and miss the body.user-logged-in class even though
+      # the login succeeded — a flake that hits the heavier (subtheme) pages.
+      login_wait: 5
       drupal:
         drupal_root: /opt/drupal/web
       drush:
