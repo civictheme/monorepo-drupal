@@ -6,7 +6,7 @@
     "ignorePresets": [":prHourlyLimit2"],
     "rangeStrategy": "update-lockfile",
     "timezone": "Australia/Melbourne",
-    "enabledManagers": ["composer", "dockerfile", "docker-compose", "github-actions"],
+    "enabledManagers": ["composer", "npm", "dockerfile", "docker-compose", "github-actions"],
     "packageRules": [
         {
             "matchPackageNames": ["php"],
@@ -17,6 +17,12 @@
             "matchDatasources": ["packagist"],
             "matchUpdateTypes": ["major"],
             "matchPackagePatterns": [".*"],
+            "enabled": false
+        },
+        {
+            "groupName": "Major npm - skipped to update manually",
+            "matchManagers": ["npm"],
+            "matchUpdateTypes": ["major"],
             "enabled": false
         },
         {
@@ -42,6 +48,19 @@
                 "drupal/core-project-message",
                 "drupal/core-recommended"
             ]
+        },
+        {
+            "groupName": "Minor and Patch NPM",
+            "groupSlug": "npm-minor-patch",
+            "schedule": ["before 3am"],
+            "matchManagers": ["npm"],
+            "matchUpdateTypes": ["minor", "patch"]
+        },
+        {
+            "groupName": "CivicTheme UIKit pin - updated manually",
+            "matchManagers": ["npm"],
+            "matchPackageNames": ["@civictheme/sdc", "@civictheme/uikit"],
+            "enabled": false
         },
         {
             "groupName": "Docker images excluded",
