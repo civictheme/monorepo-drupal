@@ -6,6 +6,8 @@
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
 
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <!-- Composer bin dir (config.bin-dir = bin) — vendor binary proxies. -->
+    <exclude-pattern>*/bin/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
 
     <exclude-pattern>*/web/core/*</exclude-pattern>

@@ -71,8 +71,10 @@ jobs:
           grep -qi civictheme /tmp/home.html
           scripts/quant/exec.sh /opt/drupal/bin/drush status --field=bootstrap | grep -qi success
 
+      # --no-coverage: xdebug ships disabled in the image, and phpunit.xml sets
+      # failOnWarning, so a coverage-enabled run fails on the missing driver.
       - name: Unit tests
-        run: scripts/quant/exec.sh bin/phpunit --testsuite=unit
+        run: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=unit
 
       - name: Show logs on failure
         if: failure()

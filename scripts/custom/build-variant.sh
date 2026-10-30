@@ -17,6 +17,23 @@ set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$HERE"
 
+# ahoy loads .env before running a command body; this script is also the CI
+# entrypoint, where ahoy is absent. Fill in anything .env defines that is not
+# already in the environment — already-set values (variant exports from the
+# ahoy build-* commands, CI env) win over .env defaults.
+if [ -f .env ]; then
+  while IFS= read -r line; do
+    case "$line" in ''|\#*) continue ;; esac
+    k="${line%%=*}"
+    [[ "$k" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || continue
+    if [ -z "${!k+x}" ]; then
+      v="${line#*=}"
+      v="${v%\"}"; v="${v#\"}"
+      export "$k=$v"
+    fi
+  done <.env
+fi
+
 provision_only=0
 if [ "${1:-}" = "--provision-only" ]; then
   provision_only=1

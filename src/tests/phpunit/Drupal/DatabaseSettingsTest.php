@@ -23,8 +23,24 @@ class DatabaseSettingsTest extends SettingsTestCase {
 
     $this->requireSettingsFile();
 
+    // With DB_TLS_ENABLED unset, settings.php autodetects the RDS CA bundle
+    // the Salsa Hosting base image ships — so the expected pdo options depend
+    // on where the suite runs (bundle present in the app container, absent on
+    // a bare host).
+    if (!isset($vars['DB_TLS_ENABLED']) && file_exists(self::RDS_CERT_PATH)) {
+      $expected['default']['default']['pdo'] = [
+        \PDO::MYSQL_ATTR_SSL_CA => self::RDS_CERT_PATH,
+        \PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => TRUE,
+      ];
+    }
+
     $this->assertEquals($expected, $this->databases);
   }
+
+  /**
+   * The RDS CA bundle path settings.php probes for TLS autodetection.
+   */
+  const RDS_CERT_PATH = '/opt/rds-ca-certs/rds-ca-cert-bundle.pem';
 
   /**
    * Data provider for resulting database settings.

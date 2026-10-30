@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // phpcs:ignoreFile
 
 /**
@@ -107,7 +109,7 @@ if (!InstallerKernel::installationAttempted()
   && !in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI], TRUE)) {
   foreach (['DB_DATABASE', 'DB_USERNAME', 'DB_PASSWORD', 'DB_HOST'] as $required) {
     if (getenv($required) === FALSE || getenv($required) === '') {
-      throw new RuntimeException("Required env var $required is not set.");
+      throw new RuntimeException(sprintf('Required env var %s is not set.', $required));
     }
   }
 }
@@ -334,13 +336,17 @@ if (file_exists($app_root . '/' . $site_path . '/includes')) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // Load local development override configuration, if available.
+// DRUPAL_LOCAL_SETTINGS_SKIP exists for the settings unit tests, which must
+// assert this file's own output regardless of a developer's local overrides.
 //
 // Keep this code block at the end of this file to take full effect.
 // @codeCoverageIgnoreStart
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-  require $app_root . '/' . $site_path . '/settings.local.php';
-}
-if (file_exists($app_root . '/' . $site_path . '/services.local.yml')) {
-  $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.local.yml';
+if (empty(getenv('DRUPAL_LOCAL_SETTINGS_SKIP'))) {
+  if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+    require $app_root . '/' . $site_path . '/settings.local.php';
+  }
+  if (file_exists($app_root . '/' . $site_path . '/services.local.yml')) {
+    $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.local.yml';
+  }
 }
 // @codeCoverageIgnoreEnd

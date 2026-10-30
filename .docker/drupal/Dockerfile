@@ -47,8 +47,9 @@ FROM node:${NODE_VERSION}-alpine AS assets
 
 # The themes' build.js shells out to rsync; node:alpine has none, and build.js
 # catches the ENOENT, prints a stack trace and exits 0 — a green log and an
-# image with no CSS. The dist/ assertions below are the backstop.
-RUN apk add --no-cache rsync
+# image with no CSS. The dist/ assertions below are the backstop. git: the
+# theme pins @civictheme/* packages to git shas, which npm clones.
+RUN apk add --no-cache rsync git
 
 WORKDIR /build/themes
 

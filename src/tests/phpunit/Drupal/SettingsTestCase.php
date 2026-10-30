@@ -127,6 +127,10 @@ abstract class SettingsTestCase extends TestCase {
       $vars['QUANT_ENV_TYPE'] = FALSE;
     }
 
+    // Keep the tests hermetic: a developer's settings.local.php must not
+    // bleed into the asserted settings and configs.
+    $vars['DRUPAL_LOCAL_SETTINGS_SKIP'] = 1;
+
     $vars['TMP'] = static::TMP_PATH_TESTING;
 
     // Filtered real vars without a value to unset them in the lines below.

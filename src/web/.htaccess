@@ -103,10 +103,13 @@ AddEncoding gzip svgz
   # (http://example.com/foo will be redirected to http://www.example.com/foo)
   # uncomment the following:
 
-  # Redirect all non-ww requests to www.
-  RewriteCond %{HTTP_HOST} .
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Redirect all non-www requests to www — disabled. The rule dates from the
+  # Lagoon/nginx stack, where .htaccess was never read; under the scaffold's
+  # apache container it would www-redirect every environment (localhost, pygmy,
+  # preview URLs). Canonical-host redirects are handled at the Quant CDN layer.
+  # RewriteCond %{HTTP_HOST} .
+  # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Redirect to HTTPS.
   # @todo: Uncomment once the certificate is available.

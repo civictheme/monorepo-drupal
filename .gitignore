@@ -25,6 +25,9 @@ node_modules/
 /vendor/
 /src/vendor/
 /src/bin/
+# Mountpoint artefact: the override bind-mounts ./scripts to /opt/drupal/scripts,
+# and /opt/drupal is itself ./src, so docker creates this empty dir.
+/src/scripts/
 /src/web/core/
 /src/web/modules/contrib/
 /src/web/profiles/contrib/

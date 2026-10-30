@@ -121,16 +121,12 @@ src/phpunit.xml
 src/rector.php
 src/.twig-cs-fixer.php
 
-# ── NOT excluded, deliberately: your theme's compiled output (dist/, build/) ──
+# ── Generated sub-theme ──────────────────────────────────────────────────────
 #
-# The assets stage in .docker/drupal/Dockerfile ships commented out, so by
-# default the only route built CSS/JS has into the image is being committed and
-# carried in by `COPY src/`. Excluding it here would produce an image with no
-# styles and no error to explain it.
-#
-# If you enable the assets stage, uncomment the line below. Its
-# `COPY --from=assets` runs after `COPY src/` and overwrites the host copy
-# anyway, so excluding it only keeps the context small — and stops a stale file
-# in a committed dist/ surviving a rebuild, since COPY merges directories rather
-# than replacing them. See docs/frontend.md.
-#src/web/themes/custom/*/dist
+# civictheme_demo is generated at build (image) or provision (local) time and
+# never committed. The Dockerfile's subtheme + assets stages produce and build
+# it, and `COPY --from=assets` overlays it after `COPY src/` — a stale local
+# copy in the context would only pollute the layer cache, since COPY merges
+# directories rather than replacing them.
+src/web/themes/custom/civictheme_demo
+src/web/themes/contrib/civictheme_demo

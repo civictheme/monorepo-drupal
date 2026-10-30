@@ -39,11 +39,19 @@ dir="$HERE/src/web/themes/contrib/civictheme"
 log "building base theme: ${dir#"$HERE"/}"
 (
   cd "$dir"
-  if [ ! -d node_modules ]; then
+  # Stale node_modules (from another branch or an old uikit pin) produce
+  # "Undefined mixin" sass failures: uikit-install copies components/ FROM
+  # node_modules. npm ci is clean-room (it removes node_modules first); skip
+  # it only when the installed tree matches the current lockfile.
+  if [ ! -d node_modules ] || [ package-lock.json -nt node_modules/.package-lock.json ]; then
     # --ignore-scripts skips the theme's postinstall (uikit-install + full
     # build incl. Storybook); the two steps below run just what dist needs.
     npm ci --no-audit --no-fund --ignore-scripts
   fi
+  # components/ is populated from node_modules by uikit-install, which merges
+  # rather than replaces — a stale tree survives it. Same reset the image
+  # build's assets stage does.
+  rm -rf components dist
   npm run uikit-install
   npm run dist
 )

@@ -559,19 +559,19 @@ commands:
 
   test-unit:
     usage: Run PhpUnit unit tests.
-    cmd: scripts/quant/exec.sh bin/phpunit --testsuite=unit "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=unit "$@"
 
   test-sdc:
     usage: Run PhpUnit sdc unit tests.
-    cmd: scripts/quant/exec.sh bin/phpunit --testsuite=sdc-unit "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=sdc-unit "$@"
 
   test-kernel:
     usage: Run PhpUnit kernel tests.
-    cmd: scripts/quant/exec.sh bin/phpunit --testsuite=kernel "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=kernel "$@"
 
   test-functional:
     usage: Run PhpUnit functional tests.
-    cmd: scripts/quant/exec.sh bin/phpunit --testsuite=functional "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=functional "$@"
 
   test-bdd:
     usage: Run BDD tests (uses chrome service profile).
