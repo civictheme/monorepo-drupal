@@ -11,7 +11,9 @@ default:
       paths: ['%paths.base%/tests/behat/features']
       contexts:
         - FeatureContext
-        - Drupal\DrupalExtension\Context\MinkContext
+        # MinkContext subclass that retries text assertions while the browser
+        # settles after a navigation — see CivicthemeMinkContext.php.
+        - CivicthemeMinkContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\DrupalExtension\Context\MessageContext
         - DrevOps\BehatScreenshotExtension\Context\ScreenshotContext

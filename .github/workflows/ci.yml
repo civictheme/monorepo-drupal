@@ -142,6 +142,9 @@ jobs:
           path: |
             src/web/themes/contrib/civictheme/.logs
             src/web/themes/contrib/civictheme/build/web/sites/simpletest/browser_output
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 14
 
@@ -360,6 +363,9 @@ jobs:
         with:
           name: test-logs-${{ matrix.name }}
           path: src/.logs
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 14
 
@@ -453,6 +459,9 @@ jobs:
         with:
           name: test-logs-content-${{ matrix.content_profile }}
           path: src/.logs
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 14
 
