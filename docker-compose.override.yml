@@ -1,0 +1,312 @@
+# Committed override — local-dev concerns only.
+#
+# Provides:
+#   - pygmy DNS link so http://<project>.docker.amazee.io resolves on macOS,
+#     where <project> is ${SCAFFOLD_PROJECT} from .env (see docs/worktrees.md)
+#   - host.docker.internal extra_hosts so containers can reach the Linux host
+#   - Local DB credentials, source-tree mount, /quant-entrypoint.d/ shim
+#
+# The app image and runtime topology come from docker-compose.yml — do not duplicate
+# service definitions here. Per-developer experiments belong in docker-compose.local.yml
+# (gitignored; opt in via COMPOSE_FILE in .env).
+
+# Compose project name — the namespace for every Docker object this directory
+# owns: containers, networks, and the `<name>_db_data` volume holding the
+# database. Without this, Compose falls back to the lowercased directory
+# basename, so the database volume was named after wherever the project happened
+# to be checked out, and a git worktree needed a second knob to move it.
+#
+# Declared HERE (local-dev only) and not in docker-compose.yml, which Salsa
+# Hosting reads. Compose precedence is `-p` > COMPOSE_PROJECT_NAME > this >
+# directory basename, so an exported COMPOSE_PROJECT_NAME still overrides it
+# (the e2e smoke test and pinned legacy projects rely on that).
+#
+# Empty or unset SCAFFOLD_PROJECT is a hard error from Compose itself —
+# `project name must not be empty` — rather than a silent fallback onto some
+# other project's objects.
+name: ${SCAFFOLD_PROJECT}
+
+services:
+
+  app:
+    # Network topology — see the `networks:` block at the bottom of this file
+    # for the why. `app` joins both networks:
+    #   - `default`: the project-scoped bridge (created implicitly as
+    #     <project>_default) where this project's `db` lives. Intra-project
+    #     DNS lookups (`getent hosts db` inside `app`) resolve here.
+    #   - `amazeeio-network`: the shared external bridge that pygmy's haproxy
+    #     listens on, so http://<project>.docker.amazee.io routes to us.
+    networks:
+      - default
+      - amazeeio-network
+    # Pygmy's haproxy discovers backends via these labels (and reads
+    # LAGOON_LOCALDEV_URL from the env block below to derive the route).
+    labels:
+      lagoon.type: main
+      lagoon.localdev.http-port: "80"
+    # Run /quant-entrypoint.d/ scripts at container start (Salsa Hosting does this for us
+    # in production via the platform wrapper).
+    entrypoint: ["/usr/local/bin/docker-entrypoint-drupal.sh"]
+    command: ["apache2-foreground"]
+
+    # Local-only host port mapping. `docker-compose.yml` is read by Salsa Hosting,
+    # which doesn't bind host ports — so the published port belongs here, not
+    # there. `!override` replaces the parent file's `ports:` list (Compose
+    # merges `ports:` by appending by default, which would otherwise leave both
+    # bindings active). Container-port-only means Docker picks a free host
+    # port automatically, so a second scaffold runs alongside the first with
+    # zero config. Run `ahoy info` (or `docker compose port app 80`) to see
+    # the bound port.
+    ports: !override
+      - "80"
+
+    # `!override` replaces docker-compose.yml's `volumes:` list (which mounts
+    # the `app-files` named volume at /opt/drupal/web/sites/default/files).
+    # Locally we want the files dir to live on the host via the ./src bind,
+    # not in a Docker-managed named volume — otherwise Docker creates the
+    # named-volume root directory as root:root and host-uid drush/ahoy
+    # commands can't `mkdir` inside public:// or private:// during
+    # `ahoy provision`. Prod (docker-compose.yml only) is unaffected and
+    # keeps the named-volume topology that Salsa Hosting expects.
+    volumes: !override
+      # Source tree mount for live editing.
+      # web/sites/default/files lives under ./src so this single bind covers
+      # the files dir too — no named volume locally.
+      - ./src:/opt/drupal
+      # scripts/ is the one tree the container expects under /opt/drupal that
+      # does NOT live in src/. It is scaffold-owned tooling that also runs on
+      # the host — ahoy invokes scripts/quant/exec.sh directly — so it belongs
+      # at the project root, and the ./src mount above would otherwise hide the
+      # image's copy of it.
+      #
+      # recipes/ and drush/ used to need the same treatment. They now live in
+      # src/, so the mount above already places them at /opt/drupal/recipes and
+      # /opt/drupal/drush — which is also where Composer's installer-paths put
+      # anything it installs, so the two can no longer shadow each other.
+      # drush/drush.yml still reaches the container the same way, carrying the
+      # --skip-ssl-verify-server-cert option that lets drush's mariadb CLI talk
+      # to the local self-signed MySQL. See
+      # .docker/quant/entrypoints/00-configure-mysql-client.sh.
+      - ./scripts:/opt/drupal/scripts
+      # /import for `ahoy mysql-import` dumps.
+      - ./.data:/import:ro
+
+    environment:
+      # Local DB. Defaults match the `db` service block below — override
+      # via .env if you need different credentials locally.
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_DATABASE: ${DB_DATABASE:-drupal}
+      DB_USERNAME: ${DB_USERNAME:-drupal}
+      DB_PASSWORD: ${DB_PASSWORD:-drupal}
+      # Local default: TLS off (MySQL 8 self-signed cert). Production sets 1.
+      DB_TLS_ENABLED: ${DB_TLS_ENABLED:-0}
+      # settings.php reads both; empty means mysql / no prefix.
+      DB_DRIVER: ${DB_DRIVER:-}
+      DB_PREFIX: ${DB_PREFIX:-}
+      # Dump consumed by SCAFFOLD_PROVISION_TYPE=database. /import is the
+      # read-only ./.data bind mount, so a value here must live under it.
+      DB_FILE: ${DB_FILE:-}
+
+      # Salsa Hosting env routing (drives 02-post-deploy.sh and provision.sh).
+      QUANT_ENV_TYPE: ${QUANT_ENV_TYPE:-local}
+      SCAFFOLD_PROVISION_TYPE: ${SCAFFOLD_PROVISION_TYPE:-profile}
+      DRUPAL_INSTALL_PROFILE: ${DRUPAL_INSTALL_PROFILE:-}
+      SCAFFOLD_POST_PROVISION_ENABLED: ${SCAFFOLD_POST_PROVISION_ENABLED:-1}
+      SCAFFOLD_POST_PROVISION_ON_ERROR: ${SCAFFOLD_POST_PROVISION_ON_ERROR:-abort}
+
+      # Site-install metadata (provision.sh uses these when
+      # SCAFFOLD_PROVISION_TYPE=profile). Empty = fall back to provision.sh's
+      # built-in defaults.
+      DRUPAL_SITE_NAME: ${DRUPAL_SITE_NAME:-}
+      DRUPAL_SITE_EMAIL: ${DRUPAL_SITE_EMAIL:-}
+      DRUPAL_ADMIN_NAME: ${DRUPAL_ADMIN_NAME:-}
+      DRUPAL_ADMIN_EMAIL: ${DRUPAL_ADMIN_EMAIL:-}
+
+      # Config sync directory. settings.php and provision.sh BOTH read this —
+      # they must agree, or config:import silently never runs. Empty = both fall
+      # back to /opt/drupal/config/sync.
+      DRUPAL_CONFIG_SYNC: ${DRUPAL_CONFIG_SYNC:-}
+
+      # Project identity — settings.php reads SCAFFOLD_PROJECT for the redis
+      # cache_prefix fallback when DRUPAL_REDIS_ENABLED=1, and the pygmy /
+      # drush URLs below are derived from it (see the LAGOON_LOCALDEV_URL
+      # block). Change it in .env and both move together.
+      SCAFFOLD_PROJECT: ${SCAFFOLD_PROJECT:-}
+
+      # Mail to MailHog (run pygmy for the MailHog container).
+      SCAFFOLD_MAILHOG_ENABLED: ${SCAFFOLD_MAILHOG_ENABLED:-1}
+
+      # SES relay, read by .docker/quant/entrypoints/00-configure-ssmtp.sh.
+      # Salsa Hosting injects these; SCAFFOLD_MAILHOG_ENABLED=1 short-circuits
+      # them locally, so they matter only when testing the real relay path.
+      SSMTP_MAILHUB: ${SSMTP_MAILHUB:-}
+      SSMTP_AUTHUSER: ${SSMTP_AUTHUSER:-}
+      SSMTP_AUTHPASS: ${SSMTP_AUTHPASS:-}
+      SSMTP_USETLS: ${SSMTP_USETLS:-}
+      SSMTP_USESTARTTLS: ${SSMTP_USESTARTTLS:-}
+      SSMTP_REWRITEDOMAIN: ${SSMTP_REWRITEDOMAIN:-}
+
+      # User apache's worker processes drop to.
+      #
+      # www-data matches what a DEPLOYED environment runs as. Salsa Hosting
+      # reads docker-compose.yml, which sets no APACHE_RUN_USER, so
+      # /etc/apache2/envvars applies its own default of www-data. This file is
+      # local-only, so a different value here does not harden local dev — it
+      # just makes local stop resembling production.
+      #
+      # It also happens to fix Linux file ownership: container www-data is uid
+      # 1000, the same id as a typical Linux desktop user, so everything apache
+      # writes into the ./src bind mount is owned by you. The previous `nobody`
+      # default wrote as uid 65534 and left the host user relying on the shared
+      # gid, which is not enough for any file Drupal chmods to 0444 (twig
+      # cache, .htaccess) — a non-owner cannot chmod it back.
+      #
+      # And `nobody` is not the safer choice it sounds like: the Dockerfile runs
+      # `usermod -a -G root nobody`, so nobody carries root-group membership
+      # while www-data is only in www-data.
+      APACHE_RUN_USER: ${APACHE_RUN_USER:-www-data}
+
+      # Optional services — settings.php reads these to decide whether to
+      # wire redis as a cache backend and stage_file_proxy as a media fallback.
+      DRUPAL_REDIS_ENABLED: ${DRUPAL_REDIS_ENABLED:-}
+      DRUPAL_REDIS_HOST: ${DRUPAL_REDIS_HOST:-}
+      DRUPAL_REDIS_PORT: ${DRUPAL_REDIS_PORT:-}
+      DRUPAL_REDIS_PREFIX: ${DRUPAL_REDIS_PREFIX:-}
+      DRUPAL_STAGE_FILE_PROXY_ORIGIN: ${DRUPAL_STAGE_FILE_PROXY_ORIGIN:-}
+
+      # File paths. settings.php reads all three; empty means its own default.
+      # DRUPAL_PRIVATE_FILES is the one worth knowing about — it defaults to
+      # sites/default/files/private, i.e. INSIDE the public tree, protected only
+      # by a .htaccess. Point it somewhere outside the web root if that matters
+      # to you.
+      DRUPAL_PUBLIC_FILES: ${DRUPAL_PUBLIC_FILES:-}
+      DRUPAL_PRIVATE_FILES: ${DRUPAL_PRIVATE_FILES:-}
+      DRUPAL_TEMP_PATH: ${DRUPAL_TEMP_PATH:-}
+
+      # Reverse proxy and trusted hosts. Salsa Hosting injects these in a
+      # deployed environment; locally they are normally unset, because
+      # QUANT_ENV_TYPE=local already makes settings.php trust any host. Present
+      # so you can reproduce a deployed configuration when you need to.
+      DRUPAL_TRUSTED_HOSTS: ${DRUPAL_TRUSTED_HOSTS:-}
+      DRUPAL_REVERSE_PROXY: ${DRUPAL_REVERSE_PROXY:-}
+      DRUPAL_REVERSE_PROXY_ADDRESSES: ${DRUPAL_REVERSE_PROXY_ADDRESSES:-}
+
+      # Session/cookie/CSRF salt. settings.php refuses to boot a SERVER without
+      # it; locally it falls back to a derived value, and configure.sh writes a
+      # random one into .env at project creation. Without this line .env could
+      # not reach settings.php at all.
+      DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT:-}
+
+      # Drupal debug toggles — DRUPAL_DEBUG=1 turns off cache and verbose
+      # error reporting (settings.php). Never set in production.
+      DRUPAL_DEBUG: ${DRUPAL_DEBUG:-}
+
+      # Pygmy / amazee-io DNS (resolves *.docker.amazee.io on macOS).
+      # Derived from ${SCAFFOLD_PROJECT} rather than baked in at install time,
+      # so a second stack of this project (a git worktree — see
+      # docs/worktrees.md) gets its own haproxy route and its own `drush uli`
+      # host just by changing SCAFFOLD_PROJECT in its .env. Deliberately no
+      # `${SCAFFOLD_PROJECT:-default}` fallback: unset makes Compose warn
+      # loudly, which beats silently serving the wrong project's URL.
+      LAGOON_LOCALDEV_URL: http://${SCAFFOLD_PROJECT}.docker.amazee.io
+      LAGOON_LOCALDEV_HTTP_PORT: 80
+      DRUSH_OPTIONS_URI: http://${SCAFFOLD_PROJECT}.docker.amazee.io
+
+      # Xdebug toggled by `ahoy debug`. The entrypoint 01-xdebug.sh reads
+      # SCAFFOLD_XDEBUG_ENABLED and uncomments zend_extension=xdebug when 1.
+      SCAFFOLD_XDEBUG_ENABLED: ${SCAFFOLD_XDEBUG_ENABLED:-0}
+      # CLI step-debug: xdebug 3 needs XDEBUG_TRIGGER for drush/CLI to attach,
+      # and PHP_IDE_CONFIG so PhpStorm maps server paths back to the project.
+      # `${VAR:+...}` expands when the var is set & non-empty — under the
+      # 1/0 convention both values qualify, so these stay set even when
+      # xdebug itself is off. That is bug-compatible with the prior
+      # true/false defaults and harmless (xdebug just ignores them).
+      XDEBUG_TRIGGER: ${SCAFFOLD_XDEBUG_ENABLED:+cli}
+      # `${A:+…${B}…}` nests: Compose interpolates the inner reference before
+      # applying the outer :+ (verified on Compose v2.38).
+      PHP_IDE_CONFIG: ${SCAFFOLD_XDEBUG_ENABLED:+serverName=${SCAFFOLD_PROJECT}.docker.amazee.io}
+
+      # GitHub auth for `ahoy composer install / require / update` at runtime.
+      # Set GITHUB_TOKEN in .env. Empty = anonymous (rate-limited).
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+
+      # ── CivicTheme monorepo variants ────────────────────────────────────────
+      # Composer manifest swap for the GovCMS variant (CI/local only — the
+      # deployed image is d11-only). `ahoy composer-govcms` / `ahoy
+      # build-govcms*` export COMPOSER=composer.govcms.json; exec.sh forwards
+      # it per-invocation, and this default keeps `ahoy env-check` green.
+      COMPOSER: ${COMPOSER:-}
+      # Which content profile the provision-content hook installs
+      # (empty = theme defaults; corporate|government|highereducation).
+      CIVICTHEME_CONTENT_PROFILE: ${CIVICTHEME_CONTENT_PROFILE:-}
+      # 1 = don't create/activate the generated civictheme_demo sub-theme.
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: ${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP:-}
+      # 1 = generate the sub-theme as a sibling of the base theme
+      # (web/themes/contrib/civictheme_demo) instead of themes/custom.
+      CIVICTHEME_INSTALL_SIBLING: ${CIVICTHEME_INSTALL_SIBLING:-}
+      # 1 = skip creating generated test content (content-profile envs).
+      CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP: ${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}
+      # 1 = skip enabling admin/dev helper modules.
+      CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP: ${CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP:-}
+
+      # PHPUnit functional/kernel test wiring (dev-only; harmless in prod
+      # because docker-compose.yml never sets them).
+      SIMPLETEST_DB: ${SIMPLETEST_DB:-mysql://drupal:drupal@db/drupal}
+      SIMPLETEST_BASE_URL: ${SIMPLETEST_BASE_URL:-http://app}
+      SYMFONY_DEPRECATIONS_HELPER: ${SYMFONY_DEPRECATIONS_HELPER:-disabled}
+
+    # Linux: lets the container reach the host (no-op on macOS/Windows).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  db:
+    # Deliberately project-scoped only — DO NOT add `amazeeio-network` here.
+    # If two scaffold projects run side-by-side and both `db` containers
+    # register the `db` alias on `amazeeio-network`, Docker DNS round-robins
+    # between them and `app` in one project will intermittently connect to
+    # the other project's database (symptoms: `drush sql:drop` "leaving"
+    # tables, `site:install` failing on phantom rows, dump/app skew).
+    networks:
+      - default
+    ports:
+      - "3306"
+    environment:
+      # MYSQL_ROOT_PASSWORD is required by the mysql:8.x image entrypoint —
+      # the container refuses to boot without one of MYSQL_ROOT_PASSWORD /
+      # MYSQL_RANDOM_ROOT_PASSWORD / MYSQL_ALLOW_EMPTY_PASSWORD. The Drupal
+      # app never connects as root (it uses MYSQL_USER below); this is purely
+      # so `docker compose exec db mysql -uroot` works for admin access.
+      # Reusing ${DB_PASSWORD} keeps the local-dev story to a single knob.
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-drupal}
+      MYSQL_DATABASE: ${DB_DATABASE:-drupal}
+      MYSQL_USER: ${DB_USERNAME:-drupal}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-drupal}
+
+# Local-only port publishing for the optional Solr service. Commented out to
+# match docker-compose.yml — uncomment both together, and only after the DevOps
+# conversation described there.
+#  solr:
+#    ports:
+#      - "8983"
+
+# Network topology:
+#
+#   - The Compose `default` network is intentionally NOT declared here. Compose
+#     creates it implicitly as `<project>_default`, a project-scoped bridge.
+#     `db` joins only this network, so its `db` alias is registered per-project
+#     and two scaffold projects running side-by-side cannot collide on DNS.
+#
+#   - `amazeeio-network` is pygmy's shared external bridge (created by
+#     `pygmy up` on macOS; on Linux, `docker network create amazeeio-network`
+#     once, or run pygmy via Compose). Only services that need pygmy's haproxy
+#     routing (i.e. `app`, to receive http://<project>.docker.amazee.io) join
+#     it — keeping `db` off it is the whole point of this layout.
+#
+# Earlier versions of this file aliased the project `default` network to
+# `amazeeio-network`, which put every service on the shared bridge and caused
+# cross-project `db` DNS collisions when more than one scaffold was up.
+networks:
+  amazeeio-network:
+    external: true
+    name: amazeeio-network

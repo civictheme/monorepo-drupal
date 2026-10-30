@@ -12,7 +12,7 @@ Feature: Content links processing
       | field_c_p_content:value  | <a href="/internal-relative-light-link">Internal relative light link</a> |
       | field_c_p_content:format | civictheme_rich_text                                                     |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
-      | field_c_p_content:value  | <a href="http://nginx:8080/internal-absolute-light-link">Internal absolute light link</a> |
+      | field_c_p_content:value  | <a href="http://app/internal-absolute-light-link">Internal absolute light link</a> |
       | field_c_p_content:format | civictheme_rich_text                                                                      |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
       | field_c_p_content:value  | <a href="http://example.com/external-light-link">External light link</a> |
@@ -26,7 +26,7 @@ Feature: Content links processing
       | field_c_p_content:format | civictheme_rich_text                                                   |
       | field_c_p_theme          | dark                                                                   |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
-      | field_c_p_content:value  | <a href="http://nginx:8080/internal-absolute-dark-link">Internal absolute dark link</a> |
+      | field_c_p_content:value  | <a href="http://app/internal-absolute-dark-link">Internal absolute dark link</a> |
       | field_c_p_content:format | civictheme_rich_text                                                                    |
       | field_c_p_theme          | dark                                                                                    |
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
@@ -85,8 +85,8 @@ Feature: Content links processing
     And I should see an ".ct-basic-content.ct-theme-light a[href='/internal-relative-light-link'] .ct-text-no-wrap .ct-visually-hidden" element
     And I should see an ".ct-basic-content.ct-theme-light a[href='/internal-relative-light-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
 
-    And I should see an ".ct-basic-content.ct-theme-light a[href='http://nginx:8080/internal-absolute-light-link'][target='_blank']" element
-    And I should see an ".ct-basic-content.ct-theme-light a[href='http://nginx:8080/internal-absolute-light-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
+    And I should see an ".ct-basic-content.ct-theme-light a[href='http://app/internal-absolute-light-link'][target='_blank']" element
+    And I should see an ".ct-basic-content.ct-theme-light a[href='http://app/internal-absolute-light-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
 
     And I should see an ".ct-basic-content.ct-theme-light a[href='http://example.com/external-light-link'][target='_blank']" element
     And I should see an ".ct-basic-content.ct-theme-light a[href='http://example.com/external-light-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
@@ -101,8 +101,8 @@ Feature: Content links processing
     And I should see an ".ct-basic-content.ct-theme-dark a[href='/internal-relative-dark-link'] .ct-text-no-wrap .ct-visually-hidden" element
     And I should see an ".ct-basic-content.ct-theme-dark a[href='/internal-relative-dark-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
 
-    And I should see an ".ct-basic-content.ct-theme-dark a[href='http://nginx:8080/internal-absolute-dark-link'][target='_blank']" element
-    And I should see an ".ct-basic-content.ct-theme-dark a[href='http://nginx:8080/internal-absolute-dark-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
+    And I should see an ".ct-basic-content.ct-theme-dark a[href='http://app/internal-absolute-dark-link'][target='_blank']" element
+    And I should see an ".ct-basic-content.ct-theme-dark a[href='http://app/internal-absolute-dark-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element
 
     And I should see an ".ct-basic-content.ct-theme-dark a[href='http://example.com/external-dark-link'][target='_blank']" element
     And I should see an ".ct-basic-content.ct-theme-dark a[href='http://example.com/external-dark-link'] .ct-text-no-wrap svg.ct-basic-content__external-icon" element

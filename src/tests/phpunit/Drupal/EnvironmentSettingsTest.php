@@ -27,7 +27,9 @@ class EnvironmentSettingsTest extends SettingsTestCase {
    * @dataProvider dataProviderEnvironmentTypeResolution
    */
   public function testEnvironmentTypeResolution(array $vars, string $expected_env): void {
-    $this->setEnvVars($vars);
+    // Deployed environment types enforce the presence of DB and hash salt
+    // variables; provide them so resolution can be tested in isolation.
+    $this->setEnvVars($vars + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -50,140 +52,73 @@ class EnvironmentSettingsTest extends SettingsTestCase {
         static::ENVIRONMENT_CI,
       ],
 
-      // Lagoon.
+      // Explicit local on a developer machine (set via .env).
       [
         [
-          'LAGOON' => 1,
+          'QUANT_ENV_TYPE' => 'local',
         ],
         static::ENVIRONMENT_LOCAL,
       ],
 
+      // CI detection wins over an explicit local type.
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'production',
+          'CI' => 1,
+          'QUANT_ENV_TYPE' => 'local',
         ],
-        static::ENVIRONMENT_PROD,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_GIT_BRANCH' => 'main',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => 'main',
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-        ],
-        static::ENVIRONMENT_PROD,
+        static::ENVIRONMENT_CI,
       ],
 
+      // Salsa Hosting / Quant Cloud environment types.
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'release',
+          'QUANT_ENV_TYPE' => 'production',
         ],
-        static::ENVIRONMENT_DEV,
+        static::ENVIRONMENT_PROD,
       ],
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'release/1.2.3',
+          'QUANT_ENV_TYPE' => 'test',
         ],
         static::ENVIRONMENT_TEST,
       ],
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'hotfix',
+          'QUANT_ENV_TYPE' => 'development',
         ],
         static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'hotfix/1.2.3',
-        ],
-        static::ENVIRONMENT_TEST,
       ],
 
+      // Any other deployed environment type is considered development.
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => FALSE,
+          'QUANT_ENV_TYPE' => 'staging',
         ],
         static::ENVIRONMENT_DEV,
       ],
+
+      // Empty type keeps the local default.
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => FALSE,
+          'QUANT_ENV_TYPE' => '',
         ],
-        static::ENVIRONMENT_DEV,
+        static::ENVIRONMENT_LOCAL,
+      ],
+
+      // DRUPAL_ENVIRONMENT overrides everything.
+      [
+        [
+          'QUANT_ENV_TYPE' => 'production',
+          'DRUPAL_ENVIRONMENT' => static::ENVIRONMENT_SUT,
+        ],
+        static::ENVIRONMENT_SUT,
       ],
       [
         [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => FALSE,
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => FALSE,
+          'CI' => 1,
+          'DRUPAL_ENVIRONMENT' => static::ENVIRONMENT_SUT,
         ],
-        static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'somebranch',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => FALSE,
-        ],
-        static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => FALSE,
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => 'otherbranch',
-        ],
-        static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'somebranch',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => 'otherbranch',
-        ],
-        static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => '',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => '',
-        ],
-        static::ENVIRONMENT_DEV,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-          'LAGOON_GIT_BRANCH' => 'somebranch',
-          'DREVOPS_LAGOON_PRODUCTION_BRANCH' => 'somebranch',
-        ],
-        static::ENVIRONMENT_PROD,
-      ],
-      [
-        [
-          'LAGOON' => 1,
-          'LAGOON_ENVIRONMENT_TYPE' => 'development',
-        ],
-        static::ENVIRONMENT_DEV,
+        static::ENVIRONMENT_SUT,
       ],
     ];
   }
@@ -194,7 +129,7 @@ class EnvironmentSettingsTest extends SettingsTestCase {
   public function testEnvironmentGeneric(): void {
     $this->setEnvVars([
       'DRUPAL_ENVIRONMENT' => static::ENVIRONMENT_SUT,
-    ]);
+    ] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -206,28 +141,24 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['maintenance_theme'] = 'civictheme';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_SUT;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('MARIADB_HOST') ?: 'localhost');
-    $settings['trusted_host_patterns'] = [
-      '^.+\.docker\.amazee\.io$',
-      '^.+\.apps\.quantgovsites\.com$',
-      '^.+\.civictheme\.io$',
-      '^nginx$',
-    ];
+    $settings['hash_salt'] = static::HASH_SALT_TESTING;
+    $settings['trusted_host_patterns'] = static::trustedHostPatternsBase();
     $this->assertSettings($settings);
   }
 
@@ -251,29 +182,25 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['shield.settings']['shield_enable'] = FALSE;
     $config['system.logging']['error_level'] = 'all';
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_LOCAL;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('MARIADB_HOST') ?: 'localhost');
+    $settings['hash_salt'] = static::derivedHashSalt();
     $settings['skip_permissions_hardening'] = TRUE;
-    $settings['trusted_host_patterns'] = [
-      '^.+\.docker\.amazee\.io$',
-      '^.+\.apps\.quantgovsites\.com$',
-      '^.+\.civictheme\.io$',
-      '^nginx$',
-    ];
+    $settings['trusted_host_patterns'] = array_merge(static::trustedHostPatternsBase(), ['^.+$']);
     $this->assertSettings($settings);
   }
 
@@ -296,98 +223,36 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['maintenance_theme'] = 'civictheme';
     $config['shield.settings']['shield_enable'] = FALSE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_CI;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('DATABASE_HOST') ?: 'localhost');
+    $settings['hash_salt'] = static::derivedHashSalt();
     $settings['skip_permissions_hardening'] = TRUE;
     $settings['suspend_mail_send'] = TRUE;
-    $settings['trusted_host_patterns'] = [
-      '^.+\.docker\.amazee\.io$',
-      '^.+\.apps\.quantgovsites\.com$',
-      '^.+\.civictheme\.io$',
-      '^nginx$',
-    ];
-
-    $this->assertSettings($settings);
-  }
-
-  /**
-   * Test per-environment settings for dynamic environment.
-   */
-  public function testEnvironmentLagoonDynamic(): void {
-    $this->setEnvVars([
-      'LAGOON' => 1,
-      'LAGOON_ENVIRONMENT_TYPE' => 'development',
-      'LAGOON_ROUTES' => 'http://example1.com,https://example2/com',
-      'LAGOON_PROJECT' => 'test_project',
-      'LAGOON_GIT_BRANCH' => 'test_branch',
-      'LAGOON_GIT_SAFE_BRANCH' => 'test_branch',
-    ]);
-
-    $this->requireSettingsFile();
-
-    $config['environment_indicator.indicator']['bg_color'] = '#4caf50';
-    $config['environment_indicator.indicator']['fg_color'] = '#000000';
-    $config['environment_indicator.indicator']['name'] = static::ENVIRONMENT_DEV;
-    $config['environment_indicator.settings']['favicon'] = TRUE;
-    $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
-    $config['maintenance_theme'] = 'civictheme';
-    $config['shield.settings']['shield_enable'] = TRUE;
-    $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
-    $this->assertConfig($config);
-
-    $settings['cache_prefix']['default'] = 'test_project_test_branch';
-    $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
-    $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
-    $settings['entity_update_batch_size'] = 50;
-    $settings['environment'] = static::ENVIRONMENT_DEV;
-    $settings['file_private_path'] = 'sites/default/files/private';
-    $settings['file_scan_ignore_directories'] = [
-      'node_modules',
-      'bower_components',
-    ];
-    $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('DATABASE_HOST') ?: 'localhost');
-    $settings['reverse_proxy'] = TRUE;
-    $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
-    $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
-    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
-    $settings['trusted_host_patterns'][] = '^nginx$';
-    $settings['trusted_host_patterns'][] = '^nginx\-php$';
-    $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^example1\.com|example2/com$';
+    $settings['trusted_host_patterns'] = array_merge(static::trustedHostPatternsBase(), ['^.+$']);
     $this->assertSettings($settings);
   }
 
   /**
    * Test per-environment settings for Dev environment.
    */
-  public function testEnvironmentLagoonDev(): void {
+  public function testEnvironmentDev(): void {
     $this->setEnvVars([
-      'LAGOON' => 1,
-      'LAGOON_ENVIRONMENT_TYPE' => 'development',
-      'LAGOON_ROUTES' => 'http://example1.com,https://example2/com',
-      'LAGOON_PROJECT' => 'test_project',
-      'LAGOON_GIT_BRANCH' => 'develop',
-      'LAGOON_GIT_SAFE_BRANCH' => 'develop',
-    ]);
+      'QUANT_ENV_TYPE' => 'development',
+    ] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -399,47 +264,34 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['maintenance_theme'] = 'civictheme';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
-    $settings['cache_prefix']['default'] = 'test_project_develop';
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_DEV;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('DATABASE_HOST') ?: 'localhost');
-    $settings['reverse_proxy'] = TRUE;
-    $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
-    $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
-    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
-    $settings['trusted_host_patterns'][] = '^nginx$';
-    $settings['trusted_host_patterns'][] = '^nginx\-php$';
-    $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^example1\.com|example2/com$';
+    $settings['hash_salt'] = static::HASH_SALT_TESTING;
+    $settings['trusted_host_patterns'] = array_merge(static::trustedHostPatternsBase(), ['^.+$']);
     $this->assertSettings($settings);
   }
 
   /**
    * Test per-environment settings for Test environment.
    */
-  public function testEnvironmentLagoonTest(): void {
+  public function testEnvironmentTestType(): void {
     $this->setEnvVars([
-      'LAGOON' => 1,
-      'LAGOON_ENVIRONMENT_TYPE' => 'development',
-      'LAGOON_ROUTES' => 'http://example1.com,https://example2/com',
-      'LAGOON_PROJECT' => 'test_project',
-      'LAGOON_GIT_BRANCH' => 'master',
-      'LAGOON_GIT_SAFE_BRANCH' => 'master',
-    ]);
+      'QUANT_ENV_TYPE' => 'test',
+    ] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -451,48 +303,34 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['maintenance_theme'] = 'civictheme';
     $config['shield.settings']['shield_enable'] = TRUE;
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
-    $settings['cache_prefix']['default'] = 'test_project_master';
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_TEST;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('DATABASE_HOST') ?: 'localhost');
-    $settings['reverse_proxy'] = TRUE;
-    $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
-    $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
-    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
-    $settings['trusted_host_patterns'][] = '^nginx$';
-    $settings['trusted_host_patterns'][] = '^nginx\-php$';
-    $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^example1\.com|example2/com$';
+    $settings['hash_salt'] = static::HASH_SALT_TESTING;
+    $settings['trusted_host_patterns'] = static::trustedHostPatternsBase();
     $this->assertSettings($settings);
   }
 
   /**
    * Test per-environment settings for Prod environment.
    */
-  public function testEnvironmentLagoonProd(): void {
+  public function testEnvironmentProd(): void {
     $this->setEnvVars([
-      'LAGOON' => 1,
-      'LAGOON_ENVIRONMENT_TYPE' => 'production',
-      'LAGOON_ROUTES' => 'http://example1.com,https://example2/com',
-      'LAGOON_PROJECT' => 'test_project',
-      'LAGOON_GIT_BRANCH' => 'production',
-      'LAGOON_GIT_SAFE_BRANCH' => 'production',
-      'DREVOPS_LAGOON_PRODUCTION_BRANCH' => 'production',
-    ]);
+      'QUANT_ENV_TYPE' => 'production',
+    ] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -503,33 +341,74 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
     $config['maintenance_theme'] = 'civictheme';
     $config['system.performance']['cache']['page']['max_age'] = 900;
-    $config['system.performance']['css']['preprocess'] = 1;
-    $config['system.performance']['js']['preprocess'] = 1;
+    $config['system.performance']['css']['preprocess'] = TRUE;
+    $config['system.performance']['js']['preprocess'] = TRUE;
     $this->assertConfig($config);
 
-    $settings['cache_prefix']['default'] = 'test_project_production';
     $settings['config_exclude_modules'] = [];
-    $settings['config_sync_directory'] = '../config/default';
+    $settings['config_sync_directory'] = '/opt/drupal/config/sync';
     $settings['container_yamls'][0] = $this->app_root . '/' . $this->site_path . '/services.yml';
     $settings['entity_update_batch_size'] = 50;
     $settings['environment'] = static::ENVIRONMENT_PROD;
     $settings['file_private_path'] = 'sites/default/files/private';
+    $settings['file_public_path'] = 'sites/default/files';
     $settings['file_scan_ignore_directories'] = [
       'node_modules',
       'bower_components',
     ];
     $settings['file_temp_path'] = static::TMP_PATH_TESTING;
-    $settings['hash_salt'] = hash('sha256', getenv('DATABASE_HOST') ?: 'localhost');
-    $settings['reverse_proxy'] = TRUE;
-    $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
-    $settings['trusted_host_patterns'][] = '^.+\.docker\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^.+\.apps\.quantgovsites\.com$';
-    $settings['trusted_host_patterns'][] = '^.+\.civictheme\.io$';
-    $settings['trusted_host_patterns'][] = '^nginx$';
-    $settings['trusted_host_patterns'][] = '^nginx\-php$';
-    $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
-    $settings['trusted_host_patterns'][] = '^example1\.com|example2/com$';
+    $settings['hash_salt'] = static::HASH_SALT_TESTING;
+    $settings['trusted_host_patterns'] = static::trustedHostPatternsBase();
     $this->assertSettings($settings);
+  }
+
+  /**
+   * Test that a deployed environment refuses to boot without a hash salt.
+   */
+  public function testServerRequiresHashSalt(): void {
+    $vars = static::serverRequiredVars();
+    unset($vars['DRUPAL_HASH_SALT']);
+    $this->setEnvVars([
+      'QUANT_ENV_TYPE' => 'production',
+      'DRUPAL_HASH_SALT' => NULL,
+    ] + $vars);
+
+    $this->expectException(\RuntimeException::class);
+    $this->expectExceptionMessageMatches('/DRUPAL_HASH_SALT/');
+
+    $this->requireSettingsFile();
+  }
+
+  /**
+   * Test that a deployed environment refuses to boot without DB variables.
+   */
+  public function testServerRequiresDatabaseVars(): void {
+    $this->setEnvVars([
+      'QUANT_ENV_TYPE' => 'production',
+      'DRUPAL_HASH_SALT' => static::HASH_SALT_TESTING,
+    ]);
+
+    $this->expectException(\RuntimeException::class);
+    $this->expectExceptionMessageMatches('/DB_/');
+
+    $this->requireSettingsFile();
+  }
+
+  /**
+   * Test DRUPAL_TRUSTED_HOSTS adds patterns.
+   */
+  public function testTrustedHostsFromEnv(): void {
+    $this->setEnvVars([
+      'QUANT_ENV_TYPE' => 'production',
+      'DRUPAL_TRUSTED_HOSTS' => '^www\.example\.com$, ^example\.com$',
+    ] + static::serverRequiredVars());
+
+    $this->requireSettingsFile();
+
+    $this->assertEquals(
+      array_merge(static::trustedHostPatternsBase(), ['^www\.example\.com$', '^example\.com$']),
+      $this->settings['trusted_host_patterns']
+    );
   }
 
 }

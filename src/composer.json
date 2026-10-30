@@ -70,17 +70,13 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "autoload": {
-        "classmap": [
-            "scripts/composer/"
-        ]
-    },
     "autoload-dev": {
         "classmap": [
             "tests/phpunit/"
         ]
     },
     "config": {
+        "bin-dir": "bin",
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
@@ -206,17 +202,11 @@
         }
     },
     "scripts": {
-        "pre-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
         "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ],
-        "pre-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+            "@composer drupal:scaffold"
         ],
         "post-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+            "@composer drupal:scaffold"
         ]
     }
 }

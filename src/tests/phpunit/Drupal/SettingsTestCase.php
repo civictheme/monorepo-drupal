@@ -55,6 +55,11 @@ abstract class SettingsTestCase extends TestCase {
   const TMP_PATH_TESTING = '/tmp-test';
 
   /**
+   * Defines a constant for the hash salt used in testing.
+   */
+  const HASH_SALT_TESTING = 'test_hash_salt';
+
+  /**
    * Application root.
    *
    * @var string
@@ -118,8 +123,8 @@ abstract class SettingsTestCase extends TestCase {
       $vars['CI'] = FALSE;
     }
 
-    if (!isset($vars['LAGOON'])) {
-      $vars['LAGOON'] = FALSE;
+    if (!isset($vars['QUANT_ENV_TYPE'])) {
+      $vars['QUANT_ENV_TYPE'] = FALSE;
     }
 
     $vars['TMP'] = static::TMP_PATH_TESTING;
@@ -127,13 +132,14 @@ abstract class SettingsTestCase extends TestCase {
     // Filtered real vars without a value to unset them in the lines below.
     $vars_real = self::getRealEnvVarsFilteredNoValues([
       // Service variables.
-      'MARIADB_',
+      'DB_',
       'REDIS_',
       'COMPOSE_',
       'GITHUB_',
       'DOCKER_',
-      // DrevOps and Drupal variables.
-      'DREVOPS_',
+      // Salsa Hosting scaffold and Drupal variables.
+      'QUANT_',
+      'SCAFFOLD_',
       'DRUPAL_',
     ]);
 
@@ -182,6 +188,49 @@ abstract class SettingsTestCase extends TestCase {
     foreach (array_keys($this->envVars) as $name) {
       putenv($name);
     }
+  }
+
+  /**
+   * Environment variables a deployed (non-local, non-CI) environment requires.
+   *
+   * @return array
+   *   Array of environment variables.
+   */
+  protected static function serverRequiredVars(): array {
+    return [
+      'DB_DATABASE' => 'test_db_name',
+      'DB_USERNAME' => 'test_db_user',
+      'DB_PASSWORD' => 'test_db_pass',
+      'DB_HOST' => 'test_db_host',
+      'DRUPAL_HASH_SALT' => static::HASH_SALT_TESTING,
+    ];
+  }
+
+  /**
+   * Trusted host patterns set unconditionally by settings.php.
+   *
+   * @return array
+   *   Array of trusted host patterns.
+   */
+  protected static function trustedHostPatternsBase(): array {
+    return [
+      '^[a-z0-9-]+--[a-z0-9-]+--[a-z0-9-]+(?:--\d+)?\.apps\.quantgovsites\.com$',
+      '^.+\.civictheme\.io$',
+      '^.+\.docker\.amazee\.io$',
+      '^app$',
+    ];
+  }
+
+  /**
+   * The hash salt settings.php derives on local/CI when none is supplied.
+   *
+   * @return string
+   *   The derived hash salt.
+   */
+  protected static function derivedHashSalt(): string {
+    $settings_path = realpath('./web/sites/default/settings.php');
+
+    return hash('sha256', 'civictheme-local-' . $settings_path);
   }
 
   /**

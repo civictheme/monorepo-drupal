@@ -1,25 +1,33 @@
 <?php
 
+// phpcs:ignoreFile
+
 /**
  * @file
- * Drupal site-specific configuration file.
+ * CivicTheme monorepo settings.php — Salsa Hosting scaffold base, env-driven.
  *
- * The structure of this file:
- * - Environment constants definitions.
+ * Structure:
+ * - Environment constants + detection (QUANT_ENV_TYPE / CI).
+ * - Database (env-driven, installer-rewrite hardened).
  * - Site-specific settings.
- * - Environment variable initialisation.
  * - Per-environment overrides.
- * - Inclusion of local settings.
+ * - Per-module includes (sites/default/includes/settings.*.php).
+ * - Local settings overrides (settings.local.php / services.local.yml).
  *
- * Create settings.local.php file to include local settings overrides.
+ * == Installer rewrite hardening (from the scaffold — do not undo) ==
  *
- * phpcs:disable Drupal.Commenting.InlineComment.NoSpaceBefore
- * phpcs:disable Drupal.Commenting.InlineComment.SpacingAfter
- * phpcs:disable DrupalPractice.Commenting.CommentEmptyLine.SpacingAfter
- * phpcs:disable DrupalPractice.CodeAnalysis.VariableAnalysis.UnusedVariable
+ * Drupal's SettingsEditor::rewrite() runs during install whenever the
+ * installer can't open a working DB connection. For each
+ * `$databases[...][...] = …;` statement with a "simple" scalar RHS it
+ * replaces the value in-place; anything else is left alone AND re-exported as
+ * an APPENDED block at end-of-file, which would override the env-driven
+ * assignment below and drop the `pdo` key (breaking the local TLS-off
+ * switch). Defence: the NULL placeholder before the env-driven assignment is
+ * replaced in-place, so nothing is appended. Keep the placeholder first, keep
+ * the real assignment a single 2-level write built from a local variable.
  */
 
-declare(strict_types=1);
+use Drupal\Core\Installer\InstallerKernel;
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                       ENVIRONMENT CONSTANTS                              ///
@@ -45,11 +53,100 @@ if (!defined('ENVIRONMENT_DEV')) {
 }
 // @codeCoverageIgnoreEnd
 
+// Environment detection: QUANT_ENV_TYPE is a self-managed per-environment
+// Salsa Hosting variable (`local` on developer machines via .env). CI is
+// detected via the conventional CI variable. DRUPAL_ENVIRONMENT, when set,
+// overrides everything.
 $settings['environment'] = empty(getenv('CI')) ? ENVIRONMENT_LOCAL : ENVIRONMENT_CI;
+
+switch (getenv('QUANT_ENV_TYPE')) {
+  case 'production':
+    $settings['environment'] = ENVIRONMENT_PROD;
+    break;
+
+  case 'test':
+    $settings['environment'] = ENVIRONMENT_TEST;
+    break;
+
+  case 'development':
+    $settings['environment'] = ENVIRONMENT_DEV;
+    break;
+
+  case 'local':
+  case '':
+  case FALSE:
+    // Keep the local/CI value from above.
+    break;
+
+  default:
+    // Any other deployed environment type is considered development.
+    $settings['environment'] = ENVIRONMENT_DEV;
+}
+
+// Allow overriding of an environment type.
+if (!empty(getenv('DRUPAL_ENVIRONMENT'))) {
+  $settings['environment'] = getenv('DRUPAL_ENVIRONMENT');
+}
+
+////////////////////////////////////////////////////////////////////////////////
+///                             DATABASE                                     ///
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Installer-rewrite placeholder — see file docblock. MUST come before the
+ * env-driven `$databases['default']['default']` assignment below.
+ */
+$databases['default']['default'] = NULL;
+
+/**
+ * Required env vars — fail fast at runtime if a deployed environment is
+ * missing them. Skipped during install and on local/CI, where compose (or the
+ * test harness) provides them.
+ */
+if (!InstallerKernel::installationAttempted()
+  && !in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI], TRUE)) {
+  foreach (['DB_DATABASE', 'DB_USERNAME', 'DB_PASSWORD', 'DB_HOST'] as $required) {
+    if (getenv($required) === FALSE || getenv($required) === '') {
+      throw new RuntimeException("Required env var $required is not set.");
+    }
+  }
+}
+
+/**
+ * Database connection — single assignment, no further `$databases[...][...]`
+ * mutations elsewhere in this file (see file-level docblock).
+ */
+$pdo_options = [];
+$rds_cert = '/opt/rds-ca-certs/rds-ca-cert-bundle.pem';
+if (getenv('DB_TLS_ENABLED') === '0') {
+  // Local dev with MySQL 8 — explicitly disable TLS so the client doesn't
+  // reject the server's self-signed cert.
+  $pdo_options[PDO::MYSQL_ATTR_SSL_CA] = '';
+  $pdo_options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = FALSE;
+}
+elseif (file_exists($rds_cert)) {
+  // Production with RDS — verify against the bundled CA.
+  $pdo_options[PDO::MYSQL_ATTR_SSL_CA] = $rds_cert;
+  $pdo_options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = TRUE;
+}
+
+$databases['default']['default'] = [
+  'driver'    => getenv('DB_DRIVER') ?: 'mysql',
+  'database'  => getenv('DB_DATABASE') ?: 'drupal',
+  'username'  => getenv('DB_USERNAME') ?: 'drupal',
+  'password'  => getenv('DB_PASSWORD') ?: 'drupal',
+  'host'      => getenv('DB_HOST') ?: 'localhost',
+  'port'      => getenv('DB_PORT') ?: '3306',
+  'prefix'    => getenv('DB_PREFIX') ?: '',
+  'charset'   => 'utf8mb4',
+  'collation' => 'utf8mb4_general_ci',
+  'pdo'       => $pdo_options,
+];
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                       SITE-SPECIFIC SETTINGS                             ///
 ////////////////////////////////////////////////////////////////////////////////
+
 $app_root = $app_root ?? DRUPAL_ROOT;
 $site_path = $site_path ?? 'sites/default';
 $contrib_path = $app_root . DIRECTORY_SEPARATOR . (is_dir($app_root . DIRECTORY_SEPARATOR . 'modules/contrib') ? 'modules/contrib' : 'modules');
@@ -57,19 +154,40 @@ $contrib_path = $app_root . DIRECTORY_SEPARATOR . (is_dir($app_root . DIRECTORY_
 // Load services definition file.
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 
-// Location of the site configuration files.
-$settings['config_sync_directory'] = '../config/default';
-
-// Temporary directory.
-if (getenv('TMP')) {
-  $settings['file_temp_path'] = getenv('TMP');
+/**
+ * Hash salt.
+ *
+ * A deployed environment must supply DRUPAL_HASH_SALT (Salsa Hosting platform
+ * variable) or refuse to boot; local development, CI and the installer get a
+ * derived value, because there the salt protects nothing an attacker cannot
+ * already reach.
+ */
+$hash_salt = getenv('DRUPAL_HASH_SALT') ?: '';
+if ($hash_salt === '') {
+  $is_server = !in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI], TRUE);
+  if (!InstallerKernel::installationAttempted() && $is_server) {
+    throw new RuntimeException(
+      'DRUPAL_HASH_SALT is not set. A deployed environment must supply it as '
+      . 'a platform variable. Refusing to fall back to a value that would be '
+      . 'identical on every environment.'
+    );
+  }
+  // Local / CI / installer only. Deliberately NOT a secret.
+  $hash_salt = hash('sha256', 'civictheme-local-' . __FILE__);
 }
+$settings['hash_salt'] = $hash_salt;
 
-// Private directory.
-$settings['file_private_path'] = 'sites/default/files/private';
+// Location of the site configuration files. The site installs from a profile,
+// so config/sync stays empty and deploys take the updb path.
+$settings['config_sync_directory'] = getenv('DRUPAL_CONFIG_SYNC') ?: '/opt/drupal/config/sync';
 
-// Base salt on the DB host name.
-$settings['hash_salt'] = hash('sha256', getenv('MARIADB_HOST') ?: getenv('DB_HOST') ?: 'localhost');
+// File paths — env-overridable for non-default deployments. On Salsa Hosting
+// DRUPAL_PRIVATE_FILES points at a dedicated volume outside the docroot
+// (/opt/drupal/private); the default below only applies locally, where the
+// files tree is a bind mount.
+$settings['file_public_path'] = getenv('DRUPAL_PUBLIC_FILES') ?: 'sites/default/files';
+$settings['file_private_path'] = getenv('DRUPAL_PRIVATE_FILES') ?: 'sites/default/files/private';
+$settings['file_temp_path'] = getenv('DRUPAL_TEMP_PATH') ?: (getenv('TMP') ?: '/tmp');
 
 // Expiration of cached pages.
 $config['system.performance']['cache']['page']['max_age'] = 900;
@@ -87,20 +205,6 @@ $settings['file_scan_ignore_directories'] = [
 // The default number of entities to update in a batch process.
 $settings['entity_update_batch_size'] = 50;
 
-// Trusted Host Patterns.
-// Settings for other environments are included below.
-// If your site runs on multiple domains, you need to add these domains here.
-// escape dots, remove schema, use commas as regex separator.
-// See https://www.drupal.org/node/2410395 for more information.
-$settings['trusted_host_patterns'] = [
-  // Local URL.
-  '^.+\.docker\.amazee\.io$',
-  '^.+\.apps\.quantgovsites\.com$',
-  '^.+\.civictheme\.io$',
-  // URL when accessed from Behat tests.
-  '^nginx$',
-];
-
 // Modules excluded from config export.
 $settings['config_exclude_modules'] = [];
 
@@ -110,101 +214,84 @@ date_default_timezone_set('Australia/Melbourne');
 // Maintenance theme.
 $config['maintenance_theme'] = 'civictheme';
 
-// Default database configuration.
-$databases = [
-  'default' =>
-    [
-      'default' =>
-        [
-          'database' => getenv('MYSQL_DATABASE') ?: getenv('MARIADB_DATABASE') ?: getenv('DB_DATABASE') ?: 'drupal',
-          'username' => getenv('MYSQL_USERNAME') ?: getenv('MARIADB_USERNAME') ?: getenv('DB_USERNAME') ?: 'drupal',
-          'password' => getenv('MYSQL_PASSWORD') ?: getenv('MARIADB_PASSWORD') ?: getenv('DB_PASSWORD') ?: 'drupal',
-          'host' => getenv('MYSQL_HOST') ?: getenv('MARIADB_HOST') ?: getenv('DB_HOST') ?: 'localhost',
-          'port' => getenv('MYSQL_PORT') ?: getenv('MARIADB_PORT') ?: getenv('DB_PORT') ?: '3306',
-          'prefix' => '',
-          'driver' => 'mysql',
-          'charset' => 'utf8mb4',
-          'collation' => 'utf8mb4_general_ci',
-        ],
-    ],
+/**
+ * Trusted hosts.
+ *
+ * Additive sources:
+ *   1. Salsa Hosting preview hostnames —
+ *      `{env}--{org}--{app}[--{port}].apps.quantgovsites.com`.
+ *   2. The project's own domains and local-dev hosts.
+ *   3. `DRUPAL_TRUSTED_HOSTS` (comma-separated regex list) platform variable.
+ *   4. On local/CI/development, any host is accepted so dev tooling and test
+ *      runners work without per-developer configuration.
+ */
+$settings['trusted_host_patterns'] = [
+  // Salsa Hosting preview URL.
+  '^[a-z0-9-]+--[a-z0-9-]+--[a-z0-9-]+(?:--\d+)?\.apps\.quantgovsites\.com$',
+  // Project domains.
+  '^.+\.civictheme\.io$',
+  // Local development URL.
+  '^.+\.docker\.amazee\.io$',
+  // URL when accessed from Behat tests inside the stack.
+  '^app$',
 ];
 
-////////////////////////////////////////////////////////////////////////////////
-///                   ENVIRONMENT-SPECIFIC SETTINGS                          ///
-////////////////////////////////////////////////////////////////////////////////
-
-
-// Initialise environment type in Lagoon environment.
-if (getenv('LAGOON') && getenv('LAGOON_ENVIRONMENT_TYPE') == 'production' || getenv('LAGOON_ENVIRONMENT_TYPE') == 'development') {
-  // @todo remove once platform upgraded.
-  // Override requirements for use Drupal 11 on MySQL 5.7.8+
-  // and MariaDB 10.3.7+, which match Drupal 10's requirements.
-  require DRUPAL_ROOT . '/modules/contrib/mysql57/settings.inc';
-
-  // Do not put any Lagoon-specific settings in this code block. It is used
-  // to explicitly map Lagoon environments to $settings['environment']
-  // variable only.
-  // Instead, use 'PER-ENVIRONMENT SETTINGS' section below.
-  //
-  // Environment is marked as 'production' in Lagoon.
-  if (getenv('LAGOON_ENVIRONMENT_TYPE') == 'production') {
-    $settings['environment'] = ENVIRONMENT_PROD;
+$user_trusted_hosts = getenv('DRUPAL_TRUSTED_HOSTS');
+if ($user_trusted_hosts) {
+  foreach (array_filter(array_map('trim', explode(',', $user_trusted_hosts))) as $pattern) {
+    $settings['trusted_host_patterns'][] = $pattern;
   }
-  // All other environments running in Lagoon are considered 'development'.
-  else {
-    // Any other environment is considered 'development' in Lagoon.
-    $settings['environment'] = ENVIRONMENT_DEV;
+}
 
-    // But try to identify production environment using a branch name for
-    // the cases when 'production' Lagoon environment is not provisioned yet.
-    if (!empty(getenv('LAGOON_GIT_BRANCH')) && !empty(getenv('DREVOPS_LAGOON_PRODUCTION_BRANCH')) && getenv('LAGOON_GIT_BRANCH') === getenv('DREVOPS_LAGOON_PRODUCTION_BRANCH')) {
-      $settings['environment'] = ENVIRONMENT_PROD;
-    }
-    // Dedicated test environment based on a branch name.
-    elseif (getenv('LAGOON_GIT_BRANCH') == 'master') {
-      $settings['environment'] = ENVIRONMENT_TEST;
-    }
-    // Test environment based on a branch prefix for release and
-    // hotfix branches.
-    elseif (!empty(getenv('LAGOON_GIT_BRANCH')) && (str_starts_with(getenv('LAGOON_GIT_BRANCH'), 'release/') || str_starts_with(getenv('LAGOON_GIT_BRANCH'), 'hotfix/'))) {
-      $settings['environment'] = ENVIRONMENT_TEST;
-    }
-  }
+if (in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI, ENVIRONMENT_DEV], TRUE)) {
+  $settings['trusted_host_patterns'][] = '^.+$';
+}
 
-  // Lagoon version.
-  if (!defined('LAGOON_VERSION')) {
-    define('LAGOON_VERSION', '1');
-  }
-
-  // Lagoon reverse proxy settings.
+/**
+ * Reverse proxy — Salsa Hosting terminates TLS upstream.
+ */
+if (getenv('DRUPAL_REVERSE_PROXY') === 'true') {
   $settings['reverse_proxy'] = TRUE;
-  // Reverse proxy settings.
-  $settings['reverse_proxy_header'] = 'HTTP_TRUE_CLIENT_IP';
-
-  // Cache prefix.
-  $settings['cache_prefix']['default'] = (getenv('LAGOON_PROJECT') ?: getenv('DREVOPS_PROJECT')) . '_' . (getenv('LAGOON_GIT_SAFE_BRANCH') ?: getenv('DREVOPS_LAGOON_PRODUCTION_BRANCH'));
-
-  // Trusted host patterns for Lagoon internal routes.
-  // URL when accessed from PHP processes in Lagoon.
-  $settings['trusted_host_patterns'][] = '^nginx\-php$';
-  // Lagoon URL.
-  $settings['trusted_host_patterns'][] = '^.+\.au\.amazee\.io$';
-  // Lagoon routes.
-  if (getenv('LAGOON_ROUTES')) {
-    $patterns = str_replace(['.', 'https://', 'http://', ','], [
-      '\.', '', '', '|',
-    ], getenv('LAGOON_ROUTES'));
-    $settings['trusted_host_patterns'][] = '^' . $patterns . '$';
-  }
+  $proxy_addresses = getenv('DRUPAL_REVERSE_PROXY_ADDRESSES') ?: '';
+  $settings['reverse_proxy_addresses'] = $proxy_addresses === ''
+    ? []
+    : array_filter(array_map('trim', explode(',', $proxy_addresses)));
 }
 
-// Allow overriding of an environment type.
-if (!empty(getenv('DRUPAL_ENVIRONMENT'))) {
-  $settings['environment'] = getenv('DRUPAL_ENVIRONMENT');
+/**
+ * Optional Redis — only when DRUPAL_REDIS_ENABLED=1 AND the extension is loaded.
+ */
+if (getenv('DRUPAL_REDIS_ENABLED') === '1' && extension_loaded('redis')) {
+  $settings['redis.connection']['interface'] = 'PhpRedis';
+  $settings['redis.connection']['host'] = getenv('DRUPAL_REDIS_HOST') ?: 'redis';
+  $settings['redis.connection']['port'] = getenv('DRUPAL_REDIS_PORT') ?: 6379;
+  $settings['cache']['default'] = 'cache.backend.redis';
+  $settings['cache_prefix'] = getenv('DRUPAL_REDIS_PREFIX') ?: getenv('SCAFFOLD_PROJECT') ?: 'drupal';
+}
+
+/**
+ * Stage file proxy — pull missing public files from a remote env (dev only).
+ */
+$stage_origin = getenv('DRUPAL_STAGE_FILE_PROXY_ORIGIN');
+if ($stage_origin) {
+  $config['stage_file_proxy.settings']['origin'] = $stage_origin;
+  $config['stage_file_proxy.settings']['hotlink'] = FALSE;
+}
+
+/**
+ * Verbose error reporting + cache disable when DRUPAL_DEBUG=1. Never set
+ * this in production.
+ */
+if (getenv('DRUPAL_DEBUG') === '1' && !InstallerKernel::installationAttempted()) {
+  $config['system.logging']['error_level'] = 'verbose';
+  $settings['cache']['bins']['render'] = 'cache.backend.null';
+  $settings['cache']['bins']['page'] = 'cache.backend.null';
+  $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+  $settings['extension_discovery_scan_tests'] = TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-///                         ENVIRONMENT DETECTION                            ///
+///                   PER-ENVIRONMENT SETTINGS                               ///
 ////////////////////////////////////////////////////////////////////////////////
 
 if ($settings['environment'] == ENVIRONMENT_CI) {
@@ -247,9 +334,6 @@ if (file_exists($app_root . '/' . $site_path . '/includes')) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // Load local development override configuration, if available.
-//
-// Copy default.settings.local.php and default.services.local.yml to
-// settings.local.php and services.local.yml respectively.
 //
 // Keep this code block at the end of this file to take full effect.
 // @codeCoverageIgnoreStart

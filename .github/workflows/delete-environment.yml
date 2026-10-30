@@ -1,0 +1,36 @@
+name: Delete Quant Cloud environment on branch delete
+
+# No PR environments exist (decided 2026-10-29) — the build workflow is
+# branch-triggered, so teardown only has to handle deletes of the env-bearing
+# branch patterns. Replaces the Lagoon webhook dispatch.
+'on': delete
+
+jobs:
+  delete-environment:
+    # Only branches, and only the patterns build-deploy.yml deploys.
+    if: >-
+      github.event.ref_type == 'branch' && (
+        startsWith(github.event.ref, 'release/') ||
+        startsWith(github.event.ref, 'hotfix/') ||
+        startsWith(github.event.ref, 'project/') ||
+        startsWith(github.event.ref, 'feature/editorial-')
+      )
+    runs-on: ubuntu-latest
+    steps:
+
+    # Environment names are the branch name slugified the same way the
+    # quant-cloud-init-action derives them (non-alphanumerics to hyphens).
+    - name: Derive environment name
+      id: env-name
+      run: |
+        name="$(echo '${{ github.event.ref }}' | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
+        echo "environment_name=$name" >> "$GITHUB_OUTPUT"
+
+    - name: Delete environment
+      uses: quantcdn/quant-cloud-environment-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: civictheme-monorepo-drupal
+        environment_name: ${{ steps.env-name.outputs.environment_name }}
+        operation: delete

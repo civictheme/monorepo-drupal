@@ -10,12 +10,12 @@
 #
 # Environment variables:
 #   CIVICTHEME_LINT_COMPONENTS_PROFILE  - Override profile name (optional).
-#   CIVICTHEME_LINT_COMPONENTS_BASE_URL - Override base URL (default: http://nginx:8080).
+#   CIVICTHEME_LINT_COMPONENTS_BASE_URL - Override base URL (default: http://app).
 #   CI                                  - Auto-detected; selects civictheme-ci profile.
-#   DREVOPS_DEBUG                       - Enables set -x for debug output.
+#   SCAFFOLD_DEBUG                       - Enables set -x for debug output.
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 # Determine profile: explicit override > CI detection > local default.
 if [ -n "${CIVICTHEME_LINT_COMPONENTS_PROFILE:-}" ]; then
@@ -37,7 +37,7 @@ echo "==> Lint components smoke test (profile: ${PROFILE})"
 
 # Base URL: always use internal Docker address since this runs inside the CLI
 # container. The project.json base_path is for host-level tools (VR, browser).
-BASE_PATH="${CIVICTHEME_LINT_COMPONENTS_BASE_URL:-http://nginx:8080}"
+BASE_PATH="${CIVICTHEME_LINT_COMPONENTS_BASE_URL:-http://app}"
 
 # Extract paths array from project.json.
 PATHS="$(node -e "const p=require('./${PROJECT_JSON}'); p['visual-diff']['paths'].forEach(function(v){console.log(v)})")"

@@ -16,7 +16,7 @@ Feature: IFrame render
       | field_c_p_height           | 600               |
       | field_c_p_width            | 400               |
       | field_c_p_background       | 0                 |
-      | field_c_p_url              | http://nginx:8080 |
+      | field_c_p_url              | http://app |
 
     When I visit "civictheme_page" "[TEST] Page iframe test"
     And I should see an "iframe.ct-iframe" element
@@ -35,7 +35,7 @@ Feature: IFrame render
       | field_c_p_height           | 600               |
       | field_c_p_width            | 400               |
       | field_c_p_background       | 1                 |
-      | field_c_p_url              | http://nginx:8080 |
+      | field_c_p_url              | http://app |
 
     When I visit "civictheme_page" "[TEST] Page iframe test2"
     And I should see an "iframe.ct-iframe" element

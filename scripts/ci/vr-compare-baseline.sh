@@ -16,7 +16,7 @@ if [ "${CIRCLE_BRANCH}" = "develop" ] || [ ! -d "/tmp/vr-baseline/baseline" ]; t
 fi
 
 # Copy baseline into container.
-docker compose cp /tmp/vr-baseline/baseline cli:/app/.visual-regression/civictheme-ci/screenshot-sets/sets/baseline
+docker compose cp /tmp/vr-baseline/baseline app:/opt/drupal/.visual-regression/civictheme-ci/screenshot-sets/sets/baseline
 
 # Register baseline snapshot in project.json.
 docker compose exec -T cli sh -c "cd /app && node -e \"
@@ -35,4 +35,4 @@ docker compose exec -T \
 
 # Copy comparison report out.
 mkdir -p /tmp/vr-report
-docker compose cp cli:/app/.visual-regression/civictheme-ci/screenshot-sets/comparisons/. /tmp/vr-report/ || true
+docker compose cp app:/opt/drupal/.visual-regression/civictheme-ci/screenshot-sets/comparisons/. /tmp/vr-report/ || true

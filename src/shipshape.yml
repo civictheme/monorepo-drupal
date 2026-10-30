@@ -23,7 +23,7 @@ checks:
     - name: '[FILE] Validate install profile'
       file: core.extension.yml
       ignore-missing: true
-      path: config/default
+      path: config/sync
       values:
         - key: profile
           value: govcms
@@ -31,7 +31,7 @@ checks:
       severity: high
       pattern: user.role.*.yml
       ignore-missing: true
-      path: config/default
+      path: config/sync
       values:
         - key: is_admin
           value: false
@@ -53,7 +53,7 @@ checks:
     - name: '[FILE] Disallowed permissions for anonymous role'
       file: user.role.anonymous.yml
       ignore-missing: true
-      path: config/default
+      path: config/sync
       values:
         - key: permissions
           is-list: true
@@ -90,14 +90,14 @@ checks:
     - name: '[FILE] Ensure only admins can register accounts'
       file: user.settings.yml
       ignore-missing: true
-      path: config/default
+      path: config/sync
       values:
         - key: register
           value: admin_only
     - name: '[FILE] Ensure no error log displayed'
       file: system.logging.yml
       ignore-missing: true
-      path: config/default
+      path: config/sync
       values:
         - key: error_level
           value: hide
@@ -112,7 +112,6 @@ checks:
     - name: '[FILE] Yaml lint platform files'
       severity: high
       files:
-        - .lagoon.yml
         - docker-compose.yml
       ignore-missing: true
     - name: '[FILE] Yaml lint theme files'

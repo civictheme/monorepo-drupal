@@ -25,7 +25,9 @@ default:
   extensions:
     Drupal\MinkExtension:
       browserkit_http: ~
-      base_url: http://nginx:8080
+      # Behat runs inside the app container; apache serves on :80 there, and
+      # the `app` service name resolves from the chrome container too.
+      base_url: http://app
       files_path: '%paths.base%/tests/behat/fixtures'
       browser_name: chrome
       selenium2:
@@ -37,9 +39,10 @@ default:
       api_driver: drupal
       drush_driver: drush
       drupal:
-        drupal_root: web
+        drupal_root: /opt/drupal/web
       drush:
-        root: web
+        root: /opt/drupal/web
+        binary: /opt/drupal/bin/drush
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'

@@ -45,6 +45,7 @@ class DatabaseSettingsTest extends SettingsTestCase {
               'prefix' => '',
               'charset' => 'utf8mb4',
               'collation' => 'utf8mb4_general_ci',
+              'pdo' => [],
             ],
           ],
         ],
@@ -52,11 +53,12 @@ class DatabaseSettingsTest extends SettingsTestCase {
 
       [
         [
-          'MARIADB_DATABASE' => 'test_db_name',
-          'MARIADB_USERNAME' => 'test_db_user',
-          'MARIADB_PASSWORD' => 'test_db_pass',
-          'MARIADB_HOST' => 'test_db_host',
-          'MARIADB_PORT' => 'test_db_port',
+          'DB_DATABASE' => 'test_db_name',
+          'DB_USERNAME' => 'test_db_user',
+          'DB_PASSWORD' => 'test_db_pass',
+          'DB_HOST' => 'test_db_host',
+          'DB_PORT' => 'test_db_port',
+          'DB_PREFIX' => 'test_db_prefix',
         ],
         [
           'default' => [
@@ -67,9 +69,36 @@ class DatabaseSettingsTest extends SettingsTestCase {
               'host' => 'test_db_host',
               'port' => 'test_db_port',
               'driver' => 'mysql',
+              'prefix' => 'test_db_prefix',
+              'charset' => 'utf8mb4',
+              'collation' => 'utf8mb4_general_ci',
+              'pdo' => [],
+            ],
+          ],
+        ],
+      ],
+
+      // Local development with MySQL 8 — TLS explicitly disabled.
+      [
+        [
+          'DB_TLS_ENABLED' => '0',
+        ],
+        [
+          'default' => [
+            'default' => [
+              'database' => 'drupal',
+              'username' => 'drupal',
+              'password' => 'drupal',
+              'host' => 'localhost',
+              'port' => '3306',
+              'driver' => 'mysql',
               'prefix' => '',
               'charset' => 'utf8mb4',
               'collation' => 'utf8mb4_general_ci',
+              'pdo' => [
+                \PDO::MYSQL_ATTR_SSL_CA => '',
+                \PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => FALSE,
+              ],
             ],
           ],
         ],

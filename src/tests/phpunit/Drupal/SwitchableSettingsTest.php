@@ -25,7 +25,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
   public function testEnvironmentIndicator(string $env, array $expected_present, array $expected_absent = []): void {
     $this->setEnvVars([
       'DRUPAL_ENVIRONMENT' => $env,
-    ]);
+    ] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 
@@ -89,7 +89,7 @@ class SwitchableSettingsTest extends SettingsTestCase {
    * @dataProvider dataProviderShield
    */
   public function testShield(string $env, array $vars, array $expected_present, array $expected_absent = []): void {
-    $this->setEnvVars($vars + ['DRUPAL_ENVIRONMENT' => $env]);
+    $this->setEnvVars($vars + ['DRUPAL_ENVIRONMENT' => $env] + static::serverRequiredVars());
 
     $this->requireSettingsFile();
 

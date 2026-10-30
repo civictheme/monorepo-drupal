@@ -4,7 +4,7 @@
  * Rector configuration.
  *
  * Usage:
- * ./vendor/bin/rector process .
+ * bin/rector process .
  *
  * @see https://github.com/palantirnet/drupal-rector/blob/main/rector.php
  */
