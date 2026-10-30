@@ -84,9 +84,6 @@ COMMON_EXCLUDES=(
   --exclude-dir=.idea
   # Local-only agent scratch space (git-ignored).
   --exclude-dir=.claude-scratchpad
-  # Legacy CircleCI pipeline — replaced by GitHub Actions in the scaffold
-  # conversion Phase 3; drops out of the tree with it.
-  --exclude-dir=.circleci
   # Downloaded SQL dumps — huge, and full of arbitrary column names.
   --exclude-dir=.data
   # Composer-managed code. The audit exists to catch legacy names in code this

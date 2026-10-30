@@ -28,7 +28,6 @@
 .github
 .idea
 .vscode
-.circleci
 .claude
 .claude-scratchpad
 .serena

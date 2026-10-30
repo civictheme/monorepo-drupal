@@ -372,8 +372,6 @@ jobs:
   # gate needs a job-level `if` and the matrix context is not available there.
   # The static lint chain is skipped: the code is identical to the minimal
   # variant, which already linted it.
-  # NOTE: feature/salsa-hosting-scaffold is in the gate to prove the port on
-  # the conversion branch — remove it at cutover.
   # ──────────────────────────────────────────────────────────────────────────
   build-content:
     name: Build (content-${{ matrix.content_profile }})
@@ -384,8 +382,7 @@ jobs:
       github.ref_type == 'tag' ||
       github.ref_name == 'develop' ||
       startsWith(github.ref_name, 'release/') ||
-      startsWith(github.ref_name, 'hotfix/') ||
-      github.ref_name == 'feature/salsa-hosting-scaffold'
+      startsWith(github.ref_name, 'hotfix/')
     strategy:
       fail-fast: false
       matrix:
