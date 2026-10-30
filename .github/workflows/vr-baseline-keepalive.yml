@@ -1,0 +1,50 @@
+name: VR baseline keep-alive
+
+# GitHub Actions evicts caches unused for 7 days (and LRU past 10 GB per
+# repo). The visual-regression baseline is saved by develop CI runs; on a
+# quiet repo it can expire, and vr-compare-baseline.sh then skips comparisons.
+# This weekly job restores the newest develop baseline and re-saves it under a
+# fresh key, resetting the eviction clock without building the stack.
+#
+# Scheduled workflows run against the default branch (develop), whose caches
+# every branch can read.
+
+'on':
+  schedule:
+    # Mondays 03:00 UTC.
+    - cron: '0 3 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    name: Re-save develop VR baseline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Restore newest develop baseline
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/vr-baseline
+          key: vr-baseline-v2-develop-keepalive-${{ github.run_id }}
+          restore-keys: |
+            vr-baseline-v2-develop-
+
+      - name: Check a baseline was found
+        run: |
+          if [ ! -d /tmp/vr-baseline/baseline ]; then
+            echo "::error::No develop VR baseline cache found — it has been evicted." \
+              "Re-create it by running the CI workflow on develop (or restore the" \
+              "vr-baseline artifact from the latest develop run)."
+            exit 1
+          fi
+          echo "Restored baseline from key: ${{ steps.restore.outputs.cache-matched-key }}"
+
+      - name: Re-save baseline under a fresh key
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/vr-baseline
+          key: vr-baseline-v2-develop-keepalive-${{ github.run_id }}

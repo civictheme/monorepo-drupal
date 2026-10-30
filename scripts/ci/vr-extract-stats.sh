@@ -7,10 +7,12 @@
 
 set -euo pipefail
 
+VR_BRANCH="${VR_BRANCH:-${GITHUB_REF_NAME:-}}"
+
 STATS_FILE="/tmp/vr-stats.env"
 REG_JSON="/tmp/vr-report/baseline--current/reg.json"
 
-if [ "${CIRCLE_BRANCH}" != "develop" ] && [ -f "${REG_JSON}" ]; then
+if [ "${VR_BRANCH}" != "develop" ] && [ -f "${REG_JSON}" ]; then
   PASSED=$(node -e "const r=require('${REG_JSON}'); console.log((r.passedItems||[]).length)")
   FAILED=$(node -e "const r=require('${REG_JSON}'); console.log((r.failedItems||[]).length)")
   NEW=$(node -e "const r=require('${REG_JSON}'); console.log((r.newItems||[]).length)")
