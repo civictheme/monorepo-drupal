@@ -19,10 +19,13 @@ services:
       context: .
       dockerfile: .docker/drupal/Dockerfile
       args:
-        # 8.4 is the deployed (Drupal 11) stack. The local govcms variant stack
-        # sets PHP_VERSION=8.3 to match the GovCMS platform PHP — run it as a
-        # second stack (SCAFFOLD_PROJECT=<name>--govcms) so switching variants
-        # doesn't rebuild the image every time.
+        # 8.4 is the deployed (Drupal 11) stack. GovCMS variants run the same
+        # 8.4 image — govcms/govcms 4.6+/dev-4.x-develop requires php ^8.4.0
+        # (the 8.3 platform line ended with GovCMS 4.5.x, 2026-10). The arg
+        # stays as the knob for testing against another platform PHP; a
+        # different value is best run as a second stack
+        # (SCAFFOLD_PROJECT=<name>--other) so switching variants doesn't
+        # rebuild the image every time.
         PHP_VERSION: "${PHP_VERSION:-8.4}"
         # Optional: passes through to `composer install` during the image build.
         # Empty value = anonymous / rate-limited. See .env.example.

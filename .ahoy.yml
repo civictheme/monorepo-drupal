@@ -76,7 +76,6 @@ commands:
       export DRUPAL_INSTALL_PROFILE=govcms
       export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export COMPOSER=composer.govcms.json
-      export PHP_VERSION=8.3
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
       elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
@@ -91,7 +90,6 @@ commands:
       set -e
       export DRUPAL_INSTALL_PROFILE=govcms
       export COMPOSER=composer.govcms.json
-      export PHP_VERSION=8.3
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
       elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
@@ -107,7 +105,6 @@ commands:
       export DRUPAL_INSTALL_PROFILE=govcms
       export CIVICTHEME_INSTALL_SIBLING=1
       export COMPOSER=composer.govcms.json
-      export PHP_VERSION=8.3
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
       elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then

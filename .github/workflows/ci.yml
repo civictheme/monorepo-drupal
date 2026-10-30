@@ -188,7 +188,6 @@ jobs:
           - name: govcms
             install_profile: govcms
             composer: composer.govcms.json
-            php_version: '8.3'
             subtheme_skip: '1'
             behat_profile: p0
             lint: true
@@ -197,13 +196,11 @@ jobs:
           - name: govcms-behat-p1
             install_profile: govcms
             composer: composer.govcms.json
-            php_version: '8.3'
             subtheme_skip: '1'
             behat_profile: p1
           - name: govcms-subtheme
             install_profile: govcms
             composer: composer.govcms.json
-            php_version: '8.3'
             behat_profile: p0
             lint: true
             shipshape: true
@@ -211,12 +208,10 @@ jobs:
           - name: govcms-subtheme-behat-p1
             install_profile: govcms
             composer: composer.govcms.json
-            php_version: '8.3'
             behat_profile: p1
           - name: govcms-subtheme-sibling
             install_profile: govcms
             composer: composer.govcms.json
-            php_version: '8.3'
             install_sibling: '1'
             behat_profile: smoke
             lint: true
@@ -477,13 +472,29 @@ jobs:
           mv "${tmp}" .visual-regression/civictheme-ci/project.json
 
       - name: Take visual regression screenshots
-        timeout-minutes: 60
+        timeout-minutes: 90
         env:
           PUPPETEER_SKIP_DOWNLOAD: 'true'
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
         run: |
           export PUPPETEER_EXECUTABLE_PATH="${CHROME_BIN:-/usr/bin/google-chrome}"
+          # The shim caps the tool's auto-derived puppeteer concurrency — see
+          # the comment in the shim file.
+          export NODE_OPTIONS="--require ${GITHUB_WORKSPACE}/scripts/ci/vr-concurrency-shim.cjs"
           vr-drupal take civictheme-ci --id current --no-interactive
+
+      # vr-drupal exits 0 even when individual page captures error out — guard
+      # against a partial (or, on develop, baseline-poisoning) screenshot set.
+      - name: Verify screenshot set is complete
+        run: |
+          expected=$(( $(jq '."visual-diff".paths | length' .visual-regression/civictheme-ci/project.json) \
+            * $(jq '."visual-diff".viewports | length' .visual-regression/civictheme-ci/project.json) ))
+          actual=$(find .visual-regression/civictheme-ci/screenshot-sets/sets/current -name '*.png' | wc -l)
+          echo "Screenshots captured: ${actual}/${expected}"
+          if [ "${actual}" -ne "${expected}" ]; then
+            echo "::error::Visual regression capture is incomplete (${actual}/${expected} screenshots)."
+            exit 1
+          fi
 
       # On develop: save screenshots as the baseline for branch comparisons.
       - name: Prepare baseline (develop only)
