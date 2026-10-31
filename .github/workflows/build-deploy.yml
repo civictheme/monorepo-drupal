@@ -9,9 +9,15 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - release/*
     - hotfix/*
     - feature/editorial-*
+    - feature/salsa-hosting-scaffold
     - project/*
     tags:
     - '*'
+
+# Only checkout needs GITHUB_TOKEN; the Quant actions and the gha build
+# cache authenticate with their own credentials.
+permissions:
+  contents: read
 
 concurrency:
   group: build-and-push-${{ github.ref }}

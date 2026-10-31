@@ -5,6 +5,9 @@ name: Delete Quant Cloud environment on branch delete
 # branch patterns. Replaces the Lagoon webhook dispatch.
 'on': delete
 
+# Nothing here uses GITHUB_TOKEN — the delete goes through the Quant API.
+permissions: {}
+
 jobs:
   delete-environment:
     # Only branches, and only the patterns build-deploy.yml deploys.
@@ -13,17 +16,22 @@ jobs:
         startsWith(github.event.ref, 'release/') ||
         startsWith(github.event.ref, 'hotfix/') ||
         startsWith(github.event.ref, 'project/') ||
-        startsWith(github.event.ref, 'feature/editorial-')
+        startsWith(github.event.ref, 'feature/editorial-') ||
+        github.event.ref == 'feature/salsa-hosting-scaffold'
       )
     runs-on: ubuntu-latest
     steps:
 
     # Environment names are the branch name slugified the same way the
     # quant-cloud-init-action derives them (non-alphanumerics to hyphens).
+    # The ref goes through env, not inline interpolation — branch names may
+    # contain shell metacharacters ($, ;, quotes) and this is a run block.
     - name: Derive environment name
       id: env-name
+      env:
+        BRANCH_REF: ${{ github.event.ref }}
       run: |
-        name="$(echo '${{ github.event.ref }}' | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
+        name="$(printf '%s' "$BRANCH_REF" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
         echo "environment_name=$name" >> "$GITHUB_OUTPUT"
 
     - name: Delete environment
