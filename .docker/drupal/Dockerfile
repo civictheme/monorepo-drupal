@@ -197,6 +197,15 @@ COPY --from=assets /export/custom/civictheme_demo ./web/themes/custom/civictheme
 
 RUN chown -R www-data:www-data web/sites web/modules web/themes
 
+# Identifies THIS build. post-deploy.sh compares it against the id recorded in
+# Drupal state to tell a deploy (new image → fresh reinstall) from an
+# idle-sleep wake-up or task restart (same image → deploy steps only) — the
+# platform itself offers no such signal. CI passes a value unique per workflow
+# run; the "dev" default means a locally built image never looks like a new
+# deploy to a server. Declared last so changing it only rebuilds this layer.
+ARG BUILD_ID=dev
+RUN printf '%s' "$BUILD_ID" > /opt/drupal/.build-id
+
 ENV PATH=${PATH}:/opt/drupal/bin
 
 # Local dev shim (used only when docker-compose.override.yml swaps the entrypoint).

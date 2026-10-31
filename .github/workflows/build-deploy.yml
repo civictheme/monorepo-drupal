@@ -99,6 +99,11 @@ jobs:
         file: ./.docker/drupal/Dockerfile
         platforms: linux/arm64
         push: true
+        # Unique per workflow run (re-runs included): every deploy's image
+        # carries a new id, so post-deploy.sh reinstalls the site on the
+        # image's first container start. See the note below the redeploy step.
+        build-args: |-
+          BUILD_ID=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
           }}:app${{ steps.override-outputs.outputs.image_suffix }}
         cache-from: |-
@@ -152,20 +157,15 @@ jobs:
         environment: ${{ steps.override-outputs.outputs.environment_name }}
         action: redeploy
 
-    # TODO(Phase 2 — §6.4 of the conversion plan): CI-driven provisioning.
-    # After the redeploy, every environment flagged for reinstall (production
-    # included — the demo sites reinstall from profile on each deploy by
-    # design) gets a full provision via a one-off exec against the
-    # environment's NEW image:
-    #   1. Wait for the rollout to finish (poll environment state / the
-    #      deployments API) — the actions above request a deploy and return
-    #      without waiting, so an immediate exec would provision the OLD image.
-    #   2. Run scripts/quant/provision.sh via the platform's one-off exec
-    #      (temporary container from the environment's image with its
-    #      variables and volumes).
-    # Production guards (no admin unblock, no sanitize) live in the provision
-    # scripts, keyed on QUANT_ENV_TYPE. Blocked on confirming the qc CLI
-    # exec interface with DevOps.
+    # Provisioning (§6.4 of the conversion plan) is resolved in-image, not
+    # from CI: the Dockerfile bakes BUILD_ID (unique per workflow run — see
+    # build-args above) and .docker/deployment-scripts/post-deploy.sh
+    # reinstalls the site at container start whenever the running image's id
+    # differs from the one recorded in Drupal state — i.e. on every deploy,
+    # in every environment, production included (the demo sites reinstall
+    # from profile by design). Same-id restarts (idle-sleep wake-ups, task
+    # replacement) only run the non-destructive deploy steps. No one-off
+    # exec, so no wait-for-rollout gate is needed here.
 
     # Content environments (corporate / government / highereducation) are
     # env-var-only Quant environments running the develop image; develop's

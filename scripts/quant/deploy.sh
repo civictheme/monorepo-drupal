@@ -18,7 +18,10 @@
 #
 # Callers:
 #   local   — `ahoy deploy`, and provision.sh after it has bootstrapped
-#   cloud   — .docker/deployment-scripts/post-deploy.sh, for every environment
+#   cloud   — .docker/deployment-scripts/post-deploy.sh, for container starts
+#             of an already-provisioned image (idle-sleep wake-ups, restarts);
+#             a NEW image goes through provision.sh instead — fresh reinstall
+#             on every deploy is this project's designed behaviour
 set -euo pipefail
 
 DRUSH="${DRUSH:-/opt/drupal/bin/drush}"
@@ -61,8 +64,9 @@ safe_deploy() {
 "$DRUSH" status --field=bootstrap 2>/dev/null | grep -qi 'success' || die \
   "Drupal is not installed, so there is nothing to deploy to.
   Local: run 'ahoy build' (first time) or 'ahoy provision'.
-  Cloud: the environment needs an initial database before deploys can run —
-         see docs/deployment.md."
+  Cloud: post-deploy.sh fresh-installs new images at container start and only
+         calls this script on an already-provisioned site — landing here means
+         that gate was bypassed. See docs/deployment.md."
 
 safe_deploy
 "$DRUSH" status

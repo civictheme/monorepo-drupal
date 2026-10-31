@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Salsa scaffold — LOCAL provisioning entrypoint.
+# Salsa scaffold — provisioning entrypoint.
 #
 # Step 0 (bootstrap) plus a hand-off to deploy.sh for steps 2 and 3:
 #
@@ -9,9 +9,14 @@
 #
 # Mode-aware: SCAFFOLD_PROVISION_TYPE chooses between install and import.
 #
-# LOCAL ONLY. Bootstrap drops every table, and database mode reads a dump from
-# /import, which is a local-only bind mount. Salsa Hosting deploys call
-# deploy.sh directly — they pull a pre-built image and must never re-provision.
+# Callers:
+#   local   — `ahoy provision` (and `ahoy build` via it), either mode.
+#   cloud   — .docker/deployment-scripts/post-deploy.sh, profile mode only,
+#             on the first container start of each new image: the CivicTheme
+#             demo sites reinstall from profile on every deploy by design.
+#             Database mode stays LOCAL ONLY — it reads a dump from /import,
+#             a bind mount deployed containers do not have. No composer/npm
+#             here in either mode; the image arrives fully built.
 # See docs/deployment.md.
 #
 # DRUPAL_INSTALL_PROFILE accepts ANY of:
