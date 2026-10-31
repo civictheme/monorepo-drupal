@@ -363,28 +363,15 @@ class EnvironmentSettingsTest extends SettingsTestCase {
   }
 
   /**
-   * Test that production refuses to boot without a hash salt.
-   */
-  public function testProductionRequiresHashSalt(): void {
-    $vars = static::serverRequiredVars();
-    unset($vars['DRUPAL_HASH_SALT']);
-    $this->setEnvVars([
-      'QUANT_ENV_TYPE' => 'production',
-      'DRUPAL_HASH_SALT' => NULL,
-    ] + $vars);
-
-    $this->expectException(\RuntimeException::class);
-    $this->expectExceptionMessageMatches('/DRUPAL_HASH_SALT/');
-
-    $this->requireSettingsFile();
-  }
-
-  /**
-   * Test deployed non-production environments derive a hash salt from DB vars.
+   * Test deployed environments derive a hash salt from DB vars.
    *
-   * @dataProvider dataProviderNonProductionDerivesHashSalt
+   * Production included: this project's production is a demo site that
+   * reinstalls on every deploy, so it must also boot — and first-deploy
+   * self-install — without a manually supplied DRUPAL_HASH_SALT.
+   *
+   * @dataProvider dataProviderDeployedDerivesHashSalt
    */
-  public function testNonProductionDerivesHashSalt(string $env_type): void {
+  public function testDeployedDerivesHashSalt(string $env_type): void {
     $vars = static::serverRequiredVars();
     unset($vars['DRUPAL_HASH_SALT']);
     $this->setEnvVars([
@@ -398,10 +385,11 @@ class EnvironmentSettingsTest extends SettingsTestCase {
   }
 
   /**
-   * Data provider for testNonProductionDerivesHashSalt.
+   * Data provider for testDeployedDerivesHashSalt.
    */
-  public static function dataProviderNonProductionDerivesHashSalt(): array {
+  public static function dataProviderDeployedDerivesHashSalt(): array {
     return [
+      ['production'],
       ['development'],
       ['test'],
     ];

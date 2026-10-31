@@ -49,5 +49,7 @@ a new image (any workflow run, re-runs included) does.
 Branch pushes map to environments named after the branch. PR/preview
 environments are deleted via `.github/workflows/delete-environment.yml`.
 Environment variables are copied from `production` at creation (secrets are
-not — set `DRUPAL_HASH_SALT` on production; other deployed environments
-derive a salt from the injected database secrets).
+not). No environment needs manual setup to boot: every deployed environment —
+production included — derives its hash salt from the injected database
+secrets unless an explicit `DRUPAL_HASH_SALT` variable is set, so the first
+deploy of a brand-new environment installs itself end to end.

@@ -238,7 +238,7 @@ abstract class SettingsTestCase extends TestCase {
   }
 
   /**
-   * The hash salt a deployed non-production environment derives.
+   * The hash salt a deployed environment derives (production included).
    *
    * Computed by settings.php from the DB_* variables when DRUPAL_HASH_SALT
    * is not set.
