@@ -7,7 +7,7 @@
 #
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 CIVICTHEME_CONTENT_PROFILE="${CIVICTHEME_CONTENT_PROFILE:-default}"
 

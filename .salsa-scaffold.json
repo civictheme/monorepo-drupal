@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "scaffold_version": "1.0.0",
+  "configured_at": "2026-10-30T00:00:00Z",
+  "answers": {
+    "name": "civictheme-monorepo",
+    "title": "CivicTheme Source",
+    "desc": "CivicTheme monorepo - Drupal 11 implementation of CivicTheme Source",
+    "quant_app": "civictheme-monorepo-drupal",
+    "profile": "minimal",
+    "provision_type": "profile",
+    "email": "p.civictheme@salsa.digital"
+  }
+}

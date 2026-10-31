@@ -1,68 +1,88 @@
-# To ignore OS temporary files use global .gitignore
-# https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
+# --- Local environment / data ---
+# .env* catches the file itself plus editor debris (.env.swp, .env.bak, .env~)
+# that can carry the GITHUB_TOKEN written by `ahoy gh-token`.
+/.env*
+!/.env.example
+!/.data/
+/.data/*
+!/.data/.gitkeep
+/src/web/sites/default/files/
+/src/web/sites/default/settings.local.php
+/src/web/sites/default/services.local.yml
 
-# Ignore Drupal web, but preserve custom modules, themes and settings.
-# To add an override file, explicitly un-ignore it below and add to the
-# repository (useful for robots.txt and .htaccess file overrides).
+# --- Per-developer compose layering (opt-in) ---
+/docker-compose.local.yml
+/.ahoy.local.yml
 
-web/*
-!web/sites/
-web/sites/*
-!web/modules/
-web/modules/*
-!web/modules/custom/
-!web/themes/
-web/themes/*
-!web/themes/contrib/
-web/themes/contrib/*
-!web/themes/contrib/civictheme
-!web/themes/custom/
-web/themes/custom/*
-!web/themes/custom/.gitkeep
-!web/profiles/
-web/profiles/*
-!web/profiles/custom/
-!web/sites/default/
-web/sites/default/*
-!web/sites/default/settings.php
-!web/sites/default/services.yml
-!web/sites/default/default.settings.local.php
-!web/sites/default/default.services.local.yml
-!web/sites/default/includes
-# Preserve default settings files to use them in Functional test.
-!web/sites/default/default.settings.php
-!web/sites/default/default.services.yml
-# Whitelist scaffold files. @see https://github.com/drupal-composer/drupal-scaffold#limitation
-!web/.editorconfig
-!web/.eslintignore
-!web/.gitattributes
-!web/.htaccess
-!web/autoload.php
-!web/index.php
-!web/robots.txt
-!web/update.php
+# --- Front-end build artefacts ---
+# Anywhere: a theme's node_modules is never committed. The CivicTheme base
+# theme manages its own build artefacts (components/, dist/, storybook-static/)
+# via its own .gitignore.
+node_modules/
+/src/.logs/
+/.logs/
 
-# Ignore dependencies cache files.
-/vendor
-/node_modules
-web/themes/**/node_modules
+# --- Composer / Drupal scaffold artefacts ---
+/vendor/
+/src/vendor/
+/src/bin/
+# Mountpoint artefact: the override bind-mounts ./scripts to /opt/drupal/scripts,
+# and /opt/drupal is itself ./src, so docker creates this empty dir.
+/src/scripts/
+/src/web/core/
+/src/web/modules/contrib/
+/src/web/profiles/contrib/
+/src/web/libraries/
 
-# Assets.
-web/themes/**/build
-.data
-.logs
+# Contrib themes are Composer-managed, except CivicTheme — the product this
+# monorepo exists to develop — which is committed.
+/src/web/themes/contrib/*
+!/src/web/themes/contrib/civictheme
 
-# Ignore local override files.
-docker-compose.override.yml
-.env.local
-.ahoy.local.yml
+# Custom themes are generated (civictheme_demo), never committed.
+/src/web/themes/custom/*
+!/src/web/themes/custom/.gitkeep
 
-# Ignore configuration as this site is installed from profile.
-/config/*
+# Recipes: Composer-managed except the committed test-content recipe.
+/src/recipes/*
+!/src/recipes/civictheme_content_generated_static/
 
-# Ignore recipes except for custom ones.
-/recipes/*
-!/recipes/civictheme_content_generated_static/
+# Site configuration: installed from profile, so sync stays empty.
+/src/config/sync/*
+!/src/config/sync/.gitkeep
 
-# Build artifacts for twig linter.
+# Written by `composer drupal:scaffold`. This project commits a customised
+# .htaccess, robots.txt, index.php, autoload.php and update.php (see
+# extra.drupal-scaffold.file-mapping in composer.json).
+/src/web/.csslintrc
+/src/web/.eslintrc.json
+/src/web/README.md
+/src/web/INSTALL.txt
+/src/web/example.gitignore
+/src/web/modules/README.txt
+/src/web/profiles/README.txt
+/src/web/themes/README.txt
+/src/web/sites/README.txt
+/src/web/sites/development.services.yml
+/src/web/sites/example.settings.local.php
+/src/web/sites/example.sites.php
+/src/web/autoload_runtime.php
+/src/recipes/README.txt
+
+# --- Default settings files, preserved for Functional tests ---
+# (tracked: settings.php, services.yml, default.*, includes/ — everything else
+# under sites/default is runtime state)
+/src/web/sites/default/files/
+
+# --- Test / tooling artefacts ---
 .twig-cs-fixer.cache
+/src/tests/behat/screenshots
+
+# --- Backups ---
+*.bak.*
+
+# --- IDE / OS noise ---
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db

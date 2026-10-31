@@ -3,9 +3,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const THEME_DIR = path.resolve(__dirname, '../../web/themes/contrib/civictheme');
 const yaml = require('js-yaml');
-const WEB_DIR = path.resolve(__dirname, '../../web');
+
+// Webroot: web/ is a sibling of scripts/ inside the container (/opt/drupal);
+// on the host the Drupal tree lives under src/ per the scaffold layout.
+const WEB_DIR = [
+  path.resolve(__dirname, '../../web'),
+  path.resolve(__dirname, '../../src/web'),
+].find(fs.existsSync);
+const THEME_DIR = path.join(WEB_DIR, 'themes/contrib/civictheme');
 const CONFIG_DIRS = ['config/install'];
 const INFO_PATH = path.join(THEME_DIR, 'civictheme.info.yml');
 

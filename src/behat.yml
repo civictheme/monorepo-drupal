@@ -1,0 +1,91 @@
+default:
+  autoload: ['%paths.base%/tests/behat/bootstrap']
+  gherkin:
+    # Disable caching during development. It is enabled for profiles below.
+    cache: ~
+    filters:
+      # Allow skipping tests by tagging them with "@skipped".
+      tags: '~@skipped'
+  suites:
+    default:
+      paths: ['%paths.base%/tests/behat/features']
+      contexts:
+        - FeatureContext
+        # MinkContext subclass that retries text assertions while the browser
+        # settles after a navigation — see CivicthemeMinkContext.php.
+        - CivicthemeMinkContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - DrevOps\BehatScreenshotExtension\Context\ScreenshotContext
+  formatters:
+    progress_fail: true
+    # Disable JUnit formatter if memory leaks start to occur.
+    # See @https://github.com/Behat/Behat/pull/1423
+    junit:
+      output_path: '%paths.base%/.logs/test_results/behat'
+
+  extensions:
+    Drupal\MinkExtension:
+      browserkit_http: ~
+      # Behat runs inside the app container; apache serves on :80 there, and
+      # this alias (docker-compose.override.yml) resolves from the chrome
+      # container too. NOT the bare `app` service name: Chrome 155+ applies
+      # the HSTS-preload entry for Google's .app gTLD to the single-label
+      # hostname and force-upgrades http://app to https://app (no fallback,
+      # no opt-out). .test is IANA-reserved and can never be preloaded.
+      base_url: http://app.test
+      files_path: '%paths.base%/tests/behat/fixtures'
+      browser_name: chrome
+      selenium2:
+        wd_host: "http://chrome:4444/wd/hub"
+      javascript_session: selenium2
+    # Provides integration with Drupal APIs.
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: drupal
+      drush_driver: drush
+      # Retry the logged-in check for up to this many seconds after submitting
+      # the login form. With 0 (the default) a single DOM query runs the
+      # instant the submit click returns, and in real browsers that query can
+      # land mid-navigation and miss the body.user-logged-in class even though
+      # the login succeeded — a flake that hits the heavier (subtheme) pages.
+      login_wait: 5
+      drupal:
+        drupal_root: /opt/drupal/web
+      drush:
+        root: /opt/drupal/web
+        binary: /opt/drupal/bin/drush
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages.error'
+        success_message_selector: '.messages.status'
+        warning_message_selector: '.messages.warning'
+    # Capture HTML and JPG screenshots on demand and on failure.
+    DrevOps\BehatScreenshotExtension:
+      dir: '%paths.base%/.logs/screenshots'
+      purge: true # Change to 'true' (no quotes) to purge screenshots on each run.
+    # Show explicit fail information and continue the test run.
+    DrevOps\BehatFormatProgressFail\FormatExtension: ~
+
+# Profile for parallel testing.
+# Runs all tests not tagged with "smoke" or "@p1" and not tagged with "@skipped".
+p0:
+  gherkin:
+    cache: '/tmp/behat_gherkin_cache'
+    filters:
+      tags: "@smoke,~@p1&&~@skipped&&~@subtheme"
+
+# Profile for parallel testing.
+# Runs all tests tagged with "@smoke" or "@p1" and not tagged with "@skipped".
+p1:
+  gherkin:
+    cache: '/tmp/behat_gherkin_cache'
+    filters:
+      tags: "@smoke,@p1&&~@skipped&&~@subtheme"
+
+# Profile for smoke ttesting.
+smoke:
+  gherkin:
+    cache: '/tmp/behat_gherkin_cache'
+    filters:
+      tags: "@smoke&&~@skipped&&~@subtheme"
