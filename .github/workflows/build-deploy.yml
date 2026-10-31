@@ -14,10 +14,11 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     tags:
     - '*'
 
-# Only checkout needs GITHUB_TOKEN; the Quant actions and the gha build
-# cache authenticate with their own credentials.
+# Checkout needs contents, the CI gate reads workflow runs; the Quant actions
+# and the gha build cache authenticate with their own credentials.
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: build-and-push-${{ github.ref }}
@@ -27,6 +28,38 @@ jobs:
   build-and-push:
     runs-on: ubuntu-24.04-arm
     steps:
+
+    # Deploys of refs that feed real sites wait for the commit's CI run:
+    # develop also redeploys the three content environments and production
+    # reinstalls from profile on deploy, so a red commit takes sites down.
+    # Preview branches (feature/release/hotfix/project) deploy immediately —
+    # fast iteration on a broken branch is what their environments are for.
+    - name: Wait for CI to pass on this commit
+      if: >-
+        github.ref == 'refs/heads/develop' ||
+        github.ref == 'refs/heads/main' ||
+        github.ref == 'refs/heads/master' ||
+        startsWith(github.ref, 'refs/tags/')
+      timeout-minutes: 60
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        echo "Waiting for the CI workflow run on ${GITHUB_SHA}…"
+        while :; do
+          json="$(gh run list --repo "${GITHUB_REPOSITORY}" --workflow=CI --commit "${GITHUB_SHA}" --limit 1 --json status,conclusion)"
+          status="$(jq -r '.[0].status // "pending"' <<<"${json}")"
+          conclusion="$(jq -r '.[0].conclusion // ""' <<<"${json}")"
+          if [ "${status}" = "completed" ]; then
+            if [ "${conclusion}" = "success" ]; then
+              echo "CI passed."
+              break
+            fi
+            echo "::error::CI concluded '${conclusion}' on this commit — refusing to deploy. Re-run this workflow once CI is green."
+            exit 1
+          fi
+          echo "CI is ${status}…"
+          sleep 30
+        done
 
     - name: Checkout code
       uses: actions/checkout@v5
