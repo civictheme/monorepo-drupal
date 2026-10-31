@@ -76,6 +76,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 25
           total_pages: null
           id: 0
@@ -93,7 +94,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -163,11 +163,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              civictheme_content_author: '0'
-              civictheme_content_approver: '0'
-              civictheme_site_administrator: '0'
-              anonymous: '0'
-              administrator: '0'
             expose_fields: false
             placeholder: 'Enter search keywords...'
             searched_fields_id: search_api_fulltext_searched_fields

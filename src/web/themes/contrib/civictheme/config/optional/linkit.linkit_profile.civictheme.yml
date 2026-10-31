@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - media
     - node
 label: CivicTheme
 id: civictheme
