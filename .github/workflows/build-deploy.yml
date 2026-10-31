@@ -80,9 +80,14 @@ jobs:
     - name: Override outputs for special branches
       id: override-outputs
       run: |-
-        echo "image_suffix=${{ steps.init.outputs.image_suffix }}" >> $GITHUB_OUTPUT
-        # Remove leading hyphen from image_suffix for image_suffix parameter
+        # The init action keeps dots in image suffixes (for version tags), but
+        # the Quant Cloud API rejects them (422 on branch "2.x"); it already
+        # maps dots to hyphens in environment names, so this keeps the image
+        # suffix consistent with the environment name.
         suffix="${{ steps.init.outputs.image_suffix }}"
+        suffix="${suffix//./-}"
+        echo "image_suffix=$suffix" >> $GITHUB_OUTPUT
+        # Remove leading hyphen from image_suffix for image_suffix parameter
         clean_suffix="${suffix#-}"
         echo "image_suffix_clean=$clean_suffix" >> $GITHUB_OUTPUT
         echo "is_production=${{ steps.init.outputs.is_production }}" >> $GITHUB_OUTPUT
