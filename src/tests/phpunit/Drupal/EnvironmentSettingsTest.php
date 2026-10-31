@@ -363,9 +363,9 @@ class EnvironmentSettingsTest extends SettingsTestCase {
   }
 
   /**
-   * Test that a deployed environment refuses to boot without a hash salt.
+   * Test that production refuses to boot without a hash salt.
    */
-  public function testServerRequiresHashSalt(): void {
+  public function testProductionRequiresHashSalt(): void {
     $vars = static::serverRequiredVars();
     unset($vars['DRUPAL_HASH_SALT']);
     $this->setEnvVars([
@@ -377,6 +377,34 @@ class EnvironmentSettingsTest extends SettingsTestCase {
     $this->expectExceptionMessageMatches('/DRUPAL_HASH_SALT/');
 
     $this->requireSettingsFile();
+  }
+
+  /**
+   * Test deployed non-production environments derive a hash salt from DB vars.
+   *
+   * @dataProvider dataProviderNonProductionDerivesHashSalt
+   */
+  public function testNonProductionDerivesHashSalt(string $env_type): void {
+    $vars = static::serverRequiredVars();
+    unset($vars['DRUPAL_HASH_SALT']);
+    $this->setEnvVars([
+      'QUANT_ENV_TYPE' => $env_type,
+      'DRUPAL_HASH_SALT' => NULL,
+    ] + $vars);
+
+    $this->requireSettingsFile();
+
+    $this->assertEquals(static::derivedServerHashSalt(), $this->settings['hash_salt']);
+  }
+
+  /**
+   * Data provider for testNonProductionDerivesHashSalt.
+   */
+  public static function dataProviderNonProductionDerivesHashSalt(): array {
+    return [
+      ['development'],
+      ['test'],
+    ];
   }
 
   /**

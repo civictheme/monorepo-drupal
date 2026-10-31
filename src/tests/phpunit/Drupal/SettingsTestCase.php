@@ -238,6 +238,21 @@ abstract class SettingsTestCase extends TestCase {
   }
 
   /**
+   * The hash salt a deployed non-production environment derives.
+   *
+   * Computed by settings.php from the DB_* variables when DRUPAL_HASH_SALT
+   * is not set.
+   *
+   * @return string
+   *   The derived hash salt.
+   */
+  protected static function derivedServerHashSalt(): string {
+    $vars = static::serverRequiredVars();
+
+    return hash('sha256', $vars['DB_PASSWORD'] . $vars['DB_HOST'] . $vars['DB_DATABASE']);
+  }
+
+  /**
    * Require settings file.
    */
   protected function requireSettingsFile(): void {

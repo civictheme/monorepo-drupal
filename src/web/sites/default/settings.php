@@ -159,23 +159,33 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 /**
  * Hash salt.
  *
- * A deployed environment must supply DRUPAL_HASH_SALT (Salsa Hosting platform
- * variable) or refuse to boot; local development, CI and the installer get a
- * derived value, because there the salt protects nothing an attacker cannot
- * already reach.
+ * Production must supply DRUPAL_HASH_SALT (Salsa Hosting platform variable)
+ * or refuse to boot. Other deployed environments (dev/test) fall back to a
+ * salt derived from the platform-injected DB_* secrets — unique per
+ * environment, secret, and present before anyone configures the environment —
+ * so a new feature environment deploys without a manual step. Local
+ * development, CI and the installer get a path-derived value, because there
+ * the salt protects nothing an attacker cannot already reach.
  */
 $hash_salt = getenv('DRUPAL_HASH_SALT') ?: '';
 if ($hash_salt === '') {
-  $is_server = !in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI], TRUE);
-  if (!InstallerKernel::installationAttempted() && $is_server) {
+  if ($settings['environment'] === ENVIRONMENT_PROD && !InstallerKernel::installationAttempted()) {
     throw new RuntimeException(
-      'DRUPAL_HASH_SALT is not set. A deployed environment must supply it as '
-      . 'a platform variable. Refusing to fall back to a value that would be '
-      . 'identical on every environment.'
+      'DRUPAL_HASH_SALT is not set. Production must supply it as a platform '
+      . 'variable. Refusing to fall back to a derived value on production.'
     );
   }
-  // Local / CI / installer only. Deliberately NOT a secret.
-  $hash_salt = hash('sha256', 'civictheme-local-' . __FILE__);
+  if (!in_array($settings['environment'], [ENVIRONMENT_LOCAL, ENVIRONMENT_CI], TRUE)) {
+    // Deployed non-production environment: derive from the injected DB
+    // secrets. Rotating DB credentials rotates the salt, which invalidates
+    // in-flight one-time login links and itok image tokens — acceptable
+    // outside production.
+    $hash_salt = hash('sha256', getenv('DB_PASSWORD') . getenv('DB_HOST') . getenv('DB_DATABASE'));
+  }
+  else {
+    // Local / CI / installer only. Deliberately NOT a secret.
+    $hash_salt = hash('sha256', 'civictheme-local-' . __FILE__);
+  }
 }
 $settings['hash_salt'] = $hash_salt;
 
