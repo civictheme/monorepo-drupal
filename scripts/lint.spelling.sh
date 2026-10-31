@@ -5,7 +5,7 @@
 #
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 command -v aspell >/dev/null || (echo "ERROR: aspell command is not available." && exit 1)
 
@@ -16,7 +16,7 @@ while IFS= read -r -d $'\0'; do
   targets+=("$REPLY")
 done < <(
   find \
-    "${CUR_DIR}"/web/themes/contrib/civictheme/docs \
+    "${CUR_DIR}"/src/web/themes/contrib/civictheme/docs \
     -type f \
     \( -name "*.md" \) \
     -not -path "*vendor*" \
@@ -31,8 +31,8 @@ targets+=(docs/faqs.md)
 targets+=(docs/README.md)
 targets+=(docs/releasing.md)
 targets+=(docs/testing.md)
-targets+=(web/themes/contrib/civictheme/README.md)
-targets+=(web/themes/contrib/civictheme/civictheme_starter_kit/README.md)
+targets+=(src/web/themes/contrib/civictheme/README.md)
+targets+=(src/web/themes/contrib/civictheme/civictheme_starter_kit/README.md)
 
 echo "==> Start checking spelling."
 for file in "${targets[@]}"; do

@@ -4,7 +4,7 @@
 #
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 # Theme dir.
 THEME_DIR="web/themes/contrib/civictheme"

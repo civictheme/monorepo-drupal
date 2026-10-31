@@ -1,181 +1,131 @@
-# Docker Compose configuration file.
+# Loose wrapper around docker compose. All runtime services live here.
+# No Lagoon-tagged images — Salsa Hosting devops policy. Only the app uses a Salsa Hosting image;
+# everything else is upstream public.
 #
-# - Using a single file to work in local, CI and production environments.
-# - Local overrides are possible using docker-compose.override.yml file.
-# - Environment variables are read from .env file.
-# - Containers will be named after the project directory.
-# - Use inline comments containing '###' to have the line removed in CI.
-# - Use inline comments starting with '##' to have the line being automatically
-#   uncommented in CI.
-# See more about DrevOps Docker at https://docs.drevops.com/docker/
-# For YAML support of anchors and references, see http://blog.daemonl.com/2016/02/yaml.html
-
-# ------------------------------------------------------------------------------
-# Variable aliases.
-# ------------------------------------------------------------------------------
-
-# Volumes available in each container to share application data.
-# See more about Docker host volume mounting at https://docs.drevops.com/docker#host-volume-mounting-in-docker-based-projects
-x-volumes: &default-volumes
-  volumes:
-    # All application files mounted into container.
-    - .:/app:${VOLUME_FLAGS:-delegated} ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
-    # Override mount for files to allow different type of syncing to optimise performance.
-    - ./web/sites/default/files:/app/web/sites/default/files:${VOLUME_FLAGS:-delegated} ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
-    # Use the same volumes in environments without host mounts support.
-    ##- app:/app # Override for environment without host mounts. Automatically uncommented in CI.
-    ##- files:/app/web/sites/default/files # Override for environment without host mounts. Automatically uncommented in CI.
-
-# The default user under which the containers should run.
-x-user: &default-user
-  # Change this if you are on linux and run with another user than id `1000`
-  user: '1000'
-
-# Environment variables set in all containers during build and runtime.
-# Note that these variables are not read from here in Lagoon environment.
-x-environment: &default-environment
-  TZ: ${DREVOPS_TZ:-Australia/Melbourne}
-  # Local development URL.
-  DREVOPS_LOCALDEV_URL: &default-url ${COMPOSE_PROJECT_NAME:-example-site}.docker.amazee.io
-  # Local development route used in Lagoon images and Pygmy to route requests.
-  LAGOON_ROUTE: *default-url
-  # Local database host (not used in production).
-  MARIADB_HOST: mariadb
-  # Local database name (not used in production).
-  MARIADB_DATABASE: drupal
-  # Local database user (not used in production).
-  MARIADB_USERNAME: drupal
-  # Local database password (not used in production).
-  MARIADB_PASSWORD: drupal
-  # Local database port (not used in production).
-  MARIADB_PORT: 3306
-  # Pass-through 'XDEBUG_ENABLE' to enable XDebug with "ahoy debug" or "XDEBUG_ENABLE=true docker compose up -d".
-  XDEBUG_ENABLE: ${XDEBUG_ENABLE:-}
-  # Pass-through 'CI' variable used to identify the CI environment.
-  CI: ${CI:-}
-  # Set to 1 to enable verbose PHP error display with stack traces.
-  PHP_DEBUG: ${PHP_DEBUG:-}
-  # Forward emails to Mailhog locally.
-  SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
-  # Drupal Shield credentials.
-  DRUPAL_SHIELD_USER: ${DRUPAL_SHIELD_USER:-}
-  DRUPAL_SHIELD_PASS: ${DRUPAL_SHIELD_PASS:-}
-  # Lagoon environment type.
-  LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
-  # MySQL configuration.
-  MYSQL_COLLATION: ${MYSQL_COLLATION:-utf8mb4_general_ci}
-  MYSQL_INNODB_BUFFER_POOL_SIZE: ${MYSQL_INNODB_BUFFER_POOL_SIZE:-512M}
-
-# ------------------------------------------------------------------------------
-# Services.
-# ------------------------------------------------------------------------------
+# Optional services (redis, solr, clamav) ship commented out. See the note above
+# each block before enabling one.
+x-quant-labels:
+  # ARM64 or X86_64. MUST match `platforms:` in
+  # .github/workflows/build-deploy.yml — that workflow builds the image, this
+  # label tells Salsa Hosting what to run it on. Nothing enforces the pair, and
+  # a mismatch surfaces as a runtime failure on the platform rather than a build
+  # error. Change both together.
+  quant.architecture: "ARM64"
 
 services:
-  # CLI container, used for executing CLI commands such as Composer, Drush etc. Not used to handle web requests.
-  cli:
+
+  app:
     build:
       context: .
-      dockerfile: .docker/cli.dockerfile
+      dockerfile: .docker/drupal/Dockerfile
       args:
-        WEBROOT: "${DREVOPS_WEBROOT:-web}"
+        # 8.4 is the deployed (Drupal 11) stack. GovCMS variants run the same
+        # 8.4 image — govcms/govcms 4.6+/dev-4.x-develop requires php ^8.4.0
+        # (the 8.3 platform line ended with GovCMS 4.5.x, 2026-10). The arg
+        # stays as the knob for testing against another platform PHP; a
+        # different value is best run as a second stack
+        # (SCAFFOLD_PROJECT=<name>--other) so switching variants doesn't
+        # rebuild the image every time.
+        PHP_VERSION: "${PHP_VERSION:-8.4}"
+        # Optional: passes through to `composer install` during the image build.
+        # Empty value = anonymous / rate-limited. See .env.example.
         GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
-    image: &cli-image ${COMPOSE_PROJECT_NAME:-example_site}
-    <<: *default-volumes
-    user: root
-    environment:
-      <<: *default-environment
-    # Mount volumes from the ssh-agent running in Pygmy to inject host SSH key into container. See https://pygmy.readthedocs.io/en/master/ssh_agent/
-    volumes_from: ### Local overrides to mount host SSH keys. Automatically removed in CI.
-      - container:amazeeio-ssh-agent ### Local overrides to mount host SSH keys. Automatically removed in CI.
     ports:
-      - "35729" # Livereload port in container. Find port on host with `ahoy info` or `docker compose port cli 35729`.
-    labels:
-      lagoon.type: cli-persistent # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
-      lagoon.persistent.name: &lagoon-nginx-name nginx-php # Mount the persistent storage of nginx-php pod into this container.
-      lagoon.persistent: &lagoon-persistent-files /app/web/sites/default/files/  # Location where the persistent storage should be mounted.
-
-  nginx:
-    build:
-      context: .
-      dockerfile: .docker/nginx-drupal.dockerfile
-      args:
-        CLI_IMAGE: *cli-image
-        WEBROOT: "${DREVOPS_WEBROOT:-web}"
-    <<: [*default-volumes, *default-user]
+      - "8080:80"
+    volumes:
+      - app-files:/opt/drupal/web/sites/default/files
+      # Private files OUTSIDE the docroot — Quant's Drupal guidance warns
+      # against the scaffold default of sites/default/files/private (inside
+      # the public tree). settings.php reads DRUPAL_PRIVATE_FILES below.
+      - app-private:/opt/drupal/private
     environment:
-      <<: *default-environment
-    depends_on:
-      - cli
-    networks:
-      - amazeeio-network # This network is supported by Pygmy and used to route all requests to host machine.
-      - default # This is a standard network and is used for all other environments, where requests routing is not required and/or not supported.
-    labels:
-      lagoon.type: nginx-php-persistent # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
-      lagoon.name: *lagoon-nginx-name
-      lagoon.persistent: *lagoon-persistent-files
-      lagoon.persistent.class: slow
+      DRUPAL_PRIVATE_FILES: /opt/drupal/private
+    # DB env vars supplied by Salsa Hosting in production, or by docker-compose.override.yml locally.
 
-  # PHP FPM container. All web requests are going through this container.
-  php:
-    build:
-      context: .
-      dockerfile: .docker/php.dockerfile
-      args:
-        CLI_IMAGE: *cli-image
-    <<: [*default-volumes, *default-user]
-    environment:
-      <<: *default-environment
-    depends_on:
-      - cli
-    labels:
-      lagoon.type: nginx-php-persistent # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
-      lagoon.name: *lagoon-nginx-name
-      lagoon.persistent: *lagoon-persistent-files
-      lagoon.persistent.class: slow
-
-  mariadb:
-    build:
-      context: .
-      dockerfile: .docker/mariadb.dockerfile
-      args:
-        IMAGE: "${DREVOPS_DB_DOCKER_IMAGE:-uselagoon/mysql-8.0:26.10.0}" # Use custom database image (if defined) or fallback to standard database image.
-    <<: *default-user
-    environment:
-      <<: *default-environment
-    ports:
-      - "3306" # MariaDB port in container. Find port on host with `ahoy info` or `docker compose port mariadb 3306`.
+  db:
+    image: mysql:8.4
+    volumes:
+      - db_data:/var/lib/mysql
     labels:
       quant.type: mysql
-      lagoon.type: mariadb # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
+    command:
+      - --mysql-native-password=ON
 
-  # Chrome container, used for browser testing.
+# ─────────────────────────────────────────────────────────────────────────────
+# OPTIONAL SERVICES — Redis, Solr, ClamAV
+#
+# Do NOT uncomment these unless it has been discussed with DevOps first.
+#
+# Salsa Hosting has to enable the matching environment-service on the target
+# environment. Enabling a service only here makes local and deployed behaviour
+# diverge silently: the site works on your machine and fails after deploy.
+#
+# Once agreed with DevOps:
+#   1. Uncomment the service block below, and its volume at the end of this file.
+#   2. Mirror any local-only settings (ports, etc.) in docker-compose.override.yml.
+#   3. Add the service to the `environment-services` input in
+#      .github/workflows/delete-environment.yml.
+#   4. For Redis, also set DRUPAL_REDIS_ENABLED=1 and DRUPAL_REDIS_HOST in .env.
+#   5. Run `ahoy build`.
+#
+# The definitions are kept here rather than deleted so that enabling one is an
+# uncomment, not a research exercise.
+# ─────────────────────────────────────────────────────────────────────────────
+
+#  redis:
+#    image: redis:8-alpine
+#    labels:
+#      quant.type: environment-service
+
+#  solr:
+#    image: solr:9
+#    volumes:
+#      - solr:/var/solr
+#    labels:
+#      quant.type: environment-service
+#    command:
+#      - solr-precreate
+#      - drupal
+
+#  clamav:
+#    image: clamav/clamav:stable
+#    labels:
+#      quant.type: environment-service
+#    volumes:
+#      - clamav_data:/var/lib/clamav
+
+# ─────────────────────────── end optional services ───────────────────────────
+
+# No front-end build worker here, on purpose.
+#
+# The normal workflow is npm on your own machine:
+#
+#   cd src/web/themes/custom/mytheme && npm install && npm run build
+#
+# src/ is bind-mounted, so the output is live immediately. Watch mode in
+# particular belongs on the host — file-change events do not propagate reliably
+# across bind mounts.
+#
+# If you would rather not install node, `ahoy fe-build` runs the Dockerfile's
+# own `assets` stage and writes its output onto your disk. That is deliberately
+# the same stage the deployed image uses: a sidecar here would be a SECOND
+# definition of how the front end is built, and the one that ships to production
+# would be the other one. See docs/frontend.md.
+
+  # Selenium for Behat browser tests (`ahoy test-behat`). Local-only —
+  # quant.type=none means Salsa Hosting won't deploy this service.
   chrome:
-    image: selenium/standalone-chrome:111.0
-    shm_size: '1gb' # Increase '/dev/shm' partition size to avoid browser crashing.
-    <<: *default-volumes # Use default volumes to provide access to test fixtures.
-    environment:
-      <<: *default-environment
-    depends_on:
-      - cli
+    image: selenium/standalone-chrome:4
+    shm_size: 1gb
     labels:
       quant.type: none
-      lagoon.type: none # Do not deploy in Lagoon.
-
-  # Helper container to wait for services to become available.
-  wait_dependencies:
-    image: drevops/docker-wait-for-dependencies:24.3.0
-    depends_on:
-      - cli
-      - mariadb
-    command: mariadb:3306
-    labels:
-      quant.type: none
-      lagoon.type: none # Do not deploy in Lagoon.
-
-networks:
-  amazeeio-network:
-    external: true
+    profiles:
+      - test
 
 volumes:
-  app: {}
-  files: {}
+  app-files: {}
+  app-private: {}
+  db_data: {}
+# Uncomment alongside the matching optional service above.
+#  solr: {}
+#  clamav_data: {}

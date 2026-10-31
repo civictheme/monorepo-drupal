@@ -1,0 +1,9 @@
+--- a/stubs/Drupal/Core/Access/AccessibleInterface.stub
++++ b/stubs/Drupal/Core/Access/AccessibleInterface.stub
+@@ -13,5 +13,5 @@
+    *
+    * @return ($return_as_object is true ? \Drupal\Core\Access\AccessResultInterface : bool)
+    */
+-    public function access(string $operation, AccountInterface $account = NULL, bool $return_as_object = FALSE);
++    public function access(string $operation, ?AccountInterface $account = NULL, bool $return_as_object = FALSE);
+ }

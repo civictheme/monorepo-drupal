@@ -1,460 +1,676 @@
-#
-# Ahoy configuration file.
-# http://www.ahoycli.com/
-#
-# Provides development experience shortcuts to work with the stack.
-# Any command can be copy-pasted directly into terminal and ran without using
-# Ahoy.
-#
-# Do not add values directly into this file. Use .env file instead.
-# Run `ahoy up cli` to apply environment variables changes to containers.
----
 ahoyapi: v2
+
+# CivicTheme monorepo — developer command surface.
+# Salsa Hosting scaffold base (loose wrapper around docker compose;
+# provisioning routed through scripts/quant/) plus the CivicTheme build/
+# provision variant family (minimal / govcms / content profiles × sub-theme
+# modes), which wraps the same flow with per-variant environment permutations
+# via scripts/custom/build-variant.sh.
+
+env: .env
 
 commands:
 
-  build:
-    usage: Build or rebuild the project.
+  ## ── Lifecycle ──────────────────────────────────────────────────────────────
+
+  up:
+    usage: Start containers (and print site info).
     cmd: |
-      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-      ./scripts/drevops/build.sh &&
-      ahoy info
+      set -e
+      # Pre-create the bind-mount target so Docker doesn't beat us to it
+      # and create the path as root via bind.create_host_path=true.
+      mkdir -p src/web/sites/default/files/private
+      scripts/quant/project-name-check.sh
+      docker compose up -d "$@"
+      scripts/quant/info.sh
+
+  down:
+    usage: Destroy containers and volumes (DESTRUCTIVE — confirms first).
+    cmd: |
+      if scripts/quant/confirm.sh "Delete containers AND volumes (database + files)?"; then
+        docker compose down --volumes --remove-orphans \
+          || { echo "Failure to shutdown — see the error above." >&2; exit 1; }
+      else
+        echo "Cancelled."
+      fi
+
+  down:force:
+    usage: Like `down`, but skips the confirm prompt. Use in scripts/CI.
+    cmd: docker compose down --volumes --remove-orphans "$@"
+
+  build:
+    usage: Build with minimal profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
+    cmd: |
+      set -e
+      export DRUPAL_INSTALL_PROFILE=minimal
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
+      else
+        echo "Cancelled."
+      fi
+
+  build-minimal-subtheme:
+    usage: Alias of `ahoy build` (minimal profile, with sub-theme).
+    cmd: ahoy build "$@"
 
   build-minimal:
     usage: Build with minimal profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export DRUPAL_PROFILE=minimal &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      set -e
+      export DRUPAL_INSTALL_PROFILE=minimal
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-minimal && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
-
-  build-minimal-subtheme:
-    usage: Build with minimal profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
-    cmd: |
-      export DRUPAL_PROFILE=minimal &&
-      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-minimal-subtheme && ahoy info
-      else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
-      fi
-
-  composer-govcms:
-    usage: Run Composer commands with the GovCMS composer file (e.g. ahoy composer-govcms install, ahoy composer-govcms update).
-    cmd: |
-      export COMPOSER=composer.govcms.json &&
-      ahoy composer "$@"
 
   build-govcms:
     usage: Build with GovCMS profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export DRUPAL_PROFILE=govcms &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      export COMPOSER=composer.govcms.json &&
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export COMPOSER=composer.govcms.json
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-govcms && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
 
   build-govcms-subtheme:
     usage: Build with GovCMS profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export DRUPAL_PROFILE=govcms &&
-      export COMPOSER=composer.govcms.json &&
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export COMPOSER=composer.govcms.json
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-govcms-subtheme && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
 
   build-govcms-subtheme-sibling:
     usage: Build with GovCMS profile (sub-theme as sibling). Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export DRUPAL_PROFILE=govcms &&
-      export CIVICTHEME_INSTALL_SIBLING=1 &&
-      export COMPOSER=composer.govcms.json &&
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export CIVICTHEME_INSTALL_SIBLING=1
+      export COMPOSER=composer.govcms.json
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-govcms-subtheme-sibling && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
 
   build-content-corporate:
     usage: Build with corporate content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export CIVICTHEME_CONTENT_PROFILE=corporate &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=corporate
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-content-corporate && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
-      fi
-
-  build-content-highereducation:
-    usage: Build with higher education content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
-    cmd: |
-      export CIVICTHEME_CONTENT_PROFILE=highereducation &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-content-highereducation && ahoy info
-      else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
 
   build-content-government:
     usage: Build with government content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      export CIVICTHEME_CONTENT_PROFILE=government &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=government
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        ahoy provision-content-government && ahoy info
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
       else
-        ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
-        ./scripts/drevops/build.sh && ahoy info
+        echo "Cancelled."
       fi
 
-  info:
-    usage: Show information about this project.
+  build-content-highereducation:
+    usage: Build with higher education content profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
-      COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-${PWD##*/}} \
-      DREVOPS_HOST_DB_PORT=$(docker compose port database 3306 2>/dev/null | cut -d : -f 2) \
-      DREVOPS_HOST_SOLR_PORT=$(docker compose port solr 8983 2>/dev/null | cut -d : -f 2) \
-      DREVOPS_HOST_HAS_SEQUELACE=$(uname -a | grep -i -q darwin && mdfind -name 'Sequel Ace' 2>/dev/null | grep -q "Ace" && echo 1 || true) \
-      DREVOPS_DRUPAL_SHOW_LOGIN_LINK=${DREVOPS_DRUPAL_SHOW_LOGIN_LINK} \
-      ahoy cli ./scripts/drevops/info.sh "$@"
-
-  db:
-    usage: Open DB in Sequel Ace.
-    cmd: |
-      uname -a | grep -i -q darwin && mdfind -name 'Sequel Ace' 2>/dev/null |grep -q "Ace" \
-      && DREVOPS_HOST_DB_PORT="$(docker port $(docker compose ps -q database 2>/dev/null) 3306 2>/dev/null | cut -d : -f 2)" \
-      && open "mysql://${DATABASE_USERNAME:-drupal}:${DATABASE_PASSWORD:-drupal}@127.0.0.1:${DREVOPS_HOST_DB_PORT}/drupal" -a "Sequel Ace" \
-      || echo "Not a supported OS or Sequel Ace is not installed."
-
-  # ----------------------------------------------------------------------------
-  # Docker commands.
-  # ----------------------------------------------------------------------------
-
-  up:
-    usage: Build and start Docker containers.
-    cmd: |
-      docker compose up -d "$@" && if docker compose logs | grep -q "\[Error\]"; then exit 1; fi
-      mkdir -p ${DREVOPS_WEBROOT}/sites/default/files && docker compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/${DREVOPS_WEBROOT}/sites/default/files/livereload.sock'
-
-  down:
-    usage: Stop Docker containers and remove container, images, volumes and networks.
-    cmd: |
-      ahoy confirm "Running this command will remove your current database. Are you sure?" &&
-      if [ -f "docker-compose.yml" ]; then docker compose down --remove-orphans --volumes > /dev/null 2>&1; fi
-
-  start:
-    usage: Start existing Docker containers.
-    cmd: |
-      docker compose start "$@"
-      mkdir -p ${DREVOPS_WEBROOT}/sites/default/files && docker compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/${DREVOPS_WEBROOT}/sites/default/files/livereload.sock'
-
-  stop:
-    usage: Stop running Docker containers.
-    cmd: docker compose stop "$@"
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=highereducation
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
+      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
+        scripts/custom/build-variant.sh --provision-only
+      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
+        scripts/custom/build-variant.sh
+      else
+        echo "Cancelled."
+      fi
 
   restart:
-    usage: Restart stopped or running Docker containers.
+    usage: Restart containers.
     cmd: docker compose restart "$@"
 
+  stop:
+    usage: Stop containers (without removing them).
+    cmd: docker compose stop "$@"
+
   logs:
-    usage: Show Docker logs for services.
-    cmd: docker compose logs "$@"
+    usage: |
+      Tail container logs with pretty filtering. `ahoy logs help` for details.
+      Subcommands: errors | access | php | drupal | watchdog | raw
+      Service filter still works: `ahoy logs app` or `ahoy logs errors app`.
+    cmd: scripts/quant/logs.sh "$@"
+
+  ps:
+    usage: List running containers.
+    cmd: docker compose ps
 
   pull:
-    usage: Pull latest Docker images.
-    cmd: if [ ! -z "$(docker image ls -q)" ]; then docker image ls --format \"{{.Repository}}:{{.Tag}}\" | grep uselagoon/ | grep -v none | xargs -n1 docker pull -q | cat; fi
+    usage: Pull latest images for all services.
+    cmd: docker compose pull
+
+  ## ── Shell exec ─────────────────────────────────────────────────────────────
 
   cli:
-    usage: Start a shell or run a command inside the CLI service container.
-    # This will drop into shell if no arguments are supplied to this command.
-    # If arguments supplied, a new shell with TERM, COMPOSE_*, GITHUB_*,
-    # DOCKER_*, DRUPAL_* and DREVOPS_* environment variables will be started.
-    # This allows passing of the environment variables to Ahoy commands which
-    # will then be forwarded to the container.
-    # Escape double quotes with \" (slash double-quote) when passing arguments
-    # with spaces.
-    cmd: if \[ "${#}" -ne 0 \]; then docker compose exec $(env | cut -f1 -d= | grep "TERM\|COMPOSER\|COMPOSE_\|GITHUB_\|DOCKER_\|DRUPAL_\|DREVOPS_\|CIVICTHEME_" | sed 's/^/-e /') -T cli bash -c "$*"; else docker compose exec cli bash; fi
+    usage: Open a shell in the app container (or run a command in it).
+    cmd: |
+      if [ "${#}" -ne 0 ]; then
+        scripts/quant/exec.sh bash -c "$*"
+      else
+        docker compose exec app bash
+      fi
 
-  composer:
-    usage: Run Composer commands in the CLI service container.
-    cmd: ahoy cli composer "$@"
+  run:
+    usage: Run a shell command in the app container — `ahoy run 'composer info'`.
+    cmd: scripts/quant/exec.sh bash -c "$*"
 
   drush:
-    usage: Run Drush commands in the CLI service container.
-    cmd: ahoy cli "drush -l \${DREVOPS_LOCALDEV_URL} $*"
+    usage: Run drush in the app container.
+    cmd: scripts/quant/exec.sh /opt/drupal/bin/drush "$@"
 
-  flush-redis:
-    usage: Flush Redis cache.
-    cmd: docker compose exec redis redis-cli flushall
+  composer:
+    usage: Run composer in the app container.
+    cmd: scripts/quant/exec.sh composer "$@"
 
-  # ----------------------------------------------------------------------------
-  # Application commands.
-  # ----------------------------------------------------------------------------
-
-  login:
-    usage: Login to a website.
-    # Unblock user 1 and generate a one time login link.
-    cmd: ahoy cli ./scripts/drevops/login.sh
-
-  download-db:
-    usage: Download database.
-    cmd: ./scripts/drevops/download-db.sh
-
-  reload-db:
-    usage: Reload the database container using local database image.
+  composer-govcms:
+    usage: Run Composer with the GovCMS manifest (e.g. ahoy composer-govcms install).
     cmd: |
-      ahoy confirm "Running this command will replace your current database. Are you sure?" &&
-      docker compose rm -f -s -v database \
-        && ahoy up -- --build database \
-        && ahoy up wait_dependencies \
-        && sleep 15 \
-        && ahoy provision \
-        && ahoy info \
-        && ahoy login
+      export COMPOSER=composer.govcms.json
+      scripts/quant/exec.sh composer "$@"
+
+  ## ── Front-end ──────────────────────────────────────────────────────────────
+
+  fei:
+    usage: Install CivicTheme base theme front-end dependencies (host npm).
+    cmd: cd src/web/themes/contrib/civictheme && npm ci --no-audit --no-fund --ignore-scripts
+
+  fe:
+    usage: Build CivicTheme base theme assets (host npm — components/ + dist/).
+    cmd: scripts/custom/fe-build.sh
+
+  fe-subtheme:
+    usage: Build the generated civictheme_demo sub-theme assets (host npm).
+    cmd: scripts/custom/fe-build.sh --subtheme
+
+  fe-build:
+    usage: |
+      Build the theme assets via Docker (the image's own assets stage) rather
+      than host node, and export them onto the host tree. Slower than `ahoy fe`
+      but needs no local node. See .docker/drupal/Dockerfile.
+    cmd: |
+      set -e
+      export DOCKER_BUILDKIT=1
+      docker build \
+        --target assets-export \
+        --output "type=local,dest=src/web/themes" \
+        -f .docker/drupal/Dockerfile .
+      echo "Built. ./src is bind-mounted, so the output is live immediately."
+
+  ## ── Provisioning ───────────────────────────────────────────────────────────
 
   provision:
-    usage: Provision a site from the database dump or profile.
-    cmd: ahoy cli ./scripts/drevops/provision.sh
+    usage: |
+      Bootstrap the site per SCAFFOLD_PROVISION_TYPE, then deploy. LOCAL ONLY —
+      it drops every table first. Uses the current .env variant defaults; see
+      `ahoy provision-minimal` and friends for explicit variants.
+    cmd: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/quant/provision.sh"
 
   provision-minimal:
     usage: Provision with minimal profile (no sub-theme).
     cmd: |
-      if ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile detected. Reinstalling default composer dependencies." &&
-        ahoy composer install
-      fi
-      export DRUPAL_PROFILE=minimal &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ahoy provision && ahoy info
+      set -e
+      export DRUPAL_INSTALL_PROFILE=minimal
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      scripts/custom/build-variant.sh --provision-only
 
   provision-minimal-subtheme:
     usage: Provision with minimal profile (with sub-theme).
     cmd: |
-      if ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile detected. Reinstalling default composer dependencies." &&
-        ahoy composer install
-      fi
-      export DRUPAL_PROFILE=minimal &&
-      ahoy provision && ahoy info
+      set -e
+      export DRUPAL_INSTALL_PROFILE=minimal
+      scripts/custom/build-variant.sh --provision-only
 
   provision-govcms:
-    usage: Provision with GovCMS profile (no sub-theme).
+    usage: Provision with GovCMS profile (no sub-theme). Requires the govcms stack (see build-govcms).
     cmd: |
-      if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-govcms install
-      fi
-      export DRUPAL_PROFILE=govcms &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      ahoy provision && ahoy info
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export COMPOSER=composer.govcms.json
+      scripts/custom/build-variant.sh --provision-only
 
   provision-govcms-subtheme:
     usage: Provision with GovCMS profile (with sub-theme).
     cmd: |
-      if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-govcms install
-      fi
-      export DRUPAL_PROFILE=govcms &&
-      ahoy provision && ahoy info
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export COMPOSER=composer.govcms.json
+      scripts/custom/build-variant.sh --provision-only
 
   provision-govcms-subtheme-sibling:
     usage: Provision with GovCMS profile (sub-theme as sibling).
     cmd: |
-      if ! ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile not found. Installing GovCMS composer dependencies." &&
-        ahoy composer-govcms install
-      fi
-      export DRUPAL_PROFILE=govcms &&
-      export CIVICTHEME_INSTALL_SIBLING=1 &&
-      ahoy provision && ahoy info
+      set -e
+      export DRUPAL_INSTALL_PROFILE=govcms
+      export CIVICTHEME_INSTALL_SIBLING=1
+      export COMPOSER=composer.govcms.json
+      scripts/custom/build-variant.sh --provision-only
 
   provision-content-corporate:
     usage: Provision with corporate content profile.
     cmd: |
-      if ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile detected. Reinstalling default composer dependencies." &&
-        ahoy composer install
-      fi
-      export CIVICTHEME_CONTENT_PROFILE=corporate &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 &&
-      ahoy provision && ahoy info
-
-  provision-content-highereducation:
-    usage: Provision with higher education content profile.
-    cmd: |
-      if ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile detected. Reinstalling default composer dependencies." &&
-        ahoy composer install
-      fi
-      export CIVICTHEME_CONTENT_PROFILE=highereducation &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 &&
-      ahoy provision && ahoy info
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=corporate
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
+      scripts/custom/build-variant.sh --provision-only
 
   provision-content-government:
     usage: Provision with government content profile.
     cmd: |
-      if ahoy cli "test -d /app/web/profiles/contrib/govcms" 2>/dev/null; then
-        echo "[INFO] GovCMS profile detected. Reinstalling default composer dependencies." &&
-        ahoy composer install
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=government
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
+      scripts/custom/build-variant.sh --provision-only
+
+  provision-content-highereducation:
+    usage: Provision with higher education content profile.
+    cmd: |
+      set -e
+      export CIVICTHEME_CONTENT_PROFILE=highereducation
+      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
+      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
+      scripts/custom/build-variant.sh --provision-only
+
+  deploy:
+    usage: |
+      Database updates + post-provision hooks, against the site as it stands.
+      No install, no import, nothing destructive. This is exactly what Salsa
+      Hosting runs on a deploy — the same script.
+    cmd: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/quant/deploy.sh"
+
+  configure:provision:
+    usage: |
+      Set SCAFFOLD_PROVISION_TYPE in .env (profile|database). Local-only.
+      No arg → toggle. `--show` → print current. Run `ahoy provision` after.
+    cmd: scripts/quant/configure-provision.sh "$@"
+
+  post-provision:
+    usage: |
+      Re-run scripts/quant/post-provision.d/*.sh against the current site
+      without re-installing or re-importing. Useful when iterating on a hook.
+    cmd: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/quant/run-post-provision.sh"
+
+  login:
+    usage: Generate a one-time login link for UID 1.
+    cmd: |
+      set -e
+      bases=$(scripts/quant/urls.sh login-bases)
+      scripts/quant/exec.sh /opt/drupal/bin/drush uinf --uid 1 --field name | xargs scripts/quant/exec.sh /opt/drupal/bin/drush uublk
+      # Generate the login link EXACTLY ONCE — a second `uli` invalidates the
+      # first on click. See the scaffold notes.
+      link=$(scripts/quant/exec.sh /opt/drupal/bin/drush uli)
+      path=$(printf '%s' "$link" | sed -E 's#^[a-z][a-z0-9+.-]*://[^/]*##')
+      while IFS= read -r base; do
+        [ -n "$base" ] || continue
+        printf '%s%s\n' "$base" "$path"
+      done <<< "$bases"
+
+  ## ── Database ───────────────────────────────────────────────────────────────
+
+  download-db:
+    usage: |
+      Download latest backup from Salsa Hosting into .data/ as
+      db_salsa_<env>_<YYYYMMDD_HHMMSS>.sql. Does NOT overwrite .data/db.sql —
+      run `ahoy mysql:select-db-dump <name>` to activate.
+    cmd: scripts/quant/download-db.sh
+
+  mysql:select-db-dump:
+    usage: |
+      Activate one of the .data/db_*.sql dumps by hard-linking it to
+      .data/db.sql. `ahoy mysql:select-db-dump --latest` for the newest.
+    cmd: scripts/quant/select-db-dump.sh "$@"
+
+  mysql-import:
+    usage: Import a SQL file. `ahoy mysql-import /import/db.sql`
+    cmd: |
+      FILE="${1:-/import/db.sql}"
+      if [ "$#" -gt 1 ]; then
+        echo "mysql-import takes one file; ignoring extra arguments." >&2
       fi
-      export CIVICTHEME_CONTENT_PROFILE=government &&
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 &&
-      export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 &&
-      ahoy provision && ahoy info
+      if [[ "$FILE" == /* ]]; then
+        if ! scripts/quant/exec.sh bash -c 'test -e "$1"' _ "$FILE"; then
+          echo "Provided sql file $FILE does not exist in container"
+          exit 1
+        fi
+      else
+        if [ ! -e "$FILE" ]; then
+          echo "Provided sql file $FILE does not exist on host"
+          exit 1
+        fi
+      fi
+      scripts/quant/exec.sh /opt/drupal/bin/drush sql-drop -y
+      scripts/quant/exec.sh /opt/drupal/bin/drush sql:query --file="$FILE"
 
-  export-db:
-    usage: Export database dump or database image (if DREVOPS_DB_DOCKER_IMAGE variable is set).
-    cmd: ./scripts/drevops/export-db.sh "$@"
-
-  pull-db:
-    usage: Download database image with the latest nightly dump. Run "ahoy reload-db" to reload DB in the running stack.
+  mysql-dump:
+    usage: |
+      Dump database. `ahoy mysql-dump [path]`
+      Default: .data/db_salsa_local_<YYYYMMDD_HHMMSS>.sql
     cmd: |
-      [ -n "${DREVOPS_DB_DOCKER_IMAGE}" ] && docker pull $DREVOPS_DB_DOCKER_IMAGE
+      TS="$(date +%Y%m%d_%H%M%S)"
+      FILE="${1:-.data/db_salsa_local_${TS}.sql}"
+      mkdir -p "$(dirname "$FILE")"
+      scripts/quant/exec.sh /opt/drupal/bin/drush sql-dump --ordered-dump --extra-dump="--ssl=FALSE --no-tablespaces" > "$FILE"
+      echo "Database dumped to $FILE"
 
-  reset:
-    usage: "Remove containers, all build files. Use with `hard` to reset repository to the last commit."
-    cmd: |
-      ahoy confirm "All containers and build files will be removed. Proceed?" &&
-      AHOY_CONFIRM_RESPONSE=y ahoy down && ./scripts/drevops/reset.sh "$@"
-
-  fei:
-    usage: Install front-end assets.
-    cmd: ahoy cli "npm --prefix web/themes/contrib/${DRUPAL_THEME} install"
-
-  fe:
-    usage: Build front-end assets.
-    cmd: ahoy cli "cd web/themes/contrib/${DRUPAL_THEME} && npm run build"
+  ## ── QA ─────────────────────────────────────────────────────────────────────
 
   lint:
     usage: Lint back-end and front-end code (custom modules/themes + CivicTheme base theme).
-    cmd: ahoy lint-be && ahoy lint-fe && ahoy lint-civictheme
-
-  # Base theme has own tooling config files - use them with tools installed in
-  # the project root. This allows to lint base theme code without installing
-  # tools in the base theme directory. But it also allows to link the base theme
-  # when the theme is tested in isolated mode.
-  lint-be:
-    usage: Lint back-end code.
     cmd: |
-      ahoy cli vendor/bin/phpcs
-      ahoy cli vendor/bin/phpstan
-      ahoy cli vendor/bin/rector process --dry-run --clear-cache
-      ahoy cli vendor/bin/phpmd . text phpmd.xml
+      set -e
+      ahoy lint-be
+      ahoy lint-fe
+      ahoy lint-civictheme
+
+  lint-be:
+    usage: Lint back-end code with the project-root QA configs.
+    cmd: |
+      set -e
+      scripts/quant/exec.sh bin/phpcs
+      scripts/quant/exec.sh bin/phpstan
+      scripts/quant/exec.sh bin/rector process --dry-run --clear-cache
+      scripts/quant/exec.sh bin/phpmd . text phpmd.xml
 
   lint-fe:
-    usage: Lint front-end code (NodeJS dependencies should already be installed).
+    usage: Lint front-end code (host npm for the theme, twig-cs-fixer in the container).
     cmd: |
-      ahoy cli "npm run --prefix \${DREVOPS_WEBROOT}/themes/contrib/\${DRUPAL_THEME} lint"
-      ahoy cli "vendor/bin/twig-cs-fixer lint"
-      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
+      set -e
+      (cd src/web/themes/contrib/civictheme && npm run lint)
+      scripts/quant/exec.sh bin/twig-cs-fixer lint
+      scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/themes/contrib/civictheme
 
   lint-civictheme:
     usage: Lint CivicTheme base theme using theme-specific configs (matches isolated CI).
     cmd: |
-      ahoy cli "vendor/bin/phpcs --standard=web/themes/contrib/civictheme/phpcs.xml --extensions=inc,info,install,module,php,profile,test,theme --ignore=*/node_modules/*,*/dist/*,*/build/* web/themes/contrib/civictheme"
-      ahoy cli "vendor/bin/phpstan analyse --configuration=web/themes/contrib/civictheme/phpstan.neon web/themes/contrib/civictheme"
-      ahoy cli "vendor/bin/rector process --config=web/themes/contrib/civictheme/rector.php --clear-cache --dry-run web/themes/contrib/civictheme"
-      ahoy cli "vendor/bin/phpmd web/themes/contrib/civictheme text web/themes/contrib/civictheme/phpmd.xml --exclude '*/node_modules/*,*/dist/*,*/build/*'"
-      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib/civictheme"
+      set -e
+      scripts/quant/exec.sh bin/phpcs --standard=web/themes/contrib/civictheme/phpcs.xml --extensions=inc,info,install,module,php,profile,test,theme --ignore='*/node_modules/*,*/dist/*,*/build/*' web/themes/contrib/civictheme
+      scripts/quant/exec.sh bin/phpstan analyse --configuration=web/themes/contrib/civictheme/phpstan.neon web/themes/contrib/civictheme
+      scripts/quant/exec.sh bin/rector process --config=web/themes/contrib/civictheme/rector.php --clear-cache --dry-run web/themes/contrib/civictheme
+      scripts/quant/exec.sh bin/phpmd web/themes/contrib/civictheme text web/themes/contrib/civictheme/phpmd.xml --exclude '*/node_modules/*,*/dist/*,*/build/*'
+      scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/themes/contrib/civictheme
+
   lint-check:
-    cmd: |
-      ahoy cli "vendor/bin/twig-cs-fixer lint --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/modules/custom/civictheme_sdc/tests/fixtures/components/"
+    usage: Lint the SDC test fixture components.
+    cmd: scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/modules/custom/civictheme_sdc/tests/fixtures/components/
+
   lint-components:
     usage: Smoke test CivicTheme components by visiting pages and checking for errors.
     cmd: |
-      ahoy drush cr
-      ahoy cli "./scripts/lint.components.sh"
+      set -e
+      scripts/quant/exec.sh /opt/drupal/bin/drush cr
+      scripts/quant/exec.sh bash -c "/opt/drupal/scripts/lint.components.sh"
+
   lint-config:
-    usage: Lint config
+    usage: Lint theme config.
     cmd: |
-      ahoy cli ./scripts/lint.theme-config.sh
-      ahoy cli "./vendor/bin/drush inspect_config civictheme.settings --detail --only-error"
+      set -e
+      scripts/quant/exec.sh bash -c "/opt/drupal/scripts/lint.theme-config.sh"
+      scripts/quant/exec.sh /opt/drupal/bin/drush inspect_config civictheme.settings --detail --only-error
 
   lint-fix:
-    usage: Fix lint issues of back-end and front-end code.
+    usage: Auto-fix lint issues (Rector + PHPCBF + twig-cs-fixer).
     cmd: |
-      ahoy cli vendor/bin/rector --clear-cache
-      ahoy cli vendor/bin/phpcbf
-      ahoy cli "vendor/bin/twig-cs-fixer lint --fix --config=/app/web/themes/contrib/civictheme/.twig-cs-fixer.php /app/web/themes/contrib"
+      scripts/quant/exec.sh bin/rector process --clear-cache
+      scripts/quant/exec.sh bin/phpcbf
+      scripts/quant/exec.sh bin/twig-cs-fixer lint --fix --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/themes/contrib
 
   lint-govcms:
-    usage: Lint with shipshape.
+    usage: Lint with shipshape + the GovCMS phpstan config.
     cmd: |
-      ahoy cli sh -c "/usr/local/bin/shipshape -e"
-      ahoy cli vendor/bin/phpstan --configuration=/app/phpstan-govcms.neon
+      set -e
+      docker compose exec -T app shipshape -f /opt/drupal/shipshape.yml --exclude-db -e
+      scripts/quant/exec.sh bin/phpstan --configuration=/opt/drupal/phpstan-govcms.neon
+
+  ship-shape:
+    usage: Run shipshape site validation.
+    cmd: docker compose exec -T app shipshape -f /opt/drupal/shipshape.yml --exclude-db "$@"
+
+  doctor:
+    usage: Check host tools (docker, ahoy, qc, jq, pygmy, etc.).
+    cmd: scripts/quant/doctor.sh
+
+  env-check:
+    usage: |
+      Verify every KEY in .env reaches the docker-compose configuration.
+    cmd: |
+      set -euo pipefail
+      rendered=$(docker compose config --format json 2>/dev/null) \
+        || { echo "docker compose config failed"; exit 2; }
+      fail=0
+      while IFS='=' read -r key val; do
+        [ -z "$key" ] && continue
+        # Host-only keys: consumed by the docker compose CLI or by a script
+        # that runs on the host, never inside a container.
+        case "$key" in \
+          QUANT_APP_NAME|QUANT_BACKUP_ENV|COMPOSE_FILE|COMPOSE_PROJECT_NAME|SCAFFOLD_DISPLAY_URL|HOST_UID|HOST_GID|PHP_VERSION) \
+            continue ;; \
+        esac
+        resolved=$(printf '%s' "$rendered" | jq -r --arg k "$key" \
+          '[.services[].environment[$k] | select(. != null)] | .[0] // "__MISSING__"')
+        case "$key" in *TOKEN*|*SECRET*|*PASSWORD*|*PASSWD*|*API_KEY*) display='***redacted***' ;; *) display="$resolved" ;; esac
+        if [ "$resolved" = "__MISSING__" ]; then
+          printf '  \033[0;31m✗\033[0m %-32s not in any service environment\n' "$key"
+          fail=1
+        elif [ -n "$val" ] && [ "$resolved" != "$val" ]; then
+          printf '  \033[0;33m!\033[0m %-32s value mismatch (env vs compose)\n' "$key"
+          fail=1
+        else
+          printf '  \033[0;32m✓\033[0m %-32s = %s\n' "$key" "$display"
+        fi
+      done < <(grep -E '^[A-Z_]+=' .env)
+      [ "$fail" = 0 ] && echo "OK: all .env keys propagate to docker compose config."
+      exit $fail
+
+  image-manifest:
+    usage: |
+      Show what the deployed image actually contains, and diff it against
+      .docker/image-manifest.txt. `--update` adopts the current shape.
+    cmd: scripts/quant/image-manifest.sh "$@"
+
+  check-env-naming:
+    usage: |
+      Audit the tree for legacy env-var names. `--list` prints the
+      old → new rename table.
+    cmd: scripts/check-env-naming.sh "$@"
+
+  gh-token:
+    usage: |
+      Prompt for a GitHub token and write it to .env as GITHUB_TOKEN.
+    cmd: |
+      set -eu
+      ENV_FILE=".env"
+      if [ ! -f "$ENV_FILE" ]; then
+        echo "[gh-token] $ENV_FILE not found in $(pwd)." >&2
+        exit 1
+      fi
+      read -r -s -p "GitHub token: " token || true
+      printf '\n'
+      if [ -z "${token:-}" ]; then
+        echo "[gh-token] Empty token — aborting, .env unchanged." >&2
+        exit 1
+      fi
+      tmp="$(mktemp "${ENV_FILE}.XXXXXX")"
+      trap 'rm -f "$tmp"' EXIT HUP INT TERM
+      awk '!/^[[:space:]]*(export[[:space:]]+)?GITHUB_TOKEN=/' "$ENV_FILE" > "$tmp"
+      printf 'GITHUB_TOKEN=%s\n' "$token" >> "$tmp"
+      chmod --reference="$ENV_FILE" "$tmp" 2>/dev/null || true
+      mv "$tmp" "$ENV_FILE"
+      trap - EXIT HUP INT TERM
+      unset token
+      echo "GITHUB_TOKEN updated in $ENV_FILE"
+
+  ## ── Tests ──────────────────────────────────────────────────────────────────
 
   test:
-    usage: Run all tests.
-    cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
+    usage: Run all tests (PHPUnit suites + Behat).
+    cmd: |
+      set -e
+      ahoy test-unit
+      ahoy test-kernel
+      ahoy test-functional
+      ahoy test-bdd
 
   test-unit:
     usage: Run PhpUnit unit tests.
-    cmd: ahoy cli vendor/bin/phpunit --testsuite=unit "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=unit "$@"
+
   test-sdc:
     usage: Run PhpUnit sdc unit tests.
-    cmd: ahoy cli vendor/bin/phpunit --testsuite=sdc-unit "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=sdc-unit "$@"
 
   test-kernel:
     usage: Run PhpUnit kernel tests.
-    cmd: ahoy cli vendor/bin/phpunit --testsuite=kernel "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=kernel "$@"
 
   test-functional:
     usage: Run PhpUnit functional tests.
-    cmd: ahoy cli vendor/bin/phpunit --testsuite=functional "$@"
+    cmd: scripts/quant/exec.sh bin/phpunit --no-coverage --testsuite=functional "$@"
 
   test-bdd:
-    usage: Run BDD tests.
-    cmd: ahoy cli php -d memory_limit=-1 vendor/bin/behat --colors "$@"
+    usage: Run BDD tests (uses chrome service profile).
+    cmd: |
+      set -e
+      docker compose --profile test up -d chrome
+      scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors "$@"
 
   test-bats:
     usage: Run Bats tests (host only).
     cmd: ./scripts/test.assets.sh
 
+  ## ── Debug ──────────────────────────────────────────────────────────────────
+
   debug:
-    usage: Enable PHP Xdebug.
-    cmd: ahoy cli php -v | grep -q Xdebug || XDEBUG_ENABLE=true ahoy up cli php nginx && ahoy cli php -v | grep -q Xdebug && echo "Enabled debug configuration. Use 'ahoy up' to disable."
-
-  deploy:
-    usage: Run remote deployment procedures.
+    usage: |
+      Restart app with Xdebug enabled. `ahoy up` disables it again.
     cmd: |
-      ahoy confirm "Deployment usually runs in CI. Are you sure you want to proceed with manual deployment? (Run as DREVOPS_DEPLOY_PROCEED=1 ahoy deploy [type1,[type2..]], where [type] is 'code', 'docker', 'webhook')" &&
-      ./scripts/drevops/deploy.sh "$@"
+      if scripts/quant/exec.sh bash -c 'php -v' | grep -q Xdebug; then
+        echo "Xdebug is already enabled. Use 'ahoy up' to disable."
+      else
+        SCAFFOLD_XDEBUG_ENABLED=1 docker compose up -d app
+        for i in 1 2 3 4 5; do
+          if scripts/quant/exec.sh bash -c 'php -v' | grep -q Xdebug; then
+            echo "Xdebug enabled. Use 'ahoy up' to disable."
+            exit 0
+          fi
+          sleep 1
+        done
+        if scripts/quant/exec.sh bash -c 'php -v' | grep -q Xdebug; then
+          echo "Xdebug enabled. Use 'ahoy up' to disable."
+        else
+          echo "ERROR: Xdebug failed to enable — check container logs." >&2
+          exit 1
+        fi
+      fi
 
-  github-labels:
-    usage: Update project's GitHub labels.
-    cmd: ./scripts/drevops/github-labels.sh "$@"
-
-  doctor:
-    usage: Find problems with current project setup.
-    cmd: ./scripts/drevops/doctor.sh "$@"
-
-  update-drevops:
-    usage: Update DrevOps stack.
+  php-debug:
+    usage: |
+      Restart app with DRUPAL_DEBUG=1 — verbose PHP error pages, caches off.
+      `ahoy up` (with DRUPAL_DEBUG back to empty) reverts it.
     cmd: |
-      ahoy confirm "Some committed files may become overwritten. Proceed?" &&
-      ./scripts/drevops/update-drevops.sh $@
+      if [ "$(scripts/quant/exec.sh bash -c 'printenv DRUPAL_DEBUG' 2>/dev/null | tr -d '[:space:]')" = "1" ]; then
+        echo "DRUPAL_DEBUG is already enabled. Use 'ahoy up' to disable."
+      elif DRUPAL_DEBUG=1 docker compose up -d app; then
+        echo "DRUPAL_DEBUG enabled — verbose PHP errors on. Use 'ahoy up' to disable."
+      else
+        echo "ERROR: failed to recreate app with DRUPAL_DEBUG=1 — check container logs." >&2
+        exit 1
+      fi
+
+  ## ── Content / config maintenance ───────────────────────────────────────────
+
+  export-config:
+    usage: Export theme config.
+    cmd: |
+      set -e
+      scripts/quant/exec.sh bash -c "/opt/drupal/scripts/update.theme-config.sh"
+      scripts/quant/exec.sh /opt/drupal/bin/drush cde civictheme_dev -y || true
+      if scripts/quant/exec.sh /opt/drupal/bin/drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
+        scripts/quant/exec.sh /opt/drupal/bin/drush cde cs_generated_content -y || true
+      fi
+
+  export-content:
+    usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy export-content).
+    cmd: |
+      if scripts/quant/confirm.sh "This will uninstall several modules and users. Proceed?"; then
+        scripts/quant/exec.sh bash -c "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} /opt/drupal/scripts/update.default-content.sh"
+      else
+        echo "The operation was canceled."
+      fi
+
   change-uikit:
-    usage: Change the version of CivicTheme UI Kit the repository is using
+    usage: Change the version of CivicTheme UI Kit the repository is using.
     aliases: ["bump-uikit"]
     cmd: npm run uikit-change
+
+  ## ── Worktrees ──────────────────────────────────────────────────────────────
+
+  worktree:clone:
+    usage: |
+      Seed another compose project (typically a git worktree's stack) with THIS
+      site's database volume and built app image. See the scaffold docs.
+    cmd: |
+      set -e
+      if [ ! -f scripts/quant/worktree-clone.sh ]; then
+        echo "[worktree:clone] scripts/quant/worktree-clone.sh is missing." >&2
+        exit 1
+      fi
+      src="${COMPOSE_PROJECT_NAME:-${SCAFFOLD_PROJECT:-}}"
+      scripts/quant/worktree-clone.sh "$src" "$@"
+
+  ## ── Info ───────────────────────────────────────────────────────────────────
+
+  info:
+    usage: Print project URLs and ports.
+    cmd: scripts/quant/info.sh
+
+  vscode-tasks:
+    usage: Generate .vscode/tasks.json from .ahoy.yml. Requires yq.
+    cmd: scripts/quant/vscode-tasks.sh
+
   local:
     usage: Custom local commands. See `ahoy local help`.
     cmd: |
@@ -462,61 +678,5 @@ commands:
         ahoy -f ".ahoy.local.yml" "$@"
       else
         echo ".ahoy.local.yml does not exist."
-        echo "Copy .ahoy.local.example.yml to .ahoy.local.yml and rerun this command.";
+        echo "Create it to define your own local commands."
       fi
-
-  export-config:
-    usage: Export theme config.
-    cmd: |
-      ahoy cli "./scripts/update.theme-config.sh"
-      ahoy drush cde civictheme_dev || true
-      if ahoy drush pm:list --status=Enabled --field=name | grep -q 'cs_generated_content'; then
-        ahoy drush cde cs_generated_content || true
-      fi
-
-  export-content:
-    usage: Export content (run with CIVICTHEME_CONTENT_PROFILE=corporate ahoy install-site) .
-    cmd: |
-      ahoy confirm "This will uninstall several modules and users. Proceed?" \
-      && ahoy cli "CIVICTHEME_CONTENT_PROFILE=${CIVICTHEME_CONTENT_PROFILE:-default} ./scripts/update.default-content.sh" || echo "The operation was canceled."
-
-  # ----------------------------------------------------------------------------
-  # Utilities.
-  # ----------------------------------------------------------------------------
-  confirm:
-    cmd: |
-      if [ -z "$AHOY_CONFIRM_RESPONSE" ]; then
-        read -r -p ">> $1 [y/N] " AHOY_CONFIRM_RESPONSE
-        [ "$AHOY_CONFIRM_RESPONSE" = "y" ] || [ "$AHOY_CONFIRM_RESPONSE" = true ] || ( echo "The operation was canceled." && exit 1 )
-      else
-        echo ">> $1 [y/N] $AHOY_CONFIRM_RESPONSE" \
-        && if [ "${AHOY_CONFIRM_WAIT_SKIP}" != "1" ]; then echo "Waiting for 3 seconds... Press Ctrl+C to cancel."; sleep 3; fi
-      fi
-    hide: true
-
-# Override entrypoint to alter default behaviour of Ahoy.
-entrypoint:
-  # Run all commands in Bash.
-  - bash
-  # Read the commands from the string.
-  - -c
-  # Exit the script if any statement returns a non-true return value.
-  - -e
-  # Read variables from .env file, respecting existing environment variable values.
-  #
-  # It is important to understand that variables set in .env file are already
-  # available inside the containers after stack is running (as a part of
-  # docker compose functionality), so most of the commands are using these
-  # values taken from containers.
-  #
-  # However, since Docker does not support changes to environment variables in
-  # running containers without restarting containers, we are adding this
-  # mechanism of reading variables here to allow adjustments of some variables
-  # (like PHPCS scan targets) without the need to restart containers.
-  #
-  # As a rule of thumb, use `ahoy up cli` to apply changes to variables.
-  - |
-    t=$(mktemp) && export -p > "$t" && set -a && . ./.env && if [ -f ./.env.local ];then . ./.env.local;fi && set +a && . "$t" && rm "$t" && unset t
-    bash -e -c "$0" "$@"
-  - '{{cmd}}'
-  - '{{name}}'

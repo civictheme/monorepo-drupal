@@ -1,0 +1,11 @@
+# Drush config — applies to all sites.
+command:
+  sql:
+    options:
+      # Salsa Hosting RDS sometimes presents certs that strict verification rejects.
+      extra: '--skip-ssl-verify-server-cert'
+  site:
+    install:
+      options:
+        # Suppress legacy warnings during `drush si` in scripted contexts.
+        no-interaction: true

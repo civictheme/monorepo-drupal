@@ -4,7 +4,10 @@
 #
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
+
+# The Drupal tree (web/, tests/) lives under src/ per the scaffold layout.
+cd "$(dirname "$0")/../src"
 
 [ ! -d "tests/bats/node_modules" ] && npm --prefix tests/bats ci
 

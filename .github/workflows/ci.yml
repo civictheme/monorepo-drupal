@@ -1,0 +1,745 @@
+name: CI
+
+# GitHub Actions port of the CircleCI `commit` workflow (Phase 3 of the Salsa
+# Hosting scaffold conversion — see PLAN §7/§8).
+#
+# Shape:
+#   - build-isolated: the theme built against vanilla Drupal (3 core versions),
+#     theme-level QA + PHPUnit with coverage (pcov) + Codecov upload.
+#   - build: the full scaffold stack per provision variant
+#     (scripts/custom/build-variant.sh is the entrypoint), then the lint chain
+#     and the PHPUnit/Behat suites inside the running stack. Behat is split
+#     p0/p1 across two jobs per main variant (was CircleCI parallelism: 2).
+#   - build-content: the three content-profile variants (develop/release/
+#     hotfix only, as before).
+#   - visual-regression: host-run vr-drupal against the stack; baseline cached
+#     from develop runs (actions/cache), report to Netlify + PR comment.
+#   - publish: downstream repository publishing via scripts/push.code.sh
+#     (develop and ci-* branches).
+#   - image: the deployed arm64 image builds (Dockerfile smoke, no push).
+#
+# Conventions:
+#   - Node-dependent tooling (npm lint, bats, dependency checker,
+#     lint.components.sh, vr-drupal) runs on the RUNNER HOST — the scaffold app
+#     container has no node. PHP tooling runs in the container via
+#     scripts/quant/exec.sh.
+#   - Coverage: pcov + Codecov in build-isolated only; stack jobs run
+#     --no-coverage (xdebug ships disabled in the image).
+#   - CI_*_IGNORE_FAILURE env toggles soften individual steps, mirroring the
+#     old DREVOPS_CI_* switches.
+#
+# Secrets/vars used (configure in repo settings):
+#   secrets: CODECOV_TOKEN, NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID,
+#            DEPLOY_SSH_KEY_DRUPAL_ORG, DEPLOY_SSH_KEY_GOVCMS,
+#            DEPLOY_SSH_KEY_CONTENT, DEPLOY_SSH_KEY_ADMIN,
+#            DEPLOY_GIT_USER_EMAIL
+#   vars:    PUSH_CODE_PROCEED ('1' = actually push downstream; else dry-run)
+
+'on':
+  push:
+    branches:
+      - '**'
+      - '!content/**'
+    tags:
+      - '**'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Isolated theme build within a vanilla Drupal installation.
+  # Replicates (to a degree) what Drupal CI would do.
+  # ──────────────────────────────────────────────────────────────────────────
+  build-isolated:
+    name: Isolated theme build (${{ matrix.name }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Current Drupal version, matching the one the monorepo builds against.
+          - name: current
+            drupal_version: '11.4'
+            project_sha: '11.x'
+          # Oldest supported Drupal version, matching core_version_requirement.
+          - name: legacy
+            drupal_version: '10.6'
+            project_sha: '10.x'
+          - name: next
+            drupal_version: '10@beta'
+            project_sha: '10.x'
+    env:
+      DRUPAL_VERSION: ${{ matrix.drupal_version }}
+      DRUPAL_PROJECT_SHA: ${{ matrix.project_sha }}
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    defaults:
+      run:
+        working-directory: src/web/themes/contrib/civictheme
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: pcov
+          extensions: gd, sqlite3, pdo_sqlite, zip
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Assemble the codebase
+        run: .devtools/assemble.sh
+
+      - name: Start built-in PHP server
+        run: .devtools/start.sh
+
+      - name: Provision site
+        run: .devtools/provision.sh
+
+      - name: Lint code with PHPCS
+        working-directory: src/web/themes/contrib/civictheme/build
+        run: vendor/bin/phpcs || [ "${CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with PHPStan
+        working-directory: src/web/themes/contrib/civictheme/build
+        run: vendor/bin/phpstan || [ "${CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with Rector
+        working-directory: src/web/themes/contrib/civictheme/build
+        run: vendor/bin/rector --clear-cache --dry-run || [ "${CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with PHPMD
+        working-directory: src/web/themes/contrib/civictheme/build
+        run: vendor/bin/phpmd . text phpmd.xml || [ "${CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with Twig CS Fixer
+        working-directory: src/web/themes/contrib/civictheme/build
+        run: vendor/bin/twig-cs-fixer lint --config=../.twig-cs-fixer.php web/themes/custom/civictheme/ || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Run tests
+        working-directory: src/web/themes/contrib/civictheme/build
+        env:
+          BROWSERTEST_OUTPUT_DIRECTORY: /tmp
+        run: vendor/bin/phpunit || [ "${CI_TEST_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Upload test results and artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-logs-${{ matrix.name }}
+          path: |
+            src/web/themes/contrib/civictheme/.logs
+            src/web/themes/contrib/civictheme/build/web/sites/simpletest/browser_output
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload code coverage reports to Codecov
+        if: github.ref_type != 'tag' && env.CODECOV_TOKEN != ''
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: src/web/themes/contrib/civictheme/.logs/coverage
+          name: gha-build-isolated-${{ matrix.name }}
+          fail_ci_if_error: true
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Full-stack builds: the scaffold stack per provision variant, plus the
+  # lint chain and the test suites inside it. Behat is split p0/p1 over two
+  # jobs for the main variants; lint and the static suites run once per
+  # variant (on the p0 job).
+  # ──────────────────────────────────────────────────────────────────────────
+  build:
+    name: Build (${{ matrix.name }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    needs: build-isolated
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: minimal
+            install_profile: minimal
+            subtheme_skip: '1'
+            behat_profile: p0
+            lint: true
+          - name: minimal-behat-p1
+            install_profile: minimal
+            subtheme_skip: '1'
+            behat_profile: p1
+          - name: minimal-subtheme
+            install_profile: minimal
+            behat_profile: p0
+            lint: true
+          - name: minimal-subtheme-behat-p1
+            install_profile: minimal
+            behat_profile: p1
+          - name: govcms
+            install_profile: govcms
+            composer: composer.govcms.json
+            subtheme_skip: '1'
+            behat_profile: p0
+            lint: true
+            shipshape: true
+          - name: govcms-behat-p1
+            install_profile: govcms
+            composer: composer.govcms.json
+            subtheme_skip: '1'
+            behat_profile: p1
+          - name: govcms-subtheme
+            install_profile: govcms
+            composer: composer.govcms.json
+            behat_profile: p0
+            lint: true
+            shipshape: true
+          - name: govcms-subtheme-behat-p1
+            install_profile: govcms
+            composer: composer.govcms.json
+            behat_profile: p1
+          - name: govcms-subtheme-sibling
+            install_profile: govcms
+            composer: composer.govcms.json
+            install_sibling: '1'
+            behat_profile: smoke
+            lint: true
+    env:
+      DRUPAL_INSTALL_PROFILE: ${{ matrix.install_profile }}
+      COMPOSER: ${{ matrix.composer }}
+      PHP_VERSION: ${{ matrix.php_version }}
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: ${{ matrix.subtheme_skip }}
+      CIVICTHEME_INSTALL_SIBLING: ${{ matrix.install_sibling }}
+      # CircleCI masked this lint on EVERY leg via a hidden project-level env
+      # var (DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE=1 — the latest
+      # develop build-minimal prints the same diffs and "ERROR: Configuration
+      # is not consistent" yet exits 0). The drift is pre-existing upstream
+      # (committed theme config vs a fresh export), not a scaffold regression.
+      # Kept ignored at parity; fixing the drift is a tracked follow-up.
+      CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          # The committed override joins pygmy's shared bridge; it does not
+          # exist on a fresh runner.
+          docker network create amazeeio-network
+
+      - name: Lint docs spelling
+        if: matrix.lint
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q aspell aspell-en
+          ./scripts/lint.spelling.sh
+
+      - name: Build stack and provision
+        run: scripts/custom/build-variant.sh
+        timeout-minutes: 45
+
+      # The runner user (uid 1001) provisions via the ./src bind mount while
+      # apache runs as www-data (uid 1000), so apache cannot mkdir inside
+      # provision-created dirs (compiled twig under files/php, image styles) —
+      # behat surfaced it as "mkdir(): Permission Denied" watchdog errors.
+      # Locally host uid == www-data uid == 1000, so this never bites.
+      - name: Open files directory to the web server user
+        run: scripts/quant/exec.sh bash -c "chmod -R a+rwX web/sites/default/files"
+
+      - name: Lint code with PHPCS
+        if: matrix.lint
+        run: scripts/quant/exec.sh bin/phpcs || [ "${CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with PHPStan
+        if: matrix.lint
+        run: scripts/quant/exec.sh bin/phpstan || [ "${CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with Rector
+        if: matrix.lint
+        run: scripts/quant/exec.sh bin/rector process --dry-run --clear-cache || [ "${CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with PHPMD
+        if: matrix.lint
+        run: scripts/quant/exec.sh bin/phpmd . text phpmd.xml || [ "${CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint code with Twig CS Fixer
+        if: matrix.lint
+        run: |
+          scripts/quant/exec.sh bin/twig-cs-fixer lint || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+          scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/themes/contrib/civictheme || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      # No phpstan-govcms.neon step here on purpose: CircleCI never ran it (it
+      # backs the local `ahoy lint-govcms` helper only, and needs the
+      # spaze/phpstan-disallowed-calls extension the old govcms cli image
+      # provided globally).
+
+      - name: Lint code with NPM linters
+        if: matrix.lint
+        run: (cd src/web/themes/contrib/civictheme && npm run lint) || [ "${CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint Drupal theme configuration
+        if: matrix.lint
+        run: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/lint.theme-config.sh" || [ "${CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint Drupal theme schema
+        if: matrix.lint
+        run: scripts/quant/exec.sh /opt/drupal/bin/drush inspect_config civictheme.settings --detail --only-error
+
+      - name: Check theme module dependencies
+        if: matrix.lint
+        run: |
+          npm --prefix scripts/civictheme-dependency-checker install --no-audit --no-fund
+          node scripts/civictheme-dependency-checker/index.js check
+
+      - name: Lint components smoke test
+        if: matrix.lint
+        run: |
+          scripts/quant/exec.sh /opt/drupal/bin/drush cr
+          port=$(docker compose port app 80 | cut -d: -f2)
+          CIVICTHEME_LINT_COMPONENTS_BASE_URL="http://localhost:${port}" \
+            ./scripts/lint.components.sh || [ "${CI_LINT_COMPONENTS_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Run assets tests (bats)
+        run: ./scripts/test.assets.sh
+
+      - name: Test with PHPUnit
+        run: scripts/quant/exec.sh bin/phpunit --no-coverage || [ "${CI_PHPUNIT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Test with Behat (${{ matrix.behat_profile }})
+        timeout-minutes: 60
+        env:
+          BEHAT_PROFILE: ${{ matrix.behat_profile }}
+        run: |
+          docker compose --profile test up -d chrome
+          # Prove chrome-container → app connectivity up front so a network
+          # regression fails in seconds with diagnostics instead of minutes
+          # into behat. Probes the app.test alias behat uses (see behat.yml
+          # for the Chrome HSTS-preload story behind the alias).
+          if ! docker compose exec -T chrome curl -sS -o /dev/null --retry 15 --retry-connrefused --retry-delay 2 --max-time 60 http://app.test/; then
+            echo "::error::The chrome container cannot reach http://app.test — selenium scenarios cannot run."
+            docker compose ps
+            docker network ls
+            docker compose exec -T chrome getent hosts app.test || true
+            exit 1
+          fi
+          scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors --strict --profile="${BEHAT_PROFILE}" || \
+            scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors --strict --rerun --profile="${BEHAT_PROFILE}" || \
+            [ "${CI_BEHAT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      # CircleCI ran the shipshape binary baked into the old govcms cli image;
+      # the scaffold app image does not carry it, so run the standalone release
+      # on the runner against src/ (paths in shipshape.yml are relative to the
+      # Drupal root). Pinned to the version current at port time.
+      - name: Audit code with shipshape
+        if: matrix.shipshape
+        run: |
+          curl -sSL -o "${RUNNER_TEMP}/shipshape" https://github.com/salsadigitalauorg/shipshape/releases/download/v1.0.0-alpha.1.6/shipshape-Linux-x86_64
+          chmod +x "${RUNNER_TEMP}/shipshape"
+          mkdir -p src/.logs/test_results
+          (cd src && "${RUNNER_TEMP}/shipshape" run . -f shipshape.yml -e -o junit > .logs/test_results/shipshape-results.xml) || [ "${CI_SHIPSHAPE_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs-${{ matrix.name }}
+          path: src/.logs
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Show stack logs on failure
+        if: failure()
+        run: docker compose logs --tail=300
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Content-profile variants. Separate job because the develop/release/hotfix
+  # gate needs a job-level `if` and the matrix context is not available there.
+  # The static lint chain is skipped: the code is identical to the minimal
+  # variant, which already linted it.
+  # ──────────────────────────────────────────────────────────────────────────
+  build-content:
+    name: Build (content-${{ matrix.content_profile }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    needs: build
+    if: >-
+      github.ref_type == 'tag' ||
+      github.ref_name == 'develop' ||
+      startsWith(github.ref_name, 'release/') ||
+      startsWith(github.ref_name, 'hotfix/')
+    strategy:
+      fail-fast: false
+      matrix:
+        content_profile: [corporate, government, highereducation]
+    env:
+      DRUPAL_INSTALL_PROFILE: minimal
+      CIVICTHEME_CONTENT_PROFILE: ${{ matrix.content_profile }}
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
+      CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP: '1'
+      CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          docker network create amazeeio-network
+
+      - name: Build stack and provision
+        run: scripts/custom/build-variant.sh
+        timeout-minutes: 45
+
+      # See the matching step in the build job for why (runner uid 1001 vs
+      # in-container www-data uid 1000 on the ./src bind mount).
+      - name: Open files directory to the web server user
+        run: scripts/quant/exec.sh bash -c "chmod -R a+rwX web/sites/default/files"
+
+      - name: Lint Drupal theme configuration
+        run: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/lint.theme-config.sh" || [ "${CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Lint components smoke test
+        run: |
+          scripts/quant/exec.sh /opt/drupal/bin/drush cr
+          port=$(docker compose port app 80 | cut -d: -f2)
+          CIVICTHEME_LINT_COMPONENTS_BASE_URL="http://localhost:${port}" \
+            ./scripts/lint.components.sh || [ "${CI_LINT_COMPONENTS_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Run assets tests (bats)
+        run: ./scripts/test.assets.sh
+
+      - name: Test with PHPUnit
+        run: scripts/quant/exec.sh bin/phpunit --no-coverage || [ "${CI_PHPUNIT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Test with Behat (smoke)
+        timeout-minutes: 45
+        run: |
+          docker compose --profile test up -d chrome
+          # See the build job's behat step for why this preflight exists.
+          if ! docker compose exec -T chrome curl -sS -o /dev/null --retry 15 --retry-connrefused --retry-delay 2 --max-time 60 http://app.test/; then
+            echo "::error::The chrome container cannot reach http://app.test — selenium scenarios cannot run."
+            docker compose ps
+            exit 1
+          fi
+          scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors --strict --profile=smoke || \
+            scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors --strict --rerun --profile=smoke || \
+            [ "${CI_BEHAT_IGNORE_FAILURE:-0}" -eq 1 ]
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs-content-${{ matrix.content_profile }}
+          path: src/.logs
+          # The logs live under a dot-directory, which upload-artifact@v4
+          # silently skips by default ("No files were found").
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Show stack logs on failure
+        if: failure()
+        run: docker compose logs --tail=300
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Visual regression testing. vr-drupal runs on the runner host against the
+  # stack's published port. Baseline comes from the newest develop run via
+  # actions/cache (restore-keys prefix match); the weekly keep-alive workflow
+  # guards against the 7-day cache eviction.
+  # ──────────────────────────────────────────────────────────────────────────
+  visual-regression:
+    name: Visual regression
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    needs: build-isolated
+    env:
+      DRUPAL_INSTALL_PROFILE: minimal
+      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+      VR_BRANCH: ${{ github.ref_name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          docker network create amazeeio-network
+
+      - name: Build stack and provision
+        run: scripts/custom/build-variant.sh
+        timeout-minutes: 45
+
+      # See the matching step in the build job for why (runner uid 1001 vs
+      # in-container www-data uid 1000 on the ./src bind mount).
+      - name: Open files directory to the web server user
+        run: scripts/quant/exec.sh bash -c "chmod -R a+rwX web/sites/default/files"
+
+      - name: Install visual regression tools
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+        run: npm install -g @richardgaunt/visual-regression-for-drupal@latest --prefer-online
+
+      - name: Point visual regression at the local stack
+        run: |
+          port=$(docker compose port app 80 | cut -d: -f2)
+          tmp=$(mktemp)
+          jq --arg u "http://localhost:${port}" '."visual-diff".base_path = $u' \
+            .visual-regression/civictheme-ci/project.json > "${tmp}"
+          mv "${tmp}" .visual-regression/civictheme-ci/project.json
+
+      - name: Take visual regression screenshots
+        timeout-minutes: 90
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+        run: |
+          export PUPPETEER_EXECUTABLE_PATH="${CHROME_BIN:-/usr/bin/google-chrome}"
+          # The shim caps the tool's auto-derived puppeteer concurrency — see
+          # the comment in the shim file.
+          export NODE_OPTIONS="--require ${GITHUB_WORKSPACE}/scripts/ci/vr-concurrency-shim.cjs"
+          vr-drupal take civictheme-ci --id current --no-interactive
+
+      # vr-drupal exits 0 even when individual page captures error out — guard
+      # against a partial (or, on develop, baseline-poisoning) screenshot set.
+      - name: Verify screenshot set is complete
+        run: |
+          # Distinct paths can share an output PNG (vr-drupal names files from
+          # the sanitized path), so count unique sanitized names, not raw paths.
+          expected=$(( $(jq -r '."visual-diff".paths[]' .visual-regression/civictheme-ci/project.json \
+              | sed 's|^/$|homepage|; s|^/||; s|/|-|g' | sort -u | wc -l) \
+            * $(jq '."visual-diff".viewports | length' .visual-regression/civictheme-ci/project.json) ))
+          actual=$(find .visual-regression/civictheme-ci/screenshot-sets/sets/current -name '*.png' | wc -l)
+          echo "Screenshots captured: ${actual}/${expected}"
+          if [ "${actual}" -ne "${expected}" ]; then
+            echo "::error::Visual regression capture is incomplete (${actual}/${expected} screenshots)."
+            echo "Missing screenshots (expected path/viewport combinations without a PNG):"
+            for viewport in $(jq -r '."visual-diff".viewports[].name | ascii_downcase' .visual-regression/civictheme-ci/project.json); do
+              jq -r '."visual-diff".paths[]' .visual-regression/civictheme-ci/project.json | while read -r p; do
+                name=$([ "$p" = "/" ] && echo homepage || echo "$p" | sed 's|^/||; s|/|-|g')
+                [ -f ".visual-regression/civictheme-ci/screenshot-sets/sets/current/${viewport}/${name}.png" ] || echo "  ${viewport}: ${p}"
+              done
+            done
+            exit 1
+          fi
+
+      # On develop: save screenshots as the baseline for branch comparisons.
+      - name: Prepare baseline (develop only)
+        if: always() && github.ref_name == 'develop'
+        run: |
+          mkdir -p /tmp/vr-baseline
+          cp -r .visual-regression/civictheme-ci/screenshot-sets/sets/current /tmp/vr-baseline/baseline
+          # Update set.json so the directory points to baseline, not current.
+          if [ -f /tmp/vr-baseline/baseline/set.json ]; then
+            sed -i 's|screenshot-sets/sets/current|screenshot-sets/sets/baseline|g' /tmp/vr-baseline/baseline/set.json
+          fi
+          echo "Baseline prepared for caching."
+
+      - name: Save baseline cache (develop only)
+        if: always() && github.ref_name == 'develop'
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/vr-baseline
+          key: vr-baseline-v2-develop-${{ github.run_id }}
+
+      # Eviction fallback: the baseline also lands in the run's artifacts.
+      - name: Upload baseline artifact (develop only)
+        if: always() && github.ref_name == 'develop'
+        uses: actions/upload-artifact@v4
+        with:
+          name: vr-baseline
+          path: /tmp/vr-baseline
+          retention-days: 90
+
+      # On branches: restore the latest develop baseline (prefix match returns
+      # the newest entry — same semantics as the old CircleCI restore_cache).
+      - name: Restore develop baseline
+        if: github.ref_name != 'develop'
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/vr-baseline
+          key: vr-baseline-v2-develop-${{ github.run_id }}
+          restore-keys: |
+            vr-baseline-v2-develop-
+
+      - name: Compare against baseline
+        if: always()
+        run: ./scripts/ci/vr-compare-baseline.sh
+
+      - name: Extract comparison statistics
+        if: always()
+        run: ./scripts/ci/vr-extract-stats.sh
+
+      - name: Deploy visual regression report to Netlify
+        if: always()
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: ./scripts/ci/vr-deploy-netlify.sh
+
+      - name: Post visual regression results to PR
+        if: always()
+        run: ./scripts/ci/vr-post-pr-comment.sh
+
+      - name: Upload comparison report
+        if: always() && github.ref_name != 'develop'
+        uses: actions/upload-artifact@v4
+        with:
+          name: vr-report
+          path: /tmp/vr-report
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Show stack logs on failure
+        if: failure()
+        run: docker compose logs --tail=300
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Downstream repository publishing (was CircleCI deploy_artifact):
+  #   - theme → git.drupal.org project/civictheme (1.x)
+  #   - civictheme_govcms / _content / _admin → GitHub (main)
+  # The published theme tree is built on the host (same recipe as the image's
+  # assets stage). Each leg runs only when its deploy key secret exists, and
+  # pushes only when the PUSH_CODE_PROCEED repo variable is '1' (dry-run
+  # otherwise).
+  # ──────────────────────────────────────────────────────────────────────────
+  publish:
+    name: Publish downstream repositories
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    needs: build
+    if: >-
+      github.ref_type == 'branch' &&
+      (github.ref_name == 'develop' || startsWith(github.ref_name, 'ci-'))
+    env:
+      DEPLOY_GIT_USER_EMAIL: ${{ secrets.DEPLOY_GIT_USER_EMAIL }}
+      PUSH_CODE_PROCEED: ${{ vars.PUSH_CODE_PROCEED }}
+      DEPLOY_SSH_KEY_DRUPAL_ORG: ${{ secrets.DEPLOY_SSH_KEY_DRUPAL_ORG }}
+      DEPLOY_SSH_KEY_GOVCMS: ${{ secrets.DEPLOY_SSH_KEY_GOVCMS }}
+      DEPLOY_SSH_KEY_CONTENT: ${{ secrets.DEPLOY_SSH_KEY_CONTENT }}
+      DEPLOY_SSH_KEY_ADMIN: ${{ secrets.DEPLOY_SSH_KEY_ADMIN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build theme assets
+        run: scripts/custom/fe-build.sh
+
+      - name: Start ssh-agent
+        run: |
+          eval "$(ssh-agent -s)"
+          {
+            echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
+            echo "SSH_AGENT_PID=${SSH_AGENT_PID}"
+          } >> "${GITHUB_ENV}"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+      - name: Publish CivicTheme theme to drupal.org
+        if: env.DEPLOY_SSH_KEY_DRUPAL_ORG != ''
+        run: |
+          install -m 600 /dev/null ~/.ssh/push_key_drupal_org
+          printf '%s\n' "${DEPLOY_SSH_KEY_DRUPAL_ORG}" > ~/.ssh/push_key_drupal_org
+          DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_drupal_org" \
+          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-1.x}" \
+          PUSH_CODE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
+          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/themes/contrib/civictheme" \
+          ./scripts/push.code.sh
+
+      - name: Publish civictheme_govcms module repository
+        if: env.DEPLOY_SSH_KEY_GOVCMS != ''
+        run: |
+          install -m 600 /dev/null ~/.ssh/push_key_govcms
+          printf '%s\n' "${DEPLOY_SSH_KEY_GOVCMS}" > ~/.ssh/push_key_govcms
+          DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_govcms" \
+          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+          PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_govcms.git \
+          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/modules/custom/civictheme_govcms" \
+          ./scripts/push.code.sh
+
+      - name: Publish civictheme_content module repository
+        if: env.DEPLOY_SSH_KEY_CONTENT != ''
+        run: |
+          install -m 600 /dev/null ~/.ssh/push_key_content
+          printf '%s\n' "${DEPLOY_SSH_KEY_CONTENT}" > ~/.ssh/push_key_content
+          DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_content" \
+          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+          PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_content.git \
+          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/modules/custom/civictheme_content" \
+          ./scripts/push.code.sh
+
+      - name: Publish civictheme_admin module repository
+        if: env.DEPLOY_SSH_KEY_ADMIN != ''
+        run: |
+          install -m 600 /dev/null ~/.ssh/push_key_admin
+          printf '%s\n' "${DEPLOY_SSH_KEY_ADMIN}" > ~/.ssh/push_key_admin
+          DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_admin" \
+          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-main}" \
+          PUSH_CODE_REMOTE_REPO=git@github.com:civictheme/civictheme_admin.git \
+          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/modules/custom/civictheme_admin" \
+          ./scripts/push.code.sh
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Deployed-image smoke: proves .docker/drupal/Dockerfile (assets + sub-theme
+  # stages included) builds on arm64. No push — build-deploy.yml owns that.
+  # ──────────────────────────────────────────────────────────────────────────
+  image:
+    name: Deployed image builds (arm64)
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build deployed image (no push)
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./.docker/drupal/Dockerfile
+          platforms: linux/arm64
+          push: false
+          build-args: |
+            GITHUB_TOKEN=${{ github.token }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
