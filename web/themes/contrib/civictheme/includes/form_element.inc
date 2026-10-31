@@ -507,7 +507,7 @@ function _civictheme_preprocess_form_element__generic(array &$variables): void {
   $variables['is_disabled'] = isset($element['#attributes']['disabled']);
   $variables['description'] = $element['#description'] ?? '';
   // Label component requires required_text to be string; pass empty when not required.
-  $variables['required_text'] = ($variables['is_required'] ? (string) t('(Required)') : '');
+  $variables['required_text'] = ($variables['is_required'] ? (string) t('(required)') : '');
   $variables['is_invalid'] = !empty($element['#errors']);
   $variables['message'] = $variables['message'] ?? ['content' => ''];
   if ($variables['is_invalid']) {
