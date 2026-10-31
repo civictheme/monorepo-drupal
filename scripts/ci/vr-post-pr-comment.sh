@@ -4,20 +4,29 @@
 #
 # Expects /tmp/vr-stats.env to have been written by vr-extract-stats.sh and
 # optionally vr-deploy-netlify.sh (for VR_NETLIFY_URL).
-# Requires GITHUB_CT_PR_COMMENT, CIRCLE_PROJECT_USERNAME, CIRCLE_PROJECT_REPONAME,
-# CIRCLE_BRANCH, and CIRCLE_WORKFLOW_JOB_ID environment variables.
+# Requires GITHUB_TOKEN (or VR_GITHUB_TOKEN), GITHUB_REPOSITORY,
+# GITHUB_REPOSITORY_OWNER and GITHUB_REF_NAME. GITHUB_SERVER_URL and
+# GITHUB_RUN_ID build the report fallback link.
 #
 
 set -euo pipefail
 
 source /tmp/vr-stats.env
 
-REPO="${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
+VR_BRANCH="${VR_BRANCH:-${GITHUB_REF_NAME:-}}"
+VR_GITHUB_TOKEN="${VR_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
+
+if [ -z "${VR_GITHUB_TOKEN}" ]; then
+  echo "No GitHub token available. Skipping comment."
+  exit 0
+fi
+
+REPO="${GITHUB_REPOSITORY}"
 COMMENT_MARKER="<!-- vr-drupal-comment -->"
 
 # Find the PR number for this branch.
-PR_RESPONSE=$(curl -s -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
-  "https://api.github.com/repos/${REPO}/pulls?head=${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}&state=open") || true
+PR_RESPONSE=$(curl -s -H "Authorization: token ${VR_GITHUB_TOKEN}" \
+  "https://api.github.com/repos/${REPO}/pulls?head=${GITHUB_REPOSITORY_OWNER}:${VR_BRANCH}&state=open") || true
 
 echo "PR lookup response:"
 echo "${PR_RESPONSE}"
@@ -25,20 +34,20 @@ echo "${PR_RESPONSE}"
 PR_NUMBER=$(echo "${PR_RESPONSE}" > /tmp/gh-pr-response.json && sed -n 's/.*"number": *\([0-9]*\).*/\1/p' /tmp/gh-pr-response.json | head -1) || true
 
 if [ -z "${PR_NUMBER}" ]; then
-  echo "No open PR found for branch ${CIRCLE_BRANCH}. Skipping comment."
+  echo "No open PR found for branch ${VR_BRANCH}. Skipping comment."
   exit 0
 fi
 
 echo "Found PR #${PR_NUMBER}"
 
-# Build report URL — prefer Netlify, fall back to CircleCI artifact.
+# Build report URL — prefer Netlify, fall back to the workflow run (the report
+# is attached to it as the vr-report artifact).
 if [ -n "${VR_NETLIFY_URL:-}" ]; then
   REPORT_URL="${VR_NETLIFY_URL}"
   REPORT_SOURCE="Netlify"
 else
-  ARTIFACT_BASE="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0"
-  REPORT_URL="${ARTIFACT_BASE}/visual-regression/report/baseline--current/index.html"
-  REPORT_SOURCE="CircleCI artifact"
+  REPORT_URL="${GITHUB_SERVER_URL:-https://github.com}/${REPO}/actions/runs/${GITHUB_RUN_ID:-0}"
+  REPORT_SOURCE="workflow-run artifact"
 fi
 
 # Build comment body.
@@ -67,13 +76,15 @@ if [ "${VR_HAS_RESULTS}" = "true" ]; then
 
 ${COMMENT_MARKER}"
 else
-  BODY=":information_source: **Visual Regression** — No baseline found for \`develop\`. Comparison skipped.
+  BODY=":warning: **Visual Regression** — No baseline found for \`develop\`. Comparison skipped.
+
+A develop build must run (or the weekly keep-alive must re-save the cache) before branch comparisons work again.
 
 ${COMMENT_MARKER}"
 fi
 
 # Check for existing comment to update.
-COMMENTS_RESPONSE=$(curl -s -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
+COMMENTS_RESPONSE=$(curl -s -H "Authorization: token ${VR_GITHUB_TOKEN}" \
   "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments") || true
 
 COMMENT_ID=""
@@ -96,14 +107,14 @@ echo "Payload built successfully."
 if [ -n "${COMMENT_ID}" ]; then
   echo "Updating existing PR comment ${COMMENT_ID}..."
   RESULT=$(curl -s -X PATCH \
-    -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
+    -H "Authorization: token ${VR_GITHUB_TOKEN}" \
     -H "Content-Type: application/json" \
     -d @/tmp/vr-comment-payload.json \
     "https://api.github.com/repos/${REPO}/issues/comments/${COMMENT_ID}") || true
 else
   echo "Posting new PR comment..."
   RESULT=$(curl -s -X POST \
-    -H "Authorization: token ${GITHUB_CT_PR_COMMENT}" \
+    -H "Authorization: token ${VR_GITHUB_TOKEN}" \
     -H "Content-Type: application/json" \
     -d @/tmp/vr-comment-payload.json \
     "https://api.github.com/repos/${REPO}/issues/${PR_NUMBER}/comments") || true

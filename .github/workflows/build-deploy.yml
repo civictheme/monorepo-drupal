@@ -5,14 +5,22 @@ name: Build and Push civictheme-monorepo-drupal to Quant Cloud
     - main
     - master
     - develop
+    - 2.x
     - quant-cloud-migration
-    - content/*
     - release/*
     - hotfix/*
     - feature/editorial-*
+    - feature/salsa-hosting-scaffold
+    - feature/2x-salsa-hosting-scaffold
     - project/*
     tags:
     - '*'
+
+# Checkout needs contents, the CI gate reads workflow runs; the Quant actions
+# and the gha build cache authenticate with their own credentials.
+permissions:
+  contents: read
+  actions: read
 
 concurrency:
   group: build-and-push-${{ github.ref }}
@@ -22,6 +30,39 @@ jobs:
   build-and-push:
     runs-on: ubuntu-24.04-arm
     steps:
+
+    # Deploys of refs that feed real sites wait for the commit's CI run:
+    # develop also redeploys the three content environments and production
+    # reinstalls from profile on deploy, so a red commit takes sites down.
+    # Preview branches (feature/release/hotfix/project) deploy immediately —
+    # fast iteration on a broken branch is what their environments are for.
+    - name: Wait for CI to pass on this commit
+      if: >-
+        github.ref == 'refs/heads/develop' ||
+        github.ref == 'refs/heads/2.x' ||
+        github.ref == 'refs/heads/main' ||
+        github.ref == 'refs/heads/master' ||
+        startsWith(github.ref, 'refs/tags/')
+      timeout-minutes: 60
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        echo "Waiting for the CI workflow run on ${GITHUB_SHA}…"
+        while :; do
+          json="$(gh run list --repo "${GITHUB_REPOSITORY}" --workflow=CI --commit "${GITHUB_SHA}" --limit 1 --json status,conclusion)"
+          status="$(jq -r '.[0].status // "pending"' <<<"${json}")"
+          conclusion="$(jq -r '.[0].conclusion // ""' <<<"${json}")"
+          if [ "${status}" = "completed" ]; then
+            if [ "${conclusion}" = "success" ]; then
+              echo "CI passed."
+              break
+            fi
+            echo "::error::CI concluded '${conclusion}' on this commit — refusing to deploy. Re-run this workflow once CI is green."
+            exit 1
+          fi
+          echo "CI is ${status}…"
+          sleep 30
+        done
 
     - name: Checkout code
       uses: actions/checkout@v5
@@ -50,54 +91,40 @@ jobs:
         echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
         echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
 
-
-    - name: Build and push cli image
+    # Single app image (apache-php) — the scaffold topology. The assets and
+    # sub-theme stages inside the Dockerfile bake the built CivicTheme
+    # front-end and the generated civictheme_demo sub-theme, so the platform
+    # never runs composer or npm.
+    - name: Build and push app image
       uses: docker/build-push-action@v7
       with:
         context: .
-        file: ./.docker/cli.dockerfile
+        file: ./.docker/drupal/Dockerfile
         platforms: linux/arm64
         push: true
+        # Unique per workflow run (re-runs included): every deploy's image
+        # carries a new id, so post-deploy.sh reinstalls the site on the
+        # image's first container start. See the note below the redeploy step.
+        build-args: |-
+          BUILD_ID=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+          }}:app${{ steps.override-outputs.outputs.image_suffix }}
         cache-from: |-
           type=gha
-          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:cli-cache
+          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:app-cache
         cache-to: type=gha,mode=max
-        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
 
-    - name: Build and push nginx image
-      uses: docker/build-push-action@v7
+    # A redeploy alone never reads docker-compose.yml — compose changes
+    # (volumes, labels, service shape) only propagate through the compose
+    # action feeding the environment action.
+    - name: Translate compose definition
+      id: compose
+      uses: quantcdn/quant-cloud-compose-action@v4
       with:
-        context: .
-        file: ./.docker/nginx-drupal.dockerfile
-        platforms: linux/arm64
-        push: true
-        tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:nginx${{ steps.override-outputs.outputs.image_suffix }}
-        cache-from: |-
-          type=gha
-          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:nginx-cache
-        cache-to: type=gha,mode=max
-        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
-
-    - name: Build and push php image
-      uses: docker/build-push-action@v7
-      with:
-        context: .
-        file: ./.docker/php.dockerfile
-        platforms: linux/arm64
-        push: true
-        tags: ${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:php${{ steps.override-outputs.outputs.image_suffix }}
-        cache-from: |-
-          type=gha
-          type=registry,ref=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application }}:php-cache
-        cache-to: type=gha,mode=max
-        build-args: CLI_IMAGE=${{ steps.init.outputs.stripped_endpoint }}/${{ secrets.QUANT_ORGANIZATION }}/${{ steps.init.outputs.quant_application
-          }}:cli${{ steps.override-outputs.outputs.image_suffix }}
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        compose_file: docker-compose.yml
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
 
     - name: Create environment if it doesn't exist
       if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'false' }}
@@ -108,6 +135,19 @@ jobs:
         app_name: ${{ steps.init.outputs.quant_application }}
         environment_name: ${{ steps.override-outputs.outputs.environment_name }}
         from_environment: production
+        compose_spec: ${{ steps.compose.outputs.translated_compose }}
+        image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
+
+    - name: Update existing environment from compose
+      if: ${{ !startsWith(github.ref, 'refs/tags/') && steps.override-outputs.outputs.environment_exists == 'true' }}
+      uses: quantcdn/quant-cloud-environment-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        app_name: ${{ steps.init.outputs.quant_application }}
+        environment_name: ${{ steps.override-outputs.outputs.environment_name }}
+        operation: update
+        compose_spec: ${{ steps.compose.outputs.translated_compose }}
         image_suffix: ${{ steps.override-outputs.outputs.image_suffix_clean }}
 
     - name: Redeploy existing environment
@@ -119,3 +159,49 @@ jobs:
         application: ${{ steps.init.outputs.quant_application }}
         environment: ${{ steps.override-outputs.outputs.environment_name }}
         action: redeploy
+
+    # Provisioning (§6.4 of the conversion plan) is resolved in-image, not
+    # from CI: the Dockerfile bakes BUILD_ID (unique per workflow run — see
+    # build-args above) and .docker/deployment-scripts/post-deploy.sh
+    # reinstalls the site at container start whenever the running image's id
+    # differs from the one recorded in Drupal state — i.e. on every deploy,
+    # in every environment, production included (the demo sites reinstall
+    # from profile by design). Same-id restarts (idle-sleep wake-ups, task
+    # replacement) only run the non-destructive deploy steps. No one-off
+    # exec, so no wait-for-rollout gate is needed here.
+
+    # Content environments (corporate / government / highereducation) are
+    # env-var-only Quant environments running the develop image; develop's
+    # deploy triggers their redeploy so they pick up each new image.
+    - name: Redeploy content environments
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-state-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        application: ${{ steps.init.outputs.quant_application }}
+        environment: content-corporate
+        action: redeploy
+      continue-on-error: true
+
+    - name: Redeploy content environment (government)
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-state-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        application: ${{ steps.init.outputs.quant_application }}
+        environment: content-government
+        action: redeploy
+      continue-on-error: true
+
+    - name: Redeploy content environment (highereducation)
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: quantcdn/quant-cloud-environment-state-action@v4
+      with:
+        api_key: ${{ secrets.QUANT_API_KEY }}
+        organization: ${{ secrets.QUANT_ORGANIZATION }}
+        application: ${{ steps.init.outputs.quant_application }}
+        environment: content-highereducation
+        action: redeploy
+      continue-on-error: true

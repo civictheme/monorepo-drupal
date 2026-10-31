@@ -1,34 +1,55 @@
 # Deployment process
 
-This project is deployed to the Salsa Digital hosting Lagoon instance.
-Deployments are initiated by the Continuous Integration (CI) process on each
-push to the `main`, `develop`, `release/*`, and `feature/*` branches,
-provided all tests pass.
+This project deploys to Salsa Hosting (Quant Cloud). The
+`Build and Push civictheme-monorepo-drupal to Quant Cloud` workflow
+(`.github/workflows/build-deploy.yml`) runs on every push to `main`,
+`develop`, `release/*`, `hotfix/*`, `project/*`, selected feature branches,
+and tags:
 
-## Pull Request (PR) Environments
+1. For `develop`/`main`/tags it first waits for the commit's CI run to pass;
+   preview branches deploy immediately.
+2. It builds the app image (`.docker/drupal/Dockerfile`) — composer install,
+   generated `civictheme_demo` sub-theme and built front-end assets are all
+   baked in; servers never run composer or npm.
+3. It pushes the image and redeploys the matching environment (creating it
+   from `production` if absent). A `develop` push also redeploys the three
+   content environments (`content-corporate`, `content-government`,
+   `content-highereducation`), which run the develop image with
+   `CIVICTHEME_CONTENT_PROFILE` set.
 
-1. Developers create code on their local machine.
-2. The code is then pushed to GitHub and a pull request is opened for the change.
-3. The CI process monitors for code changes and initiates an automated build.
-4. Once all tests pass at the end of the build, the CI process triggers a
-   deployment to Lagoon.
-5. A PR environment with the name of the PR is established upon deployment. Any
-   pending update hooks and other deployment operations are executed during
-   deployment.
+## Fresh install on every deploy
 
-When a PR is closed, its environment is automatically removed.
+These are demo sites: **every deploy reinstalls the site from scratch** —
+production included. There is no content to preserve and no database to seed.
 
-## Content Profile Preview Environments
+The platform gives a container no way to tell a deploy from an idle-sleep
+wake-up — every container start runs the same `/quant-entrypoint.d/` hooks.
+The pipeline synthesises that signal:
 
-Content profiles are employed to capture content for industry-specific demo
-sites. Each content profile is automatically deployed to a preview environment
-during development (hosted on this project's Lagoon instance) and to a
-LaunchPad-based Lagoon instance upon release (handled outside the
-CivicTheme team).
+- The workflow bakes a `BUILD_ID` unique to each run into the image
+  (`/opt/drupal/.build-id`).
+- At container start, `.docker/deployment-scripts/post-deploy.sh` compares it
+  with the id recorded in Drupal state (`scaffold.provisioned_build_id`):
+  - **Different or no id / Drupal not installed** — first start of a new
+    image, i.e. a deploy: run `scripts/quant/provision.sh` (drop tables,
+    `drush site:install` from `DRUPAL_INSTALL_PROFILE` — profile or recipe
+    path — then the `post-provision.d/` hooks: enable CivicTheme, activate
+    `civictheme_demo`, modules, settings, content). The install runs in the
+    background so Apache starts within the platform's startup grace period;
+    the site serves errors until the install lands (watch progress in the
+    environment logs). The id is recorded on success.
+  - **Same id** — idle-sleep wake-up or task restart: run only the
+    non-destructive `scripts/quant/deploy.sh` (updb + config:import + cr).
 
-The development preview environments are redeployed by the CI on each successful
-build in the `develop` branch. This ensures the deployability of content profile
-sites with each code change.
+A dashboard redeploy of an unchanged image therefore does NOT reinstall; only
+a new image (any workflow run, re-runs included) does.
 
-For a list of demo site URLs for development sites, refer to the main
-[README.md](README.md#content-profiles).
+## Environments
+
+Branch pushes map to environments named after the branch. PR/preview
+environments are deleted via `.github/workflows/delete-environment.yml`.
+Environment variables are copied from `production` at creation (secrets are
+not). No environment needs manual setup to boot: every deployed environment —
+production included — derives its hash salt from the injected database
+secrets unless an explicit `DRUPAL_HASH_SALT` variable is set, so the first
+deploy of a brand-new environment installs itself end to end.

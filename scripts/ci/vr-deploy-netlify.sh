@@ -8,10 +8,13 @@
 
 set -euo pipefail
 
+VR_BRANCH="${VR_BRANCH:-${GITHUB_REF_NAME:-}}"
+VR_RUN_ID="${VR_RUN_ID:-${GITHUB_RUN_ID:-local}}"
+
 STATS_FILE="/tmp/vr-stats.env"
 REPORT_DIR="/tmp/vr-report/baseline--current"
 
-if [ "${CIRCLE_BRANCH}" = "develop" ]; then
+if [ "${VR_BRANCH}" = "develop" ]; then
   echo "On develop branch. Skipping Netlify deploy."
   exit 0
 fi
@@ -34,7 +37,7 @@ DEPLOY_OUTPUT=$(npx netlify-cli deploy \
   --dir="${REPORT_DIR}" \
   --site="${NETLIFY_SITE_ID}" \
   --auth="${NETLIFY_AUTH_TOKEN}" \
-  --message="VR report: ${CIRCLE_BRANCH} (build ${CIRCLE_BUILD_NUM})" \
+  --message="VR report: ${VR_BRANCH} (run ${VR_RUN_ID})" \
   --json 2>&1) || true
 
 DEPLOY_URL=""
@@ -46,5 +49,5 @@ if [ -n "${DEPLOY_URL}" ]; then
   echo "export VR_NETLIFY_URL='${DEPLOY_URL}'" >> "${STATS_FILE}"
   echo "Deployed VR report to ${DEPLOY_URL}"
 else
-  echo "Netlify deploy did not return a URL. Falling back to CircleCI artifacts."
+  echo "Netlify deploy did not return a URL. Falling back to the workflow-run link."
 fi
