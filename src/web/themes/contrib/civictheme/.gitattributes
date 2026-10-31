@@ -1,7 +1,6 @@
 # Ignore files for distribution archives.
 
 .ahoy.yml          export-ignore
-.circleci          export-ignore
 .devtools          export-ignore
 .editorconfig      export-ignore
 .gitattributes     export-ignore
