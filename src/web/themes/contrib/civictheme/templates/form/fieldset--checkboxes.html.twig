@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the composite wrapper for a checkboxes group.
+ *
+ * Renders the group through the CivicTheme Field component from the
+ * core-prepared fieldset variables (the Claro pattern): the Field root is
+ * the <fieldset> (is_group), the legend becomes the Field title and the
+ * options - each rendered through the Field and Checkbox components - pass
+ * through the children slot. The Field component derives the description and
+ * error message ids from the group id.
+ */
+#}
+
+{% include 'civictheme:field' with {
+  theme: theme|default('light'),
+  type: type|default('checkbox'),
+  is_group: true,
+  title: element['#title']|default(''),
+  title_display: title_display|default('visible'),
+  orientation: element['#options_display']|default('') in ['inline', 'buttons_horizontal'] ? 'horizontal' : 'vertical',
+  is_required: required ? true : false,
+  is_disabled: element['#attributes']['disabled'] is defined,
+  is_invalid: element['#errors'] is not empty,
+  description: description.content|default(''),
+  id: element['#id']|default(''),
+  message: element['#errors'] is not empty ? {content: element['#errors']} : null,
+  required_text: '(required)'|t,
+  prefix: prefix|default(''),
+  suffix: suffix|default(''),
+  children: children,
+  attributes: attributes,
+  modifier_class: modifier_class|default(''),
+} only %}

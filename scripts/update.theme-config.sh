@@ -10,7 +10,7 @@
 #
 
 set -eu
-[ -n "${DREVOPS_DEBUG:-}" ] && set -x
+[ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 # File with exclusion patterns.
 EXCLUDED_CONFIGS_FILE="scripts/theme_excluded_configs.txt"

@@ -2,37 +2,42 @@
 ##
 # Compare current screenshots against the cached baseline.
 #
-# Copies the baseline into the CLI container, registers it in project.json,
-# runs the vr-drupal comparison, and copies the report back out.
+# Host-mode: vr-drupal, the screenshot sets and the report all live on the CI
+# runner (the scaffold app container has no node). Registers the restored
+# baseline in project.json, runs the vr-drupal comparison, and copies the
+# report to /tmp/vr-report.
 #
-# Skips on develop branch or when no baseline cache exists.
+# Skips on develop (develop IS the baseline) or when no baseline cache exists.
 #
 
 set -euo pipefail
 
-if [ "${CIRCLE_BRANCH}" = "develop" ] || [ ! -d "/tmp/vr-baseline/baseline" ]; then
+VR_BRANCH="${VR_BRANCH:-${GITHUB_REF_NAME:-}}"
+VR_PROJECT_DIR=".visual-regression/civictheme-ci"
+
+if [ "${VR_BRANCH}" = "develop" ] || [ ! -d "/tmp/vr-baseline/baseline" ]; then
   echo "No baseline available or on develop branch. Skipping comparison."
   exit 0
 fi
 
-# Copy baseline into container.
-docker compose cp /tmp/vr-baseline/baseline cli:/app/.visual-regression/civictheme-ci/screenshot-sets/sets/baseline
+# Place the baseline set next to the current one.
+mkdir -p "${VR_PROJECT_DIR}/screenshot-sets/sets"
+rm -rf "${VR_PROJECT_DIR}/screenshot-sets/sets/baseline"
+cp -r /tmp/vr-baseline/baseline "${VR_PROJECT_DIR}/screenshot-sets/sets/baseline"
 
 # Register baseline snapshot in project.json.
-docker compose exec -T cli sh -c "cd /app && node -e \"
+node -e "
   const fs = require('fs');
-  const p = JSON.parse(fs.readFileSync('.visual-regression/civictheme-ci/project.json'));
+  const f = '${VR_PROJECT_DIR}/project.json';
+  const p = JSON.parse(fs.readFileSync(f));
   p.snapshots = p.snapshots || {};
   p.snapshots.baseline = { directory: 'screenshot-sets/sets/baseline', date: new Date().toISOString(), count: 0 };
-  fs.writeFileSync('.visual-regression/civictheme-ci/project.json', JSON.stringify(p, null, 2));
-\""
+  fs.writeFileSync(f, JSON.stringify(p, null, 2));
+"
 
 # Run comparison.
-docker compose exec -T \
-  -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-  -e PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
-  cli vr-drupal compare civictheme-ci --source baseline --target current --no-interactive --aggregate-screenshots || true
+vr-drupal compare civictheme-ci --source baseline --target current --no-interactive --aggregate-screenshots || true
 
 # Copy comparison report out.
 mkdir -p /tmp/vr-report
-docker compose cp cli:/app/.visual-regression/civictheme-ci/screenshot-sets/comparisons/. /tmp/vr-report/ || true
+cp -r "${VR_PROJECT_DIR}/screenshot-sets/comparisons/." /tmp/vr-report/ || true
