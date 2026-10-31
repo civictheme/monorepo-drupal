@@ -1,5 +1,8 @@
 # --- Local environment / data ---
-/.env
+# .env* catches the file itself plus editor debris (.env.swp, .env.bak, .env~)
+# that can carry the GITHUB_TOKEN written by `ahoy gh-token`.
+/.env*
+!/.env.example
 !/.data/
 /.data/*
 !/.data/.gitkeep
@@ -10,8 +13,6 @@
 # --- Per-developer compose layering (opt-in) ---
 /docker-compose.local.yml
 /.ahoy.local.yml
-# Legacy DrevOps local overrides — inert under the scaffold stack.
-/.env.local
 
 # --- Front-end build artefacts ---
 # Anywhere: a theme's node_modules is never committed. The CivicTheme base
