@@ -86,7 +86,7 @@ Override the default behavior using these environment variables:
   content.
 
 These variables can be set prior to the `ahoy provision` command or added
-to `.env.local` file to preserve this behavior (run `ahoy up` to apply
+to the `.env` file to preserve this behavior (run `ahoy up` to apply
 without full rebuild).
 
 Example:

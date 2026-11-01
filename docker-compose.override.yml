@@ -175,6 +175,14 @@ services:
       # while www-data is only in www-data.
       APACHE_RUN_USER: ${APACHE_RUN_USER:-www-data}
 
+      # Opcache timestamp re-checks. The image's 97-opcache.ini template
+      # (rendered by /quant-entrypoint.d/02-php-config.sh) defaults to a
+      # prod-oriented 3600s, so with the ./src bind mount a branch switch or
+      # code edit can be served stale for up to an hour — e.g. a cached theme
+      # registry naming a preprocess function the stale .theme never loaded.
+      # 0 = re-check file timestamps on every request; negligible cost locally.
+      PHP_OPCACHE_REVALIDATE_FREQ: ${PHP_OPCACHE_REVALIDATE_FREQ:-0}
+
       # Optional services — settings.php reads these to decide whether to
       # wire redis as a cache backend and stage_file_proxy as a media fallback.
       DRUPAL_REDIS_ENABLED: ${DRUPAL_REDIS_ENABLED:-}
