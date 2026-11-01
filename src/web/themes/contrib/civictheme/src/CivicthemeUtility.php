@@ -154,4 +154,21 @@ final class CivicthemeUtility {
     return $result;
   }
 
+  /**
+   * Render a render array to string.
+   *
+   * @param mixed $render
+   *   Array or an object to render.
+   *
+   * @return string
+   *   Rendered string.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
+   */
+  public static function render(mixed $render): string {
+    $render = is_array($render) ? $render : ['#markup' => $render];
+
+    return (string) \Drupal::service('renderer')->render($render);
+  }
+
 }

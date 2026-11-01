@@ -96,10 +96,9 @@ parameters:
         - web/themes/contrib/civictheme/src/CivicthemeConfigManager.php
       reportUnmatched: false
     -
-      # D10 fallback: text_summary() is deprecated in D11.4, but its
-      # replacement, the Drupal\text\TextSummary service, does not exist before
-      # D11.4. Remove once the D10 floor is dropped.
-      identifier: function.deprecated
+      # Theme hook classes are instantiated by core's theme hook collector
+      # without container injection, so services are resolved via \Drupal::.
+      message: '#\\Drupal calls should be avoided in classes, use dependency injection instead#'
       paths:
-        - web/themes/contrib/civictheme/includes/paragraphs.inc
+        - web/themes/contrib/civictheme/src/Hook/*
       reportUnmatched: false

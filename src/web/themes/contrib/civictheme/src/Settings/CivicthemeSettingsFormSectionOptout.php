@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\civictheme\Settings;
 
+use Drupal\civictheme\Theme\FeatureOptout;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -55,7 +56,7 @@ class CivicthemeSettingsFormSectionOptout extends CivicthemeSettingsFormSectionB
           '@key' => $key,
           '@description' => $description,
         ]);
-      }, array_keys(_civictheme_feature_optout_flags()), _civictheme_feature_optout_flags()),
+      }, array_keys(FeatureOptout::flags()), FeatureOptout::flags()),
     ];
   }
 

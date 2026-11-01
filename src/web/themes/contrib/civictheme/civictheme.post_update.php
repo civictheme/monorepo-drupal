@@ -20,7 +20,7 @@ use Drupal\layout_builder\Section;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\ParagraphInterface;
 
-require_once __DIR__ . '/includes/utilities.inc';
+require_once __DIR__ . '/includes/civictheme.api.inc';
 
 /**
  * Updates vertical spacing on nodes and components where it has not been set.
@@ -1452,10 +1452,10 @@ function civictheme_post_update_convert_colors_to_recipe(): string {
 /**
  * Converts a 1.x 'colors' settings array to the 2.x recipe shape.
  *
- * @param array $colors
+ * @param array<string, mixed> $colors
  *   The 1.x colors settings: use_color_selector, brand and palette keys.
  *
- * @return array
+ * @return array<string, mixed>
  *   The 2.x colors settings: use_color_selector, recipe and css keys.
  */
 function _civictheme_convert_colors_to_recipe(array $colors): array {

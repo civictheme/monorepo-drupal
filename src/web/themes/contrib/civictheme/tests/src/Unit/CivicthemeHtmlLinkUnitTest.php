@@ -5,6 +5,7 @@ declare(strict_types=1);
 // phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
 namespace Drupal\Tests\civictheme\Unit;
 
+use Drupal\civictheme\Theme\HtmlContentProcessor;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 
 /**
@@ -124,12 +125,12 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
   }
 
   /**
-   * Test for _civictheme_process_html_links().
+   * Test for HtmlContentProcessor::processLinks().
    *
    * @dataProvider dataProviderProcessHtmlLinks
    */
   public function testProcessHtmlLinks(string $html, string $base_url, bool $new_window, bool $external_new_window, array $override_domains, string $expected): void {
-    $actual = _civictheme_process_html_content_links($html, $base_url, $new_window, $external_new_window, $override_domains);
+    $actual = HtmlContentProcessor::processLinks($html, $base_url, $new_window, $external_new_window, $override_domains);
     $this->assertEquals($expected, $actual);
   }
 
