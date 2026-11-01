@@ -20,7 +20,21 @@ Feature: Webform render
     And I should see an ".ct-webform.ct-theme-light" element
     And I should see an ".ct-webform.ct-vertical-spacing-inset--both" element
     And I should not see an ".ct-webform.ct-theme-dark" element
+    And I should see an "form.ct-webform.ct-theme-light" element
     And I see field "Your Name"
     And I see field "Your Email"
     And I see field "Subject"
     And I see field "Message"
+
+  @api
+  Scenario: Webform form tag inherits the dark theme from the paragraph
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Webform test" has "civictheme_webform" paragraph:
+      | field_c_p_webform          | contact |
+      | field_c_p_theme            | dark    |
+      | field_c_p_vertical_spacing | both    |
+      | field_c_p_background       | 0       |
+
+    When I visit "civictheme_page" "[TEST] Page Webform test"
+    And I should see an "form.ct-webform.ct-theme-dark" element
+    And I should not see an "form.ct-webform.ct-theme-light" element

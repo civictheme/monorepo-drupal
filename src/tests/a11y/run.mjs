@@ -74,10 +74,24 @@ async function runScenario(browser, scenario) {
         await page.type(action.selector, action.value);
       }
       else if (action.type === 'click') {
-        await Promise.all([
-          page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }),
-          page.click(action.selector),
-        ]);
+        // AJAX forms re-render in place: when waitForSelector is given, wait
+        // for that element to appear instead of a page navigation.
+        if (action.waitForSelector) {
+          await page.click(action.selector);
+          await page.waitForSelector(action.waitForSelector, { visible: true, timeout: 60000 });
+          // Drupal overlays a progress state while AJAX runs and scrolls to
+          // the form; wait for quiescence and reset the scroll so axe does
+          // not measure text blended with a transient overlay or header.
+          await page.waitForFunction(() => !document.querySelector('.ajax-progress'), { timeout: 60000 });
+          await page.waitForNetworkIdle({ idleTime: 500, timeout: 60000 });
+          await page.evaluate(() => window.scrollTo(0, 0));
+        }
+        else {
+          await Promise.all([
+            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }),
+            page.click(action.selector),
+          ]);
+        }
       }
       else {
         throw new Error(`Unknown action type "${action.type}" in scenario "${scenario.name}".`);

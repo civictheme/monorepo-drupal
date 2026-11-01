@@ -177,6 +177,7 @@ jobs:
             subtheme_skip: '1'
             behat_profile: p0
             lint: true
+            a11y: true
           - name: minimal-behat-p1
             install_profile: minimal
             subtheme_skip: '1'
@@ -345,6 +346,33 @@ jobs:
             scripts/quant/exec.sh php -d memory_limit=-1 bin/behat --colors --strict --rerun --profile="${BEHAT_PROFILE}" || \
             [ "${CI_BEHAT_IGNORE_FAILURE:-0}" -eq 1 ]
 
+      # Scans the form pages (including scripted error states and wizard
+      # steps) for WCAG A/AA violations with axe-core, inside the chromium
+      # sidecar (src/tests is bind-mounted at /tests). Runs on the minimal
+      # leg only: the scanned markup is theme-level and identical across
+      # provision variants. Fails on critical/serious violations.
+      - name: Test accessibility (axe-core)
+        if: matrix.a11y
+        timeout-minutes: 20
+        run: |
+          docker compose --profile test up -d chromium
+          # Same intent as the behat preflight: fail in seconds with
+          # diagnostics if the sidecar cannot reach the app. The alpine
+          # image has wget, not curl.
+          ok=0
+          for _ in $(seq 1 30); do
+            if docker compose exec -T chromium wget -q -T 5 -O /dev/null http://app.test/; then ok=1; break; fi
+            sleep 2
+          done
+          if [ "${ok}" -ne 1 ]; then
+            echo "::error::The chromium container cannot reach http://app.test — accessibility scans cannot run."
+            docker compose ps
+            docker compose exec -T chromium getent hosts app.test || true
+            exit 1
+          fi
+          docker compose exec -T -w /tests/a11y chromium npm ci --no-audit --no-fund
+          docker compose exec -T -w /tests/a11y -e A11Y_BASE_URL=http://app.test chromium npm test || [ "${CI_A11Y_IGNORE_FAILURE:-0}" -eq 1 ]
+
       # CircleCI ran the shipshape binary baked into the old govcms cli image;
       # the scaffold app image does not carry it, so run the standalone release
       # on the runner against src/ (paths in shipshape.yml are relative to the
@@ -362,7 +390,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-logs-${{ matrix.name }}
-          path: src/.logs
+          path: |
+            src/.logs
+            src/tests/a11y/.logs
           # The logs live under a dot-directory, which upload-artifact@v4
           # silently skips by default ("No files were found").
           include-hidden-files: true

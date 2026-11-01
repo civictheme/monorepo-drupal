@@ -48,10 +48,15 @@ written to `.logs/report.json` inside this directory.
 
 ## CI wiring
 
-Use the `chromium` compose service (src/tests is bind-mounted at /tests):
+The suite runs in the `CI` workflow's `minimal` build leg (step "Test
+accessibility (axe-core)" in `.github/workflows/ci.yml`), via the `chromium`
+compose service (src/tests is bind-mounted at /tests):
 
 ```bash
 docker compose --profile test up -d chromium
 docker compose exec -T -w /tests/a11y chromium npm ci
 docker compose exec -T -w /tests/a11y -e A11Y_BASE_URL=http://app.test chromium npm test
 ```
+
+Soften with `CI_A11Y_IGNORE_FAILURE=1` (same convention as the other suites).
+The JSON report is uploaded with the leg's `test-logs-minimal` artifact.

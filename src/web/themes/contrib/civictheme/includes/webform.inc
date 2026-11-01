@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Template\Attribute;
+
 /**
  * Pre-process for Webform paragraph.
  */
@@ -22,6 +24,17 @@ function civictheme_preprocess_paragraph__civictheme_webform(array &$variables):
 }
 
 /**
+ * Implements template_preprocess_webform().
+ *
+ * The webform theme wrapper renders the form tag: theme it from the keys the
+ * webform submission form alter sets on the form root.
+ */
+function civictheme_preprocess_webform(array &$variables): void {
+  $variables['theme'] = _civictheme_form_element_get_component_theme($variables['element'] ?? []);
+  unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
+}
+
+/**
  * Implements hook_preprocess_webform_html_editor_markup().
  */
 function civictheme_preprocess_webform_html_editor_markup(array &$variables): void {
@@ -31,10 +44,10 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables): vo
     '#type' => 'component',
     '#component' => 'civictheme:basic-content',
     '#props' => [
-      'vertical_spacing' => 'both',
-      // Rendered fragments (element markup, descriptions, confirmation
-      // messages) inherit their width from the surrounding layout: a nested
-      // grid container would misalign them inside forms and messages.
+      // Rendered fragments (element markup, descriptions, more content,
+      // confirmation messages) inherit their width and rhythm from the
+      // surrounding layout: a nested grid container would misalign them and
+      // vertical spacing is the consumer's concern, not the fragment's.
       'is_contained' => FALSE,
     ],
     '#slots' => [
@@ -43,6 +56,34 @@ function civictheme_preprocess_webform_html_editor_markup(array &$variables): vo
       ],
     ],
   ];
+}
+
+/**
+ * Implements template_preprocess_webform_element_more().
+ */
+function civictheme_preprocess_webform_element_more(array &$variables): void {
+  // The theme propagation keys arrive inside the element attributes, which
+  // webform has already converted to an Attribute object: extract the theme
+  // and keep the keys from printing as attributes.
+  $attributes = $variables['attributes'] ?? NULL;
+  if (!$attributes instanceof Attribute) {
+    return;
+  }
+  if (isset($attributes['#civictheme_theme'])) {
+    $civictheme_theme = (string) $attributes['#civictheme_theme']->value();
+    if (in_array($civictheme_theme, civictheme_theme_options(TRUE))) {
+      $variables['theme'] = $civictheme_theme;
+    }
+  }
+  $attributes->removeAttribute('#civictheme_theme', '#component_theme');
+}
+
+/**
+ * Implements template_preprocess_webform_section().
+ */
+function civictheme_preprocess_webform_section(array &$variables): void {
+  $variables['theme'] = _civictheme_form_element_get_component_theme($variables['element'] ?? []);
+  unset($variables['attributes']['#civictheme_theme'], $variables['attributes']['#component_theme']);
 }
 
 /**
