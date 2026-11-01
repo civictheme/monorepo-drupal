@@ -11,6 +11,14 @@
       "include": [["main"]]
     },
     {
+      "name": "webform-test-fields-error-state",
+      "path": "/form/civictheme-test-webform-fields",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-submit]" }
+      ]
+    },
+    {
       "name": "contact",
       "path": "/form/contact",
       "include": [["main"]]
@@ -48,6 +56,75 @@
       "name": "core-form-elements",
       "path": "/civictheme-core-form-elements",
       "include": [["main"]]
+    },
+    {
+      "name": "demo-parking-permit",
+      "path": "/form/civictheme-demo-parking-permit",
+      "include": [["main"]]
+    },
+    {
+      "name": "demo-parking-permit-error-state",
+      "path": "/form/civictheme-demo-parking-permit",
+      "include": [["main"]],
+      "actions": [
+        {
+          "type": "click",
+          "selector": "[data-drupal-selector=edit-submit]",
+          "waitForSelector": ".ct-field-message"
+        }
+      ]
+    },
+    {
+      "name": "demo-library-card",
+      "path": "/form/civictheme-demo-library-card",
+      "include": [["main"]]
+    },
+    {
+      "name": "demo-library-card-error-state",
+      "path": "/form/civictheme-demo-library-card",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-submit]" }
+      ]
+    },
+    {
+      "name": "demo-report-issue",
+      "path": "/form/civictheme-demo-report-issue",
+      "include": [["main"]]
+    },
+    {
+      "name": "demo-report-issue-error-state",
+      "path": "/form/civictheme-demo-report-issue",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-submit]" }
+      ]
+    },
+    {
+      "name": "demo-community-grant",
+      "path": "/form/civictheme-demo-community-grant",
+      "include": [["main"]]
+    },
+    {
+      "name": "demo-community-grant-error-state",
+      "path": "/form/civictheme-demo-community-grant",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-wizard-next]" }
+      ]
+    },
+    {
+      "name": "demo-swim-enrolment",
+      "path": "/form/civictheme-demo-swim-enrolment",
+      "include": [["main"]]
+    },
+    {
+      "name": "demo-swim-enrolment-error-state",
+      "path": "/form/civictheme-demo-swim-enrolment",
+      "include": [["main"]],
+      "actions": [
+        { "type": "click", "selector": "[data-drupal-selector=edit-wizard-next]" }
+      ]
     }
   ]
 }

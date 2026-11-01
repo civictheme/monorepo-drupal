@@ -1,0 +1,310 @@
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: civictheme_demo_report_issue
+title: 'Report a local issue'
+description: '<p>Sample single-page report form. Demonstrates select-driven conditional fields, conditional required contact details, an image upload and a dark-theme container.</p>'
+categories: {  }
+elements: |-
+  introduction:
+    '#type': webform_markup
+    '#markup': '<p>Report a problem in a public place, such as a pothole, a broken streetlight or graffiti. For emergencies or hazards that put people in danger, call 000.</p>'
+  issue_section:
+    '#type': webform_section
+    '#title': 'The issue'
+    '#vertical_spacing': bottom
+    issue_type:
+      '#type': select
+      '#title': 'What type of issue are you reporting?'
+      '#options':
+        pothole: 'Pothole or road damage'
+        streetlight: 'Broken or flickering streetlight'
+        graffiti: Graffiti
+        waste: 'Dumped rubbish'
+        other: 'Something else'
+      '#required': true
+    streetlight_pole_number:
+      '#type': textfield
+      '#title': 'Pole number'
+      '#description': 'The pole number is printed on a metal plate about 2 metres up the pole.'
+      '#states':
+        visible:
+          ':input[name="issue_type"]':
+            value: streetlight
+    graffiti_photo:
+      '#type': webform_image_file
+      '#title': 'Photo of the graffiti'
+      '#description': 'A photo helps our crews bring the right equipment.'
+      '#states':
+        visible:
+          ':input[name="issue_type"]':
+            value: graffiti
+    other_description:
+      '#type': textarea
+      '#title': 'Describe the issue'
+      '#states':
+        visible:
+          ':input[name="issue_type"]':
+            value: other
+        required:
+          ':input[name="issue_type"]':
+            value: other
+    issue_location:
+      '#type': textfield
+      '#title': 'Location of the issue'
+      '#description': 'A street address or a nearby landmark, for example "outside 12 Main St" or "playground side of Apex Park".'
+      '#required': true
+    date_noticed:
+      '#type': date
+      '#title': 'When did you first notice it?'
+      '#date_date_max': today
+    urgency:
+      '#type': radios
+      '#title': 'How urgent is it?'
+      '#options':
+        low: 'Low — cosmetic or minor'
+        medium: 'Medium — getting worse or inconvenient'
+        high: 'High — could cause injury or damage'
+      '#required': true
+  contact_section:
+    '#type': webform_section
+    '#title': 'Your contact details'
+    '#description': '<p>Tell us how to reach you if we need more information about your report.</p>'
+    '#description_display': before
+    '#vertical_spacing': bottom
+    contact_preference:
+      '#type': radios
+      '#title': 'How would you like to be contacted?'
+      '#options':
+        email: 'By email'
+        phone: 'By phone'
+        none: 'I do not want to be contacted'
+      '#required': true
+    reporter_email:
+      '#type': email
+      '#title': 'Email address'
+      '#states':
+        visible:
+          ':input[name="contact_preference"]':
+            value: email
+        required:
+          ':input[name="contact_preference"]':
+            value: email
+    reporter_phone:
+      '#type': tel
+      '#title': 'Phone number'
+      '#states':
+        visible:
+          ':input[name="contact_preference"]':
+            value: phone
+        required:
+          ':input[name="contact_preference"]':
+            value: phone
+  updates_container:
+    '#type': container
+    '#component_theme': dark
+    '#with_background': true
+    '#is_contained': true
+    '#vertical_spacing': both
+    subscribe_updates:
+      '#type': checkbox
+      '#component_theme': dark
+      '#title': 'Email me updates about this report'
+      '#states':
+        visible:
+          ':input[name="contact_preference"]':
+            value: email
+  next_steps_markup:
+    '#type': webform_markup
+    '#markup': '<p><strong>What happens next?</strong> Reports are triaged every business day. High-urgency issues are inspected within 24 hours. You can see planned works on the council website.</p>'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: true
+  form_disable_inline_errors: false
+  form_required: true
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: 'Report received'
+  confirmation_message: '<p>Thank you for helping look after your neighbourhood. Your reference number has been emailed to you if you chose email contact.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

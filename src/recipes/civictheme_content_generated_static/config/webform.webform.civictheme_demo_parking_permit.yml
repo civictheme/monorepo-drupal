@@ -1,0 +1,311 @@
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: civictheme_demo_parking_permit
+title: 'Apply for a resident parking permit'
+description: '<p>Sample single-page application form. Demonstrates sections with vertical spacing, fieldsets, conditional visibility/required states, pattern validation, a file upload and AJAX submission.</p>'
+categories: {  }
+elements: |-
+  introduction:
+    '#type': webform_markup
+    '#markup': '<p>Use this form to apply for a resident parking permit. You must live at the address you are applying for. Applications are processed within 10 business days.</p>'
+  your_details_section:
+    '#type': webform_section
+    '#title': 'Your details'
+    '#description': '<p>We use these details to confirm your eligibility and to contact you about your application.</p>'
+    '#description_display': before
+    '#vertical_spacing': bottom
+    applicant_name:
+      '#type': webform_name
+      '#title': 'Full name'
+      '#required': true
+    date_of_birth:
+      '#type': date
+      '#title': 'Date of birth'
+      '#date_date_max': today
+      '#required': true
+    contact_email:
+      '#type': email
+      '#title': 'Email address'
+      '#description': 'We will send your permit confirmation to this address.'
+      '#required': true
+    contact_phone:
+      '#type': tel
+      '#title': 'Phone number'
+      '#help': '<p>Include the area code, for example 02 5550 1234.</p>'
+      '#help_title': 'Phone number help'
+  residential_address_section:
+    '#type': webform_section
+    '#title': 'Residential address'
+    '#description': '<p>The permit applies only to the street address where you live.</p>'
+    '#description_display': before
+    '#vertical_spacing': bottom
+    residential_address:
+      '#type': webform_address
+      '#title': 'Street address'
+      '#required': true
+    proof_of_residence:
+      '#type': webform_document_file
+      '#title': 'Proof of residence'
+      '#description': 'Upload a rates notice, lease agreement or utility bill issued in the last 3 months.'
+  vehicle_section:
+    '#type': webform_section
+    '#title': 'Vehicle details'
+    '#vertical_spacing': bottom
+    number_of_vehicles:
+      '#type': radios
+      '#title': 'How many vehicles are you registering?'
+      '#options':
+        one: 'One vehicle'
+        two: 'Two vehicles'
+      '#required': true
+    vehicle_one_fieldset:
+      '#type': fieldset
+      '#title': 'Vehicle 1'
+      vehicle_one_plate:
+        '#type': textfield
+        '#title': 'Registration plate'
+        '#pattern': '[A-Za-z0-9 -]{1,9}'
+        '#pattern_error': 'Enter a valid registration plate using letters, numbers, spaces or hyphens (up to 9 characters).'
+        '#required': true
+      vehicle_one_type:
+        '#type': select
+        '#title': 'Vehicle type'
+        '#options':
+          sedan: 'Sedan or hatchback'
+          suv: 'SUV or 4WD'
+          van: 'Van or ute'
+          motorcycle: Motorcycle
+        '#required': true
+    vehicle_two_fieldset:
+      '#type': fieldset
+      '#title': 'Vehicle 2'
+      '#states':
+        visible:
+          ':input[name="number_of_vehicles"]':
+            value: two
+      vehicle_two_plate:
+        '#type': textfield
+        '#title': 'Registration plate (second vehicle)'
+        '#pattern': '[A-Za-z0-9 -]{1,9}'
+        '#pattern_error': 'Enter a valid registration plate using letters, numbers, spaces or hyphens (up to 9 characters).'
+        '#states':
+          required:
+            ':input[name="number_of_vehicles"]':
+              value: two
+      vehicle_two_type:
+        '#type': select
+        '#title': 'Vehicle type (second vehicle)'
+        '#options':
+          sedan: 'Sedan or hatchback'
+          suv: 'SUV or 4WD'
+          van: 'Van or ute'
+          motorcycle: Motorcycle
+        '#states':
+          required:
+            ':input[name="number_of_vehicles"]':
+              value: two
+  declaration_container:
+    '#type': container
+    '#with_background': true
+    '#is_contained': true
+    '#vertical_spacing': both
+    declaration_statement:
+      '#type': webform_markup
+      '#markup': '<p>By submitting this application you declare that the information provided is true and correct, and that the nominated vehicles are registered at your residential address.</p>'
+  declaration:
+    '#type': checkbox
+    '#title': 'I declare the information provided is true and correct'
+    '#required': true
+    '#required_error': 'You must agree to the declaration before submitting your application.'
+css: ''
+javascript: ''
+settings:
+  ajax: true
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: true
+  form_disable_inline_errors: false
+  form_required: true
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: 'Application received'
+  confirmation_message: '<p>Thank you. Your parking permit application has been received. We will email you within 10 business days.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
