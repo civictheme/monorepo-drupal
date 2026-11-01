@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * CivicTheme webform wizard progress tracker (draft).
+ *
+ * Draft of the potential CivicTheme Progress Indicator component (uikit
+ * issue #1044), composed theme-side and styled from the theme stylesheet
+ * (assets/sass/form/_form-custom.scss). Replaces webform's progress tracker
+ * markup and its CDN progress-tracker library, whose palette fails axe
+ * contrast checks on CivicTheme backgrounds. The data attributes keep
+ * webform's progress JS contract for consumers that attach the library.
+ *
+ * Available variables:
+ * - webform: A webform.
+ * - pages: Associative array of wizard pages.
+ * - progress: Array of wizard progress containing page titles.
+ * - current_page: Current wizard page key.
+ * - current_index: The current wizard page index.
+ * - max_pages: Maximum number of pages that progress text should be
+ *   displayed on.
+ *
+ * @see template_preprocess_webform_progress_tracker()
+ * @see https://github.com/civictheme/uikit/issues/1044
+ */
+#}
+{% apply spaceless %}
+  <ol class="ct-progress-indicator" data-webform-progress-steps aria-label="{{ 'Progress'|t }}">
+    {% for index, page in progress %}
+      {% set is_done = index < current_index %}
+      {% set is_current = index == current_index %}
+      {%
+        set classes = [
+          'ct-progress-indicator__step',
+          is_done ? 'ct-progress-indicator__step--done' : '',
+          is_current ? 'ct-progress-indicator__step--current' : '',
+        ]|filter(class => class)|join(' ')
+      %}
+      <li class="{{ classes }}" data-webform-{{ page.type }}="{{ page.name }}" title="{{ page.title }}"{% if is_current %} aria-current="step"{% endif %}>
+        <span class="ct-progress-indicator__marker" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}" aria-hidden="true">{{ index + 1 }}</span>
+        {% if progress|length < max_pages %}
+          <span class="ct-progress-indicator__title" data-webform-progress-link>
+            <span class="ct-visually-hidden" data-webform-progress-state>{% if is_done or is_current %}{{ is_done ? 'Completed'|t : 'Current'|t }}{% endif %}</span>
+            {{ page.title }}
+          </span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+{% endapply %}

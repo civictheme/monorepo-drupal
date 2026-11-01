@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * CivicTheme managed file widget (draft).
+ *
+ * Draft layout for a potential CivicTheme File Upload component: keeps
+ * core's flat children and lays them out from the theme stylesheet
+ * (assets/sass/form/_form-custom.scss).
+ *
+ * modifier_class carries the element's own classes when the global
+ * attributes-to-modifier_class conversion has run; the Drupal compat classes
+ * stay on the wrapper for the managed file JS.
+ *
+ * @see https://github.com/civictheme/uikit/issues/1046
+ */
+#}
+{%
+  set classes = [
+    'js-form-managed-file',
+    'form-managed-file',
+    'ct-managed-file',
+    modifier_class|default(''),
+  ]|join(' ')|split(' ')|filter(class => class)
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ element }}
+</div>

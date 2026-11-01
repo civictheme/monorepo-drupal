@@ -806,7 +806,10 @@ function _civictheme_get_dom_document(string $content): \DOMDocument {
 /**
  * Check whether element is a webform element.
  *
- * Inlined to avoid a hard dependency on the webform module's classes.
+ * Inlined to avoid a hard dependency on the webform module's classes, and
+ * narrowed to the element-level markers: unlike the upstream helper, being on
+ * a webform admin route does not make every element on the page a webform
+ * element.
  *
  * @see \Drupal\webform\Utility\WebformElementHelper::isWebformElement()
  *
@@ -816,10 +819,8 @@ function civictheme_is_webform_element(array $element): bool {
   if (!\Drupal::service('module_handler')->moduleExists('webform')) {
     return FALSE;
   }
-  if (isset($element['#webform_key']) || isset($element['#webform_element'])) {
-    return TRUE;
-  }
-  return \Drupal::service('webform.request')->isWebformAdminRoute();
+
+  return isset($element['#webform_key']) || isset($element['#webform_element']);
 }
 
 /**

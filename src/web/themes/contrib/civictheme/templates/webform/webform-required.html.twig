@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation of the webform required indicator.
+ *
+ * Shown above the form when the webform's "required indicator" setting is
+ * enabled. Keeps the webform classes and renders an explicit marker so the
+ * indicator does not rely on admin-theme CSS; styled in the theme stylesheet
+ * consistently with the "(required)" label convention.
+ */
+#}
+<div class="webform-required ct-webform-required ct-theme-{{ theme|default('light') }}">
+  <span class="form-required ct-webform-required__marker" aria-hidden="true">*</span> {{ label }}
+</div>

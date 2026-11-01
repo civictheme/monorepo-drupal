@@ -10,3 +10,11 @@
 @import 'block/local-tasks';
 @import 'block/contextual';
 @import 'ckeditor/ckeditor';
+
+// Form layout for the base theme's composite form templates. The sub-theme's
+// libraries-override replaces the base theme's dist/civictheme.theme.css with
+// this build, so the base form styles must be imported here or they are
+// silently dropped. The path resolves from both sub-theme locations
+// (web/themes/custom/* and web/themes/contrib/*).
+@import '../../../../contrib/civictheme/assets/sass/form/form';
+@import '../../../../contrib/civictheme/assets/sass/form/form-custom';

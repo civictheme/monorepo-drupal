@@ -23,6 +23,20 @@ elements: |-
     text_field:
       '#type': textfield
       '#title': 'Text field'
+      '#help': '<p>Help tooltip content.</p>'
+      '#help_title': 'Text field help'
+  section_elements:
+    '#type': webform_section
+    '#title': 'Section title'
+    '#description': '<p>Section description content.</p>'
+    '#description_display': before
+    section_text_field:
+      '#type': textfield
+      '#title': 'Section text field'
+      '#required': true
+    section_email:
+      '#type': email
+      '#title': 'Section email'
   conditional_container:
     '#type': container
     select_to_display_textarea:
@@ -60,6 +74,9 @@ elements: |-
     email:
       '#type': email
       '#title': Email
+      '#description': 'Email description.'
+      '#more': '<p>More about the email element.</p>'
+      '#more_title': 'More about email'
     email_confirm:
       '#type': webform_email_confirm
       '#title': 'Email confirm'
@@ -135,6 +152,16 @@ elements: |-
       '#title': Label
     more:
       '#type': webform_more
+      '#more': '<p>Standalone more content.</p>'
+      '#more_title': 'Read more'
+    computed_token:
+      '#type': webform_computed_token
+      '#title': 'Computed token'
+      '#template': '<p>Computed token webform title: [webform:title]</p>'
+    computed_twig:
+      '#type': webform_computed_twig
+      '#title': 'Computed twig'
+      '#template': '<p>Computed twig value: {{ data.text_field }}</p>'
   file_uploads_container:
     '#type': container
     audio_file:
@@ -237,7 +264,7 @@ settings:
   form_disable_autocomplete: false
   form_novalidate: true
   form_disable_inline_errors: false
-  form_required: false
+  form_required: true
   form_autofocus: false
   form_details_toggle: false
   form_reset: false
