@@ -11,7 +11,7 @@
 
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/civictheme/monorepo-drupal.svg)](https://github.com/civictheme/monorepo-drupal/pulls)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/civictheme/monorepo-drupal)
-[![CircleCI](https://circleci.com/gh/civictheme/monorepo-drupal.svg?style=shield)](https://circleci.com/gh/civictheme/monorepo-drupal)
+[![CI](https://github.com/civictheme/monorepo-drupal/actions/workflows/ci.yml/badge.svg)](https://github.com/civictheme/monorepo-drupal/actions/workflows/ci.yml)
 ![Drupal 10](https://img.shields.io/badge/Drupal-10-blue.svg)
 ![LICENSE](https://img.shields.io/github/license/civictheme/monorepo-drupal)
 [![RenovateBot](https://img.shields.io/badge/RenovateBot-enabled-brightgreen.svg?logo=renovatebot)](https://renovatebot.com)
