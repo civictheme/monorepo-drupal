@@ -50,7 +50,7 @@ DEPLOY_GIT_USER_EMAIL="${DEPLOY_GIT_USER_EMAIL:-}"
 # loaded default SSH key (the key used for code checkout) will be used or
 # deployment will fail with an error if the default SSH key is not loaded.
 # In most cases, the default SSH key does not work (because it is a read-only
-# key used by CircleCI to checkout code from git), so you should add another
+# key used by CI to checkout code from git), so you should add another
 # deployment key.
 DEPLOY_SSH_FINGERPRINT="${DEPLOY_SSH_FINGERPRINT:-}"
 
