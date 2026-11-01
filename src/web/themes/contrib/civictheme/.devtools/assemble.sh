@@ -91,8 +91,14 @@ if [ -n "${DRUPAL_VERSION:-}" ] && [ -n "${DRUPAL_PROJECT_SHA:-}" ]; then
   rm -rf "build/.git" >/dev/null
 
   note "Pin Drupal to a specific version ${DRUPAL_VERSION}."
-  sed_opts=(-i) && [ "$(uname)" == "Darwin" ] && sed_opts=(-i '')
-  sed "${sed_opts[@]}" 's|\(.*"drupal\/core"\): "\(.*\)",.*|\1: '"\"$DRUPAL_VERSION\",|" "build/composer.json"
+  # The scaffold requires drupal/core-recommended rather than drupal/core, so
+  # pin every core package; drupal/core is added as a root requirement so that
+  # a pre-release pin carries its own stability flag.
+  composer --working-dir="build" require --no-update \
+    "drupal/core:${DRUPAL_VERSION}" \
+    "drupal/core-recommended:${DRUPAL_VERSION}" \
+    "drupal/core-composer-scaffold:${DRUPAL_VERSION}"
+  composer --working-dir="build" require --no-update --dev "drupal/core-dev:${DRUPAL_VERSION}"
   cat "build/composer.json"
 else
   note "Initialising Drupal site from the latest scaffold."
