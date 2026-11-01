@@ -62,6 +62,12 @@ log()  { printf '\033[0;36m[provision]\033[0m %s\n' "$*"; }
 warn() { printf '\033[0;33m[provision]\033[0m %s\n' "$*" >&2; }
 die()  { printf '\033[0;31m[provision]\033[0m %s\n' "$*" >&2; exit 2; }
 
+# Locally /opt/drupal is the ./src bind mount, which shadows the image's built
+# tree: until composer install has populated bin/ on the host (fresh clone,
+# branch switch, wiped vendor/), $DRUSH does not exist and every "$DRUSH" call
+# exits 127 — which list_tables would misreport as a database/TLS problem.
+[ -x "$DRUSH" ] || die "drush not found at ${DRUSH} — the app tree has no composer dependencies yet. Run \`ahoy build\` first, then re-run provision."
+
 restore_site_uuid() {
   if [ -f "${CONFIG_PATH}/system.site.yml" ]; then
     local uuid
