@@ -9,36 +9,15 @@ ARG PHP_VERSION=8.4
 ARG NODE_VERSION=22
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Stage: sub-theme generation.
-#
-# civictheme_demo is generated, never committed. The pipeline invariant says
-# servers never run composer or npm, so the deployed image must carry the
-# generated AND built sub-theme. Generation is a standalone PHP script (no
-# Drupal bootstrap), so it runs in a php-capable stage; the node assets stage
-# below copies the result next to the base theme and builds it.
-#
-# Uses the same base image as the final stage so no extra base is pulled.
-# ─────────────────────────────────────────────────────────────────────────────
-FROM ghcr.io/quantcdn-templates/app-apache-php:${PHP_VERSION} AS subtheme
-
-COPY src/web/themes/contrib/civictheme /build/themes/contrib/civictheme
-RUN cd /build/themes/contrib/civictheme \
- && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" \
-      "Demo sub-theme for a CivicTheme theme." \
-      /build/themes/custom/civictheme_demo --remove-examples \
- && test -f /build/themes/custom/civictheme_demo/package.json
-
-# ─────────────────────────────────────────────────────────────────────────────
 # Stage: front-end assets.
 #
 # A throwaway stage — node, npm and node_modules never reach the final image;
 # only the compiled output is copied across.
 #
 # Written as explicit steps rather than the scaffold's `*/` loop because the
-# build order matters (the sub-theme's dist reads the base theme's components)
-# and the base theme needs `uikit-install` before `dist`. The deployed image
-# is dist-only — Storybook is NOT built here (decided 2026-10-29; Storybook
-# moves to a CI-built static deploy).
+# theme needs `uikit-install` before `dist`. The deployed image is dist-only —
+# Storybook is NOT built here (decided 2026-10-29; Storybook moves to a
+# CI-built static deploy).
 #
 # The path must keep a `themes/` segment: the themes' build.js locates the
 # base theme by looking for a directory named exactly `themes` in its path.
@@ -69,35 +48,19 @@ RUN set -eu; \
     [ -d dist ] && [ -n "$(ls -A dist)" ] \
       || { echo "dist/ is missing or empty after the base theme build." >&2; exit 1; }
 
-# Sub-theme, built AFTER the base theme — its dist reads the base theme's
-# components. npm scripts stay enabled here: the generated package.json's
-# postinstall performs its own uikit/component wiring (same flow the old
-# provision step used).
-COPY --from=subtheme /build/themes/custom/civictheme_demo ./custom/civictheme_demo
+# Collect only what ships: the theme's compiled output.
 RUN set -eu; \
-    cd custom/civictheme_demo; \
-    if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; \
-    else npm install --no-audit --no-fund; fi; \
-    npm run dist; \
-    [ -d dist ] && [ -n "$(ls -A dist)" ] \
-      || { echo "dist/ is missing or empty after the sub-theme build." >&2; exit 1; }; \
-    rm -rf node_modules
-
-# Collect only what ships: base theme compiled output + the whole generated
-# sub-theme (it does not exist in src/, so the final stage needs all of it).
-RUN set -eu; \
-    mkdir -p /export/contrib/civictheme /export/custom; \
+    mkdir -p /export/contrib/civictheme; \
     cp -R contrib/civictheme/components /export/contrib/civictheme/components; \
-    cp -R contrib/civictheme/dist /export/contrib/civictheme/dist; \
-    cp -R custom/civictheme_demo /export/custom/civictheme_demo
+    cp -R contrib/civictheme/dist /export/contrib/civictheme/dist
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Stage: lift the built assets back onto the host (`ahoy fe-build`).
 #
 # FROM scratch so `docker build --target assets-export --output
 # type=local,dest=src/web/themes` writes contrib/civictheme/{components,dist}
-# and custom/civictheme_demo onto the host tree and nothing else. Nothing
-# depends on this stage, so a normal build never runs it.
+# onto the host tree and nothing else. Nothing depends on this stage, so a
+# normal build never runs it.
 # ─────────────────────────────────────────────────────────────────────────────
 FROM scratch AS assets-export
 COPY --from=assets /export/ /
@@ -193,7 +156,6 @@ COPY src/ /opt/drupal/
 # assets with the un-built tree.
 COPY --from=assets /export/contrib/civictheme/components ./web/themes/contrib/civictheme/components
 COPY --from=assets /export/contrib/civictheme/dist ./web/themes/contrib/civictheme/dist
-COPY --from=assets /export/custom/civictheme_demo ./web/themes/custom/civictheme_demo
 
 RUN chown -R www-data:www-data web/sites web/modules web/themes
 

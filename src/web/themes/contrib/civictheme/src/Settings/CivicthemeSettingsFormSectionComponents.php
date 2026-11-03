@@ -6,6 +6,7 @@ namespace Drupal\civictheme\Settings;
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
+use Drupal\civictheme\Utility\CivicthemeOptions;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -72,7 +73,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
         ]),
         '#default_value' => $this->themeConfigManager->load(sprintf('components.logo.%s.image_alt', $logo_type)),
       ];
-      foreach (civictheme_theme_options() as $theme => $theme_label) {
+      foreach (CivicthemeOptions::themeOptions() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
           // @phpstan-ignore offsetAccess.nonOffsetAccessible
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
@@ -145,7 +146,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t('Set the Header color theme.'),
       '#type' => 'radios',
       '#required' => TRUE,
-      '#options' => civictheme_theme_options(),
+      '#options' => CivicthemeOptions::themeOptions(),
       '#default_value' => $this->themeConfigManager->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
@@ -154,7 +155,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t('Logo type to appear in the Header.'),
       '#type' => 'radios',
       '#required' => TRUE,
-      '#options' => civictheme_type_options(),
+      '#options' => CivicthemeOptions::typeOptions(),
       '#default_value' => $this->themeConfigManager->load('components.header.logo_type', CivicthemeConstants::LOGO_TYPE_DEFAULT),
     ];
 
@@ -170,7 +171,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t('Set the Footer color theme.'),
       '#type' => 'radios',
       '#required' => TRUE,
-      '#options' => civictheme_theme_options(),
+      '#options' => CivicthemeOptions::themeOptions(),
       '#default_value' => $this->themeConfigManager->load('components.footer.theme', CivicthemeConstants::FOOTER_THEME_DEFAULT),
     ];
 
@@ -179,7 +180,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t('Logo type to appear in the Footer.'),
       '#type' => 'radios',
       '#required' => TRUE,
-      '#options' => civictheme_type_options(),
+      '#options' => CivicthemeOptions::typeOptions(),
       '#default_value' => $this->themeConfigManager->load('components.footer.logo_type', CivicthemeConstants::LOGO_TYPE_DEFAULT),
     ];
 
@@ -345,7 +346,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       '#description' => $this->t('Set the Skip Link color theme.'),
       '#type' => 'radios',
       '#required' => TRUE,
-      '#options' => civictheme_theme_options(),
+      '#options' => CivicthemeOptions::themeOptions(),
       '#default_value' => $this->themeConfigManager->load('components.skip_link.theme', CivicthemeConstants::HEADER_THEME_DEFAULT),
     ];
 
@@ -504,10 +505,12 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
 
   /**
    * Validate callback for theme settings form of Logo component.
+   *
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function validateLogo(array &$form, FormStateInterface $form_state): void {
     foreach (['primary', 'secondary'] as $logo_type) {
-      foreach (civictheme_theme_options(TRUE) as $theme) {
+      foreach (CivicthemeOptions::themeOptions(TRUE) as $theme) {
         foreach (['desktop', 'mobile'] as $breakpoint) {
           $this->validateFileUpload(
             $form,
@@ -580,11 +583,12 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Submit callback for theme settings form of Logo component.
    *
+   * @SuppressWarnings("PHPMD.StaticAccess")
    * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   public function submitLogo(array &$form, FormStateInterface $form_state): void {
     foreach (['primary', 'secondary'] as $logo_type) {
-      foreach (civictheme_theme_options(TRUE) as $theme) {
+      foreach (CivicthemeOptions::themeOptions(TRUE) as $theme) {
         foreach (['desktop', 'mobile'] as $breakpoint) {
           $this->submitFileUpload(
             $form,

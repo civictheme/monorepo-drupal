@@ -198,55 +198,26 @@ jobs:
         include:
           - name: minimal
             install_profile: minimal
-            subtheme_skip: '1'
             behat_profile: p0
             lint: true
             a11y: true
           - name: minimal-behat-p1
             install_profile: minimal
-            subtheme_skip: '1'
-            behat_profile: p1
-          - name: minimal-subtheme
-            install_profile: minimal
-            behat_profile: p0
-            lint: true
-          - name: minimal-subtheme-behat-p1
-            install_profile: minimal
             behat_profile: p1
           - name: govcms
             install_profile: govcms
             composer: composer.govcms.json
-            subtheme_skip: '1'
             behat_profile: p0
             lint: true
             shipshape: true
           - name: govcms-behat-p1
             install_profile: govcms
             composer: composer.govcms.json
-            subtheme_skip: '1'
             behat_profile: p1
-          - name: govcms-subtheme
-            install_profile: govcms
-            composer: composer.govcms.json
-            behat_profile: p0
-            lint: true
-            shipshape: true
-          - name: govcms-subtheme-behat-p1
-            install_profile: govcms
-            composer: composer.govcms.json
-            behat_profile: p1
-          - name: govcms-subtheme-sibling
-            install_profile: govcms
-            composer: composer.govcms.json
-            install_sibling: '1'
-            behat_profile: smoke
-            lint: true
     env:
       DRUPAL_INSTALL_PROFILE: ${{ matrix.install_profile }}
       COMPOSER: ${{ matrix.composer }}
       PHP_VERSION: ${{ matrix.php_version }}
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: ${{ matrix.subtheme_skip }}
-      CIVICTHEME_INSTALL_SIBLING: ${{ matrix.install_sibling }}
       # CircleCI masked this lint on EVERY leg via a hidden project-level env
       # var (DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE=1 — the latest
       # develop build-minimal prints the same diffs and "ERROR: Configuration
@@ -456,7 +427,6 @@ jobs:
     env:
       DRUPAL_INSTALL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: ${{ matrix.content_profile }}
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
       CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP: '1'
       CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -542,7 +512,6 @@ jobs:
     needs: build-isolated
     env:
       DRUPAL_INSTALL_PROFILE: minimal
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
       GITHUB_TOKEN: ${{ github.token }}
       VR_BRANCH: ${{ github.ref_name }}
     steps:

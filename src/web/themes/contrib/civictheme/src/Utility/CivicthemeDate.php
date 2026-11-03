@@ -9,8 +9,6 @@ use Drupal\Core\Datetime\DrupalDateTime;
 /**
  * Date and time formatting helpers.
  *
- * The procedural civictheme_format_datetime*() functions delegate here.
- *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class CivicthemeDate {

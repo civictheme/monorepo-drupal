@@ -23,10 +23,6 @@ The Drupal theme provides full integration and ships with the UI Kit.
 Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
 already included as a set of compiled assets.
 
-## Creating a sub-theme from the CivicTheme theme
-
-See [Sub-theme](https://github.com/civictheme/docs/blob/main/development/drupal-theme/sub-theme.md)
-
 ## Development
 
 ### Local development

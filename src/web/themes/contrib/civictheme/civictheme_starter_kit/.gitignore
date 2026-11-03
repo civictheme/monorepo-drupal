@@ -1,8 +1,0 @@
-node_modules
-components_combined
-.components-civictheme
-storybook-static
-# Remove dist directory if your build system
-# does not allow to run NodeJS scripts.
-dist
-

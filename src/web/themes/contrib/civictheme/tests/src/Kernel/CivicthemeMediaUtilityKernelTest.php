@@ -6,6 +6,8 @@ namespace Drupal\Tests\civictheme\Kernel;
 
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeMedia;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Tests\media\Kernel\MediaKernelTestBase;
 
@@ -32,7 +34,7 @@ class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
   }
 
   /**
-   * Test civictheme_media_get_variables function.
+   * Test CivicthemeMedia::getVariables().
    */
   public function testCivicThemeMediaGetVariables(): void {
     $mediaType = $this->createMediaType('file');
@@ -49,13 +51,13 @@ class CivicthemeMediaUtilityKernelTest extends MediaKernelTestBase {
     $media->setName($media_name);
     $media->save();
     /** @var \Drupal\file\FileInterface $file */
-    $file = civictheme_get_field_referenced_entity($media, 'field_media_file');
+    $file = CivicthemeField::getReferencedEntity($media, 'field_media_file');
     $this->assertNotNull($file);
     // VFS does not support external uri.
     $file_url = NULL;
     $file_size = ByteSizeMarkup::create($file->getSize());
 
-    $variables = civictheme_media_get_variables($media);
+    $variables = CivicthemeMedia::getVariables($media);
     $this->assertArrayHasKey('name', $variables);
     $this->assertArrayHasKey('media_name', $variables);
     $this->assertArrayHasKey('ext', $variables);

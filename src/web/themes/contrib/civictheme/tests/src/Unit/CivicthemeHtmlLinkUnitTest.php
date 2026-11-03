@@ -8,6 +8,7 @@ namespace Drupal\Tests\civictheme\Unit;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Drupal\civictheme\Theme\HtmlContentProcessor;
+use Drupal\civictheme\Utility\CivicthemeLink;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 
 /**
@@ -45,13 +46,13 @@ class CivicthemeHtmlLinkUnitTest extends CivicthemeUnitTestBase {
   }
 
   /**
-   * Test for civictheme_link_is_external().
+   * Test for CivicthemeLink::urlIsExternal().
    *
    * @dataProvider dataProviderLinkIsExternal
    */
   #[DataProvider('dataProviderLinkIsExternal')]
   public function testLinkIsExternal(string $url, string $base_url, array $overridden_domains, bool $expected): void {
-    $actual = civictheme_url_is_external($url, $base_url, $overridden_domains);
+    $actual = CivicthemeLink::urlIsExternal($url, $base_url, $overridden_domains);
     $this->assertEquals($expected, $actual);
   }
 

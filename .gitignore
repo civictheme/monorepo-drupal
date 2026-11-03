@@ -39,7 +39,7 @@ node_modules/
 /src/web/themes/contrib/*
 !/src/web/themes/contrib/civictheme
 
-# Custom themes are generated (civictheme_demo), never committed.
+# Custom themes are site-generated, never committed.
 /src/web/themes/custom/*
 !/src/web/themes/custom/.gitkeep
 

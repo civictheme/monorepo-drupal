@@ -7,6 +7,7 @@ namespace Drupal\Tests\civictheme\Unit;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Drupal\civictheme\CivicthemeUtility;
+use Drupal\civictheme\Utility\CivicthemeAttribute;
 
 /**
  * Class CivicthemeUtilityUnitTest.
@@ -189,13 +190,13 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   }
 
   /**
-   * Test for civictheme_add_modifier_class().
+   * Test for CivicthemeAttribute::addModifierClass().
    *
    * @dataProvider dataProviderAddModifierClass
    */
   #[DataProvider('dataProviderAddModifierClass')]
   public function testAddModifierClass(array $variables, array|string $classes, array $expected): void {
-    civictheme_add_modifier_class($variables, $classes);
+    CivicthemeAttribute::addModifierClass($variables, $classes);
     $this->assertEquals($expected, $variables);
   }
 
@@ -228,13 +229,13 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
   }
 
   /**
-   * Test for civictheme_remove_modifier_class().
+   * Test for CivicthemeAttribute::removeModifierClass().
    *
    * @dataProvider dataProviderRemoveModifierClass
    */
   #[DataProvider('dataProviderRemoveModifierClass')]
   public function testRemoveModifierClass(array $variables, array|string $classes, array $expected): void {
-    civictheme_remove_modifier_class($variables, $classes);
+    CivicthemeAttribute::removeModifierClass($variables, $classes);
     $this->assertEquals($expected, $variables);
   }
 

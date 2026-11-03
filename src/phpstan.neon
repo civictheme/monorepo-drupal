@@ -30,7 +30,6 @@ parameters:
       - web/themes/contrib/civictheme/lib/*
       - web/themes/contrib/civictheme/storybook-static/*
       - web/themes/contrib/civictheme/.storybook/*
-      - web/themes/contrib/civictheme/civictheme_starter_kit/*
       - web/themes/contrib/civictheme/tests/*
 
   # Do not report on ignored errors that do not occur in the results. This is

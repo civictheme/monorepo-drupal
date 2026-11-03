@@ -8,9 +8,7 @@
 # corrupted in generated output (`<target>_kit`), so such tokens must never
 # exist in the repository.
 #
-# - FAILS on any tracked occurrence of `civictheme_starter_kit`, outside the
-#   allowlisted locations that carry the legacy starter kit until the rename
-#   phase removes it.
+# - FAILS on any tracked occurrence of `civictheme_starter_kit`.
 # - REPORTS (without failing) every token matching `civictheme_starter[a-z0-9_]`
 #   so new tokens extending the machine name get a human look. PascalCase hook
 #   class prefixes (CivicThemeStarter*) are intended and do not match.
@@ -21,14 +19,8 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-# Legacy starter kit locations, removed by the rename phase of the starterkit
-# conversion. Shrink this list to just this script when that lands.
+# This script is the only place allowed to spell the forbidden token.
 ALLOWLIST=(
-  ':!src/web/themes/contrib/civictheme/civictheme_starter_kit'
-  ':!src/web/themes/contrib/civictheme/civictheme_create_subtheme.php'
-  ':!src/phpstan.neon'
-  ':!src/phpmd.xml'
-  ':!scripts/lint.spelling.sh'
   ':!scripts/lint.naming-contract.sh'
 )
 

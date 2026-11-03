@@ -10,10 +10,6 @@
  * - \Drupal\civictheme\Hook\CivicthemeSuggestionsHooks
  * - \Drupal\civictheme\Hook\CivicthemeFormAlterHooks
  * - \Drupal\civictheme\Hook\Preprocess\*
- *
- * This file only loads the procedural public API wrappers for sub-themes.
  */
 
 declare(strict_types=1);
-
-require_once __DIR__ . '/includes/civictheme.api.inc';

@@ -27,7 +27,6 @@
     <exclude-pattern>*/web/themes/contrib/civictheme/dist/*</exclude-pattern>
     <exclude-pattern>*/web/themes/contrib/civictheme/storybook-static/*</exclude-pattern>
     <exclude-pattern>*/web/themes/contrib/civictheme/.storybook/*</exclude-pattern>
-    <exclude-pattern>*/web/themes/contrib/civictheme/civictheme_starter_kit/*</exclude-pattern>
 
     <rule ref="rulesets/unusedcode.xml"/>
     <rule ref="rulesets/codesize.xml"/>

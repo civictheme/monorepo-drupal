@@ -32,7 +32,6 @@ targets+=(docs/README.md)
 targets+=(docs/releasing.md)
 targets+=(docs/testing.md)
 targets+=(src/web/themes/contrib/civictheme/README.md)
-targets+=(src/web/themes/contrib/civictheme/civictheme_starter_kit/README.md)
 
 echo "==> Start checking spelling."
 for file in "${targets[@]}"; do

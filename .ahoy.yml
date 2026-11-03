@@ -39,7 +39,7 @@ commands:
     cmd: docker compose down --volumes --remove-orphans "$@"
 
   build:
-    usage: Build with minimal profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
+    usage: Build with minimal profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
       set -e
       export DRUPAL_INSTALL_PROFILE=minimal
@@ -50,60 +50,16 @@ commands:
       else
         echo "Cancelled."
       fi
-
-  build-minimal-subtheme:
-    usage: Alias of `ahoy build` (minimal profile, with sub-theme).
-    cmd: ahoy build "$@"
 
   build-minimal:
-    usage: Build with minimal profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=minimal
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
-      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        scripts/custom/build-variant.sh --provision-only
-      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
-        scripts/custom/build-variant.sh
-      else
-        echo "Cancelled."
-      fi
+    usage: Alias of `ahoy build` (minimal profile).
+    cmd: ahoy build "$@"
 
   build-govcms:
-    usage: Build with GovCMS profile (no sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
+    usage: Build with GovCMS profile. Use SKIP_DOCKER_BUILD=1 to re-provision only.
     cmd: |
       set -e
       export DRUPAL_INSTALL_PROFILE=govcms
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
-      export COMPOSER=composer.govcms.json
-      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        scripts/custom/build-variant.sh --provision-only
-      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
-        scripts/custom/build-variant.sh
-      else
-        echo "Cancelled."
-      fi
-
-  build-govcms-subtheme:
-    usage: Build with GovCMS profile (with sub-theme). Use SKIP_DOCKER_BUILD=1 to re-provision only.
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=govcms
-      export COMPOSER=composer.govcms.json
-      if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
-        scripts/custom/build-variant.sh --provision-only
-      elif scripts/quant/confirm.sh "Running this command will remove your current database and files. Are you sure?"; then
-        scripts/custom/build-variant.sh
-      else
-        echo "Cancelled."
-      fi
-
-  build-govcms-subtheme-sibling:
-    usage: Build with GovCMS profile (sub-theme as sibling). Use SKIP_DOCKER_BUILD=1 to re-provision only.
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=govcms
-      export CIVICTHEME_INSTALL_SIBLING=1
       export COMPOSER=composer.govcms.json
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
@@ -118,7 +74,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=corporate
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
@@ -133,7 +88,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=government
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
@@ -148,7 +102,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=highereducation
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       if [ "${SKIP_DOCKER_BUILD:-}" = "1" ]; then
         scripts/custom/build-variant.sh --provision-only
@@ -220,10 +173,6 @@ commands:
     usage: Build CivicTheme base theme assets (host npm — components/ + dist/).
     cmd: scripts/custom/fe-build.sh
 
-  fe-subtheme:
-    usage: Build the generated civictheme_demo sub-theme assets (host npm).
-    cmd: scripts/custom/fe-build.sh --subtheme
-
   fe-build:
     usage: |
       Build the theme assets via Docker (the image's own assets stage) rather
@@ -248,43 +197,17 @@ commands:
     cmd: scripts/quant/exec.sh bash -c "/opt/drupal/scripts/quant/provision.sh"
 
   provision-minimal:
-    usage: Provision with minimal profile (no sub-theme).
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=minimal
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
-      scripts/custom/build-variant.sh --provision-only
-
-  provision-minimal-subtheme:
-    usage: Provision with minimal profile (with sub-theme).
+    usage: Provision with minimal profile.
     cmd: |
       set -e
       export DRUPAL_INSTALL_PROFILE=minimal
       scripts/custom/build-variant.sh --provision-only
 
   provision-govcms:
-    usage: Provision with GovCMS profile (no sub-theme). Requires the govcms stack (see build-govcms).
+    usage: Provision with GovCMS profile. Requires the govcms stack (see build-govcms).
     cmd: |
       set -e
       export DRUPAL_INSTALL_PROFILE=govcms
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
-      export COMPOSER=composer.govcms.json
-      scripts/custom/build-variant.sh --provision-only
-
-  provision-govcms-subtheme:
-    usage: Provision with GovCMS profile (with sub-theme).
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=govcms
-      export COMPOSER=composer.govcms.json
-      scripts/custom/build-variant.sh --provision-only
-
-  provision-govcms-subtheme-sibling:
-    usage: Provision with GovCMS profile (sub-theme as sibling).
-    cmd: |
-      set -e
-      export DRUPAL_INSTALL_PROFILE=govcms
-      export CIVICTHEME_INSTALL_SIBLING=1
       export COMPOSER=composer.govcms.json
       scripts/custom/build-variant.sh --provision-only
 
@@ -293,7 +216,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=corporate
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       scripts/custom/build-variant.sh --provision-only
 
@@ -302,7 +224,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=government
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       scripts/custom/build-variant.sh --provision-only
 
@@ -311,7 +232,6 @@ commands:
     cmd: |
       set -e
       export CIVICTHEME_CONTENT_PROFILE=highereducation
-      export CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1
       export CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
       scripts/custom/build-variant.sh --provision-only
 

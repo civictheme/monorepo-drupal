@@ -149,7 +149,7 @@ final class CivicthemeField {
   public static function getReferencedEntities(FieldableEntityInterface $entity, string $field_name, array &$build = []): array {
     $trigger_bc = empty($build);
     if ($trigger_bc) {
-      @trigger_error('Calling civictheme_get_field_referenced_entities() without the $build argument is deprecated in civictheme:1.12.0 It will be required in civictheme:1.13.0. Triggered when getting entity for ' . $field_name . '. See https://www.drupal.org/node/3552745', E_USER_DEPRECATED);
+      @trigger_error('Calling CivicthemeField::getReferencedEntities() without the $build argument is deprecated in civictheme:1.12.0 It will be required in civictheme:1.13.0. Triggered when getting entity for ' . $field_name . '. See https://www.drupal.org/node/3552745', E_USER_DEPRECATED);
     }
     if (self::hasValue($entity, $field_name)) {
       /** @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
