@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.civictheme_page
+  module:
+    - node
+id: civictheme_page
+label: Page
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  d0cb40e2-2a88-4a13-8c3d-4dc398a6865f:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      civictheme_page: civictheme_page
+selection_logic: and
+weight: -5
+relationships: {  }

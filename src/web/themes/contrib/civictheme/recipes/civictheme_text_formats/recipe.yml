@@ -1,0 +1,13 @@
+name: 'CivicTheme text formats'
+description: 'Rich text and plain text formats, the CKEditor 5 profile and the linkit profile used by CivicTheme content.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_media
+install:
+  - ckeditor5
+  - editor
+  - filter
+  - linkit
+  - node
+config:
+  strict: false

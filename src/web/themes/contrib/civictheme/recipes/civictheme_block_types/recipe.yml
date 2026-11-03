@@ -1,0 +1,15 @@
+name: 'CivicTheme block types'
+description: 'Banner, component block, mobile navigation, search and social links block content types with their fields and displays.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_paragraphs
+  - civictheme_webform
+  - civictheme_media
+install:
+  - block
+  - block_content
+config:
+  strict: false
+  import:
+    block_content:
+      - core.entity_view_mode.block_content.full

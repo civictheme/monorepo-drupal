@@ -1,0 +1,5 @@
+name: 'CivicTheme menus'
+description: 'Primary navigation, secondary navigation and footer menus.'
+type: 'CivicTheme'
+config:
+  strict: false

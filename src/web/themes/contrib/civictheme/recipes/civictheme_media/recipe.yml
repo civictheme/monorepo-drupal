@@ -1,0 +1,28 @@
+name: 'CivicTheme media types'
+description: 'Audio, document, icon, image, remote video and video media types with their fields, displays, view modes and the media browser view.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_taxonomy
+  - civictheme_image_styles
+install:
+  - file
+  - layout_builder
+  - link
+  - media
+  - media_library
+  - path
+  - views
+config:
+  strict: false
+  import:
+    media:
+      - core.entity_view_mode.media.full
+    media_library:
+      - core.entity_form_mode.media.media_library
+      - core.entity_view_mode.media.media_library
+      - image.style.media_library
+      - views.view.media_library
+  actions:
+    media.settings:
+      simpleConfigUpdate:
+        standalone_url: true

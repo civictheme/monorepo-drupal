@@ -1,0 +1,10 @@
+{
+    "name": "drupal/civictheme_text_formats",
+    "description": "Rich text and plain text formats, the CKEditor 5 profile and the linkit profile used by CivicTheme content.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/linkit": "^7"
+    }
+}

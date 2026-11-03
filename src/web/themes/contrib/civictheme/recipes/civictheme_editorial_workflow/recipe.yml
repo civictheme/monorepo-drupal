@@ -1,0 +1,15 @@
+name: 'CivicTheme editorial workflow'
+description: 'The editorial moderation workflow covering CivicTheme content, block and media bundles, with the moderated content view.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_page
+  - civictheme_event
+  - civictheme_alert
+  - civictheme_block_types
+  - civictheme_media
+install:
+  - content_moderation
+  - views
+  - workflows
+config:
+  strict: false

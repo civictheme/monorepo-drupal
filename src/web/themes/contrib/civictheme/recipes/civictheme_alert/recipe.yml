@@ -1,0 +1,14 @@
+name: 'CivicTheme alert'
+description: 'Fields, form and view displays, the URL alias pattern and the alerts endpoint view for the alert content type.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_node_types
+  - civictheme_text_formats
+install:
+  - path
+  - pathauto
+  - rest
+  - serialization
+  - views
+config:
+  strict: false

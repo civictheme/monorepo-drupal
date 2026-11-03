@@ -1,0 +1,22 @@
+name: 'CivicTheme roles'
+description: 'Content author, content approver and site administrator roles.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_page
+  - civictheme_event
+  - civictheme_alert
+  - civictheme_webform
+  - civictheme_block_types
+  - civictheme_editorial_workflow
+install:
+  - contextual
+  - redirect
+  - shortcut
+config:
+  strict: false
+  import:
+    redirect:
+      - system.action.redirect_delete_action
+      - views.view.redirect
+    shortcut:
+      - shortcut.set.default

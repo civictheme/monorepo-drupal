@@ -1,0 +1,9 @@
+{
+    "name": "drupal/civictheme_date_formats",
+    "description": "Short date and short date-and-time formats.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12"
+    }
+}

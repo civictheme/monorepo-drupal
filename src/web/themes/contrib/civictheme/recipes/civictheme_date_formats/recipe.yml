@@ -1,0 +1,5 @@
+name: 'CivicTheme date formats'
+description: 'Short date and short date-and-time formats.'
+type: 'CivicTheme'
+config:
+  strict: false

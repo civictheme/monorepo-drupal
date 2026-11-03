@@ -1,0 +1,16 @@
+name: 'CivicTheme page'
+description: 'Fields, form and view displays and the URL alias pattern for the page content type.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_node_types
+  - civictheme_paragraphs
+  - civictheme_webform
+  - civictheme_taxonomy
+  - civictheme_media
+  - civictheme_menus
+install:
+  - layout_builder_restrictions
+  - path
+  - pathauto
+config:
+  strict: false

@@ -1,0 +1,9 @@
+{
+    "name": "drupal/civictheme_site",
+    "description": "Applies the complete CivicTheme content model.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12"
+    }
+}

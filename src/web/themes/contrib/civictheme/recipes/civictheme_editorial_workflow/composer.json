@@ -1,0 +1,9 @@
+{
+    "name": "drupal/civictheme_editorial_workflow",
+    "description": "The editorial moderation workflow covering CivicTheme content, block and media bundles, with the moderated content view.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12"
+    }
+}

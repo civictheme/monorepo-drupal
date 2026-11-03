@@ -1,0 +1,19 @@
+name: 'CivicTheme site'
+description: 'Applies the complete CivicTheme content model. Search is a deliberate add-on: apply civictheme_search separately.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_taxonomy
+  - civictheme_image_styles
+  - civictheme_media
+  - civictheme_text_formats
+  - civictheme_date_formats
+  - civictheme_menus
+  - civictheme_node_types
+  - civictheme_paragraphs
+  - civictheme_webform
+  - civictheme_page
+  - civictheme_event
+  - civictheme_alert
+  - civictheme_block_types
+  - civictheme_editorial_workflow
+  - civictheme_roles
