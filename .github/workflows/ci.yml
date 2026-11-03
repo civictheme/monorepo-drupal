@@ -700,7 +700,7 @@ jobs:
 
   # ──────────────────────────────────────────────────────────────────────────
   # Downstream repository publishing (was CircleCI deploy_artifact):
-  #   - theme → git.drupal.org project/civictheme (3.x — the starterkit line;
+  #   - theme → git.drupal.org project/civictheme (2.x — the starterkit line;
   #     1.x is the legacy line and is only used as the branch-from fallback)
   #   - civictheme_govcms / _content / _admin → GitHub (main)
   # The published theme tree is built on the host (same recipe as the image's
@@ -750,7 +750,7 @@ jobs:
           install -m 600 /dev/null ~/.ssh/push_key_drupal_org
           printf '%s\n' "${DEPLOY_SSH_KEY_DRUPAL_ORG}" > ~/.ssh/push_key_drupal_org
           DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_drupal_org" \
-          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-3.x}" \
+          PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-2.x}" \
           PUSH_CODE_REMOTE_BRANCH_FALLBACK=1.x \
           PUSH_CODE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
           PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/themes/contrib/civictheme_starter" \
