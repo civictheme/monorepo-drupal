@@ -1,0 +1,10 @@
+{
+    "name": "drupal/civictheme_webform",
+    "description": "The webform paragraph component and the enquiry and feedback webforms.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/webform": "^6.2"
+    }
+}

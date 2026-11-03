@@ -192,6 +192,7 @@
             "replace": true,
             "require": [
                 "web/themes/contrib/civictheme/composer.json",
+                "web/themes/contrib/civictheme/recipes/*/composer.json",
                 "web/modules/custom/civictheme_admin/composer.json",
                 "web/modules/custom/civictheme_content/composer.json",
                 "web/modules/custom/civictheme_dev/composer.json",

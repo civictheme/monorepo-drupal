@@ -23,7 +23,7 @@ class CivicthemeAlertPagerUpdateTest extends UnitTestCase {
    * Tests existing views and repeat execution of the update.
    */
   public function testExistingView(): void {
-    $data = Yaml::parseFile(__DIR__ . '/../../../config/install/views.view.civictheme_alerts.yml');
+    $data = Yaml::parseFile(__DIR__ . '/../../../recipes/civictheme_alert/config/views.view.civictheme_alerts.yml');
     // Simulate the previous release, where REST defaults to a limited pager.
     unset($data['display']['rest_export_civictheme_alerts']['display_options']['pager']);
     $expected = $data;

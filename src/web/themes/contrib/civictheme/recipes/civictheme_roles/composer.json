@@ -1,0 +1,10 @@
+{
+    "name": "drupal/civictheme_roles",
+    "description": "Content author, content approver and site administrator roles.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/redirect": "^1.9"
+    }
+}

@@ -113,6 +113,16 @@ php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('
 info "Merging configuration from extension's composer.json."
 php -r "echo json_encode(array_replace_recursive(json_decode(file_get_contents('composer.json'), true),json_decode(file_get_contents('build/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
 
+# The content model ships as recipes inside the theme; each recipe's
+# composer.json carries the modules its config needs, so merge their
+# requirements the same way the monorepo's merge-plugin include does.
+if compgen -G "recipes/*/composer.json" >/dev/null; then
+  info "Merging requirements from recipe composer.json files."
+  for recipe_composer in recipes/*/composer.json; do
+    php -r "\$r = json_decode(file_get_contents('${recipe_composer}'), true); echo json_encode(array_replace_recursive(['require' => \$r['require'] ?? []],json_decode(file_get_contents('build/composer.json'), true)),JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);" >"build/composer2.json" && mv -f "build/composer2.json" "build/composer.json"
+  done
+fi
+
 # Core patches only apply to the core version they were built against, so the
 # monorepo keeps one list per major and only the list matching the version being
 # built is merged in. The lists and the patches themselves live at the monorepo

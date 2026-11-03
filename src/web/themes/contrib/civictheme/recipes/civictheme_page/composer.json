@@ -1,0 +1,11 @@
+{
+    "name": "drupal/civictheme_page",
+    "description": "Fields, form and view displays and the URL alias pattern for the page content type.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/layout_builder_restrictions": "^3",
+        "drupal/pathauto": "^1.12"
+    }
+}

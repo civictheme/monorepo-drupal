@@ -1,0 +1,14 @@
+name: 'CivicTheme event'
+description: 'Fields, form and view displays and the URL alias pattern for the event content type.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_node_types
+  - civictheme_paragraphs
+  - civictheme_taxonomy
+  - civictheme_media
+install:
+  - layout_builder_restrictions
+  - path
+  - pathauto
+config:
+  strict: false

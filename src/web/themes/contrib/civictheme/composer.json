@@ -10,18 +10,6 @@
     },
     "require": {
         "php": ">=8.3",
-        "drupal/field_group": "^4.0",
-        "drupal/focal_point": "^2.0",
-        "drupal/layout_builder_restrictions": "^3",
-        "drupal/linkit": "^7",
-        "drupal/menu_block": "^1.10",
-        "drupal/paragraphs": "^1.16",
-        "drupal/pathauto": "^1.12",
-        "drupal/redirect": "^1.9",
-        "drupal/simple_sitemap": "^4.2",
-        "drupal/webform": "^6.2"
-    },
-    "suggest": {
-        "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
+        "drupal/menu_block": "^1.10"
     }
 }

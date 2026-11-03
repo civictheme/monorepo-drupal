@@ -83,3 +83,7 @@ done
 [ "${found}" -ne 0 ] && echo "ERROR: Found ${found} files with UUIDs in configuration." && exit 1
 
 echo "  > OK: UUIDs were not found in configuration files."
+
+echo "==> Comparing recipe configuration files"
+
+./scripts/update.recipe-config.sh check

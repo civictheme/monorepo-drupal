@@ -1,0 +1,55 @@
+name: 'CivicTheme webform'
+description: 'The webform paragraph component and the enquiry and feedback webforms.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_paragraphs
+install:
+  - webform
+config:
+  strict: false
+  import:
+    webform:
+      - system.action.webform_archive_action
+      - system.action.webform_close_action
+      - system.action.webform_delete_action
+      - system.action.webform_open_action
+      - system.action.webform_submission_delete_action
+      - system.action.webform_submission_make_lock_action
+      - system.action.webform_submission_make_sticky_action
+      - system.action.webform_submission_make_unlock_action
+      - system.action.webform_submission_make_unsticky_action
+      - system.action.webform_unarchive_action
+      - webform.webform.contact
+      - webform.webform_options.country_codes
+      - webform.webform_options.country_names
+      - webform.webform_options.days
+      - webform.webform_options.education
+      - webform.webform_options.employment_status
+      - webform.webform_options.ethnicity
+      - webform.webform_options.gender
+      - webform.webform_options.industry
+      - webform.webform_options.languages
+      - webform.webform_options.likert_agreement
+      - webform.webform_options.likert_comparison
+      - webform.webform_options.likert_importance
+      - webform.webform_options.likert_quality
+      - webform.webform_options.likert_satisfaction
+      - webform.webform_options.likert_ten_scale
+      - webform.webform_options.likert_would_you
+      - webform.webform_options.marital_status
+      - webform.webform_options.months
+      - webform.webform_options.phone_types
+      - webform.webform_options.province_codes
+      - webform.webform_options.province_names
+      - webform.webform_options.relationship
+      - webform.webform_options.sex
+      - webform.webform_options.sex_icao
+      - webform.webform_options.size
+      - webform.webform_options.state_codes
+      - webform.webform_options.state_names
+      - webform.webform_options.state_province_codes
+      - webform.webform_options.state_province_names
+      - webform.webform_options.time_zones
+      - webform.webform_options.titles
+      - webform.webform_options.translations
+      - webform.webform_options.yes_no

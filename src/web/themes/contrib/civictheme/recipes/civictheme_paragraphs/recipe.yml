@@ -1,0 +1,23 @@
+name: 'CivicTheme components'
+description: 'The paragraph component library: every CivicTheme paragraph type with its fields and displays, and the automated list view.'
+type: 'CivicTheme'
+recipes:
+  - civictheme_node_types
+  - civictheme_media
+  - civictheme_taxonomy
+  - civictheme_text_formats
+  - civictheme_date_formats
+install:
+  - datetime
+  - datetime_range
+  - entity_reference_revisions
+  - field_group
+  - link
+  - options
+  - paragraphs
+  - views
+config:
+  strict: false
+  import:
+    paragraphs:
+      - core.entity_view_mode.paragraph.preview

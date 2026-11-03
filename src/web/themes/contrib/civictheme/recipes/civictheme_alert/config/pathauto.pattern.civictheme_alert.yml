@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.civictheme_alert
+  module:
+    - node
+id: civictheme_alert
+label: Alert
+type: 'canonical_entities:node'
+pattern: '/alerts/[node:title]'
+selection_criteria:
+  47608ecb-ac88-4819-b6e1-9a517f094bd8:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      civictheme_alert: civictheme_alert
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,11 @@
+{
+    "name": "drupal/civictheme_paragraphs",
+    "description": "The paragraph component library: every CivicTheme paragraph type with its fields and displays, and the automated list view.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/field_group": "^4.0",
+        "drupal/paragraphs": "^1.16"
+    }
+}

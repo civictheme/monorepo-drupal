@@ -1,0 +1,9 @@
+{
+    "name": "drupal/civictheme_media",
+    "description": "Audio, document, icon, image, remote video and video media types with their fields, displays, view modes and the media browser view.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12"
+    }
+}

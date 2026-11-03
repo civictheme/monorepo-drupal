@@ -65,7 +65,9 @@ drush status
 # CIVICTHEME SPECIFIC
 ########################################
 
-info "Enabling extension ${extension}."
+info "Enabling modules required by the extension ${extension}."
+# Installs the modules the theme's optional config (block placements) depends
+# on; the recipes below install everything the content model needs.
 drush -r "build/web" php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
 
 ########################################
@@ -86,6 +88,18 @@ drush cr
 
 echo "  > Setting theme ${extension} as default."
 drush -r "build/web" config:set system.theme default "${extension}" -y
+
+info "Applying the CivicTheme content model recipes."
+# The theme must be installed before the recipes apply: the entity display
+# config they ship uses layout plugins the theme provides.
+drush recipe:apply "$(pwd)/build/web/themes/custom/${extension}/recipes/civictheme_site"
+drush recipe:apply "$(pwd)/build/web/themes/custom/${extension}/recipes/civictheme_search"
+
+echo "  > Installing optional config whose dependencies the recipes satisfied."
+# The theme's optional block placements depend on config the recipes created
+# (menus, block content types, views); re-run the optional config sweep so
+# they are picked up deterministically.
+drush -r "build/web" php:eval "\Drupal::service('config.installer')->installOptionalConfig();"
 
 echo "  > Provisioning content from theme defaults."
 drush -r "build/web" php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_provision_cli();"

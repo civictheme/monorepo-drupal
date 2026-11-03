@@ -1,0 +1,13 @@
+name: 'CivicTheme content types'
+description: 'Bare page, event and alert content types, the shared node field storages and the card view modes.'
+type: 'CivicTheme'
+install:
+  - datetime
+  - datetime_range
+  - media
+  - menu_ui
+  - node
+  - options
+  - taxonomy
+config:
+  strict: false

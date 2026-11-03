@@ -1,0 +1,16 @@
+name: 'CivicTheme image styles'
+description: 'Image styles for cards, campaign, sliders and content images, with focal point support.'
+type: 'CivicTheme'
+install:
+  - focal_point
+  - image
+config:
+  strict: false
+  import:
+    focal_point:
+      - crop.type.focal_point
+    image:
+      - image.style.large
+      - image.style.medium
+      - image.style.thumbnail
+      - image.style.wide

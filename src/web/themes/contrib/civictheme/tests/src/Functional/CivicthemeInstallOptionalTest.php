@@ -10,8 +10,8 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 /**
  * Class CivicthemeInstallOptionalTest.
  *
- * Tests the installation of the CivicTheme with required and optional
- * dependencies.
+ * Tests the installation of the CivicTheme on a site with the full content
+ * model applied from the recipes.
  *
  * @group civictheme:functional
  * @group site:functional

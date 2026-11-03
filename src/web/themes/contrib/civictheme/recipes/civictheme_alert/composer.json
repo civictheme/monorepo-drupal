@@ -1,0 +1,10 @@
+{
+    "name": "drupal/civictheme_alert",
+    "description": "Fields, form and view displays, the URL alias pattern and the alerts endpoint view for the alert content type.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12",
+        "drupal/pathauto": "^1.12"
+    }
+}

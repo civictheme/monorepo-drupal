@@ -1,0 +1,9 @@
+{
+    "name": "drupal/civictheme_taxonomy",
+    "description": "Topics, site sections and media tags vocabularies.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.4 || ^12"
+    }
+}
