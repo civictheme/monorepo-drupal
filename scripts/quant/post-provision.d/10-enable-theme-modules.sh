@@ -50,9 +50,20 @@ drush theme-enable civictheme
 drush config-set system.theme default civictheme
 
 echo "  > Apply the CivicTheme content model recipes."
+# Plugin discovery can race the module installs a recipe performs (observed
+# as 'The "search_api_query" plugin does not exist' while the search recipe
+# imports its view, with the module installed moments earlier). Recipes are
+# idempotent, so rebuild caches and retry once before giving up.
+apply_recipe() {
+  if ! drush recipe:apply "$1"; then
+    echo "  > Recipe $1 failed; rebuilding caches and retrying once."
+    drush cache:rebuild
+    drush recipe:apply "$1"
+  fi
+}
 theme_dir="${APP_ROOT}/web/themes/contrib/civictheme"
-drush recipe:apply "${theme_dir}/recipes/civictheme_site"
-drush recipe:apply "${theme_dir}/recipes/civictheme_search"
+apply_recipe "${theme_dir}/recipes/civictheme_site"
+apply_recipe "${theme_dir}/recipes/civictheme_search"
 
 echo "  > Install optional config whose dependencies the recipes satisfied."
 # The theme's optional block placements depend on config the recipes created
