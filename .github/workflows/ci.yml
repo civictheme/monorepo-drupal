@@ -54,6 +54,23 @@ permissions:
 jobs:
 
   # ──────────────────────────────────────────────────────────────────────────
+  # Naming-contract guard for the starterkit conversion: tokens that extend
+  # the future kit machine name get corrupted by core's generate-theme blind
+  # rename, so they are banned repo-wide. Report-only listing of every token
+  # extending the machine name rides along in the job log.
+  # ──────────────────────────────────────────────────────────────────────────
+  naming-contract:
+    name: Naming contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Check the starterkit naming contract
+        run: ./scripts/lint.naming-contract.sh
+
+  # ──────────────────────────────────────────────────────────────────────────
   # Isolated theme build within a vanilla Drupal installation.
   # Replicates (to a degree) what Drupal CI would do.
   # ──────────────────────────────────────────────────────────────────────────
