@@ -137,6 +137,10 @@ COPY --from=ghcr.io/salsadigitalauorg/shipshape:latest /usr/local/bin/shipshape 
 # so those must be present before `composer install`.
 COPY src/composer.json src/composer.lock* ./
 COPY src/web/themes/contrib/civictheme/composer.json ./web/themes/contrib/civictheme/
+# The content model recipes carry per-recipe composer manifests which the
+# merge plugin requires; the directory is small, so copy it whole rather than
+# flattening a glob of composer.json files.
+COPY src/web/themes/contrib/civictheme/recipes/ ./web/themes/contrib/civictheme/recipes/
 COPY src/web/modules/custom/civictheme_admin/composer.json ./web/modules/custom/civictheme_admin/
 COPY src/web/modules/custom/civictheme_content/composer.json ./web/modules/custom/civictheme_content/
 COPY src/web/modules/custom/civictheme_dev/composer.json ./web/modules/custom/civictheme_dev/
