@@ -28,17 +28,17 @@ dependencies on other modules or themes.
 To run the isolated build, use the following command:
 
 ```bash
-cd web/themes/contrib/civictheme
+cd web/themes/contrib/civictheme_starter
 ahoy build
 ```
 
-This will assemble the full Drupal codebase in `web/themes/contrib/civictheme/build`
+This will assemble the full Drupal codebase in `web/themes/contrib/civictheme_starter/build`
 directory and will symlink the CivicTheme theme files into the
-`web/themes/contrib/civictheme/build/web/themes/custom/civictheme` directory.
+`web/themes/contrib/civictheme_starter/build/web/themes/custom/civictheme` directory.
 
 **This does not use Docker and does not require a running Docker stack.**
 
-Important: make sure to removed `web/themes/contrib/civictheme/build` directory
+Important: make sure to removed `web/themes/contrib/civictheme_starter/build` directory
 before running the `Full build` build to avoid any conflicts.
 
 ## Full build (Docker build)
@@ -54,13 +54,12 @@ The following steps outline the build process:
    `ahoy provision` for a rebuild.
 2. Activate additional modules needed for development by installing the
    `civictheme_dev` module.
-3. Enable the `civictheme` theme and import its configuration.
-4. Generate a `civictheme_demo` sub-theme using the provided scaffolding script
-   and set it as the default theme.
-5. Activate the `civictheme_admin` module for enhancements in the admin UI.
-6. Activate the `civictheme_govcms` module to discard pre-configured GovCMS
+3. Enable the `civictheme` theme, set it as the default theme and apply the
+   content model recipes shipped in the theme's `recipes/` directory.
+4. Activate the `civictheme_admin` module for enhancements in the admin UI.
+5. Activate the `civictheme_govcms` module to discard pre-configured GovCMS
    content types.
-7. Enable the `civictheme_content` module to incorporate default content into
+6. Enable the `civictheme_content` module to incorporate default content into
    the installation.
 
 ### Custom Drupal Site Building Scripts
@@ -70,18 +69,14 @@ the profile, following the order of their numbering.
 
 By default, the site:
 
-- Installs Drupal 10.
+- Installs Drupal.
 - Installs the `govcms` profile.
-- Installs the CivicTheme Drupal theme.
-- Creates and installs the CivicTheme Demo sub-theme.
+- Installs the CivicTheme Drupal theme and applies its content model recipes.
 - Provides demo content.
 
 Override the default behavior using these environment variables:
 
 - `DRUPAL_PROFILE=minimal` - Uses the `minimal` profile for installation.
-  For Drupal 10, this becomes the enforced default.
-- `CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1` - Omits activation of the demo
-  sub-theme.
 - `CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1` - Skips the creation of demo
   content.
 
@@ -93,8 +88,8 @@ Example:
 
 ```bash
 # Install Drupal site using `minimal` profile with CivicTheme.
-# Do not create a sub-theme and do not provision demo content.
-CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
+# Do not provision demo content.
+CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
 ```
 
 ### Compiling theme assets
@@ -102,25 +97,22 @@ CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1
 To compile all assets in all themes: `ahoy fe`
 
 ```bash
-
 # CivicTheme Drupal theme
-cd web/themes/contrib/civictheme
-npm run build
-
-# CivicTheme Drupal Demo theme
-cd web/themes/custom/civictheme_demo
+cd web/themes/contrib/civictheme_starter
 npm run build
 ```
 
-Refer to the [theme's Readme](web/themes/contrib/civictheme/README.md) for more
+Refer to the [theme's Readme](web/themes/contrib/civictheme_starter/README.md) for more
 information about switching of the UIKit version and other theme-specific
 details.
 
 ### Working with configurations
 
-Configuration is captured using [Config Devel](https://www.drupal.org/project/config_devel) module for:
-- CivicTheme theme into `config/install` and `config/optional` directories.
-- Development `civictheme_dev` module's `config/install` and `config/optional` directories.
+Theme-owned configuration (theme settings and block placements) is captured
+using the [Config Devel](https://www.drupal.org/project/config_devel) module;
+the content model is captured into the theme's `recipes/*/config` directories
+by `scripts/update.recipe-config.sh`. The development `civictheme_dev` module
+uses Config Devel for its `config/install` and `config/optional` directories.
 
 #### Exporting configurations
 
@@ -128,19 +120,12 @@ Configuration is captured using [Config Devel](https://www.drupal.org/project/co
 ahoy export-config
 ```
 
-To add new configuration to the export, add configuration name to `civictheme.info.yml`.
+To add new configuration to the export, add configuration name to `civictheme_starter.info.yml`.
 
 Tip: You can get the configuration name by exporting configuration with `drush cex -y`
 to `config/default` and using file names without `.yml` extension. Do not forget
 to remove all exported configuration files from `config/default` or the next site
 install will fail. But this all is already handled in `ahoy export-config`.
-
-Note: Configuration for blocks in `civictheme` will be copied to `civictheme_demo` on
-installation of `civictheme_demo`. We do not capture configuration for `civictheme_demo`.
-
-Exclude certain configuration from automatically be added to `civictheme.info.yml`
-by adding records to [theme_excluded_configs.txt](./scripts/theme_excluded_configs.txt).
-Note that wildcards are supported.
 
 #### Validating configurations
 
@@ -172,7 +157,7 @@ These steps are captured below:
 ```bash
 # Step 1: Install a site with the desired content profile.
 export CIVICTHEME_CONTENT_PROFILE=default
-DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
+DRUPAL_PROFILE=minimal CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 ahoy provision
 
 # Step 2: Make changes.
 # ...

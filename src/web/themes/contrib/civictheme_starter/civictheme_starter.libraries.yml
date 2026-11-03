@@ -1,0 +1,38 @@
+global:
+  css:
+    theme:
+      dist/civictheme_starter.base.css: {}
+      dist/civictheme_starter.theme.css: {}
+      dist/civictheme_starter.variables.css: {}
+  js:
+    dist/civictheme_starter.drupal.base.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings
+
+css-variables:
+  css:
+    theme:
+      dist/civictheme_starter.variables.css: { preprocess: false, weight: 10 }
+
+layouts:
+  css:
+    theme:
+      dist/civictheme_starter.layout.css: {}
+
+admin:
+  css:
+    theme:
+      dist/civictheme_starter.admin.css: {}
+
+# Colour picker integration for CivicTheme theme settings.
+theme-settings.colors:
+  css:
+    theme:
+      theme-settings/civictheme_starter.theme-settings.colors.css: {}
+  js:
+    theme-settings/civictheme_starter.theme-settings.colors.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

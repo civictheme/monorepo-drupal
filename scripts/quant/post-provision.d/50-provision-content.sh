@@ -24,7 +24,7 @@ if [ -n "${CIVICTHEME_CONTENT_PROFILE:-}" ]; then
   drush pm-enable civictheme_content
 else
   echo "  > Provisioning content from theme defaults."
-  drush php:eval -v "require_once '${APP_ROOT}/web/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
+  drush php:eval -v "require_once '${APP_ROOT}/web/themes/contrib/civictheme_starter/theme-settings.provision.inc'; civictheme_provision_cli();"
 fi
 
 if [ "${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}" != "1" ]; then

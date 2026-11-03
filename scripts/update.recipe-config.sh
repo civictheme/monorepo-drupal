@@ -3,10 +3,10 @@
 # Update (or check) the CivicTheme recipe config from the current site config.
 #
 # Routes every config item owned by a recipe — per the manifest at
-# web/themes/contrib/civictheme/.devtools/recipe-manifest.json — from a full
+# web/themes/contrib/civictheme_starter/.devtools/recipe-manifest.json — from a full
 # site export into the owning recipe's config/ directory, with the uuid and
 # _core site identity stripped. This replaces the retired `drush cde` flow for
-# the content model; theme-owned config (civictheme.settings and the block
+# the content model; theme-owned config (civictheme_starter.settings and the block
 # placements) still exports through config_devel via update.theme-config.sh.
 #
 # Usage (inside the app container, from /opt/drupal):
@@ -19,7 +19,7 @@ set -eu
 MODE="${1:-update}"
 
 # Theme dir.
-THEME_DIR="web/themes/contrib/civictheme"
+THEME_DIR="web/themes/contrib/civictheme_starter"
 
 # Manifest mapping config names to owning recipes.
 MANIFEST="${THEME_DIR}/.devtools/recipe-manifest.json"

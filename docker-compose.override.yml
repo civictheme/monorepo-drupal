@@ -256,11 +256,6 @@ services:
       # Which content profile the provision-content hook installs
       # (empty = theme defaults; corporate|government|highereducation).
       CIVICTHEME_CONTENT_PROFILE: ${CIVICTHEME_CONTENT_PROFILE:-}
-      # 1 = don't create/activate the generated civictheme_demo sub-theme.
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: ${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP:-}
-      # 1 = generate the sub-theme as a sibling of the base theme
-      # (web/themes/contrib/civictheme_demo) instead of themes/custom.
-      CIVICTHEME_INSTALL_SIBLING: ${CIVICTHEME_INSTALL_SIBLING:-}
       # 1 = skip creating generated test content (content-profile envs).
       CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP: ${CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP:-}
       # 1 = skip enabling admin/dev helper modules.

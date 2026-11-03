@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the CivicTheme theme.
+ *
+ * All hook implementations live in object-oriented hook classes under
+ * src/Hook (discovered automatically by Drupal core 11.4+):
+ * - \Drupal\civictheme_starter\Hook\CivicThemeStarterThemeHooks
+ * - \Drupal\civictheme_starter\Hook\CivicThemeStarterSuggestionsHooks
+ * - \Drupal\civictheme_starter\Hook\CivicThemeStarterFormAlterHooks
+ * - \Drupal\civictheme_starter\Hook\Preprocess\*
+ */
+
+declare(strict_types=1);

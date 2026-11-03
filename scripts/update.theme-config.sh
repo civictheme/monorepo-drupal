@@ -2,8 +2,8 @@
 ##
 # Update theme config from the current site config.
 #
-# Theme-owned config (civictheme.settings and the block placements) is the
-# curated list in civictheme.info.yml's config_devel block: this script
+# Theme-owned config (civictheme_starter.settings and the block placements) is the
+# curated list in civictheme_starter.info.yml's config_devel block: this script
 # re-exports those items via config_devel. The content model lives in the
 # recipes under the theme's recipes/ directory and is exported separately by
 # ./scripts/update.recipe-config.sh.
@@ -16,7 +16,7 @@ set -eu
 [ -n "${SCAFFOLD_DEBUG:-}" ] && set -x
 
 # Theme info file.
-THEME_INFO="web/themes/contrib/civictheme/civictheme.info.yml"
+THEME_INFO="web/themes/contrib/civictheme_starter/civictheme_starter.info.yml"
 
 #-------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ rm "${theme_config_install_dir}"/* >/dev/null
 rm "${theme_config_optional_dir}"/* >/dev/null
 
 echo "  > Exporting theme configs"
-drush -q cde civictheme
+drush -q cde civictheme_starter
 
 echo "  > Exporting recipe configs"
 ./scripts/update.recipe-config.sh

@@ -14,5 +14,5 @@ config_devel:
     - block.block.civictheme_footer_menu_2
     - block.block.civictheme_footer_menu_3
     - block.block.civictheme_footer_menu_4
-    - civictheme.settings
+    - civictheme_starter.settings
 #;> DEVELOPMENT

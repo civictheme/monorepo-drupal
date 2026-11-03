@@ -1,0 +1,22 @@
+civictheme_three_columns:
+  label: 'Three columns'
+  path: templates/layout/
+  template: layout--three-columns
+  library: civictheme_starter/layouts
+  category: 'CivicTheme Layouts'
+  class: '\Drupal\civictheme_starter\Plugin\Layout\ThreeColumnsLayout'
+  default_region: main
+  icon_map:
+    - [first_above, main, second_above]
+    - [first_below, main, second_below]
+  regions:
+    sidebar_top_left:
+      label: 'Sidebar Top Left'
+    sidebar_bottom_left:
+      label: 'Sidebar Bottom Left'
+    main:
+      label: Main content
+    sidebar_top_right:
+      label: 'Sidebar Top Right'
+    sidebar_bottom_right:
+      label: 'Sidebar Bottom Right'

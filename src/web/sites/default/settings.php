@@ -220,7 +220,7 @@ ini_set('date.timezone', 'Australia/Melbourne');
 date_default_timezone_set('Australia/Melbourne');
 
 // Maintenance theme.
-$config['maintenance_theme'] = 'civictheme';
+$config['maintenance_theme'] = 'civictheme_starter';
 
 /**
  * Trusted hosts.

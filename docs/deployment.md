@@ -8,9 +8,9 @@ and tags:
 
 1. For `develop`/`main`/tags it first waits for the commit's CI run to pass;
    preview branches deploy immediately.
-2. It builds the app image (`.docker/drupal/Dockerfile`) — composer install,
-   generated `civictheme_demo` sub-theme and built front-end assets are all
-   baked in; servers never run composer or npm.
+2. It builds the app image (`.docker/drupal/Dockerfile`) — composer install
+   and built front-end assets are baked in; servers never run composer or
+   npm.
 3. It pushes the image and redeploys the matching environment (creating it
    from `production` if absent). A `develop` push also redeploys the three
    content environments (`content-corporate`, `content-government`,
@@ -33,8 +33,8 @@ The pipeline synthesises that signal:
   - **Different or no id / Drupal not installed** — first start of a new
     image, i.e. a deploy: run `scripts/quant/provision.sh` (drop tables,
     `drush site:install` from `DRUPAL_INSTALL_PROFILE` — profile or recipe
-    path — then the `post-provision.d/` hooks: enable CivicTheme, activate
-    `civictheme_demo`, modules, settings, content). The install runs in the
+    path — then the `post-provision.d/` hooks: enable CivicTheme and apply
+    its recipes, modules, settings, content). The install runs in the
     background so Apache starts within the platform's startup grace period;
     the site serves errors until the install lands (watch progress in the
     environment logs). The id is recorded on success.

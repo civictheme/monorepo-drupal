@@ -1,0 +1,193 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: themes/contrib/civictheme_starter/dist/assets/favicon.ico
+  use_default: false
+features:
+  favicon: true
+components:
+  logo:
+    primary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_light_desktop.svg
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_light_mobile.svg
+      dark:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_dark_desktop.svg
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_dark_mobile.svg
+      image_alt: 'CivicTheme Corporate'
+    secondary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_light_desktop.png
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_light_mobile.png
+      dark:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_dark_desktop.png
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_dark_mobile.png
+      image_alt: 'CivicTheme Corporate'
+  header:
+    theme: light
+    logo_type: inline
+  navigation:
+    primary_navigation:
+      dropdown: drawer
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
+    secondary_navigation:
+      dropdown: dropdown
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
+  footer:
+    theme: dark
+    logo_type: inline_stacked
+    background_image:
+      path: ''
+  link:
+    new_window: false
+    external_new_window: true
+    external_override_domains: {  }
+  skip_link:
+    theme: light
+  event_card:
+    summary_length: 160
+  navigation_card:
+    summary_length: 160
+  promo_card:
+    summary_length: 160
+  publication_card:
+    summary_length: 160
+    use_media_name: true
+  snippet:
+    summary_length: 160
+  attachment:
+    use_media_name: true
+  search:
+    keyword_fields: {  }
+  site_slogan:
+    content: 'A design system by Salsa Digital'
+colors:
+  use_color_selector: true
+  recipe: |
+    {
+      "version": 1,
+      "brands": {
+        "light": {
+          "brand1": "#00698f",
+          "brand2": "#e6e9eb",
+          "brand3": "#121313"
+        },
+        "dark": {
+          "brand1": "#61daff",
+          "brand2": "#003a4f",
+          "brand3": "#00698f"
+        }
+      },
+      "overrides": {
+        "color.palette.heading": {
+          "light": "#002a39",
+          "dark": "#f7fdff"
+        },
+        "color.palette.body": {
+          "light": "#334349",
+          "dark": "#e7f9ff"
+        },
+        "color.palette.background-light": {
+          "light": "#fcfcfd",
+          "dark": "#0c4357"
+        },
+        "color.palette.background": {
+          "light": "#e6e9eb",
+          "dark": "#003a4f"
+        },
+        "color.palette.background-dark": {
+          "light": "#b8babc",
+          "dark": "#002837"
+        },
+        "color.palette.border-light": {
+          "light": "#acaeb0",
+          "dark": "#a5bac1"
+        },
+        "color.palette.border": {
+          "light": "#5c5d5e",
+          "dark": "#194d60"
+        },
+        "color.palette.border-dark": {
+          "light": "#161717",
+          "dark": "#002837"
+        },
+        "color.palette.interaction-text": {
+          "light": "#fafafb",
+          "dark": "#003a4f"
+        },
+        "color.palette.interaction-background": {
+          "light": "#00698f",
+          "dark": "#61daff"
+        },
+        "color.palette.interaction-hover-text": {
+          "light": "#fafafb",
+          "dark": "#002837"
+        },
+        "color.palette.interaction-hover-background": {
+          "light": "#003f55",
+          "dark": "#a0e8ff"
+        },
+        "color.palette.interaction-focus": {
+          "light": "#855cd7",
+          "dark": "#8b5cd7"
+        },
+        "color.palette.highlight": {
+          "light": "#121313",
+          "dark": "#00698f"
+        },
+        "color.palette.information": {
+          "light": "#007ebd",
+          "dark": "#4dc4fd"
+        },
+        "color.palette.warning": {
+          "light": "#c95100",
+          "dark": "#e38444"
+        },
+        "color.palette.error": {
+          "light": "#ce3936",
+          "dark": "#e85653"
+        },
+        "color.palette.success": {
+          "light": "#008482",
+          "dark": "#14b0ae"
+        }
+      }
+    }
+  css: |
+    :root,
+    .ct-theme-light {
+      --ct-color-body: #334349;
+      --ct-color-background-light: #fcfcfd;
+      --ct-color-border-light: #acaeb0;
+      --ct-color-border-dark: #161717;
+      --ct-color-interaction-text: #fafafb;
+      --ct-color-interaction-hover-text: #fafafb;
+      --ct-color-interaction-hover-background: #003f55;
+      --ct-color-interaction-focus: #855cd7;
+      --ct-color-information: #007ebd;
+      --ct-color-error: #ce3936;
+    }
+
+    .ct-theme-dark {
+      --ct-color-background-light: #0c4357;
+      --ct-color-background-dark: #002837;
+      --ct-color-border-light: #a5bac1;
+      --ct-color-border: #194d60;
+      --ct-color-border-dark: #002837;
+      --ct-color-interaction-hover-text: #002837;
+      --ct-color-interaction-hover-background: #a0e8ff;
+      --ct-color-information: #4dc4fd;
+      --ct-color-success: #14b0ae;
+    }
+optouts: {  }

@@ -57,10 +57,4 @@ fi
 # Steps 0, 2, 3 — bootstrap, then deploy (updb + post-provision hooks).
 scripts/quant/exec.sh bash -c "/opt/drupal/scripts/quant/provision.sh"
 
-# The civictheme_demo sub-theme is generated at provision time by the
-# 20-activate-subtheme hook; its assets build on the host afterwards.
-if [ "${CIVICTHEME_SUBTHEME_ACTIVATION_SKIP:-}" != "1" ]; then
-  scripts/custom/fe-build.sh --subtheme
-fi
-
 scripts/quant/info.sh

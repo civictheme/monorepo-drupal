@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Date range field.
+ */
+#}
+{% include 'civictheme_starter:datetime' with {
+  start: date,
+  start_iso: date_iso|default(''),
+  end: date_end|default(''),
+  end_iso: date_end_iso|default(''),
+} only %}

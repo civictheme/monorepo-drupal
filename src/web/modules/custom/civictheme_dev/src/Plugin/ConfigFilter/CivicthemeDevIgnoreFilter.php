@@ -182,7 +182,7 @@ class CivicthemeDevIgnoreFilter extends ConfigFilterBase {
    */
   protected function getRolePermissionsMap(): array {
     // @phpstan-ignore-next-line
-    $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+    $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme_starter');
     $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
     if (!file_exists($provision_file)) {
       return [];

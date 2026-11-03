@@ -398,7 +398,7 @@ class FeatureContext extends DrupalContext {
    * The default theme differs between jobs (CivicTheme itself or a generated
    * sub-theme), and a sub-theme's own settings shadow the base theme's, so
    * tests must write to the current theme's settings rather than hardcode
-   * 'civictheme.settings'.
+   * 'civictheme_starter.settings'.
    *
    * @When I set the current theme setting :key to :value
    *

@@ -21,7 +21,7 @@ changes.
 In order to maintain the software quality we need to make sure that the code can run:
 1. On the current and next version of bare Drupal core
 2. On the current version of GovCMS
-3. As a standalone theme, sub-theme as a sibling and sub-theme as a custom theme
+3. As a standalone theme
 4. On current and next version of PHP
 5. For content profiles
 6. For the modules we publish

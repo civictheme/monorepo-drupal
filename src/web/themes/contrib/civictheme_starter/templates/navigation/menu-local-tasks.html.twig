@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display local tasks.
+ */
+#}
+{% if links.primary %}
+  <h2 class="ct-visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  {% include 'civictheme_starter:tabs' with {
+    links: links.primary,
+    vertical_spacing: 'top',
+    modifier_class: 'ct-tabs--local-tasks ct-tabs--local-tasks--primary',
+    theme: theme|default('light'),
+  } %}
+{% endif %}
+
+{% if links.secondary %}
+  <h2 class="ct-visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  {% include 'civictheme_starter:tabs' with {
+    links: links.secondary,
+    modifier_class: 'ct-tabs--local-tasks ct-tabs--local-tasks--secondary',
+    theme: theme|default('light'),
+  } %}
+{% endif %}

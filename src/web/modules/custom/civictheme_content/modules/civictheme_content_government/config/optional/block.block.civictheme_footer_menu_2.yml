@@ -6,9 +6,9 @@ dependencies:
   module:
     - menu_block
   theme:
-    - civictheme
+    - civictheme_starter
 id: civictheme_footer_menu_2
-theme: civictheme
+theme: civictheme_starter
 region: footer_middle_2
 weight: 0
 provider: null

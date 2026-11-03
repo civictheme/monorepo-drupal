@@ -1,0 +1,238 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\civictheme_starter\Theme\Block;
+
+use Drupal\civictheme_starter\CivicthemeConstants;
+use Drupal\civictheme_starter\Utility\CivicthemeField;
+use Drupal\civictheme_starter\Utility\CivicthemeMedia;
+use Drupal\civictheme_starter\Utility\CivicthemeNode;
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Link;
+
+/**
+ * Builds variables for the Banner block.
+ *
+ * Internal to CivicTheme.
+ *
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ */
+final class BannerBuilder {
+
+  /**
+   * Pre-process for Banner block.
+   *
+   * 3 parts:
+   * 1. Properties from the block.
+   * 2. Properties from the node that may override properties from the block.
+   * 3. Cache tags.
+   *
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   */
+  public static function preprocess(array &$variables): void {
+    if ($variables['base_plugin_id'] != 'block_content') {
+      return;
+    }
+
+    $block = $variables['elements']['content']['#block_content'];
+    if ($block->bundle() != 'civictheme_banner' || ($block->hasField('field_c_b_type') && $block->field_c_b_type->isEmpty())) {
+      return;
+    }
+
+    // Explicitly defined variables to allow additional preprocessing.
+    $variables['content_top1'] = NULL;
+    $variables['content_top2'] = NULL;
+    $variables['content_top3'] = NULL;
+    $variables['content_bottom'] = NULL;
+
+    $variables['theme'] = CivicthemeField::getValue($block, 'field_c_b_theme', TRUE, CivicthemeConstants::BANNER_THEME_DEFAULT);
+    $variables['type'] = CivicthemeField::getValue($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
+
+    // Remove existing content.
+    $variables['content'] = NULL;
+
+    $background_image = CivicthemeField::getValue($block, 'field_c_b_background_image', TRUE, build: $variables);
+    if (!empty($background_image)) {
+      $variables['background_image'] = CivicthemeMedia::getImageVariables($background_image);
+      $variables['background_image_blend_mode'] = CivicthemeField::getValue($block, 'field_c_b_banner_blend_mode', TRUE);
+    }
+
+    $featured_image = CivicthemeField::getValue($block, 'field_c_b_featured_image', TRUE, build: $variables);
+    if (!empty($featured_image)) {
+      $variables['featured_image'] = CivicthemeMedia::getImageVariables($featured_image);
+    }
+    $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
+    $title = (string) (is_array($title) ? reset($title) : ((string) $title));
+    $title = [
+      '#type' => 'markup',
+      '#markup' => $title,
+    ];
+    $variables['title'] = $title;
+
+    self::preprocessBreadcrumb($variables);
+
+    // Per-node overrides.
+    self::preprocessNode($variables);
+
+    if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
+      $variables['is_decorative'] = TRUE;
+    }
+
+    // Note that per-node overrides above may adjust cache tags as required.
+    $variables['#cache']['contexts'][] = 'url.path';
+    $variables['#cache']['contexts'][] = 'url.query_args';
+  }
+
+  /**
+   * Pre-process Banner using per-node overrides.
+   *
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   */
+  protected static function preprocessNode(array &$variables): void {
+    $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
+
+    if (empty($node)) {
+      // Disable cache for the block so that it's not cached without a node
+      // for the next page views that could have a node.
+      $variables['#cache']['max-age'] = 0;
+
+      return;
+    }
+
+    $type = CivicthemeField::getValue($node, 'field_c_n_banner_type', TRUE, CivicthemeConstants::INHERIT);
+    $variables['type'] = $type == CivicthemeConstants::INHERIT ? ($variables['type'] ?? CivicthemeConstants::BANNER_TYPE_DEFAULT) : $type;
+
+    $theme = CivicthemeField::getValue($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
+    $variables['theme'] = $theme == CivicthemeConstants::INHERIT ? ($variables['theme'] ?? CivicthemeConstants::BANNER_THEME_DEFAULT) : $theme;
+
+    $background_image = CivicthemeField::getValue($node, 'field_c_n_banner_background', TRUE);
+    if (!empty($background_image)) {
+      $variables['background_image'] = CivicthemeMedia::getImageVariables($background_image);
+      $variables['background_image_blend_mode'] = CivicthemeField::getValue($node, 'field_c_n_banner_blend_mode', TRUE);
+    }
+
+    $featured_image = CivicthemeField::getValue($node, 'field_c_n_banner_featured_image', TRUE, build: $variables);
+    if (!empty($featured_image)) {
+      $variables['featured_image'] = CivicthemeMedia::getImageVariables($featured_image);
+    }
+
+    $variables['title'] = CivicthemeField::getValue($node, 'field_c_n_banner_title') ?: $variables['title'];
+    if (isset($variables['title']['#markup']) && empty($variables['title']['#markup'])) {
+      $variables['title']['#markup'] = $node->getTitle();
+    }
+    if (CivicthemeField::getValue($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
+      unset($variables['breadcrumb']);
+    }
+
+    $site_section = CivicthemeField::getValue($node, 'field_c_n_site_section', TRUE, build: $variables);
+    if (!empty($site_section)) {
+      $variables['site_section'] = $site_section->getName();
+    }
+
+    $updated_date = CivicthemeNode::getUpdatedDate($node);
+    if (!empty($updated_date)) {
+      $variables['content_middle'][] = [
+        '#theme' => 'civictheme_basic_content',
+        '#component_theme' => $variables['theme'] ?? NULL,
+        '#content' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#attributes' => ['class' => ['ct-banner__last_updated']],
+          '#value' => 'Last updated: ' . $updated_date,
+        ],
+      ];
+    }
+
+    $banner_components = CivicthemeField::getValue($node, 'field_c_n_banner_components');
+    if (!empty($banner_components)) {
+      $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+      $variables['content'][] = $render_controller->viewMultiple($banner_components, 'default');
+    }
+
+    $banner_below_components = CivicthemeField::getValue($node, 'field_c_n_banner_components_bott');
+    if (!empty($banner_below_components)) {
+      $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+      $variables['content_below'][] = $render_controller->viewMultiple($banner_below_components, 'default');
+    }
+
+    $block = $variables['elements']['content']['#block_content'];
+    if (!empty($block)) {
+      $variables['#cache']['tags'] = Cache::mergeTags($block->getCacheTags(), $node->getCacheTags());
+    }
+  }
+
+  /**
+   * Pre-process for Breadcrumb.
+   *
+   * @SuppressWarnings("PHPMD.ElseExpression")
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   */
+  protected static function preprocessBreadcrumb(array &$variables): void {
+    // Disable breadcrumb on homepage.
+    if (\Drupal::service('path.matcher')->isFrontPage()) {
+      return;
+    }
+    /** @var \Drupal\Core\Breadcrumb\Breadcrumb $breadcrumb */
+    $breadcrumb = \Drupal::service('breadcrumb')->build(\Drupal::getContainer()->get('current_route_match'));
+
+    // Always show the last item as a plain text (not a link).
+    $variables['breadcrumb']['active_is_link'] = FALSE;
+
+    // Gather existing links. Note that some profiles (GovCMS) may already
+    // have the functionality to add current page as a last item implemented.
+    $renderer = \Drupal::service('renderer');
+    foreach ($breadcrumb->getLinks() as $link) {
+      $link_text = $link->getText();
+      if (is_array($link_text)) {
+        $link_text = (string) $renderer->renderInIsolation($link_text);
+      }
+      $variables['breadcrumb']['links'][] = [
+        'text' => html_entity_decode(Xss::filter((string) $link_text)),
+        'url' => $link->getUrl()->toString(),
+      ];
+    }
+
+    $current_route_match = \Drupal::routeMatch();
+    $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
+    if (!empty($title)) {
+      $title = (string) (is_array($title) ? reset($title) : ((string) $title));
+      $title = [
+        '#type' => 'markup',
+        '#markup' => $title,
+      ];
+      $breadcrumb_links = $breadcrumb->getLinks();
+      $breadcrumb_last_link = end($breadcrumb_links);
+      $link = Link::createFromRoute($title, '<none>');
+      $link_text = $link->getText();
+      if (is_array($link_text)) {
+        $link_text = (string) $renderer->renderInIsolation($link_text);
+      }
+      // Check if the current page is already the last breadcrumb item and
+      // only add it if it is not. The appended link always uses the '<none>'
+      // route, so its URL can never match the existing crumb's URL; comparing
+      // by URL would always append a duplicate trailing item when the
+      // breadcrumb already ends with the current page (e.g. on GovCMS).
+      // Compare the rendered text only.
+      $last_link_text = NULL;
+      if ($breadcrumb_last_link instanceof Link) {
+        $last_link_text = $breadcrumb_last_link->getText();
+        if (is_array($last_link_text)) {
+          $last_link_text = (string) $renderer->renderInIsolation($last_link_text);
+        }
+        $last_link_text = html_entity_decode(Xss::filter((string) $last_link_text));
+      }
+      $new_link_text = html_entity_decode(Xss::filter((string) $link_text));
+      if ($last_link_text !== $new_link_text) {
+        $variables['breadcrumb']['links'][] = [
+          'text' => $new_link_text,
+          'url' => $link->getUrl()->toString(),
+        ];
+      }
+    }
+  }
+
+}

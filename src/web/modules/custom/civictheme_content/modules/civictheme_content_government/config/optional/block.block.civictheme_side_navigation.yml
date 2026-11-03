@@ -7,9 +7,9 @@ dependencies:
     - menu_block
     - system
   theme:
-    - civictheme
+    - civictheme_starter
 id: civictheme_side_navigation
-theme: civictheme
+theme: civictheme_starter
 region: sidebar_top_left
 weight: 0
 provider: null

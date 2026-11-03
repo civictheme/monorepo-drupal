@@ -1,0 +1,79 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: themes/contrib/civictheme_starter/dist/assets/favicon.ico
+  use_default: false
+features:
+  favicon: true
+components:
+  logo:
+    primary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_light_desktop.svg
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_light_mobile.svg
+      dark:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_dark_desktop.svg
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_primary_dark_mobile.svg
+      image_alt: 'Logo image'
+    secondary:
+      light:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_light_desktop.png
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_light_mobile.png
+      dark:
+        desktop:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_dark_desktop.png
+        mobile:
+          path: themes/contrib/civictheme_starter/dist/assets/logos/logo_secondary_dark_mobile.png
+      image_alt: 'Logo image'
+  header:
+    theme: light
+    logo_type: inline
+  navigation:
+    primary_navigation:
+      dropdown: drawer
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
+    secondary_navigation:
+      dropdown: dropdown
+      dropdown_columns: 4
+      dropdown_columns_fill: false
+      is_animated: true
+  footer:
+    theme: dark
+    logo_type: inline_stacked
+    background_image:
+      path: ''
+  link:
+    new_window: false
+    external_new_window: true
+    external_override_domains: {  }
+  skip_link:
+    theme: light
+  event_card:
+    summary_length: 160
+  navigation_card:
+    summary_length: 160
+  promo_card:
+    summary_length: 160
+  publication_card:
+    summary_length: 160
+    use_media_name: true
+  snippet:
+    summary_length: 160
+  attachment:
+    use_media_name: true
+  search:
+    keyword_fields:
+      - keywords
+      - title
+colors:
+  use_color_selector: false
+  recipe: ''
+  css: ''
+optouts: {  }

@@ -94,10 +94,9 @@ jobs:
         echo "environment_name=${{ steps.init.outputs.environment_name }}" >> $GITHUB_OUTPUT
         echo "environment_exists=${{ steps.init.outputs.environment_exists }}" >> $GITHUB_OUTPUT
 
-    # Single app image (apache-php) — the scaffold topology. The assets and
-    # sub-theme stages inside the Dockerfile bake the built CivicTheme
-    # front-end and the generated civictheme_demo sub-theme, so the platform
-    # never runs composer or npm.
+    # Single app image (apache-php) — the scaffold topology. The assets
+    # stage inside the Dockerfile bakes the built CivicTheme front-end, so
+    # the platform never runs composer or npm.
     - name: Build and push app image
       uses: docker/build-push-action@v7
       with:

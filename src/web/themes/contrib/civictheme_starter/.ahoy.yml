@@ -1,0 +1,122 @@
+# Ahoy configuration file.
+# http://www.ahoycli.com/
+---
+ahoyapi: v2
+
+commands:
+
+  build:
+    usage: Build or rebuild the project.
+    cmd: |
+      ahoy stop > /dev/null 2>&1 || true
+      ahoy assemble
+      ahoy start
+      ahoy provision
+
+  assemble:
+    usage: Assemble a codebase using project code and all required dependencies.
+    cmd: ./.devtools/assemble.sh
+
+  start:
+    usage: Start development environment.
+    cmd: ./.devtools/start.sh
+
+  stop:
+    usage: Stop development environment.
+    cmd: ./.devtools/stop.sh
+
+  provision:
+    usage: Provision application within assembled codebase.
+    cmd: ./.devtools/provision.sh
+
+  drush:
+    usage: Run Drush command.
+    cmd: build/vendor/bin/drush -l http://${WEBSERVER_HOST:-localhost}:${WEBSERVER_PORT:-8000} $*
+
+  login:
+    usage: Login to a website.
+    cmd: ahoy drush uli
+
+  lint:
+    usage: Check coding standards for violations.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpcs
+      vendor/bin/phpstan
+      vendor/bin/rector --clear-cache --dry-run
+      vendor/bin/phpmd . text phpmd.xml
+      vendor/bin/twig-cs-fixer
+      popd >/dev/null || exit 1
+
+  lint-fix:
+    usage: Fix violations in coding standards.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/rector --clear-cache
+      vendor/bin/phpcbf
+      vendor/bin/twig-cs-fixer --no-cache --fix
+      popd >/dev/null || exit 1
+
+  test:
+    usage: Run tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit
+      popd >/dev/null || exit 1
+
+  test-unit:
+    usage: Run unit tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite unit
+      popd >/dev/null || exit 1
+
+  test-kernel:
+    usage: Run kernel tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite kernel
+      popd >/dev/null || exit 1
+
+  test-functional:
+    usage: Run functional tests.
+    cmd: |
+      pushd "build" >/dev/null || exit 1
+      vendor/bin/phpunit --testsuite functional
+      popd >/dev/null || exit 1
+
+  reset:
+    usage: Reset project to the default state.
+    cmd: |
+      killall -9 php >/dev/null 2>&1 || true
+      chmod -Rf 777 build > /dev/null
+      rm -Rf build > /dev/null || true
+      rm -Rf .logs > /dev/null || true
+
+  bump-uikit:
+    usage: Bumps the CivicTheme uikit to the latest commit on the main branch.
+    cmd: |
+      export LATEST_UIKIT_HASH=$(curl -s https://api.github.com/repos/civictheme/uikit/commits/main | jq -r .sha)
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
+      sed -i 's|git+ssh://git@github.com/civictheme/uikit.git#[a-f0-9]\{40\}|git+ssh://git@github.com/civictheme/uikit.git#'$LATEST_UIKIT_HASH'%7C' package-lock.json
+      npm install
+      pushd web/themes/contrib/civictheme_starter/
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package.json
+      sed -i 's|civictheme/uikit#[a-f0-9]\{40\}|civictheme/uikit#'$LATEST_UIKIT_HASH'|' package-lock.json
+      npm install
+      popd
+      echo "Bumped to latest commit on uikit#main https://github.com/civictheme/uikit/commit/${LATEST_UIKIT_HASH}"
+
+# Override entrypoint to alter default behaviour of Ahoy.
+entrypoint:
+  - bash
+  - -c
+  - -e
+  - |
+    extension="$(basename -s .info.yml -- ./*.info.yml)"
+    export BROWSERTEST_OUTPUT_DIRECTORY="${TMPDIR:-/tmp}"
+    export SIMPLETEST_BASE_URL=http://${WEBSERVER_HOST:-localhost}:${WEBSERVER_PORT:-8000}
+    export SIMPLETEST_DB=sqlite://localhost/drupal_test_${extension}.sqlite
+    bash -e -c "$0" "$@"
+  - '{{cmd}}'
+  - '{{name}}'

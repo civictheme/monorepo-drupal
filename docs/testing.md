@@ -24,54 +24,6 @@ literal `<front>`, and ampersands. Also test an empty visibility value. The
 visibility field must use raw output so these path values reach the client
 without HTML escaping or markup.
 
-### Authoring schema update tests
-
-> Available from CivicTheme 1.5
-
-CivicTheme provides configuration for content types, fields and site settings.
-These can change with versions of the theme. To ensure that the changes are
-applied correctly in the consumer site's database, we use
-[schema update tests](web/themes/contrib/civictheme/tests/src/Functional/Update).
-
-These types of tests require a database of the site with the previous
-version of the module or theme installed to be available to the test.
-
-In CivicTheme, we use "bare" and "filled" database dumps to test schema updates:
-- "bare" database dump contains only the schema and no content.
-- "filled" database dump contains the schema and the content.
-
-For simplicity, we only test on the `minimal` profile and the latest Drupal version.
-
-To update the database dumps:
-
-1. Checkout this repository at the specific CivicTheme release (1.3 or newer).
-   Note that some of the environment variables are only available in the latest
-   version of the repository and you may need to adjust them below to the version
-   you are using.
-2. Update "bare" database dump:
-   ```bash
-   export CIVICTHEME_VERSION=<civictheme_version> # update to your version
-   export DRUPAL_VERSION=10
-   export DRUPAL_VERSION_FULL=10.0.0-rc1
-   export DRUPAL_PROFILE=minimal
-   ahoy build
-   ahoy cli "DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP=1 CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP=1 scripts/drevops/provision.sh"
-   mkdir -p web/themes/contrib/civictheme/tests/fixtures/updates
-   ahoy cli php web/core/scripts/dump-database-d8-mysql.php | gzip > "web/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DRUPAL_VERSION_FULL}.${DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.bare.php.gz"
-   ```
-3. Update "filled" database dump:
-   ```bash
-   export CIVICTHEME_VERSION=<civictheme_version> # update to your version
-   export DRUPAL_VERSION=10
-   export DRUPAL_VERSION_FULL=10.0.0-rc1
-   export DRUPAL_PROFILE=minimal
-   ahoy build
-   ahoy cli "DRUPAL_PROFILE=minimal CIVICTHEME_SUBTHEME_ACTIVATION_SKIP=1 CIVICTHEME_ADDITIONAL_MODULES_ACTIVATION_SKIP=1 scripts/drevops/provision.sh"
-   ahoy cli "GENERATED_CONTENT_DELETE_SKIP=1 drush pm:uninstall cs_generated_content generated_content -y"
-   mkdir -p web/themes/contrib/civictheme/tests/fixtures/updates
-   ahoy cli php web/core/scripts/dump-database-d8-mysql.php | gzip > "web/themes/contrib/civictheme/tests/fixtures/updates/drupal_${DRUPAL_VERSION_FULL}.${DRUPAL_PROFILE}.civictheme_${CIVICTHEME_VERSION}.filled.php.gz"
-   ```
-
 ### Alert REST export
 
 The alert REST display must return all active alerts before the browser applies

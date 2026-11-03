@@ -83,7 +83,7 @@ Feature: Test a sample of the core form elements
     # Image Button (image_button)
     And I should see an "[name='op'][type='image']" element
     And I should see an "[id='edit-1--2']" element
-    And I should see an "[src='/themes/contrib/civictheme/assets/icons/download.svg']" element
+    And I should see an "[src='/themes/contrib/civictheme_starter/assets/icons/download.svg']" element
 
     # Linkit (linkit)
     And I should see an "[name='linkit']" element
@@ -276,7 +276,7 @@ Feature: Test a sample of the core form elements
     # Image Button (image_button)
     And I should see an "[name='op'][type='image']" element
     And I should see an "[id='edit-1--2']" element
-    And I should see an "[src='/themes/contrib/civictheme/assets/icons/download.svg']" element
+    And I should see an "[src='/themes/contrib/civictheme_starter/assets/icons/download.svg']" element
 
     # Linkit (linkit)
     And I should see an "[name='linkit']" element

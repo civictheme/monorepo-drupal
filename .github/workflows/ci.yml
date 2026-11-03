@@ -106,7 +106,7 @@ jobs:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     defaults:
       run:
-        working-directory: src/web/themes/contrib/civictheme
+        working-directory: src/web/themes/contrib/civictheme_starter
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -133,27 +133,27 @@ jobs:
         run: .devtools/provision.sh
 
       - name: Lint code with PHPCS
-        working-directory: src/web/themes/contrib/civictheme/build
+        working-directory: src/web/themes/contrib/civictheme_starter/build
         run: vendor/bin/phpcs || [ "${CI_PHPCS_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Lint code with PHPStan
-        working-directory: src/web/themes/contrib/civictheme/build
+        working-directory: src/web/themes/contrib/civictheme_starter/build
         run: vendor/bin/phpstan || [ "${CI_PHPSTAN_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Lint code with Rector
-        working-directory: src/web/themes/contrib/civictheme/build
+        working-directory: src/web/themes/contrib/civictheme_starter/build
         run: vendor/bin/rector --clear-cache --dry-run || [ "${CI_RECTOR_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Lint code with PHPMD
-        working-directory: src/web/themes/contrib/civictheme/build
+        working-directory: src/web/themes/contrib/civictheme_starter/build
         run: vendor/bin/phpmd . text phpmd.xml || [ "${CI_PHPMD_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Lint code with Twig CS Fixer
-        working-directory: src/web/themes/contrib/civictheme/build
-        run: vendor/bin/twig-cs-fixer lint --config=../.twig-cs-fixer.php web/themes/custom/civictheme/ || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+        working-directory: src/web/themes/contrib/civictheme_starter/build
+        run: vendor/bin/twig-cs-fixer lint --config=../.twig-cs-fixer.php web/themes/custom/civictheme_starter/ || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Run tests
-        working-directory: src/web/themes/contrib/civictheme/build
+        working-directory: src/web/themes/contrib/civictheme_starter/build
         env:
           BROWSERTEST_OUTPUT_DIRECTORY: /tmp
         run: vendor/bin/phpunit || [ "${CI_TEST_IGNORE_FAILURE:-0}" -eq 1 ]
@@ -164,8 +164,8 @@ jobs:
         with:
           name: isolated-logs-${{ matrix.name }}
           path: |
-            src/web/themes/contrib/civictheme/.logs
-            src/web/themes/contrib/civictheme/build/web/sites/simpletest/browser_output
+            src/web/themes/contrib/civictheme_starter/.logs
+            src/web/themes/contrib/civictheme_starter/build/web/sites/simpletest/browser_output
           # The logs live under a dot-directory, which upload-artifact@v4
           # silently skips by default ("No files were found").
           include-hidden-files: true
@@ -177,7 +177,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: src/web/themes/contrib/civictheme/.logs/coverage
+          directory: src/web/themes/contrib/civictheme_starter/.logs/coverage
           name: gha-build-isolated-${{ matrix.name }}
           fail_ci_if_error: true
 
@@ -198,55 +198,26 @@ jobs:
         include:
           - name: minimal
             install_profile: minimal
-            subtheme_skip: '1'
             behat_profile: p0
             lint: true
             a11y: true
           - name: minimal-behat-p1
             install_profile: minimal
-            subtheme_skip: '1'
-            behat_profile: p1
-          - name: minimal-subtheme
-            install_profile: minimal
-            behat_profile: p0
-            lint: true
-          - name: minimal-subtheme-behat-p1
-            install_profile: minimal
             behat_profile: p1
           - name: govcms
             install_profile: govcms
             composer: composer.govcms.json
-            subtheme_skip: '1'
             behat_profile: p0
             lint: true
             shipshape: true
           - name: govcms-behat-p1
             install_profile: govcms
             composer: composer.govcms.json
-            subtheme_skip: '1'
             behat_profile: p1
-          - name: govcms-subtheme
-            install_profile: govcms
-            composer: composer.govcms.json
-            behat_profile: p0
-            lint: true
-            shipshape: true
-          - name: govcms-subtheme-behat-p1
-            install_profile: govcms
-            composer: composer.govcms.json
-            behat_profile: p1
-          - name: govcms-subtheme-sibling
-            install_profile: govcms
-            composer: composer.govcms.json
-            install_sibling: '1'
-            behat_profile: smoke
-            lint: true
     env:
       DRUPAL_INSTALL_PROFILE: ${{ matrix.install_profile }}
       COMPOSER: ${{ matrix.composer }}
       PHP_VERSION: ${{ matrix.php_version }}
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: ${{ matrix.subtheme_skip }}
-      CIVICTHEME_INSTALL_SIBLING: ${{ matrix.install_sibling }}
       # CircleCI masked this lint on EVERY leg via a hidden project-level env
       # var (DREVOPS_CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE=1 — the latest
       # develop build-minimal prints the same diffs and "ERROR: Configuration
@@ -310,7 +281,7 @@ jobs:
         if: matrix.lint
         run: |
           scripts/quant/exec.sh bin/twig-cs-fixer lint || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
-          scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme/.twig-cs-fixer.php /opt/drupal/web/themes/contrib/civictheme || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
+          scripts/quant/exec.sh bin/twig-cs-fixer lint --config=/opt/drupal/web/themes/contrib/civictheme_starter/.twig-cs-fixer.php /opt/drupal/web/themes/contrib/civictheme_starter || [ "${CI_TWIGCSFIXER_IGNORE_FAILURE:-0}" -eq 1 ]
 
       # No phpstan-govcms.neon step here on purpose: CircleCI never ran it (it
       # backs the local `ahoy lint-govcms` helper only, and needs the
@@ -319,7 +290,7 @@ jobs:
 
       - name: Lint code with NPM linters
         if: matrix.lint
-        run: (cd src/web/themes/contrib/civictheme && npm run lint) || [ "${CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
+        run: (cd src/web/themes/contrib/civictheme_starter && npm run lint) || [ "${CI_NPM_LINT_IGNORE_FAILURE:-0}" -eq 1 ]
 
       - name: Lint Drupal theme configuration
         if: matrix.lint
@@ -327,7 +298,7 @@ jobs:
 
       - name: Lint Drupal theme schema
         if: matrix.lint
-        run: scripts/quant/exec.sh /opt/drupal/bin/drush inspect_config civictheme.settings --detail --only-error
+        run: scripts/quant/exec.sh /opt/drupal/bin/drush inspect_config civictheme_starter.settings --detail --only-error
 
       - name: Check theme module dependencies
         if: matrix.lint
@@ -337,7 +308,7 @@ jobs:
 
       - name: Check recipe map
         if: matrix.lint
-        run: python3 src/web/themes/contrib/civictheme/.devtools/recipe-map.py
+        run: python3 src/web/themes/contrib/civictheme_starter/.devtools/recipe-map.py
 
       - name: Lint components smoke test
         if: matrix.lint
@@ -456,7 +427,6 @@ jobs:
     env:
       DRUPAL_INSTALL_PROFILE: minimal
       CIVICTHEME_CONTENT_PROFILE: ${{ matrix.content_profile }}
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
       CIVICTHEME_GENERATED_CONTENT_CREATE_SKIP: '1'
       CI_DRUPAL_THEME_CONFIG_LINT_IGNORE_FAILURE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -542,7 +512,6 @@ jobs:
     needs: build-isolated
     env:
       DRUPAL_INSTALL_PROFILE: minimal
-      CIVICTHEME_SUBTHEME_ACTIVATION_SKIP: '1'
       GITHUB_TOKEN: ${{ github.token }}
       VR_BRANCH: ${{ github.ref_name }}
     steps:
@@ -741,7 +710,7 @@ jobs:
           DEPLOY_SSH_FILE="${HOME}/.ssh/push_key_drupal_org" \
           PUSH_CODE_REMOTE_BRANCH="${PUSH_CODE_REMOTE_BRANCH:-1.x}" \
           PUSH_CODE_REMOTE_REPO=git@git.drupal.org:project/civictheme.git \
-          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/themes/contrib/civictheme" \
+          PUSH_CODE_SRC_DIR="${GITHUB_WORKSPACE}/src/web/themes/contrib/civictheme_starter" \
           ./scripts/push.code.sh
 
       - name: Publish civictheme_govcms module repository

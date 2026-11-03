@@ -8,8 +8,7 @@
 # step (npm ci --ignore-scripts, uikit-install, dist).
 #
 # Usage:
-#   scripts/custom/fe-build.sh             # base theme (components/ + dist/)
-#   scripts/custom/fe-build.sh --subtheme  # generated sub-theme, if present
+#   scripts/custom/fe-build.sh             # theme (components/ + dist/)
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -23,20 +22,8 @@ if ! command -v npm >/dev/null 2>&1; then
   exit 0
 fi
 
-if [ "${1:-}" = "--subtheme" ]; then
-  for dir in "$HERE/src/web/themes/custom/civictheme_demo" "$HERE/src/web/themes/contrib/civictheme_demo"; do
-    if [ -d "$dir" ]; then
-      log "building sub-theme: ${dir#"$HERE"/}"
-      (cd "$dir" && npm install --no-audit --no-fund && npm run dist)
-      exit 0
-    fi
-  done
-  log "no generated sub-theme found - nothing to build"
-  exit 0
-fi
-
-dir="$HERE/src/web/themes/contrib/civictheme"
-log "building base theme: ${dir#"$HERE"/}"
+dir="$HERE/src/web/themes/contrib/civictheme_starter"
+log "building theme: ${dir#"$HERE"/}"
 (
   cd "$dir"
   # Stale node_modules (from another branch or an old uikit pin) produce
