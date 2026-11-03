@@ -2,7 +2,7 @@ civictheme_three_columns:
   label: 'Three columns'
   path: templates/layout/
   template: layout--three-columns
-  library: civictheme/layouts
+  library: civictheme_starter/layouts
   category: 'CivicTheme Layouts'
   class: '\Drupal\civictheme_starter\Plugin\Layout\ThreeColumnsLayout'
   default_region: main
