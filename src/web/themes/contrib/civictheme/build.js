@@ -47,10 +47,11 @@ const config = {
   constants: false,
   colour_picker: false,
   base: false,
+  sdc_namespace: false,
 }
 
 const flags = process.argv.slice(2)
-if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
+if (['cli', 'lintex', 'sdc_namespace'].indexOf(flags[0]) >= 0) {
   config[flags[0]] = true
 } else {
   const buildType = ['build', 'watch']
@@ -80,25 +81,30 @@ if (['cli', 'lintex'].indexOf(flags[0]) >= 0) {
 }
 
 let startTime = new Date().getTime()
-let lastTime = null
+let lastTime = startTime
 
 const PATH = import.meta.dirname
 
 const THEME_NAME                = PATH.split('/').reverse()[0]
+// The theme machine name, derived from the info.yml filename so output names
+// and the SDC namespace follow whatever theme this build script sits in
+// (starterkit generation renames the info file along with everything else).
+// Identical to THEME_NAME for any correctly laid out theme.
+const MACHINE_NAME              = getMachineName(PATH)
 const BUILD_CONFIG_DIR          = fullPath('./build-config.json')
 const DIR_COMPONENTS_IN         = fullPath('./components/')
 const DIR_OUT                   = fullPath('./dist/')
 const DIR_ASSETS_IN             = fullPath('./assets/')
 const DIR_ASSETS_OUT            = fullPath('./dist/assets/')
 
-const DIR_CIVICTHEME            = config.base || config.cli ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
+const DIR_CIVICTHEME            = config.base || config.cli || config.sdc_namespace ? null : getCivicthemeDir(PATH, 'themes', '/**/civictheme')
 const DIR_UIKIT_COMPONENTS_IN   = config.base ? null : `${DIR_CIVICTHEME}/components/`
 const DIR_UIKIT_COPY_OUT        = config.base ? null : fullPath('./.components-civictheme/')
 const DIR_COMPONENTS_OUT        = config.base ? null : fullPath('./components_combined/')
 
 const COMPONENT_DIR             = config.base ? DIR_COMPONENTS_IN : DIR_COMPONENTS_OUT
-const STYLE_NAME                = config.base ? 'civictheme' : 'styles'
-const SCRIPT_NAME               = config.base ? 'civictheme' : 'scripts'
+const STYLE_NAME                = config.base ? MACHINE_NAME : 'styles'
+const SCRIPT_NAME               = config.base ? MACHINE_NAME : 'scripts'
 const DRUPAL_THEME_FOLDER       = config.base ? 'contrib' : 'custom'
 
 const STYLE_FILE_IN             = `${COMPONENT_DIR}/style.scss`
@@ -117,7 +123,11 @@ const STYLE_LAYOUT_FILE_OUT     = `${DIR_OUT}/${STYLE_NAME}.layout.css`
 const STYLE_STORIES_FILE_OUT    = `${DIR_OUT}/${STYLE_NAME}.stories.css`
 const STYLE_THEME_FILE_OUT      = `${DIR_OUT}/${STYLE_NAME}.theme.css`
 
-const DIR_CT_ASSETS             = `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}/dist/assets/`
+// Web-relative assets path, derived from the theme's own location under the
+// docroot's themes/ directory so a renamed or relocated theme resolves its
+// assets without edits here. Falls back to the conventional layout.
+const THEMES_DIR_INDEX          = PATH.lastIndexOf('/themes/')
+const DIR_CT_ASSETS             = `${THEMES_DIR_INDEX >= 0 ? PATH.substring(THEMES_DIR_INDEX) : `/themes/${DRUPAL_THEME_FOLDER}/${THEME_NAME}`}/dist/assets/`
 const DIR_SB_ASSETS             = `/assets/`
 const VAR_CT_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_CT_ASSETS}';`
 const VAR_SB_ASSETS_DIRECTORY   = `$ct-assets-directory: '${DIR_SB_ASSETS}';`
@@ -185,6 +195,10 @@ if (config.cli) {
 
 if (config.lintex) {
   lintExclusions()
+}
+
+if (config.sdc_namespace) {
+  rewriteSdcNamespace()
 }
 
 // ----------------------------------------------------------------------------- BUILD STEPS
@@ -414,7 +428,7 @@ function buildJavascriptSdcBase() {
       JS_LINT_EXCLUSION_HEADER,
       libJs,
       assetImports.filter(onlyDrupalFiles).map(loadJSFile).join('\n'),
-      `Drupal.behaviors.${THEME_NAME} = {attach: function (context, settings) {\n${baseComponentJs}\n}};`
+      `Drupal.behaviors.${MACHINE_NAME} = {attach: function (context, settings) {\n${baseComponentJs}\n}};`
     ].filter(Boolean).join('\n')
     fs.writeFileSync(JS_SDC_BASE_FILE_OUT, newDrupalBaseJs, 'utf-8')
     successReporter(`Saved: SDC javascript base (drupal) ${time()}`)
@@ -438,7 +452,7 @@ function buildJavascript() {
     ].map(loadJSFile).join('\n')
 
     const components = globSync(JS_CIVIC_IMPORTS).map(filename => ({
-      name: `${THEME_NAME}_${filename.split('/').reverse()[0].replace('.js', '').replace(/-/g, '_')}`,
+      name: `${MACHINE_NAME}_${filename.split('/').reverse()[0].replace('.js', '').replace(/-/g, '_')}`,
       body: fs.readFileSync(filename, 'utf-8')
     }))
 
@@ -572,7 +586,37 @@ function lintExclusions() {
   });
 }
 
+// ----------------------------------------------------------------------------- SDC NAMESPACE
+
+// Rewrites the SDC namespace on the uikit component import. The uikit source
+// ships every cross-component reference under the `civictheme:` namespace;
+// Drupal registers imported components under the machine name of the theme
+// that provides them, so the references must carry this theme's machine name.
+// Runs as `node build.js sdc_namespace` from `npm run uikit-install`, after
+// the copy. For a theme whose machine name is `civictheme` the rewrite is an
+// identity and no file is touched.
+function rewriteSdcNamespace() {
+  const pattern = /\bcivictheme:(?=[a-z0-9_-])/g
+  const files = globSync(['**/*.twig', '**/*.component.yml'], { cwd: DIR_COMPONENTS_IN })
+  let rewritten = 0
+  files.forEach((file) => {
+    const filePath = path.join(DIR_COMPONENTS_IN, file)
+    const data = fs.readFileSync(filePath, 'utf-8')
+    const replaced = data.replace(pattern, `${MACHINE_NAME}:`)
+    if (replaced !== data) {
+      fs.writeFileSync(filePath, replaced, 'utf-8')
+      rewritten++
+    }
+  })
+  successReporter(`Saved: SDC namespace '${MACHINE_NAME}:' applied to ${rewritten} of ${files.length} imported component files ${time()}`)
+}
+
 // ----------------------------------------------------------------------------- UTILITIES
+
+function getMachineName(themeDir) {
+  const infoFile = globSync('*.info.yml', { cwd: themeDir }).sort().shift()
+  return infoFile ? path.basename(infoFile, '.info.yml') : themeDir.split('/').reverse()[0]
+}
 
 function runCommand(command) {
   execSync(command, (error, stdout, stderr) => {
