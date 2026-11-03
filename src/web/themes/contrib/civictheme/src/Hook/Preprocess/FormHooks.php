@@ -6,8 +6,9 @@ namespace Drupal\civictheme\Hook\Preprocess;
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\Form\FormElementHelper;
-use Drupal\civictheme\Utility\CivicthemeAttributeHelper;
-use Drupal\civictheme\Utility\CivicthemeOptionsHelper;
+use Drupal\civictheme\Utility\CivicthemeAttribute;
+use Drupal\civictheme\Utility\CivicthemeOptions;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
@@ -48,9 +49,9 @@ use Drupal\Core\Template\Attribute;
  * form-element--TYPE.html.twig (or input--TYPE.html.twig) template - no PHP
  * is required.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class FormHooks {
 
@@ -260,7 +261,7 @@ class FormHooks {
     // Setting theme for form element.
     if (
       isset($variables['element']['#attributes']['#civictheme_theme'])
-      && in_array($variables['element']['#attributes']['#civictheme_theme'], CivicthemeOptionsHelper::themeOptions(TRUE))
+      && in_array($variables['element']['#attributes']['#civictheme_theme'], CivicthemeOptions::themeOptions(TRUE))
     ) {
       $variables['theme'] = $variables['element']['#attributes']['#civictheme_theme'];
       unset($variables['element']['#attributes']['#civictheme_theme']);
@@ -287,8 +288,8 @@ class FormHooks {
    * component props. The control itself stays untouched - it is rendered by
    * core into 'children' and passed through the component's control slot.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   protected function preprocessGeneric(array &$variables): void {
     $element = $variables['element'];
@@ -306,7 +307,7 @@ class FormHooks {
     // The label references the control via its id; #label_for allows
     // elements (such as managed_file) to point the label at an inner control
     // instead.
-    $variables['control_id'] = (string) (!empty($element['#label_for']) ? $element['#label_for'] : ($element['#id'] ?? ''));
+    $variables['control_id'] = (string) (empty($element['#label_for']) ? $element['#id'] ?? '' : ($element['#label_for']));
     $variables['is_required'] = !empty($element['#required']);
     $variables['is_disabled'] = isset($element['#attributes']['disabled']);
     $variables['required_text'] = $variables['is_required'] ? (string) $this->t('(required)') : '';
@@ -428,6 +429,9 @@ class FormHooks {
       return;
     }
     $prefix = $this->flattenMarkup($variables['prefix'] ?? '');
+    if (!$prefix instanceof MarkupInterface) {
+      $prefix = Html::escape((string) $prefix);
+    }
     $variables['prefix'] = Markup::create(\Drupal::service('renderer')->render($help) . $prefix);
   }
 
@@ -504,7 +508,7 @@ class FormHooks {
       // attributes in CivicthemeThemeHooks::preprocessLast().
       $existing = (array) $variables['attributes']->getClass()->value();
       $variables['attributes']->removeAttribute('class');
-      CivicthemeAttributeHelper::addModifierClass($variables, array_merge($existing, $classes));
+      CivicthemeAttribute::addModifierClass($variables, array_merge($existing, $classes));
       foreach ($attributes as $name => $value) {
         if (!$variables['attributes']->hasAttribute($name)) {
           $variables['attributes']->setAttribute($name, $value);

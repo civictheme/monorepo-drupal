@@ -31,7 +31,7 @@ function cs_generated_content_generated_content_create_user_user_tracking(): boo
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  *
  * @phpstan-ignore-next-line
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function cs_generated_content_generated_content_create_user_user(): array {
   $total_users_per_role = 3;
@@ -71,8 +71,9 @@ function cs_generated_content_generated_content_create_user_user(): array {
           $user->addRole($role_id);
           $user->activate();
           $user->enforceIsNew();
-          if (!empty(getenv('DRUPAL_CS_GENERATED_CONTENT_USER_PASSWORD'))) {
-            $user->setPassword(getenv('DRUPAL_CS_GENERATED_CONTENT_USER_PASSWORD'));
+          $password = getenv('DRUPAL_CS_GENERATED_CONTENT_USER_PASSWORD');
+          if (!empty($password)) {
+            $user->setPassword($password);
           }
 
           try {

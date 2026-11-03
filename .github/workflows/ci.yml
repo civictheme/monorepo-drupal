@@ -68,6 +68,9 @@ jobs:
         # they stay even while they coincide: with the core floor at ^11.4 and
         # the monorepo building against 11.4, every leg tests Drupal 11.4 for
         # now. They diverge again once a newer supported core is adopted.
+        # The declared ^12 support stays untested until
+        # drupal-composer/drupal-project publishes a verified Drupal 12
+        # scaffold target; the 'next' leg moves to it then.
         include:
           # Current Drupal version, matching the one the monorepo builds against.
           - name: current

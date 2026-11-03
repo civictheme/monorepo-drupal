@@ -29,13 +29,12 @@ trait CivicthemeTestHelperTrait {
    * @return mixed
    *   Method result.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   protected static function callProtectedMethod(object|string $object, string $method, array $args = []): mixed {
     // @phpstan-ignore-next-line
     $class = new \ReflectionClass(is_object($object) ? $object::class : $object);
     $method = $class->getMethod($method);
-    $method->setAccessible(TRUE);
 
     $object = $method->isStatic() ? NULL : $object;
 
@@ -53,12 +52,11 @@ trait CivicthemeTestHelperTrait {
    * @param mixed $value
    *   Value to set to the property.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   protected static function setProtectedValue(object $object, string $property, mixed $value): void {
     $class = new \ReflectionClass($object::class);
     $property = $class->getProperty($property);
-    $property->setAccessible(TRUE);
 
     $property->setValue($object, $value);
   }
@@ -74,12 +72,11 @@ trait CivicthemeTestHelperTrait {
    * @return mixed
    *   Protected property value.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   protected static function getProtectedValue(object $object, string $property): mixed {
     $class = new \ReflectionClass($object::class);
     $property = $class->getProperty($property);
-    $property->setAccessible(TRUE);
 
     return $property->getValue($class);
   }
@@ -98,7 +95,7 @@ trait CivicthemeTestHelperTrait {
    * @return \PHPUnit\Framework\MockObject\MockObject
    *   Mocked class.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   protected function prepareMock(string|object $class, array $methodsMap = [], array $args = []): MockObject {
     $methods = array_keys($methodsMap);
@@ -145,7 +142,7 @@ trait CivicthemeTestHelperTrait {
    * @return \PHPUnit\Framework\MockObject\MockObject
    *   Mocked class.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   protected function getMockForConcreteClass(string $class, array $args = [], array $methods = []): MockObject {
     // @phpstan-ignore-next-line

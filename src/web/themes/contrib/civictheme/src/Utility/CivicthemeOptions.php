@@ -9,7 +9,7 @@ use Drupal\civictheme\CivicthemeConstants;
 /**
  * Form API options helpers.
  */
-final class CivicthemeOptionsHelper {
+final class CivicthemeOptions {
 
   /**
    * Theme options suitable for FormAPI.
@@ -20,7 +20,7 @@ final class CivicthemeOptionsHelper {
    * @return array<string, string>|array<string>
    *   Array of theme options.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function themeOptions(bool $only_keys = FALSE): array {
     $map = [

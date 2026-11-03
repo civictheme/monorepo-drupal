@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\civictheme\Unit;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Drupal\civictheme\CivicthemeUtility;
 
 /**
@@ -14,14 +16,17 @@ use Drupal\civictheme\CivicthemeUtility;
  * @group CivicTheme
  * @group site:unit
  */
+#[Group('CivicTheme')]
+#[Group('site:unit')]
 class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
 
   /**
    * Test for CivicthemeUtility::htmlAttributesToArray().
    *
    * @dataProvider dataProviderHtmlAttributesToArray
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
+  #[DataProvider('dataProviderHtmlAttributesToArray')]
   public function testHtmlAttributesToArray(string $string, array $expected): void {
     $actual = CivicthemeUtility::htmlAttributesToArray($string);
 
@@ -59,8 +64,9 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * Test for CivicthemeUtility::multilineToArray().
    *
    * @dataProvider dataProviderMultilineToArray
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
+  #[DataProvider('dataProviderMultilineToArray')]
   public function testMultilineToArray(string|array $string, array $expected): void {
     $actual = CivicthemeUtility::multilineToArray($string);
     $this->assertEquals($expected, $actual);
@@ -103,8 +109,9 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * Test for CivicthemeUtility::arrayToMultiline().
    *
    * @dataProvider dataProviderArrayToMultiline
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
+  #[DataProvider('dataProviderArrayToMultiline')]
   public function testArrayToMultiline(string|array $array, string $expected): void {
     $actual = CivicthemeUtility::arrayToMultiline($array);
     $this->assertEquals($expected, $actual);
@@ -136,8 +143,9 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * Test for arrayMergeKeysValues().
    *
    * @dataProvider dataProviderArrayMergeKeysValues
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
+  #[DataProvider('dataProviderArrayMergeKeysValues')]
   public function testArrayMergeKeysValues(array $array, string $separator, array $expected): void {
     $actual = CivicthemeUtility::arrayMergeKeysValues($array, $separator);
     $this->assertEquals($expected, $actual);
@@ -159,8 +167,9 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    * Test for toLabel().
    *
    * @dataProvider dataProviderToLabel
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
+  #[DataProvider('dataProviderToLabel')]
   public function testToLabel(string $string, string $expected): void {
     $actual = CivicthemeUtility::toLabel($string);
     $this->assertEquals($expected, $actual);
@@ -184,6 +193,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderAddModifierClass
    */
+  #[DataProvider('dataProviderAddModifierClass')]
   public function testAddModifierClass(array $variables, array|string $classes, array $expected): void {
     civictheme_add_modifier_class($variables, $classes);
     $this->assertEquals($expected, $variables);
@@ -222,6 +232,7 @@ class CivicthemeUtilityUnitTest extends CivicthemeUnitTestBase {
    *
    * @dataProvider dataProviderRemoveModifierClass
    */
+  #[DataProvider('dataProviderRemoveModifierClass')]
   public function testRemoveModifierClass(array $variables, array|string $classes, array $expected): void {
     civictheme_remove_modifier_class($variables, $classes);
     $this->assertEquals($expected, $variables);

@@ -6,7 +6,7 @@ namespace Drupal\civictheme\Hook\Preprocess;
 
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\HtmlContentProcessor;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -17,7 +17,7 @@ use Drupal\media\MediaInterface;
 /**
  * Image and media preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class MediaHooks {
 
@@ -48,7 +48,7 @@ class MediaHooks {
     }
 
     $this->preprocessVideoTheme($variables);
-    $image_file = CivicthemeFieldHelper::getReferencedEntity($media, 'field_c_m_image', $variables);
+    $image_file = CivicthemeField::getReferencedEntity($media, 'field_c_m_image', $variables);
     if ($image_file instanceof FileInterface) {
       $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
       if ($image->isValid()) {
@@ -92,7 +92,7 @@ class MediaHooks {
   /**
    * Implements hook_preprocess_HOOK() for media__civictheme_remote_video.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   #[Hook('preprocess_media__civictheme_remote_video')]
   public function preprocessMediaRemoteVideo(array &$variables): void {
@@ -165,7 +165,7 @@ class MediaHooks {
       '@label' => $media->label(),
     ]));
 
-    $transcript_link_has_value = CivicthemeFieldHelper::hasValue($media, 'field_c_m_transcript_link');
+    $transcript_link_has_value = CivicthemeField::hasValue($media, 'field_c_m_transcript_link');
     if ($transcript_link_has_value) {
       /** @var \Drupal\link\LinkItemInterface $link */
       $link = $media->get('field_c_m_transcript_link')->first();
@@ -189,7 +189,7 @@ class MediaHooks {
       return;
     }
 
-    $transcript_has_value = CivicthemeFieldHelper::hasValue($media, 'field_c_m_transcript');
+    $transcript_has_value = CivicthemeField::hasValue($media, 'field_c_m_transcript');
     if ($transcript_has_value) {
       $variables['transcript_content'] = [
         'content' => $media->get('field_c_m_transcript')->view(),

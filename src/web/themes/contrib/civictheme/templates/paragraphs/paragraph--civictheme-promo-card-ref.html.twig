@@ -1,7 +1,10 @@
 {#
 /**
  * @file
- * CivicTheme implementation to display a promo card reference.
+ * CivicTheme implementation to display a Promo card reference.
+ *
+ * The referenced node is rendered in the Promo card view mode so that card
+ * preprocessing is shared with automated lists.
  */
 #}
-{% include 'civictheme:promo-card' %}
+{{ reference }}

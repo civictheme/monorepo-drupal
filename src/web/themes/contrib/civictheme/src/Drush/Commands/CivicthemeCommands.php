@@ -51,7 +51,7 @@ class CivicthemeCommands extends DrushCommands {
    *
    * @bootstrap full
    *
-   * @SuppressWarnings(StaticAccess)
+   * @SuppressWarnings("StaticAccess")
    */
   public function importColors(string $recipe_file, string $css_file): void {
     // @phpstan-ignore-next-line
@@ -89,7 +89,7 @@ class CivicthemeCommands extends DrushCommands {
    *
    * @bootstrap full
    *
-   * @SuppressWarnings(StaticAccess)
+   * @SuppressWarnings("StaticAccess")
    */
   public function stylesheet(?string $suffix = NULL): void {
     // @phpstan-ignore-next-line
@@ -121,7 +121,7 @@ class CivicthemeCommands extends DrushCommands {
    *
    * @bootstrap full
    *
-   * @SuppressWarnings(StaticAccess)
+   * @SuppressWarnings("StaticAccess")
    */
   public function clearCache(): void {
     // @phpstan-ignore-next-line

@@ -116,7 +116,7 @@ abstract class SettingsTestCase extends TestCase {
    * @param array $vars
    *   Array of environment variables.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   protected function setEnvVars(array $vars): void {
     if (!isset($vars['CI'])) {
@@ -173,7 +173,7 @@ abstract class SettingsTestCase extends TestCase {
   protected static function getRealEnvVarsFilteredNoValues(array $prefixes = []): array {
     $vars = getenv();
 
-    $vars = array_filter(array_keys($vars), static function ($key) use ($prefixes) : bool {
+    $vars = array_filter(array_keys($vars), static function (string $key) use ($prefixes) : bool {
       foreach ($prefixes as $prefix) {
         if (str_starts_with($key, $prefix)) {
           return TRUE;
@@ -261,7 +261,7 @@ abstract class SettingsTestCase extends TestCase {
     $config = [];
     $settings = [];
     $databases = [];
-    $settings_path = $app_root . DIRECTORY_SEPARATOR . $site_path . DIRECTORY_SEPARATOR . 'settings.php';
+    $settings_path = $app_root . '/' . $site_path . '/settings.php';
     if (!is_readable($settings_path)) {
       throw new \RuntimeException(sprintf('Unable to include settings file %s.', $settings_path));
     }
@@ -360,7 +360,7 @@ abstract class SettingsTestCase extends TestCase {
    * @param string $message
    *   Message to display on failure.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   protected function assertArraySubset(array $subset, array $haystack, string $message = ''): void {
     foreach ($subset as $key => $value) {

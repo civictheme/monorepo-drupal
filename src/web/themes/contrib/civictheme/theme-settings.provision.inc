@@ -93,7 +93,7 @@ function _civictheme_form_system_theme_settings_alter_provision(array &$form, Fo
  * @return array<mixed>
  *   Processed form element.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 function _civictheme_form_system_theme_settings_alter_provision_process(array &$element, FormStateInterface $form_state, array &$complete_form): array {
   $form_state->addCleanValueKey('provision_types');
@@ -105,7 +105,7 @@ function _civictheme_form_system_theme_settings_alter_provision_process(array &$
 /**
  * Validate callback for theme settings form alter to provision content.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state): void {
   $triggering_element = $form_state->getTriggeringElement();
@@ -123,7 +123,7 @@ function _civictheme_form_system_theme_settings_provision_validate(array &$form,
 /**
  * Submit callback for theme settings form alter to provision content.
  *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 function _civictheme_form_system_theme_settings_provision_submit(array &$form, FormStateInterface $form_state): void {
   $triggering_element = $form_state->getTriggeringElement();
@@ -188,9 +188,9 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
  *   -  message: (string) Provisioning finished unsuccessfully for this type and
  *      the value contains an error message.
  *
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+ * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function civictheme_provision(string $theme_name, array $types = [], $clear_cache = TRUE, bool $verbose = FALSE): array {
   $results = [];
@@ -339,7 +339,7 @@ function _civictheme_provision_discover_callbacks(): array {
   $functions = get_defined_functions();
   foreach ($functions['user'] as $function) {
     // Callbacks from CivicTHeme.
-    if (is_string($function) && str_starts_with($function, 'civictheme_provision__')) {
+    if (str_starts_with($function, 'civictheme_provision__')) {
       $type = substr($function, strlen('civictheme_provision__'));
       // Allow custom callbacks to take precedence.
       if (empty($callbacks[$type])) {
@@ -350,7 +350,7 @@ function _civictheme_provision_discover_callbacks(): array {
     // Custom callbacks in form PREFIX_civictheme_provision__TYPE
     // will override existing callbacks by type.
     // This allows child themes to alter existing provisioning scripts.
-    if (is_string($function) && str_contains($function, '_civictheme_provision__')) {
+    if (str_contains($function, '_civictheme_provision__')) {
       $type = substr($function, strpos($function, '_civictheme_provision__') + strlen('_civictheme_provision__'));
       // Additionally, filter-out more callback helpers in a format
       // PREFIX_civictheme_provision__TYPE__more_specific_helper.
@@ -435,7 +435,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid): B
  * @param string $block_type
  *   Optional block type. Defaults to 'block_content'.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision_place_block(string $label, string $region, string $theme_name, ?string $uuid = NULL, array $settings = [], string $block_type = 'block_content'): void {
   $label_machine_name = $settings['label_machine_name'] ?? preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
@@ -494,7 +494,7 @@ function civictheme_provision_place_block(string $label, string $region, string 
  * @return \Drupal\media\Entity\Media|null
  *   Found media instance or NULL if not found.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision_load_media_by_name(string $name): ?Media {
   $media = \Drupal::entityTypeManager()
@@ -513,7 +513,7 @@ function civictheme_provision_load_media_by_name(string $name): ?Media {
  * @return array<\Drupal\menu_link_content\Entity\MenuLinkContent>
  *   Array of menu items.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision_load_menu_items(string $menu_name): array {
   /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
@@ -530,7 +530,7 @@ function civictheme_provision_load_menu_items(string $menu_name): array {
  * @param string $menu_name
  *   String machine menu name.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision_clear_menu(string $menu_name): void {
   $menu_items = civictheme_provision_load_menu_items($menu_name);
@@ -556,8 +556,8 @@ function civictheme_provision_clear_menu(string $menu_name): void {
  * @param string $theme_name
  *   Theme to apply provisioning to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function civictheme_provision__files(string $theme_name): void {
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
@@ -589,8 +589,8 @@ function civictheme_provision__files(string $theme_name): void {
  * @param string $theme_name
  *   Theme to apply provisioning to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.MissingImport")
  */
 function civictheme_provision__media(string $theme_name): void {
   $filenames_for_media = [
@@ -640,7 +640,7 @@ function civictheme_provision__media(string $theme_name): void {
 /**
  * Provision menu links.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision__menu_links(): void {
   $menus = [
@@ -758,7 +758,7 @@ function _civictheme_provision__blocks__banner(array $block, string $theme_name)
  * @param string $theme_name
  *   Theme to apply this block to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _civictheme_provision__blocks__search(array $block, string $theme_name): void {
   // Redirect to 'Search' page if the path exists.
@@ -812,7 +812,7 @@ function _civictheme_provision__blocks__mobile_navigation(array $block, string $
  * @param string $theme_name
  *   Theme to apply this block to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _civictheme_provision__blocks__signup(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -843,7 +843,7 @@ function _civictheme_provision__blocks__signup(array $block, $theme_name): void 
  * @param string $theme_name
  *   Theme to apply this block to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _civictheme_provision__blocks__social_links(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -894,7 +894,7 @@ function _civictheme_provision__blocks__social_links(array $block, $theme_name):
  * @param string $theme_name
  *   Theme to apply this block to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _civictheme_provision__blocks__acknowledgment_of_country(array $block, string $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -921,7 +921,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block, 
  * @param string $theme_name
  *   Theme to apply this block to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function _civictheme_provision__blocks__copyright(array $block, $theme_name): void {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -946,7 +946,7 @@ function _civictheme_provision__blocks__copyright(array $block, $theme_name): vo
  * @param string $theme_name
  *   Theme to apply settings to.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision__theme_settings(string $theme_name): void {
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
@@ -969,7 +969,7 @@ function civictheme_provision__theme_settings(string $theme_name): void {
 /**
  * Provision permissions.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision__permissions(): void {
   $map = civictheme_provision_permissions_map();
@@ -1001,7 +1001,7 @@ function civictheme_provision__permissions(): void {
 /**
  * Provision site settings.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision__site_settings(): void {
   $config = \Drupal::service('config.factory')->getEditable('system.site');
@@ -1098,8 +1098,8 @@ function civictheme_provision_permissions_map(): array {
  * @endcode
  *
  * @see https://www.drupal.org/node/2652542
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings("PHPMD.StaticAccess")
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
  *
  * @param bool $include_optional
  *   Whether to include optional dependencies. Defaults to TRUE.
@@ -1123,7 +1123,7 @@ function civictheme_enable_modules(bool $include_optional = TRUE): void {
  * @return array<string>
  *   Array of dependency names.
  *
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
  */
 function _civictheme_get_theme_dependencies(string $theme_name, bool $include_optional = TRUE): array {
   /** @var \Drupal\Core\Extension\ThemeExtensionList $extension_list */
@@ -1224,7 +1224,7 @@ function _civictheme_get_theme_blocks(): array {
 /**
  * Provision Media View.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_provision__media_view(): void {
   // Disable the 'views.view.media' view.

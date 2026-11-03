@@ -13,7 +13,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 /**
  * Menu preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class MenuHooks {
 

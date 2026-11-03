@@ -14,7 +14,7 @@ use Drupal\user\Entity\User;
 /**
  * Creates administrator users.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_dev_post_update_provision_users(): string {
   $emails = [
@@ -50,7 +50,7 @@ function civictheme_dev_post_update_provision_users(): string {
 /**
  * Updates Side Navigation block visibility settings.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_dev_post_update_update_side_navigation_block(): string {
   $entity_type_manager = \Drupal::entityTypeManager();
@@ -134,7 +134,7 @@ function civictheme_dev_post_update_update_simplesitemap(): string {
 /**
  * Places Listing example view blocks the current theme's regions.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 function civictheme_dev_post_update_place_listing_example_blocks_into_regions(): string {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');

@@ -11,7 +11,7 @@ use Drupal\Core\Template\Attribute;
  *
  * The procedural civictheme_*_modifier_class() functions delegate here.
  */
-final class CivicthemeAttributeHelper {
+final class CivicthemeAttribute {
 
   /**
    * Add modifier class to the variables array, preserving existing classes.
@@ -22,8 +22,12 @@ final class CivicthemeAttributeHelper {
    *   Classes to add.
    */
   public static function addModifierClass(array &$variables, string|array $classes): void {
+    $existing = $variables['modifier_class'] ?? '';
+    if ($existing === FALSE) {
+      return;
+    }
     $classes = is_array($classes) ? $classes : [$classes];
-    $existing_classes = explode(' ', $variables['modifier_class'] ?? '');
+    $existing_classes = explode(' ', $existing);
     $new_classes = array_merge($existing_classes, $classes);
     $variables['modifier_class'] = trim(implode(' ', array_unique($new_classes)));
   }
@@ -37,7 +41,7 @@ final class CivicthemeAttributeHelper {
    *   Classes to remove.
    */
   public static function removeModifierClass(array &$variables, string|array $classes): void {
-    if (!isset($variables['modifier_class'])) {
+    if (!isset($variables['modifier_class']) || $variables['modifier_class'] === FALSE) {
       return;
     }
     $classes = is_array($classes) ? $classes : [$classes];
@@ -63,7 +67,7 @@ final class CivicthemeAttributeHelper {
     }
 
     $attributes = new Attribute($variables['attributes']);
-    static::addModifierClass($variables, $attributes->getClass()->value());
+    self::addModifierClass($variables, $attributes->getClass()->value());
 
     // Remove class from attributes to avoid duplicated 'class' attribute on
     // the element.

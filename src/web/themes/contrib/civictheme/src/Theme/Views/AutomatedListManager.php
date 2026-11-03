@@ -13,7 +13,7 @@ use Drupal\views\Views;
  *
  * Internal to CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class AutomatedListManager {
 
@@ -31,7 +31,7 @@ final class AutomatedListManager {
    *
    * @see hook_civictheme_automated_list_view_info_alter()
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   public static function getView(array &$settings): ViewExecutable {
     // Get information about a view and a display that will be used produce
@@ -84,10 +84,10 @@ final class AutomatedListManager {
    * @param \Drupal\views\ViewExecutable $view
    *   View instance.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
-   * @SuppressWarnings(PHPMD.MissingImport)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   * @SuppressWarnings("PHPMD.MissingImport")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function updateView(ViewExecutable $view): void {
     if (!property_exists($view, 'component_settings') || $view->component_settings === NULL) {

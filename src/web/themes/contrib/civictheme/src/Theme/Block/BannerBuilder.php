@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\civictheme\Theme\Block;
 
 use Drupal\civictheme\CivicthemeConstants;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
-use Drupal\civictheme\Utility\CivicthemeMediaHelper;
-use Drupal\civictheme\Utility\CivicthemeNodeHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeMedia;
+use Drupal\civictheme\Utility\CivicthemeNode;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
@@ -17,7 +17,7 @@ use Drupal\Core\Link;
  *
  * Internal to CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class BannerBuilder {
 
@@ -29,8 +29,8 @@ final class BannerBuilder {
    * 2. Properties from the node that may override properties from the block.
    * 3. Cache tags.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   public static function preprocess(array &$variables): void {
     if ($variables['base_plugin_id'] != 'block_content') {
@@ -48,21 +48,21 @@ final class BannerBuilder {
     $variables['content_top3'] = NULL;
     $variables['content_bottom'] = NULL;
 
-    $variables['theme'] = CivicthemeFieldHelper::getValue($block, 'field_c_b_theme', TRUE, CivicthemeConstants::BANNER_THEME_DEFAULT);
-    $variables['type'] = CivicthemeFieldHelper::getValue($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
+    $variables['theme'] = CivicthemeField::getValue($block, 'field_c_b_theme', TRUE, CivicthemeConstants::BANNER_THEME_DEFAULT);
+    $variables['type'] = CivicthemeField::getValue($block, 'field_c_b_banner_type', TRUE, CivicthemeConstants::BANNER_TYPE_DEFAULT);
 
     // Remove existing content.
     $variables['content'] = NULL;
 
-    $background_image = CivicthemeFieldHelper::getValue($block, 'field_c_b_background_image', TRUE, build: $variables);
+    $background_image = CivicthemeField::getValue($block, 'field_c_b_background_image', TRUE, build: $variables);
     if (!empty($background_image)) {
-      $variables['background_image'] = CivicthemeMediaHelper::getImageVariables($background_image);
-      $variables['background_image_blend_mode'] = CivicthemeFieldHelper::getValue($block, 'field_c_b_banner_blend_mode', TRUE);
+      $variables['background_image'] = CivicthemeMedia::getImageVariables($background_image);
+      $variables['background_image_blend_mode'] = CivicthemeField::getValue($block, 'field_c_b_banner_blend_mode', TRUE);
     }
 
-    $featured_image = CivicthemeFieldHelper::getValue($block, 'field_c_b_featured_image', TRUE, build: $variables);
+    $featured_image = CivicthemeField::getValue($block, 'field_c_b_featured_image', TRUE, build: $variables);
     if (!empty($featured_image)) {
-      $variables['featured_image'] = CivicthemeMediaHelper::getImageVariables($featured_image);
+      $variables['featured_image'] = CivicthemeMedia::getImageVariables($featured_image);
     }
     $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), \Drupal::routeMatch()->getRouteObject());
     $title = (string) (is_array($title) ? reset($title) : ((string) $title));
@@ -72,10 +72,10 @@ final class BannerBuilder {
     ];
     $variables['title'] = $title;
 
-    static::preprocessBreadcrumb($variables);
+    self::preprocessBreadcrumb($variables);
 
     // Per-node overrides.
-    static::preprocessNode($variables);
+    self::preprocessNode($variables);
 
     if ($variables['type'] == CivicthemeConstants::BANNER_TYPE_LARGE) {
       $variables['is_decorative'] = TRUE;
@@ -89,8 +89,8 @@ final class BannerBuilder {
   /**
    * Pre-process Banner using per-node overrides.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
    */
   protected static function preprocessNode(array &$variables): void {
     $node = \Drupal::routeMatch()->getParameter('node_revision') ?: \Drupal::routeMatch()->getParameter('node');
@@ -103,37 +103,37 @@ final class BannerBuilder {
       return;
     }
 
-    $type = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_type', TRUE, CivicthemeConstants::INHERIT);
+    $type = CivicthemeField::getValue($node, 'field_c_n_banner_type', TRUE, CivicthemeConstants::INHERIT);
     $variables['type'] = $type == CivicthemeConstants::INHERIT ? ($variables['type'] ?? CivicthemeConstants::BANNER_TYPE_DEFAULT) : $type;
 
-    $theme = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
+    $theme = CivicthemeField::getValue($node, 'field_c_n_banner_theme', TRUE, CivicthemeConstants::INHERIT);
     $variables['theme'] = $theme == CivicthemeConstants::INHERIT ? ($variables['theme'] ?? CivicthemeConstants::BANNER_THEME_DEFAULT) : $theme;
 
-    $background_image = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_background', TRUE);
+    $background_image = CivicthemeField::getValue($node, 'field_c_n_banner_background', TRUE);
     if (!empty($background_image)) {
-      $variables['background_image'] = CivicthemeMediaHelper::getImageVariables($background_image);
-      $variables['background_image_blend_mode'] = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_blend_mode', TRUE);
+      $variables['background_image'] = CivicthemeMedia::getImageVariables($background_image);
+      $variables['background_image_blend_mode'] = CivicthemeField::getValue($node, 'field_c_n_banner_blend_mode', TRUE);
     }
 
-    $featured_image = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_featured_image', TRUE, build: $variables);
+    $featured_image = CivicthemeField::getValue($node, 'field_c_n_banner_featured_image', TRUE, build: $variables);
     if (!empty($featured_image)) {
-      $variables['featured_image'] = CivicthemeMediaHelper::getImageVariables($featured_image);
+      $variables['featured_image'] = CivicthemeMedia::getImageVariables($featured_image);
     }
 
-    $variables['title'] = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_title') ?: $variables['title'];
+    $variables['title'] = CivicthemeField::getValue($node, 'field_c_n_banner_title') ?: $variables['title'];
     if (isset($variables['title']['#markup']) && empty($variables['title']['#markup'])) {
       $variables['title']['#markup'] = $node->getTitle();
     }
-    if (CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
+    if (CivicthemeField::getValue($node, 'field_c_n_banner_hide_breadcrumb', FALSE, FALSE)) {
       unset($variables['breadcrumb']);
     }
 
-    $site_section = CivicthemeFieldHelper::getValue($node, 'field_c_n_site_section', TRUE, build: $variables);
+    $site_section = CivicthemeField::getValue($node, 'field_c_n_site_section', TRUE, build: $variables);
     if (!empty($site_section)) {
       $variables['site_section'] = $site_section->getName();
     }
 
-    $updated_date = CivicthemeNodeHelper::getUpdatedDate($node);
+    $updated_date = CivicthemeNode::getUpdatedDate($node);
     if (!empty($updated_date)) {
       $variables['content_middle'][] = [
         '#theme' => 'civictheme_basic_content',
@@ -147,13 +147,13 @@ final class BannerBuilder {
       ];
     }
 
-    $banner_components = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_components');
+    $banner_components = CivicthemeField::getValue($node, 'field_c_n_banner_components');
     if (!empty($banner_components)) {
       $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
       $variables['content'][] = $render_controller->viewMultiple($banner_components, 'default');
     }
 
-    $banner_below_components = CivicthemeFieldHelper::getValue($node, 'field_c_n_banner_components_bott');
+    $banner_below_components = CivicthemeField::getValue($node, 'field_c_n_banner_components_bott');
     if (!empty($banner_below_components)) {
       $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
       $variables['content_below'][] = $render_controller->viewMultiple($banner_below_components, 'default');
@@ -168,8 +168,8 @@ final class BannerBuilder {
   /**
    * Pre-process for Breadcrumb.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.ElseExpression")
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected static function preprocessBreadcrumb(array &$variables): void {
     // Disable breadcrumb on homepage.

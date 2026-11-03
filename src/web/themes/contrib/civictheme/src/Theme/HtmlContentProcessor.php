@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\civictheme\Theme;
 
 use Drupal\civictheme\CivicthemeConfigManager;
-use Drupal\civictheme\Utility\CivicthemeLinkHelper;
+use Drupal\civictheme\Utility\CivicthemeLink;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\filter\Entity\FilterFormat;
@@ -18,7 +18,7 @@ use Drupal\filter\FilterPluginCollection;
  * decorations, new window handling, URL-to-link conversion) and the
  * contextual theme class replacement to rendered HTML content.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class HtmlContentProcessor {
 
@@ -41,14 +41,14 @@ final class HtmlContentProcessor {
    */
   public static function processHtmlContent(string $html, array $options = [], ?string $format = NULL): string {
     // Process links.
-    $html = static::processUrlsToLinks($html, $format);
+    $html = self::processUrlsToLinks($html, $format);
     /** @var \Drupal\civictheme\CivicthemeConfigManager $theme_config_manager */
     $theme_config_manager = \Drupal::classResolver(CivicthemeConfigManager::class);
     $link_settings = $theme_config_manager->load('components.link', []);
     $request = \Drupal::service('request_stack')->getCurrentRequest();
     $base_url = $request->getHost() . (empty($request->getPort()) ? '' : ':' . $request->getPort());
 
-    $html = static::processLinks(
+    $html = self::processLinks(
       $html,
       $base_url,
       (bool) ($link_settings['new_window'] ?? FALSE),
@@ -66,7 +66,7 @@ final class HtmlContentProcessor {
       // .ct-button.ct-theme-light.ct-button--primary.ct-button--regular
       // if the component is dark we str_replace the theme class and replace.
       // @todo We may need to implement this in a different way.
-      $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], (string) $html);
+      $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], $html);
     }
 
     return $html;
@@ -121,9 +121,9 @@ final class HtmlContentProcessor {
    * @return string
    *   The processed HTML string.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+   * @SuppressWarnings("PHPMD.NPathComplexity")
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function processLinks(string $html, string $base_url, bool $new_window = FALSE, bool $external_new_window = FALSE, array $override_domains = []): string {
     if (empty($html)) {
@@ -149,7 +149,7 @@ final class HtmlContentProcessor {
       }
 
       $url = $anchor->getAttribute('href');
-      $is_external = CivicthemeLinkHelper::urlIsExternal($url, $base_url, $override_domains);
+      $is_external = CivicthemeLink::urlIsExternal($url, $base_url, $override_domains);
 
       if ($new_window || ($is_external && $external_new_window)) {
         if (!$anchor->hasAttribute('target')) {
@@ -160,7 +160,7 @@ final class HtmlContentProcessor {
           $anchor->setAttribute('aria-label', (string) t('Opens in a new tab'));
         }
 
-        static::addExternalLinkDecorations($dom, $anchor);
+        self::addExternalLinkDecorations($dom, $anchor);
       }
     }
 
@@ -180,7 +180,7 @@ final class HtmlContentProcessor {
   /**
    * Get DOMDocument object from HTML content.
    *
-   * @SuppressWarnings(PHPMD.MissingImport)
+   * @SuppressWarnings("PHPMD.MissingImport")
    */
   public static function getDomDocument(string $content): \DOMDocument {
     $doc = new \DOMDocument();
@@ -203,7 +203,7 @@ final class HtmlContentProcessor {
    *   The anchor to process.
    */
   protected static function addExternalLinkDecorations(\DOMDocument $dom, \DOMElement $anchor): void {
-    $text_node = static::getLastTextNode($anchor);
+    $text_node = self::getLastTextNode($anchor);
 
     // Links without a text label, such as those wrapping an image, have no
     // word for the icon to be grouped with, so they are left as they are.
@@ -211,7 +211,7 @@ final class HtmlContentProcessor {
       return;
     }
 
-    $parts = static::splitLastWord((string) $text_node->nodeValue);
+    $parts = self::splitLastWord((string) $text_node->nodeValue);
     if ($parts === NULL) {
       return;
     }
@@ -265,7 +265,7 @@ final class HtmlContentProcessor {
   protected static function getLastTextNode(\DOMNode $node): ?\DOMText {
     for ($child = $node->lastChild; $child instanceof \DOMNode; $child = $child->previousSibling) {
       if ($child instanceof \DOMText) {
-        if (static::splitLastWord((string) $child->nodeValue) !== NULL) {
+        if (self::splitLastWord((string) $child->nodeValue) !== NULL) {
           return $child;
         }
 
@@ -275,7 +275,7 @@ final class HtmlContentProcessor {
       // Comments and processing instructions hold no rendered text, so only
       // elements are descended into.
       if ($child instanceof \DOMElement) {
-        $descendant = static::getLastTextNode($child);
+        $descendant = self::getLastTextNode($child);
 
         if ($descendant instanceof \DOMText) {
           return $descendant;

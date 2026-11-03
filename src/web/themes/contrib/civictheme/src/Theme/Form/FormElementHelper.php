@@ -13,7 +13,7 @@ use Drupal\Core\Render\Element;
  * Internal to CivicTheme: shared by the form, views and webform
  * preprocessors.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class FormElementHelper {
 
@@ -116,7 +116,7 @@ final class FormElementHelper {
       $elements[$form_element]['#attributes']['#component_theme'] = $theme;
       $children = Element::children($elements[$form_element]);
       if (!empty($children)) {
-        static::propagateComponentTheme($elements[$form_element], $theme);
+        self::propagateComponentTheme($elements[$form_element], $theme);
       }
     }
   }

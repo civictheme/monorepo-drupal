@@ -17,9 +17,9 @@ use Drupal\media\Plugin\media\Source\OEmbedInterface;
  *
  * The procedural civictheme_media_*() functions delegate here.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
-final class CivicthemeMediaHelper {
+final class CivicthemeMedia {
 
   /**
    * Get variables from media.
@@ -34,8 +34,8 @@ final class CivicthemeMediaHelper {
     $label = $media->label();
     $variables = [
       'media_name' => t('@name', ['@name' => $label]),
-      'created' => CivicthemeDateHelper::format((int) $media->getCreatedTime(), 'civictheme_short_date'),
-      'changed' => CivicthemeDateHelper::format($media->getChangedTime(), 'civictheme_short_date'),
+      'created' => CivicthemeDate::format((int) $media->getCreatedTime(), 'civictheme_short_date'),
+      'changed' => CivicthemeDate::format($media->getChangedTime(), 'civictheme_short_date'),
     ];
     $source = $media->getSource();
     if ($source instanceof OEmbedInterface) {
@@ -55,15 +55,13 @@ final class CivicthemeMediaHelper {
       return NULL;
     }
 
-    $variables += [
+    return $variables + [
       'name' => t('@name', ['@name' => $file->label()]),
       'ext' => pathinfo((string) $file->getFileUri(), PATHINFO_EXTENSION) ?: '',
-      'url' => static::getUrl($media),
+      'url' => self::getUrl($media),
       'size' => ByteSizeMarkup::create($file->getSize()),
-      'icon' => static::getIconFromFile($file),
+      'icon' => self::getIconFromFile($file),
     ];
-
-    return $variables;
   }
 
   /**
@@ -82,13 +80,13 @@ final class CivicthemeMediaHelper {
       return NULL;
     }
 
-    $variables = static::getVariables($media);
+    $variables = self::getVariables($media);
 
     if ($variables['ext'] == 'svg') {
       $image_style = NULL;
     }
 
-    $url = static::getImageUrl($media, $image_style);
+    $url = self::getImageUrl($media, $image_style);
     $image_url = \Drupal::service('file_url_generator')->generateString($url);
     $variables['url'] = \Drupal::service('file_url_generator')->transformRelative($image_url);
 
@@ -117,14 +115,14 @@ final class CivicthemeMediaHelper {
    * @throws \Drupal\Core\File\Exception\InvalidStreamWrapperException
    *   If a stream wrapper could not be found to generate an external URL.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
    */
   public static function getUrl(MediaInterface $media, bool $is_relative = TRUE): ?string {
     $file = File::load($media->getSource()->getSourceFieldValue($media));
     try {
       return $file !== NULL ? $file->createFileUrl($is_relative) : NULL;
     }
-    catch (InvalidStreamWrapperException $e) {
+    catch (InvalidStreamWrapperException) {
       return NULL;
     }
   }
@@ -142,8 +140,8 @@ final class CivicthemeMediaHelper {
    * @return string|null
    *   The relative URL for the source file or NULL if the file was not found.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function getImageUrl(MediaInterface $media, ?string $image_style = NULL, bool $is_relative = TRUE): ?string {
     $src = NULL;
@@ -172,7 +170,7 @@ final class CivicthemeMediaHelper {
    * @return string
    *   Return Symbol.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public static function getIconFromFile(FileInterface $file): string {
     $mime_type = $file->getMimeType();

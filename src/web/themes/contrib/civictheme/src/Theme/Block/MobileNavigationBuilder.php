@@ -9,7 +9,7 @@ use Drupal\block_content\BlockContentInterface;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\Theme\Navigation\MenuTreeMapper;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Menu\MenuTreeParameters;
 
@@ -18,14 +18,14 @@ use Drupal\Core\Menu\MenuTreeParameters;
  *
  * Internal to CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 final class MobileNavigationBuilder {
 
   /**
    * Pre-process for Mobile Navigation block.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public static function preprocess(array &$variables): void {
     $entity = $variables['elements']['content']['#block_content'] ?? NULL;
@@ -43,7 +43,7 @@ final class MobileNavigationBuilder {
     $entity_cache_tags = $entity->getCacheTags();
     $cacheability = new CacheableMetadata();
     foreach ($menu_fields as $menu_key => $menu_field) {
-      $menu_block = CivicthemeFieldHelper::getReferencedEntity($entity, $menu_field, $variables);
+      $menu_block = CivicthemeField::getReferencedEntity($entity, $menu_field, $variables);
 
       if (!$menu_block instanceof BlockInterface || !str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
         $variables[$menu_key] = [];
@@ -78,7 +78,7 @@ final class MobileNavigationBuilder {
 
       $build = $menu_tree_service->build($tree);
       $variables[$menu_key] = $build['#items'] ?? [];
-      static::preprocessTopMenu($variables, $menu_key);
+      self::preprocessTopMenu($variables, $menu_key);
       MenuTreeMapper::processMenuItems($variables[$menu_key], $expand_all_items);
 
       $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build));
@@ -86,15 +86,16 @@ final class MobileNavigationBuilder {
       $cacheability->addCacheTags($menu_block->getCacheTags());
     }
 
+    $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($variables));
     $cacheability->applyTo($variables);
 
-    $variables['trigger_text'] = CivicthemeFieldHelper::getValue($entity, 'field_c_b_trigger_text');
-    $variables['theme'] = CivicthemeFieldHelper::getThemeValue($entity);
+    $variables['trigger_text'] = CivicthemeField::getValue($entity, 'field_c_b_trigger_text');
+    $variables['theme'] = CivicthemeField::getThemeValue($entity);
 
     /** @var \Drupal\civictheme\CivicthemeConfigManager $theme_config_manager */
     $theme_config_manager = \Drupal::classResolver(CivicthemeConfigManager::class);
     $context_theme = $theme_config_manager->load('components.header.theme', CivicthemeConstants::HEADER_THEME_DEFAULT);
-    $variables['trigger_theme'] = CivicthemeFieldHelper::getValue($entity, 'field_c_b_trigger_theme') ?? $context_theme;
+    $variables['trigger_theme'] = CivicthemeField::getValue($entity, 'field_c_b_trigger_theme') ?? $context_theme;
   }
 
   /**
@@ -110,7 +111,7 @@ final class MobileNavigationBuilder {
       return;
     }
     // Add search links to end of top menu.
-    $search_links = static::getMobileSearchLinks();
+    $search_links = self::getMobileSearchLinks();
     $cacheable_metadata = CacheableMetadata::createFromRenderArray($variables);
     $cacheable_metadata = $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($search_links));
     $cacheable_metadata->applyTo($variables);
@@ -145,10 +146,10 @@ final class MobileNavigationBuilder {
     /** @var \Drupal\block_content\Entity\BlockContent $block */
     foreach ($blocks as $block) {
       $cacheable_metadata->addCacheableDependency($block);
-      $link_in_mobile_menu = CivicthemeFieldHelper::getValue($block, 'field_c_b_link_in_mobile_menu') ?? FALSE;
+      $link_in_mobile_menu = CivicthemeField::getValue($block, 'field_c_b_link_in_mobile_menu') ?? FALSE;
 
       if ($link_in_mobile_menu) {
-        $link = CivicthemeFieldHelper::getValue($block, 'field_c_b_link', TRUE);
+        $link = CivicthemeField::getValue($block, 'field_c_b_link', TRUE);
         if ($link !== NULL) {
           $search_links['items'][] = [
             'url' => $link->getUrl()->toString(),

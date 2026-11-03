@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\civictheme\Settings;
 
 use Drupal\civictheme\CivicthemeConstants;
@@ -22,8 +24,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * {@inheritdoc}
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
-   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+   * @SuppressWarnings("PHPMD.StaticAccess")
+   * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
    */
   public function form(array &$form, FormStateInterface $form_state): void {
     $form['components'] = [
@@ -54,7 +56,6 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
     $allowed_extensions = implode(' ', $allowed_extensions);
 
     foreach ($logo_types as $logo_type) {
-      // @phpstan-ignore-next-line
       $form['components']['logo'][$logo_type] = [
         '#type' => 'details',
         '#title' => $this->t('@logo_type logo', [
@@ -73,6 +74,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
       ];
       foreach (civictheme_theme_options() as $theme => $theme_label) {
         foreach ($breakpoints as $breakpoint) {
+          // @phpstan-ignore offsetAccess.nonOffsetAccessible
           $form['components']['logo'][$logo_type][$theme][$breakpoint] = [
             '#type' => 'fieldset',
             '#title' => $this->t('@logo_type logo @theme @breakpoint', [
@@ -521,8 +523,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Validate callback for theme settings form to check footer settings.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public function validateFooter(array $form, FormStateInterface &$form_state): void {
     $this->validateFileUpload(
@@ -536,8 +538,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Validate callback for theme settings form of Link component.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function validateLink(array &$form, FormStateInterface $form_state): void {
     $override_domain_field_name_keys = [
@@ -578,7 +580,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Submit callback for theme settings form of Logo component.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   public function submitLogo(array &$form, FormStateInterface $form_state): void {
     foreach (['primary', 'secondary'] as $logo_type) {
@@ -598,7 +600,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Submit callback for theme settings form of Footer component.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   public function submitFooter(array &$form, FormStateInterface $form_state): void {
     $this->submitFileUpload(
@@ -612,8 +614,8 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Submit callback for theme settings form of Search component.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function submitSearch(array &$form, FormStateInterface $form_state): void {
     $keyword_fields = $form_state->getValue(['components', 'search', 'keyword_fields'], '');
@@ -630,13 +632,13 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
    * @return string
    *   Description string.
    *
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected function getPathFieldDescription(string $filename): string {
     $relative_file = $this->themeManager->getActiveTheme()->getPath() . '/' . $filename;
     $uploaded_file = $this->toFriendlyFilePath($this->getDefaultFileScheme() . '://' . $filename);
 
-    return $this->t('Relative to Drupal web root: <code>@relative-file</code> or <code>@uploaded-file</code>', [
+    return (string) $this->t('Relative to Drupal web root: <code>@relative-file</code> or <code>@uploaded-file</code>', [
       '@relative-file' => $relative_file,
       '@uploaded-file' => $uploaded_file,
     ]);
@@ -658,7 +660,7 @@ class CivicthemeSettingsFormSectionComponents extends CivicthemeSettingsFormSect
   /**
    * Submit callback for site slogan component.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   public function submitSiteSlogan(array &$form, FormStateInterface $form_state): void {
     $slogan = $form_state->getValue(['components', 'site_slogan', 'content']);

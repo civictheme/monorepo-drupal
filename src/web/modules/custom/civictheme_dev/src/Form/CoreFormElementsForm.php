@@ -55,7 +55,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * {@inheritDoc}
    *
    * @phpstan-ignore-next-line
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     // Getting form element plugin manager.
@@ -122,7 +122,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @return array<int|string, mixed>
    *   Form element.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   protected function createFormElement(string $id, FormElementBase $element): array {
     $form_element = [
@@ -190,7 +190,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @return array<string, mixed>
    *   Form element.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   protected function createEntityAutoCompleteFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#type'] = 'entity_autocomplete';
@@ -213,7 +213,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @return array<string, mixed>
    *   Form element.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   protected function createOptionsFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#options'] = [
@@ -236,7 +236,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    * @return array<string, mixed>
    *   Form element.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   protected function createTableFormElement(array $form_element, FormElementBase $element): array {
     $form_element['#header'] = ['Header 1', 'Header 2', 'Header 3'];
@@ -293,7 +293,7 @@ class CoreFormElementsForm extends FormBase implements ContainerInjectionInterfa
    *   Form element.
    *
    * @phpstan-ignore-next-line
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
    */
   protected function createButton(array $form_element, FormElementBase $element): array {
     $form_element['#value'] = $form_element['#title'];

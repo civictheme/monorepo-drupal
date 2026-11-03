@@ -7,8 +7,8 @@ namespace Drupal\civictheme\Hook\Preprocess;
 use Drupal\civictheme\CivicthemeConfigManager;
 use Drupal\civictheme\CivicthemeConstants;
 use Drupal\civictheme\CivicthemeUtility;
-use Drupal\civictheme\Utility\CivicthemeFieldHelper;
-use Drupal\civictheme\Utility\CivicthemeNodeHelper;
+use Drupal\civictheme\Utility\CivicthemeField;
+use Drupal\civictheme\Utility\CivicthemeNode;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Hook\Attribute\Hook;
@@ -18,7 +18,7 @@ use Drupal\node\NodeInterface;
 /**
  * Html and page preprocess hook implementations for CivicTheme.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class PageHooks {
 
@@ -77,10 +77,10 @@ class PageHooks {
    * HTML pre-process for a site section.
    */
   protected function preprocessHtmlSiteSection(array &$variables): void {
-    /** @var \Drupal\node\Entity\Node $node */
+    /** @var \Drupal\node\NodeInterface|null $node */
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof NodeInterface) {
-      $site_section = CivicthemeFieldHelper::getValue($node, 'field_c_n_site_section', TRUE, build: $variables) ?? FALSE;
+      $site_section = CivicthemeField::getValue($node, 'field_c_n_site_section', TRUE, build: $variables) ?? FALSE;
 
       if ($site_section) {
         $variables['attributes']['class'][] = 'ct-site-section--' . Html::cleanCssIdentifier(strtolower((string) $site_section->getName()));
@@ -154,21 +154,21 @@ class PageHooks {
    */
   protected function preprocessPageNode(array &$variables): void {
     /** @var \Drupal\node\Entity\Node $node */
-    $node = CivicthemeNodeHelper::loadNodeOrRevision($variables);
+    $node = CivicthemeNode::loadNodeOrRevision($variables);
 
     // @phpstan-ignore-next-line
     if (!$node) {
       return;
     }
 
-    $vertical_spacing = CivicthemeFieldHelper::getValue($node, 'field_c_n_vertical_spacing');
+    $vertical_spacing = CivicthemeField::getValue($node, 'field_c_n_vertical_spacing');
     $variables['vertical_spacing'] = in_array($vertical_spacing, ['top', 'bottom', 'both'], TRUE) ? $vertical_spacing : 'none';
 
     // @todo Add support for hiding of the right sidebar through a node field.
-    $variables['hide_sidebar_left'] = (bool) (CivicthemeFieldHelper::getValue($node, 'field_c_n_hide_sidebar') ?? FALSE);
+    $variables['hide_sidebar_left'] = (bool) (CivicthemeField::getValue($node, 'field_c_n_hide_sidebar') ?? FALSE);
     $variables['hide_sidebar_right'] = FALSE;
 
-    $layout_builder_settings_per_view_mode = CivicthemeNodeHelper::getLayoutBuilderSettingsPerViewMode($node->getEntityTypeId(), $node->bundle());
+    $layout_builder_settings_per_view_mode = CivicthemeNode::getLayoutBuilderSettingsPerViewMode($node->getEntityTypeId(), $node->bundle());
     if (!empty($layout_builder_settings_per_view_mode)) {
       // Layout builder determines whether a node is contained and what it's
       // layout is, so we set as not contained to allow layout builder to

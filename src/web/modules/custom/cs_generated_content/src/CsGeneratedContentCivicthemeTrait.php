@@ -14,7 +14,7 @@ use Drupal\taxonomy\TermInterface;
  *
  * Trait for centralised CivicTheme components handling.
  *
- * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings("PHPMD.ExcessivePublicCount")
  */
 trait CsGeneratedContentCivicthemeTrait {
 
@@ -347,7 +347,7 @@ trait CsGeneratedContentCivicthemeTrait {
       'expand_all' => FALSE,
     ];
 
-    if (empty($options['panels']) && count($options['panels']) > 0) {
+    if (empty($options['panels'])) {
       return;
     }
 
@@ -384,8 +384,8 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach paragraph to entity.
    *
-   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   protected static function civicthemeParagraphAttach(string $type, FieldableEntityInterface $entity, string $field_name, array $options, bool $save = FALSE): ?Paragraph {
     if (!$entity->hasField($field_name)) {
@@ -660,7 +660,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Automated list paragraph to a node.
    *
-   * @SuppressWarnings(PHPMD.ElseExpression)
+   * @SuppressWarnings("PHPMD.ElseExpression")
    */
   public static function civicthemeParagraphAutomatedListAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
@@ -739,7 +739,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Slider paragraph to a node.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public static function civicthemeParagraphSliderAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {
@@ -788,7 +788,7 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Card container paragraph to a node.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings("PHPMD.CyclomaticComplexity")
    */
   public static function civicthemeParagraphManualListAttach(NodeInterface $node, string $field_name, array $options): void {
     if (!$node->hasField($field_name)) {

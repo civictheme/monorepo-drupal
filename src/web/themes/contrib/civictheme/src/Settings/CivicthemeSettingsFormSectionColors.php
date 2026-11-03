@@ -144,8 +144,8 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * Validate callback for theme settings form of colours.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function validateColors(array &$form, FormStateInterface $form_state): void {
     // Normalise the overrides CSS the same way the drush import path does:
@@ -168,8 +168,8 @@ class CivicthemeSettingsFormSectionColors extends CivicthemeSettingsFormSectionB
   /**
    * Submit callback for theme settings form of colours.
    *
-   * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-   * @SuppressWarnings(PHPMD.StaticAccess)
+   * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+   * @SuppressWarnings("PHPMD.StaticAccess")
    */
   public function submitColors(array &$form, FormStateInterface $form_state): void {
     // Invalidate caches only if changes were made.

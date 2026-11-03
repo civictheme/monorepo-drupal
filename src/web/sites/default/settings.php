@@ -246,7 +246,7 @@ $settings['trusted_host_patterns'] = [
 
 $user_trusted_hosts = getenv('DRUPAL_TRUSTED_HOSTS');
 if ($user_trusted_hosts) {
-  foreach (array_filter(array_map('trim', explode(',', $user_trusted_hosts))) as $pattern) {
+  foreach (array_filter(array_map(trim(...), explode(',', $user_trusted_hosts))) as $pattern) {
     $settings['trusted_host_patterns'][] = $pattern;
   }
 }
@@ -263,7 +263,7 @@ if (getenv('DRUPAL_REVERSE_PROXY') === 'true') {
   $proxy_addresses = getenv('DRUPAL_REVERSE_PROXY_ADDRESSES') ?: '';
   $settings['reverse_proxy_addresses'] = $proxy_addresses === ''
     ? []
-    : array_filter(array_map('trim', explode(',', $proxy_addresses)));
+    : array_filter(array_map(trim(...), explode(',', $proxy_addresses)));
 }
 
 /**
