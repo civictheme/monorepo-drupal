@@ -1,27 +1,70 @@
 # CivicTheme Drupal theme
 
-Drupal 10 component-based theme.
+Drupal component-based theme built on the CivicTheme UI Kit.
 
 ----
 
 ## Introduction
 
-CivicTheme theme, the Drupal theme with the UI Kit integration, provides
-components and data structures to enhance end-user and editorial experiences
-out-of-the-box.
+CivicTheme provides components and data structures to enhance end-user and
+editorial experiences out-of-the-box.
 
 The [UI kit](https://github.com/civictheme/uikit)
 is a CMS-agnostic HTML/CSS/JS framework based on Atomic Design principles.
 
 The Drupal theme provides full integration and ships with the UI Kit.
 
+This theme is a [starterkit](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme):
+sites generate their own theme from it with core's `generate-theme` command
+and own the result. The CivicTheme content model (content types, paragraph
+types, fields, displays, views) ships separately as
+[Drupal recipes](https://www.drupal.org/docs/extending-drupal/drupal-recipes)
+applied at install time, so it stays
+CivicTheme-owned and upgradable while the generated theme is yours. The
+recipes live in the starterkit's `recipes/` directory and are applied from
+there, never forked into generated themes.
+
 ## Installation
 
 > [!IMPORTANT]
 > For Drupal theme installation instructions, see [Installation instructions](https://docs.civictheme.io/installation/drupal-theme)
 
-Enable CivicTheme theme to use it as-is - CivicTheme UI kit is
-already included as a set of compiled assets.
+### Generating a site theme
+
+Generate your site's theme from the starterkit, then install it:
+
+```bash
+php core/scripts/dr generate-theme your_theme --name "Your Theme" \
+  --starterkit <starterkit_machine_name> --path themes/custom
+```
+
+Core renames the kit's identity (machine name, namespace, libraries, SDC
+component namespace, hook classes) to your theme's. CivicTheme's content
+model names — bundles, `field_c_*` fields, `civictheme_*` hooks and
+provisioning functions, `ct-*` classes and the `@civictheme/uikit`
+dependency — are deliberately not part of that identity and survive, so the
+recipes and components keep working in the generated theme.
+
+After generating, build the front end (this re-imports the UI Kit components
+under your theme's component namespace):
+
+```bash
+cd themes/custom/your_theme && npm install
+```
+
+Then enable the theme and apply the content model recipes from the kit —
+see `recipes/README.md` in the starterkit.
+
+**Your theme, your responsibility**: the generated theme belongs to your
+site. Components update through the `@civictheme/uikit` npm dependency
+(`npm run uikit-install`); PHP-side improvements in the kit are adopted by
+regenerating and porting your changes. There is no update hook path for
+generated themes.
+
+### Installing the kit directly
+
+The kit is a working theme and can be enabled as-is — this is how the demo
+and CI run it. Site builds should generate their own theme instead.
 
 ## Development
 

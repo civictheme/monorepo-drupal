@@ -34,12 +34,42 @@ ahoy build
 
 This will assemble the full Drupal codebase in `web/themes/contrib/civictheme_starter/build`
 directory and will symlink the CivicTheme theme files into the
-`web/themes/contrib/civictheme_starter/build/web/themes/custom/civictheme` directory.
+`web/themes/contrib/civictheme_starter/build/web/themes/custom/civictheme_starter` directory.
 
 **This does not use Docker and does not require a running Docker stack.**
 
 Important: make sure to removed `web/themes/contrib/civictheme_starter/build` directory
 before running the `Full build` build to avoid any conflicts.
+
+### Theme generation (starterkit)
+
+The theme is a starterkit: sites generate their own theme from it with core's
+`generate-theme` command and own the result.
+
+```bash
+php core/scripts/dr generate-theme alpine_shire --name "Alpine Shire" \
+  --starterkit civictheme_starter --path themes/custom
+```
+
+`civictheme_starter.starterkit.yml` controls what generation copies: build
+output, tests, kit tooling and the `recipes/` directory stay behind (recipes
+are applied from the kit, never forked into sites). Core renames every
+case-form of `civictheme_starter` / "CivicTheme Starter" in file contents and
+names; bare `civictheme` tokens are not rename patterns and survive — that
+boundary is the naming contract enforced by `scripts/lint.naming-contract.sh`.
+
+The `generation` CI job is the guard for that contract: on every push it
+generates a theme from the kit (via the isolated build), asserts the identity
+renamed and the content model survived, builds the generated theme's front
+end under its own name, and provisions a site with the generated theme as
+default. Run it locally with:
+
+```bash
+cd web/themes/contrib/civictheme_starter
+.devtools/assemble.sh
+.devtools/start.sh
+.devtools/test-generation.sh
+```
 
 ## Full build (Docker build)
 
@@ -54,8 +84,9 @@ The following steps outline the build process:
    `ahoy provision` for a rebuild.
 2. Activate additional modules needed for development by installing the
    `civictheme_dev` module.
-3. Enable the `civictheme` theme, set it as the default theme and apply the
-   content model recipes shipped in the theme's `recipes/` directory.
+3. Enable the `civictheme_starter` theme, set it as the default theme and
+   apply the content model recipes shipped in the theme's `recipes/`
+   directory.
 4. Activate the `civictheme_admin` module for enhancements in the admin UI.
 5. Activate the `civictheme_govcms` module to discard pre-configured GovCMS
    content types.

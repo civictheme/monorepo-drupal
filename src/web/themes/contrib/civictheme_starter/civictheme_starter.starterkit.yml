@@ -1,0 +1,41 @@
+# Marks this theme as a starterkit source for core's generate-theme command:
+#
+#   php core/scripts/drupal generate-theme alpine_shire \
+#     --name "Alpine Shire" --starterkit civictheme_starter
+#
+# Core renames every case-form of the machine name `civictheme_starter` and
+# the label "CivicTheme Starter" in file contents and file names. Bare
+# `civictheme` tokens are not rename patterns and survive generation: bundle
+# and field machine names, hook_theme() items, `civictheme_*_alter` hooks,
+# `civictheme_provision*()` functions, drush `civictheme:` commands, ct-*
+# classes and `@civictheme/uikit`. The monorepo's
+# scripts/lint.naming-contract.sh guards that boundary.
+info:
+  # Core would otherwise reset the generated theme's requirement to the bare
+  # current major (`^11`).
+  core_version_requirement: ^11.4 || ^12
+  # Generated themes start their own versioning. Provenance is carried by the
+  # `generator: civictheme_starter:<version>` key core derives from this
+  # theme's own info.yml version.
+  version: 1.0.0
+ignore:
+  # Core's defaults, restated because a custom list replaces them.
+  - '/src/StarterKit.php'
+  - '/*.starterkit.yml'
+  # Build output and dependencies: `npm install` in the generated theme
+  # rebuilds components/ and dist/ under the generated machine name.
+  # Generate from a clean checkout - dot-leading entries nested under these
+  # directories (e.g. node_modules/.bin) escape the glob exclusion.
+  - '/node_modules/**'
+  - '/dist/**'
+  - '/components/**'
+  - '/storybook-static/**'
+  # Kit-only development and CI tooling.
+  - '/build/**'
+  - '/.devtools/**'
+  - '/.logs/**'
+  - '/tests/**'
+  # The content model is applied from the kit, never forked into sites.
+  - '/recipes/**'
+  # Sibling overlay kit, generated separately.
+  - '/civictheme_canvas_starter/**'
