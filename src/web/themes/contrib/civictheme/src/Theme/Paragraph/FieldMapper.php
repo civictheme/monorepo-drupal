@@ -230,7 +230,7 @@ final class FieldMapper {
   public static function nodeFieldLocation(array &$variables): void {
     // Location is a field on the paragraph attached to an Event node through
     // 'field_c_n_location' field. We are only using a first location.
-    $node = CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
+    $node = $variables['node'] ?? CivicthemeField::getValue($variables['paragraph'], 'field_c_p_reference', TRUE, build: $variables);
     if ($node) {
       /** @var \Drupal\paragraphs\Entity\Paragraph[] $locations */
       $locations = CivicthemeField::getValue($node, 'field_c_n_location', build: $variables);
